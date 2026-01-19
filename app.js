@@ -19,7 +19,6 @@ async function writeClipboard(text) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
     return navigator.clipboard.writeText(text);
   }
-
   const ta = document.createElement("textarea");
   ta.value = text;
   ta.style.position = "fixed";
@@ -54,9 +53,6 @@ async function copyAccount() {
   }
 }
 
-/**
- * ✅ 슬라이드 위치 계산
- */
 function getCurrentSlideIndex() {
   const scroller = getSlidesContainer();
   const slides = getSlides();
@@ -64,8 +60,6 @@ function getCurrentSlideIndex() {
 
   const x = scroller.scrollLeft;
   const w = scroller.clientWidth;
-
-  // 가장 가까운 슬라이드 인덱스
   return Math.round(x / w);
 }
 
@@ -91,9 +85,6 @@ function prevSlide() {
   goToSlide(getCurrentSlideIndex() - 1);
 }
 
-/**
- * ✅ 메뉴 클릭(앵커)을 가로 슬라이드로 이동
- */
 function smoothAnchorHorizontal() {
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", (e) => {
@@ -105,7 +96,6 @@ function smoothAnchorHorizontal() {
 
       e.preventDefault();
 
-      // 슬라이드 컨테이너에서 해당 슬라이드로 이동
       target.scrollIntoView({
         behavior: "smooth",
         inline: "start",
@@ -115,24 +105,16 @@ function smoothAnchorHorizontal() {
   });
 }
 
-/**
- * ✅ 키보드로 한 장씩 넘기기
- * - 좌/우 방향키
- * - PageUp/PageDown
- */
 function bindKeyboard() {
   window.addEventListener("keydown", (e) => {
-    const key = e.key;
-
-    // 입력 중에는 방해하지 않기
     const tag = document.activeElement?.tagName?.toLowerCase();
     if (tag === "input" || tag === "textarea") return;
 
-    if (key === "ArrowRight" || key === "PageDown") {
+    if (e.key === "ArrowRight" || e.key === "PageDown") {
       e.preventDefault();
       nextSlide();
     }
-    if (key === "ArrowLeft" || key === "PageUp") {
+    if (e.key === "ArrowLeft" || e.key === "PageUp") {
       e.preventDefault();
       prevSlide();
     }
