@@ -1,353 +1,387 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#07930E" />
-  <title>네다바웨이</title>
-
-  <!-- ✅ 스타일 파일명 그대로 유지 -->
+  <title>네다바웨이 | Nedabah Way</title>
   <link rel="stylesheet" href="./스타일.css" />
 </head>
 
 <body>
-  <div class="app" id="app">
+  <!-- App Shell -->
+  <div class="app">
 
-    <!-- ✅ 항상 유지되는 네비게이션(Sticky) -->
-    <header class="header" id="header">
-      <!-- 1줄: 로고/브랜드 -->
-      <div class="brandRow">
-        <button class="brandBtn" id="homeBtn" type="button" aria-label="홈으로 이동">
-          <span class="logoWrap" aria-hidden="true">
-            <!-- ✅ 시그니처 아이콘 (SVG) -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9Z" stroke="rgba(7,147,14,.92)" stroke-width="1.7"/>
-              <path d="M8 15.2V8.8c0-.9.98-1.44 1.73-.95l6 3.2c.79.42.79 1.48 0 1.9l-6 3.2c-.75.49-1.73-.05-1.73-.95Z"
-                    fill="rgba(7,147,14,.92)"/>
-            </svg>
-          </span>
+    <!-- Sticky Header -->
+    <header class="topbar" id="topbar">
+      <button class="brand" id="brandHome" aria-label="홈으로 이동">
+        <span class="brand__logo" aria-hidden="true">
+          <!-- 심플 시그니처 SVG (커스텀 가능) -->
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
+                <stop stop-color="#0AA046"/>
+                <stop offset="1" stop-color="#07930E"/>
+              </linearGradient>
+            </defs>
+            <circle cx="14" cy="14" r="12.5" stroke="url(#g)" stroke-width="2"/>
+            <path d="M8.2 17.2c2.2-1.6 3.2-4.2 5.2-6.3 2.0-2.1 4.6-3.2 6.4-1.6 1.8 1.6.6 4.2-1.4 6.3-2.0 2.1-4.7 3.3-7.3 3.1"
+              stroke="#0B1B12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11.2 18.7c1.2.8 2.7 1.1 4.2.8" stroke="#0B1B12" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__hebrew">נדבה</span>
+          <span class="brand__name">네다바웨이</span>
+        </span>
+      </button>
 
-          <span class="brandText">
-            <span class="hebrew">נְדָבָה</span>
-            <span class="name">네다바웨이</span>
-          </span>
-        </button>
-      </div>
+      <!-- Tabs -->
+      <nav class="tabs" aria-label="페이지 이동">
+        <button class="tab is-active" data-go="0">소개</button>
+        <button class="tab" data-go="1">SBM</button>
+        <button class="tab" data-go="2">프로그램</button>
+        <button class="tab" data-go="3">자료</button>
+        <button class="tab" data-go="4">문의</button>
+      </nav>
 
-      <!-- 2줄: 카테고리 5개(홈 제외) -->
-      <div class="navRow">
-        <nav class="nav" aria-label="페이지 이동">
-          <button class="navBtn active" data-index="0" type="button">소개</button>
-          <button class="navBtn" data-index="1" type="button">SBM</button>
-          <button class="navBtn" data-index="2" type="button">프로그램</button>
-          <button class="navBtn" data-index="3" type="button">자료</button>
-          <button class="navBtn" data-index="4" type="button">문의</button>
-        </nav>
-
-        <!-- ✅ 현재 페이지 인디케이터 -->
-        <div class="indicator" aria-hidden="true">
-          <div class="bar" id="indicatorBar"></div>
-        </div>
+      <!-- Page Indicator -->
+      <div class="indicator" aria-hidden="true">
+        <div class="indicator__track"></div>
+        <div class="indicator__bar" id="indicatorBar"></div>
       </div>
     </header>
 
-    <!-- ✅ 화면 꽉차는 슬라이드 영역 -->
-    <main class="main" id="main">
-      <div class="pager" id="pager">
-        <div class="track" id="track">
+    <!-- Slides (1 page per screen) -->
+    <main class="deck" id="deck" aria-label="슬라이드">
+      <!-- 0: About -->
+      <section class="slide" data-index="0">
+        <div class="card hero">
+          <div class="pill">과정 중심 · 동행</div>
 
-          <!-- ======================
-               PAGE 0: 소개
-          ======================= -->
-          <section class="page" aria-label="소개">
-            <div class="pageInner">
-              <div class="container">
-                <div class="card">
-                  <div class="pill">말씀읽기를 사귐으로</div>
+          <h1 class="hero__title">
+            말씀을 읽는 시간이<br />
+            하나님과의 <span class="accent">사귐</span>으로<br />
+            이어지도록 돕습니다.
+          </h1>
 
-                  <h1 class="h1">
-                    말씀을 읽는 시간이<br />
-                    <span class="point">하나님과의 사귐</span>으로<br />
-                    이어지도록 돕습니다.
-                  </h1>
+          <p class="hero__sub">
+            텍스트를 넘어 하나님의 뜻과 심정을 헤아리는<br />
+            사귐으로 나아가도록 돕습니다.
+          </p>
 
-                  <p class="desc">
-                    텍스트를 넘어 하나님의 뜻과 심정을 헤아리는 사귐으로 나아가도록 돕습니다.
-                  </p>
+          <div class="grid2">
+            <div class="mini">
+              <div class="mini__k">지향</div>
+              <div class="mini__v">과정 중심 · 동행</div>
+            </div>
+            <div class="mini">
+              <div class="mini__k">핵심</div>
+              <div class="mini__v">삼위일체 사귐 묵상</div>
+            </div>
+            <div class="mini">
+              <div class="mini__k">동력</div>
+              <div class="mini__v">의무감 → 자발성</div>
+            </div>
+            <div class="mini">
+              <div class="mini__k">방식</div>
+              <div class="mini__v">읽기 · 현실 점검 · 실행 가능한 훈련</div>
+            </div>
+          </div>
 
-                  <div class="hr"></div>
+          <div class="ctaRow">
+            <button class="btn btn--primary" data-go="1">SBM 살펴보기</button>
+            <button class="btn btn--ghost" data-go="3">자료 보기</button>
+          </div>
+        </div>
 
-                  <div class="keyList">
-                    <div class="keyItem">
-                      <div class="title">지향</div>
-                      <div class="body"><span class="bold">과정 중심 · 동행</span></div>
-                    </div>
-                    <div class="keyItem">
-                      <div class="title">핵심</div>
-                      <div class="body"><span class="bold">삼위일체 사귐 묵상</span></div>
-                    </div>
-                    <div class="keyItem">
-                      <div class="title">동력</div>
-                      <div class="body"><span class="bold">의무감 → 자발성</span></div>
-                    </div>
-                  </div>
+        <div class="card">
+          <div class="sectionTitle">
+            <span class="tag">핵심 전환</span>
+            <h2>말씀 읽기의 방향을 바꿉니다</h2>
+          </div>
 
-                  <div class="btnRow">
-                    <button class="btn primary" data-goto="1" type="button">SBM 보기</button>
-                    <button class="btn" data-goto="3" type="button">자료 보기</button>
-                  </div>
+          <div class="shift">
+            <div class="shift__row">
+              <span class="from">결과 분석 및 점검</span>
+              <span class="arrow">→</span>
+              <span class="to">과정 중심 및 동행</span>
+            </div>
+            <div class="shift__row">
+              <span class="from">텍스트 공부 중심</span>
+              <span class="arrow">→</span>
+              <span class="to">텍스트 속 하나님의 뜻과 심정 알기</span>
+            </div>
+            <div class="shift__row">
+              <span class="from">적용 중심 묵상</span>
+              <span class="arrow">→</span>
+              <span class="to">삼위일체 사귐 묵상</span>
+            </div>
+            <div class="shift__row">
+              <span class="from">의무감</span>
+              <span class="arrow">→</span>
+              <span class="to">자발성</span>
+            </div>
+          </div>
 
-                  <div class="hr"></div>
+          <div class="note">
+            우리는 누군가의 묵상 결과를 평가하거나 분석하지 않습니다.  
+            스스로 말씀을 읽고, 그 안에서 하나님을 만나는 <span class="accent">과정</span>을 안내합니다.
+          </div>
+        </div>
+      </section>
 
-                  <div class="pill">핵심 전환</div>
-                  <div class="keyList">
-                    <div class="keyItem"><div class="title">결과 분석 및 점검 → 과정 중심 및 동행</div></div>
-                    <div class="keyItem"><div class="title">텍스트 공부 중심 → 텍스트 속 하나님의 뜻과 심정 알기</div></div>
-                    <div class="keyItem"><div class="title">적용 중심 묵상 → 삼위일체 사귐 묵상</div></div>
-                    <div class="keyItem"><div class="title">의무감 → 자발성</div></div>
-                  </div>
+      <!-- 1: SBM -->
+      <section class="slide" data-index="1">
+        <div class="card">
+          <div class="sectionTitle">
+            <span class="tag">SBM</span>
+            <h2>Self Bible Meditation Maturity</h2>
+          </div>
 
-                  <p class="kicker">
-                    ⟶ 옆으로 “미는 동작”으로 페이지가 넘어갑니다.
-                  </p>
+          <p class="lead">
+            SBM은 “열심”을 더하는 훈련이 아니라,  
+            말씀 읽기가 하나님과의 <span class="accent">사귐</span>으로 이어지도록 돕는 흐름입니다.
+          </p>
+
+          <div class="chips">
+            <span class="chip"><b>3단계</b> 관찰 · 묵상 · 사귐</span>
+            <span class="chip"><b>핵심</b> 뜻과 심정</span>
+            <span class="chip"><b>방식</b> 질문 과정</span>
+          </div>
+
+          <div class="grid3">
+            <div class="box">
+              <div class="box__t">왜</div>
+              <div class="box__b">
+                적용만 남고 사귐이 사라지면<br />
+                말씀이 “과제”가 됩니다.
+              </div>
+            </div>
+            <div class="box">
+              <div class="box__t">어떻게</div>
+              <div class="box__b">
+                말씀 안에서 하나님의 마음을 헤아리고,<br />
+                오늘의 삶으로 이어지게 돕습니다.
+              </div>
+            </div>
+            <div class="box">
+              <div class="box__t">무엇을</div>
+              <div class="box__b">
+                <b>30개 질문 과정</b>으로<br />
+                관찰 → 묵상 → 사귐을 정리합니다.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="sectionTitle">
+            <span class="tag">3단계</span>
+            <h2>관찰 · 묵상 · 사귐</h2>
+          </div>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step__n">1</div>
+              <div class="step__c">
+                <div class="step__t">관찰</div>
+                <div class="step__d">텍스트를 넘어 “장면”으로 보기</div>
+                <div class="step__s">배경 · 흐름 · 연결</div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step__n">2</div>
+              <div class="step__c">
+                <div class="step__t">묵상</div>
+                <div class="step__d">의중(意中)과 심정(心情)을 헤아리기</div>
+                <div class="step__s">공감 · 질문 · 대입</div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step__n">3</div>
+              <div class="step__c">
+                <div class="step__t">사귐</div>
+                <div class="step__d">임재 안에서 머물며 삶으로 이어지기</div>
+                <div class="step__s">기도 · 호흡 · 순종</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review">
+            <div class="review__title">짧은 후기(예시)</div>
+            <ul class="review__list">
+              <li>“적용을 억지로 만들지 않아도, 방향이 선명해졌습니다.”</li>
+              <li>“말씀을 공부가 아니라 사귐으로 읽는 감각이 생겼어요.”</li>
+              <li>“결과 점검보다 과정 동행이 더 오래 갑니다.”</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2: Programs -->
+      <section class="slide" data-index="2">
+        <div class="card">
+          <div class="sectionTitle">
+            <span class="tag">Programs</span>
+            <h2>제목 외에는 한 문장만. 바로 문의</h2>
+          </div>
+
+          <div class="programList">
+            <button class="programItem" data-contact="church">
+              <div class="programItem__title">교회 세미나</div>
+              <div class="programItem__line">
+                교회 상황에 맞춰 “말씀읽기 중심” 세미나를 구성합니다. <b class="accent">→ 문의하기</b>
+              </div>
+            </button>
+
+            <button class="programItem" data-contact="sbm">
+              <div class="programItem__title">SBM 진행</div>
+              <div class="programItem__line">
+                말씀읽기가 하나님과의 “사귐”으로 이어지도록 함께 진행합니다. <b class="accent">→ 문의하기</b>
+              </div>
+            </button>
+
+            <button class="programItem" data-contact="ai">
+              <div class="programItem__title">생성형 AI 워크숍</div>
+              <div class="programItem__line">
+                현장에서 바로 쓰는 방식으로, 맞춤 워크숍을 설계합니다. <b class="accent">→ 문의하기</b>
+              </div>
+            </button>
+
+            <button class="programItem" data-contact="team">
+              <div class="programItem__title">조직 소통·협업</div>
+              <div class="programItem__line">
+                감정이 아니라 “구조”로 정리해 실행까지 이어지게 돕습니다. <b class="accent">→ 문의하기</b>
+              </div>
+            </button>
+
+            <button class="programItem" data-contact="etc">
+              <div class="programItem__title">기타 문의</div>
+              <div class="programItem__line">
+                필요를 듣고 가능한 범위에서 가장 선명한 형태로 제안드립니다. <b class="accent">→ 문의하기</b>
+              </div>
+            </button>
+          </div>
+
+          <div class="note">
+            프로그램은 길게 설명하지 않습니다.  
+            방향을 선택하면 <span class="accent">문의</span>로 바로 연결됩니다.
+          </div>
+        </div>
+      </section>
+
+      <!-- 3: Resources -->
+      <section class="slide" data-index="3">
+        <div class="card">
+          <div class="sectionTitle">
+            <span class="tag">Resources</span>
+            <h2>자료는 새 창이 아니라 “모달”로 열립니다</h2>
+          </div>
+
+          <div class="resourceGrid">
+            <div class="resource">
+              <div class="resource__top">
+                <div class="resource__badge">PDF</div>
+                <div class="resource__title">네다바웨이 소개 & SBM 안내</div>
+              </div>
+              <div class="resource__desc">
+                네다바웨이와 SBM 흐름을 한 번에 확인할 수 있는 소개 자료입니다.
+              </div>
+              <button class="btn btn--soft" data-open-pdf="assets/네다바웨이%20소개.pdf.html">
+                열기
+              </button>
+            </div>
+
+            <div class="resource">
+              <div class="resource__top">
+                <div class="resource__badge">PDF</div>
+                <div class="resource__title">SBM 성숙 안내 자료</div>
+              </div>
+              <div class="resource__desc">
+                관찰·묵상·사귐 흐름과 질문 과정 중심으로 정리된 자료입니다.
+              </div>
+              <button class="btn btn--soft" data-open-pdf="assets/Nedabah_Way_Spiritual_Maturity%20(2).pdf">
+                열기
+              </button>
+            </div>
+          </div>
+
+          <div class="note">
+            “정답·해석”으로 끝내지 않고, 말씀 읽기가 사귐으로 이어지도록 돕는 흐름으로 구성되어 있습니다.
+          </div>
+        </div>
+      </section>
+
+      <!-- 4: Contact -->
+      <section class="slide" data-index="4">
+        <div class="card">
+          <div class="sectionTitle">
+            <span class="tag">Contact</span>
+            <h2>카테고리를 선택하면 “제목/본문 초안”이 자동 생성됩니다</h2>
+          </div>
+
+          <div class="contactBox">
+            <div class="contactHint">
+              초안 문구입니다. 선택 후 <b>복사</b>하거나 <b>메일 앱 열기</b>로 바로 보낼 수 있습니다.
+            </div>
+
+            <div class="categoryRow" id="categoryRow">
+              <button class="cat is-active" data-cat="church">교회 세미나</button>
+              <button class="cat" data-cat="sbm">SBM 진행</button>
+              <button class="cat" data-cat="ai">생성형 AI</button>
+              <button class="cat" data-cat="team">조직 소통·협업</button>
+              <button class="cat" data-cat="etc">기타 문의</button>
+            </div>
+
+            <div class="draft">
+              <div class="draft__block">
+                <div class="draft__label">제목</div>
+                <div class="draft__text" id="mailSubject"></div>
+                <button class="btn btn--mini" id="copySubject">제목복사</button>
+              </div>
+
+              <div class="draft__block">
+                <div class="draft__label">본문</div>
+                <div class="draft__text draft__text--body" id="mailBody"></div>
+
+                <div class="draft__actions">
+                  <button class="btn btn--mini" id="copyBody">본문복사</button>
+                  <button class="btn btn--primary btn--mini" id="openMailApp">메일 앱 열기</button>
                 </div>
               </div>
             </div>
-          </section>
 
-          <!-- ======================
-               PAGE 1: SBM
-          ======================= -->
-          <section class="page" aria-label="SBM">
-            <div class="pageInner">
-              <div class="container">
-                <div class="card">
-                  <div class="pill">SBM</div>
-                  <h2 class="h2">관찰 · 묵상 · 사귐</h2>
-                  <p class="desc">
-                    정답/해석으로 끝내지 않고, 말씀읽기가 사귐으로 이어지도록 돕는 흐름입니다.
-                  </p>
-
-                  <div class="hr"></div>
-
-                  <div class="keyList">
-                    <div class="keyItem">
-                      <div class="title"><span class="point">왜</span> 필요한가</div>
-                      <div class="body">“적용”이 막히는 지점에서 멈추지 않도록, 읽는 방식 자체를 다시 세웁니다.</div>
-                    </div>
-                    <div class="keyItem">
-                      <div class="title"><span class="point">어떻게</span> 진행되는가</div>
-                      <div class="body">관찰로 본문을 붙잡고 → 묵상으로 뜻과 심정을 헤아리고 → 사귐으로 이어집니다.</div>
-                    </div>
-                    <div class="keyItem">
-                      <div class="title"><span class="point">무엇</span>을 제공하는가</div>
-                      <div class="body">혼자서도 흐름을 유지할 수 있는 질문 과정(30)과 기록 구조를 제공합니다.</div>
-                    </div>
-                    <div class="keyItem">
-                      <div class="title"><span class="point">하면</span> 무엇이 좋은가</div>
-                      <div class="body">말씀 읽는 시간이 “해야 할 과제”가 아니라 “만나는 시간”으로 바뀝니다.</div>
-                    </div>
-                  </div>
-
-                  <div class="btnRow">
-                    <button class="btn primary" data-goto="4" type="button">SBM 문의하기</button>
-                    <button class="btn" data-goto="3" type="button">SBM 자료 보기</button>
-                  </div>
-
-                  <div class="hr"></div>
-
-                  <div class="pill">짧은 특징</div>
-                  <div class="keyList">
-                    <div class="keyItem"><div class="title">혼자서도 가능</div></div>
-                    <div class="keyItem"><div class="title">공동체로 확장 가능</div></div>
-                    <div class="keyItem"><div class="title">읽기-나눔-기도 흐름</div></div>
-                    <div class="keyItem"><div class="title">자발성 회복</div></div>
-                  </div>
-                </div>
-              </div>
+            <div class="small">
+              메일 앱이 열리지 않으면, 복사 버튼을 사용해 직접 붙여넣어도 됩니다.
             </div>
-          </section>
+          </div>
+        </div>
+      </section>
+    </main>
 
-          <!-- ======================
-               PAGE 2: 프로그램
-          ======================= -->
-          <section class="page" aria-label="프로그램">
-            <div class="pageInner">
-              <div class="container">
-                <div class="card">
-                  <div class="pill">Programs</div>
-                  <h2 class="h2">프로그램</h2>
-                  <p class="desc">
-                    제목 외에는 <span class="point">한 문장</span>만. 필요한 항목을 눌러 바로 문의하세요.
-                  </p>
-
-                  <div class="programList">
-                    <div class="programItem">
-                      <div class="left">
-                        <div class="name">교회 세미나</div>
-                        <div class="oneLine">교회 상황에 맞춰 ‘말씀읽기 중심’ 세미나를 구성해드립니다.</div>
-                      </div>
-                      <button class="ask" data-contact="church" type="button">문의</button>
-                    </div>
-
-                    <div class="programItem">
-                      <div class="left">
-                        <div class="name">SBM 진행</div>
-                        <div class="oneLine">말씀읽기가 하나님과의 ‘사귐’으로 이어지도록 함께 진행합니다.</div>
-                      </div>
-                      <button class="ask" data-contact="sbm" type="button">문의</button>
-                    </div>
-
-                    <div class="programItem">
-                      <div class="left">
-                        <div class="name">생성형 AI 워크숍</div>
-                        <div class="oneLine">현장에서 바로 쓰는 방식으로, 맞춤 워크숍을 설계합니다.</div>
-                      </div>
-                      <button class="ask" data-contact="ai" type="button">문의</button>
-                    </div>
-
-                    <div class="programItem">
-                      <div class="left">
-                        <div class="name">조직 소통·협업</div>
-                        <div class="oneLine">감정이 아니라 ‘구조’로 정리해 실행까지 이어지게 돕습니다.</div>
-                      </div>
-                      <button class="ask" data-contact="org" type="button">문의</button>
-                    </div>
-
-                    <div class="programItem">
-                      <div class="left">
-                        <div class="name">기타 문의</div>
-                        <div class="oneLine">필요를 듣고 가능한 범위에서 가장 선명한 형태로 제안드립니다.</div>
-                      </div>
-                      <button class="ask" data-contact="etc" type="button">문의</button>
-                    </div>
-                  </div>
-
-                  <div class="btnRow">
-                    <button class="btn primary" data-goto="4" type="button">문의로 이동</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- ======================
-               PAGE 3: 자료 (PDF 모달)
-          ======================= -->
-          <section class="page" aria-label="자료">
-            <div class="pageInner">
-              <div class="container">
-                <div class="card">
-                  <div class="pill">Resources</div>
-                  <h2 class="h2">자료</h2>
-                  <p class="desc">
-                    자료는 새 창이 아니라 <span class="point">앱처럼 모달</span>로 열립니다.
-                  </p>
-
-                  <div class="hr"></div>
-
-                  <div class="keyList">
-                    <div class="keyItem">
-                      <div class="title">PDF · 네다바웨이 소개 & SBM 안내</div>
-                      <div class="body">네다바웨이와 SBM 흐름을 한 번에 확인할 수 있는 소개 자료입니다.</div>
-                      <div class="btnRow">
-                        <button class="btn primary" data-pdf="intro" type="button">열기</button>
-                      </div>
-                    </div>
-
-                    <div class="keyItem">
-                      <div class="title">PDF · SBM 성숙 안내 자료</div>
-                      <div class="body">관찰·묵상·사귐의 흐름과 질문 과정 중심으로 정리된 자료입니다.</div>
-                      <div class="btnRow">
-                        <button class="btn primary" data-pdf="sbm" type="button">열기</button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="hr"></div>
-
-                  <div class="pill">자료 사용 방식</div>
-                  <p class="desc">
-                    “정답·해석”으로 끝내지 않고, 말씀읽기가 사귐으로 이어지도록 돕는 흐름으로 구성되어 있습니다.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- ======================
-               PAGE 4: 문의
-          ======================= -->
-          <section class="page" aria-label="문의">
-            <div class="pageInner">
-              <div class="container">
-                <div class="card">
-                  <div class="pill">Contact</div>
-                  <h2 class="h2">문의</h2>
-                  <p class="desc">
-                    아래 카테고리를 선택하면 <span class="point">“제목/본문 초안”</span>이 자동 생성됩니다. (초안 문구)
-                  </p>
-
-                  <div class="hr"></div>
-
-                  <div class="categoryGrid" id="categoryGrid">
-                    <button class="catBtn" data-cat="church" type="button">교회 세미나</button>
-                    <button class="catBtn" data-cat="sbm" type="button">SBM 진행</button>
-                    <button class="catBtn" data-cat="ai" type="button">생성형 AI</button>
-                    <button class="catBtn" data-cat="org" type="button">조직 소통·협업</button>
-                    <button class="catBtn" data-cat="etc" type="button">기타 문의</button>
-                  </div>
-
-                  <div class="draftBox">
-                    <div class="label">제목</div>
-                    <input id="mailSubject" type="text" value="" readonly />
-                    <div class="copyRow">
-                      <button class="btn" id="copySubjectBtn" type="button">제목복사</button>
-                    </div>
-
-                    <div class="sp"></div>
-
-                    <div class="label">본문</div>
-                    <textarea id="mailBody" readonly></textarea>
-
-                    <div class="copyRow">
-                      <button class="btn" id="copyBodyBtn" type="button">본문복사</button>
-                      <button class="btn primary" id="openMailBtn" type="button">메일 앱 열기</button>
-                    </div>
-
-                    <p class="kicker">
-                      ※ 모바일에서는 “메일 앱 열기”가 기기 설정에 따라 동작이 다를 수 있어요.
-                    </p>
-                  </div>
-
-                  <div class="hr"></div>
-
-                  <p class="desc">
-                    문의 메일: <span class="bold">nedabah.way@gmail.com</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
+    <!-- PDF Modal -->
+    <div class="modal" id="pdfModal" aria-hidden="true">
+      <div class="modal__backdrop" id="modalBackdrop"></div>
+      <div class="modal__panel" role="dialog" aria-modal="true" aria-label="PDF 보기">
+        <div class="modal__top">
+          <div class="modal__title" id="modalTitle">PDF</div>
+          <button class="modal__close" id="modalClose" aria-label="닫기">✕</button>
+        </div>
+        <iframe class="modal__frame" id="modalFrame" title="PDF 프레임"></iframe>
+        <div class="modal__bottom">
+          <button class="btn btn--ghost btn--mini" id="modalOpenNew">
+            새 창 열기
+          </button>
+          <div class="modal__hint">ESC 또는 바깥 클릭으로 닫기</div>
         </div>
       </div>
-    </main>
-  </div>
-
-  <!-- ✅ PDF Modal -->
-  <div class="modalOverlay" id="modalOverlay" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-label="PDF 보기">
-      <div class="modalTop">
-        <div class="modalTitle" id="modalTitle">PDF</div>
-        <button class="modalClose" id="modalClose" type="button" aria-label="닫기">×</button>
-      </div>
-      <div class="modalBody">
-        <iframe id="pdfFrame" src="" title="PDF 문서"></iframe>
-      </div>
     </div>
+
   </div>
 
-  <script src="./app.js"></script>
+  <script src="./앱.js"></script>
 </body>
 </html>
