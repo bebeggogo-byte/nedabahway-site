@@ -1,353 +1,254 @@
-function $(id) {
-  return document.getElementById(id);
-}
+(() => {
+  const deck = document.getElementById("deck");
+  const slides = Array.from(deck.querySelectorAll(".slide"));
+  const navBtns = Array.from(document.querySelectorAll("[data-nav]"));
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
-function setYear() {
-  const el = $("year");
-  if (el) el.textContent = new Date().getFullYear();
-}
+  // Donate
+  const accountEl = document.getElementById("donationAccount");
+  const copyAccountBtn = document.getElementById("copyAccountBtn");
 
-function showToast(message) {
-  const toast = $("toast");
-  if (!toast) return;
+  // Contact
+  const mailSubject = document.getElementById("mailSubject");
+  const mailBody = document.getElementById("mailBody");
+  const copySubjectBtn = document.getElementById("copySubjectBtn");
+  const copyBodyBtn = document.getElementById("copyBodyBtn");
+  const openMailBtn = document.getElementById("openMailBtn");
+  const chips = Array.from(document.querySelectorAll(".chip"));
 
-  toast.textContent = message;
-  toast.classList.add("show");
-
-  setTimeout(() => {
-    toast.classList.remove("show");
-  }, 1200);
-}
-
-async function writeClipboard(text) {
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    return navigator.clipboard.writeText(text);
-  }
-  const ta = document.createElement("textarea");
-  ta.value = text;
-  ta.style.position = "fixed";
-  ta.style.opacity = "0";
-  document.body.appendChild(ta);
-  ta.focus();
-  ta.select();
-  document.execCommand("copy");
-  document.body.removeChild(ta);
-}
-
-/* ===== DONATE : 계좌복사만 ===== */
-async function copyAccount() {
-  const accountEl = $("accountText");
-  const btn = $("copyAccount");
-  const text = accountEl ? accountEl.textContent.trim() : "301-6642-7749-61";
-
-  try {
-    await writeClipboard(text);
-
-    if (btn) {
-      const prev = btn.textContent;
-      btn.textContent = "복사 완료!";
-      btn.disabled = true;
-
-      setTimeout(() => {
-        btn.textContent = prev;
-        btn.disabled = false;
-      }, 900);
-    }
-
-    showToast("계좌번호가 복사되었습니다");
-  } catch (e) {
-    alert("복사가 안 됐어요. 계좌번호를 직접 드래그해서 복사해 주세요.");
-  }
-}
-
-function initDonateButtons() {
-  const copyBtn = $("copyAccount");
-  if (copyBtn) copyBtn.addEventListener("click", copyAccount);
-
-  // 계좌번호 클릭해도 복사
-  const acc = $("accountText");
-  if (acc) acc.addEventListener("click", copyAccount);
-}
-
-/* ===== EMAIL HELPER : 카테고리 선택 + 제목/본문 복사 + 메일앱열기 ===== */
-const EMAIL_TO = "nedabah.way@gmail.com";
-
-function getEmailTemplates() {
-  const sig = [
-    "",
-    "감사합니다.",
-    "",
-    "네다바웨이 드림",
-    "문의: nedabah.way@gmail.com",
-  ].join("\n");
-
-  return {
-    program: {
-      subject: "[프로그램 문의] 네다바웨이 교육/워크숍 운영 가능 여부 문의드립니다",
-      body: [
-        "안녕하세요. 네다바웨이 담당자님께,",
-        "",
-        "저희 기관/단체에서 프로그램 운영을 검토 중이며, 아래 내용으로 상담을 요청드립니다.",
-        "",
-        "1) 대상(연령/직군):",
-        "2) 인원/회차/시간:",
-        "3) 원하는 주제:",
-        "4) 운영 희망 일정(기간/요일/시간대):",
-        "5) 장소(지역):",
-        "",
-        "가능한 프로그램 구성 및 운영 방식(추천안/진행 범위)을 안내해주시면 감사하겠습니다.",
-        sig,
-      ].join("\n"),
-    },
-
-    quote: {
-      subject: "[견적/일정 요청] 프로그램 진행 가능 일정 및 비용 문의드립니다",
-      body: [
-        "안녕하세요. 네다바웨이 담당자님께,",
-        "",
-        "프로그램 진행을 위해 견적 및 일정 확인을 요청드립니다.",
-        "",
-        "1) 희망 일정:",
-        "2) 장소:",
-        "3) 인원:",
-        "4) 진행 시간(예: 2시간/3시간/반일/종일):",
-        "5) 핵심 목표:",
-        "",
-        "가능한 운영안(구성/준비물/소요 시간)과 함께 비용 범위를 안내 부탁드립니다.",
-        sig,
-      ].join("\n"),
-    },
-
-    partner: {
-      subject: "[협업 제안] 네다바웨이와 공동 프로젝트/파트너십 제안드립니다",
-      body: [
-        "안녕하세요. 네다바웨이 담당자님께,",
-        "",
-        "저희는 아래 목적의 협업/파트너십을 제안드리고자 연락드립니다.",
-        "",
-        "1) 협업 목적:",
-        "2) 제안 형태(공동 프로그램/행사/콘텐츠 등):",
-        "3) 기대 효과:",
-        "4) 일정/기간:",
-        "",
-        "가능하시다면 간단한 미팅(온라인/오프라인)으로 논의를 진행하고 싶습니다.",
-        sig,
-      ].join("\n"),
-    },
-
-    donation: {
-      subject: "[후원 문의] 후원 관련 문의드립니다",
-      body: [
-        "안녕하세요. 네다바웨이 담당자님께,",
-        "",
-        "후원 관련하여 아래 내용을 문의드립니다.",
-        "",
-        "1) 문의 내용:",
-        "2) 후원 확인 요청(입금일/입금자명):",
-        "",
-        "안내해주시면 감사하겠습니다.",
-        sig,
-      ].join("\n"),
-    },
-
-    invite: {
-      subject: "[강의/행사 초청] 네다바웨이 강의/워크숍 초청 문의드립니다",
-      body: [
-        "안녕하세요. 네다바웨이 담당자님께,",
-        "",
-        "아래 내용으로 강의/워크숍 초청을 검토 중이라 문의드립니다.",
-        "",
-        "1) 행사/교육명:",
-        "2) 대상(연령/직군):",
-        "3) 인원:",
-        "4) 희망 주제:",
-        "5) 진행 시간:",
-        "6) 희망 일정/장소:",
-        "",
-        "가능 여부와 진행 방식/필요 사항을 안내해주시면 감사하겠습니다.",
-        sig,
-      ].join("\n"),
-    },
-
-    media: {
-      subject: "[자료 요청] 네다바웨이 소개서/프로그램 자료 요청드립니다",
-      body: [
-        "안녕하세요. 네다바웨이 담당자님께,",
-        "",
-        "네다바웨이 소개 및 프로그램 검토를 위해 자료 요청드립니다.",
-        "",
-        "1) 요청 자료: (소개서/프로그램 안내서/커리큘럼 등)",
-        "2) 검토 목적:",
-        "",
-        "가능하신 범위에서 공유 부탁드립니다.",
-        sig,
-      ].join("\n"),
-    },
+  // Toast
+  const toast = document.getElementById("toast");
+  const showToast = (msg) => {
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => toast.classList.remove("show"), 1200);
   };
-}
 
-function setEmailTemplate(key) {
-  const templates = getEmailTemplates();
-  const t = templates[key] || templates.program;
+  // Slide index
+  let idx = 0;
+  const clamp = (n) => Math.max(0, Math.min(slides.length - 1, n));
 
-  const subjectEl = $("mailSubject");
-  const bodyEl = $("mailBody");
-  const openMail = $("openMail");
+  const getIndexById = (id) => slides.findIndex(s => s.dataset.slide === id);
+  const setActiveNav = (slideId) => {
+    navBtns.forEach(btn => {
+      const isActive = btn.dataset.nav === slideId;
+      btn.classList.toggle("is-active", isActive);
+    });
+  };
 
-  if (subjectEl) subjectEl.value = t.subject;
-  if (bodyEl) bodyEl.value = t.body;
+  const goTo = (n, smooth = true) => {
+    idx = clamp(n);
+    const x = idx * deck.clientWidth;
+    deck.scrollTo({ left: x, behavior: smooth ? "smooth" : "auto" });
+    setActiveNav(slides[idx].dataset.slide);
+  };
 
-  if (openMail) {
-    const href =
-      "mailto:" +
-      encodeURIComponent(EMAIL_TO) +
-      "?subject=" +
-      encodeURIComponent(t.subject) +
-      "&body=" +
-      encodeURIComponent(t.body);
-    openMail.setAttribute("href", href);
-  }
-}
+  // Initial
+  setActiveNav("home");
 
-async function copySubject() {
-  const subjectEl = $("mailSubject");
-  const text = subjectEl ? subjectEl.value : "";
-  if (!text) return;
-
-  try {
-    await writeClipboard(text);
-    showToast("제목이 복사되었습니다");
-  } catch (e) {
-    alert("복사가 안 됐어요. 제목을 직접 드래그해서 복사해 주세요.");
-  }
-}
-
-async function copyBody() {
-  const bodyEl = $("mailBody");
-  const text = bodyEl ? bodyEl.value : "";
-  if (!text) return;
-
-  try {
-    await writeClipboard(text);
-    showToast("본문이 복사되었습니다");
-  } catch (e) {
-    alert("복사가 안 됐어요. 본문을 직접 드래그해서 복사해 주세요.");
-  }
-}
-
-function initMailHelper() {
-  const pills = document.querySelectorAll(".mail-pill");
-  pills.forEach((p) => {
-    p.addEventListener("click", () => {
-      pills.forEach((x) => x.classList.remove("active"));
-      p.classList.add("active");
-      setEmailTemplate(p.getAttribute("data-template"));
-      showToast("이메일 초안이 적용되었습니다");
+  // Nav click
+  navBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.nav;
+      const targetIndex = getIndexById(target);
+      if (targetIndex >= 0) goTo(targetIndex);
     });
   });
 
-  const btnSub = $("copySubject");
-  if (btnSub) btnSub.addEventListener("click", copySubject);
+  // Arrows
+  prevBtn.addEventListener("click", () => goTo(idx - 1));
+  nextBtn.addEventListener("click", () => goTo(idx + 1));
 
-  const btnBody = $("copyBody");
-  if (btnBody) btnBody.addEventListener("click", copyBody);
-
-  // 기본 템플릿
-  setEmailTemplate("program");
-}
-
-/* ===== SLIDE NAV : 이동할 때 항상 맨 위로 (윗부분 잘림 방지) ===== */
-function getSlidesContainer() {
-  return document.querySelector(".slides");
-}
-function getSlides() {
-  return Array.from(document.querySelectorAll(".slide"));
-}
-
-function resetSlideTop(index) {
-  const slides = getSlides();
-  const s = slides[index];
-  if (s) s.scrollTop = 0;
-}
-
-function getCurrentSlideIndex() {
-  const scroller = getSlidesContainer();
-  if (!scroller) return 0;
-  const w = scroller.clientWidth;
-  return Math.round(scroller.scrollLeft / w);
-}
-
-function goToSlide(index) {
-  const scroller = getSlidesContainer();
-  const slides = getSlides();
-  if (!scroller || slides.length === 0) return;
-
-  const clamped = Math.max(0, Math.min(index, slides.length - 1));
-  const w = scroller.clientWidth;
-
-  scroller.scrollTo({ left: clamped * w, behavior: "smooth" });
-
-  // ✅ 이동 후 해당 슬라이드를 항상 맨 위로
-  setTimeout(() => resetSlideTop(clamped), 200);
-}
-
-function nextSlide() { goToSlide(getCurrentSlideIndex() + 1); }
-function prevSlide() { goToSlide(getCurrentSlideIndex() - 1); }
-
-function smoothAnchorHorizontal() {
-  document.querySelectorAll('a[href^="#"]').forEach((a) => {
-    a.addEventListener("click", (e) => {
-      const href = a.getAttribute("href");
-      if (!href || href === "#") return;
-
-      const target = document.querySelector(href);
-      if (!target) return;
-
-      e.preventDefault();
-
-      // 해당 섹션(슬라이드)로 이동
-      target.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
-
-      // ✅ 이동 후 그 슬라이드는 맨 위로
-      const slides = getSlides();
-      const idx = slides.findIndex((s) => s.contains(target));
-      if (idx >= 0) {
-        setTimeout(() => resetSlideTop(idx), 250);
-      }
-    });
-  });
-}
-
-function bindKeyboard() {
+  // Keyboard
   window.addEventListener("keydown", (e) => {
-    const tag = document.activeElement?.tagName?.toLowerCase();
-    if (tag === "input" || tag === "textarea") return;
-
-    if (e.key === "ArrowRight" || e.key === "PageDown") {
-      e.preventDefault();
-      nextSlide();
-    }
-    if (e.key === "ArrowLeft" || e.key === "PageUp") {
-      e.preventDefault();
-      prevSlide();
-    }
+    if (e.key === "ArrowLeft") goTo(idx - 1);
+    if (e.key === "ArrowRight") goTo(idx + 1);
   });
-}
 
-function bindControls() {
-  const nextBtn = $("nextSlide");
-  const prevBtn = $("prevSlide");
-  if (nextBtn) nextBtn.addEventListener("click", nextSlide);
-  if (prevBtn) prevBtn.addEventListener("click", prevSlide);
-}
+  // Keep idx synced when user resizes or scrolls (혹시라도)
+  const syncIdx = () => {
+    const w = deck.clientWidth || 1;
+    const current = Math.round(deck.scrollLeft / w);
+    idx = clamp(current);
+    setActiveNav(slides[idx].dataset.slide);
+  };
+  deck.addEventListener("scroll", () => {
+    // debounce-ish
+    clearTimeout(syncIdx._t);
+    syncIdx._t = setTimeout(syncIdx, 80);
+  });
+  window.addEventListener("resize", () => goTo(idx, false));
 
-function init() {
-  setYear();
-  smoothAnchorHorizontal();
-  bindKeyboard();
-  bindControls();
-  initDonateButtons();
-  initMailHelper();
-}
+  // Copy util
+  const copyText = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast("복사 완료");
+    } catch {
+      // fallback
+      const temp = document.createElement("textarea");
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      showToast("복사 완료");
+    }
+  };
 
-document.addEventListener("DOMContentLoaded", init);
+  // Donate copy
+  if (copyAccountBtn && accountEl) {
+    copyAccountBtn.addEventListener("click", () => copyText(accountEl.textContent.trim()));
+  }
+
+  // Email templates (6)
+  const TO = "nedabah.way@gmail.com";
+  const templates = {
+    church: {
+      subject: "[문의] 교회 세미나/훈련 진행 요청",
+      body:
+`안녕하세요. 네다바웨이 담당자님께,
+
+저는 (교회/기관명) (이름)입니다.
+교회 내에서 말씀 읽기/묵상 적용/공동체 성숙을 위한 세미나 또는 훈련을 검토 중입니다.
+
+가능하다면 아래 내용을 안내 부탁드립니다.
+1) 진행 가능 주제/구성
+2) 예상 소요 시간(예: 60/90/120분)
+3) 준비물 및 진행 방식
+4) 일정 후보
+
+감사합니다.
+- 이름:
+- 연락처:
+- 교회/기관:
+`
+    },
+    sbm: {
+      subject: "[문의] SBM 모임/가이드 자료 관련",
+      body:
+`안녕하세요. 네다바웨이 팀께,
+
+저는 (이름)입니다.
+SBM(Self Bible Meditation) 방식으로 말씀을 스스로 읽는 훈련을 더 배우고 싶어 문의드립니다.
+
+가능하다면 아래 내용을 공유해주실 수 있을까요?
+1) 모임(훈련) 참여 방법
+2) 추천하는 시작 방식(개인/소그룹)
+3) 가이드/노트/자료 제공 여부
+4) 진행 일정 또는 안내 링크
+
+감사합니다.
+- 이름:
+- 연락처:
+`
+    },
+    partner: {
+      subject: "[제안] 협업/파트너십 논의 요청",
+      body:
+`안녕하세요. 네다바웨이 담당자님께,
+
+저는 (기관/단체명) (이름)입니다.
+말씀 읽기 중심의 성숙 훈련과 관련하여 협업 가능성을 논의하고 싶습니다.
+
+저희가 생각하는 협업 방향은 다음과 같습니다.
+- 목적:
+- 대상:
+- 기간/형태:
+- 기대하는 결과(과정 중심):
+
+미팅 가능 일정 후보가 있다면 알려주시면 감사하겠습니다.
+- 이름:
+- 연락처:
+- 기관/단체:
+`
+    },
+    lecture: {
+      subject: "[요청] 강의/워크숍 진행 가능 여부 문의",
+      body:
+`안녕하세요. 네다바웨이 팀께,
+
+저는 (기관/학교/단체명) (이름)입니다.
+현장 상황에 맞춘 강의/워크숍 진행을 요청드리고자 연락드립니다.
+
+아래 정보를 전달드립니다.
+1) 대상(인원/연령/특성):
+2) 주제(희망 방향):
+3) 날짜/시간:
+4) 장소(지역):
+5) 준비 가능한 환경(빔/마이크 등):
+
+검토 후 가능 여부와 제안 구성을 안내해주시면 감사하겠습니다.
+- 이름:
+- 연락처:
+`
+    },
+    donate: {
+      subject: "[문의] 후원 관련 안내 요청",
+      body:
+`안녕하세요. 네다바웨이 팀께,
+
+저는 (이름)입니다.
+네다바웨이 사역을 후원하고 싶어 문의드립니다.
+
+확인하고 싶은 내용은 아래와 같습니다.
+1) 후원 방식(일시/정기)
+2) 후원금 사용 범위
+3) 추후 기부금 영수증 관련 계획
+
+감사합니다.
+- 이름:
+- 연락처:
+`
+    },
+    etc: {
+      subject: "[문의] 네다바웨이 관련 문의드립니다",
+      body:
+`안녕하세요. 네다바웨이 담당자님께,
+
+저는 (이름)입니다.
+아래 내용으로 문의드립니다.
+
+(문의 내용 작성)
+
+감사합니다.
+- 이름:
+- 연락처:
+`
+    }
+  };
+
+  const applyTemplate = (key) => {
+    const t = templates[key];
+    if (!t) return;
+    mailSubject.value = t.subject;
+    mailBody.value = t.body;
+    chips.forEach(c => c.classList.toggle("is-active", c.dataset.template === key));
+  };
+
+  // default template
+  applyTemplate("church");
+
+  // chips click
+  chips.forEach(chip => {
+    chip.addEventListener("click", () => applyTemplate(chip.dataset.template));
+  });
+
+  // copy buttons
+  if (copySubjectBtn) copySubjectBtn.addEventListener("click", () => copyText(mailSubject.value));
+  if (copyBodyBtn) copyBodyBtn.addEventListener("click", () => copyText(mailBody.value));
+
+  // open mail app (mailto)
+  if (openMailBtn) {
+    openMailBtn.addEventListener("click", () => {
+      const subject = encodeURIComponent(mailSubject.value || "");
+      const body = encodeURIComponent(mailBody.value || "");
+      window.location.href = `mailto:${TO}?subject=${subject}&body=${body}`;
+    });
+  }
+
+  // start at home without jump
+  goTo(0, false);
+})();
