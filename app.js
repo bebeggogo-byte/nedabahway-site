@@ -1,144 +1,192 @@
 (() => {
 ‘use strict’;
 
+// ============================
 // Elements
-const main = document.getElementById(‘main’);
-const header = document.getElementById(‘header’);
-const navItems = Array.from(document.querySelectorAll(’.nav__item’));
-const brandHome = document.getElementById(‘brandHome’);
+// ============================
+const deck = document.getElementById(‘deck’);
+const navTabs = Array.from(document.querySelectorAll(’.nav__tab’));
 const progressBar = document.getElementById(‘progressBar’);
+const logoBtn = document.getElementById(‘logoBtn’);
+const searchBtn = document.getElementById(‘searchBtn’);
 const menuBtn = document.getElementById(‘menuBtn’);
-const mobileMenu = document.getElementById(‘mobileMenu’);
-const mobileMenuItems = Array.from(document.querySelectorAll(’.mobile-menu__item’));
-const sections = Array.from(document.querySelectorAll(’.section’));
+const closeMenuBtn = document.getElementById(‘closeMenuBtn’);
+const slideMenu = document.getElementById(‘slideMenu’);
+const slideMenuItems = Array.from(document.querySelectorAll(’.slide-menu__item’));
+const overlay = document.getElementById(‘overlay’);
 const toast = document.getElementById(‘toast’);
+const toastText = document.getElementById(‘toastText’);
 
-const total = sections.length;
+const pages = Array.from(document.querySelectorAll(’.page’));
+const totalPages = pages.length;
 
 // ============================
 // Navigation
 // ============================
 
-function goTo(index, smooth = true) {
-const section = sections[index];
-if (!section) return;
+function goToPage(index, smooth = true) {
+const clampedIndex = Math.max(0, Math.min(totalPages - 1, index));
+const scrollLeft = clampedIndex * deck.offsetWidth;
 
 ```
-const offsetTop = section.offsetTop - header.offsetHeight - 3;
-
-window.scrollTo({
-  top: offsetTop,
+deck.scrollTo({
+  left: scrollLeft,
   behavior: smooth ? 'smooth' : 'auto'
 });
 
-setActiveNav(index);
-closeMobileMenu();
+updateActiveTab(clampedIndex);
+updateProgress(clampedIndex);
 ```
 
 }
 
-function getCurrentSectionIndex() {
-const scrollTop = window.scrollY + header.offsetHeight + 100;
-
-```
-for (let i = sections.length - 1; i >= 0; i--) {
-  if (sections[i].offsetTop <= scrollTop) {
-    return i;
-  }
-}
-return 0;
-```
-
+function getCurrentPageIndex() {
+const scrollLeft = deck.scrollLeft;
+const pageWidth = deck.offsetWidth;
+return Math.round(scrollLeft / pageWidth);
 }
 
-function setActiveNav(index) {
-navItems.forEach((item, i) => {
-item.classList.toggle(‘is-active’, i === index);
+function updateActiveTab(index) {
+navTabs.forEach((tab, i) => {
+tab.classList.toggle(‘is-active’, i === index);
 });
 }
 
-function updateProgress() {
-const scrollTop = window.scrollY;
-const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+function updateProgress(index) {
+const progress = ((index + 1) / totalPages) * 100;
 progressBar.style.width = `${progress}%`;
 }
 
-// Navigation click handlers
-navItems.forEach((item, index) => {
-item.addEventListener(‘click’, () => goTo(index, true));
+// Nav tab clicks
+navTabs.forEach((tab) => {
+tab.addEventListener(‘click’, () => {
+const index = parseInt(tab.dataset.index, 10);
+if (!isNaN(index)) {
+goToPage(index, true);
+addClickEffect(tab);
+}
+});
 });
 
-// Brand click = home
-brandHome.addEventListener(‘click’, () => goTo(0, true));
+// Logo click = home
+logoBtn.addEventListener(‘click’, () => {
+goToPage(0, true);
+addClickEffect(logoBtn);
+});
 
 // All [data-go] buttons
 document.querySelectorAll(’[data-go]’).forEach(btn => {
 btn.addEventListener(‘click’, () => {
-const index = parseInt(btn.getAttribute(‘data-go’), 10);
-if (!isNaN(index)) goTo(index, true);
+const index = parseInt(btn.dataset.go, 10);
+if (!isNaN(index)) {
+goToPage(index, true);
+addClickEffect(btn);
+}
 });
 });
 
-// Scroll listener
+// Deck scroll sync
 let scrollTimeout = null;
-window.addEventListener(‘scroll’, () => {
+deck.addEventListener(‘scroll’, () => {
 if (scrollTimeout) clearTimeout(scrollTimeout);
 scrollTimeout = setTimeout(() => {
-const index = getCurrentSectionIndex();
-setActiveNav(index);
-updateProgress();
+const index = getCurrentPageIndex();
+updateActiveTab(index);
+updateProgress(index);
 }, 50);
 });
 
 // ============================
-// Mobile Menu
+// Slide Menu
 // ============================
 
-function openMobileMenu() {
-menuBtn.classList.add(‘is-open’);
-mobileMenu.classList.add(‘is-open’);
+function openMenu() {
+slideMenu.classList.add(‘is-open’);
+overlay.classList.add(‘is-open’);
 document.body.style.overflow = ‘hidden’;
 }
 
-function closeMobileMenu() {
-menuBtn.classList.remove(‘is-open’);
-mobileMenu.classList.remove(‘is-open’);
+function closeMenu() {
+slideMenu.classList.remove(‘is-open’);
+overlay.classList.remove(‘is-open’);
 document.body.style.overflow = ‘’;
 }
 
-function toggleMobileMenu() {
-if (mobileMenu.classList.contains(‘is-open’)) {
-closeMobileMenu();
-} else {
-openMobileMenu();
-}
-}
-
-menuBtn.addEventListener(‘click’, toggleMobileMenu);
-
-mobileMenuItems.forEach((item, index) => {
-item.addEventListener(‘click’, () => goTo(index, true));
+menuBtn.addEventListener(‘click’, () => {
+openMenu();
+addClickEffect(menuBtn);
 });
 
-// Close on resize to desktop
-window.addEventListener(‘resize’, () => {
-if (window.innerWidth >= 768) {
-closeMobileMenu();
+closeMenuBtn.addEventListener(‘click’, () => {
+closeMenu();
+addClickEffect(closeMenuBtn);
+});
+
+overlay.addEventListener(‘click’, closeMenu);
+
+slideMenuItems.forEach(item => {
+item.addEventListener(‘click’, () => {
+const index = parseInt(item.dataset.index, 10);
+if (!isNaN(index)) {
+closeMenu();
+setTimeout(() => goToPage(index, true), 100);
 }
+addClickEffect(item);
+});
+});
+
+// Search button (placeholder action)
+searchBtn.addEventListener(‘click’, () => {
+showToast(‘검색 기능 준비중입니다’);
+addClickEffect(searchBtn);
 });
 
 // ============================
 // Programs → Contact
 // ============================
 
-const programCards = Array.from(document.querySelectorAll(’.program-card’));
-
-programCards.forEach(card => {
+document.querySelectorAll(’.program-card’).forEach(card => {
 card.addEventListener(‘click’, () => {
-const cat = card.getAttribute(‘data-contact’) || ‘etc’;
-goTo(4, true);
+const cat = card.dataset.contact || ‘etc’;
+goToPage(4, true);
 setTimeout(() => selectCategory(cat), 400);
+addClickEffect(card);
+});
+});
+
+// ============================
+// Steps (detail view placeholder)
+// ============================
+
+document.querySelectorAll(’.step’).forEach(step => {
+step.addEventListener(‘click’, () => {
+const stepNum = step.dataset.step;
+showToast(`${stepNum}단계 상세보기 준비중`);
+addClickEffect(step);
+});
+});
+
+// ============================
+// Info Cards (interaction)
+// ============================
+
+document.querySelectorAll(’.info-card’).forEach(card => {
+card.addEventListener(‘click’, () => {
+const value = card.querySelector(’.info-card__value’)?.textContent || ‘’;
+showToast(value);
+addClickEffect(card);
+});
+});
+
+// ============================
+// Box Cards (interaction)
+// ============================
+
+document.querySelectorAll(’.box’).forEach(box => {
+box.addEventListener(‘click’, () => {
+const title = box.querySelector(’.box__title’)?.textContent || ‘’;
+showToast(`"${title}" 섹션`);
+addClickEffect(box);
 });
 });
 
@@ -168,31 +216,38 @@ function closeModal() {
 modal.classList.remove(‘is-open’);
 modal.setAttribute(‘aria-hidden’, ‘true’);
 modalFrame.src = ‘’;
-document.body.style.overflow = ‘’; // Fixed: was ‘hidden’
+document.body.style.overflow = ‘’;
 }
 
 document.querySelectorAll(’[data-open-pdf]’).forEach(btn => {
-btn.addEventListener(‘click’, () => {
-const url = btn.getAttribute(‘data-open-pdf’);
+btn.addEventListener(‘click’, (e) => {
+e.stopPropagation();
+const url = btn.dataset.openPdf;
 if (url) openModal(url);
+addClickEffect(btn);
 });
+});
+
+// Resource cards (same as data-open-pdf but for entire card)
+document.querySelectorAll(’.resource-card’).forEach(card => {
+if (card.dataset.openPdf) {
+card.addEventListener(‘click’, () => {
+const url = card.dataset.openPdf;
+if (url) openModal(url);
+addClickEffect(card);
+});
+}
 });
 
 modalBackdrop.addEventListener(‘click’, closeModal);
-modalClose.addEventListener(‘click’, closeModal);
-modalOpenNew.addEventListener(‘click’, () => {
-if (currentPdfUrl) window.open(currentPdfUrl, ‘_blank’);
+modalClose.addEventListener(‘click’, () => {
+closeModal();
+addClickEffect(modalClose);
 });
 
-window.addEventListener(‘keydown’, e => {
-if (e.key === ‘Escape’) {
-if (modal.classList.contains(‘is-open’)) {
-closeModal();
-}
-if (mobileMenu.classList.contains(‘is-open’)) {
-closeMobileMenu();
-}
-}
+modalOpenNew.addEventListener(‘click’, () => {
+if (currentPdfUrl) window.open(currentPdfUrl, ‘_blank’);
+addClickEffect(modalOpenNew);
 });
 
 // ============================
@@ -204,7 +259,7 @@ const bodyEl = document.getElementById(‘mailBody’);
 const copySubjectBtn = document.getElementById(‘copySubject’);
 const copyBodyBtn = document.getElementById(‘copyBody’);
 const openMailBtn = document.getElementById(‘openMailApp’);
-const catBtns = Array.from(document.querySelectorAll(’.category-tab’));
+const categoryTabs = Array.from(document.querySelectorAll(’.category-tab’));
 
 const MAIL_TO = ‘nedabah.way@gmail.com’;
 
@@ -264,29 +319,43 @@ body: `안녕하세요, 네다바웨이 팀께 문의드립니다.
 };
 
 function selectCategory(cat) {
-catBtns.forEach(btn => {
-btn.classList.toggle(‘is-active’, btn.dataset.cat === cat);
+categoryTabs.forEach(tab => {
+tab.classList.toggle(‘is-active’, tab.dataset.cat === cat);
 });
 const draft = drafts[cat] || drafts.etc;
 subjectEl.textContent = draft.subject;
 bodyEl.textContent = draft.body;
 }
 
-catBtns.forEach(btn => {
-btn.addEventListener(‘click’, () => selectCategory(btn.dataset.cat));
+categoryTabs.forEach(tab => {
+tab.addEventListener(‘click’, () => {
+selectCategory(tab.dataset.cat);
+addClickEffect(tab);
+});
+});
+
+copySubjectBtn.addEventListener(‘click’, async () => {
+const ok = await copyText(subjectEl.textContent || ‘’);
+if (ok) showToast(‘제목이 복사되었습니다’);
+addClickEffect(copySubjectBtn);
+});
+
+copyBodyBtn.addEventListener(‘click’, async () => {
+const ok = await copyText(bodyEl.textContent || ‘’);
+if (ok) showToast(‘본문이 복사되었습니다’);
+addClickEffect(copyBodyBtn);
+});
+
+openMailBtn.addEventListener(‘click’, () => {
+const subject = encodeURIComponent(subjectEl.textContent || ‘’);
+const body = encodeURIComponent(bodyEl.textContent || ‘’);
+window.location.href = `mailto:${MAIL_TO}?subject=${subject}&body=${body}`;
+addClickEffect(openMailBtn);
 });
 
 // ============================
 // Copy & Toast
 // ============================
-
-function showToast(message = ‘복사되었습니다’) {
-toast.textContent = message;
-toast.classList.add(‘is-show’);
-setTimeout(() => {
-toast.classList.remove(‘is-show’);
-}, 2000);
-}
 
 async function copyText(text) {
 try {
@@ -296,8 +365,7 @@ return true;
 // Fallback
 const ta = document.createElement(‘textarea’);
 ta.value = text;
-ta.style.position = ‘fixed’;
-ta.style.opacity = ‘0’;
+ta.style.cssText = ‘position:fixed;opacity:0;’;
 document.body.appendChild(ta);
 ta.select();
 const ok = document.execCommand(‘copy’);
@@ -306,86 +374,131 @@ return ok;
 }
 }
 
-copySubjectBtn.addEventListener(‘click’, async () => {
-const ok = await copyText(subjectEl.textContent || ‘’);
-if (ok) showToast(‘제목이 복사되었습니다’);
-});
+function showToast(message = ‘완료되었습니다’) {
+toastText.textContent = message;
+toast.classList.add(‘is-show’);
+setTimeout(() => {
+toast.classList.remove(‘is-show’);
+}, 2200);
+}
 
-copyBodyBtn.addEventListener(‘click’, async () => {
-const ok = await copyText(bodyEl.textContent || ‘’);
-if (ok) showToast(‘본문이 복사되었습니다’);
-});
+// ============================
+// Click Effect (ripple-like)
+// ============================
 
-openMailBtn.addEventListener(‘click’, () => {
-const subject = encodeURIComponent(subjectEl.textContent || ‘’);
-const body = encodeURIComponent(bodyEl.textContent || ‘’);
-const mailto = `mailto:${MAIL_TO}?subject=${subject}&body=${body}`;
-window.location.href = mailto;
-});
+function addClickEffect(el) {
+el.style.transform = ‘scale(0.96)’;
+setTimeout(() => {
+el.style.transform = ‘’;
+}, 150);
+}
 
 // ============================
 // Keyboard Navigation
 // ============================
 
-document.addEventListener(‘keydown’, e => {
-// Arrow keys for section navigation (when not in input)
-if (document.activeElement.tagName === ‘INPUT’ ||
-document.activeElement.tagName === ‘TEXTAREA’) {
-return;
+document.addEventListener(‘keydown’, (e) => {
+// Close modals on ESC
+if (e.key === ‘Escape’) {
+if (modal.classList.contains(‘is-open’)) {
+closeModal();
+}
+if (slideMenu.classList.contains(‘is-open’)) {
+closeMenu();
+}
 }
 
 ```
-if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-  e.preventDefault();
-  const current = getCurrentSectionIndex();
-  if (current < total - 1) goTo(current + 1, true);
+// Arrow navigation
+if (document.activeElement.tagName === 'INPUT' ||
+    document.activeElement.tagName === 'TEXTAREA') {
+  return;
 }
 
-if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+if (e.key === 'ArrowRight') {
   e.preventDefault();
-  const current = getCurrentSectionIndex();
-  if (current > 0) goTo(current - 1, true);
+  const current = getCurrentPageIndex();
+  if (current < totalPages - 1) goToPage(current + 1, true);
+}
+
+if (e.key === 'ArrowLeft') {
+  e.preventDefault();
+  const current = getCurrentPageIndex();
+  if (current > 0) goToPage(current - 1, true);
 }
 ```
 
 });
 
 // ============================
-// Intersection Observer for Animations
+// Touch Swipe Enhancement
 // ============================
 
-const observerOptions = {
-root: null,
-rootMargin: ‘0px’,
-threshold: 0.1
-};
+let touchStartX = 0;
+let touchStartY = 0;
+let isSwiping = false;
 
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-entry.target.style.opacity = ‘1’;
-entry.target.style.transform = ‘translateY(0)’;
+deck.addEventListener(‘touchstart’, (e) => {
+touchStartX = e.touches[0].clientX;
+touchStartY = e.touches[0].clientY;
+isSwiping = true;
+}, { passive: true });
+
+deck.addEventListener(‘touchmove’, (e) => {
+if (!isSwiping) return;
+const dx = Math.abs(e.touches[0].clientX - touchStartX);
+const dy = Math.abs(e.touches[0].clientY - touchStartY);
+
+```
+// If horizontal swipe is dominant, let it through
+if (dx > dy && dx > 10) {
+  // Horizontal swipe - default behavior is fine
 }
-});
-}, observerOptions);
+```
 
-// Observe content blocks
-document.querySelectorAll(’.content-block, .info-card, .program-card, .resource-card’).forEach(el => {
-el.style.opacity = ‘0’;
-el.style.transform = ‘translateY(20px)’;
-el.style.transition = ‘opacity 0.5s ease, transform 0.5s ease’;
-observer.observe(el);
+}, { passive: true });
+
+deck.addEventListener(‘touchend’, () => {
+isSwiping = false;
+}, { passive: true });
+
+// ============================
+// Resize Handler
+// ============================
+
+let resizeTimeout = null;
+window.addEventListener(‘resize’, () => {
+if (resizeTimeout) clearTimeout(resizeTimeout);
+resizeTimeout = setTimeout(() => {
+const index = getCurrentPageIndex();
+goToPage(index, false);
+}, 100);
 });
 
 // ============================
-// Initial State
+// Initialize
 // ============================
 
+function init() {
 selectCategory(‘church’);
-updateProgress();
+updateProgress(0);
+goToPage(0, false);
 
-// Set initial active nav based on scroll position
-const initialIndex = getCurrentSectionIndex();
-setActiveNav(initialIndex);
+```
+// Animate elements on load
+document.querySelectorAll('.content-card, .info-card, .program-card, .resource-card').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  setTimeout(() => {
+    el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  }, 100 + (i * 50));
+});
+```
+
+}
+
+init();
 
 })();
