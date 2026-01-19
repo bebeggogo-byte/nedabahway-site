@@ -67,7 +67,7 @@
     if (e.key === "ArrowRight") goTo(idx + 1);
   });
 
-  // Keep idx synced when user resizes or scrolls (혹시라도)
+  // Keep idx synced when user resizes or scrolls
   const syncIdx = () => {
     const w = deck.clientWidth || 1;
     const current = Math.round(deck.scrollLeft / w);
@@ -75,7 +75,6 @@
     setActiveNav(slides[idx].dataset.slide);
   };
   deck.addEventListener("scroll", () => {
-    // debounce-ish
     clearTimeout(syncIdx._t);
     syncIdx._t = setTimeout(syncIdx, 80);
   });
@@ -87,7 +86,6 @@
       await navigator.clipboard.writeText(text);
       showToast("복사 완료");
     } catch {
-      // fallback
       const temp = document.createElement("textarea");
       temp.value = text;
       document.body.appendChild(temp);
