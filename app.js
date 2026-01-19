@@ -64,22 +64,21 @@ function initDonateButtons() {
   const copyBtn = $("copyAccount");
   if (copyBtn) copyBtn.addEventListener("click", copyAccount);
 
-  // 계좌번호 클릭해도 복사되게
+  // 계좌번호 클릭해도 복사
   const acc = $("accountText");
   if (acc) acc.addEventListener("click", copyAccount);
 }
 
-/* ===== EMAIL HELPER : 카테고리 선택 + 제목/본문 복사 ===== */
+/* ===== EMAIL HELPER : 카테고리 선택 + 제목/본문 복사 + 메일앱열기 ===== */
 const EMAIL_TO = "nedabah.way@gmail.com";
 
 function getEmailTemplates() {
   const sig = [
     "",
     "감사합니다.",
-    "네다바웨이 드림",
     "",
+    "네다바웨이 드림",
     "문의: nedabah.way@gmail.com",
-    "후원계좌: 농협은행 301-6642-7749-61 (예금주: 네다바웨이)",
   ].join("\n");
 
   return {
@@ -92,11 +91,11 @@ function getEmailTemplates() {
         "",
         "1) 대상(연령/직군):",
         "2) 인원/회차/시간:",
-        "3) 원하는 주제(예: 묵상훈련/리더십/소통/AI 활용 등):",
+        "3) 원하는 주제:",
         "4) 운영 희망 일정(기간/요일/시간대):",
         "5) 장소(지역):",
         "",
-        "가능한 프로그램 구성 및 진행 방식(추천안/예상 범위)을 안내해주시면 감사하겠습니다.",
+        "가능한 프로그램 구성 및 운영 방식(추천안/진행 범위)을 안내해주시면 감사하겠습니다.",
         sig,
       ].join("\n"),
     },
@@ -112,7 +111,7 @@ function getEmailTemplates() {
         "2) 장소:",
         "3) 인원:",
         "4) 진행 시간(예: 2시간/3시간/반일/종일):",
-        "5) 핵심 목표(예: 팀빌딩/소통개선/아이디어톤/묵상훈련 등):",
+        "5) 핵심 목표:",
         "",
         "가능한 운영안(구성/준비물/소요 시간)과 함께 비용 범위를 안내 부탁드립니다.",
         sig,
@@ -127,7 +126,7 @@ function getEmailTemplates() {
         "저희는 아래 목적의 협업/파트너십을 제안드리고자 연락드립니다.",
         "",
         "1) 협업 목적:",
-        "2) 제안하는 형태(공동 프로그램/행사/콘텐츠/연구 등):",
+        "2) 제안 형태(공동 프로그램/행사/콘텐츠 등):",
         "3) 기대 효과:",
         "4) 일정/기간:",
         "",
@@ -137,15 +136,14 @@ function getEmailTemplates() {
     },
 
     donation: {
-      subject: "[후원 문의] 후원 방식/안내 및 확인 요청드립니다",
+      subject: "[후원 문의] 후원 관련 문의드립니다",
       body: [
         "안녕하세요. 네다바웨이 담당자님께,",
         "",
         "후원 관련하여 아래 내용을 문의드립니다.",
         "",
-        "1) 후원 방식(일시/정기) 관련 질문:",
+        "1) 문의 내용:",
         "2) 후원 확인 요청(입금일/입금자명):",
-        "3) 향후 기부금영수증 관련 문의:",
         "",
         "안내해주시면 감사하겠습니다.",
         sig,
@@ -178,7 +176,7 @@ function getEmailTemplates() {
         "",
         "네다바웨이 소개 및 프로그램 검토를 위해 자료 요청드립니다.",
         "",
-        "1) 요청 자료: (예: 단체 소개서 / 프로그램 안내서 / 운영 사례 / 커리큘럼 등)",
+        "1) 요청 자료: (소개서/프로그램 안내서/커리큘럼 등)",
         "2) 검토 목적:",
         "",
         "가능하신 범위에서 공유 부탁드립니다.",
@@ -258,23 +256,25 @@ function initMailHelper() {
   setEmailTemplate("program");
 }
 
-/* ===== SLIDE NAV ===== */
+/* ===== SLIDE NAV : 이동할 때 항상 맨 위로 (윗부분 잘림 방지) ===== */
 function getSlidesContainer() {
   return document.querySelector(".slides");
 }
-
 function getSlides() {
   return Array.from(document.querySelectorAll(".slide"));
 }
 
+function resetSlideTop(index) {
+  const slides = getSlides();
+  const s = slides[index];
+  if (s) s.scrollTop = 0;
+}
+
 function getCurrentSlideIndex() {
   const scroller = getSlidesContainer();
-  const slides = getSlides();
-  if (!scroller || slides.length === 0) return 0;
-
-  const x = scroller.scrollLeft;
+  if (!scroller) return 0;
   const w = scroller.clientWidth;
-  return Math.round(x / w);
+  return Math.round(scroller.scrollLeft / w);
 }
 
 function goToSlide(index) {
@@ -285,19 +285,14 @@ function goToSlide(index) {
   const clamped = Math.max(0, Math.min(index, slides.length - 1));
   const w = scroller.clientWidth;
 
-  scroller.scrollTo({
-    left: clamped * w,
-    behavior: "smooth",
-  });
+  scroller.scrollTo({ left: clamped * w, behavior: "smooth" });
+
+  // ✅ 이동 후 해당 슬라이드를 항상 맨 위로
+  setTimeout(() => resetSlideTop(clamped), 200);
 }
 
-function nextSlide() {
-  goToSlide(getCurrentSlideIndex() + 1);
-}
-
-function prevSlide() {
-  goToSlide(getCurrentSlideIndex() - 1);
-}
+function nextSlide() { goToSlide(getCurrentSlideIndex() + 1); }
+function prevSlide() { goToSlide(getCurrentSlideIndex() - 1); }
 
 function smoothAnchorHorizontal() {
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
@@ -310,11 +305,15 @@ function smoothAnchorHorizontal() {
 
       e.preventDefault();
 
-      target.scrollIntoView({
-        behavior: "smooth",
-        inline: "start",
-        block: "nearest",
-      });
+      // 해당 섹션(슬라이드)로 이동
+      target.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+
+      // ✅ 이동 후 그 슬라이드는 맨 위로
+      const slides = getSlides();
+      const idx = slides.findIndex((s) => s.contains(target));
+      if (idx >= 0) {
+        setTimeout(() => resetSlideTop(idx), 250);
+      }
     });
   });
 }
