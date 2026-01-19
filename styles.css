@@ -1,24 +1,15 @@
-/* =========================================================
-   Nedabahway - Cozy App UI (Mobile + PC)
-   Signature Color: #07930E
-   ========================================================= */
-
 :root{
   --bg: #f6faf7;
-  --surface: rgba(255,255,255,.78);
-  --card: rgba(255,255,255,.86);
-
   --text: #0e1a14;
   --muted: rgba(14,26,20,.62);
-
   --brand: #07930E;
-  --brand-soft: rgba(7,147,14,.12);
 
-  --shadow-sm: 0 8px 22px rgba(0,0,0,.06);
+  --shadow-sm: 0 10px 26px rgba(0,0,0,.06);
   --radius-lg: 22px;
   --radius-md: 16px;
 
   --pad: 14px;
+  --headerH: 120px; /* ✅ JS에서 실제 높이로 자동 갱신 */
 
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -27,11 +18,9 @@
 }
 
 *{ box-sizing:border-box; }
+html,body{ height:100%; margin:0; padding:0; }
 
-html,body{
-  height:100%;
-  margin:0;
-  padding:0;
+body{
   font-family: var(--font);
   background:
     radial-gradient(1200px 700px at 20% 0%, rgba(7,147,14,.12), transparent 55%),
@@ -39,21 +28,21 @@ html,body{
     var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
-  overflow-x:hidden;
+  overflow:hidden; /* ✅ 전체는 고정(슬라이드 UX) */
 }
 
 button{ font-family:inherit; }
-
-.app{
-  min-height:100%;
-  display:flex;
-  flex-direction:column;
-}
 
 .container{
   width:min(980px, 100%);
   margin:0 auto;
   padding:0 var(--pad);
+}
+
+.app{
+  height:100vh; /* ✅ 화면 꽉 */
+  display:flex;
+  flex-direction:column;
 }
 
 /* =======================
@@ -63,25 +52,28 @@ button{ font-family:inherit; }
   position: sticky;
   top:0;
   z-index:50;
-  padding-top: calc(var(--safe-top) + 10px);
+  padding-top: calc(var(--safe-top) + 8px);
   background: linear-gradient(to bottom, rgba(246,250,247,.92), rgba(246,250,247,.74));
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(14,26,20,.06);
 }
 
+/* 1줄: 로고/브랜드 */
 .brandRow{
+  padding: 8px var(--pad) 6px;
   display:flex;
   align-items:center;
-  gap:10px;
-  padding: 10px var(--pad) 8px;
 }
 
 .brandBtn{
   display:inline-flex;
   align-items:center;
   gap:10px;
+  border:0;
+  background: transparent;
   cursor:pointer;
   user-select:none;
+  padding:0;
 }
 
 .logoWrap{
@@ -98,7 +90,9 @@ button{ font-family:inherit; }
 .brandText{
   display:flex;
   flex-direction:column;
+  justify-content:center;
   line-height:1.05;
+  transform: translateY(1px); /* ✅ 높낮이 보정 */
 }
 
 .brandText .hebrew{
@@ -107,13 +101,14 @@ button{ font-family:inherit; }
   font-weight:900;
   color: rgba(7,147,14,.92);
 }
+
 .brandText .name{
-  font-size:16px;
+  font-size:15px; /* ✅ 글씨 작게 */
   font-weight:950;
   letter-spacing:-.02em;
 }
 
-/* Nav (2nd line) */
+/* 2줄: 네비 + 인디케이터 */
 .navRow{
   padding: 0 var(--pad) 10px;
 }
@@ -133,14 +128,13 @@ button{ font-family:inherit; }
   border: 1px solid rgba(14,26,20,.08);
   background: rgba(255,255,255,.72);
   color: rgba(14,26,20,.82);
-  padding: 10px 12px;
+  padding: 9px 11px;
   border-radius: 999px;
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 12.5px; /* ✅ 글씨 작게 */
+  font-weight: 900;
   box-shadow: 0 8px 18px rgba(0,0,0,.04);
   transition: transform .16s ease, background .16s ease, border-color .16s ease;
 }
-
 .navBtn:active{ transform: scale(.98); }
 
 .navBtn.active{
@@ -167,21 +161,23 @@ button{ font-family:inherit; }
 }
 
 /* =======================
-   Main / Pager
+   Main / Pager (FULLSCREEN)
 ======================= */
 .main{
-  flex:1;
-  padding: 14px 0 calc(18px + var(--safe-bottom));
+  height: calc(100vh - var(--headerH));
+  padding-bottom: var(--safe-bottom);
 }
 
 .pager{
-  overflow:hidden; /* ✅ 옆페이지 비침 방지 핵심 */
+  height:100%;
   width:100%;
+  overflow:hidden; /* ✅ 옆페이지 비침 방지 */
+  touch-action: pan-y; /* ✅ 수직 스크롤은 페이지 내부에서 */
 }
 
 .track{
+  height:100%;
   display:flex;
-  width:100%;
   transform: translate3d(0,0,0);
   transition: transform 520ms cubic-bezier(.18,.95,.18,1);
   will-change: transform;
@@ -190,10 +186,14 @@ button{ font-family:inherit; }
 .page{
   flex: 0 0 100%;
   width: 100%;
+  height:100%;
 }
 
 .pageInner{
-  padding: 0 var(--pad);
+  height:100%;
+  padding: 12px 0;
+  overflow:auto; /* ✅ 길면 해당 페이지 안에서만 스크롤 */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* =======================
@@ -209,18 +209,18 @@ button{ font-family:inherit; }
 
 .pill{
   display:inline-flex;
-  padding: 8px 12px;
+  padding: 7px 11px;
   border-radius: 999px;
   background: rgba(7,147,14,.12);
   border: 1px solid rgba(7,147,14,.18);
   color: rgba(7,147,14,.96);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 950;
 }
 
 .h1{
   margin: 10px 0 8px;
-  font-size: clamp(22px, 5.4vw, 34px);
+  font-size: clamp(20px, 4.9vw, 30px); /* ✅ 작게 */
   line-height: 1.16;
   letter-spacing: -.03em;
   font-weight: 950;
@@ -228,7 +228,7 @@ button{ font-family:inherit; }
 
 .h2{
   margin: 2px 0 8px;
-  font-size: clamp(16px, 3.8vw, 22px);
+  font-size: clamp(15px, 3.4vw, 20px);
   line-height: 1.28;
   letter-spacing: -.02em;
   font-weight: 950;
@@ -236,7 +236,7 @@ button{ font-family:inherit; }
 
 .desc{
   margin:0;
-  font-size: 13px;
+  font-size: 12.5px; /* ✅ 작게 */
   line-height: 1.55;
   color: rgba(14,26,20,.74);
 }
@@ -254,10 +254,7 @@ button{ font-family:inherit; }
   margin: 14px 0;
 }
 
-.point{
-  color: var(--brand);
-  font-weight: 950;
-}
+.point{ color: var(--brand); font-weight: 950; }
 .bold{ font-weight: 950; }
 
 .keyList{
@@ -273,17 +270,16 @@ button{ font-family:inherit; }
   padding: 12px;
 }
 .keyItem .title{
-  font-size: 13px;
+  font-size: 12.7px;
   font-weight: 950;
   margin-bottom: 4px;
 }
 .keyItem .body{
-  font-size: 12.5px;
+  font-size: 12.3px;
   line-height: 1.5;
   color: rgba(14,26,20,.70);
 }
 
-/* Buttons */
 .btnRow{
   display:flex;
   gap:10px;
@@ -295,13 +291,12 @@ button{ font-family:inherit; }
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
   border: 1px solid rgba(14,26,20,.10);
   background: rgba(255,255,255,.86);
-  padding: 10px 12px;
+  padding: 9px 12px;
   border-radius: 999px;
-  font-size: 13px;
-  font-weight: 900;
+  font-size: 12.5px;
+  font-weight: 950;
   color: rgba(14,26,20,.85);
   box-shadow: 0 10px 20px rgba(0,0,0,.05);
   transition: transform .16s ease;
@@ -315,7 +310,6 @@ button{ font-family:inherit; }
   color: rgba(7,147,14,.95);
 }
 
-/* Program List */
 .programList{
   display:grid;
   gap:10px;
@@ -331,21 +325,11 @@ button{ font-family:inherit; }
   justify-content:space-between;
   gap:10px;
 }
-.programItem .left{
-  display:grid;
-  gap:2px;
-}
-.programItem .name{
-  font-size: 13px;
-  font-weight: 950;
-}
-.programItem .oneLine{
-  font-size: 12.5px;
-  line-height: 1.4;
-  color: rgba(14,26,20,.70);
-}
+.programItem .left{ display:grid; gap:2px; }
+.programItem .name{ font-size: 12.7px; font-weight: 950; }
+.programItem .oneLine{ font-size: 12.3px; line-height: 1.4; color: rgba(14,26,20,.70); }
 .programItem .ask{
-  font-size: 12.5px;
+  font-size: 12.3px;
   font-weight: 950;
   color: rgba(7,147,14,.95);
   background: rgba(7,147,14,.10);
@@ -355,7 +339,6 @@ button{ font-family:inherit; }
   cursor:pointer;
 }
 
-/* Contact */
 .categoryGrid{
   display:grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
@@ -367,7 +350,7 @@ button{ font-family:inherit; }
   background: rgba(255,255,255,.84);
   border-radius: 14px;
   padding: 10px;
-  font-size: 12.5px;
+  font-size: 12.3px;
   font-weight: 950;
   cursor:pointer;
 }
@@ -387,7 +370,7 @@ button{ font-family:inherit; }
 .label{
   font-size: 12px;
   color: rgba(14,26,20,.62);
-  font-weight: 900;
+  font-weight: 950;
   margin-bottom: 6px;
 }
 .copyRow{
@@ -396,12 +379,14 @@ button{ font-family:inherit; }
   flex-wrap:wrap;
   margin-top: 8px;
 }
+.sp{ height:10px; }
+
 textarea,input[type="text"]{
   width:100%;
   border: 1px solid rgba(14,26,20,.10);
   border-radius: 14px;
   padding: 10px;
-  font-size: 12.5px;
+  font-size: 12.3px;
   line-height: 1.5;
   background: rgba(255,255,255,.92);
   outline:none;
@@ -443,10 +428,7 @@ textarea{
   background: rgba(246,250,247,.98);
   border-bottom: 1px solid rgba(14,26,20,.08);
 }
-.modalTitle{
-  font-size: 13px;
-  font-weight: 950;
-}
+.modalTitle{ font-size: 13px; font-weight: 950; }
 .modalClose{
   width: 34px;
   height: 34px;
@@ -458,20 +440,10 @@ textarea{
   place-items:center;
   font-weight: 950;
 }
-.modalBody{
-  height: calc(100% - 48px);
-  background:#fff;
-}
-.modalBody iframe{
-  width:100%;
-  height:100%;
-  border:0;
-}
+.modalBody{ height: calc(100% - 48px); background:#fff; }
+.modalBody iframe{ width:100%; height:100%; border:0; }
 
-/* Desktop enhancements */
 @media (min-width: 860px){
   :root{ --pad: 18px; }
-
-  .brandText .name{ font-size: 18px; }
   .categoryGrid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
 }
