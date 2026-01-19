@@ -1,308 +1,432 @@
-(function () {
-  const slider = document.getElementById("slider");
-  const navButtons = Array.from(document.querySelectorAll(".kw-item"));
-  const slides = Array.from(document.querySelectorAll(".slide"));
+/* =========================
+   Nedabah Way - App Script
+   ========================= */
 
+(function(){
+  const slider = document.getElementById("slider");
+  const slides = Array.from(document.querySelectorAll(".slide"));
+  const navItems = Array.from(document.querySelectorAll(".nav-item"));
   const brandHome = document.getElementById("brandHome");
 
-  const indicatorActive = document.getElementById("indicatorActive");
+  const indicatorBar = document.getElementById("indicatorBar");
   const indicatorDots = document.getElementById("indicatorDots");
 
-  function getSlideById(id) {
-    return slides.find((s) => s.id === id);
-  }
+  // --- Safety: required DOM
+  if(!slider || slides.length === 0) return;
 
-  function setActiveNav(id) {
-    // 홈은 네비 버튼이 없으므로, home일 때는 모두 비활성 처리
-    navButtons.forEach((btn) => {
-      const isActive = btn.dataset.target === id;
-      btn.classList.toggle("is-active", isActive);
-      if (isActive) btn.setAttribute("aria-current", "page");
-      else btn.removeAttribute("aria-current");
-    });
-  }
+  const slideIds = slides.map(s => s.id);
 
-  function updateIndicator(index) {
-    const total = slides.length;
-    const widthPct = 100 / total;
-    indicatorActive.style.width = `${widthPct}%`;
-    indicatorActive.style.transform = `translateX(${index * 100}%)`;
-
-    const dots = Array.from(indicatorDots.querySelectorAll(".dot"));
-    dots.forEach((d, i) => d.classList.toggle("is-active", i === index));
-  }
-
-  function buildDots() {
+  // ===== Indicator Dots Build =====
+  function buildDots(){
+    if(!indicatorDots) return;
     indicatorDots.innerHTML = "";
-    slides.forEach(() => {
-      const d = document.createElement("span");
-      d.className = "dot";
-      indicatorDots.appendChild(d);
+    slides.forEach((s, idx) => {
+      const b = document.createElement("button");
+      b.className = "dot-btn";
+      b.type = "button";
+      b.setAttribute("aria-label", `${idx+1}번째 페이지로 이동`);
+      b.addEventListener("click", ()=> scrollToSlide(s.id, true));
+      indicatorDots.appendChild(b);
+    });
+  }
+  buildDots();
+
+  function getSlideById(id){
+    return slides.find(s => s.id === id);
+  }
+
+  function clamp(v, min, max){
+    return Math.max(min, Math.min(max, v));
+  }
+
+  function setActiveNav(id){
+    navItems.forEach(btn => btn.classList.remove("is-active"));
+    const found = navItems.find(btn => btn.dataset.target === id);
+    if(found) found.classList.add("is-active");
+  }
+
+  function updateIndicator(index){
+    // bar: move based on index / total
+    if(indicatorBar){
+      const total = slides.length;
+      const widthPercent = 100 / total;
+      indicatorBar.style.width = `${widthPercent}%`;
+      indicatorBar.style.transform = `translateX(${index * widthPercent}%)`;
+    }
+
+    // dots
+    if(indicatorDots){
+      const dots = Array.from(indicatorDots.querySelectorAll(".dot-btn"));
+      dots.forEach(d => d.classList.remove("is-active"));
+      if(dots[index]) dots[index].classList.add("is-active");
+    }
+  }
+
+  function setActiveSlideById(id){
+    slides.forEach(s => s.classList.remove("is-active"));
+    const active = getSlideById(id);
+    if(active) active.classList.add("is-active");
+  }
+
+  function scrollToSlide(id, smooth=true){
+    const el = getSlideById(id);
+    if(!el) return;
+    el.scrollIntoView({
+      behavior: smooth ? "smooth" : "auto",
+      inline: "start",
+      block: "nearest",
     });
   }
 
-  function getActiveIndexByScroll() {
-    const scrollLeft = slider.scrollLeft;
-    const width = slider.clientWidth;
-    return Math.round(scrollLeft / width);
-  }
-
-  function scrollToSlide(id, smooth = true) {
-    const target = getSlideById(id);
-    if (!target) return;
-
-    const left = target.offsetLeft;
-    slider.scrollTo({ left, behavior: smooth ? "smooth" : "auto" });
-
-    history.replaceState(null, "", `#${id}`);
-
-    // nav highlight
-    setActiveNav(id);
-
-    // indicator
-    const idx = slides.findIndex((s) => s.id === id);
-    if (idx >= 0) updateIndicator(idx);
-  }
-
-  // ✅ 탄성 느낌 스냅 보정 (부드럽게)
-  function animateSnapToNearest() {
-    const targetIndex = getActiveIndexByScroll();
-    const targetSlide = slides[targetIndex];
-    if (!targetSlide) return;
-
-    const start = slider.scrollLeft;
-    const end = targetSlide.offsetLeft;
-    if (Math.abs(end - start) < 2) return;
-
-    const duration = 420;
-    const startTime = performance.now();
-
-    function easeOutBack(t) {
-      const c1 = 1.18;
-      const c3 = c1 + 1;
-      return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
-    }
-
-    function frame(now) {
-      const elapsed = now - startTime;
-      const t = Math.min(1, elapsed / duration);
-      const eased = easeOutBack(t);
-      slider.scrollLeft = start + (end - start) * eased;
-      if (t < 1) requestAnimationFrame(frame);
-    }
-
-    requestAnimationFrame(frame);
-  }
-
-  // ✅ 브랜드 클릭 = 홈으로 이동(모든 버전에서 동일)
-  brandHome?.addEventListener("click", () => {
-    scrollToSlide("home", true);
-  });
-
-  // ✅ 상단 카테고리 클릭 이동(5개)
-  navButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
+  // ===== Nav click =====
+  navItems.forEach(btn => {
+    btn.addEventListener("click", ()=>{
       const id = btn.dataset.target;
+      if(!id) return;
       scrollToSlide(id, true);
     });
   });
 
-  // ✅ 내부 CTA 이동
-  document.querySelectorAll("[data-jump]").forEach((el) => {
-    el.addEventListener("click", () => {
-      const id = el.getAttribute("data-jump");
+  // ===== Brand -> Home =====
+  if(brandHome){
+    brandHome.addEventListener("click", ()=> scrollToSlide("home", true));
+  }
+
+  // ===== Hero buttons data-target =====
+  document.querySelectorAll("[data-target]").forEach((el)=>{
+    el.addEventListener("click", ()=>{
+      const id = el.getAttribute("data-target");
+      if(!id) return;
       scrollToSlide(id, true);
     });
   });
 
-  // ✅ 슬라이드 감지 → 네비/인디케이터 업데이트
+  // ===== Slide observer -> set active classes & nav =====
   const io = new IntersectionObserver(
     (entries) => {
       const visible = entries
         .filter((e) => e.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-      if (!visible) return;
+      if(!visible) return;
 
-      const id = visible.target.id;
+      const activeSlide = visible.target;
+      const id = activeSlide.id;
+
+      setActiveSlideById(id);
       setActiveNav(id);
-      history.replaceState(null, "", `#${id}`);
 
-      const idx = slides.findIndex((s) => s.id === id);
-      if (idx >= 0) updateIndicator(idx);
+      const idx = slides.findIndex(s => s.id === id);
+      if(idx >= 0) updateIndicator(idx);
+
+      // hash
+      history.replaceState(null, "", `#${id}`);
     },
     { root: slider, threshold: [0.55, 0.7, 0.85] }
   );
 
-  slides.forEach((s) => io.observe(s));
+  slides.forEach(s => io.observe(s));
 
-  // ✅ 가로 스크롤 멈추면 탄성 스냅 보정
-  let snapTimer = null;
-  slider.addEventListener("scroll", () => {
-    if (snapTimer) clearTimeout(snapTimer);
-    snapTimer = setTimeout(() => {
-      animateSnapToNearest();
-    }, 120);
+  // ===== initial state =====
+  const initialHash = (location.hash || "").replace("#", "");
+  if(initialHash && slideIds.includes(initialHash)){
+    scrollToSlide(initialHash, false);
+    setActiveSlideById(initialHash);
+    setActiveNav(initialHash);
+    updateIndicator(slideIds.indexOf(initialHash));
+  }else{
+    scrollToSlide("home", false);
+    setActiveSlideById("home");
+    updateIndicator(0);
+  }
+
+  // ===== Programs -> Contact (auto category select) =====
+  const inquiryButtons = document.querySelectorAll(".js-go-inquiry");
+  inquiryButtons.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const cat = btn.getAttribute("data-inquiry") || "etc";
+      // go contact and set category
+      scrollToSlide("contact", true);
+      setTimeout(()=> selectCategory(cat), 350);
+    });
   });
 
-  // ✅ 데스크탑 휠(세로)을 가로 이동으로 자연스럽게
-  slider.addEventListener(
-    "wheel",
-    (e) => {
-      const activeId = (location.hash || "#home").slice(1);
-      const active = getSlideById(activeId) || slides[0];
-      const canScrollY = active && active.scrollHeight > active.clientHeight;
-
-      // 슬라이드 안에서 세로 스크롤 가능한 경우는 우선 세로를 허용
-      if (canScrollY) {
-        const atTop = active.scrollTop <= 0;
-        const atBottom = active.scrollTop + active.clientHeight >= active.scrollHeight - 1;
-        if (!(atTop || atBottom)) return;
-      }
-
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault();
-        slider.scrollLeft += e.deltaY;
-      }
-    },
-    { passive: false }
-  );
-
-  // ===== 문의 폼(5개 카테고리) =====
+  // ===== Contact Draft Generator =====
   const catButtons = Array.from(document.querySelectorAll(".cat-btn"));
-  const mailSubject = document.getElementById("mailSubject");
-  const mailBody = document.getElementById("mailBody");
+  const draftSubject = document.getElementById("draftSubject");
+  const draftBody = document.getElementById("draftBody");
   const copySubjectBtn = document.getElementById("copySubject");
   const copyBodyBtn = document.getElementById("copyBody");
-  const openMailAppBtn = document.getElementById("openMailApp");
+  const openMailBtn = document.getElementById("openMailApp");
 
-  const TO_EMAIL = "nedabah.way@gmail.com";
+  const MAIL_TO = "nedabah.way@gmail.com";
 
   const templates = {
-    seminar: {
-      subject: "[네다바웨이] 교회 세미나 문의",
+    church: {
+      subject: "[문의] 교회 세미나 진행 관련",
       body:
-`안녕하세요. 네다바웨이에 교회 세미나 문의드립니다.
+`안녕하세요. 네다바웨이 팀께 문의드립니다.
 
-1) 교회/기관명:
-2) 희망 주제(예: 말씀읽기, 묵상 가이드, 공동체 나눔 구조 등):
-3) 대상(예: 청년부/리더/전교인 등):
-4) 희망 일정 및 시간:
-5) 진행 형태(대면/온라인):
-6) 참고할 상황/요청사항:
+교회 내에서 말씀읽기(사귐 중심) 세미나 진행을 검토 중입니다.
+가능한 일정/형태(시간, 구성, 대상)를 안내받고 싶습니다.
 
-확인 후 안내 부탁드립니다.
+- 교회/기관:
+- 대상:
+- 희망 일정:
+- 기대하는 방향:
+
 감사합니다.`
     },
     sbm: {
-      subject: "[네다바웨이] SBM 진행 문의",
+      subject: "[문의] SBM 진행/도입 관련",
       body:
-`안녕하세요. SBM(Self Bible Meditation Maturity) 진행 문의드립니다.
+`안녕하세요. 네다바웨이 팀께 문의드립니다.
 
-1) 공동체/모임명:
-2) 참여 인원:
-3) 희망 기간/횟수:
-4) 현재 막히는 지점(예: 말씀 읽기 지속/나눔 흐름/적용 부담 등):
-5) 기대하는 방향:
+SBM(관찰-묵상-사귐)의 흐름으로 공동체/개인 진행을 고민하고 있습니다.
+진행 방식과 안내 범위를 듣고 싶습니다.
 
-가능하다면 진행 방식과 준비 사항도 함께 안내 부탁드립니다.
+- 적용 대상(개인/소그룹/공동체):
+- 기간/횟수:
+- 현재 고민:
+
 감사합니다.`
     },
     ai: {
-      subject: "[네다바웨이] 생성형 AI 워크숍 문의",
+      subject: "[문의] 생성형 AI 워크숍 진행 관련",
       body:
-`안녕하세요. 생성형 AI 활용 워크숍 문의드립니다.
+`안녕하세요. 네다바웨이 팀께 문의드립니다.
 
-1) 기관/조직명:
-2) 대상:
-3) 워크숍 목표(예: 현장 적용, 결과물 도출 등):
-4) 희망 일정/시간:
-5) 진행 형태(대면/온라인):
-6) 필요하신 결과물/워크시트 형태:
+현장에서 바로 사용하는 방식으로 생성형 AI 워크숍을 검토 중입니다.
+대상과 상황에 맞춘 구성을 제안받고 싶습니다.
 
-가능한 구성과 준비물 안내 부탁드립니다.
+- 기관/팀:
+- 대상:
+- 목적(예: 문서/기획/업무 효율 등):
+- 희망 일정:
+
 감사합니다.`
     },
-    org: {
-      subject: "[네다바웨이] 조직 소통·협업 워크숍 문의",
+    team: {
+      subject: "[문의] 조직 소통·협업 워크숍 관련",
       body:
-`안녕하세요. 조직 소통·협업 워크숍 문의드립니다.
+`안녕하세요. 네다바웨이 팀께 문의드립니다.
 
-1) 기관/조직명:
-2) 참여 인원:
-3) 현재 가장 어려운 지점(예: 협업 병목/오해/역할 갈등 등):
-4) 희망 일정/시간:
-5) 진행 형태(대면/온라인):
+조직 내 소통/협업 이슈를 감정이 아니라 구조로 정리해보고 싶습니다.
+현장 적용까지 이어지는 워크숍 제안을 요청드립니다.
 
-현장 적용 방식(규칙/스크립트/실행룰) 중심으로 가능한지 확인 부탁드립니다.
+- 조직/팀:
+- 현재 병목:
+- 희망 진행 방식(강의/워크숍/코칭):
+
+감사합니다.`
+    },
+    invite: {
+      subject: "[문의] 초청/협력 제안",
+      body:
+`안녕하세요. 네다바웨이 팀께 제안드립니다.
+
+이번에 진행하는 일정/프로그램에 네다바웨이와 협력을 고민하고 있습니다.
+가능한 형태와 진행 범위를 논의하고 싶습니다.
+
+- 제안 내용:
+- 일정:
+- 장소/방식:
+- 연락처:
+
 감사합니다.`
     },
     etc: {
-      subject: "[네다바웨이] 기타 문의",
+      subject: "[문의] 기타 문의",
       body:
-`안녕하세요. 네다바웨이에 문의드립니다.
+`안녕하세요. 네다바웨이 팀께 문의드립니다.
 
-문의 내용:
-(자유롭게 작성해 주세요)
+아래 내용으로 안내를 부탁드립니다.
 
-확인 후 안내 부탁드립니다.
+- 문의 내용:
+- 배경/상황:
+- 희망 답변 형태(전화/메일):
+
 감사합니다.`
     }
   };
 
-  function setCategory(catKey) {
-    catButtons.forEach((b) => b.classList.toggle("is-active", b.dataset.cat === catKey));
-    const tpl = templates[catKey] || templates.etc;
-    if (mailSubject) mailSubject.value = tpl.subject;
-    if (mailBody) mailBody.value = tpl.body;
+  function setActiveCatButton(key){
+    catButtons.forEach(b => b.classList.remove("is-active"));
+    const found = catButtons.find(b => b.dataset.cat === key);
+    if(found) found.classList.add("is-active");
   }
 
-  async function copyText(text) {
-    try {
+  function renderDraft(key){
+    const t = templates[key] || templates.etc;
+    if(draftSubject) draftSubject.textContent = t.subject;
+    if(draftBody) draftBody.textContent = t.body;
+  }
+
+  function selectCategory(key){
+    const k = templates[key] ? key : "etc";
+    setActiveCatButton(k);
+    renderDraft(k);
+  }
+
+  // expose to other handlers
+  window.__nedabah_selectCategory = selectCategory;
+
+  catButtons.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const key = btn.dataset.cat;
+      selectCategory(key);
+    });
+  });
+
+  // default cat already active
+  selectCategory("church");
+
+  async function copyText(text){
+    try{
       await navigator.clipboard.writeText(text);
-      return true;
-    } catch (e) {
+      toast("복사되었습니다.");
+    }catch(e){
+      // fallback
       const ta = document.createElement("textarea");
       ta.value = text;
       document.body.appendChild(ta);
       ta.select();
-      const ok = document.execCommand("copy");
+      document.execCommand("copy");
       document.body.removeChild(ta);
-      return ok;
+      toast("복사되었습니다.");
     }
   }
 
-  catButtons.forEach((btn) => {
-    btn.addEventListener("click", () => setCategory(btn.dataset.cat));
-  });
-
-  copySubjectBtn?.addEventListener("click", async () => {
-    await copyText(mailSubject?.value || "");
-  });
-
-  copyBodyBtn?.addEventListener("click", async () => {
-    await copyText(mailBody?.value || "");
-  });
-
-  openMailAppBtn?.addEventListener("click", () => {
-    const subject = encodeURIComponent(mailSubject?.value || "");
-    const body = encodeURIComponent(mailBody?.value || "");
-    const mailto = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
-    window.location.href = mailto;
-  });
-
-  // ===== 초기 로딩 =====
-  buildDots();
-
-  const initialHash = (location.hash || "").replace("#", "");
-  if (initialHash && getSlideById(initialHash)) {
-    requestAnimationFrame(() => scrollToSlide(initialHash, false));
-  } else {
-    // 기본 홈에서 시작
-    scrollToSlide("home", false);
-    updateIndicator(0);
+  if(copySubjectBtn){
+    copySubjectBtn.addEventListener("click", ()=>{
+      const text = draftSubject?.textContent || "";
+      copyText(text);
+    });
+  }
+  if(copyBodyBtn){
+    copyBodyBtn.addEventListener("click", ()=>{
+      const text = draftBody?.textContent || "";
+      copyText(text);
+    });
   }
 
-  // 문의 기본 카테고리
-  setCategory("seminar");
+  if(openMailBtn){
+    openMailBtn.addEventListener("click", ()=>{
+      const subject = encodeURIComponent(draftSubject?.textContent || "");
+      const body = encodeURIComponent(draftBody?.textContent || "");
+      const mailto = `mailto:${MAIL_TO}?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+    });
+  }
+
+  // ===== simple toast =====
+  let toastTimer = null;
+  function toast(msg){
+    const el = document.createElement("div");
+    el.textContent = msg;
+    el.style.position = "fixed";
+    el.style.left = "50%";
+    el.style.bottom = "22px";
+    el.style.transform = "translateX(-50%)";
+    el.style.padding = "10px 12px";
+    el.style.borderRadius = "14px";
+    el.style.background = "rgba(11,19,36,0.88)";
+    el.style.color = "rgba(255,255,255,0.96)";
+    el.style.fontSize = "12px";
+    el.style.fontWeight = "900";
+    el.style.zIndex = "9999";
+    el.style.boxShadow = "0 18px 60px rgba(2,6,23,0.28)";
+    el.style.opacity = "0";
+    el.style.transition = "opacity 180ms ease, transform 180ms ease";
+    document.body.appendChild(el);
+
+    requestAnimationFrame(()=>{
+      el.style.opacity = "1";
+      el.style.transform = "translateX(-50%) translateY(-2px)";
+    });
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>{
+      el.style.opacity = "0";
+      el.style.transform = "translateX(-50%) translateY(2px)";
+      setTimeout(()=> el.remove(), 220);
+    }, 900);
+  }
+
+  // ===== PDF Modal =====
+  const pdfModal = document.getElementById("pdfModal");
+  const pdfModalFrame = document.getElementById("pdfModalFrame");
+  const pdfModalTitle = document.getElementById("pdfModalTitle");
+  const pdfModalOpenNew = document.getElementById("pdfModalOpenNew");
+  const pdfModalDownload = document.getElementById("pdfModalDownload");
+
+  function openPdfModal(url, titleText){
+    if(!pdfModal) return;
+
+    pdfModal.classList.add("is-open");
+    pdfModal.setAttribute("aria-hidden", "false");
+
+    if (pdfModalTitle) pdfModalTitle.textContent = titleText || "PDF";
+    if (pdfModalFrame) pdfModalFrame.src = `${url}#view=FitH`;
+    if (pdfModalOpenNew) pdfModalOpenNew.href = url;
+    if (pdfModalDownload) pdfModalDownload.href = url;
+  }
+
+  function closePdfModal(){
+    if(!pdfModal) return;
+
+    pdfModal.classList.remove("is-open");
+    pdfModal.setAttribute("aria-hidden", "true");
+    if (pdfModalFrame) pdfModalFrame.src = "";
+  }
+
+  document.querySelectorAll(".js-open-pdf").forEach((btn)=>{
+    btn.addEventListener("click", ()=>{
+      const url = btn.getAttribute("data-pdf");
+      const titleText = btn.getAttribute("data-title") || "PDF";
+      if(!url) return;
+      openPdfModal(url, titleText);
+    });
+  });
+
+  document.querySelectorAll('[data-close="pdfModal"]').forEach((el)=>{
+    el.addEventListener("click", closePdfModal);
+  });
+
+  window.addEventListener("keydown", (e)=>{
+    if(e.key === "Escape" && pdfModal?.classList.contains("is-open")){
+      closePdfModal();
+    }
+  });
+
+  // ===== If hash changes externally =====
+  window.addEventListener("hashchange", ()=>{
+    const id = (location.hash || "").replace("#", "");
+    if(id && slideIds.includes(id)){
+      scrollToSlide(id, true);
+      setActiveSlideById(id);
+      setActiveNav(id);
+      updateIndicator(slideIds.indexOf(id));
+    }
+  });
+
+  // ===== Allow programs to set inquiry category =====
+  function mapInquiryToCategory(key){
+    const k = templates[key] ? key : "etc";
+    selectCategory(k);
+  }
+
+  function selectCategoryFromPrograms(key){
+    // move contact + select category
+    scrollToSlide("contact", true);
+    setTimeout(()=> mapInquiryToCategory(key), 350);
+  }
+
+  document.querySelectorAll(".js-go-inquiry").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const k = btn.getAttribute("data-inquiry") || "etc";
+      selectCategoryFromPrograms(k);
+    });
+  });
+
 })();
