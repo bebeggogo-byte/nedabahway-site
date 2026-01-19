@@ -1,387 +1,883 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#07930E" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#B5694D" />
   <title>네다바웨이 | Nedabah Way</title>
-  <link rel="stylesheet" href="./스타일.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
-  <!-- App Shell -->
   <div class="app">
 
-    <!-- Sticky Header -->
-    <header class="topbar" id="topbar">
-      <button class="brand" id="brandHome" aria-label="홈으로 이동">
-        <span class="brand__logo" aria-hidden="true">
-          <!-- 심플 시그니처 SVG (커스텀 가능) -->
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <defs>
-              <linearGradient id="g" x1="0" y1="0" x2="28" y2="28">
-                <stop stop-color="#0AA046"/>
-                <stop offset="1" stop-color="#07930E"/>
-              </linearGradient>
-            </defs>
-            <circle cx="14" cy="14" r="12.5" stroke="url(#g)" stroke-width="2"/>
-            <path d="M8.2 17.2c2.2-1.6 3.2-4.2 5.2-6.3 2.0-2.1 4.6-3.2 6.4-1.6 1.8 1.6.6 4.2-1.4 6.3-2.0 2.1-4.7 3.3-7.3 3.1"
-              stroke="#0B1B12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M11.2 18.7c1.2.8 2.7 1.1 4.2.8" stroke="#0B1B12" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
-        </span>
-        <span class="brand__text">
-          <span class="brand__hebrew">נדבה</span>
-          <span class="brand__name">네다바웨이</span>
-        </span>
+```
+<!-- Header -->
+<header class="header">
+  <div class="header__top">
+    <button class="logo" id="logoBtn" aria-label="홈으로">
+      <span class="logo__icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="16" fill="#B5694D"/>
+          <path d="M11 21c2.8-2 4-5.4 6.8-8 2.6-2.7 5.8-4 8.2-2 2.3 2 .8 5.4-1.8 8-2.6 2.7-6 4.2-9.3 3.9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14.5 23c1.6 1 3.4 1.4 5.4 1" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="logo__text">
+        <span class="logo__hebrew">נדבה</span>
+        <span class="logo__name">네다바웨이</span>
+      </span>
+    </button>
+
+    <div class="header__actions">
+      <button class="icon-btn" id="searchBtn" aria-label="검색">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
       </button>
-
-      <!-- Tabs -->
-      <nav class="tabs" aria-label="페이지 이동">
-        <button class="tab is-active" data-go="0">소개</button>
-        <button class="tab" data-go="1">SBM</button>
-        <button class="tab" data-go="2">프로그램</button>
-        <button class="tab" data-go="3">자료</button>
-        <button class="tab" data-go="4">문의</button>
-      </nav>
-
-      <!-- Page Indicator -->
-      <div class="indicator" aria-hidden="true">
-        <div class="indicator__track"></div>
-        <div class="indicator__bar" id="indicatorBar"></div>
-      </div>
-    </header>
-
-    <!-- Slides (1 page per screen) -->
-    <main class="deck" id="deck" aria-label="슬라이드">
-      <!-- 0: About -->
-      <section class="slide" data-index="0">
-        <div class="card hero">
-          <div class="pill">과정 중심 · 동행</div>
-
-          <h1 class="hero__title">
-            말씀을 읽는 시간이<br />
-            하나님과의 <span class="accent">사귐</span>으로<br />
-            이어지도록 돕습니다.
-          </h1>
-
-          <p class="hero__sub">
-            텍스트를 넘어 하나님의 뜻과 심정을 헤아리는<br />
-            사귐으로 나아가도록 돕습니다.
-          </p>
-
-          <div class="grid2">
-            <div class="mini">
-              <div class="mini__k">지향</div>
-              <div class="mini__v">과정 중심 · 동행</div>
-            </div>
-            <div class="mini">
-              <div class="mini__k">핵심</div>
-              <div class="mini__v">삼위일체 사귐 묵상</div>
-            </div>
-            <div class="mini">
-              <div class="mini__k">동력</div>
-              <div class="mini__v">의무감 → 자발성</div>
-            </div>
-            <div class="mini">
-              <div class="mini__k">방식</div>
-              <div class="mini__v">읽기 · 현실 점검 · 실행 가능한 훈련</div>
-            </div>
-          </div>
-
-          <div class="ctaRow">
-            <button class="btn btn--primary" data-go="1">SBM 살펴보기</button>
-            <button class="btn btn--ghost" data-go="3">자료 보기</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="sectionTitle">
-            <span class="tag">핵심 전환</span>
-            <h2>말씀 읽기의 방향을 바꿉니다</h2>
-          </div>
-
-          <div class="shift">
-            <div class="shift__row">
-              <span class="from">결과 분석 및 점검</span>
-              <span class="arrow">→</span>
-              <span class="to">과정 중심 및 동행</span>
-            </div>
-            <div class="shift__row">
-              <span class="from">텍스트 공부 중심</span>
-              <span class="arrow">→</span>
-              <span class="to">텍스트 속 하나님의 뜻과 심정 알기</span>
-            </div>
-            <div class="shift__row">
-              <span class="from">적용 중심 묵상</span>
-              <span class="arrow">→</span>
-              <span class="to">삼위일체 사귐 묵상</span>
-            </div>
-            <div class="shift__row">
-              <span class="from">의무감</span>
-              <span class="arrow">→</span>
-              <span class="to">자발성</span>
-            </div>
-          </div>
-
-          <div class="note">
-            우리는 누군가의 묵상 결과를 평가하거나 분석하지 않습니다.  
-            스스로 말씀을 읽고, 그 안에서 하나님을 만나는 <span class="accent">과정</span>을 안내합니다.
-          </div>
-        </div>
-      </section>
-
-      <!-- 1: SBM -->
-      <section class="slide" data-index="1">
-        <div class="card">
-          <div class="sectionTitle">
-            <span class="tag">SBM</span>
-            <h2>Self Bible Meditation Maturity</h2>
-          </div>
-
-          <p class="lead">
-            SBM은 “열심”을 더하는 훈련이 아니라,  
-            말씀 읽기가 하나님과의 <span class="accent">사귐</span>으로 이어지도록 돕는 흐름입니다.
-          </p>
-
-          <div class="chips">
-            <span class="chip"><b>3단계</b> 관찰 · 묵상 · 사귐</span>
-            <span class="chip"><b>핵심</b> 뜻과 심정</span>
-            <span class="chip"><b>방식</b> 질문 과정</span>
-          </div>
-
-          <div class="grid3">
-            <div class="box">
-              <div class="box__t">왜</div>
-              <div class="box__b">
-                적용만 남고 사귐이 사라지면<br />
-                말씀이 “과제”가 됩니다.
-              </div>
-            </div>
-            <div class="box">
-              <div class="box__t">어떻게</div>
-              <div class="box__b">
-                말씀 안에서 하나님의 마음을 헤아리고,<br />
-                오늘의 삶으로 이어지게 돕습니다.
-              </div>
-            </div>
-            <div class="box">
-              <div class="box__t">무엇을</div>
-              <div class="box__b">
-                <b>30개 질문 과정</b>으로<br />
-                관찰 → 묵상 → 사귐을 정리합니다.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="sectionTitle">
-            <span class="tag">3단계</span>
-            <h2>관찰 · 묵상 · 사귐</h2>
-          </div>
-
-          <div class="steps">
-            <div class="step">
-              <div class="step__n">1</div>
-              <div class="step__c">
-                <div class="step__t">관찰</div>
-                <div class="step__d">텍스트를 넘어 “장면”으로 보기</div>
-                <div class="step__s">배경 · 흐름 · 연결</div>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="step__n">2</div>
-              <div class="step__c">
-                <div class="step__t">묵상</div>
-                <div class="step__d">의중(意中)과 심정(心情)을 헤아리기</div>
-                <div class="step__s">공감 · 질문 · 대입</div>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="step__n">3</div>
-              <div class="step__c">
-                <div class="step__t">사귐</div>
-                <div class="step__d">임재 안에서 머물며 삶으로 이어지기</div>
-                <div class="step__s">기도 · 호흡 · 순종</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="review">
-            <div class="review__title">짧은 후기(예시)</div>
-            <ul class="review__list">
-              <li>“적용을 억지로 만들지 않아도, 방향이 선명해졌습니다.”</li>
-              <li>“말씀을 공부가 아니라 사귐으로 읽는 감각이 생겼어요.”</li>
-              <li>“결과 점검보다 과정 동행이 더 오래 갑니다.”</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2: Programs -->
-      <section class="slide" data-index="2">
-        <div class="card">
-          <div class="sectionTitle">
-            <span class="tag">Programs</span>
-            <h2>제목 외에는 한 문장만. 바로 문의</h2>
-          </div>
-
-          <div class="programList">
-            <button class="programItem" data-contact="church">
-              <div class="programItem__title">교회 세미나</div>
-              <div class="programItem__line">
-                교회 상황에 맞춰 “말씀읽기 중심” 세미나를 구성합니다. <b class="accent">→ 문의하기</b>
-              </div>
-            </button>
-
-            <button class="programItem" data-contact="sbm">
-              <div class="programItem__title">SBM 진행</div>
-              <div class="programItem__line">
-                말씀읽기가 하나님과의 “사귐”으로 이어지도록 함께 진행합니다. <b class="accent">→ 문의하기</b>
-              </div>
-            </button>
-
-            <button class="programItem" data-contact="ai">
-              <div class="programItem__title">생성형 AI 워크숍</div>
-              <div class="programItem__line">
-                현장에서 바로 쓰는 방식으로, 맞춤 워크숍을 설계합니다. <b class="accent">→ 문의하기</b>
-              </div>
-            </button>
-
-            <button class="programItem" data-contact="team">
-              <div class="programItem__title">조직 소통·협업</div>
-              <div class="programItem__line">
-                감정이 아니라 “구조”로 정리해 실행까지 이어지게 돕습니다. <b class="accent">→ 문의하기</b>
-              </div>
-            </button>
-
-            <button class="programItem" data-contact="etc">
-              <div class="programItem__title">기타 문의</div>
-              <div class="programItem__line">
-                필요를 듣고 가능한 범위에서 가장 선명한 형태로 제안드립니다. <b class="accent">→ 문의하기</b>
-              </div>
-            </button>
-          </div>
-
-          <div class="note">
-            프로그램은 길게 설명하지 않습니다.  
-            방향을 선택하면 <span class="accent">문의</span>로 바로 연결됩니다.
-          </div>
-        </div>
-      </section>
-
-      <!-- 3: Resources -->
-      <section class="slide" data-index="3">
-        <div class="card">
-          <div class="sectionTitle">
-            <span class="tag">Resources</span>
-            <h2>자료는 새 창이 아니라 “모달”로 열립니다</h2>
-          </div>
-
-          <div class="resourceGrid">
-            <div class="resource">
-              <div class="resource__top">
-                <div class="resource__badge">PDF</div>
-                <div class="resource__title">네다바웨이 소개 & SBM 안내</div>
-              </div>
-              <div class="resource__desc">
-                네다바웨이와 SBM 흐름을 한 번에 확인할 수 있는 소개 자료입니다.
-              </div>
-              <button class="btn btn--soft" data-open-pdf="assets/네다바웨이%20소개.pdf.html">
-                열기
-              </button>
-            </div>
-
-            <div class="resource">
-              <div class="resource__top">
-                <div class="resource__badge">PDF</div>
-                <div class="resource__title">SBM 성숙 안내 자료</div>
-              </div>
-              <div class="resource__desc">
-                관찰·묵상·사귐 흐름과 질문 과정 중심으로 정리된 자료입니다.
-              </div>
-              <button class="btn btn--soft" data-open-pdf="assets/Nedabah_Way_Spiritual_Maturity%20(2).pdf">
-                열기
-              </button>
-            </div>
-          </div>
-
-          <div class="note">
-            “정답·해석”으로 끝내지 않고, 말씀 읽기가 사귐으로 이어지도록 돕는 흐름으로 구성되어 있습니다.
-          </div>
-        </div>
-      </section>
-
-      <!-- 4: Contact -->
-      <section class="slide" data-index="4">
-        <div class="card">
-          <div class="sectionTitle">
-            <span class="tag">Contact</span>
-            <h2>카테고리를 선택하면 “제목/본문 초안”이 자동 생성됩니다</h2>
-          </div>
-
-          <div class="contactBox">
-            <div class="contactHint">
-              초안 문구입니다. 선택 후 <b>복사</b>하거나 <b>메일 앱 열기</b>로 바로 보낼 수 있습니다.
-            </div>
-
-            <div class="categoryRow" id="categoryRow">
-              <button class="cat is-active" data-cat="church">교회 세미나</button>
-              <button class="cat" data-cat="sbm">SBM 진행</button>
-              <button class="cat" data-cat="ai">생성형 AI</button>
-              <button class="cat" data-cat="team">조직 소통·협업</button>
-              <button class="cat" data-cat="etc">기타 문의</button>
-            </div>
-
-            <div class="draft">
-              <div class="draft__block">
-                <div class="draft__label">제목</div>
-                <div class="draft__text" id="mailSubject"></div>
-                <button class="btn btn--mini" id="copySubject">제목복사</button>
-              </div>
-
-              <div class="draft__block">
-                <div class="draft__label">본문</div>
-                <div class="draft__text draft__text--body" id="mailBody"></div>
-
-                <div class="draft__actions">
-                  <button class="btn btn--mini" id="copyBody">본문복사</button>
-                  <button class="btn btn--primary btn--mini" id="openMailApp">메일 앱 열기</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="small">
-              메일 앱이 열리지 않으면, 복사 버튼을 사용해 직접 붙여넣어도 됩니다.
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- PDF Modal -->
-    <div class="modal" id="pdfModal" aria-hidden="true">
-      <div class="modal__backdrop" id="modalBackdrop"></div>
-      <div class="modal__panel" role="dialog" aria-modal="true" aria-label="PDF 보기">
-        <div class="modal__top">
-          <div class="modal__title" id="modalTitle">PDF</div>
-          <button class="modal__close" id="modalClose" aria-label="닫기">✕</button>
-        </div>
-        <iframe class="modal__frame" id="modalFrame" title="PDF 프레임"></iframe>
-        <div class="modal__bottom">
-          <button class="btn btn--ghost btn--mini" id="modalOpenNew">
-            새 창 열기
-          </button>
-          <div class="modal__hint">ESC 또는 바깥 클릭으로 닫기</div>
-        </div>
-      </div>
+      <button class="icon-btn" id="menuBtn" aria-label="메뉴">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
     </div>
+  </div>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav" id="nav">
+    <button class="nav__tab is-active" data-index="0">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9,22 9,12 15,12 15,22"/>
+      </svg>
+      <span>소개</span>
+    </button>
+    <button class="nav__tab" data-index="1">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        <path d="M8 7h8M8 11h6"/>
+      </svg>
+      <span>SBM</span>
+    </button>
+    <button class="nav__tab" data-index="2">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7"/>
+        <rect x="14" y="3" width="7" height="7"/>
+        <rect x="14" y="14" width="7" height="7"/>
+        <rect x="3" y="14" width="7" height="7"/>
+      </svg>
+      <span>프로그램</span>
+    </button>
+    <button class="nav__tab" data-index="3">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+        <polyline points="14,2 14,8 20,8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+      </svg>
+      <span>자료</span>
+    </button>
+    <button class="nav__tab" data-index="4">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        <path d="M8 10h.01M12 10h.01M16 10h.01"/>
+      </svg>
+      <span>문의</span>
+    </button>
+  </nav>
+
+  <!-- Progress Indicator -->
+  <div class="progress">
+    <div class="progress__bar" id="progressBar"></div>
+  </div>
+</header>
+
+<!-- Slide Menu -->
+<div class="slide-menu" id="slideMenu">
+  <div class="slide-menu__header">
+    <span class="slide-menu__title">메뉴</span>
+    <button class="icon-btn" id="closeMenuBtn" aria-label="닫기">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <nav class="slide-menu__nav">
+    <button class="slide-menu__item" data-index="0">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      </svg>
+      소개
+    </button>
+    <button class="slide-menu__item" data-index="1">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+      </svg>
+      SBM
+    </button>
+    <button class="slide-menu__item" data-index="2">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7"/>
+        <rect x="14" y="3" width="7" height="7"/>
+        <rect x="14" y="14" width="7" height="7"/>
+        <rect x="3" y="14" width="7" height="7"/>
+      </svg>
+      프로그램
+    </button>
+    <button class="slide-menu__item" data-index="3">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+        <polyline points="14,2 14,8 20,8"/>
+      </svg>
+      자료
+    </button>
+    <button class="slide-menu__item" data-index="4">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      문의
+    </button>
+  </nav>
+  <div class="slide-menu__footer">
+    <a href="mailto:nedabah.way@gmail.com" class="slide-menu__link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </svg>
+      nedabah.way@gmail.com
+    </a>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<!-- Main Deck (Horizontal Swipe) -->
+<main class="deck" id="deck">
+
+  <!-- Page 0: About -->
+  <section class="page" data-index="0">
+    <div class="page__scroll">
+      <div class="hero">
+        <div class="hero__badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+          과정 중심 · 동행
+        </div>
+        <h1 class="hero__title">
+          말씀을 읽는 시간이<br/>
+          하나님과의 <em>사귐</em>으로<br/>
+          이어지도록 돕습니다.
+        </h1>
+        <p class="hero__desc">
+          텍스트를 넘어 하나님의 뜻과 심정을 헤아리는<br/>
+          사귐으로 나아가도록 돕습니다.
+        </p>
+        <div class="hero__cta">
+          <button class="btn btn--primary" data-go="1">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            SBM 살펴보기
+          </button>
+          <button class="btn btn--outline" data-go="3">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+              <polyline points="14,2 14,8 20,8"/>
+            </svg>
+            자료 보기
+          </button>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <div class="info-card">
+          <div class="info-card__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4M12 8h.01"/>
+            </svg>
+          </div>
+          <span class="info-card__label">지향</span>
+          <span class="info-card__value">과정 중심 · 동행</span>
+        </div>
+        <div class="info-card">
+          <div class="info-card__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+          <span class="info-card__label">핵심</span>
+          <span class="info-card__value">삼위일체 사귐 묵상</span>
+        </div>
+        <div class="info-card">
+          <div class="info-card__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <span class="info-card__label">동력</span>
+          <span class="info-card__value">의무감 → 자발성</span>
+        </div>
+        <div class="info-card">
+          <div class="info-card__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </div>
+          <span class="info-card__label">방식</span>
+          <span class="info-card__value">읽기 · 현실 점검 · 훈련</span>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <div class="content-card__header">
+          <span class="tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20V10M18 20V4M6 20v-4"/>
+            </svg>
+            핵심 전환
+          </span>
+          <h2>말씀 읽기의 방향을 바꿉니다</h2>
+        </div>
+
+        <div class="shift-list">
+          <div class="shift-item">
+            <span class="shift-item__from">결과 분석 및 점검</span>
+            <span class="shift-item__arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <span class="shift-item__to">과정 중심 및 동행</span>
+          </div>
+          <div class="shift-item">
+            <span class="shift-item__from">텍스트 공부 중심</span>
+            <span class="shift-item__arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <span class="shift-item__to">하나님의 뜻과 심정 알기</span>
+          </div>
+          <div class="shift-item">
+            <span class="shift-item__from">적용 중심 묵상</span>
+            <span class="shift-item__arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <span class="shift-item__to">삼위일체 사귐 묵상</span>
+          </div>
+          <div class="shift-item">
+            <span class="shift-item__from">의무감</span>
+            <span class="shift-item__arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <span class="shift-item__to">자발성</span>
+          </div>
+        </div>
+
+        <div class="note">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+            <path d="M12 16v-4M12 8h.01"/>
+          </svg>
+          우리는 누군가의 묵상 결과를 평가하거나 분석하지 않습니다.
+          스스로 말씀을 읽고, 그 안에서 하나님을 만나는 <em>과정</em>을 안내합니다.
+        </div>
+      </div>
+
+      <button class="swipe-hint" data-go="1">
+        <span>SBM 알아보기</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Page 1: SBM -->
+  <section class="page" data-index="1">
+    <div class="page__scroll">
+      <div class="content-card">
+        <div class="content-card__header">
+          <span class="tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            SBM
+          </span>
+          <h2>Self Bible Meditation Maturity</h2>
+        </div>
+
+        <p class="lead">
+          SBM은 "열심"을 더하는 훈련이 아니라,
+          말씀 읽기가 하나님과의 <em>사귐</em>으로 이어지도록 돕는 흐름입니다.
+        </p>
+
+        <div class="chip-row">
+          <span class="chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20V10M18 20V4M6 20v-4"/>
+            </svg>
+            <b>3단계</b> 관찰 · 묵상 · 사귐
+          </span>
+          <span class="chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+            <b>핵심</b> 뜻과 심정
+          </span>
+          <span class="chip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <path d="M12 17h.01"/>
+            </svg>
+            <b>방식</b> 질문 과정
+          </span>
+        </div>
+
+        <div class="box-grid">
+          <div class="box">
+            <div class="box__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <path d="M12 17h.01"/>
+              </svg>
+            </div>
+            <div class="box__title">왜</div>
+            <div class="box__text">
+              적용만 남고 사귐이 사라지면<br/>
+              말씀이 "과제"가 됩니다.
+            </div>
+          </div>
+          <div class="box">
+            <div class="box__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+            <div class="box__title">어떻게</div>
+            <div class="box__text">
+              말씀 안에서 하나님의 마음을 헤아리고,<br/>
+              오늘의 삶으로 이어지게 돕습니다.
+            </div>
+          </div>
+          <div class="box">
+            <div class="box__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14,2 14,8 20,8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+            </div>
+            <div class="box__title">무엇을</div>
+            <div class="box__text">
+              <b>30개 질문 과정</b>으로<br/>
+              관찰 → 묵상 → 사귐을 정리합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <div class="content-card__header">
+          <span class="tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20V10M18 20V4M6 20v-4"/>
+            </svg>
+            3단계
+          </span>
+          <h2>관찰 · 묵상 · 사귐</h2>
+        </div>
+
+        <div class="step-list">
+          <button class="step" data-step="1">
+            <div class="step__num">1</div>
+            <div class="step__content">
+              <div class="step__title">관찰</div>
+              <div class="step__desc">텍스트를 넘어 "장면"으로 보기</div>
+              <div class="step__tags">
+                <span>배경</span>
+                <span>흐름</span>
+                <span>연결</span>
+              </div>
+            </div>
+            <div class="step__arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </div>
+          </button>
+
+          <button class="step" data-step="2">
+            <div class="step__num">2</div>
+            <div class="step__content">
+              <div class="step__title">묵상</div>
+              <div class="step__desc">의중(意中)과 심정(心情)을 헤아리기</div>
+              <div class="step__tags">
+                <span>공감</span>
+                <span>질문</span>
+                <span>대입</span>
+              </div>
+            </div>
+            <div class="step__arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </div>
+          </button>
+
+          <button class="step" data-step="3">
+            <div class="step__num">3</div>
+            <div class="step__content">
+              <div class="step__title">사귐</div>
+              <div class="step__desc">임재 안에서 머물며 삶으로 이어지기</div>
+              <div class="step__tags">
+                <span>기도</span>
+                <span>호흡</span>
+                <span>순종</span>
+              </div>
+            </div>
+            <div class="step__arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </div>
+          </button>
+        </div>
+
+        <div class="review-block">
+          <div class="review-block__title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            짧은 후기
+          </div>
+          <ul class="review-block__list">
+            <li>"적용을 억지로 만들지 않아도, 방향이 선명해졌습니다."</li>
+            <li>"말씀을 공부가 아니라 사귐으로 읽는 감각이 생겼어요."</li>
+            <li>"결과 점검보다 과정 동행이 더 오래 갑니다."</li>
+          </ul>
+        </div>
+      </div>
+
+      <button class="swipe-hint" data-go="2">
+        <span>프로그램 보기</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Page 2: Programs -->
+  <section class="page" data-index="2">
+    <div class="page__scroll">
+      <div class="content-card">
+        <div class="content-card__header">
+          <span class="tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+            </svg>
+            Programs
+          </span>
+          <h2>프로그램 안내</h2>
+        </div>
+
+        <div class="program-list">
+          <button class="program-card" data-contact="church">
+            <div class="program-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/>
+                <path d="m9 16 .348-.24c1.465-1.013 3.84-1.013 5.304 0L15 16"/>
+                <path d="M8 7h.01M16 7h.01M12 7h.01M12 11h.01M12 15h.01M16 11h.01M16 15h.01M8 11h.01M8 15h.01"/>
+              </svg>
+            </div>
+            <div class="program-card__content">
+              <div class="program-card__title">교회 세미나</div>
+              <div class="program-card__desc">
+                교회 상황에 맞춰 "말씀읽기 중심" 세미나를 구성합니다.
+              </div>
+            </div>
+            <div class="program-card__arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </button>
+
+          <button class="program-card" data-contact="sbm">
+            <div class="program-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                <path d="M8 7h8M8 11h6"/>
+              </svg>
+            </div>
+            <div class="program-card__content">
+              <div class="program-card__title">SBM 진행</div>
+              <div class="program-card__desc">
+                말씀읽기가 하나님과의 "사귐"으로 이어지도록 함께 진행합니다.
+              </div>
+            </div>
+            <div class="program-card__arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </button>
+
+          <button class="program-card" data-contact="ai">
+            <div class="program-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 8V4H8"/>
+                <rect width="16" height="12" x="4" y="8" rx="2"/>
+                <path d="M2 14h2M20 14h2M15 13v2M9 13v2"/>
+              </svg>
+            </div>
+            <div class="program-card__content">
+              <div class="program-card__title">생성형 AI 워크숍</div>
+              <div class="program-card__desc">
+                현장에서 바로 쓰는 방식으로, 맞춤 워크숍을 설계합니다.
+              </div>
+            </div>
+            <div class="program-card__arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </button>
+
+          <button class="program-card" data-contact="team">
+            <div class="program-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="program-card__content">
+              <div class="program-card__title">조직 소통·협업</div>
+              <div class="program-card__desc">
+                감정이 아니라 "구조"로 정리해 실행까지 이어지게 돕습니다.
+              </div>
+            </div>
+            <div class="program-card__arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </button>
+
+          <button class="program-card" data-contact="etc">
+            <div class="program-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <path d="M12 17h.01"/>
+              </svg>
+            </div>
+            <div class="program-card__content">
+              <div class="program-card__title">기타 문의</div>
+              <div class="program-card__desc">
+                필요를 듣고 가능한 범위에서 가장 선명한 형태로 제안드립니다.
+              </div>
+            </div>
+            <div class="program-card__arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </button>
+        </div>
+
+        <div class="note">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+            <path d="M12 16v-4M12 8h.01"/>
+          </svg>
+          프로그램은 길게 설명하지 않습니다.
+          방향을 선택하면 <em>문의</em>로 바로 연결됩니다.
+        </div>
+      </div>
+
+      <button class="swipe-hint" data-go="3">
+        <span>자료 보기</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Page 3: Resources -->
+  <section class="page" data-index="3">
+    <div class="page__scroll">
+      <div class="content-card">
+        <div class="content-card__header">
+          <span class="tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+              <polyline points="14,2 14,8 20,8"/>
+            </svg>
+            Resources
+          </span>
+          <h2>자료 다운로드</h2>
+        </div>
+
+        <div class="resource-grid">
+          <button class="resource-card" data-open-pdf="assets/네다바웨이%20소개.pdf.html">
+            <div class="resource-card__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14,2 14,8 20,8"/>
+              </svg>
+            </div>
+            <div class="resource-card__badge">PDF</div>
+            <div class="resource-card__title">네다바웨이 소개 & SBM 안내</div>
+            <div class="resource-card__desc">
+              네다바웨이와 SBM 흐름을 한 번에 확인할 수 있는 소개 자료입니다.
+            </div>
+            <span class="resource-card__link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15,3 21,3 21,9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              열기
+            </span>
+          </button>
+
+          <button class="resource-card" data-open-pdf="assets/Nedabah_Way_Spiritual_Maturity%20(2).pdf">
+            <div class="resource-card__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14,2 14,8 20,8"/>
+              </svg>
+            </div>
+            <div class="resource-card__badge">PDF</div>
+            <div class="resource-card__title">SBM 성숙 안내 자료</div>
+            <div class="resource-card__desc">
+              관찰·묵상·사귐 흐름과 질문 과정 중심으로 정리된 자료입니다.
+            </div>
+            <span class="resource-card__link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15,3 21,3 21,9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              열기
+            </span>
+          </button>
+        </div>
+
+        <div class="note">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+            <path d="M12 16v-4M12 8h.01"/>
+          </svg>
+          "정답·해석"으로 끝내지 않고, 말씀 읽기가 사귐으로 이어지도록 돕는 흐름으로 구성되어 있습니다.
+        </div>
+      </div>
+
+      <button class="swipe-hint" data-go="4">
+        <span>문의하기</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Page 4: Contact -->
+  <section class="page" data-index="4">
+    <div class="page__scroll">
+      <div class="content-card">
+        <div class="content-card__header">
+          <span class="tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            Contact
+          </span>
+          <h2>문의하기</h2>
+        </div>
+
+        <p class="lead">
+          카테고리를 선택하면 제목과 본문 초안이 자동 생성됩니다.
+        </p>
+
+        <div class="category-tabs" id="categoryRow">
+          <button class="category-tab is-active" data-cat="church">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/>
+            </svg>
+            교회 세미나
+          </button>
+          <button class="category-tab" data-cat="sbm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            SBM 진행
+          </button>
+          <button class="category-tab" data-cat="ai">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 8V4H8"/>
+              <rect width="16" height="12" x="4" y="8" rx="2"/>
+            </svg>
+            생성형 AI
+          </button>
+          <button class="category-tab" data-cat="team">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+            </svg>
+            조직 소통
+          </button>
+          <button class="category-tab" data-cat="etc">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 17h.01"/>
+            </svg>
+            기타
+          </button>
+        </div>
+
+        <div class="draft-area">
+          <div class="draft-field">
+            <div class="draft-field__label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              제목
+            </div>
+            <div class="draft-field__text" id="mailSubject"></div>
+            <button class="btn btn--mini" id="copySubject">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              복사
+            </button>
+          </div>
+
+          <div class="draft-field">
+            <div class="draft-field__label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14,2 14,8 20,8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+              </svg>
+              본문
+            </div>
+            <div class="draft-field__text draft-field__text--body" id="mailBody"></div>
+            <div class="draft-field__actions">
+              <button class="btn btn--mini" id="copyBody">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                본문 복사
+              </button>
+              <button class="btn btn--primary btn--mini" id="openMailApp">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                메일 앱 열기
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="small-hint">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4M12 8h.01"/>
+          </svg>
+          메일 앱이 열리지 않으면, 복사 버튼을 사용해 직접 붙여넣어도 됩니다.
+        </p>
+      </div>
+
+      <button class="swipe-hint swipe-hint--back" data-go="0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span>처음으로</span>
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<!-- PDF Modal -->
+<div class="modal" id="pdfModal" aria-hidden="true">
+  <div class="modal__backdrop" id="modalBackdrop"></div>
+  <div class="modal__panel">
+    <div class="modal__header">
+      <div class="modal__title" id="modalTitle">PDF</div>
+      <button class="icon-btn" id="modalClose" aria-label="닫기">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <iframe class="modal__frame" id="modalFrame" title="PDF 프레임"></iframe>
+    <div class="modal__footer">
+      <button class="btn btn--outline btn--mini" id="modalOpenNew">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15,3 21,3 21,9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        새 창 열기
+      </button>
+      <span class="modal__hint">ESC 또는 바깥 클릭으로 닫기</span>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+    <polyline points="22,4 12,14.01 9,11.01"/>
+  </svg>
+  <span id="toastText">복사되었습니다</span>
+</div>
+```
 
   </div>
 
-  <script src="./앱.js"></script>
+  <script src="./app.js"></script>
+
 </body>
 </html>
