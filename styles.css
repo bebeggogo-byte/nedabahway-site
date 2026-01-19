@@ -3,245 +3,212 @@
    Signature Color: #07930E
    ========================================================= */
 
-/* -------------------------
-   0) Reset / Base
-------------------------- */
 :root{
   --bg: #f6faf7;
   --surface: rgba(255,255,255,.78);
-  --surface-strong: rgba(255,255,255,.92);
   --card: rgba(255,255,255,.86);
+
   --text: #0e1a14;
   --muted: rgba(14,26,20,.62);
-  --line: rgba(14,26,20,.10);
 
   --brand: #07930E;
-  --brand-2: #0aa318;
   --brand-soft: rgba(7,147,14,.12);
-  --brand-soft-2: rgba(7,147,14,.18);
 
   --shadow-sm: 0 8px 22px rgba(0,0,0,.06);
-  --shadow-md: 0 16px 36px rgba(0,0,0,.08);
-
   --radius-lg: 22px;
   --radius-md: 16px;
-  --radius-sm: 12px;
 
   --pad: 14px;
-  --gap: 12px;
 
-  --header-h: 104px; /* sticky header height */
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 
   --font: ui-sans-serif, system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
 }
 
-*{ box-sizing: border-box; }
-html, body{
-  height: 100%;
-  margin: 0;
-  padding: 0;
+*{ box-sizing:border-box; }
+
+html,body{
+  height:100%;
+  margin:0;
+  padding:0;
   font-family: var(--font);
-  background: radial-gradient(1200px 700px at 20% 0%, rgba(7,147,14,.12), transparent 55%),
-              radial-gradient(900px 600px at 100% 10%, rgba(7,147,14,.10), transparent 55%),
-              var(--bg);
+  background:
+    radial-gradient(1200px 700px at 20% 0%, rgba(7,147,14,.12), transparent 55%),
+    radial-gradient(900px 600px at 100% 10%, rgba(7,147,14,.10), transparent 55%),
+    var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow-x:hidden;
 }
 
-a{ color: inherit; text-decoration: none; }
-button{ font-family: inherit; }
+button{ font-family:inherit; }
 
-/* Prevent accidental side scroll */
-body{
-  overflow-x: hidden;
-}
-
-/* -------------------------
-   1) App Layout
-------------------------- */
 .app{
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
 }
 
 .container{
-  width: min(980px, 100%);
-  margin: 0 auto;
-  padding: 0 var(--pad);
+  width:min(980px, 100%);
+  margin:0 auto;
+  padding:0 var(--pad);
 }
 
-/* Sticky Header */
+/* =======================
+   Sticky Header
+======================= */
 .header{
   position: sticky;
-  top: 0;
-  z-index: 50;
+  top:0;
+  z-index:50;
   padding-top: calc(var(--safe-top) + 10px);
   background: linear-gradient(to bottom, rgba(246,250,247,.92), rgba(246,250,247,.74));
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(14,26,20,.06);
 }
 
-/* Brand row */
 .brandRow{
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
   padding: 10px var(--pad) 8px;
 }
 
 .brandBtn{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  user-select: none;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  user-select:none;
 }
 
 .logoWrap{
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
+  width:34px;
+  height:34px;
+  border-radius:999px;
   background: radial-gradient(circle at 30% 30%, rgba(7,147,14,.18), rgba(7,147,14,.08));
-  display: grid;
-  place-items: center;
+  display:grid;
+  place-items:center;
   box-shadow: 0 10px 20px rgba(7,147,14,.10);
   border: 1px solid rgba(7,147,14,.18);
 }
 
 .brandText{
-  display: flex;
-  flex-direction: column;
-  line-height: 1.05;
+  display:flex;
+  flex-direction:column;
+  line-height:1.05;
 }
 
 .brandText .hebrew{
-  font-size: 12px;
-  letter-spacing: .20em;
-  font-weight: 800;
+  font-size:12px;
+  letter-spacing:.20em;
+  font-weight:900;
   color: rgba(7,147,14,.92);
 }
-
 .brandText .name{
-  font-size: 16px;
-  font-weight: 900;
-  letter-spacing: -.02em;
+  font-size:16px;
+  font-weight:950;
+  letter-spacing:-.02em;
 }
 
-/* Nav row (2nd line) */
+/* Nav (2nd line) */
 .navRow{
   padding: 0 var(--pad) 10px;
 }
 
 .nav{
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  overflow-x: auto;
-  scrollbar-width: none;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  overflow-x:auto;
+  scrollbar-width:none;
   padding-bottom: 6px;
 }
 .nav::-webkit-scrollbar{ display:none; }
 
 .navBtn{
-  flex: 0 0 auto;
+  flex:0 0 auto;
   border: 1px solid rgba(14,26,20,.08);
   background: rgba(255,255,255,.72);
   color: rgba(14,26,20,.82);
   padding: 10px 12px;
   border-radius: 999px;
   font-size: 13px;
-  font-weight: 700;
-  letter-spacing: -.01em;
+  font-weight: 800;
   box-shadow: 0 8px 18px rgba(0,0,0,.04);
   transition: transform .16s ease, background .16s ease, border-color .16s ease;
 }
 
-.navBtn:active{
-  transform: scale(.98);
-}
+.navBtn:active{ transform: scale(.98); }
 
 .navBtn.active{
   background: rgba(7,147,14,.12);
   border-color: rgba(7,147,14,.28);
   color: rgba(7,147,14,.95);
-  font-weight: 900;
+  font-weight:950;
 }
 
-/* Page indicator bar (under nav) */
+/* Indicator */
 .indicator{
-  height: 6px;
+  height:6px;
   background: rgba(14,26,20,.06);
-  border-radius: 999px;
-  overflow: hidden;
+  border-radius:999px;
+  overflow:hidden;
 }
-
-.indicator > .bar{
-  height: 100%;
-  width: 20%;
+.indicator .bar{
+  height:100%;
+  width:20%;
   background: linear-gradient(90deg, rgba(7,147,14,.55), rgba(7,147,14,.95));
-  border-radius: 999px;
+  border-radius:999px;
   transform: translateX(0%);
   transition: transform 420ms cubic-bezier(.2,.9,.2,1);
 }
 
-/* -------------------------
-   2) Pager (Swipe pages)
-------------------------- */
+/* =======================
+   Main / Pager
+======================= */
 .main{
-  flex: 1;
+  flex:1;
   padding: 14px 0 calc(18px + var(--safe-bottom));
 }
 
-/* IMPORTANT: hide side pages completely */
 .pager{
-  position: relative;
-  overflow: hidden;
-  width: 100%;
+  overflow:hidden; /* ✅ 옆페이지 비침 방지 핵심 */
+  width:100%;
 }
 
 .track{
-  display: flex;
-  width: 100%;
-  will-change: transform;
+  display:flex;
+  width:100%;
   transform: translate3d(0,0,0);
-  transition: transform 520ms cubic-bezier(.18,.95,.18,1); /* soft bounce-like */
+  transition: transform 520ms cubic-bezier(.18,.95,.18,1);
+  will-change: transform;
 }
 
-/* Each page = full width */
 .page{
   flex: 0 0 100%;
   width: 100%;
-  padding: 0;
 }
 
-/* Subtle slide background motion (app-like) */
 .pageInner{
   padding: 0 var(--pad);
-  transform: translateZ(0);
-  transition: transform 520ms cubic-bezier(.18,.95,.18,1);
 }
 
-/* -------------------------
-   3) Cards / Typography
-------------------------- */
+/* =======================
+   Cards / Typography
+======================= */
 .card{
   background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.78));
   border: 1px solid rgba(14,26,20,.08);
   border-radius: var(--radius-lg);
-  padding: 16px 16px;
+  padding: 16px;
   box-shadow: var(--shadow-sm);
 }
 
-.card + .card{ margin-top: 12px; }
-
 .pill{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  display:inline-flex;
   padding: 8px 12px;
   border-radius: 999px;
   background: rgba(7,147,14,.12);
@@ -249,7 +216,6 @@ body{
   color: rgba(7,147,14,.96);
   font-size: 12px;
   font-weight: 900;
-  letter-spacing: .02em;
 }
 
 .h1{
@@ -265,42 +231,38 @@ body{
   font-size: clamp(16px, 3.8vw, 22px);
   line-height: 1.28;
   letter-spacing: -.02em;
-  font-weight: 900;
+  font-weight: 950;
 }
 
 .desc{
-  margin: 0;
+  margin:0;
   font-size: 13px;
   line-height: 1.55;
   color: rgba(14,26,20,.74);
 }
 
 .kicker{
-  margin-top: 8px;
-  color: rgba(14,26,20,.72);
-  font-size: 12px;
-  line-height: 1.55;
+  margin-top:10px;
+  font-size:12px;
+  line-height:1.55;
+  color: rgba(14,26,20,.62);
 }
 
 .hr{
-  height: 1px;
+  height:1px;
   background: rgba(14,26,20,.08);
   margin: 14px 0;
 }
 
 .point{
   color: var(--brand);
-  font-weight: 900;
+  font-weight: 950;
 }
+.bold{ font-weight: 950; }
 
-.bold{
-  font-weight: 900;
-}
-
-/* Key list (compact) */
 .keyList{
-  display: grid;
-  gap: 10px;
+  display:grid;
+  gap:10px;
   margin-top: 12px;
 }
 
@@ -308,46 +270,42 @@ body{
   background: rgba(7,147,14,.06);
   border: 1px solid rgba(7,147,14,.10);
   border-radius: var(--radius-md);
-  padding: 12px 12px;
+  padding: 12px;
 }
-
 .keyItem .title{
   font-size: 13px;
   font-weight: 950;
-  letter-spacing: -.02em;
-  color: rgba(14,26,20,.88);
   margin-bottom: 4px;
 }
-
 .keyItem .body{
   font-size: 12.5px;
-  color: rgba(14,26,20,.70);
   line-height: 1.5;
+  color: rgba(14,26,20,.70);
 }
 
 /* Buttons */
 .btnRow{
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
   margin-top: 12px;
 }
 
 .btn{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
   border: 1px solid rgba(14,26,20,.10);
   background: rgba(255,255,255,.86);
   padding: 10px 12px;
   border-radius: 999px;
   font-size: 13px;
-  font-weight: 850;
+  font-weight: 900;
   color: rgba(14,26,20,.85);
   box-shadow: 0 10px 20px rgba(0,0,0,.05);
-  transition: transform .16s ease, border-color .16s ease, background .16s ease;
-  cursor: pointer;
+  transition: transform .16s ease;
+  cursor:pointer;
 }
 .btn:active{ transform: scale(.98); }
 
@@ -357,43 +315,36 @@ body{
   color: rgba(7,147,14,.95);
 }
 
-/* Program list - single sentence + 문의 */
+/* Program List */
 .programList{
-  display: grid;
-  gap: 10px;
+  display:grid;
+  gap:10px;
   margin-top: 12px;
 }
-
 .programItem{
   background: rgba(14,26,20,.04);
   border: 1px solid rgba(14,26,20,.08);
   border-radius: var(--radius-md);
-  padding: 12px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  padding: 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
-
 .programItem .left{
-  display: grid;
-  gap: 2px;
+  display:grid;
+  gap:2px;
 }
-
 .programItem .name{
   font-size: 13px;
   font-weight: 950;
-  letter-spacing: -.02em;
 }
-
 .programItem .oneLine{
   font-size: 12.5px;
-  color: rgba(14,26,20,.70);
   line-height: 1.4;
+  color: rgba(14,26,20,.70);
 }
-
 .programItem .ask{
-  flex: 0 0 auto;
   font-size: 12.5px;
   font-weight: 950;
   color: rgba(7,147,14,.95);
@@ -401,105 +352,25 @@ body{
   border: 1px solid rgba(7,147,14,.16);
   padding: 9px 10px;
   border-radius: 999px;
+  cursor:pointer;
 }
 
-/* -------------------------
-   4) Modal (PDF App-like)
-------------------------- */
-.modalOverlay{
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: rgba(0,0,0,.46);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-
-.modalOverlay.show{
-  display: flex;
-}
-
-.modal{
-  width: min(980px, 100%);
-  height: min(78vh, 720px);
-  background: rgba(255,255,255,.96);
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,.40);
-  box-shadow: 0 30px 70px rgba(0,0,0,.22);
-  overflow: hidden;
-  position: relative;
-  transform: translateY(6px);
-  animation: modalIn .18s ease forwards;
-}
-
-@keyframes modalIn{
-  to { transform: translateY(0); }
-}
-
-.modalTop{
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 12px;
-  background: rgba(246,250,247,.98);
-  border-bottom: 1px solid rgba(14,26,20,.08);
-}
-
-.modalTitle{
-  font-size: 13px;
-  font-weight: 950;
-  color: rgba(14,26,20,.86);
-}
-
-.modalClose{
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  border: 1px solid rgba(14,26,20,.10);
-  background: rgba(255,255,255,.86);
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  font-weight: 950;
-}
-
-.modalBody{
-  height: calc(100% - 48px);
-  background: #fff;
-}
-
-.modalBody iframe{
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-/* -------------------------
-   5) Contact (email drafts)
-------------------------- */
+/* Contact */
 .categoryGrid{
-  display: grid;
+  display:grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 8px;
+  gap:8px;
   margin-top: 10px;
 }
-
 .catBtn{
   border: 1px solid rgba(14,26,20,.10);
   background: rgba(255,255,255,.84);
   border-radius: 14px;
-  padding: 10px 10px;
+  padding: 10px;
   font-size: 12.5px;
-  font-weight: 900;
-  color: rgba(14,26,20,.82);
-  cursor: pointer;
-  transition: transform .16s ease, background .16s ease, border-color .16s ease;
+  font-weight: 950;
+  cursor:pointer;
 }
-.catBtn:active{ transform: scale(.99); }
-
 .catBtn.active{
   background: rgba(7,147,14,.12);
   border-color: rgba(7,147,14,.22);
@@ -513,69 +384,94 @@ body{
   border-radius: var(--radius-md);
   padding: 12px;
 }
-
 .label{
   font-size: 12px;
   color: rgba(14,26,20,.62);
-  font-weight: 850;
+  font-weight: 900;
   margin-bottom: 6px;
 }
-
 .copyRow{
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
   margin-top: 8px;
 }
-
-textarea, input[type="text"]{
-  width: 100%;
+textarea,input[type="text"]{
+  width:100%;
   border: 1px solid rgba(14,26,20,.10);
   border-radius: 14px;
-  padding: 10px 10px;
+  padding: 10px;
   font-size: 12.5px;
   line-height: 1.5;
-  outline: none;
   background: rgba(255,255,255,.92);
+  outline:none;
 }
-
 textarea{
   min-height: 120px;
   resize: vertical;
 }
 
-/* -------------------------
-   6) Desktop Enhancement
-------------------------- */
-@media (min-width: 860px){
-  :root{
-    --pad: 18px;
-    --header-h: 110px;
-  }
+/* PDF Modal */
+.modalOverlay{
+  position: fixed;
+  inset:0;
+  z-index:100;
+  background: rgba(0,0,0,.46);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding: 16px;
+}
+.modalOverlay.show{ display:flex; }
 
-  .brandText .name{
-    font-size: 18px;
-  }
-
-  .navBtn{
-    font-size: 13.5px;
-    padding: 10px 14px;
-  }
-
-  .card{
-    padding: 18px 18px;
-  }
-
-  .categoryGrid{
-    grid-template-columns: repeat(3, minmax(0,1fr));
-  }
+.modal{
+  width: min(980px, 100%);
+  height: min(78vh, 720px);
+  background: rgba(255,255,255,.96);
+  border-radius: 18px;
+  overflow:hidden;
+  box-shadow: 0 30px 70px rgba(0,0,0,.22);
+  border: 1px solid rgba(255,255,255,.40);
 }
 
-/* -------------------------
-   7) Reduced Motion
-------------------------- */
-@media (prefers-reduced-motion: reduce){
-  .track, .navBtn, .btn, .pageInner, .indicator > .bar{
-    transition: none !important;
-  }
+.modalTop{
+  height: 48px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 0 12px;
+  background: rgba(246,250,247,.98);
+  border-bottom: 1px solid rgba(14,26,20,.08);
+}
+.modalTitle{
+  font-size: 13px;
+  font-weight: 950;
+}
+.modalClose{
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(14,26,20,.10);
+  background: rgba(255,255,255,.86);
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  font-weight: 950;
+}
+.modalBody{
+  height: calc(100% - 48px);
+  background:#fff;
+}
+.modalBody iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+/* Desktop enhancements */
+@media (min-width: 860px){
+  :root{ --pad: 18px; }
+
+  .brandText .name{ font-size: 18px; }
+  .categoryGrid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
 }
