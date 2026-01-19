@@ -1,321 +1,391 @@
-/* =========================================================
-   Nedabahway App JS (Swipe + Nav + Indicator + PDF Modal + Contact Drafts)
-   ========================================================= */
-
 (() => {
-  const track = document.getElementById("track");
-  const pager = document.getElementById("pager");
-  const navBtns = Array.from(document.querySelectorAll(".navBtn"));
-  const indicatorBar = document.getElementById("indicatorBar");
+‘use strict’;
 
-  const homeBtn = document.getElementById("homeBtn");
+// Elements
+const main = document.getElementById(‘main’);
+const header = document.getElementById(‘header’);
+const navItems = Array.from(document.querySelectorAll(’.nav__item’));
+const brandHome = document.getElementById(‘brandHome’);
+const progressBar = document.getElementById(‘progressBar’);
+const menuBtn = document.getElementById(‘menuBtn’);
+const mobileMenu = document.getElementById(‘mobileMenu’);
+const mobileMenuItems = Array.from(document.querySelectorAll(’.mobile-menu__item’));
+const sections = Array.from(document.querySelectorAll(’.section’));
+const toast = document.getElementById(‘toast’);
 
-  const modalOverlay = document.getElementById("modalOverlay");
-  const modalClose = document.getElementById("modalClose");
-  const modalTitle = document.getElementById("modalTitle");
-  const pdfFrame = document.getElementById("pdfFrame");
+const total = sections.length;
 
-  const categoryGrid = document.getElementById("categoryGrid");
-  const catBtns = Array.from(document.querySelectorAll(".catBtn"));
-  const mailSubject = document.getElementById("mailSubject");
-  const mailBody = document.getElementById("mailBody");
-  const copySubjectBtn = document.getElementById("copySubjectBtn");
-  const copyBodyBtn = document.getElementById("copyBodyBtn");
-  const openMailBtn = document.getElementById("openMailBtn");
+// ============================
+// Navigation
+// ============================
 
-  // ✅ 너 깃허브 assets에 올려둔 PDF 파일명에 맞춰야 함 (공백/괄호 URL 인코딩 필수)
-  // 아래 두 파일이 assets 폴더에 있다고 가정 (스크린샷 기준)
-  const PDF_MAP = {
-    intro: {
-      title: "네다바웨이 소개 & SBM 안내",
-      url: "./assets/%EB%84%A4%EB%8B%A4%EB%B0%94%EC%9B%A8%EC%9D%B4%20%EC%86%8C%EA%B0%9C.pdf.html"
-      // ※ 만약 pdf.html이 아니라 pdf로 올렸다면 여기 url을 pdf 파일명으로 바꿔줘.
-    },
-    sbm: {
-      title: "SBM 성숙 안내 자료",
-      url: "./assets/Nedabah_Way_Spiritual_Maturity%20(2).pdf"
-    }
-  };
+function goTo(index, smooth = true) {
+const section = sections[index];
+if (!section) return;
 
-  // ✅ 페이지 관리
-  const totalPages = 5;
-  let index = 0;
+```
+const offsetTop = section.offsetTop - header.offsetHeight - 3;
 
-  // ✅ 스와이프용
-  let startX = 0;
-  let currentX = 0;
-  let dragging = false;
+window.scrollTo({
+  top: offsetTop,
+  behavior: smooth ? 'smooth' : 'auto'
+});
 
-  function setActiveNav(i) {
-    navBtns.forEach((b) => b.classList.remove("active"));
-    navBtns[i].classList.add("active");
+setActiveNav(index);
+closeMobileMenu();
+```
+
+}
+
+function getCurrentSectionIndex() {
+const scrollTop = window.scrollY + header.offsetHeight + 100;
+
+```
+for (let i = sections.length - 1; i >= 0; i--) {
+  if (sections[i].offsetTop <= scrollTop) {
+    return i;
   }
+}
+return 0;
+```
 
-  function moveIndicator(i) {
-    // bar width = 20% (5 pages)
-    const percent = (100 / totalPages) * i;
-    indicatorBar.style.transform = `translateX(${percent}%)`;
-  }
+}
 
-  function goTo(i, animate = true) {
-    index = Math.max(0, Math.min(totalPages - 1, i));
+function setActiveNav(index) {
+navItems.forEach((item, i) => {
+item.classList.toggle(‘is-active’, i === index);
+});
+}
 
-    // transition on/off
-    track.style.transition = animate
-      ? "transform 520ms cubic-bezier(.18,.95,.18,1)"
-      : "none";
+function updateProgress() {
+const scrollTop = window.scrollY;
+const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+progressBar.style.width = `${progress}%`;
+}
 
-    track.style.transform = `translate3d(${-index * 100}%, 0, 0)`;
+// Navigation click handlers
+navItems.forEach((item, index) => {
+item.addEventListener(‘click’, () => goTo(index, true));
+});
 
-    setActiveNav(index);
-    moveIndicator(index);
-  }
+// Brand click = home
+brandHome.addEventListener(‘click’, () => goTo(0, true));
 
-  // 초기
-  goTo(0, false);
+// All [data-go] buttons
+document.querySelectorAll(’[data-go]’).forEach(btn => {
+btn.addEventListener(‘click’, () => {
+const index = parseInt(btn.getAttribute(‘data-go’), 10);
+if (!isNaN(index)) goTo(index, true);
+});
+});
 
-  // ✅ Nav button click
-  navBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const i = Number(btn.dataset.index);
-      goTo(i, true);
-    });
-  });
+// Scroll listener
+let scrollTimeout = null;
+window.addEventListener(‘scroll’, () => {
+if (scrollTimeout) clearTimeout(scrollTimeout);
+scrollTimeout = setTimeout(() => {
+const index = getCurrentSectionIndex();
+setActiveNav(index);
+updateProgress();
+}, 50);
+});
 
-  // ✅ Home logo click
-  homeBtn.addEventListener("click", () => goTo(0, true));
-  homeBtn.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") goTo(0, true);
-  });
+// ============================
+// Mobile Menu
+// ============================
 
-  // ✅ internal goto buttons (SBM 보기 / 자료 보기 등)
-  document.querySelectorAll("[data-goto]").forEach((el) => {
-    el.addEventListener("click", () => {
-      const i = Number(el.dataset.goto);
-      goTo(i, true);
-    });
-  });
+function openMobileMenu() {
+menuBtn.classList.add(‘is-open’);
+mobileMenu.classList.add(‘is-open’);
+document.body.style.overflow = ‘hidden’;
+}
 
-  // ✅ Program 문의 버튼 → 문의 페이지 + 카테고리 자동선택
-  document.querySelectorAll("[data-contact]").forEach((el) => {
-    el.addEventListener("click", () => {
-      const cat = el.dataset.contact;
-      goTo(4, true);
-      setTimeout(() => selectCategory(cat), 300);
-    });
-  });
+function closeMobileMenu() {
+menuBtn.classList.remove(‘is-open’);
+mobileMenu.classList.remove(‘is-open’);
+document.body.style.overflow = ‘’;
+}
 
-  // ==========================
-  // Swipe / Drag
-  // ==========================
-  function onStart(clientX) {
-    dragging = true;
-    startX = clientX;
-    currentX = clientX;
-    track.style.transition = "none";
-  }
+function toggleMobileMenu() {
+if (mobileMenu.classList.contains(‘is-open’)) {
+closeMobileMenu();
+} else {
+openMobileMenu();
+}
+}
 
-  function onMove(clientX) {
-    if (!dragging) return;
-    currentX = clientX;
+menuBtn.addEventListener(‘click’, toggleMobileMenu);
 
-    const delta = currentX - startX;
-    const width = pager.getBoundingClientRect().width;
-    const percent = (delta / width) * 100;
+mobileMenuItems.forEach((item, index) => {
+item.addEventListener(‘click’, () => goTo(index, true));
+});
 
-    // resistance on edges
-    let offset = -index * 100 + percent;
-    if (index === 0 && percent > 0) offset = -index * 100 + percent * 0.35;
-    if (index === totalPages - 1 && percent < 0) offset = -index * 100 + percent * 0.35;
+// Close on resize to desktop
+window.addEventListener(‘resize’, () => {
+if (window.innerWidth >= 768) {
+closeMobileMenu();
+}
+});
 
-    track.style.transform = `translate3d(${offset}%,0,0)`;
-  }
+// ============================
+// Programs → Contact
+// ============================
 
-  function onEnd() {
-    if (!dragging) return;
-    dragging = false;
+const programCards = Array.from(document.querySelectorAll(’.program-card’));
 
-    const delta = currentX - startX;
-    const width = pager.getBoundingClientRect().width;
+programCards.forEach(card => {
+card.addEventListener(‘click’, () => {
+const cat = card.getAttribute(‘data-contact’) || ‘etc’;
+goTo(4, true);
+setTimeout(() => selectCategory(cat), 400);
+});
+});
 
-    // threshold
-    const threshold = Math.min(90, width * 0.18);
+// ============================
+// PDF Modal
+// ============================
 
-    if (Math.abs(delta) > threshold) {
-      if (delta < 0) goTo(index + 1, true);
-      else goTo(index - 1, true);
-    } else {
-      goTo(index, true);
-    }
-  }
+const modal = document.getElementById(‘pdfModal’);
+const modalBackdrop = document.getElementById(‘modalBackdrop’);
+const modalClose = document.getElementById(‘modalClose’);
+const modalFrame = document.getElementById(‘modalFrame’);
+const modalTitle = document.getElementById(‘modalTitle’);
+const modalOpenNew = document.getElementById(‘modalOpenNew’);
 
-  // Touch events
-  pager.addEventListener("touchstart", (e) => onStart(e.touches[0].clientX), { passive: true });
-  pager.addEventListener("touchmove", (e) => onMove(e.touches[0].clientX), { passive: true });
-  pager.addEventListener("touchend", onEnd);
+let currentPdfUrl = ‘’;
 
-  // Mouse events (PC)
-  pager.addEventListener("mousedown", (e) => onStart(e.clientX));
-  window.addEventListener("mousemove", (e) => onMove(e.clientX));
-  window.addEventListener("mouseup", onEnd);
+function openModal(url) {
+currentPdfUrl = url;
+modal.classList.add(‘is-open’);
+modal.setAttribute(‘aria-hidden’, ‘false’);
+modalFrame.src = url;
+modalTitle.textContent = ‘PDF 보기’;
+document.body.style.overflow = ‘hidden’;
+}
 
-  // ==========================
-  // PDF Modal
-  // ==========================
-  function openPDF(key) {
-    const item = PDF_MAP[key];
-    if (!item) return;
+function closeModal() {
+modal.classList.remove(‘is-open’);
+modal.setAttribute(‘aria-hidden’, ‘true’);
+modalFrame.src = ‘’;
+document.body.style.overflow = ‘’; // Fixed: was ‘hidden’
+}
 
-    modalTitle.textContent = item.title;
-    pdfFrame.src = item.url;
+document.querySelectorAll(’[data-open-pdf]’).forEach(btn => {
+btn.addEventListener(‘click’, () => {
+const url = btn.getAttribute(‘data-open-pdf’);
+if (url) openModal(url);
+});
+});
 
-    modalOverlay.classList.add("show");
-    modalOverlay.setAttribute("aria-hidden", "false");
-  }
+modalBackdrop.addEventListener(‘click’, closeModal);
+modalClose.addEventListener(‘click’, closeModal);
+modalOpenNew.addEventListener(‘click’, () => {
+if (currentPdfUrl) window.open(currentPdfUrl, ‘_blank’);
+});
 
-  function closePDF() {
-    modalOverlay.classList.remove("show");
-    modalOverlay.setAttribute("aria-hidden", "true");
+window.addEventListener(‘keydown’, e => {
+if (e.key === ‘Escape’) {
+if (modal.classList.contains(‘is-open’)) {
+closeModal();
+}
+if (mobileMenu.classList.contains(‘is-open’)) {
+closeMobileMenu();
+}
+}
+});
 
-    // stop PDF to save memory
-    pdfFrame.src = "";
-  }
+// ============================
+// Contact Draft
+// ============================
 
-  document.querySelectorAll("[data-pdf]").forEach((btn) => {
-    btn.addEventListener("click", () => openPDF(btn.dataset.pdf));
-  });
+const subjectEl = document.getElementById(‘mailSubject’);
+const bodyEl = document.getElementById(‘mailBody’);
+const copySubjectBtn = document.getElementById(‘copySubject’);
+const copyBodyBtn = document.getElementById(‘copyBody’);
+const openMailBtn = document.getElementById(‘openMailApp’);
+const catBtns = Array.from(document.querySelectorAll(’.category-tab’));
 
-  modalClose.addEventListener("click", closePDF);
+const MAIL_TO = ‘nedabah.way@gmail.com’;
 
-  modalOverlay.addEventListener("click", (e) => {
-    // click outside modal
-    if (e.target === modalOverlay) closePDF();
-  });
+const drafts = {
+church: {
+subject: ‘[문의] 교회 세미나 / 말씀읽기 중심’,
+body: `안녕하세요, 네다바웨이 팀께 문의드립니다.
 
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closePDF();
-  });
+교회(또는 공동체) 상황에 맞춘 “말씀읽기 중심” 세미나를 요청드립니다.
 
-  // ==========================
-  // Contact Drafts (5 categories)
-  // ==========================
-  const EMAIL_TO = "nedabah.way@gmail.com";
+- 교회/팀:
+- 대상:
+- 희망 일정:
+- 원하는 방향(말씀읽기 / 적용 / 동행 등):
+- 기타 참고:
 
-  const DRAFTS = {
-    church: {
-      subject: "[문의] 교회 세미나 진행 관련",
-      body:
-        "안녕하세요. 네다바웨이 팀께 문의드립니다.\n\n" +
-        "교회 상황에 맞춘 ‘말씀읽기 중심’ 세미나 진행을 요청드리고 싶습니다.\n\n" +
-        "- 교회/기관: \n" +
-        "- 대상(인원/연령): \n" +
-        "- 희망 주제: \n" +
-        "- 희망 일정/시간: \n" +
-        "- 장소(지역): \n\n" +
-        "가능한 진행 방식과 준비 사항을 안내 부탁드립니다.\n감사합니다."
-    },
-    sbm: {
-      subject: "[문의] SBM 진행(관찰·묵상·사귐) 관련",
-      body:
-        "안녕하세요. 네다바웨이 팀께 문의드립니다.\n\n" +
-        "SBM 진행을 통해 말씀읽기가 하나님과의 ‘사귐’으로 이어지도록 함께 진행하고 싶습니다.\n\n" +
-        "- 공동체/팀: \n" +
-        "- 대상(인원/연령): \n" +
-        "- 희망 기간(횟수/주기): \n" +
-        "- 현재 고민(짧게): \n\n" +
-        "가능한 방식과 흐름을 안내 부탁드립니다.\n감사합니다."
-    },
-    ai: {
-      subject: "[문의] 생성형 AI 워크숍 진행 관련",
-      body:
-        "안녕하세요. 네다바웨이 팀께 문의드립니다.\n\n" +
-        "현장에서 바로 쓸 수 있도록 생성형 AI 워크숍 진행을 요청드리고 싶습니다.\n\n" +
-        "- 기관/팀: \n" +
-        "- 대상/인원: \n" +
-        "- 필요 목적(예: 문서/업무/기획 등): \n" +
-        "- 희망 일정/시간: \n\n" +
-        "맞춤 구성 제안 가능 여부와 진행 방식 안내 부탁드립니다.\n감사합니다."
-    },
-    org: {
-      subject: "[문의] 조직 소통·협업 워크숍 관련",
-      body:
-        "안녕하세요. 네다바웨이 팀께 문의드립니다.\n\n" +
-        "조직 내 소통/협업 이슈를 감정이 아니라 ‘구조’로 정리해보고 싶습니다.\n현장 적용까지 이어지는 워크숍 제안을 요청드립니다.\n\n" +
-        "- 조직/팀: \n" +
-        "- 현재 병목(짧게): \n" +
-        "- 희망 진행 방식(강의/워크숍/코칭): \n" +
-        "- 희망 일정/시간: \n\n" +
-        "가능한 구성과 준비물 안내 부탁드립니다.\n감사합니다."
-    },
-    etc: {
-      subject: "[문의] 기타 문의",
-      body:
-        "안녕하세요. 네다바웨이 팀께 문의드립니다.\n\n" +
-        "아래 내용으로 문의드립니다.\n\n" +
-        "- 문의 목적: \n" +
-        "- 현재 상황: \n" +
-        "- 희망 일정/방식: \n\n" +
-        "가능한 범위에서 안내 부탁드립니다.\n감사합니다."
-    }
-  };
+감사합니다.`}, sbm: { subject: '[문의] SBM 진행 요청', body:`안녕하세요, 네다바웨이 팀께 문의드립니다.
 
-  function clearCatActive() {
-    catBtns.forEach((b) => b.classList.remove("active"));
-  }
+말씀읽기가 하나님과의 “사귐”으로 이어지도록 SBM 진행을 요청드립니다.
 
-  function selectCategory(catKey) {
-    const draft = DRAFTS[catKey] || DRAFTS.etc;
+- 교회/팀:
+- 대상:
+- 희망 일정:
+- 진행 방식(세미나/모임/코칭):
+- 현재 고민(간단히):
 
-    clearCatActive();
-    const btn = catBtns.find((b) => b.dataset.cat === catKey);
-    if (btn) btn.classList.add("active");
+감사합니다.`}, ai: { subject: '[문의] 생성형 AI 워크숍 요청', body:`안녕하세요, 네다바웨이 팀께 문의드립니다.
 
-    mailSubject.value = draft.subject;
-    mailBody.value = draft.body;
-  }
+현장에서 바로 쓰는 방식으로 생성형 AI 워크숍을 요청드립니다.
 
-  // init default selection
-  selectCategory("church");
+- 조직/팀:
+- 대상:
+- 희망 일정:
+- 원하는 결과물(예: 문서/워크시트/프로세스):
+- 현재 상황(간단히):
 
-  catBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      selectCategory(btn.dataset.cat);
-    });
-  });
+감사합니다.`}, team: { subject: '[문의] 조직 소통·협업 워크숍 요청', body:`안녕하세요, 네다바웨이 팀께 문의드립니다.
 
-  // Copy helpers
-  async function copyText(text) {
-    try {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } catch (e) {
-      // fallback
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      document.body.removeChild(ta);
-      return true;
-    }
-  }
+조직 내 소통/협업 이슈를 감정이 아니라 “구조”로 정리해보고 싶습니다.
+현장 적용까지 이어지는 워크숍 제안을 요청드립니다.
 
-  copySubjectBtn.addEventListener("click", async () => {
-    await copyText(mailSubject.value);
-    copySubjectBtn.textContent = "복사됨";
-    setTimeout(() => (copySubjectBtn.textContent = "제목복사"), 800);
-  });
+- 조직/팀:
+- 현재 병목:
+- 희망 진행 방식(강의/워크숍/코칭):
+- 희망 일정:
 
-  copyBodyBtn.addEventListener("click", async () => {
-    await copyText(mailBody.value);
-    copyBodyBtn.textContent = "복사됨";
-    setTimeout(() => (copyBodyBtn.textContent = "본문복사"), 800);
-  });
+감사합니다.`}, etc: { subject: '[문의] 기타 문의', body:`안녕하세요, 네다바웨이 팀께 문의드립니다.
 
-  openMailBtn.addEventListener("click", () => {
-    const subject = encodeURIComponent(mailSubject.value || "");
-    const body = encodeURIComponent(mailBody.value || "");
-    const url = `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
-    window.location.href = url;
-  });
+아래 내용으로 문의드립니다.
+
+- 내용:
+- 희망 일정:
+- 참고사항:
+
+감사합니다.`
+}
+};
+
+function selectCategory(cat) {
+catBtns.forEach(btn => {
+btn.classList.toggle(‘is-active’, btn.dataset.cat === cat);
+});
+const draft = drafts[cat] || drafts.etc;
+subjectEl.textContent = draft.subject;
+bodyEl.textContent = draft.body;
+}
+
+catBtns.forEach(btn => {
+btn.addEventListener(‘click’, () => selectCategory(btn.dataset.cat));
+});
+
+// ============================
+// Copy & Toast
+// ============================
+
+function showToast(message = ‘복사되었습니다’) {
+toast.textContent = message;
+toast.classList.add(‘is-show’);
+setTimeout(() => {
+toast.classList.remove(‘is-show’);
+}, 2000);
+}
+
+async function copyText(text) {
+try {
+await navigator.clipboard.writeText(text);
+return true;
+} catch (e) {
+// Fallback
+const ta = document.createElement(‘textarea’);
+ta.value = text;
+ta.style.position = ‘fixed’;
+ta.style.opacity = ‘0’;
+document.body.appendChild(ta);
+ta.select();
+const ok = document.execCommand(‘copy’);
+document.body.removeChild(ta);
+return ok;
+}
+}
+
+copySubjectBtn.addEventListener(‘click’, async () => {
+const ok = await copyText(subjectEl.textContent || ‘’);
+if (ok) showToast(‘제목이 복사되었습니다’);
+});
+
+copyBodyBtn.addEventListener(‘click’, async () => {
+const ok = await copyText(bodyEl.textContent || ‘’);
+if (ok) showToast(‘본문이 복사되었습니다’);
+});
+
+openMailBtn.addEventListener(‘click’, () => {
+const subject = encodeURIComponent(subjectEl.textContent || ‘’);
+const body = encodeURIComponent(bodyEl.textContent || ‘’);
+const mailto = `mailto:${MAIL_TO}?subject=${subject}&body=${body}`;
+window.location.href = mailto;
+});
+
+// ============================
+// Keyboard Navigation
+// ============================
+
+document.addEventListener(‘keydown’, e => {
+// Arrow keys for section navigation (when not in input)
+if (document.activeElement.tagName === ‘INPUT’ ||
+document.activeElement.tagName === ‘TEXTAREA’) {
+return;
+}
+
+```
+if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+  e.preventDefault();
+  const current = getCurrentSectionIndex();
+  if (current < total - 1) goTo(current + 1, true);
+}
+
+if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+  e.preventDefault();
+  const current = getCurrentSectionIndex();
+  if (current > 0) goTo(current - 1, true);
+}
+```
+
+});
+
+// ============================
+// Intersection Observer for Animations
+// ============================
+
+const observerOptions = {
+root: null,
+rootMargin: ‘0px’,
+threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.style.opacity = ‘1’;
+entry.target.style.transform = ‘translateY(0)’;
+}
+});
+}, observerOptions);
+
+// Observe content blocks
+document.querySelectorAll(’.content-block, .info-card, .program-card, .resource-card’).forEach(el => {
+el.style.opacity = ‘0’;
+el.style.transform = ‘translateY(20px)’;
+el.style.transition = ‘opacity 0.5s ease, transform 0.5s ease’;
+observer.observe(el);
+});
+
+// ============================
+// Initial State
+// ============================
+
+selectCategory(‘church’);
+updateProgress();
+
+// Set initial active nav based on scroll position
+const initialIndex = getCurrentSectionIndex();
+setActiveNav(initialIndex);
+
 })();
