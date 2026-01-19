@@ -9,28 +9,23 @@
 </head>
 
 <body>
-  <!-- Sticky Header (항상 유지) -->
+  <!-- Sticky Header (2줄 + 인디케이터) -->
   <header class="site-header" id="top">
-    <div class="header-inner">
-      <a class="brand" href="#home" aria-label="네다바웨이 홈">
-        <span class="brand-dot"></span>
+    <!-- 1줄: 브랜드 -->
+    <div class="header-row header-row--top">
+      <button class="brand" id="brandHome" type="button" aria-label="네다바웨이 홈으로 이동">
+        <span class="brand-dot" aria-hidden="true"></span>
         <span class="brand-name">네다바웨이</span>
-      </a>
+        <span class="brand-hebrew" aria-hidden="true">נְדָבָה</span>
+      </button>
+    </div>
 
-      <!-- 키워드/아이콘 네비게이션 바 (항상 고정) -->
+    <!-- 2줄: 카테고리 5개 (홈 제외) -->
+    <div class="header-row header-row--nav">
       <nav class="keyword-nav" aria-label="페이지 네비게이션">
-        <button class="kw-item is-active" data-target="home" aria-current="page" type="button" title="홈">
+        <button class="kw-item is-active" data-target="about" aria-current="page" type="button" title="소개">
           <span class="kw-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-              <path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <span class="kw-text">홈</span>
-        </button>
-
-        <button class="kw-item" data-target="about" type="button" title="소개">
-          <span class="kw-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none">
               <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" stroke="currentColor" stroke-width="1.8"/>
               <path d="M12 10.5v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
               <path d="M12 7.5h.01" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
@@ -41,7 +36,7 @@
 
         <button class="kw-item" data-target="sbm" type="button" title="SBM">
           <span class="kw-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none">
               <path d="M7 4h10a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
               <path d="M7 4v14" stroke="currentColor" stroke-width="1.8"/>
             </svg>
@@ -51,7 +46,7 @@
 
         <button class="kw-item" data-target="programs" type="button" title="프로그램">
           <span class="kw-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none">
               <path d="M4 4h7v7H4V4Zm9 0h7v7h-7V4ZM4 13h7v7H4v-7Zm9 0h7v7h-7v-7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
             </svg>
           </span>
@@ -60,7 +55,7 @@
 
         <button class="kw-item" data-target="resources" type="button" title="자료">
           <span class="kw-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none">
               <path d="M3.5 7.5A2.5 2.5 0 0 1 6 5h4l2 2h6A2.5 2.5 0 0 1 20.5 9.5v8A2.5 2.5 0 0 1 18 20H6a2.5 2.5 0 0 1-2.5-2.5v-10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
             </svg>
           </span>
@@ -69,7 +64,7 @@
 
         <button class="kw-item" data-target="contact" type="button" title="문의">
           <span class="kw-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none">
               <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
               <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
             </svg>
@@ -79,7 +74,7 @@
       </nav>
     </div>
 
-    <!-- 페이지 인디케이터 (네비 아래) -->
+    <!-- 인디케이터(바 + 점) -->
     <div class="indicator-wrap" aria-hidden="true">
       <div class="indicator-track">
         <div class="indicator-active" id="indicatorActive"></div>
@@ -92,75 +87,78 @@
   <main class="site-main">
     <div class="slider" id="slider" aria-label="페이지 슬라이드">
 
-      <!-- Slide 1: HOME -->
-      <section class="slide" id="home" data-slide="home" aria-label="홈">
+      <!-- Slide 0: HOME (네비에는 없음 / 브랜드로만 이동) -->
+      <section class="slide slide-hero" id="home" data-slide="home" aria-label="홈">
         <div class="container">
-          <div class="hero-grid">
-            <div class="hero-text">
+          <div class="hero-shell">
+            <div class="hero-left">
               <div class="chip">결과 분석 및 점검 → 과정 중심 및 동행</div>
 
               <h1 class="hero-title">
-                텍스트를 넘어<br />
-                하나님의 뜻과 심정을 헤아리는<br />
-                <span class="accent">사귐</span>으로 나아가도록 돕습니다
+                말씀을 읽는 시간을<br />
+                하나님과의 <span class="accent">사귐</span>으로<br />
+                이어가도록 돕습니다
               </h1>
 
               <p class="hero-sub">
-                네다바웨이는 누군가의 묵상 결과를 평가하거나 분석하지 않습니다.<br />
-                스스로 말씀을 읽고, 그 안에서 하나님을 만나는 과정을 안내합니다.
+                텍스트를 넘어 <span class="hl">하나님의 뜻과 심정</span>을 헤아리는 사귐으로 나아가도록 돕습니다.<br />
+                네다바웨이는 결과를 평가하지 않고, 과정을 안내합니다.
               </p>
+
+              <div class="hero-pills">
+                <span class="pill">텍스트 공부 중심 → 텍스트 속 하나님의 뜻과 심정 알기</span>
+                <span class="pill">적용 중심 묵상 → 삼위일체 사귐 묵상</span>
+                <span class="pill">의무감 → 자발성</span>
+              </div>
 
               <div class="hero-cta">
                 <button class="btn btn-primary" data-jump="sbm" type="button">SBM 보기</button>
-                <button class="btn btn-ghost" data-jump="about" type="button">비전 보기</button>
-              </div>
-
-              <div class="hero-meta">
-                <div class="meta-item">
-                  <div class="meta-k">핵심</div>
-                  <div class="meta-v"><b>말씀읽기</b>가 신앙의 중심에 있도록</div>
-                </div>
-                <div class="meta-item">
-                  <div class="meta-k">방향</div>
-                  <div class="meta-v"><b>자발성</b>으로 살아나는 순종의 길</div>
-                </div>
+                <button class="btn btn-ghost" data-jump="about" type="button">네다바웨이 소개</button>
               </div>
             </div>
 
-            <div class="hero-card">
-              <div class="card-title">네다바웨이의 전환(4가지)</div>
-              <div class="switch-list">
-                <div class="switch-item">
-                  <div class="switch-l">결과 분석 및 점검</div>
-                  <div class="switch-arrow">→</div>
-                  <div class="switch-r"><b>과정 중심 및 동행</b></div>
+            <div class="hero-right">
+              <div class="card card-strong">
+                <div class="card-title">네다바웨이의 전환(4가지)</div>
+
+                <div class="switch-list">
+                  <div class="switch-item">
+                    <div class="switch-l">결과 분석 및 점검</div>
+                    <div class="switch-arrow">→</div>
+                    <div class="switch-r"><b>과정 중심 및 동행</b></div>
+                  </div>
+                  <div class="switch-item">
+                    <div class="switch-l">텍스트 공부 중심</div>
+                    <div class="switch-arrow">→</div>
+                    <div class="switch-r"><b>텍스트 속 하나님의 뜻과 심정 알기</b></div>
+                  </div>
+                  <div class="switch-item">
+                    <div class="switch-l">적용 중심 묵상</div>
+                    <div class="switch-arrow">→</div>
+                    <div class="switch-r"><b>삼위일체 사귐 묵상</b></div>
+                  </div>
+                  <div class="switch-item">
+                    <div class="switch-l">의무감</div>
+                    <div class="switch-arrow">→</div>
+                    <div class="switch-r"><b>자발성</b></div>
+                  </div>
                 </div>
-                <div class="switch-item">
-                  <div class="switch-l">텍스트 공부 중심</div>
-                  <div class="switch-arrow">→</div>
-                  <div class="switch-r"><b>텍스트 속 하나님의 뜻과 심정 알기</b></div>
-                </div>
-                <div class="switch-item">
-                  <div class="switch-l">적용 중심 묵상</div>
-                  <div class="switch-arrow">→</div>
-                  <div class="switch-r"><b>삼위일체 사귐 묵상</b></div>
-                </div>
-                <div class="switch-item">
-                  <div class="switch-l">의무감</div>
-                  <div class="switch-arrow">→</div>
-                  <div class="switch-r"><b>자발성</b></div>
+
+                <div class="note">
+                  * “사귐”은 말씀을 읽는 시간을 하나님과의 관계로 이어가도록 돕는 핵심 언어입니다.
                 </div>
               </div>
 
-              <div class="note">
-                * “사귐”은 말씀을 읽는 시간을 하나님과의 관계로 이어가도록 돕는 핵심 언어입니다.
+              <div class="micro-hint">
+                <span class="micro-dot"></span>
+                <span>옆으로 넘기거나 카테고리를 눌러 이동</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 2: ABOUT (최종문구 복구: 3카드 구조) -->
+      <!-- Slide 1: ABOUT (최종 문구 복구) -->
       <section class="slide" id="about" data-slide="about" aria-label="소개">
         <div class="container">
           <div class="section-head">
@@ -174,21 +172,23 @@
             <div class="card">
               <div class="card-k">핵심 가치</div>
               <div class="card-v">
-                <b>말씀읽기</b>가 중심이 되도록<br />
+                <b class="accent">말씀읽기</b>가 중심이 되도록<br />
                 스스로 읽고, 스스로 걸어가도록 돕습니다.
               </div>
             </div>
+
             <div class="card">
               <div class="card-k">영성의 방향</div>
               <div class="card-v">
                 종 · 자녀 · 신부의 영성으로<br />
-                하나님과의 <b>사귐</b>이 회복되도록 돕습니다.
+                하나님과의 <b class="accent">사귐</b>이 회복되도록 돕습니다.
               </div>
             </div>
+
             <div class="card">
               <div class="card-k">태도</div>
               <div class="card-v">
-                의무감이 아니라 <b>자발성</b>으로<br />
+                의무감이 아니라 <b class="accent">자발성</b>으로<br />
                 다시 시작할 힘을 얻도록 안내합니다.
               </div>
             </div>
@@ -196,13 +196,13 @@
         </div>
       </section>
 
-      <!-- Slide 3: SBM -->
+      <!-- Slide 2: SBM -->
       <section class="slide" id="sbm" data-slide="sbm" aria-label="SBM">
         <div class="container">
           <div class="section-head">
             <h2 class="section-title">SBM (Self Bible Meditation Maturity)</h2>
             <p class="section-desc">
-              말씀을 “읽는 것”에서 멈추지 않고, 하나님과의 사귐으로 이어지도록 돕는 묵상 훈련입니다.
+              말씀을 “읽는 것”에서 멈추지 않고, 하나님과의 <span class="accent">사귐</span>으로 이어지도록 돕는 묵상 훈련입니다.
             </p>
           </div>
 
@@ -212,14 +212,14 @@
               <div class="card-v">
                 “적용을 어떻게 해야 하는지”에서 자주 막힙니다.<br />
                 그래서 네다바웨이는 적용을 억지로 만들기보다,<br />
-                말씀 안에서 <b>하나님의 뜻과 심정</b>을 먼저 헤아리도록 돕습니다.
+                말씀 안에서 <b class="accent">하나님의 뜻과 심정</b>을 먼저 헤아리도록 돕습니다.
               </div>
             </div>
 
             <div class="card">
               <div class="card-k">우리가 제공하는 것</div>
               <div class="card-v">
-                단계별 <b>셀프 묵상 가이드</b><br />
+                단계별 <b class="accent">셀프 묵상 가이드</b><br />
                 막히는 지점 점검 질문<br />
                 공동체 나눔을 위한 흐름 설계
               </div>
@@ -228,7 +228,7 @@
         </div>
       </section>
 
-      <!-- Slide 4: PROGRAMS -->
+      <!-- Slide 3: PROGRAMS -->
       <section class="slide" id="programs" data-slide="programs" aria-label="프로그램">
         <div class="container">
           <div class="section-head">
@@ -243,7 +243,7 @@
               <div class="card-k">말씀 묵상 세미나</div>
               <div class="card-v">
                 교회 내 세미나 진행<br />
-                말씀읽기 흐름 정리<br />
+                <span class="hl">말씀읽기 흐름 정리</span><br />
                 나눔 구조 설계
               </div>
             </div>
@@ -252,7 +252,7 @@
               <div class="card-k">생성형 AI 활용 워크숍</div>
               <div class="card-v">
                 강의 및 워크숍 설계<br />
-                현장 적용 중심 결과물<br />
+                <span class="hl">현장 적용 중심 결과물</span><br />
                 워크시트 제공
               </div>
             </div>
@@ -261,7 +261,7 @@
               <div class="card-k">조직 소통·협업 워크숍</div>
               <div class="card-v">
                 감정이 아닌 구조로 해결<br />
-                병목 진단 → 합의 → 실행룰<br />
+                <span class="hl">병목 진단 → 합의 → 실행룰</span><br />
                 현장 적용 스크립트
               </div>
             </div>
@@ -269,54 +269,78 @@
         </div>
       </section>
 
-      <!-- Slide 5: RESOURCES -->
+      <!-- Slide 4: RESOURCES (PDF 미리보기 복구) -->
       <section class="slide" id="resources" data-slide="resources" aria-label="자료">
         <div class="container">
           <div class="section-head">
             <h2 class="section-title">자료</h2>
             <p class="section-desc">
-              성도들이 스스로 말씀을 읽고, 기록하고, 이어갈 수 있도록 돕는 자료를 제공합니다.
+              아래 PDF 자료를 사이트에서 바로 확인할 수 있습니다. (미리보기 + 다운로드)
             </p>
           </div>
 
           <div class="grid-2">
-            <div class="card">
-              <div class="card-k">통권 설교 자료</div>
-              <div class="card-v">
-                성경 66권 전체의 맥락 이해<br />
-                큰 흐름을 놓치지 않도록 돕는 안내
+            <div class="card pdf-card">
+              <div class="pdf-top">
+                <div>
+                  <div class="card-k">PDF 01</div>
+                  <div class="card-v"><b class="accent">네다바웨이 소개 & SBM 안내</b></div>
+                </div>
+
+                <a class="pdf-btn" href="./assets/pdfs/sbm_intro_1.pdf" target="_blank" rel="noopener">
+                  열기
+                </a>
               </div>
+
+              <details class="pdf-details">
+                <summary>미리보기</summary>
+                <iframe class="pdf-frame" src="./assets/pdfs/sbm_intro_1.pdf#view=FitH" title="SBM 소개 PDF 01"></iframe>
+              </details>
             </div>
-            <div class="card">
-              <div class="card-k">셀프 묵상 노트/가이드</div>
-              <div class="card-v">
-                혼자서도 깊이 읽도록<br />
-                사귐의 기록을 남기도록 돕는 양식
+
+            <div class="card pdf-card">
+              <div class="pdf-top">
+                <div>
+                  <div class="card-k">PDF 02</div>
+                  <div class="card-v"><b class="accent">SBM 성숙 안내 자료</b></div>
+                </div>
+
+                <a class="pdf-btn" href="./assets/pdfs/sbm_intro_2.pdf" target="_blank" rel="noopener">
+                  열기
+                </a>
               </div>
+
+              <details class="pdf-details">
+                <summary>미리보기</summary>
+                <iframe class="pdf-frame" src="./assets/pdfs/sbm_intro_2.pdf#view=FitH" title="SBM 소개 PDF 02"></iframe>
+              </details>
             </div>
+          </div>
+
+          <div class="mini-tip">
+            📌 PDF가 안 보이면: 레포에 <b>assets/pdfs</b> 폴더에 PDF가 업로드되어 있는지 확인하세요.
           </div>
         </div>
       </section>
 
-      <!-- Slide 6: CONTACT (문의 폼 구조 복구) -->
+      <!-- Slide 5: CONTACT (카테고리 5개) -->
       <section class="slide" id="contact" data-slide="contact" aria-label="문의">
         <div class="container">
           <div class="section-head">
             <h2 class="section-title">문의</h2>
             <p class="section-desc">
-              아래에서 상황에 맞는 카테고리를 선택하면, 메일 제목/본문 초안이 자동으로 준비됩니다.
+              상황에 맞는 카테고리를 선택하면, 메일 제목/본문 초안이 자동으로 준비됩니다.
             </p>
           </div>
 
           <div class="contact-grid">
             <div class="card">
-              <div class="card-k">카테고리 6개 선택</div>
+              <div class="card-k">카테고리 선택 (5개)</div>
               <div class="category-row" role="group" aria-label="문의 카테고리">
                 <button class="cat-btn is-active" data-cat="seminar" type="button">교회 세미나 문의</button>
                 <button class="cat-btn" data-cat="sbm" type="button">SBM 진행 문의</button>
                 <button class="cat-btn" data-cat="ai" type="button">생성형 AI 워크숍 문의</button>
                 <button class="cat-btn" data-cat="org" type="button">조직 소통 워크숍 문의</button>
-                <button class="cat-btn" data-cat="collab" type="button">협력/동역 제안</button>
                 <button class="cat-btn" data-cat="etc" type="button">기타 문의</button>
               </div>
 
@@ -344,7 +368,7 @@
                 </div>
 
                 <div class="mini-note">
-                  받는 주소: <b>nedabah.way@gmail.com</b>
+                  받는 주소: <b class="accent">nedabah.way@gmail.com</b>
                 </div>
               </div>
             </div>
