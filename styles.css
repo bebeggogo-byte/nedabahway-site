@@ -518,3 +518,134 @@ body{
   .h1{font-size:34px}
   .controls{right:10px}
 }
+/* =========================
+   Mobile Optimizations
+   ========================= */
+
+/* 기본: 작은 화면에서 자동 확대/축소로 글자 깨지는 것 방지 */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* 태블릿 이하 */
+@media (max-width: 980px){
+  :root{
+    --topbar-h: 64px;
+  }
+
+  /* 상단바: 줄바꿈/넘침 방지 */
+  .topbar__inner{
+    padding: 0 12px;
+  }
+  .nav{
+    gap: 4px;
+  }
+  .nav__btn{
+    padding: 7px 9px;
+    font-size: 13px;
+  }
+
+  /* 제목/본문 사이즈 다운 */
+  .h1{
+    font-size: 30px;
+    line-height: 1.18;
+  }
+  .section-title{
+    font-size: 24px;
+  }
+  .lead{
+    font-size: 15px;
+  }
+
+  /* 카드/여백 조절 */
+  .card{
+    padding: 14px;
+  }
+
+  /* 우측 화살표 버튼 위치 조정 */
+  .controls{
+    top: calc(var(--topbar-h) + 12px);
+    right: 10px;
+  }
+}
+
+/* 모바일(핸드폰) 최적화 */
+@media (max-width: 560px){
+  :root{
+    --topbar-h: 60px;
+  }
+
+  /* 슬라이드 상하 여백 줄이기 */
+  .slide{
+    padding: 18px 0;
+  }
+  .slide__inner{
+    padding: 0 12px 14px;
+  }
+
+  /* 상단 네비가 길어서 깨질 때: 가로 스크롤 허용 */
+  .nav{
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    max-width: 70vw;
+    padding-bottom: 4px;
+  }
+  .nav::-webkit-scrollbar{
+    height: 6px;
+  }
+  .nav::-webkit-scrollbar-thumb{
+    background: rgba(0,0,0,.12);
+    border-radius: 999px;
+  }
+
+  /* 큰 제목 더 줄이기 */
+  .h1{
+    font-size: 26px;
+  }
+  .section-title{
+    font-size: 22px;
+  }
+
+  /* 버튼 한 줄에 2개가 답답하면 줄바꿈 */
+  .hero__actions{
+    gap: 8px;
+  }
+  .btn{
+    padding: 11px 12px;
+    border-radius: 14px;
+    width: 100%;
+  }
+  .hero__actions .btn{
+    width: 100%;
+  }
+
+  /* 계좌번호 줄바꿈 방지 + 크기 조절 */
+  .donate-account{
+    font-size: 22px;
+    word-break: keep-all;
+  }
+
+  /* 문의 페이지 제목/본문 복사 버튼 레이아웃 깨짐 방지 */
+  .mailbox__row{
+    grid-template-columns: 60px 1fr;
+  }
+  .mailbox__row .mini-btn{
+    grid-column: 2 / 3;
+    justify-self: end;
+  }
+
+  .area-actions{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .area-actions .mini-btn{
+    width: 100%;
+  }
+
+  /* 오른쪽 화살표 버튼이 너무 크면 */
+  .ctrl-btn{
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+  }
+}
