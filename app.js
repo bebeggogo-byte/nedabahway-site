@@ -1,4 +1,3 @@
-
 (function () {
   const toggleBtn = document.getElementById("navToggle");
   const mobileNav = document.getElementById("navMobile");
