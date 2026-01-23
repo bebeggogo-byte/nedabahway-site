@@ -6,6 +6,7 @@
    - SBM Reviews: add + store in localStorage (accumulating)
    - Contact: 6 categories -> auto subject/body, copy, open mail app
    - Programs: click -> preselect contact template and jump to contact
+   - Added: donate CTA behavior, account copy, modal, mailto templates
 ========================================================= */
 
 const stage = document.getElementById("stage");
@@ -15,7 +16,6 @@ const nextArrow = document.getElementById("nextArrow");
 
 /* ---------- Helpers ---------- */
 function getSlideIndexInView() {
-  // Use scrollLeft proximity
   const left = stage.scrollLeft;
   const width = stage.clientWidth;
   const idx = Math.round(left / width);
@@ -36,7 +36,7 @@ function setActiveTab(targetId) {
 }
 
 /* ---------- Arrow (Next) ---------- */
-nextArrow.addEventListener("click", () => {
+nextArrow?.addEventListener("click", () => {
   const idx = getSlideIndexInView();
   const nextIdx = Math.min(slides.length - 1, idx + 1);
   const nextId = slides[nextIdx].id;
@@ -53,7 +53,7 @@ tabs.forEach((tab) => {
 
 /* ---------- Sync active tab while swiping ---------- */
 let rafLock = false;
-stage.addEventListener("scroll", () => {
+stage?.addEventListener("scroll", () => {
   if (rafLock) return;
   rafLock = true;
   requestAnimationFrame(() => {
@@ -86,10 +86,10 @@ function formatDate(d) {
 function loadReviews() {
   try {
     const raw = localStorage.getItem(REVIEW_KEY);
-    if (!raw) return null;
+    if (!raw) return [];
     return JSON.parse(raw);
   } catch (e) {
-    return null;
+    return [];
   }
 }
 
@@ -97,338 +97,182 @@ function saveReviews(list) {
   localStorage.setItem(REVIEW_KEY, JSON.stringify(list));
 }
 
-function ensureSeedReviews() {
-  const existing = loadReviews();
-  if (existing && existing.length) return;
-
-  const seed = [
-    {
-      name: "익명",
-      text: "말씀을 ‘해야 하는 일’이 아니라, 다시 하나님 앞에 서는 시간으로 느끼게 됐습니다.",
-      date: formatDate(new Date())
-    },
-    {
-      name: "익명",
-      text: "막혔던 지점이 ‘적용’이 아니라 ‘만남’의 문제였다는 걸 보게 됐어요.",
-      date: formatDate(new Date())
-    }
-  ];
-  saveReviews(seed);
-}
-
 function renderReviews() {
-  const list = loadReviews() || [];
+  const items = loadReviews();
   reviewList.innerHTML = "";
-
-  if (!list.length) {
-    reviewList.innerHTML = `<div class="reviewItem"><div class="reviewText">아직 후기가 없습니다.</div></div>`;
-    return;
-  }
-
-  list
-    .slice()
-    .reverse()
-    .forEach((r) => {
-      const item = document.createElement("div");
-      item.className = "reviewItem";
-
-      item.innerHTML = `
-        <div class="reviewTop">
-          <div class="reviewName">${escapeHtml(r.name || "익명")}</div>
-          <div class="reviewDate">${escapeHtml(r.date || "")}</div>
-        </div>
-        <div class="reviewText">${escapeHtml(r.text || "")}</div>
-      `;
-
-      reviewList.appendChild(item);
-    });
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-openReviewForm.addEventListener("click", () => {
-  reviewFormWrap.hidden = false;
-  reviewName.focus();
-});
-
-cancelReviewBtn.addEventListener("click", () => {
-  reviewFormWrap.hidden = true;
-  reviewName.value = "";
-  reviewText.value = "";
-});
-
-saveReviewBtn.addEventListener("click", () => {
-  const name = (reviewName.value || "").trim();
-  const text = (reviewText.value || "").trim();
-
-  if (!text) {
-    alert("후기 내용을 입력해 주세요.");
-    return;
-  }
-
-  const list = loadReviews() || [];
-  list.push({
-    name: name || "익명",
-    text,
-    date: formatDate(new Date())
+  items.reverse().forEach((r) => {
+    const div = document.createElement("div");
+    div.className = "reviewItem";
+    div.innerHTML = `
+      <div class="reviewTop">
+        <div class="reviewName">${escapeHtml(r.name || '익명')}</div>
+        <div class="reviewDate">${escapeHtml(r.date)}</div>
+      </div>
+      <div class="reviewText">${escapeHtml(r.text)}</div>
+    `;
+    reviewList.appendChild(div);
   });
+}
 
-  saveReviews(list);
+function escapeHtml(s=""){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
 
-  reviewFormWrap.hidden = true;
-  reviewName.value = "";
-  reviewText.value = "";
-
-  renderReviews();
-});
-
-/* init reviews */
 ensureSeedReviews();
 renderReviews();
 
-/* =========================================================
-   Donate - Copy account
-========================================================= */
-const acctNumberEl = document.getElementById("acctNumber");
-const copyAccountBtn = document.getElementById("copyAccount");
-const copyToast = document.getElementById("copyToast");
+openReviewForm?.addEventListener('click', () => {
+  reviewFormWrap.hidden = false;
+});
+cancelReviewBtn?.addEventListener('click', () => {
+  reviewFormWrap.hidden = true;
+});
+saveReviewBtn?.addEventListener('click', () => {
+  const name = reviewName.value.trim() || '익명';
+  const text = reviewText.value.trim();
+  if (!text) return alert('후기를 입력해주세요');
+  const items = loadReviews();
+  items.push({ name, text, date: formatDate(new Date()) });
+  saveReviews(items);
+  reviewName.value = '';
+  reviewText.value = '';
+  reviewFormWrap.hidden = true;
+  renderReviews();
+});
 
-copyAccountBtn.addEventListener("click", async () => {
-  const acct = acctNumberEl.textContent.trim();
+/* =========================================================
+   Donate / Account interactions
+========================================================= */
+const copyAccountBtn = document.getElementById('copyAccount');
+const copyToast = document.getElementById('copyToast');
+const acctNumberEl = document.getElementById('acctNumber');
+const donateBtnTop = document.getElementById('donateBtn');
+const acctModal = document.getElementById('acctModal');
+const accountHelpBtn = document.getElementById('accountHelp');
+const closeAcctModal = document.getElementById('closeAcctModal');
+
+async function showToast(message, timeout=2000){
+  if(!copyToast) return;
+  copyToast.textContent = message;
+  copyToast.classList.add('visible');
+  setTimeout(()=> copyToast.classList.remove('visible'), timeout);
+}
+
+copyAccountBtn?.addEventListener('click', async () => {
+  const acct = acctNumberEl?.textContent?.trim();
+  if(!acct) return showToast('계좌정보 없음');
   try {
     await navigator.clipboard.writeText(acct);
-    showCopyToast("복사됨");
-  } catch (e) {
-    // fallback
-    const ta = document.createElement("textarea");
-    ta.value = acct;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand("copy");
-    ta.remove();
-    showCopyToast("복사됨");
+    showToast('계좌번호가 복사되었습니다');
+  } catch(e){
+    showToast('복사 실패 — 수동으로 복사하세요');
   }
 });
 
-function showCopyToast(msg) {
-  copyToast.textContent = msg;
-  copyToast.style.opacity = "1";
-  setTimeout(() => {
-    copyToast.textContent = "";
-  }, 1200);
-}
+accountHelpBtn?.addEventListener('click', ()=>{
+  if(!acctModal) return;
+  acctModal.setAttribute('aria-hidden','false');
+  acctModal.classList.add('open');
+});
+closeAcctModal?.addEventListener('click', ()=>{
+  if(!acctModal) return;
+  acctModal.setAttribute('aria-hidden','true');
+  acctModal.classList.remove('open');
+});
+
+donateBtnTop?.addEventListener('click', ()=>{
+  scrollToSlide('donate');
+});
 
 /* =========================================================
-   Contact - Email Draft System
+   Contact / Mail draft interactions
+   - category buttons set subject/body template
+   - copy subject/body
+   - open mail app with prefilled subject/body
 ========================================================= */
-const draftSubject = document.getElementById("draftSubject");
-const draftBody = document.getElementById("draftBody");
-const copySubjectBtn = document.getElementById("copySubject");
-const copyBodyBtn = document.getElementById("copyBody");
-const openMailAppBtn = document.getElementById("openMailApp");
-const catButtons = Array.from(document.querySelectorAll(".catBtn"));
-
-const EMAIL_TO = "nedabah.way@gmail.com";
+const categoryGrid = document.getElementById('categoryGrid');
+const draftSubject = document.getElementById('draftSubject');
+const draftBody = document.getElementById('draftBody');
+const copySubjectBtn = document.getElementById('copySubject');
+const copyBodyBtn = document.getElementById('copyBody');
+const openMailApp = document.getElementById('openMailApp');
 
 const templates = {
   sbm: {
-    subject: "[SBM 참여 문의] 일정/방식 확인 요청",
-    body: [
-      "안녕하세요. 네다바웨이 담당자님,",
-      "",
-      "SBM 묵상 훈련 참여를 문의드립니다.",
-      "- 참여 대상(개인/공동체):",
-      "- 희망 일정/기간:",
-      "- 현재 상황(간단히):",
-      "- 특히 어려운 지점(읽기/막힘/적용 등):",
-      "",
-      "가능한 방식과 안내를 부탁드립니다.",
-      "",
-      "감사합니다.",
-      "이름/연락처:"
-    ].join("\n")
+    subject: 'SBM 참여 신청',
+    body: '안녕하세요.%0D%0A%0D%0A이름(선택):%0D%0A참여 희망 프로그램: SBM 묵상 훈련%0D%0A원하시는 일정/문의:%0D%0A%0D%0A감사합니다.'
   },
   church: {
-    subject: "[교회 세미나 문의] 말씀 읽기/적용 흐름 세미나 요청",
-    body: [
-      "안녕하세요. 네다바웨이 담당자님,",
-      "",
-      "교회 내 세미나 진행을 문의드립니다.",
-      "- 교회/부서:",
-      "- 참석 인원:",
-      "- 희망 주제(말씀 읽기/적용/나눔/훈련 등):",
-      "- 희망 일정:",
-      "- 기대하는 변화(간단히):",
-      "",
-      "가능한 구성과 준비 사항 안내 부탁드립니다.",
-      "",
-      "감사합니다.",
-      "이름/연락처:"
-    ].join("\n")
+    subject: '교회 세미나 요청',
+    body: '안녕하세요.%0D%0A%0D%0A교회명:%0D%0A희망 내용/일정:%0D%0A연락처:%0D%0A%0D%0A감사합니다.'
   },
   leaders: {
-    subject: "[리더/팀 훈련 문의] 공동체 질문/언어/실행 흐름 설계",
-    body: [
-      "안녕하세요. 네다바웨이 담당자님,",
-      "",
-      "리더/팀 훈련을 문의드립니다.",
-      "- 대상(리더/팀/공동체):",
-      "- 현재 겪는 어려움:",
-      "- 다루고 싶은 주제(나눔 흐름/질문/실행 등):",
-      "- 희망 일정:",
-      "",
-      "맞춤형으로 안내 부탁드립니다.",
-      "",
-      "감사합니다.",
-      "이름/연락처:"
-    ].join("\n")
+    subject: '리더/팀 훈련 문의',
+    body: '안녕하세요.%0D%0A%0D%0A소속/역할:%0D%0A희망 교육 내용:%0D%0A희망 일정:%0D%0A%0D%0A감사합니다.'
   },
   ai: {
-    subject: "[생성형 AI 워크숍 문의] 실무 적용 워크숍 요청",
-    body: [
-      "안녕하세요. 네다바웨이 담당자님,",
-      "",
-      "생성형 AI 활용 워크숍을 문의드립니다.",
-      "- 대상(개인/팀/기관):",
-      "- 희망 목적(문서/기획/교육/업무 자동화 등):",
-      "- 희망 일정/시간:",
-      "- 현재 사용 도구(ChatGPT 등):",
-      "",
-      "현장 적용 중심 구성으로 안내 부탁드립니다.",
-      "",
-      "감사합니다.",
-      "이름/연락처:"
-    ].join("\n")
+    subject: 'AI 워크숍 문의',
+    body: '안녕하세요.%0D%0A%0D%0A희망하는 AI 활용 주제:%0D%0A대상(예: 리더/교사):%0D%0A희망 일정:%0D%0A%0D%0A감사합니다.'
   },
   org: {
-    subject: "[조직 소통·협업 워크숍 문의] 병목 진단/실행 규칙 설계",
-    body: [
-      "안녕하세요. 네다바웨이 담당자님,",
-      "",
-      "조직 소통·협업 워크숍을 문의드립니다.",
-      "- 조직/팀:",
-      "- 인원:",
-      "- 현재 이슈(간단히):",
-      "- 원하는 결과(예: 협업 규칙/메시지 합의/현장 적용):",
-      "- 희망 일정:",
-      "",
-      "가능한 방식과 준비 사항 안내 부탁드립니다.",
-      "",
-      "감사합니다.",
-      "이름/연락처:"
-    ].join("\n")
+    subject: '조직 소통·협업 워크숍 문의',
+    body: '안녕하세요.%0D%0A%0D%0A회사/조직명:%0D%0A희망 내용/목표:%0D%0A희망 일정:%0D%0A%0D%0A감사합니다.'
   },
   etc: {
-    subject: "[문의] 상담/협력 관련 문의드립니다",
-    body: [
-      "안녕하세요. 네다바웨이 담당자님,",
-      "",
-      "문의드립니다.",
-      "- 상황/요청:",
-      "- 희망 일정:",
-      "- 추가 정보:",
-      "",
-      "확인 부탁드립니다.",
-      "",
-      "감사합니다.",
-      "이름/연락처:"
-    ].join("\n")
+    subject: '기타 문의',
+    body: '안녕하세요.%0D%0A%0D%0A문의 내용:%0D%0A연락처(선택):%0D%0A%0D%0A감사합니다.'
   }
 };
 
-let currentCat = "sbm";
-
-function selectCategory(catKey) {
-  currentCat = catKey;
-
-  catButtons.forEach((b) => {
-    b.classList.toggle("active", b.dataset.cat === catKey);
-  });
-
-  const t = templates[catKey] || templates.sbm;
-  draftSubject.textContent = t.subject;
-  draftBody.textContent = t.body;
-
-  // Update mailto link
-  const mailto = makeMailto(EMAIL_TO, t.subject, t.body);
-  openMailAppBtn.setAttribute("href", mailto);
-}
-
-function makeMailto(to, subject, body) {
-  const s = encodeURIComponent(subject);
-  const b = encodeURIComponent(body);
-  return `mailto:${to}?subject=${s}&body=${b}`;
-}
-
-catButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    selectCategory(btn.dataset.cat);
+categoryGrid?.querySelectorAll('button')?.forEach(btn => {
+  btn.addEventListener('click', ()=>{
+    const cat = btn.dataset.cat;
+    const tpl = templates[cat] || templates.etc;
+    // fill visible draft (decoded for display)
+    draftSubject.textContent = decodeURIComponent(tpl.subject);
+    draftBody.textContent = decodeURIComponent(tpl.body);
+    // set mailto on openMailApp with prefilled subject/body
+    openMailApp.href = `mailto:nedabah.way@gmail.com?subject=${tpl.subject}&body=${tpl.body}`;
+    // mark active
+    categoryGrid.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    // jump to contact
+    scrollToSlide('contact');
   });
 });
 
-/* Copy subject/body */
-copySubjectBtn.addEventListener("click", async () => {
-  await copyText(draftSubject.textContent.trim());
-  flashButton(copySubjectBtn, "복사됨");
+copySubjectBtn?.addEventListener('click', async ()=>{
+  const text = draftSubject.textContent || '';
+  try{ await navigator.clipboard.writeText(text); showToast('제목이 복사되었습니다'); }catch(e){ showToast('복사 실패'); }
 });
-
-copyBodyBtn.addEventListener("click", async () => {
-  await copyText(draftBody.textContent.trim());
-  flashButton(copyBodyBtn, "복사됨");
-});
-
-async function copyText(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch (e) {
-    const ta = document.createElement("textarea");
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand("copy");
-    ta.remove();
-  }
-}
-
-function flashButton(btn, msg) {
-  const original = btn.textContent;
-  btn.textContent = msg;
-  setTimeout(() => (btn.textContent = original), 900);
-}
-
-/* Initialize contact default */
-selectCategory("sbm");
-
-/* =========================================================
-   Programs -> auto choose contact category & jump to contact
-========================================================= */
-const programCards = Array.from(document.querySelectorAll(".programCard"));
-const goContact = document.getElementById("goContact");
-
-programCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    const cat = card.dataset.template || "etc";
-    selectCategory(cat);
-    scrollToSlide("contact");
-  });
-});
-
-goContact.addEventListener("click", (e) => {
-  e.preventDefault();
-  scrollToSlide("contact");
+copyBodyBtn?.addEventListener('click', async ()=>{
+  const text = draftBody.textContent || '';
+  try{ await navigator.clipboard.writeText(text); showToast('본문이 복사되었습니다'); }catch(e){ showToast('복사 실패'); }
 });
 
 /* =========================================================
-   Hash navigation (optional)
+   Programs -> preselect contact template
 ========================================================= */
-window.addEventListener("hashchange", () => {
-  const id = location.hash.replace("#", "");
-  if (id) scrollToSlide(id);
+const programCards = document.querySelectorAll('.programCard');
+programCards.forEach(card => {
+  card.addEventListener('click', ()=>{
+    const tplKey = card.dataset.template || 'etc';
+    const btn = categoryGrid.querySelector(`button[data-cat="${tplKey}"]`);
+    if(btn) btn.click();
+    scrollToSlide('contact');
+  });
 });
+
+/* =========================================================
+   Small accessibility helpers
+========================================================= */
+// Allow keyboard navigation of tabs
+tabs.forEach((t, i)=>{
+  t.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowLeft'){ const prev = tabs[(i-1+tabs.length)%tabs.length]; prev?.focus(); prev?.click(); }
+    if(e.key === 'ArrowRight'){ const next = tabs[(i+1)%tabs.length]; next?.focus(); next?.click(); }
+  });
+});
+
+// Ensure at least default template is set
+if(!draftSubject.textContent) { const defaultTpl = templates.sbm; draftSubject.textContent = decodeURIComponent(defaultTpl.subject); draftBody.textContent = decodeURIComponent(defaultTpl.body); openMailApp.href = `mailto:nedabah.way@gmail.com?subject=${defaultTpl.subject}&body=${defaultTpl.body}`; }
