@@ -2,18 +2,23 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
   <title>네다바웨이</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <header class="topbar">
-    <div class="brand">
+    <div class="brand" id="brandBtn">
       <span class="brandDot"></span>
       <span class="brandName">네다바웨이</span>
     </div>
-    <div class="pageIndicator" id="pageIndicator">홈</div>
+    <div class="headerRight">
+      <span class="pageIndicator" id="pageIndicator">홈</span>
+      <button class="iconBtn" id="nextPageBtn" aria-label="다음 페이지로 이동">
+        →
+      </button>
+    </div>
   </header>
 
   <main class="stage" id="stage">
@@ -29,7 +34,7 @@
           </p>
         </div>
 
-        <div class="bentoCard highlight">
+        <div class="bentoCard highlight interactive-card" id="quoteCard">
           <h3 class="cardLabel">SBM 핵심 질문</h3>
           <p class="cardQuote">"말씀 속 하나님의<br>심정은 무엇인가?"</p>
         </div>
@@ -71,10 +76,10 @@
         </div>
 
         <div class="toolGrid">
-          <button class="toolBtn">📘 가이드</button>
-          <button class="toolBtn">📝 관찰질문</button>
-          <button class="toolBtn">💭 묵상질문</button>
-          <button class="toolBtn">🕊️ 사귐질문</button>
+          <button class="toolBtn" data-msg="가이드북은 준비 중입니다.">📘 가이드</button>
+          <button class="toolBtn" data-msg="관찰 질문지 다운로드 (준비중)">📝 관찰질문</button>
+          <button class="toolBtn" data-msg="묵상 질문 카드 확인">💭 묵상질문</button>
+          <button class="toolBtn" data-msg="사귐 기도문 예시">🕊️ 사귐질문</button>
         </div>
 
         <div class="reviewArea">
@@ -85,10 +90,12 @@
           <div id="reviewContainer" class="reviewContainer"></div>
           
           <div id="reviewFormBox" class="reviewFormBox" hidden>
-            <input id="revName" placeholder="이름" />
-            <textarea id="revContent" placeholder="내용을 입력하세요"></textarea>
-            <button id="btnSaveReview" class="btnFull">등록</button>
-            <button id="btnCancelReview" class="btnText">취소</button>
+            <input id="revName" placeholder="이름 (선택)" />
+            <textarea id="revContent" placeholder="은혜 나눔을 남겨주세요"></textarea>
+            <div class="formBtnRow">
+              <button id="btnSaveReview" class="btnFull small">등록</button>
+              <button id="btnCancelReview" class="btnText">취소</button>
+            </div>
           </div>
         </div>
       </div>
@@ -97,29 +104,29 @@
     <section class="slide" id="programs">
       <div class="slideInner">
         <h2 class="slideTitle">프로그램</h2>
-        <p class="slideSub">공동체 맞춤형 특강 및 워크숍</p>
+        <p class="slideSub">카드를 누르면 문의 탭으로 연결됩니다.</p>
 
         <div class="cardList">
-          <div class="card">
+          <button class="card interactive-card" data-link="contact" data-type="sbm">
             <span class="tag">훈련</span>
             <h3>SBM 묵상 코칭</h3>
             <p>스스로 말씀을 읽고 하나님과 교제하는 기초/심화 과정</p>
-          </div>
-          <div class="card">
+          </button>
+          <button class="card interactive-card" data-link="contact" data-type="leaders">
             <span class="tag">리더십</span>
             <h3>리더 & 팀 훈련</h3>
             <p>공동체가 말씀 중심으로 자립하도록 돕는 리더 양성</p>
-          </div>
-          <div class="card">
+          </button>
+          <button class="card interactive-card" data-link="contact" data-type="ai">
             <span class="tag">AI</span>
             <h3>생성형 AI 워크숍</h3>
             <p>목회 및 교육 현장 실습형 AI 활용 강의</p>
-          </div>
-          <div class="card">
+          </button>
+          <button class="card interactive-card" data-link="contact" data-type="org">
             <span class="tag">조직</span>
             <h3>소통·협업 클리닉</h3>
             <p>병목을 해소하고 유기적으로 연결되는 조직 만들기</p>
-          </div>
+          </button>
         </div>
       </div>
     </section>
@@ -131,11 +138,11 @@
 
         <div class="donateBox">
           <div class="bankInfo">하나은행 <span class="gray">예금주: 네다바웨이</span></div>
-          <div class="accNum" id="accountText">927-910009-77504</div>
+          <div class="accNum">927-910009-77504</div>
           <button id="btnCopyAccount" class="btnOutline">계좌번호 복사</button>
         </div>
         <p class="descText">
-          후원은 다음 세대와 교회가 말씀 앞에 바로 서는 사역에 투명하게 사용됩니다.
+          보내주신 후원은 다음 세대와 교회가 말씀 앞에<br>바로 서는 사역에 투명하게 사용됩니다.
         </p>
       </div>
     </section>
@@ -143,7 +150,7 @@
     <section class="slide" id="contact">
       <div class="slideInner">
         <h2 class="slideTitle">문의하기</h2>
-        <p class="slideSub">버튼을 누르면 메일 초안이 작성됩니다.</p>
+        <p class="slideSub">버튼을 누르면 메일 앱이 실행됩니다.</p>
 
         <div class="catList">
           <button data-type="sbm" class="catBtn">SBM 참여</button>
@@ -156,7 +163,7 @@
           <div class="label">제목</div>
           <div id="mailSubject" class="fakeInput">문의 유형을 선택해주세요</div>
           <div class="label">본문</div>
-          <div id="mailBody" class="fakeInput area">내용이 여기에 표시됩니다.</div>
+          <div id="mailBody" class="fakeInput area">내용이 여기에 자동 완성됩니다.</div>
           
           <a href="#" id="btnSendMail" class="btnFull disabled">메일 앱 열기</a>
         </div>
@@ -167,22 +174,24 @@
   </main>
 
   <nav class="tabbar">
-    <button class="tab active" data-target="home">
+    <button class="tab active" data-target="home" type="button">
       <span class="icon">🏠</span><span class="txt">홈</span>
     </button>
-    <button class="tab" data-target="sbm">
+    <button class="tab" data-target="sbm" type="button">
       <span class="icon">📖</span><span class="txt">SBM</span>
     </button>
-    <button class="tab" data-target="programs">
+    <button class="tab" data-target="programs" type="button">
       <span class="icon">▦</span><span class="txt">프로그램</span>
     </button>
-    <button class="tab" data-target="donate">
+    <button class="tab" data-target="donate" type="button">
       <span class="icon">❤</span><span class="txt">동행</span>
     </button>
-    <button class="tab" data-target="contact">
+    <button class="tab" data-target="contact" type="button">
       <span class="icon">✉</span><span class="txt">문의</span>
     </button>
   </nav>
+
+  <div id="toast" class="toast" hidden></div>
 
   <script src="app.js"></script>
 </body>
