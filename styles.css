@@ -310,6 +310,365 @@ body{
 
 
 
+/* =================== TWO TRACK CARDS (HOME) =================== */
+
+.trackRow{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.trackCard{
+  border-radius: var(--radius);
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid var(--border-soft);
+  transition: all 0.18s ease;
+}
+
+.trackCard:hover{ transform: translateY(-2px); }
+
+.trackIden{
+  background: linear-gradient(145deg, rgba(80,120,220,0.12), rgba(255,255,255,0.03));
+  border-color: rgba(80,120,220,0.25);
+}
+
+.trackSbm{
+  background: linear-gradient(145deg, rgba(201,151,74,0.12), rgba(255,255,255,0.03));
+  border-color: var(--border);
+}
+
+.trackBadge{
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.trackBrand{
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(22px, 5vw, 28px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.trackIden .trackBrand{ color: #7EB0F0; }
+.trackSbm .trackBrand{ color: var(--gold-light); }
+
+.trackDesc{
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.trackYears{
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+
+
+/* =================== DIAGNOSTIC ENTRY (HOME) =================== */
+
+.diagEntry{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(80,120,220,0.08), rgba(201,151,74,0.06));
+  box-shadow: var(--shadow-card);
+}
+
+.diagEntryIcon{
+  font-size: 24px;
+  color: #7EB0F0;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.diagEntryBody{ flex: 1; min-width: 0; }
+
+.diagEntryTitle{
+  font-family: 'Noto Serif KR', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.diagEntrySub{
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.diagEntryBtn{
+  border: 1px solid rgba(80,120,220,0.4);
+  background: rgba(80,120,220,0.14);
+  color: #7EB0F0;
+  border-radius: var(--radius-xs);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+
+.diagEntryBtn:hover{ background: rgba(80,120,220,0.22); }
+.diagEntryBtn:active{ transform: scale(0.97); }
+
+
+
+/* =================== IDEN BRAND HEADER =================== */
+
+.idenHeader{
+  border: 1px solid rgba(80,120,220,0.25);
+  border-radius: var(--radius);
+  padding: 18px;
+  background: linear-gradient(155deg,
+    rgba(80,120,220,0.1) 0%,
+    rgba(255,255,255,0.03) 60%,
+    transparent 100%);
+  box-shadow: var(--shadow-card), 0 0 40px rgba(80,120,220,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.idenHeader::before{
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 60%; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(80,120,220,0.5), transparent);
+}
+
+.idenBrand{
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(32px, 8vw, 48px);
+  font-weight: 700;
+  color: #7EB0F0;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  margin-bottom: 6px;
+  text-shadow: 0 0 30px rgba(80,120,220,0.35);
+}
+
+.idenTagline{
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.idenSub{
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+
+
+/* =================== TIER CARDS (IDEN) =================== */
+
+.tierGrid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.tierCard{
+  border: 1px solid var(--border-soft);
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 13px 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  font-family: inherit;
+}
+
+.tierCard:hover{
+  background: var(--bg-card-hover);
+  border-color: var(--border);
+  transform: translateX(3px);
+}
+
+.tierCard:active{ transform: scale(0.99); }
+
+.tierNum{
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  font-family: ui-monospace, monospace;
+  flex-shrink: 0;
+}
+
+.t-blue   { background: rgba(80,120,220,0.16); color: #7EB0F0; border: 1px solid rgba(80,120,220,0.25); }
+.t-purple { background: rgba(150,80,220,0.16); color: #C080F0; border: 1px solid rgba(150,80,220,0.25); }
+.t-gold   { background: var(--gold-dim);        color: var(--gold-light); border: 1px solid var(--border); }
+.t-green  { background: rgba(60,180,120,0.14); color: #70D0A0; border: 1px solid rgba(60,180,120,0.25); }
+
+.tierContent{ flex: 1; min-width: 0; }
+
+.tierTitle{
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
+}
+
+.tierDesc{
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+.tierProgram{
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+
+
+/* =================== DIAGNOSTIC QUIZ (IDEN) =================== */
+
+.diagCard{
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.diagCardTitle{
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.diagCardSub{
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.diagGrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.diagBtn{
+  border: 1px solid var(--border-soft);
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.4;
+  font-family: inherit;
+}
+
+.diagBtn:hover{
+  border-color: rgba(80,120,220,0.35);
+  color: var(--text);
+  background: rgba(80,120,220,0.07);
+}
+
+.diagBtn.active{
+  border-color: rgba(80,120,220,0.5);
+  background: rgba(80,120,220,0.12);
+  color: #7EB0F0;
+}
+
+.diagBtn:active{ transform: scale(0.98); }
+
+.diagResult{
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  background: linear-gradient(135deg, rgba(201,151,74,0.08), rgba(80,120,220,0.06));
+  animation: fadeSlideUp 0.3s ease both;
+}
+
+.diagResultLabel{
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.diagResultTitle{
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.diagResultDesc{
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.diagResultActions{
+  display: flex;
+  gap: 8px;
+}
+
+
+
+/* =================== CONTACT TRACK LABEL =================== */
+
+.contactTrackLabel{
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0 2px;
+  margin-bottom: -4px;
+}
+
+.categoryGridSbm{
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
+
 /* =================== BENTO / CARDS =================== */
 
 .bentoRow{
