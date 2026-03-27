@@ -922,6 +922,221 @@ body{
 
 
 
+/* =================== DECORATIVE: VERSE (HOME) =================== */
+
+.decoVerse{
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(155deg,
+    rgba(201,151,74,0.1) 0%,
+    rgba(255,255,255,0.03) 60%,
+    transparent 100%);
+  padding: 22px 18px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+
+.decoVerse::before{
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 60%; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.decoVerse::after{
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 60%; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.decoVerseHebrew{
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(32px, 8vw, 52px);
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  line-height: 1;
+  margin-bottom: 14px;
+  text-shadow: 0 0 40px rgba(201,151,74,0.4);
+}
+
+.decoVerseText{
+  font-family: 'Noto Serif KR', serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.decoVerseSrc{
+  font-size: 11px;
+  color: var(--gold-muted);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+
+
+/* =================== DECORATIVE: 3-STEP (SBM) =================== */
+
+.decoSteps{
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  padding: 18px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  box-shadow: var(--shadow-card);
+}
+
+.decoStep{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.decoStepNum{
+  width: 36px; height: 36px;
+  border-radius: 999px;
+  background: var(--gold-dim);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--gold-light);
+  font-family: ui-monospace, monospace;
+}
+
+.decoStepLabel{
+  font-family: 'Noto Serif KR', serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+}
+
+.decoStepSub{
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.decoStepArrow{
+  color: var(--gold);
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+
+
+/* =================== DECORATIVE: QR (DONATE) =================== */
+
+.decoQR{
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow-card);
+}
+
+.qrImg{
+  width: 130px; height: 130px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.decoQRLabel{
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+
+
+/* =================== DECORATIVE: CALLOUT (PROGRAMS) =================== */
+
+.decoCallout{
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg,
+    rgba(201,151,74,0.08) 0%,
+    rgba(255,255,255,0.02) 100%);
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: var(--shadow-card);
+}
+
+.decoCalloutText{
+  font-family: 'Noto Serif KR', serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.decoCalloutArrow{
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-light);
+  white-space: nowrap;
+  border: 1px solid var(--border);
+  background: var(--gold-dim);
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+
+
+/* =================== ENTRANCE ANIMATION =================== */
+
+@keyframes fadeSlideUp{
+  from{ opacity: 0; transform: translateY(12px); }
+  to  { opacity: 1; transform: translateY(0); }
+}
+
+.slideInner > *{
+  animation: fadeSlideUp 0.4s ease both;
+}
+
+.slideInner > *:nth-child(1){ animation-delay: 0.05s; }
+.slideInner > *:nth-child(2){ animation-delay: 0.12s; }
+.slideInner > *:nth-child(3){ animation-delay: 0.19s; }
+.slideInner > *:nth-child(4){ animation-delay: 0.26s; }
+.slideInner > *:nth-child(5){ animation-delay: 0.33s; }
+
+/* Disable animation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .slideInner > *{ animation: none; }
+}
+
+
+
 /* =================== TABBAR =================== */
 
 .tabbar{
