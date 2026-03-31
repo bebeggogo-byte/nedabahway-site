@@ -1073,6 +1073,293 @@ ul, ol { list-style: none; }
 .spacer-md { height: 28px; }
 .spacer-sm { height: 16px; }
 
+/* ========================================
+   PROPOSAL PAGE
+   ======================================== */
+.prop-hero {
+  background: linear-gradient(160deg, var(--c-pri-bg) 0%, #E8F4F0 40%, var(--c-sec-bg) 100%);
+  padding: 56px 24px 40px;
+  text-align: center;
+}
+.prop-hero__badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--c-pri);
+  background: rgba(44,110,99,.1);
+  letter-spacing: .03em;
+  margin-bottom: 16px;
+}
+.prop-hero__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.4;
+  color: var(--c-txt);
+  margin-bottom: 10px;
+}
+.prop-hero__sub {
+  font-size: .88rem;
+  line-height: 1.7;
+  color: var(--c-txt2);
+}
+/* Stat pill row */
+.stat-pills {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.stat-pill {
+  flex: 1;
+  min-width: 90px;
+  max-width: 140px;
+  padding: 16px 8px;
+  border-radius: var(--r-lg);
+  background: var(--c-card);
+  box-shadow: var(--sh-sm);
+  text-align: center;
+}
+.stat-pill__num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.stat-pill__unit {
+  font-size: .78rem;
+  font-weight: 600;
+}
+.stat-pill__label {
+  font-size: .68rem;
+  color: var(--c-txt3);
+  margin-top: 4px;
+  line-height: 1.3;
+}
+/* Section header line */
+.prop-section {
+  padding: 0 20px;
+  margin-bottom: 28px;
+}
+.prop-section__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: .75rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--c-pri);
+  margin-bottom: 10px;
+}
+.prop-section__title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--c-txt);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.prop-section__desc {
+  font-size: .82rem;
+  color: var(--c-txt2);
+  line-height: 1.65;
+}
+/* Program table cards */
+.prog-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.prog-row {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-radius: var(--r-md);
+  background: var(--c-card);
+  box-shadow: var(--sh-xs);
+  border: 1px solid var(--c-bdr);
+  align-items: flex-start;
+}
+.prog-row__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.prog-row__body { flex: 1; }
+.prog-row__name {
+  font-size: .88rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.prog-row__meta {
+  font-size: .72rem;
+  color: var(--c-txt3);
+  margin-bottom: 4px;
+}
+.prog-row__desc {
+  font-size: .78rem;
+  color: var(--c-txt2);
+  line-height: 1.55;
+}
+/* Research chart */
+.chart-wrap {
+  margin-bottom: 20px;
+}
+.chart-title {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--c-txt);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.chart-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.chart-bar__label {
+  width: 80px;
+  flex-shrink: 0;
+  font-size: .7rem;
+  color: var(--c-txt2);
+  text-align: right;
+}
+.chart-bar__track {
+  flex: 1;
+  height: 22px;
+  background: var(--c-div);
+  border-radius: 11px;
+  overflow: hidden;
+  position: relative;
+}
+.chart-bar__fill {
+  height: 100%;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  font-size: .65rem;
+  font-weight: 700;
+  color: #fff;
+  transition: width .8s var(--ease-out);
+}
+.chart-source {
+  font-size: .62rem;
+  color: var(--c-txt3);
+  margin-top: 4px;
+  font-style: italic;
+}
+/* Qualitative message box */
+.qual-box {
+  background: linear-gradient(135deg, var(--c-sec-bg), #FFF8F2);
+  border-radius: var(--r-lg);
+  padding: 24px 20px;
+  border-left: 4px solid var(--c-sec);
+}
+.qual-box__title {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--c-sec);
+  margin-bottom: 10px;
+}
+.qual-box__text {
+  font-size: .82rem;
+  line-height: 1.85;
+  color: var(--c-txt);
+}
+/* Flow steps */
+.flow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 20px;
+}
+.flow-steps::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 14px;
+  bottom: 14px;
+  width: 2px;
+  background: var(--c-pri-bg2);
+}
+.flow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 0;
+  position: relative;
+}
+.flow-step__dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--c-pri);
+  flex-shrink: 0;
+  margin-left: -20px;
+  margin-top: 2px;
+  position: relative;
+  z-index: 1;
+}
+.flow-step__dot--hollow {
+  background: var(--c-card);
+  border: 2.5px solid var(--c-pri-l);
+}
+.flow-step__content { flex: 1; }
+.flow-step__label {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--c-txt);
+  margin-bottom: 2px;
+}
+.flow-step__info {
+  font-size: .72rem;
+  color: var(--c-txt2);
+  line-height: 1.5;
+}
+/* CTA banner */
+.prop-cta-card {
+  background: var(--c-pri);
+  color: #fff;
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  text-align: center;
+}
+.prop-cta-card__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.prop-cta-card__sub {
+  font-size: .78rem;
+  opacity: .85;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.prop-cta-card .btn--white {
+  background: #fff;
+  color: var(--c-pri);
+  font-weight: 700;
+  border: none;
+}
+/* Print - proposal */
+@media print {
+  .prop-hero { padding-top: 20px; }
+  .fab, .sheet-overlay { display: none !important; }
+}
+
 /* Print */
 @media print {
   .nav, .header { display: none !important; }
@@ -1567,6 +1854,23 @@ route('/', function() {
           '어떤 출발점이든 괜찮습니다. 각자의 자리에서 성장할 수 있도록 함께 걷겠습니다.' +
         '</p>' +
       '</div>' +
+    '</div>' +
+
+    '<div class="spacer-lg"></div>' +
+
+    /* School / Institution Banner */
+    '<div class="section reveal">' +
+      '<a href="#/proposal" class="card" style="display:block;text-decoration:none;background:linear-gradient(135deg,var(--c-pri-bg),var(--c-acc-bg));border:1.5px solid var(--c-pri-bg2);padding:18px 20px">' +
+        '<div class="flex items-center gap-3">' +
+          '<div style="width:40px;height:40px;border-radius:12px;background:var(--c-pri);display:flex;align-items:center;justify-content:center;flex-shrink:0">' +
+            '<svg width="20" height="20" style="color:#fff"><use href="#i-book-open"/></svg>' +
+          '</div>' +
+          '<div style="flex:1">' +
+            '<p class="fw-700 text-sm" style="color:var(--c-pri);margin-bottom:2px">학교 · 기관 담당자이신가요?</p>' +
+            '<p class="text-xs c-txt2">중학교 맞춤 진로·역량 교육 제안서 보기 →</p>' +
+          '</div>' +
+        '</div>' +
+      '</a>' +
     '</div>' +
 
     '<div class="spacer-lg"></div>' +
@@ -2594,6 +2898,383 @@ window.editName = function() {
   localStorage.removeItem('nedabah_username');
   resolve();
 };
+
+/* ================================================
+   VIEW: EDUCATION PROPOSAL (교육 제안서)
+   ================================================ */
+route('/proposal', function() {
+  setNav('');
+  var fabEl = document.getElementById('fab-inquiry');
+  if (fabEl) fabEl.style.display = 'none';
+
+  mainEl().innerHTML =
+    '<div class="v-enter">' +
+
+    /* Hero */
+    '<div class="prop-hero">' +
+      '<div class="prop-hero__badge">EDUCATION PROPOSAL 2026</div>' +
+      '<h1 class="prop-hero__title">중학교 맞춤<br>진로·역량 교육 프로그램</h1>' +
+      '<p class="prop-hero__sub">1:1 개인별 코칭으로 학생의 정체성과 방향성을 함께 찾습니다</p>' +
+      '<div class="stat-pills">' +
+        '<div class="stat-pill">' +
+          '<div class="stat-pill__num" style="color:var(--c-pri)">87.4<span class="stat-pill__unit">%</span></div>' +
+          '<div class="stat-pill__label">진로체험 희망률<br>(중학생, 2025)</div>' +
+        '</div>' +
+        '<div class="stat-pill">' +
+          '<div class="stat-pill__num" style="color:#E17055">53<span class="stat-pill__unit">%</span></div>' +
+          '<div class="stat-pill__label">희망직업 실제 업무<br>이해 비율</div>' +
+        '</div>' +
+        '<div class="stat-pill">' +
+          '<div class="stat-pill__num" style="color:var(--c-acc)">12<span class="stat-pill__unit">년+</span></div>' +
+          '<div class="stat-pill__label">네다바웨이<br>교육 경력</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="spacer-lg"></div>' +
+
+    /* Section 1: Problem */
+    '<div class="prop-section reveal">' +
+      '<div class="prop-section__num">1</div>' +
+      '<h2 class="prop-section__title">희망은 있지만, 깊이가 부족합니다</h2>' +
+      '<p class="prop-section__desc" style="margin-bottom:16px">' +
+        '교육부·한국직업능력연구원의 2025 진로교육 현황조사에 따르면, ' +
+        '중학생의 87.4%가 진로체험을 희망하고 70.5%가 희망직업이 있지만, ' +
+        '실제 희망직업의 업무를 이해하는 비율은 53%에 불과합니다.' +
+      '</p>' +
+      '<p class="prop-section__desc" style="margin-bottom:16px">' +
+        '자유학기제는 진로성숙도 하락을 완화하는 효과가 있으나, ' +
+        'KDI 연구에 따르면 고소득 가정의 사교육 지출은 증가하는 반면 ' +
+        '중·저소득 가정은 유지되어 교육 격차가 우려됩니다.' +
+      '</p>' +
+      '<div class="card" style="background:var(--c-acc-bg);border:none;padding:16px">' +
+        '<p class="text-xs fw-600" style="color:var(--c-acc);margin-bottom:6px">' + icon('i-eye', 14, 14) + ' 핵심 질문</p>' +
+        '<p class="text-sm" style="color:var(--c-txt);line-height:1.7;font-weight:500">' +
+          '"단체 강연과 일회성 체험을 넘어, 학생 개인의 정체성을 발견하고<br>방향을 설계하는 깊이 있는 교육이 가능할까요?"' +
+        '</p>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="spacer-lg"></div>' +
+
+    /* Section 2: Solution — IDEN */
+    '<div class="prop-section reveal">' +
+      '<div class="prop-section__num">2</div>' +
+      '<h2 class="prop-section__title">네다바웨이 IDEN 교육</h2>' +
+      '<p class="prop-section__desc" style="margin-bottom:16px">' +
+        'IDEN(Identity Education)은 12년 이상의 교육 경력을 바탕으로, ' +
+        '학생 개인의 특성에 맞는 1:1 맞춤 코칭 프로그램입니다.' +
+      '</p>' +
+      '<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">' +
+        '<div class="card" style="border:none;background:var(--c-pri-bg);padding:14px 16px;display:flex;gap:12px;align-items:center">' +
+          '<div style="width:36px;height:36px;border-radius:10px;background:var(--c-pri);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" style="color:#fff"><use href="#i-user-circle"/></svg></div>' +
+          '<div><div class="fw-700 text-sm">1:1 개인별 맞춤 코칭</div><div class="text-xs c-txt2">단체 강연이 아닌, 학생 개인의 상황에 맞는 깊이 있는 변화</div></div>' +
+        '</div>' +
+        '<div class="card" style="border:none;background:var(--c-acc-bg);padding:14px 16px;display:flex;gap:12px;align-items:center">' +
+          '<div style="width:36px;height:36px;border-radius:10px;background:var(--c-acc);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" style="color:#fff"><use href="#i-bar-chart"/></svg></div>' +
+          '<div><div class="fw-700 text-sm">다차원 진단 → 맞춤 설계</div><div class="text-xs c-txt2">5축 역량 분석을 통해 강점과 보완점을 파악 후 프로그램 구성</div></div>' +
+        '</div>' +
+        '<div class="card" style="border:none;background:var(--c-sec-bg);padding:14px 16px;display:flex;gap:12px;align-items:center">' +
+          '<div style="width:36px;height:36px;border-radius:10px;background:var(--c-sec);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" style="color:#fff"><use href="#i-heart-hand"/></svg></div>' +
+          '<div><div class="fw-700 text-sm">학부모 연계 소통</div><div class="text-xs c-txt2">학생-코치-학부모 삼각 협력 구조로 가정에서의 변화까지</div></div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="spacer-md"></div>' +
+
+    /* Section 3: Programs */
+    '<div class="prop-section reveal">' +
+      '<div class="prop-section__num">3</div>' +
+      '<h2 class="prop-section__title">4가지 맞춤 프로그램</h2>' +
+      '<p class="prop-section__desc" style="margin-bottom:16px">학생의 현재 상황과 필요에 따라 최적의 프로그램을 제안합니다.</p>' +
+      '<div class="prog-table">' +
+        '<div class="prog-row">' +
+          '<div class="prog-row__icon" style="background:var(--c-pri-bg)"><svg width="20" height="20" style="color:var(--c-pri)"><use href="#i-leaf"/></svg></div>' +
+          '<div class="prog-row__body">' +
+            '<div class="prog-row__name">기초 다지기</div>' +
+            '<div class="prog-row__meta">12주 과정 · 자기주도학습 역량</div>' +
+            '<div class="prog-row__desc">학습 습관이 형성되지 않은 학생을 위한 프로그램. 계획력·실행력·메타인지 5개 축을 진단하고 맞춤 루틴을 설계합니다.</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="prog-row">' +
+          '<div class="prog-row__icon" style="background:var(--c-acc-bg)"><svg width="20" height="20" style="color:var(--c-acc)"><use href="#i-compass"/></svg></div>' +
+          '<div class="prog-row__body">' +
+            '<div class="prog-row__name">진로 탐색</div>' +
+            '<div class="prog-row__meta">8-12주 과정 · 자기이해 코칭</div>' +
+            '<div class="prog-row__desc">자기이해·직업세계 이해·의사결정력·실행계획·가치관 5축을 기반으로 학생 스스로 진로를 설계할 수 있도록 코칭합니다.</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="prog-row">' +
+          '<div class="prog-row__icon" style="background:#FFF5F5"><svg width="20" height="20" style="color:#C0392B"><use href="#i-pen"/></svg></div>' +
+          '<div class="prog-row__body">' +
+            '<div class="prog-row__name">자소서 · 면접</div>' +
+            '<div class="prog-row__meta">6-10주 과정 · 표현력 컨설팅</div>' +
+            '<div class="prog-row__desc">자기인식→언어구성→스토리텔링→대면소통→회복탄력성의 5단계 표현 훈련. 입시·대회·면접에 바로 활용 가능합니다.</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="prog-row">' +
+          '<div class="prog-row__icon" style="background:#FEF9E7"><svg width="20" height="20" style="color:#D4AC0D"><use href="#i-star"/></svg></div>' +
+          '<div class="prog-row__body">' +
+            '<div class="prog-row__name">리더십</div>' +
+            '<div class="prog-row__meta">8-12주 과정 · 서번트 리더십</div>' +
+            '<div class="prog-row__desc">학생 리더·임원을 위한 역량 개발. 비전설정·관계소통·갈등관리·자기조절·실행추진 5축을 균형있게 성장시킵니다.</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="spacer-lg"></div>' +
+
+    /* Section 4: Research Data */
+    '<div class="prop-section reveal">' +
+      '<div class="prop-section__num">4</div>' +
+      '<h2 class="prop-section__title">연구 근거</h2>' +
+      '<p class="prop-section__desc" style="margin-bottom:20px">네다바웨이 교육 방법론은 국내외 교육학 연구에 기반합니다.</p>' +
+
+      /* Chart 1: Self-directed learning */
+      '<div class="chart-wrap card">' +
+        '<div class="chart-title">' + icon('i-bar-chart', 15, 15) + ' 자기주도학습 프로그램 효과</div>' +
+        '<div class="chart-bar">' +
+          '<div class="chart-bar__label">학업적<br>자기효능감</div>' +
+          '<div class="chart-bar__track"><div class="chart-bar__fill" style="width:85%;background:var(--c-pri)">유의미 향상</div></div>' +
+        '</div>' +
+        '<div class="chart-bar">' +
+          '<div class="chart-bar__label">학습동기</div>' +
+          '<div class="chart-bar__track"><div class="chart-bar__fill" style="width:92%;background:var(--c-acc)">유의미 향상</div></div>' +
+        '</div>' +
+        '<div class="chart-bar">' +
+          '<div class="chart-bar__label">학업성취도</div>' +
+          '<div class="chart-bar__track"><div class="chart-bar__fill" style="width:68%;background:var(--c-sec)">유의미 향상</div></div>' +
+        '</div>' +
+        '<div class="chart-source">출처: 허은영(2010), 중학생 대상 자기주도학습 프로그램 효과 연구 (p&lt;.001)</div>' +
+      '</div>' +
+
+      /* Chart 2: Mentoring effect */
+      '<div class="chart-wrap card">' +
+        '<div class="chart-title">' + icon('i-heart-hand', 15, 15) + ' 청소년 멘토링/코칭 효과 (메타분석)</div>' +
+        '<div class="chart-bar">' +
+          '<div class="chart-bar__label">행동적응<br>(국내 22편)</div>' +
+          '<div class="chart-bar__track"><div class="chart-bar__fill" style="width:88%;background:var(--c-pri)">효과크기 1.37</div></div>' +
+        '</div>' +
+        '<div class="chart-bar">' +
+          '<div class="chart-bar__label">심리적응<br>(국내 22편)</div>' +
+          '<div class="chart-bar__track"><div class="chart-bar__fill" style="width:72%;background:var(--c-acc)">효과크기 0.79</div></div>' +
+        '</div>' +
+        '<div class="chart-bar">' +
+          '<div class="chart-bar__label">종합효과<br>(해외 70편)</div>' +
+          '<div class="chart-bar__track"><div class="chart-bar__fill" style="width:55%;background:var(--c-sec)">g=0.21 (n=25,286)</div></div>' +
+        '</div>' +
+        '<div class="chart-source">출처: RISS 메타분석; Raposa et al.(2019), Journal of Youth and Adolescence</div>' +
+      '</div>' +
+
+      /* Chart 3: Identity → Career path */
+      '<div class="chart-wrap card" style="background:var(--c-acc-bg);border:none">' +
+        '<div class="chart-title" style="color:var(--c-acc)">' + icon('i-brain', 15, 15) + ' 자아정체감 → 진로정체감 → 삶의 만족도</div>' +
+        '<div style="display:flex;align-items:center;justify-content:center;gap:6px;padding:16px 0;flex-wrap:wrap">' +
+          '<div style="background:var(--c-acc);color:#fff;padding:10px 14px;border-radius:12px;font-size:.75rem;font-weight:700;text-align:center">자아정체감</div>' +
+          '<svg width="20" height="12" style="color:var(--c-acc);flex-shrink:0"><use href="#i-arrow-right"/></svg>' +
+          '<div style="background:var(--c-pri);color:#fff;padding:10px 14px;border-radius:12px;font-size:.75rem;font-weight:700;text-align:center">진로정체감</div>' +
+          '<svg width="20" height="12" style="color:var(--c-pri);flex-shrink:0"><use href="#i-arrow-right"/></svg>' +
+          '<div style="background:var(--c-sec);color:#fff;padding:10px 14px;border-radius:12px;font-size:.75rem;font-weight:700;text-align:center">삶의 만족도</div>' +
+        '</div>' +
+        '<p class="text-xs c-txt2" style="text-align:center;line-height:1.6">2,056명 종단 연구: 자아정체감이 진로정체감에 유의미한 정적 영향,<br>진로정체감이 삶의 만족도에 유의미한 정적 영향</p>' +
+        '<div class="chart-source" style="text-align:center">출처: 김영미(2020), 한국아동청소년패널 종단분석; 조세연·김기찬(2014)</div>' +
+      '</div>' +
+
+      '<div class="spacer-md"></div>' +
+
+      /* Chart 4: Free semester limitation */
+      '<div class="card" style="border-left:4px solid #E17055;margin-bottom:16px">' +
+        '<p class="fw-700 text-sm" style="color:#E17055;margin-bottom:6px">' + icon('i-eye', 14, 14) + ' 자유학기제의 한계</p>' +
+        '<p class="text-xs" style="color:var(--c-txt2);line-height:1.7">' +
+          '자유학기제는 진로성숙도 하락을 완화하는 효과가 있으나 (DBpia, 2022), ' +
+          'KDI 분석(178,213명)에 따르면 고소득 가정의 사교육 지출은 증가하고 ' +
+          '중·저소득은 유지되어 교육 격차가 확대될 우려가 있습니다. ' +
+          '<strong>깊이 있는 1:1 개인 코칭은 이 격차를 메우는 해법</strong>입니다.' +
+        '</p>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="spacer-md"></div>' +
+
+    /* Section 5: Qualitative Message */
+    '<div class="prop-section reveal">' +
+      '<div class="qual-box">' +
+        '<div class="qual-box__title">' + icon('i-heart-hand', 14, 14) + ' 데이터 너머의 이야기</div>' +
+        '<p class="qual-box__text">' +
+          '10년 넘게 학생들을 만나며 확인한 것은,<br>' +
+          '숫자로 측정되지 않는 변화가 가장 큰 변화라는 것입니다.<br><br>' +
+          '자신이 누구인지 처음으로 말할 수 있게 된 아이,<br>' +
+          '"나도 할 수 있다"는 문장을 처음 진심으로 쓴 아이,<br>' +
+          '부모님과 진로에 대해 처음 대화한 아이.<br><br>' +
+          '네다바웨이는 정량적 데이터도 중시하지만,<br>' +
+          '<strong>정성적 변화에 더 귀를 기울이고 있습니다.</strong>' +
+        '</p>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="spacer-lg"></div>' +
+
+    /* Section 6: Operation Method */
+    '<div class="prop-section reveal">' +
+      '<div class="prop-section__num">5</div>' +
+      '<h2 class="prop-section__title">학교 맞춤 운영 방식</h2>' +
+      '<p class="prop-section__desc" style="margin-bottom:16px">학교 일정과 상황에 맞게 유연하게 구성할 수 있습니다.</p>' +
+
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">' +
+        '<div class="card" style="border:none;background:var(--c-pri-bg);padding:14px;text-align:center">' +
+          '<div style="font-size:1.3rem;margin-bottom:4px">' + icon('i-book-open', 22, 22) + '</div>' +
+          '<div class="fw-700 text-xs" style="margin-bottom:2px">방과후 프로그램</div>' +
+          '<div class="text-xs c-txt3">주 1-2회</div>' +
+        '</div>' +
+        '<div class="card" style="border:none;background:var(--c-acc-bg);padding:14px;text-align:center">' +
+          '<div style="font-size:1.3rem;margin-bottom:4px">' + icon('i-compass', 22, 22) + '</div>' +
+          '<div class="fw-700 text-xs" style="margin-bottom:2px">자유학기제 연계</div>' +
+          '<div class="text-xs c-txt3">진로탐색 활동</div>' +
+        '</div>' +
+        '<div class="card" style="border:none;background:var(--c-sec-bg);padding:14px;text-align:center">' +
+          '<div style="font-size:1.3rem;margin-bottom:4px">' + icon('i-star', 22, 22) + '</div>' +
+          '<div class="fw-700 text-xs" style="margin-bottom:2px">특별 프로그램</div>' +
+          '<div class="text-xs c-txt3">리더십 캠프 · 진로 특강</div>' +
+        '</div>' +
+        '<div class="card" style="border:none;background:var(--c-div);padding:14px;text-align:center">' +
+          '<div style="font-size:1.3rem;margin-bottom:4px">' + icon('i-chat', 22, 22) + '</div>' +
+          '<div class="fw-700 text-xs" style="margin-bottom:2px">온라인 병행</div>' +
+          '<div class="text-xs c-txt3">대면 + 비대면</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<p class="fw-700 text-sm mb-3">운영 흐름</p>' +
+      '<div class="flow-steps">' +
+        '<div class="flow-step">' +
+          '<div class="flow-step__dot"></div>' +
+          '<div class="flow-step__content"><div class="flow-step__label">사전 진단</div><div class="flow-step__info">다차원 역량 진단으로 학생별 현재 상태 파악</div></div>' +
+        '</div>' +
+        '<div class="flow-step">' +
+          '<div class="flow-step__dot"></div>' +
+          '<div class="flow-step__content"><div class="flow-step__label">맞춤 프로그램 설계</div><div class="flow-step__info">진단 결과 기반 개인별 코칭 플랜 수립</div></div>' +
+        '</div>' +
+        '<div class="flow-step">' +
+          '<div class="flow-step__dot"></div>' +
+          '<div class="flow-step__content"><div class="flow-step__label">1:1 코칭 진행</div><div class="flow-step__info">주 1-2회, 학생 속도에 맞춘 심층 코칭</div></div>' +
+        '</div>' +
+        '<div class="flow-step">' +
+          '<div class="flow-step__dot--hollow flow-step__dot"></div>' +
+          '<div class="flow-step__content"><div class="flow-step__label">중간 점검 & 학부모 소통</div><div class="flow-step__info">학생 변화 공유, 가정에서의 지원 방향 논의</div></div>' +
+        '</div>' +
+        '<div class="flow-step">' +
+          '<div class="flow-step__dot"></div>' +
+          '<div class="flow-step__content"><div class="flow-step__label">최종 보고</div><div class="flow-step__info">역량 변화 분석 보고서 + 학교 제출용 리포트</div></div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="spacer-lg"></div>' +
+
+    /* Section 7: Diagnostic Preview */
+    '<div class="prop-section reveal">' +
+      '<div class="prop-section__num">6</div>' +
+      '<h2 class="prop-section__title">진단 체험</h2>' +
+      '<p class="prop-section__desc" style="margin-bottom:16px">실제 프로그램에서 사용하는 진단 도구를 직접 체험해보세요. 3분이면 학생의 진로 성숙도를 파악할 수 있습니다.</p>' +
+      '<a href="#/diag/career" class="btn btn--pri btn--full mb-3">' +
+        icon('i-compass', 18, 18) + ' 진로 성숙도 진단 체험하기' +
+      '</a>' +
+      '<a href="#/diag/study" class="btn btn--outline btn--full">' +
+        icon('i-leaf', 18, 18) + ' 학습 역량 진단 체험하기' +
+      '</a>' +
+    '</div>' +
+
+    '<div class="spacer-lg"></div>' +
+
+    /* Section 8: Next Steps & CTA */
+    '<div class="prop-section reveal">' +
+      '<div class="prop-section__num">7</div>' +
+      '<h2 class="prop-section__title">다음 단계</h2>' +
+      '<p class="prop-section__desc" style="margin-bottom:16px">학교에 맞는 프로그램을 함께 설계합니다.</p>' +
+
+      '<div class="flow-steps" style="margin-bottom:24px">' +
+        '<div class="flow-step">' +
+          '<div class="flow-step__dot"></div>' +
+          '<div class="flow-step__content"><div class="flow-step__label">1단계 — 전화/이메일 상담</div><div class="flow-step__info">학교 상황과 필요를 파악합니다 (무료)</div></div>' +
+        '</div>' +
+        '<div class="flow-step">' +
+          '<div class="flow-step__dot"></div>' +
+          '<div class="flow-step__content"><div class="flow-step__label">2단계 — 학교 방문 설명</div><div class="flow-step__info">담당 선생님과 30분 미팅 (무료)</div></div>' +
+        '</div>' +
+        '<div class="flow-step">' +
+          '<div class="flow-step__dot"></div>' +
+          '<div class="flow-step__content"><div class="flow-step__label">3단계 — 시범 운영</div><div class="flow-step__info">1-2학급 대상 4주 시범 프로그램</div></div>' +
+        '</div>' +
+        '<div class="flow-step">' +
+          '<div class="flow-step__dot"></div>' +
+          '<div class="flow-step__content"><div class="flow-step__label">4단계 — 정규 편성</div><div class="flow-step__info">학교 일정에 맞춘 정규 프로그램 운영</div></div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="prop-cta-card mb-4">' +
+        '<div class="prop-cta-card__title">프로그램 상담 신청</div>' +
+        '<div class="prop-cta-card__sub">학교 상황에 맞는 최적의 프로그램을 함께 설계합니다</div>' +
+        '<button class="btn btn--white btn--full" onclick="openInquiry(\'iden\')">' +
+          icon('i-mail', 18, 18) + ' 상담 신청하기' +
+        '</button>' +
+      '</div>' +
+
+      '<div class="card" style="text-align:center;border:none;background:var(--c-div)">' +
+        '<p class="text-xs c-txt2 mb-2">또는 직접 연락하기</p>' +
+        '<button class="email-copy-btn" onclick="copyEmail()" style="margin:0 auto">' +
+          icon('i-copy', 15, 15) + ' nedabah.way@gmail.com 복사' +
+        '</button>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="spacer-lg"></div>' +
+
+    /* Book mention */
+    '<div class="prop-section reveal">' +
+      '<div class="card" style="background:linear-gradient(135deg,#F5F0FF,#EDE9FE);border:none">' +
+        '<div class="flex gap-3 items-center mb-3">' +
+          '<div style="width:40px;height:40px;border-radius:12px;background:#7C3AED;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" style="color:#fff"><use href="#i-book-open"/></svg></div>' +
+          '<div><span class="tag" style="font-size:.6rem;background:#7C3AED;color:#fff;padding:2px 8px;border-radius:8px">출간 예정</span><div class="fw-700 text-sm" style="margin-top:2px">Work for Others</div></div>' +
+        '</div>' +
+        '<p class="text-xs" style="color:var(--c-txt2);line-height:1.7;margin-bottom:10px">' +
+          '<strong>직업가치관, 이것만 남는다</strong> — 일의 의미를 다시 묻는 시대, ' +
+          '내가 왜 이 일을 하는지에 대한 가장 본질적인 질문과 답을 담았습니다. ' +
+          '출간 후 학교 진로도서관 기증 및 저자 특강도 가능합니다.' +
+        '</p>' +
+        '<button class="btn btn--outline btn--sm" onclick="openInquiry(\'book\')">' +
+          icon('i-mail', 14, 14) + ' 도서/강연 문의' +
+        '</button>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="spacer-lg"></div>' +
+
+    /* Footer */
+    '<div class="section text-center">' +
+      '<div class="divider mb-5" style="margin:0 auto 16px"></div>' +
+      '<p class="text-sm fw-600" style="color:var(--c-pri);margin-bottom:4px">네다바웨이 nedabahway</p>' +
+      '<p class="text-xs c-txt3" style="line-height:1.7">' +
+        'nedabah.way@gmail.com<br>' +
+        '&copy; 2026 nedabahway. All rights reserved.' +
+      '</p>' +
+      '<a href="#/" class="btn btn--outline btn--sm" style="margin-top:12px">' + icon('i-home', 14, 14) + ' 홈으로</a>' +
+    '</div>' +
+
+    '<div class="spacer-lg"></div>' +
+
+    '</div>';
+
+  setTimeout(initReveals, 60);
+});
+
+/* Restore FAB when navigating away from proposal */
+window.addEventListener('hashchange', function() {
+  var fabEl = document.getElementById('fab-inquiry');
+  if (fabEl && (location.hash.slice(1) || '/') !== '/proposal') {
+    fabEl.style.display = '';
+  }
+});
 
 /* ================================================
    INIT — migrate stale diagnostic data
