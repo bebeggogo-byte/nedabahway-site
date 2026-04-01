@@ -2336,7 +2336,7 @@ function fallbackCopy(text, successMsg) {
   catch(e) { toast('복사에 실패했습니다'); }
   document.body.removeChild(ta);
 }
-window.copyAccount = function() { copyText('9279100097750', '계좌번호가 복사되었습니다'); };
+window.copyAccount = function() { copyText('92791000977504', '계좌번호가 복사되었습니다'); };
 window.copyEmail = function() { copyText('nedabah.way@gmail.com', '이메일 주소가 복사되었습니다'); };
 
 /* Inquiry Bottom Sheet */
@@ -2928,6 +2928,22 @@ route('/proposal', function() {
           '<div class="stat-pill__num" style="color:var(--c-acc)">12<span class="stat-pill__unit">년+</span></div>' +
           '<div class="stat-pill__label">네다바웨이<br>교육 경력</div>' +
         '</div>' +
+      '</div>' +
+    '</div>' +
+
+    /* Download buttons */
+    '<div class="section reveal" style="margin-top:24px">' +
+      '<div class="card" style="border:none;background:var(--c-div);padding:18px 20px">' +
+        '<p class="fw-700 text-sm mb-3" style="text-align:center">' + icon('i-clipboard', 16, 16) + ' 제안서 다운로드</p>' +
+        '<div style="display:flex;gap:8px">' +
+          '<a href="proposal.html" target="_blank" class="btn btn--pri btn--sm flex-1" style="text-decoration:none;text-align:center">' +
+            icon('i-book-open', 14, 14) + ' PDF 저장' +
+          '</a>' +
+          '<a href="nedabahway-proposal-2026.docx" download class="btn btn--outline btn--sm flex-1" style="text-decoration:none;text-align:center">' +
+            icon('i-clipboard', 14, 14) + ' 한글/Word' +
+          '</a>' +
+        '</div>' +
+        '<p class="text-xs c-txt3" style="text-align:center;margin-top:8px">PDF: 인쇄 버튼으로 저장 | 한글/Word: .docx 파일 다운로드</p>' +
       '</div>' +
     '</div>' +
 
