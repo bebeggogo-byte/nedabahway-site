@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>김창환 이야기 | 네다바웨이</title>
+<meta name="description" content="전국을 떠돌며 코칭에 입문했던 청년이, 제주에 닿아 교육자가 되기까지. 네다바웨이 김창환의 이야기.">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+:root{
+  --c-bg:#0A0A0A;--c-fg:#FAFAFA;--c-mute:#888;--c-dim:#2a2a2a;
+  --c-acc:#4ADE80;--c-warm:#FCD34D;--c-rose:#FB7185;
+  --ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --ff-serif:'Nanum Myeongjo','Noto Serif KR',serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);
+  line-height:1.7;word-break:keep-all;overflow-wrap:break-word;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--c-acc);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.section{min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:120px 24px 80px;position:relative;overflow:hidden}
+.section--short{min-height:auto;padding:80px 24px}
+.inner{max-width:680px;width:100%}
+
+/* Opening Hero - dramatic */
+.chapter-num{font-size:.7rem;font-weight:700;letter-spacing:.3em;
+  color:var(--c-warm);margin-bottom:24px;text-transform:uppercase}
+.chapter-title{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.25;
+  letter-spacing:-.03em;margin-bottom:32px}
+.chapter-title em{font-family:var(--ff-serif);font-style:italic;font-weight:400;
+  color:var(--c-warm)}
+
+/* Prose - storytelling blocks */
+.prose{font-size:clamp(1rem,2.2vw,1.125rem);line-height:1.9;color:#E5E5E5}
+.prose p{margin-bottom:24px}
+.prose p:last-child{margin-bottom:0}
+.prose .highlight{color:var(--c-warm);font-weight:600}
+.prose .whisper{color:var(--c-mute);font-size:.95em;font-style:italic}
+
+/* Pull quote */
+.pull-quote{font-family:var(--ff-serif);font-size:clamp(1.3rem,3.5vw,1.9rem);
+  line-height:1.5;font-weight:400;letter-spacing:-.01em;
+  padding:40px 0;margin:40px 0;
+  border-top:1px solid var(--c-dim);border-bottom:1px solid var(--c-dim);
+  color:var(--c-fg);text-align:center}
+.pull-quote::before{content:'"';font-size:3em;line-height:0;vertical-align:-.4em;
+  color:var(--c-warm);margin-right:8px;opacity:.5}
+
+/* Big opening line */
+.opener{font-size:clamp(2rem,6vw,3.8rem);font-weight:800;line-height:1.2;
+  letter-spacing:-.04em;margin-bottom:40px}
+.opener span{display:block}
+.opener .fade{color:var(--c-mute);font-weight:400}
+
+/* Timeline scroll */
+.journey{position:relative;margin-top:40px;padding-left:32px;
+  border-left:2px solid var(--c-dim)}
+.journey__item{position:relative;margin-bottom:48px}
+.journey__item:last-child{margin-bottom:0}
+.journey__item::before{content:'';position:absolute;left:-41px;top:4px;
+  width:16px;height:16px;border-radius:50%;background:var(--c-bg);
+  border:2px solid var(--c-acc)}
+.journey__year{font-size:.75rem;font-weight:700;color:var(--c-warm);
+  letter-spacing:.15em;margin-bottom:6px}
+.journey__place{font-size:1.15rem;font-weight:800;margin-bottom:8px;
+  letter-spacing:-.02em}
+.journey__story{font-size:.92rem;color:#BFBFBF;line-height:1.75}
+
+/* Image/photo placeholder */
+.polaroid{background:#1a1a1a;border-radius:4px;padding:16px 16px 24px;
+  transform:rotate(-1.5deg);margin:32px auto;max-width:340px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);border:1px solid var(--c-dim)}
+.polaroid__img{width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,#333,#1a1a1a);
+  border-radius:2px;display:flex;align-items:center;justify-content:center;
+  font-size:3rem;color:var(--c-mute)}
+.polaroid__cap{font-family:var(--ff-serif);font-size:.85rem;text-align:center;
+  margin-top:12px;color:#999;font-style:italic}
+
+/* Now we are section - manifesto */
+.manifesto-line{font-size:clamp(1.3rem,3.2vw,1.8rem);line-height:1.5;
+  font-weight:700;letter-spacing:-.02em;margin-bottom:20px}
+.manifesto-line:last-child{margin-bottom:0}
+.manifesto-line .dim{color:var(--c-mute);font-weight:400}
+.manifesto-line .acc{color:var(--c-acc)}
+
+/* Ending CTA */
+.ending-card{background:linear-gradient(135deg,#111 0%,#1a1a1a 100%);
+  border:1px solid var(--c-dim);border-radius:24px;padding:48px 32px;
+  text-align:center;margin-top:48px}
+.ending-card h3{font-size:1.4rem;font-weight:800;margin-bottom:12px}
+.ending-card p{color:var(--c-mute);font-size:.95rem;margin-bottom:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;
+  background:var(--c-acc);color:#000;font-weight:700;font-size:.9rem;
+  border-radius:999px;border:none;cursor:pointer;transition:all .2s}
+.btn:hover{background:#22C55E;transform:translateY(-1px);text-decoration:none;color:#000}
+.btn--ghost{background:transparent;color:var(--c-fg);border:1px solid var(--c-dim);margin-left:8px}
+.btn--ghost:hover{background:transparent;border-color:var(--c-acc);color:var(--c-acc)}
+
+/* Fade animations */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-up.delay-1{transition-delay:.2s}
+.fade-up.delay-2{transition-delay:.4s}
+
+/* Top bar */
+.top-bar{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;
+  align-items:center;justify-content:space-between;padding:12px 24px;
+  background:rgba(10,10,10,.85);backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);border-bottom:1px solid #1f1f1f}
+.top-bar__home{font-size:.8rem;font-weight:600;color:var(--c-mute);
+  display:flex;align-items:center;gap:6px}
+.top-bar__home:hover{color:var(--c-fg);text-decoration:none}
+.top-bar__actions{display:flex;gap:10px}
+.top-bar__btn{padding:6px 14px;border-radius:999px;font-size:.72rem;font-weight:700;
+  border:1px solid var(--c-dim);background:transparent;color:var(--c-fg);cursor:pointer;
+  transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.top-bar__btn:hover{background:var(--c-acc);color:#000;border-color:var(--c-acc);text-decoration:none}
+@media print{.top-bar{display:none}}
+
+/* Progress bar */
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--c-acc);
+  z-index:300;transition:width .1s}
+
+.footer{padding:40px 24px;text-align:center;border-top:1px solid var(--c-dim)}
+.footer__text{font-size:.75rem;color:var(--c-mute);line-height:1.8}
+
+/* Chapter divider */
+.divider{text-align:center;margin:0 auto;padding:0 24px;color:var(--c-dim);
+  font-size:1.4rem;letter-spacing:1em}
+
+@media(max-width:480px){
+  .section{padding:100px 20px 60px}
+  .journey{padding-left:24px}
+  .journey__item::before{left:-33px}
+}
+@media print{
+  .top-bar,.progress{display:none}
+  body{background:#fff;color:#000}
+  .section{min-height:auto;page-break-inside:avoid;padding:40px 0}
+  .prose,.journey__story,.manifesto-line .dim{color:#333}
+  .chapter-title em,.journey__year,.chapter-num{color:#666}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- Top Bar -->
+<div class="top-bar">
+  <a href="/" class="top-bar__home">&larr; 네다바웨이 홈</a>
+  <div class="top-bar__actions">
+    <a href="company.html" class="top-bar__btn">🏢 회사소개</a>
+    <a href="programs.html" class="top-bar__btn">📚 교육 포트폴리오</a>
+  </div>
+</div>
+
+<!-- Prologue -->
+<section class="section" id="s-prologue">
+<div class="inner">
+  <div class="fade-up">
+    <div class="chapter-num">Prologue · 여는 글</div>
+    <h1 class="opener">
+      <span>누구에게나</span>
+      <span class="fade">잃어본 시절이 있다.</span>
+    </h1>
+  </div>
+  <div class="prose fade-up delay-1">
+    <p>저는 20대 중반에 회사를 그만두고, 아무 계획 없이 전국을 떠돈 적이 있습니다. 어느 도시에서는 강의를 들었고, 어느 절에서는 한 달을 머물렀습니다. 가방 안에는 노트 한 권과 질문이 있었습니다.</p>
+    <p><span class="highlight">"나는 누구이고, 어떻게 살아야 하는가."</span></p>
+    <p class="whisper">답은 오지 않았습니다. 대신, 사람이 왔습니다.</p>
+  </div>
+</div>
+</section>
+
+<!-- Chapter 1: The Wandering -->
+<section class="section" id="s-wandering">
+<div class="inner">
+  <div class="fade-up">
+    <div class="chapter-num">Chapter 01 · 떠돌던 시절</div>
+    <h2 class="chapter-title">전국을 <em>떠돌며</em><br>코칭에 입문했다.</h2>
+  </div>
+
+  <div class="prose fade-up delay-1">
+    <p>그때 저는 '코칭'이라는 말을 처음 들었습니다. 서울의 한 강의실에서였고, 강사는 이렇게 물었습니다.<br><span class="highlight">"당신은 지금, 당신이 원하는 삶을 살고 있습니까?"</span></p>
+    <p>그 질문 하나에 저는 1년을 매달렸습니다. 기차를 타고 워크숍을 다녔고, 수첩에 메모를 남겼고, 밤마다 스스로에게 같은 질문을 던졌습니다. 답을 찾으러 다닌 게 아니었습니다. <span class="highlight">질문을 견디는 법</span>을 배운 것이었습니다.</p>
+    <p>2014년, 저는 ICF 국제인증코치(ACC) 자격을 받았습니다. 스물여섯 살 무렵이었습니다.</p>
+  </div>
+
+  <div class="pull-quote fade-up delay-2">
+    답은 오지 않아도 괜찮다.<br>질문을 들고 계속 걷는 사람이 되면 된다.
+  </div>
+</div>
+</section>
+
+<!-- Chapter 2: Corporate Beginning -->
+<section class="section" id="s-corporate">
+<div class="inner">
+  <div class="fade-up">
+    <div class="chapter-num">Chapter 02 · 첫 교단</div>
+    <h2 class="chapter-title">첫 교단은<br><em>대기업 연수원</em>이었다.</h2>
+  </div>
+  <div class="prose fade-up delay-1">
+    <p>2014년부터 2016년까지, 저는 현대자동차·두산·롯데그룹의 신입사원 연수를 운영했습니다. 스물몇 살 청년들 앞에 서서 '핵심가치'를 이야기하고, 팀 빌딩을 이끌었습니다.</p>
+    <p>수백 명의 얼굴을 봤습니다. 그 안에는 <span class="highlight">저와 똑같이 헤매고 있는 사람들</span>이 있었습니다. 잘 다니는 회사에 합격해놓고도, "내가 원하는 게 뭔지 모르겠다"고 말하는 사람들.</p>
+    <p>그때 결심했습니다. 저는 정답을 주는 강사가 되지 않겠다고. 질문을 함께 견디는 사람이 되겠다고.</p>
+  </div>
+</div>
+</section>
+
+<!-- Chapter 3: Jeju Arrival -->
+<section class="section" id="s-jeju">
+<div class="inner">
+  <div class="fade-up">
+    <div class="chapter-num">Chapter 03 · 제주에 닿다</div>
+    <h2 class="chapter-title"><em>제주</em>에 닿은 뒤,<br>모든 것이 달라졌다.</h2>
+  </div>
+  <div class="prose fade-up delay-1">
+    <p>2019년, 저는 제주에 왔습니다. 제주더큰내일센터에서 청년들의 진로·취업을 총괄 기획했습니다. 기업 프로젝트를 설계하고, 청년들을 현장과 연결했습니다.</p>
+    <p>제주는 저에게 질문을 바꿔주었습니다.<br><span class="whisper">"나는 누구인가" 에서, "우리는 어떻게 연결될 수 있는가"로.</span></p>
+    <p>그 뒤로 군산대 일자리센터, 아시아코치센터, 조선대 뇌·AI 연구실을 거치며 저는 계속 배웠습니다. 그리고 다시 제주로 돌아왔습니다. <span class="highlight">이번엔 머무는 사람</span>으로.</p>
+  </div>
+
+  <div class="journey fade-up delay-2">
+    <div class="journey__item">
+      <div class="journey__year">2014 — 2016 · 서울·전국</div>
+      <div class="journey__place">대기업 신입교육 운영</div>
+      <div class="journey__story">현대차·두산·롯데. 정답 대신 질문을 건네는 법을 배웠다.</div>
+    </div>
+    <div class="journey__item">
+      <div class="journey__year">2017 — 2018 · 군산</div>
+      <div class="journey__place">군산대학교 대학일자리센터</div>
+      <div class="journey__story">취창업 컨설턴트. 2017 지역거점대학 취업률 1위를 기록했다.</div>
+    </div>
+    <div class="journey__item">
+      <div class="journey__year">2019 — 2020 · 제주</div>
+      <div class="journey__place">제주더큰내일센터</div>
+      <div class="journey__story">청년과 기업을 연결하는 일. 진짜 현장을 배웠다.</div>
+    </div>
+    <div class="journey__item">
+      <div class="journey__year">2021 · 서울</div>
+      <div class="journey__place">아시아코치센터</div>
+      <div class="journey__story">온라인 코칭플랫폼 런칭 총괄. 기술과 사람을 잇는 일.</div>
+    </div>
+    <div class="journey__item">
+      <div class="journey__year">2022 — 2024 · 광주</div>
+      <div class="journey__place">조선대학교 뇌·인공지능 연구실</div>
+      <div class="journey__story">국가연구원으로, BCI 연구에 참여. 인간을 이해하는 새로운 언어를 얻었다.</div>
+    </div>
+    <div class="journey__item">
+      <div class="journey__year">2025 · 제주</div>
+      <div class="journey__place">네다바웨이 설립</div>
+      <div class="journey__story">다시 제주. 이번엔 머무는 사람으로. 스스로 원해서 걷는 길을 설계한다.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Chapter 4: What I Learned -->
+<section class="section" id="s-learning">
+<div class="inner">
+  <div class="fade-up">
+    <div class="chapter-num">Chapter 04 · 배운 것</div>
+    <h2 class="chapter-title">10년 동안<br>한 가지를 배웠다.</h2>
+  </div>
+  <div class="prose fade-up delay-1">
+    <p>사람은 <span class="highlight">자기 이야기를 자기 입으로 꺼낼 때</span> 비로소 움직입니다. 남이 써준 자기소개서, 남이 골라준 진로, 남이 정해준 성공 기준 — 이런 건 아무리 훌륭해도 사람을 움직이지 못합니다.</p>
+    <p>교육이 끝난 뒤, 한 청년이 처음으로 자기소개서를 완성하고 울었습니다. 그건 글을 잘 써서가 아니었습니다. 처음으로 자기 이야기를 자기 말로 꺼냈기 때문입니다.</p>
+  </div>
+
+  <div class="pull-quote fade-up delay-2">
+    저는 그 순간을 만드는 사람이고 싶습니다.
+  </div>
+</div>
+</section>
+
+<!-- Chapter 5: Manifesto -->
+<section class="section" id="s-manifesto">
+<div class="inner">
+  <div class="fade-up">
+    <div class="chapter-num">Chapter 05 · 지금, 하는 일</div>
+    <h2 class="chapter-title">지금 저는<br><em>이런 사람</em>입니다.</h2>
+  </div>
+  <div style="margin-top:40px">
+    <div class="manifesto-line fade-up delay-1">
+      <span class="dim">저는</span> <span class="acc">질문을 견디는 법</span><span class="dim">을 가르칩니다.</span>
+    </div>
+    <div class="manifesto-line fade-up delay-1">
+      <span class="dim">저는</span> <span class="acc">자기 이야기를 자기 입으로 꺼내는 순간</span><span class="dim">을 설계합니다.</span>
+    </div>
+    <div class="manifesto-line fade-up delay-2">
+      <span class="dim">저는</span> <span class="acc">AI를 도구로, 사람을 목적으로</span> <span class="dim">봅니다.</span>
+    </div>
+    <div class="manifesto-line fade-up delay-2">
+      <span class="dim">저는</span> <span class="acc">제주에서, 청년과 지역과 함께</span> <span class="dim">걷습니다.</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Invitation / CTA -->
+<section class="section section--short" id="s-invite">
+<div class="inner fade-up">
+  <div class="ending-card">
+    <div class="chapter-num" style="color:var(--c-acc);margin-bottom:16px">Epilogue · 초대</div>
+    <h3>당신의 이야기는,<br>아직 쓰이지 않은 문장입니다.</h3>
+    <p>교육, 코칭, 퍼실리테이션 — 어떤 문의든 환영합니다.<br>저는 질문을 들고 찾아오는 사람을 좋아합니다.</p>
+    <a href="mailto:nedabah.way@gmail.com" class="btn">📧 김창환에게 편지 쓰기</a>
+    <a href="company.html" class="btn btn--ghost">회사소개 보기 →</a>
+  </div>
+</div>
+</section>
+
+<footer class="footer">
+  <p class="footer__text">&copy; 2025 Nedabahway · 김창환<br>
+  제주특별자치도 서귀포시 · nedabah.way@gmail.com · 010-6642-7749</p>
+</footer>
+
+<script>
+// Reading progress bar
+const progress=document.getElementById('progress');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  progress.style.width=pct+'%';
+});
+
+// Fade-up on scroll
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
+},{threshold:0.2,rootMargin:'0px 0px -80px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
