@@ -4,14 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>김창환 이야기 | 네다바웨이</title>
-<meta name="description" content="전국을 떠돌며 코칭에 입문했던 청년이, 제주에 닿아 교육자가 되기까지. 네다바웨이 김창환의 이야기.">
+<meta name="description" content="교육인턴에서 시작해 나만의 프로그램을 만들고 전국을 돌아다닌 10년. 첫 시즌을 정리하는 교육자 김창환의 이야기.">
 <style>
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&display=swap');
 :root{
   --c-bg:#0A0A0A;--c-fg:#FAFAFA;--c-mute:#888;--c-dim:#2a2a2a;
   --c-acc:#4ADE80;--c-warm:#FCD34D;--c-rose:#FB7185;
   --ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
-  --ff-serif:'Nanum Myeongjo','Noto Serif KR',serif;
+  --ff-serif:'Noto Serif KR',serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -29,21 +30,22 @@ a:hover{text-decoration:underline}
 /* Opening Hero - dramatic */
 .chapter-num{font-size:.7rem;font-weight:700;letter-spacing:.3em;
   color:var(--c-warm);margin-bottom:24px;text-transform:uppercase}
-.chapter-title{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.25;
+.chapter-title{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.3;
   letter-spacing:-.03em;margin-bottom:32px}
-.chapter-title em{font-family:var(--ff-serif);font-style:italic;font-weight:400;
+.chapter-title em{font-family:var(--ff-serif);font-style:normal;font-weight:500;
   color:var(--c-warm)}
 
 /* Prose - storytelling blocks */
-.prose{font-size:clamp(1rem,2.2vw,1.125rem);line-height:1.9;color:#E5E5E5}
+.prose{font-size:clamp(1rem,2.2vw,1.125rem);line-height:1.95;color:#E5E5E5}
 .prose p{margin-bottom:24px}
 .prose p:last-child{margin-bottom:0}
 .prose .highlight{color:var(--c-warm);font-weight:600}
 .prose .whisper{color:var(--c-mute);font-size:.95em;font-style:italic}
+.prose .underline{border-bottom:1px solid var(--c-warm);padding-bottom:2px}
 
 /* Pull quote */
 .pull-quote{font-family:var(--ff-serif);font-size:clamp(1.3rem,3.5vw,1.9rem);
-  line-height:1.5;font-weight:400;letter-spacing:-.01em;
+  line-height:1.6;font-weight:500;letter-spacing:-.01em;
   padding:40px 0;margin:40px 0;
   border-top:1px solid var(--c-dim);border-bottom:1px solid var(--c-dim);
   color:var(--c-fg);text-align:center}
@@ -56,29 +58,22 @@ a:hover{text-decoration:underline}
 .opener span{display:block}
 .opener .fade{color:var(--c-mute);font-weight:400}
 
-/* Timeline scroll */
-.journey{position:relative;margin-top:40px;padding-left:32px;
-  border-left:2px solid var(--c-dim)}
-.journey__item{position:relative;margin-bottom:48px}
-.journey__item:last-child{margin-bottom:0}
-.journey__item::before{content:'';position:absolute;left:-41px;top:4px;
-  width:16px;height:16px;border-radius:50%;background:var(--c-bg);
-  border:2px solid var(--c-acc)}
-.journey__year{font-size:.75rem;font-weight:700;color:var(--c-warm);
-  letter-spacing:.15em;margin-bottom:6px}
-.journey__place{font-size:1.15rem;font-weight:800;margin-bottom:8px;
-  letter-spacing:-.02em}
-.journey__story{font-size:.92rem;color:#BFBFBF;line-height:1.75}
+/* Season marker */
+.season-mark{display:inline-flex;align-items:center;gap:10px;
+  padding:6px 14px;border:1px solid var(--c-warm);border-radius:999px;
+  font-size:.72rem;font-weight:700;color:var(--c-warm);
+  letter-spacing:.12em;margin-bottom:20px}
+.season-mark__dot{width:6px;height:6px;border-radius:50%;background:var(--c-warm)}
 
-/* Image/photo placeholder */
-.polaroid{background:#1a1a1a;border-radius:4px;padding:16px 16px 24px;
-  transform:rotate(-1.5deg);margin:32px auto;max-width:340px;
-  box-shadow:0 20px 60px rgba(0,0,0,.5);border:1px solid var(--c-dim)}
-.polaroid__img{width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,#333,#1a1a1a);
-  border-radius:2px;display:flex;align-items:center;justify-content:center;
-  font-size:3rem;color:var(--c-mute)}
-.polaroid__cap{font-family:var(--ff-serif);font-size:.85rem;text-align:center;
-  margin-top:12px;color:#999;font-style:italic}
+/* Story list (the 6 internships) */
+.story-list{margin-top:32px;padding:24px;background:#111;border-radius:14px;
+  border:1px solid var(--c-dim)}
+.story-list__title{font-size:.78rem;color:var(--c-warm);font-weight:700;
+  letter-spacing:.15em;margin-bottom:16px;text-transform:uppercase}
+.story-list__item{display:flex;gap:12px;align-items:flex-start;
+  padding:10px 0;border-bottom:1px dashed #222;font-size:.9rem;color:#D4D4D4}
+.story-list__item:last-child{border-bottom:none}
+.story-list__num{font-weight:700;color:var(--c-warm);flex-shrink:0;width:24px}
 
 /* Now we are section - manifesto */
 .manifesto-line{font-size:clamp(1.3rem,3.2vw,1.8rem);line-height:1.5;
@@ -87,12 +82,24 @@ a:hover{text-decoration:underline}
 .manifesto-line .dim{color:var(--c-mute);font-weight:400}
 .manifesto-line .acc{color:var(--c-acc)}
 
+/* Book callout */
+.book-callout{margin-top:40px;padding:32px 28px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(252,211,77,.08) 0%,rgba(252,211,77,.02) 100%);
+  border:1px solid rgba(252,211,77,.3);position:relative}
+.book-callout__kicker{font-size:.7rem;letter-spacing:.25em;color:var(--c-warm);
+  font-weight:700;margin-bottom:12px;text-transform:uppercase}
+.book-callout__title{font-family:var(--ff-serif);font-size:1.3rem;font-weight:500;
+  line-height:1.5;margin-bottom:10px;color:var(--c-fg)}
+.book-callout__sub{font-size:.85rem;color:var(--c-mute);line-height:1.7}
+.book-callout__date{display:inline-block;margin-top:14px;padding:4px 12px;
+  background:var(--c-warm);color:#000;border-radius:999px;font-size:.72rem;font-weight:800;letter-spacing:.05em}
+
 /* Ending CTA */
 .ending-card{background:linear-gradient(135deg,#111 0%,#1a1a1a 100%);
   border:1px solid var(--c-dim);border-radius:24px;padding:48px 32px;
   text-align:center;margin-top:48px}
-.ending-card h3{font-size:1.4rem;font-weight:800;margin-bottom:12px}
-.ending-card p{color:var(--c-mute);font-size:.95rem;margin-bottom:32px}
+.ending-card h3{font-size:1.4rem;font-weight:800;margin-bottom:12px;line-height:1.5}
+.ending-card p{color:var(--c-mute);font-size:.95rem;margin-bottom:32px;line-height:1.7}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;
   background:var(--c-acc);color:#000;font-weight:700;font-size:.9rem;
   border-radius:999px;border:none;cursor:pointer;transition:all .2s}
@@ -128,21 +135,15 @@ a:hover{text-decoration:underline}
 .footer{padding:40px 24px;text-align:center;border-top:1px solid var(--c-dim)}
 .footer__text{font-size:.75rem;color:var(--c-mute);line-height:1.8}
 
-/* Chapter divider */
-.divider{text-align:center;margin:0 auto;padding:0 24px;color:var(--c-dim);
-  font-size:1.4rem;letter-spacing:1em}
-
 @media(max-width:480px){
   .section{padding:100px 20px 60px}
-  .journey{padding-left:24px}
-  .journey__item::before{left:-33px}
 }
 @media print{
   .top-bar,.progress{display:none}
   body{background:#fff;color:#000}
   .section{min-height:auto;page-break-inside:avoid;padding:40px 0}
-  .prose,.journey__story,.manifesto-line .dim{color:#333}
-  .chapter-title em,.journey__year,.chapter-num{color:#666}
+  .prose,.manifesto-line .dim{color:#333}
+  .chapter-title em,.chapter-num{color:#666}
 }
 </style>
 </head>
@@ -163,117 +164,100 @@ a:hover{text-decoration:underline}
 <section class="section" id="s-prologue">
 <div class="inner">
   <div class="fade-up">
-    <div class="chapter-num">Prologue · 여는 글</div>
+    <div class="season-mark"><span class="season-mark__dot"></span>FIRST SEASON · 시즌 1을 정리하며</div>
     <h1 class="opener">
-      <span>누구에게나</span>
-      <span class="fade">잃어본 시절이 있다.</span>
+      <span>뒷문을 닫아야</span>
+      <span class="fade">앞문이 열린다.</span>
     </h1>
   </div>
   <div class="prose fade-up delay-1">
-    <p>저는 20대 중반에 회사를 그만두고, 아무 계획 없이 전국을 떠돈 적이 있습니다. 어느 도시에서는 강의를 들었고, 어느 절에서는 한 달을 머물렀습니다. 가방 안에는 노트 한 권과 질문이 있었습니다.</p>
-    <p><span class="highlight">"나는 누구이고, 어떻게 살아야 하는가."</span></p>
-    <p class="whisper">답은 오지 않았습니다. 대신, 사람이 왔습니다.</p>
+    <p>저는 지금 저의 첫 번째 시즌을 정리하고 있습니다. 이 사이트도, 집필 중인 책도, 저의 삶도 — <span class="highlight">정리를 통해 앞으로 나아가는</span> 준비입니다.</p>
+    <p>인공지능 시대가 다가오며 제가 강의하고 직업으로 해왔던 많은 것들이 전환점을 맞이하고 있습니다. 그래서 지난 10년을 한 챕터 닫듯 정리합니다. <span class="whisper">2026년 5월, 첫 책이 세상에 나옵니다.</span></p>
   </div>
 </div>
 </section>
 
-<!-- Chapter 1: The Wandering -->
-<section class="section" id="s-wandering">
+<!-- Chapter 1: Six Internships -->
+<section class="section" id="s-internship">
 <div class="inner">
   <div class="fade-up">
-    <div class="chapter-num">Chapter 01 · 떠돌던 시절</div>
-    <h2 class="chapter-title">전국을 <em>떠돌며</em><br>코칭에 입문했다.</h2>
+    <div class="chapter-num">Chapter 01 · 시작</div>
+    <h2 class="chapter-title">사회생활의 시작은<br><em>'코칭'</em>이라는 낯선 단어였다.</h2>
   </div>
 
   <div class="prose fade-up delay-1">
-    <p>그때 저는 '코칭'이라는 말을 처음 들었습니다. 서울의 한 강의실에서였고, 강사는 이렇게 물었습니다.<br><span class="highlight">"당신은 지금, 당신이 원하는 삶을 살고 있습니까?"</span></p>
-    <p>그 질문 하나에 저는 1년을 매달렸습니다. 기차를 타고 워크숍을 다녔고, 수첩에 메모를 남겼고, 밤마다 스스로에게 같은 질문을 던졌습니다. 답을 찾으러 다닌 게 아니었습니다. <span class="highlight">질문을 견디는 법</span>을 배운 것이었습니다.</p>
-    <p>2014년, 저는 ICF 국제인증코치(ACC) 자격을 받았습니다. 스물여섯 살 무렵이었습니다.</p>
+    <p>저의 사회생활은 교육컨설팅 회사의 <span class="highlight">교육인턴</span>으로 시작되었습니다. 4대보험조차 되지 않던 자리까지 포함하면, 저는 교육인턴을 여섯 번이나 했습니다.</p>
+    <p>교육인턴은 교육운영부터 기획·진행·정산까지 교육 전반의 모든 일에 지원하는 자리입니다. 그 과정에서 저는 <span class="underline">교육과 컨설팅, 그리고 코칭의 세계</span>를 처음 경험했습니다. 사회생활의 첫걸음을 '코칭'이라는 낯선 단어와 함께 내디딘 것입니다.</p>
+  </div>
+
+  <div class="story-list fade-up delay-2">
+    <div class="story-list__title">교육인턴 6회 · 사회생활의 기초가 된 시간들</div>
+    <div class="story-list__item"><span class="story-list__num">01</span>교육운영 보조 · 강의장 세팅부터 만족도 조사까지</div>
+    <div class="story-list__item"><span class="story-list__num">02</span>교육 기획 지원 · 커리큘럼 설계·교재 제작 어시스트</div>
+    <div class="story-list__item"><span class="story-list__num">03</span>컨설팅 프로젝트 보조 · HR·조직개발 현장 관찰</div>
+    <div class="story-list__item"><span class="story-list__num">04</span>진행 FT 보조 · 워크숍 러닝·쉬는 시간 운영</div>
+    <div class="story-list__item"><span class="story-list__num">05</span>강사 리서치·매칭 · 현장 강사들의 세계를 배움</div>
+    <div class="story-list__item"><span class="story-list__num">06</span>4대보험 없던 자리 · 그럼에도 버텨낸 배움의 시간</div>
+  </div>
+</div>
+</section>
+
+<!-- Chapter 2: My Own Program -->
+<section class="section" id="s-ownprogram">
+<div class="inner">
+  <div class="fade-up">
+    <div class="chapter-num">Chapter 02 · 나만의 프로그램</div>
+    <h2 class="chapter-title">우여곡절 끝에<br><em>나만의 프로그램</em>을 만들었고,</h2>
+    <h2 class="chapter-title" style="margin-top:-16px">그걸 들고<br><em>전국</em>을 돌아다녔다.</h2>
+  </div>
+  <div class="prose fade-up delay-1">
+    <p>인턴의 시간이 쌓이고, 저는 마침내 <span class="highlight">나만의 프로그램</span>을 만들어냈습니다. 이름 없는 강사가 교재 한 권, 파워포인트 한 뭉치를 안고 기차에 오르던 시절이었습니다.</p>
+    <p>청소년들을 만났습니다. 학교 진로캠프로, 특강으로, 워크숍으로. 적게는 20명, 많게는 60명. 한 교실이, 때로는 강당이 제 무대였습니다.</p>
+  </div>
+</div>
+</section>
+
+<!-- Chapter 3: The Breathing Room -->
+<section class="section" id="s-classroom">
+<div class="inner">
+  <div class="fade-up">
+    <div class="chapter-num">Chapter 03 · 교실에서 배운 것</div>
+    <h2 class="chapter-title">준비한 강의보다<br><em>한 사람 한 사람의 마음</em>이<br>더 중요했다.</h2>
+  </div>
+  <div class="prose fade-up delay-1">
+    <p>현장에 서보면 알게 됩니다. 잘 만든 강의보다 더 중요한 건 <span class="highlight">그 자리의 분위기</span>와 <span class="highlight">한 사람 한 사람의 상태·마음</span>을 들여다보는 일이라는 걸.</p>
+    <p>20명에서 60명까지, 그들이 한 마음으로 이 수업에 노력하고 수고하며 달릴 수 있도록 — 그 준비를 제가 마련해주는 것이 가장 중요한 일이었습니다.</p>
+    <p>그렇게 했기 때문에, <span class="underline">제 수업에 잠자는 학생은 단 한 명도 없었습니다.</span> 가끔 학교에 늦게 와서 잠든 친구는 있었습니다. 저와 미처 준비하지 못한 친구일 뿐입니다.</p>
   </div>
 
   <div class="pull-quote fade-up delay-2">
-    답은 오지 않아도 괜찮다.<br>질문을 들고 계속 걷는 사람이 되면 된다.
+    저에게 쉬는 시간은<br>제가 쉬는 시간이 아니었습니다.
+  </div>
+
+  <div class="prose fade-up delay-2">
+    <p>쉬는 시간은 다양한 친구들에게 다가가서 <span class="highlight">수업과 그들의 활동에 대한 피드백을 듣는 시간</span>이었습니다. 레벨을 맞춰주고, 이야기를 들어주고, 다음 시간을 준비하는.</p>
+    <p>이 과정이 있었기에 눈에 보이는 성과는 그들의 인생 전환기에 뒤늦게 드러나더라도, <span class="underline">보이지 않는 성과</span>는 그 자리에서 즉각적으로 만들어졌습니다. 그리고 순수한 청소년들에게서 흠뻑 받은 반응과 피드백이 — 저에게는 이 일을 이어갈 힘이자 가치였습니다.</p>
   </div>
 </div>
 </section>
 
-<!-- Chapter 2: Corporate Beginning -->
-<section class="section" id="s-corporate">
+<!-- Chapter 4: The Transition -->
+<section class="section" id="s-transition">
 <div class="inner">
   <div class="fade-up">
-    <div class="chapter-num">Chapter 02 · 첫 교단</div>
-    <h2 class="chapter-title">첫 교단은<br><em>대기업 연수원</em>이었다.</h2>
+    <div class="chapter-num">Chapter 04 · 전환점</div>
+    <h2 class="chapter-title">그리고 지금,<br><em>AI</em>가 찾아왔다.</h2>
   </div>
   <div class="prose fade-up delay-1">
-    <p>2014년부터 2016년까지, 저는 현대자동차·두산·롯데그룹의 신입사원 연수를 운영했습니다. 스물몇 살 청년들 앞에 서서 '핵심가치'를 이야기하고, 팀 빌딩을 이끌었습니다.</p>
-    <p>수백 명의 얼굴을 봤습니다. 그 안에는 <span class="highlight">저와 똑같이 헤매고 있는 사람들</span>이 있었습니다. 잘 다니는 회사에 합격해놓고도, "내가 원하는 게 뭔지 모르겠다"고 말하는 사람들.</p>
-    <p>그때 결심했습니다. 저는 정답을 주는 강사가 되지 않겠다고. 질문을 함께 견디는 사람이 되겠다고.</p>
-  </div>
-</div>
-</section>
-
-<!-- Chapter 3: Jeju Arrival -->
-<section class="section" id="s-jeju">
-<div class="inner">
-  <div class="fade-up">
-    <div class="chapter-num">Chapter 03 · 제주에 닿다</div>
-    <h2 class="chapter-title"><em>제주</em>에 닿은 뒤,<br>모든 것이 달라졌다.</h2>
-  </div>
-  <div class="prose fade-up delay-1">
-    <p>2019년, 저는 제주에 왔습니다. 제주더큰내일센터에서 청년들의 진로·취업을 총괄 기획했습니다. 기업 프로젝트를 설계하고, 청년들을 현장과 연결했습니다.</p>
-    <p>제주는 저에게 질문을 바꿔주었습니다.<br><span class="whisper">"나는 누구인가" 에서, "우리는 어떻게 연결될 수 있는가"로.</span></p>
-    <p>그 뒤로 군산대 일자리센터, 아시아코치센터, 조선대 뇌·AI 연구실을 거치며 저는 계속 배웠습니다. 그리고 다시 제주로 돌아왔습니다. <span class="highlight">이번엔 머무는 사람</span>으로.</p>
+    <p>인공지능 시대가 다가오며 저의 강의도, 직업으로 활동했던 내용들도 많은 전환점을 맞이하고 있습니다. 어떤 수업은 AI가 더 잘하게 되었고, 어떤 수업은 오히려 AI 때문에 더 필요해졌습니다.</p>
+    <p>그래서 저는 <span class="highlight">지난 첫 시즌을 한 챕터 닫듯 정리</span>하기로 했습니다. 책을 쓰고 있습니다. 편집도 거의 끝났습니다. 늘 아쉬워서 읽고 또 읽으며 수정하고 있지만,</p>
   </div>
 
-  <div class="journey fade-up delay-2">
-    <div class="journey__item">
-      <div class="journey__year">2014 — 2016 · 서울·전국</div>
-      <div class="journey__place">대기업 신입교육 운영</div>
-      <div class="journey__story">현대차·두산·롯데. 정답 대신 질문을 건네는 법을 배웠다.</div>
-    </div>
-    <div class="journey__item">
-      <div class="journey__year">2017 — 2018 · 군산</div>
-      <div class="journey__place">군산대학교 대학일자리센터</div>
-      <div class="journey__story">취창업 컨설턴트. 2017 지역거점대학 취업률 1위를 기록했다.</div>
-    </div>
-    <div class="journey__item">
-      <div class="journey__year">2019 — 2020 · 제주</div>
-      <div class="journey__place">제주더큰내일센터</div>
-      <div class="journey__story">청년과 기업을 연결하는 일. 진짜 현장을 배웠다.</div>
-    </div>
-    <div class="journey__item">
-      <div class="journey__year">2021 · 서울</div>
-      <div class="journey__place">아시아코치센터</div>
-      <div class="journey__story">온라인 코칭플랫폼 런칭 총괄. 기술과 사람을 잇는 일.</div>
-    </div>
-    <div class="journey__item">
-      <div class="journey__year">2022 — 2024 · 광주</div>
-      <div class="journey__place">조선대학교 뇌·인공지능 연구실</div>
-      <div class="journey__story">국가연구원으로, BCI 연구에 참여. 인간을 이해하는 새로운 언어를 얻었다.</div>
-    </div>
-    <div class="journey__item">
-      <div class="journey__year">2025 · 제주</div>
-      <div class="journey__place">네다바웨이 설립</div>
-      <div class="journey__story">다시 제주. 이번엔 머무는 사람으로. 스스로 원해서 걷는 길을 설계한다.</div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- Chapter 4: What I Learned -->
-<section class="section" id="s-learning">
-<div class="inner">
-  <div class="fade-up">
-    <div class="chapter-num">Chapter 04 · 배운 것</div>
-    <h2 class="chapter-title">10년 동안<br>한 가지를 배웠다.</h2>
-  </div>
-  <div class="prose fade-up delay-1">
-    <p>사람은 <span class="highlight">자기 이야기를 자기 입으로 꺼낼 때</span> 비로소 움직입니다. 남이 써준 자기소개서, 남이 골라준 진로, 남이 정해준 성공 기준 — 이런 건 아무리 훌륭해도 사람을 움직이지 못합니다.</p>
-    <p>교육이 끝난 뒤, 한 청년이 처음으로 자기소개서를 완성하고 울었습니다. 그건 글을 잘 써서가 아니었습니다. 처음으로 자기 이야기를 자기 말로 꺼냈기 때문입니다.</p>
-  </div>
-
-  <div class="pull-quote fade-up delay-2">
-    저는 그 순간을 만드는 사람이고 싶습니다.
+  <div class="book-callout fade-up delay-2">
+    <div class="book-callout__kicker">coming soon · 2026</div>
+    <div class="book-callout__title">김창환 첫 책 · 집필 중</div>
+    <div class="book-callout__sub">10년의 현장, 잠들지 않았던 교실들, 한 사람 한 사람의 마음. 첫 시즌의 기록을 정리합니다.</div>
+    <span class="book-callout__date">2026. 5. 출간 예정</span>
   </div>
 </div>
 </section>
@@ -282,21 +266,21 @@ a:hover{text-decoration:underline}
 <section class="section" id="s-manifesto">
 <div class="inner">
   <div class="fade-up">
-    <div class="chapter-num">Chapter 05 · 지금, 하는 일</div>
-    <h2 class="chapter-title">지금 저는<br><em>이런 사람</em>입니다.</h2>
+    <div class="chapter-num">Chapter 05 · 다음 시즌</div>
+    <h2 class="chapter-title">뒷문을 닫고,<br><em>앞문</em>을 엽니다.</h2>
   </div>
   <div style="margin-top:40px">
     <div class="manifesto-line fade-up delay-1">
-      <span class="dim">저는</span> <span class="acc">질문을 견디는 법</span><span class="dim">을 가르칩니다.</span>
+      <span class="dim">저는</span> <span class="acc">준비한 강의보다 한 사람의 마음</span><span class="dim">을 먼저 봅니다.</span>
     </div>
     <div class="manifesto-line fade-up delay-1">
-      <span class="dim">저는</span> <span class="acc">자기 이야기를 자기 입으로 꺼내는 순간</span><span class="dim">을 설계합니다.</span>
+      <span class="dim">저는</span> <span class="acc">쉬는 시간에 제가 쉬지 않는</span> <span class="dim">강사입니다.</span>
     </div>
     <div class="manifesto-line fade-up delay-2">
-      <span class="dim">저는</span> <span class="acc">AI를 도구로, 사람을 목적으로</span> <span class="dim">봅니다.</span>
+      <span class="dim">저는</span> <span class="acc">보이지 않는 성과</span><span class="dim">를 만드는 사람입니다.</span>
     </div>
     <div class="manifesto-line fade-up delay-2">
-      <span class="dim">저는</span> <span class="acc">제주에서, 청년과 지역과 함께</span> <span class="dim">걷습니다.</span>
+      <span class="dim">저는</span> <span class="acc">AI 시대에, 사람의 마음을 더 깊이</span> <span class="dim">들여다봅니다.</span>
     </div>
   </div>
 </div>
@@ -307,8 +291,8 @@ a:hover{text-decoration:underline}
 <div class="inner fade-up">
   <div class="ending-card">
     <div class="chapter-num" style="color:var(--c-acc);margin-bottom:16px">Epilogue · 초대</div>
-    <h3>당신의 이야기는,<br>아직 쓰이지 않은 문장입니다.</h3>
-    <p>교육, 코칭, 퍼실리테이션 — 어떤 문의든 환영합니다.<br>저는 질문을 들고 찾아오는 사람을 좋아합니다.</p>
+    <h3>당신의 자리에도,<br>잠들지 않는 교실이 필요합니까?</h3>
+    <p>교육, 코칭, 퍼실리테이션 — 어떤 문의든 환영합니다.<br>현장의 분위기와 한 사람의 마음부터 함께 들여다보겠습니다.</p>
     <a href="mailto:nedabah.way@gmail.com" class="btn">📧 김창환에게 편지 쓰기</a>
     <a href="company.html" class="btn btn--ghost">회사소개 보기 →</a>
   </div>
