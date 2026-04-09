@@ -1,474 +1,395 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>네다바웨이 — 나를 알고, 성장하고, 세상에 기여하는 사람</title>
-  <meta name="description" content="12년 교육·코칭 전문가. 청소년·청년 교육부터 리더십·인성 코칭, 지역사회 AI 활용 교육까지." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>네다바웨이 — 잠들지 않는 교실을 설계합니다</title>
+<meta name="description" content="10년 교육 현장 경험, 고객 상황에 맞춘 모듈 설계. 교육 코칭·AI·리더십·진로. 네다바웨이 김창환.">
+<meta property="og:title" content="네다바웨이 — 잠들지 않는 교실을 설계합니다">
+<meta property="og:description" content="교육은 정해진 메뉴가 아니라, 당신의 상황에 맞춘 설계입니다.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nedabah.org">
+<link rel="canonical" href="https://www.nedabah.org">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+:root{
+  --c-bg:#0A0A0A;--c-fg:#FAFAFA;--c-mute:#888;--c-dim:#333;
+  --c-acc:#4ADE80;--c-acc2:#22C55E;--c-warm:#FCD34D;
+  --c-indigo:#818CF8;--c-rose:#FB7185;--c-sky:#38BDF8;
+  --ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);
+  line-height:1.6;word-break:keep-all;overflow-wrap:break-word;
+  -webkit-font-smoothing:antialiased;overscroll-behavior:none}
+a{color:var(--c-acc);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet" />
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,10,10,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);transition:transform .3s}
+.nav.hide{transform:translateY(-100%)}
+.nav__inner{max-width:960px;margin:0 auto;display:flex;align-items:center;
+  justify-content:space-between;padding:14px 24px}
+.nav__logo{font-size:1.1rem;font-weight:800;color:var(--c-fg);letter-spacing:-.03em}
+.nav__logo:hover{text-decoration:none}
+.nav__links{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.nav__link{font-size:.82rem;font-weight:600;color:var(--c-mute);transition:color .2s}
+.nav__link:hover{color:var(--c-fg);text-decoration:none}
+.nav__cta{font-size:.78rem;font-weight:700;color:#000;background:var(--c-acc);
+  padding:7px 16px;border-radius:999px;transition:background .2s}
+.nav__cta:hover{background:var(--c-acc2);text-decoration:none}
+@media(max-width:600px){.nav__links{gap:12px}.nav__link{font-size:.75rem}}
 
-  <link rel="stylesheet" href="styles.css" />
+/* ── COMMON ── */
+.section{min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:100px 24px 80px;position:relative;overflow:hidden}
+.section--short{min-height:auto;padding:80px 24px}
+.inner{max-width:760px;width:100%}
+.kicker{font-size:.72rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--c-acc);margin-bottom:16px}
+
+/* ── HERO ── */
+.hero-title{font-size:clamp(2.4rem,7vw,4.2rem);font-weight:900;line-height:1.12;
+  letter-spacing:-.05em;margin-bottom:24px}
+.hero-title .accent{color:var(--c-acc)}
+.hero-sub{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--c-mute);line-height:1.8;
+  max-width:520px;font-weight:400}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;margin-top:32px;
+  padding:8px 18px;border:1px solid var(--c-dim);border-radius:999px;
+  font-size:.78rem;color:var(--c-mute);font-weight:600}
+.hero-badge__dot{width:6px;height:6px;border-radius:50%;background:var(--c-acc);
+  animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── STATS BAR ── */
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:24px;margin-top:56px;padding-top:40px;border-top:1px solid var(--c-dim)}
+.stat{text-align:center}
+.stat__num{font-size:clamp(2rem,5vw,2.8rem);font-weight:900;letter-spacing:-.04em;
+  background:linear-gradient(135deg,var(--c-acc),#86EFAC);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text}
+.stat__label{font-size:.78rem;color:var(--c-mute);margin-top:4px;font-weight:500}
+
+/* ── QUOTE SECTION ── */
+.quote-section{background:#111;border-top:1px solid var(--c-dim);border-bottom:1px solid var(--c-dim)}
+.quote-block{text-align:center;max-width:600px;margin:0 auto}
+.quote-text{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:700;line-height:1.6;letter-spacing:-.02em}
+.quote-text .em{color:var(--c-warm)}
+.quote-author{font-size:.82rem;color:var(--c-mute);margin-top:20px;font-weight:500}
+.quote-author a{color:var(--c-acc)}
+
+/* ── PAGES GRID ── */
+.sec-title{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:800;line-height:1.25;
+  letter-spacing:-.03em;margin-bottom:12px}
+.sec-desc{font-size:.95rem;color:var(--c-mute);line-height:1.8;max-width:540px;margin-bottom:40px}
+.pages-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:600px){.pages-grid{grid-template-columns:1fr 1fr}}
+.page-card{display:block;background:#111;border:1px solid var(--c-dim);border-radius:16px;
+  padding:32px 28px;transition:border-color .3s,transform .25s;position:relative;overflow:hidden}
+.page-card:hover{border-color:var(--c-acc);transform:translateY(-3px);text-decoration:none}
+.page-card__icon{font-size:1.6rem;margin-bottom:14px;display:block}
+.page-card__title{font-size:1.1rem;font-weight:800;color:var(--c-fg);margin-bottom:8px;
+  letter-spacing:-.02em}
+.page-card__desc{font-size:.85rem;color:var(--c-mute);line-height:1.6}
+.page-card__arrow{position:absolute;top:28px;right:24px;font-size:.9rem;color:var(--c-mute);
+  transition:color .3s,transform .3s}
+.page-card:hover .page-card__arrow{color:var(--c-acc);transform:translateX(4px)}
+
+/* Featured card spans full width */
+.page-card--featured{border-color:rgba(74,222,128,.15);
+  background:linear-gradient(135deg,#0d1a0f 0%,#111 100%)}
+@media(min-width:600px){.page-card--featured{grid-column:1/-1;display:grid;
+  grid-template-columns:auto 1fr;gap:24px;align-items:center}}
+.page-card--featured .page-card__icon{font-size:2.2rem;margin-bottom:0}
+
+/* ── MODULES PREVIEW ── */
+.modules-preview{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+.mod-chip{padding:8px 16px;border-radius:999px;font-size:.78rem;font-weight:700;
+  letter-spacing:.02em;border:1px solid transparent}
+.mod-chip--green{background:rgba(74,222,128,.1);color:var(--c-acc);border-color:rgba(74,222,128,.2)}
+.mod-chip--sky{background:rgba(56,189,248,.1);color:var(--c-sky);border-color:rgba(56,189,248,.2)}
+.mod-chip--rose{background:rgba(251,113,133,.1);color:var(--c-rose);border-color:rgba(251,113,133,.2)}
+.mod-chip--indigo{background:rgba(129,140,248,.1);color:var(--c-indigo);border-color:rgba(129,140,248,.2)}
+.mod-chip--warm{background:rgba(252,211,77,.1);color:var(--c-warm);border-color:rgba(252,211,77,.2)}
+.mod-chip--purple{background:rgba(167,139,250,.1);color:#A78BFA;border-color:rgba(167,139,250,.2)}
+
+/* ── APPROACH SECTION ── */
+.approach-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px}
+@media(min-width:540px){.approach-grid{grid-template-columns:1fr 1fr}}
+.approach-card{padding:24px;background:#111;border:1px solid var(--c-dim);border-radius:14px}
+.approach-card__num{font-size:.7rem;font-weight:800;color:var(--c-acc);letter-spacing:.15em;margin-bottom:8px}
+.approach-card__title{font-size:1rem;font-weight:700;margin-bottom:6px}
+.approach-card__desc{font-size:.82rem;color:var(--c-mute);line-height:1.6}
+
+/* ── CONTACT ── */
+.contact-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:32px}
+.contact-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;
+  border-radius:12px;font-size:.88rem;font-weight:700;transition:transform .2s,border-color .3s}
+.contact-btn:hover{transform:translateY(-2px);text-decoration:none}
+.contact-btn--primary{background:var(--c-acc);color:#000;border:1px solid var(--c-acc)}
+.contact-btn--outline{background:transparent;color:var(--c-fg);border:1px solid var(--c-dim)}
+.contact-btn--outline:hover{border-color:var(--c-acc)}
+
+/* ── FOOTER ── */
+.footer{padding:48px 24px;border-top:1px solid var(--c-dim);text-align:center}
+.footer__brand{font-size:1rem;font-weight:800;margin-bottom:8px}
+.footer__tag{font-size:.82rem;color:var(--c-mute);margin-bottom:16px}
+.footer__copy{font-size:.72rem;color:#555}
+.footer__links{display:flex;justify-content:center;gap:20px;margin-bottom:16px;flex-wrap:wrap}
+.footer__link{font-size:.78rem;color:var(--c-mute);font-weight:500;transition:color .2s}
+.footer__link:hover{color:var(--c-fg);text-decoration:none}
+
+/* ── FADE-IN ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:480px){
+  .section{padding:80px 20px 60px}
+  .stats-bar{grid-template-columns:1fr 1fr;gap:16px}
+  .modules-preview{gap:8px}
+  .mod-chip{font-size:.72rem;padding:6px 12px}
+}
+</style>
 </head>
 <body>
 
-<!-- ═══════ HEADER ═══════ -->
-<header class="site-header" id="siteHeader">
-  <div class="wrap header-row">
-    <a class="logo" href="#home">네다바웨이</a>
-    <nav class="gnav" aria-label="주 메뉴">
-      <a class="gnav-link" href="#education">교육</a>
-      <a class="gnav-link" href="#leadership">리더십</a>
-      <a class="gnav-link" href="#character">인성</a>
-      <a class="gnav-link" href="story.html">김창환 이야기</a>
-      <a class="gnav-link" href="company.html">회사소개</a>
-      <a class="gnav-link" href="programs.html">교육 포트폴리오</a>
-      <a class="gnav-cta" href="#contact">문의하기</a>
-    </nav>
+<!-- ═══════ NAV ═══════ -->
+<nav class="nav" id="mainNav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/">네다바웨이</a>
+    <div class="nav__links">
+      <a class="nav__link" href="company.html">회사소개</a>
+      <a class="nav__link" href="programs.html">교육설계</a>
+      <a class="nav__link" href="story.html">이야기</a>
+      <a class="nav__cta" href="mailto:nedabah.way@gmail.com?subject=[교육 문의]">문의하기</a>
+    </div>
   </div>
-</header>
+</nav>
 
 <main>
 
-<!-- ═══════ HERO ═══════ -->
-<section id="home" class="hero">
-  <div class="wrap">
-    <p class="eyebrow">교육 코치 · 리더십 · 인성 · AI 활용 교육</p>
-    <h1 class="hero-h1">나를 알고,<br>성장하고,<br>세상에 기여하는 사람</h1>
-    <p class="hero-lead">
-      청소년부터 청년, 조직 리더까지.<br>
-      12년의 현장 경험으로 각 단계에 맞는 길을 함께 찾습니다.
+<!-- ═══════ 01 HERO ═══════ -->
+<section class="section" id="hero">
+  <div class="inner">
+    <div class="reveal">
+      <p class="kicker">nedabahway &mdash; education design</p>
+      <h1 class="hero-title">
+        잠들지 않는<br>
+        <span class="accent">교실</span>을<br>
+        설계합니다.
+      </h1>
+      <p class="hero-sub">
+        정해진 메뉴를 전달하지 않습니다.<br>
+        당신의 상황과 니즈를 먼저 듣고,<br>
+        10년의 모듈을 분해하고 배합해<br>
+        단 하나뿐인 교육을 설계합니다.
+      </p>
+      <div class="hero-badge">
+        <span class="hero-badge__dot"></span>
+        시즌 2 &mdash; 네다바웨이 2025
+      </div>
+    </div>
+
+    <div class="stats-bar reveal">
+      <div class="stat">
+        <div class="stat__num">10+</div>
+        <div class="stat__label">년 현장 경험</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">전국</div>
+        <div class="stat__label">학교·기관 순회</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">6</div>
+        <div class="stat__label">모듈 보유</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">0명</div>
+        <div class="stat__label">잠자는 학생</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 02 QUOTE ═══════ -->
+<section class="section section--short quote-section" id="quote">
+  <div class="inner reveal">
+    <div class="quote-block">
+      <p class="quote-text">
+        <span class="em">쉬는 시간은 제가 쉬는 시간이 아닙니다.</span><br>
+        다양한 사람들에게 다가가서<br>
+        피드백을 듣는 시간입니다.
+      </p>
+      <p class="quote-author">
+        김창환 &mdash; <a href="story.html">이야기 읽기 &rarr;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 03 MODULES OVERVIEW ═══════ -->
+<section class="section section--short" id="modules">
+  <div class="inner reveal">
+    <p class="kicker">module library</p>
+    <h2 class="sec-title">6개의 모듈,<br>무한한 조합</h2>
+    <p class="sec-desc">
+      하나의 프로그램을 반복하지 않습니다.
+      고객의 상황에 따라 모듈을 분해하고 배합해 최적의 교육을 설계합니다.
     </p>
-    <div class="hero-btns">
-      <a class="btn-primary" href="#education">교육 여정 보기</a>
-      <a class="btn-outline" href="#contact">문의하기</a>
-    </div>
-    <div class="stat-row">
-      <div class="stat"><b>12</b><span>년 교육·코칭 경력</span></div>
-      <div class="stat-div"></div>
-      <div class="stat"><b>청소년~청년</b><span>전 단계 대상</span></div>
-      <div class="stat-div"></div>
-      <div class="stat"><b>AI 교육</b><span>지역사회 강의 운영</span></div>
+    <div class="modules-preview">
+      <span class="mod-chip mod-chip--green">진로·취업 코칭</span>
+      <span class="mod-chip mod-chip--sky">AI·디지털 활용</span>
+      <span class="mod-chip mod-chip--rose">팀 성과·조직 워크숍</span>
+      <span class="mod-chip mod-chip--indigo">코칭 &amp; 퍼실리테이션</span>
+      <span class="mod-chip mod-chip--warm">5R 리더십</span>
+      <span class="mod-chip mod-chip--purple">기업가정신·창직</span>
     </div>
   </div>
 </section>
 
-<!-- ═══════ EDUCATION ═══════ -->
-<section id="education" class="section bg-white">
-  <div class="wrap">
-
-    <div class="sec-head">
-      <p class="eyebrow teal">IDEN 교육 트랙</p>
-      <h2 class="sec-h2">교육에는 단계가 있습니다</h2>
-      <p class="sec-lead">
-        지금 어디에 있는지를 알아야 올바른 방향으로 나아갈 수 있습니다.<br>
-        20여 가지 교육 주제가 아래 여섯 단계 안에 자연스럽게 담깁니다.
-      </p>
-    </div>
-
-    <!-- 6 Stage Flow -->
-    <ol class="stage-flow">
-
-      <li class="stage-item">
-        <div class="stage-marker">
-          <span class="stage-num">01</span>
-        </div>
-        <div class="stage-body">
-          <h3 class="stage-title">나를 발견하다</h3>
-          <p class="stage-sub">자기이해 · 강점 발견 · 학습 유형 진단</p>
-          <p class="stage-desc">
-            모든 성장의 출발점은 자기 자신을 아는 것입니다.
-            나는 어떤 사람인가, 무엇을 좋아하고 잘하는가.
-            이 질문 없이 시작된 공부와 진로는 오래가지 못합니다.
-          </p>
-          <div class="stage-tags">
-            <span>강점 발견 워크숍</span><span>학습유형 진단</span><span>자기이해 코칭</span>
-          </div>
-        </div>
-      </li>
-
-      <li class="stage-item">
-        <div class="stage-marker">
-          <span class="stage-num">02</span>
-        </div>
-        <div class="stage-body">
-          <h3 class="stage-title">배우는 법을 배우다</h3>
-          <p class="stage-sub">메타인지 · 공부법 · 학습 습관 설계</p>
-          <p class="stage-desc">
-            열심히 하는데 성과가 없다면, 방법의 문제일 수 있습니다.
-            어떻게 공부하느냐가 얼마나 공부하느냐보다 훨씬 중요합니다.
-            12주 공부법 프로그램으로 자신만의 루틴을 만듭니다.
-          </p>
-          <div class="stage-tags">
-            <span>12주 공부법</span><span>메타인지 훈련</span><span>집중력 코칭</span><span>학습습관 설계</span>
-          </div>
-        </div>
-      </li>
-
-      <li class="stage-item">
-        <div class="stage-marker">
-          <span class="stage-num">03</span>
-        </div>
-        <div class="stage-body">
-          <h3 class="stage-title">방향을 찾다</h3>
-          <p class="stage-sub">진로 탐색 · 미래 직업 · 목적의식</p>
-          <p class="stage-desc">
-            "왜 공부해야 하는지 모르겠다"는 말은 진로가 없다는 신호입니다.
-            관심, 재능, 가치관을 연결하면 공부의 이유가 생깁니다.
-            AI 시대의 미래 직업과 변화하는 커리어 경로를 함께 탐색합니다.
-          </p>
-          <div class="stage-tags">
-            <span>진로탐색 코칭</span><span>미래직업 탐구</span><span>가치관 발견</span><span>목적의식 세우기</span>
-          </div>
-        </div>
-      </li>
-
-      <li class="stage-item">
-        <div class="stage-marker">
-          <span class="stage-num">04</span>
-        </div>
-        <div class="stage-body">
-          <h3 class="stage-title">나를 표현하다</h3>
-          <p class="stage-sub">자기소개서 · 면접 · 발표 · 퍼스널 브랜딩</p>
-          <p class="stage-desc">
-            방향을 찾았다면 이제 세상에 나를 보여줄 차례입니다.
-            자소서와 면접에는 나만의 스토리가 필요합니다.
-            단순히 '잘 쓰는 법'이 아니라, 내 이야기를 갖는 과정입니다.
-          </p>
-          <div class="stage-tags">
-            <span>자소서 코칭</span><span>면접 컨설팅</span><span>발표력 훈련</span><span>스피치 코칭</span>
-          </div>
-        </div>
-      </li>
-
-      <li class="stage-item">
-        <div class="stage-marker">
-          <span class="stage-num">05</span>
-        </div>
-        <div class="stage-body">
-          <h3 class="stage-title">디지털 세계를 탐색하다</h3>
-          <p class="stage-sub">AI 활용 · 디지털 리터러시 · 창작과 생산성</p>
-          <p class="stage-desc">
-            AI는 위협이 아닌 도구입니다. 어떻게 쓰느냐가 경쟁력이 됩니다.
-            지역사회와 교육 현장에서 생성형 AI 실습 강의를 진행하고 있습니다.
-            학생부터 일반 시민까지, 현장에서 바로 쓸 수 있는 AI 활용 교육입니다.
-          </p>
-          <div class="stage-tags">
-            <span>생성형 AI 실습</span><span>AI와 나의 미래</span><span>디지털 창작</span><span>지역사회 AI 강의</span>
-          </div>
-        </div>
-      </li>
-
-      <li class="stage-item">
-        <div class="stage-marker">
-          <span class="stage-num">06</span>
-        </div>
-        <div class="stage-body">
-          <h3 class="stage-title">함께 성장하다</h3>
-          <p class="stage-sub">협업 · 소통 · 팀 프로젝트 · 학생 리더십</p>
-          <p class="stage-desc">
-            혼자 잘하는 것과 함께 잘하는 것은 전혀 다른 능력입니다.
-            소통의 기술보다, 함께하는 마음이 먼저입니다.
-            리더십은 직책이 아니라 영향력입니다.
-          </p>
-          <div class="stage-tags">
-            <span>팀 프로젝트 코칭</span><span>조직 소통 워크숍</span><span>학생 리더십</span><span>협업 훈련</span>
-          </div>
-        </div>
-      </li>
-
-    </ol>
-
-    <!-- Stage quiz -->
-    <div class="quiz-box" id="eduQuiz">
-      <p class="quiz-title">지금 어느 단계가 가장 필요한가요?</p>
-      <p class="quiz-sub">해당되는 상황을 선택하면 맞는 단계를 안내드립니다.</p>
-      <div class="quiz-opts">
-        <button class="quiz-opt" data-stage="01" type="button">공부를 어떻게 시작해야 할지 모르겠어요</button>
-        <button class="quiz-opt" data-stage="02" type="button">열심히 하는데 성과가 안 나와요</button>
-        <button class="quiz-opt" data-stage="03" type="button">왜 공부해야 하는지 모르겠어요</button>
-        <button class="quiz-opt" data-stage="04" type="button">자소서·면접 준비가 막막해요</button>
-        <button class="quiz-opt" data-stage="05" type="button">AI를 배우고 싶은데 어디서 시작해야 할지</button>
-        <button class="quiz-opt" data-stage="06" type="button">팀에서, 조직에서 더 잘하고 싶어요</button>
+<!-- ═══════ 04 APPROACH ═══════ -->
+<section class="section section--short" id="approach">
+  <div class="inner reveal">
+    <p class="kicker">how we design</p>
+    <h2 class="sec-title">설계 프로세스</h2>
+    <div class="approach-grid">
+      <div class="approach-card">
+        <div class="approach-card__num">STEP 01</div>
+        <div class="approach-card__title">상황 듣기</div>
+        <div class="approach-card__desc">대상, 인원, 기간, 현재 이슈를 먼저 파악합니다. 교육 목적보다 맥락이 더 중요합니다.</div>
       </div>
-      <div class="quiz-result" id="eduQuizResult" hidden></div>
+      <div class="approach-card">
+        <div class="approach-card__num">STEP 02</div>
+        <div class="approach-card__title">모듈 분해</div>
+        <div class="approach-card__desc">6개 모듈에서 필요한 요소를 꺼내 세부 주제, 활동, 워크시트를 분리합니다.</div>
+      </div>
+      <div class="approach-card">
+        <div class="approach-card__num">STEP 03</div>
+        <div class="approach-card__title">상황에 맞게 배합</div>
+        <div class="approach-card__desc">대상의 수준과 현장 조건에 맞춰 모듈을 조합하고 흐름을 설계합니다.</div>
+      </div>
+      <div class="approach-card">
+        <div class="approach-card__num">STEP 04</div>
+        <div class="approach-card__title">현장에서 조율</div>
+        <div class="approach-card__desc">준비한 강의보다 한 사람 한 사람의 마음이 더 중요합니다. 현장에서 실시간으로 조율합니다.</div>
+      </div>
     </div>
-
   </div>
 </section>
 
-<!-- ═══════ LEADERSHIP ═══════ -->
-<section id="leadership" class="section bg-navy">
-  <div class="wrap">
+<!-- ═══════ 05 PAGES ═══════ -->
+<section class="section section--short" id="pages">
+  <div class="inner reveal">
+    <p class="kicker">explore</p>
+    <h2 class="sec-title">더 알아보기</h2>
+    <p class="sec-desc">네다바웨이의 이야기와 교육 설계를 자세히 살펴보세요.</p>
 
-    <div class="sec-head light">
-      <p class="eyebrow slate">리더십 · 코칭</p>
-      <h2 class="sec-h2">AI 시대, 인간 리더에게<br>남은 것은 무엇인가</h2>
-      <p class="sec-lead">
-        2014년부터 2020년까지 국제인증코치(ICF)로 활동하면서 발견한 것이 있습니다.<br>
-        코칭 스킬보다 그것을 담아낼 내면의 그릇이 훨씬 더 중요하다는 것.
-      </p>
-    </div>
+    <div class="pages-grid">
 
-    <div class="insight-grid">
+      <a class="page-card page-card--featured" href="story.html">
+        <span class="page-card__icon">📖</span>
+        <div>
+          <div class="page-card__title">김창환 이야기</div>
+          <div class="page-card__desc">교육인턴 6회에서 시작해 전국을 순회하며 나만의 프로그램을 만든 10년. 첫 번째 시즌을 정리하고 새로운 문을 여는 이야기.</div>
+        </div>
+        <span class="page-card__arrow">&rarr;</span>
+      </a>
 
-      <div class="insight-card">
-        <div class="insight-icon">◎</div>
-        <h3 class="insight-title">게슈탈트 리더십</h3>
-        <p class="insight-desc">
-          리더십은 기술 이전에 자기 자각(awareness)에서 시작됩니다.
-          지금 이 순간 자신과 상대, 환경과 어떻게 접촉하고 있는가.
-          게슈탈트는 온전한 존재로 현재에 머무는 리더를 말합니다.
-          분리되지 않은 자기 자신, 그것이 진정한 리더의 출발점입니다.
-        </p>
-      </div>
+      <a class="page-card" href="programs.html">
+        <span class="page-card__icon">🧩</span>
+        <div class="page-card__title">교육 설계 포트폴리오</div>
+        <div class="page-card__desc">6개 모듈과 5가지 설계 레시피. 보호종료청년, 공공기관 AI, 특성화고 등 실제 사례.</div>
+        <span class="page-card__arrow">&rarr;</span>
+      </a>
 
-      <div class="insight-card">
-        <div class="insight-icon">⬡</div>
-        <h3 class="insight-title">아들러의 리더십</h3>
-        <p class="insight-desc">
-          아들러는 "우월함을 추구하는 것"이 아닌 "공동체 감각(Gemeinschaftsgefühl)"을
-          성숙의 척도로 보았습니다. 수평적 관계, 격려, 소속감.
-          진정한 리더는 위에서 내려다보는 사람이 아니라
-          옆에서 함께 걷는 사람이라는 것을 아들러는 70년 전에 이미 말했습니다.
-        </p>
-      </div>
+      <a class="page-card" href="company.html">
+        <span class="page-card__icon">🏢</span>
+        <div class="page-card__title">회사소개</div>
+        <div class="page-card__desc">네다바웨이의 연혁, 자격, 서비스 영역, 포트폴리오를 한눈에.</div>
+        <span class="page-card__arrow">&rarr;</span>
+      </a>
 
-      <div class="insight-card">
-        <div class="insight-icon">✦</div>
-        <h3 class="insight-title">바이블이 말하는 성숙한 리더</h3>
-        <p class="insight-desc">
-          "너희 중에 누구든지 크고자 하는 자는 너희를 섬기는 자가 되어야 하리라."<br>
-          겸손과 배려, 정직과 온유. 바이블 전반에 흐르는 리더십 언어는
-          2천 년이 지난 지금도 조직 심리학이 가장 강조하는 덕목과 정확히 일치합니다.
-          성품이 기술을 이기는 이유입니다.
-        </p>
-      </div>
+      <a class="page-card" href="blueprint.html">
+        <span class="page-card__icon">🗺️</span>
+        <div class="page-card__title">운영 설계도</div>
+        <div class="page-card__desc">1인 교육기업의 수주 사이클, 3채널 전략, 콘텐츠 재활용 시스템.</div>
+        <span class="page-card__arrow">&rarr;</span>
+      </a>
+
+      <a class="page-card" href="guide-github-mcp.html">
+        <span class="page-card__icon">⚙️</span>
+        <div class="page-card__title">GitHub &amp; MCP 가이드</div>
+        <div class="page-card__desc">1인기업을 위한 실용 Git 워크플로우와 MCP 활용법.</div>
+        <span class="page-card__arrow">&rarr;</span>
+      </a>
 
     </div>
-
-    <!-- ATD + CARE -->
-    <div class="leader-frame">
-      <div class="frame-half">
-        <h3 class="frame-title">ATD가 지금 강조하는 것</h3>
-        <p class="frame-sub">Association for Talent Development — 세계 최대 인재개발 기관</p>
-        <ul class="frame-list">
-          <li><span class="fl-num">①</span><span><b>감성지능(EQ)</b> — 공감하고 조율하는 능력이 IQ를 앞선다</span></li>
-          <li><span class="fl-num">②</span><span><b>코칭 문화</b> — 지시가 아닌 질문으로 이끄는 조직</span></li>
-          <li><span class="fl-num">③</span><span><b>학습민첩성</b> — 빠르게 배우고 적용하는 능력이 최고의 역량</span></li>
-          <li><span class="fl-num">④</span><span><b>심리적 안전감</b> — 실수와 의견이 안전한 조직이 혁신한다</span></li>
-          <li><span class="fl-num">⑤</span><span><b>포용적 리더십</b> — 다양성을 강점으로 만드는 리더</span></li>
-        </ul>
-      </div>
-      <div class="frame-half">
-        <h3 class="frame-title">CARE 리더십 프레임워크</h3>
-        <p class="frame-sub">심리적 안전감을 만드는 리더의 네 가지 기둥</p>
-        <ul class="care-list">
-          <li><span class="care-letter">C</span><span class="care-word">Compassion</span><span class="care-desc">구성원의 어려움을 진심으로 이해하고 배려합니다</span></li>
-          <li><span class="care-letter">A</span><span class="care-word">Accountability</span><span class="care-desc">말한 것을 지키는 책임감이 신뢰의 기반입니다</span></li>
-          <li><span class="care-letter">R</span><span class="care-word">Resilience</span><span class="care-desc">실패 앞에서 다시 일어서고, 팀이 그렇게 하도록 돕습니다</span></li>
-          <li><span class="care-letter">E</span><span class="care-word">Equity</span><span class="care-desc">공정한 기회와 발언권. 누구나 기여할 수 있는 환경을 만듭니다</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- AI era -->
-    <div class="aiera-box">
-      <h3 class="aiera-title">인공지능 시대, 우리는 무엇을 준비해야 할까요?</h3>
-      <p class="aiera-desc">
-        AI가 분석하고, 작성하고, 예측하는 일을 대신할 수 있습니다.
-        그러나 AI는 진심으로 공감하지 못하고, 가치 판단을 내리지 못하며,
-        의미를 만들어내지 못합니다. 바로 이 지점이 인간 리더의 영역입니다.
-      </p>
-      <div class="aiera-grid">
-        <div class="aiera-item">
-          <div class="aiera-icon">◯</div>
-          <div class="aiera-label">진정성 있는 공감</div>
-          <div class="aiera-note">AI가 대체할 수 없는 인간적 연결</div>
-        </div>
-        <div class="aiera-item">
-          <div class="aiera-icon">◯</div>
-          <div class="aiera-label">가치 기반 판단</div>
-          <div class="aiera-note">옳고 그름을 구별하는 도덕적 용기</div>
-        </div>
-        <div class="aiera-item">
-          <div class="aiera-icon">◯</div>
-          <div class="aiera-label">의미를 만드는 능력</div>
-          <div class="aiera-note">왜 이 일을 하는지 설명하는 리더</div>
-        </div>
-        <div class="aiera-item">
-          <div class="aiera-icon">◯</div>
-          <div class="aiera-label">성숙한 인격</div>
-          <div class="aiera-note">기술이 아닌 존재(being)로 이끄는 힘</div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- ═══════ CHARACTER ═══════ -->
-<section id="character" class="section bg-warm">
-  <div class="wrap">
-
-    <div class="sec-head">
-      <p class="eyebrow sage">인성 · 성품 · 지혜</p>
-      <h2 class="sec-h2">성장의 뿌리는 인성입니다</h2>
-      <p class="sec-lead">
-        아무리 좋은 기술도, 그것을 담아낼 사람이 준비되어 있지 않으면 오래가지 못합니다.<br>
-        지식보다 먼저, 인성과 성품이 필요한 이유입니다.
-      </p>
+<!-- ═══════ 06 CONTACT ═══════ -->
+<section class="section section--short" id="contact">
+  <div class="inner reveal">
+    <p class="kicker">contact</p>
+    <h2 class="sec-title">당신의 상황을<br>먼저 들려주십시오.</h2>
+    <p class="sec-desc">
+      어떤 대상에게, 어떤 상황에서, 무엇이 필요한지 &mdash;
+      편하게 이야기해 주시면 최적의 설계를 제안드립니다.
+    </p>
+    <div class="contact-row">
+      <a class="contact-btn contact-btn--primary" href="mailto:nedabah.way@gmail.com?subject=[교육 문의]">
+        ✉️ nedabah.way@gmail.com
+      </a>
+      <a class="contact-btn contact-btn--outline" href="tel:010-0000-0000" onclick="return false">
+        📞 전화 문의
+      </a>
     </div>
-
-    <div class="char-methods">
-
-      <div class="char-method">
-        <div class="char-num">—</div>
-        <div class="char-body">
-          <h3 class="char-title">하브루타 (Havruta)</h3>
-          <p class="char-desc">
-            하브루타는 2,000년 역사를 가진 유대인의 공부법입니다.
-            두 사람이 짝을 지어 끊임없이 질문하고 대화하며 지식을 내면화합니다.
-            "맞는 답을 찾는 것"이 아니라 "더 좋은 질문을 만드는 것"이 목적입니다.
-            이 방식은 비판적 사고, 경청, 공감, 관계 형성을 자연스럽게 훈련합니다.
-            교육 현장에서 하브루타의 원리를 적용해 학생들이 스스로 생각하게 합니다.
-          </p>
-        </div>
-      </div>
-
-      <div class="char-method">
-        <div class="char-num">—</div>
-        <div class="char-body">
-          <h3 class="char-title">성숙한 인격의 핵심 요소들</h3>
-          <p class="char-desc">
-            게슈탈트 심리학, 아들러, 그리고 바이블이 공통으로 가리키는 방향이 있습니다.
-            자기 자신을 올바르게 보는 능력(자기인식), 타인을 진심으로 존중하는 배려,
-            불편함 앞에서도 옳은 것을 선택하는 용기, 그리고 자신을 조절하는 절제.
-            이 덕목들은 시대를 초월해 "성숙한 사람"을 설명하는 언어입니다.
-          </p>
-        </div>
-      </div>
-
-      <div class="char-method">
-        <div class="char-num">—</div>
-        <div class="char-body">
-          <h3 class="char-title">바이블이 말하는 성숙함</h3>
-          <p class="char-desc">
-            "이는 우리가 이제부터 어린아이가 되지 아니하여 사람의 속임수와
-            간사한 유혹에 빠져 온갖 교훈의 풍조에 밀려 요동하지 않게 하고
-            오직 사랑 안에서 참된 것을 하여 범사에 그에게까지 자랄지라." (에베소서 4:14-15)
-            <br><br>
-            바이블 전반에 흐르는 성숙함의 언어는 자기 비움, 타인을 향한 사랑,
-            흔들리지 않는 중심입니다. 이것은 어떤 시대에도 통하는 인성의 기준입니다.
-          </p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- SBM hint -->
-    <div class="sbm-hint">
-      <div class="sbm-hint-inner">
-        <p class="sbm-hint-eyebrow">더 깊은 내면 성장을 원하신다면</p>
-        <h3 class="sbm-hint-title">SBM — 셀프성경묵상</h3>
-        <p class="sbm-hint-desc">
-          자신의 내면을 올바른 기준으로 관찰하고, 하나님의 의중과 심정을 헤아리는 묵상 방법입니다.
-          성경 말씀이 단순한 지식이 아닌, 살아있는 거울이 되는 경험.
-          인성과 성품의 뿌리를 가장 깊은 곳에서 만나고 싶은 분들께 비전을 제시합니다.
-        </p>
-        <a class="sbm-hint-link" href="mailto:nedabah.way@gmail.com?subject=[SBM 문의]">SBM 더 알아보기 →</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════ CONTACT ═══════ -->
-<section id="contact" class="section bg-white">
-  <div class="wrap">
-
-    <div class="sec-head">
-      <p class="eyebrow">문의</p>
-      <h2 class="sec-h2">함께 시작해봅시다</h2>
-      <p class="sec-lead">
-        어떤 단계에 있든, 어떤 상황이든 — 먼저 이야기 나눠봅시다.<br>
-        남겨주신 내용을 확인하고 빠르게 연락드리겠습니다.
-      </p>
-    </div>
-
-    <form class="contact-form" id="contactForm" novalidate>
-
-      <div class="field-row two-col">
-        <div class="field-group">
-          <label class="field-label" for="cf-name">이름 <span class="req">*</span></label>
-          <input class="field-input" id="cf-name" name="name" type="text" placeholder="홍길동" required />
-        </div>
-        <div class="field-group">
-          <label class="field-label" for="cf-contact">연락처 <span class="req">*</span></label>
-          <input class="field-input" id="cf-contact" name="contact" type="text" placeholder="전화번호 또는 이메일" required />
-        </div>
-      </div>
-
-      <div class="field-group">
-        <label class="field-label">문의 유형 <span class="req">*</span></label>
-        <div class="type-grid" id="typeGrid">
-          <button class="type-btn" data-type="공부법·학습습관" type="button">공부법·학습습관</button>
-          <button class="type-btn" data-type="진로탐색·자기이해" type="button">진로탐색·자기이해</button>
-          <button class="type-btn" data-type="자소서·면접" type="button">자소서·면접</button>
-          <button class="type-btn" data-type="리더십·인성" type="button">리더십·인성</button>
-          <button class="type-btn" data-type="AI 활용 교육" type="button">AI 활용 교육</button>
-          <button class="type-btn" data-type="조직·팀 워크숍" type="button">조직·팀 워크숍</button>
-          <button class="type-btn" data-type="SBM 묵상" type="button">SBM 묵상</button>
-          <button class="type-btn" data-type="기타 문의" type="button">기타 문의</button>
-        </div>
-        <input type="hidden" id="cf-type" name="type" />
-      </div>
-
-      <div class="field-group">
-        <label class="field-label" for="cf-message">문의 내용 <span class="req">*</span></label>
-        <textarea class="field-textarea" id="cf-message" name="message" rows="5"
-          placeholder="어떤 상황인지, 무엇이 필요한지 편하게 적어주세요." required></textarea>
-      </div>
-
-      <div class="form-submit-row">
-        <button class="btn-primary btn-lg" id="cfSubmitBtn" type="submit">문의 남기기</button>
-        <p class="form-note">보내주신 내용은 안전하게 기록되며, 빠른 시일 내에 연락드립니다.</p>
-      </div>
-
-      <div class="form-feedback" id="formFeedback" hidden></div>
-
-    </form>
-
-    <p class="contact-direct">직접 이메일: <a href="mailto:nedabah.way@gmail.com" class="contact-email-link">nedabah.way@gmail.com</a></p>
-
   </div>
 </section>
 
 </main>
 
 <!-- ═══════ FOOTER ═══════ -->
-<footer class="site-footer">
-  <div class="wrap footer-inner">
-    <div class="footer-brand">
-      <p class="footer-logo">네다바웨이</p>
-      <p class="footer-tag">자원하는 마음으로 배우고, 성장하고, 기여합니다</p>
-    </div>
-    <div class="footer-donate">
-      <p class="footer-donate-label">후원 계좌</p>
-      <p class="footer-donate-bank">하나은행 · 예금주 네다바웨이</p>
-      <p class="footer-donate-num" id="acctNumber">927-910009-77504</p>
-      <button class="btn-copy-sm" id="copyAccount" type="button">복사</button>
-      <span class="copy-toast" id="copyToast" aria-live="polite"></span>
-    </div>
-    <p class="footer-copy">© <span id="footerYear"></span> 네다바웨이</p>
+<footer class="footer">
+  <div class="footer__links">
+    <a class="footer__link" href="company.html">회사소개</a>
+    <a class="footer__link" href="programs.html">교육설계</a>
+    <a class="footer__link" href="story.html">이야기</a>
+    <a class="footer__link" href="blueprint.html">설계도</a>
+    <a class="footer__link" href="guide-github-mcp.html">GitHub 가이드</a>
   </div>
+  <p class="footer__brand">네다바웨이</p>
+  <p class="footer__tag">자발적인 마음으로 배우고, 성장하고, 기여합니다</p>
+  <p class="footer__copy">&copy; 2025 네다바웨이 Nedabahway. All rights reserved.</p>
 </footer>
 
-<!-- Floating CTA -->
-<a class="float-cta" href="#contact">문의</a>
+<script>
+/* ── Scroll-driven reveal ── */
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!els.length) return;
+  const io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}
+    });
+  },{threshold:.15});
+  els.forEach(function(el){io.observe(el)});
+})();
 
-<script src="app.js"></script>
+/* ── Nav hide on scroll down, show on scroll up ── */
+(function(){
+  var nav = document.getElementById('mainNav');
+  var last = 0;
+  window.addEventListener('scroll', function(){
+    var y = window.pageYOffset;
+    if(y > last && y > 80) nav.classList.add('hide');
+    else nav.classList.remove('hide');
+    last = y;
+  });
+})();
+</script>
 </body>
 </html>
