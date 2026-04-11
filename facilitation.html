@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>제주 퍼실리테이션 — 네다바웨이 김창환</title>
+<meta name="description" content="제주 전 지역 읍·면·동 주민자치사업계획, 15분 도시 추진 회의, 기관 워크숍. 지역사회 문제해결을 촉진하는 제주 기반 퍼실리테이터 김창환.">
+<meta property="og:title" content="제주 퍼실리테이션 — 네다바웨이">
+<meta property="og:description" content="제주 전지역 읍·면·동 주민자치사업계획(추자도 포함) · 15분 도시 제주 · 기관 워크숍. 지역사회 문제해결 촉진.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nedabah.org/facilitation.html">
+<link rel="canonical" href="https://www.nedabah.org/facilitation.html">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+:root{
+  --c-bg:#0A0A0A;--c-fg:#FAFAFA;--c-mute:#888;--c-dim:#333;
+  --c-acc:#FBBF24;--c-acc2:#F59E0B;--c-acc3:#FDE68A;
+  --c-acc-soft:rgba(251,191,36,.12);
+  --c-ink:#0A0A0A;
+  --ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);
+  line-height:1.7;word-break:keep-all;overflow-wrap:break-word;
+  -webkit-font-smoothing:antialiased;overscroll-behavior:none}
+a{color:var(--c-acc);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,10,10,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);transition:transform .3s}
+.nav.hide{transform:translateY(-100%)}
+.nav__inner{max-width:960px;margin:0 auto;display:flex;align-items:center;
+  justify-content:space-between;padding:14px 24px}
+.nav__logo{font-size:1.1rem;font-weight:800;color:var(--c-fg);letter-spacing:-.03em}
+.nav__logo:hover{text-decoration:none}
+.nav__links{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.nav__link{font-size:.82rem;font-weight:600;color:var(--c-mute);transition:color .2s}
+.nav__link:hover{color:var(--c-fg);text-decoration:none}
+.nav__link.is-active{color:var(--c-acc)}
+.nav__cta{font-size:.78rem;font-weight:700;color:#000;background:var(--c-acc);
+  padding:7px 16px;border-radius:999px;transition:background .2s}
+.nav__cta:hover{background:var(--c-acc2);text-decoration:none}
+@media(max-width:600px){.nav__links{gap:12px}.nav__link{font-size:.75rem}}
+
+/* ── COMMON ── */
+.section{padding:96px 24px 72px;position:relative;overflow:hidden}
+.section--short{padding:72px 24px}
+.inner{max-width:860px;width:100%;margin:0 auto}
+.kicker{font-size:.72rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--c-acc);margin-bottom:16px}
+.sec-title{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:900;line-height:1.25;
+  letter-spacing:-.035em;margin-bottom:18px}
+.sec-desc{color:var(--c-mute);font-size:1rem;line-height:1.85;max-width:640px}
+
+/* ── HERO ── */
+.hero{min-height:88vh;display:flex;align-items:center;justify-content:center;
+  padding:120px 24px 80px;
+  background:radial-gradient(ellipse at 30% 20%,rgba(251,191,36,.14),transparent 55%),
+             radial-gradient(ellipse at 80% 90%,rgba(245,158,11,.08),transparent 60%),
+             var(--c-bg)}
+.hero__inner{max-width:820px}
+.hero__badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:28px;
+  padding:8px 18px;border:1px solid var(--c-acc);border-radius:999px;
+  font-size:.76rem;color:var(--c-acc);font-weight:700;
+  background:var(--c-acc-soft)}
+.hero__badge-dot{width:6px;height:6px;border-radius:50%;background:var(--c-acc);
+  animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.35}}
+.hero__title{font-size:clamp(2.3rem,6.8vw,4rem);font-weight:900;line-height:1.12;
+  letter-spacing:-.05em;margin-bottom:28px}
+.hero__title .em{color:var(--c-acc)}
+.hero__sub{font-size:clamp(1rem,2.3vw,1.2rem);color:#BBB;line-height:1.8;
+  max-width:600px;font-weight:400;margin-bottom:40px}
+.hero__sub strong{color:var(--c-fg);font-weight:700}
+.hero__cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.hero__cta{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;
+  border-radius:999px;font-weight:700;font-size:.92rem;transition:.2s}
+.hero__cta--primary{background:var(--c-acc);color:#000}
+.hero__cta--primary:hover{background:var(--c-acc2);text-decoration:none;transform:translateY(-2px)}
+.hero__cta--outline{border:1px solid var(--c-dim);color:var(--c-fg)}
+.hero__cta--outline:hover{border-color:var(--c-acc);color:var(--c-acc);text-decoration:none}
+
+/* ── STATS STRIP ── */
+.strip{background:#111;border-top:1px solid var(--c-dim);border-bottom:1px solid var(--c-dim);
+  padding:40px 24px}
+.strip__grid{max-width:860px;margin:0 auto;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:28px}
+.strip__item{text-align:center}
+.strip__num{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;letter-spacing:-.03em;
+  background:linear-gradient(135deg,var(--c-acc),var(--c-acc3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.strip__label{font-size:.78rem;color:var(--c-mute);margin-top:4px;font-weight:500}
+
+/* ── EVIDENCE CARDS (핵심 경험 3가지) ── */
+.evidence-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:40px}
+@media(min-width:720px){.evidence-grid{grid-template-columns:repeat(3,1fr)}}
+.evidence{padding:30px 26px;background:#111;border:1px solid var(--c-dim);
+  border-radius:16px;position:relative;overflow:hidden;
+  transition:transform .3s,border-color .3s}
+.evidence::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--c-acc)}
+.evidence:hover{transform:translateY(-4px);border-color:var(--c-acc)}
+.evidence__num{font-size:.72rem;font-weight:700;letter-spacing:.2em;color:var(--c-acc);
+  text-transform:uppercase;margin-bottom:10px}
+.evidence__title{font-size:1.15rem;font-weight:800;letter-spacing:-.02em;
+  margin-bottom:14px;line-height:1.35}
+.evidence__desc{font-size:.92rem;color:#AAA;line-height:1.75;margin-bottom:16px}
+.evidence__meta{font-size:.78rem;color:var(--c-mute);padding-top:14px;
+  border-top:1px solid var(--c-dim)}
+.evidence__meta strong{color:var(--c-acc3);font-weight:700}
+
+/* ── PHILOSOPHY ── */
+.philosophy{background:#0E0E0E}
+.philosophy__quote{font-size:clamp(1.15rem,2.7vw,1.5rem);font-weight:700;
+  line-height:1.65;letter-spacing:-.02em;color:var(--c-fg);
+  padding:28px 0 22px;border-left:3px solid var(--c-acc);padding-left:26px;
+  margin:28px 0}
+.philosophy__quote .em{color:var(--c-acc)}
+.principles{display:grid;grid-template-columns:1fr;gap:14px;margin-top:30px}
+@media(min-width:640px){.principles{grid-template-columns:1fr 1fr}}
+.principle{padding:22px 24px;background:#111;border:1px solid var(--c-dim);border-radius:12px}
+.principle__label{font-size:.72rem;font-weight:700;letter-spacing:.15em;
+  color:var(--c-acc);text-transform:uppercase;margin-bottom:8px}
+.principle__title{font-size:1.02rem;font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
+.principle__text{font-size:.88rem;color:#AAA;line-height:1.7}
+
+/* ── DOMAINS (의뢰 가능 영역) ── */
+.domains-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:34px}
+@media(min-width:640px){.domains-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.domains-grid{grid-template-columns:repeat(4,1fr)}}
+.domain{padding:24px 22px;background:#111;border:1px solid var(--c-dim);
+  border-radius:14px;text-align:center;transition:.3s}
+.domain:hover{border-color:var(--c-acc);background:#151210}
+.domain__icon{font-size:2rem;margin-bottom:10px}
+.domain__title{font-size:.96rem;font-weight:800;margin-bottom:8px;letter-spacing:-.01em}
+.domain__text{font-size:.8rem;color:var(--c-mute);line-height:1.6}
+
+/* ── PROCESS (운영 방식) ── */
+.process{background:#0E0E0E}
+.steps{display:grid;grid-template-columns:1fr;gap:16px;margin-top:34px;
+  counter-reset:step}
+@media(min-width:720px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{padding:26px 22px;background:#111;border:1px solid var(--c-dim);
+  border-radius:14px;position:relative;counter-increment:step}
+.step::before{content:counter(step,decimal-leading-zero);position:absolute;top:18px;right:20px;
+  font-size:1.5rem;font-weight:900;color:var(--c-acc);opacity:.35;letter-spacing:-.04em}
+.step__title{font-size:1rem;font-weight:800;margin-bottom:8px;letter-spacing:-.01em;
+  padding-right:40px}
+.step__text{font-size:.85rem;color:#AAA;line-height:1.7}
+
+/* ── CTA ── */
+.cta{background:linear-gradient(135deg,#1a1408 0%,#0A0A0A 100%);
+  border-top:1px solid var(--c-dim);border-bottom:1px solid var(--c-dim)}
+.cta__title{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;
+  letter-spacing:-.03em;line-height:1.3;margin-bottom:16px}
+.cta__title .em{color:var(--c-acc)}
+.cta__desc{color:#BBB;font-size:1rem;line-height:1.8;margin-bottom:32px;max-width:560px}
+.cta__row{display:flex;gap:12px;flex-wrap:wrap}
+.cta__btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;
+  border-radius:999px;font-weight:700;font-size:.92rem;transition:.2s}
+.cta__btn--primary{background:var(--c-acc);color:#000}
+.cta__btn--primary:hover{background:var(--c-acc2);text-decoration:none;transform:translateY(-2px)}
+.cta__btn--outline{border:1px solid var(--c-dim);color:var(--c-fg)}
+.cta__btn--outline:hover{border-color:var(--c-acc);color:var(--c-acc);text-decoration:none}
+
+/* ── FOOTER ── */
+.footer{background:#080808;padding:50px 24px 36px;text-align:center;
+  border-top:1px solid var(--c-dim)}
+.footer__links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+.footer__link{font-size:.78rem;color:var(--c-mute);font-weight:600}
+.footer__link:hover{color:var(--c-acc);text-decoration:none}
+.footer__brand{font-size:1rem;font-weight:800;color:var(--c-fg);margin-bottom:6px;letter-spacing:-.02em}
+.footer__tag{font-size:.78rem;color:var(--c-mute);margin-bottom:14px}
+.footer__copy{font-size:.72rem;color:#555}
+
+/* ── Reveal animation ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero__badge-dot{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAV ═══════ -->
+<nav class="nav" id="mainNav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="index.html">네다바웨이</a>
+    <div class="nav__links">
+      <a class="nav__link" href="iden.html">IDEN</a>
+      <a class="nav__link" href="programs.html">교육설계</a>
+      <a class="nav__link is-active" href="facilitation.html">퍼실리테이션</a>
+      <a class="nav__link" href="portfolio.html">포트폴리오</a>
+      <a class="nav__link" href="company.html">회사소개</a>
+      <a class="nav__cta" href="mailto:nedabah.way@gmail.com?subject=[퍼실리테이션 의뢰]">의뢰하기</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <div class="hero__inner reveal">
+    <div class="hero__badge">
+      <span class="hero__badge-dot"></span>
+      path 03 &middot; community facilitation
+    </div>
+    <h1 class="hero__title">
+      제주에서 가장 많이<br>
+      <span class="em">불려간</span> 퍼실리테이터.
+    </h1>
+    <p class="hero__sub">
+      제주 전 지역 읍·면·동 주민자치사업계획(추자도 포함),<br>
+      15분 도시 제주 지역별 회의, 기관 워크숍까지 &mdash;<br>
+      <strong>지역사회의 문제해결을 촉진</strong>하는 일을 해왔습니다.
+    </p>
+    <div class="hero__cta-row">
+      <a class="hero__cta hero__cta--primary" href="#contact">의뢰 문의하기 &rarr;</a>
+      <a class="hero__cta hero__cta--outline" href="#evidence">활동 경험 보기</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ STATS STRIP ═══════ -->
+<div class="strip">
+  <div class="strip__grid reveal">
+    <div class="strip__item">
+      <div class="strip__num">全지역</div>
+      <div class="strip__label">제주 읍·면·동 퍼실</div>
+    </div>
+    <div class="strip__item">
+      <div class="strip__num">추자도</div>
+      <div class="strip__label">도서 지역까지</div>
+    </div>
+    <div class="strip__item">
+      <div class="strip__num">ACC</div>
+      <div class="strip__label">국제코칭연맹 인증</div>
+    </div>
+    <div class="strip__item">
+      <div class="strip__num">2급</div>
+      <div class="strip__label">액션러닝 퍼실리테이터</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ EVIDENCE (핵심 경험 3가지) ═══════ -->
+<section class="section" id="evidence">
+  <div class="inner reveal">
+    <p class="kicker">core experience</p>
+    <h2 class="sec-title">제주 현장에서<br>해온 일들.</h2>
+    <p class="sec-desc">
+      화려한 프레젠테이션이 아니라, 실제 제주 지역사회 현장에서
+      주민·공무원·전문가들과 함께 만들어 온 결과물입니다.
+    </p>
+
+    <div class="evidence-grid">
+
+      <div class="evidence">
+        <div class="evidence__num">01</div>
+        <div class="evidence__title">제주 읍·면·동<br>주민자치사업계획</div>
+        <div class="evidence__desc">
+          제주도청 예산·추진 사업으로 제주 전 지역 읍·면·동을 돌며
+          주민자치사업 수립을 퍼실리테이션. 추자도 같은 도서 지역까지 포함.
+        </div>
+        <div class="evidence__meta">발주 <strong>제주특별자치도청</strong> · 대상 전 읍·면·동 주민자치위원회</div>
+      </div>
+
+      <div class="evidence">
+        <div class="evidence__num">02</div>
+        <div class="evidence__title">15분 도시 제주<br>지역별 추진 회의</div>
+        <div class="evidence__desc">
+          제주도가 추진한 '15분 도시 제주' 정책의 지역별 주민 회의에서
+          퍼실리테이터로 활동. 시민 의견을 정책 언어로 구조화.
+        </div>
+        <div class="evidence__meta">정책 파트너십 <strong>제주특별자치도</strong> · 시민 참여형 도시계획</div>
+      </div>
+
+      <div class="evidence">
+        <div class="evidence__num">03</div>
+        <div class="evidence__title">기관 워크숍 &middot;<br>협업 프로젝트</div>
+        <div class="evidence__desc">
+          제주더큰내일센터 초기 세팅(참여자 관리 지침 수립, 기업 프로젝트 설계,
+          협업기관 업무협약), 공공기관·비영리 워크숍 설계·진행.
+        </div>
+        <div class="evidence__meta">과거 근무 <strong>제주더큰내일센터</strong> · 현재 외부 설계·진행</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PHILOSOPHY ═══════ -->
+<section class="section section--short philosophy" id="philosophy">
+  <div class="inner reveal">
+    <p class="kicker">philosophy</p>
+    <h2 class="sec-title">퍼실리테이션에 대한<br>관점.</h2>
+
+    <blockquote class="philosophy__quote">
+      퍼실리테이션은 <span class="em">사회자가 아니라 설계자</span>의 일입니다.<br>
+      주민이 스스로 말하게 만드는 구조,<br>
+      그 말이 <span class="em">정책으로 이어지는 경로</span>까지 함께 설계합니다.
+    </blockquote>
+
+    <div class="principles">
+      <div class="principle">
+        <div class="principle__label">Principle 01</div>
+        <div class="principle__title">문제 정의부터 함께</div>
+        <div class="principle__text">
+          '이미 정해진 안'을 설명하는 회의가 아니라,
+          진짜 문제가 무엇인지부터 참여자와 같이 정의합니다.
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle__label">Principle 02</div>
+        <div class="principle__title">현장의 언어 → 정책의 언어</div>
+        <div class="principle__text">
+          주민의 삶에서 나온 말을 흘려보내지 않고,
+          의사결정에 쓸 수 있는 형태로 구조화합니다.
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle__label">Principle 03</div>
+        <div class="principle__title">모두가 말할 수 있는 자리</div>
+        <div class="principle__text">
+          목소리 큰 사람에게 회의가 끌려가지 않도록 &mdash;
+          조용한 참여자의 의견도 수면 위로 올립니다.
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle__label">Principle 04</div>
+        <div class="principle__title">결과가 남는 회의</div>
+        <div class="principle__text">
+          "좋은 이야기 나눴다"로 끝나지 않습니다.
+          실행 주체·기한·후속 조치까지 문서로 정리해 드립니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DOMAINS (의뢰 가능 영역) ═══════ -->
+<section class="section" id="domains">
+  <div class="inner reveal">
+    <p class="kicker">what we facilitate</p>
+    <h2 class="sec-title">의뢰 가능한 영역.</h2>
+    <p class="sec-desc">
+      지자체·공공기관·비영리·마을 공동체 &mdash; 제주에서 지역사회 문제해결이
+      필요한 곳이라면 어디든 함께 설계하고 진행합니다.
+    </p>
+
+    <div class="domains-grid">
+      <div class="domain">
+        <div class="domain__icon">🏘️</div>
+        <div class="domain__title">주민참여 계획수립</div>
+        <div class="domain__text">마을·읍면동 단위<br>자치사업 설계</div>
+      </div>
+      <div class="domain">
+        <div class="domain__icon">🗳️</div>
+        <div class="domain__title">정책 공론화</div>
+        <div class="domain__text">시민 의견 구조화<br>→ 정책 제안</div>
+      </div>
+      <div class="domain">
+        <div class="domain__icon">🤝</div>
+        <div class="domain__title">갈등조정·대화</div>
+        <div class="domain__text">이해관계자 간<br>합의형성 워크숍</div>
+      </div>
+      <div class="domain">
+        <div class="domain__icon">🎯</div>
+        <div class="domain__title">기관 팀빌딩</div>
+        <div class="domain__text">조직 진단·비전 수립<br>팀 성과 회의</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PROCESS ═══════ -->
+<section class="section section--short process" id="process">
+  <div class="inner reveal">
+    <p class="kicker">how we work</p>
+    <h2 class="sec-title">진행 방식.</h2>
+    <p class="sec-desc">
+      의뢰 → 사전 협의 → 설계 → 진행 → 결과 정리.
+      모든 단계에 발주처와의 소통을 최우선으로 합니다.
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step__title">사전 협의</div>
+        <div class="step__text">
+          목적·참여자·기대 결과를
+          먼저 맞춥니다. 무리한 목표는
+          솔직하게 재설정 제안.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__title">워크숍 설계</div>
+        <div class="step__text">
+          참여자 특성·시간 제약·의사결정
+          구조에 맞춘 맞춤형 진행안
+          작성.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__title">현장 진행</div>
+        <div class="step__text">
+          퍼실리테이터로 중립적 진행.
+          다양한 의견을 균형 있게
+          끌어올리는 데 집중.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__title">결과 정리</div>
+        <div class="step__text">
+          논의 내용·합의 사항·
+          후속 과제를 문서로 정리해
+          전달. 발주처가 바로 활용
+          가능하도록.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CTA ═══════ -->
+<section class="section section--short cta" id="contact">
+  <div class="inner reveal">
+    <p class="kicker">contact</p>
+    <h2 class="cta__title">
+      현장의 대화가<br>
+      <span class="em">결과</span>로 이어지게.
+    </h2>
+    <p class="cta__desc">
+      어떤 기관에서, 어떤 주제로, 몇 명 규모의 어떤 상황인지 &mdash;
+      먼저 편하게 말씀해 주시면 적합한 설계 방식을 제안드립니다.
+    </p>
+    <div class="cta__row">
+      <a class="cta__btn cta__btn--primary" href="mailto:nedabah.way@gmail.com?subject=[퍼실리테이션 의뢰]">
+        ✉️ 퍼실리테이션 의뢰
+      </a>
+      <a class="cta__btn cta__btn--outline" href="portfolio.html">
+        📋 이전 사례 보기
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+  <div class="footer__links">
+    <a class="footer__link" href="index.html">홈</a>
+    <a class="footer__link" href="iden.html">IDEN</a>
+    <a class="footer__link" href="programs.html">교육설계</a>
+    <a class="footer__link" href="portfolio.html">포트폴리오</a>
+    <a class="footer__link" href="story.html">이야기</a>
+    <a class="footer__link" href="company.html">회사소개</a>
+  </div>
+  <p class="footer__brand">네다바웨이</p>
+  <p class="footer__tag">자발적인 마음으로 배우고, 성장하고, 기여합니다</p>
+  <p class="footer__copy">&copy; 2025 네다바웨이 Nedabahway. All rights reserved.</p>
+</footer>
+
+<script>
+/* Scroll-driven reveal */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!els.length) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}
+    });
+  },{threshold:.12});
+  els.forEach(function(el){io.observe(el)});
+})();
+
+/* Nav hide on scroll down */
+(function(){
+  var nav = document.getElementById('mainNav');
+  if(!nav) return;
+  var last = 0;
+  window.addEventListener('scroll', function(){
+    var y = window.pageYOffset;
+    if(y > last && y > 80) nav.classList.add('hide');
+    else nav.classList.remove('hide');
+    last = y;
+  });
+})();
+</script>
+</body>
+</html>

@@ -120,7 +120,33 @@ a:hover{text-decoration:underline}
 .top-bar__btn:hover{background:var(--c-acc);color:#000;border-color:var(--c-acc);text-decoration:none}
 .top-bar__btn--iden{background:rgba(96,165,250,.12);color:#93C5FD;border-color:rgba(96,165,250,.35)}
 .top-bar__btn--iden:hover{background:#60A5FA;color:#000;border-color:#60A5FA}
+.top-bar__btn--facil{background:rgba(251,191,36,.12);color:#FCD34D;border-color:rgba(251,191,36,.35)}
+.top-bar__btn--facil:hover{background:#FBBF24;color:#000;border-color:#FBBF24}
 @media print{.top-bar{display:none}}
+
+/* JEJU INSTITUTIONS STRIP */
+.jeju-inst{margin-top:40px;padding:30px 28px;
+  background:linear-gradient(135deg,#0E1420 0%,#0A0A0A 100%);
+  border:1px solid rgba(129,140,248,.28);border-radius:18px}
+.jeju-inst__label{font-size:.72rem;font-weight:700;letter-spacing:.2em;
+  color:var(--c-acc);text-transform:uppercase;margin-bottom:10px}
+.jeju-inst__title{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:900;
+  letter-spacing:-.025em;line-height:1.35;margin-bottom:14px}
+.jeju-inst__desc{font-size:.9rem;color:var(--c-mute);line-height:1.8;margin-bottom:22px}
+.jeju-inst__tags{display:flex;flex-wrap:wrap;gap:8px}
+.jeju-inst__tag{font-size:.74rem;font-weight:700;padding:6px 12px;
+  background:rgba(129,140,248,.1);color:#C7D2FE;
+  border:1px solid rgba(129,140,248,.25);border-radius:999px}
+
+/* B2B VALUE PROP STRIP */
+.b2b-strip{display:grid;grid-template-columns:1fr;gap:14px;margin-top:36px}
+@media(min-width:720px){.b2b-strip{grid-template-columns:repeat(3,1fr)}}
+.b2b-card{padding:24px 22px;background:#111;border:1px solid var(--c-dim);
+  border-radius:14px;border-top:3px solid var(--c-acc)}
+.b2b-card__num{font-size:.7rem;font-weight:800;letter-spacing:.2em;
+  color:var(--c-acc);margin-bottom:8px}
+.b2b-card__title{font-size:1rem;font-weight:800;margin-bottom:10px;letter-spacing:-.02em}
+.b2b-card__text{font-size:.85rem;color:#AAA;line-height:1.7}
 
 /* IDEN cross-link banner */
 .iden-banner{margin:48px 0 0;padding:28px 28px;border-radius:18px;
@@ -166,9 +192,10 @@ a:hover{text-decoration:underline}
 <div class="top-bar">
   <a href="/" class="top-bar__home">&larr; 네다바웨이 홈</a>
   <div class="top-bar__actions">
-    <a href="iden.html" class="top-bar__btn top-bar__btn--iden">🧠 IDEN (학생 프로그램)</a>
+    <a href="iden.html" class="top-bar__btn top-bar__btn--iden">🧠 IDEN (학생)</a>
+    <a href="facilitation.html" class="top-bar__btn top-bar__btn--facil">🏝️ 퍼실리테이션</a>
     <a href="portfolio.html" class="top-bar__btn">📋 포트폴리오</a>
-    <a href="story.html" class="top-bar__btn">✍️ 김창환 이야기</a>
+    <a href="story.html" class="top-bar__btn">✍️ 이야기</a>
     <a href="company.html" class="top-bar__btn">🏢 회사소개</a>
     <button class="top-bar__btn" onclick="window.print()">📄 PDF 저장</button>
   </div>
@@ -177,9 +204,59 @@ a:hover{text-decoration:underline}
 <!-- Hero -->
 <section class="section" id="s-hero">
 <div class="inner fade-up">
-  <div class="kicker">education portfolio</div>
-  <h1 class="hero-title">교육은 <b>정해진 메뉴</b>가 아니라,<br>고객의 상황에 맞춘 <b>설계</b>입니다.</h1>
-  <p class="hero-sub">현장마다 사람이 다르고, 팀마다 필요가 다릅니다.<br>같은 주제라도 대상·맥락·목표에 따라 교육은 완전히 달라져야 합니다.</p>
+  <div class="kicker">for organizations · b2b education design</div>
+  <h1 class="hero-title">기관에는 <b>표준 제안서</b>가 아니라,<br>상황에 맞춘 <b>설계</b>가 필요합니다.</h1>
+  <p class="hero-sub">
+    기업 · 공공기관 · 비영리 · 학교 · 자치단체 &mdash;<br>
+    대상과 목표가 다르면 교육도 완전히 달라야 합니다.
+    네다바웨이는 표준 커리큘럼을 납품하지 않고,
+    <b>기관의 현장에 맞게 배합</b>합니다.
+  </p>
+
+  <div class="b2b-strip">
+    <div class="b2b-card">
+      <div class="b2b-card__num">01</div>
+      <div class="b2b-card__title">B2B 전용 설계</div>
+      <div class="b2b-card__text">
+        개인 판매형 강의가 아니라, 기관 담당자가 실제 성과를 보고할 수 있는
+        교육을 함께 설계합니다.
+      </div>
+    </div>
+    <div class="b2b-card">
+      <div class="b2b-card__num">02</div>
+      <div class="b2b-card__title">제주 기반 · 전국 가능</div>
+      <div class="b2b-card__text">
+        제주 현장에서 다져온 설계 역량을 기본으로, 조건이 맞으면
+        제주 외 지역 출강도 가능합니다.
+      </div>
+    </div>
+    <div class="b2b-card">
+      <div class="b2b-card__num">03</div>
+      <div class="b2b-card__title">1인 기업의 책임</div>
+      <div class="b2b-card__text">
+        설계부터 강의·피드백·결과 정리까지 한 사람이 책임집니다.
+        외주·재하청 없음.
+      </div>
+    </div>
+  </div>
+
+  <div class="jeju-inst">
+    <div class="jeju-inst__label">jeju institutions experience</div>
+    <div class="jeju-inst__title">제주 기관·지자체와 이미<br>함께 일해온 파트너입니다.</div>
+    <div class="jeju-inst__desc">
+      제주도청 예산 사업으로 전 읍·면·동 주민자치사업계획 퍼실리테이션(추자도 포함),
+      15분 도시 제주 추진 지역별 회의, 제주더큰내일센터 초기 세팅,
+      제주 중·고등학교 99% 출강 &mdash; 제주 현장을 가장 많이 다녀본 교육·퍼실리테이터입니다.
+    </div>
+    <div class="jeju-inst__tags">
+      <span class="jeju-inst__tag">제주특별자치도청</span>
+      <span class="jeju-inst__tag">제주 읍·면·동 주민자치</span>
+      <span class="jeju-inst__tag">15분 도시 제주</span>
+      <span class="jeju-inst__tag">제주더큰내일센터</span>
+      <span class="jeju-inst__tag">제주 중·고등학교</span>
+      <span class="jeju-inst__tag">지역 자활센터</span>
+    </div>
+  </div>
 </div>
 </section>
 

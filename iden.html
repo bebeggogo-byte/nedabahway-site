@@ -178,6 +178,37 @@ a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
 .footer__brand{font-size:1rem;font-weight:800;margin-bottom:4px}
 .footer__copy{font-size:.72rem;color:#555}
 
+/* WHO (대상) */
+.who-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:30px}
+@media(min-width:640px){.who-grid{grid-template-columns:1fr 1fr 1fr}}
+.who-card{padding:24px 22px;background:#111;border:1px solid var(--dim);
+  border-radius:14px;transition:border-color .3s}
+.who-card:hover{border-color:var(--brand)}
+.who-card__icon{font-size:1.8rem;margin-bottom:10px}
+.who-card__title{font-size:1rem;font-weight:800;margin-bottom:8px;letter-spacing:-.02em;
+  color:var(--brand)}
+.who-card__text{font-size:.86rem;color:#AAA;line-height:1.7}
+.who-card__text strong{color:var(--fg);font-weight:700}
+
+/* JEJU CONTEXT STRIP */
+.jeju-strip{margin-top:36px;padding:26px 28px;background:#0E1A13;
+  border:1px solid rgba(74,222,128,.22);border-radius:14px;
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.jeju-strip__icon{font-size:2rem;flex-shrink:0}
+.jeju-strip__body{flex:1;min-width:240px}
+.jeju-strip__title{font-size:.96rem;font-weight:800;margin-bottom:6px;color:var(--brand)}
+.jeju-strip__text{font-size:.85rem;color:#BBB;line-height:1.7}
+.jeju-strip__text strong{color:var(--fg)}
+
+/* FAQ */
+.faq{margin-top:30px}
+.faq__item{border-bottom:1px solid var(--dim);padding:20px 0}
+.faq__item:last-child{border-bottom:none}
+.faq__q{font-size:1rem;font-weight:800;color:var(--fg);margin-bottom:10px;
+  letter-spacing:-.02em;display:flex;align-items:flex-start;gap:10px}
+.faq__q::before{content:'Q.';color:var(--brand);flex-shrink:0;font-weight:900}
+.faq__a{font-size:.9rem;color:#AAA;line-height:1.8;padding-left:22px}
+
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -198,6 +229,7 @@ a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
     <div class="nav__links">
       <a class="nav__link nav__link--active" href="iden.html">IDEN</a>
       <a class="nav__link" href="programs.html">교육설계</a>
+      <a class="nav__link" href="facilitation.html">퍼실리테이션</a>
       <a class="nav__link" href="portfolio.html">포트폴리오</a>
       <a class="nav__link" href="story.html">이야기</a>
       <a class="nav__cta" href="mailto:nedabah.way@gmail.com?subject=[IDEN 문의]">문의하기</a>
@@ -358,6 +390,60 @@ a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
   </div>
 </section>
 
+<!-- ═══ S5.5: WHO (누구를 위한) ═══ -->
+<section class="section" id="who">
+  <div class="inner reveal">
+    <p class="kicker">who it's for</p>
+    <h2 class="sec-title">누구에게<br>필요한 교육인가.</h2>
+    <p class="sec-desc">
+      학습법·진로·리더십 같은 겉 주제가 아닙니다. IDEN은 그 이전의
+      <strong>'사람 준비'</strong>가 필요한 학생·교사·학부모를 위한 프로그램입니다.
+    </p>
+
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="who-card__icon">🧒</div>
+        <div class="who-card__title">학생</div>
+        <div class="who-card__text">
+          <strong>"공부는 하는데 왜 하는지 모르겠다"</strong>,
+          친구 관계가 어렵다, 나를 잘 모르겠다 &mdash;
+          겉 성적이 아니라 내면의 힘이 필요한 학생.
+        </div>
+      </div>
+      <div class="who-card">
+        <div class="who-card__icon">👩‍🏫</div>
+        <div class="who-card__title">학교 · 담당자</div>
+        <div class="who-card__text">
+          <strong>단발성 특강이 아닌 변화</strong>를 만들고 싶은
+          진로 담당 선생님, 학년부장, 상담 교사,
+          청소년 기관 담당자.
+        </div>
+      </div>
+      <div class="who-card">
+        <div class="who-card__icon">👨‍👩‍👧</div>
+        <div class="who-card__title">학부모</div>
+        <div class="who-card__text">
+          성적 너머 <strong>아이의 자기 이해와 관계 능력</strong>을
+          함께 키우고 싶은 학부모.
+          제주 로컬 기반 강사를 찾는 경우.
+        </div>
+      </div>
+    </div>
+
+    <div class="jeju-strip">
+      <div class="jeju-strip__icon">🏝️</div>
+      <div class="jeju-strip__body">
+        <div class="jeju-strip__title">제주 현장에 뿌리내린 프로그램</div>
+        <div class="jeju-strip__text">
+          <strong>2020년부터 제주 중·고등학교 99% 방문.</strong>
+          제주 학생들의 실제 고민·진로 환경·지역 특성을 반영해
+          설계된 IDEN은, 서울발 표준 커리큘럼이 놓치는 지점을 채웁니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ S6: OPERATION ═══ -->
 <section class="section" id="operation">
   <div class="inner reveal">
@@ -401,6 +487,70 @@ a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
   </div>
 </section>
 
+<!-- ═══ S7.5: FAQ ═══ -->
+<section class="section" id="faq">
+  <div class="inner reveal">
+    <p class="kicker">frequently asked</p>
+    <h2 class="sec-title">자주 묻는 질문.</h2>
+
+    <div class="faq">
+      <div class="faq__item">
+        <div class="faq__q">IDEN과 기존 진로·학습법 특강은 무엇이 다른가요?</div>
+        <div class="faq__a">
+          기존 특강이 '무엇을 해야 하는지'를 알려준다면, IDEN은 그 이전에
+          '<strong>나는 누구이고 왜 움직이는가</strong>'를 먼저 정리합니다.
+          자아 이해 → 강점 분석 → 관계·코칭 → 글 읽기의 4단계로,
+          학생이 스스로 설계자가 되도록 돕습니다.
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <div class="faq__q">몇 명 규모까지 가능한가요?</div>
+        <div class="faq__a">
+          <strong>학급 단위(25~35명)</strong>가 기본이지만, 강당 규모 학년 단위(100~300명)
+          특강, 소규모 캠프(10~20명)까지 모두 가능합니다. 규모에 따라
+          워크시트·활동·피드백 방식을 다르게 설계합니다.
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <div class="faq__q">제주 외 지역도 출강하시나요?</div>
+        <div class="faq__a">
+          기본 거점은 제주이며 <strong>제주도 내 우선 대응</strong>합니다.
+          제주 외 지역은 일정·규모·이동 조건을 사전 협의 후 가능합니다.
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <div class="faq__q">단발성 특강만 가능한가요, 장기도 가능한가요?</div>
+        <div class="faq__a">
+          둘 다 가능합니다. <strong>2~4교시 단독 특강</strong>부터
+          <strong>2~3일 캠프</strong>, <strong>4~12주 장기 프로그램</strong>까지
+          학교 일정과 예산에 맞춰 배합합니다.
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <div class="faq__q">파일럿 무료 진행이 진짜인가요?</div>
+        <div class="faq__a">
+          네. 새로 개편된 IDEN 프로그램의 현장 검증을 위해
+          <strong>1~2개교에 한해 파일럿을 무료로 진행</strong>합니다.
+          사전 협의 후 가능 여부를 결정하며, 추후 후기·피드백 공유에 협조해 주시면 됩니다.
+        </div>
+      </div>
+
+      <div class="faq__item">
+        <div class="faq__q">학부모·교사 대상 연수도 되나요?</div>
+        <div class="faq__a">
+          네. IDEN의 '자아 이해·강점 분석·코칭 대화' 모듈은
+          <strong>교사 연수</strong>와 <strong>학부모 특강</strong>으로도
+          재설계하여 운영합니다. 문의 시 대상을 알려주시면 됩니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ S8: CTA ═══ -->
 <section class="section" style="border-top:none">
   <div class="inner reveal">
@@ -429,6 +579,7 @@ a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
   <div class="footer__links">
     <a class="footer__link" href="/">홈</a>
     <a class="footer__link" href="programs.html">교육설계</a>
+    <a class="footer__link" href="facilitation.html">퍼실리테이션</a>
     <a class="footer__link" href="portfolio.html">포트폴리오</a>
     <a class="footer__link" href="company.html">회사소개</a>
     <a class="footer__link" href="story.html">이야기</a>
