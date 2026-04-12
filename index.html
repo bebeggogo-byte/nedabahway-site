@@ -442,14 +442,25 @@ a:hover{text-decoration:underline}
       어떤 대상에게, 어떤 상황에서, 무엇이 필요한지 &mdash;
       편하게 이야기해 주시면 최적의 설계를 제안드립니다.
     </p>
-    <form id="contactForm" style="margin-top:28px;display:flex;flex-direction:column;gap:12px;max-width:520px">
+    <form id="contactForm"
+      action="https://formsubmit.co/nedabah.way@gmail.com"
+      method="POST"
+      style="margin-top:28px;display:flex;flex-direction:column;gap:12px;max-width:520px">
+      <!-- Formsubmit 설정 (계정·API키 불필요 · 완전 무료) -->
+      <input type="hidden" name="_subject" value="[네다바웨이] 새 문의가 도착했습니다">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://nedabah.org/?sent=1">
+      <input type="hidden" name="_captcha" value="false">
+      <!-- 봇 방지 -->
+      <input type="text" name="_honey" style="display:none">
+
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <input id="cf-name" type="text" placeholder="이름 *" required
+        <input name="이름" type="text" placeholder="이름 *" required
           style="padding:11px 14px;border:1px solid var(--c-dim);border-radius:8px;background:#111;color:var(--c-fg);font-size:.88rem;font-family:inherit;outline:none">
-        <input id="cf-contact" type="text" placeholder="연락처 (전화 또는 이메일) *" required
+        <input name="연락처" type="text" placeholder="전화 또는 이메일 *" required
           style="padding:11px 14px;border:1px solid var(--c-dim);border-radius:8px;background:#111;color:var(--c-fg);font-size:.88rem;font-family:inherit;outline:none">
       </div>
-      <select id="cf-type" required
+      <select name="문의유형" required
         style="padding:11px 14px;border:1px solid var(--c-dim);border-radius:8px;background:#111;color:var(--c-fg);font-size:.88rem;font-family:inherit;outline:none;appearance:none">
         <option value="">문의 유형 선택 *</option>
         <option>학생 진로·학습 코칭</option>
@@ -461,7 +472,7 @@ a:hover{text-decoration:underline}
         <option>리더십 교육</option>
         <option>기타 문의</option>
       </select>
-      <textarea id="cf-message" placeholder="문의 내용 *" rows="4" required
+      <textarea name="문의내용" placeholder="문의 내용 *" rows="4" required
         style="padding:11px 14px;border:1px solid var(--c-dim);border-radius:8px;background:#111;color:var(--c-fg);font-size:.88rem;font-family:inherit;outline:none;resize:vertical;line-height:1.6"></textarea>
       <button type="submit" id="cfSubmitBtn"
         style="padding:13px;background:var(--c-acc);color:#000;border:none;border-radius:8px;font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer;letter-spacing:.02em;transition:background .2s">
@@ -507,68 +518,39 @@ a:hover{text-decoration:underline}
   els.forEach(function(el){io.observe(el)});
 })();
 
-/* ── Contact form (Web3Forms + localStorage) ──
-   Web3Forms 설정: https://web3forms.com 에서 이메일 입력 → Access Key 받기
-   아래 WEB3FORMS_KEY 에 붙여넣으면 이메일 수신 시작 (무료 250건/월)
+/* ── Contact form: localStorage 저장 (제출 전 캡처) ──
+   Formsubmit.co 로 전송되며, 동시에 관리자 패널(admin.html)에도 기록됩니다.
 */
 (function(){
-  var WEB3FORMS_KEY = '';   // 예: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-  var STORAGE_KEY   = 'ndw_inquiries_v1';
-
+  var STORAGE_KEY = 'ndw_inquiries_v1';
   function fmtDate(d){
     return d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+
            String(d.getDate()).padStart(2,'0')+' '+
            String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
   }
-  function saveLocal(data){
-    try{
-      var list=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');
-      list.unshift(Object.assign({},data,{id:Date.now(),date:fmtDate(new Date()),read:false}));
-      localStorage.setItem(STORAGE_KEY,JSON.stringify(list));
-    }catch(e){}
-  }
-  async function sendWeb3(data){
-    if(!WEB3FORMS_KEY) return {ok:false,skipped:true};
-    try{
-      var res = await fetch('https://api.web3forms.com/submit',{
-        method:'POST',
-        headers:{'Content-Type':'application/json',Accept:'application/json'},
-        body:JSON.stringify({
-          access_key:WEB3FORMS_KEY,
-          subject:'[네다바웨이 문의] '+data.type+' — '+data.name,
-          from_name:'네다바웨이 웹사이트',
-          name:data.name, contact:data.contact, type:data.type, message:data.message
-        })
-      });
-      var json=await res.json();
-      return {ok:json.success};
-    }catch(e){return {ok:false};}
-  }
-
   var form = document.getElementById('contactForm');
-  var btn  = document.getElementById('cfSubmitBtn');
-  var fbk  = document.getElementById('formFeedback');
-
   if(!form) return;
-  form.addEventListener('submit',async function(e){
-    e.preventDefault();
-    var name    = document.getElementById('cf-name').value.trim();
-    var contact = document.getElementById('cf-contact').value.trim();
-    var type    = document.getElementById('cf-type').value;
-    var message = document.getElementById('cf-message').value.trim();
-    if(!name||!contact||!type||!message){
-      fbk.style.color='#f87171'; fbk.textContent='모든 항목을 입력해 주세요.'; return;
-    }
-    btn.disabled=true; btn.textContent='전송 중...';
-    var data={name:name,contact:contact,type:type,message:message};
-    saveLocal(data);
-    var res=await sendWeb3(data);
-    btn.disabled=false; btn.textContent='문의 남기기';
-    fbk.style.color='var(--c-acc)';
-    fbk.textContent='문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다 🙏';
-    form.reset();
-    setTimeout(function(){fbk.textContent='';},6000);
+  form.addEventListener('submit', function(){
+    try{
+      var data = {
+        name:    form.querySelector('[name="이름"]').value.trim(),
+        contact: form.querySelector('[name="연락처"]').value.trim(),
+        type:    form.querySelector('[name="문의유형"]').value,
+        message: form.querySelector('[name="문의내용"]').value.trim()
+      };
+      var list = JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');
+      list.unshift(Object.assign({},data,{id:Date.now(),date:fmtDate(new Date()),read:false}));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    }catch(e){}
+    /* 폼은 Formsubmit.co로 정상 제출됩니다 (preventDefault 없음) */
   });
+
+  /* URL에 ?sent=1 이면 완료 메시지 표시 */
+  if(location.search.includes('sent=1')){
+    var fbk = document.getElementById('formFeedback');
+    if(fbk){ fbk.style.color='var(--c-acc)'; fbk.textContent='문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다 🙏'; }
+    history.replaceState(null,'',location.pathname);
+  }
 })();
 
 /* ── Nav hide on scroll down, show on scroll up ── */
