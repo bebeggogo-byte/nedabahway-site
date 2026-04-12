@@ -442,14 +442,36 @@ a:hover{text-decoration:underline}
       어떤 대상에게, 어떤 상황에서, 무엇이 필요한지 &mdash;
       편하게 이야기해 주시면 최적의 설계를 제안드립니다.
     </p>
-    <div class="contact-row">
-      <a class="contact-btn contact-btn--primary" href="mailto:nedabah.way@gmail.com?subject=[교육 문의]">
-        ✉️ nedabah.way@gmail.com
-      </a>
-      <a class="contact-btn contact-btn--outline" href="tel:010-0000-0000" onclick="return false">
-        📞 전화 문의
-      </a>
-    </div>
+    <form id="contactForm" style="margin-top:28px;display:flex;flex-direction:column;gap:12px;max-width:520px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <input id="cf-name" type="text" placeholder="이름 *" required
+          style="padding:11px 14px;border:1px solid var(--c-dim);border-radius:8px;background:#111;color:var(--c-fg);font-size:.88rem;font-family:inherit;outline:none">
+        <input id="cf-contact" type="text" placeholder="연락처 (전화 또는 이메일) *" required
+          style="padding:11px 14px;border:1px solid var(--c-dim);border-radius:8px;background:#111;color:var(--c-fg);font-size:.88rem;font-family:inherit;outline:none">
+      </div>
+      <select id="cf-type" required
+        style="padding:11px 14px;border:1px solid var(--c-dim);border-radius:8px;background:#111;color:var(--c-fg);font-size:.88rem;font-family:inherit;outline:none;appearance:none">
+        <option value="">문의 유형 선택 *</option>
+        <option>학생 진로·학습 코칭</option>
+        <option>청소년 교육 프로그램</option>
+        <option>성인·직장인 코칭</option>
+        <option>기관·학교 교육 설계</option>
+        <option>퍼실리테이션 의뢰</option>
+        <option>AI 교육</option>
+        <option>리더십 교육</option>
+        <option>기타 문의</option>
+      </select>
+      <textarea id="cf-message" placeholder="문의 내용 *" rows="4" required
+        style="padding:11px 14px;border:1px solid var(--c-dim);border-radius:8px;background:#111;color:var(--c-fg);font-size:.88rem;font-family:inherit;outline:none;resize:vertical;line-height:1.6"></textarea>
+      <button type="submit" id="cfSubmitBtn"
+        style="padding:13px;background:var(--c-acc);color:#000;border:none;border-radius:8px;font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer;letter-spacing:.02em;transition:background .2s">
+        문의 남기기
+      </button>
+      <p id="formFeedback" style="font-size:.82rem;text-align:center;min-height:18px;color:var(--c-acc)"></p>
+    </form>
+    <p style="margin-top:16px;font-size:.78rem;color:var(--c-mute)">직접 이메일:
+      <a href="mailto:nedabah.way@gmail.com" style="color:var(--c-acc)">nedabah.way@gmail.com</a>
+    </p>
   </div>
 </section>
 
@@ -483,6 +505,70 @@ a:hover{text-decoration:underline}
     });
   },{threshold:.15});
   els.forEach(function(el){io.observe(el)});
+})();
+
+/* ── Contact form (Web3Forms + localStorage) ──
+   Web3Forms 설정: https://web3forms.com 에서 이메일 입력 → Access Key 받기
+   아래 WEB3FORMS_KEY 에 붙여넣으면 이메일 수신 시작 (무료 250건/월)
+*/
+(function(){
+  var WEB3FORMS_KEY = '';   // 예: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+  var STORAGE_KEY   = 'ndw_inquiries_v1';
+
+  function fmtDate(d){
+    return d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+
+           String(d.getDate()).padStart(2,'0')+' '+
+           String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+  }
+  function saveLocal(data){
+    try{
+      var list=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');
+      list.unshift(Object.assign({},data,{id:Date.now(),date:fmtDate(new Date()),read:false}));
+      localStorage.setItem(STORAGE_KEY,JSON.stringify(list));
+    }catch(e){}
+  }
+  async function sendWeb3(data){
+    if(!WEB3FORMS_KEY) return {ok:false,skipped:true};
+    try{
+      var res = await fetch('https://api.web3forms.com/submit',{
+        method:'POST',
+        headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body:JSON.stringify({
+          access_key:WEB3FORMS_KEY,
+          subject:'[네다바웨이 문의] '+data.type+' — '+data.name,
+          from_name:'네다바웨이 웹사이트',
+          name:data.name, contact:data.contact, type:data.type, message:data.message
+        })
+      });
+      var json=await res.json();
+      return {ok:json.success};
+    }catch(e){return {ok:false};}
+  }
+
+  var form = document.getElementById('contactForm');
+  var btn  = document.getElementById('cfSubmitBtn');
+  var fbk  = document.getElementById('formFeedback');
+
+  if(!form) return;
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    var name    = document.getElementById('cf-name').value.trim();
+    var contact = document.getElementById('cf-contact').value.trim();
+    var type    = document.getElementById('cf-type').value;
+    var message = document.getElementById('cf-message').value.trim();
+    if(!name||!contact||!type||!message){
+      fbk.style.color='#f87171'; fbk.textContent='모든 항목을 입력해 주세요.'; return;
+    }
+    btn.disabled=true; btn.textContent='전송 중...';
+    var data={name:name,contact:contact,type:type,message:message};
+    saveLocal(data);
+    var res=await sendWeb3(data);
+    btn.disabled=false; btn.textContent='문의 남기기';
+    fbk.style.color='var(--c-acc)';
+    fbk.textContent='문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다 🙏';
+    form.reset();
+    setTimeout(function(){fbk.textContent='';},6000);
+  });
 })();
 
 /* ── Nav hide on scroll down, show on scroll up ── */
