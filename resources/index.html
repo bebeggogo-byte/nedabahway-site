@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>자료실 — 템플릿·워크시트·진단도구 | 네다바웨이</title>
+<meta name="description" content="네다바웨이가 현장에서 쓰는 제안서·활동지·진단도구 템플릿 모음. HRD·공공교육 근거 설계에 바로 적용할 수 있도록 공개합니다.">
+<meta property="og:title" content="네다바웨이 자료실">
+<meta property="og:description" content="현장에서 쓰는 템플릿·워크시트·진단도구">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nedabah.org/resources/">
+<link rel="canonical" href="https://www.nedabah.org/resources/">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+:root{
+  --c-bg:#0A0A0A;--c-fg:#FAFAFA;--c-mute:#888;--c-dim:#333;
+  --c-acc:#4ADE80;--c-acc2:#22C55E;--c-warm:#FCD34D;--c-indigo:#818CF8;--c-sky:#38BDF8;--c-rose:#FB7185;
+  --ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);
+  line-height:1.6;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:var(--c-acc);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,10,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--c-dim)}
+.nav__inner{max-width:1080px;margin:0 auto;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between}
+.nav__logo{font-weight:800;font-size:1.05rem;color:var(--c-fg)}
+.nav__links{display:flex;gap:20px;align-items:center}
+.nav__link{font-size:.9rem;color:var(--c-mute);font-weight:500}
+.nav__link:hover{color:var(--c-fg);text-decoration:none}
+.nav__link--active{color:var(--c-acc)}
+.nav__cta{font-size:.85rem;padding:8px 16px;border-radius:8px;background:var(--c-acc);color:var(--c-bg);font-weight:700}
+.nav__cta:hover{background:var(--c-acc2);text-decoration:none}
+@media(max-width:640px){.nav__links .nav__link:not(.nav__link--active){display:none}}
+
+.wrap{max-width:1040px;margin:0 auto;padding:120px 24px 80px}
+.header{margin-bottom:56px}
+.kicker{font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--c-acc);margin-bottom:12px}
+.h1{font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:800;line-height:1.2;letter-spacing:-.03em}
+.sub{color:var(--c-mute);margin-top:14px;max-width:640px;line-height:1.7}
+
+.grid{display:grid;gap:20px;grid-template-columns:1fr}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){.grid{grid-template-columns:1fr 1fr}}
+
+.cat-card{background:#0f0f0f;border:1px solid var(--c-dim);border-radius:16px;padding:28px 26px;
+  transition:border-color .2s,transform .15s;display:block}
+.cat-card:hover{border-color:var(--c-acc);transform:translateY(-2px);text-decoration:none}
+.cat-card__icon{display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border-radius:12px;font-size:1.4rem;margin-bottom:16px}
+.cat-card__icon--green{background:rgba(74,222,128,.12);color:var(--c-acc)}
+.cat-card__icon--warm{background:rgba(252,211,77,.12);color:var(--c-warm)}
+.cat-card__icon--sky{background:rgba(56,189,248,.12);color:var(--c-sky)}
+.cat-card__icon--indigo{background:rgba(129,140,248,.12);color:var(--c-indigo)}
+.cat-card__title{font-size:1.15rem;font-weight:800;margin-bottom:8px;color:var(--c-fg)}
+.cat-card__desc{font-size:.9rem;color:var(--c-mute);line-height:1.65;margin-bottom:16px}
+.cat-card__count{font-size:.78rem;color:var(--c-mute);font-weight:600}
+.cat-card__count--soon{color:#555}
+
+.notice{margin-top:56px;padding:20px 24px;background:#0f0f0f;border:1px dashed var(--c-dim);border-radius:12px;color:var(--c-mute);font-size:.9rem;line-height:1.7}
+.notice strong{color:var(--c-fg)}
+
+.footer{margin-top:80px;padding-top:32px;border-top:1px solid var(--c-dim);color:var(--c-mute);font-size:.85rem;text-align:center}
+.footer a{color:var(--c-mute)}
+.footer a:hover{color:var(--c-fg)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/">네다바웨이</a>
+    <div class="nav__links">
+      <a class="nav__link" href="/iden.html">IDEN</a>
+      <a class="nav__link" href="/programs.html">교육설계</a>
+      <a class="nav__link" href="/portfolio.html">포트폴리오</a>
+      <a class="nav__link" href="/blog/">블로그</a>
+      <a class="nav__link nav__link--active" href="/resources/">자료실</a>
+      <a class="nav__cta" href="mailto:nedabah.way@gmail.com?subject=[교육 문의]">문의</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="header">
+    <div class="kicker">Resources</div>
+    <h1 class="h1">자료실</h1>
+    <p class="sub">
+      네다바웨이가 현장에서 반복적으로 쓰는 제안서 틀·활동지·진단도구를 정리한 공간입니다.
+      쓸 수 있는 것부터 하나씩 공개하고, 매주 새 파일이 추가됩니다.
+    </p>
+  </div>
+
+  <div class="grid">
+
+    <a class="cat-card" href="#templates">
+      <div class="cat-card__icon cat-card__icon--green">📝</div>
+      <div class="cat-card__title">제안서·계획서 템플릿</div>
+      <p class="cat-card__desc">
+        HRD·공공교육 RFP 대응용 구조화된 제안서, 교육계획서, 결과보고서 뼈대.
+        근거 레이어(학습효과 측정 지표) 내장 버전 우선 공개.
+      </p>
+      <div class="cat-card__count cat-card__count--soon">⏳ 준비 중 · 첫 파일 2026-04 말</div>
+    </a>
+
+    <a class="cat-card" href="#worksheets">
+      <div class="cat-card__icon cat-card__icon--warm">📄</div>
+      <div class="cat-card__title">활동지·워크시트</div>
+      <p class="cat-card__desc">
+        한 장짜리 활동지 표준형 — 과업 3단계 + 판정 기준 3줄 + 자기평가 칸.
+        AI 리터러시·진로 탐색·퍼실리테이션 주제별 변주.
+      </p>
+      <div class="cat-card__count cat-card__count--soon">⏳ 준비 중 · 첫 파일 2026-04 말</div>
+    </a>
+
+    <a class="cat-card" href="#diagnostics">
+      <div class="cat-card__icon cat-card__icon--sky">🎯</div>
+      <div class="cat-card__title">진단·설문 도구</div>
+      <p class="cat-card__desc">
+        자기이해 3차원 진단(IDEN 기반), 강점 스냅샷, 강의 사전·사후 역량 비교 문항.
+        웹에서 바로 작성 → 결과 PDF 저장 형태로 순차 전환.
+      </p>
+      <div class="cat-card__count cat-card__count--soon">⏳ 준비 중 · IDEN 진단 연계</div>
+    </a>
+
+    <a class="cat-card" href="#evidence">
+      <div class="cat-card__icon cat-card__icon--indigo">📚</div>
+      <div class="cat-card__title">강의 근거자료</div>
+      <p class="cat-card__desc">
+        HRD·교육공학 논문에서 추린 효과크기 0.4+ 원리 요약,
+        공공조달 심사 기준 체크리스트, 메타분석 인용 포인터.
+      </p>
+      <div class="cat-card__count cat-card__count--soon">⏳ 첫 요약 2026-04 말 공개</div>
+    </a>
+
+  </div>
+
+  <div class="notice">
+    <strong>공개 원칙.</strong> 이 자료실은 네다바웨이가 실제 현장에서 검증한 <em style="color:var(--c-warm);font-style:normal;font-weight:600">쓰는 파일</em>만 올립니다.
+    무작위 템플릿 모음이 아니라, 한 번이라도 강의·제안서에 쓰였던 버전만 선별해서 익명화·일반화 후 공개합니다.
+    특정 기관 사례 전체는 <a href="/portfolio.html">포트폴리오</a>에서 확인하세요.
+  </div>
+
+  <footer class="footer">
+    <p>
+      네다바웨이 Nedabahway · 김창환 · 제주 ·
+      <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a>
+    </p>
+  </footer>
+</main>
+</body>
+</html>
