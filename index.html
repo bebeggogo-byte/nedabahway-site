@@ -256,14 +256,10 @@ a:hover{text-decoration:underline}
   <div class="nav__inner">
     <a class="nav__logo" href="/">네다바웨이</a>
     <div class="nav__links">
-      <a class="nav__link" href="iden.html">IDEN</a>
-      <a class="nav__link" href="programs.html">교육설계</a>
-      <a class="nav__link" href="facilitation.html">퍼실리테이션</a>
-      <a class="nav__link" href="portfolio.html">포트폴리오</a>
-      <a class="nav__link" href="blog/">블로그</a>
-      <a class="nav__link" href="resources/">자료실</a>
-      <a class="nav__link" href="company.html">회사소개</a>
-      <a class="nav__cta" href="#contact">문의하기</a>
+      <a class="nav__link" href="/blog/">Magazine</a>
+      <a class="nav__link" href="#work">Work</a>
+      <a class="nav__link" href="#about">About</a>
+      <a class="nav__cta" href="#subscribe">Subscribe</a>
     </div>
   </div>
 </nav>
@@ -305,18 +301,91 @@ a:hover{text-decoration:underline}
     </a>
     <div class="mag-strip" style="margin-top:24px">
       <div>
-        <strong>Nedabahway Research Magazine.</strong>
-        A one-person company on Jeju Island, thinking out loud with 60 AI agents.
+        <strong>Still Hands — A Nedabahway Publication.</strong>
+        A one-person company on Jeju Island, thinking out loud with ~60 AI agents.
       </div>
       <div>
         <a href="blog/" style="color:#10803D;font-weight:700">All issues →</a>
       </div>
     </div>
+
+    <!-- 이메일 구독 폼 · Formsubmit ajax · 실제 작동 -->
+    <a id="subscribe" style="display:block;position:relative;top:-60px;visibility:hidden"></a>
+    <form id="still-hands-subscribe"
+          action="https://formsubmit.co/ajax/nedabah.way@gmail.com"
+          method="POST"
+          style="margin-top:32px;background:#fff;border:1px solid #E8E6E0;border-radius:16px;padding:28px 30px;display:grid;gap:14px">
+      <div>
+        <label for="sh-email" style="display:block;font-family:'Noto Serif KR',serif;font-weight:700;font-size:1.15rem;letter-spacing:-.01em;margin-bottom:6px;color:#1A1A1A">
+          Get the next issue in your inbox.
+        </label>
+        <p style="font-size:.92rem;color:#6B6B6B;line-height:1.7;margin:0">
+          Every other Sunday. Free forever. No welcome sequence, no pitch — just the essay when it's ready.
+        </p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto;gap:8px;align-items:stretch">
+        <input id="sh-email" type="email" name="email" required placeholder="your@email.com"
+               style="padding:14px 18px;font-size:1rem;border:1.5px solid #D6D3CA;border-radius:10px;background:#FAFAF7;color:#1A1A1A;outline:none;font-family:inherit;transition:border-color .15s"
+               onfocus="this.style.borderColor='#10803D'"
+               onblur="this.style.borderColor='#D6D3CA'">
+        <button type="submit"
+                style="padding:14px 24px;font-size:.95rem;font-weight:700;background:#1A1A1A;color:#FAFAF7;border:none;border-radius:10px;cursor:pointer;transition:background .15s;font-family:inherit;white-space:nowrap"
+                onmouseover="this.style.background='#10803D'"
+                onmouseout="this.style.background='#1A1A1A'">
+          Notify me →
+        </button>
+      </div>
+      <input type="hidden" name="_subject" value="New Still Hands subscriber">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_honey" value="">
+      <p id="sh-msg" style="font-size:.84rem;color:#9A9A9A;margin:0;min-height:1.4em" aria-live="polite"></p>
+    </form>
+    <script>
+    (function(){
+      var form = document.getElementById('still-hands-subscribe');
+      var msg = document.getElementById('sh-msg');
+      if(!form) return;
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        var data = new FormData(form);
+        msg.textContent = 'Sending...';
+        msg.style.color = '#9A9A9A';
+        fetch(form.action, {method:'POST', body:data, headers:{'Accept':'application/json'}})
+          .then(function(r){ return r.ok ? r.json() : Promise.reject(r); })
+          .then(function(){
+            window.location.href = '/subscribed-thanks.html';
+          })
+          .catch(function(){
+            msg.textContent = 'Something went wrong. Please email nedabah.way@gmail.com directly.';
+            msg.style.color = '#C2410C';
+          });
+      });
+    })();
+    </script>
   </div>
 </section>
 
-<!-- ═══════ 01 HERO (Company Intro, 이하 2번째로) ═══════ -->
-<section class="section" id="hero">
+<!-- ═══════ 매거진 ↔ 회사 전환 띠 · 시각 분기 명확화 ═══════ -->
+<section id="work" style="padding:72px 24px 64px;background:#1A1A1A;color:#FAFAF7;text-align:center;border-top:8px solid #C2410C">
+  <div style="max-width:760px;margin:0 auto">
+    <div style="font-size:.72rem;font-weight:800;letter-spacing:.35em;text-transform:uppercase;color:#C2410C;margin-bottom:18px">
+      ↑ Above: the magazine · Below: the company ↓
+    </div>
+    <h2 style="font-family:'Noto Serif KR',Georgia,serif;font-weight:700;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.02em;line-height:1.2;margin-bottom:18px">
+      Nedabahway — <em style="font-style:italic;color:#FCD34D;font-weight:700">the one-person company</em><br>
+      behind Still Hands.
+    </h2>
+    <p style="color:#CCC;font-size:1rem;line-height:1.8;max-width:560px;margin:0 auto">
+      Kim Changhwan is a Korean educator with twelve years of classroom and facilitation work.
+      He designs and delivers three kinds of services for schools, public institutions, and organizations.
+      If the magazine interests you, what's below is how to hire him.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════ 01 HERO (Company Intro) ═══════ -->
+<section class="section" id="about">
   <div class="inner">
     <div class="reveal">
       <p class="kicker">nedabahway &middot; made in jeju</p>
@@ -695,7 +764,6 @@ a:hover{text-decoration:underline}
   });
 })();
 </script>
-<script src="/assets/translate-flags.js" async></script>
 <script src="/assets/share-bar.js" async></script>
 </body>
 </html>
