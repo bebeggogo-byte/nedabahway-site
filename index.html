@@ -198,6 +198,45 @@ a:hover{text-decoration:underline}
 .footer__link{font-size:.78rem;color:var(--c-mute);font-weight:500;transition:color .2s}
 .footer__link:hover{color:var(--c-fg);text-decoration:none}
 
+/* ── MAGAZINE SPOTLIGHT (홈 앞단 · 라이트 카드) ── */
+.mag-section{background:#FAFAF7;color:#1A1A1A;padding:88px 24px 96px;position:relative;overflow:hidden}
+.mag-section::before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:var(--c-dim)}
+.mag-inner{max-width:1080px;margin:0 auto}
+.mag-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid #E8E6E0}
+.mag-head__left{min-width:0}
+.mag-head__kicker{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:#10803D;margin-bottom:10px}
+.mag-head__title{font-family:'Noto Serif KR',Georgia,serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15;letter-spacing:-.03em;color:#1A1A1A}
+.mag-head__title em{font-style:italic;color:#C2410C;font-weight:700}
+.mag-head__sub{color:#6B6B6B;font-size:.95rem;line-height:1.7;margin-top:12px;max-width:540px}
+.mag-head__cta{font-size:.85rem;font-weight:700;color:#10803D;padding:10px 18px;border:1px solid #10803D;border-radius:999px;white-space:nowrap;transition:all .2s}
+.mag-head__cta:hover{background:#10803D;color:#FAFAF7;text-decoration:none}
+
+.mag-grid{display:grid;gap:22px;grid-template-columns:1fr}
+@media(min-width:860px){.mag-grid{grid-template-columns:1.6fr 1fr;gap:28px}}
+
+.mag-cover{background:#FFFFFF;border:1px solid #E8E6E0;border-radius:18px;padding:36px 34px;
+  transition:all .25s;display:block;position:relative;overflow:hidden}
+.mag-cover:hover{border-color:#D6D3CA;transform:translateY(-3px);text-decoration:none}
+.mag-cover::before{content:"";position:absolute;inset:0;background:radial-gradient(420px 240px at 92% -10%,#E8EEFB,transparent 68%);pointer-events:none}
+.mag-cover__flag{position:relative;display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:#1D4ED8;margin-bottom:14px}
+.mag-cover__flag::before{content:"";width:22px;height:2px;background:#1D4ED8}
+.mag-cover__title{position:relative;font-family:'Noto Serif KR',Georgia,serif;font-weight:700;font-size:clamp(1.4rem,3vw,2rem);line-height:1.25;letter-spacing:-.02em;margin-bottom:14px;color:#1A1A1A}
+.mag-cover__excerpt{position:relative;color:#4a4a4a;font-size:.95rem;line-height:1.7;margin-bottom:18px}
+.mag-cover__meta{position:relative;font-size:.76rem;color:#9A9A9A;display:flex;gap:12px;font-weight:500}
+.mag-cover__meta span+span::before{content:"·";margin-right:12px;color:#D6D3CA}
+
+.mag-side{display:grid;gap:14px;align-content:start}
+.mag-side__card{background:#FFFFFF;border:1px solid #E8E6E0;border-radius:14px;padding:20px 22px;transition:all .2s;display:block}
+.mag-side__card:hover{border-color:#1A1A1A;text-decoration:none;transform:translateY(-2px)}
+.mag-side__flag{font-size:.68rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px}
+.mag-side__flag--guide{color:#7C3AED}
+.mag-side__flag--curation{color:#C2410C}
+.mag-side__title{font-family:'Noto Serif KR',Georgia,serif;font-size:1.02rem;font-weight:700;line-height:1.4;margin-bottom:6px;color:#1A1A1A}
+.mag-side__meta{font-size:.74rem;color:#9A9A9A}
+
+.mag-strip{margin-top:28px;padding-top:20px;border-top:1px solid #E8E6E0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.82rem;color:#6B6B6B}
+.mag-strip strong{color:#1A1A1A;font-weight:700}
+
 /* ── FADE-IN ── */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -237,19 +276,18 @@ a:hover{text-decoration:underline}
     <div class="reveal">
       <p class="kicker">nedabahway &middot; made in jeju</p>
       <h1 class="hero-title">
-        사람이 스스로 원해서<br>
-        <span class="accent">걷도록</span><br>
-        설계합니다.
+        현장을 <span class="accent">연구</span>합니다.<br>
+        근거로 <span class="accent">설계</span>합니다.
       </h1>
       <p class="hero-sub">
-        제주에서 12년, 학생·기관·지역사회를<br>
-        만나온 교육자 김창환이 &mdash;<br>
-        <strong>나를 아는 힘</strong>에서 시작해<br>
-        사람의 성장을 설계합니다.
+        제주에서 12년 &mdash;<br>
+        AI 리터러시·HRD 효과크기·공공교육 근거 레이어를<br>
+        현장에서 <strong>연구</strong>하고<br>
+        한 장의 활동지로 <strong>설계</strong>하는 1인 교육 연구소.
       </p>
       <div class="hero-badge">
         <span class="hero-badge__dot"></span>
-        시즌 2 &middot; IDEN 런칭 &middot; 2025
+        Research Magazine &middot; Issue 01 &middot; 2026
       </div>
     </div>
 
@@ -274,7 +312,59 @@ a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- ═══════ 02 QUOTE ═══════ -->
+<!-- ═══════ 02 MAGAZINE SPOTLIGHT · 연구 매거진 앞세우기 ═══════ -->
+<section class="mag-section" id="magazine">
+  <div class="mag-inner reveal">
+    <div class="mag-head">
+      <div class="mag-head__left">
+        <div class="mag-head__kicker">Research Magazine · Issue 01 · 2026-04</div>
+        <h2 class="mag-head__title">우리는 <em>연구</em>합니다.<br>격주로 글을, 매일 여섯 번 기록을.</h2>
+        <p class="mag-head__sub">
+          AI 리터러시·HRD·공공교육 현장을 편집부가 네 섹션(INSIGHT·GUIDE·CURATION·NOTE)으로 정제합니다. 외부 자료는 원저자·발행기관·출처 링크를 함께 적는 것이 원칙입니다.
+        </p>
+      </div>
+      <a class="mag-head__cta" href="blog/">매거진 전체 보기 →</a>
+    </div>
+
+    <div class="mag-grid">
+      <a class="mag-cover" href="blog/posts/2026-04-18_ai-literacy-evidence-layer.html">
+        <div class="mag-cover__flag">Insight · Cover Story</div>
+        <h3 class="mag-cover__title">AI 강사가 "증거"를 들고 왔을 때만 통한다 — 공공조달 차별화의 근거 레이어</h3>
+        <p class="mag-cover__excerpt">
+          AI 리터러시가 국민내일배움카드 필수 이수로 편입될 가능성이 커질수록, 심사위원이 묻는 것은 "AI를 가르칠 수 있느냐"가 아니라 "당신 수업에 학습효과 근거가 붙어 있느냐"로 바뀝니다. HRD 논문 효과크기 0.4+ 원칙 세 가지를 강의 설계에 어떻게 이식하는지 정리했습니다.
+        </p>
+        <div class="mag-cover__meta">
+          <span>2026-04-18</span><span>읽는 시간 8분</span><span>편집·리서치 2부</span>
+        </div>
+      </a>
+
+      <div class="mag-side">
+        <a class="mag-side__card" href="blog/posts/2026-04-18_study-ai-literacy-policy.html">
+          <div class="mag-side__flag mag-side__flag--guide">GUIDE · 가이드</div>
+          <div class="mag-side__title">AI 리터러시 "의무화" 흐름을 세 층위로 읽기</div>
+          <div class="mag-side__meta">함께 공부하는 자료 #01 · 7분 · 토론 질문 4개</div>
+        </a>
+        <a class="mag-side__card" href="blog/posts/2026-04-18_ref-curation-01.html">
+          <div class="mag-side__flag mag-side__flag--curation">CURATION · 큐레이션</div>
+          <div class="mag-side__title">출처를 밝히고 모읍니다 — 편집부가 본 외부 자료 4건</div>
+          <div class="mag-side__meta">편집부 큐레이션 #01 · 4분 · 5원칙 명시</div>
+        </a>
+        <a class="mag-side__card" href="resources/" style="border-style:dashed">
+          <div class="mag-side__flag" style="color:#065F46">RESOURCES · 자료실</div>
+          <div class="mag-side__title">현장에서 쓰는 파일만 선별 공개 (6 카테고리)</div>
+          <div class="mag-side__meta">템플릿·워크시트·진단·근거·프롬프트·미디어킷</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="mag-strip">
+      <div><strong>편집 원칙.</strong> 현장에서 검증된 것만. 출처가 있는 것만. 독자를 성인으로 대하는 문장으로.</div>
+      <div>발행 · 격주 큰 글 + 매일 6회 일지</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 03 QUOTE ═══════ -->
 <section class="section section--short quote-section" id="quote">
   <div class="inner reveal">
     <div class="quote-block">
