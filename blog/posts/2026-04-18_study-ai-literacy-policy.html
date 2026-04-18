@@ -4,93 +4,89 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>함께 공부할 자료 #01 — AI 리터러시 의무화 흐름 읽기 | 네다바웨이 매거진</title>
-<meta name="description" content="교육 현장에 있는 분들과 함께 공부합니다. 2025~2026년 AI 리터러시 의무화 흐름을 정부 문서·업계 동향·메타 연구 세 층위에서 읽고, 우리가 어떻게 대비할지 토론 질문으로 닫습니다.">
-<meta property="og:title" content="STUDY #01 — AI 리터러시 의무화 흐름 읽기">
+<meta name="description" content="교육 현장에 있는 분들과 함께 공부합니다. 2025~2026년 AI 리터러시 의무화 흐름을 정부 문서·업계 동향·메타 연구 세 층위에서 읽고, 토론 질문으로 닫습니다.">
+<meta property="og:title" content="GUIDE #01 — AI 리터러시 의무화 흐름 읽기">
 <meta property="og:description" content="함께 공부하는 자료. 정부 문서·업계 동향·메타 연구를 한 장에 정리.">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2026-04-18">
-<meta property="article:section" content="STUDY">
-<meta property="article:author" content="김창환">
+<meta property="article:section" content="GUIDE">
 <meta property="og:url" content="https://www.nedabah.org/blog/posts/2026-04-18_study-ai-literacy-policy.html">
 <link rel="canonical" href="https://www.nedabah.org/blog/posts/2026-04-18_study-ai-literacy-policy.html">
 <style>
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
 :root{
-  --c-bg:#0A0A0A;--c-fg:#FAFAFA;--c-mute:#888;--c-mute2:#5a5a5a;--c-dim:#222;
-  --c-acc:#4ADE80;--c-acc2:#22C55E;--c-warm:#FCD34D;
-  --c-study:#34D399;--c-ref:#F472B6;--c-evidence:#38BDF8;
+  --c-bg:#FAFAF7;--c-surface:#FFFFFF;--c-fg:#1A1A1A;
+  --c-mute:#6B6B6B;--c-mute2:#9A9A9A;--c-line:#E8E6E0;--c-line2:#D6D3CA;
+  --c-accent:#10803D;--c-copper:#C2410C;
+  --c-guide:#7C3AED;--c-guide-soft:#F1EBFC;
   --ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
   --ff-serif:'Noto Serif KR',Georgia,serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;scroll-behavior:smooth}
-body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);line-height:1.75;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
-a{color:var(--c-acc);text-decoration:none}
-a:hover{text-decoration:underline}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);line-height:1.8;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:inherit}a:hover{text-decoration:underline}
 
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--c-dim)}
-.nav__inner{max-width:1200px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
-.nav__logo{font-weight:800;font-size:1.05rem;color:var(--c-fg)}
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line)}
+.nav__inner{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.nav__logo{font-family:var(--ff-serif);font-weight:700;font-size:1.15rem}
 .nav__links{display:flex;gap:22px;align-items:center}
-.nav__link{font-size:.88rem;color:var(--c-mute);font-weight:500}
-.nav__link:hover{color:var(--c-fg);text-decoration:none}
-.nav__link--active{color:var(--c-acc)}
-.nav__cta{font-size:.85rem;padding:8px 16px;border-radius:8px;background:var(--c-acc);color:var(--c-bg);font-weight:700}
+.nav__link{font-size:.86rem;color:var(--c-mute);font-weight:500}
+.nav__link--active{color:var(--c-accent);font-weight:700}
+.nav__cta{font-size:.84rem;padding:9px 18px;border-radius:999px;background:var(--c-fg);color:var(--c-bg);font-weight:600}
 @media(max-width:760px){.nav__links .nav__link:not(.nav__link--active){display:none}}
 
-.wrap{max-width:720px;margin:0 auto;padding:120px 24px 100px}
-.back{font-size:.85rem;color:var(--c-mute);margin-bottom:24px;display:inline-block}
-.back:hover{color:var(--c-fg)}
-.meta{display:flex;gap:10px;align-items:center;font-size:.8rem;color:var(--c-mute);margin-bottom:16px;flex-wrap:wrap}
-.meta__cat{padding:4px 10px;border-radius:999px;background:#151515;color:var(--c-study);font-weight:700}
-.h1{font-family:var(--ff-serif);font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:700;line-height:1.25;letter-spacing:-.025em;margin-bottom:20px}
-.lead{font-size:1.05rem;color:var(--c-mute);line-height:1.75;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--c-dim)}
+.wrap{max-width:720px;margin:0 auto;padding:56px 24px 80px}
+.back{font-size:.85rem;color:var(--c-mute);margin-bottom:24px;display:inline-block;text-decoration:underline;text-decoration-color:var(--c-line2);text-underline-offset:3px}
+.meta{display:flex;gap:10px;align-items:center;font-size:.78rem;color:var(--c-mute);margin-bottom:18px;flex-wrap:wrap;font-weight:500}
+.meta__cat{padding:4px 11px;border-radius:999px;background:var(--c-guide-soft);color:var(--c-guide);font-weight:700;letter-spacing:.12em;font-size:.7rem;text-transform:uppercase}
+.h1{font-family:var(--ff-serif);font-size:clamp(1.9rem,4.5vw,2.8rem);font-weight:700;line-height:1.22;letter-spacing:-.02em;margin-bottom:22px}
+.lead{font-family:var(--ff-serif);font-size:1.12rem;color:#333;line-height:1.8;margin-bottom:48px;padding-bottom:36px;border-bottom:1px solid var(--c-line);font-weight:500}
 
-article h2{font-family:var(--ff-serif);font-size:1.45rem;font-weight:700;margin:48px 0 18px;line-height:1.3;letter-spacing:-.02em}
-article h3{font-size:1.1rem;font-weight:700;margin:32px 0 12px;color:var(--c-fg)}
-article p{margin-bottom:18px;font-size:1rem;color:#d4d4d4}
-article ul,article ol{margin:16px 0 24px;padding-left:24px;color:#d4d4d4}
-article li{margin-bottom:10px}
+article h2{font-family:var(--ff-serif);font-size:1.5rem;font-weight:700;margin:52px 0 18px;line-height:1.3;letter-spacing:-.02em}
+article h3{font-size:1.1rem;font-weight:700;margin:36px 0 14px;color:var(--c-fg)}
+article p{margin-bottom:18px;font-size:1rem;color:#2a2a2a;line-height:1.85}
+article ul,article ol{margin:16px 0 24px;padding-left:24px;color:#2a2a2a}
+article li{margin-bottom:10px;line-height:1.78}
 article strong{color:var(--c-fg);font-weight:700}
-article em{color:var(--c-warm);font-style:normal;font-weight:600}
-article blockquote{border-left:3px solid var(--c-study);padding:14px 20px;margin:24px 0;background:#0f0f0f;border-radius:0 10px 10px 0;color:#c0c0c0;font-size:.95rem}
-article code{font-family:ui-monospace,SFMono-Regular,monospace;background:#151515;padding:2px 6px;border-radius:4px;font-size:.88em;color:var(--c-warm)}
+article em{color:var(--c-copper);font-style:normal;font-weight:600}
+article blockquote{border-left:3px solid var(--c-guide);padding:14px 22px;margin:26px 0;background:var(--c-guide-soft);border-radius:0 10px 10px 0;color:#3b2864;font-size:.95rem;font-family:var(--ff-serif);font-style:italic}
+article code{font-family:ui-monospace,SFMono-Regular,monospace;background:#F3EFE5;padding:2px 7px;border-radius:4px;font-size:.88em;color:var(--c-copper)}
 
-.callout{background:linear-gradient(135deg,#0a1612,#0f0f0f);border:1px solid #1a3a2a;border-radius:14px;padding:24px;margin:32px 0}
-.callout__label{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--c-study);margin-bottom:10px}
-.callout h3{margin-top:0}
+.callout{background:var(--c-guide-soft);border:1px solid #D8C9F5;border-radius:14px;padding:26px 26px;margin:36px 0}
+.callout__label{font-size:.72rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--c-guide);margin-bottom:10px}
+.callout h3{margin:0 0 10px}
 
-.sources{background:#0e0e0e;border:1px solid var(--c-dim);border-radius:14px;padding:22px 24px;margin:40px 0;font-size:.9rem}
-.sources__title{font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--c-mute);margin-bottom:12px}
+.sources{background:var(--c-surface);border:1px solid var(--c-line);border-radius:14px;padding:24px 26px;margin:44px 0;font-size:.9rem}
+.sources__title{font-size:.72rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--c-mute);margin-bottom:14px}
 .sources ol{padding-left:22px;margin:0}
-.sources li{margin-bottom:8px;color:#c0c0c0;line-height:1.65}
-.sources li a{color:var(--c-acc);word-break:break-all}
+.sources li{margin-bottom:10px;color:#2e2e2e;line-height:1.7}
+.sources li a{color:var(--c-accent);word-break:break-all;font-weight:600}
 
-.discuss{background:#0c0c0c;border:1px dashed var(--c-dim);border-radius:14px;padding:22px 24px;margin:40px 0;color:#c0c0c0}
-.discuss__label{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--c-warm);margin-bottom:10px}
+.discuss{background:#FDF7ED;border:1px solid #F0E4C8;border-radius:14px;padding:24px 26px;margin:44px 0;color:#2a2a2a}
+.discuss__label{font-size:.72rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--c-copper);margin-bottom:12px}
 .discuss ul{padding-left:22px;margin:10px 0 0}
-.discuss li{margin-bottom:8px}
+.discuss li{margin-bottom:10px;line-height:1.72}
 
-/* ─── 좋아요·댓글 ─── */
-.engage{margin-top:56px;padding-top:32px;border-top:1px solid var(--c-dim)}
+.engage{margin-top:64px;padding-top:36px;border-top:1px solid var(--c-line)}
 .engage__row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.like-btn{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;
-  background:#111;border:1px solid var(--c-dim);color:var(--c-fg);font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s}
-.like-btn:hover{border-color:var(--c-study);color:var(--c-study)}
-.like-btn--active{background:rgba(52,211,153,.12);border-color:var(--c-study);color:var(--c-study)}
+.like-btn{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;background:var(--c-surface);border:1px solid var(--c-line);color:var(--c-fg);font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s}
+.like-btn:hover{border-color:var(--c-guide);color:var(--c-guide)}
+.like-btn--active{background:var(--c-guide-soft);border-color:var(--c-guide);color:var(--c-guide)}
 .like-btn__count{font-variant-numeric:tabular-nums;font-size:.85rem;color:var(--c-mute)}
-.like-btn--active .like-btn__count{color:var(--c-study)}
-.share-btn{padding:10px 16px;border-radius:999px;background:transparent;border:1px solid var(--c-dim);color:var(--c-mute);font-family:inherit;font-size:.85rem;cursor:pointer}
-.share-btn:hover{border-color:#555;color:var(--c-fg)}
-.engage__note{font-size:.78rem;color:var(--c-mute2);margin-top:12px;line-height:1.6}
+.like-btn--active .like-btn__count{color:var(--c-guide)}
+.share-btn{padding:10px 18px;border-radius:999px;background:transparent;border:1px solid var(--c-line);color:var(--c-mute);font-family:inherit;font-size:.85rem;cursor:pointer;font-weight:600}
+.share-btn:hover{border-color:var(--c-fg);color:var(--c-fg)}
+.engage__note{font-size:.78rem;color:var(--c-mute2);margin-top:14px;line-height:1.7}
 
-.comments{margin-top:40px;padding-top:32px;border-top:1px solid var(--c-dim)}
-.comments__title{font-size:.82rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--c-mute);margin-bottom:14px}
-.comments__setup{background:#0d0d0d;border:1px dashed var(--c-dim);border-radius:12px;padding:18px 20px;color:#a0a0a0;font-size:.88rem;line-height:1.7}
+.comments{margin-top:44px;padding-top:36px;border-top:1px solid var(--c-line)}
+.comments__title{font-size:.75rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--c-mute);margin-bottom:16px}
+.comments__setup{background:var(--c-surface);border:1px dashed var(--c-line2);border-radius:12px;padding:20px 22px;color:#555;font-size:.88rem;line-height:1.75}
 .comments__setup strong{color:var(--c-fg)}
-.comments__setup code{background:#151515;padding:2px 6px;border-radius:4px;font-family:ui-monospace,monospace;font-size:.85em;color:var(--c-warm)}
+.comments__setup a{color:var(--c-accent);font-weight:600}
 
-.footer-note{margin-top:56px;padding-top:24px;color:var(--c-mute);font-size:.85rem;line-height:1.7}
+.footer-note{margin-top:56px;padding-top:28px;color:var(--c-mute);font-size:.85rem;line-height:1.75}
 </style>
 </head>
 <body>
@@ -104,7 +100,7 @@ article code{font-family:ui-monospace,SFMono-Regular,monospace;background:#15151
       <a class="nav__link" href="/portfolio.html">포트폴리오</a>
       <a class="nav__link nav__link--active" href="/blog/">매거진</a>
       <a class="nav__link" href="/resources/">자료실</a>
-      <a class="nav__cta" href="mailto:nedabah.way@gmail.com?subject=[교육 문의]">문의</a>
+      <a class="nav__cta" href="/#contact">문의</a>
     </div>
   </div>
 </nav>
@@ -113,13 +109,10 @@ article code{font-family:ui-monospace,SFMono-Regular,monospace;background:#15151
   <a class="back" href="/blog/">← 매거진 목록</a>
 
   <div class="meta">
-    <span class="meta__cat">STUDY · 공부</span>
-    <span>·</span>
-    <span>2026-04-18</span>
-    <span>·</span>
-    <span>함께 공부하는 자료 #01</span>
-    <span>·</span>
-    <span>읽는 시간 7분</span>
+    <span class="meta__cat">GUIDE · 가이드</span>
+    <span>·</span><span>2026-04-18</span>
+    <span>·</span><span>함께 공부하는 자료 #01</span>
+    <span>·</span><span>읽는 시간 7분</span>
   </div>
 
   <h1 class="h1">AI 리터러시 "의무화" 흐름을 세 층위로 읽기</h1>
@@ -133,7 +126,7 @@ article code{font-family:ui-monospace,SFMono-Regular,monospace;background:#15151
     <div class="callout">
       <div class="callout__label">공부 범위</div>
       <h3>2025년 말 ~ 2026년 상반기 AI 리터러시 정책·시장·연구 교차점</h3>
-      <p style="margin:0;color:#c0c0c0">이 글은 세 층위를 한 장에 놓습니다. ① 정부 공문과 행정예고의 실제 언어, ② 업계·교육 시장의 반응, ③ 이를 뒷받침하는 교육공학 메타 연구. 세 층위의 어긋남이 기회의 크기입니다.</p>
+      <p style="margin:0">이 글은 세 층위를 한 장에 놓습니다. ① 정부 공문과 행정예고의 실제 언어, ② 업계·교육 시장의 반응, ③ 이를 뒷받침하는 교육공학 메타 연구. 세 층위의 어긋남이 기회의 크기입니다.</p>
     </div>
 
     <h2>층위 1 · 정부 문서가 실제로 쓰는 언어</h2>
@@ -143,7 +136,7 @@ article code{font-family:ui-monospace,SFMono-Regular,monospace;background:#15151
     <p>
       주목할 점은 단어 선택입니다. "AI 활용 교육"이 아니라 <strong>"AI 협업형 역량"</strong>으로 쓰입니다. 이는 단순 툴 사용이 아니라 "AI를 옆에 두고 판단하는 능력"을 측정하겠다는 뉘앙스입니다. 강사가 제안서를 쓸 때 이 언어를 그대로 받아야 심사 언어와 맞물립니다.
     </p>
-    <p style="color:var(--c-mute2);font-size:.85rem;margin-top:-6px">
+    <p style="color:var(--c-mute2);font-size:.86rem;margin-top:-2px">
       ※ 구체 법령·행정예고 원문은 출처 목록을 참고하세요. 이 섹션은 2025년 8월 이전 공개 문서 기준 해석이며, 최신 개정안은 교육부·고용노동부 고시 페이지 직접 확인이 원칙입니다.
     </p>
 
@@ -191,39 +184,35 @@ article code{font-family:ui-monospace,SFMono-Regular,monospace;background:#15151
         <li>Hattie, J. (2009). <em>Visible Learning: A Synthesis of Over 800 Meta-Analyses Relating to Achievement</em>. Routledge. — 효과크기 0.4 기준의 원출처.</li>
         <li>국민내일배움카드 제도 · 고용노동부 HRD-Net — <a href="https://www.hrd.go.kr" target="_blank" rel="noopener">https://www.hrd.go.kr</a> (훈련과정 심사기준 최신본은 공식 페이지 확인).</li>
         <li>교육부 고시 · 법제처 국가법령정보센터 — <a href="https://www.law.go.kr" target="_blank" rel="noopener">https://www.law.go.kr</a> (AI 관련 행정예고 검색).</li>
-        <li>네다바웨이 편집부 · D11 정보브리핑(2026-04-18) · D8 미래사업 리서치(2026-04-18) — 내부 자료, 공개 가능 범위만 이 글에 반영.</li>
+        <li>네다바웨이 편집부 · 내부 정보 브리핑(2026-04-18) · 미래사업 리서치(2026-04-18) — 공개 가능 범위만 이 글에 반영.</li>
         <li>주의 · 본 글 해석 부분은 2025년 8월 이전 공개 문서 기준이며, 2026년 최신 행정예고·고시 원문 확인은 독자 책임입니다.</li>
       </ol>
     </div>
 
   </article>
 
-  <!-- 좋아요 · 공유 -->
   <section class="engage">
     <div class="engage__row">
       <button class="like-btn" id="likeBtn" aria-pressed="false">
-        <span aria-hidden="true">♥</span>
-        <span>좋아요</span>
+        <span aria-hidden="true">♥</span><span>좋아요</span>
         <span class="like-btn__count" id="likeCount">0</span>
       </button>
       <button class="share-btn" id="shareBtn">링크 복사</button>
     </div>
-    <p class="engage__note">※ 좋아요는 이 기기에서 기록됩니다(로그인 없이 작동). 편집부는 주 단위로 총합을 집계해 다음 주제 선정에 참고합니다.</p>
+    <p class="engage__note">※ 좋아요는 이 기기에서 기록됩니다. 편집부는 주 단위로 총합을 집계해 다음 주제 선정에 참고합니다.</p>
   </section>
 
-  <!-- 댓글 (Giscus) -->
   <section class="comments">
     <div class="comments__title">Comments · 댓글</div>
     <div id="giscus-container"></div>
-    <div id="giscus-setup" class="comments__setup">
-      <p><strong>댓글 시스템 설치 대기.</strong> 댓글은 <a href="https://giscus.app" target="_blank" rel="noopener">Giscus</a>(GitHub Discussions 기반, 무료·광고 없음)로 운영됩니다. GitHub 계정으로 로그인해 댓글을 남길 수 있습니다.</p>
-      <p style="margin-top:8px">발행인 설치 필요: ① 저장소 <code>nedabahway-site</code>의 <strong>Discussions</strong> 활성화 → ② <a href="https://giscus.app" target="_blank" rel="noopener">giscus.app</a>에서 저장소 연결 → ③ 생성된 <code>&lt;script&gt;</code>를 이 페이지 <code>#giscus-container</code>에 주입. 편집부 태스크로 등록되어 있습니다.</p>
+    <div class="comments__setup">
+      <p><strong>댓글 시스템 설치 대기.</strong> <a href="https://giscus.app" target="_blank" rel="noopener">Giscus</a>(GitHub Discussions 기반, 무료·광고 없음)로 운영 예정입니다. GitHub 계정으로 로그인해 댓글을 남길 수 있습니다.</p>
     </div>
   </section>
 
   <footer class="footer-note">
-    <p>네다바웨이 매거진 · STUDY #01 · 편집: 편집부 + 리서치 / 카피: 편집장</p>
-    <p style="color:#555;font-size:.8rem;margin-top:4px">이 글은 독자와 함께 공부하기 위해 열린 텍스트입니다. 댓글·인용·공유 환영.</p>
+    <p>네다바웨이 매거진 · GUIDE #01 · 편집: 편집부 + 리서치 / 카피: 편집장</p>
+    <p style="color:var(--c-mute2);font-size:.8rem;margin-top:4px">이 글은 독자와 함께 공부하기 위해 열린 텍스트입니다. 댓글·인용·공유 환영.</p>
   </footer>
 </main>
 
@@ -236,11 +225,7 @@ article code{font-family:ui-monospace,SFMono-Regular,monospace;background:#15151
   const countEl = document.getElementById('likeCount');
   let liked = localStorage.getItem(likeKey) === '1';
   let count = parseInt(localStorage.getItem(countKey) || '0', 10);
-  const render = () => {
-    btn.classList.toggle('like-btn--active', liked);
-    btn.setAttribute('aria-pressed', String(liked));
-    countEl.textContent = count;
-  };
+  const render = () => { btn.classList.toggle('like-btn--active', liked); btn.setAttribute('aria-pressed', String(liked)); countEl.textContent = count; };
   render();
   btn.addEventListener('click', () => {
     if (liked) { liked = false; count = Math.max(0, count - 1); }
@@ -249,7 +234,6 @@ article code{font-family:ui-monospace,SFMono-Regular,monospace;background:#15151
     localStorage.setItem(countKey, String(count));
     render();
   });
-
   document.getElementById('shareBtn').addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(location.href);
@@ -260,21 +244,5 @@ article code{font-family:ui-monospace,SFMono-Regular,monospace;background:#15151
   });
 })();
 </script>
-
-<!-- Giscus: 설치 완료 시 아래 주석 해제 후 data-repo 등 설정값 주입
-<script src="https://giscus.app/client.js"
-  data-repo="USERNAME/nedabahway-site"
-  data-repo-id="..."
-  data-category="Comments"
-  data-category-id="..."
-  data-mapping="pathname"
-  data-strict="0"
-  data-reactions-enabled="1"
-  data-emit-metadata="0"
-  data-input-position="top"
-  data-theme="dark_dimmed"
-  data-lang="ko"
-  crossorigin="anonymous" async></script>
--->
 </body>
 </html>

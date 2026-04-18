@@ -4,169 +4,212 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>매거진 — 네다바웨이 편집부가 고른 현장 기록</title>
-<meta name="description" content="네다바웨이 편집부가 격주로 정제하는 교육 현장 매거진. 현장(FIELD)·근거(EVIDENCE)·설계(DESIGN)·SBM·일지(DAILY) 다섯 섹션으로 구성됩니다.">
-<meta property="og:title" content="네다바웨이 매거진">
-<meta property="og:description" content="5개 섹션으로 구조화된 교육 현장 매거진">
+<meta name="description" content="네다바웨이 편집부가 격주로 정제하는 교육 현장 매거진. 통찰·가이드·큐레이션·기록 네 카테고리로 구성됩니다. 매일 여섯 번 소식이 갱신됩니다.">
+<meta property="og:title" content="네다바웨이 매거진 — 통찰·가이드·큐레이션·기록">
+<meta property="og:description" content="교육 현장에서 검증된 설계 원칙과 근거 자료를 한 자리에 모으는 잡지형 매거진.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.nedabah.org/blog/">
 <meta property="og:site_name" content="네다바웨이 매거진">
 <link rel="canonical" href="https://www.nedabah.org/blog/">
 <style>
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
 :root{
-  --c-bg:#0A0A0A;--c-fg:#FAFAFA;--c-mute:#8A8A8A;--c-mute2:#5a5a5a;--c-dim:#222;--c-dim2:#151515;
-  --c-acc:#4ADE80;--c-acc2:#22C55E;
-  --c-field:#FCD34D;   /* 현장 — warm */
-  --c-evidence:#38BDF8;/* 근거 — sky  */
-  --c-design:#818CF8;  /* 설계 — indigo */
-  --c-sbm:#FB7185;     /* SBM — rose  */
-  --c-daily:#A78BFA;   /* 일지 — violet */
-  --c-study:#34D399;   /* 공부 — emerald */
-  --c-ref:#F472B6;     /* 큐레이션 — pink */
+  /* 라이트 팔레트 — 크림 바탕, 고급 잡지 톤 */
+  --c-bg:#FAFAF7;        /* 크림 배경 */
+  --c-surface:#FFFFFF;   /* 카드 흰 */
+  --c-fg:#1A1A1A;        /* 본문 near-black */
+  --c-mute:#6B6B6B;      /* 메타 회색 */
+  --c-mute2:#9A9A9A;     /* 캡션 */
+  --c-line:#E8E6E0;      /* 보더·분할선 */
+  --c-line2:#D6D3CA;     /* 짙은 보더 */
+  --c-accent:#10803D;    /* 깊은 초록 — 핵심 악센트 */
+  --c-accent-soft:#E8F2EC;
+  --c-copper:#C2410C;    /* 구리 오렌지 — 이슈 강조 */
+  --c-copper-soft:#FDF1EA;
+
+  /* 카테고리 4색 (라이트 친화) */
+  --c-insight:#1D4ED8;   /* 통찰 — 짙은 파랑 */
+  --c-insight-soft:#E8EEFB;
+  --c-guide:#7C3AED;     /* 가이드 — 보라 */
+  --c-guide-soft:#F1EBFC;
+  --c-curation:#C2410C;  /* 큐레이션 — 구리 */
+  --c-curation-soft:#FDF1EA;
+  --c-note:#B45309;      /* 기록 — 호박 */
+  --c-note-soft:#FDF3E3;
+
   --ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
-  --ff-serif:'Noto Serif KR',Georgia,serif;
+  --ff-serif:'Noto Serif KR',Georgia,'Noto Serif',serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);
-  line-height:1.6;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+  line-height:1.65;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
 
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(10,10,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--c-dim)}
-.nav__inner{max-width:1200px;margin:0 auto;padding:14px 28px;
+/* NAV — 종이봉투 느낌의 상단 */
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.96);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line)}
+.nav__inner{max-width:1180px;margin:0 auto;padding:14px 28px;
   display:flex;align-items:center;justify-content:space-between}
-.nav__logo{font-weight:800;font-size:1.05rem}
+.nav__logo{font-family:var(--ff-serif);font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
 .nav__links{display:flex;gap:22px;align-items:center}
-.nav__link{font-size:.88rem;color:var(--c-mute);font-weight:500}
+.nav__link{font-size:.86rem;color:var(--c-mute);font-weight:500;letter-spacing:.01em}
 .nav__link:hover{color:var(--c-fg)}
-.nav__link--active{color:var(--c-acc)}
-.nav__cta{font-size:.85rem;padding:8px 16px;border-radius:8px;
-  background:var(--c-acc);color:var(--c-bg);font-weight:700}
-.nav__cta:hover{background:var(--c-acc2)}
+.nav__link--active{color:var(--c-accent);font-weight:700}
+.nav__cta{font-size:.84rem;padding:9px 18px;border-radius:999px;
+  background:var(--c-fg);color:var(--c-bg);font-weight:600}
+.nav__cta:hover{background:var(--c-accent);text-decoration:none}
 @media(max-width:760px){.nav__links .nav__link:not(.nav__link--active){display:none}}
 
-/* MASTHEAD */
-.masthead{max-width:1200px;margin:0 auto;padding:130px 28px 40px}
-.masthead__kicker{font-size:.72rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--c-mute);margin-bottom:18px}
-.masthead__title{font-family:var(--ff-serif);font-weight:700;font-size:clamp(2.6rem,6.5vw,4.6rem);
-  line-height:1.05;letter-spacing:-.035em}
-.masthead__issue{display:flex;gap:28px;flex-wrap:wrap;margin-top:28px;padding-top:24px;
-  border-top:1px solid var(--c-dim);font-size:.82rem;color:var(--c-mute)}
+/* MASTHEAD — 잡지 표지 느낌 */
+.masthead{max-width:1180px;margin:0 auto;padding:64px 28px 24px;
+  border-bottom:1px solid var(--c-line)}
+.masthead__rail{display:flex;justify-content:space-between;align-items:center;
+  font-size:.72rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--c-mute);margin-bottom:20px}
+.masthead__title{font-family:var(--ff-serif);font-weight:900;
+  font-size:clamp(2.8rem,7.5vw,5.6rem);line-height:.98;letter-spacing:-.035em;margin-bottom:18px}
+.masthead__title em{font-style:italic;color:var(--c-copper);font-weight:700}
+.masthead__sub{max-width:640px;color:var(--c-mute);font-size:1rem;line-height:1.75;margin-bottom:32px}
+.masthead__issue{display:flex;gap:28px;flex-wrap:wrap;padding-top:20px;
+  border-top:1px solid var(--c-line);font-size:.82rem;color:var(--c-mute)}
 .masthead__issue strong{color:var(--c-fg);font-weight:700}
 
 /* EDITOR'S NOTE */
-.editor{max-width:1200px;margin:0 auto;padding:0 28px 72px}
-.editor__card{display:grid;gap:28px;grid-template-columns:1fr;
-  background:linear-gradient(180deg,#101010,#0c0c0c);
-  border:1px solid var(--c-dim);border-radius:20px;padding:36px 32px}
-@media(min-width:860px){.editor__card{grid-template-columns:220px 1fr;gap:40px}}
-.editor__label{font-size:.72rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--c-acc);margin-bottom:10px}
-.editor__name{font-size:1.05rem;font-weight:800;margin-bottom:6px}
+.editor{max-width:1180px;margin:0 auto;padding:56px 28px 32px}
+.editor__card{display:grid;gap:32px;grid-template-columns:1fr;
+  background:var(--c-surface);border:1px solid var(--c-line);border-radius:18px;padding:40px 36px}
+@media(min-width:860px){.editor__card{grid-template-columns:220px 1fr;gap:48px}}
+.editor__label{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--c-accent);margin-bottom:10px}
+.editor__name{font-family:var(--ff-serif);font-size:1.15rem;font-weight:700;margin-bottom:6px}
 .editor__role{font-size:.82rem;color:var(--c-mute);line-height:1.6}
-.editor__headline{font-family:var(--ff-serif);font-weight:700;font-size:clamp(1.3rem,2.5vw,1.7rem);line-height:1.45;margin-bottom:14px;letter-spacing:-.02em}
-.editor__body{color:#cfcfcf;font-size:.98rem;line-height:1.85}
+.editor__headline{font-family:var(--ff-serif);font-weight:700;
+  font-size:clamp(1.4rem,2.8vw,1.9rem);line-height:1.4;margin-bottom:18px;letter-spacing:-.02em}
+.editor__body{color:#2a2a2a;font-size:1rem;line-height:1.85}
 .editor__body p+p{margin-top:14px}
 
-/* SECTION NAV (필터) */
-.sect-nav{max-width:1200px;margin:0 auto;padding:0 28px 24px}
-.sect-nav__title{font-size:.72rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--c-mute);margin-bottom:14px}
+/* SECTION FILTER */
+.sect-nav{max-width:1180px;margin:0 auto;padding:16px 28px 8px}
+.sect-nav__title{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--c-mute);margin-bottom:14px}
 .sect-nav__btns{display:flex;flex-wrap:wrap;gap:8px}
-.sect-btn{font-size:.82rem;padding:9px 16px;border-radius:999px;
-  background:transparent;border:1px solid var(--c-dim);color:var(--c-mute);
+.sect-btn{font-size:.82rem;padding:10px 18px;border-radius:999px;
+  background:var(--c-surface);border:1px solid var(--c-line);color:var(--c-mute);
   cursor:pointer;font-family:inherit;font-weight:600;transition:all .2s}
-.sect-btn:hover{border-color:#555;color:var(--c-fg)}
+.sect-btn:hover{border-color:var(--c-fg);color:var(--c-fg)}
 .sect-btn--active{background:var(--c-fg);color:var(--c-bg);border-color:var(--c-fg)}
 
-/* LEAD (최상단 피처드) */
-.lead{max-width:1200px;margin:0 auto;padding:8px 28px 40px}
+/* LEAD (Cover + subsidiary) */
+.lead{max-width:1180px;margin:0 auto;padding:16px 28px 40px}
 .lead__grid{display:grid;gap:24px;grid-template-columns:1fr}
-@media(min-width:860px){.lead__grid{grid-template-columns:1.6fr 1fr;gap:32px}}
-.lead-a{background:linear-gradient(135deg,#0f0f0f,#0a0a0a);border:1px solid var(--c-dim);
-  border-radius:18px;padding:40px 34px;position:relative;overflow:hidden;display:block;
-  transition:border-color .25s,transform .2s}
-.lead-a:hover{border-color:var(--c-acc);transform:translateY(-3px)}
-.lead-a::before{content:"";position:absolute;inset:0;
-  background:radial-gradient(600px 300px at 85% -10%,rgba(56,189,248,.08),transparent 60%);pointer-events:none}
-.lead-a__tag{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;
-  letter-spacing:.25em;text-transform:uppercase;color:var(--c-evidence);margin-bottom:14px}
-.lead-a__tag::before{content:"";width:20px;height:2px;background:var(--c-evidence)}
-.lead-a__title{font-family:var(--ff-serif);font-weight:700;font-size:clamp(1.6rem,3.8vw,2.3rem);
-  line-height:1.25;letter-spacing:-.025em;margin-bottom:18px}
-.lead-a__excerpt{color:var(--c-mute);font-size:.98rem;line-height:1.75;margin-bottom:22px}
-.lead-a__meta{display:flex;gap:12px;font-size:.78rem;color:var(--c-mute2);font-weight:500}
-.lead-a__meta span+span::before{content:"·";margin-right:12px;color:var(--c-dim)}
+@media(min-width:860px){.lead__grid{grid-template-columns:1.7fr 1fr;gap:32px}}
 
-.lead-b{display:grid;gap:16px;align-content:start}
-.lead-b__card{background:#0e0e0e;border:1px solid var(--c-dim);border-radius:14px;padding:22px 20px;
-  transition:border-color .2s;display:block}
-.lead-b__card:hover{border-color:#444}
-.lead-b__tag{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px}
-.lead-b__title{font-size:.98rem;font-weight:700;line-height:1.45;margin-bottom:6px;color:var(--c-fg)}
-.lead-b__meta{font-size:.74rem;color:var(--c-mute2)}
-.lead-b__card--placeholder{border-style:dashed;color:var(--c-mute2)}
-.lead-b__card--placeholder .lead-b__title{color:var(--c-mute)}
+.cover{background:var(--c-surface);border:1px solid var(--c-line);border-radius:18px;
+  padding:44px 38px;position:relative;overflow:hidden;display:block;transition:all .25s}
+.cover:hover{border-color:var(--c-line2);transform:translateY(-2px);text-decoration:none}
+.cover::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(500px 260px at 90% -10%,var(--c-accent-soft),transparent 70%);pointer-events:none}
+.cover__flag{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:800;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--c-insight);margin-bottom:16px;position:relative}
+.cover__flag::before{content:"";width:22px;height:2px;background:var(--c-insight)}
+.cover__title{font-family:var(--ff-serif);font-weight:700;
+  font-size:clamp(1.7rem,4.2vw,2.5rem);line-height:1.2;letter-spacing:-.025em;margin-bottom:18px;position:relative}
+.cover__excerpt{color:var(--c-mute);font-size:1rem;line-height:1.75;margin-bottom:22px;position:relative;max-width:540px}
+.cover__meta{display:flex;gap:14px;font-size:.78rem;color:var(--c-mute2);font-weight:500;position:relative}
+.cover__meta span+span::before{content:"·";margin-right:14px;color:var(--c-line2)}
 
-/* LIST */
-.feed{max-width:1200px;margin:0 auto;padding:40px 28px 20px;border-top:1px solid var(--c-dim)}
+.subs{display:grid;gap:14px;align-content:start}
+.sub-card{background:var(--c-surface);border:1px solid var(--c-line);border-radius:14px;padding:22px 22px;
+  transition:all .2s;display:block}
+.sub-card:hover{border-color:var(--c-fg);text-decoration:none;transform:translateY(-1px)}
+.sub-card__flag{font-size:.68rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
+.sub-card__title{font-family:var(--ff-serif);font-size:1.05rem;font-weight:700;line-height:1.4;margin-bottom:6px;color:var(--c-fg)}
+.sub-card__meta{font-size:.76rem;color:var(--c-mute2)}
+.sub-card--dashed{border-style:dashed}
+.sub-card--dashed .sub-card__title{color:var(--c-mute)}
+
+/* 태그 색 매핑 */
+.tag--insight{color:var(--c-insight)}
+.tag--guide{color:var(--c-guide)}
+.tag--curation{color:var(--c-curation)}
+.tag--note{color:var(--c-note)}
+
+/* FEED 목록 */
+.feed{max-width:1180px;margin:0 auto;padding:48px 28px 24px;border-top:1px solid var(--c-line)}
 .feed__head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:28px}
-.feed__title{font-family:var(--ff-serif);font-weight:700;font-size:1.6rem;letter-spacing:-.02em}
+.feed__title{font-family:var(--ff-serif);font-weight:700;font-size:1.7rem;letter-spacing:-.02em}
 .feed__hint{font-size:.82rem;color:var(--c-mute)}
-.feed__list{display:grid;gap:1px;background:var(--c-dim);border:1px solid var(--c-dim);border-radius:16px;overflow:hidden}
-.feed-item{display:grid;grid-template-columns:110px 1fr auto;gap:20px;align-items:center;
-  padding:22px 24px;background:var(--c-bg);transition:background .2s}
-.feed-item:hover{background:#0d0d0d}
+.feed__list{display:grid;gap:1px;background:var(--c-line);border:1px solid var(--c-line);border-radius:16px;overflow:hidden}
+.feed-item{display:grid;grid-template-columns:120px 1fr auto;gap:22px;align-items:center;
+  padding:22px 26px;background:var(--c-surface);transition:background .18s}
+.feed-item:hover{background:#F5F3EC}
 .feed-item__date{font-size:.78rem;color:var(--c-mute);font-variant-numeric:tabular-nums}
 .feed-item__main{min-width:0}
-.feed-item__tag{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px}
-.feed-item__title{font-size:1rem;font-weight:700;line-height:1.5;color:var(--c-fg);
+.feed-item__flag{font-size:.68rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;margin-bottom:6px}
+.feed-item__title{font-family:var(--ff-serif);font-size:1.05rem;font-weight:700;line-height:1.45;color:var(--c-fg);
   overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.feed-item__read{font-size:.75rem;color:var(--c-mute2);white-space:nowrap}
+.feed-item__read{font-size:.76rem;color:var(--c-mute2);white-space:nowrap}
 @media(max-width:700px){
-  .feed-item{grid-template-columns:1fr;gap:6px;padding:20px 18px}
+  .feed-item{grid-template-columns:1fr;gap:6px;padding:20px 20px}
   .feed-item__read{display:none}
 }
 
-.tag--field{color:var(--c-field)}
-.tag--evidence{color:var(--c-evidence)}
-.tag--design{color:var(--c-design)}
-.tag--sbm{color:var(--c-sbm)}
-.tag--daily{color:var(--c-daily)}
-.tag--study{color:var(--c-study)}
-.tag--ref{color:var(--c-ref)}
-
-/* SECTIONS intro strip */
-.sections{max-width:1200px;margin:0 auto;padding:72px 28px 40px}
-.sections__head{margin-bottom:28px}
-.sections__kicker{font-size:.72rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--c-mute);margin-bottom:10px}
-.sections__title{font-family:var(--ff-serif);font-weight:700;font-size:clamp(1.6rem,3vw,2rem);letter-spacing:-.02em}
-.sections__grid{display:grid;gap:14px;grid-template-columns:1fr}
+/* 카테고리 4개 Map */
+.sections{max-width:1180px;margin:0 auto;padding:72px 28px 32px}
+.sections__head{margin-bottom:28px;text-align:center}
+.sections__kicker{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--c-mute);margin-bottom:10px}
+.sections__title{font-family:var(--ff-serif);font-weight:700;font-size:clamp(1.6rem,3.2vw,2.1rem);letter-spacing:-.02em}
+.sections__grid{display:grid;gap:16px;grid-template-columns:1fr}
 @media(min-width:640px){.sections__grid{grid-template-columns:1fr 1fr}}
 @media(min-width:960px){.sections__grid{grid-template-columns:repeat(4,1fr)}}
-@media(min-width:1100px){.sections__grid{grid-template-columns:repeat(7,1fr)}}
-.scard{background:#0d0d0d;border:1px solid var(--c-dim);border-radius:14px;padding:22px 20px;transition:transform .2s,border-color .2s}
-.scard:hover{transform:translateY(-2px);border-color:#444}
-.scard__abbr{font-size:.7rem;font-weight:700;letter-spacing:.25em;margin-bottom:8px}
-.scard__name{font-size:1rem;font-weight:800;margin-bottom:8px;color:var(--c-fg)}
-.scard__desc{font-size:.82rem;color:var(--c-mute);line-height:1.6}
+.scard{background:var(--c-surface);border:1px solid var(--c-line);border-radius:16px;
+  padding:28px 24px;transition:all .22s;position:relative;overflow:hidden}
+.scard:hover{transform:translateY(-3px);border-color:var(--c-line2)}
+.scard::before{content:"";position:absolute;top:0;left:0;right:0;height:3px}
+.scard--insight::before{background:var(--c-insight)}
+.scard--guide::before{background:var(--c-guide)}
+.scard--curation::before{background:var(--c-curation)}
+.scard--note::before{background:var(--c-note)}
+.scard__abbr{font-size:.7rem;font-weight:800;letter-spacing:.28em;margin-bottom:10px;text-transform:uppercase}
+.scard__name{font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
+.scard__desc{font-size:.88rem;color:var(--c-mute);line-height:1.7}
 
-/* COLOPHON (제작진) */
-.colophon{max-width:1200px;margin:0 auto;padding:72px 28px 40px;border-top:1px solid var(--c-dim)}
-.colophon__kicker{font-size:.72rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--c-mute);margin-bottom:14px}
-.colophon__title{font-family:var(--ff-serif);font-weight:700;font-size:1.5rem;margin-bottom:24px;letter-spacing:-.02em}
-.colophon__grid{display:grid;gap:18px;grid-template-columns:1fr}
+/* 독자 여정 15단계 — 편집 원칙 섹션 (잡지식 다이어그램) */
+.journey{max-width:1180px;margin:0 auto;padding:72px 28px 40px;border-top:1px solid var(--c-line)}
+.journey__head{margin-bottom:32px}
+.journey__kicker{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--c-copper);margin-bottom:10px}
+.journey__title{font-family:var(--ff-serif);font-weight:700;font-size:clamp(1.6rem,3vw,2rem);letter-spacing:-.02em;margin-bottom:12px}
+.journey__sub{color:var(--c-mute);font-size:.95rem;line-height:1.75;max-width:720px}
+.journey__cols{display:grid;gap:28px;grid-template-columns:1fr}
+@media(min-width:860px){.journey__cols{grid-template-columns:1fr 1fr}}
+.jcol{background:var(--c-surface);border:1px solid var(--c-line);border-radius:16px;padding:28px 26px}
+.jcol__title{font-family:var(--ff-serif);font-weight:700;font-size:1.1rem;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--c-line)}
+.jcol ol{padding-left:0;list-style:none;counter-reset:j;display:grid;gap:10px}
+.jcol li{counter-increment:j;display:grid;grid-template-columns:28px 1fr;gap:12px;
+  font-size:.9rem;color:#2d2d2d;line-height:1.6}
+.jcol li::before{content:counter(j);font-size:.72rem;font-weight:800;color:var(--c-mute);
+  width:26px;height:26px;border-radius:50%;border:1px solid var(--c-line);
+  display:flex;align-items:center;justify-content:center;background:var(--c-bg)}
+.jcol li strong{font-weight:700;color:var(--c-fg)}
+.jcol--emotion li::before{border-color:var(--c-accent);color:var(--c-accent)}
+.jcol--flow li::before{border-color:var(--c-copper);color:var(--c-copper)}
+
+/* COLOPHON 제작진 */
+.colophon{max-width:1180px;margin:0 auto;padding:72px 28px 40px;border-top:1px solid var(--c-line)}
+.colophon__kicker{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--c-mute);margin-bottom:14px}
+.colophon__title{font-family:var(--ff-serif);font-weight:700;font-size:1.55rem;margin-bottom:24px;letter-spacing:-.02em}
+.colophon__grid{display:grid;gap:14px;grid-template-columns:1fr}
 @media(min-width:640px){.colophon__grid{grid-template-columns:1fr 1fr}}
 @media(min-width:960px){.colophon__grid{grid-template-columns:repeat(4,1fr)}}
-.cop{background:#0d0d0d;border:1px solid var(--c-dim);border-radius:12px;padding:18px 18px}
-.cop__role{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--c-acc);margin-bottom:8px}
-.cop__name{font-size:.95rem;font-weight:700;margin-bottom:4px}
-.cop__note{font-size:.78rem;color:var(--c-mute);line-height:1.55}
+.cop{background:var(--c-surface);border:1px solid var(--c-line);border-radius:12px;padding:20px 20px}
+.cop__role{font-size:.7rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--c-accent);margin-bottom:8px}
+.cop__name{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.cop__note{font-size:.78rem;color:var(--c-mute);line-height:1.6}
 
-.foot{max-width:1200px;margin:0 auto;padding:40px 28px 80px;color:var(--c-mute);font-size:.85rem;text-align:center;line-height:1.7;border-top:1px solid var(--c-dim)}
-.foot a{color:var(--c-mute)}
-.foot a:hover{color:var(--c-fg)}
+.foot{max-width:1180px;margin:0 auto;padding:48px 28px 72px;color:var(--c-mute);font-size:.85rem;text-align:center;line-height:1.8;border-top:1px solid var(--c-line)}
+.foot a{color:var(--c-fg);text-decoration:underline;text-decoration-color:var(--c-line2);text-underline-offset:3px}
+.foot a:hover{text-decoration-color:var(--c-accent)}
 </style>
 </head>
 <body>
@@ -180,115 +223,121 @@ img{max-width:100%;display:block}
       <a class="nav__link" href="/portfolio.html">포트폴리오</a>
       <a class="nav__link nav__link--active" href="/blog/">매거진</a>
       <a class="nav__link" href="/resources/">자료실</a>
-      <a class="nav__cta" href="mailto:nedabah.way@gmail.com?subject=[교육 문의]">문의</a>
+      <a class="nav__cta" href="/#contact">문의</a>
     </div>
   </div>
 </nav>
 
+<!-- ① 도착·첫인상 — 감정만족 1·2·3 (안심·존중·명료) -->
 <header class="masthead">
-  <div class="masthead__kicker">Nedabahway Magazine · Issue 01</div>
-  <h1 class="masthead__title">현장에서 쓴 기록,<br>편집부가 고른 통찰.</h1>
+  <div class="masthead__rail">
+    <span>Nedabahway Magazine</span>
+    <span>Issue 01 · 2026 · April</span>
+  </div>
+  <h1 class="masthead__title">현장에서 쓴 기록,<br><em>편집부가 고른</em> 통찰.</h1>
+  <p class="masthead__sub">
+    공공교육·HRD·AI 리터러시·SBM(Small Bible Meeting) 현장을 반복 가능한 설계 원칙으로 정제합니다.
+    <strong style="color:var(--c-fg)">통찰·가이드·큐레이션·기록</strong> 네 카테고리로 구성되며, 큰 글은 격주로, 짧은 관찰은 매일 여섯 번 갱신됩니다.
+  </p>
   <div class="masthead__issue">
-    <div><strong>창간호</strong> · Issue 01 — 근거의 재무장</div>
-    <div>2026년 4월호</div>
+    <div><strong>창간호</strong> · 근거의 재무장</div>
     <div>편집장 · <strong>김창환</strong></div>
-    <div>발행 주기 · 격주 + 매일 일지(DAILY) 6회</div>
+    <div>발행 · 격주 + 매일 6회 기록</div>
+    <div>가격 · 무료 열람, 댓글 환영</div>
   </div>
 </header>
 
+<!-- ② 정체·관련성 — 감정만족 4 진정성 -->
 <section class="editor">
   <div class="editor__card">
     <div>
       <div class="editor__label">Editor's Note</div>
       <div class="editor__name">김창환</div>
-      <p class="editor__role">교육자 · 퍼실리테이터 · 1인 교육기업 편집장. 제주에서 12년.</p>
+      <p class="editor__role">교육자 · 퍼실리테이터 · 1인 교육기업 편집장. 제주 12년.</p>
     </div>
     <div>
       <h2 class="editor__headline">콘텐츠가 평준화된 시대, 남은 경쟁은 근거 레이어에 있다.</h2>
       <div class="editor__body">
-        <p>생성형 AI가 PPT 초안을 5분에 만들어 주는 지금, 강의 콘텐츠의 진입장벽은 이미 무너졌습니다. 차별화는 세 군데로 이동했습니다 — 설계력, 근거, 재사용성. 이 중 가장 비어 있는 구간이 <strong>근거</strong>입니다.</p>
-        <p>이번 창간호는 "근거의 재무장"을 테마로 묶었습니다. 공공조달 심사위원이 실제로 묻는 학습효과 지표, HRD 논문에서 건져낸 효과크기 0.4 이상의 설계 원칙, 한 장짜리 활동지가 왜 3년간의 포트폴리오로 축적되는지를 다섯 섹션으로 나눠 싣습니다.</p>
-        <p>이 매거진은 <strong>매일 6번</strong> 업데이트됩니다. 큰 글은 격주로, 짧은 관찰은 일지(DAILY)로 매일 쌓입니다. 현장에서 검증된 것만 올리는 것이 편집 원칙입니다.</p>
+        <p>생성형 AI가 PPT 초안을 5분에 만들어 주는 지금, 강의 콘텐츠의 진입장벽은 이미 무너졌습니다. 차별화는 세 군데로 이동했습니다 — <strong>설계력, 근거, 재사용성</strong>. 이 중 가장 비어 있는 구간이 근거입니다.</p>
+        <p>이번 창간호는 "근거의 재무장"을 테마로 묶었습니다. 공공조달 심사위원이 실제로 묻는 학습효과 지표, HRD 논문에서 건져낸 효과크기 0.4+ 설계 원칙, 한 장짜리 활동지가 왜 3년간의 포트폴리오로 축적되는지를 네 섹션으로 나눠 싣습니다.</p>
+        <p>이 매거진은 <strong>매일 여섯 번</strong> 갱신됩니다. 큰 글은 격주로, 짧은 관찰은 기록(NOTE)에 매일 쌓입니다. 현장에서 검증된 것만 싣는 것이 편집 원칙입니다.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ③ 관련성 — 필터 (감정만족 5 공감) -->
 <nav class="sect-nav">
   <div class="sect-nav__title">Sections</div>
   <div class="sect-nav__btns" id="filters">
     <button class="sect-btn sect-btn--active" data-cat="all">전체</button>
-    <button class="sect-btn" data-cat="field">FIELD · 현장</button>
-    <button class="sect-btn" data-cat="evidence">EVIDENCE · 근거</button>
-    <button class="sect-btn" data-cat="design">DESIGN · 설계</button>
-    <button class="sect-btn" data-cat="study">STUDY · 공부</button>
-    <button class="sect-btn" data-cat="ref">REF · 큐레이션</button>
-    <button class="sect-btn" data-cat="sbm">SBM · 관찰</button>
-    <button class="sect-btn" data-cat="daily">DAILY · 일지</button>
+    <button class="sect-btn" data-cat="insight">INSIGHT · 통찰</button>
+    <button class="sect-btn" data-cat="guide">GUIDE · 가이드</button>
+    <button class="sect-btn" data-cat="curation">CURATION · 큐레이션</button>
+    <button class="sect-btn" data-cat="note">NOTE · 기록</button>
   </div>
 </nav>
 
+<!-- ④ 역량·신뢰 — Cover Story + 보조 카드 (감정만족 7 능력감) -->
 <section class="lead">
   <div class="lead__grid">
-    <a class="lead-a filterable" data-cat="evidence" href="posts/2026-04-18_ai-literacy-evidence-layer.html">
-      <div class="lead-a__tag">Evidence · Cover Story</div>
-      <h2 class="lead-a__title">AI 강사가 "증거"를 들고 왔을 때만 통한다 — 공공조달 차별화의 근거 레이어</h2>
-      <p class="lead-a__excerpt">
-        AI 리터러시가 국민내일배움카드 필수 이수로 편입될 가능성이 커질수록, 심사위원이 묻는 것은 "AI를 가르칠 수 있느냐"가 아니라 "당신의 수업에 학습효과 근거가 붙어 있느냐"로 바뀝니다. HRD 논문 효과크기 0.4+ 원칙 세 가지를 강의 설계에 어떻게 이식하는지 정리했습니다.
+    <a class="cover filterable" data-cat="insight" href="posts/2026-04-18_ai-literacy-evidence-layer.html">
+      <div class="cover__flag tag--insight">Insight · Cover Story</div>
+      <h2 class="cover__title">AI 강사가 "증거"를 들고 왔을 때만 통한다 — 공공조달 차별화의 근거 레이어</h2>
+      <p class="cover__excerpt">
+        AI 리터러시가 국민내일배움카드 필수 이수로 편입될 가능성이 커질수록, 심사위원이 묻는 것은 "AI를 가르칠 수 있느냐"가 아니라 "당신 수업에 학습효과 근거가 붙어 있느냐"로 바뀝니다. HRD 논문 효과크기 0.4+ 원칙 세 가지를 강의 설계에 어떻게 이식하는지 정리했습니다.
       </p>
-      <div class="lead-a__meta">
-        <span>2026-04-18</span>
-        <span>읽는 시간 8분</span>
-        <span>편집 · 리서치 2부</span>
+      <div class="cover__meta">
+        <span>2026-04-18</span><span>읽는 시간 8분</span><span>편집·리서치 2부</span>
       </div>
     </a>
-
-    <div class="lead-b">
-      <a class="lead-b__card filterable" data-cat="study" href="posts/2026-04-18_study-ai-literacy-policy.html">
-        <div class="lead-b__tag tag--study">STUDY · 공부</div>
-        <div class="lead-b__title">AI 리터러시 "의무화" 흐름을 세 층위로 읽기 — 함께 공부하는 자료 #01</div>
-        <div class="lead-b__meta">2026-04-18 · 7분 · 토론 질문 4개</div>
+    <div class="subs">
+      <a class="sub-card filterable" data-cat="guide" href="posts/2026-04-18_study-ai-literacy-policy.html">
+        <div class="sub-card__flag tag--guide">GUIDE · 가이드</div>
+        <div class="sub-card__title">AI 리터러시 "의무화" 흐름을 세 층위로 읽기 — 함께 공부하는 자료 #01</div>
+        <div class="sub-card__meta">2026-04-18 · 7분 · 토론 질문 4개</div>
       </a>
-      <a class="lead-b__card filterable" data-cat="ref" href="posts/2026-04-18_ref-curation-01.html">
-        <div class="lead-b__tag tag--ref">REF · 큐레이션</div>
-        <div class="lead-b__title">출처를 밝히고 모읍니다 — 편집부가 본 외부 자료 #01 (4건)</div>
-        <div class="lead-b__meta">2026-04-18 · 4분 · 큐레이션 5원칙</div>
+      <a class="sub-card filterable" data-cat="curation" href="posts/2026-04-18_ref-curation-01.html">
+        <div class="sub-card__flag tag--curation">CURATION · 큐레이션</div>
+        <div class="sub-card__title">출처를 밝히고 모읍니다 — 편집부가 본 외부 자료 #01 (4건)</div>
+        <div class="sub-card__meta">2026-04-18 · 4분 · 큐레이션 5원칙</div>
       </a>
-      <div class="lead-b__card lead-b__card--placeholder filterable" data-cat="field">
-        <div class="lead-b__tag tag--field">FIELD · 현장</div>
-        <div class="lead-b__title">[준비] 한 장짜리 활동지가 3년의 포트폴리오가 되기까지</div>
-        <div class="lead-b__meta">Issue 01 · 4월 둘째 주 발행 예정</div>
+      <div class="sub-card sub-card--dashed filterable" data-cat="note">
+        <div class="sub-card__flag tag--note">NOTE · 기록</div>
+        <div class="sub-card__title">[준비] 소그룹이 질문을 되돌려주는 순간에 대하여</div>
+        <div class="sub-card__meta">Issue 01 · 4월 말 발행 예정</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ⑤ 다름·가치 — Feed (감정만족 6 설레임) -->
 <section class="feed">
   <div class="feed__head">
     <h3 class="feed__title">최근 기사</h3>
-    <div class="feed__hint">5개 섹션 · 격주 + 매일 일지</div>
+    <div class="feed__hint">4개 카테고리 · 격주 + 매일 6회</div>
   </div>
   <div class="feed__list">
-    <a class="feed-item filterable" data-cat="evidence" href="posts/2026-04-18_ai-literacy-evidence-layer.html">
+    <a class="feed-item filterable" data-cat="insight" href="posts/2026-04-18_ai-literacy-evidence-layer.html">
       <div class="feed-item__date">2026-04-18</div>
       <div class="feed-item__main">
-        <div class="feed-item__tag tag--evidence">EVIDENCE · 근거</div>
+        <div class="feed-item__flag tag--insight">INSIGHT · 통찰</div>
         <div class="feed-item__title">AI 강사가 "증거"를 들고 왔을 때만 통한다 — 공공조달 차별화의 근거 레이어</div>
       </div>
       <div class="feed-item__read">읽는 시간 8분</div>
     </a>
-    <a class="feed-item filterable" data-cat="study" href="posts/2026-04-18_study-ai-literacy-policy.html">
+    <a class="feed-item filterable" data-cat="guide" href="posts/2026-04-18_study-ai-literacy-policy.html">
       <div class="feed-item__date">2026-04-18</div>
       <div class="feed-item__main">
-        <div class="feed-item__tag tag--study">STUDY · 공부</div>
+        <div class="feed-item__flag tag--guide">GUIDE · 가이드</div>
         <div class="feed-item__title">AI 리터러시 "의무화" 흐름을 세 층위로 읽기 — 함께 공부하는 자료 #01</div>
       </div>
       <div class="feed-item__read">읽는 시간 7분</div>
     </a>
-    <a class="feed-item filterable" data-cat="ref" href="posts/2026-04-18_ref-curation-01.html">
+    <a class="feed-item filterable" data-cat="curation" href="posts/2026-04-18_ref-curation-01.html">
       <div class="feed-item__date">2026-04-18</div>
       <div class="feed-item__main">
-        <div class="feed-item__tag tag--ref">REF · 큐레이션</div>
+        <div class="feed-item__flag tag--curation">CURATION · 큐레이션</div>
         <div class="feed-item__title">출처를 밝히고 모읍니다 — 편집부가 본 외부 자료 #01</div>
       </div>
       <div class="feed-item__read">읽는 시간 4분</div>
@@ -296,70 +345,103 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
+<!-- ⑥ 가치 — 4 카테고리 맵 (감정만족 3 명료) -->
 <section class="sections">
   <div class="sections__head">
     <div class="sections__kicker">Editorial Map</div>
-    <h3 class="sections__title">다섯 개의 섹션</h3>
+    <h3 class="sections__title">네 개의 카테고리</h3>
   </div>
   <div class="sections__grid">
-    <div class="scard">
-      <div class="scard__abbr tag--field">FIELD</div>
-      <div class="scard__name">현장</div>
-      <p class="scard__desc">강의장 안에서 벌어진 장면들. 관찰 → 해석 → 다음 번 시도로 이어지는 기록.</p>
+    <div class="scard scard--insight">
+      <div class="scard__abbr tag--insight">INSIGHT</div>
+      <div class="scard__name">통찰</div>
+      <p class="scard__desc">현장 관찰과 연구 근거가 만나는 지점. 공공조달·HRD·강의 현장에서 실제 작동한 설계 원칙을 정리합니다.</p>
     </div>
-    <div class="scard">
-      <div class="scard__abbr tag--evidence">EVIDENCE</div>
-      <div class="scard__name">근거</div>
-      <p class="scard__desc">논문·효과크기·메타분석이 강의 설계로 어떻게 번역되는가. 표·수치 중심.</p>
+    <div class="scard scard--guide">
+      <div class="scard__abbr tag--guide">GUIDE</div>
+      <div class="scard__name">가이드</div>
+      <p class="scard__desc">함께 공부하는 스터디 자료. 정책·시장·연구 세 층위를 한 장으로 묶어 독자와 질문을 나눕니다.</p>
     </div>
-    <div class="scard">
-      <div class="scard__abbr tag--design">DESIGN</div>
-      <div class="scard__name">설계</div>
-      <p class="scard__desc">커리큘럼·활동지·진단도구의 구조를 해부합니다. 템플릿과 변주의 경계선.</p>
-    </div>
-    <div class="scard">
-      <div class="scard__abbr tag--study">STUDY</div>
-      <div class="scard__name">공부</div>
-      <p class="scard__desc">함께 읽는 자료. 교육·AI 리터러시·공공조달 흐름을 독자와 함께 공부하는 스터디 노트.</p>
-    </div>
-    <div class="scard">
-      <div class="scard__abbr tag--ref">REF</div>
+    <div class="scard scard--curation">
+      <div class="scard__abbr tag--curation">CURATION</div>
       <div class="scard__name">큐레이션</div>
-      <p class="scard__desc">편집부가 발견한 좋은 외부 자료. 원저자·출처·링크를 함께 적습니다.</p>
+      <p class="scard__desc">편집부가 발견한 좋은 외부 자료. 원저자·발행기관·출처 링크·쓰임을 함께 적습니다.</p>
     </div>
-    <div class="scard">
-      <div class="scard__abbr tag--sbm">SBM</div>
-      <div class="scard__name">관찰</div>
-      <p class="scard__desc">Small Bible Meeting. 여섯 사람이 둘러앉아 질문이 되돌아오는 자리에 관한 기록.</p>
-    </div>
-    <div class="scard">
-      <div class="scard__abbr tag--daily">DAILY</div>
-      <div class="scard__name">일지</div>
-      <p class="scard__desc">하루 여섯 번 갱신. 짧은 운영 메모·진척 상황·내일 판단 후보. 가벼운 호흡.</p>
+    <div class="scard scard--note">
+      <div class="scard__abbr tag--note">NOTE</div>
+      <div class="scard__name">기록</div>
+      <p class="scard__desc">SBM 관찰 일지와 매일 여섯 번 갱신되는 운영 메모. 가벼운 호흡으로 쌓는 일상의 증거.</p>
     </div>
   </div>
 </section>
 
+<!-- ⑦ 편집 원칙 — 독자 여정 15 + 감정 만족 9 (신뢰·투명성) -->
+<section class="journey">
+  <div class="journey__head">
+    <div class="journey__kicker">Editorial Principles</div>
+    <h3 class="journey__title">독자 여정 15단계 · 감정 만족 9단계</h3>
+    <p class="journey__sub">
+      좋은 잡지는 독자의 머리와 마음을 같이 움직입니다. 편집부는 독자가 이 매거진을 만나 떠날 때까지의 <strong>사고 흐름 15단계</strong>와, 그 흐름에서 채워져야 할 <strong>감정 만족 9단계</strong>를 내부 설계 도구로 사용합니다. 한 편의 글, 한 번의 방문이 이 두 축을 지나가는지 매번 점검합니다.
+    </p>
+  </div>
+  <div class="journey__cols">
+    <div class="jcol jcol--flow">
+      <div class="jcol__title">독자 사고 흐름 · 15단계</div>
+      <ol>
+        <li><strong>발견</strong> — 검색·SNS·지인 추천으로 도착</li>
+        <li><strong>첫인상</strong> — 0.5초 내 "괜찮은 곳인가" 판단</li>
+        <li><strong>호기심</strong> — "무엇을 하는 사람인가"</li>
+        <li><strong>정체 확인</strong> — "누구에게 필요한가"</li>
+        <li><strong>관련성</strong> — "내 문제와 맞닿는가"</li>
+        <li><strong>역량 평가</strong> — "이 사람 잘하나"</li>
+        <li><strong>신뢰 탐색</strong> — 근거·실적·출처 있는가</li>
+        <li><strong>공감</strong> — "내 상황을 이해하고 있다"</li>
+        <li><strong>다름 인식</strong> — "왜 다른 곳이 아니고 여기인가"</li>
+        <li><strong>가치 체감</strong> — "구체적으로 무엇을 얻는가"</li>
+        <li><strong>위험 평가</strong> — "막힐 만한 건 뭐가 있나"</li>
+        <li><strong>대안 비교</strong> — 다른 옵션과 견주기</li>
+        <li><strong>결정 준비</strong> — 가격·일정·조건 확인</li>
+        <li><strong>행동</strong> — 문의·신청·공유·댓글</li>
+        <li><strong>재방문</strong> — 다시 올 이유를 남기기</li>
+      </ol>
+    </div>
+    <div class="jcol jcol--emotion">
+      <div class="jcol__title">감정 만족 · 9단계</div>
+      <ol>
+        <li><strong>안심</strong> — 광고·잡음 없는 깨끗한 화면</li>
+        <li><strong>존중</strong> — 읽는 사람을 성인으로 대하는 문장</li>
+        <li><strong>명료</strong> — 한 문장에 하나의 주장만 남도록</li>
+        <li><strong>진정성</strong> — 과장 없이, 현장에서 검증된 것만</li>
+        <li><strong>공감</strong> — "이건 내 얘기다"라는 감각</li>
+        <li><strong>설레임</strong> — "더 읽고 싶다"는 기대</li>
+        <li><strong>능력감</strong> — "나도 해볼 수 있겠다"</li>
+        <li><strong>연결</strong> — 댓글·좋아요로 혼자가 아님</li>
+        <li><strong>감사</strong> — 떠날 때 무언가 얻은 느낌</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ 다름 — 편집부 8명 -->
 <section class="colophon">
   <div class="colophon__kicker">Masthead · Editorial Team</div>
-  <h3 class="colophon__title">이 매거진을 만드는 일곱 명 (가상 편집부)</h3>
+  <h3 class="colophon__title">이 매거진을 만드는 여덟 명 (편집부)</h3>
   <div class="colophon__grid">
-    <div class="cop"><div class="cop__role">Editor-in-Chief</div><div class="cop__name">편집장 · 기획</div><p class="cop__note">섹션 구조·발행호 테마·주제 큐레이션. 매달 에디터 노트 작성.</p></div>
+    <div class="cop"><div class="cop__role">Editor-in-Chief</div><div class="cop__name">편집장 · 기획</div><p class="cop__note">섹션 구조·발행호 테마·주제 큐레이션. 에디터 노트 작성.</p></div>
     <div class="cop"><div class="cop__role">Managing Editor</div><div class="cop__name">편집부</div><p class="cop__note">원고 퇴고·톤·길이. 리드·중제·캡션 감수. 독자 친화 재작성.</p></div>
-    <div class="cop"><div class="cop__role">Research</div><div class="cop__name">리서치</div><p class="cop__note">인용·효과크기·메타분석 검증. 각주와 근거 출처 표기 규정 수호.</p></div>
-    <div class="cop"><div class="cop__role">Art Director</div><div class="cop__name">아트디렉션</div><p class="cop__note">색 체계·타이포 위계·여백. 섹션별 색 지정(노랑·파랑·보라·장미·바이올렛).</p></div>
-    <div class="cop"><div class="cop__role">Web Design</div><div class="cop__name">웹디자인</div><p class="cop__note">그리드·반응형·접근성. 매거진 레이아웃과 리드·피드·섹션 모듈 설계.</p></div>
-    <div class="cop"><div class="cop__role">Copywriter</div><div class="cop__name">카피</div><p class="cop__note">헤드라인·리드·표지 문구. 한 문장에 하나의 주장만 남게 깎습니다.</p></div>
-    <div class="cop"><div class="cop__role">Publishing</div><div class="cop__name">발행·배포</div><p class="cop__note">SEO·OG 메타·색인·도메인 관리. 매일 6회 자동 배포 파이프라인.</p></div>
+    <div class="cop"><div class="cop__role">Research</div><div class="cop__name">리서치</div><p class="cop__note">인용·효과크기·메타분석 검증. 출처 표기 규정 수호.</p></div>
+    <div class="cop"><div class="cop__role">Art Director</div><div class="cop__name">아트디렉션</div><p class="cop__note">색 체계·타이포 위계·여백. 잡지 리듬과 인쇄물 감성.</p></div>
+    <div class="cop"><div class="cop__role">Web Design</div><div class="cop__name">웹디자인</div><p class="cop__note">그리드·반응형·접근성. 매거진 레이아웃 모듈 설계.</p></div>
+    <div class="cop"><div class="cop__role">Copywriter</div><div class="cop__name">카피</div><p class="cop__note">헤드라인·리드·표지 문구. 한 문장에 하나의 주장만.</p></div>
+    <div class="cop"><div class="cop__role">Publishing</div><div class="cop__name">발행·배포</div><p class="cop__note">SEO·OG 메타·색인·도메인. 매일 6회 자동 배포 파이프라인.</p></div>
     <div class="cop"><div class="cop__role">Principal</div><div class="cop__name">발행인 · 김창환</div><p class="cop__note">네다바웨이 Nedabahway. 모든 원고의 최종 책임. 제주 상주.</p></div>
   </div>
 </section>
 
 <footer class="foot">
   <p>
-    네다바웨이 매거진 · Issue 01 (2026-04) ·
-    발행 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a><br>
-    이 매거진은 <a href="/">nedabah.org</a>의 편집 채널입니다.
+    네다바웨이 매거진 · Issue 01 (2026-04) · 발행 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a><br>
+    이 매거진은 <a href="/">nedabah.org</a> 편집 채널입니다. 댓글·인용·공유 환영.
   </p>
 </footer>
 
