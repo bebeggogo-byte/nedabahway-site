@@ -162,18 +162,16 @@ a{color:inherit;text-decoration:none}
 <!-- COVER + SUBSCRIBE -->
 <section class="hero">
   <div class="hero__grid">
+    <!-- DYNAMIC:LATEST-COVER:START -->
     <a class="cover" href="/blog/posts/2026-04-19_eight-hours-with-my-ai-swarm.html">
       <div class="cover__flag">Insight · Cover Story</div>
       <h2 class="cover__title">Eight Hours With My AI Swarm, Looking for a Business</h2>
-      <p class="cover__excerpt">
-        I spent a day asking about sixty AI agents to help me find a new direction for my one-person company.
-        The most important thing I learned was not what they found.
-        It was what they could not stop doing until I forced them to stop.
-      </p>
+      <p class="cover__excerpt">I spent a day asking 60 AI agents to help me find a direction for my one-person company. The most important thing I learned was not what they found — it was what they could not stop doing until I forced them to.</p>
       <div class="cover__meta">
-        <span>Kim Changhwan</span><span>9 min read</span><span>from Jeju, Korea</span>
+        <span>Kim Changhwan</span><span>2026-04-19</span><span>from Jeju, Korea</span>
       </div>
     </a>
+    <!-- DYNAMIC:LATEST-COVER:END -->
 
     <!-- Follow options · 저저항 4방식 + 이메일 작게 아래 -->
     <div class="sub-card">
@@ -249,16 +247,59 @@ a{color:inherit;text-decoration:none}
     <a class="feed__more" href="/blog/">All issues →</a>
   </div>
   <div class="feed__list">
+    <!-- DYNAMIC:RECENT-FEED:START -->
     <a class="feed-item" href="/blog/posts/2026-04-19_eight-hours-with-my-ai-swarm.html">
       <div class="feed-item__date">2026-04-19</div>
       <div class="feed-item__main">
-        <div class="feed-item__flag">Insight · Dispatch</div>
+        <div class="feed-item__flag">Insight</div>
         <div class="feed-item__title">Eight Hours With My AI Swarm, Looking for a Business</div>
       </div>
-      <div class="feed-item__read">9 min</div>
+      <div class="feed-item__read">→</div>
     </a>
+    <a class="feed-item" href="/blog/posts/2026-04-18_study-ai-literacy-policy.html">
+      <div class="feed-item__date">2026-04-18</div>
+      <div class="feed-item__main">
+        <div class="feed-item__flag">Guide</div>
+        <div class="feed-item__title">함께 공부할 자료 #01 — AI 리터러시 의무화 흐름 읽기</div>
+      </div>
+      <div class="feed-item__read">→</div>
+    </a>
+    <a class="feed-item" href="/blog/posts/2026-04-18_ref-curation-01.html">
+      <div class="feed-item__date">2026-04-18</div>
+      <div class="feed-item__main">
+        <div class="feed-item__flag">Curation</div>
+        <div class="feed-item__title">편집부가 본 자료 #01 — 효과크기·AI 리터러시 측정·공공조달 RFP 언어</div>
+      </div>
+      <div class="feed-item__read">→</div>
+    </a>
+    <a class="feed-item" href="/blog/posts/2026-04-18_ai-literacy-evidence-layer.html">
+      <div class="feed-item__date">2026-04-18</div>
+      <div class="feed-item__main">
+        <div class="feed-item__flag">Insight</div>
+        <div class="feed-item__title">AI 강사가 "증거"를 들고 왔을 때만 통한다 — 공공조달 차별화의 근거 레이어</div>
+      </div>
+      <div class="feed-item__read">→</div>
+    </a>
+    <!-- DYNAMIC:RECENT-FEED:END -->
   </div>
 </section>
+
+<!-- TODAY STRIP · 오늘 부서 활동 라이브 스트립 -->
+<section style="max-width:1080px;margin:0 auto;padding:8px 28px">
+  <div class="today-strip" style="background:#FFF;border:1px solid var(--c-line);border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:.86rem">
+    <!-- DYNAMIC:TODAY-STRIP:START -->
+    <div class="today-strip__live"><span class="pulse"></span><strong>Today at the desk — April 19 · 09:02 KST</strong><span class="today-strip__chips"><span class="chip">D2</span><span class="chip">D3</span><span class="chip">D5</span><span class="chip">D8</span><span class="chip">D11</span><span class="chip">Chief</span></span></div>
+    <!-- DYNAMIC:TODAY-STRIP:END -->
+  </div>
+</section>
+
+<style>
+.today-strip .chip{display:inline-block;margin:0 4px;padding:3px 10px;border-radius:999px;background:#F3EFE5;font-size:.78rem;color:#4a4a4a;font-weight:600}
+.today-strip__live{width:100%}
+.today-strip__chips{display:inline-block;margin-left:10px}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+</style>
 
 <!-- ABOUT MINI · 회사·Work 링크 (이전 레이어 1의 회사 정보는 /work.html /company.html 로) -->
 <section class="about-mini">
@@ -293,6 +334,9 @@ a{color:inherit;text-decoration:none}
   </div>
   <div class="foot__bottom">
     <div>© 2026 Nedabahway · nedabah.org</div>
+    <div><!-- DYNAMIC:LAST-UPDATED:START -->
+    Last updated · 2026-04-19 09:02 KST
+    <!-- DYNAMIC:LAST-UPDATED:END --></div>
     <div>Edited in Jeju, South Korea. Free to read and cite with attribution.</div>
   </div>
 </footer>
