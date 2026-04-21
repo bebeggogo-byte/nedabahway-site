@@ -456,8 +456,13 @@
 const STORAGE_KEY = 'workbook_seogwipo_20260421';
 const state = loadState();
 
-// ═════ 수집 엔드포인트 (강사 Mac 로컬 서버 + Cloudflare Tunnel, 2026-04-21) ═════
-const GAS_URL = "https://minnesota-focus-todd-karaoke.trycloudflare.com/api/submit";
+// ═════ 수집 엔드포인트 (강사 Mac 서버, 2026-04-21) ═════
+// 여러 터널 URL을 순차 시도하고, 모두 실패하면 mailto 폴백
+const ENDPOINTS = [
+  "https://female-periodic-pastor-genius.trycloudflare.com/api/submit",
+  "https://minnesota-focus-todd-karaoke.trycloudflare.com/api/submit"
+];
+const GAS_URL = ENDPOINTS[0];
 
 let _serverReachable = GAS_URL && GAS_URL.indexOf('script.google.com') >= 0;
 
@@ -601,46 +606,79 @@ async function submitFinal() {
     btn.style.opacity = '0.7';
   }
 
-  try {
-    // collection_server가 기대하는 포맷: {"state": {...전체 state...}}
-    const enriched = Object.assign({}, state, {
-      participant_name: state.participant_name,
-      participant_role: state.participant_role,
-      uid: getUserId(),
-      venue: '서귀포일터자활센터',
-      event_date: '2026-04-21',
-      submitted_at: new Date().toISOString(),
-      user_agent: (navigator.userAgent || '').slice(0, 140),
-    });
-    const payload = { state: enriched };
-    const res = await fetch(GAS_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-      keepalive: true,
-    });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    state._last_server_sync = new Date().toISOString();
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
-    if (btn) {
-      btn.textContent = '✅ 제출 완료';
-      btn.style.background = 'linear-gradient(135deg, #27ae60 0%, #16a085 100%)';
-      btn.style.opacity = '1';
+  // collection_server 포맷
+  const enriched = Object.assign({}, state, {
+    participant_name: state.participant_name,
+    participant_role: state.participant_role,
+    uid: getUserId(),
+    venue: '서귀포일터자활센터',
+    event_date: '2026-04-21',
+    submitted_at: new Date().toISOString(),
+    user_agent: (navigator.userAgent || '').slice(0, 140),
+  });
+  const payload = { state: enriched };
+  const body = JSON.stringify(payload);
+
+  // 여러 엔드포인트 순차 시도
+  let lastErr = null;
+  for (const url of ENDPOINTS) {
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: body,
+        keepalive: true,
+      });
+      if (res.ok) {
+        // 성공!
+        state._last_server_sync = new Date().toISOString();
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+        if (btn) {
+          btn.textContent = '✅ 제출 완료';
+          btn.style.background = 'linear-gradient(135deg, #27ae60 0%, #16a085 100%)';
+          btn.style.opacity = '1';
+        }
+        if (note) {
+          note.textContent = '제출이 완료되었습니다. 감사합니다 🙏';
+          note.style.color = '#27ae60';
+          note.style.fontWeight = '600';
+        }
+        toast('✅ 제출 완료 — 수고하셨습니다');
+        return;
+      }
+      lastErr = 'HTTP ' + res.status;
+    } catch (e) {
+      lastErr = String(e && e.message || e);
     }
-    if (note) {
-      note.textContent = '제출이 완료되었습니다. 감사합니다 🙏';
-      note.style.color = '#27ae60';
-      note.style.fontWeight = '600';
-    }
-    toast('✅ 제출 완료 — 수고하셨습니다');
-  } catch (e) {
-    if (btn) {
-      btn.disabled = false;
-      btn.textContent = '❌ 제출 실패 · 다시 시도';
-      btn.style.opacity = '1';
-    }
-    toast('전송 실패 — 잠시 후 다시 눌러주세요');
   }
+
+  // 모두 실패 → 데이터는 localStorage에 있으니 유실 없음.
+  // 이메일 폴백 제공 (mailto)
+  const subject = encodeURIComponent('[서귀포 워크북] ' + (state.participant_name || '이름없음'));
+  const bodyTxt = encodeURIComponent(
+    '서귀포일터자활센터 · 2026-04-21 · 워크북 응답\n\n' +
+    '※ 자동 전송이 실패하여 이메일로 대체 제출합니다.\n' +
+    '※ 아래 내용을 그대로 보내주시면 강사가 직접 취합합니다.\n\n' +
+    '─────────────────────\n' +
+    JSON.stringify(enriched, null, 2)
+  );
+  const mailto = `mailto:nedabah.way@gmail.com?subject=${subject}&body=${bodyTxt}`;
+
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = '📧 이메일로 제출';
+    btn.style.background = 'linear-gradient(135deg, #e67e22 0%, #d35400 100%)';
+    btn.onclick = function() { window.location.href = mailto; };
+  }
+  if (note) {
+    note.innerHTML =
+      '⚠️ 서버 연결 실패. 작성하신 내용은 <b>기기에 안전히 저장됨</b>.<br>' +
+      '위 버튼을 누르면 메일 앱이 열립니다. 그대로 <b>전송</b>만 눌러주세요.<br>' +
+      '<small>오류: ' + (lastErr || 'unknown') + '</small>';
+    note.style.color = '#e67e22';
+    note.style.fontWeight = '600';
+  }
+  toast('⚠️ 이메일로 대신 제출해주세요');
 }
 
 function toast(msg) {
