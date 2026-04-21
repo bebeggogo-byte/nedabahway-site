@@ -456,9 +456,8 @@
 const STORAGE_KEY = 'workbook_seogwipo_20260421';
 const state = loadState();
 
-// ═════ GAS 웹훅 URL (어제 제주광역자활센터 1회차에서 성공시킨 것과 동일) ═════
-// 같은 Web App이 venue 필드로 서귀포/제주광역 분기 처리
-const GAS_URL = "https://script.google.com/macros/s/AKfycbyGIp5mxRQ-SMEn4Axhnl_sgIH6stT-jCkcozLQcKESgjGkFoSJ5w_Hy6G_2o_qwxQkdw/exec";
+// ═════ 수집 엔드포인트 (강사 Mac 로컬 서버 + Cloudflare Tunnel, 2026-04-21) ═════
+const GAS_URL = "https://minnesota-focus-todd-karaoke.trycloudflare.com/api/submit";
 
 let _serverReachable = GAS_URL && GAS_URL.indexOf('script.google.com') >= 0;
 
@@ -603,14 +602,24 @@ async function submitFinal() {
   }
 
   try {
-    const payload = buildV4Payload();
-    await fetch(GAS_URL, {
+    // collection_server가 기대하는 포맷: {"state": {...전체 state...}}
+    const enriched = Object.assign({}, state, {
+      participant_name: state.participant_name,
+      participant_role: state.participant_role,
+      uid: getUserId(),
+      venue: '서귀포일터자활센터',
+      event_date: '2026-04-21',
+      submitted_at: new Date().toISOString(),
+      user_agent: (navigator.userAgent || '').slice(0, 140),
+    });
+    const payload = { state: enriched };
+    const res = await fetch(GAS_URL, {
       method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
       keepalive: true,
     });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     state._last_server_sync = new Date().toISOString();
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
     if (btn) {
