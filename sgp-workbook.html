@@ -173,8 +173,8 @@
     <option>실무자</option>
     <option>기타</option>
   </select>
-  <span class="save-status" id="save_status">💾 자동 저장</span>
-  <span class="save-status" id="server_badge" style="margin-left:8px;">⏳ 서버 확인 중</span>
+  <span class="save-status" id="save_status" style="display:none;"></span>
+  <span class="save-status" id="server_badge" style="display:none;"></span>
 </div>
 
 <div class="progress-bar">
@@ -448,18 +448,13 @@
   </div>
 </section>
 
-<div class="footer-actions">
-  <button class="action-btn primary" onclick="exportExcel()">📊 엑셀로 저장 (.xlsx)</button>
-  <button class="action-btn secondary" onclick="exportJSON()">📥 JSON</button>
-  <button class="action-btn secondary" onclick="copyAsText()">📋 텍스트 복사</button>
-  <button class="action-btn secondary" onclick="window.print()">🖨️ 인쇄</button>
-  <button class="action-btn danger" onclick="resetAll()">🗑️ 초기화</button>
+<div class="footer-actions" style="justify-content:center;">
+  <button class="action-btn primary" id="submit_btn" onclick="submitFinal()" style="padding:16px 48px; font-size:1.1em;">
+    ✅ 제출하기
+  </button>
 </div>
-<div class="auto-save-note" style="margin-top:10px; text-align:center; font-size:0.85em; color:#7f8c8d;">
-  ⚙️ 이름 입력 후 3분마다, 모듈 완료 시 엑셀 자동 저장 (설정에서 끄기 가능)
-  <label style="margin-left:10px; cursor:pointer;">
-    <input type="checkbox" id="auto_excel_toggle" style="vertical-align:middle;"> 자동 저장
-  </label>
+<div id="submit_note" style="margin-top:10px; text-align:center; font-size:0.9em; color:#7f8c8d;">
+  작성을 마쳤으면 위 버튼을 눌러 제출하세요 · 제출 후 강사에게 자동 전달됩니다
 </div>
 
 <div class="toast" id="toast"></div>
@@ -589,17 +584,60 @@ function loadState() {
   } catch (e) { return {}; }
 }
 
-let _serverDebounce = null;
 function saveState() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  // 로컬 저장만 (중간 이탈 대비). 서버 전송은 "제출하기" 버튼에서만.
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
   const el = document.getElementById('save_status');
-  el.textContent = '💾 저장됨 · ' + new Date().toLocaleTimeString('ko-KR');
-  el.style.color = '#27ae60';
+  if (el) { el.textContent = ''; }
   updateProgress();
-  // 서버 디바운스 전송 (5초 무입력 시 자동 푸시)
-  if (_serverReachable && state.participant_name) {
-    clearTimeout(_serverDebounce);
-    _serverDebounce = setTimeout(() => submitToServer(true), 5000);
+}
+
+// ══════ 최종 제출 (유일한 전송 지점) ══════
+async function submitFinal() {
+  const btn = document.getElementById('submit_btn');
+  const note = document.getElementById('submit_note');
+
+  if (!state.participant_name || !state.participant_name.trim()) {
+    toast('⚠️ 이름을 먼저 입력해주세요');
+    document.getElementById('participant_name').focus();
+    return;
+  }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = '⏳ 제출 중...';
+    btn.style.opacity = '0.7';
+  }
+
+  try {
+    const payload = buildV4Payload();
+    await fetch(GAS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      keepalive: true,
+    });
+    state._last_server_sync = new Date().toISOString();
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+    if (btn) {
+      btn.textContent = '✅ 제출 완료';
+      btn.style.background = 'linear-gradient(135deg, #27ae60 0%, #16a085 100%)';
+      btn.style.opacity = '1';
+    }
+    if (note) {
+      note.textContent = '제출이 완료되었습니다. 감사합니다 🙏';
+      note.style.color = '#27ae60';
+      note.style.fontWeight = '600';
+    }
+    toast('✅ 제출 완료 — 수고하셨습니다');
+  } catch (e) {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = '❌ 제출 실패 · 다시 시도';
+      btn.style.opacity = '1';
+    }
+    toast('전송 실패 — 잠시 후 다시 눌러주세요');
   }
 }
 
@@ -882,16 +920,8 @@ function checkModuleCompletion(mid) {
   _lastModuleState[mid] = nowDone;
 
   if (nowDone && !wasDone && state.participant_name) {
-    // 방금 모듈 완료! 서버에 즉시 전송 + (옵션) 개인 엑셀 로컬 저장
-    setTimeout(async () => {
-      const sent = await submitToServer(true);
-      if (sent) {
-        toast(`✅ ${mid} 완료 — 서버 취합`);
-      } else if (state._auto_excel !== false) {
-        exportExcel(true);
-        toast(`✅ ${mid} 완료 — 엑셀 로컬 저장`);
-      }
-    }, 300);
+    // 모듈 완료 표시만 (제출은 끝에 버튼으로)
+    toast(`✅ ${mid} 모듈 완료`);
   }
 }
 
@@ -942,8 +972,7 @@ document.querySelectorAll('.question').forEach(q => {
   if (q.dataset.q) renderQuestion(q.dataset.q);
 });
 updateProgress();
-setupAutoExcel();
-updateServerBadge();
+// 자동 엑셀/서버뱃지 비활성화 (제출 버튼 단일 흐름)
 </script>
 
 </div>
