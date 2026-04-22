@@ -11,20 +11,20 @@ const els = {
   heroHint: document.getElementById('heroHint'),
   statusText: document.getElementById('statusText'),
   groups: document.getElementById('groups'),
-  audio: document.getElementById('audio'),
   install: document.getElementById('install'),
   installBtn: document.getElementById('installBtn'),
+  playerFrame: document.getElementById('playerFrame'),
+  playerFrameInner: document.getElementById('playerFrameInner'),
+  playerFrameClose: document.getElementById('playerFrameClose'),
 };
 
 const ICON_PLAY = '<path d="M8 5v14l11-7z"/>';
 const ICON_STOP = '<path d="M6 6h12v12H6z"/>';
-const ICON_OPEN = '<path d="M14 3h7v7M10 14L21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
 
 const state = {
   data: null,
   current: null,
   playing: false,
-  externalOpened: false,
 };
 
 async function loadStations() {
@@ -68,7 +68,7 @@ function renderGroups(data) {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         setCurrent(r);
-        triggerPlay();
+        startStream();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
       grid.appendChild(btn);
@@ -97,9 +97,9 @@ function setPlayingUI(isPlaying) {
   els.hero.classList.toggle('is-playing', isPlaying);
   if (isPlaying) {
     els.statusText.textContent = 'ON AIR';
-    els.actionIcon.innerHTML = ICON_OPEN;
-    els.actionText.textContent = '재생 중 · KBS Kong';
-    els.heroHint.textContent = '다시 탭하면 플레이어 새로 열기';
+    els.actionIcon.innerHTML = ICON_STOP;
+    els.actionText.textContent = '재생 중지';
+    els.heroHint.textContent = 'YouTube Live · KBS Classic FM';
   } else {
     els.statusText.textContent = 'OFF AIR';
     els.actionIcon.innerHTML = ICON_PLAY;
@@ -108,44 +108,60 @@ function setPlayingUI(isPlaying) {
   }
 }
 
-function triggerPlay() {
-  if (!state.data || !state.current) return;
-  const { streamUrl, streamType } = state.data;
+function startStream() {
+  if (!state.data) return;
+  const d = state.data;
 
-  if (streamType === 'external') {
-    const win = window.open(streamUrl, 'classicfm_player');
-    if (win) {
-      state.externalOpened = true;
-      setPlayingUI(true);
-    } else {
-      els.heroHint.textContent = '팝업이 차단되었습니다 — 브라우저 설정 확인';
-    }
+  if (d.streamType === 'youtube' && d.youtubeChannelId) {
+    const src = `https://www.youtube.com/embed/live_stream?channel=${d.youtubeChannelId}&autoplay=1&playsinline=1`;
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = 'KBS Classic FM Live';
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.setAttribute('playsinline', '');
+    els.playerFrameInner.replaceChildren(iframe);
+    els.playerFrame.classList.add('is-open');
+    els.playerFrame.setAttribute('aria-hidden', 'false');
+    document.body.style.paddingBottom = '280px';
+    setPlayingUI(true);
     return;
   }
 
-  els.audio.src = streamUrl;
-  els.audio.play().catch(err => {
-    console.error('play failed', err);
-    els.heroHint.textContent = '재생 실패 — 네트워크 확인';
-  });
+  if (d.streamType === 'external' && d.streamUrl) {
+    window.open(d.streamUrl, '_blank', 'noopener');
+    setPlayingUI(true);
+    return;
+  }
 }
 
-els.hero.addEventListener('click', () => {
-  triggerPlay();
+function stopStream() {
+  els.playerFrameInner.replaceChildren();
+  els.playerFrame.classList.remove('is-open');
+  els.playerFrame.setAttribute('aria-hidden', 'true');
+  document.body.style.paddingBottom = '';
+  setPlayingUI(false);
+}
+
+function toggleStream() {
+  if (state.playing) stopStream();
+  else startStream();
+}
+
+els.hero.addEventListener('click', (e) => {
+  if (e.target.closest('.player-frame')) return;
+  toggleStream();
 });
 els.hero.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault();
-    triggerPlay();
+    toggleStream();
   }
 });
 
-els.audio.addEventListener('playing', () => setPlayingUI(true));
-els.audio.addEventListener('pause', () => setPlayingUI(false));
-els.audio.addEventListener('ended', () => setPlayingUI(false));
-els.audio.addEventListener('error', () => {
-  setPlayingUI(false);
-  els.heroHint.textContent = '재생 실패';
+els.playerFrameClose.addEventListener('click', (e) => {
+  e.stopPropagation();
+  stopStream();
 });
 
 let deferredInstall = null;

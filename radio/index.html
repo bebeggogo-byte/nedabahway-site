@@ -159,6 +159,43 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 .hero__bottom a{color:var(--fg-dim);text-decoration:none}
 .hero__bottom a:hover{color:var(--fg-mute)}
 
+/* ===== Embedded player frame ===== */
+.player-frame{
+  position:fixed;left:0;right:0;bottom:0;
+  background:#000;
+  height:0;
+  overflow:hidden;
+  transition:height .3s cubic-bezier(.2,.8,.2,1);
+  z-index:80;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.player-frame.is-open{
+  height:240px;
+}
+@media(min-width:480px){
+  .player-frame.is-open{height:280px}
+}
+.player-frame__inner{
+  position:relative;
+  width:100%;height:100%;
+}
+.player-frame__inner iframe{
+  position:absolute;inset:0;
+  width:100%;height:100%;border:0;
+}
+.player-frame__close{
+  position:absolute;
+  top:8px;right:8px;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(0,0,0,.6);
+  color:#fff;
+  display:none;align-items:center;justify-content:center;
+  z-index:2;
+  backdrop-filter:blur(4px);
+}
+.player-frame__close svg{width:16px;height:16px}
+.player-frame.is-open .player-frame__close{display:flex}
+
 /* ===== Regions sheet ===== */
 .regions{
   background:var(--bg);
@@ -284,6 +321,13 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
   <div class="hero__bottom">
     <span>↓ 지역별 주파수</span>
   </div>
+
+  <div class="player-frame" id="playerFrame" aria-hidden="true">
+    <div class="player-frame__inner" id="playerFrameInner"></div>
+    <button class="player-frame__close" id="playerFrameClose" aria-label="플레이어 닫기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 6l12 12M6 18L18 6"/></svg>
+    </button>
+  </div>
 </section>
 
 <section class="regions" id="regions">
@@ -309,8 +353,6 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
     <div class="footer">NEDABAHWAY · CLASSIC FM</div>
   </div>
 </section>
-
-<audio id="audio" preload="none" playsinline></audio>
 
 <script src="./app.js"></script>
 </body>
