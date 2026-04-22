@@ -24,8 +24,8 @@
   --surface:#1A1F26;
   --surface-2:#242B33;
   --fg:#F5F5F2;
-  --fg-mute:#A0A6AE;
-  --fg-dim:#6B7280;
+  --fg-mute:#B4BAC2;
+  --fg-dim:#8B919B;
   --line:#2A3139;
   --accent:#D4A574;
   --accent-bright:#E8BA85;
@@ -195,6 +195,30 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 }
 .player-frame__close svg{width:16px;height:16px}
 .player-frame.is-open .player-frame__close{display:flex}
+
+.player-fallback{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;padding:20px;
+  background:var(--surface);
+  text-align:center;
+}
+.player-fallback__msg{
+  color:var(--fg-mute);font-size:.88rem;line-height:1.5;
+  max-width:320px;
+}
+.player-fallback__btn{
+  padding:10px 18px;border-radius:999px;
+  background:var(--accent);color:var(--bg);
+  font-weight:700;font-size:.85rem;text-decoration:none;
+}
+.player-fallback__retry{
+  padding:8px 14px;border-radius:999px;
+  background:transparent;color:var(--fg-mute);
+  border:1px solid var(--line);
+  font-family:inherit;font-size:.78rem;cursor:pointer;
+}
+.player-fallback__retry:hover{color:var(--fg);border-color:var(--fg-dim)}
 
 /* ===== Regions sheet ===== */
 .regions{
