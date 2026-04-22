@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,user-scalable=no">
+<title>클래식FM — 93.7</title>
+<meta name="description" content="클래식FM 바로 재생. 전국 지역별 주파수 안내.">
+<meta name="theme-color" content="#0F1419">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="클래식FM">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap');
+
+:root{
+  --bg:#0F1419;
+  --surface:#1A1F26;
+  --surface-2:#242B33;
+  --fg:#F5F5F2;
+  --fg-mute:#A0A6AE;
+  --fg-dim:#6B7280;
+  --line:#2A3139;
+  --accent:#D4A574;
+  --accent-bright:#E8BA85;
+  --accent-soft:rgba(212,165,116,0.12);
+  --copper:#E8935A;
+  --live:#E53E3E;
+  --ff:'Pretendard Variable',system-ui,-apple-system,sans-serif;
+  --ff-serif:'Noto Serif KR',Georgia,serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--ff);
+  background:var(--bg);
+  color:var(--fg);
+  line-height:1.5;
+  word-break:keep-all;
+  overflow-x:hidden;
+}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+
+/* ===== HERO (tap anywhere to play) ===== */
+.hero{
+  position:relative;
+  min-height:100vh;
+  min-height:100dvh;
+  padding:calc(env(safe-area-inset-top) + 32px) 24px 32px;
+  display:flex;flex-direction:column;
+  background:radial-gradient(ellipse at 50% 30%, #1E2833 0%, var(--bg) 65%);
+  cursor:pointer;
+  -webkit-user-select:none;user-select:none;
+}
+.hero__top{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.7rem;font-weight:700;letter-spacing:.35em;
+  color:var(--accent);
+}
+.hero__brand{color:var(--accent)}
+.hero__status{
+  display:flex;align-items:center;gap:7px;
+  color:var(--fg-mute);
+}
+.hero__live-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--fg-dim);
+  transition:background .25s;
+}
+.hero.is-playing .hero__live-dot{
+  background:var(--live);
+  box-shadow:0 0 0 0 rgba(229,62,62,.6);
+  animation:pulse 1.6s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(229,62,62,.6)}
+  70%{box-shadow:0 0 0 8px rgba(229,62,62,0)}
+  100%{box-shadow:0 0 0 0 rgba(229,62,62,0)}
+}
+
+.hero__center{
+  flex:1;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:20px 0;
+}
+.hero__label{
+  font-size:.72rem;font-weight:700;letter-spacing:.5em;
+  color:var(--fg-mute);margin-bottom:20px;
+  text-transform:uppercase;
+}
+.hero__freq{
+  font-family:var(--ff-serif);
+  font-weight:900;
+  font-size:clamp(5rem,22vw,9rem);
+  line-height:.95;
+  letter-spacing:-.05em;
+  color:var(--accent);
+  margin-bottom:8px;
+  transition:color .3s;
+}
+.hero.is-playing .hero__freq{color:var(--accent-bright)}
+.hero__unit{
+  font-family:var(--ff-serif);
+  font-size:1.4rem;font-weight:700;
+  color:var(--fg-mute);
+  letter-spacing:.05em;
+}
+.hero__city{
+  font-size:1.05rem;font-weight:500;
+  color:var(--fg-mute);margin-top:14px;
+}
+.hero__name{
+  font-family:var(--ff-serif);font-style:italic;
+  font-weight:500;font-size:.95rem;
+  color:var(--fg-dim);margin-top:4px;
+  letter-spacing:.02em;
+}
+
+.hero__action{
+  margin-top:28px;
+  padding:14px 28px;
+  border-radius:999px;
+  background:var(--accent);
+  color:var(--bg);
+  font-weight:700;font-size:.95rem;
+  letter-spacing:.02em;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:transform .1s,background .2s;
+}
+.hero:active .hero__action{transform:scale(.96)}
+.hero.is-playing .hero__action{
+  background:var(--surface-2);
+  color:var(--fg);
+}
+.hero__action svg{width:18px;height:18px}
+
+.hero__hint{
+  margin-top:14px;
+  font-size:.78rem;color:var(--fg-dim);
+  letter-spacing:.01em;
+}
+
+.hero__bottom{
+  display:flex;justify-content:center;gap:18px;
+  font-size:.72rem;color:var(--fg-dim);
+  letter-spacing:.08em;
+  padding-top:12px;
+}
+.hero__bottom a{color:var(--fg-dim);text-decoration:none}
+.hero__bottom a:hover{color:var(--fg-mute)}
+
+/* ===== Regions sheet ===== */
+.regions{
+  background:var(--bg);
+  padding:40px 20px calc(60px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--line);
+}
+.regions__inner{max-width:640px;margin:0 auto}
+.regions__head{
+  text-align:center;margin-bottom:24px;
+}
+.regions__label{
+  font-size:.7rem;font-weight:700;letter-spacing:.4em;
+  color:var(--accent);margin-bottom:10px;
+}
+.regions__title{
+  font-family:var(--ff-serif);font-weight:700;
+  font-size:1.4rem;letter-spacing:-.02em;
+}
+.regions__sub{
+  font-size:.8rem;color:var(--fg-mute);margin-top:4px;
+}
+
+.group{margin-bottom:22px}
+.group__label{
+  font-size:.68rem;font-weight:700;letter-spacing:.3em;
+  color:var(--fg-dim);margin-bottom:10px;padding:0 4px;
+  text-transform:uppercase;
+}
+.group__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:480px){.group__grid{grid-template-columns:repeat(3,1fr)}}
+
+.station{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px 14px 12px;
+  text-align:left;
+  display:flex;flex-direction:column;gap:2px;
+  transition:transform .08s,border-color .15s,background .15s;
+  min-height:78px;position:relative;
+}
+.station:active{transform:scale(.97)}
+.station.is-active{
+  background:var(--accent-soft);
+  border-color:var(--accent);
+}
+.station.is-active::before{
+  content:'';position:absolute;top:10px;right:10px;
+  width:8px;height:8px;border-radius:50%;
+  background:var(--live);
+  animation:pulse 1.6s infinite;
+}
+.station__city{
+  font-size:.95rem;font-weight:600;
+  letter-spacing:-.01em;
+}
+.station__freq{
+  font-family:var(--ff-serif);
+  font-weight:700;
+  font-size:1.35rem;
+  color:var(--accent);
+  letter-spacing:-.02em;
+  line-height:1.2;
+}
+.station__unit{
+  font-size:.7rem;font-weight:600;color:var(--fg-dim);
+  margin-left:3px;
+}
+
+.note{
+  margin-top:24px;padding:14px 16px;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:12px;
+  font-size:.76rem;color:var(--fg-mute);line-height:1.6;
+}
+.note strong{color:var(--fg);font-weight:600}
+
+.install{
+  margin:16px 0;padding:14px 16px;
+  background:var(--accent-soft);border:1px solid var(--accent);
+  border-radius:12px;
+  font-size:.8rem;color:var(--fg);
+  display:none;
+}
+.install.is-shown{display:block}
+.install__btn{
+  margin-top:8px;padding:7px 14px;border-radius:8px;
+  background:var(--accent);color:var(--bg);font-weight:700;font-size:.78rem;
+}
+
+.footer{
+  text-align:center;padding:28px 0 0;
+  font-size:.68rem;color:var(--fg-dim);
+  letter-spacing:.15em;
+}
+</style>
+</head>
+<body>
+
+<section class="hero" id="hero" role="button" tabindex="0" aria-label="탭하여 클래식FM 재생">
+  <div class="hero__top">
+    <span class="hero__brand">CLASSIC FM</span>
+    <span class="hero__status">
+      <span class="hero__live-dot" id="liveDot"></span>
+      <span id="statusText">OFF AIR</span>
+    </span>
+  </div>
+
+  <div class="hero__center">
+    <div class="hero__label">Tuned to</div>
+    <div class="hero__freq" id="heroFreq">93.7</div>
+    <div class="hero__unit">MHz</div>
+    <div class="hero__city" id="heroCity">내 주파수</div>
+    <div class="hero__name">KBS Classic FM</div>
+
+    <div class="hero__action" id="heroAction">
+      <svg id="actionIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <span id="actionText">탭하여 재생</span>
+    </div>
+    <div class="hero__hint" id="heroHint">화면 아무데나 터치</div>
+  </div>
+
+  <div class="hero__bottom">
+    <span>↓ 지역별 주파수</span>
+  </div>
+</section>
+
+<section class="regions" id="regions">
+  <div class="regions__inner">
+    <div class="regions__head">
+      <div class="regions__label">REGIONS</div>
+      <div class="regions__title">지역별 주파수</div>
+      <div class="regions__sub">탭하여 해당 주파수로 전환</div>
+    </div>
+
+    <div id="groups"></div>
+
+    <div id="install" class="install">
+      <strong>홈 화면에 설치</strong>하면 다음부터 바로 실행됩니다.
+      <br><button class="install__btn" id="installBtn">지금 설치</button>
+    </div>
+
+    <div class="note">
+      <strong>안내</strong> — KBS 클래식FM은 전국 어느 주파수든 같은 프로그램이 송출됩니다.
+      재생은 공식 <strong>KBS Kong</strong> 플레이어로 연결되며, 와이파이/모바일 데이터 어디서든 작동합니다.
+    </div>
+
+    <div class="footer">NEDABAHWAY · CLASSIC FM</div>
+  </div>
+</section>
+
+<audio id="audio" preload="none" playsinline></audio>
+
+<script src="./app.js"></script>
+</body>
+</html>
