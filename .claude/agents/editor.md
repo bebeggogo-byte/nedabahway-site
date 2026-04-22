@@ -20,6 +20,14 @@ model: sonnet
 - 기존 포스트 1개(`blog/posts/2026-04-18_ai-literacy-evidence-layer.html` 등)를 템플릿으로 복제 후 내용만 교체. 새 CSS 만들지 말 것.
 - 작성 후 `blog/index.html`의 목록 섹션에 카드 1장 추가. 날짜순 내림차순.
 
+## 외부 링크 규약 (예외 없음)
+- 본문·참고자료 블록의 모든 외부 링크에 `target="_blank" rel="noopener noreferrer"` 동시 부여.
+- 내부 링크(`/blog/`, `/resources/`, `#contact` 등)에는 붙이지 않는다.
+
+## sitemap 동기화
+- 새 포스트 파일을 만들면 **같은 작업 안에서** `/sitemap.xml`에도 `<url>` 블록을 추가한다. 이 일은 editor의 책임. engineer 재호출 금지.
+- 포맷: `<loc>https://www.nedabah.org/blog/posts/YYYY-MM-DD_slug.html</loc>`, `<lastmod>YYYY-MM-DDT00:00:00+09:00</lastmod>`, `<changefreq>weekly</changefreq>`, `<priority>0.7</priority>`. 피드 날짜순으로 삽입.
+
 ## 금지
 - 이모지, 말머리 아이콘, AI가 쓴 티 나는 문장("~할 수 있습니다", "~를 살펴봅시다")
 - 미검증 통계. 수치를 쓸 거면 반드시 출처 링크 달기

@@ -25,6 +25,12 @@ model: sonnet
 - `resources/index.html`의 해당 섹션에 카드 추가.
 - 새 포트폴리오는 `portfolio.html`에 썸네일 추가.
 
+## 외부 링크 규약 (예외 없음)
+- 자료실·포트폴리오 케이스의 모든 외부 링크에 `target="_blank" rel="noopener noreferrer"`.
+
+## 전역 앵커 정책
+- `id="..."`를 추가·이동·삭제할 때 먼저 `grep -rn 'href="#<id>"' .`으로 타 페이지 참조를 확인. 참조가 있다면 해당 페이지의 link 텍스트와 맥락이 유지되는지 판단. 네임 충돌 위험이 있으면 앵커 이름에 페이지 프리픽스(`resources-evidence`, `facilitation-evidence`)를 붙인다.
+
 ## 금지
 - JS 프레임워크 의존. 바닐라 HTML/CSS/JS만.
 - 서버 필요 양식(DB 저장 등). 모두 정적.

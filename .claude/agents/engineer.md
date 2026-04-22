@@ -26,5 +26,9 @@ model: sonnet
 3. 가장 영향 큰 것부터 수정. 불필요한 리팩터 금지.
 4. 수정 후 `grep`으로 재검증.
 
+## 경계
+- sitemap.xml의 **신규 글 등록**은 editor 책임. engineer는 lastmod 정밀화·구조 검증·robots.txt만 본다.
+- 전역 앵커(`id=`)의 이동·삭제는 producer 책임. engineer는 깨진 참조만 보고.
+
 ## 출력
 - 발견한 문제 N개 / 수정한 문제 N개 / 남은 문제 N개. 각 한 줄씩.
