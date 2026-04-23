@@ -81,49 +81,18 @@ a:hover{text-decoration:underline}
 .quote-author{font-size:.82rem;color:var(--c-mute);margin-top:20px;font-weight:500}
 .quote-author a{color:var(--c-acc)}
 
-/* ── PAGES GRID ── */
+/* ── SECTION TITLES (공용) ── */
 .sec-title{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:800;line-height:1.25;
   letter-spacing:-.03em;margin-bottom:12px}
 .sec-desc{font-size:.95rem;color:var(--c-mute);line-height:1.8;max-width:540px;margin-bottom:40px}
-.pages-grid{display:grid;grid-template-columns:1fr;gap:16px}
-@media(min-width:600px){.pages-grid{grid-template-columns:1fr 1fr}}
-.page-card{display:block;background:#111;border:1px solid var(--c-dim);border-radius:16px;
-  padding:32px 28px;transition:border-color .3s,transform .25s;position:relative;overflow:hidden}
-.page-card:hover{border-color:var(--c-acc);transform:translateY(-3px);text-decoration:none}
-.page-card__icon{font-size:1.6rem;margin-bottom:14px;display:block}
-.page-card__title{font-size:1.1rem;font-weight:800;color:var(--c-fg);margin-bottom:8px;
-  letter-spacing:-.02em}
-.page-card__desc{font-size:.85rem;color:var(--c-mute);line-height:1.6}
-.page-card__arrow{position:absolute;top:28px;right:24px;font-size:.9rem;color:var(--c-mute);
-  transition:color .3s,transform .3s}
-.page-card:hover .page-card__arrow{color:var(--c-acc);transform:translateX(4px)}
 
-/* Featured card spans full width */
-.page-card--featured{border-color:rgba(74,222,128,.15);
-  background:linear-gradient(135deg,#0d1a0f 0%,#111 100%)}
-@media(min-width:600px){.page-card--featured{grid-column:1/-1;display:grid;
-  grid-template-columns:auto 1fr;gap:24px;align-items:center}}
-.page-card--featured .page-card__icon{font-size:2.2rem;margin-bottom:0}
-
-/* IDEN featured card */
-.page-card--iden{border-color:rgba(96,165,250,.2);
-  background:linear-gradient(135deg,#0d1320 0%,#111 60%)}
-.page-card--iden:hover{border-color:#60A5FA}
-.page-card--iden .page-card__arrow{color:#60A5FA}
-@media(min-width:600px){.page-card--iden{grid-column:1/-1;display:grid;
-  grid-template-columns:auto 1fr auto;gap:28px;align-items:center}}
-.page-card--iden .page-card__icon{font-size:2.2rem;margin-bottom:0}
-.page-card--iden .iden-badge{display:inline-flex;align-items:center;gap:6px;
-  padding:5px 12px;border:1px solid rgba(96,165,250,.3);border-radius:999px;
-  font-size:.68rem;font-weight:700;color:#60A5FA;letter-spacing:.08em;
-  text-transform:uppercase;margin-bottom:8px}
-.page-card--iden .iden-shapes{display:flex;gap:10px;font-size:1.1rem;
-  color:#60A5FA;opacity:.7;margin-top:10px}
-.page-card--iden .iden-shapes span{display:inline-block}
-.page-card--iden .iden-shapes span:nth-child(1){color:#4ADE80}
-.page-card--iden .iden-shapes span:nth-child(2){color:#60A5FA}
-.page-card--iden .iden-shapes span:nth-child(3){color:#FBBF24}
-.page-card--iden .iden-shapes span:nth-child(4){color:#A78BFA}
+/* ── MORE (slim inline nav) ── */
+.more-slim{font-size:.9rem;color:var(--c-mute);line-height:1.9;letter-spacing:.01em}
+.more-slim__label{font-size:.7rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--c-acc);margin-right:14px}
+.more-slim__link{color:var(--c-fg);font-weight:600;transition:color .2s}
+.more-slim__link:hover{color:var(--c-acc);text-decoration:none}
+.more-slim__sep{color:var(--c-dim);margin:0 6px}
 
 /* ── MODULES PREVIEW ── */
 .modules-preview{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
@@ -475,46 +444,19 @@ a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- ═══════ 05 MORE ═══════ -->
+<!-- ═══════ 05 MORE (slim) ═══════ -->
 <section class="section section--short" id="more">
   <div class="inner reveal">
-    <p class="kicker">more about nedabahway</p>
-    <h2 class="sec-title">더 깊이 알고 싶다면.</h2>
-    <p class="sec-desc">김창환의 철학·사례·회사 정보를 자세히 살펴보세요.</p>
-
-    <div class="pages-grid">
-
-      <a class="page-card page-card--featured" href="story.html">
-        <span class="page-card__icon">📖</span>
-        <div>
-          <div class="page-card__title">김창환 이야기 &mdash; 시즌 1</div>
-          <div class="page-card__desc">교육인턴 6회에서 시작해 전국을 순회하며 나만의 프로그램을 만든 10년. 첫 번째 시즌을 정리하고 새로운 문을 여는 이야기.</div>
-        </div>
-        <span class="page-card__arrow">&rarr;</span>
-      </a>
-
-      <a class="page-card" href="portfolio.html">
-        <span class="page-card__icon">📋</span>
-        <div class="page-card__title">교육 포트폴리오</div>
-        <div class="page-card__desc">10개 실제 사례. 제주 기관 워크숍, 특성화고, 주민자치, 보호종료청년 등 현장별 배합 결과.</div>
-        <span class="page-card__arrow">&rarr;</span>
-      </a>
-
-      <a class="page-card" href="company.html">
-        <span class="page-card__icon">🏢</span>
-        <div class="page-card__title">회사소개</div>
-        <div class="page-card__desc">네다바웨이의 연혁, 자격, 서비스 영역, 주요 프로젝트를 한눈에.</div>
-        <span class="page-card__arrow">&rarr;</span>
-      </a>
-
-      <a class="page-card" href="company.html#s-leadership">
-        <span class="page-card__icon">◎</span>
-        <div class="page-card__title">리더십·코칭 철학</div>
-        <div class="page-card__desc">Eurich·Gallup·Google 연구 데이터 기반. ATD 동향, CARE 프레임워크, AI 시대 인간 역량.</div>
-        <span class="page-card__arrow">&rarr;</span>
-      </a>
-
-    </div>
+    <p class="more-slim">
+      <span class="more-slim__label">더 보기</span>
+      <a class="more-slim__link" href="story.html">story</a>
+      <span class="more-slim__sep">·</span>
+      <a class="more-slim__link" href="portfolio.html">portfolio</a>
+      <span class="more-slim__sep">·</span>
+      <a class="more-slim__link" href="company.html">company</a>
+      <span class="more-slim__sep">·</span>
+      <a class="more-slim__link" href="company.html#s-leadership">leadership</a>
+    </p>
   </div>
 </section>
 
