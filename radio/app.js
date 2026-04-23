@@ -18,6 +18,10 @@ const els = {
   playerFrame: document.getElementById('playerFrame'),
   playerFrameInner: document.getElementById('playerFrameInner'),
   playerFrameClose: document.getElementById('playerFrameClose'),
+  sleepTimer: document.getElementById('sleepTimer'),
+  sleepToggle: document.getElementById('sleepToggle'),
+  sleepMenu: document.getElementById('sleepMenu'),
+  sleepLabel: document.getElementById('sleepLabel'),
 };
 
 const ICON_PLAY = '<path d="M8 5v14l11-7z"/>';
@@ -29,6 +33,9 @@ const state = {
   current: null,
   playing: false,
   loadTimer: null,
+  sleepTimer: null,
+  sleepTickTimer: null,
+  sleepEndAt: 0,
 };
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -231,9 +238,78 @@ els.playerFrameClose.addEventListener('click', (e) => {
 });
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && state.playing) {
-    stopStream();
+  if (e.key === 'Escape') {
+    if (!els.sleepMenu.hidden) { closeSleepMenu(); return; }
+    if (state.playing) stopStream();
   }
+});
+
+function openSleepMenu() {
+  els.sleepMenu.hidden = false;
+  els.sleepToggle.setAttribute('aria-expanded', 'true');
+}
+function closeSleepMenu() {
+  els.sleepMenu.hidden = true;
+  els.sleepToggle.setAttribute('aria-expanded', 'false');
+}
+function formatRemaining(ms) {
+  if (ms <= 0) return '0분';
+  const totalSec = Math.ceil(ms / 1000);
+  const m = Math.floor(totalSec / 60);
+  const s = totalSec % 60;
+  if (m >= 60) {
+    const h = Math.floor(m / 60);
+    const rm = m % 60;
+    return rm ? `${h}시간 ${rm}분` : `${h}시간`;
+  }
+  if (m >= 1) return `${m}분 ${s.toString().padStart(2, '0')}초 남음`;
+  return `${s}초 남음`;
+}
+function clearSleepTimer() {
+  clearTimeout(state.sleepTimer);
+  clearInterval(state.sleepTickTimer);
+  state.sleepTimer = null;
+  state.sleepTickTimer = null;
+  state.sleepEndAt = 0;
+  els.sleepTimer.classList.remove('is-active');
+  els.sleepLabel.textContent = '슬립 타이머';
+}
+function setSleepTimer(minutes) {
+  clearSleepTimer();
+  if (!minutes) return;
+  state.sleepEndAt = Date.now() + minutes * 60 * 1000;
+  const tick = () => {
+    const left = state.sleepEndAt - Date.now();
+    if (left <= 0) {
+      clearSleepTimer();
+      if (state.playing) stopStream();
+      els.sleepLabel.textContent = '슬립 종료';
+      setTimeout(() => { els.sleepLabel.textContent = '슬립 타이머'; }, 2500);
+      return;
+    }
+    els.sleepLabel.textContent = formatRemaining(left);
+  };
+  tick();
+  state.sleepTickTimer = setInterval(tick, 1000);
+  state.sleepTimer = setTimeout(tick, minutes * 60 * 1000);
+  els.sleepTimer.classList.add('is-active');
+}
+
+els.sleepToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (els.sleepMenu.hidden) openSleepMenu();
+  else closeSleepMenu();
+});
+els.sleepMenu.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const btn = e.target.closest('button[data-min]');
+  if (!btn) return;
+  const min = parseInt(btn.dataset.min, 10);
+  setSleepTimer(min);
+  closeSleepMenu();
+});
+document.addEventListener('click', (e) => {
+  if (!els.sleepMenu.hidden && !els.sleepTimer.contains(e.target)) closeSleepMenu();
 });
 
 let deferredInstall = null;

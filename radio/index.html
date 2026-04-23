@@ -107,8 +107,30 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
   color:var(--accent);
   margin-bottom:8px;
   transition:color .3s;
+  will-change:filter;
 }
-.hero.is-playing .hero__freq{color:var(--accent-bright)}
+.hero.is-playing .hero__freq{
+  color:var(--accent-bright);
+  animation:breathe 3.2s ease-in-out infinite;
+}
+@keyframes breathe{
+  0%,100%{filter:drop-shadow(0 0 0 rgba(232,186,132,0))}
+  50%{filter:drop-shadow(0 0 20px rgba(232,186,132,.32))}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero.is-playing .hero__freq{animation:none}
+}
+
+.app-enter{
+  animation:appEnter .5s ease-out both;
+}
+@keyframes appEnter{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media (prefers-reduced-motion: reduce){
+  .app-enter{animation:none}
+}
 .hero__unit{
   font-family:var(--ff-serif);
   font-size:1.4rem;font-weight:700;
@@ -148,6 +170,54 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
   margin-top:14px;
   font-size:.78rem;color:var(--fg-dim);
   letter-spacing:.01em;
+}
+
+/* Sleep timer */
+.sleep-timer{
+  margin-top:22px;
+  position:relative;
+}
+.sleep-timer__toggle{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 14px;border-radius:999px;
+  background:transparent;border:1px solid var(--line);
+  color:var(--fg-mute);
+  font-size:.78rem;font-weight:500;
+  transition:border-color .15s,color .15s,background .15s;
+}
+.sleep-timer__toggle:hover{border-color:var(--fg-dim);color:var(--fg)}
+.sleep-timer__toggle svg{width:14px;height:14px}
+.sleep-timer.is-active .sleep-timer__toggle{
+  background:var(--accent-soft);
+  border-color:var(--accent);
+  color:var(--accent);
+}
+.sleep-timer__menu{
+  position:absolute;
+  bottom:calc(100% + 10px);left:50%;
+  transform:translateX(-50%);
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:6px;
+  display:flex;flex-direction:column;gap:2px;
+  min-width:160px;
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
+  z-index:10;
+}
+.sleep-timer__menu[hidden]{display:none}
+.sleep-timer__menu button{
+  padding:10px 14px;border-radius:8px;
+  text-align:center;font-size:.85rem;
+  color:var(--fg-mute);font-weight:500;
+  transition:background .12s,color .12s;
+}
+.sleep-timer__menu button:hover{background:var(--surface);color:var(--fg)}
+.sleep-timer__menu button:last-child{
+  color:var(--fg-dim);
+  border-top:1px solid var(--line);
+  margin-top:4px;padding-top:12px;
+  border-radius:0 0 8px 8px;
 }
 
 .hero__bottom{
@@ -319,7 +389,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 </head>
 <body>
 
-<section class="hero" id="hero" role="button" tabindex="0" aria-label="탭하여 클래식FM 재생">
+<section class="hero app-enter" id="hero" role="button" tabindex="0" aria-label="탭하여 클래식FM 재생">
   <div class="hero__top">
     <span class="hero__brand">CLASSIC FM</span>
     <span class="hero__status">
@@ -340,6 +410,20 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
       <span id="actionText">탭하여 재생</span>
     </div>
     <div class="hero__hint" id="heroHint">화면 아무데나 터치</div>
+
+    <div class="sleep-timer" id="sleepTimer">
+      <button class="sleep-timer__toggle" id="sleepToggle" type="button" aria-expanded="false" aria-controls="sleepMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <span id="sleepLabel">슬립 타이머</span>
+      </button>
+      <div class="sleep-timer__menu" id="sleepMenu" role="menu" hidden>
+        <button type="button" data-min="10" role="menuitem">10분</button>
+        <button type="button" data-min="30" role="menuitem">30분</button>
+        <button type="button" data-min="60" role="menuitem">1시간</button>
+        <button type="button" data-min="90" role="menuitem">1시간 30분</button>
+        <button type="button" data-min="0" role="menuitem">끄기</button>
+      </div>
+    </div>
   </div>
 
   <div class="hero__bottom">
