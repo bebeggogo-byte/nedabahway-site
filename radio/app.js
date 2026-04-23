@@ -129,9 +129,9 @@ function setPlayingUI(isPlaying, { loading = false } = {}) {
   }
   if (isPlaying) {
     els.statusText.textContent = 'ON AIR';
-    els.actionIcon.innerHTML = ICON_STOP;
-    els.actionText.textContent = '재생 중지';
-    els.heroHint.textContent = 'YouTube Live · KBS Classic FM';
+    els.actionIcon.innerHTML = ICON_PLAY;
+    els.actionText.textContent = '다시 열기';
+    els.heroHint.textContent = 'YouTube에서 재생 중 · 돌아오면 이 화면';
   } else {
     els.statusText.textContent = 'OFF AIR';
     els.actionIcon.innerHTML = ICON_PLAY;
@@ -173,36 +173,11 @@ function startStream() {
   const d = state.data;
 
   clearTimeout(state.loadTimer);
-  openPlayerDock();
-  setPlayingUI(false, { loading: true });
-
-  if (d.streamType === 'youtube' && d.youtubeChannelId) {
-    const src = `https://www.youtube.com/embed/live_stream?channel=${d.youtubeChannelId}&autoplay=1&playsinline=1`;
-    const iframe = document.createElement('iframe');
-    iframe.src = src;
-    iframe.title = 'KBS Classic FM Live';
-    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
-    iframe.allowFullscreen = true;
-    iframe.setAttribute('playsinline', '');
-    iframe.addEventListener('load', () => {
-      clearTimeout(state.loadTimer);
-      setPlayingUI(true);
-    });
-    iframe.addEventListener('error', () => {
-      showFallback('YouTube 재생에 실패했습니다 (네트워크 또는 지역 제한).');
-    });
-    els.playerFrameInner.replaceChildren(iframe);
-
-    state.loadTimer = setTimeout(() => {
-      if (!state.playing) showFallback('재생 응답이 없습니다 (광고 차단기 또는 네트워크 확인).');
-    }, IFRAME_LOAD_TIMEOUT_MS);
-    return;
-  }
 
   if (d.streamType === 'external' && d.streamUrl) {
     window.open(d.streamUrl, '_blank', 'noopener');
-    setPlayingUI(true);
     closePlayerDock();
+    setPlayingUI(true);
     return;
   }
 
@@ -217,8 +192,9 @@ function stopStream() {
 }
 
 function toggleStream() {
-  if (state.playing) stopStream();
-  else startStream();
+  // External player: always (re)open YouTube on tap — we can't control
+  // the remote tab/app, so the user gesture always means "play now".
+  startStream();
 }
 
 els.hero.addEventListener('click', (e) => {
