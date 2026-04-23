@@ -131,12 +131,12 @@ function setPlayingUI(isPlaying, { loading = false } = {}) {
     els.statusText.textContent = 'ON AIR';
     els.actionIcon.innerHTML = ICON_PLAY;
     els.actionText.textContent = '다시 열기';
-    els.heroHint.textContent = 'YouTube에서 재생 중 · 돌아오면 이 화면';
+    els.heroHint.textContent = 'KBS 공식 라이브 재생 중 · 새 탭에서';
   } else {
     els.statusText.textContent = 'OFF AIR';
     els.actionIcon.innerHTML = ICON_PLAY;
-    els.actionText.textContent = '탭하여 재생';
-    els.heroHint.textContent = '화면 아무데나 터치';
+    els.actionText.textContent = '라이브 듣기';
+    els.heroHint.textContent = 'KBS 공식 라디오 플레이어 열기';
   }
 }
 
@@ -154,14 +154,17 @@ function closePlayerDock() {
 
 function showFallback(reason) {
   clearTimeout(state.loadTimer);
-  const fallbackUrl = state.data && state.data.fallbackUrl;
+  const d = state.data || {};
+  const fallbackUrl = d.fallbackUrl;
+  const fallbackLabel = d.fallbackLabel || '대체 플레이어 열기';
   els.playerFrameInner.innerHTML = `
     <div class="player-fallback">
       <div class="player-fallback__msg">${reason}</div>
-      ${fallbackUrl ? `<a class="player-fallback__btn" href="${fallbackUrl}" target="_blank" rel="noopener">KBS Kong에서 열기 →</a>` : ''}
+      ${fallbackUrl ? `<a class="player-fallback__btn" href="${fallbackUrl}" target="_blank" rel="noopener">${fallbackLabel} →</a>` : ''}
       <button class="player-fallback__retry" type="button" id="retryBtn">다시 시도</button>
     </div>
   `;
+  openPlayerDock();
   const retry = document.getElementById('retryBtn');
   if (retry) retry.addEventListener('click', (e) => { e.stopPropagation(); startStream(); });
   setPlayingUI(false);
