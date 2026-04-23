@@ -25,6 +25,20 @@ model: sonnet
 - `resources/index.html`의 해당 섹션에 카드 추가.
 - 새 포트폴리오는 `portfolio.html`에 썸네일 추가.
 
+## 표준 nav 링크 세트 (라이트 잡지 톤 페이지)
+새 `resources/**`, `portfolio/**`, `blog/posts/**` HTML의 nav에는 아래 5개 링크를 동일 순서로 넣는다.
+- `../index.html` (홈) — 로고
+- `../company.html` (회사소개)
+- `../portfolio.html` (포트폴리오)
+- `../blog/` (매거진)
+- `../resources/` (자료실)
+- CTA: `../index.html#contact`
+
+페이지별로 "현재 페이지" active 스타일(`.nav__link--active`)만 달라진다. 링크 생략 금지.
+
+## 익명화 범위 (예외 없음)
+`portfolio.html`과 `portfolio/case-*.html`의 모든 기관명·학교명·학습자 식별자는 동의 확인 전까지 익명. 새 사례를 추가할 때 기존 실명 사례를 하나라도 보면, **같은 커밋에서** 그 사례도 익명화로 정리한다. 선별적 익명화 금지.
+
 ## 외부 링크 규약 (예외 없음)
 - 자료실·포트폴리오 케이스의 모든 외부 링크에 `target="_blank" rel="noopener noreferrer"`.
 
