@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>8강점 자가진단 v1 — 자기이해 시작하기 | 네다바웨이 자료실</title>
+<meta name="description" content="네다바웨이 자기이해 프로그램에서 쓰는 8강점 자가진단의 간단 버전. 16문항 5점 척도, 브라우저 안에서 즉시 상위 3개 강점을 보여준다. 서버 저장 없음·익명.">
+<meta property="og:title" content="8강점 자가진단 v1 — 네다바웨이 자료실">
+<meta property="og:description" content="16문항으로 보는 내 강점 상위 3개 · 브라우저 안에서 즉시 결과.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.nedabah.org/resources/tools/diag-strength-self-v1.html">
+<link rel="canonical" href="https://www.nedabah.org/resources/tools/diag-strength-self-v1.html">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
+:root{
+  --c-bg:#FAFAF7;--c-surface:#FFFFFF;--c-fg:#1A1A1A;
+  --c-mute:#6B6B6B;--c-mute2:#9A9A9A;--c-line:#E8E6E0;--c-line2:#D6D3CA;
+  --c-accent:#10803D;--c-accent-soft:#E8F2EC;
+  --c-copper:#C2410C;
+  --c-diag:#7C3AED;--c-diag-soft:#F1EBFC;
+  --ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --ff-serif:'Noto Serif KR',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);
+  line-height:1.75;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:hover{text-decoration:underline}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line)}
+.nav__inner{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.nav__logo{font-family:var(--ff-serif);font-weight:700;font-size:1.15rem}
+.nav__links{display:flex;gap:22px;align-items:center}
+.nav__link{font-size:.86rem;color:var(--c-mute);font-weight:500}
+.nav__link--active{color:var(--c-accent);font-weight:700}
+.nav__cta{font-size:.84rem;padding:9px 18px;border-radius:999px;background:var(--c-fg);color:var(--c-bg);font-weight:600}
+@media(max-width:760px){.nav__links .nav__link:not(.nav__link--active){display:none}}
+
+.wrap{max-width:760px;margin:0 auto;padding:48px 24px 80px}
+
+.kicker{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--c-diag);margin-bottom:12px}
+h1.h1{font-family:var(--ff-serif);font-size:clamp(1.9rem,4.6vw,2.6rem);font-weight:800;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+.sub{color:var(--c-mute);font-size:1rem;margin-bottom:28px;line-height:1.75}
+
+.intro{background:var(--c-diag-soft);border:1px solid #D5C2F2;border-radius:12px;padding:18px 22px;margin-bottom:32px;font-size:.92rem;color:#3a2a5a;line-height:1.75}
+.intro strong{color:var(--c-diag)}
+
+.progress{position:sticky;top:60px;background:var(--c-bg);padding:14px 0;border-bottom:1px solid var(--c-line);margin-bottom:24px;z-index:50}
+.progress__bar{height:6px;background:var(--c-line);border-radius:999px;overflow:hidden}
+.progress__fill{height:100%;background:var(--c-diag);width:0%;transition:width .3s}
+.progress__text{font-size:.78rem;color:var(--c-mute);margin-top:6px;font-weight:600}
+.progress__text strong{color:var(--c-diag)}
+
+.q{background:var(--c-surface);border:1px solid var(--c-line);border-radius:12px;padding:20px 22px;margin-bottom:14px}
+.q__n{font-size:.72rem;font-weight:800;letter-spacing:.2em;color:var(--c-mute);text-transform:uppercase;margin-bottom:6px}
+.q__t{font-family:var(--ff-serif);font-size:1.04rem;font-weight:700;margin-bottom:14px;letter-spacing:-.01em;line-height:1.5}
+.q__scale{display:flex;gap:8px;flex-wrap:wrap}
+.q__scale label{flex:1;min-width:64px;text-align:center;border:1px solid var(--c-line);border-radius:10px;padding:10px 8px;cursor:pointer;font-size:.82rem;color:var(--c-mute);transition:all .15s;background:var(--c-surface);font-weight:600}
+.q__scale label:hover{border-color:var(--c-diag);color:var(--c-diag)}
+.q__scale input{position:absolute;opacity:0;pointer-events:none}
+.q__scale input:checked + span{color:#fff}
+.q__scale label:has(input:checked){background:var(--c-diag);border-color:var(--c-diag);color:#fff}
+
+.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:36px 0 24px}
+.btn{padding:12px 26px;border-radius:999px;font-family:inherit;font-size:.9rem;font-weight:700;cursor:pointer;border:1px solid var(--c-line);background:var(--c-surface);color:var(--c-fg);transition:all .2s}
+.btn:hover{border-color:var(--c-fg)}
+.btn--primary{background:var(--c-diag);border-color:var(--c-diag);color:#fff}
+.btn--primary:hover{background:#6d2ec7;border-color:#6d2ec7}
+.btn--primary:disabled{opacity:.4;cursor:not-allowed}
+
+/* 결과 */
+.result{display:none;margin-top:40px;padding:32px 28px;background:var(--c-surface);border:2px solid var(--c-diag);border-radius:16px}
+.result--shown{display:block}
+.result__h{font-family:var(--ff-serif);font-size:1.5rem;font-weight:800;margin-bottom:6px}
+.result__sub{color:var(--c-mute);font-size:.9rem;margin-bottom:24px}
+.result__top{display:grid;gap:12px;grid-template-columns:1fr;margin-bottom:24px}
+@media(min-width:640px){.result__top{grid-template-columns:1fr 1fr 1fr}}
+.top-card{background:var(--c-diag-soft);border:1px solid #D5C2F2;border-radius:12px;padding:18px}
+.top-card__rank{font-size:.72rem;font-weight:800;letter-spacing:.2em;color:var(--c-diag);margin-bottom:6px}
+.top-card__name{font-family:var(--ff-serif);font-size:1.15rem;font-weight:800;margin-bottom:4px}
+.top-card__score{font-size:.85rem;color:#3a2a5a;font-weight:600;margin-bottom:8px}
+.top-card__desc{font-size:.88rem;line-height:1.65;color:#2a2a2a}
+
+.result__chart{display:grid;gap:8px;margin-bottom:24px}
+.chart-row{display:flex;align-items:center;gap:10px;font-size:.86rem}
+.chart-row__name{min-width:110px;font-weight:600}
+.chart-row__bar{flex:1;height:10px;background:var(--c-line);border-radius:999px;overflow:hidden}
+.chart-row__fill{height:100%;background:var(--c-diag);border-radius:999px;transition:width .4s}
+.chart-row__val{min-width:44px;text-align:right;color:var(--c-mute);font-variant-numeric:tabular-nums}
+
+.result__next{background:var(--c-accent-soft);border:1px solid #C7E5D1;border-radius:12px;padding:18px 22px;margin-top:12px;font-size:.9rem;color:#1f3a2a;line-height:1.75}
+.result__next strong{color:var(--c-accent)}
+.result__next a{color:var(--c-accent);font-weight:700;text-decoration:underline;text-decoration-color:var(--c-line2);text-underline-offset:3px}
+
+.reset{margin-top:16px;text-align:center}
+.reset__btn{background:none;border:none;color:var(--c-mute);text-decoration:underline;font-family:inherit;font-size:.85rem;cursor:pointer}
+.reset__btn:hover{color:var(--c-fg)}
+
+.disclaimer{margin-top:48px;padding-top:24px;border-top:1px solid var(--c-line);font-size:.82rem;color:var(--c-mute);line-height:1.75}
+.disclaimer strong{color:var(--c-fg)}
+
+@media print{
+  .nav,.intro,.progress,.actions,.reset,.q{display:none}
+  .result{display:block;border:1px solid #000;padding:16px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="../../index.html">네다바웨이</a>
+    <div class="nav__links">
+      <a class="nav__link" href="../../company.html">회사소개</a>
+      <a class="nav__link" href="../../portfolio.html">포트폴리오</a>
+      <a class="nav__link" href="../../blog/">매거진</a>
+      <a class="nav__link nav__link--active" href="../../resources/">자료실</a>
+      <a class="nav__cta" href="../../index.html#contact">문의</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <div class="kicker">Diagnostic · v1 · 2026-04</div>
+  <h1 class="h1">8강점 자가진단</h1>
+  <p class="sub">네다바웨이 자기이해(IDEN) 프로그램에서 쓰는 8강점 도구의 간단 버전. 16문항에 5점 척도로 응답하면 상위 3개 강점이 즉시 나옵니다.</p>
+
+  <div class="intro">
+    <strong>안내.</strong> 정답은 없습니다. 최근 3개월의 "평소 모습"을 기준으로 답하세요. 응답은 서버로 전송되지 않고 이 브라우저 안에서만 계산됩니다. 새로고침하면 사라집니다. 결과를 남기고 싶으면 인쇄하거나 캡처하세요.
+  </div>
+
+  <div class="progress">
+    <div class="progress__bar"><div class="progress__fill" id="progressFill"></div></div>
+    <div class="progress__text"><strong id="progressCount">0</strong> / 16 문항 응답</div>
+  </div>
+
+  <form id="diagForm" autocomplete="off" novalidate></form>
+
+  <div class="actions">
+    <button type="button" class="btn btn--primary" id="submitBtn" disabled>결과 보기</button>
+    <button type="button" class="btn" onclick="window.print()">인쇄</button>
+  </div>
+
+  <section class="result" id="result" aria-live="polite">
+    <div class="result__h">당신의 상위 3개 강점</div>
+    <div class="result__sub">최근 3개월 응답 기준 · 16문항 · 5점 척도</div>
+    <div class="result__top" id="topCards"></div>
+    <div class="result__chart" id="chart"></div>
+    <div class="result__next">
+      <strong>다음 단계.</strong> 상위 강점 1개를 골라, 이번 주 업무·학습 중 그 강점을 가장 많이 쓴 장면을 한 문장으로 적어 두세요. 약점 보완보다 강점 사용의 빈도를 올리는 것이 자기이해의 첫 훈련입니다. 기관·학교 단위 워크숍으로 확장하려면 <a href="../../index.html#contact">문의 폼</a>으로 연락 주세요.
+    </div>
+    <div class="reset"><button type="button" class="reset__btn" id="resetBtn">다시 진단하기 ↻</button></div>
+  </section>
+
+  <section class="disclaimer">
+    <p><strong>도구 한계 고지.</strong> 이 자가진단은 교육·코칭 현장의 대화를 여는 용도의 <em>간단 도구</em>입니다. 심리학적 타당도 검증을 거친 진단 척도가 아닙니다. 임상·진로 상담의 근거로는 쓰지 마세요. 본격 진단은 공식 검사 도구 또는 네다바웨이 IDEN 워크숍에서 제공합니다.</p>
+    <p style="margin-top:8px">버전 v1 · 16문항 · 서버 저장 없음 · 2026-04-22 발행</p>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  const STRENGTHS = [
+    {key:'inquiry', name:'탐구', desc:'사실·원인·구조를 파고드는 힘. 현상 뒤의 왜를 자주 묻습니다.'},
+    {key:'learn', name:'배움', desc:'새로운 것을 익히는 재미. 모르던 분야에 진입하는 것을 즐깁니다.'},
+    {key:'empathy', name:'공감', desc:'다른 사람의 감정·상황을 빠르게 읽고 맞춰 가는 감수성.'},
+    {key:'achieve', name:'성취', desc:'목표를 끝까지 완주해 내는 힘. 중간에 멈추기 어려워합니다.'},
+    {key:'express', name:'표현', desc:'말·글로 자기 생각을 정확히 전달하는 감각.'},
+    {key:'connect', name:'연결', desc:'사람과 정보를 서로 잇는 힘. 관계의 다리를 잘 놓습니다.'},
+    {key:'respons', name:'책임', desc:'맡은 일·약속을 끝까지 지키는 성향. 믿음의 기반.'},
+    {key:'creative', name:'창의', desc:'기존 방식과 다른 각도로 보는 상상력. 새로움을 만들어 냅니다.'}
+  ];
+
+  // 각 강점당 2문항 (총 16문항). 역채점 없음. 문항은 현장 언어.
+  const ITEMS = [
+    {s:'inquiry', q:'어떤 현상을 보면 "왜 이렇게 되었을까"를 습관처럼 따져 본다.'},
+    {s:'inquiry', q:'일을 시작하기 전에 배경·맥락을 먼저 조사하는 편이다.'},
+    {s:'learn', q:'새로운 것을 익히는 과정 자체에서 에너지를 얻는다.'},
+    {s:'learn', q:'모르는 분야에 들어가는 것을 두려워하지 않는다.'},
+    {s:'empathy', q:'상대가 말하지 않아도 감정 변화를 빨리 알아챈다.'},
+    {s:'empathy', q:'대화할 때 내 주장보다 상대의 상황을 먼저 고려한다.'},
+    {s:'achieve', q:'시작한 일은 끝까지 마무리해야 마음이 편하다.'},
+    {s:'achieve', q:'할 일 목록의 항목을 지우는 것에서 성취감을 크게 느낀다.'},
+    {s:'express', q:'내 생각을 말이나 글로 구체화하는 데 시간을 잘 쓴다.'},
+    {s:'express', q:'복잡한 이야기를 짧고 명료하게 정리하는 편이다.'},
+    {s:'connect', q:'서로 모르는 사람·정보를 자주 연결해 주는 역할을 맡는다.'},
+    {s:'connect', q:'내가 가진 인맥·자원을 필요한 곳에 기꺼이 공유한다.'},
+    {s:'respons', q:'맡은 약속은 어떤 상황에서도 지키는 것을 중요하게 여긴다.'},
+    {s:'respons', q:'다른 사람이 맡긴 일을 소홀히 했을 때 오래 마음에 남는다.'},
+    {s:'creative', q:'기존 방식이 답답하면 다른 방법을 먼저 떠올린다.'},
+    {s:'creative', q:'같은 자료로 다른 사람과 다른 결론을 내는 일이 자주 있다.'}
+  ];
+
+  const SCALES = [
+    {v:1, t:'전혀 그렇지 않다'},
+    {v:2, t:'별로 아니다'},
+    {v:3, t:'보통'},
+    {v:4, t:'그렇다'},
+    {v:5, t:'매우 그렇다'}
+  ];
+
+  const form = document.getElementById('diagForm');
+  const progressFill = document.getElementById('progressFill');
+  const progressCount = document.getElementById('progressCount');
+  const submitBtn = document.getElementById('submitBtn');
+  const result = document.getElementById('result');
+  const topCards = document.getElementById('topCards');
+  const chart = document.getElementById('chart');
+  const resetBtn = document.getElementById('resetBtn');
+
+  // 문항 렌더
+  ITEMS.forEach((item, idx) => {
+    const q = document.createElement('div');
+    q.className = 'q';
+    const name = 'q' + idx;
+    q.innerHTML =
+      '<div class="q__n">문항 ' + (idx+1) + ' / 16</div>' +
+      '<div class="q__t">' + item.q + '</div>' +
+      '<div class="q__scale">' +
+      SCALES.map(sc =>
+        '<label><input type="radio" name="' + name + '" value="' + sc.v + '" data-strength="' + item.s + '" aria-label="' + sc.t + '"><span>' + sc.v + '<br><small style="font-weight:500;font-size:.72rem">' + sc.t + '</small></span></label>'
+      ).join('') +
+      '</div>';
+    form.appendChild(q);
+  });
+
+  function updateProgress(){
+    const answered = form.querySelectorAll('input:checked').length;
+    const pct = (answered / ITEMS.length) * 100;
+    progressFill.style.width = pct + '%';
+    progressCount.textContent = answered;
+    submitBtn.disabled = answered < ITEMS.length;
+  }
+
+  form.addEventListener('change', updateProgress);
+
+  submitBtn.addEventListener('click', function(){
+    // 각 강점 점수 집계
+    const scores = {};
+    const counts = {};
+    STRENGTHS.forEach(s => { scores[s.key] = 0; counts[s.key] = 0; });
+    form.querySelectorAll('input:checked').forEach(inp => {
+      const s = inp.dataset.strength;
+      scores[s] += parseInt(inp.value, 10);
+      counts[s] += 1;
+    });
+
+    // 평균 환산 (각 강점 2문항 → 평균 1~5)
+    const avgs = STRENGTHS.map(s => ({
+      ...s,
+      avg: counts[s.key] > 0 ? (scores[s.key] / counts[s.key]) : 0
+    }));
+    const sorted = avgs.slice().sort((a,b) => b.avg - a.avg);
+
+    // 상위 3 카드
+    topCards.innerHTML = sorted.slice(0,3).map((s,i) =>
+      '<div class="top-card">' +
+      '<div class="top-card__rank">TOP ' + (i+1) + '</div>' +
+      '<div class="top-card__name">' + s.name + '</div>' +
+      '<div class="top-card__score">평균 ' + s.avg.toFixed(2) + ' / 5.00</div>' +
+      '<div class="top-card__desc">' + s.desc + '</div>' +
+      '</div>'
+    ).join('');
+
+    // 전체 막대
+    chart.innerHTML = sorted.map(s =>
+      '<div class="chart-row">' +
+      '<div class="chart-row__name">' + s.name + '</div>' +
+      '<div class="chart-row__bar"><div class="chart-row__fill" style="width:' + (s.avg/5*100) + '%"></div></div>' +
+      '<div class="chart-row__val">' + s.avg.toFixed(2) + '</div>' +
+      '</div>'
+    ).join('');
+
+    result.classList.add('result--shown');
+    result.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  resetBtn.addEventListener('click', function(){
+    form.querySelectorAll('input:checked').forEach(inp => inp.checked = false);
+    result.classList.remove('result--shown');
+    topCards.innerHTML = '';
+    chart.innerHTML = '';
+    updateProgress();
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+})();
+</script>
+
+</body>
+</html>
