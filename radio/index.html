@@ -385,6 +385,24 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
   font-size:.68rem;color:var(--fg-dim);
   letter-spacing:.15em;
 }
+
+/* Extras row (share, schedule) */
+.extras{
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+  margin-top:24px;
+}
+.extras__btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:10px 16px;border-radius:999px;
+  background:transparent;border:1px solid var(--line);
+  color:var(--fg-mute);
+  font-family:inherit;font-size:.78rem;font-weight:500;
+  text-decoration:none;
+  transition:border-color .15s,color .15s,background .15s;
+  cursor:pointer;
+}
+.extras__btn:hover{border-color:var(--fg-dim);color:var(--fg)}
+.extras__btn svg{width:14px;height:14px}
 </style>
 </head>
 <body>
@@ -458,6 +476,17 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
       새 탭에서 열리며 클래식FM이 바로 재생됩니다.
       전국 어느 지역 주파수든 같은 프로그램입니다. 공식 플레이어가 지역 제한 등으로
       안 열리면 YouTube 생방송으로 대체 연결됩니다.
+    </div>
+
+    <div class="extras">
+      <a class="extras__btn" href="https://program.kbs.co.kr/1fm/radio/classicfm/pc/index.html" target="_blank" rel="noopener" aria-label="클래식FM 편성표 열기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        편성표
+      </a>
+      <button class="extras__btn" type="button" id="shareBtn" aria-label="이 앱 공유">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+        공유
+      </button>
     </div>
 
     <div class="footer">NEDABAHWAY · CLASSIC FM</div>

@@ -306,6 +306,34 @@ els.installBtn.addEventListener('click', async (e) => {
   els.install.classList.remove('is-shown');
 });
 
+const shareBtn = document.getElementById('shareBtn');
+if (shareBtn) {
+  shareBtn.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    const shareData = {
+      title: '클래식FM — 지역별 주파수',
+      text: 'KBS 클래식FM 지역별 주파수 + 바로 듣기',
+      url: location.origin + '/radio/',
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        return;
+      }
+    } catch (err) {
+      if (err.name === 'AbortError') return;
+    }
+    try {
+      await navigator.clipboard.writeText(shareData.url);
+      const prev = shareBtn.innerHTML;
+      shareBtn.innerHTML = '<span>링크 복사됨</span>';
+      setTimeout(() => { shareBtn.innerHTML = prev; }, 1600);
+    } catch {
+      window.prompt('아래 링크를 복사하세요', shareData.url);
+    }
+  });
+}
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').catch(err => console.warn(err));
