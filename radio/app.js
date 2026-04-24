@@ -23,6 +23,7 @@ const els = {
   sleepMenu: document.getElementById('sleepMenu'),
   sleepLabel: document.getElementById('sleepLabel'),
   audio: document.getElementById('audio'),
+  heroNow: document.getElementById('heroNow'),
 };
 
 const ICON_PLAY = '<path d="M8 5v14l11-7z"/>';
@@ -394,6 +395,21 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js').catch(err => console.warn(err));
   });
 }
+
+function tickClock() {
+  if (!els.heroNow) return;
+  const now = new Date();
+  const fmt = new Intl.DateTimeFormat('ko-KR', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', hour12: false,
+  });
+  const parts = fmt.formatToParts(now);
+  const get = (t) => parts.find(p => p.type === t)?.value ?? '';
+  els.heroNow.textContent = `${get('year')}.${get('month')}.${get('day')} · ${get('hour')}:${get('minute')} KST`;
+}
+tickClock();
+setInterval(tickClock, 15000);
 
 window.addEventListener('online', () => {
   if (!state.data) {

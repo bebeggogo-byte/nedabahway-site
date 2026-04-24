@@ -4,20 +4,43 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,user-scalable=no">
 <title>클래식FM — 93.7</title>
-<meta name="description" content="클래식FM 바로 재생. 전국 지역별 주파수 안내.">
+<meta name="description" content="클래식FM 바로 재생. 전국 지역별 주파수 안내. 서울부터 제주까지.">
 <meta name="theme-color" content="#0F1419">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="클래식FM">
 <meta name="mobile-web-app-capable" content="yes">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="클래식FM">
+<meta property="og:title" content="클래식FM — 지역별 주파수">
+<meta property="og:description" content="KBS 클래식FM 바로 재생 + 전국 지역별 주파수 안내. 슬립 타이머 포함.">
+<meta property="og:url" content="https://www.nedabah.org/radio/">
+<meta property="og:image" content="https://www.nedabah.org/radio/icons/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:locale" content="ko_KR">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="클래식FM — 지역별 주파수">
+<meta name="twitter:description" content="KBS 클래식FM 바로 재생 + 전국 지역별 주파수.">
+<meta name="twitter:image" content="https://www.nedabah.org/radio/icons/icon-512.png">
+
+<link rel="canonical" href="https://www.nedabah.org/radio/">
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
 <style>
+/* Font fallbacks load first; web fonts layer in via font-display:swap */
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap');
+@font-face{
+  font-family:'Pretendard Variable';
+  font-display:swap;
+  src:local('Pretendard Variable');
+}
 
 :root{
   --bg:#0F1419;
@@ -146,6 +169,13 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
   font-weight:500;font-size:.95rem;
   color:var(--fg-dim);margin-top:4px;
   letter-spacing:.02em;
+}
+.hero__now{
+  margin-top:10px;
+  font-size:.68rem;font-weight:500;
+  letter-spacing:.25em;
+  color:var(--fg-dim);
+  font-variant-numeric:tabular-nums;
 }
 
 .hero__action{
@@ -422,6 +452,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
     <div class="hero__unit">MHz</div>
     <div class="hero__city" id="heroCity">내 주파수</div>
     <div class="hero__name">KBS Classic FM</div>
+    <div class="hero__now" id="heroNow" aria-live="polite">— · —</div>
 
     <div class="hero__action" id="heroAction">
       <svg id="actionIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
