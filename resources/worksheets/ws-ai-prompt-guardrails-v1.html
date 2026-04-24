@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>프롬프트에 넣으면 안 되는 7가지 — 공공·비영리 실무 체크리스트 v1</title>
+<meta name="description" content="생성형 AI를 업무에 쓰는 공공·비영리 실무자가 프롬프트 입력 전에 1분 안에 자기 점검하는 한 장짜리 인쇄 워크시트. 네다바웨이 v1.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="프롬프트에 넣으면 안 되는 7가지 — 공공·비영리 실무 체크리스트 v1">
+<meta property="og:description" content="생성형 AI 입력 전 1분 자기 점검. 개인정보·비공개 문서·인사·저작물까지 7개 항목 한 장 체크리스트.">
+<meta property="og:url" content="https://www.nedabah.org/resources/worksheets/ws-ai-prompt-guardrails-v1.html">
+<link rel="canonical" href="https://www.nedabah.org/resources/worksheets/ws-ai-prompt-guardrails-v1.html">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
+:root{
+  --c-bg:#FAFAF7;--c-surface:#FFFFFF;--c-fg:#1A1A1A;
+  --c-mute:#6B6B6B;--c-mute2:#9A9A9A;--c-line:#E8E6E0;--c-line2:#D6D3CA;
+  --c-accent:#10803D;--c-copper:#C2410C;
+  --ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --ff-serif:'Noto Serif KR',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);line-height:1.7;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:inherit}a:hover{text-decoration:underline}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line)}
+.nav__inner{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.nav__logo{font-family:var(--ff-serif);font-weight:700;font-size:1.15rem}
+.nav__links{display:flex;gap:22px;align-items:center}
+.nav__link{font-size:.86rem;color:var(--c-mute);font-weight:500}
+.nav__link--active{color:var(--c-copper);font-weight:700}
+.nav__cta{font-size:.84rem;padding:9px 18px;border-radius:999px;background:var(--c-fg);color:var(--c-bg);font-weight:600}
+@media(max-width:760px){.nav__links .nav__link:not(.nav__link--active){display:none}}
+
+.sheet{max-width:880px;margin:0 auto;padding:48px 28px 24px}
+.sheet__kicker{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--c-copper);margin-bottom:14px}
+.sheet__title{font-family:var(--ff-serif);font-size:clamp(1.8rem,4.2vw,2.6rem);font-weight:800;line-height:1.2;letter-spacing:-.02em;margin-bottom:18px}
+.sheet__title em{font-style:italic;color:var(--c-copper);font-weight:700}
+.sheet__lead{color:#3a3a3a;font-size:.98rem;line-height:1.8;margin-bottom:22px;max-width:680px}
+.sheet__meta{display:flex;flex-wrap:wrap;gap:16px 22px;padding:14px 18px;background:var(--c-surface);border:1px solid var(--c-line);border-radius:10px;font-size:.82rem;color:var(--c-mute)}
+.sheet__meta strong{color:var(--c-fg);font-weight:700}
+
+.main{max-width:880px;margin:0 auto;padding:14px 28px 40px}
+
+.section{margin-top:36px}
+.section__head{font-family:var(--ff-serif);font-size:1.25rem;font-weight:700;letter-spacing:-.01em;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--c-copper);display:inline-block;padding-right:14px}
+
+.list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.item{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:14px 16px;border:1px solid var(--c-line);border-radius:10px;background:var(--c-surface)}
+.item__check{display:flex;align-items:flex-start;justify-content:center;padding-top:3px}
+.item__check input[type=checkbox]{width:20px;height:20px;border:1.5px solid var(--c-fg);border-radius:3px;cursor:pointer;appearance:none;-webkit-appearance:none;background:#fff;position:relative;flex-shrink:0}
+.item__check input[type=checkbox]:checked::after{content:"";position:absolute;left:5px;top:1px;width:6px;height:11px;border:solid var(--c-copper);border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+.item__body{min-width:0}
+.item__num{font-family:var(--ff-serif);font-weight:700;color:var(--c-copper);margin-right:6px}
+.item__head{font-size:.98rem;font-weight:700;line-height:1.55;margin-bottom:4px;color:var(--c-fg)}
+.item__desc{font-size:.88rem;line-height:1.7;color:#4a4a4a}
+
+.gray{margin-top:26px;padding:16px 18px;border-left:3px solid var(--c-copper);background:#fff7f0;border-radius:0 8px 8px 0}
+.gray__head{font-weight:700;font-size:.92rem;margin-bottom:6px;color:var(--c-copper)}
+.gray__desc{font-size:.88rem;line-height:1.75;color:#3a3a3a}
+
+.signblock{margin-top:30px;border:1px solid var(--c-line2);border-radius:10px;padding:20px 20px 16px;background:var(--c-surface)}
+.signblock__head{font-weight:700;font-size:.92rem;margin-bottom:14px;color:var(--c-fg)}
+.signgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px 26px}
+@media(max-width:520px){.signgrid{grid-template-columns:1fr}}
+.signrow{display:flex;flex-direction:column;gap:6px}
+.signrow label{font-size:.78rem;color:var(--c-mute);font-weight:600;letter-spacing:.04em}
+.signline{border-bottom:1.2px solid var(--c-fg);height:26px}
+
+.refs{margin-top:28px;font-size:.82rem;color:var(--c-mute);line-height:1.8}
+.refs h3{font-family:var(--ff-serif);font-size:1rem;color:var(--c-fg);margin-bottom:8px;font-weight:700}
+.refs ol{padding-left:18px;display:grid;gap:5px}
+.refs a{color:var(--c-fg);text-decoration:underline;text-decoration-color:var(--c-line2);text-underline-offset:3px}
+
+.foot{max-width:880px;margin:0 auto;padding:24px 28px 64px;color:var(--c-mute);font-size:.82rem;text-align:center;line-height:1.8;border-top:1px solid var(--c-line)}
+.foot strong{color:var(--c-fg)}
+
+/* ---- 인쇄 ---- */
+@media print{
+  @page{size:A4 portrait;margin:14mm 14mm 12mm 14mm}
+  html,body{background:#fff!important;color:#000!important;font-size:10.2pt;line-height:1.45}
+  .nav,.foot__cta,.nav__cta{display:none!important}
+  .foot{border-top:1px solid #bbb;padding:8px 0 0;font-size:8.6pt;color:#555}
+  .sheet{padding:6mm 0 3mm;max-width:100%}
+  .main{padding:0;max-width:100%}
+  .sheet__kicker{margin-bottom:4px;font-size:7.4pt}
+  .sheet__title{font-size:15pt;margin-bottom:6px;line-height:1.18}
+  .sheet__lead{font-size:9pt;line-height:1.45;margin-bottom:8px;max-width:100%}
+  .sheet__meta{padding:5px 9px;font-size:7.8pt;gap:4px 12px;border-radius:4px;background:#fff;border:1px solid #bbb}
+  .section{margin-top:9px}
+  .section__head{font-size:10.4pt;margin-bottom:6px;padding-bottom:3px;border-bottom:1.2px solid #000}
+  .list{gap:3.2px}
+  .item{padding:4.2px 7px;border:1px solid #bbb;border-radius:3px;background:#fff;grid-template-columns:22px 1fr;gap:7px;break-inside:avoid;page-break-inside:avoid}
+  .item__check input[type=checkbox]{width:13px;height:13px;border:1.2px solid #000!important;border-radius:2px;-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#fff!important}
+  .item__head{font-size:9.3pt;margin-bottom:1px;line-height:1.35}
+  .item__num{color:#000;margin-right:3px}
+  .item__desc{font-size:8.2pt;line-height:1.38;color:#222}
+  .gray{margin-top:7px;padding:5px 8px;border-left:2px solid #000;background:#fff;border-radius:0}
+  .gray__head{color:#000;font-size:8.8pt;margin-bottom:2px}
+  .gray__desc{font-size:8pt;line-height:1.4}
+  .signblock{margin-top:8px;padding:6px 9px 5px;border:1px solid #bbb;border-radius:3px;background:#fff;break-inside:avoid}
+  .signblock__head{font-size:8.8pt;margin-bottom:5px}
+  .signgrid{gap:6px 16px;grid-template-columns:1fr 1fr 1fr 1fr}
+  .signrow label{font-size:7.4pt}
+  .signline{height:13px;border-bottom:1px solid #000}
+  .refs{margin-top:7px;font-size:7.4pt;line-height:1.4;color:#333}
+  .refs h3{font-size:8.4pt;margin-bottom:3px}
+  .refs ol{gap:2px}
+  .refs a{color:#000;text-decoration:none}
+  a[href]::after{content:""}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="../../index.html">네다바웨이</a>
+    <div class="nav__links">
+      <a class="nav__link" href="../../index.html">홈</a>
+      <a class="nav__link" href="../../company.html">회사소개</a>
+      <a class="nav__link" href="../../portfolio.html">포트폴리오</a>
+      <a class="nav__link" href="../../blog/">매거진</a>
+      <a class="nav__link nav__link--active" href="../../resources/">자료실</a>
+      <a class="nav__cta" href="../../index.html#contact">문의</a>
+    </div>
+  </div>
+</nav>
+
+<header class="sheet">
+  <div class="sheet__kicker">Worksheet · Prompt Guardrails · v1</div>
+  <h1 class="sheet__title">프롬프트에 넣으면 <em>안 되는</em> 7가지</h1>
+  <p class="sheet__lead">
+    생성형 AI 도구(ChatGPT, Gemini, Claude 등)를 업무에 쓰는 공공·비영리 실무자가 프롬프트 입력창에 문장을 붙여넣기 전 1분 안에 스스로 점검하는 한 장짜리 체크리스트입니다. 인쇄해서 책상 앞에 붙여 두거나, 기관 내부 AI 사용 가이드의 부속 양식으로 복제해 사용하세요.
+  </p>
+  <div class="sheet__meta">
+    <span><strong>발행</strong> 네다바웨이 Nedabahway</span>
+    <span><strong>버전</strong> v1</span>
+    <span><strong>발행일</strong> 2026-04-22</span>
+    <span><strong>근거</strong> 국내 법·가이드 3종 (하단 각주)</span>
+  </div>
+</header>
+
+<main class="main">
+
+  <section class="section" aria-labelledby="sec-list">
+    <h2 class="section__head" id="sec-list">1분 자기 점검 · 7개 항목</h2>
+    <ul class="list">
+
+      <li class="item">
+        <div class="item__check"><input type="checkbox" aria-label="항목 1 확인"></div>
+        <div class="item__body">
+          <p class="item__head"><span class="item__num">①</span>민원인·주민의 이름·주민등록번호·연락처·주소 등 식별 정보</p>
+          <p class="item__desc">개인을 특정할 수 있는 정보는 원칙적으로 입력 금지. 꼭 필요하면 가명(A씨, 홍○○) 또는 구조 정보(연령대·권역)로 치환한 뒤 입력합니다.</p>
+        </div>
+      </li>
+
+      <li class="item">
+        <div class="item__check"><input type="checkbox" aria-label="항목 2 확인"></div>
+        <div class="item__body">
+          <p class="item__head"><span class="item__num">②</span>내부 기안문·비공개 공문의 전체 문장</p>
+          <p class="item__desc">결재 라인과 기관 고유 양식이 그대로 드러나면 외부 학습 데이터로 유출될 위험이 있습니다. 핵심 쟁점만 3~5줄로 재서술해 입력하세요.</p>
+        </div>
+      </li>
+
+      <li class="item">
+        <div class="item__check"><input type="checkbox" aria-label="항목 3 확인"></div>
+        <div class="item__body">
+          <p class="item__head"><span class="item__num">③</span>기관 보안등급 분류상 '대외비' 이상의 데이터</p>
+          <p class="item__desc">기관 내부 지침상 대외비·비밀 등급 자료는 범용 공개형 AI 서비스에 입력 금지. 기관 승인 전용 모델·폐쇄망 환경을 사용합니다.</p>
+        </div>
+      </li>
+
+      <li class="item">
+        <div class="item__check"><input type="checkbox" aria-label="항목 4 확인"></div>
+        <div class="item__body">
+          <p class="item__head"><span class="item__num">④</span>아직 결재·의결 전인 정책·사업안의 실명·수치</p>
+          <p class="item__desc">공식 결정 이전 단계의 예산·대상·일정은 유출 시 혼선을 일으킵니다. 구조(목적·대상·절차)만 남기고 구체 수치는 '○○억' 처리합니다.</p>
+        </div>
+      </li>
+
+      <li class="item">
+        <div class="item__check"><input type="checkbox" aria-label="항목 5 확인"></div>
+        <div class="item__body">
+          <p class="item__head"><span class="item__num">⑤</span>제3자의 저작물 원문 (번역·요약 포함 재검토 필요)</p>
+          <p class="item__desc">책·논문·보고서의 장문을 그대로 붙여넣어 요약·번역시키는 행위는 저작권 이슈가 생길 수 있습니다. 인용 범위와 출처 표기 원칙을 먼저 확인합니다.</p>
+        </div>
+      </li>
+
+      <li class="item">
+        <div class="item__check"><input type="checkbox" aria-label="항목 6 확인"></div>
+        <div class="item__body">
+          <p class="item__head"><span class="item__num">⑥</span>채용·징계 등 인사 관련 개인정보</p>
+          <p class="item__desc">평가·징계·채용 합격 여부는 당사자의 권리에 직접 영향을 미치는 민감 정보입니다. AI로 '문구 다듬기' 수준 작업이라도 익명화 후 진행합니다.</p>
+        </div>
+      </li>
+
+      <li class="item">
+        <div class="item__check"><input type="checkbox" aria-label="항목 7 확인"></div>
+        <div class="item__body">
+          <p class="item__head"><span class="item__num">⑦</span>기관 내부 사진·영상·도면의 원본</p>
+          <p class="item__desc">보안 구역 도면, 어린이·민원인이 식별되는 사진, 행사 미공개 촬영본 등은 이미지 생성·편집 AI에도 원본 업로드 금지. 외부 공개 허가된 자료만 사용합니다.</p>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <aside class="gray" aria-label="회색지대 안내">
+    <p class="gray__head">애매하면 먼저 물어보세요</p>
+    <p class="gray__desc">
+      이 7개 항목에 걸치지 않는 것 같지만 찜찜한 경우는 대부분 '회색지대'입니다. 입력 전에 기관의 개인정보보호·정보보안 담당자에게 확인하는 것이 원칙이며, 확인이 불가능할 때는 해당 정보를 빼고 구조·원칙만 남겨 입력합니다. 판단 근거는 점검일·담당자와 함께 이 워크시트 하단에 간단히 기록해 둡니다.
+    </p>
+  </aside>
+
+  <section class="signblock" aria-labelledby="sec-sign">
+    <p class="signblock__head" id="sec-sign">점검 기록</p>
+    <div class="signgrid">
+      <div class="signrow"><label>작성자 이름</label><div class="signline"></div></div>
+      <div class="signrow"><label>소속 · 부서</label><div class="signline"></div></div>
+      <div class="signrow"><label>점검일</label><div class="signline"></div></div>
+      <div class="signrow"><label>서명</label><div class="signline"></div></div>
+    </div>
+  </section>
+
+  <section class="refs" aria-labelledby="sec-refs">
+    <h3 id="sec-refs">근거 자료</h3>
+    <ol>
+      <li>개인정보보호위원회, <a href="https://www.pipc.go.kr/np/cop/bbs/selectBoardList.do?bbsId=BS217&mCode=D010030000" target="_blank" rel="noopener noreferrer">「인공지능(AI) 개인정보보호 안내서」 (2025 개정판)</a> — 개인정보 입력·학습·추론 단계별 원칙.</li>
+      <li>디지털플랫폼정부위원회·한국지능정보사회진흥원(NIA), <a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/List.do?cbIdx=39485" target="_blank" rel="noopener noreferrer">「공공부문 생성형 AI 활용 가이드라인 2.0」 (2025)</a> — 공공 실무자의 생성형 AI 사용 범위·금지 행위·검토 절차.</li>
+      <li>방송통신위원회·한국지능정보사회진흥원(NIA), <a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=39485&bcIdx=25473" target="_blank" rel="noopener noreferrer">「사람이 중심이 되는 인공지능 윤리 가이드북」 (2023)</a> — 인권·프라이버시·공공성 3원칙과 자가 점검 항목.</li>
+    </ol>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>
+    <strong>네다바웨이 Nedabahway</strong> · Worksheet v1 · 2026-04-22 · 기관 상황에 맞게 항목을 추가·삭제하여 사용하세요.<br>
+    발행: <a href="../../index.html">nedabah.org</a> · 문의: <a href="../../index.html#contact">홈 문의 섹션</a>
+  </p>
+</footer>
+
+</body>
+</html>
