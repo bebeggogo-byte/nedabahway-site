@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>공공기관 AI 워크숍, 무엇을 가르치지 않는가 | 네다바웨이 매거진</title>
+<meta name="description" content="리스크 5축·프롬프트 3원칙·결과물 기획 5단계는 가르친다. 도구 선택의 정답과 기관 보안 규정은 가르치지 않는다. 경계를 분명히 한 워크숍이 4곳 이상 기관의 반복 의뢰를 만들었다.">
+<meta property="og:title" content="공공기관 AI 워크숍, 무엇을 가르치지 않는가">
+<meta property="og:description" content="경계를 분명히 한 워크숍이 현장에 남는다 — 공공·비영리 실무자 대상 AI 워크숍의 교집합과 바깥.">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-04-22">
+<meta property="article:section" content="INSIGHT">
+<meta property="article:author" content="김창환">
+<meta property="og:url" content="https://www.nedabah.org/blog/posts/2026-04-22_what-ai-workshop-teaches.html">
+<link rel="canonical" href="https://www.nedabah.org/blog/posts/2026-04-22_what-ai-workshop-teaches.html">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
+:root{
+  --c-bg:#FAFAF7;--c-surface:#FFFFFF;--c-fg:#1A1A1A;
+  --c-mute:#6B6B6B;--c-mute2:#9A9A9A;--c-line:#E8E6E0;--c-line2:#D6D3CA;
+  --c-accent:#10803D;--c-copper:#C2410C;
+  --c-insight:#1D4ED8;--c-insight-soft:#E8EEFB;
+  --ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --ff-serif:'Noto Serif KR',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);
+  line-height:1.8;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:hover{text-decoration:underline}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line)}
+.nav__inner{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.nav__logo{font-family:var(--ff-serif);font-weight:700;font-size:1.15rem}
+.nav__links{display:flex;gap:22px;align-items:center}
+.nav__link{font-size:.86rem;color:var(--c-mute);font-weight:500}
+.nav__link--active{color:var(--c-accent);font-weight:700}
+.nav__cta{font-size:.84rem;padding:9px 18px;border-radius:999px;background:var(--c-fg);color:var(--c-bg);font-weight:600}
+@media(max-width:760px){.nav__links .nav__link:not(.nav__link--active){display:none}}
+
+.wrap{max-width:720px;margin:0 auto;padding:56px 24px 80px}
+.back{font-size:.85rem;color:var(--c-mute);margin-bottom:24px;display:inline-block;text-decoration:underline;text-decoration-color:var(--c-line2);text-underline-offset:3px}
+.back:hover{color:var(--c-fg)}
+.meta{display:flex;gap:10px;align-items:center;font-size:.78rem;color:var(--c-mute);margin-bottom:18px;flex-wrap:wrap;font-weight:500}
+.meta__cat{padding:4px 11px;border-radius:999px;background:var(--c-insight-soft);color:var(--c-insight);font-weight:700;letter-spacing:.12em;font-size:.7rem;text-transform:uppercase}
+.h1{font-family:var(--ff-serif);font-size:clamp(1.9rem,4.5vw,2.8rem);font-weight:700;line-height:1.22;letter-spacing:-.02em;margin-bottom:22px}
+.lead{font-family:var(--ff-serif);font-size:1.12rem;color:#333;line-height:1.8;margin-bottom:48px;padding-bottom:36px;border-bottom:1px solid var(--c-line);font-weight:500}
+
+article h2{font-family:var(--ff-serif);font-size:1.5rem;font-weight:700;margin:52px 0 18px;line-height:1.3;letter-spacing:-.02em}
+article h3{font-size:1.1rem;font-weight:700;margin:36px 0 14px;color:var(--c-fg);letter-spacing:-.01em}
+article p{margin-bottom:18px;font-size:1rem;color:#2a2a2a;line-height:1.85}
+article ul,article ol{margin:16px 0 24px;padding-left:24px;color:#2a2a2a}
+article li{margin-bottom:10px;line-height:1.78}
+article strong{color:var(--c-fg);font-weight:700}
+article em{color:var(--c-copper);font-style:normal;font-weight:600}
+article blockquote{border-left:3px solid var(--c-insight);padding:14px 22px;margin:26px 0;
+  background:var(--c-insight-soft);border-radius:0 10px 10px 0;color:#1f2a44;font-size:.96rem;font-family:var(--ff-serif);font-style:italic}
+article cite{font-style:normal;color:var(--c-mute);font-size:.9em}
+
+.callout{background:var(--c-insight-soft);border:1px solid #C7D6F5;border-radius:14px;padding:26px 26px;margin:36px 0}
+.callout__label{font-size:.72rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--c-insight);margin-bottom:10px}
+.callout h3{margin:0 0 10px}
+.sources{background:var(--c-surface);border:1px solid var(--c-line);border-radius:14px;padding:26px 28px;margin:40px 0 0}
+.sources__label{font-size:.72rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--c-mute);margin-bottom:14px}
+.sources ol{margin:0;padding-left:20px}
+.sources li{font-size:.92rem;color:#2a2a2a;line-height:1.7;margin-bottom:10px}
+.sources li a{color:var(--c-insight);font-weight:600;text-decoration:underline;text-decoration-color:var(--c-line2);text-underline-offset:3px}
+
+.footer-note{margin-top:56px;padding-top:28px;color:var(--c-mute);font-size:.85rem;line-height:1.75}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="../../index.html">네다바웨이</a>
+    <div class="nav__links">
+      <a class="nav__link" href="../../company.html">회사소개</a>
+      <a class="nav__link" href="../../portfolio.html">포트폴리오</a>
+      <a class="nav__link nav__link--active" href="../../blog/">매거진</a>
+      <a class="nav__link" href="../../resources/">자료실</a>
+      <a class="nav__cta" href="../../index.html#contact">문의</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <a class="back" href="/blog/">← 매거진 목록</a>
+
+  <div class="meta">
+    <span class="meta__cat">INSIGHT · 통찰</span>
+    <span>·</span><span><time datetime="2026-04-22">2026년 4월 22일</time></span>
+    <span>·</span><span>김창환</span>
+    <span>·</span><span>읽는 시간 6분</span>
+  </div>
+
+  <h1 class="h1">공공기관 AI 워크숍, 무엇을 가르치지 않는가</h1>
+
+  <p class="lead">
+    하루 워크숍이 끝난 뒤 참여자에게 가장 많이 받는 질문은 매번 같다. "그럼 결국 어떤 AI 도구를 쓰는 게 맞습니까?" 강사는 그 질문에 답하지 않는다. 무엇을 가르치고 무엇을 가르치지 않는지를 분리해 둔 워크숍만 현장에 남는다.
+  </p>
+
+  <article>
+
+    <h2>1. 가르치는 것</h2>
+    <p>
+      <strong>리스크 5축 체크리스트</strong>. 방송통신위원회와 한국지능정보사회진흥원(NIA)이 펴낸 <a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=39485&amp;bcIdx=26195&amp;parentSeq=26195" target="_blank" rel="noopener noreferrer">생성형 AI 윤리 가이드북</a>이 저작권·책임성·허위정보·개인정보·오남용 다섯 축을 이미 정리해 두었다<cite> — 방통위·NIA, 2023</cite>. 워크숍 첫 블록은 이 다섯 줄을 인쇄해 나눠 주고, 참여자가 자기 업무에서 "AI에 맡기면 안 되는 것"을 직접 체크하게 한다.
+    </p>
+    <p>
+      <strong>프롬프트 3원칙</strong>. 상황·분위기·제약. 이 세 축으로 프롬프트를 쓰면 같은 도구에서도 결과물이 달라진다. 도구가 바뀌어도 원칙은 남는다.
+    </p>
+    <p>
+      <strong>결과물 기획 5단계</strong>. 목적 → 대상 → 메시지 → 이미지 → 배포 채널. AI에게 이미지를 시키기 전에 이 5단계를 종이에 적게 하면, 프롬프트는 자연히 구체화된다.
+    </p>
+    <p>
+      <strong>프롬프트에 민원인·주민 정보를 넣지 않는 원칙</strong>. 이것은 강사의 견해가 아니라, 개인정보보호위원회의 <a href="https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&amp;mCode=C020010000&amp;nttId=11410" target="_blank" rel="noopener noreferrer">생성형 AI 개인정보 처리 안내서</a>가 정한 처리 기준에서 나온 결론이다<cite> — 개인정보보호위원회, 2025</cite>.
+    </p>
+
+    <h2>2. 가르치지 않는 것</h2>
+    <p>
+      <strong>어떤 AI 도구를 쓸 것인가의 정답</strong>. 도구는 6개월마다 바뀐다. 강사가 한 도구의 정답을 단정해 가르치면, 다음 반기에 워크숍의 유효기간이 먼저 끝난다. 도구는 하나만 시연하고, 대안은 "같은 원칙으로 다른 도구도 쓸 수 있다"고만 남긴다.
+    </p>
+    <p>
+      <strong>기관별 보안 등급·망분리 규정</strong>. 디지털플랫폼정부위원회와 NIA가 2025년 4월 개정한 <a href="https://www.dpg.go.kr/DPG/contents/DPG03020000.do?schM=view&amp;id=20250416154050742370&amp;schBcid=reference" target="_blank" rel="noopener noreferrer">공공부문 초거대 AI 도입·활용 가이드라인 2.0</a>이 이미 보안등급 분류·RAG 활용 방식을 공식 지침으로 정해 두었다<cite> — 디지털플랫폼정부위원회·NIA, 2025</cite>. 기관마다 해석이 다르고, 그 해석은 기관 내부 담당자의 몫이다. 외부 강사가 결정할 자리가 아니다.
+    </p>
+    <p>
+      <strong>완벽한 저작권 판정</strong>. 생성형 AI 산출물의 저작권은 지금도 판례가 쌓이는 중이다. 회색지대를 강사가 확정해 주는 순간, 기관 리스크는 오히려 커진다. 워크숍은 "어디서 회색지대인지"만 짚고, 판정은 기관 법무·윤리 자문에 돌려놓는다.
+    </p>
+
+    <h2>3. 경계가 반복 의뢰의 조건이었다</h2>
+    <p>
+      도구 선택을 가르치지 않았기에, 6개월 뒤 도구 지형이 바뀌어도 같은 커리큘럼이 유효했다. 기관 보안 규정을 가르치지 않았기에, 기관마다 다른 규정 앞에서 참여자가 스스로 조정할 여지가 남았다. 경계를 분명히 한 하루가 4곳 이상 기관의 재의뢰로 돌아왔다. 이것이 과장되지 않은 현장 신호다.
+    </p>
+
+    <div class="callout">
+      <div class="callout__label">같은 설계가 필요하면</div>
+      <h3>현장 기록: 하루 워크숍, 다음날 현업 적용</h3>
+      <p style="margin:0">
+        이 글이 다룬 경계를 실제로 하루에 펼친 커리큘럼은 포트폴리오 케이스에서 볼 수 있다. <a href="../../portfolio/case-ai-workshop-01.html" style="color:var(--c-insight);font-weight:700">공공·비영리 AI 워크숍 케이스 전문 →</a>
+      </p>
+    </div>
+
+    <div class="sources">
+      <div class="sources__label">함께 볼 근거자료</div>
+      <ol>
+        <li>방송통신위원회·한국지능정보사회진흥원(NIA), 생성형 AI 윤리 가이드북, 2023-12. <a href="https://www.nia.or.kr/site/nia_kor/ex/bbs/View.do?cbIdx=39485&amp;bcIdx=26195&amp;parentSeq=26195" target="_blank" rel="noopener noreferrer">원문 링크</a></li>
+        <li>개인정보보호위원회, 생성형 인공지능(AI) 개발·활용을 위한 개인정보 처리 안내서, 2025-08. <a href="https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&amp;mCode=C020010000&amp;nttId=11410" target="_blank" rel="noopener noreferrer">원문 링크</a></li>
+        <li>디지털플랫폼정부위원회·한국지능정보사회진흥원(NIA), 공공부문 초거대 AI 도입·활용 가이드라인 2.0, 2025-04. <a href="https://www.dpg.go.kr/DPG/contents/DPG03020000.do?schM=view&amp;id=20250416154050742370&amp;schBcid=reference" target="_blank" rel="noopener noreferrer">원문 링크</a></li>
+      </ol>
+    </div>
+
+  </article>
+
+  <footer class="footer-note">
+    <p>
+      이 글은 네다바웨이 매거진 INSIGHT 섹션 기사입니다. 같은 경계로 하루 워크숍을 기관에서 운영하고 싶다면 <a href="/#contact" style="color:var(--c-accent);font-weight:600">문의 폼</a>으로 연락 주세요.
+    </p>
+    <p style="color:var(--c-mute2);font-size:.8rem;margin-top:6px">
+      Categories: INSIGHT · 통찰 &nbsp;|&nbsp; 발행: 2026-04-22
+    </p>
+  </footer>
+
+</main>
+
+</body>
+</html>
