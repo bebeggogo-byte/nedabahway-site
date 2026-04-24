@@ -134,13 +134,13 @@ function setPlayingUI(isPlaying, { loading = false } = {}) {
     els.actionIcon.innerHTML = inApp ? ICON_STOP : ICON_PLAY;
     els.actionText.textContent = inApp ? '재생 중지' : '다시 열기';
     els.heroHint.textContent = inApp
-      ? '앱 내에서 재생 중'
-      : '새 탭에서 클래식FM 재생 중';
+      ? '앱 내에서 재생 중 · HLS 스트림'
+      : 'KBS 공식 플레이어 재생 중 · 새 탭';
   } else {
     els.statusText.textContent = 'OFF AIR';
     els.actionIcon.innerHTML = ICON_PLAY;
     els.actionText.textContent = '라이브 듣기';
-    els.heroHint.textContent = '탭하면 클래식FM 재생';
+    els.heroHint.textContent = 'KBS 공식 라디오 · 탭하여 재생';
   }
 }
 
@@ -175,17 +175,53 @@ function showFallback(reason) {
   els.heroHint.textContent = '재생 불가 — 하단에서 다시 시도';
 }
 
+async function fetchKbsStreamUrl(apiUrl) {
+  const res = await fetch(apiUrl, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`KBS API ${res.status}`);
+  const data = await res.json();
+  const url =
+    data?.channel_item?.[0]?.service_url ||
+    data?.channel?.item?.[0]?.service_url ||
+    data?.channel_item_url ||
+    null;
+  if (!url) throw new Error('no stream URL in API response');
+  return url;
+}
+
+function canPlayHls(audio) {
+  return audio.canPlayType('application/vnd.apple.mpegurl') !== ''
+      || audio.canPlayType('application/x-mpegURL') !== '';
+}
+
 function openExternalPlayer() {
   const d = state.data;
   if (!d || !d.streamUrl) { showFallback('재생 링크가 없습니다.'); return; }
   window.open(d.streamUrl, '_blank', 'noopener');
   closePlayerDock();
   setPlayingUI(true);
-  els.heroHint.textContent = '새 탭에서 클래식FM 재생';
+  els.heroHint.textContent = 'KBS 공식 플레이어(새 탭) 재생 중';
 }
 
-function startStream() {
+async function startStream() {
   if (!state.data) return;
+  const d = state.data;
+
+  clearTimeout(state.loadTimer);
+  setPlayingUI(false, { loading: true });
+
+  if (d.streamType === 'kbs-api' && d.apiUrl && canPlayHls(els.audio)) {
+    try {
+      const streamUrl = await fetchKbsStreamUrl(d.apiUrl);
+      els.audio.src = streamUrl;
+      const played = els.audio.play();
+      if (played && typeof played.then === 'function') await played;
+      els.heroHint.textContent = '앱 내에서 재생 중 (HLS)';
+      return;
+    } catch (err) {
+      console.warn('KBS API direct-stream failed, falling back:', err);
+    }
+  }
+
   openExternalPlayer();
 }
 
