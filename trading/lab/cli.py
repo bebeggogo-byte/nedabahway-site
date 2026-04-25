@@ -2,9 +2,10 @@
 
 Usage:
     cd trading
-    python -m lab.cli daily              # daily rebalance cycle
+    python -m lab.cli daily              # daily rebalance cycle (with microstructure gate)
     python -m lab.cli daily --dry-run    # no broker calls, no orders
     python -m lab.cli daily --no-broker  # skip broker entirely (offline data-only)
+    python -m lab.cli review --start 2020-01-01 --end 2024-12-31  # backtest + 3 critics
     python -m lab.cli inspect <cycle_id> # print events for a cycle
 """
 
@@ -20,10 +21,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from config import KisConfig, StrategyConfig, TRADE_DB_PATH  # noqa: E402
 
 from lab.agents.balance_agent import BalanceAgent  # noqa: E402
+from lab.agents.cost_skeptic import CostSkeptic  # noqa: E402
 from lab.agents.data_agent import DataAgent  # noqa: E402
 from lab.agents.execution_agent import ExecutionAgent  # noqa: E402
+from lab.agents.microstructure_skeptic import MicrostructureSkeptic  # noqa: E402
 from lab.agents.performance_agent import PerformanceAgent  # noqa: E402
+from lab.agents.regime_skeptic import RegimeSkeptic  # noqa: E402
 from lab.agents.risk_agent import RiskAgent  # noqa: E402
+from lab.agents.statistical_skeptic import StatisticalSkeptic  # noqa: E402
 from lab.agents.strategy_agent import StrategyAgent  # noqa: E402
 from lab.agents.universe_agent import UniverseAgent  # noqa: E402
 from lab.eventbus import EventBus  # noqa: E402
@@ -52,18 +57,85 @@ def cmd_daily(args) -> int:
     strategy = StrategyAgent()
     balance = BalanceAgent(client=client)
     risk = RiskAgent(circuit=circuit)
+    microstructure = MicrostructureSkeptic()
     execution = ExecutionAgent(client=client, dry_run=args.dry_run or client is None)
     performance = PerformanceAgent(circuit=circuit)
 
     pipeline = Pipeline(
         name="daily",
-        agents=[universe, data, strategy, balance, risk, execution, performance],
+        agents=[universe, data, strategy, balance, risk, microstructure, execution, performance],
         halt_on_error=False,
     )
     orchestrator = Orchestrator(bus)
     summary = orchestrator.run(pipeline)
     print(summary.model_dump_json(indent=2))
     return 0 if not summary.errors else 1
+
+
+def cmd_review(args) -> int:
+    from src.backtest.engine import run_backtest
+    from src.data.market_data import load_universe_ohlcv
+    from src.data.universe import build_universe
+    from src.strategies.momentum import CrossSectionalMomentum
+
+    cfg = StrategyConfig()
+    bus = EventBus(TRADE_DB_PATH.parent / "lab_events.db")
+
+    logging.info("building universe @ %s", args.start)
+    tickers = build_universe(args.start, size=cfg.universe_size, min_market_cap_krw=cfg.min_market_cap_krw)
+    logging.info("loading prices for %d tickers", len(tickers))
+    prices = load_universe_ohlcv(tickers, args.start, args.end, field="Close")
+    if prices.empty:
+        logging.error("no price data")
+        return 1
+
+    strat = CrossSectionalMomentum(
+        lookback_months=cfg.lookback_months,
+        skip_recent_months=cfg.skip_recent_months,
+        top_n=cfg.top_n,
+    )
+    logging.info("running backtest...")
+    result = run_backtest(strategy=strat, prices=prices, rebalance_freq=args.rebalance_freq)
+    logging.info("backtest stats: %s", result.stats)
+
+    backtest_payload = {
+        "strategy": strat.name,
+        "equity_curve": result.equity_curve,
+        "trades": result.trades,
+        "stats": result.stats,
+    }
+
+    from lab.base import AgentContext
+    from lab.orchestrator import Orchestrator
+
+    pipeline = Pipeline(
+        name="backtest_review",
+        agents=[StatisticalSkeptic(), RegimeSkeptic(), CostSkeptic()],
+        halt_on_error=False,
+    )
+    orchestrator = Orchestrator(bus)
+
+    cycle_id = f"review-{strat.name}-{__import__('datetime').datetime.utcnow().strftime('%Y%m%dT%H%M%S')}"
+    bus.start_cycle(cycle_id, __import__('datetime').datetime.utcnow().isoformat())
+    ctx = AgentContext(cycle_id=cycle_id, bus=bus)
+    ctx.set("backtest_result", backtest_payload)
+    for agent in pipeline.agents:
+        agent.safe_run(ctx)
+    bus.end_cycle(cycle_id, __import__('datetime').datetime.utcnow().isoformat(), {"strategy": strat.name})
+
+    print("\n=== Backtest Stats ===")
+    for k, v in result.stats.items():
+        print(f"  {k:>20s}: {v:>10.4f}")
+
+    print("\n=== Critique Reports ===")
+    for rep in ctx.get("critiques", []):
+        print(f"\n[{rep.critic}] worst={rep.worst_verdict.value.upper()}")
+        for f in rep.findings:
+            mark = {"pass": "OK", "warn": "WARN", "fail": "FAIL"}[f.verdict.value]
+            print(f"  {mark:>5s} {f.metric:<32s} value={f.value!s:<25s}  {f.detail}")
+
+    print(f"\ncycle_id={cycle_id}")
+    return 0
 
 
 def cmd_inspect(args) -> int:
@@ -85,6 +157,12 @@ def main() -> int:
     p_daily.add_argument("--dry-run", action="store_true")
     p_daily.add_argument("--no-broker", action="store_true", help="skip KIS broker entirely")
     p_daily.set_defaults(func=cmd_daily)
+
+    p_rev = sub.add_parser("review", help="backtest + statistical/regime/cost critics")
+    p_rev.add_argument("--start", default="2020-01-01")
+    p_rev.add_argument("--end", default="2024-12-31")
+    p_rev.add_argument("--rebalance-freq", default="W-MON")
+    p_rev.set_defaults(func=cmd_review)
 
     p_insp = sub.add_parser("inspect", help="show events for a cycle")
     p_insp.add_argument("cycle_id")
