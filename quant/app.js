@@ -175,12 +175,54 @@ function renderCritiques(crit) {
   }).join('');
 }
 
+function fmtAgo(hours) {
+  if (hours == null || isNaN(hours)) return '—';
+  if (hours < 1) return Math.round(hours * 60) + 'm ago';
+  if (hours < 48) return hours.toFixed(1) + 'h ago';
+  return (hours / 24).toFixed(1) + 'd ago';
+}
+
+function renderHeartbeat(hb) {
+  if (!hb) return;
+  document.getElementById('hb-last').textContent = fmtAgo(hb.stale_hours_since_last_cycle);
+  document.getElementById('hb-uptime').textContent = (hb.uptime_days != null ? hb.uptime_days + 'd · ' : '') + (hb.n_cycles_total || 0) + ' cycles';
+  const healthEl = document.getElementById('hb-health');
+  if (hb.is_healthy) {
+    healthEl.textContent = '✓ healthy';
+    healthEl.style.color = 'var(--c-accent)';
+  } else {
+    healthEl.textContent = '⚠ stale';
+    healthEl.style.color = 'var(--c-fail)';
+  }
+}
+
+function renderCouncil(c) {
+  const summaryEl = document.getElementById('council-summary');
+  const detailEl = document.getElementById('council-detail');
+  const whenEl = document.getElementById('council-when');
+  if (!c || !c.consensus) {
+    summaryEl.textContent = '의회 미개최';
+    return;
+  }
+  whenEl.textContent = c.date || 'pending';
+  summaryEl.textContent = c.consensus.cycle_summary || '—';
+  const adopted = (c.consensus.adopted_strategies || []).length;
+  const vetoes = (c.consensus.vetoes || []).length;
+  detailEl.innerHTML = `
+    <span><strong style="color:var(--c-fg)">${adopted}</strong> 채택</span>
+    <span><strong style="color:var(--c-fg)">${vetoes}</strong> veto</span>
+    <span style="color:var(--c-mute2)">· ${c.path || 'dry-run'}</span>
+  `;
+}
+
 async function load() {
-  const [meta, equity, decisions, critiques] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
     fetchJSON('./data/critiques.json'),
+    fetchJSON('./data/heartbeat.json'),
+    fetchJSON('./data/council-latest.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -190,6 +232,8 @@ async function load() {
   renderKpis(equity || {});
   renderDecisions(decisions || {});
   renderCritiques(critiques || {});
+  renderHeartbeat(heartbeat);
+  renderCouncil(council);
 }
 
 load();
