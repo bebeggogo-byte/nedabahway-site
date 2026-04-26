@@ -162,38 +162,41 @@ def _max_drawdown(equity_series: list[tuple[str, int]]) -> float:
 
 
 def _backtest_realized_gap(
-    events_db: Path,
     realized_sharpe: float,
+    baseline_path: Path,
 ) -> float | None:
-    """Compare realized OOS Sharpe vs the most recent backtest's Sharpe.
+    """Compare realized OOS Sharpe vs persisted backtest Sharpe.
 
-    Returns absolute relative gap (e.g., 0.4 = realized is 40% off backtest).
-    None if no backtest result available.
+    Reads quant/data/backtest_baseline.json (written by `lab.cli review`).
+    Returns absolute relative gap, or None if no baseline available.
     """
-    with _ro(events_db) as c:
-        if c is None:
-            return None
-        row = c.execute(
-            """SELECT payload_json FROM events
-               WHERE payload_type='strategy_signal'
-               ORDER BY id DESC LIMIT 1"""
-        ).fetchone()
-        if not row:
-            return None
-    backtest_sharpe = 1.0
-    if backtest_sharpe == 0:
+    if not baseline_path.exists():
         return None
-    return abs(realized_sharpe - backtest_sharpe) / abs(backtest_sharpe)
+    try:
+        baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    backtest_sharpe = baseline.get("stats", {}).get("sharpe")
+    if backtest_sharpe is None or backtest_sharpe == 0:
+        return None
+    return abs(realized_sharpe - float(backtest_sharpe)) / abs(float(backtest_sharpe))
 
 
-def evaluate_gate(events_db: Path, circuit_db: Path, sim_state_db: Path | None = None) -> GateReport:
+def evaluate_gate(
+    events_db: Path,
+    circuit_db: Path,
+    sim_state_db: Path | None = None,
+    baseline_path: Path | None = None,
+) -> GateReport:
     eqs = _equity_series(events_db)
     paper_days = len({d for d, _ in eqs})
     realized_sharpe = _annualized_sharpe(eqs)
     mdd = _max_drawdown(eqs)
     n_trades = _trade_count(sim_state_db or Path("/nonexistent"), events_db)
     n_pass, n_warn, n_fail = _critic_4w_worst(events_db)
-    gap = _backtest_realized_gap(events_db, realized_sharpe)
+    if baseline_path is None:
+        baseline_path = Path(__file__).resolve().parents[3] / "quant" / "data" / "backtest_baseline.json"
+    gap = _backtest_realized_gap(realized_sharpe, baseline_path)
 
     criteria: list[Criterion] = [
         Criterion(

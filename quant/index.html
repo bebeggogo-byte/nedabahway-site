@@ -183,6 +183,25 @@ footer a:hover{color:var(--c-fg)}
 
     <section class="card col-6">
       <div class="card__head">
+        <h2 class="card__title">Today's Plan · 오늘의 계획</h2>
+        <span class="card__hint" id="plan-when">—</span>
+      </div>
+      <div id="plan-list" style="display:flex;flex-direction:column;gap:6px"></div>
+    </section>
+
+    <section class="card col-6">
+      <div class="card__head">
+        <h2 class="card__title">Recent Trades · 최근 매매</h2>
+        <span class="card__hint">last 12</span>
+      </div>
+      <table class="tbl">
+        <thead><tr><th>When</th><th>Side</th><th>Ticker</th><th>Qty</th><th>Price</th></tr></thead>
+        <tbody id="trades-tbody"><tr><td colspan="5" class="empty">매매 대기 중</td></tr></tbody>
+      </table>
+    </section>
+
+    <section class="card col-6">
+      <div class="card__head">
         <h2 class="card__title">Recent Decisions · 사이클 기록</h2>
         <span class="card__hint">last 10</span>
       </div>
@@ -190,6 +209,14 @@ footer a:hover{color:var(--c-fg)}
         <thead><tr><th>Cycle</th><th>Phases</th><th>Intents</th><th>OK</th></tr></thead>
         <tbody id="decisions-tbody"><tr><td colspan="4" class="empty">데이터 대기 중</td></tr></tbody>
       </table>
+    </section>
+
+    <section class="card col-6">
+      <div class="card__head">
+        <h2 class="card__title">Strategy Attribution · 전략별 활동</h2>
+        <span class="card__hint">최근 30일</span>
+      </div>
+      <div id="attribution-list" style="display:flex;flex-direction:column;gap:8px"></div>
     </section>
 
     <section class="card col-6">
