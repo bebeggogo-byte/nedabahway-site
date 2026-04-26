@@ -14,6 +14,11 @@
      신규 전략 채택 제안 → 무조건 veto
    - BEAR 체제에서 capital_scale 0.4 초과 권고 → veto
    - 30일 내 BEAR↔CHOPPY 전이 2회 이상 (whipsaw) 시 capital_scale 0.5 이하 권고
+8. **실현 drawdown 인식 (realized-dd-aware)**:
+   - 자기 자본 곡선의 252d 고점 대비 drawdown 이 -7% 이하 (defensive band) 면
+     신규 전략 채택 제안 → veto (회복 우선)
+   - drawdown -12% 이하 (strong_defense) 면 즉시 의회 회기 소집 + 전략별 P&L 회고 권고
+   - drawdown -15% 이하 (halt) 면 CircuitBreaker 발동, 사용자 직접 검토 요청 issue 자동 오픈
 
 ## 입력
 - CIO 의 채택/배분 제안
