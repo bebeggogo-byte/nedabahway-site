@@ -30,9 +30,11 @@ class MicrostructureSkeptic(BaseAgent):
         self,
         max_order_pct_of_volume: float = 0.05,
         max_price_drift_pct: float = 0.30,
+        check_krx_status: bool = True,
     ):
         self.max_order_pct_of_volume = max_order_pct_of_volume
         self.max_price_drift_pct = max_price_drift_pct
+        self.check_krx_status = check_krx_status
 
     def _check_intent(
         self,
@@ -41,9 +43,17 @@ class MicrostructureSkeptic(BaseAgent):
         prev_close: dict[str, int],
         avg_trading_value: dict[str, float],
         universe: set[str],
+        krx_blocked: set[str],
     ) -> tuple[bool, list[Critique]]:
         findings: list[Critique] = []
         target = f"live:order_intent:{intent.ticker}"
+
+        if intent.ticker in krx_blocked:
+            findings.append(Critique(
+                critic=self.name, target=target, verdict=Verdict.FAIL,
+                metric="krx_status", value="blocked",
+                detail="ticker in KRX 관리/투자주의/투자경고 list — refusing trade",
+            ))
 
         if intent.ticker not in universe and universe:
             findings.append(Critique(
@@ -103,11 +113,22 @@ class MicrostructureSkeptic(BaseAgent):
         avg_trading_value: dict[str, float] = ctx.get("avg_trading_value", {})
         universe = set(ctx.get("universe", []))
 
+        krx_blocked: set[str] = set()
+        if self.check_krx_status:
+            try:
+                from datetime import date as _date
+                from src.data.krx_status import get_blocked_tickers
+                krx_blocked = get_blocked_tickers(_date.today().isoformat())
+            except Exception as e:
+                self.emit(ctx, "krx_status_unavailable", {"error": str(e)})
+
         kept: list[OrderIntent] = []
         blocked: list[OrderIntent] = []
         all_findings: list[Critique] = []
         for intent in intents:
-            ok, findings = self._check_intent(intent, prices_now, prev_close, avg_trading_value, universe)
+            ok, findings = self._check_intent(
+                intent, prices_now, prev_close, avg_trading_value, universe, krx_blocked,
+            )
             all_findings.extend(findings)
             if ok:
                 kept.append(intent)
