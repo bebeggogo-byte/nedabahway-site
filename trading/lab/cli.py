@@ -21,6 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from config import KisConfig, StrategyConfig, TRADE_DB_PATH  # noqa: E402
 
 from lab.agents.balance_agent import BalanceAgent  # noqa: E402
+from lab.agents.correlation_monitor import CorrelationMonitor  # noqa: E402
 from lab.agents.cost_skeptic import CostSkeptic  # noqa: E402
 from lab.agents.data_agent import DataAgent  # noqa: E402
 from lab.agents.drawdown_defender import DrawdownDefender  # noqa: E402
@@ -77,6 +78,10 @@ def cmd_daily(args) -> int:
         sim_db=log_dir / "lab_sim_state.db",
     )
     drawdown_defender = DrawdownDefender(events_db=log_dir / "lab_events.db")
+    correlation_monitor = CorrelationMonitor(
+        events_db=log_dir / "lab_events.db",
+        sim_db=log_dir / "lab_sim_state.db",
+    )
     strategy = StrategyAgent()
     balance = BalanceAgent(client=client)
     risk = RiskAgent(circuit=circuit)
@@ -86,8 +91,8 @@ def cmd_daily(args) -> int:
 
     pipeline = Pipeline(
         name="daily",
-        agents=[universe, data, regime, portfolio, drawdown_defender, strategy,
-                balance, risk, microstructure, execution, performance],
+        agents=[universe, data, regime, portfolio, drawdown_defender, correlation_monitor,
+                strategy, balance, risk, microstructure, execution, performance],
         halt_on_error=False,
     )
     orchestrator = Orchestrator(bus)

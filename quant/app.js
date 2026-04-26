@@ -249,6 +249,76 @@ function renderDrawdownDefense(data) {
   }
 }
 
+const CORR_SEVERITY_COLORS = {
+  ok: 'var(--c-accent)',
+  warn: 'var(--c-warn)',
+  fail: 'var(--c-fail)',
+};
+
+function renderCorrelation(data) {
+  const root = document.getElementById('corr-summary');
+  const whenEl = document.getElementById('corr-when');
+  if (!root) return;
+  const cur = data ? data.current : null;
+  if (!cur || cur.matrix == null || Object.keys(cur.matrix).length < 2) {
+    root.innerHTML = '<div class="empty">전략 daily P&L 시계열 누적 대기 중 (최소 20일/전략)</div>';
+    if (whenEl) whenEl.textContent = '—';
+    return;
+  }
+  if (whenEl) whenEl.textContent = cur.as_of;
+  const color = CORR_SEVERITY_COLORS[cur.severity] || 'var(--c-mute)';
+  const sevLabel = { ok: '정상', warn: '주의', fail: '동조화 경고' }[cur.severity] || cur.severity;
+
+  const strats = Object.keys(cur.matrix).sort();
+  const cellColor = (v) => {
+    if (v == null) return 'var(--c-line)';
+    if (v >= 0.85) return 'var(--c-fail)';
+    if (v >= 0.70) return 'var(--c-fail-soft)';
+    if (v >= 0.50) return 'var(--c-warn-soft)';
+    if (v >= 0.30) return 'var(--c-line)';
+    if (v >= 0) return 'var(--c-accent-soft)';
+    return 'var(--c-insight-soft)';
+  };
+  let table = '<table style="border-collapse:collapse;font-size:.78rem;font-family:var(--ff-mono)"><thead><tr><th></th>';
+  for (const s of strats) {
+    table += `<th style="padding:6px 4px;color:var(--c-mute);text-align:center;font-size:.7rem">${s.slice(0, 12)}</th>`;
+  }
+  table += '</tr></thead><tbody>';
+  for (const a of strats) {
+    table += `<tr><th style="padding:6px 8px;color:var(--c-mute);text-align:right;font-size:.7rem;font-weight:600">${a.slice(0, 12)}</th>`;
+    for (const b of strats) {
+      const v = cur.matrix[a] && cur.matrix[a][b];
+      const isDiag = a === b;
+      const txt = v == null ? '—' : v.toFixed(2);
+      const bg = isDiag ? 'var(--c-line)' : cellColor(v);
+      const fg = (v != null && Math.abs(v) > 0.7) ? '#fff' : 'var(--c-fg)';
+      table += `<td style="padding:6px 8px;text-align:center;background:${bg};color:${fg};border:1px solid var(--c-bg);min-width:54px">${txt}</td>`;
+    }
+    table += '</tr>';
+  }
+  table += '</tbody></table>';
+
+  const avg = cur.avg != null ? cur.avg.toFixed(2) : '—';
+  const max = cur.max != null ? cur.max.toFixed(2) : '—';
+  const pair = cur.max_pair ? `${cur.max_pair[0]} ↔ ${cur.max_pair[1]}` : '—';
+
+  root.innerHTML = `
+    <div style="display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:10px;background:var(--c-bg);border-left:5px solid ${color}">
+      <div>
+        <div class="mono" style="font-size:.7rem;font-weight:700;letter-spacing:.05em;color:${color};text-transform:uppercase">${sevLabel}</div>
+        <div style="font-family:var(--ff-serif);font-weight:700;font-size:1.2rem;line-height:1.1;margin-top:2px">평균 ${avg} · 최대 ${max}</div>
+      </div>
+      <div style="flex:1;font-size:.82rem;color:var(--c-mute);line-height:1.5">
+        최대 페어: <strong style="color:var(--c-fg)">${pair}</strong>
+        · capital scale ${(cur.scale*100).toFixed(0)}%
+        · 결합 ${(cur.combined_scale*100).toFixed(0)}%
+      </div>
+    </div>
+    <div style="overflow-x:auto">${table}</div>
+    <div style="font-size:.72rem;color:var(--c-mute2)">상관계수: 녹색 ↔ 분산 / 노랑 ↔ 주의 / 빨강 ↔ 동조화 경고. 대각선은 자기상관 (1.0).</div>
+  `;
+}
+
 function renderRegime(history) {
   const root = document.getElementById('regime-summary');
   const whenEl = document.getElementById('regime-when');
@@ -537,7 +607,7 @@ function renderCouncil(c) {
 }
 
 async function load() {
-  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio, ddDefense] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio, ddDefense, correlation] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
@@ -553,6 +623,7 @@ async function load() {
     fetchJSON('./data/regime_history.json'),
     fetchJSON('./data/portfolio_weights.json'),
     fetchJSON('./data/drawdown_defense.json'),
+    fetchJSON('./data/correlation_history.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -565,6 +636,7 @@ async function load() {
   renderHeartbeat(heartbeat);
   renderRegime(regimeHist);
   renderDrawdownDefense(ddDefense);
+  renderCorrelation(correlation);
   renderStrategies(portfolio);
   renderCouncil(council);
   renderGate(gate);
