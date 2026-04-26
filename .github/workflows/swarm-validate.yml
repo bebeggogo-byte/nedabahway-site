@@ -1,0 +1,75 @@
+name: swarm-validate
+
+on:
+  push:
+    paths:
+      - 'swarm/**'
+      - '.github/workflows/swarm-validate.yml'
+  pull_request:
+    paths:
+      - 'swarm/**'
+      - '.github/workflows/swarm-validate.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Syntax-check every swarm/*.py
+        run: |
+          python -c "
+          import ast, sys
+          from pathlib import Path
+          errs = 0
+          for f in Path('swarm').rglob('*.py'):
+              try:
+                  ast.parse(f.read_text())
+              except SyntaxError as e:
+                  print(f'FAIL {f}: {e}'); errs += 1
+          sys.exit(errs)
+          "
+
+      - name: Validate YAML configs
+        run: |
+          pip install pyyaml
+          python -c "
+          import yaml
+          for p in ['swarm/config/departments.yaml', 'swarm/config/agents.yaml']:
+              yaml.safe_load(open(p))
+          print('YAML OK')
+          "
+
+      - name: Validate published JSON
+        run: |
+          python -c "
+          import json
+          for p in ['swarm/data/today.json', 'swarm/data/recent.json']:
+              json.load(open(p))
+          print('JSON OK')
+          "
+
+      - name: Smoke-test runner config loader
+        run: |
+          pip install pyyaml
+          python -c "
+          from swarm.core import runner
+          agents = runner.list_agents()
+          assert agents, 'no agents loaded'
+          for a in agents:
+              s = runner.describe(a)
+              assert s.get('model'), f'{a} missing model'
+              assert s.get('system'), f'{a} missing system'
+              assert s.get('prompt'), f'{a} missing prompt'
+              assert s.get('department'), f'{a} missing department'
+          print(f'{len(agents)} agents OK')
+          "
+
+      - name: Smoke-test publish step (no API call)
+        run: |
+          pip install pyyaml
+          python -c "from swarm import publish; publish.write_all()"
