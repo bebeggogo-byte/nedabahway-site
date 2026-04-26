@@ -21,6 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from config import KisConfig, StrategyConfig, TRADE_DB_PATH  # noqa: E402
 
 from lab.agents.anomaly_detector import AnomalyDetector  # noqa: E402
+from lab.agents.anomaly_responder import AnomalyResponder  # noqa: E402
 from lab.agents.balance_agent import BalanceAgent  # noqa: E402
 from lab.agents.correlation_monitor import CorrelationMonitor  # noqa: E402
 from lab.agents.cost_skeptic import CostSkeptic  # noqa: E402
@@ -74,6 +75,7 @@ def cmd_daily(args) -> int:
 
     universe = UniverseAgent(size=cfg.universe_size, min_market_cap_krw=cfg.min_market_cap_krw)
     data = DataAgent(lookback_days=400)
+    anomaly_responder = AnomalyResponder()
     regime = RegimeAgent()
     portfolio = PortfolioAgent(
         events_db=log_dir / "lab_events.db",
@@ -101,9 +103,9 @@ def cmd_daily(args) -> int:
 
     pipeline = Pipeline(
         name="daily",
-        agents=[universe, data, regime, portfolio, drawdown_defender, correlation_monitor,
-                lifecycle_manager, strategy, balance, risk, microstructure, execution,
-                performance, anomaly_detector],
+        agents=[universe, data, anomaly_responder, regime, portfolio, drawdown_defender,
+                correlation_monitor, lifecycle_manager, strategy, balance, risk,
+                microstructure, execution, performance, anomaly_detector],
         halt_on_error=False,
     )
     orchestrator = Orchestrator(bus)
