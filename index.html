@@ -130,6 +130,7 @@ a{color:inherit;text-decoration:none}
     <a class="nav__logo" href="/">Still <em>Hands</em></a>
     <div class="nav__links">
       <a class="nav__link" href="/blog/">All issues</a>
+      <a class="nav__link" href="/swarm.html">The Swarm</a>
       <a class="nav__link" href="/work.html">Work with Kim</a>
       <a class="nav__link" href="/company.html">About</a>
       <a class="nav__cta" href="#subscribe">Subscribe</a>
@@ -286,20 +287,44 @@ a{color:inherit;text-decoration:none}
 
 <!-- TODAY STRIP · 오늘 부서 활동 라이브 스트립 -->
 <section style="max-width:1080px;margin:0 auto;padding:8px 28px">
-  <div class="today-strip" style="background:#FFF;border:1px solid var(--c-line);border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:.86rem">
-    <!-- DYNAMIC:TODAY-STRIP:START -->
-    <div class="today-strip__live"><span class="pulse"></span><strong>Today at the desk — April 23 · 07:05 KST</strong><span class="today-strip__chips"><span class="chip">D2</span><span class="chip">D3</span><span class="chip">D5</span><span class="chip">D8</span><span class="chip">D11</span><span class="chip">Chief</span></span></div>
-    <!-- DYNAMIC:TODAY-STRIP:END -->
-  </div>
+  <a class="today-strip" href="/swarm.html" style="display:block;background:#FFF;border:1px solid var(--c-line);border-radius:14px;padding:18px 22px;font-size:.86rem;color:inherit;text-decoration:none;transition:border-color .15s">
+    <div class="today-strip__live">
+      <span class="pulse" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c-accent);vertical-align:middle;margin-right:8px"></span>
+      <strong id="ts-headline">Today at the desk — loading…</strong>
+      <span class="today-strip__chips" id="ts-chips" style="display:inline-block;margin-left:10px"></span>
+      <span style="float:right;color:var(--c-mute2);font-size:.78rem">See the swarm →</span>
+    </div>
+  </a>
 </section>
 
 <style>
-.today-strip .chip{display:inline-block;margin:0 4px;padding:3px 10px;border-radius:999px;background:#F3EFE5;font-size:.78rem;color:#4a4a4a;font-weight:600}
+.today-strip:hover{border-color:var(--c-line2) !important}
+.today-strip .chip{display:inline-block;margin:0 4px;padding:3px 10px;border-radius:999px;background:#F3EFE5;font-size:.78rem;color:#4a4a4a;font-weight:600;font-family:ui-monospace,SFMono-Regular,monospace}
+.today-strip .chip--opposing{background:var(--c-copper-soft);color:var(--c-copper)}
 .today-strip__live{width:100%}
-.today-strip__chips{display:inline-block;margin-left:10px}
 .pulse{animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
 </style>
+<script>
+(function(){
+  var OPPOSING = {D8:1,D9:1,D10:1,D11:1,D12:1,D13:1};
+  fetch('/swarm/data/today.json', {cache:'no-store'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(t){
+      if (!t) return;
+      document.getElementById('ts-headline').textContent = t.headline;
+      var chips = document.getElementById('ts-chips');
+      chips.innerHTML = '';
+      (t.chips || []).forEach(function(c){
+        var span = document.createElement('span');
+        span.className = 'chip' + (OPPOSING[c] ? ' chip--opposing' : '');
+        span.textContent = c;
+        chips.appendChild(span);
+      });
+    })
+    .catch(function(){});
+})();
+</script>
 
 <!-- ABOUT MINI · 회사·Work 링크 (이전 레이어 1의 회사 정보는 /work.html /company.html 로) -->
 <section class="about-mini">
@@ -326,6 +351,7 @@ a{color:inherit;text-decoration:none}
     <div class="foot__brand">Still <em>Hands</em> — A Nedabahway Publication</div>
     <div class="foot__links">
       <a href="/blog/">Magazine</a>
+      <a href="/swarm.html">The Swarm</a>
       <a href="/radio/">클래식FM</a>
       <a href="/work.html">Work with Kim</a>
       <a href="/company.html">About</a>
