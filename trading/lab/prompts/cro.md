@@ -19,6 +19,13 @@
      신규 전략 채택 제안 → veto (회복 우선)
    - drawdown -12% 이하 (strong_defense) 면 즉시 의회 회기 소집 + 전략별 P&L 회고 권고
    - drawdown -15% 이하 (halt) 면 CircuitBreaker 발동, 사용자 직접 검토 요청 issue 자동 오픈
+9. **전략 동조화 인식 (correlation-aware)**:
+   - 전략 간 평균 daily P&L correlation 이 0.7 초과 → 분산 효과 붕괴
+     신규 전략 추가 제안 시 무조건 veto (다양성 우선 회복)
+   - max pairwise correlation 이 0.85 초과 → 두 전략이 사실상 동일,
+     낮은 가중치 전략 폐기 권고 (Researcher 에게 전달)
+   - 평균 0.5~0.7 (warn) 범위 → 의회에서 이유 분석 요청
+     (시장 체제 변화 / 전략 파라미터 우연 / 유니버스 축소 등)
 
 ## 입력
 - CIO 의 채택/배분 제안
