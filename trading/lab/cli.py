@@ -138,6 +138,24 @@ def cmd_review(args) -> int:
     return 0
 
 
+def cmd_snapshot(args) -> int:
+    from lab.snapshot import export_all
+    out = Path(args.output).resolve()
+    log_dir = TRADE_DB_PATH.parent
+    result = export_all(
+        out_dir=out,
+        events_db=log_dir / "lab_events.db",
+        circuit_db=log_dir / "lab_circuit.db",
+    )
+    print(f"snapshot written to {out}")
+    print(f"  meta:      phase={result['meta']['phase']} agents={result['meta']['agents']['total']}/{result['meta']['agents']['target']}")
+    print(f"  latest:    cycle_id={result['latest'].get('cycle_id')}")
+    print(f"  equity:    {len(result['equity']['points'])} points")
+    print(f"  decisions: {len(result['decisions']['decisions'])}")
+    print(f"  critiques: {len(result['critiques']['critiques'])}")
+    return 0
+
+
 def cmd_inspect(args) -> int:
     bus = EventBus(TRADE_DB_PATH.parent / "lab_events.db")
     cycle = bus.get_cycle(args.cycle_id)
@@ -163,6 +181,10 @@ def main() -> int:
     p_rev.add_argument("--end", default="2024-12-31")
     p_rev.add_argument("--rebalance-freq", default="W-MON")
     p_rev.set_defaults(func=cmd_review)
+
+    p_snap = sub.add_parser("snapshot", help="export JSON snapshot for the dashboard")
+    p_snap.add_argument("--output", default="../quant/data", help="output dir (relative to trading/)")
+    p_snap.set_defaults(func=cmd_snapshot)
 
     p_insp = sub.add_parser("inspect", help="show events for a cycle")
     p_insp.add_argument("cycle_id")

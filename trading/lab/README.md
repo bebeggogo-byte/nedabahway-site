@@ -73,6 +73,21 @@ CostSkeptic             → turnover, slippage stress (2x/3x)
 
 모든 에이전트는 `AgentContext`를 통해 상태를 주고받고, 모든 출력은 `EventBus`(SQLite)에 영구 기록.
 
+## Live Dashboard
+
+**👉 https://www.nedabah.org/quant/** — 매일 자동 업데이트, 한 눈에 시스템 현황 확인.
+
+홈페이지 (`/`) 에 라이브 위젯이 노출돼 있어 별도 접근 없이도 P&L·상태 확인 가능.
+
+데이터 파이프라인:
+```
+1. GitHub Actions (평일 06:30 UTC) 실행
+2. python -m lab.cli daily       # 사이클 1회 (DB 업데이트)
+3. python -m lab.cli snapshot    # /quant/data/*.json 생성
+4. git commit + push             # GitHub Pages 자동 재배포
+5. 사용자 https://www.nedabah.org/quant/ 에서 변화 확인
+```
+
 ## DB 스키마
 
 | DB | 테이블 | 용도 |
