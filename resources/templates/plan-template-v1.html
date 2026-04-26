@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>교육계획서 템플릿 v1 — 회차별 상세 설계 | 네다바웨이 자료실</title>
+<meta name="description" content="제안서 합의 직후 발주처와 공유하는 회차별 상세 교육계획서 HTML 템플릿. 회차별 목적·활동·준비물·평가·소요시간을 표로 정리. A4 인쇄 최적화.">
+<meta property="og:title" content="교육계획서 템플릿 v1 — 네다바웨이 자료실">
+<meta property="og:description" content="제안 → 실행 사이의 회차별 상세 설계서. 표 기반 HTML.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.nedabah.org/resources/templates/plan-template-v1.html">
+<link rel="canonical" href="https://www.nedabah.org/resources/templates/plan-template-v1.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CreativeWork","name":"교육계획서 템플릿 v1","headline":"교육계획서 템플릿 v1 — 회차별 상세 설계","description":"제안서 합의 직후 발주처와 공유하는 회차별 상세 교육계획서 HTML 템플릿.","author":{"@type":"Person","name":"김창환"},"publisher":{"@type":"Organization","name":"네다바웨이","url":"https://www.nedabah.org"},"datePublished":"2026-04-22","inLanguage":"ko-KR","url":"https://www.nedabah.org/resources/templates/plan-template-v1.html","license":"https://www.nedabah.org/CNAME"}
+</script>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
+:root{
+  --c-bg:#FAFAF7;--c-surface:#FFFFFF;--c-fg:#1A1A1A;
+  --c-mute:#6B6B6B;--c-mute2:#9A9A9A;--c-line:#E8E6E0;--c-line2:#D6D3CA;
+  --c-accent:#10803D;--c-accent-soft:#E8F2EC;
+  --c-copper:#C2410C;
+  --c-plan:#7C3AED;--c-plan-soft:#F1EBFC;
+  --ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --ff-serif:'Noto Serif KR',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);
+  line-height:1.75;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:hover{text-decoration:underline}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line)}
+.nav__inner{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.nav__logo{font-family:var(--ff-serif);font-weight:700;font-size:1.15rem}
+.nav__links{display:flex;gap:22px;align-items:center}
+.nav__link{font-size:.86rem;color:var(--c-mute);font-weight:500}
+.nav__link--active{color:var(--c-accent);font-weight:700}
+.nav__cta{font-size:.84rem;padding:9px 18px;border-radius:999px;background:var(--c-fg);color:var(--c-bg);font-weight:600}
+@media(max-width:760px){.nav__links .nav__link:not(.nav__link--active){display:none}}
+
+.doc{max-width:840px;margin:0 auto;padding:48px 28px 80px}
+.tpl-note{background:var(--c-plan-soft);border:1px solid #D5C2F2;border-radius:12px;padding:16px 20px;margin:0 0 36px;font-size:.88rem;color:#3a2a5a;line-height:1.7}
+.tpl-note strong{color:var(--c-plan)}
+
+.cover{padding:36px 0 28px;border-bottom:1px solid var(--c-line);margin-bottom:36px}
+.cover__badge{display:inline-block;padding:6px 14px;border-radius:999px;background:var(--c-plan-soft);color:var(--c-plan);font-size:.74rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.cover__title{font-family:var(--ff-serif);font-size:clamp(1.9rem,4.6vw,2.6rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin:20px 0 12px}
+.cover__to{color:var(--c-mute);font-size:1rem;margin-bottom:4px}
+.cover__to strong{color:var(--c-fg)}
+.cover__meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:18px;font-size:.88rem;color:var(--c-mute)}
+.cover__meta strong{color:var(--c-fg)}
+
+.sec{margin:40px 0;padding:24px 0 0;border-top:1px solid var(--c-line)}
+.sec__n{font-size:.72rem;font-weight:800;letter-spacing:.24em;color:var(--c-plan);margin-bottom:6px}
+.sec__t{font-family:var(--ff-serif);font-size:1.3rem;font-weight:700;letter-spacing:-.01em;margin-bottom:14px}
+.sec p{font-size:.96rem;color:#2a2a2a;margin-bottom:10px;line-height:1.8}
+.sec ul,.sec ol{margin:8px 0 14px;padding-left:22px}
+.sec li{margin-bottom:6px;font-size:.94rem;line-height:1.7}
+
+.tbl{width:100%;border-collapse:collapse;margin:12px 0 18px;font-size:.88rem}
+.tbl th,.tbl td{border:1px solid var(--c-line);padding:9px 11px;text-align:left;vertical-align:top}
+.tbl th{background:var(--c-plan-soft);font-weight:700;color:#3a2a5a;font-size:.8rem;letter-spacing:.03em}
+.tbl td.fill{color:var(--c-copper);font-weight:600}
+
+.session{background:var(--c-surface);border:1px solid var(--c-line);border-radius:12px;padding:18px 20px;margin:14px 0;break-inside:avoid;page-break-inside:avoid}
+.session__head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;border-bottom:1px solid var(--c-line);padding-bottom:8px}
+.session__n{font-size:.72rem;font-weight:800;letter-spacing:.18em;color:var(--c-plan);text-transform:uppercase}
+.session__time{font-size:.82rem;color:var(--c-mute)}
+.session__t{font-family:var(--ff-serif);font-size:1.06rem;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
+.session__row{display:grid;grid-template-columns:90px 1fr;gap:10px;font-size:.88rem;margin-bottom:6px}
+.session__row strong{color:var(--c-plan);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+.session__row span{color:#2a2a2a;line-height:1.65}
+
+.fill{color:var(--c-copper);font-weight:600}
+.muted{color:var(--c-mute);font-size:.86rem}
+
+.footer-note{margin-top:56px;padding-top:24px;border-top:1px solid var(--c-line);color:var(--c-mute);font-size:.84rem;line-height:1.7}
+
+@media print{
+  @page{size:A4;margin:14mm 14mm 16mm 14mm}
+  body{background:#fff}
+  .nav,.tpl-note{display:none}
+  .doc{max-width:100%;padding:0}
+  .cover{break-after:auto}
+  .sec{break-inside:avoid;page-break-inside:avoid;border-top:1px solid #999;margin:14px 0;padding:12px 0 0}
+  .sec__t{font-size:1.1rem;margin-bottom:8px}
+  .session{break-inside:avoid;page-break-inside:avoid;border-color:#999}
+  .tbl{font-size:.8rem}
+  .tbl th{background:#eee;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  a{color:#000;text-decoration:none}
+  .fill,.tbl td.fill{color:#000;background:#FFF4E5;padding:1px 4px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="../../index.html">네다바웨이</a>
+    <div class="nav__links">
+      <a class="nav__link" href="../../company.html">회사소개</a>
+      <a class="nav__link" href="../../portfolio.html">포트폴리오</a>
+      <a class="nav__link" href="../../blog/">매거진</a>
+      <a class="nav__link nav__link--active" href="../../resources/">자료실</a>
+      <a class="nav__cta" href="../../index.html#contact">문의</a>
+    </div>
+  </div>
+</nav>
+
+<main class="doc">
+
+  <div class="tpl-note">
+    <strong>템플릿 사용 안내.</strong> 제안서(<a href="proposal-template-v1.html" style="color:var(--c-plan);font-weight:700">v1</a>) 합의 직후 발주처와 공유하는 회차별 상세 설계서. 빨간 글자 <span class="fill">[플레이스홀더]</span>를 교체한 뒤 <em>Ctrl/Cmd + P</em>로 PDF 저장. 결과보고서(<a href="report-template-v1.html" style="color:var(--c-plan);font-weight:700">v1</a>)와 한 줄로 이어집니다.
+  </div>
+
+  <section class="cover">
+    <span class="cover__badge">Education Plan · v1 · 2026-04</span>
+    <h1 class="cover__title"><span class="fill">[교육명]</span> 교육계획서</h1>
+    <div class="cover__to">발주처: <strong class="fill">[기관명 · 담당자]</strong></div>
+    <div class="cover__to">설계: <strong>네다바웨이 · 김창환</strong></div>
+    <div class="cover__meta">
+      <span>작성일 · <strong class="fill">[2026-00-00]</strong></span>
+      <span>버전 · <strong>v1</strong></span>
+      <span>문의 · <strong>https://www.nedabah.org/#contact</strong></span>
+    </div>
+  </section>
+
+  <!-- 1. 개요 -->
+  <section class="sec">
+    <div class="sec__n">SECTION 01</div>
+    <div class="sec__t">교육 개요</div>
+    <table class="tbl">
+      <tbody>
+        <tr><th style="width:24%">교육명</th><td class="fill">[공식 교육 명칭]</td></tr>
+        <tr><th>대상</th><td class="fill">[학습자 직무 · 인원 · 선수 경험]</td></tr>
+        <tr><th>총 시간</th><td class="fill">[N회차 × N시간 = 총 N시간]</td></tr>
+        <tr><th>장소</th><td class="fill">[기관 교육실 / 외부 / 온라인]</td></tr>
+        <tr><th>강사</th><td>네다바웨이 · 김창환</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 2. 학습 목표·성과 지표 -->
+  <section class="sec">
+    <div class="sec__n">SECTION 02</div>
+    <div class="sec__t">학습 목표 · 성과 지표</div>
+    <ol>
+      <li><strong>목표 A</strong> · <span class="fill">[행동 동사로 — "할 수 있다"]</span> · 측정: <span class="fill">[정량/정성]</span></li>
+      <li><strong>목표 B</strong> · <span class="fill">[행동 동사]</span> · 측정: <span class="fill">[방법]</span></li>
+      <li><strong>목표 C</strong> · <span class="fill">[행동 동사]</span> · 측정: <span class="fill">[방법]</span></li>
+    </ol>
+  </section>
+
+  <!-- 3. 회차별 상세 설계 -->
+  <section class="sec">
+    <div class="sec__n">SECTION 03</div>
+    <div class="sec__t">회차별 상세 설계</div>
+    <p class="muted">각 회차에 break-inside:avoid 적용 — 인쇄 시 페이지가 끊기지 않습니다. 회차가 더 많으면 같은 카드를 복제해 추가하세요.</p>
+
+    <div class="session">
+      <div class="session__head">
+        <span class="session__n">1회차</span>
+        <span class="session__time fill">[2026-00-00 · 14:00~17:00 · 3h]</span>
+      </div>
+      <div class="session__t fill">[1회차 주제]</div>
+      <div class="session__row"><strong>목적</strong><span class="fill">[1~2문장]</span></div>
+      <div class="session__row"><strong>활동</strong><span class="fill">[블록별: 강의 30%·실습 70% 등]</span></div>
+      <div class="session__row"><strong>준비물</strong><span class="fill">[강사 / 학습자 각각]</span></div>
+      <div class="session__row"><strong>평가</strong><span class="fill">[관찰·결과물·체크리스트]</span></div>
+    </div>
+
+    <div class="session">
+      <div class="session__head">
+        <span class="session__n">2회차</span>
+        <span class="session__time fill">[2026-00-00 · 14:00~17:00 · 3h]</span>
+      </div>
+      <div class="session__t fill">[2회차 주제]</div>
+      <div class="session__row"><strong>목적</strong><span class="fill">[…]</span></div>
+      <div class="session__row"><strong>활동</strong><span class="fill">[…]</span></div>
+      <div class="session__row"><strong>준비물</strong><span class="fill">[…]</span></div>
+      <div class="session__row"><strong>평가</strong><span class="fill">[…]</span></div>
+    </div>
+
+    <div class="session">
+      <div class="session__head">
+        <span class="session__n">3회차</span>
+        <span class="session__time fill">[2026-00-00]</span>
+      </div>
+      <div class="session__t fill">[3회차 주제]</div>
+      <div class="session__row"><strong>목적</strong><span class="fill">[…]</span></div>
+      <div class="session__row"><strong>활동</strong><span class="fill">[…]</span></div>
+      <div class="session__row"><strong>준비물</strong><span class="fill">[…]</span></div>
+      <div class="session__row"><strong>평가</strong><span class="fill">[…]</span></div>
+    </div>
+
+    <div class="session">
+      <div class="session__head">
+        <span class="session__n">4회차</span>
+        <span class="session__time fill">[2026-00-00]</span>
+      </div>
+      <div class="session__t fill">[4회차 주제]</div>
+      <div class="session__row"><strong>목적</strong><span class="fill">[…]</span></div>
+      <div class="session__row"><strong>활동</strong><span class="fill">[…]</span></div>
+      <div class="session__row"><strong>준비물</strong><span class="fill">[…]</span></div>
+      <div class="session__row"><strong>평가</strong><span class="fill">[…]</span></div>
+    </div>
+  </section>
+
+  <!-- 4. 평가·피드백 설계 -->
+  <section class="sec">
+    <div class="sec__n">SECTION 04</div>
+    <div class="sec__t">평가 · 피드백 설계</div>
+    <ul>
+      <li><strong>사전</strong> · <span class="fill">[기대 수준 자기 응답 · 5점 척도 N문항]</span></li>
+      <li><strong>회차 중</strong> · <span class="fill">[관찰 + 결과물 수집]</span></li>
+      <li><strong>사후</strong> · <span class="fill">[만족도·업무 적용 의향·재추천 의향]</span></li>
+      <li><strong>발주처 보고</strong> · 종료 후 30일 이내 결과보고서(<a href="report-template-v1.html">템플릿</a>) 제출</li>
+    </ul>
+  </section>
+
+  <!-- 5. 윤리·개인정보 -->
+  <section class="sec">
+    <div class="sec__n">SECTION 05</div>
+    <div class="sec__t">윤리 · 개인정보</div>
+    <ul>
+      <li>참여자 사진·영상 촬영 동의 사전 수령. 공개 범위 기관 승인 후 결정.</li>
+      <li>AI 프롬프트에 민원인·주민·학습자 식별정보 입력 금지(개인정보보호위 안내서).</li>
+      <li>교재·결과물은 기관 내부 복제 범위 내 활용. 외부 재공개는 별도 협의.</li>
+    </ul>
+  </section>
+
+  <!-- 6. 변경 관리 -->
+  <section class="sec">
+    <div class="sec__n">SECTION 06</div>
+    <div class="sec__t">변경 관리</div>
+    <p>회차 일정·구성·예산이 바뀌면 <strong>버전 v2·v3</strong>으로 갱신해 발주처와 공유합니다. 결정 사항을 별도 메모로 누적해 결과보고서 §3(실제 운영 요약)에 자동 반영합니다.</p>
+    <table class="tbl">
+      <thead><tr><th>버전</th><th>변경일</th><th>변경 내용</th><th>승인</th></tr></thead>
+      <tbody>
+        <tr><td>v1</td><td class="fill">[2026-00-00]</td><td>초안</td><td>—</td></tr>
+        <tr><td class="fill">[v2]</td><td class="fill">[…]</td><td class="fill">[변경 요약]</td><td class="fill">[승인자]</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="footer-note">
+    네다바웨이 · 교육계획서 템플릿 v1 · 발행 2026-04-22 · 문의 <a href="../../index.html#contact" style="color:var(--c-accent);font-weight:600">nedabah.org/#contact</a>
+    <br>제안서(v1) → 교육계획서(v1) → 결과보고서(v1) 트리오로 수주 사이클을 닫습니다.
+  </footer>
+
+</main>
+
+</body>
+</html>
