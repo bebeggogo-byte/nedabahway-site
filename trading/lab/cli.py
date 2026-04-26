@@ -20,6 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from config import KisConfig, StrategyConfig, TRADE_DB_PATH  # noqa: E402
 
+from lab.agents.anomaly_detector import AnomalyDetector  # noqa: E402
 from lab.agents.balance_agent import BalanceAgent  # noqa: E402
 from lab.agents.correlation_monitor import CorrelationMonitor  # noqa: E402
 from lab.agents.cost_skeptic import CostSkeptic  # noqa: E402
@@ -93,11 +94,16 @@ def cmd_daily(args) -> int:
     microstructure = MicrostructureSkeptic()
     execution = ExecutionAgent(client=client, dry_run=args.dry_run or client is None)
     performance = PerformanceAgent(circuit=circuit)
+    anomaly_detector = AnomalyDetector(
+        events_db=log_dir / "lab_events.db",
+        sim_db=log_dir / "lab_sim_state.db",
+    )
 
     pipeline = Pipeline(
         name="daily",
         agents=[universe, data, regime, portfolio, drawdown_defender, correlation_monitor,
-                lifecycle_manager, strategy, balance, risk, microstructure, execution, performance],
+                lifecycle_manager, strategy, balance, risk, microstructure, execution,
+                performance, anomaly_detector],
         halt_on_error=False,
     )
     orchestrator = Orchestrator(bus)

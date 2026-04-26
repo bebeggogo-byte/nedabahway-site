@@ -383,6 +383,69 @@ function renderLifecycle(data) {
   root.innerHTML = summary + cards;
 }
 
+const ANOMALY_TYPE_LABELS = {
+  equity_outlier: '자본 이상',
+  signal_divergence: '신호 발산',
+  turnover_spike: '거래 폭주',
+  critique_burst: '비판 급증',
+  data_freshness: '데이터 stale',
+};
+
+const ANOMALY_SEV_COLORS = {
+  info: 'var(--c-mute)',
+  warn: 'var(--c-warn)',
+  fail: 'var(--c-fail)',
+};
+
+function renderAnomalies(data) {
+  const root = document.getElementById('anomaly-summary');
+  const whenEl = document.getElementById('anomaly-when');
+  if (!root) return;
+  const current = (data && data.current) || [];
+  const history = (data && data.history) || [];
+  if (whenEl) whenEl.textContent = current.length > 0 ? `${current.length} active` : 'all clear';
+
+  if (current.length === 0 && history.length === 0) {
+    root.innerHTML = '<div class="empty">⚪ 데이터 누적 대기 중 (cycle 운영 후 시작)</div>';
+    return;
+  }
+  let block = '';
+  if (current.length > 0) {
+    block += `<div style="font-size:.78rem;color:var(--c-mute);text-transform:uppercase;letter-spacing:.05em;font-weight:600">현재 발견 (${current.length})</div>`;
+    block += current.map(a => {
+      const c = ANOMALY_SEV_COLORS[a.severity] || 'var(--c-mute)';
+      const label = ANOMALY_TYPE_LABELS[a.type] || a.type;
+      return `<div style="padding:12px 14px;border-radius:10px;background:var(--c-bg);border-left:5px solid ${c}">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
+          <span style="font-weight:600;font-size:.92rem">${label} <span class="mono" style="font-size:.72rem;color:var(--c-mute2)">${a.metric}</span></span>
+          <span class="mono" style="font-size:.7rem;font-weight:700;color:${c}">${a.severity.toUpperCase()}</span>
+        </div>
+        <div style="font-size:.82rem;color:var(--c-mute);line-height:1.5;margin-top:5px">${a.rationale}</div>
+        <div class="mono" style="font-size:.72rem;color:var(--c-mute2);margin-top:3px">value=${a.value} · threshold=${a.threshold}</div>
+      </div>`;
+    }).join('');
+  } else {
+    block += '<div style="padding:14px 16px;border-radius:10px;background:var(--c-accent-soft);border-left:5px solid var(--c-accent);font-size:.86rem">✅ 현재 이상 없음</div>';
+  }
+  if (history.length > 0) {
+    const recent = history.slice(-5).reverse();
+    block += `<div style="font-size:.78rem;color:var(--c-mute);text-transform:uppercase;letter-spacing:.05em;font-weight:600;margin-top:8px">최근 history (${history.length})</div>`;
+    block += '<div style="display:flex;flex-direction:column;gap:4px">';
+    for (const a of recent) {
+      const c = ANOMALY_SEV_COLORS[a.severity] || 'var(--c-mute)';
+      const label = ANOMALY_TYPE_LABELS[a.type] || a.type;
+      const dt = a.detected_at ? a.detected_at.slice(0, 16).replace('T', ' ') : '—';
+      block += `<div style="padding:6px 10px;border-radius:6px;background:var(--c-bg);font-size:.78rem;display:flex;justify-content:space-between;gap:10px">
+        <span class="mono" style="color:var(--c-mute2);font-size:.72rem">${dt}</span>
+        <span style="flex:1;color:${c}">${label}</span>
+        <span class="mono" style="font-size:.7rem;color:var(--c-mute2)">${a.value}</span>
+      </div>`;
+    }
+    block += '</div>';
+  }
+  root.innerHTML = block;
+}
+
 function renderTCA(data) {
   const root = document.getElementById('tca-summary');
   const whenEl = document.getElementById('tca-when');
@@ -742,7 +805,7 @@ function renderCouncil(c) {
 }
 
 async function load() {
-  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio, ddDefense, correlation, lifecycle, tca] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio, ddDefense, correlation, lifecycle, tca, anomalies] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
@@ -761,6 +824,7 @@ async function load() {
     fetchJSON('./data/correlation_history.json'),
     fetchJSON('./data/strategy_lifecycle.json'),
     fetchJSON('./data/tca.json'),
+    fetchJSON('./data/anomalies.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -776,6 +840,7 @@ async function load() {
   renderCorrelation(correlation);
   renderLifecycle(lifecycle);
   renderTCA(tca);
+  renderAnomalies(anomalies);
   renderStrategies(portfolio);
   renderCouncil(council);
   renderGate(gate);
