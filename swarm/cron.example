@@ -1,0 +1,12 @@
+# Example crontab. Times are KST.
+# Edit with `crontab -e`. Adjust paths to your machine.
+
+# Morning brief at 06:55, then publish
+55 6 * * * cd /Users/you/nedabahway-site && /usr/bin/env python -m swarm.cli morning >> swarm/log/cron.out 2>&1
+
+# Republish JSON every 30 minutes between 07:00 and 22:00
+*/30 7-22 * * * cd /Users/you/nedabahway-site && /usr/bin/env python -m swarm.cli publish >> swarm/log/cron.out 2>&1
+
+# Auto-commit and push the published JSON twice a day so the static site updates.
+# Only stages swarm/data/, never the private notebook or log.
+0 7,22 * * * cd /Users/you/nedabahway-site && git add swarm/data/ && git diff --cached --quiet || git commit -m "chore(swarm): auto-publish $(date +\%F\ \%H:\%M)" >> swarm/log/cron.out 2>&1
