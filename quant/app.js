@@ -203,6 +203,36 @@ function renderHeartbeat(hb) {
   }
 }
 
+function renderGate(g) {
+  const progressEl = document.getElementById('gate-progress');
+  const detailEl = document.getElementById('gate-detail');
+  const root = document.getElementById('gate-criteria');
+  if (!root) return;
+  if (!g) {
+    root.innerHTML = '<div class="empty">평가 대기 중</div>';
+    return;
+  }
+  if (progressEl) progressEl.textContent = `${g.n_passed} / ${g.n_total} passed`;
+  if (g.all_passed) {
+    detailEl.innerHTML = '<strong style="color:var(--c-accent)">✅ 모든 기준 통과 — Phase 3 후보</strong>. 사용자 결정 대기 (자동 전환 안 됨). GitHub issue 확인.';
+  }
+  root.innerHTML = (g.criteria || []).map(c => {
+    const verdictColor = c.passed ? 'var(--c-accent)' : 'var(--c-fail)';
+    const verdictLabel = c.passed ? 'PASS' : 'NOT YET';
+    return `<div style="padding:12px 14px;border-radius:10px;background:var(--c-bg);border:1px solid var(--c-line);display:flex;flex-direction:column;gap:4px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font-weight:600;font-size:.88rem">${c.label}</span>
+        <span class="mono" style="font-size:.7rem;font-weight:700;color:${verdictColor};letter-spacing:.05em">${verdictLabel}</span>
+      </div>
+      <div class="mono" style="font-size:.78rem;color:var(--c-mute);display:flex;justify-content:space-between">
+        <span>측정 <strong style="color:var(--c-fg)">${c.measured}</strong></span>
+        <span>한계 ${c.threshold}</span>
+      </div>
+      ${c.detail ? `<div style="font-size:.72rem;color:var(--c-mute2)">${c.detail}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
 function renderStrategies() {
   const root = document.getElementById('strategies-list');
   if (!root) return;
@@ -238,13 +268,14 @@ function renderCouncil(c) {
 }
 
 async function load() {
-  const [meta, equity, decisions, critiques, heartbeat, council] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council, gate] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
     fetchJSON('./data/critiques.json'),
     fetchJSON('./data/heartbeat.json'),
     fetchJSON('./data/council-latest.json'),
+    fetchJSON('./data/phase-gate.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -257,6 +288,7 @@ async function load() {
   renderHeartbeat(heartbeat);
   renderStrategies();
   renderCouncil(council);
+  renderGate(gate);
 }
 
 load();
