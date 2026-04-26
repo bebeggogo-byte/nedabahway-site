@@ -164,12 +164,25 @@ def _max_drawdown(equity_series: list[tuple[str, int]]) -> float:
 def _backtest_realized_gap(
     realized_sharpe: float,
     baseline_path: Path,
+    wf_path: Path | None = None,
 ) -> float | None:
     """Compare realized OOS Sharpe vs persisted backtest Sharpe.
 
-    Reads quant/data/backtest_baseline.json (written by `lab.cli review`).
+    Priority:
+    1. walk_forward.json (more rigorous: aggregate OOS Sharpe across windows)
+    2. backtest_baseline.json (single-period fallback)
+
     Returns absolute relative gap, or None if no baseline available.
     """
+    if wf_path is not None and wf_path.exists():
+        try:
+            wf = json.loads(wf_path.read_text(encoding="utf-8"))
+            wf_sharpe = wf.get("aggregate", {}).get("sharpe_mean")
+            if wf_sharpe is not None and wf_sharpe != 0:
+                return abs(realized_sharpe - float(wf_sharpe)) / abs(float(wf_sharpe))
+        except Exception:
+            pass
+
     if not baseline_path.exists():
         return None
     try:
@@ -196,7 +209,8 @@ def evaluate_gate(
     n_pass, n_warn, n_fail = _critic_4w_worst(events_db)
     if baseline_path is None:
         baseline_path = Path(__file__).resolve().parents[3] / "quant" / "data" / "backtest_baseline.json"
-    gap = _backtest_realized_gap(realized_sharpe, baseline_path)
+    wf_path = Path(__file__).resolve().parents[3] / "quant" / "data" / "walk_forward.json"
+    gap = _backtest_realized_gap(realized_sharpe, baseline_path, wf_path)
 
     criteria: list[Criterion] = [
         Criterion(
