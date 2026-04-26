@@ -169,6 +169,26 @@ def cmd_council(args) -> int:
     return 0
 
 
+def cmd_gate(args) -> int:
+    from lab.gates.phase_transition import evaluate_gate, write_gate_report
+    log_dir = TRADE_DB_PATH.parent
+    out = Path(args.output).resolve()
+    report = evaluate_gate(
+        events_db=log_dir / "lab_events.db",
+        circuit_db=log_dir / "lab_circuit.db",
+        sim_state_db=log_dir / "lab_sim_state.db",
+    )
+    path = write_gate_report(report, out)
+    print(f"phase-gate written to {path}")
+    print(f"  paper_days: {report.paper_days}")
+    print(f"  passed:     {report.n_passed} / {len(report.criteria)}")
+    print(f"  all_passed: {report.all_passed}")
+    for c in report.criteria:
+        mark = "OK" if c.passed else "--"
+        print(f"  [{mark}] {c.label:<30s} measured={c.measured:<20s} threshold={c.threshold}")
+    return 0 if report.all_passed else 1
+
+
 def cmd_snapshot(args) -> int:
     from lab.snapshot import export_all
     out = Path(args.output).resolve()
@@ -222,6 +242,10 @@ def main() -> int:
     p_council.add_argument("--include-meta", action="store_true", help="include monthly Meta-Optimizer agent")
     p_council.add_argument("--output", default="../quant/data/council", help="output dir for council records")
     p_council.set_defaults(func=cmd_council)
+
+    p_gate = sub.add_parser("gate", help="evaluate Phase 2 → 3 transition criteria")
+    p_gate.add_argument("--output", default="../quant/data", help="output dir for phase-gate.json")
+    p_gate.set_defaults(func=cmd_gate)
 
     p_insp = sub.add_parser("inspect", help="show events for a cycle")
     p_insp.add_argument("cycle_id")

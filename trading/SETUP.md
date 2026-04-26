@@ -133,14 +133,50 @@ python -m lab.cli daily --simulate  # 또는 KIS 키 있으면 그대로
 
 ---
 
-## 5. 다음 단계 (검증된 후)
+## 5. Phase 3 진입 (실거래)
 
-- **Phase 2 → 3 전환**: 페이퍼 3개월+ 운영 후 OOS Sharpe 검증되면 실거래 전환 검토
-- **Phase 3 진입 시 추가 셋업**:
-  - 실거래 계좌 + KIS 실전 키 (모의와 별도)
-  - `.env` 또는 secrets 의 `KIS_BASE_URL` 을 실전 URL 로 변경
-  - **소액부터** (의도자본의 5~10%)
-  - CircuitBreaker 한도 더 보수적으로 (`daily_loss_limit_pct=0.01`)
+**자동 검증 시스템 (PR #17)** — 매주 토요일 22:00 KST `quant-lab-gate-weekly`
+워크플로가 자동 평가. 6개 기준 모두 통과 시 GitHub issue 자동 생성.
+
+### 6개 진입 기준
+
+| 기준 | 임계값 | 측정 방식 |
+|---|---|---|
+| Paper trading 일수 | ≥ 60일 | daily_pnl 이벤트 누적 |
+| 실현 OOS Sharpe (연환산) | > 0.5 | 페이퍼 매매 결과만 사용 |
+| 실현 최대 낙폭 | > -25% | equity 시계열 |
+| 실집행 거래 횟수 | ≥ 50 | sim_orders + execution_report |
+| 4주간 비판자 FAIL 없음 | 0 FAIL | critique_report 이벤트 |
+| 백테스트 vs 실현 갭 | < 30% | OOS Sharpe 비교 |
+
+**대시보드 → "Phase 3 Gate" 카드** 에서 실시간 통과 현황 확인.
+
+### 진입 결정 시 셋업
+
+1. **실거래 계좌** + KIS 실전 키 (모의와 별도 발급 필요)
+2. GitHub Secrets 업데이트:
+   - `KIS_APP_KEY`, `KIS_APP_SECRET` → 실전 키로 교체
+   - `KIS_ACCOUNT_NO` → 실전 계좌
+   - `KIS_BASE_URL` → `https://openapi.koreainvestment.com:9443`
+   - `KIS_PAPER` → `false`
+3. **소액부터**: 의도 자본의 5~10% 만 입금
+4. CircuitBreaker 한도 더 보수적으로 (`src/risk/limits.py` 의 `daily_loss_limit_pct=0.01`)
+5. 1개월 모니터링 → 문제 없으면 자본 점진 확대 (월 +20% 권장)
+6. **자동 전환 절대 안 됨** — 위 6단계는 사용자가 직접 수행 필요
+
+### 비상 정지 (실거래 중)
+
+```bash
+# 즉시 모든 신규 주문 중단
+gh workflow disable quant-lab-daily
+
+# CircuitBreaker 수동 발동
+sqlite3 trading/logs/lab_circuit.db
+> INSERT OR REPLACE INTO circuit_state(id, blocked_until, reason, updated_at)
+  VALUES (1, '2099-12-31', 'manual stop', datetime('now'));
+
+# KIS 앱에서 직접 청산 (가장 확실)
+```
 
 ---
 
