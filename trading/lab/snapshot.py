@@ -379,8 +379,9 @@ def export_heartbeat(out_dir: Path, events_db: Path) -> dict:
 
 
 def export_portfolio_weights(out_dir: Path, events_db: Path, sim_state_db: Path | None) -> dict:
-    """Compute and persist current risk-parity weights snapshot."""
+    """Compute and persist current risk-parity + regime-tilted weights snapshot."""
     from src.portfolio.risk_parity import compute_risk_parity_weights
+    from src.portfolio.regime_strategies import apply_regime_tilts
     from .analytics.strategy_daily_pnl import compute_daily_pnl_by_strategy
 
     fallback = {
@@ -396,14 +397,30 @@ def export_portfolio_weights(out_dir: Path, events_db: Path, sim_state_db: Path 
         daily_pnl_by_strategy=daily,
         fallback_weights=fallback,
     )
+
+    regime_label = None
+    regime_path = out_dir / "regime_history.json"
+    if regime_path.exists():
+        try:
+            history = json.loads(regime_path.read_text(encoding="utf-8")).get("history", [])
+            if history:
+                regime_label = history[-1].get("label")
+        except Exception:
+            pass
+    tilt = apply_regime_tilts(result.weights, regime_label)
+
     data = {
         "updated_at": _utcnow_iso(),
         "method": result.method,
         "n_eligible": result.n_eligible,
-        "weights": result.weights,
+        "risk_parity_weights": result.weights,
+        "regime": tilt.regime,
+        "regime_multipliers": tilt.multipliers,
+        "weights": tilt.weights_after,
         "static_fallback": fallback,
         "realized_vols": result.realized_vols,
         "rationale": result.rationale,
+        "tilt_rationale": tilt.rationale,
     }
     (out_dir / "portfolio_weights.json").write_text(json.dumps(data, indent=2, ensure_ascii=False))
     return data

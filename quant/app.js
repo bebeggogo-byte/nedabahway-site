@@ -783,27 +783,45 @@ function renderStrategies(portfolioWeights) {
   const root = document.getElementById('strategies-list');
   if (!root) return;
   const dyn = (portfolioWeights && portfolioWeights.weights) || {};
+  const rpw = (portfolioWeights && portfolioWeights.risk_parity_weights) || {};
+  const multipliers = (portfolioWeights && portfolioWeights.regime_multipliers) || {};
+  const regime = portfolioWeights ? portfolioWeights.regime : null;
   const method = portfolioWeights ? portfolioWeights.method : 'fallback_static';
   const isDynamic = method === 'inverse_vol';
+  const hasRegimeTilt = regime && regime !== 'none' && Object.keys(multipliers).length > 0;
 
-  const header = isDynamic
-    ? `<div style="font-size:.78rem;color:var(--c-mute);margin-bottom:8px"><strong style="color:var(--c-accent)">⚡ Risk-parity 동적 가중치</strong> · ${portfolioWeights.n_eligible} 전략 inverse-vol weighting</div>`
-    : `<div style="font-size:.78rem;color:var(--c-mute2);margin-bottom:8px">Static fallback (실집행 이력 누적 후 dynamic 활성화)</div>`;
+  let header = '<div style="font-size:.78rem;color:var(--c-mute);margin-bottom:8px">';
+  if (isDynamic) {
+    header += `<strong style="color:var(--c-accent)">⚡ Risk-parity 동적</strong> · ${portfolioWeights.n_eligible} 전략 inverse-vol`;
+  } else {
+    header += '<span style="color:var(--c-mute2)">Static fallback</span>';
+  }
+  if (hasRegimeTilt) {
+    header += ` · <strong style="color:var(--c-insight)">${regime.toUpperCase()} 체제 tilt</strong>`;
+  }
+  header += '</div>';
 
   root.innerHTML = header + STRATEGIES.map(s => {
     const key = STRATEGY_NAME_TO_KEY[s.name];
-    const dynPct = (dyn[key] != null) ? (dyn[key] * 100) : null;
+    const finalPct = (dyn[key] != null) ? (dyn[key] * 100) : null;
+    const rpPct = (rpw[key] != null) ? (rpw[key] * 100) : null;
+    const mult = multipliers[key];
     const staticPct = s.weight * 100;
-    const showDynamic = isDynamic && dynPct != null;
 
     let weightDisplay;
-    if (showDynamic) {
-      const delta = dynPct - staticPct;
-      const deltaColor = delta > 0 ? 'var(--c-accent)' : (delta < 0 ? 'var(--c-fail)' : 'var(--c-mute)');
-      const deltaStr = (delta > 0 ? '+' : '') + delta.toFixed(1);
-      weightDisplay = `<div style="text-align:right;min-width:110px">
-        <div class="mono" style="font-weight:700;color:var(--c-accent);font-size:.95rem">${dynPct.toFixed(1)}%</div>
-        <div class="mono" style="font-size:.7rem;color:var(--c-mute2)">static ${staticPct.toFixed(0)}% <span style="color:${deltaColor}">(${deltaStr})</span></div>
+    if (finalPct != null) {
+      // Show: final % (large) + risk-parity % + multiplier
+      const refPct = rpPct != null ? rpPct : staticPct;
+      const delta = finalPct - refPct;
+      const deltaColor = delta > 0.5 ? 'var(--c-accent)' : (delta < -0.5 ? 'var(--c-fail)' : 'var(--c-mute)');
+      const multStr = mult != null ? `× ${mult.toFixed(2)}` : '';
+      const multColor = mult > 1.05 ? 'var(--c-accent)' : (mult < 0.95 ? 'var(--c-fail)' : 'var(--c-mute)');
+      weightDisplay = `<div style="text-align:right;min-width:130px">
+        <div class="mono" style="font-weight:700;color:var(--c-accent);font-size:.95rem">${finalPct.toFixed(1)}%</div>
+        <div class="mono" style="font-size:.68rem;color:var(--c-mute2);margin-top:2px">
+          ${rpPct != null ? `RP ${rpPct.toFixed(1)}%` : `static ${staticPct.toFixed(0)}%`}
+          ${multStr ? ` <span style="color:${multColor}">${multStr}</span>` : ''}
+        </div>
       </div>`;
     } else {
       weightDisplay = `<div class="mono" style="font-weight:700;color:var(--c-accent);font-size:.95rem;min-width:60px;text-align:right">${staticPct.toFixed(0)}%</div>`;
