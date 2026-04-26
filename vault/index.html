@@ -355,6 +355,171 @@
     opacity: 0.7;
   }
 
+  /* ── Narrative (1장짜리 서술형 보고) ────────── */
+  .report-card {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FBF9F4 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .report-card h2 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .report-card h2::before { content: "📄"; font-size: 16px; }
+
+  .exec-summary {
+    background: var(--navy);
+    color: #fff;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .exec-summary::before {
+    content: "요약먼저 · TL;DR";
+    display: block;
+    font-size: 10px;
+    opacity: 0.55;
+    margin-bottom: 6px;
+    letter-spacing: 1.5px;
+    font-weight: 400;
+  }
+
+  .report-meta-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    background: var(--bg-warm);
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  .report-meta-row .item { text-align: center; }
+  .report-meta-row .item .v {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 16px;
+  }
+  .report-meta-row .item .v.fail { color: var(--red); }
+  .report-meta-row .item .l {
+    font-size: 10px;
+    color: var(--stone);
+    margin-top: 2px;
+  }
+
+  .narrative-block { margin-bottom: 18px; }
+  .narrative-block:last-child { margin-bottom: 0; }
+  .narrative-block h3 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--teal);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .narrative-block h3 .date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--stone);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: auto;
+    font-weight: 400;
+  }
+
+  .narrative-list { list-style: none; padding-left: 0; }
+  .narrative-list li {
+    padding: 6px 0 6px 18px;
+    position: relative;
+    font-size: 13px;
+    line-height: 1.5;
+    border-bottom: 1px dashed var(--border);
+  }
+  .narrative-list li:last-child { border-bottom: none; }
+  .narrative-list li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    color: var(--teal);
+    font-weight: 700;
+  }
+  .narrative-list.empty li {
+    color: var(--stone);
+    font-style: italic;
+    padding-left: 12px;
+  }
+  .narrative-list.empty li::before { content: "—"; left: 0; }
+
+  .dept-result-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 12.5px;
+  }
+  .dept-result-row:last-child { border-bottom: none; }
+  .dept-result-row .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--teal);
+    padding: 2px 7px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 1px;
+    min-width: 32px;
+    text-align: center;
+  }
+  .dept-result-row.fail .badge { background: var(--red); }
+  .dept-result-row.warn .badge { background: var(--amber); }
+  .dept-result-row .text { flex: 1; min-width: 0; }
+  .dept-result-row .title { font-weight: 600; color: var(--text); }
+  .dept-result-row .sub { color: var(--stone); font-size: 11.5px; margin-top: 2px; }
+
+  .lesson-item {
+    background: #F4F8F7;
+    border-left: 3px solid var(--teal);
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    border-radius: 0 6px 6px 0;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .lesson-item .topic {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .privacy-note {
+    margin-top: 14px;
+    padding: 8px 12px;
+    background: #F5EFEC;
+    border-radius: 6px;
+    font-size: 10.5px;
+    color: var(--stone);
+    border-left: 3px solid var(--amber);
+  }
+
   /* ── Loading ──────────────────────────────── */
   .loading {
     text-align: center;
@@ -542,8 +707,145 @@ function render(s) {
   }
   issueHtml += '</ul></div>';
 
+  // ── 1장짜리 서술형 보고 ────────────────────────
+  const reportHtml = renderNarrative(s.narrative);
+
   document.getElementById('mainContent').innerHTML =
-    kpiHtml + chipHtml + folderHtml + deptHtml + trendHtml + issueHtml;
+    kpiHtml + chipHtml + reportHtml + folderHtml + deptHtml + trendHtml + issueHtml;
+}
+
+function esc(t) {
+  if (t == null) return '';
+  return String(t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function bulletList(items, emptyText) {
+  if (!items || !items.length) {
+    return `<ul class="narrative-list empty"><li>${esc(emptyText || '데이터 없음')}</li></ul>`;
+  }
+  return '<ul class="narrative-list">' +
+    items.map(i => `<li>${esc(i)}</li>`).join('') +
+    '</ul>';
+}
+
+function renderNarrative(n) {
+  if (!n || n.error) {
+    return `<div class="report-card"><h2>오늘의 1장 보고</h2>
+      <p style="color:var(--stone);font-size:12px">서술형 리포트를 준비 중입니다.${n && n.error ? ' (' + esc(n.error) + ')' : ''}</p>
+    </div>`;
+  }
+
+  const today = n.today || {};
+  const yest = n.yesterday || {};
+  const tmrw = n.tomorrow || {};
+  const brief = today.brief || {};
+  const ceo = today.ceo_log || {};
+  const yestCeo = yest.ceo_log || {};
+  const tmrwBrief = tmrw.brief || {};
+  const lessons = n.lessons_recent || [];
+
+  // Executive summary
+  let html = `<div class="report-card">
+    <h2>오늘의 1장 보고 <span style="margin-left:auto;font-size:10px;color:var(--stone);font-weight:400">${esc(today.date || '')}</span></h2>
+    <div class="exec-summary">${esc(n.executive_summary || '데이터 수집 중…')}</div>`;
+
+  // Meta row (CEO 메타가 있으면)
+  if (ceo.exists && ceo.meta) {
+    const m = ceo.meta;
+    const failClass = (m.fail && m.fail !== '0건' && m.fail !== '-') ? 'fail' : '';
+    html += `<div class="report-meta-row">
+      <div class="item"><div class="v">${esc(m.total)}</div><div class="l">총 과업</div></div>
+      <div class="item"><div class="v">${esc(m.success)}</div><div class="l">성공</div></div>
+      <div class="item"><div class="v ${failClass}">${esc(m.fail)}</div><div class="l">실패</div></div>
+      <div class="item"><div class="v" style="font-size:13px">${esc(m.duration)}</div><div class="l">소요</div></div>
+    </div>`;
+  }
+
+  // 1) 오늘 우선 결정
+  html += `<div class="narrative-block">
+    <h3>🎯 지금 봐야 할 것 <span class="date">오늘 ${brief.updated_at ? fmtTime(brief.updated_at) : ''}</span></h3>
+    ${bulletList(brief.today_focus, '대기 중인 핵심 결정 없음 — 시스템 정상')}
+  </div>`;
+
+  // 2) 오늘 마친 것
+  html += `<div class="narrative-block">
+    <h3>✅ 오늘 마친 것</h3>
+    ${bulletList(brief.today_done, '오늘 완료 항목 아직 집계 안 됨')}
+  </div>`;
+
+  // 3) 부서별 실행 결과
+  if (ceo.dept_results && ceo.dept_results.length) {
+    html += `<div class="narrative-block">
+      <h3>🏢 부서별 실행 결과 <span class="date">${ceo.dept_results.length}개 부서</span></h3>`;
+    for (const d of ceo.dept_results) {
+      const cls = d.status === '❌' ? 'fail' : d.status === '⚠️' ? 'warn' : '';
+      html += `<div class="dept-result-row ${cls}">
+        <span class="badge">${esc(d.dept)}</span>
+        <div class="text">
+          <div class="title">${esc(d.title)}</div>
+          ${d.subtitle ? `<div class="sub">${esc(d.subtitle)}</div>` : ''}
+        </div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  // 4) 신호·이번주
+  const signals = (brief.signals || []).concat(brief.week_summary || []);
+  if (signals.length) {
+    html += `<div class="narrative-block">
+      <h3>🔔 관심 신호 · 이번 주 한 눈에</h3>
+      ${bulletList(signals)}
+    </div>`;
+  }
+
+  // 5) 어제 무슨 일이?
+  if (yestCeo.exists) {
+    const ym = yestCeo.meta || {};
+    let ySummary = `어제 부서 실행 ${ym.total || '-'} (성공 ${ym.success || '-'}, 실패 ${ym.fail || '-'}).`;
+    html += `<div class="narrative-block">
+      <h3>📓 어제 무슨 일이? <span class="date">${esc(yest.date || '')}</span></h3>
+      <ul class="narrative-list"><li>${esc(ySummary)}</li>`;
+    if (yestCeo.dept_results && yestCeo.dept_results.length) {
+      const top = yestCeo.dept_results.slice(0, 4);
+      for (const d of top) {
+        html += `<li>${esc(d.status)} <b>${esc(d.dept)}</b> — ${esc(d.title)}</li>`;
+      }
+    }
+    html += `</ul></div>`;
+  }
+
+  // 6) 내일 계획
+  if (tmrwBrief.exists) {
+    html += `<div class="narrative-block">
+      <h3>📅 내일 준비할 것 <span class="date">${esc(tmrw.date || '')}</span></h3>
+      ${bulletList(tmrwBrief.tomorrow_prep || tmrwBrief.today_focus, '내일 일정 미수신')}
+    </div>`;
+  } else if (brief.tomorrow_prep && brief.tomorrow_prep.length) {
+    html += `<div class="narrative-block">
+      <h3>📅 내일 준비할 것</h3>
+      ${bulletList(brief.tomorrow_prep)}
+    </div>`;
+  }
+
+  // 7) 최근 학습
+  if (lessons.length) {
+    html += `<div class="narrative-block">
+      <h3>📚 최근 학습 ${lessons.length}건</h3>`;
+    for (const l of lessons) {
+      html += `<div class="lesson-item">
+        <div class="topic">${esc(l.topic)}</div>
+        <div class="text">${esc(l.lesson)}</div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Privacy footer
+  html += `<div class="privacy-note">🔒 ${esc(n.privacy_note || '비공개 정보 자동 마스킹')}</div>`;
+
+  html += `</div>`;
+  return html;
 }
 
 // Initial load + auto-refresh every 5 min

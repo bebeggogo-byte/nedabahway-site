@@ -1,6 +1,6 @@
 // 네다바 Vault Monitor — Service Worker
 // 오프라인 지원 + 빠른 재방문 (통계 데이터는 항상 최신 시도)
-const CACHE = 'vault-monitor-v1';
+const CACHE = 'vault-monitor-v2';
 const ASSETS = [
   '/vault/',
   '/vault/index.html',
