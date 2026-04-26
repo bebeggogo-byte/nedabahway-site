@@ -44,8 +44,13 @@ class RiskAgent(BaseAgent):
             return
 
         cur_positions = {p["ticker"]: p["qty"] for p in balance.get("positions", [])}
+
+        # Apply regime-based capital scaling (from RegimeAgent if present)
+        capital_scale = float(ctx.get("capital_scale", 1.0))
+        scaled_target_weights = {t: w * capital_scale for t, w in signal.target_weights.items()}
+
         intents_raw = compute_orders(
-            target_weights=signal.target_weights,
+            target_weights=scaled_target_weights,
             current_positions=cur_positions,
             prices=prices_now,
             total_equity=equity,

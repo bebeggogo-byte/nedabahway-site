@@ -10,9 +10,10 @@ const PHASES = [
 const AGENTS = [
   { name: 'Universe Curator', role: 'KOSPI 시총·유동성 필터', status: 'done', kind: 'det' },
   { name: 'Data Engineer', role: 'pykrx OHLCV 캐시', status: 'done', kind: 'det' },
-  { name: 'Strategy Runner', role: '4-strategy ensemble', status: 'done', kind: 'det' },
+  { name: 'Regime Classifier', role: 'KOSPI 200dMA + vol + dd 체제 감지', status: 'done', kind: 'det' },
+  { name: 'Strategy Runner', role: '5-strategy ensemble', status: 'done', kind: 'det' },
   { name: 'Balance Fetcher', role: 'KIS 잔고/시세 (또는 Sim)', status: 'done', kind: 'det' },
-  { name: 'Risk Manager', role: '사이징 + 일일 한도', status: 'done', kind: 'det' },
+  { name: 'Risk Manager', role: '사이징 + 일일 한도 + capital scale', status: 'done', kind: 'det' },
   { name: 'Execution Trader', role: 'KIS 또는 SimulatedBroker', status: 'done', kind: 'det' },
   { name: 'Performance Analyst', role: '일일 P&L 기록', status: 'done', kind: 'det' },
   { name: 'Statistical Skeptic', role: 'bootstrap CI / DSR / look-ahead', status: 'done', kind: 'crit' },
@@ -188,6 +189,54 @@ function fmtAgo(hours) {
   if (hours < 1) return Math.round(hours * 60) + 'm ago';
   if (hours < 48) return hours.toFixed(1) + 'h ago';
   return (hours / 24).toFixed(1) + 'd ago';
+}
+
+const REGIME_COLORS = {
+  bull: 'var(--c-accent)',
+  bear: 'var(--c-fail)',
+  choppy: 'var(--c-warn)',
+  normal: 'var(--c-mute)',
+};
+
+function renderRegime(history) {
+  const root = document.getElementById('regime-summary');
+  const whenEl = document.getElementById('regime-when');
+  if (!root) return;
+  const items = (history && history.history) || [];
+  if (items.length === 0) {
+    root.innerHTML = '<div class="empty">체제 데이터 누적 대기 중 (KOSPI 200d 필요)</div>';
+    if (whenEl) whenEl.textContent = '—';
+    return;
+  }
+  const latest = items[items.length - 1];
+  if (whenEl) whenEl.textContent = latest.as_of;
+  const color = REGIME_COLORS[latest.label] || 'var(--c-mute)';
+
+  root.innerHTML = `
+    <div style="display:flex;align-items:center;gap:18px;padding:16px 20px;border-radius:12px;background:var(--c-bg);border-left:6px solid ${color}">
+      <div style="flex:0 0 auto">
+        <div class="mono" style="font-size:.7rem;font-weight:700;letter-spacing:.06em;color:${color};text-transform:uppercase">${latest.label}</div>
+        <div style="font-family:var(--ff-serif);font-weight:700;font-size:1.6rem;line-height:1.1;margin-top:2px;color:var(--c-fg)">자본 ${(latest.recommended_capital_scale*100).toFixed(0)}% 배치</div>
+      </div>
+      <div style="flex:1;font-size:.84rem;color:var(--c-mute);line-height:1.55">${latest.rationale}</div>
+      <div class="mono" style="flex:0 0 auto;font-size:.74rem;color:var(--c-mute);text-align:right">
+        <div>200dMA <strong style="color:${latest.above_200ma ? 'var(--c-accent)' : 'var(--c-fail)'}">${latest.above_200ma ? '↑' : '↓'} ${(latest.distance_from_200ma_pct*100).toFixed(1)}%</strong></div>
+        <div>20d vol <strong style="color:var(--c-fg)">${(latest.realized_vol_20d_annualized*100).toFixed(1)}%</strong></div>
+        <div>252d DD <strong style="color:${latest.drawdown_from_peak_252d > -0.05 ? 'var(--c-accent)' : 'var(--c-fail)'}">${(latest.drawdown_from_peak_252d*100).toFixed(1)}%</strong></div>
+        <div style="margin-top:3px">신뢰도 <strong style="color:var(--c-fg)">${(latest.confidence*100).toFixed(0)}%</strong></div>
+      </div>
+    </div>
+    <div id="regime-history-strip" style="display:flex;gap:2px;height:24px;border-radius:6px;overflow:hidden"></div>
+    <div style="font-size:.72rem;color:var(--c-mute2);text-align:right">최근 ${items.slice(-60).length}일 체제 변천 (최신 →)</div>
+  `;
+
+  const strip = document.getElementById('regime-history-strip');
+  if (strip) {
+    strip.innerHTML = items.slice(-60).map(s => {
+      const c = REGIME_COLORS[s.label] || 'var(--c-mute)';
+      return `<div title="${s.as_of}: ${s.label} · ${(s.recommended_capital_scale*100).toFixed(0)}%" style="flex:1;background:${c};opacity:${0.4 + s.confidence * 0.6}"></div>`;
+    }).join('');
+  }
 }
 
 function renderHeartbeat(hb) {
@@ -404,7 +453,7 @@ function renderCouncil(c) {
 }
 
 async function load() {
-  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
@@ -417,6 +466,7 @@ async function load() {
     fetchJSON('./data/attribution.json'),
     fetchJSON('./data/per_strategy_pnl.json'),
     fetchJSON('./data/strategy_health.json'),
+    fetchJSON('./data/regime_history.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -427,6 +477,7 @@ async function load() {
   renderDecisions(decisions || {});
   renderCritiques(critiques || {});
   renderHeartbeat(heartbeat);
+  renderRegime(regimeHist);
   renderStrategies();
   renderCouncil(council);
   renderGate(gate);

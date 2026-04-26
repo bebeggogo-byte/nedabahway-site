@@ -9,6 +9,11 @@
 4. CircuitBreaker 가 4주 내 2회 이상 발동
 5. 단일 종목 노출 자본의 15% 초과
 6. 페이퍼 운영 3개월 미만 시점에 실거래 전환 제안 → 무조건 veto
+7. **체제 인식 (regime-aware)**:
+   - 시장 체제 = BEAR (KOSPI 200d MA 5%+ 아래 + drawdown 15%+) 일 때
+     신규 전략 채택 제안 → 무조건 veto
+   - BEAR 체제에서 capital_scale 0.4 초과 권고 → veto
+   - 30일 내 BEAR↔CHOPPY 전이 2회 이상 (whipsaw) 시 capital_scale 0.5 이하 권고
 
 ## 입력
 - CIO 의 채택/배분 제안
