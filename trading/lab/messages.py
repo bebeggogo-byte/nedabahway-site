@@ -91,3 +91,36 @@ class CycleSummary(BaseModel):
     intents_count: int = 0
     executions_count: int = 0
     success_count: int = 0
+
+
+class Verdict(str, Enum):
+    PASS = "pass"
+    WARN = "warn"
+    FAIL = "fail"
+
+
+class Critique(BaseModel):
+    """Single finding from a critic agent."""
+
+    critic: str
+    target: str  # e.g., "backtest:xs_momentum" or "live:order_intent:005930"
+    verdict: Verdict
+    metric: str
+    value: float | str | None = None
+    threshold: float | str | None = None
+    detail: str = ""
+
+
+class CritiqueReport(BaseModel):
+    critic: str
+    target: str
+    findings: list[Critique]
+    summary: str = ""
+
+    @property
+    def worst_verdict(self) -> Verdict:
+        if any(f.verdict == Verdict.FAIL for f in self.findings):
+            return Verdict.FAIL
+        if any(f.verdict == Verdict.WARN for f in self.findings):
+            return Verdict.WARN
+        return Verdict.PASS

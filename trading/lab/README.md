@@ -18,10 +18,10 @@
 | | Risk Manager | ✅ | 사이징 + 일일 한도 |
 | | Execution Trader | ✅ | KIS 주문 |
 | | Performance Analyst | ✅ | 일일 P&L 기록 |
-| **결정론적 비판자 (PR #3-1)** | Statistical Skeptic | ⏳ | bootstrap, DSR |
-| | Regime Skeptic | ⏳ | rolling Sharpe |
-| | Cost Skeptic | ⏳ | 슬리피지 시뮬 |
-| | Microstructure Skeptic | ⏳ | VI/호가/유동성 |
+| **결정론적 비판자 (PR #3-1 ✅)** | Statistical Skeptic | ✅ | block bootstrap, DSR, look-ahead |
+| | Regime Skeptic | ✅ | rolling Sharpe, 연도별, drawdown 기간, CVaR |
+| | Cost Skeptic | ✅ | turnover, cost-to-alpha, 슬리피지 stress (2x/3x) |
+| | Microstructure Skeptic | ✅ | tick/유동성/가격 drift (live, **blocking**) |
 | **LLM 의회 (PR #3-2)** | Strategy Researcher | ⏳ | 새 전략 가설 |
 | | CIO | ⏳ | 채택/폐기 결정 |
 | | CRO | ⏳ | 리스크 거부권 |
@@ -39,7 +39,10 @@ python -m lab.cli daily --no-broker
 
 # KIS 모의투자 키 설정 후 (.env 채워야 함)
 python -m lab.cli daily --dry-run    # 의도만, 주문 안 보냄
-python -m lab.cli daily               # 실제 주문 (모의계좌)
+python -m lab.cli daily               # 실제 주문 (모의계좌, microstructure gate 작동)
+
+# 백테스트 + 결정론적 비판 (Statistical/Regime/Cost)
+python -m lab.cli review --start 2020-01-01 --end 2024-12-31
 
 # 특정 사이클 이벤트 조회
 python -m lab.cli inspect daily-20260425T063000-abc123
@@ -47,14 +50,25 @@ python -m lab.cli inspect daily-20260425T063000-abc123
 
 ## 데이터 흐름
 
+### Daily 파이프라인 (실거래)
 ```
-UniverseAgent          → ctx["universe"] = ["005930", ...]
-DataAgent              → ctx["prices"] = DataFrame
-StrategyAgent          → ctx["active_signal"] = StrategySignal(target_weights)
-BalanceAgent           → ctx["balance"], ctx["prices_now"]
-RiskAgent              → ctx["order_intents"] (CircuitBreaker 체크)
-ExecutionAgent         → ctx["execution_reports"]
-PerformanceAgent       → daily_pnl 테이블 기록
+UniverseAgent           → ctx["universe"] = ["005930", ...]
+DataAgent               → ctx["prices"] = DataFrame
+StrategyAgent           → ctx["active_signal"] = StrategySignal(target_weights)
+BalanceAgent            → ctx["balance"], ctx["prices_now"]
+RiskAgent               → ctx["order_intents"]  (CircuitBreaker 체크)
+MicrostructureSkeptic   → ctx["order_intents"] 필터링  (FAIL 인 intent 차단)
+ExecutionAgent          → ctx["execution_reports"]
+PerformanceAgent        → daily_pnl 테이블 기록
+```
+
+### Review 파이프라인 (백테스트 비판)
+```
+(수동) backtest result   → ctx["backtest_result"]
+StatisticalSkeptic      → bootstrap CI, DSR, look-ahead 검사
+RegimeSkeptic           → rolling Sharpe, 연도별, drawdown 기간
+CostSkeptic             → turnover, slippage stress (2x/3x)
+                       → ctx["critiques"] (CritiqueReport 리스트)
 ```
 
 모든 에이전트는 `AgentContext`를 통해 상태를 주고받고, 모든 출력은 `EventBus`(SQLite)에 영구 기록.
