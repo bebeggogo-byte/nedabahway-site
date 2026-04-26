@@ -319,6 +319,70 @@ function renderCorrelation(data) {
   `;
 }
 
+const LIFECYCLE_COLORS = {
+  proposal: 'var(--c-mute2)',
+  validating: 'var(--c-insight)',
+  probation: 'var(--c-warn)',
+  active: 'var(--c-accent)',
+  retired: 'var(--c-fail)',
+};
+
+const LIFECYCLE_LABELS = {
+  proposal: '제안',
+  validating: '검증중',
+  probation: '시범운영',
+  active: '운영중',
+  retired: '폐기',
+};
+
+function renderLifecycle(data) {
+  const root = document.getElementById('lifecycle-summary');
+  const whenEl = document.getElementById('lifecycle-when');
+  if (!root) return;
+  const strategies = (data && data.strategies) || {};
+  const names = Object.keys(strategies).sort();
+  if (names.length === 0) {
+    root.innerHTML = '<div class="empty">전략 레지스트리 미초기화</div>';
+    if (whenEl) whenEl.textContent = '—';
+    return;
+  }
+  if (whenEl) whenEl.textContent = data.updated_at ? data.updated_at.slice(0, 10) : '—';
+  const counts = { proposal: 0, validating: 0, probation: 0, active: 0, retired: 0 };
+  for (const name of names) {
+    counts[strategies[name].state] = (counts[strategies[name].state] || 0) + 1;
+  }
+  const summary = `<div style="display:flex;gap:18px;flex-wrap:wrap;font-size:.84rem;color:var(--c-mute);padding-bottom:8px;border-bottom:1px solid var(--c-line)">
+    ${Object.entries(counts).filter(([_, c]) => c > 0).map(([s, c]) =>
+      `<span><span class="mono" style="color:${LIFECYCLE_COLORS[s]};font-weight:700">${c}</span> ${LIFECYCLE_LABELS[s]}</span>`
+    ).join('')}
+  </div>`;
+  const cards = names.map(name => {
+    const s = strategies[name];
+    const color = LIFECYCLE_COLORS[s.state] || 'var(--c-mute)';
+    const label = LIFECYCLE_LABELS[s.state] || s.state;
+    const cap = (s.weight_cap * 100).toFixed(0);
+    const sourceLabel = s.proposal_source === 'default' ? '기본' :
+                        s.proposal_source === 'researcher_llm' ? 'LLM 제안' :
+                        s.proposal_source === 'manual' ? '수동' : s.proposal_source;
+    const enteredDate = s.entered_state_at ? s.entered_state_at.slice(0, 10) : '—';
+    const lastTransition = (s.history && s.history.length > 0) ? s.history[s.history.length - 1] : null;
+    return `<div style="padding:10px 14px;border-radius:10px;background:var(--c-bg);border:1px solid var(--c-line);border-left:4px solid ${color};display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <div style="flex:1;min-width:140px">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-weight:600;font-size:.92rem">${name}</span>
+          <span class="mono" style="font-size:.7rem;font-weight:700;letter-spacing:.05em;color:${color};text-transform:uppercase">${label}</span>
+        </div>
+        <div style="font-size:.74rem;color:var(--c-mute);margin-top:3px">${sourceLabel} · 진입 ${enteredDate}</div>
+      </div>
+      <div class="mono" style="font-size:.78rem;color:var(--c-mute);text-align:right">
+        weight cap <strong style="color:var(--c-fg)">${cap}%</strong>
+        ${lastTransition && lastTransition.reason ? `<div style="font-size:.7rem;color:var(--c-mute2);max-width:280px">${lastTransition.reason}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+  root.innerHTML = summary + cards;
+}
+
 function renderRegime(history) {
   const root = document.getElementById('regime-summary');
   const whenEl = document.getElementById('regime-when');
@@ -607,7 +671,7 @@ function renderCouncil(c) {
 }
 
 async function load() {
-  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio, ddDefense, correlation] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio, ddDefense, correlation, lifecycle] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
@@ -624,6 +688,7 @@ async function load() {
     fetchJSON('./data/portfolio_weights.json'),
     fetchJSON('./data/drawdown_defense.json'),
     fetchJSON('./data/correlation_history.json'),
+    fetchJSON('./data/strategy_lifecycle.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -637,6 +702,7 @@ async function load() {
   renderRegime(regimeHist);
   renderDrawdownDefense(ddDefense);
   renderCorrelation(correlation);
+  renderLifecycle(lifecycle);
   renderStrategies(portfolio);
   renderCouncil(council);
   renderGate(gate);

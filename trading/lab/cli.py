@@ -26,6 +26,7 @@ from lab.agents.cost_skeptic import CostSkeptic  # noqa: E402
 from lab.agents.data_agent import DataAgent  # noqa: E402
 from lab.agents.drawdown_defender import DrawdownDefender  # noqa: E402
 from lab.agents.execution_agent import ExecutionAgent  # noqa: E402
+from lab.agents.lifecycle_manager import LifecycleManager  # noqa: E402
 from lab.agents.microstructure_skeptic import MicrostructureSkeptic  # noqa: E402
 from lab.agents.performance_agent import PerformanceAgent  # noqa: E402
 from lab.agents.portfolio_agent import PortfolioAgent  # noqa: E402
@@ -82,6 +83,10 @@ def cmd_daily(args) -> int:
         events_db=log_dir / "lab_events.db",
         sim_db=log_dir / "lab_sim_state.db",
     )
+    lifecycle_manager = LifecycleManager(
+        events_db=log_dir / "lab_events.db",
+        sim_db=log_dir / "lab_sim_state.db",
+    )
     strategy = StrategyAgent()
     balance = BalanceAgent(client=client)
     risk = RiskAgent(circuit=circuit)
@@ -92,7 +97,7 @@ def cmd_daily(args) -> int:
     pipeline = Pipeline(
         name="daily",
         agents=[universe, data, regime, portfolio, drawdown_defender, correlation_monitor,
-                strategy, balance, risk, microstructure, execution, performance],
+                lifecycle_manager, strategy, balance, risk, microstructure, execution, performance],
         halt_on_error=False,
     )
     orchestrator = Orchestrator(bus)
