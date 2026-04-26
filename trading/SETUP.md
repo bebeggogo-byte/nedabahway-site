@@ -56,14 +56,43 @@ GitHub → Actions → quant-lab-daily → "Run workflow" → `dry_run = false`
 
 ## 2. LLM 의회 활성화 (선택, Max 구독 사용)
 
-**현재 PR #14 의 의회는 dry-run 모드** — 의제 markdown 만 생성하고 LLM 호출은 안 함.
+PR #16 머지 후, 워크플로우는 **CLAUDE_CODE_OAUTH_TOKEN** 또는 **ANTHROPIC_API_KEY** 시크릿이 등록되면 자동으로 LLM 모드로 전환됩니다. 둘 다 없으면 기존 dry-run 모드가 계속 작동합니다 (의제만 생성).
 
-다음 PR (#15) 에서 **Claude Code GitHub Action** 통합 예정 — 이것이 머지되면:
-- 매주 일요일 자동으로 5 LLM 에이전트 실행
-- Max 구독 한도 사용 (별도 비용 없음)
-- 의회 결과가 대시보드에 자동 게시
+### 옵션 A — Claude Code OAuth (Max 구독 사용, 무료)
 
-PR #15 머지 후 이 섹션 업데이트 예정.
+1. 로컬에서 Claude Code 로그인 후 토큰 추출:
+   ```bash
+   # macOS / Linux
+   cat ~/.claude/credentials.json
+   ```
+   `oauth_token` 필드 복사.
+
+2. GitHub → Settings → Secrets → Actions → New
+   - Name: `CLAUDE_CODE_OAUTH_TOKEN`
+   - Value: (복사한 토큰)
+
+### 옵션 B — Anthropic API Key (사용량 과금)
+
+1. [console.anthropic.com](https://console.anthropic.com) → API Keys → Create
+2. GitHub Secrets:
+   - Name: `ANTHROPIC_API_KEY`
+   - Value: `sk-ant-...`
+
+### 활성화 후 동작
+
+- 매주 일요일 18:00 KST 자동으로 5 LLM 에이전트 의회 개최
+  - Researcher → CRO → CTO → CIO → (월 1회 Meta-Optimizer)
+- 의회 결과: `quant/data/council/council-<date>.json` 자동 commit
+- 대시보드 "Council" 카드에 CIO 의 결정 요약 자동 표시
+- Meta 가 프롬프트 개선 제안하면 → **자동으로 draft PR 생성** (`meta/prompts-*` 브랜치)
+- 사용자는 PR 검토 후 머지하면 다음 회기부터 개선된 프롬프트 사용
+
+### 수동 실행
+
+```bash
+gh workflow run quant-lab-council-weekly --field include_meta=true
+gh workflow run quant-lab-council-weekly --field force_dry_run=true   # LLM 끄기
+```
 
 ---
 
