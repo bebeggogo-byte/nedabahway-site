@@ -412,6 +412,7 @@ def export_portfolio_weights(out_dir: Path, events_db: Path, sim_state_db: Path 
 def export_all(out_dir: Path, events_db: Path, circuit_db: Path, sim_state_db: Path | None = None) -> dict[str, Any]:
     from .analytics.per_strategy_pnl import write_per_strategy_pnl
     from .analytics.strategy_health import write_strategy_health
+    from .analytics.tca import write_tca_snapshot
 
     out_dir.mkdir(parents=True, exist_ok=True)
     log.info("exporting snapshot to %s", out_dir)
@@ -427,6 +428,7 @@ def export_all(out_dir: Path, events_db: Path, circuit_db: Path, sim_state_db: P
     pnl = write_per_strategy_pnl(out_dir, events_db, sim_state_db)
     health = write_strategy_health(out_dir, events_db, sim_state_db)
     portfolio_weights = export_portfolio_weights(out_dir, events_db, sim_state_db)
+    tca = write_tca_snapshot(out_dir, events_db, sim_state_db)
     log.info(
         "snapshot complete: latest=%s, equity_pts=%d, decisions=%d, critiques=%d, "
         "trades=%d, sub_strategies=%d, heartbeat=%s",
@@ -439,5 +441,5 @@ def export_all(out_dir: Path, events_db: Path, circuit_db: Path, sim_state_db: P
         "critiques": critiques, "heartbeat": heartbeat,
         "today_plan": today_plan, "recent_trades": recent_trades, "attribution": attribution,
         "per_strategy_pnl": pnl, "strategy_health": health,
-        "portfolio_weights": portfolio_weights,
+        "portfolio_weights": portfolio_weights, "tca": tca,
     }

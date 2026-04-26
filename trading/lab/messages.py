@@ -67,6 +67,9 @@ class OrderIntent(BaseModel):
     attribution: dict[str, float] = Field(default_factory=dict)
     """Map of sub-strategy name → fraction of this order. Sum should = 1.0.
     Used for per-strategy P&L attribution downstream."""
+    expected_price: int | None = None
+    """Expected fill price at signal generation (mid or last close).
+    Compared against actual fill_price downstream for TCA slippage measurement."""
 
 
 class RiskCheckResult(BaseModel):

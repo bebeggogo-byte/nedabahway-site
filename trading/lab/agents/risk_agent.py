@@ -60,6 +60,8 @@ class RiskAgent(BaseAgent):
         intents = []
         for i in intents_raw:
             attr = attribution.get(i.ticker, {signal.strategy: 1.0})
+            # expected_price = current snapshot price at signal time (for TCA)
+            expected = prices_now.get(i.ticker)
             intents.append(OrderIntent(
                 ticker=i.ticker,
                 side=i.side,
@@ -68,6 +70,7 @@ class RiskAgent(BaseAgent):
                 order_type="market",
                 rationale=f"rebalance to {signal.strategy}",
                 attribution=attr,
+                expected_price=int(expected) if expected else None,
             ))
         ctx.set("order_intents", intents)
         result = RiskCheckResult(allowed=True, adjusted_intents=intents)
