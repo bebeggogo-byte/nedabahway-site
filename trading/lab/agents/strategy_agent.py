@@ -53,6 +53,29 @@ class StrategyAgent(BaseAgent):
 
         as_of = pd.Timestamp(datetime.now().date())
 
+        # Apply dynamic sub_weights override from PortfolioAgent if present
+        if isinstance(self.strategy, EnsembleStrategy):
+            portfolio_weights = ctx.get("portfolio_weights")
+            if portfolio_weights:
+                strat_name_to_idx = {s.name: i for i, s in enumerate(self.strategy.strategies)}
+                new_sub_weights = list(self.strategy.sub_weights)
+                touched = False
+                for sn, w in portfolio_weights.items():
+                    if sn in strat_name_to_idx:
+                        new_sub_weights[strat_name_to_idx[sn]] = float(w)
+                        touched = True
+                if touched:
+                    s_total = sum(new_sub_weights)
+                    if s_total > 0:
+                        self.strategy.sub_weights = [w / s_total for w in new_sub_weights]
+                        self.emit(ctx, "ensemble_weights_updated", {
+                            "method": ctx.get("portfolio_method", "unknown"),
+                            "new_sub_weights": dict(zip(
+                                [s.name for s in self.strategy.strategies],
+                                self.strategy.sub_weights,
+                            )),
+                        })
+
         per_ticker_attribution: dict[str, dict[str, float]] = {}
 
         if isinstance(self.strategy, EnsembleStrategy):
