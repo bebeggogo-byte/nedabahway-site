@@ -24,7 +24,13 @@ const els = {
   sleepLabel: document.getElementById('sleepLabel'),
   audio: document.getElementById('audio'),
   heroNow: document.getElementById('heroNow'),
+  geoToggle: document.getElementById('geoToggle'),
+  geoSub: document.getElementById('geoSub'),
 };
+
+const GEO_KEY = 'classicfm.geoEnabled';
+const GEO_OPTS = { enableHighAccuracy: true, maximumAge: 60_000, timeout: 8_000 };
+const GEO_WATCH_THROTTLE_MS = 60_000; // re-snap at most once per minute
 
 const ICON_PLAY = '<path d="M8 5v14l11-7z"/>';
 const ICON_STOP = '<path d="M6 6h12v12H6z"/>';
@@ -38,6 +44,9 @@ const state = {
   sleepTimer: null,
   sleepTickTimer: null,
   sleepEndAt: 0,
+  geoEnabled: false,
+  geoWatchId: null,
+  geoLastSnapAt: 0,
 };
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -117,6 +126,7 @@ function setCurrent(region) {
   els.heroCity.textContent = region.city;
   markActive(region.city);
   localStorage.setItem(STORAGE_KEY, region.city);
+  updateMediaMetadata();
 }
 
 function setPlayingUI(isPlaying, { loading = false } = {}) {
@@ -263,8 +273,15 @@ els.playerFrameClose.addEventListener('click', (e) => {
 });
 
 if (els.audio) {
-  els.audio.addEventListener('playing', () => setPlayingUI(true));
-  els.audio.addEventListener('pause', () => { if (!state.playing) return; setPlayingUI(false); });
+  els.audio.addEventListener('playing', () => {
+    setPlayingUI(true);
+    if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+  });
+  els.audio.addEventListener('pause', () => {
+    if (!state.playing) return;
+    setPlayingUI(false);
+    if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+  });
   els.audio.addEventListener('error', () => {
     console.warn('audio error, falling back to external player');
     openExternalPlayer();
@@ -396,6 +413,136 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+// ===== Geolocation auto-select =====
+
+function haversineKm(a, b) {
+  const R = 6371;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(b.lat - a.lat);
+  const dLng = toRad(b.lng - a.lng);
+  const lat1 = toRad(a.lat);
+  const lat2 = toRad(b.lat);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+function nearestRegion(lat, lng) {
+  if (!state.data) return null;
+  let best = null;
+  let bestKm = Infinity;
+  for (const r of state.data.regions) {
+    if (typeof r.lat !== 'number' || typeof r.lng !== 'number') continue;
+    const km = haversineKm({ lat, lng }, { lat: r.lat, lng: r.lng });
+    if (km < bestKm) { best = r; bestKm = km; }
+  }
+  return best ? { region: best, km: bestKm } : null;
+}
+
+function setGeoSub(text) {
+  if (els.geoSub) els.geoSub.textContent = text;
+}
+
+function applyGeoFix(pos) {
+  const { latitude: lat, longitude: lng } = pos.coords;
+  const result = nearestRegion(lat, lng);
+  if (!result) { setGeoSub('근처 지역을 찾지 못했습니다'); return; }
+  const { region, km } = result;
+  if (!state.current || state.current.city !== region.city) {
+    setCurrent(region);
+    updateMediaMetadata();
+  }
+  const dist = km < 1 ? `${Math.round(km * 1000)}m` : `${km.toFixed(1)}km`;
+  setGeoSub(`${region.city} (${region.freq.toFixed(1)} MHz) · ${dist}`);
+  state.geoLastSnapAt = Date.now();
+}
+
+function geoError(err) {
+  const map = {
+    1: '위치 권한이 거부되었습니다 — 설정에서 허용 후 재시도',
+    2: '위치를 가져올 수 없습니다 (GPS 신호 없음)',
+    3: '위치 요청 시간 초과',
+  };
+  setGeoSub(map[err.code] || '위치 오류');
+  setTimeout(() => disableGeo({ silent: true }), 2000);
+}
+
+function enableGeo() {
+  if (!('geolocation' in navigator)) {
+    setGeoSub('이 기기는 위치 기능을 지원하지 않습니다');
+    return;
+  }
+  state.geoEnabled = true;
+  els.geoToggle.classList.add('is-on');
+  els.geoToggle.setAttribute('aria-checked', 'true');
+  localStorage.setItem(GEO_KEY, '1');
+  setGeoSub('위치 가져오는 중…');
+  navigator.geolocation.getCurrentPosition(applyGeoFix, geoError, GEO_OPTS);
+  if (state.geoWatchId !== null) navigator.geolocation.clearWatch(state.geoWatchId);
+  state.geoWatchId = navigator.geolocation.watchPosition((pos) => {
+    if (Date.now() - state.geoLastSnapAt < GEO_WATCH_THROTTLE_MS) return;
+    applyGeoFix(pos);
+  }, geoError, GEO_OPTS);
+}
+
+function disableGeo({ silent = false } = {}) {
+  state.geoEnabled = false;
+  els.geoToggle.classList.remove('is-on');
+  els.geoToggle.setAttribute('aria-checked', 'false');
+  localStorage.removeItem(GEO_KEY);
+  if (state.geoWatchId !== null) {
+    navigator.geolocation.clearWatch(state.geoWatchId);
+    state.geoWatchId = null;
+  }
+  if (!silent) setGeoSub('제주↔서귀포 이동 시 주파수 자동 선택');
+}
+
+if (els.geoToggle) {
+  els.geoToggle.addEventListener('click', () => {
+    if (state.geoEnabled) disableGeo();
+    else enableGeo();
+  });
+}
+
+// ===== Media Session (car / lock screen controls) =====
+
+function updateMediaMetadata() {
+  if (!('mediaSession' in navigator) || !state.current) return;
+  const r = state.current;
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: 'KBS 클래식FM',
+    artist: `${r.city} · ${r.freq.toFixed(1)} MHz`,
+    album: 'KBS 1FM Classic',
+    artwork: [
+      { src: './icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { src: './icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+  });
+}
+
+function setupMediaSession() {
+  if (!('mediaSession' in navigator)) return;
+  const ms = navigator.mediaSession;
+  ms.setActionHandler('play', () => {
+    if (els.audio && els.audio.src) {
+      els.audio.play().catch(() => startStream());
+    } else {
+      startStream();
+    }
+  });
+  ms.setActionHandler('pause', () => {
+    if (els.audio && !els.audio.paused) {
+      els.audio.pause();
+    }
+  });
+  ms.setActionHandler('stop', () => stopStream());
+  // togglemuteoff is what some car controls send — handle as play
+  try { ms.setActionHandler('seekto', null); } catch {}
+  try { ms.setActionHandler('previoustrack', null); } catch {}
+  try { ms.setActionHandler('nexttrack', null); } catch {}
+}
+
+setupMediaSession();
+
 function tickClock() {
   if (!els.heroNow) return;
   const now = new Date();
@@ -427,6 +574,7 @@ window.addEventListener('online', () => {
     state.data = await loadStations();
     renderGroups(state.data);
     setCurrent(pickDefault(state.data));
+    if (localStorage.getItem(GEO_KEY) === '1') enableGeo();
   } catch (err) {
     console.error(err);
     els.heroHint.textContent = '데이터 로드 실패 — 네트워크 확인 후 새로고침';
