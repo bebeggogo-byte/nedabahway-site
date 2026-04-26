@@ -213,6 +213,19 @@ function openExternalPlayer() {
   els.heroHint.textContent = 'KBS 공식 플레이어(새 탭) 재생 중';
 }
 
+async function tryAudioSrc(src) {
+  if (!src || !canPlayHls(els.audio)) return false;
+  try {
+    els.audio.src = src;
+    const played = els.audio.play();
+    if (played && typeof played.then === 'function') await played;
+    return true;
+  } catch (err) {
+    console.warn('audio play failed for', src, err);
+    return false;
+  }
+}
+
 async function startStream() {
   if (!state.data) return;
   const d = state.data;
@@ -220,16 +233,28 @@ async function startStream() {
   clearTimeout(state.loadTimer);
   setPlayingUI(false, { loading: true });
 
+  // 1) Direct HLS via radio.bsod.kr proxy (CORS-OK, in-app playback)
+  if (d.audioUrl && canPlayHls(els.audio)) {
+    if (await tryAudioSrc(d.audioUrl)) {
+      els.heroHint.textContent = '앱 내 재생 중 · 차량 컨트롤 작동';
+      return;
+    }
+    if (d.audioUrlAlt && await tryAudioSrc(d.audioUrlAlt)) {
+      els.heroHint.textContent = '앱 내 재생 중 (대체 경로)';
+      return;
+    }
+  }
+
+  // 2) KBS API direct (CORS likely blocked, but try)
   if (d.streamType === 'kbs-api' && d.apiUrl && canPlayHls(els.audio)) {
     try {
       const streamUrl = await fetchKbsStreamUrl(d.apiUrl);
-      els.audio.src = streamUrl;
-      const played = els.audio.play();
-      if (played && typeof played.then === 'function') await played;
-      els.heroHint.textContent = '앱 내에서 재생 중 (HLS)';
-      return;
+      if (await tryAudioSrc(streamUrl)) {
+        els.heroHint.textContent = '앱 내 재생 중 · KBS 직링크';
+        return;
+      }
     } catch (err) {
-      console.warn('KBS API direct-stream failed, falling back:', err);
+      console.warn('KBS API path failed:', err);
     }
   }
 

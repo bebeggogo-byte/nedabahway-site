@@ -1,4 +1,4 @@
-const CACHE = 'classic-fm-v8';
+const CACHE = 'classic-fm-v9';
 const ASSETS = [
   './',
   './index.html',
@@ -29,9 +29,10 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  // Never cache YouTube iframe or any video stream
+  // Never cache audio/video streams or live media
   if (url.hostname.includes('youtube.com') || url.hostname.includes('ytimg.com')
-      || url.hostname.includes('googlevideo.com') || url.hostname.includes('kbs.co.kr')) {
+      || url.hostname.includes('googlevideo.com') || url.hostname.includes('kbs.co.kr')
+      || url.hostname.includes('bsod.kr') || url.hostname.includes('workers.dev')) {
     return;
   }
 
