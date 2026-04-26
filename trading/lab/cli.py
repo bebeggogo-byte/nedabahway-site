@@ -181,6 +181,19 @@ def cmd_council(args) -> int:
     return 0
 
 
+def cmd_report(args) -> int:
+    from lab.reports.weekly_report import write_weekly_report
+    log_dir = TRADE_DB_PATH.parent
+    snapshot_dir = log_dir.parent.parent / "quant" / "data"
+    path = write_weekly_report(
+        events_db=log_dir / "lab_events.db",
+        sim_db=log_dir / "lab_sim_state.db",
+        snapshot_dir=snapshot_dir,
+    )
+    print(f"weekly report: {path}")
+    return 0
+
+
 def cmd_health(args) -> int:
     from lab.analytics.strategy_health import write_strategy_health
     log_dir = TRADE_DB_PATH.parent
@@ -274,6 +287,10 @@ def main() -> int:
     p_health = sub.add_parser("health", help="evaluate per-strategy health (4w/8w P&L, win rate)")
     p_health.add_argument("--output", default="../quant/data", help="output dir")
     p_health.set_defaults(func=cmd_health)
+
+    p_report = sub.add_parser("report", help="generate human-readable markdown report")
+    p_report.add_argument("type", choices=["weekly"], default="weekly", nargs="?")
+    p_report.set_defaults(func=cmd_report)
 
     p_insp = sub.add_parser("inspect", help="show events for a cycle")
     p_insp.add_argument("cycle_id")

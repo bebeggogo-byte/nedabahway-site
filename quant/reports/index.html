@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Quant Lab Reports — Weekly Archive</title>
+<meta name="description" content="Quant Lab 주간 자동 리포트 아카이브.">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
+:root{--c-bg:#FAFAF7;--c-surface:#FFF;--c-fg:#1A1A1A;--c-mute:#6B6B6B;--c-mute2:#9A9A9A;--c-line:#E8E6E0;--c-accent:#10803D;--c-copper:#C2410C;--ff:'Pretendard Variable',system-ui,sans-serif;--ff-serif:'Noto Serif KR',Georgia,serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;background:rgba(250,250,247,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line);padding:14px 28px}
+.nav__inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.nav__logo{font-family:var(--ff-serif);font-weight:700;font-size:1.05rem}
+.nav__logo em{color:var(--c-copper);font-style:italic}
+main{max-width:920px;margin:0 auto;padding:48px 28px 80px}
+h1{font-family:var(--ff-serif);font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
+h1 em{font-style:italic;color:var(--c-copper)}
+.lead{color:var(--c-mute);font-size:1rem;line-height:1.7;max-width:640px;margin-bottom:32px}
+.list{display:flex;flex-direction:column;gap:1px;background:var(--c-line);border:1px solid var(--c-line);border-radius:14px;overflow:hidden}
+.row{display:flex;align-items:center;gap:18px;padding:18px 22px;background:var(--c-surface);transition:background .15s}
+.row:hover{background:#F5F3EC}
+.row__date{font-family:var(--ff-serif);font-weight:600;color:var(--c-mute);min-width:120px;font-size:.95rem}
+.row__title{flex:1;font-weight:600}
+.row__type{font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--c-accent);background:#E8F2EC;padding:3px 9px;border-radius:999px}
+.row__size{font-size:.78rem;color:var(--c-mute2);font-variant-numeric:tabular-nums}
+.empty{padding:60px 20px;text-align:center;color:var(--c-mute2)}
+footer{margin-top:48px;text-align:center;color:var(--c-mute2);font-size:.82rem}
+footer a{color:var(--c-accent);font-weight:600}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/"><em>Nedabahway</em> · Quant Reports</a>
+    <a href="/quant/" style="font-size:.85rem;color:var(--c-accent);font-weight:600">← 라이브 대시보드</a>
+  </div>
+</nav>
+
+<main>
+  <h1>Quant Lab <em>Weekly</em> Reports</h1>
+  <p class="lead">매주 일요일 의회 후 자동 생성되는 주간 리포트. 그 주의 P&L, 베스트/워스트 트레이드, 전략 건강도, 의회 결정을 한 페이지로 정리.</p>
+
+  <div id="reports-list" class="list">
+    <div class="empty">
+      <div style="font-size:1.4rem;margin-bottom:6px">📋</div>
+      첫 주간 리포트 자동 생성 대기 중<br>
+      <small style="color:var(--c-mute);font-size:.82rem">매주 일요일 19:30 KST 자동 발행</small>
+    </div>
+  </div>
+
+  <footer>
+    📊 <a href="/quant/">라이브 대시보드</a>
+    · 🤖 <a href="https://github.com/bebeggogo-byte/nedabahway-site/tree/main/trading/lab/reports">소스</a>
+  </footer>
+</main>
+
+<script>
+async function load() {
+  try {
+    const r = await fetch('./index.json?t=' + Date.now());
+    if (!r.ok) return;
+    const data = await r.json();
+    const list = document.getElementById('reports-list');
+    if (!data.reports || data.reports.length === 0) return;
+    list.innerHTML = data.reports.map(rep => `
+      <a class="row" href="./${rep.path}">
+        <span class="row__date">${rep.date}</span>
+        <span class="row__title">Weekly Report · ${rep.date}</span>
+        <span class="row__type">${rep.type}</span>
+        <span class="row__size">${(rep.size/1024).toFixed(1)} KB</span>
+      </a>
+    `).join('');
+  } catch (e) { console.warn(e); }
+}
+load();
+</script>
+</body>
+</html>
