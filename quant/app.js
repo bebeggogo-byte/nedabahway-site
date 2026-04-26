@@ -198,6 +198,57 @@ const REGIME_COLORS = {
   normal: 'var(--c-mute)',
 };
 
+const DD_BAND_COLORS = {
+  normal: 'var(--c-accent)',
+  alert: 'var(--c-warn)',
+  defensive: 'var(--c-warn)',
+  strong_defense: 'var(--c-fail)',
+  halt: 'var(--c-fail)',
+  insufficient_data: 'var(--c-mute2)',
+};
+
+function renderDrawdownDefense(data) {
+  const root = document.getElementById('dd-summary');
+  const whenEl = document.getElementById('dd-when');
+  if (!root) return;
+  const items = (data && data.history) || [];
+  const cur = data ? data.current : null;
+  if (!cur) {
+    root.innerHTML = '<div class="empty">실현 자본 곡선 데이터 누적 대기 중</div>';
+    if (whenEl) whenEl.textContent = '—';
+    return;
+  }
+  if (whenEl) whenEl.textContent = cur.as_of;
+  const color = DD_BAND_COLORS[cur.band] || 'var(--c-mute)';
+  const bandLabel = {
+    normal: '정상', alert: '경고', defensive: '방어',
+    strong_defense: '강한 방어', halt: '중단',
+    insufficient_data: '데이터 누적 중',
+  }[cur.band] || cur.band;
+  root.innerHTML = `
+    <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;background:var(--c-bg);border-left:5px solid ${color}">
+      <div style="flex:0 0 auto">
+        <div class="mono" style="font-size:.7rem;font-weight:700;letter-spacing:.05em;color:${color};text-transform:uppercase">${bandLabel}</div>
+        <div style="font-family:var(--ff-serif);font-weight:700;font-size:1.4rem;line-height:1.1;margin-top:2px">DD ${(cur.current_drawdown*100).toFixed(2)}%</div>
+      </div>
+      <div style="flex:1;font-size:.84rem;color:var(--c-mute);line-height:1.5">
+        DD scale <strong style="color:var(--c-fg)">${(cur.dd_scale*100).toFixed(0)}%</strong> ×
+        Regime <strong style="color:var(--c-fg)">${(cur.regime_scale*100).toFixed(0)}%</strong> =
+        <strong style="color:var(--c-accent)">${(cur.combined_scale*100).toFixed(0)}%</strong> 최종 자본
+      </div>
+    </div>
+    <div id="dd-history-strip" style="display:flex;gap:2px;height:18px;border-radius:5px;overflow:hidden"></div>
+    <div style="font-size:.72rem;color:var(--c-mute2);text-align:right">최근 ${items.slice(-60).length}일 DD band</div>
+  `;
+  const strip = document.getElementById('dd-history-strip');
+  if (strip) {
+    strip.innerHTML = items.slice(-60).map(s => {
+      const c = DD_BAND_COLORS[s.band] || 'var(--c-mute)';
+      return `<div title="${s.as_of}: dd ${(s.current_drawdown*100).toFixed(1)}% · ${s.band} · scale ${(s.combined_scale*100).toFixed(0)}%" style="flex:1;background:${c};opacity:0.7"></div>`;
+    }).join('');
+  }
+}
+
 function renderRegime(history) {
   const root = document.getElementById('regime-summary');
   const whenEl = document.getElementById('regime-when');
@@ -486,7 +537,7 @@ function renderCouncil(c) {
 }
 
 async function load() {
-  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio, ddDefense] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
@@ -501,6 +552,7 @@ async function load() {
     fetchJSON('./data/strategy_health.json'),
     fetchJSON('./data/regime_history.json'),
     fetchJSON('./data/portfolio_weights.json'),
+    fetchJSON('./data/drawdown_defense.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -512,6 +564,7 @@ async function load() {
   renderCritiques(critiques || {});
   renderHeartbeat(heartbeat);
   renderRegime(regimeHist);
+  renderDrawdownDefense(ddDefense);
   renderStrategies(portfolio);
   renderCouncil(council);
   renderGate(gate);
