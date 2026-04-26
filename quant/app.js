@@ -10,20 +10,27 @@ const PHASES = [
 const AGENTS = [
   { name: 'Universe Curator', role: 'KOSPI 시총·유동성 필터', status: 'done', kind: 'det' },
   { name: 'Data Engineer', role: 'pykrx OHLCV 캐시', status: 'done', kind: 'det' },
-  { name: 'Strategy Runner', role: '전략 신호 생성 (모멘텀)', status: 'done', kind: 'det' },
-  { name: 'Balance Fetcher', role: 'KIS 잔고/시세', status: 'done', kind: 'det' },
+  { name: 'Strategy Runner', role: '4-strategy ensemble', status: 'done', kind: 'det' },
+  { name: 'Balance Fetcher', role: 'KIS 잔고/시세 (또는 Sim)', status: 'done', kind: 'det' },
   { name: 'Risk Manager', role: '사이징 + 일일 한도', status: 'done', kind: 'det' },
-  { name: 'Execution Trader', role: 'KIS 주문', status: 'done', kind: 'det' },
+  { name: 'Execution Trader', role: 'KIS 또는 SimulatedBroker', status: 'done', kind: 'det' },
   { name: 'Performance Analyst', role: '일일 P&L 기록', status: 'done', kind: 'det' },
   { name: 'Statistical Skeptic', role: 'bootstrap CI / DSR / look-ahead', status: 'done', kind: 'crit' },
   { name: 'Regime Skeptic', role: 'rolling Sharpe / drawdown 기간', status: 'done', kind: 'crit' },
   { name: 'Cost Skeptic', role: 'turnover / slippage stress', status: 'done', kind: 'crit' },
   { name: 'Microstructure Skeptic', role: 'tick / 유동성 / 가격 drift (live block)', status: 'done', kind: 'crit' },
-  { name: 'Strategy Researcher', role: '새 가설 제안 (LLM)', status: 'pending', kind: 'llm' },
-  { name: 'CIO', role: '채택/폐기 결정 (LLM)', status: 'pending', kind: 'llm' },
-  { name: 'CRO', role: '리스크 거부권 (LLM)', status: 'pending', kind: 'llm' },
-  { name: 'CTO', role: '코드 리뷰 (LLM)', status: 'pending', kind: 'llm' },
-  { name: 'Meta-Optimizer', role: '프롬프트 자기개선 (LLM)', status: 'pending', kind: 'llm' },
+  { name: 'Strategy Researcher', role: '새 가설 제안 (LLM, prompt ready)', status: 'pending', kind: 'llm' },
+  { name: 'CIO', role: '채택/폐기 결정 (LLM, prompt ready)', status: 'pending', kind: 'llm' },
+  { name: 'CRO', role: '리스크 거부권 (LLM, prompt ready)', status: 'pending', kind: 'llm' },
+  { name: 'CTO', role: '코드 리뷰 (LLM, prompt ready)', status: 'pending', kind: 'llm' },
+  { name: 'Meta-Optimizer', role: '프롬프트 자기개선 (LLM, prompt ready)', status: 'pending', kind: 'llm' },
+];
+
+const STRATEGIES = [
+  { name: 'Cross-sectional Momentum', weight: 0.40, type: '추세', desc: '12-1 모멘텀 상위 N 동일비중' },
+  { name: 'Mean Reversion', weight: 0.20, type: '역행', desc: '20일 z-score ≤ -1.5 oversold long' },
+  { name: 'Low Volatility', weight: 0.25, type: '방어', desc: '60일 변동성 하위 + 양의 수익률' },
+  { name: 'Volatility Breakout', weight: 0.15, type: '단타', desc: 'Larry Williams K=0.55, MA20 추세 필터' },
 ];
 
 function fmtKRW(n) {
@@ -196,6 +203,21 @@ function renderHeartbeat(hb) {
   }
 }
 
+function renderStrategies() {
+  const root = document.getElementById('strategies-list');
+  if (!root) return;
+  root.innerHTML = STRATEGIES.map(s => {
+    const pct = (s.weight * 100).toFixed(0);
+    return `<div style="padding:12px 14px;border-radius:10px;background:var(--c-bg);border:1px solid var(--c-line);display:flex;justify-content:space-between;align-items:center;gap:10px">
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:600;font-size:.92rem">${s.name} <span style="font-size:.7rem;color:var(--c-mute2);font-weight:500;letter-spacing:.05em;text-transform:uppercase">· ${s.type}</span></div>
+        <div style="font-size:.78rem;color:var(--c-mute);margin-top:3px">${s.desc}</div>
+      </div>
+      <div class="mono" style="font-weight:700;color:var(--c-accent);font-size:.95rem">${pct}%</div>
+    </div>`;
+  }).join('');
+}
+
 function renderCouncil(c) {
   const summaryEl = document.getElementById('council-summary');
   const detailEl = document.getElementById('council-detail');
@@ -233,6 +255,7 @@ async function load() {
   renderDecisions(decisions || {});
   renderCritiques(critiques || {});
   renderHeartbeat(heartbeat);
+  renderStrategies();
   renderCouncil(council);
 }
 
