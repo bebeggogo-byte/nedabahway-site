@@ -64,6 +64,9 @@ class OrderIntent(BaseModel):
     target_price: int
     order_type: str = "market"  # market | limit
     rationale: str = ""
+    attribution: dict[str, float] = Field(default_factory=dict)
+    """Map of sub-strategy name → fraction of this order. Sum should = 1.0.
+    Used for per-strategy P&L attribution downstream."""
 
 
 class RiskCheckResult(BaseModel):
