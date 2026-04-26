@@ -181,6 +181,17 @@ def cmd_council(args) -> int:
     return 0
 
 
+def cmd_health(args) -> int:
+    from lab.analytics.strategy_health import write_strategy_health
+    log_dir = TRADE_DB_PATH.parent
+    out = Path(args.output).resolve()
+    data = write_strategy_health(out, log_dir / "lab_events.db", log_dir / "lab_sim_state.db")
+    print(f"strategy health written. {data['n_total']} strategies, {data['n_candidates']} retirement candidates")
+    for s in data["by_strategy"]:
+        print(f"  {s['strategy']:>22s}: {s['status']:<22s} {s['recommended_action']:<14s} pnl_4w={s['pnl_4w']:>+10,} win={s['win_rate_8w']*100:>3.0f}%")
+    return 0 if data["n_candidates"] == 0 else 1
+
+
 def cmd_gate(args) -> int:
     from lab.gates.phase_transition import evaluate_gate, write_gate_report
     log_dir = TRADE_DB_PATH.parent
@@ -259,6 +270,10 @@ def main() -> int:
     p_gate = sub.add_parser("gate", help="evaluate Phase 2 → 3 transition criteria")
     p_gate.add_argument("--output", default="../quant/data", help="output dir for phase-gate.json")
     p_gate.set_defaults(func=cmd_gate)
+
+    p_health = sub.add_parser("health", help="evaluate per-strategy health (4w/8w P&L, win rate)")
+    p_health.add_argument("--output", default="../quant/data", help="output dir")
+    p_health.set_defaults(func=cmd_health)
 
     p_insp = sub.add_parser("inspect", help="show events for a cycle")
     p_insp.add_argument("cycle_id")

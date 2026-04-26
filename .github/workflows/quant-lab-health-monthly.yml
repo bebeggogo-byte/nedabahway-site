@@ -1,0 +1,138 @@
+name: quant-lab-health-monthly
+
+on:
+  schedule:
+    # 매월 1일 23:00 KST (= 14:00 UTC)
+    - cron: "0 14 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: quant-lab-health
+  cancel-in-progress: true
+
+jobs:
+  evaluate-health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: trading
+    outputs:
+      n_candidates: ${{ steps.run.outputs.n_candidates }}
+      candidates: ${{ steps.run.outputs.candidates }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: trading/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Evaluate strategy health
+        id: run
+        run: |
+          python -m lab.cli health || true
+          python3 - <<'PY'
+          import json, os
+          health = json.load(open('../quant/data/strategy_health.json'))
+          n = health.get('n_candidates', 0)
+          cands = ','.join(health.get('retirement_candidates', []))
+          out = os.environ['GITHUB_OUTPUT']
+          with open(out, 'a') as f:
+              f.write(f"n_candidates={n}\n")
+              f.write(f"candidates={cands}\n")
+          print(f"candidates: {cands}")
+          PY
+
+      - name: Refresh dashboard snapshot
+        if: always()
+        run: python -m lab.cli snapshot --output ../quant/data
+
+      - name: Commit health report
+        if: always()
+        run: |
+          cd ..
+          git add quant/data/ 2>/dev/null || true
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "quant-lab-bot"
+            git config user.email "quant-lab-bot@users.noreply.github.com"
+            git commit -m "chore(health): monthly strategy health $(date -u +%Y-%m) [skip ci]" || echo "nothing"
+            git push origin main || echo "push failed"
+          fi
+
+  notify-retirement-candidate:
+    needs: evaluate-health
+    if: needs.evaluate-health.outputs.n_candidates != '0' && needs.evaluate-health.outputs.n_candidates != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Build issue body
+        run: |
+          python3 - <<'PY' > body.md
+          import json
+          h = json.load(open('quant/data/strategy_health.json'))
+          print("# 전략 폐기 후보 — 자동 검토 요청")
+          print()
+          print(f"평가: {h['updated_at']}")
+          print(f"전체: {h['n_total']} 전략, **폐기 후보 {h['n_candidates']}개**")
+          print()
+          print("## 폐기 후보 상세")
+          print()
+          print("| 전략 | 4주 P&L | 8주 P&L | 8주 win rate | round-trips | 사유 |")
+          print("|---|---|---|---|---|---|")
+          for r in h['by_strategy']:
+              if r['status'] == 'retirement_candidate':
+                  print(f"| `{r['strategy']}` | {r['pnl_4w']:+,} | {r['pnl_8w']:+,} | {r['win_rate_8w']*100:.0f}% | {r['n_round_trips_8w']} | {r['reason']} |")
+          print()
+          print("## 검토 필요")
+          print()
+          print("1. CIO subagent 가 다음 주 의회에서 이 전략들의 weight를 0으로 조정할 것을 권고합니다.")
+          print("2. 사용자 결정: 폐기 vs 파라미터 튜닝 vs 다음 4주 더 모니터링.")
+          print("3. 폐기 결정 시 `trading/lab/agents/strategy_agent.py` 의 `default_ensemble()` 에서 해당 전략 제거하고 sub_weights 재배분.")
+          print()
+          print("이 issue 는 자동 생성됩니다.")
+          PY
+
+      - name: Open / update issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('body.md', 'utf8');
+            const cands = "${{ needs.evaluate-health.outputs.candidates }}";
+            const title = `[health] 전략 폐기 후보 ${cands.split(',').length}개`;
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'strategy-health',
+            });
+            const existing = issues.data.find(i => i.title.startsWith('[health]'));
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, body,
+              });
+              console.log(`updated issue #${existing.number}`);
+            } else {
+              const created = await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ['strategy-health', 'quant-lab', 'needs-decision'],
+              });
+              console.log(`opened issue #${created.data.number}`);
+            }

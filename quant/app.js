@@ -297,6 +297,47 @@ function renderAttribution(attr, pnl) {
   }).join('');
 }
 
+const STATUS_COLORS = {
+  healthy: 'var(--c-accent)',
+  warning: 'var(--c-warn)',
+  unhealthy: 'var(--c-fail)',
+  retirement_candidate: 'var(--c-fail)',
+  insufficient_data: 'var(--c-mute2)',
+};
+
+function renderHealth(h) {
+  const root = document.getElementById('health-list');
+  const progressEl = document.getElementById('health-progress');
+  if (!root) return;
+  const rows = h?.by_strategy || [];
+  if (progressEl) {
+    progressEl.textContent = h?.n_candidates > 0
+      ? `${h.n_candidates} retirement candidate(s)`
+      : `${rows.length} strategies tracked`;
+  }
+  if (rows.length === 0) {
+    root.innerHTML = '<div class="empty">데이터 누적 대기 중 (최소 5 round-trips per strategy 필요)</div>';
+    return;
+  }
+  root.innerHTML = rows.map(r => {
+    const color = STATUS_COLORS[r.status] || 'var(--c-mute)';
+    const pnlColor = r.pnl_4w > 0 ? 'var(--c-accent)' : (r.pnl_4w < 0 ? 'var(--c-fail)' : 'var(--c-mute)');
+    const winColor = r.win_rate_8w >= 0.5 ? 'var(--c-accent)' : (r.win_rate_8w < 0.4 ? 'var(--c-fail)' : 'var(--c-mute)');
+    return `<div style="padding:12px 14px;border-radius:10px;background:var(--c-bg);border:1px solid var(--c-line);border-left:4px solid ${color}">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+        <span style="font-weight:600;font-size:.92rem">${r.strategy}</span>
+        <span class="mono" style="font-size:.7rem;font-weight:700;letter-spacing:.04em;color:${color};text-transform:uppercase">${r.status}</span>
+      </div>
+      <div class="mono" style="font-size:.78rem;color:var(--c-mute);display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px">
+        <span>4w P&L <strong style="color:${pnlColor}">${r.pnl_4w > 0 ? '+' : ''}${fmtKRW(r.pnl_4w)}</strong></span>
+        <span>8w win <strong style="color:${winColor}">${(r.win_rate_8w * 100).toFixed(0)}%</strong></span>
+        <span>${r.n_round_trips_8w}rt</span>
+      </div>
+      <div style="font-size:.74rem;color:var(--c-mute2)">→ ${r.recommended_action}: ${r.reason}</div>
+    </div>`;
+  }).join('');
+}
+
 function renderGate(g) {
   const progressEl = document.getElementById('gate-progress');
   const detailEl = document.getElementById('gate-detail');
@@ -362,7 +403,7 @@ function renderCouncil(c) {
 }
 
 async function load() {
-  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
@@ -374,6 +415,7 @@ async function load() {
     fetchJSON('./data/recent_trades.json'),
     fetchJSON('./data/attribution.json'),
     fetchJSON('./data/per_strategy_pnl.json'),
+    fetchJSON('./data/strategy_health.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -387,6 +429,7 @@ async function load() {
   renderStrategies();
   renderCouncil(council);
   renderGate(gate);
+  renderHealth(health);
   renderPlan(plan);
   renderTrades(trades);
   renderAttribution(attribution, pnl);
