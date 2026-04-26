@@ -149,6 +149,18 @@ def cmd_review(args) -> int:
             print(f"  {mark:>5s} {f.metric:<32s} value={f.value!s:<25s}  {f.detail}")
 
     print(f"\ncycle_id={cycle_id}")
+
+    # Persist backtest baseline so the Phase 3 gate can measure realized vs backtest gap
+    import json as _json, datetime as _dt
+    baseline_path = TRADE_DB_PATH.parent.parent.parent / "quant" / "data" / "backtest_baseline.json"
+    baseline_path.parent.mkdir(parents=True, exist_ok=True)
+    baseline_path.write_text(_json.dumps({
+        "updated_at": _dt.datetime.utcnow().isoformat(),
+        "strategy": strat.name,
+        "period": {"start": args.start, "end": args.end, "rebalance_freq": args.rebalance_freq},
+        "stats": result.stats,
+    }, indent=2, ensure_ascii=False, default=str))
+    print(f"baseline -> {baseline_path}")
     return 0
 
 
@@ -197,6 +209,7 @@ def cmd_snapshot(args) -> int:
         out_dir=out,
         events_db=log_dir / "lab_events.db",
         circuit_db=log_dir / "lab_circuit.db",
+        sim_state_db=log_dir / "lab_sim_state.db",
     )
     print(f"snapshot written to {out}")
     print(f"  meta:      phase={result['meta']['phase']} agents={result['meta']['agents']['total']}/{result['meta']['agents']['target']}")

@@ -203,6 +203,70 @@ function renderHeartbeat(hb) {
   }
 }
 
+function renderPlan(plan) {
+  const root = document.getElementById('plan-list');
+  const whenEl = document.getElementById('plan-when');
+  if (!root) return;
+  if (!plan || !plan.active || !plan.active.target_weights || Object.keys(plan.active.target_weights).length === 0) {
+    root.innerHTML = '<div class="empty">아직 신호 없음</div>';
+    if (whenEl) whenEl.textContent = '—';
+    return;
+  }
+  if (whenEl) whenEl.textContent = fmtTime(plan.active.ts);
+  const weights = plan.active.target_weights;
+  const sorted = Object.entries(weights).sort((a, b) => b[1] - a[1]).slice(0, 12);
+  root.innerHTML = sorted.map(([ticker, w]) => {
+    const pct = (w * 100).toFixed(1);
+    const bar = Math.min(w * 600, 100);
+    return `<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--c-line)">
+      <span class="mono" style="font-weight:600;font-size:.86rem;min-width:64px">${ticker}</span>
+      <span style="flex:1;height:6px;background:var(--c-line);border-radius:3px;overflow:hidden"><span style="display:block;height:100%;width:${bar}%;background:var(--c-accent)"></span></span>
+      <span class="mono" style="font-size:.78rem;color:var(--c-mute);min-width:50px;text-align:right">${pct}%</span>
+    </div>`;
+  }).join('');
+}
+
+function renderTrades(rt) {
+  const tbody = document.getElementById('trades-tbody');
+  if (!tbody) return;
+  const trades = (rt?.trades || []).slice(0, 12);
+  if (trades.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" class="empty">매매 대기 중</td></tr>';
+    return;
+  }
+  tbody.innerHTML = trades.map(t => {
+    const sideColor = t.side === 'buy' ? 'var(--c-accent)' : 'var(--c-copper)';
+    const okMark = t.success !== false ? '' : ' <span style="color:var(--c-fail)">!</span>';
+    return `<tr>
+      <td style="color:var(--c-mute2);font-size:.78rem">${fmtTime(t.ts).slice(5,16)}</td>
+      <td style="color:${sideColor};font-weight:700;font-size:.78rem">${(t.side||'').toUpperCase()}${okMark}</td>
+      <td>${t.ticker || '—'}</td>
+      <td style="text-align:right">${t.qty || '—'}</td>
+      <td style="text-align:right">${t.fill_price ? Number(t.fill_price).toLocaleString('ko-KR') : '—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderAttribution(attr) {
+  const root = document.getElementById('attribution-list');
+  if (!root) return;
+  const rows = attr?.by_strategy || [];
+  if (rows.length === 0) {
+    root.innerHTML = '<div class="empty">데이터 누적 대기 중</div>';
+    return;
+  }
+  root.innerHTML = rows.map(r => {
+    const tickers = (r.top_tickers || []).map(t => `<span class="mono" style="font-size:.74rem;background:var(--c-line);padding:2px 6px;border-radius:5px;margin-right:4px">${t[0]}·${t[1]}</span>`).join('');
+    return `<div style="padding:10px 12px;border-radius:10px;background:var(--c-bg);border:1px solid var(--c-line)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px">
+        <span style="font-weight:600;font-size:.88rem">${r.strategy}</span>
+        <span class="mono" style="color:var(--c-mute);font-size:.76rem">${r.n_signals} signals</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap">${tickers}</div>
+    </div>`;
+  }).join('');
+}
+
 function renderGate(g) {
   const progressEl = document.getElementById('gate-progress');
   const detailEl = document.getElementById('gate-detail');
@@ -268,7 +332,7 @@ function renderCouncil(c) {
 }
 
 async function load() {
-  const [meta, equity, decisions, critiques, heartbeat, council, gate] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
@@ -276,6 +340,9 @@ async function load() {
     fetchJSON('./data/heartbeat.json'),
     fetchJSON('./data/council-latest.json'),
     fetchJSON('./data/phase-gate.json'),
+    fetchJSON('./data/today_plan.json'),
+    fetchJSON('./data/recent_trades.json'),
+    fetchJSON('./data/attribution.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -289,6 +356,9 @@ async function load() {
   renderStrategies();
   renderCouncil(council);
   renderGate(gate);
+  renderPlan(plan);
+  renderTrades(trades);
+  renderAttribution(attribution);
 }
 
 load();

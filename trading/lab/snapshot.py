@@ -16,7 +16,7 @@ import json
 import logging
 import sqlite3
 from contextlib import contextmanager
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -195,6 +195,128 @@ def export_critiques(out_dir: Path, events_db: Path, n: int = 50) -> dict:
     return data
 
 
+def export_today_plan(out_dir: Path, events_db: Path) -> dict:
+    """The latest active strategy signal — what the system *intends* to hold."""
+    plan: dict = {"updated_at": _utcnow_iso(), "active": None, "sub_strategies": []}
+    with _ro_conn(events_db) as c:
+        if c is None:
+            (out_dir / "today_plan.json").write_text(json.dumps(plan, indent=2, ensure_ascii=False))
+            return plan
+        rows = c.execute(
+            """SELECT ts, agent, payload_json FROM events
+               WHERE payload_type='strategy_signal'
+               ORDER BY id DESC LIMIT 50"""
+        ).fetchall()
+        for r in rows:
+            p = json.loads(r["payload_json"])
+            role = (p.get("metadata") or {}).get("role")
+            entry = {
+                "ts": r["ts"],
+                "strategy": p.get("strategy"),
+                "n_picks": len(p.get("target_weights", {})),
+                "target_weights": p.get("target_weights", {}),
+            }
+            if role == "active" and plan["active"] is None:
+                plan["active"] = entry
+            elif role == "sub_strategy":
+                if not any(s["strategy"] == entry["strategy"] for s in plan["sub_strategies"]):
+                    plan["sub_strategies"].append(entry)
+    (out_dir / "today_plan.json").write_text(json.dumps(plan, indent=2, ensure_ascii=False))
+    return plan
+
+
+def export_recent_trades(out_dir: Path, events_db: Path, sim_state_db: Path | None = None, n: int = 30) -> dict:
+    """Recent execution reports + sim trades, unified."""
+    trades: list[dict] = []
+    with _ro_conn(events_db) as c:
+        if c is not None:
+            for r in c.execute(
+                """SELECT ts, payload_json FROM events
+                   WHERE payload_type='execution_report' ORDER BY id DESC LIMIT ?""",
+                (n,),
+            ).fetchall():
+                p = json.loads(r["payload_json"])
+                intent = p.get("intent", {})
+                trades.append({
+                    "ts": r["ts"],
+                    "ticker": intent.get("ticker"),
+                    "side": intent.get("side"),
+                    "qty": intent.get("qty"),
+                    "fill_price": p.get("fill_price"),
+                    "success": p.get("success"),
+                    "broker_order_id": p.get("broker_order_id"),
+                    "rationale": intent.get("rationale", ""),
+                    "source": "kis_or_dryrun",
+                })
+    if sim_state_db and sim_state_db.exists():
+        with _ro_conn(sim_state_db) as c:
+            if c is not None:
+                try:
+                    for r in c.execute(
+                        """SELECT submitted_at as ts, ticker, side, qty, fill_price, fee, notional
+                           FROM sim_orders ORDER BY id DESC LIMIT ?""",
+                        (n,),
+                    ).fetchall():
+                        trades.append({
+                            "ts": r["ts"],
+                            "ticker": r["ticker"],
+                            "side": r["side"],
+                            "qty": r["qty"],
+                            "fill_price": r["fill_price"],
+                            "fee": r["fee"],
+                            "notional": r["notional"],
+                            "success": True,
+                            "source": "simulated",
+                        })
+                except sqlite3.OperationalError:
+                    pass
+    trades.sort(key=lambda t: t.get("ts") or "", reverse=True)
+    trades = trades[:n]
+    data = {"updated_at": _utcnow_iso(), "trades": trades}
+    (out_dir / "recent_trades.json").write_text(json.dumps(data, indent=2, ensure_ascii=False, default=str))
+    return data
+
+
+def export_strategy_attribution(out_dir: Path, events_db: Path) -> dict:
+    """Per-sub-strategy pick frequency + tickers (basic attribution).
+
+    Real per-strategy P&L attribution requires order tagging by source
+    strategy (not currently emitted). This file approximates by counting
+    how often each sub-strategy proposed a given ticker over the last 30 days.
+    """
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).isoformat()
+    by_strategy: dict[str, dict] = {}
+    with _ro_conn(events_db) as c:
+        if c is not None:
+            for r in c.execute(
+                """SELECT ts, payload_json FROM events
+                   WHERE payload_type='strategy_signal' AND ts >= ?
+                   ORDER BY ts ASC""",
+                (cutoff,),
+            ).fetchall():
+                p = json.loads(r["payload_json"])
+                role = (p.get("metadata") or {}).get("role")
+                if role == "active":
+                    continue
+                strat = p.get("strategy")
+                if not strat:
+                    continue
+                rec = by_strategy.setdefault(
+                    strat, {"strategy": strat, "n_signals": 0, "ticker_counts": {}, "last_picks": []}
+                )
+                rec["n_signals"] += 1
+                for ticker in p.get("target_weights", {}).keys():
+                    rec["ticker_counts"][ticker] = rec["ticker_counts"].get(ticker, 0) + 1
+                rec["last_picks"] = list(p.get("target_weights", {}).keys())
+    rows = sorted(by_strategy.values(), key=lambda x: -x["n_signals"])
+    for r in rows:
+        r["top_tickers"] = sorted(r["ticker_counts"].items(), key=lambda x: -x[1])[:5]
+        del r["ticker_counts"]
+    data = {"updated_at": _utcnow_iso(), "by_strategy": rows}
+    (out_dir / "attribution.json").write_text(json.dumps(data, indent=2, ensure_ascii=False, default=str))
+    return data
+
+
 def export_heartbeat(out_dir: Path, events_db: Path) -> dict:
     """Heartbeat: timestamps for last successful cycle / snapshot / etc.
 
@@ -256,7 +378,7 @@ def export_heartbeat(out_dir: Path, events_db: Path) -> dict:
     return data
 
 
-def export_all(out_dir: Path, events_db: Path, circuit_db: Path) -> dict[str, Any]:
+def export_all(out_dir: Path, events_db: Path, circuit_db: Path, sim_state_db: Path | None = None) -> dict[str, Any]:
     out_dir.mkdir(parents=True, exist_ok=True)
     log.info("exporting snapshot to %s", out_dir)
     meta = export_meta(out_dir, circuit_db)
@@ -265,9 +387,18 @@ def export_all(out_dir: Path, events_db: Path, circuit_db: Path) -> dict[str, An
     decisions = export_decisions(out_dir, events_db)
     critiques = export_critiques(out_dir, events_db)
     heartbeat = export_heartbeat(out_dir, events_db)
+    today_plan = export_today_plan(out_dir, events_db)
+    recent_trades = export_recent_trades(out_dir, events_db, sim_state_db)
+    attribution = export_strategy_attribution(out_dir, events_db)
     log.info(
-        "snapshot complete: latest=%s, equity_pts=%d, decisions=%d, critiques=%d, heartbeat=%s",
+        "snapshot complete: latest=%s, equity_pts=%d, decisions=%d, critiques=%d, "
+        "trades=%d, sub_strategies=%d, heartbeat=%s",
         latest.get("cycle_id"), len(equity["points"]), len(decisions["decisions"]),
-        len(critiques["critiques"]), heartbeat.get("is_healthy"),
+        len(critiques["critiques"]), len(recent_trades["trades"]),
+        len(attribution["by_strategy"]), heartbeat.get("is_healthy"),
     )
-    return {"meta": meta, "latest": latest, "equity": equity, "decisions": decisions, "critiques": critiques, "heartbeat": heartbeat}
+    return {
+        "meta": meta, "latest": latest, "equity": equity, "decisions": decisions,
+        "critiques": critiques, "heartbeat": heartbeat,
+        "today_plan": today_plan, "recent_trades": recent_trades, "attribution": attribution,
+    }
