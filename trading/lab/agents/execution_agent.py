@@ -21,6 +21,16 @@ class ExecutionAgent(BaseAgent):
             self.emit(ctx, "no_orders", {})
             return
 
+        # AnomalyResponder may have requested a halt for this cycle
+        if ctx.get("halt_new_orders"):
+            self.emit(ctx, "halt_by_playbook", {
+                "n_intents_blocked": len(intents),
+                "reason": "AnomalyResponder halt_new_orders flag",
+            }, severity=Severity.WARN)
+            ctx.set("execution_reports", [])
+            ctx.set("blocked_intents", intents)
+            return
+
         reports: list[ExecutionReport] = []
         for intent in intents:
             if self.dry_run:

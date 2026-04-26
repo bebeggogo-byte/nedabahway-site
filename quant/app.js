@@ -446,6 +446,40 @@ function renderAnomalies(data) {
   root.innerHTML = block;
 }
 
+const RESPONSE_ACTION_LABELS = {
+  capital_scale_override: '자본 스케일 감축',
+  use_yesterday_signal: '어제 신호 재사용',
+  turnover_cap: 'rebalance 제한',
+  emergency_council: '긴급 의회 소집',
+  halt_new_orders: '신규 주문 중단',
+};
+
+function renderActiveResponses(data) {
+  const root = document.getElementById('responses-summary');
+  const whenEl = document.getElementById('responses-when');
+  if (!root) return;
+  const current = (data && data.current) || [];
+  if (whenEl) whenEl.textContent = current.length > 0 ? `${current.length} active` : 'none';
+  if (current.length === 0) {
+    root.innerHTML = '<div style="padding:14px 16px;border-radius:10px;background:var(--c-accent-soft);border-left:5px solid var(--c-accent);font-size:.86rem">✅ 정상 운영 — 자동 대응 활성화 없음</div>';
+    return;
+  }
+  root.innerHTML = current.map(r => {
+    const label = RESPONSE_ACTION_LABELS[r.action] || r.action;
+    const params = Object.entries(r.parameters || {})
+      .map(([k, v]) => `${k}=${typeof v === 'number' ? v.toFixed(2) : v}`)
+      .join(' · ');
+    return `<div style="padding:12px 14px;border-radius:10px;background:var(--c-bg);border-left:5px solid var(--c-warn)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">
+        <span style="font-weight:600;font-size:.92rem">${label}</span>
+        <span class="mono" style="font-size:.7rem;color:var(--c-mute2)">트리거: ${r.triggered_by || '—'}</span>
+      </div>
+      <div style="font-size:.82rem;color:var(--c-mute);line-height:1.5;margin-top:5px">${r.rationale || ''}</div>
+      ${params ? `<div class="mono" style="font-size:.72rem;color:var(--c-mute2);margin-top:3px">${params}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
 function renderTCA(data) {
   const root = document.getElementById('tca-summary');
   const whenEl = document.getElementById('tca-when');
@@ -805,7 +839,7 @@ function renderCouncil(c) {
 }
 
 async function load() {
-  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio, ddDefense, correlation, lifecycle, tca, anomalies] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio, ddDefense, correlation, lifecycle, tca, anomalies, responses] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
@@ -825,6 +859,7 @@ async function load() {
     fetchJSON('./data/strategy_lifecycle.json'),
     fetchJSON('./data/tca.json'),
     fetchJSON('./data/anomalies.json'),
+    fetchJSON('./data/active_responses.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -841,6 +876,7 @@ async function load() {
   renderLifecycle(lifecycle);
   renderTCA(tca);
   renderAnomalies(anomalies);
+  renderActiveResponses(responses);
   renderStrategies(portfolio);
   renderCouncil(council);
   renderGate(gate);
