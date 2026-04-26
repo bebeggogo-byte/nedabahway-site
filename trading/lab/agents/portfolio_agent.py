@@ -15,6 +15,7 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 
+from src.portfolio.regime_strategies import apply_regime_tilts
 from src.portfolio.risk_parity import compute_risk_parity_weights
 
 from ..analytics.strategy_daily_pnl import compute_daily_pnl_by_strategy
@@ -69,14 +70,31 @@ class PortfolioAgent(BaseAgent):
             max_weight=self.max_weight,
             fallback_weights=self.fallback_weights,
         )
-        ctx.set("portfolio_weights", result.weights)
+
+        # Apply regime-conditional tilts (5th weight layer on top of risk parity)
+        regime = ctx.get("regime")
+        regime_label = regime.label.value if (regime is not None and hasattr(regime, "label")) else None
+        tilt = apply_regime_tilts(result.weights, regime_label)
+
+        ctx.set("portfolio_weights", tilt.weights_after)
         ctx.set("portfolio_method", result.method)
         ctx.set("portfolio_realized_vols", result.realized_vols)
+        ctx.set("regime_tilts", {
+            "regime": tilt.regime,
+            "multipliers": tilt.multipliers,
+            "weights_before_tilt": tilt.weights_before,
+            "weights_after_tilt": tilt.weights_after,
+            "rationale": tilt.rationale,
+        })
 
         self.emit(ctx, "portfolio_weights", {
             "method": result.method,
             "n_eligible": result.n_eligible,
-            "weights": result.weights,
+            "risk_parity_weights": result.weights,
+            "regime_tilted_weights": tilt.weights_after,
+            "regime": tilt.regime,
+            "regime_multipliers": tilt.multipliers,
             "realized_vols": result.realized_vols,
             "rationale": result.rationale,
+            "tilt_rationale": tilt.rationale,
         })
