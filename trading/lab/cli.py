@@ -26,6 +26,7 @@ from lab.agents.data_agent import DataAgent  # noqa: E402
 from lab.agents.execution_agent import ExecutionAgent  # noqa: E402
 from lab.agents.microstructure_skeptic import MicrostructureSkeptic  # noqa: E402
 from lab.agents.performance_agent import PerformanceAgent  # noqa: E402
+from lab.agents.regime_agent import RegimeAgent  # noqa: E402
 from lab.agents.regime_skeptic import RegimeSkeptic  # noqa: E402
 from lab.agents.risk_agent import RiskAgent  # noqa: E402
 from lab.agents.statistical_skeptic import StatisticalSkeptic  # noqa: E402
@@ -68,6 +69,7 @@ def cmd_daily(args) -> int:
 
     universe = UniverseAgent(size=cfg.universe_size, min_market_cap_krw=cfg.min_market_cap_krw)
     data = DataAgent(lookback_days=400)
+    regime = RegimeAgent()
     strategy = StrategyAgent()
     balance = BalanceAgent(client=client)
     risk = RiskAgent(circuit=circuit)
@@ -77,7 +79,7 @@ def cmd_daily(args) -> int:
 
     pipeline = Pipeline(
         name="daily",
-        agents=[universe, data, strategy, balance, risk, microstructure, execution, performance],
+        agents=[universe, data, regime, strategy, balance, risk, microstructure, execution, performance],
         halt_on_error=False,
     )
     orchestrator = Orchestrator(bus)
@@ -249,6 +251,26 @@ def cmd_walk_forward(args) -> int:
     return 0
 
 
+def cmd_regime(args) -> int:
+    from src.data.regime import detect_regime, append_to_history
+    state = detect_regime()
+    if state is None:
+        print("Regime detection unavailable (KOSPI data not retrievable).")
+        return 1
+    print(f"\n=== Market Regime · {state.as_of} ===")
+    print(f"  Label:        {state.label.value.upper()}")
+    print(f"  Capital scale: {state.recommended_capital_scale:.0%}")
+    print(f"  Confidence:   {state.confidence:.2f}")
+    print(f"  Above 200dMA: {state.above_200ma} ({state.distance_from_200ma_pct*100:+.2f}%)")
+    print(f"  20d vol (ann): {state.realized_vol_20d_annualized*100:.1f}%")
+    print(f"  Drawdown 252d: {state.drawdown_from_peak_252d*100:+.2f}%")
+    print(f"\n  {state.rationale}\n")
+    history_path = TRADE_DB_PATH.parent.parent.parent / "quant" / "data" / "regime_history.json"
+    append_to_history(history_path, state)
+    print(f"appended to {history_path}")
+    return 0
+
+
 def cmd_health(args) -> int:
     from lab.analytics.strategy_health import write_strategy_health
     log_dir = TRADE_DB_PATH.parent
@@ -351,6 +373,9 @@ def main() -> int:
     p_health = sub.add_parser("health", help="evaluate per-strategy health (4w/8w P&L, win rate)")
     p_health.add_argument("--output", default="../quant/data", help="output dir")
     p_health.set_defaults(func=cmd_health)
+
+    p_regime = sub.add_parser("regime", help="detect current market regime (KOSPI 200dMA + vol + drawdown)")
+    p_regime.set_defaults(func=cmd_regime)
 
     p_report = sub.add_parser("report", help="generate human-readable markdown report")
     p_report.add_argument("type", choices=["weekly", "daily"], default="weekly", nargs="?")
