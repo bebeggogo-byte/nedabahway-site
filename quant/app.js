@@ -247,22 +247,52 @@ function renderTrades(rt) {
   }).join('');
 }
 
-function renderAttribution(attr) {
+function renderAttribution(attr, pnl) {
   const root = document.getElementById('attribution-list');
   if (!root) return;
   const rows = attr?.by_strategy || [];
-  if (rows.length === 0) {
+  const pnlByStrat = {};
+  for (const p of (pnl?.by_strategy || [])) {
+    pnlByStrat[p.strategy] = p;
+  }
+  if (rows.length === 0 && (!pnl || pnl.by_strategy.length === 0)) {
     root.innerHTML = '<div class="empty">데이터 누적 대기 중</div>';
     return;
   }
-  root.innerHTML = rows.map(r => {
-    const tickers = (r.top_tickers || []).map(t => `<span class="mono" style="font-size:.74rem;background:var(--c-line);padding:2px 6px;border-radius:5px;margin-right:4px">${t[0]}·${t[1]}</span>`).join('');
+  // Merge: show all strategies that appear in either source
+  const allStrats = new Set([...rows.map(r => r.strategy), ...Object.keys(pnlByStrat)]);
+  const merged = Array.from(allStrats).map(name => {
+    const a = rows.find(r => r.strategy === name) || { n_signals: 0, top_tickers: [] };
+    const p = pnlByStrat[name] || null;
+    return { strategy: name, ...a, pnl: p };
+  });
+  // Sort by realized P&L if available, else signal count
+  merged.sort((x, y) => {
+    const px = x.pnl?.realized_pnl || 0;
+    const py = y.pnl?.realized_pnl || 0;
+    if (px !== py) return py - px;
+    return (y.n_signals || 0) - (x.n_signals || 0);
+  });
+  root.innerHTML = merged.map(r => {
+    const tickers = (r.top_tickers || []).slice(0,4).map(t => `<span class="mono" style="font-size:.72rem;background:var(--c-line);padding:2px 6px;border-radius:5px;margin-right:3px">${t[0]}·${t[1]}</span>`).join('');
+    let pnlBlock = '<span class="mono" style="font-size:.74rem;color:var(--c-mute2)">P&L 누적 대기</span>';
+    if (r.pnl) {
+      const realized = r.pnl.realized_pnl;
+      const color = realized > 0 ? 'var(--c-accent)' : (realized < 0 ? 'var(--c-fail)' : 'var(--c-mute)');
+      const sign = realized > 0 ? '+' : '';
+      const wr = (r.pnl.win_rate * 100).toFixed(0);
+      pnlBlock = `<span class="mono" style="font-weight:700;color:${color};font-size:.86rem">${sign}${fmtKRW(realized)}</span>
+        <span class="mono" style="font-size:.72rem;color:var(--c-mute2);margin-left:6px">${r.pnl.n_round_trips}rt · ${wr}% win</span>`;
+    }
     return `<div style="padding:10px 12px;border-radius:10px;background:var(--c-bg);border:1px solid var(--c-line)">
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px">
         <span style="font-weight:600;font-size:.88rem">${r.strategy}</span>
-        <span class="mono" style="color:var(--c-mute);font-size:.76rem">${r.n_signals} signals</span>
+        <span>${pnlBlock}</span>
       </div>
-      <div style="display:flex;flex-wrap:wrap">${tickers}</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:.74rem;color:var(--c-mute);gap:8px">
+        <span>${r.n_signals || 0} signals</span>
+        <div style="flex:1;text-align:right;overflow:hidden">${tickers}</div>
+      </div>
     </div>`;
   }).join('');
 }
@@ -332,7 +362,7 @@ function renderCouncil(c) {
 }
 
 async function load() {
-  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
@@ -343,6 +373,7 @@ async function load() {
     fetchJSON('./data/today_plan.json'),
     fetchJSON('./data/recent_trades.json'),
     fetchJSON('./data/attribution.json'),
+    fetchJSON('./data/per_strategy_pnl.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -358,7 +389,7 @@ async function load() {
   renderGate(gate);
   renderPlan(plan);
   renderTrades(trades);
-  renderAttribution(attribution);
+  renderAttribution(attribution, pnl);
 }
 
 load();

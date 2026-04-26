@@ -51,17 +51,19 @@ class RiskAgent(BaseAgent):
             total_equity=equity,
             max_position_pct=self.max_position_pct,
         )
-        intents = [
-            OrderIntent(
+        attribution = ctx.get("strategy_attribution") or {}
+        intents = []
+        for i in intents_raw:
+            attr = attribution.get(i.ticker, {signal.strategy: 1.0})
+            intents.append(OrderIntent(
                 ticker=i.ticker,
                 side=i.side,
                 qty=i.qty,
                 target_price=i.target_price,
                 order_type="market",
                 rationale=f"rebalance to {signal.strategy}",
-            )
-            for i in intents_raw
-        ]
+                attribution=attr,
+            ))
         ctx.set("order_intents", intents)
         result = RiskCheckResult(allowed=True, adjusted_intents=intents)
         self.emit(ctx, "risk_check", result.model_dump(mode="json"))

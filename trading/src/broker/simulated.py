@@ -50,9 +50,14 @@ CREATE TABLE IF NOT EXISTS sim_orders (
     qty INTEGER NOT NULL,
     fill_price INTEGER NOT NULL,
     fee REAL NOT NULL,
-    notional INTEGER NOT NULL
+    notional INTEGER NOT NULL,
+    attribution_json TEXT
 );
 """
+
+_MIGRATIONS = [
+    "ALTER TABLE sim_orders ADD COLUMN attribution_json TEXT",
+]
 
 
 class SimulatedBroker:
@@ -73,6 +78,11 @@ class SimulatedBroker:
         self.slippage_bps = slippage_bps
         with self._conn() as c:
             c.executescript(_SCHEMA)
+            for stmt in _MIGRATIONS:
+                try:
+                    c.execute(stmt)
+                except sqlite3.OperationalError:
+                    pass  # column already exists
             row = c.execute("SELECT cash FROM sim_state WHERE id=1").fetchone()
             if row is None:
                 c.execute(
@@ -153,6 +163,7 @@ class SimulatedBroker:
         side: str,
         price: int = 0,
         order_type: str = "01",
+        attribution: dict[str, float] | None = None,
     ) -> SimOrderResult:
         if qty <= 0:
             return SimOrderResult(success=False, order_id=None, raw={"msg1": f"qty<=0: {qty}"})
@@ -219,9 +230,10 @@ class SimulatedBroker:
                 return SimOrderResult(success=False, order_id=None, raw={"msg1": f"unknown side: {side}"})
 
             cur_order = c.execute(
-                """INSERT INTO sim_orders(submitted_at, ticker, side, qty, fill_price, fee, notional)
-                   VALUES (?, ?, ?, ?, ?, ?, ?)""",
-                (datetime.utcnow().isoformat(), ticker, side, qty, fill_price, fee, notional),
+                """INSERT INTO sim_orders(submitted_at, ticker, side, qty, fill_price, fee, notional, attribution_json)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+                (datetime.utcnow().isoformat(), ticker, side, qty, fill_price, fee, notional,
+                 json.dumps(attribution) if attribution else None),
             )
             order_id = f"SIM-{cur_order.lastrowid}"
 

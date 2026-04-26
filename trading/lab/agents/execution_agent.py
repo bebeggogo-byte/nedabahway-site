@@ -31,13 +31,17 @@ class ExecutionAgent(BaseAgent):
 
             try:
                 kis_order_type = "01" if intent.order_type == "market" else "00"
-                result = self.client.place_order(
-                    ticker=intent.ticker,
-                    qty=intent.qty,
-                    side=intent.side,
-                    price=intent.target_price if intent.order_type == "limit" else 0,
-                    order_type=kis_order_type,
-                )
+                # SimulatedBroker accepts attribution; KisClient ignores extra kwargs gracefully
+                place_kwargs = {
+                    "ticker": intent.ticker,
+                    "qty": intent.qty,
+                    "side": intent.side,
+                    "price": intent.target_price if intent.order_type == "limit" else 0,
+                    "order_type": kis_order_type,
+                }
+                if intent.attribution and "attribution" in self.client.place_order.__code__.co_varnames:
+                    place_kwargs["attribution"] = intent.attribution
+                result = self.client.place_order(**place_kwargs)
                 rep = ExecutionReport(
                     intent=intent,
                     success=result.success,
