@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>The Hidden Key — A Still Hands Treasure Hunt</title>
+<meta name="description" content="Five key fragments are hidden across nedabah.org. Find them, assemble the code, and claim a free 60-minute private call with Kim Changhwan from Jeju Island.">
+<meta property="og:title" content="The Hidden Key — A Still Hands Treasure Hunt">
+<meta property="og:description" content="Five fragments hidden across the site. Assemble the code. Win a free 60-minute call with Kim from Jeju.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nedabah.org/treasure.html">
+<link rel="canonical" href="https://www.nedabah.org/treasure.html">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
+:root{
+  --c-bg:#FAFAF7;--c-surface:#FFFFFF;--c-fg:#1A1A1A;
+  --c-mute:#6B6B6B;--c-mute2:#9A9A9A;--c-line:#E8E6E0;--c-line2:#D6D3CA;
+  --c-accent:#10803D;--c-accent-soft:#E8F2EC;
+  --c-copper:#C2410C;--c-copper-soft:#FDF1EA;
+  --c-insight:#1D4ED8;--c-insight-soft:#E8EEFB;
+  --ff:'Pretendard Variable','Noto Sans',system-ui,sans-serif;
+  --ff-serif:'Noto Serif KR','Iowan Old Style',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);
+  line-height:1.7;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line)}
+.nav__inner{max-width:1180px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
+.nav__logo{font-family:var(--ff-serif);font-weight:700;font-size:1.18rem;letter-spacing:-.01em}
+.nav__logo em{font-style:italic;color:var(--c-copper);font-weight:700}
+.nav__links{display:flex;gap:24px;align-items:center}
+.nav__link{font-size:.9rem;color:var(--c-mute);font-weight:500}
+.nav__link:hover{color:var(--c-fg)}
+.nav__cta{font-size:.85rem;padding:10px 20px;border-radius:999px;background:var(--c-fg);color:var(--c-bg);font-weight:700;transition:background .15s}
+.nav__cta:hover{background:var(--c-accent);text-decoration:none}
+@media(max-width:760px){.nav__links .nav__link{display:none}}
+
+.mast{max-width:880px;margin:0 auto;padding:72px 28px 24px}
+.kicker{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--c-copper);margin-bottom:18px}
+.h1{font-family:var(--ff-serif);font-size:clamp(2.4rem,6vw,4rem);line-height:1.08;letter-spacing:-.03em;font-weight:800;margin-bottom:22px}
+.h1 em{font-style:italic;color:var(--c-copper);font-weight:700}
+.lede{color:var(--c-mute);font-size:1.05rem;line-height:1.8;max-width:640px}
+.lede strong{color:var(--c-fg);font-weight:600}
+
+.wrap{max-width:880px;margin:0 auto;padding:32px 28px 0}
+.section{margin:48px 0;padding-top:36px;border-top:1px solid var(--c-line)}
+.section__h{font-family:var(--ff-serif);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin-bottom:18px}
+.section__sub{color:var(--c-mute);font-size:.95rem;margin-bottom:24px;line-height:1.75}
+
+.prize{background:var(--c-surface);border:1px solid var(--c-line);border-radius:18px;padding:28px 30px;display:grid;gap:14px;position:relative;overflow:hidden}
+.prize::before{content:"";position:absolute;inset:0;background:radial-gradient(420px 220px at 90% -10%,var(--c-copper-soft),transparent 70%);pointer-events:none}
+.prize__label{font-size:.7rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--c-copper);position:relative}
+.prize__title{font-family:var(--ff-serif);font-size:1.6rem;font-weight:700;letter-spacing:-.02em;line-height:1.3;position:relative}
+.prize__body{color:#333;line-height:1.75;font-size:.98rem;position:relative}
+.prize__terms{font-size:.78rem;color:var(--c-mute2);padding-top:14px;border-top:1px dashed var(--c-line2);position:relative}
+
+.steps{display:grid;gap:14px;counter-reset:step}
+.step{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;padding:18px 22px;background:var(--c-surface);border:1px solid var(--c-line);border-radius:14px}
+.step__n{counter-increment:step;font-family:var(--ff-serif);font-weight:800;font-size:1.4rem;color:var(--c-copper);min-width:32px;line-height:1.1}
+.step__n::before{content:counter(step) "."}
+.step__b{color:#333;font-size:.96rem;line-height:1.7}
+.step__b strong{color:var(--c-fg)}
+
+.hints{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:640px){.hints{grid-template-columns:1fr 1fr}}
+.hint{padding:18px 20px;background:var(--c-surface);border:1px solid var(--c-line);border-radius:12px;display:grid;gap:6px;border-left:3px solid var(--c-copper)}
+.hint__n{font-size:.7rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--c-copper)}
+.hint__b{color:#333;font-size:.94rem;line-height:1.65}
+.hint__b a{color:var(--c-insight);font-weight:600}
+
+.solver{background:var(--c-surface);border:1px solid var(--c-line);border-radius:18px;padding:32px 28px;text-align:center}
+.solver__label{font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin-bottom:6px}
+.solver__hint{font-size:.9rem;color:var(--c-mute);margin-bottom:22px}
+.code-row{display:flex;gap:10px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
+.code-cell{width:54px;height:64px;font-size:1.6rem;font-weight:800;text-align:center;text-transform:uppercase;border:1.5px solid var(--c-line2);border-radius:10px;background:var(--c-bg);color:var(--c-fg);font-family:var(--ff-serif);outline:none;transition:border-color .15s,transform .15s;letter-spacing:0;-webkit-appearance:none}
+.code-cell:focus{border-color:var(--c-accent)}
+.code-cell.filled{border-color:var(--c-fg)}
+.solver--shake .code-row{animation:shake .42s}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.solver__btn{padding:14px 32px;font-size:.95rem;font-weight:700;background:var(--c-fg);color:var(--c-bg);border:none;border-radius:10px;cursor:pointer;transition:background .15s;font-family:inherit}
+.solver__btn:hover{background:var(--c-accent)}
+.solver__btn[disabled]{opacity:.5;cursor:not-allowed}
+.solver__msg{min-height:1.6em;margin-top:14px;font-size:.88rem;color:var(--c-mute2)}
+.solver__msg--ok{color:var(--c-accent);font-weight:600}
+.solver__msg--err{color:var(--c-copper);font-weight:600}
+.solver__attempts{margin-top:8px;font-size:.78rem;color:var(--c-mute2)}
+
+.claim{display:none;margin-top:18px;padding:24px 22px;background:var(--c-accent-soft);border:1px solid var(--c-accent);border-radius:14px;text-align:left}
+.claim--show{display:block}
+.claim__h{font-family:var(--ff-serif);font-weight:700;font-size:1.15rem;margin-bottom:10px}
+.claim__sub{font-size:.9rem;color:#1f4a30;margin-bottom:18px;line-height:1.7}
+.claim__form{display:grid;gap:10px}
+.claim__input{padding:12px 16px;font-size:.96rem;border:1.5px solid var(--c-line2);border-radius:9px;background:#fff;color:var(--c-fg);outline:none;font-family:inherit}
+.claim__input:focus{border-color:var(--c-accent)}
+.claim__btn{padding:13px 22px;font-size:.92rem;font-weight:700;background:var(--c-accent);color:#fff;border:none;border-radius:9px;cursor:pointer;font-family:inherit}
+.claim__btn:hover{background:#0a6a30}
+
+.faq{display:grid;gap:10px}
+.faq details{background:var(--c-surface);border:1px solid var(--c-line);border-radius:12px;padding:0;overflow:hidden}
+.faq summary{padding:16px 22px;cursor:pointer;font-weight:600;font-size:.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq summary::after{content:"+";color:var(--c-copper);font-weight:800;font-size:1.2rem}
+.faq details[open] summary::after{content:"−"}
+.faq-body{padding:0 22px 18px;color:var(--c-mute);font-size:.92rem;line-height:1.8}
+
+.foot{max-width:1080px;margin:48px auto 0;padding:40px 28px 72px;color:var(--c-mute);font-size:.85rem;line-height:1.8;border-top:1px solid var(--c-line)}
+.foot__top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--c-line)}
+.foot__brand{font-family:var(--ff-serif);font-size:1.05rem;font-weight:700;color:var(--c-fg)}
+.foot__brand em{font-style:italic;color:var(--c-copper);font-weight:700}
+.foot__links{display:flex;gap:18px;flex-wrap:wrap}
+.foot__links a{color:var(--c-mute);font-size:.85rem}
+.foot__bottom{font-size:.78rem;color:var(--c-mute2)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/">Still <em>Hands</em></a>
+    <div class="nav__links">
+      <a class="nav__link" href="/blog/">All issues</a>
+      <a class="nav__link" href="/work.html">Work with Kim</a>
+      <a class="nav__link" href="/company.html">About</a>
+      <a class="nav__cta" href="/#subscribe">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<header class="mast">
+  <div class="kicker">Event · Treasure Hunt</div>
+  <h1 class="h1">Find the <em>hidden key</em>.</h1>
+  <p class="lede">
+    Five key fragments are hidden across this site. Each one is a single letter,
+    waiting in plain sight on a page you might already have read. Collect them in
+    order, assemble the five-letter code, and the prize is a <strong>free 60-minute
+    private call with Kim Changhwan</strong> — about your work, your one-person
+    business, or anything you'd usually pay a consultant for.
+  </p>
+</header>
+
+<main class="wrap">
+
+  <section class="section" style="border-top:none;padding-top:0">
+    <div class="prize">
+      <div class="prize__label">The Prize</div>
+      <h2 class="prize__title">A 60-minute private call with Kim, from Jeju.</h2>
+      <p class="prize__body">
+        One winner per month. The call is yours to use however helps most — a
+        proposal review, a workshop design crit, a one-on-one on running a
+        one-person company alongside an AI swarm. Held over Google Meet,
+        scheduled within 30 days of winning, in English or Korean.
+      </p>
+      <div class="prize__terms">
+        Open to anyone, anywhere. One entry per person. The hunt closes when a
+        winner is drawn or on the last day of the month, whichever comes first.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section__h">How it works</h2>
+    <p class="section__sub">Three steps. No account, no app, no tracking.</p>
+    <div class="steps">
+      <div class="step"><div class="step__n"></div><div class="step__b"><strong>Find the five fragments.</strong> Each one is a single letter, shown next to a small &#x1F511; icon on a page somewhere on this site.</div></div>
+      <div class="step"><div class="step__n"></div><div class="step__b"><strong>Order them by number.</strong> Each fragment is labelled 1 through 5. The order matters.</div></div>
+      <div class="step"><div class="step__n"></div><div class="step__b"><strong>Enter the code below.</strong> If it's right, a small claim form will appear and you'll be asked for a name and email.</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section__h">Hints</h2>
+    <p class="section__sub">If you'd rather hunt blind, skip this section. Otherwise — here's where to look.</p>
+    <div class="hints">
+      <div class="hint"><div class="hint__n">Fragment 1</div><div class="hint__b">Where the publication signs its name. <a href="/">The masthead, the foot of the home page →</a></div></div>
+      <div class="hint"><div class="hint__n">Fragment 2</div><div class="hint__b">Inside the cover essay, in the section about the year before the swarm. <a href="/blog/posts/2026-04-19_eight-hours-with-my-ai-swarm.html">A year and a twenty-dollar subscription ago →</a></div></div>
+      <div class="hint"><div class="hint__n">Fragment 3</div><div class="hint__b">Below the headline on the page that explains how to hire Kim. <a href="/work.html">Work with Kim →</a></div></div>
+      <div class="hint"><div class="hint__n">Fragment 4</div><div class="hint__b">Among the four numbers that introduce the company. <a href="/company.html">About / 회사소개 →</a></div></div>
+      <div class="hint"><div class="hint__n">Fragment 5</div><div class="hint__b">At the bottom of the masthead in the resources archive. <a href="/resources/">자료실 →</a></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section__h">Enter the code</h2>
+    <p class="section__sub">Five letters. Case doesn't matter.</p>
+    <div id="solver" class="solver">
+      <div class="solver__label">Five letters, in order.</div>
+      <div class="solver__hint">Use the boxes below. Tab and arrow keys work.</div>
+      <div class="code-row" id="code-row" role="group" aria-label="Five-letter code">
+        <input class="code-cell" type="text" maxlength="1" autocomplete="off" inputmode="text" aria-label="Letter 1">
+        <input class="code-cell" type="text" maxlength="1" autocomplete="off" inputmode="text" aria-label="Letter 2">
+        <input class="code-cell" type="text" maxlength="1" autocomplete="off" inputmode="text" aria-label="Letter 3">
+        <input class="code-cell" type="text" maxlength="1" autocomplete="off" inputmode="text" aria-label="Letter 4">
+        <input class="code-cell" type="text" maxlength="1" autocomplete="off" inputmode="text" aria-label="Letter 5">
+      </div>
+      <button id="solver-btn" class="solver__btn" type="button" disabled>Submit</button>
+      <div id="solver-msg" class="solver__msg" aria-live="polite"></div>
+      <div id="solver-attempts" class="solver__attempts"></div>
+
+      <div id="claim" class="claim" aria-hidden="true">
+        <div class="claim__h">You found it. Now claim your call.</div>
+        <p class="claim__sub">Tell us where to reach you. We'll email within 48 hours to confirm the slot.</p>
+        <form id="claim-form" class="claim__form" action="https://formsubmit.co/ajax/nedabah.way@gmail.com" method="POST">
+          <input class="claim__input" type="text" name="name" required placeholder="Your name">
+          <input class="claim__input" type="email" name="email" required placeholder="your@email.com">
+          <input class="claim__input" type="text" name="note" placeholder="What you'd like the call to be about (optional)">
+          <input type="hidden" name="_subject" value="[Treasure Hunt] Code solved — call claim">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_honey" value="">
+          <input type="hidden" name="solved_at" id="claim-solved-at" value="">
+          <button class="claim__btn" type="submit">Claim my call →</button>
+          <p id="claim-msg" class="solver__msg" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section__h">Questions</h2>
+    <div class="faq">
+      <details><summary>Is the code the same for everyone?</summary><div class="faq-body">Yes. The fragments are visible on each host page; you just have to read carefully.</div></details>
+      <details><summary>Is there a deadline?</summary><div class="faq-body">The hunt closes the moment a winner is drawn, or at the end of the month, whichever comes first. We will note the closing date here once it's set.</div></details>
+      <details><summary>Can I enter more than once?</summary><div class="faq-body">Once per person. Repeated submissions from the same email are treated as the first.</div></details>
+      <details><summary>Will I be added to the newsletter mailing list?</summary><div class="faq-body">No. The email you submit here is used only to schedule your call if you win. Subscribing to <a href="/#subscribe">Still Hands</a> is a separate, opt-in action.</div></details>
+      <details><summary>I think I found a bug. How do I report it?</summary><div class="faq-body">Email <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a> with the page URL and what you saw.</div></details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__brand">Still <em>Hands</em> — A Nedabahway Publication</div>
+    <div class="foot__links">
+      <a href="/blog/">Magazine</a>
+      <a href="/work.html">Work with Kim</a>
+      <a href="/company.html">About</a>
+      <a href="/blog/feed.xml">RSS</a>
+      <a href="mailto:nedabah.way@gmail.com">Contact</a>
+    </div>
+  </div>
+  <div class="foot__bottom">© 2026 Nedabahway · A small treasure hunt, run from Jeju Island.</div>
+</footer>
+
+<script>
+(function(){
+  var SOLUTION_HASH = 'bb329f752d5953db3ab07dbafa3fbbb1fa423d1a841f9c1805b8ccd0a334bef2';
+  var STORAGE_ATTEMPTS = 'nbw.treasure.attempts';
+  var STORAGE_SOLVED = 'nbw.treasure.solved';
+
+  var row = document.getElementById('code-row');
+  var cells = row.querySelectorAll('.code-cell');
+  var btn = document.getElementById('solver-btn');
+  var msg = document.getElementById('solver-msg');
+  var attemptsEl = document.getElementById('solver-attempts');
+  var claim = document.getElementById('claim');
+  var solver = document.getElementById('solver');
+  var claimForm = document.getElementById('claim-form');
+  var claimMsg = document.getElementById('claim-msg');
+  var solvedAtEl = document.getElementById('claim-solved-at');
+
+  function getAttempts(){
+    try{ return parseInt(localStorage.getItem(STORAGE_ATTEMPTS) || '0', 10) || 0; }
+    catch(e){ return 0; }
+  }
+  function setAttempts(n){
+    try{ localStorage.setItem(STORAGE_ATTEMPTS, String(n)); }catch(e){}
+  }
+  function renderAttempts(){
+    var n = getAttempts();
+    attemptsEl.textContent = n > 0 ? ('Wrong attempts so far: ' + n) : '';
+  }
+  function isSolved(){
+    try{ return localStorage.getItem(STORAGE_SOLVED) === '1'; }catch(e){ return false; }
+  }
+  function markSolved(){
+    try{ localStorage.setItem(STORAGE_SOLVED, '1'); }catch(e){}
+  }
+
+  function readCode(){
+    var s = '';
+    for(var i=0;i<cells.length;i++){ s += (cells[i].value || ''); }
+    return s.toUpperCase();
+  }
+  function refreshBtn(){
+    btn.disabled = readCode().length !== cells.length;
+  }
+
+  cells.forEach(function(cell, i){
+    cell.addEventListener('input', function(){
+      var v = (cell.value || '').replace(/[^A-Za-z]/g, '').toUpperCase();
+      cell.value = v;
+      cell.classList.toggle('filled', !!v);
+      if(v && i < cells.length - 1){ cells[i+1].focus(); }
+      refreshBtn();
+    });
+    cell.addEventListener('keydown', function(e){
+      if(e.key === 'Backspace' && !cell.value && i > 0){
+        cells[i-1].focus();
+      } else if(e.key === 'ArrowLeft' && i > 0){
+        cells[i-1].focus(); e.preventDefault();
+      } else if(e.key === 'ArrowRight' && i < cells.length - 1){
+        cells[i+1].focus(); e.preventDefault();
+      } else if(e.key === 'Enter' && !btn.disabled){
+        btn.click();
+      }
+    });
+    cell.addEventListener('paste', function(e){
+      var data = (e.clipboardData || window.clipboardData).getData('text') || '';
+      data = data.replace(/[^A-Za-z]/g, '').toUpperCase().slice(0, cells.length);
+      if(!data) return;
+      e.preventDefault();
+      for(var k=0;k<data.length && (i+k)<cells.length;k++){
+        cells[i+k].value = data[k];
+        cells[i+k].classList.add('filled');
+      }
+      var nextIdx = Math.min(i + data.length, cells.length - 1);
+      cells[nextIdx].focus();
+      refreshBtn();
+    });
+  });
+
+  function sha256Hex(str){
+    var enc = new TextEncoder().encode(str);
+    return crypto.subtle.digest('SHA-256', enc).then(function(buf){
+      var arr = new Uint8Array(buf);
+      var hex = '';
+      for(var i=0;i<arr.length;i++){
+        var h = arr[i].toString(16);
+        hex += (h.length === 1 ? '0' : '') + h;
+      }
+      return hex;
+    });
+  }
+
+  function showClaim(){
+    claim.classList.add('claim--show');
+    claim.setAttribute('aria-hidden', 'false');
+    solvedAtEl.value = new Date().toISOString();
+    btn.disabled = true;
+    cells.forEach(function(c){ c.disabled = true; });
+    msg.textContent = 'Correct. The code is open.';
+    msg.className = 'solver__msg solver__msg--ok';
+    markSolved();
+  }
+
+  btn.addEventListener('click', function(){
+    var code = readCode();
+    if(code.length !== cells.length) return;
+    msg.textContent = 'Checking...';
+    msg.className = 'solver__msg';
+    sha256Hex(code).then(function(hex){
+      if(hex === SOLUTION_HASH){
+        showClaim();
+      } else {
+        var n = getAttempts() + 1;
+        setAttempts(n);
+        renderAttempts();
+        solver.classList.add('solver--shake');
+        setTimeout(function(){ solver.classList.remove('solver--shake'); }, 450);
+        msg.textContent = n >= 5
+          ? 'Not quite. Stuck? Re-read the hints — each fragment sits next to a small key icon.'
+          : 'Not quite. Try again.';
+        msg.className = 'solver__msg solver__msg--err';
+      }
+    }).catch(function(){
+      msg.textContent = 'Your browser does not support the verification step. Try a different browser.';
+      msg.className = 'solver__msg solver__msg--err';
+    });
+  });
+
+  if(claimForm){
+    claimForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var data = new FormData(claimForm);
+      claimMsg.textContent = 'Sending...';
+      claimMsg.className = 'solver__msg';
+      fetch(claimForm.action, {method:'POST', body:data, headers:{'Accept':'application/json'}})
+        .then(function(r){ return r.ok ? r.json() : Promise.reject(r); })
+        .then(function(){ window.location.href = '/treasure-thanks.html'; })
+        .catch(function(){
+          claimMsg.textContent = 'Something went wrong. Email nedabah.way@gmail.com directly with the code and your name.';
+          claimMsg.className = 'solver__msg solver__msg--err';
+        });
+    });
+  }
+
+  if(isSolved()){
+    msg.textContent = 'You already entered the correct code from this device.';
+    msg.className = 'solver__msg solver__msg--ok';
+    claim.classList.add('claim--show');
+    claim.setAttribute('aria-hidden', 'false');
+    cells.forEach(function(c){ c.disabled = true; });
+  }
+
+  renderAttempts();
+  refreshBtn();
+})();
+</script>
+</body>
+</html>
