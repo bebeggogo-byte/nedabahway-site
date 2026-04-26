@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1A2D45">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="네다바 Vault">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="네다바웨이 운영 Vault 현황 — 실시간 요약 (공개 통계만)">
+<meta name="robots" content="noindex,nofollow">
+<title>Vault Monitor — 네다바웨이</title>
+
+<link rel="manifest" href="/vault/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/vault/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/vault/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/vault/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #1A2D45;
+    --teal:    #1A7264;
+    --bg:      #F8F7F4;
+    --bg-warm: #F5F2EC;
+    --card:    #FFFFFF;
+    --stone:   #78726C;
+    --text:    #1C1C1C;
+    --border:  #E0DDD8;
+    --red:     #C0392B;
+    --amber:   #D17B0F;
+    --green:   #1A7264;
+    --radius:  10px;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.55;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* ── Header ────────────────────────────────── */
+  header {
+    background: var(--navy);
+    color: #fff;
+    padding: 18px 20px;
+    padding-top: max(18px, env(safe-area-inset-top));
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .brand {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .brand small {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+  .health-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(255,255,255,0.12);
+  }
+  .health-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #6FCF97;
+  }
+  .health-badge.grade-B .health-dot { background: #F2C94C; }
+  .health-badge.grade-C .health-dot { background: #F2994A; }
+  .health-badge.grade-D .health-dot { background: #EB5757; }
+
+  /* ── Main ─────────────────────────────────── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+  }
+  .card h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--stone);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card h2 .meta {
+    font-size: 11px;
+    color: var(--stone);
+    text-transform: none;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  /* ── KPI Grid (Top) ───────────────────────── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .kpi {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+  }
+  .kpi .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+  .kpi .label {
+    font-size: 11px;
+    color: var(--stone);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  .kpi.warn .num { color: var(--amber); }
+  .kpi.danger .num { color: var(--red); }
+
+  @media (max-width: 600px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .kpi .num { font-size: 24px; }
+  }
+
+  /* ── Folders ──────────────────────────────── */
+  .folder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+  }
+  .folder-row {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    background: var(--bg-warm);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .folder-row .code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 500;
+  }
+  .folder-row .label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .folder-row .nums {
+    font-size: 11px;
+    color: var(--stone);
+    margin-top: 2px;
+  }
+  .folder-row .nums b {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .folder-row.private {
+    background: #F5EFEC;
+    border-color: #E5D5CD;
+  }
+  .folder-row.private .nums { color: var(--amber); font-weight: 500; }
+
+  /* ── Departments ──────────────────────────── */
+  .dept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px;
+  }
+  .dept-cell {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 8px;
+    text-align: center;
+    background: #fff;
+    transition: all 0.15s;
+  }
+  .dept-cell.active {
+    background: #E8F2EF;
+    border-color: var(--teal);
+  }
+  .dept-cell .name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .dept-cell .today {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 4px;
+    color: var(--stone);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .dept-cell.active .today { color: var(--teal); }
+  .dept-cell .total {
+    font-size: 10px;
+    color: var(--stone);
+    margin-top: 2px;
+  }
+
+  /* ── Trend chart ──────────────────────────── */
+  .trend-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 100px;
+    padding: 8px 0;
+  }
+  .trend-bar {
+    flex: 1;
+    background: linear-gradient(to top, var(--teal), #4A9B8C);
+    border-radius: 3px 3px 0 0;
+    min-height: 3px;
+    position: relative;
+    transition: opacity 0.15s;
+    cursor: default;
+  }
+  .trend-bar:hover { opacity: 0.7; }
+  .trend-bar[data-today="1"] {
+    background: linear-gradient(to top, var(--navy), #2D4762);
+  }
+  .trend-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--stone);
+    margin-top: 6px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── Status chips ─────────────────────────── */
+  .status-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .status-chip {
+    flex: 1;
+    min-width: 200px;
+    background: var(--bg-warm);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .status-chip .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border: 1px solid var(--border);
+  }
+  .status-chip.ok .icon { background: #E8F2EF; border-color: var(--teal); }
+  .status-chip.no .icon { background: #FBE9E7; border-color: var(--red); }
+  .status-chip .info { flex: 1; min-width: 0; }
+  .status-chip .info .title {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+  .status-chip .info .sub {
+    font-size: 11px;
+    color: var(--stone);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* ── Issues ───────────────────────────────── */
+  .issues-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .issues-list li {
+    background: #FBE9E7;
+    color: #8B2419;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    border-left: 3px solid var(--red);
+  }
+  .issues-list li.empty {
+    background: #E8F2EF;
+    color: var(--green);
+    border-left-color: var(--green);
+  }
+
+  /* ── Footer ───────────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 24px 20px 40px;
+    font-size: 11px;
+    color: var(--stone);
+  }
+  footer a { color: var(--teal); text-decoration: none; }
+  footer .privacy {
+    margin-top: 8px;
+    font-size: 10px;
+    opacity: 0.7;
+  }
+
+  /* ── Loading ──────────────────────────────── */
+  .loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--stone);
+  }
+  .pulse {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+
+  .refresh-btn {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: inherit;
+    margin-left: 8px;
+  }
+  .refresh-btn:hover { background: rgba(255,255,255,0.1); }
+  .refresh-btn:active { transform: scale(0.96); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-row">
+    <div class="brand">
+      네다바 Vault
+      <small>실시간 운영 모니터 · 공개 통계만</small>
+    </div>
+    <div>
+      <span id="healthBadge" class="health-badge"><span class="health-dot"></span><span id="healthGrade">—</span></span>
+      <button class="refresh-btn" onclick="loadStats(true)">새로고침</button>
+    </div>
+  </div>
+</header>
+
+<main id="mainContent">
+  <div class="loading"><span class="pulse"></span> 통계 불러오는 중…</div>
+</main>
+
+<footer>
+  <div>
+    <a href="/">nedabah.org</a> · 데이터는 <span id="lastUpdated">—</span>에 갱신됨 · 5분마다 자동 업데이트
+  </div>
+  <div class="privacy">
+    🔒 공개/비공개 분리 원칙 적용 — 클라이언트명·KPI 원장·계약 정보는 표시되지 않습니다
+  </div>
+</footer>
+
+<script>
+const STATS_URL = '/vault/data/stats.json?_=' + Date.now();
+
+async function loadStats(force = false) {
+  try {
+    const url = force ? '/vault/data/stats.json?_=' + Date.now() : STATS_URL;
+    const res = await fetch(url, { cache: force ? 'no-store' : 'default' });
+    if (!res.ok) throw new Error('fetch failed');
+    const stats = await res.json();
+    render(stats);
+  } catch (e) {
+    document.getElementById('mainContent').innerHTML =
+      `<div class="card"><p style="color:var(--red)">통계 데이터를 불러올 수 없습니다. 잠시 후 다시 시도하세요.<br><small>${e.message}</small></p></div>`;
+  }
+}
+
+function fmtTime(iso) {
+  if (!iso) return '—';
+  try {
+    const d = new Date(iso);
+    const now = new Date();
+    const diffMin = Math.floor((now - d) / 60000);
+    if (diffMin < 1) return '방금';
+    if (diffMin < 60) return diffMin + '분 전';
+    if (diffMin < 1440) return Math.floor(diffMin / 60) + '시간 전';
+    return Math.floor(diffMin / 1440) + '일 전';
+  } catch { return iso; }
+}
+
+function render(s) {
+  // Health badge
+  const badge = document.getElementById('healthBadge');
+  badge.className = 'health-badge grade-' + s.health.grade;
+  document.getElementById('healthGrade').textContent =
+    s.health.grade + ' · ' + s.health.score + '점';
+
+  document.getElementById('lastUpdated').textContent = fmtTime(s.generated_at);
+
+  // KPI
+  const t = s.totals;
+  let kpiHtml = `
+    <section class="kpi-grid">
+      <div class="kpi"><div class="num">${t.files.toLocaleString()}</div><div class="label">전체 노트</div></div>
+      <div class="kpi"><div class="num">${t.size_mb.toFixed(0)}<small style="font-size:14px"> MB</small></div><div class="label">Vault 용량</div></div>
+      <div class="kpi ${t.today_new > 200 ? 'danger' : t.today_new > 100 ? 'warn' : ''}"><div class="num">+${t.today_new}</div><div class="label">오늘 신규</div></div>
+      <div class="kpi"><div class="num">+${t.week_new}</div><div class="label">최근 7일</div></div>
+    </section>`;
+
+  // Briefing & CEO log
+  const b = s.briefing || {};
+  const c = s.ceo_log || {};
+  let chipHtml = `<section class="status-row">
+    <div class="status-chip ${b.exists ? 'ok' : 'no'}">
+      <div class="icon">${b.exists ? '📋' : '⏳'}</div>
+      <div class="info">
+        <div class="title">오늘 브리핑</div>
+        <div class="sub">${b.exists ? b.filename + ' · ' + fmtTime(b.updated_at) : '아직 생성 안됨'}</div>
+      </div>
+    </div>
+    <div class="status-chip ${c.exists ? 'ok' : 'no'}">
+      <div class="icon">${c.exists ? '📓' : '⏳'}</div>
+      <div class="info">
+        <div class="title">오늘 CEO 로그</div>
+        <div class="sub">${c.exists ? c.lines + '줄 · ' + fmtTime(c.updated_at) : '아직 갱신 없음'}</div>
+      </div>
+    </div>
+  </section>`;
+
+  // Folders
+  let folderHtml = '<div class="card"><h2>폴더 분포</h2><div class="folder-grid">';
+  for (const f of s.folders) {
+    if (f.private) {
+      folderHtml += `<div class="folder-row private">
+        <span class="code">${f.code}</span>
+        <span class="label">${f.label}</span>
+        <span class="nums">🔒 비공개 보호 중</span>
+      </div>`;
+    } else {
+      folderHtml += `<div class="folder-row">
+        <span class="code">${f.code}</span>
+        <span class="label">${f.label}</span>
+        <span class="nums"><b>${f.files.toLocaleString()}</b>개 · <b>${f.size_mb.toFixed(0)}</b>MB</span>
+      </div>`;
+    }
+  }
+  folderHtml += '</div></div>';
+
+  // Departments
+  let deptHtml = '<div class="card"><h2>부서 활동 <span class="meta">오늘 산출물 / 누적</span></h2><div class="dept-grid">';
+  for (const d of s.departments) {
+    deptHtml += `<div class="dept-cell ${d.active ? 'active' : ''}">
+      <div class="name">${d.dept.split('_')[0]}</div>
+      <div class="today">${d.today}</div>
+      <div class="total">/ ${d.total}</div>
+    </div>`;
+  }
+  deptHtml += '</div></div>';
+
+  // Trend
+  let trendHtml = '<div class="card"><h2>14일 활동 추세</h2>';
+  if (s.trend_14d && s.trend_14d.length) {
+    const max = Math.max(...s.trend_14d.map(t => t.count), 1);
+    const today = s.generated_at.slice(0, 10);
+    trendHtml += '<div class="trend-chart">';
+    for (const t of s.trend_14d) {
+      const h = Math.max(3, (t.count / max) * 100);
+      const isToday = t.date === today ? '1' : '0';
+      trendHtml += `<div class="trend-bar" data-today="${isToday}" style="height:${h}%" title="${t.date}: ${t.count}개"></div>`;
+    }
+    trendHtml += '</div><div class="trend-labels">';
+    trendHtml += `<span>${s.trend_14d[0].date.slice(5)}</span>`;
+    trendHtml += `<span>${s.trend_14d[s.trend_14d.length - 1].date.slice(5)}</span>`;
+    trendHtml += '</div>';
+  }
+  trendHtml += '</div>';
+
+  // Issues
+  let issueHtml = '<div class="card"><h2>건강 진단</h2><ul class="issues-list">';
+  if (s.health.issues && s.health.issues.length) {
+    for (const i of s.health.issues) issueHtml += `<li>${i}</li>`;
+  } else {
+    issueHtml += '<li class="empty">✓ 모든 지표 정상</li>';
+  }
+  issueHtml += '</ul></div>';
+
+  document.getElementById('mainContent').innerHTML =
+    kpiHtml + chipHtml + folderHtml + deptHtml + trendHtml + issueHtml;
+}
+
+// Initial load + auto-refresh every 5 min
+loadStats();
+setInterval(() => loadStats(true), 5 * 60 * 1000);
+
+// Visibility refresh
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') loadStats(true);
+});
+
+// PWA install prompt (silently)
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/vault/sw.js').catch(() => {});
+}
+</script>
+
+</body>
+</html>
