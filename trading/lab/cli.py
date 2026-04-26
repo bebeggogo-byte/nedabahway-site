@@ -26,6 +26,7 @@ from lab.agents.data_agent import DataAgent  # noqa: E402
 from lab.agents.execution_agent import ExecutionAgent  # noqa: E402
 from lab.agents.microstructure_skeptic import MicrostructureSkeptic  # noqa: E402
 from lab.agents.performance_agent import PerformanceAgent  # noqa: E402
+from lab.agents.portfolio_agent import PortfolioAgent  # noqa: E402
 from lab.agents.regime_agent import RegimeAgent  # noqa: E402
 from lab.agents.regime_skeptic import RegimeSkeptic  # noqa: E402
 from lab.agents.risk_agent import RiskAgent  # noqa: E402
@@ -70,6 +71,10 @@ def cmd_daily(args) -> int:
     universe = UniverseAgent(size=cfg.universe_size, min_market_cap_krw=cfg.min_market_cap_krw)
     data = DataAgent(lookback_days=400)
     regime = RegimeAgent()
+    portfolio = PortfolioAgent(
+        events_db=log_dir / "lab_events.db",
+        sim_db=log_dir / "lab_sim_state.db",
+    )
     strategy = StrategyAgent()
     balance = BalanceAgent(client=client)
     risk = RiskAgent(circuit=circuit)
@@ -79,7 +84,7 @@ def cmd_daily(args) -> int:
 
     pipeline = Pipeline(
         name="daily",
-        agents=[universe, data, regime, strategy, balance, risk, microstructure, execution, performance],
+        agents=[universe, data, regime, portfolio, strategy, balance, risk, microstructure, execution, performance],
         halt_on_error=False,
     )
     orchestrator = Orchestrator(bus)

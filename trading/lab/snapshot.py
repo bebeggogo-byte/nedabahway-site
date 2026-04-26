@@ -378,6 +378,37 @@ def export_heartbeat(out_dir: Path, events_db: Path) -> dict:
     return data
 
 
+def export_portfolio_weights(out_dir: Path, events_db: Path, sim_state_db: Path | None) -> dict:
+    """Compute and persist current risk-parity weights snapshot."""
+    from src.portfolio.risk_parity import compute_risk_parity_weights
+    from .analytics.strategy_daily_pnl import compute_daily_pnl_by_strategy
+
+    fallback = {
+        "xs_momentum": 0.30, "mean_reversion": 0.15,
+        "low_volatility": 0.20, "volatility_breakout": 0.15, "quality_value": 0.20,
+    }
+    try:
+        daily = compute_daily_pnl_by_strategy(events_db, sim_state_db, lookback_days=90)
+    except Exception as e:
+        log.warning("daily pnl compute failed: %s", e)
+        daily = {}
+    result = compute_risk_parity_weights(
+        daily_pnl_by_strategy=daily,
+        fallback_weights=fallback,
+    )
+    data = {
+        "updated_at": _utcnow_iso(),
+        "method": result.method,
+        "n_eligible": result.n_eligible,
+        "weights": result.weights,
+        "static_fallback": fallback,
+        "realized_vols": result.realized_vols,
+        "rationale": result.rationale,
+    }
+    (out_dir / "portfolio_weights.json").write_text(json.dumps(data, indent=2, ensure_ascii=False))
+    return data
+
+
 def export_all(out_dir: Path, events_db: Path, circuit_db: Path, sim_state_db: Path | None = None) -> dict[str, Any]:
     from .analytics.per_strategy_pnl import write_per_strategy_pnl
     from .analytics.strategy_health import write_strategy_health
@@ -395,6 +426,7 @@ def export_all(out_dir: Path, events_db: Path, circuit_db: Path, sim_state_db: P
     attribution = export_strategy_attribution(out_dir, events_db)
     pnl = write_per_strategy_pnl(out_dir, events_db, sim_state_db)
     health = write_strategy_health(out_dir, events_db, sim_state_db)
+    portfolio_weights = export_portfolio_weights(out_dir, events_db, sim_state_db)
     log.info(
         "snapshot complete: latest=%s, equity_pts=%d, decisions=%d, critiques=%d, "
         "trades=%d, sub_strategies=%d, heartbeat=%s",
@@ -407,4 +439,5 @@ def export_all(out_dir: Path, events_db: Path, circuit_db: Path, sim_state_db: P
         "critiques": critiques, "heartbeat": heartbeat,
         "today_plan": today_plan, "recent_trades": recent_trades, "attribution": attribution,
         "per_strategy_pnl": pnl, "strategy_health": health,
+        "portfolio_weights": portfolio_weights,
     }

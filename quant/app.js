@@ -418,17 +418,50 @@ function renderGate(g) {
   }).join('');
 }
 
-function renderStrategies() {
+const STRATEGY_NAME_TO_KEY = {
+  'Cross-sectional Momentum': 'xs_momentum',
+  'Mean Reversion': 'mean_reversion',
+  'Low Volatility': 'low_volatility',
+  'Volatility Breakout': 'volatility_breakout',
+  'Quality Value': 'quality_value',
+};
+
+function renderStrategies(portfolioWeights) {
   const root = document.getElementById('strategies-list');
   if (!root) return;
-  root.innerHTML = STRATEGIES.map(s => {
-    const pct = (s.weight * 100).toFixed(0);
+  const dyn = (portfolioWeights && portfolioWeights.weights) || {};
+  const method = portfolioWeights ? portfolioWeights.method : 'fallback_static';
+  const isDynamic = method === 'inverse_vol';
+
+  const header = isDynamic
+    ? `<div style="font-size:.78rem;color:var(--c-mute);margin-bottom:8px"><strong style="color:var(--c-accent)">⚡ Risk-parity 동적 가중치</strong> · ${portfolioWeights.n_eligible} 전략 inverse-vol weighting</div>`
+    : `<div style="font-size:.78rem;color:var(--c-mute2);margin-bottom:8px">Static fallback (실집행 이력 누적 후 dynamic 활성화)</div>`;
+
+  root.innerHTML = header + STRATEGIES.map(s => {
+    const key = STRATEGY_NAME_TO_KEY[s.name];
+    const dynPct = (dyn[key] != null) ? (dyn[key] * 100) : null;
+    const staticPct = s.weight * 100;
+    const showDynamic = isDynamic && dynPct != null;
+
+    let weightDisplay;
+    if (showDynamic) {
+      const delta = dynPct - staticPct;
+      const deltaColor = delta > 0 ? 'var(--c-accent)' : (delta < 0 ? 'var(--c-fail)' : 'var(--c-mute)');
+      const deltaStr = (delta > 0 ? '+' : '') + delta.toFixed(1);
+      weightDisplay = `<div style="text-align:right;min-width:110px">
+        <div class="mono" style="font-weight:700;color:var(--c-accent);font-size:.95rem">${dynPct.toFixed(1)}%</div>
+        <div class="mono" style="font-size:.7rem;color:var(--c-mute2)">static ${staticPct.toFixed(0)}% <span style="color:${deltaColor}">(${deltaStr})</span></div>
+      </div>`;
+    } else {
+      weightDisplay = `<div class="mono" style="font-weight:700;color:var(--c-accent);font-size:.95rem;min-width:60px;text-align:right">${staticPct.toFixed(0)}%</div>`;
+    }
+
     return `<div style="padding:12px 14px;border-radius:10px;background:var(--c-bg);border:1px solid var(--c-line);display:flex;justify-content:space-between;align-items:center;gap:10px">
       <div style="flex:1;min-width:0">
         <div style="font-weight:600;font-size:.92rem">${s.name} <span style="font-size:.7rem;color:var(--c-mute2);font-weight:500;letter-spacing:.05em;text-transform:uppercase">· ${s.type}</span></div>
         <div style="font-size:.78rem;color:var(--c-mute);margin-top:3px">${s.desc}</div>
       </div>
-      <div class="mono" style="font-weight:700;color:var(--c-accent);font-size:.95rem">${pct}%</div>
+      ${weightDisplay}
     </div>`;
   }).join('');
 }
@@ -453,7 +486,7 @@ function renderCouncil(c) {
 }
 
 async function load() {
-  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
@@ -467,6 +500,7 @@ async function load() {
     fetchJSON('./data/per_strategy_pnl.json'),
     fetchJSON('./data/strategy_health.json'),
     fetchJSON('./data/regime_history.json'),
+    fetchJSON('./data/portfolio_weights.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -478,7 +512,7 @@ async function load() {
   renderCritiques(critiques || {});
   renderHeartbeat(heartbeat);
   renderRegime(regimeHist);
-  renderStrategies();
+  renderStrategies(portfolio);
   renderCouncil(council);
   renderGate(gate);
   renderHealth(health);
