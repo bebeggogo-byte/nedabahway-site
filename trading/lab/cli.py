@@ -36,21 +36,35 @@ from lab.orchestrator import Orchestrator, Pipeline  # noqa: E402
 from src.risk.limits import CircuitBreaker, DailyRiskLimits  # noqa: E402
 
 
+def _resolve_broker(args, log_dir: Path):
+    """Decide which broker to use and return (client, mode_label)."""
+    from src.broker.simulated import SimulatedBroker
+
+    if args.no_broker:
+        return None, "no-broker (data-only)"
+
+    if not args.simulate:
+        try:
+            from src.broker.kis_client import KisClient
+            return KisClient(KisConfig.from_env()), "KIS paper"
+        except KeyError as e:
+            logging.info("KIS env missing (%s); using SimulatedBroker", e)
+
+    sim = SimulatedBroker(
+        state_db_path=log_dir / "lab_sim_state.db",
+        initial_cash=100_000_000,
+    )
+    return sim, "simulated (pykrx prices)"
+
+
 def cmd_daily(args) -> int:
     cfg = StrategyConfig()
-    bus = EventBus(TRADE_DB_PATH.parent / "lab_events.db")
-    circuit = CircuitBreaker(
-        TRADE_DB_PATH.parent / "lab_circuit.db",
-        DailyRiskLimits(),
-    )
+    log_dir = TRADE_DB_PATH.parent
+    bus = EventBus(log_dir / "lab_events.db")
+    circuit = CircuitBreaker(log_dir / "lab_circuit.db", DailyRiskLimits())
 
-    client = None
-    if not args.no_broker:
-        try:
-            client = __import__("src.broker.kis_client", fromlist=["KisClient"]).KisClient(KisConfig.from_env())
-        except KeyError as e:
-            logging.warning("KIS env missing (%s); falling back to --no-broker mode", e)
-            client = None
+    client, mode = _resolve_broker(args, log_dir)
+    logging.info("broker mode: %s", mode)
 
     universe = UniverseAgent(size=cfg.universe_size, min_market_cap_krw=cfg.min_market_cap_krw)
     data = DataAgent(lookback_days=400)
@@ -138,6 +152,23 @@ def cmd_review(args) -> int:
     return 0
 
 
+def cmd_council(args) -> int:
+    from lab.council.runner import run_council_dryrun
+    log_dir = TRADE_DB_PATH.parent
+    out = Path(args.output).resolve()
+    prompts_dir = (Path(__file__).resolve().parent / "prompts")
+    record = run_council_dryrun(
+        prompts_dir=prompts_dir,
+        council_out_dir=out,
+        events_db=log_dir / "lab_events.db",
+        circuit_db=log_dir / "lab_circuit.db",
+        include_meta=args.include_meta,
+    )
+    print(f"council dry-run done: {len(record['responses'])} agents simulated")
+    print(f"agenda: {record['agenda']}")
+    return 0
+
+
 def cmd_snapshot(args) -> int:
     from lab.snapshot import export_all
     out = Path(args.output).resolve()
@@ -172,8 +203,9 @@ def main() -> int:
     sub = p.add_subparsers(dest="cmd", required=True)
 
     p_daily = sub.add_parser("daily", help="run daily rebalance cycle")
-    p_daily.add_argument("--dry-run", action="store_true")
-    p_daily.add_argument("--no-broker", action="store_true", help="skip KIS broker entirely")
+    p_daily.add_argument("--dry-run", action="store_true", help="don't actually submit orders")
+    p_daily.add_argument("--no-broker", action="store_true", help="skip broker entirely (data + signals only)")
+    p_daily.add_argument("--simulate", action="store_true", help="force SimulatedBroker (default if no KIS env)")
     p_daily.set_defaults(func=cmd_daily)
 
     p_rev = sub.add_parser("review", help="backtest + statistical/regime/cost critics")
@@ -185,6 +217,11 @@ def main() -> int:
     p_snap = sub.add_parser("snapshot", help="export JSON snapshot for the dashboard")
     p_snap.add_argument("--output", default="../quant/data", help="output dir (relative to trading/)")
     p_snap.set_defaults(func=cmd_snapshot)
+
+    p_council = sub.add_parser("council", help="run weekly LLM council (dry-run by default)")
+    p_council.add_argument("--include-meta", action="store_true", help="include monthly Meta-Optimizer agent")
+    p_council.add_argument("--output", default="../quant/data/council", help="output dir for council records")
+    p_council.set_defaults(func=cmd_council)
 
     p_insp = sub.add_parser("inspect", help="show events for a cycle")
     p_insp.add_argument("cycle_id")

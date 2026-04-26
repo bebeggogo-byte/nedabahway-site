@@ -22,6 +22,11 @@
 | | Regime Skeptic | ✅ | rolling Sharpe, 연도별, drawdown 기간, CVaR |
 | | Cost Skeptic | ✅ | turnover, cost-to-alpha, 슬리피지 stress (2x/3x) |
 | | Microstructure Skeptic | ✅ | tick/유동성/가격 drift (live, **blocking**) |
+| **LLM 의회 (PR #14 prompts) ✅** | Strategy Researcher | 🟡 prompt | 새 가설 제안 (LLM wiring 다음 PR) |
+| | CIO | 🟡 prompt | 채택/배분 결정 |
+| | CRO | 🟡 prompt | veto 권한 |
+| | CTO | 🟡 prompt | 코드/인프라 리뷰 |
+| | Meta-Optimizer | 🟡 prompt | 자기개선 (월 1회) |
 | **LLM 의회 (PR #3-2)** | Strategy Researcher | ⏳ | 새 전략 가설 |
 | | CIO | ⏳ | 채택/폐기 결정 |
 | | CRO | ⏳ | 리스크 거부권 |

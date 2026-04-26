@@ -195,6 +195,67 @@ def export_critiques(out_dir: Path, events_db: Path, n: int = 50) -> dict:
     return data
 
 
+def export_heartbeat(out_dir: Path, events_db: Path) -> dict:
+    """Heartbeat: timestamps for last successful cycle / snapshot / etc.
+
+    Watchdog reads this to detect staleness; dashboard surfaces it.
+    """
+    last_cycle_at: str | None = None
+    last_cycle_id: str | None = None
+    last_cycle_errors: list[str] = []
+    n_cycles_total = 0
+    inception: str | None = None
+    with _ro_conn(events_db) as c:
+        if c is not None:
+            n_cycles_total = c.execute("SELECT COUNT(*) FROM cycles").fetchone()[0]
+            row = c.execute(
+                "SELECT cycle_id, ended_at, started_at, summary_json FROM cycles ORDER BY started_at DESC LIMIT 1"
+            ).fetchone()
+            if row:
+                last_cycle_at = row["ended_at"] or row["started_at"]
+                last_cycle_id = row["cycle_id"]
+                if row["summary_json"]:
+                    last_cycle_errors = json.loads(row["summary_json"]).get("errors", [])
+            inc = c.execute("SELECT MIN(started_at) FROM cycles").fetchone()
+            if inc and inc[0]:
+                inception = inc[0]
+
+    now = datetime.now(timezone.utc)
+    stale_hours = None
+    if last_cycle_at:
+        try:
+            t = datetime.fromisoformat(last_cycle_at.replace("Z", "+00:00"))
+            if t.tzinfo is None:
+                t = t.replace(tzinfo=timezone.utc)
+            stale_hours = round((now - t).total_seconds() / 3600.0, 2)
+        except Exception:
+            pass
+
+    uptime_days = None
+    if inception:
+        try:
+            t0 = datetime.fromisoformat(inception.replace("Z", "+00:00"))
+            if t0.tzinfo is None:
+                t0 = t0.replace(tzinfo=timezone.utc)
+            uptime_days = round((now - t0).total_seconds() / 86400.0, 1)
+        except Exception:
+            pass
+
+    data = {
+        "now": _utcnow_iso(),
+        "last_cycle_at": last_cycle_at,
+        "last_cycle_id": last_cycle_id,
+        "last_cycle_errors": last_cycle_errors,
+        "stale_hours_since_last_cycle": stale_hours,
+        "n_cycles_total": n_cycles_total,
+        "inception": inception,
+        "uptime_days": uptime_days,
+        "is_healthy": (stale_hours is None or stale_hours < 30),  # 30h = ~1 cron + buffer
+    }
+    (out_dir / "heartbeat.json").write_text(json.dumps(data, indent=2, ensure_ascii=False))
+    return data
+
+
 def export_all(out_dir: Path, events_db: Path, circuit_db: Path) -> dict[str, Any]:
     out_dir.mkdir(parents=True, exist_ok=True)
     log.info("exporting snapshot to %s", out_dir)
@@ -203,8 +264,10 @@ def export_all(out_dir: Path, events_db: Path, circuit_db: Path) -> dict[str, An
     equity = export_equity(out_dir, events_db)
     decisions = export_decisions(out_dir, events_db)
     critiques = export_critiques(out_dir, events_db)
+    heartbeat = export_heartbeat(out_dir, events_db)
     log.info(
-        "snapshot complete: latest=%s, equity_pts=%d, decisions=%d, critiques=%d",
-        latest.get("cycle_id"), len(equity["points"]), len(decisions["decisions"]), len(critiques["critiques"]),
+        "snapshot complete: latest=%s, equity_pts=%d, decisions=%d, critiques=%d, heartbeat=%s",
+        latest.get("cycle_id"), len(equity["points"]), len(decisions["decisions"]),
+        len(critiques["critiques"]), heartbeat.get("is_healthy"),
     )
-    return {"meta": meta, "latest": latest, "equity": equity, "decisions": decisions, "critiques": critiques}
+    return {"meta": meta, "latest": latest, "equity": equity, "decisions": decisions, "critiques": critiques, "heartbeat": heartbeat}

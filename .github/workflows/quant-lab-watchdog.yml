@@ -1,0 +1,109 @@
+name: quant-lab-watchdog
+
+on:
+  schedule:
+    # 4시간마다 시스템 건강 체크
+    - cron: "0 */4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: quant-lab-watchdog
+  cancel-in-progress: true
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Inspect heartbeat.json
+        id: hb
+        run: |
+          if [ ! -f quant/data/heartbeat.json ]; then
+            echo "no heartbeat file yet (system never ran)"
+            echo "status=unknown" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json, os, sys
+          hb = json.load(open('quant/data/heartbeat.json'))
+          stale = hb.get('stale_hours_since_last_cycle')
+          healthy = hb.get('is_healthy', False)
+          n_cycles = hb.get('n_cycles_total', 0)
+          last_id = hb.get('last_cycle_id')
+          last_errors = hb.get('last_cycle_errors', [])
+          print(f"healthy={healthy} stale_h={stale} n_cycles={n_cycles} last_id={last_id} errors={last_errors}")
+
+          status = 'ok'
+          reasons = []
+          # 1. 사이클이 한 번도 안 돌았으면 (cron 시작 전) — informational
+          if n_cycles == 0:
+              status = 'pending-first-cycle'
+          # 2. stale 30시간 초과 = 어제 cron 실패
+          elif stale is not None and stale > 30:
+              status = 'stale'
+              reasons.append(f'last cycle was {stale}h ago (>30h)')
+          # 3. 마지막 사이클에 에러
+          elif last_errors:
+              status = 'last-cycle-errors'
+              reasons.append(f'last cycle had errors: {last_errors}')
+
+          out = os.environ.get('GITHUB_OUTPUT')
+          if out:
+              with open(out, 'a') as f:
+                  f.write(f"status={status}\n")
+                  f.write(f"stale_hours={stale}\n")
+                  f.write(f"reasons={'; '.join(reasons)}\n")
+                  f.write(f"last_cycle_id={last_id or ''}\n")
+          if status not in ('ok', 'pending-first-cycle'):
+              sys.exit(0)  # don't fail the workflow; we open an issue instead
+          PY
+
+      - name: Open / update issue if unhealthy
+        if: steps.hb.outputs.status == 'stale' || steps.hb.outputs.status == 'last-cycle-errors'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = "${{ steps.hb.outputs.status }}";
+            const reasons = `${{ steps.hb.outputs.reasons }}`;
+            const lastCycle = `${{ steps.hb.outputs.last_cycle_id }}`;
+            const title = `[quant-lab watchdog] system ${status}`;
+            const body = `Watchdog detected an issue.
+
+            **Status:** ${status}
+            **Reasons:** ${reasons}
+            **Last cycle:** ${lastCycle}
+            **Time:** ${new Date().toISOString()}
+
+            Auto-recovery suggestions:
+            1. Manually trigger \`quant-lab-daily\` workflow (with \`workflow_dispatch\`).
+            2. Check Actions logs for the most recent \`quant-lab-daily\` run.
+            3. If KIS API auth issue, verify secrets are valid.
+            4. If pykrx data issue, check KRX accessibility.
+
+            This issue is opened automatically. Close it once resolved.`;
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'watchdog',
+            });
+            const existing = issues.data.find(i => i.title === title);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, body,
+              });
+              console.log(`commented on existing issue #${existing.number}`);
+            } else {
+              const created = await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ['watchdog', 'quant-lab'],
+              });
+              console.log(`opened issue #${created.data.number}`);
+            }
