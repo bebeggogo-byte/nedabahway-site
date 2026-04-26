@@ -16,7 +16,7 @@ a:hover{text-decoration:underline}
 .gate.is-hidden{display:none}
 .gate__title{font-size:1.4rem;font-weight:700}
 .gate__hint{color:var(--c-mute);font-size:.9rem}
-.gate__input{padding:14px 22px;background:var(--c-surface);border:1px solid var(--c-line);border-radius:8px;color:var(--c-fg);font-size:1.4rem;letter-spacing:.4em;text-align:center;width:200px}
+.gate__input{padding:14px 22px;background:var(--c-surface);border:1px solid var(--c-line);border-radius:8px;color:var(--c-fg);font-size:1.3rem;letter-spacing:.15em;text-align:center;width:260px}
 .gate__btn{padding:12px 28px;background:var(--c-accent);color:#000;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem}
 .gate__err{color:var(--c-danger);font-size:.85rem;min-height:20px}
 
@@ -61,8 +61,8 @@ code{background:#0B1220;padding:2px 6px;border-radius:4px;font-size:.85em}
 
 <div class="gate" id="gate">
   <div class="gate__title">🔒 CEO 콘솔</div>
-  <div class="gate__hint">4자리 패스코드를 입력하세요</div>
-  <input type="password" class="gate__input" id="gateInput" inputmode="numeric" maxlength="4" autocomplete="off">
+  <div class="gate__hint">패스코드를 입력하세요</div>
+  <input type="password" class="gate__input" id="gateInput" maxlength="20" autocomplete="off">
   <button class="gate__btn" onclick="checkPasscode()">진입</button>
   <div class="gate__err" id="gateErr"></div>
 </div>
@@ -145,7 +145,7 @@ code{background:#0B1220;padding:2px 6px;border-radius:4px;font-size:.85em}
 </main>
 
 <script>
-const PASSCODE = '4242'; // 임시 4자리 — CEO가 변경할 것
+const PASSCODE = 'thxjx'; // CEO 전용 — 변경 시 _templates/console.html 수정 후 render_all.py
 const KEY = 'nedabah_console_unlocked';
 const TTL = 30 * 24 * 60 * 60 * 1000; // 30일
 
