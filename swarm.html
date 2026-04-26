@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>The Swarm — Nedabahway</title>
+<meta name="description" content="Live activity from the seventeen departments of a one-person education company on Jeju Island. Sixty AI agents reporting to one operator.">
+<meta property="og:title" content="The Swarm — Nedabahway">
+<meta property="og:description" content="Sixty AI agents reporting to one operator. Six of them exist only to break the work of the other fifty-four.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nedabah.org/swarm.html">
+<link rel="canonical" href="https://www.nedabah.org/swarm.html">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
+:root{
+  --c-bg:#FAFAF7;--c-surface:#FFFFFF;--c-fg:#1A1A1A;
+  --c-mute:#6B6B6B;--c-mute2:#9A9A9A;--c-line:#E8E6E0;--c-line2:#D6D3CA;
+  --c-accent:#10803D;--c-copper:#C2410C;--c-copper-soft:#FDF1EA;
+  --c-insight:#1D4ED8;--c-insight-soft:#E8EEFB;
+  --c-warn:#B45309;--c-warn-soft:#FEF3C7;
+  --ff:'Pretendard Variable','Noto Sans',system-ui,sans-serif;
+  --ff-serif:'Noto Serif KR','Iowan Old Style',Georgia,serif;
+  --ff-mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);
+  line-height:1.7;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line)}
+.nav__inner{max-width:1180px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
+.nav__logo{font-family:var(--ff-serif);font-weight:700;font-size:1.18rem;letter-spacing:-.01em}
+.nav__logo em{font-style:italic;color:var(--c-copper);font-weight:700}
+.nav__links{display:flex;gap:24px;align-items:center}
+.nav__link{font-size:.9rem;color:var(--c-mute);font-weight:500}
+.nav__link--active{color:var(--c-fg);font-weight:700}
+.nav__link:hover{color:var(--c-fg)}
+@media(max-width:760px){.nav__links .nav__link:not(.nav__link--active){display:none}}
+
+.mast{max-width:880px;margin:0 auto;padding:72px 28px 24px}
+.mast__rail{font-size:.72rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--c-mute);margin-bottom:22px}
+.mast__title{font-family:var(--ff-serif);font-weight:900;font-size:clamp(2.2rem,5.5vw,3.6rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:22px}
+.mast__title em{font-style:italic;color:var(--c-copper);font-weight:700}
+.mast__sub{max-width:620px;color:var(--c-mute);font-size:1.04rem;line-height:1.75}
+.mast__sub strong{color:var(--c-fg);font-weight:600}
+.mast__sub a{color:var(--c-insight);text-decoration:underline;text-decoration-color:#C7D6F5;text-underline-offset:3px}
+
+.live{max-width:880px;margin:32px auto 0;padding:0 28px}
+.live__card{background:var(--c-surface);border:1px solid var(--c-line);border-radius:18px;padding:22px 26px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.live__head{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.95rem}
+.pulse{width:9px;height:9px;border-radius:50%;background:var(--c-accent);animation:pulse 2s ease-in-out infinite;display:inline-block}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+.live__chips{display:flex;gap:6px;flex-wrap:wrap;margin-left:6px}
+.chip{display:inline-block;padding:4px 11px;border-radius:999px;background:#F3EFE5;font-size:.75rem;color:#4a4a4a;font-weight:700;letter-spacing:.02em;font-family:var(--ff-mono)}
+.chip--opposing{background:var(--c-copper-soft);color:var(--c-copper)}
+.live__posture{flex-basis:100%;color:var(--c-mute);font-size:.92rem;font-style:italic;margin-top:6px}
+.live__stamp{margin-left:auto;font-size:.78rem;color:var(--c-mute2);font-family:var(--ff-mono)}
+
+section{max-width:880px;margin:64px auto 0;padding:0 28px}
+section h2{font-family:var(--ff-serif);font-size:1.55rem;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+section p.sub{color:var(--c-mute);font-size:.95rem;margin-bottom:24px}
+
+.depts{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.dept{background:var(--c-surface);border:1px solid var(--c-line);border-radius:14px;padding:18px 18px 16px;transition:border-color .15s}
+.dept:hover{border-color:var(--c-line2)}
+.dept__code{font-family:var(--ff-mono);font-size:.72rem;letter-spacing:.18em;color:var(--c-mute2);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+.dept__name{font-family:var(--ff-serif);font-weight:700;font-size:1.05rem;letter-spacing:-.015em;margin-bottom:8px}
+.dept__role{color:var(--c-mute);font-size:.86rem;line-height:1.6}
+.dept--opposing{border-color:var(--c-copper-soft);background:linear-gradient(180deg,var(--c-copper-soft) 0,var(--c-surface) 60px)}
+.dept--opposing .dept__code{color:var(--c-copper)}
+.dept--meta{border-style:dashed}
+
+.feed{display:grid;gap:1px;background:var(--c-line);border:1px solid var(--c-line);border-radius:14px;overflow:hidden;margin-top:6px}
+.feed__row{display:grid;grid-template-columns:120px 80px 1fr;gap:18px;align-items:center;padding:16px 20px;background:var(--c-surface);font-size:.88rem}
+.feed__ts{color:var(--c-mute2);font-family:var(--ff-mono);font-size:.78rem}
+.feed__dept{font-family:var(--ff-mono);font-size:.72rem;letter-spacing:.12em;color:var(--c-fg);font-weight:700;text-transform:uppercase}
+.feed__dept--opposing{color:var(--c-copper)}
+.feed__sum{color:#2a2a2a}
+.feed__empty{padding:28px 22px;text-align:center;color:var(--c-mute);background:var(--c-surface)}
+@media(max-width:640px){.feed__row{grid-template-columns:1fr;gap:4px}.feed__ts{order:3}}
+
+.about{background:var(--c-insight-soft);border:1px solid #C7D6F5;border-radius:18px;padding:28px 30px;margin-top:24px}
+.about p{color:#1f2a44;font-size:.96rem;line-height:1.75}
+.about p+p{margin-top:14px}
+.about a{color:var(--c-insight);text-decoration:underline;text-underline-offset:3px}
+
+.foot{max-width:880px;margin:80px auto 0;padding:32px 28px 80px;color:var(--c-mute);font-size:.84rem;border-top:1px solid var(--c-line)}
+.foot__top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:14px}
+.foot__brand{font-family:var(--ff-serif);font-weight:700;color:var(--c-fg)}
+.foot__brand em{font-style:italic;color:var(--c-copper)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/">Still <em>Hands</em></a>
+    <div class="nav__links">
+      <a class="nav__link" href="/blog/">All issues</a>
+      <a class="nav__link nav__link--active" href="/swarm.html">The Swarm</a>
+      <a class="nav__link" href="/work.html">Work with Kim</a>
+      <a class="nav__link" href="/company.html">About</a>
+    </div>
+  </div>
+</nav>
+
+<header class="mast">
+  <div class="mast__rail">A Nedabahway Operations Page · Updated by cron</div>
+  <h1 class="mast__title">Sixty agents, <em>seventeen departments</em>, one operator.</h1>
+  <p class="mast__sub">
+    A one-person education company on Jeju Island runs a homemade swarm of small AI agents.
+    <strong>Six of them exist only to attack the work of the other fifty-four.</strong>
+    What you see below is what the desk did today.
+    The full essay is <a href="/blog/posts/2026-04-19_eight-hours-with-my-ai-swarm.html">Eight Hours With My AI Swarm</a>.
+    The code is <a href="https://github.com/bebeggogo-byte/nedabahway-site/tree/main/swarm">on GitHub</a>.
+  </p>
+</header>
+
+<section class="live" aria-label="Live status">
+  <div class="live__card" id="live-card">
+    <div class="live__head"><span class="pulse"></span><span id="live-headline">Today at the desk — loading…</span></div>
+    <div class="live__chips" id="live-chips"></div>
+    <div class="live__stamp" id="live-stamp"></div>
+    <div class="live__posture" id="live-posture"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Departments</h2>
+  <p class="sub">Six in copper are the <em style="color:var(--c-copper);font-weight:600;font-style:italic">opposing layer</em> — their only job is to attack the rest.</p>
+  <div class="depts" id="depts"></div>
+</section>
+
+<section>
+  <h2>Last 30 actions</h2>
+  <p class="sub">Newest first. Auto-published from the activity log. Times in KST.</p>
+  <div class="feed" id="feed">
+    <div class="feed__empty">Loading recent activity…</div>
+  </div>
+</section>
+
+<section>
+  <div class="about">
+    <p>
+      <strong>Why this page exists.</strong>
+      A one-person business needs a record of itself or it disappears. The swarm leaves a trail; this page is that trail, made readable.
+      No personal notes, no client names, no draft text — only what department did what action when.
+    </p>
+    <p>
+      <strong>Why six of the agents exist to attack the rest.</strong>
+      Without an opposing layer, AI advice slides into self-referential flattery. The opposing layer is the discipline.
+      If you want the long version, read the essay.
+    </p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__brand">Still <em>Hands</em> — A Nedabahway Publication</div>
+    <div><a href="/">Home</a> · <a href="/blog/">Magazine</a> · <a href="/swarm.html">Swarm</a> · <a href="https://github.com/bebeggogo-byte/nedabahway-site/tree/main/swarm">Source</a></div>
+  </div>
+  <div>Edited in Jeju, South Korea. Free to read and cite with attribution.</div>
+</footer>
+
+<script>
+const DEPTS = [
+  ["D1","Briefing","Reads yesterday's notebook + calendar + sources, writes the morning brief.","production"],
+  ["D2","Research","Opens and tracks long-running research threads.","production"],
+  ["D3","Transcript","Cleans meeting recordings into linked notes.","production"],
+  ["D4","Proposal","Drafts public-procurement proposals from briefs.","production"],
+  ["D5","Curriculum","Drafts workshop outlines, lesson plans, worksheets.","production"],
+  ["D6","Notebook","Maintains the daily chronological notebook and weekly digest.","production"],
+  ["D7","Editor","Line-edits drafts before they leave the desk.","production"],
+  ["D8","Verification","Asks of every claim — what evidence is attached?","opposing"],
+  ["D9","Market Intelligence","Refuses vibes as data. Reports what is known; labels the rest UNKNOWN.","opposing"],
+  ["D10","Red Team","Writes the failure scenarios. Refuses to defend.","opposing"],
+  ["D11","Fact Check","Reverifies numbers, dates, cited precedents.","opposing"],
+  ["D12","Decision Architect","Rewrites recommendations as balanced options with FACT/ESTIMATE/OPINION labels.","opposing"],
+  ["D13","Trust Officer","Final linter. Flags over-confidence, hope-projection, self-referential loops.","opposing"],
+  ["D14","Calendar","Surfaces conflicts, prep notes, travel windows.","production"],
+  ["D15","Invoicing","Watches outstanding invoices and quietly nags.","production"],
+  ["D16","Reminders","Watches commitments. Reminds the operator of what he said he would do.","production"],
+  ["Chief","Chief of Staff","Dispatches departments and assembles the daily strip the public sees.","meta"],
+];
+const OPPOSING = new Set(DEPTS.filter(d=>d[3]==="opposing").map(d=>d[0]));
+
+function el(tag, attrs={}, kids=[]){
+  const n = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v;
+    else if (k === "html") n.innerHTML = v;
+    else n.setAttribute(k, v);
+  }
+  for (const k of (Array.isArray(kids)?kids:[kids])) {
+    if (k == null) continue;
+    n.appendChild(typeof k === "string" ? document.createTextNode(k) : k);
+  }
+  return n;
+}
+
+function renderDepts(){
+  const root = document.getElementById("depts");
+  root.innerHTML = "";
+  for (const [code,name,role,layer] of DEPTS) {
+    const cls = "dept" + (layer === "opposing" ? " dept--opposing" : layer === "meta" ? " dept--meta" : "");
+    root.appendChild(el("div", {class:cls}, [
+      el("div", {class:"dept__code"}, code),
+      el("div", {class:"dept__name"}, name),
+      el("div", {class:"dept__role"}, role),
+    ]));
+  }
+}
+
+function fmtTs(iso){
+  try { return iso.replace("T", " ").slice(0, 16); } catch(e) { return iso; }
+}
+
+async function renderLive(){
+  try {
+    const r = await fetch("/swarm/data/today.json", {cache:"no-store"});
+    const t = await r.json();
+    document.getElementById("live-headline").textContent = t.headline;
+    document.getElementById("live-stamp").textContent = t.stamp;
+    document.getElementById("live-posture").textContent = t.posture || "";
+    const chips = document.getElementById("live-chips");
+    chips.innerHTML = "";
+    for (const c of (t.chips || [])) {
+      chips.appendChild(el("span", {class:"chip" + (OPPOSING.has(c) ? " chip--opposing" : "")}, c));
+    }
+  } catch(e) {
+    document.getElementById("live-headline").textContent = "Today at the desk — strip not yet published";
+  }
+}
+
+async function renderFeed(){
+  const root = document.getElementById("feed");
+  try {
+    const r = await fetch("/swarm/data/recent.json", {cache:"no-store"});
+    const data = await r.json();
+    root.innerHTML = "";
+    if (!data.length) { root.appendChild(el("div", {class:"feed__empty"}, "No activity yet today.")); return; }
+    for (const e of data) {
+      const isOpp = OPPOSING.has(e.department);
+      root.appendChild(el("div", {class:"feed__row"}, [
+        el("div", {class:"feed__ts"}, fmtTs(e.ts)),
+        el("div", {class:"feed__dept" + (isOpp ? " feed__dept--opposing" : "")}, `${e.department} ${e.department_name||""}`.trim()),
+        el("div", {class:"feed__sum"}, e.summary),
+      ]));
+    }
+  } catch(e) {
+    root.innerHTML = "";
+    root.appendChild(el("div", {class:"feed__empty"}, "Could not load activity."));
+  }
+}
+
+renderDepts(); renderLive(); renderFeed();
+</script>
+</body>
+</html>
