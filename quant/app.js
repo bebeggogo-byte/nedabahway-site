@@ -27,10 +27,11 @@ const AGENTS = [
 ];
 
 const STRATEGIES = [
-  { name: 'Cross-sectional Momentum', weight: 0.40, type: '추세', desc: '12-1 모멘텀 상위 N 동일비중' },
-  { name: 'Mean Reversion', weight: 0.20, type: '역행', desc: '20일 z-score ≤ -1.5 oversold long' },
-  { name: 'Low Volatility', weight: 0.25, type: '방어', desc: '60일 변동성 하위 + 양의 수익률' },
+  { name: 'Cross-sectional Momentum', weight: 0.30, type: '추세', desc: '12-1 모멘텀 상위 N 동일비중' },
+  { name: 'Mean Reversion', weight: 0.15, type: '역행', desc: '20일 z-score ≤ -1.5 oversold long' },
+  { name: 'Low Volatility', weight: 0.20, type: '방어', desc: '60일 변동성 하위 + 양의 수익률' },
   { name: 'Volatility Breakout', weight: 0.15, type: '단타', desc: 'Larry Williams K=0.55, MA20 추세 필터' },
+  { name: 'Quality Value', weight: 0.20, type: '펀더멘털', desc: '저PBR + 고ROE z-score 결합 (Fama-French Quality)' },
 ];
 
 function fmtKRW(n) {

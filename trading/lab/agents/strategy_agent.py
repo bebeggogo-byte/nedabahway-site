@@ -15,6 +15,7 @@ from src.strategies.ensemble import EnsembleStrategy
 from src.strategies.low_volatility import LowVolatility
 from src.strategies.mean_reversion import MeanReversion
 from src.strategies.momentum import CrossSectionalMomentum
+from src.strategies.quality_value import QualityValue
 from src.strategies.volatility_breakout import VolatilityBreakout
 
 from ..base import AgentContext, BaseAgent
@@ -22,15 +23,17 @@ from ..messages import StrategySignal
 
 
 def default_ensemble() -> EnsembleStrategy:
-    """Default 4-strategy ensemble used when no explicit list is provided."""
+    """Default 5-strategy ensemble. Sub-weights chosen by initial reasoning;
+    LLM Council CIO will adjust them weekly based on per-strategy P&L data."""
     return EnsembleStrategy(
         strategies=[
-            CrossSectionalMomentum(top_n=10),
-            MeanReversion(top_n=10),
-            LowVolatility(top_n=10),
-            VolatilityBreakout(top_n=8),
+            CrossSectionalMomentum(top_n=10),    # 추세
+            MeanReversion(top_n=10),              # 역행
+            LowVolatility(top_n=10),              # 방어
+            VolatilityBreakout(top_n=8),          # 단타
+            QualityValue(top_n=10),               # 펀더멘털
         ],
-        sub_weights=[0.40, 0.20, 0.25, 0.15],
+        sub_weights=[0.30, 0.15, 0.20, 0.15, 0.20],
         mode="weighted_sum",
         top_n=15,
     )
