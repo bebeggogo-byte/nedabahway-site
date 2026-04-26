@@ -380,6 +380,7 @@ def export_heartbeat(out_dir: Path, events_db: Path) -> dict:
 
 def export_all(out_dir: Path, events_db: Path, circuit_db: Path, sim_state_db: Path | None = None) -> dict[str, Any]:
     from .analytics.per_strategy_pnl import write_per_strategy_pnl
+    from .analytics.strategy_health import write_strategy_health
 
     out_dir.mkdir(parents=True, exist_ok=True)
     log.info("exporting snapshot to %s", out_dir)
@@ -393,6 +394,7 @@ def export_all(out_dir: Path, events_db: Path, circuit_db: Path, sim_state_db: P
     recent_trades = export_recent_trades(out_dir, events_db, sim_state_db)
     attribution = export_strategy_attribution(out_dir, events_db)
     pnl = write_per_strategy_pnl(out_dir, events_db, sim_state_db)
+    health = write_strategy_health(out_dir, events_db, sim_state_db)
     log.info(
         "snapshot complete: latest=%s, equity_pts=%d, decisions=%d, critiques=%d, "
         "trades=%d, sub_strategies=%d, heartbeat=%s",
@@ -404,5 +406,5 @@ def export_all(out_dir: Path, events_db: Path, circuit_db: Path, sim_state_db: P
         "meta": meta, "latest": latest, "equity": equity, "decisions": decisions,
         "critiques": critiques, "heartbeat": heartbeat,
         "today_plan": today_plan, "recent_trades": recent_trades, "attribution": attribution,
-        "per_strategy_pnl": pnl,
+        "per_strategy_pnl": pnl, "strategy_health": health,
     }
