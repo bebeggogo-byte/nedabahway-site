@@ -383,6 +383,77 @@ function renderLifecycle(data) {
   root.innerHTML = summary + cards;
 }
 
+function renderTCA(data) {
+  const root = document.getElementById('tca-summary');
+  const whenEl = document.getElementById('tca-when');
+  if (!root) return;
+  if (!data || !data.n_trades) {
+    root.innerHTML = '<div class="empty">실집행 매매 누적 대기 중 (실거래 시 expected_price ↔ fill_price 비교)</div>';
+    if (whenEl) whenEl.textContent = '—';
+    return;
+  }
+  if (whenEl) whenEl.textContent = `${data.n_trades} trades`;
+  const o = data.overall || {};
+  const meanColor = o.mean_bps > 30 ? 'var(--c-fail)' :
+                    o.mean_bps > 15 ? 'var(--c-warn)' : 'var(--c-accent)';
+  const totalCost = o.total_cost_krw || 0;
+  const costColor = totalCost > 0 ? 'var(--c-fail)' : 'var(--c-accent)';
+
+  const summary = `
+    <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));padding:14px 16px;border-radius:10px;background:var(--c-bg);border-left:5px solid ${meanColor}">
+      <div>
+        <div class="mono" style="font-size:.7rem;color:var(--c-mute);text-transform:uppercase">평균 슬리피지</div>
+        <div style="font-family:var(--ff-serif);font-weight:700;font-size:1.3rem;color:${meanColor}">${o.mean_bps?.toFixed(1) || '—'} bp</div>
+      </div>
+      <div>
+        <div class="mono" style="font-size:.7rem;color:var(--c-mute);text-transform:uppercase">중앙값</div>
+        <div class="mono" style="font-weight:700;font-size:1.1rem;margin-top:3px">${o.median_bps?.toFixed(1) || '—'} bp</div>
+      </div>
+      <div>
+        <div class="mono" style="font-size:.7rem;color:var(--c-mute);text-transform:uppercase">95%ile (worst)</div>
+        <div class="mono" style="font-weight:700;font-size:1.1rem;margin-top:3px">${o.p95_bps?.toFixed(1) || '—'} bp</div>
+      </div>
+      <div>
+        <div class="mono" style="font-size:.7rem;color:var(--c-mute);text-transform:uppercase">불리/유리</div>
+        <div class="mono" style="font-size:.92rem;margin-top:3px">${o.n_adverse || 0} <span style="color:var(--c-mute2)">/</span> ${o.n_favorable || 0}</div>
+      </div>
+      <div>
+        <div class="mono" style="font-size:.7rem;color:var(--c-mute);text-transform:uppercase">누적 비용</div>
+        <div class="mono" style="font-weight:700;font-size:1.1rem;margin-top:3px;color:${costColor}">${fmtKRW(totalCost)}</div>
+      </div>
+    </div>
+    <div style="font-size:.82rem;color:var(--c-mute);padding:0 4px">${data.rationale || ''}</div>
+  `;
+
+  // Per-strategy table
+  const strats = Object.entries(data.by_strategy || {});
+  let stratTable = '';
+  if (strats.length) {
+    stratTable = '<div style="font-size:.78rem;color:var(--c-mute);text-transform:uppercase;letter-spacing:.05em;margin-top:8px">전략별 평균 슬리피지</div>';
+    stratTable += '<table class="tbl"><thead><tr><th>전략</th><th>거래</th><th>평균 bp</th><th>중앙값 bp</th><th>거래대금</th></tr></thead><tbody>';
+    for (const [name, s] of strats.sort((a, b) => b[1].mean_bps - a[1].mean_bps)) {
+      const c = s.mean_bps > 30 ? 'var(--c-fail)' : s.mean_bps > 15 ? 'var(--c-warn)' : 'var(--c-accent)';
+      stratTable += `<tr><td>${name}</td><td>${s.n_trades}</td><td style="color:${c};font-weight:600">${s.mean_bps.toFixed(1)}</td><td>${s.median_bps.toFixed(1)}</td><td style="text-align:right">${fmtKRW(s.notional)}</td></tr>`;
+    }
+    stratTable += '</tbody></table>';
+  }
+
+  // Worst tickers
+  const worst = data.worst_tickers || [];
+  let worstBlock = '';
+  if (worst.length) {
+    worstBlock = '<div style="font-size:.78rem;color:var(--c-mute);text-transform:uppercase;letter-spacing:.05em;margin-top:8px">슬리피지 가장 큰 종목 (top 10)</div>';
+    worstBlock += '<div style="display:flex;flex-wrap:wrap;gap:6px">';
+    for (const w of worst) {
+      const c = w.mean_bps > 30 ? 'var(--c-fail)' : w.mean_bps > 15 ? 'var(--c-warn)' : 'var(--c-mute)';
+      worstBlock += `<span class="mono" style="font-size:.74rem;padding:4px 8px;border-radius:6px;background:var(--c-bg);border:1px solid var(--c-line);color:${c}"><strong>${w.ticker}</strong> ${w.mean_bps.toFixed(1)}bp <span style="color:var(--c-mute2)">×${w.n}</span></span>`;
+    }
+    worstBlock += '</div>';
+  }
+
+  root.innerHTML = summary + stratTable + worstBlock;
+}
+
 function renderRegime(history) {
   const root = document.getElementById('regime-summary');
   const whenEl = document.getElementById('regime-when');
@@ -671,7 +742,7 @@ function renderCouncil(c) {
 }
 
 async function load() {
-  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio, ddDefense, correlation, lifecycle] = await Promise.all([
+  const [meta, equity, decisions, critiques, heartbeat, council, gate, plan, trades, attribution, pnl, health, regimeHist, portfolio, ddDefense, correlation, lifecycle, tca] = await Promise.all([
     fetchJSON('./data/meta.json'),
     fetchJSON('./data/equity.json'),
     fetchJSON('./data/decisions.json'),
@@ -689,6 +760,7 @@ async function load() {
     fetchJSON('./data/drawdown_defense.json'),
     fetchJSON('./data/correlation_history.json'),
     fetchJSON('./data/strategy_lifecycle.json'),
+    fetchJSON('./data/tca.json'),
   ]);
 
   renderPhases(meta?.phase || 1);
@@ -703,6 +775,7 @@ async function load() {
   renderDrawdownDefense(ddDefense);
   renderCorrelation(correlation);
   renderLifecycle(lifecycle);
+  renderTCA(tca);
   renderStrategies(portfolio);
   renderCouncil(council);
   renderGate(gate);
