@@ -203,6 +203,52 @@ def cmd_report(args) -> int:
     return 0
 
 
+def cmd_walk_forward(args) -> int:
+    import json as _json
+    from src.backtest.walk_forward import run_walk_forward
+    from src.data.market_data import load_universe_ohlcv
+    from src.data.universe import build_universe
+    from src.strategies.momentum import CrossSectionalMomentum
+
+    cfg = StrategyConfig()
+    logging.info("building universe @ %s", args.start)
+    tickers = build_universe(args.start, size=cfg.universe_size, min_market_cap_krw=cfg.min_market_cap_krw)
+    logging.info("loading prices for %d tickers", len(tickers))
+    prices = load_universe_ohlcv(tickers, args.start, args.end, field="Close")
+    if prices.empty:
+        logging.error("no price data")
+        return 1
+
+    report = run_walk_forward(
+        strategy_factory=lambda: CrossSectionalMomentum(top_n=cfg.top_n, lookback_months=cfg.lookback_months, skip_recent_months=cfg.skip_recent_months),
+        prices=prices,
+        train_months=args.train_months,
+        test_months=args.test_months,
+        step_months=args.step_months,
+        rebalance_freq=args.rebalance_freq,
+    )
+    print(f"\n=== Walk-Forward Report: {report.strategy_name} ===")
+    print(f"windows: {len(report.windows)}")
+    for w in report.windows:
+        s = w.stats
+        print(f"  {w.test_start.date()} → {w.test_end.date()}: "
+              f"SR={s.get('sharpe', 0):>5.2f}  "
+              f"CAGR={s.get('CAGR', 0)*100:>+6.1f}%  "
+              f"MDD={s.get('max_drawdown', 0)*100:>+6.1f}%")
+    print(f"\nAggregate:")
+    for k, v in sorted(report.aggregate_stats.items()):
+        if isinstance(v, float):
+            print(f"  {k:>22s}: {v:>+10.4f}")
+        else:
+            print(f"  {k:>22s}: {v}")
+
+    out = TRADE_DB_PATH.parent.parent.parent / "quant" / "data" / "walk_forward.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(_json.dumps(report.to_dict(), indent=2, ensure_ascii=False, default=str))
+    print(f"\nreport -> {out}")
+    return 0
+
+
 def cmd_health(args) -> int:
     from lab.analytics.strategy_health import write_strategy_health
     log_dir = TRADE_DB_PATH.parent
@@ -279,6 +325,15 @@ def main() -> int:
     p_rev.add_argument("--end", default="2024-12-31")
     p_rev.add_argument("--rebalance-freq", default="W-MON")
     p_rev.set_defaults(func=cmd_review)
+
+    p_wf = sub.add_parser("walk-forward", help="walk-forward backtest (rigorous OOS)")
+    p_wf.add_argument("--start", default="2018-01-01")
+    p_wf.add_argument("--end", default="2024-12-31")
+    p_wf.add_argument("--train-months", type=int, default=24)
+    p_wf.add_argument("--test-months", type=int, default=6)
+    p_wf.add_argument("--step-months", type=int, default=6)
+    p_wf.add_argument("--rebalance-freq", default="W-MON")
+    p_wf.set_defaults(func=cmd_walk_forward)
 
     p_snap = sub.add_parser("snapshot", help="export JSON snapshot for the dashboard")
     p_snap.add_argument("--output", default="../quant/data", help="output dir (relative to trading/)")
