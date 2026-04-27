@@ -1,6 +1,205 @@
 {
-  "cycle_id": null,
-  "events": [],
-  "started_at": null,
-  "ended_at": null
+  "cycle_id": "daily-20260427T090428-0a5591",
+  "started_at": "2026-04-27T09:04:28.321508",
+  "ended_at": "2026-04-27T09:04:30.468652",
+  "summary": {
+    "cycle_id": "daily-20260427T090428-0a5591",
+    "started_at": "2026-04-27T09:04:28.321508",
+    "ended_at": "2026-04-27T09:04:30.468652",
+    "phases_run": [
+      "universe_curator",
+      "data_engineer",
+      "anomaly_responder",
+      "regime_classifier",
+      "portfolio_allocator",
+      "drawdown_defender",
+      "correlation_monitor",
+      "lifecycle_manager",
+      "strategy_runner",
+      "balance_fetcher",
+      "risk_manager",
+      "microstructure_skeptic",
+      "execution_trader",
+      "performance_analyst",
+      "anomaly_detector"
+    ],
+    "errors": [
+      "universe_curator"
+    ],
+    "intents_count": 0,
+    "executions_count": 0,
+    "success_count": 0
+  },
+  "events": [
+    {
+      "ts": "2026-04-27T09:04:29.310108",
+      "agent": "universe_curator",
+      "type": "agent_error",
+      "severity": "error",
+      "payload": {
+        "error": "\"None of [Index(['종가', '시가총액', '거래량', '거래대금'], dtype='object')] are in the [columns]\"",
+        "type": "KeyError"
+      }
+    },
+    {
+      "ts": "2026-04-27T09:04:29.312295",
+      "agent": "data_engineer",
+      "type": "skipped",
+      "severity": "info",
+      "payload": {
+        "reason": "no universe in ctx"
+      }
+    },
+    {
+      "ts": "2026-04-27T09:04:29.313578",
+      "agent": "anomaly_responder",
+      "type": "responder_no_anomalies",
+      "severity": "info",
+      "payload": {}
+    },
+    {
+      "ts": "2026-04-27T09:04:30.449486",
+      "agent": "regime_classifier",
+      "type": "regime_unavailable",
+      "severity": "info",
+      "payload": {
+        "reason": "KOSPI data not retrievable"
+      }
+    },
+    {
+      "ts": "2026-04-27T09:04:30.451537",
+      "agent": "portfolio_allocator",
+      "type": "portfolio_weights",
+      "severity": "info",
+      "payload": {
+        "method": "fallback_static",
+        "n_eligible": 0,
+        "risk_parity_weights": {
+          "xs_momentum": 0.3,
+          "mean_reversion": 0.15,
+          "low_volatility": 0.2,
+          "volatility_breakout": 0.15,
+          "quality_value": 0.2
+        },
+        "regime_tilted_weights": {
+          "xs_momentum": 0.3,
+          "mean_reversion": 0.15,
+          "low_volatility": 0.2,
+          "volatility_breakout": 0.15,
+          "quality_value": 0.2
+        },
+        "regime": "none",
+        "regime_multipliers": {},
+        "realized_vols": {},
+        "rationale": "입력 없음 → static fallback",
+        "tilt_rationale": "No regime detected — weights unchanged."
+      }
+    },
+    {
+      "ts": "2026-04-27T09:04:30.452933",
+      "agent": "drawdown_defender",
+      "type": "dd_insufficient_data",
+      "severity": "info",
+      "payload": {
+        "n_observations": 0,
+        "note": "최소 5일 equity 필요. 평상시 운영 중 (자본 100% 노출)."
+      }
+    },
+    {
+      "ts": "2026-04-27T09:04:30.454653",
+      "agent": "correlation_monitor",
+      "type": "correlation_check",
+      "severity": "info",
+      "payload": {
+        "severity": "ok",
+        "avg_off_diagonal": null,
+        "max_off_diagonal": null,
+        "max_pair": null,
+        "suggested_scale": 1.0,
+        "scale_before": 0.85,
+        "scale_after": 0.85,
+        "rationale": "2개 미만 전략 — 상관관계 측정 불가, 정상 노출"
+      }
+    },
+    {
+      "ts": "2026-04-27T09:04:30.456959",
+      "agent": "lifecycle_manager",
+      "type": "lifecycle_steady",
+      "severity": "info",
+      "payload": {
+        "n_strategies": 5
+      }
+    },
+    {
+      "ts": "2026-04-27T09:04:30.458125",
+      "agent": "strategy_runner",
+      "type": "skipped",
+      "severity": "info",
+      "payload": {
+        "reason": "no prices in ctx"
+      }
+    },
+    {
+      "ts": "2026-04-27T09:04:30.459281",
+      "agent": "balance_fetcher",
+      "type": "skipped",
+      "severity": "info",
+      "payload": {
+        "reason": "no broker client (LLM-key-free mode)"
+      }
+    },
+    {
+      "ts": "2026-04-27T09:04:30.460565",
+      "agent": "risk_manager",
+      "type": "skipped",
+      "severity": "info",
+      "payload": {
+        "reason": "no signal or balance"
+      }
+    },
+    {
+      "ts": "2026-04-27T09:04:30.461703",
+      "agent": "microstructure_skeptic",
+      "type": "skipped",
+      "severity": "info",
+      "payload": {
+        "reason": "no order_intents"
+      }
+    },
+    {
+      "ts": "2026-04-27T09:04:30.462885",
+      "agent": "execution_trader",
+      "type": "no_orders",
+      "severity": "info",
+      "payload": {}
+    },
+    {
+      "ts": "2026-04-27T09:04:30.464955",
+      "agent": "performance_analyst",
+      "type": "daily_pnl",
+      "severity": "info",
+      "payload": {
+        "date": "2026-04-27",
+        "starting_equity": 0,
+        "ending_equity": 0,
+        "pnl": 0,
+        "pnl_pct": 0.0
+      }
+    },
+    {
+      "ts": "2026-04-27T09:04:30.467309",
+      "agent": "anomaly_detector",
+      "type": "anomaly_detected",
+      "severity": "warn",
+      "payload": {
+        "type": "data_freshness",
+        "severity": "warn",
+        "detected_at": "2026-04-27T09:04:30+00:00",
+        "metric": "last_data_timestamp",
+        "value": 0.0,
+        "threshold": "< 30.0h ago",
+        "rationale": "데이터 timestamp 없음 (시스템 초기 상태 또는 fetch 실패)"
+      }
+    }
+  ]
 }
