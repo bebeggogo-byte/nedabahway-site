@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0A0E1A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="네다바 Brain">
+<meta name="description" content="네다바웨이 운영 조직을 인간 뇌엽으로 매핑한 활성 그래프">
+<meta name="robots" content="noindex,nofollow">
+<title>Nedabah Brain — 조직 신경망</title>
+
+<link rel="apple-touch-icon" href="/vault/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/vault/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+
+  :root {
+    --bg-deep: #050810;
+    --bg-mid:  #0A0E1A;
+    --bg-soft: #131826;
+    --text:    #E8EAED;
+    --stone:   #8A92A6;
+    --teal:    #1ABC9C;
+    --cream:   #F5E9D7;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(ellipse at center, #131826 0%, #050810 70%);
+    color: var(--text);
+    font-size: 13px;
+    position: relative;
+  }
+
+  /* ── Background neural noise ─────────────────── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(231, 76, 60, 0.08) 0%, transparent 30%),
+      radial-gradient(circle at 80% 30%, rgba(52, 152, 219, 0.08) 0%, transparent 30%),
+      radial-gradient(circle at 20% 70%, rgba(39, 174, 96, 0.06) 0%, transparent 35%),
+      radial-gradient(circle at 80% 70%, rgba(22, 160, 133, 0.07) 0%, transparent 35%),
+      radial-gradient(circle at 50% 50%, rgba(243, 156, 18, 0.05) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Top bar ─────────────────────────────────── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 14px 20px;
+    padding-top: max(14px, env(safe-area-inset-top));
+    background: linear-gradient(to bottom, rgba(5, 8, 16, 0.95), rgba(5, 8, 16, 0.6) 70%, transparent);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--cream);
+  }
+  .brand small {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--stone);
+    margin-top: 2px;
+  }
+  .controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--text);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .btn:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.25);
+  }
+  .btn.active {
+    background: rgba(26, 188, 156, 0.2);
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  /* ── Canvas ───────────────────────────────────── */
+  #canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+  }
+  svg { display: block; }
+
+  /* ── Lobe legend (sidebar) ────────────────────── */
+  .legend {
+    position: fixed;
+    top: 80px;
+    left: 16px;
+    background: rgba(10, 14, 26, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 14px 16px;
+    z-index: 50;
+    max-width: 220px;
+  }
+  .legend h3 {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--stone);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 11.5px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .legend-row:hover { opacity: 0.7; }
+  .legend-row.dim { opacity: 0.3; }
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px currentColor;
+    flex-shrink: 0;
+  }
+
+  /* ── Detail panel (right) ─────────────────────── */
+  .detail {
+    position: fixed;
+    top: 80px;
+    right: 16px;
+    width: 280px;
+    background: rgba(10, 14, 26, 0.92);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 18px;
+    z-index: 50;
+    transition: transform 0.25s, opacity 0.25s;
+  }
+  .detail.hidden {
+    transform: translateX(20px);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .detail .title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--cream);
+  }
+  .detail .lobe-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .detail .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .detail .stat {
+    background: rgba(255,255,255,0.04);
+    padding: 8px 10px;
+    border-radius: 6px;
+  }
+  .detail .stat .v {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .detail .stat .v.active { color: var(--teal); }
+  .detail .stat .l {
+    font-size: 10px;
+    color: var(--stone);
+    margin-top: 2px;
+  }
+  .detail .desc {
+    font-size: 12px;
+    color: var(--stone);
+    line-height: 1.5;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .detail .conn {
+    margin-top: 10px;
+    font-size: 11px;
+    color: var(--stone);
+  }
+  .detail .conn b { color: var(--cream); font-weight: 600; }
+
+  /* ── Bottom info ─────────────────────────────── */
+  .footer-info {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 20px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    background: linear-gradient(to top, rgba(5,8,16,0.95), transparent);
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10.5px;
+    color: var(--stone);
+    pointer-events: none;
+  }
+  .footer-info a {
+    color: var(--teal);
+    text-decoration: none;
+    pointer-events: auto;
+  }
+
+  /* ── Mobile responsive ───────────────────────── */
+  @media (max-width: 700px) {
+    .legend {
+      top: auto;
+      bottom: 60px;
+      left: 8px;
+      right: 8px;
+      max-width: none;
+      max-height: 140px;
+      overflow: auto;
+      padding: 10px 14px;
+    }
+    .legend-row { padding: 3px 0; font-size: 10.5px; }
+    .detail {
+      top: 65px;
+      right: 8px;
+      left: 8px;
+      width: auto;
+      padding: 14px;
+    }
+  }
+
+  /* ── Loading ─────────────────────────────────── */
+  .loading {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    color: var(--stone);
+    font-size: 13px;
+    background: var(--bg-deep);
+  }
+  .pulse-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 20px var(--teal);
+    animation: brainpulse 1.4s ease-in-out infinite;
+    margin-right: 10px;
+  }
+  @keyframes brainpulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); box-shadow: 0 0 10px var(--teal); }
+    50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 25px var(--teal); }
+  }
+
+  /* ── SVG element styles ──────────────────────── */
+  .lobe-bg {
+    transition: opacity 0.3s;
+  }
+  .node circle.core {
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .node circle.glow {
+    pointer-events: none;
+    transition: all 0.3s;
+  }
+  .node text {
+    pointer-events: none;
+    fill: var(--cream);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    text-shadow: 0 0 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.7);
+  }
+  .node.active circle.glow {
+    animation: synapseGlow 2.4s ease-in-out infinite;
+  }
+  @keyframes synapseGlow {
+    0%, 100% { opacity: 0.4; r: var(--glow-min); }
+    50% { opacity: 0.85; r: var(--glow-max); }
+  }
+  .link {
+    stroke-linecap: round;
+    transition: stroke-opacity 0.2s, stroke-width 0.2s;
+  }
+  .link-pulse {
+    fill: var(--teal);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .node.dim circle, .node.dim text { opacity: 0.18; }
+  .link.dim { stroke-opacity: 0.05; }
+  .node.highlight circle.core { filter: drop-shadow(0 0 8px currentColor); }
+</style>
+</head>
+<body>
+
+<div class="loading" id="loading">
+  <span class="pulse-dot"></span> 신경망 구성 중…
+</div>
+
+<header>
+  <div class="brand">
+    🧠 Nedabah Brain
+    <small>17부서 · E1~E13 · 신경망 활성 지도</small>
+  </div>
+  <div class="controls">
+    <button class="btn" id="btnPulse">시냅스 ON</button>
+    <button class="btn" id="btnReset">중앙 정렬</button>
+    <a href="/vault/" class="btn" style="text-decoration:none">← 모니터</a>
+  </div>
+</header>
+
+<div class="legend" id="legend">
+  <h3>뇌엽 6개 영역</h3>
+  <!-- JS로 채움 -->
+</div>
+
+<div class="detail hidden" id="detail">
+  <div class="title">노드 선택</div>
+  <div class="desc">노드를 클릭하면 부서 상세 정보가 표시됩니다.</div>
+</div>
+
+<div id="canvas">
+  <svg></svg>
+</div>
+
+<div class="footer-info">
+  <span>드래그·핀치 줌·노드 클릭으로 탐색 · 활성 부서는 펄스</span>
+  <a href="/">nedabah.org</a>
+</div>
+
+<script>
+const W = () => window.innerWidth;
+const H = () => window.innerHeight;
+
+const svg = d3.select('svg').attr('width', W()).attr('height', H());
+
+// 그라디언트 정의 (각 뇌엽별 발광)
+const defs = svg.append('defs');
+
+let DATA = null;
+let simulation = null;
+let pulseEnabled = true;
+let dimMode = null;       // 활성화된 lobe id
+
+async function load() {
+  try {
+    const res = await fetch('/vault/data/brain.json?_=' + Date.now(), { cache: 'no-store' });
+    DATA = await res.json();
+    document.getElementById('loading').style.display = 'none';
+    setupGradients();
+    renderLegend();
+    renderGraph();
+  } catch (e) {
+    document.getElementById('loading').innerHTML = '데이터를 불러올 수 없습니다: ' + e.message;
+  }
+}
+
+function setupGradients() {
+  for (const lobe of DATA.lobes) {
+    const grad = defs.append('radialGradient')
+      .attr('id', 'glow-' + lobe.id);
+    grad.append('stop').attr('offset', '0%').attr('stop-color', lobe.color).attr('stop-opacity', 0.6);
+    grad.append('stop').attr('offset', '60%').attr('stop-color', lobe.color).attr('stop-opacity', 0.15);
+    grad.append('stop').attr('offset', '100%').attr('stop-color', lobe.color).attr('stop-opacity', 0);
+  }
+
+  // 뇌 전체 윤곽 그라디언트
+  const brainGrad = defs.append('radialGradient').attr('id', 'brain-bg');
+  brainGrad.append('stop').attr('offset', '0%').attr('stop-color', '#1f2740').attr('stop-opacity', 0.4);
+  brainGrad.append('stop').attr('offset', '70%').attr('stop-color', '#0a0e1a').attr('stop-opacity', 0.2);
+  brainGrad.append('stop').attr('offset', '100%').attr('stop-color', '#0a0e1a').attr('stop-opacity', 0);
+}
+
+function renderLegend() {
+  const el = document.getElementById('legend');
+  el.innerHTML = '<h3>뇌엽 6개 영역</h3>';
+  for (const lobe of DATA.lobes) {
+    const row = document.createElement('div');
+    row.className = 'legend-row';
+    row.dataset.lobe = lobe.id;
+    row.innerHTML = `<span class="legend-dot" style="background:${lobe.color};color:${lobe.color}"></span><span>${lobe.label}</span>`;
+    row.onclick = () => {
+      dimMode = (dimMode === lobe.id) ? null : lobe.id;
+      applyDim();
+    };
+    el.appendChild(row);
+  }
+}
+
+function applyDim() {
+  document.querySelectorAll('.legend-row').forEach(r => {
+    r.classList.toggle('dim', dimMode && r.dataset.lobe !== dimMode);
+  });
+  d3.selectAll('.node').classed('dim', d => dimMode && d.lobe !== dimMode);
+  d3.selectAll('.link').classed('dim', d => {
+    if (!dimMode) return false;
+    const s = (typeof d.source === 'object' ? d.source : nodeMap[d.source]);
+    const t = (typeof d.target === 'object' ? d.target : nodeMap[d.target]);
+    return !((s && s.lobe === dimMode) || (t && t.lobe === dimMode));
+  });
+}
+
+let nodeMap = {};
+
+function renderGraph() {
+  const w = W(), h = H();
+  const cx = w / 2, cy = h / 2;
+
+  // 뇌 윤곽 (배경 ellipse)
+  svg.append('ellipse')
+    .attr('cx', cx).attr('cy', cy)
+    .attr('rx', Math.min(w, h) * 0.38)
+    .attr('ry', Math.min(w, h) * 0.42)
+    .attr('fill', 'url(#brain-bg)')
+    .attr('opacity', 0.6);
+
+  // 좌우 반구 분리선 (뇌량)
+  svg.append('line')
+    .attr('x1', cx).attr('y1', cy - Math.min(w,h)*0.4)
+    .attr('x2', cx).attr('y2', cy + Math.min(w,h)*0.4)
+    .attr('stroke', 'rgba(245,233,215,0.06)')
+    .attr('stroke-width', 1)
+    .attr('stroke-dasharray', '3,4');
+
+  // 뇌엽별 배경 발광
+  const lobeRadius = Math.min(w, h) * 0.18;
+  for (const lobe of DATA.lobes) {
+    if (lobe.angle === null) {
+      // 변연계 = 중앙
+      svg.append('circle')
+        .attr('cx', cx).attr('cy', cy)
+        .attr('r', lobeRadius * 0.7)
+        .attr('fill', `url(#glow-${lobe.id})`)
+        .attr('class', 'lobe-bg');
+    } else {
+      const rad = (lobe.angle - 180) * Math.PI / 180;
+      const r = Math.min(w, h) * 0.27;
+      const x = cx + Math.cos(rad) * r;
+      const y = cy + Math.sin(rad) * r;
+      svg.append('circle')
+        .attr('cx', x).attr('cy', y)
+        .attr('r', lobeRadius)
+        .attr('fill', `url(#glow-${lobe.id})`)
+        .attr('class', 'lobe-bg');
+    }
+  }
+
+  // 노드 좌표 사전 배치 (뇌엽별로 클러스터링)
+  for (const n of DATA.nodes) {
+    const lobe = DATA.lobes.find(l => l.id === n.lobe);
+    if (!lobe || lobe.angle === null) {
+      // 중앙 (변연계)
+      n.x = cx + (Math.random() - 0.5) * 80;
+      n.y = cy + (Math.random() - 0.5) * 80;
+      n.fx_target = cx;
+      n.fy_target = cy;
+    } else {
+      const rad = (lobe.angle - 180) * Math.PI / 180;
+      const r = Math.min(w, h) * 0.27;
+      n.fx_target = cx + Math.cos(rad) * r;
+      n.fy_target = cy + Math.sin(rad) * r;
+      n.x = n.fx_target + (Math.random() - 0.5) * 60;
+      n.y = n.fy_target + (Math.random() - 0.5) * 60;
+    }
+    nodeMap[n.id] = n;
+  }
+
+  // edges 데이터 정규화
+  const links = DATA.edges.filter(e => nodeMap[e.source] && nodeMap[e.target]);
+
+  // Zoom container
+  const g = svg.append('g').attr('class', 'zoom-layer');
+  svg.call(d3.zoom().scaleExtent([0.4, 3]).on('zoom', e => g.attr('transform', e.transform)));
+
+  // Links (시냅스)
+  const linkLayer = g.append('g').attr('class', 'links');
+  const link = linkLayer.selectAll('line').data(links).enter().append('line')
+    .attr('class', 'link')
+    .attr('stroke', d => {
+      const s = nodeMap[d.source], t = nodeMap[d.target];
+      const lobe = DATA.lobes.find(l => l.id === s.lobe);
+      return lobe ? lobe.color : '#666';
+    })
+    .attr('stroke-width', d => 0.6 + d.weight * 0.6)
+    .attr('stroke-opacity', 0.35);
+
+  // Nodes (뉴런)
+  const nodeLayer = g.append('g').attr('class', 'nodes');
+  const node = nodeLayer.selectAll('g').data(DATA.nodes).enter().append('g')
+    .attr('class', d => 'node' + (d.active ? ' active' : ''))
+    .style('--glow-min', d => (d.size + 4) + 'px')
+    .style('--glow-max', d => (d.size + 14) + 'px');
+
+  // Glow halo
+  node.append('circle')
+    .attr('class', 'glow')
+    .attr('r', d => d.size + 4)
+    .attr('fill', d => {
+      const lobe = DATA.lobes.find(l => l.id === d.lobe);
+      return lobe ? lobe.color : '#fff';
+    })
+    .attr('opacity', d => d.active ? 0.6 : 0.25);
+
+  // Core circle (뉴런 본체)
+  node.append('circle')
+    .attr('class', 'core')
+    .attr('r', d => d.size)
+    .attr('fill', d => {
+      const lobe = DATA.lobes.find(l => l.id === d.lobe);
+      return lobe ? lobe.color : '#888';
+    })
+    .attr('stroke', 'rgba(245, 233, 215, 0.8)')
+    .attr('stroke-width', d => d.type === 'core' ? 2 : 1)
+    .attr('opacity', d => d.active ? 0.95 : 0.7)
+    .style('color', d => {
+      const lobe = DATA.lobes.find(l => l.id === d.lobe);
+      return lobe ? lobe.color : '#888';
+    })
+    .on('click', (e, d) => showDetail(d, e))
+    .on('mouseover', (e, d) => highlightNode(d, true))
+    .on('mouseout', (e, d) => highlightNode(d, false));
+
+  // Label
+  node.append('text')
+    .attr('text-anchor', 'middle')
+    .attr('dy', d => d.size + 14)
+    .text(d => d.label);
+
+  // Drag
+  node.call(d3.drag()
+    .on('start', (e, d) => { if (!e.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+    .on('drag', (e, d) => { d.fx = e.x; d.fy = e.y; })
+    .on('end', (e, d) => { if (!e.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+  // Force simulation (인력 → 뇌엽 위치, 척력 → 노드 간격)
+  simulation = d3.forceSimulation(DATA.nodes)
+    .force('link', d3.forceLink(links).id(d => d.id).distance(d => 50 + (4 - d.weight) * 18).strength(0.3))
+    .force('charge', d3.forceManyBody().strength(-180))
+    .force('collision', d3.forceCollide().radius(d => d.size + 14))
+    .force('lobe', alpha => {
+      // 각 노드를 자기 lobe 중심으로 끌어당김
+      for (const n of DATA.nodes) {
+        if (n.fx_target != null) {
+          n.vx += (n.fx_target - n.x) * 0.04 * alpha;
+          n.vy += (n.fy_target - n.y) * 0.04 * alpha;
+        }
+      }
+    })
+    .on('tick', () => {
+      link
+        .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+      node.attr('transform', d => `translate(${d.x},${d.y})`);
+    });
+
+  // Synapse pulse (활성 부서 → 연결 부서로 데이터 흐름)
+  if (pulseEnabled) startPulses(g, links);
+}
+
+function startPulses(g, links) {
+  const activeLinks = links.filter(l => {
+    const s = nodeMap[l.source.id || l.source];
+    return s && s.active;
+  });
+  if (!activeLinks.length) return;
+
+  function emit() {
+    if (!pulseEnabled) return;
+    const link = activeLinks[Math.floor(Math.random() * activeLinks.length)];
+    const s = nodeMap[link.source.id || link.source];
+    const t = nodeMap[link.target.id || link.target];
+    if (!s || !t) return;
+    const lobe = DATA.lobes.find(l => l.id === s.lobe);
+    const color = lobe ? lobe.color : '#1ABC9C';
+    const pulse = g.insert('circle', '.nodes')
+      .attr('r', 3)
+      .attr('fill', color)
+      .attr('opacity', 0.95)
+      .attr('cx', s.x).attr('cy', s.y)
+      .style('filter', `drop-shadow(0 0 6px ${color})`);
+    pulse.transition().duration(900).ease(d3.easeQuadInOut)
+      .attr('cx', t.x).attr('cy', t.y)
+      .attr('opacity', 0)
+      .on('end', () => pulse.remove());
+  }
+
+  setInterval(emit, 280);
+}
+
+function highlightNode(d, on) {
+  if (!on) {
+    d3.selectAll('.node').classed('highlight', false);
+    if (!dimMode) {
+      d3.selectAll('.link').classed('dim', false);
+      d3.selectAll('.node').classed('dim', false);
+    }
+    return;
+  }
+  // 연결된 노드들 찾기
+  const connected = new Set([d.id]);
+  DATA.edges.forEach(e => {
+    if (e.source === d.id || (e.source && e.source.id === d.id)) connected.add(typeof e.target === 'object' ? e.target.id : e.target);
+    if (e.target === d.id || (e.target && e.target.id === d.id)) connected.add(typeof e.source === 'object' ? e.source.id : e.source);
+  });
+  d3.selectAll('.node').classed('dim', n => !connected.has(n.id));
+  d3.selectAll('.link').classed('dim', e => {
+    const sid = typeof e.source === 'object' ? e.source.id : e.source;
+    const tid = typeof e.target === 'object' ? e.target.id : e.target;
+    return sid !== d.id && tid !== d.id;
+  });
+  d3.selectAll('.node').filter(n => n.id === d.id).classed('highlight', true);
+}
+
+function showDetail(d, event) {
+  const panel = document.getElementById('detail');
+  const lobe = DATA.lobes.find(l => l.id === d.lobe);
+  const conns = DATA.edges.filter(e => {
+    const sid = typeof e.source === 'object' ? e.source.id : e.source;
+    const tid = typeof e.target === 'object' ? e.target.id : e.target;
+    return sid === d.id || tid === d.id;
+  });
+
+  panel.innerHTML = `
+    <div class="title">${esc(d.label)}</div>
+    <span class="lobe-tag" style="background:${lobe.color}33;color:${lobe.color};border:1px solid ${lobe.color}66">${esc(lobe.label)}</span>
+    <div class="stat-grid">
+      <div class="stat"><div class="v ${d.active ? 'active' : ''}">${d.today || 0}</div><div class="l">오늘 산출물</div></div>
+      <div class="stat"><div class="v">${(d.total || 0).toLocaleString()}</div><div class="l">누적 노트</div></div>
+      <div class="stat"><div class="v">${conns.length}</div><div class="l">시냅스 연결</div></div>
+      <div class="stat"><div class="v">${d.active ? '🟢' : '⚫'}</div><div class="l">${d.active ? '활성' : '대기'}</div></div>
+    </div>
+    ${d.desc ? `<div class="desc">${esc(d.desc)}</div>` : ''}
+    <div class="conn"><b>연결된 부서</b>: ${conns.slice(0, 6).map(e => {
+      const sid = typeof e.source === 'object' ? e.source.id : e.source;
+      const tid = typeof e.target === 'object' ? e.target.id : e.target;
+      const otherId = sid === d.id ? tid : sid;
+      const other = nodeMap[otherId];
+      return other ? esc(other.label) : esc(otherId);
+    }).join(' · ')}${conns.length > 6 ? ` 외 ${conns.length - 6}` : ''}</div>
+  `;
+  panel.classList.remove('hidden');
+}
+function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+document.getElementById('btnPulse').onclick = () => {
+  pulseEnabled = !pulseEnabled;
+  document.getElementById('btnPulse').classList.toggle('active', pulseEnabled);
+  document.getElementById('btnPulse').textContent = pulseEnabled ? '시냅스 ON' : '시냅스 OFF';
+  if (pulseEnabled) renderGraph(); // 재시작
+};
+document.getElementById('btnPulse').classList.add('active');
+
+document.getElementById('btnReset').onclick = () => {
+  if (simulation) simulation.alpha(0.6).restart();
+  document.getElementById('detail').classList.add('hidden');
+  dimMode = null;
+  applyDim();
+};
+
+window.addEventListener('resize', () => {
+  svg.attr('width', W()).attr('height', H());
+});
+
+load();
+</script>
+
+</body>
+</html>
