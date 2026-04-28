@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>Still Hands — A Nedabahway Publication</title>
+<meta name="description" content="An English-language essay newsletter from Jeju Island, Korea. Field notes on automation, solo business, and the human acts that refuse to be generated. Every other Sunday. Free forever.">
+<meta property="og:title" content="Still Hands — A Nedabahway Publication">
+<meta property="og:description" content="An English-language essay newsletter from Jeju Island, Korea. Field notes on automation, solo business, and the human acts that refuse to be generated.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nedabah.org/">
+<meta property="og:site_name" content="Still Hands">
+<link rel="canonical" href="https://www.nedabah.org/">
+<link rel="alternate" type="application/rss+xml" title="Still Hands RSS" href="https://www.nedabah.org/blog/feed.xml">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
+:root{
+  --c-bg:#FAFAF7;--c-surface:#FFFFFF;--c-fg:#1A1A1A;
+  --c-mute:#6B6B6B;--c-mute2:#9A9A9A;--c-line:#E8E6E0;--c-line2:#D6D3CA;
+  --c-accent:#10803D;--c-accent-soft:#E8F2EC;
+  --c-copper:#C2410C;--c-copper-soft:#FDF1EA;
+  --c-insight:#1D4ED8;--c-insight-soft:#E8EEFB;
+  --ff:'Pretendard Variable','Noto Sans',system-ui,sans-serif;
+  --ff-serif:'Noto Serif KR','Iowan Old Style',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);
+  line-height:1.7;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line)}
+.nav__inner{max-width:1180px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
+.nav__logo{font-family:var(--ff-serif);font-weight:700;font-size:1.18rem;letter-spacing:-.01em}
+.nav__logo em{font-style:italic;color:var(--c-copper);font-weight:700}
+.nav__links{display:flex;gap:24px;align-items:center}
+.nav__link{font-size:.9rem;color:var(--c-mute);font-weight:500}
+.nav__link:hover{color:var(--c-fg)}
+.nav__cta{font-size:.85rem;padding:10px 20px;border-radius:999px;background:var(--c-fg);color:var(--c-bg);font-weight:700;transition:background .15s}
+.nav__cta:hover{background:var(--c-accent);text-decoration:none}
+@media(max-width:760px){.nav__links .nav__link{display:none}}
+
+/* MASTHEAD */
+.mast{max-width:1080px;margin:0 auto;padding:80px 28px 40px;border-bottom:1px solid var(--c-line)}
+.mast__rail{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  font-size:.72rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--c-mute);margin-bottom:22px}
+.mast__title{font-family:var(--ff-serif);font-weight:900;font-size:clamp(2.6rem,7vw,5.2rem);line-height:1;letter-spacing:-.035em;margin-bottom:22px}
+.mast__title em{font-style:italic;color:var(--c-copper);font-weight:700}
+.mast__sub{max-width:660px;color:var(--c-mute);font-size:1.05rem;line-height:1.75;margin-bottom:34px}
+.mast__issue{display:flex;gap:28px;flex-wrap:wrap;font-size:.82rem;color:var(--c-mute)}
+.mast__issue strong{color:var(--c-fg);font-weight:700}
+
+/* COVER + SUBSCRIBE */
+.hero{max-width:1080px;margin:0 auto;padding:40px 28px 56px}
+.hero__grid{display:grid;gap:24px;grid-template-columns:1fr}
+@media(min-width:900px){.hero__grid{grid-template-columns:1.55fr 1fr;gap:32px}}
+.cover{background:var(--c-surface);border:1px solid var(--c-line);border-radius:20px;padding:44px 40px;transition:all .25s;display:block;position:relative;overflow:hidden}
+.cover:hover{border-color:var(--c-line2);transform:translateY(-3px);text-decoration:none}
+.cover::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(500px 280px at 92% -10%,var(--c-insight-soft),transparent 70%);pointer-events:none}
+.cover__flag{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--c-insight);margin-bottom:18px;position:relative}
+.cover__flag::before{content:"";width:22px;height:2px;background:var(--c-insight)}
+.cover__title{font-family:var(--ff-serif);font-weight:700;font-size:clamp(1.7rem,3.8vw,2.4rem);line-height:1.22;letter-spacing:-.025em;margin-bottom:18px;position:relative}
+.cover__excerpt{color:#333;font-size:1rem;line-height:1.75;margin-bottom:24px;position:relative;max-width:540px}
+.cover__meta{position:relative;display:flex;gap:14px;font-size:.78rem;color:var(--c-mute2);font-weight:500}
+.cover__meta span+span::before{content:"·";margin-right:14px;color:var(--c-line2)}
+
+/* SUBSCRIBE CARD */
+.sub-card{background:#fff;border:1px solid var(--c-line);border-radius:20px;padding:34px 30px;display:grid;gap:16px;align-content:start}
+.sub-card__label{font-family:var(--ff-serif);font-weight:700;font-size:1.32rem;letter-spacing:-.015em;line-height:1.32;color:var(--c-fg)}
+.sub-card__hint{font-size:.92rem;color:var(--c-mute);line-height:1.7}
+.sub-input{padding:14px 18px;font-size:1rem;border:1.5px solid var(--c-line2);border-radius:11px;background:var(--c-bg);color:var(--c-fg);outline:none;font-family:inherit;transition:border-color .15s;width:100%}
+.sub-input:focus{border-color:var(--c-accent)}
+.sub-btn{padding:14px 24px;font-size:.95rem;font-weight:700;background:var(--c-fg);color:var(--c-bg);border:none;border-radius:11px;cursor:pointer;transition:background .15s;font-family:inherit;white-space:nowrap;width:100%}
+.sub-btn:hover{background:var(--c-accent)}
+.sub-msg{font-size:.82rem;color:var(--c-mute2);margin:0;min-height:1.4em}
+.sub-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:.72rem;color:var(--c-mute2);font-weight:500;padding-top:4px;border-top:1px solid var(--c-line)}
+.sub-meta strong{color:var(--c-fg)}
+
+/* FEED */
+.feed{max-width:1080px;margin:0 auto;padding:48px 28px 32px;border-top:1px solid var(--c-line)}
+.feed__head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+.feed__title{font-family:var(--ff-serif);font-weight:700;font-size:1.6rem;letter-spacing:-.02em}
+.feed__more{font-size:.85rem;color:var(--c-accent);font-weight:700}
+.feed__list{display:grid;gap:1px;background:var(--c-line);border:1px solid var(--c-line);border-radius:16px;overflow:hidden}
+.feed-item{display:grid;grid-template-columns:120px 1fr auto;gap:22px;align-items:center;padding:22px 26px;background:var(--c-surface);transition:background .18s}
+.feed-item:hover{background:#F5F3EC}
+.feed-item__date{font-size:.78rem;color:var(--c-mute);font-variant-numeric:tabular-nums}
+.feed-item__main{min-width:0}
+.feed-item__flag{font-size:.68rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;margin-bottom:6px;color:var(--c-insight)}
+.feed-item__title{font-family:var(--ff-serif);font-size:1.06rem;font-weight:700;line-height:1.45;color:var(--c-fg);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.feed-item__read{font-size:.76rem;color:var(--c-mute2);white-space:nowrap}
+@media(max-width:700px){
+  .feed-item{grid-template-columns:1fr;gap:6px;padding:20px 20px}
+  .feed-item__read{display:none}
+}
+
+/* ABOUT MINI */
+.about-mini{max-width:1080px;margin:0 auto;padding:60px 28px 20px;border-top:1px solid var(--c-line)}
+.about-mini__grid{display:grid;gap:24px;grid-template-columns:1fr}
+@media(min-width:860px){.about-mini__grid{grid-template-columns:1fr 1fr;gap:48px;align-items:center}}
+.about-mini__kicker{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--c-copper);margin-bottom:14px}
+.about-mini__h{font-family:var(--ff-serif);font-weight:700;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.02em;line-height:1.3;margin-bottom:16px}
+.about-mini__body{color:var(--c-mute);font-size:.98rem;line-height:1.8}
+.about-mini__body p+p{margin-top:14px}
+.about-mini__cta{display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding:12px 22px;border-radius:999px;background:var(--c-fg);color:var(--c-bg);font-weight:700;font-size:.88rem;transition:background .15s}
+.about-mini__cta:hover{background:var(--c-accent);text-decoration:none}
+.about-mini__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:28px;background:var(--c-surface);border:1px solid var(--c-line);border-radius:16px}
+.stat{text-align:center}
+.stat__n{font-family:var(--ff-serif);font-weight:800;font-size:clamp(1.8rem,3.2vw,2.4rem);letter-spacing:-.03em;color:var(--c-copper);line-height:1;margin-bottom:4px}
+.stat__l{font-size:.72rem;color:var(--c-mute);font-weight:600}
+
+/* FOOT */
+.foot{max-width:1080px;margin:40px auto 0;padding:40px 28px 72px;color:var(--c-mute);font-size:.85rem;line-height:1.8;border-top:1px solid var(--c-line)}
+.foot__top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--c-line)}
+.foot__brand{font-family:var(--ff-serif);font-size:1.05rem;font-weight:700;color:var(--c-fg)}
+.foot__brand em{font-style:italic;color:var(--c-copper);font-weight:700}
+.foot__links{display:flex;gap:18px;flex-wrap:wrap}
+.foot__links a{color:var(--c-mute);font-size:.85rem}
+.foot__links a:hover{color:var(--c-fg)}
+.foot__bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:.78rem;color:var(--c-mute2)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/">Still <em>Hands</em></a>
+    <div class="nav__links">
+      <a class="nav__link" href="/blog/">All issues</a>
+      <a class="nav__link" href="/swarm.html">The Swarm</a>
+      <a class="nav__link" href="/work.html">Work with Kim</a>
+      <a class="nav__link" href="/company.html">About</a>
+      <a class="nav__cta" href="#subscribe">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<!-- MASTHEAD -->
+<header class="mast">
+  <div class="mast__rail">
+    <span>Still Hands · A Nedabahway Publication</span>
+    <span>Issue 02 · April 2026</span>
+  </div>
+  <h1 class="mast__title">
+    What people still make <em>by hand</em>,<br>
+    in the age of machines that make everything.
+  </h1>
+  <p class="mast__sub">
+    An English-language essay newsletter from Jeju Island, Korea.
+    Field notes on automation, solo business, and the human acts that refuse to be generated.
+    If I make a claim, it is labelled. If I don't know something, I say UNKNOWN.
+  </p>
+  <div class="mast__issue">
+    <div><strong>Editor</strong> · Kim Changhwan · Jeju, South Korea</div>
+    <div><strong>Publishing</strong> · every other Sunday</div>
+    <div><strong>Price</strong> · free forever</div>
+  </div>
+</header>
+
+<!-- COVER + SUBSCRIBE -->
+<section class="hero">
+  <div class="hero__grid">
+    <!-- DYNAMIC:LATEST-COVER:START -->
+    <a class="cover" href="/blog/posts/2026-04-19_eight-hours-with-my-ai-swarm.html">
+      <div class="cover__flag">Insight · Cover Story</div>
+      <h2 class="cover__title">Eight Hours With My AI Swarm, Looking for a Business</h2>
+      <p class="cover__excerpt">I spent a day asking 60 AI agents to help me find a direction for my one-person company. The most important thing I learned was not what they found — it was what they could not stop doing until I forced them to.</p>
+      <div class="cover__meta">
+        <span>Kim Changhwan</span><span>2026-04-19</span><span>from Jeju, Korea</span>
+      </div>
+    </a>
+    <!-- DYNAMIC:LATEST-COVER:END -->
+
+    <!-- Follow options · 저저항 4방식 + 이메일 작게 아래 -->
+    <div class="sub-card">
+      <a id="subscribe" style="display:block;position:relative;top:-60px;visibility:hidden"></a>
+      <div class="sub-card__label">Four ways to follow along.</div>
+      <p class="sub-card__hint">
+        No account required. Pick whichever you'll actually come back to.
+      </p>
+
+      <div style="display:grid;gap:10px;margin-top:4px">
+        <a href="#" onclick="return stillHandsBookmark(event)"
+           style="display:flex;align-items:center;gap:14px;padding:14px 18px;border:1.5px solid var(--c-line);border-radius:12px;text-decoration:none;color:var(--c-fg);transition:all .15s"
+           onmouseover="this.style.borderColor='#1D4ED8'" onmouseout="this.style.borderColor='#E8E6E0'">
+          <span style="font-size:20px">🔖</span>
+          <span style="flex:1"><strong>Bookmark this page</strong> <span style="color:var(--c-mute);font-size:.85rem">· zero setup · fastest</span></span>
+        </a>
+        <a href="https://www.nedabah.org/blog/feed.xml" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:14px;padding:14px 18px;border:1.5px solid var(--c-line);border-radius:12px;text-decoration:none;color:var(--c-fg);transition:all .15s"
+           onmouseover="this.style.borderColor='#C2410C'" onmouseout="this.style.borderColor='#E8E6E0'">
+          <span style="font-size:20px">📡</span>
+          <span style="flex:1"><strong>RSS feed</strong> <span style="color:var(--c-mute);font-size:.85rem">· Feedly · Inoreader · your app</span></span>
+        </a>
+        <a href="https://twitter.com/intent/follow?screen_name=nedabahway" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:14px;padding:14px 18px;border:1.5px solid var(--c-line);border-radius:12px;text-decoration:none;color:var(--c-fg);transition:all .15s"
+           onmouseover="this.style.borderColor='#1A1A1A'" onmouseout="this.style.borderColor='#E8E6E0'">
+          <span style="font-size:20px">𝕏</span>
+          <span style="flex:1"><strong>Follow on X</strong> <span style="color:var(--c-mute);font-size:.85rem">· new issues · short notes</span></span>
+        </a>
+        <a href="https://substack.com/@nedabahway" target="_blank" rel="noopener"
+           style="display:flex;align-items:center;gap:14px;padding:14px 18px;border:1.5px solid var(--c-line);border-radius:12px;text-decoration:none;color:var(--c-fg);transition:all .15s;opacity:.65"
+           onmouseover="this.style.borderColor='#FF6719';this.style.opacity='1'" onmouseout="this.style.borderColor='#E8E6E0';this.style.opacity='0.65'">
+          <span style="font-size:20px">📝</span>
+          <span style="flex:1"><strong>Substack mirror</strong> <span style="color:var(--c-mute);font-size:.85rem">· coming soon</span></span>
+        </a>
+      </div>
+
+      <details style="margin-top:14px;padding:14px 18px;border:1px dashed var(--c-line2);border-radius:10px">
+        <summary style="cursor:pointer;font-size:.88rem;color:var(--c-mute);font-weight:600;list-style:none">
+          📧 Still want email? &nbsp;<span style="color:var(--c-copper)">→ click to expand</span>
+        </summary>
+        <form id="still-hands-subscribe" style="display:grid;gap:10px;margin-top:14px"
+              action="https://formsubmit.co/ajax/nedabah.way@gmail.com" method="POST">
+          <input id="sh-email" class="sub-input" type="email" name="email" required placeholder="your@email.com">
+          <button type="submit" class="sub-btn">Notify me →</button>
+          <input type="hidden" name="_subject" value="New Still Hands subscriber">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_honey" value="">
+          <p id="sh-msg" class="sub-msg" aria-live="polite"></p>
+        </form>
+      </details>
+
+      <div class="sub-meta">
+        <span><strong>0</strong> paywall</span>
+        <span><strong>0</strong> spam</span>
+        <span>Free forever</span>
+      </div>
+    </div>
+    <script>
+    function stillHandsBookmark(e){
+      e.preventDefault();
+      alert('Press ' + (/Mac/.test(navigator.platform) ? 'Cmd' : 'Ctrl') + '+D to bookmark this page.');
+      return false;
+    }
+    </script>
+  </div>
+</section>
+
+<!-- FEED · 최근 이슈 -->
+<section class="feed">
+  <div class="feed__head">
+    <h3 class="feed__title">Recent issues</h3>
+    <a class="feed__more" href="/blog/">All issues →</a>
+  </div>
+  <div class="feed__list">
+    <!-- DYNAMIC:RECENT-FEED:START -->
+    <a class="feed-item" href="/blog/posts/2026-04-19_eight-hours-with-my-ai-swarm.html">
+      <div class="feed-item__date">2026-04-19</div>
+      <div class="feed-item__main">
+        <div class="feed-item__flag">Insight</div>
+        <div class="feed-item__title">Eight Hours With My AI Swarm, Looking for a Business</div>
+      </div>
+      <div class="feed-item__read">→</div>
+    </a>
+    <a class="feed-item" href="/blog/posts/2026-04-18_study-ai-literacy-policy.html">
+      <div class="feed-item__date">2026-04-18</div>
+      <div class="feed-item__main">
+        <div class="feed-item__flag">Guide</div>
+        <div class="feed-item__title">함께 공부할 자료 #01 — AI 리터러시 의무화 흐름 읽기</div>
+      </div>
+      <div class="feed-item__read">→</div>
+    </a>
+    <a class="feed-item" href="/blog/posts/2026-04-18_ref-curation-01.html">
+      <div class="feed-item__date">2026-04-18</div>
+      <div class="feed-item__main">
+        <div class="feed-item__flag">Curation</div>
+        <div class="feed-item__title">편집부가 본 자료 #01 — 효과크기·AI 리터러시 측정·공공조달 RFP 언어</div>
+      </div>
+      <div class="feed-item__read">→</div>
+    </a>
+    <a class="feed-item" href="/blog/posts/2026-04-18_ai-literacy-evidence-layer.html">
+      <div class="feed-item__date">2026-04-18</div>
+      <div class="feed-item__main">
+        <div class="feed-item__flag">Insight</div>
+        <div class="feed-item__title">AI 강사가 "증거"를 들고 왔을 때만 통한다 — 공공조달 차별화의 근거 레이어</div>
+      </div>
+      <div class="feed-item__read">→</div>
+    </a>
+    <!-- DYNAMIC:RECENT-FEED:END -->
+  </div>
+</section>
+
+<!-- TODAY STRIP · 오늘 부서 활동 라이브 스트립 -->
+<section style="max-width:1080px;margin:0 auto;padding:8px 28px">
+  <a class="today-strip" href="/swarm.html" style="display:block;background:#FFF;border:1px solid var(--c-line);border-radius:14px;padding:18px 22px;font-size:.86rem;color:inherit;text-decoration:none;transition:border-color .15s">
+    <div class="today-strip__live">
+      <span class="pulse" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c-accent);vertical-align:middle;margin-right:8px"></span>
+      <strong id="ts-headline">Today at the desk — loading…</strong>
+      <span class="today-strip__chips" id="ts-chips" style="display:inline-block;margin-left:10px"></span>
+      <span style="float:right;color:var(--c-mute2);font-size:.78rem">See the swarm →</span>
+    </div>
+  </a>
+</section>
+
+<style>
+.today-strip:hover{border-color:var(--c-line2) !important}
+.today-strip .chip{display:inline-block;margin:0 4px;padding:3px 10px;border-radius:999px;background:#F3EFE5;font-size:.78rem;color:#4a4a4a;font-weight:600;font-family:ui-monospace,SFMono-Regular,monospace}
+.today-strip .chip--opposing{background:var(--c-copper-soft);color:var(--c-copper)}
+.today-strip__live{width:100%}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+</style>
+<script>
+(function(){
+  var OPPOSING = {D8:1,D9:1,D10:1,D11:1,D12:1,D13:1};
+  fetch('/swarm/data/today.json', {cache:'no-store'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(t){
+      if (!t) return;
+      document.getElementById('ts-headline').textContent = t.headline;
+      var chips = document.getElementById('ts-chips');
+      chips.innerHTML = '';
+      (t.chips || []).forEach(function(c){
+        var span = document.createElement('span');
+        span.className = 'chip' + (OPPOSING[c] ? ' chip--opposing' : '');
+        span.textContent = c;
+        chips.appendChild(span);
+      });
+    })
+    .catch(function(){});
+})();
+</script>
+
+<!-- QUANT LAB STRIP · 자동매매 시스템 라이브 -->
+<section style="max-width:1080px;margin:0 auto;padding:8px 28px">
+  <a href="/quant/" id="quant-card" style="display:block;background:#fff;border:1px solid var(--c-line);border-radius:14px;padding:18px 22px;transition:all .2s;text-decoration:none;color:inherit;position:relative;overflow:hidden">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:.9rem">
+      <span style="display:flex;align-items:center;gap:8px;font-weight:700">
+        <span class="quant-dot"></span>
+        Quant Lab — Live
+      </span>
+      <span style="color:var(--c-mute);font-size:.8rem" id="quant-meta">한국주식 자기개선 자동매매 · 16-에이전트 · 모의투자 검증중</span>
+      <span style="margin-left:auto;display:flex;gap:14px;font-size:.82rem;flex-wrap:wrap" id="quant-kpis">
+        <span style="color:var(--c-mute2)">데이터 동기화중…</span>
+      </span>
+      <span style="color:var(--c-insight);font-weight:600;font-size:.85rem">Open dashboard →</span>
+    </div>
+    <div style="position:absolute;inset:0;background:radial-gradient(420px 120px at 88% -20%,var(--c-accent-soft),transparent 70%);pointer-events:none"></div>
+  </a>
+</section>
+<style>
+.quant-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c-accent);box-shadow:0 0 0 0 rgba(16,128,61,.5);animation:pulse-dot 2s infinite}
+.quant-dot--blocked{background:var(--c-copper);box-shadow:0 0 0 0 rgba(194,65,12,.5)}
+@keyframes pulse-dot{0%{box-shadow:0 0 0 0 rgba(16,128,61,.5)}70%{box-shadow:0 0 0 12px rgba(16,128,61,0)}100%{box-shadow:0 0 0 0 rgba(16,128,61,0)}}
+#quant-card:hover{border-color:var(--c-line2);transform:translateY(-2px)}
+</style>
+<script>
+(function(){
+  function fmtKRW(n){if(n==null||isNaN(n))return'—';if(Math.abs(n)>=1e8)return(n/1e8).toFixed(2)+'억';if(Math.abs(n)>=1e4)return(n/1e4).toFixed(1)+'만';return Math.round(n).toLocaleString('ko-KR');}
+  function fmtPct(n){if(n==null||isNaN(n))return'—';var s=n>0?'+':'';return s+(n*100).toFixed(2)+'%';}
+  Promise.all([
+    fetch('/quant/data/meta.json?t='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null),
+    fetch('/quant/data/equity.json?t='+Date.now()).then(r=>r.ok?r.json():null).catch(()=>null),
+  ]).then(function(arr){
+    var meta=arr[0],eq=arr[1];
+    if(meta){
+      var dot=document.querySelector('.quant-dot');
+      if(meta.system && meta.system.trading_allowed===false){
+        dot.classList.add('quant-dot--blocked');
+        document.getElementById('quant-meta').textContent='🛑 trading paused · '+(meta.system.blocked_reason||'');
+      }
+    }
+    var kpisEl=document.getElementById('quant-kpis');
+    if(eq && eq.points && eq.points.length>0){
+      var last=eq.points[eq.points.length-1];
+      var pnlColor=last.pnl>0?'var(--c-accent)':(last.pnl<0?'#B91C1C':'var(--c-mute)');
+      kpisEl.innerHTML='<span style="color:var(--c-mute)">자본</span> <strong>'+fmtKRW(last.equity)+'</strong>'
+        +' &nbsp; <span style="color:var(--c-mute)">오늘</span> <strong style="color:'+pnlColor+'">'+fmtPct(last.pnl_pct)+'</strong>'
+        +' &nbsp; <span style="color:var(--c-mute)">사이클</span> <strong>'+eq.points.length+'</strong>';
+    }else{
+      kpisEl.innerHTML='<span style="color:var(--c-mute2)">Phase 1 · 인프라 구축중 (데이터 누적 대기)</span>';
+    }
+  }).catch(function(){});
+})();
+</script>
+
+<!-- ABOUT MINI · 회사·Work 링크 (이전 레이어 1의 회사 정보는 /work.html /company.html 로) -->
+<section class="about-mini">
+  <div class="about-mini__grid">
+    <div>
+      <div class="about-mini__kicker">Behind the magazine</div>
+      <h3 class="about-mini__h">A one-person education company on Jeju Island.</h3>
+      <div class="about-mini__body">
+        <p>Kim Changhwan has spent twelve years in Korean classrooms, workshop rooms, and facilitation rooms across every town and island of Jeju. The newsletter is the public side of that work.</p>
+        <p>If you are looking to hire Kim for workshops, public-procurement proposal design, or facilitation — there is a page for that too.</p>
+      </div>
+      <a class="about-mini__cta" href="/work.html">Work with Kim →</a>
+    </div>
+    <div class="about-mini__stats">
+      <div class="stat"><div class="stat__n">12+</div><div class="stat__l">Years in the field</div></div>
+      <div class="stat"><div class="stat__n">~60</div><div class="stat__l">AI co-workers</div></div>
+      <div class="stat"><div class="stat__n">Jeju</div><div class="stat__l">Base of operations</div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="foot__top">
+    <div class="foot__brand">Still <em>Hands</em> — A Nedabahway Publication</div>
+    <div class="foot__links">
+      <a href="/blog/">Magazine</a>
+      <a href="/swarm.html">The Swarm</a>
+      <a href="/radio/">클래식FM</a>
+      <a href="/work.html">Work with Kim</a>
+      <a href="/company.html">About</a>
+      <a href="/blog/feed.xml">RSS</a>
+      <a href="mailto:nedabah.way@gmail.com">Contact</a>
+    </div>
+  </div>
+  <div class="foot__bottom">
+    <div>© 2026 Nedabahway · nedabah.org</div>
+    <div><!-- DYNAMIC:LAST-UPDATED:START -->
+    Last updated · 2026-04-28 07:05 KST
+    <!-- DYNAMIC:LAST-UPDATED:END --></div>
+    <div>Edited in Jeju, South Korea. Free to read and cite with attribution.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('still-hands-subscribe');
+  var msg = document.getElementById('sh-msg');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var data = new FormData(form);
+    msg.textContent = 'Sending...';
+    msg.style.color = '#9A9A9A';
+    fetch(form.action, {method:'POST', body:data, headers:{'Accept':'application/json'}})
+      .then(function(r){ return r.ok ? r.json() : Promise.reject(r); })
+      .then(function(){ window.location.href = '/subscribed-thanks.html'; })
+      .catch(function(){
+        msg.textContent = 'Something went wrong. Please email nedabah.way@gmail.com directly.';
+        msg.style.color = '#C2410C';
+      });
+  });
+})();
+</script>
+<script src="/assets/share-bar.js" async></script>
+</body>
+</html>

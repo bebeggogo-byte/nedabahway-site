@@ -98,7 +98,9 @@ def render_master_external(items: list[dict], kpi: dict) -> str:
     cats_html = "\n".join(locked_cats)
 
     pubs_sorted = sorted(pubs, key=lambda x: x.get("updated", x["published"]), reverse=True)
-    pub_cards = "\n".join(render_card(x) for x in pubs_sorted) or "<p class='empty'>공개된 자료가 곧 추가됩니다.</p>"
+    # 외부 마스터는 최신 12건만 노출 (폭주 방지). 나머지는 changelog로.
+    pubs_top = pubs_sorted[:12]
+    pub_cards = "\n".join(render_card(x) for x in pubs_top) or "<p class='empty'>공개된 자료가 곧 추가됩니다.</p>"
 
     template = (TPL / "master.html").read_text(encoding="utf-8")
     return (
@@ -208,17 +210,61 @@ def update_kpi(items: list[dict]) -> dict:
     return kpi
 
 
+def render_format_index_console(items: list[dict], code: str) -> str:
+    """형식별 인덱스 — 로컬 콘솔 전용 (전체 visibility 표시)."""
+    label, hint, color = FORMAT_LABEL[code]
+    rows = sorted([x for x in items if x["format"] == code], key=lambda y: y.get("updated", y["published"]), reverse=True)
+    rows_html = "\n".join(
+        f'<li class="row row--{x["visibility"]}">'
+        f'<span class="vis">{x["visibility"]}</span>'
+        f'<a href="{x["url"]}" target="_blank">{x["title"]}</a>'
+        f'<span class="dt">{x.get("updated", x["published"])}</span>'
+        f'<code class="id">{x["id"]}</code>'
+        f'</li>'
+        for x in rows
+    ) or "<li class='empty'>자료 없음</li>"
+    return f"""<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+<title>{label} — 콘솔 (로컬 전용)</title><meta name="robots" content="noindex">
+<style>
+body{{font-family:'Pretendard Variable',sans-serif;background:#0F172A;color:#F1F5F9;max-width:1100px;margin:0 auto;padding:30px 24px;line-height:1.6}}
+a{{color:#60A5FA;text-decoration:none}}h1{{color:{color};font-size:1.6rem;margin-bottom:8px}}
+.hint{{color:#94A3B8;font-size:.9rem;margin-bottom:24px}}
+ul{{list-style:none;padding:0}}
+.row{{display:grid;grid-template-columns:80px 1fr 100px;gap:12px;padding:10px 12px;background:#1E293B;margin-bottom:6px;border-radius:6px;align-items:center;font-size:.9rem}}
+.vis{{font-size:.7rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:4px;text-align:center}}
+.row--public .vis{{background:#064E3B;color:#6EE7B7}}
+.row--internal .vis{{background:#7C2D12;color:#FED7AA}}
+.row--draft .vis{{background:#334155;color:#94A3B8}}
+.dt{{color:#94A3B8;font-size:.78rem;text-align:right}}
+.id{{grid-column:1/-1;font-size:.7rem;color:#64748B;background:#0B1220;padding:4px 8px;border-radius:4px;margin-top:4px;font-family:monospace}}
+.empty{{color:#94A3B8;text-align:center;padding:30px}}.back{{margin-bottom:20px}}
+.cmd{{background:#1E293B;border:1px solid #334155;padding:10px 14px;border-radius:6px;font-family:monospace;font-size:.82rem;color:#94A3B8;margin:18px 0}}
+</style></head><body>
+<div class="back"><a href="/resources/_console/">← 콘솔로</a></div>
+<h1>{label} <small style="color:#94A3B8;font-size:.6em;font-weight:400;margin-left:10px">{hint}</small></h1>
+<p class="hint">{len(rows)}건 · 로컬 전용 · 외부 노출 0</p>
+<div class="cmd">개별 승인: <code>python3 resources/_build/approve.py &lt;id&gt;</code><br>
+형식별 일괄: <code>python3 resources/_build/approve.py --batch {code} 10</code></div>
+<ul>{rows_html}</ul>
+</body></html>"""
+
+
 def main() -> None:
     feed = load_feed()
     items = feed["items"]
     kpi = update_kpi(items)
 
-    # 외부 마스터
+    # 외부 마스터 (최신 12건 카드만)
     (ROOT / "index.html").write_text(render_master_external(items, kpi), encoding="utf-8")
     # 콘솔
     (ROOT / "_console").mkdir(exist_ok=True)
     (ROOT / "_console" / "index.html").write_text(render_console(items, kpi), encoding="utf-8")
-    # 변경 이력
+    # 형식별 콘솔 인덱스 (8개)
+    for code in FORMAT_LABEL:
+        fmt_dir = ROOT / "_console" / code
+        fmt_dir.mkdir(exist_ok=True)
+        (fmt_dir / "index.html").write_text(render_format_index_console(items, code), encoding="utf-8")
+    # 변경 이력 (외부 공개분만)
     (ROOT / "changelog.html").write_text(render_changelog(items), encoding="utf-8")
     # sitemap
     (ROOT / "sitemap.xml").write_text(render_sitemap(items), encoding="utf-8")
@@ -226,7 +272,10 @@ def main() -> None:
     public_feed = {"generated": kpi["generated"], "items": public_items(items)}
     (ROOT / "feed.json").write_text(json.dumps(public_feed, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    print(f"✓ render_all 완료 — public {len(public_items(items))} / internal {sum(1 for x in items if x['visibility'] == 'internal')} / total {len(items)}")
+    pub_n = len(public_items(items))
+    int_n = sum(1 for x in items if x['visibility'] == 'internal')
+    print(f"✓ render_all 완료 — public {pub_n} / internal {int_n} / total {len(items)}")
+    print(f"  외부 노출 카드: 최신 {min(12, pub_n)}건 / 검수 대기 {int_n}건")
 
 
 if __name__ == "__main__":

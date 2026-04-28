@@ -9,121 +9,100 @@
 <meta property="og:description" content="현장에서 검증한 자료만 — 매일 추가됩니다">
 <meta property="og:url" content="https://www.nedabah.org/resources/">
 <link rel="canonical" href="https://www.nedabah.org/resources/">
+<link rel="stylesheet" href="/assets/v3.css">
 <style>
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&display=swap');
-:root{--c-bg:#FAFAF7;--c-fg:#1A1A1A;--c-mute:#6B6B6B;--c-line:#E8E6E0;--c-accent:#10803D;--ff:'Pretendard Variable',sans-serif;--ff-serif:'Noto Serif KR',serif}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);line-height:1.65;word-break:keep-all}
-a{color:inherit;text-decoration:none}
-button{font:inherit;background:none;border:none;cursor:pointer;color:inherit;text-align:left;padding:0}
-.nav{position:sticky;top:0;background:rgba(250,250,247,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line);z-index:50}
-.nav__inner{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;justify-content:space-between;align-items:center}
-.nav__logo{font-family:var(--ff-serif);font-weight:700;font-size:1.15rem}
-.nav__links{display:flex;gap:22px}
-.nav__link{font-size:.86rem;color:var(--c-mute);font-weight:500}
-.nav__link--active{color:var(--c-accent);font-weight:700}
-@media(max-width:760px){.nav__links .nav__link:not(.nav__link--active){display:none}}
+.cat-grid { display: grid; gap: 18px; grid-template-columns: 1fr; margin: 28px 0; }
+@media (min-width: 640px) { .cat-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 960px) { .cat-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+.cat {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: 14px;
+  padding: 24px 22px;
+  text-align: left;
+  cursor: pointer;
+  transition: all .2s;
+  width: 100%;
+  display: block;
+  position: relative;
+}
+.cat:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+.cat::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--cat-color); border-radius: 14px 14px 0 0; }
+.cat__abbr { font-size: .68rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--c-mute); margin-bottom: 10px; }
+.cat__title { font-family: var(--ff-serif); font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
+.cat__more { font-size: .78rem; color: var(--c-copper); font-weight: 600; }
 
-.masthead{max-width:1180px;margin:0 auto;padding:60px 28px 24px;border-bottom:1px solid var(--c-line)}
-.kicker{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--c-mute);margin-bottom:16px}
-.h1{font-family:var(--ff-serif);font-size:clamp(2.1rem,5vw,3.4rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:18px}
-.sub{color:var(--c-mute);max-width:680px;line-height:1.8}
+.modal { position: fixed; inset: 0; background: rgba(20,20,20,.7); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; }
+.modal.is-open { display: flex; }
+.modal__box { background: #fff; border-radius: 18px; padding: 32px 28px; max-width: 440px; width: 100%; text-align: center; }
+.modal__cat { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--c-mute); font-weight: 700; margin-bottom: 8px; }
+.modal__title { font-family: var(--ff-serif); font-size: 1.3rem; font-weight: 700; margin-bottom: 14px; }
+.modal__msg { color: var(--c-mute); line-height: 1.8; font-size: .92rem; margin-bottom: 22px; }
+.modal__btn { display: inline-block; padding: 12px 26px; background: var(--c-ink); color: var(--c-bg); border-radius: 999px; font-weight: 600; font-size: .88rem; margin: 4px; }
+.modal__btn--ghost { background: #fff; color: var(--c-ink); border: 1px solid var(--c-line); }
 
-.wrap{max-width:1180px;margin:0 auto;padding:40px 28px 60px}
-.group{margin-bottom:64px}
-.group__head{margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--c-line)}
-.group__title{font-family:var(--ff-serif);font-weight:700;font-size:1.4rem}
-.group__hint{font-size:.85rem;color:var(--c-mute);margin-top:4px}
-
-.cats{display:grid;gap:16px;grid-template-columns:1fr}
-@media(min-width:640px){.cats{grid-template-columns:1fr 1fr}}
-@media(min-width:960px){.cats{grid-template-columns:1fr 1fr 1fr 1fr}}
-.cat{background:#fff;border:1px solid var(--c-line);border-radius:14px;padding:22px 20px;display:block;width:100%;position:relative;transition:all .2s}
-.cat:hover{border-color:var(--cat-color);transform:translateY(-2px)}
-.cat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--cat-color);border-radius:14px 14px 0 0}
-.cat__abbr{font-size:.7rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
-.cat__title{font-family:var(--ff-serif);font-size:1.05rem;font-weight:700;margin-bottom:14px}
-.cat__more{font-size:.78rem;color:var(--c-accent);font-weight:600}
-
-.cards{display:grid;gap:18px;grid-template-columns:1fr}
-@media(min-width:640px){.cards{grid-template-columns:1fr 1fr}}
-@media(min-width:960px){.cards{grid-template-columns:1fr 1fr 1fr}}
-.card{background:#fff;border:1px solid var(--c-line);border-radius:14px;padding:24px 22px;transition:all .2s;display:block;position:relative;overflow:hidden}
-.card:hover{border-color:#9A9A9A;transform:translateY(-2px)}
-.card__abbr{font-size:.7rem;font-weight:800;letter-spacing:.2em;margin-bottom:10px;text-transform:uppercase}
-.card__title{font-family:var(--ff-serif);font-size:1.1rem;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
-.card__desc{font-size:.88rem;color:var(--c-mute);line-height:1.7;margin-bottom:16px}
-.card__foot{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;padding-top:12px;border-top:1px dashed var(--c-line)}
-.card__status{color:var(--c-accent);font-weight:600}
-.card__cite{color:var(--c-mute)}
-
-.empty{color:var(--c-mute);text-align:center;padding:30px;background:#fff;border:1px dashed var(--c-line);border-radius:12px}
-
-.notice{margin-top:50px;padding:22px 24px;background:#fff;border:1px solid var(--c-line);border-radius:12px;font-size:.9rem;color:var(--c-mute);line-height:1.8}
-.notice strong{color:var(--c-fg)}
-
-/* 모달 */
-.modal{position:fixed;inset:0;background:rgba(20,20,20,.7);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
-.modal.is-open{display:flex}
-.modal__box{background:#fff;border-radius:18px;padding:32px 28px;max-width:440px;width:100%;text-align:center}
-.modal__cat{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--c-mute);font-weight:700;margin-bottom:8px}
-.modal__title{font-family:var(--ff-serif);font-size:1.3rem;font-weight:700;margin-bottom:14px}
-.modal__msg{color:var(--c-mute);line-height:1.8;font-size:.92rem;margin-bottom:22px}
-.modal__btn{display:inline-block;padding:12px 26px;background:var(--c-fg);color:var(--c-bg);border-radius:999px;font-weight:600;font-size:.88rem;margin:4px}
-.modal__btn--ghost{background:#fff;color:var(--c-fg);border:1px solid var(--c-line)}
-
-.foot{max-width:1180px;margin:0 auto;padding:30px 28px 40px;border-top:1px solid var(--c-line);font-size:.85rem;color:var(--c-mute);text-align:center}
+.notice { margin-top: 50px; padding: 22px 24px; background: var(--c-surface); border: 1px solid var(--c-line); border-radius: 12px; font-size: .9rem; color: var(--c-mute); line-height: 1.8; }
+.notice strong { color: var(--c-ink); }
 </style>
 </head>
 <body>
+
 <nav class="nav">
   <div class="nav__inner">
     <a href="/" class="nav__logo">네다바웨이</a>
+    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
     <div class="nav__links">
-      <a href="/work.html" class="nav__link">일하는 방식</a>
-      <a href="/blog/" class="nav__link">매거진</a>
+      <a href="/programs.html" class="nav__link">강의</a>
+      <a href="/cases.html" class="nav__link">사례</a>
+      <a href="/about.html" class="nav__link">소개</a>
       <a href="/resources/" class="nav__link nav__link--active">자료실</a>
-      <a href="/portfolio.html" class="nav__link">포트폴리오</a>
+      <a href="/magazine.html" class="nav__link">매거진</a>
+      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
     </div>
   </div>
 </nav>
 
 <header class="masthead">
   <div class="kicker">Resources · 자료실</div>
-  <h1 class="h1">현장에서 <em>실제로 쓰는</em> 자료만</h1>
-  <p class="sub">활동지·제안서·근거자료·프롬프트·진단도구·큐레이션 — 강의 현장에서 한 번이라도 써본 자료를 익명화·일반화 후 공개합니다. 검수 통과한 자료만 한 건씩 풀립니다. <strong>현재 {{TOTAL_PUBLIC}}건 공개 · 마지막 갱신 {{LAST_UPDATED}}</strong></p>
+  <h1 class="h1">현장에서 <em>실제로 쓰는</em><br>자료만.</h1>
+  <p class="lead">활동지·제안서·근거자료·프롬프트·진단도구·매거진 큐레이션 — 강의 현장에서 한 번이라도 써본 자료를 익명화·일반화 후 공개합니다. 검수 통과한 자료만 한 건씩 풀립니다. <strong>현재 {{TOTAL_PUBLIC}}건 공개 · 마지막 갱신 {{LAST_UPDATED}}</strong></p>
 </header>
 
-<main class="wrap">
+<main>
 
-  <section class="group">
-    <div class="group__head">
-      <div class="group__title">자료 카테고리 8종</div>
-      <div class="group__hint">각 카테고리별로 검수가 진행 중입니다. 즉시 필요하시면 안내를 받아보세요.</div>
+  <section class="wrap section">
+    <div class="section__head">
+      <div class="kicker">8 카테고리</div>
+      <h2 class="section__title">자료 카테고리</h2>
+      <p class="section__hint">각 카테고리별로 검수가 진행 중입니다. 즉시 필요하시면 카드 클릭 후 메일 안내를 받으세요.</p>
     </div>
-    <div class="cats">
+    <div class="cat-grid">
       {{LOCKED_CATEGORIES}}
     </div>
   </section>
 
-  <section class="group">
-    <div class="group__head">
-      <div class="group__title">현재 공개된 자료</div>
-      <div class="group__hint">검수 통과 후 외부 공개로 전환된 자료들입니다.</div>
+  <section class="wrap section">
+    <div class="section__head">
+      <div class="kicker">현재 공개</div>
+      <h2 class="section__title">검수 통과 자료 (최신 12건)</h2>
+      <p class="section__hint">신규 공개분은 변경 이력에서 전체 확인 가능.</p>
     </div>
-    <div class="cards">
+    <div class="grid grid--3">
       {{PUBLIC_CARDS}}
+    </div>
+    <div class="actions">
+      <a href="/resources/changelog.html" class="btn btn--ghost">변경 이력 전체 →</a>
     </div>
   </section>
 
-  <div class="notice">
-    <strong>자료실 운영 원칙.</strong> 네다바웨이는 매일 신규 자료를 제작하지만, 모든 자료가 외부 공개되는 것은 아닙니다. 클라이언트 정보·미검증 가설·내부 운영 자료는 비공개로 유지합니다. 검수 통과한 자료만 한 건씩 외부에 공개되며, 변경 이력은 <a href="/resources/changelog.html" style="color:var(--c-accent);font-weight:600">변경 이력</a>에서 확인할 수 있습니다.
+  <div class="wrap">
+    <div class="notice">
+      <strong>자료실 운영 원칙.</strong> 네다바웨이는 매일 신규 자료를 제작하지만 모든 자료가 외부 공개되는 것은 아닙니다. 클라이언트 정보·미검증 가설·내부 운영 자료는 비공개로 유지합니다. 검수 통과한 자료만 한 건씩 외부에 공개되며, <a href="/resources/changelog.html" style="color:var(--c-copper);font-weight:600">변경 이력</a>에서 흐름을 확인할 수 있습니다.
+    </div>
   </div>
 
 </main>
 
-<!-- 카테고리 잠금 모달 -->
 <div class="modal" id="catModal" onclick="closeCatModal(event)">
   <div class="modal__box" onclick="event.stopPropagation()">
     <div class="modal__cat" id="catModalLabel">CATEGORY</div>
@@ -135,7 +114,29 @@ button{font:inherit;background:none;border:none;cursor:pointer;color:inherit;tex
 </div>
 
 <footer class="foot">
-  네다바웨이 Nedabahway · 김창환 · 제주 · <a href="mailto:nedabah.way@gmail.com" style="color:var(--c-accent)">nedabah.way@gmail.com</a>
+  <div class="foot__inner">
+    <div>
+      <div class="foot__brand">네다바웨이 Nedabahway</div>
+      <p>강사 김창환 · 제주<br>한 사람의 일을 다시 디자인합니다.</p>
+    </div>
+    <div class="foot__col">
+      <h4>둘러보기</h4>
+      <a href="/programs.html">강의</a>
+      <a href="/cases.html">사례</a>
+      <a href="/about.html">소개</a>
+      <a href="/resources/">자료실</a>
+      <a href="/magazine.html">매거진</a>
+    </div>
+    <div class="foot__col">
+      <h4>연락</h4>
+      <a href="/contact.html">강의 의뢰</a>
+      <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a>
+    </div>
+  </div>
+  <div class="foot__copy">
+    <span>© 2026 Nedabahway · 김창환</span>
+    <span>nedabah.org</span>
+  </div>
 </footer>
 
 <script>
@@ -144,7 +145,6 @@ document.querySelectorAll('.cat').forEach(btn => {
     const label = btn.dataset.label;
     const pub = btn.dataset.pub;
     const total = btn.dataset.total;
-    const cat = btn.dataset.cat;
     document.getElementById('catModalLabel').textContent = label.toUpperCase();
     document.getElementById('catModalTitle').textContent = `${label} — 검수 중 ${total - pub}건`;
     document.getElementById('catModalMsg').textContent = `현재 ${total}건 중 ${pub}건이 외부 공개되어 있습니다. 비공개 자료가 즉시 필요하시면 메일로 안내드립니다.`;
@@ -158,6 +158,6 @@ function closeCatModal(e) {
   document.getElementById('catModal').classList.remove('is-open');
 }
 </script>
-<script src="/assets/share-bar.js" async></script>
+
 </body>
 </html>

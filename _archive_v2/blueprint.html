@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>네다바웨이 1인 교육기업 운영 설계도</title>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+:root{
+  --bg:#0A0A0A;--fg:#FAFAFA;--mute:#999;--dim:#2a2a2a;--dim2:#1a1a1a;
+  --acc:#818CF8;--green:#4ADE80;--amber:#FBBF24;--rose:#FB7185;--sky:#38BDF8;--purple:#A78BFA;
+  --ff:'Pretendard Variable','Apple SD Gothic Neo',sans-serif;
+  --mono:'SF Mono','Fira Code',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--ff);background:var(--bg);color:var(--fg);line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px}
+.section{padding:80px 0;border-top:1px solid var(--dim)}
+.section:first-of-type{border-top:none;padding-top:140px}
+
+/* Top bar */
+.top-bar{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:rgba(10,10,10,.9);backdrop-filter:blur(12px);border-bottom:1px solid #222}
+.top-bar a{font-size:.8rem;color:var(--mute);font-weight:600}
+.top-bar a:hover{color:var(--fg);text-decoration:none}
+.top-bar__r{display:flex;gap:10px}
+.top-bar__btn{padding:6px 14px;border-radius:999px;font-size:.72rem;font-weight:700;border:1px solid var(--dim);color:var(--fg);transition:.2s}
+.top-bar__btn:hover{background:var(--acc);color:#000;border-color:var(--acc);text-decoration:none}
+
+/* Progress */
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:300;transition:width .1s}
+
+/* Hero */
+.hero{text-align:center;padding:140px 0 60px}
+.hero__badge{display:inline-flex;gap:8px;padding:6px 16px;border:1px solid var(--amber);border-radius:999px;font-size:.7rem;font-weight:700;color:var(--amber);letter-spacing:.15em;margin-bottom:24px}
+.hero__title{font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.25;letter-spacing:-.04em}
+.hero__sub{font-size:clamp(.9rem,2vw,1.05rem);color:var(--mute);margin-top:16px;line-height:1.8}
+
+/* Part header */
+.ph{margin-bottom:36px}
+.ph__k{font-size:.7rem;font-weight:700;letter-spacing:.25em;color:var(--amber);text-transform:uppercase;margin-bottom:10px}
+.ph__t{font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:800;line-height:1.3;letter-spacing:-.03em}
+.ph__d{font-size:.92rem;color:var(--mute);margin-top:10px;line-height:1.8;max-width:620px}
+
+/* Diagram: map */
+.map{margin:24px 0;padding:28px 24px;background:#111;border-radius:18px;border:1px solid var(--dim);overflow-x:auto}
+.map__title{font-size:.7rem;font-weight:700;letter-spacing:.2em;color:var(--amber);margin-bottom:16px;text-transform:uppercase}
+.map__flow{display:flex;gap:4px;align-items:stretch;flex-wrap:nowrap;min-width:600px}
+.map__step{flex:1;min-width:100px;padding:14px 10px;background:var(--dim2);border-radius:12px;text-align:center;position:relative}
+.map__step::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--mute);font-weight:700;font-size:.9rem}
+.map__step:last-child::after{display:none}
+.map__num{font-size:.65rem;font-weight:800;color:var(--acc);letter-spacing:.15em;margin-bottom:4px}
+.map__label{font-size:.85rem;font-weight:700}
+.map__items{font-size:.7rem;color:var(--mute);margin-top:6px;line-height:1.5}
+
+/* Channel row */
+.channels{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:24px 0}
+.ch{padding:20px;background:#111;border-radius:14px;border:1px solid var(--dim);transition:.2s}
+.ch:hover{border-color:var(--acc)}
+.ch__icon{font-size:1.8rem;margin-bottom:8px}
+.ch__name{font-size:.95rem;font-weight:800;margin-bottom:4px}
+.ch__role{font-size:.72rem;color:var(--acc);font-weight:700;letter-spacing:.1em;margin-bottom:8px;text-transform:uppercase}
+.ch__desc{font-size:.8rem;color:var(--mute);line-height:1.6}
+.ch__freq{display:inline-block;margin-top:8px;padding:3px 10px;background:rgba(255,255,255,.04);border-radius:6px;font-size:.7rem;font-weight:600;color:#BBB}
+
+/* Folder tree */
+.tree{margin:20px 0;padding:20px 24px;background:#0d0d0d;border-radius:14px;border:1px solid #222;font-family:var(--mono);font-size:.8rem;line-height:1.8;color:#ccc;overflow-x:auto;white-space:pre}
+.tree .folder{color:var(--amber);font-weight:700}
+.tree .file{color:var(--green)}
+.tree .new{color:var(--rose);font-weight:700}
+.tree .comment{color:#555}
+
+/* Conversion table */
+.conv{width:100%;border-collapse:collapse;margin:20px 0;font-size:.85rem}
+.conv th{text-align:left;font-size:.68rem;font-weight:700;color:var(--mute);letter-spacing:.1em;text-transform:uppercase;padding:10px 12px;border-bottom:2px solid var(--dim)}
+.conv td{padding:12px;border-bottom:1px solid var(--dim2);vertical-align:top;line-height:1.6}
+.conv tr:last-child td{border-bottom:none}
+.conv tr:hover td{background:rgba(255,255,255,.015)}
+
+/* Phase cards */
+.phases{display:flex;flex-direction:column;gap:16px;margin:24px 0}
+.phase{padding:24px;background:#111;border-radius:16px;border:1px solid var(--dim);position:relative;overflow:hidden}
+.phase__bar{position:absolute;top:0;left:0;right:0;height:3px}
+.phase__head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.phase__num{font-size:.68rem;font-weight:800;letter-spacing:.2em;padding:3px 10px;border-radius:6px}
+.phase__when{font-size:.72rem;color:var(--mute);font-weight:600}
+.phase__title{font-size:1.05rem;font-weight:800;margin-bottom:10px;letter-spacing:-.02em}
+.phase__tasks{list-style:none;padding:0}
+.phase__tasks li{display:flex;gap:10px;padding:6px 0;font-size:.85rem;border-bottom:1px dashed #1a1a1a;line-height:1.6}
+.phase__tasks li:last-child{border-bottom:none}
+.phase__tasks li::before{content:'○';color:var(--mute);flex-shrink:0;margin-top:1px}
+
+/* Cycle */
+.cycle{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:24px 0}
+.cyc{padding:20px;background:#111;border-radius:14px;border:1px solid var(--dim);text-align:center}
+.cyc__icon{font-size:2rem;margin-bottom:8px}
+.cyc__num{font-size:.65rem;font-weight:800;color:var(--acc);letter-spacing:.2em;margin-bottom:4px}
+.cyc__title{font-size:.92rem;font-weight:800;margin-bottom:6px}
+.cyc__desc{font-size:.75rem;color:var(--mute);line-height:1.5}
+
+/* Principle */
+.principles{counter-reset:p;margin:24px 0}
+.pr{counter-increment:p;display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--dim2)}
+.pr:last-child{border-bottom:none}
+.pr::before{content:counter(p);font-size:1.3rem;font-weight:900;color:var(--acc);min-width:28px;padding-top:2px}
+.pr__body{}
+.pr__title{font-size:1rem;font-weight:800;margin-bottom:4px;letter-spacing:-.02em}
+.pr__desc{font-size:.85rem;color:var(--mute);line-height:1.7}
+
+/* Tip */
+.tip{margin:20px 0;padding:16px 20px;border-radius:12px;display:flex;gap:12px;align-items:flex-start}
+.tip--key{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25)}
+.tip--green{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.25)}
+.tip__icon{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.tip__text{font-size:.85rem;line-height:1.7;color:#ccc}
+.tip__text b{color:var(--fg)}
+
+/* Recycle diagram */
+.recycle{margin:24px 0;padding:28px 24px;background:linear-gradient(135deg,rgba(129,140,248,.05),rgba(74,222,128,.05));border-radius:18px;border:1px solid var(--dim)}
+.recycle__title{font-size:.95rem;font-weight:800;margin-bottom:16px;text-align:center}
+.recycle__flow{display:flex;flex-direction:column;gap:8px}
+.recycle__row{display:flex;gap:8px;align-items:center;font-size:.85rem}
+.recycle__from{padding:8px 14px;background:rgba(255,255,255,.04);border-radius:8px;font-weight:600;min-width:100px;text-align:center}
+.recycle__arrow{color:var(--acc);font-weight:700;flex-shrink:0}
+.recycle__to{padding:8px 14px;background:rgba(129,140,248,.08);border-radius:8px;font-weight:600;flex:1}
+
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+.footer{padding:40px 24px;text-align:center;border-top:1px solid var(--dim)}
+.footer__text{font-size:.72rem;color:var(--mute);line-height:1.8}
+
+@media(max-width:480px){
+  .wrap{padding:0 16px}
+  .hero{padding:120px 0 40px}
+  .section:first-of-type{padding-top:120px}
+  .map__flow{min-width:500px}
+}
+@media print{
+  .top-bar,.progress{display:none}
+  body{background:#fff;color:#000;font-size:11pt}
+  .section{padding:20px 0;page-break-inside:avoid}
+  .map,.phase,.ch,.cyc,.tree{border-color:#ddd;background:#f5f5f5}
+  .ph__d,.ch__desc,.pr__desc,.tip__text,.footer__text{color:#444}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="top-bar">
+  <a href="/">&larr; 네다바웨이 홈</a>
+  <div class="top-bar__r">
+    <a href="iden.html" class="top-bar__btn">🧠 IDEN</a>
+    <a href="programs.html" class="top-bar__btn">📚 교육설계</a>
+    <a href="facilitation.html" class="top-bar__btn">🏝️ 퍼실리테이션</a>
+    <a href="portfolio.html" class="top-bar__btn">📋 포트폴리오</a>
+    <button class="top-bar__btn" onclick="window.print()">📄 PDF 저장</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- Hero -->
+<div class="hero fade-up">
+  <div class="hero__badge">INTERNAL BLUEPRINT · 2026.04</div>
+  <h1 class="hero__title">1인 교육기업<br>디지털 운영 설계도</h1>
+  <p class="hero__sub">오프라인 교육 전반 + 온라인 콘텐츠 생산까지.<br><b>한 번 만들면 계속 쓰는 구조</b>를 설계합니다.</p>
+</div>
+
+<!-- ═════ PART 1: 업무 전체 지도 ═════ -->
+<div class="section" id="s-map">
+<div class="ph fade-up">
+  <div class="ph__k">Part 01</div>
+  <div class="ph__t">김창환의 업무 전체 지도</div>
+  <div class="ph__d">교육 1건이 수주되어 완료되기까지, 이 사이클이 반복됩니다. 모든 디지털 구조는 이 흐름 위에 설계합니다.</div>
+</div>
+
+<div class="map fade-up">
+  <div class="map__title">교육 수주 사이클</div>
+  <div class="map__flow">
+    <div class="map__step">
+      <div class="map__num">STEP 1</div>
+      <div class="map__label">발굴</div>
+      <div class="map__items">블로그 글<br>유튜브 영상<br>홈페이지<br>소개·추천</div>
+    </div>
+    <div class="map__step">
+      <div class="map__num">STEP 2</div>
+      <div class="map__label">제안</div>
+      <div class="map__items">제안서<br>교육계획서<br>견적서</div>
+    </div>
+    <div class="map__step">
+      <div class="map__num">STEP 3</div>
+      <div class="map__label">설계</div>
+      <div class="map__items">강의안<br>워크시트<br>진단지·설문지<br>교재·교구</div>
+    </div>
+    <div class="map__step">
+      <div class="map__num">STEP 4</div>
+      <div class="map__label">실행</div>
+      <div class="map__items">현장 강의<br>퍼실리테이션<br>코칭</div>
+    </div>
+    <div class="map__step">
+      <div class="map__num">STEP 5</div>
+      <div class="map__label">보고·확산</div>
+      <div class="map__items">결과보고서<br>만족도 분석<br>→ 블로그 사례<br>→ 유튜브 리뷰</div>
+    </div>
+  </div>
+</div>
+
+<div class="tip tip--key fade-up">
+  <div class="tip__icon">💡</div>
+  <div class="tip__text"><b>핵심 인사이트:</b> STEP 5의 산출물(결과보고서)이 STEP 1의 재료(블로그·포트폴리오)가 됩니다. 이 <b>순환 구조</b>를 디지털로 만들면, 일할수록 자산이 쌓입니다.</div>
+</div>
+</div>
+
+<!-- ═════ PART 2: 3채널 전략 ═════ -->
+<div class="section" id="s-channels">
+<div class="ph fade-up">
+  <div class="ph__k">Part 02</div>
+  <div class="ph__t">온라인 3채널 전략</div>
+  <div class="ph__d">채널마다 역할이 다릅니다. 같은 콘텐츠를 3번 재활용하는 구조입니다.</div>
+</div>
+
+<div class="channels fade-up">
+  <div class="ch">
+    <div class="ch__icon">🌐</div>
+    <div class="ch__name">nedabah.org</div>
+    <div class="ch__role">신뢰 · 포트폴리오</div>
+    <div class="ch__desc">공식 사이트. 교육 의뢰자가 "이 사람 믿을 수 있나?" 확인하는 곳. 회사소개, 교육 설계 방식, 프로젝트 사례, 자료 허브.</div>
+    <div class="ch__freq">프로젝트마다 · 월 1~2회</div>
+  </div>
+  <div class="ch">
+    <div class="ch__icon">📝</div>
+    <div class="ch__name">네이버 블로그</div>
+    <div class="ch__role">검색 유입 · SEO</div>
+    <div class="ch__desc">한국에서 교육 의뢰자가 가장 먼저 검색하는 채널. "진로교육 프로그램", "자기소개서 코칭", "AI 활용 교육" 키워드로 유입.</div>
+    <div class="ch__freq">주 1~2회 · 30분/편</div>
+  </div>
+  <div class="ch">
+    <div class="ch__icon">🎬</div>
+    <div class="ch__name">유튜브</div>
+    <div class="ch__role">전문성 · 얼굴과 목소리</div>
+    <div class="ch__desc">영상으로 신뢰를 쌓는 장기 자산. 책에서 뽑은 핵심 인사이트, 교육 이슈 전문가 코멘트, 현장 비하인드.</div>
+    <div class="ch__freq">주 1회 · 3분 분량</div>
+  </div>
+</div>
+
+<div class="recycle fade-up">
+  <div class="recycle__title">콘텐츠 1회 생산 → 3회 재활용</div>
+  <div class="recycle__flow">
+    <div class="recycle__row">
+      <div class="recycle__from">교육 현장</div>
+      <div class="recycle__arrow">→</div>
+      <div class="recycle__to">결과보고서 작성 (기관 제출용)</div>
+    </div>
+    <div class="recycle__row">
+      <div class="recycle__from">결과보고서</div>
+      <div class="recycle__arrow">→</div>
+      <div class="recycle__to">nedabah.org 포트폴리오 사례 페이지</div>
+    </div>
+    <div class="recycle__row">
+      <div class="recycle__from">사례 페이지</div>
+      <div class="recycle__arrow">→</div>
+      <div class="recycle__to">네이버 블로그 "교육 사례 후기" 글</div>
+    </div>
+    <div class="recycle__row">
+      <div class="recycle__from">블로그 글</div>
+      <div class="recycle__arrow">→</div>
+      <div class="recycle__to">유튜브 "현장에서 배운 것 3분" 영상 스크립트</div>
+    </div>
+  </div>
+</div>
+
+<div class="tip tip--key fade-up">
+  <div class="tip__icon">📚</div>
+  <div class="tip__text"><b>유튜브 콘텐츠 유형 4가지:</b><br>
+  ① <b>3분 책 리뷰</b> — 교육·코칭 관련 책에서 핵심 1가지<br>
+  ② <b>교육 이슈 한마디</b> — 최근 뉴스에 전문가 코멘트<br>
+  ③ <b>현장 비하인드</b> — 허가받은 교육 현장 브이로그<br>
+  ④ <b>도구 사용법</b> — 자체 워크시트·진단지 활용 가이드</div>
+</div>
+</div>
+
+<!-- ═════ PART 3: 사이트 구조 ═════ -->
+<div class="section" id="s-site">
+<div class="ph fade-up">
+  <div class="ph__k">Part 03</div>
+  <div class="ph__t">사이트 구조 재편안</div>
+  <div class="ph__d">지금은 HTML 파일이 루트에 평면으로 나열되어 있습니다. 콘텐츠가 늘어나면 관리가 안 됩니다. 폴더 구조로 전환합니다.</div>
+</div>
+
+<div class="tree fade-up"><span class="folder">nedabah.org/</span>
+│
+├── <span class="file">index.html</span>              <span class="comment">← 메인 (리디자인: 나머지 페이지와 톤 통일)</span>
+│
+├── <span class="folder">/about/</span>
+│   ├── <span class="file">company.html</span>        <span class="comment">← 회사소개 (현재 완성)</span>
+│   └── <span class="file">story.html</span>          <span class="comment">← 김창환 이야기 (현재 완성)</span>
+│
+├── <span class="folder">/services/</span>
+│   └── <span class="file">index.html</span>          <span class="comment">← 교육 설계 방식 (현 programs.html)</span>
+│
+├── <span class="folder">/portfolio/</span>             <span class="new">← NEW</span>
+│   ├── <span class="file">index.html</span>          <span class="comment">← 프로젝트 카드 목록</span>
+│   ├── <span class="file">case-sionvil.html</span>   <span class="comment">← 시온빌 사례 (결과보고서 기반)</span>
+│   ├── <span class="file">case-ieodo.html</span>     <span class="comment">← 이어도 AI 워크숍 사례</span>
+│   └── <span class="file">case-xxx.html</span>       <span class="comment">← 새 프로젝트마다 추가</span>
+│
+├── <span class="folder">/resources/</span>             <span class="new">← NEW · 핵심</span>
+│   ├── <span class="file">index.html</span>          <span class="comment">← 교육자료 허브</span>
+│   ├── <span class="folder">/templates/</span>         <span class="comment">← 제안서·계획서·보고서 템플릿</span>
+│   ├── <span class="folder">/worksheets/</span>        <span class="comment">← 워크시트·진단지 (공개용)</span>
+│   └── <span class="folder">/tools/</span>             <span class="comment">← 강점진단·설문 웹앱</span>
+│
+├── <span class="folder">/blog/</span>                  <span class="new">← NEW (또는 네이버 블로그 연결)</span>
+│   ├── <span class="file">index.html</span>          <span class="comment">← 글 목록</span>
+│   └── <span class="folder">/posts/</span>             <span class="comment">← 개별 글</span>
+│
+├── <span class="folder">/guide/</span>
+│   └── <span class="file">github-mcp.html</span>     <span class="comment">← 내부 가이드 (현재 완성)</span>
+│
+└── <span class="folder">/assets/</span>
+    ├── <span class="folder">/css/</span>               <span class="comment">← 공통 CSS (인라인에서 분리)</span>
+    ├── <span class="folder">/js/</span>                <span class="comment">← 공통 JS</span>
+    └── <span class="folder">/img/</span>               <span class="comment">← 이미지·사진</span></div>
+</div>
+
+<!-- ═════ PART 4: 업무 자산 디지털화 ═════ -->
+<div class="section" id="s-digital">
+<div class="ph fade-up">
+  <div class="ph__k">Part 04</div>
+  <div class="ph__t">오프라인 업무 →<br>디지털 자산 전환</div>
+  <div class="ph__d">1인 기업의 반복 업무는 <b>템플릿화</b>해야 합니다. 한 번 만들면 다음 교육 때는 내용만 바꿉니다.</div>
+</div>
+
+<table class="conv fade-up">
+  <tr><th>업무</th><th>지금</th><th>전환 목표</th><th>효과</th></tr>
+  <tr>
+    <td style="font-weight:700;color:var(--rose)">제안서</td>
+    <td>매번 새로 작성</td>
+    <td>HTML 템플릿 3종<br>(기관용·기업용·공공용)</td>
+    <td>작성 시간 70% 단축</td>
+  </tr>
+  <tr>
+    <td style="font-weight:700;color:var(--rose)">교육계획서</td>
+    <td>PPT 매번 제작</td>
+    <td>HTML + PDF 변환 템플릿</td>
+    <td>Claude에게 "채워줘" 가능</td>
+  </tr>
+  <tr>
+    <td style="font-weight:700;color:var(--amber)">강의안</td>
+    <td>PPT</td>
+    <td>PPT 유지 (현장용)</td>
+    <td>현장에서 필요 · 그대로 OK</td>
+  </tr>
+  <tr>
+    <td style="font-weight:700;color:var(--amber)">워크시트</td>
+    <td>한글/워드 인쇄</td>
+    <td>HTML 웹 워크시트<br>+ 인쇄용 유지</td>
+    <td>QR로 배포, 수거 불필요</td>
+  </tr>
+  <tr>
+    <td style="font-weight:700;color:var(--amber)">진단지</td>
+    <td>종이 진단</td>
+    <td>웹 자가진단 도구<br>(결과 즉시 표시)</td>
+    <td>채점 불필요, 결과 자동화</td>
+  </tr>
+  <tr>
+    <td style="font-weight:700;color:var(--green)">설문지</td>
+    <td>구글폼/네이버폼</td>
+    <td>그대로 유지</td>
+    <td>이미 최적 ✅</td>
+  </tr>
+  <tr>
+    <td style="font-weight:700;color:var(--rose)">결과보고서</td>
+    <td>PPT/한글</td>
+    <td>HTML 보고서 페이지<br>+ 포트폴리오 연동</td>
+    <td>작성→공개→사례화 원스톱</td>
+  </tr>
+  <tr>
+    <td style="font-weight:700;color:var(--amber)">교재</td>
+    <td>PPT/한글</td>
+    <td>인쇄용 유지<br>+ 디지털 HTML 버전 추가</td>
+    <td>두 채널 동시 제공</td>
+  </tr>
+</table>
+
+<div class="tip tip--green fade-up">
+  <div class="tip__icon">🤖</div>
+  <div class="tip__text"><b>Claude Code 활용 예시:</b><br>
+  "시온빌 결과보고서 템플릿에 이번 달 데이터 채워줘"<br>
+  "이 강의안 PPT 내용을 블로그 글로 바꿔줘"<br>
+  "이 책 요약해서 유튜브 스크립트 3분짜리로 써줘"<br>
+  "제안서 기업용 템플릿에 OO기관 정보 넣어서 완성해줘"</div>
+</div>
+</div>
+
+<!-- ═════ PART 5: 실행 로드맵 ═════ -->
+<div class="section" id="s-roadmap">
+<div class="ph fade-up">
+  <div class="ph__k">Part 05</div>
+  <div class="ph__t">실행 로드맵</div>
+  <div class="ph__d">한 번에 다 하지 않습니다. 급한 것부터, 효과 큰 것부터.</div>
+</div>
+
+<div class="phases fade-up">
+  <div class="phase">
+    <div class="phase__bar" style="background:var(--rose)"></div>
+    <div class="phase__head">
+      <div class="phase__num" style="background:rgba(251,113,133,.15);color:var(--rose)">PHASE 1</div>
+      <div class="phase__when">1~2주 · 기초 인프라</div>
+    </div>
+    <div class="phase__title">사이트 뼈대 정리</div>
+    <ul class="phase__tasks">
+      <li>index.html 리디자인 (company/programs/story와 톤 통일)</li>
+      <li>폴더 구조 재편 (루트 → 카테고리별 분류)</li>
+      <li>.gitignore + git config 세팅</li>
+      <li>공통 CSS/JS 분리 (각 HTML 인라인 → 공유 파일)</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="phase__bar" style="background:var(--amber)"></div>
+    <div class="phase__head">
+      <div class="phase__num" style="background:rgba(251,191,36,.15);color:var(--amber)">PHASE 2</div>
+      <div class="phase__when">2~3주 · 포트폴리오 시스템</div>
+    </div>
+    <div class="phase__title">프로젝트 사례 체계화</div>
+    <ul class="phase__tasks">
+      <li>/portfolio/ 케이스 스터디 HTML 템플릿 제작</li>
+      <li>시온빌·이어도·한림항공우주고 사례를 개별 페이지로</li>
+      <li>결과보고서 HTML 템플릿 (교육 끝 → 채우고 → 바로 공개)</li>
+      <li>포트폴리오 인덱스 페이지 (카드형 목록)</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="phase__bar" style="background:var(--acc)"></div>
+    <div class="phase__head">
+      <div class="phase__num" style="background:rgba(129,140,248,.15);color:var(--acc)">PHASE 3</div>
+      <div class="phase__when">3~4주 · 업무 템플릿</div>
+    </div>
+    <div class="phase__title">반복 업무 템플릿화</div>
+    <ul class="phase__tasks">
+      <li>제안서 HTML 템플릿 3종 (기관용·기업용·공공기관용)</li>
+      <li>교육계획서 HTML 템플릿</li>
+      <li>워크시트 웹 버전 (강점진단 8종 등)</li>
+      <li>자가진단 웹 도구 (행동분석 진단 등 → 결과 자동 표시)</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="phase__bar" style="background:var(--green)"></div>
+    <div class="phase__head">
+      <div class="phase__num" style="background:rgba(74,222,128,.15);color:var(--green)">PHASE 4</div>
+      <div class="phase__when">4~6주 · 콘텐츠 채널</div>
+    </div>
+    <div class="phase__title">블로그 + 유튜브 시동</div>
+    <ul class="phase__tasks">
+      <li>네이버 블로그 개설 + 키워드 전략 수립</li>
+      <li>첫 블로그 글 5개 작성 (검색 유입용 핵심 키워드)</li>
+      <li>유튜브 채널 세팅 + 첫 영상 3개 (3분 책리뷰)</li>
+      <li>사이트에 블로그·유튜브 연결 허브 페이지</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="phase__bar" style="background:var(--purple)"></div>
+    <div class="phase__head">
+      <div class="phase__num" style="background:rgba(167,139,250,.15);color:var(--purple)">PHASE 5</div>
+      <div class="phase__when">6주~ · 자동화</div>
+    </div>
+    <div class="phase__title">반복을 줄이는 자동화</div>
+    <ul class="phase__tasks">
+      <li>GitHub Actions 자동 배포</li>
+      <li>결과보고서 → 블로그 글 자동 변환 워크플로우</li>
+      <li>유튜브 스크립트 → 블로그 글 변환</li>
+      <li>교육 문의 폼 → 이메일 + 이슈 자동 생성</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- ═════ PART 6: 핵심 원칙 ═════ -->
+<div class="section" id="s-principles">
+<div class="ph fade-up">
+  <div class="ph__k">Part 06</div>
+  <div class="ph__t">운영 원칙 4가지</div>
+</div>
+
+<div class="principles fade-up">
+  <div class="pr">
+    <div class="pr__body">
+      <div class="pr__title">홈페이지 = 쇼룸, 블로그 = 유입, 유튜브 = 신뢰</div>
+      <div class="pr__desc">세 채널이 각자 다른 역할. 홈페이지에서 블로그 글을 쓸 필요 없고, 유튜브에서 회사소개를 할 필요 없습니다. 역할을 나누고, 같은 콘텐츠를 형태만 바꿔서 3곳에 올립니다.</div>
+    </div>
+  </div>
+  <div class="pr">
+    <div class="pr__body">
+      <div class="pr__title">한 번 만들면 계속 쓰는 구조</div>
+      <div class="pr__desc">제안서 템플릿을 한 번 만들면, 다음 의뢰 때는 기관명과 날짜만 바꿉니다. 결과보고서 템플릿을 한 번 만들면, 교육 끝나고 30분이면 보고서가 완성됩니다. 1인이 감당하려면 구조를 만들어야 합니다.</div>
+    </div>
+  </div>
+  <div class="pr">
+    <div class="pr__body">
+      <div class="pr__title">오프라인 산출물 = 온라인 자산</div>
+      <div class="pr__desc">제안서를 쓰면 → 포트폴리오에 올리고, 결과보고서를 쓰면 → 블로그에 사례로 올리고, 강의를 하면 → 유튜브에 핵심 3분 올립니다. 오프라인에서 한 일이 온라인 자산으로 쌓이는 순환.</div>
+    </div>
+  </div>
+  <div class="pr">
+    <div class="pr__body">
+      <div class="pr__title">Claude Code가 반복을 줄여준다</div>
+      <div class="pr__desc">"이 결과보고서 데이터로 블로그 글 초안 써줘", "이 책 요약해서 3분 스크립트 만들어줘", "제안서 템플릿에 OO기관 정보 넣어줘" — AI가 반복 작업을 담당하고, 창환님은 현장과 사람에 집중합니다.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═════ PART 7: 당장 할 것 ═════ -->
+<div class="section" id="s-now">
+<div class="ph fade-up">
+  <div class="ph__k">Action Items</div>
+  <div class="ph__t">이번 주에 할 수 있는 것</div>
+</div>
+
+<div class="cycle fade-up">
+  <div class="cyc">
+    <div class="cyc__icon">⚙️</div>
+    <div class="cyc__num">TODAY</div>
+    <div class="cyc__title">git config 세팅</div>
+    <div class="cyc__desc">이름·이메일 설정 + .gitignore 생성. 5분이면 끝남.</div>
+  </div>
+  <div class="cyc">
+    <div class="cyc__icon">🎨</div>
+    <div class="cyc__num">THIS WEEK</div>
+    <div class="cyc__title">index.html 리디자인</div>
+    <div class="cyc__desc">company/programs/story와 같은 다크 톤으로 통일.</div>
+  </div>
+  <div class="cyc">
+    <div class="cyc__icon">📂</div>
+    <div class="cyc__num">THIS WEEK</div>
+    <div class="cyc__title">폴더 구조 전환</div>
+    <div class="cyc__desc">평면 루트 → /about/, /services/, /portfolio/ 정리.</div>
+  </div>
+  <div class="cyc">
+    <div class="cyc__icon">📋</div>
+    <div class="cyc__num">NEXT WEEK</div>
+    <div class="cyc__title">결과보고서 템플릿</div>
+    <div class="cyc__desc">가장 자주 쓰는 양식부터 HTML 템플릿화.</div>
+  </div>
+</div>
+</div>
+
+</div><!-- /.wrap -->
+
+<footer class="footer">
+  <p class="footer__text">&copy; 2025 Nedabahway · 김창환 · 내부 기획문서<br>이 문서는 네다바웨이 디지털 운영 구조 설계를 위한 내부 자료입니다.</p>
+</footer>
+
+<script>
+const prog=document.getElementById('progress');
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';
+});
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})
+},{threshold:.15,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
