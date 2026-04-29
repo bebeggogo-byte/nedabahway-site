@@ -56,8 +56,9 @@ def compute_progress():
 
         coords_filled.add((cid, sid, rot))
 
-    total_coords = 40 * 30  # 1200
-    sar = (len(coords_filled) / total_coords) * 100
+    total_categories = len(CATEGORIES["categories"])
+    total_coords = total_categories * 30
+    sar = (len(coords_filled) / total_coords) * 100 if total_coords else 0
 
     progress = {
         "updated": datetime.now().strftime("%Y-%m-%d %H:%M"),

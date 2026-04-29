@@ -113,6 +113,21 @@
 
   .empty-msg{padding:36px 24px;text-align:center;color:var(--mute);font-size:14px;background:#fff;border:1px dashed var(--line);border-radius:12px}
 
+  /* 다음 학습 큐 */
+  .queue{max-width:1080px;margin:0 auto;padding:8px 24px 24px}
+  .queue__head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+  .queue h2{font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--ink)}
+  .queue__filter{font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+  .queue__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+  .queue__card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;transition:all .15s ease;cursor:default}
+  .queue__card:hover{border-color:var(--acc);transform:translateY(-1px)}
+  .queue__cat{font-size:11px;font-weight:700;color:var(--acc);background:var(--acc-soft);padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:6px}
+  .queue__stage{font-size:10px;color:var(--mute);margin-left:6px}
+  .queue__trigger{font-size:13px;font-weight:700;color:var(--ink);line-height:1.45;margin-bottom:6px}
+  .queue__why{font-size:12px;color:var(--soft);line-height:1.5;margin-bottom:8px}
+  .queue__sources{font-size:11px;color:var(--mute);line-height:1.5;border-top:1px dashed var(--line);padding-top:8px}
+  .queue__sources code{background:var(--light);padding:1px 5px;border-radius:3px;font-size:10px}
+
   /* 모달 */
   .modal{position:fixed;inset:0;background:rgba(10,10,10,.7);display:none;align-items:center;justify-content:center;z-index:200;padding:24px;backdrop-filter:blur(4px)}
   .modal.open{display:flex}
@@ -167,12 +182,21 @@
   <p class="lead">에라스무스·라이프니츠·자크 바전·C.S. Lewis·레오나르도 다 빈치 — 다섯 거인의 영역 합집합 40카테고리. 카테고리당 6단계(입문·정독·비교·재구성·적용·교수)를 5회전 = 1,200 좌표 평생 매트릭스. 강의는 부산물, 본질은 섭렵 자체.</p>
   <div class="hero__stats">
     <div><strong id="stat-entries">0</strong>총 학습 기록</div>
-    <div><strong id="stat-coords">0/1200</strong>채움 좌표</div>
+    <div><strong id="stat-coords">0/1320</strong>채움 좌표</div>
     <div><strong id="stat-sar">0%</strong>매트릭스 진척률</div>
-    <div><strong>10</strong>학습 기둥</div>
-    <div><strong>40</strong>카테고리</div>
+    <div><strong>11</strong>학습 기둥</div>
+    <div><strong>44</strong>카테고리</div>
+    <div><strong id="stat-queue">0</strong>다음 학습 큐</div>
   </div>
 </header>
+
+<section class="queue">
+  <div class="queue__head">
+    <h2>다음 학습 큐 — 채워질 좌표 후보</h2>
+    <span class="queue__filter" id="queue-filter">기둥별 보기</span>
+  </div>
+  <div class="queue__grid" id="queue-grid"></div>
+</section>
 
 <section class="giants">
   <h2>다섯 거인 — 인류가 마지막 지식인을 보여준 자리</h2>
@@ -232,19 +256,45 @@
 let CATEGORIES = null, STAGES = null, NOTES = null, PROGRESS = null;
 let activeFilter = 'all';
 
+let QUEUE = [];
+
 async function loadAll(){
-  const [c, s, n, p] = await Promise.all([
+  const [c, s, n, p, q] = await Promise.all([
     fetch('/learning/_data/categories.json').then(r=>r.json()),
     fetch('/learning/_data/stages.json').then(r=>r.json()),
     fetch('/learning/_data/notes.json').then(r=>r.json()),
-    fetch('/learning/_data/progress.json').then(r=>r.json()).catch(()=>({total_entries:0,coords_filled:0,matrix_total:1200,sar_percent:0,by_category:{}})),
+    fetch('/learning/_data/progress.json').then(r=>r.json()).catch(()=>({total_entries:0,coords_filled:0,matrix_total:1320,sar_percent:0,by_category:{}})),
+    fetch('/learning/_data/seeds_queue.jsonl').then(r=>r.text()).then(t=>t.trim().split('\n').filter(Boolean).map(l=>JSON.parse(l))).catch(()=>[]),
   ]);
-  CATEGORIES = c; STAGES = s; NOTES = n; PROGRESS = p;
+  CATEGORIES = c; STAGES = s; NOTES = n; PROGRESS = p; QUEUE = q;
   renderGiants();
   renderTabs();
   renderStats();
   renderPillars();
   renderRecent();
+  renderQueue();
+}
+
+function renderQueue(){
+  const root = document.getElementById('queue-grid');
+  document.getElementById('stat-queue').textContent = QUEUE.length;
+  if (!QUEUE.length){
+    root.innerHTML = '<div class="empty-msg">학습 큐가 비어 있습니다.</div>';
+    return;
+  }
+  root.innerHTML = QUEUE.slice(0, 24).map(s => {
+    const cat = CATEGORIES.categories.find(c => c.slug === s.slug);
+    const stageName = (STAGES.steps.find(x => x.id === s.stage) || {}).name || '';
+    const sourceList = (s.sources || []).slice(0, 2).map(x => `<code>${x}</code>`).join(' · ');
+    return `
+    <div class="queue__card">
+      <span class="queue__cat">${cat ? cat.name : s.slug}</span>
+      <span class="queue__stage">단계 ${s.stage} · ${stageName}</span>
+      <div class="queue__trigger">${s.trigger}</div>
+      <div class="queue__why">${s.why || ''}</div>
+      <div class="queue__sources">${sourceList}</div>
+    </div>`;
+  }).join('') + (QUEUE.length > 24 ? `<div class="empty-msg" style="grid-column:1/-1">+${QUEUE.length - 24}건 더 — 매일 4건씩 entry로 승격</div>` : '');
 }
 
 function renderStats(){

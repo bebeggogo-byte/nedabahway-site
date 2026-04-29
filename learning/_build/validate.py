@@ -52,11 +52,10 @@ def check_entry(entry: dict, idx: int) -> list[str]:
         if k not in entry or entry[k] in (None, "", []):
             errs.append(f"[{eid}] missing required: {k}")
 
-    # 2. category_id 범위
-    if entry.get("category_id"):
-        cids = {c["id"] for c in CATEGORIES["categories"]}
-        if entry["category_id"] not in cids:
-            errs.append(f"[{eid}] invalid category_id: {entry['category_id']}")
+    # 2. category_id 범위 (44카테고리 동적)
+    cids = {c["id"] for c in CATEGORIES["categories"]}
+    if entry.get("category_id") and entry["category_id"] not in cids:
+        errs.append(f"[{eid}] invalid category_id: {entry['category_id']}")
 
     # 3. format
     if entry.get("format") not in {"paper", "book", "field", "essay", "diary", "synth"}:
