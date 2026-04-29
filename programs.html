@@ -184,65 +184,182 @@ a:hover{text-decoration:underline}
   .flow__step{padding:20px}
   .recipe{padding:22px 20px}
 }
+/* ====== 인쇄 전용 표지·목차 (화면에선 숨김) ====== */
+.print-only{display:none}
+
 @media print{
-  /* A4 페이지 — 각 섹션 1페이지 점유, 카드/표 분할 방지 */
-  @page{size:A4;margin:18mm 16mm}
-  html,body{background:#fff!important;color:#000!important;font-size:11pt}
+  /* === 페이지 기본 === */
+  @page{size:A4;margin:16mm 14mm}
+  @page :first{margin:0}
+  html,body{background:#fff!important;color:#0a0a0a!important;font-size:10.5pt;line-height:1.55}
   body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 
-  /* 인쇄 시 숨김 */
-  .top-bar,.iden-banner__arrow,.btn-cta,.next-card__arrow{display:none!important}
+  /* === 화면 전용 요소 모두 숨김 === */
+  .top-bar,.iden-banner__arrow,.next-card__arrow,
+  #s-iden-link,#s-next,.fade-up{transition:none!important}
+  .top-bar{display:none!important}
 
-  /* 섹션 = 1 페이지 단위 */
-  .section{min-height:auto!important;padding:0!important;
-    page-break-before:always;break-before:page;
+  /* === 인쇄 전용 표지·목차 노출 === */
+  .print-only{display:block!important}
+
+  /* 표지 페이지 */
+  .pdf-cover{
+    page-break-after:always;break-after:page;
     page-break-inside:avoid;break-inside:avoid-page;
-    page-break-after:auto;display:block!important}
-  .section:first-of-type,#s-hero{page-break-before:auto;break-before:auto}
-  .section--short{page-break-before:always;break-before:page}
-  .section .inner{max-width:100%;padding:0}
-
-  /* 카드·블록 — 페이지 경계에서 절단 금지 */
-  .flow,.modules,.feat-grid,.audience,.b2b-strip,
-  .jeju-inst,.iden-banner,.next-grid,
-  .module,.recipe,.flow__step,.feat,.aud-chip,
-  .b2b-card,.next-card,
-  table,thead,tbody,tr,
-  blockquote,figure,pre,ul,ol{
-    page-break-inside:avoid!important;
-    break-inside:avoid!important;
+    height:100vh;min-height:267mm;
+    display:flex!important;flex-direction:column;justify-content:space-between;
+    padding:30mm 20mm;background:#0a0a0a!important;color:#fff!important;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
   }
+  .pdf-cover__kicker{font-size:9pt;letter-spacing:.3em;text-transform:uppercase;
+    color:#818CF8!important;margin-bottom:10mm}
+  .pdf-cover__title{font-size:32pt;font-weight:900;line-height:1.2;letter-spacing:-.04em;
+    margin-bottom:6mm;color:#fff!important}
+  .pdf-cover__sub{font-size:13pt;line-height:1.6;color:#bbb!important;max-width:120mm}
+  .pdf-cover__meta{font-size:10pt;color:#888!important;border-top:1px solid #333;
+    padding-top:6mm;margin-top:auto}
+  .pdf-cover__meta b{color:#fff!important}
 
-  /* 헤더는 본문 직후 끊김 금지 */
-  h1,h2,h3,.hero-title,.section-title,.flow__title,
-  .module__title,.recipe__title,.feat__title,.b2b-card__title,
-  .iden-banner__title,.next-card__title,.jeju-inst__title{
-    page-break-after:avoid!important;
-    break-after:avoid-page!important;
+  /* 목차 페이지 */
+  .pdf-toc{page-break-after:always;break-after:page;
+    page-break-inside:avoid;break-inside:avoid-page}
+  .pdf-toc h2{font-size:18pt;font-weight:800;letter-spacing:-.03em;margin-bottom:10mm;
+    border-bottom:2px solid #0a0a0a;padding-bottom:3mm}
+  .pdf-toc ol{list-style:none;padding:0;counter-reset:toc}
+  .pdf-toc li{counter-increment:toc;padding:4mm 0;border-bottom:1px dotted #ccc;
+    display:flex;justify-content:space-between;align-items:baseline;font-size:11pt}
+  .pdf-toc li::before{content:counter(toc, decimal-leading-zero) ".  ";
+    font-weight:700;color:#818CF8!important;margin-right:4mm}
+  .pdf-toc li span:last-child{color:#888!important;font-size:9pt}
+
+  /* === 본문 섹션 = 1페이지 단위 === */
+  .section{
+    min-height:auto!important;height:auto!important;
+    padding:0 0 8mm 0!important;
+    page-break-before:always;break-before:page;
+    page-break-inside:auto;break-inside:auto;
+    display:block!important;
+    background:#fff!important;color:#0a0a0a!important;
   }
-  /* 키커는 제목 뒤에서 끊김 금지 */
-  .kicker{page-break-after:avoid!important;break-after:avoid-page!important}
+  .section .inner{max-width:100%!important;width:100%!important;padding:0!important}
+  .section--short{page-break-before:always;break-before:page;min-height:auto!important}
 
-  /* 색상 톤 인쇄용 */
-  .module,.recipe,.flow__step,.feat,.aud-chip,.b2b-card,.next-card,
-  .jeju-inst,.iden-banner{
-    border-color:#ddd!important;background:#fafafa!important;
-    box-shadow:none!important;
-  }
-  .hero-sub,.section-desc,.module__desc,.feat__desc,.flow__desc,
-  .recipe__need,.footer__text,.next-card__desc,.b2b-card__text{color:#555!important}
+  /* === 인쇄 시 숨길 화면 전용 섹션 === */
+  #s-iden-link,#s-next{display:none!important}
 
-  /* 표 분할 방지 + 헤더 반복 */
+  /* === 섹션 제목 === */
+  .kicker{font-size:8.5pt;letter-spacing:.25em;color:#6366F1!important;
+    margin-bottom:3mm;page-break-after:avoid;break-after:avoid-page}
+  .section-title,.hero-title{font-size:18pt!important;font-weight:800;
+    letter-spacing:-.03em;line-height:1.25;margin-bottom:6mm;
+    page-break-after:avoid;break-after:avoid-page}
+  .hero-title{font-size:24pt!important}
+  .section-desc,.hero-sub{font-size:10pt!important;line-height:1.7;color:#444!important;
+    margin-bottom:6mm;max-width:none}
+
+  /* === Hero 섹션 === */
+  #s-hero{page-break-before:auto;break-before:auto}
+  .b2b-strip{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;
+    gap:4mm!important;margin-top:6mm}
+  .b2b-card{padding:6mm 5mm!important;background:#fafafa!important;
+    border:1px solid #ddd!important;border-top:2px solid #6366F1!important;
+    border-radius:3mm;page-break-inside:avoid;break-inside:avoid-page}
+  .b2b-card__num{font-size:7.5pt!important;color:#6366F1!important}
+  .b2b-card__title{font-size:10.5pt!important}
+  .b2b-card__text{font-size:8.5pt!important;color:#555!important;line-height:1.55}
+
+  /* Jeju 기관 스트립 */
+  .jeju-inst{margin-top:6mm!important;padding:6mm 7mm!important;
+    background:#f5f6ff!important;border:1px solid #c7cdff!important;
+    border-radius:3mm;
+    page-break-inside:avoid;break-inside:avoid-page}
+  .jeju-inst__label{color:#6366F1!important;font-size:8pt!important}
+  .jeju-inst__title{font-size:13pt!important;color:#0a0a0a!important;margin-bottom:3mm}
+  .jeju-inst__desc{font-size:9pt!important;color:#444!important;margin-bottom:4mm}
+  .jeju-inst__tag{font-size:7.5pt!important;background:#e0e4ff!important;
+    color:#3730a3!important;border-color:#a5b1ff!important}
+
+  /* === Flow (4단계) — 한 페이지 안에 4개 모두 === */
+  .flow{margin-top:5mm!important;gap:3mm!important}
+  .flow__step{padding:5mm 6mm!important;background:#fafafa!important;
+    border:1px solid #ddd!important;border-radius:3mm!important;
+    page-break-inside:avoid;break-inside:avoid-page;gap:5mm}
+  .flow__num{width:8mm!important;height:8mm!important;font-size:9pt!important;
+    background:#6366F1!important;color:#fff!important}
+  .flow__title{font-size:11pt!important;color:#0a0a0a!important}
+  .flow__desc{font-size:9pt!important;color:#444!important;line-height:1.55}
+
+  /* === Module 6개 — 2x3 그리드, 모두 한 페이지 === */
+  .modules{display:grid!important;
+    grid-template-columns:1fr 1fr!important;gap:4mm!important;margin-top:5mm!important}
+  .module{padding:5mm 5mm!important;background:#fafafa!important;
+    border:1px solid #ddd!important;border-radius:3mm!important;
+    page-break-inside:avoid;break-inside:avoid-page}
+  .module__bar{height:1.5mm!important}
+  .module__icon{font-size:11pt!important;margin-bottom:2mm!important}
+  .module__sub{font-size:7.5pt!important;letter-spacing:.15em}
+  .module__title{font-size:10.5pt!important;margin-bottom:2mm}
+  .module__desc{font-size:8.5pt!important;color:#444!important;line-height:1.55}
+  .module__kw{font-size:7.5pt!important;background:#eef!important;color:#3730a3!important;
+    border:1px solid #c7cdff!important;padding:1mm 2.5mm!important}
+
+  /* === Recipe 5 cases — 2 cases/page (CASE C 이후 페이지 분할) === */
+  .recipe{padding:6mm 6mm!important;background:#fafafa!important;
+    border:1px solid #ddd!important;border-radius:3mm!important;
+    margin-bottom:4mm!important;
+    page-break-inside:avoid;break-inside:avoid-page}
+  .recipe__for{font-size:8pt!important;color:#6366F1!important;
+    background:#e0e4ff!important;padding:1.5mm 3mm!important}
+  .recipe__title{font-size:11pt!important;line-height:1.5}
+  .recipe__need{font-size:9pt!important;color:#444!important;
+    border-left:2px solid #c7cdff!important}
+  .recipe__chip{font-size:8pt!important;padding:1mm 2.5mm!important}
+  /* CASE C 이후를 새 페이지로 (5 cases → 2+3 분할) */
+  #s-recipe .recipe:nth-of-type(3){page-break-before:always;break-before:page}
+
+  /* === Audience 8 chips — 4x2 === */
+  .audience{display:grid!important;grid-template-columns:repeat(4,1fr)!important;
+    gap:3mm!important;margin-top:5mm!important}
+  .aud-chip{padding:4mm 4mm!important;background:#fafafa!important;
+    border:1px solid #ddd!important;border-radius:2mm!important;font-size:9pt!important;
+    page-break-inside:avoid;break-inside:avoid-page}
+  .aud-chip__label{font-size:7pt!important;color:#6366F1!important;letter-spacing:.1em}
+
+  /* === Approach 7원칙 — 4x2 그리드 === */
+  .feat-grid{display:grid!important;
+    grid-template-columns:repeat(2,1fr)!important;gap:4mm!important;margin-top:5mm!important}
+  .feat{padding:5mm 5mm!important;background:#fafafa!important;
+    border:1px solid #ddd!important;border-radius:3mm!important;
+    page-break-inside:avoid;break-inside:avoid-page}
+  .feat__icon{font-size:12pt!important}
+  .feat__title{font-size:10pt!important;color:#0a0a0a!important}
+  .feat__desc{font-size:8.5pt!important;color:#444!important;line-height:1.55}
+
+  /* === Contact 마지막 페이지 === */
+  #s-contact{padding:0!important}
+  .btn-cta{display:none!important}
+  #s-contact .actions{display:none!important}
+
+  /* === 표 헤더 반복·분할 방지 === */
   table{border-collapse:collapse;width:100%}
   thead{display:table-header-group}
   tfoot{display:table-footer-group}
   tr{page-break-inside:avoid!important;break-inside:avoid!important}
+  blockquote,figure,pre,ul,ol{
+    page-break-inside:avoid!important;break-inside:avoid!important}
 
-  /* 링크는 검정 */
-  a{color:#000!important;text-decoration:none}
+  /* 헤더 직후 끊김 방지 */
+  h1,h2,h3,h4{page-break-after:avoid!important;break-after:avoid-page!important}
 
-  /* fade-up 애니메이션 비활성 — 인쇄 시 잘 보이도록 */
-  .fade-up{opacity:1!important;transform:none!important}
+  /* 링크 색 정상화 */
+  a{color:#0a0a0a!important;text-decoration:none}
+
+  /* 애니메이션 무력화 */
+  .fade-up{opacity:1!important;transform:none!important;transition:none!important}
+
+  /* 푸터 응축 */
+  .footer{padding:6mm 0 0 0!important;border-top:1px solid #ddd}
+  .footer__text{font-size:8pt!important;color:#888!important}
 }
 </style>
 </head>
@@ -253,12 +370,39 @@ a:hover{text-decoration:underline}
   <a href="/" class="top-bar__home">&larr; 네다바웨이 홈</a>
   <div class="top-bar__actions">
     <a href="iden.html" class="top-bar__btn top-bar__btn--iden">IDEN (학생)</a>
-    <a href="facilitation.html" class="top-bar__btn top-bar__btn--facil">퍼실리테이션</a>
-    <a href="portfolio.html" class="top-bar__btn">포트폴리오</a>
+    <a href="cases.html" class="top-bar__btn">사례</a>
     <a href="about.html" class="top-bar__btn">소개</a>
     <button class="top-bar__btn" onclick="window.print()">PDF 저장</button>
   </div>
 </div>
+
+<!-- ======== PDF 표지 (인쇄 시에만 노출) ======== -->
+<section class="print-only pdf-cover">
+  <div>
+    <div class="pdf-cover__kicker">Nedabahway · Education Design Catalog</div>
+    <h1 class="pdf-cover__title">기관에는<br>표준 제안서가 아니라,<br>상황에 맞춘 <em>설계</em>가 필요합니다.</h1>
+    <p class="pdf-cover__sub">진로·AI 리터러시·리더십·퍼실리테이션 — 네 묶음을 기관 현장에 맞게 배합합니다.<br>제주에서 출발해 전국으로 출강하는 1인 교육 작업실.</p>
+  </div>
+  <div class="pdf-cover__meta">
+    <p><b>네다바웨이 Nedabahway</b> · 김창환 · nedabah.org</p>
+    <p>nedabah.way@gmail.com · 010-6642-7749 · 제주특별자치도 서귀포시</p>
+  </div>
+</section>
+
+<!-- ======== PDF 목차 (인쇄 시에만 노출) ======== -->
+<section class="print-only pdf-toc">
+  <h2>Contents · 목차</h2>
+  <ol>
+    <li><span>네다바웨이 소개</span><span>제주 기관과 함께</span></li>
+    <li><span>설계 4단계</span><span>How We Design</span></li>
+    <li><span>6가지 핵심 모듈</span><span>Module Library</span></li>
+    <li><span>실제 배합 사례</span><span>Design Recipes (CASE A·B)</span></li>
+    <li><span>실제 배합 사례 (이어서)</span><span>Design Recipes (CASE C·D·E)</span></li>
+    <li><span>대상별 현장</span><span>Who We Teach</span></li>
+    <li><span>배합의 7원칙</span><span>Approach</span></li>
+    <li><span>강의 의뢰 안내</span><span>Contact</span></li>
+  </ol>
+</section>
 
 <!-- Hero -->
 <section class="section" id="s-hero">
