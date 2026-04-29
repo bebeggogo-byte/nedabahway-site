@@ -185,10 +185,64 @@ a:hover{text-decoration:underline}
   .recipe{padding:22px 20px}
 }
 @media print{
-  body{background:#fff;color:#000}
-  .section{min-height:auto;page-break-inside:avoid;padding:40px 0}
-  .module,.recipe,.flow__step,.feat,.aud-chip{border-color:#ddd;background:#f9f9f9}
-  .hero-sub,.section-desc,.module__desc,.feat__desc,.flow__desc,.recipe__need,.footer__text{color:#555}
+  /* A4 페이지 — 각 섹션 1페이지 점유, 카드/표 분할 방지 */
+  @page{size:A4;margin:18mm 16mm}
+  html,body{background:#fff!important;color:#000!important;font-size:11pt}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+  /* 인쇄 시 숨김 */
+  .top-bar,.iden-banner__arrow,.btn-cta,.next-card__arrow{display:none!important}
+
+  /* 섹션 = 1 페이지 단위 */
+  .section{min-height:auto!important;padding:0!important;
+    page-break-before:always;break-before:page;
+    page-break-inside:avoid;break-inside:avoid-page;
+    page-break-after:auto;display:block!important}
+  .section:first-of-type,#s-hero{page-break-before:auto;break-before:auto}
+  .section--short{page-break-before:always;break-before:page}
+  .section .inner{max-width:100%;padding:0}
+
+  /* 카드·블록 — 페이지 경계에서 절단 금지 */
+  .flow,.modules,.feat-grid,.audience,.b2b-strip,
+  .jeju-inst,.iden-banner,.next-grid,
+  .module,.recipe,.flow__step,.feat,.aud-chip,
+  .b2b-card,.next-card,
+  table,thead,tbody,tr,
+  blockquote,figure,pre,ul,ol{
+    page-break-inside:avoid!important;
+    break-inside:avoid!important;
+  }
+
+  /* 헤더는 본문 직후 끊김 금지 */
+  h1,h2,h3,.hero-title,.section-title,.flow__title,
+  .module__title,.recipe__title,.feat__title,.b2b-card__title,
+  .iden-banner__title,.next-card__title,.jeju-inst__title{
+    page-break-after:avoid!important;
+    break-after:avoid-page!important;
+  }
+  /* 키커는 제목 뒤에서 끊김 금지 */
+  .kicker{page-break-after:avoid!important;break-after:avoid-page!important}
+
+  /* 색상 톤 인쇄용 */
+  .module,.recipe,.flow__step,.feat,.aud-chip,.b2b-card,.next-card,
+  .jeju-inst,.iden-banner{
+    border-color:#ddd!important;background:#fafafa!important;
+    box-shadow:none!important;
+  }
+  .hero-sub,.section-desc,.module__desc,.feat__desc,.flow__desc,
+  .recipe__need,.footer__text,.next-card__desc,.b2b-card__text{color:#555!important}
+
+  /* 표 분할 방지 + 헤더 반복 */
+  table{border-collapse:collapse;width:100%}
+  thead{display:table-header-group}
+  tfoot{display:table-footer-group}
+  tr{page-break-inside:avoid!important;break-inside:avoid!important}
+
+  /* 링크는 검정 */
+  a{color:#000!important;text-decoration:none}
+
+  /* fade-up 애니메이션 비활성 — 인쇄 시 잘 보이도록 */
+  .fade-up{opacity:1!important;transform:none!important}
 }
 </style>
 </head>
@@ -201,8 +255,7 @@ a:hover{text-decoration:underline}
     <a href="iden.html" class="top-bar__btn top-bar__btn--iden">IDEN (학생)</a>
     <a href="facilitation.html" class="top-bar__btn top-bar__btn--facil">퍼실리테이션</a>
     <a href="portfolio.html" class="top-bar__btn">포트폴리오</a>
-    <a href="story.html" class="top-bar__btn">이야기</a>
-    <a href="company.html" class="top-bar__btn">회사소개</a>
+    <a href="about.html" class="top-bar__btn">소개</a>
     <button class="top-bar__btn" onclick="window.print()">PDF 저장</button>
   </div>
 </div>
