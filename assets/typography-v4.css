@@ -1,0 +1,139 @@
+/* typography-v4.css — 사이트 전체 문장 품질 + no-orphan 강제
+   2026-04-29 사용자 영구 지시: "문장의 1,2개 단어만 다른 줄로 내려가는 것 주의하라.
+   마지막 문장은 홈페이지 모든 페이지에 적용하자."
+   적용 대상: index/about/programs/ai/magazine/contact/work/story/company,
+              /magazine/{code}/, /magazine/{code}/{ch}/, /blog/perspective/, /resources/.
+   기존 v3.css는 손대지 않고 이 파일을 import 추가. */
+
+/* === 1. 한국어 어절 단위 줄바꿈 + orphan/widow 자동 균형 === */
+p,
+li,
+dd,
+.prose,
+.prose p,
+.prose li,
+.lead,
+.kicker,
+.foot p,
+.foot__col a,
+.cta__sub,
+.card__body,
+.card p,
+blockquote,
+figcaption {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  /* Chrome 117+/Safari 17.4+/Edge 117+ : 마지막 줄 1~2어절 단독 낙하 자동 보정 */
+  text-wrap: pretty;
+  /* 본문은 'pretty' (꼬리 균형), 제목은 아래 'balance' */
+  hanging-punctuation: first last;
+}
+
+/* === 2. 제목·소제목은 더 강한 자동 균형 === */
+h1,
+h2,
+h3,
+h4,
+.h1,
+.h2,
+.h3,
+.section__title,
+.cta__title,
+.masthead h1,
+.card__title,
+.book-card__title,
+.chapter-card__title {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+  hanging-punctuation: first last;
+}
+
+/* === 3. 짧은 줄(narrow) 본문일수록 더 안전한 max-width === */
+.prose,
+.lead {
+  /* 한 줄 어절 수 약 12~16개 유지 → 마지막 줄 단어 1~2개 단독 낙하 빈도 급감 */
+  max-width: 64ch;
+}
+.prose--wide {
+  max-width: 78ch;
+}
+
+/* === 4. 단락 간 호흡 통일 === */
+.prose p + p,
+.prose ul,
+.prose ol {
+  margin-top: 14px;
+}
+.prose p + h2,
+.prose p + h3 {
+  margin-top: 36px;
+}
+
+/* === 5. 인용문 (성경 본문 raw_transcript 등 세리프 톤) === */
+.quote-serif,
+blockquote.quote-serif,
+.observatory blockquote {
+  font-family: var(--ff-serif, 'Noto Serif KR', Georgia, serif);
+  font-size: 1.06rem;
+  line-height: 1.85;
+  border-left: 3px solid var(--c-copper, #C2410C);
+  padding: 14px 22px;
+  margin: 22px 0;
+  background: rgba(194, 65, 12, 0.03);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+/* === 6. 마지막 어절 강제 묶기용 유틸리티 === */
+/* 사용법: <h2>긴 제목 <span class="nowrap-tail">한 묶음</span></h2> */
+.nowrap-tail {
+  white-space: nowrap;
+}
+/* 또는 마지막 어절 앞에 &nbsp; 직접 삽입 가능 */
+
+/* === 7. 작은 글씨 (kicker/메타)도 동일 룰 === */
+.kicker,
+.meta,
+.book-card__meta,
+.chapter-card__meta,
+.foot__copy span {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+/* === 8. 모바일에서 더 짧은 줄 길이 → orphan 자연 감소 === */
+@media (max-width: 640px) {
+  .prose,
+  .lead {
+    max-width: 100%;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  h1,
+  .h1 {
+    font-size: clamp(1.7rem, 6vw, 2.4rem);
+  }
+  h2,
+  .h2,
+  .section__title {
+    font-size: clamp(1.3rem, 4.6vw, 1.8rem);
+  }
+}
+
+/* === 9. 인쇄 시에도 유지 === */
+@media print {
+  p, li, h1, h2, h3 {
+    text-wrap: pretty;
+    word-break: keep-all;
+  }
+}
+
+/* === 10. 폴백 (text-wrap 미지원 브라우저) — 순수 keep-all로도 한국어는 충분히 안전 === */
+@supports not (text-wrap: pretty) {
+  p, li, .prose, .lead {
+    /* keep-all + max-width 64ch 조합으로 폴백 */
+  }
+}
