@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>학습노트 — 김창환의 매일 학습 기록 · 네다바웨이</title>
-<meta name="description" content="김창환 강사가 매일 학습하는 자료를 카테고리별로 누적합니다. 진로·코칭·리더십·AI·교육·철학·고전·정책 등 30개 영역에서 30단계로.">
-<meta property="og:title" content="학습노트 — 김창환의 매일 학습 기록">
-<meta property="og:description" content="매일 학습하는 사람의 누적 기록.">
+<title>학습노트 — 5거인 합집합 매트릭스 · 네다바웨이</title>
+<meta name="description" content="에라스무스·라이프니츠·바전·C.S. Lewis·다 빈치 5거인의 영역 합집합 40카테고리 × 30좌표(6단계×5회전)로 평생 학습을 누적합니다.">
+<meta property="og:title" content="학습노트 — 인류 마지막 지식 고학습자 매트릭스">
+<meta property="og:description" content="40카테고리·10기둥·1,200 좌표 평생 학습 시스템.">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://www.nedabah.org/learning.html">
 <style>
   :root{--ink:#0a0a0a;--soft:#1f1f23;--mute:#6b7280;--line:#e5e7eb;--light:#f7f7f5;
-    --acc:#0891b2;--acc-soft:#cffafe;--bg:#fafaf7}
+    --acc:#0891b2;--acc-soft:#cffafe;--bg:#fafaf7;--gold:#b45309}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Pretendard','Noto Sans KR',-apple-system,sans-serif;
     background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px;-webkit-font-smoothing:antialiased}
@@ -25,46 +25,64 @@
   .nav__links a:hover,.nav__links .active{color:var(--ink)}
   .nav__cta{background:var(--ink);color:#fff;padding:7px 14px;border-radius:6px;font-size:13px;font-weight:600}
 
-  .hero{max-width:1080px;margin:0 auto;padding:64px 24px 48px}
+  .hero{max-width:1080px;margin:0 auto;padding:64px 24px 32px}
   .hero__kicker{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--acc);
     background:var(--acc-soft);padding:5px 12px;border-radius:4px;margin-bottom:24px;text-transform:uppercase}
   .hero h1{font-size:42px;font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:14px}
   .hero h1 em{color:var(--acc);font-style:normal}
-  .hero .lead{font-size:17px;color:var(--soft);max-width:680px;line-height:1.7;margin-bottom:28px}
+  .hero .lead{font-size:17px;color:var(--soft);max-width:720px;line-height:1.7;margin-bottom:28px}
   .hero__stats{display:flex;gap:28px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
   .hero__stats strong{color:var(--ink);font-size:22px;font-weight:800;display:block;margin-bottom:2px}
 
-  /* category grid */
-  .cats{max-width:1080px;margin:0 auto;padding:32px 24px}
-  .cats__head{margin-bottom:18px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px}
-  .cats__head h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
-  .cats__head .filter{display:flex;gap:6px;flex-wrap:wrap}
-  .cats__head .chip{font-size:12px;padding:5px 11px;border-radius:99px;background:#fff;border:1px solid var(--line);
-    cursor:pointer;font-weight:500;color:var(--soft);font-family:inherit}
-  .cats__head .chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-  .cat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;transition:all .15s ease;cursor:pointer}
-  .cat:hover{border-color:var(--acc);transform:translateY(-2px);box-shadow:0 8px 24px rgba(8,145,178,.08)}
-  .cat__name{font-size:16px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px;color:var(--ink)}
-  .cat__desc{font-size:13px;color:var(--mute);line-height:1.55;margin-bottom:14px}
-  .cat__meta{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mute);
-    padding-top:12px;border-top:1px dashed var(--line)}
-  .cat__progress{flex:1;height:5px;background:var(--light);border-radius:99px;margin-right:10px;overflow:hidden}
-  .cat__progress-fill{height:100%;background:var(--acc);border-radius:99px;transition:width .3s ease}
+  .giants{max-width:1080px;margin:0 auto;padding:16px 24px 32px}
+  .giants h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
+  .giants__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+  .giant{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .giant__name{font-size:14px;font-weight:700;margin-bottom:4px}
+  .giant__core{font-size:12px;color:var(--mute);line-height:1.5}
+
+  .tabs{position:sticky;top:53px;background:var(--bg);z-index:90;padding:14px 0;border-bottom:1px solid var(--line)}
+  .tabs__inner{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+  .tabs__inner::-webkit-scrollbar{display:none}
+  .tab{flex-shrink:0;font-size:13px;padding:7px 14px;border-radius:99px;background:#fff;border:1px solid var(--line);
+    cursor:pointer;font-weight:500;color:var(--soft);font-family:inherit;white-space:nowrap}
+  .tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  .pillars{max-width:1080px;margin:0 auto;padding:24px 24px 16px}
+  .pillar-block{margin-bottom:32px}
+  .pillar-block__head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  .pillar-block__num{font-size:11px;font-weight:700;color:var(--acc);background:var(--acc-soft);padding:3px 8px;border-radius:4px;letter-spacing:.05em}
+  .pillar-block__name{font-size:18px;font-weight:800;letter-spacing:-.01em}
+  .pillar-block__giants{font-size:12px;color:var(--mute);margin-left:auto}
+
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+  .cat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;transition:all .15s ease;cursor:pointer;position:relative}
+  .cat:hover{border-color:var(--acc);transform:translateY(-1px);box-shadow:0 6px 20px rgba(8,145,178,.06)}
+  .cat__top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:10px}
+  .cat__name{font-size:14px;font-weight:700;letter-spacing:-.01em;color:var(--ink);flex:1}
+  .cat__id{font-size:11px;color:var(--mute);font-weight:600}
+  .cat__desc{font-size:12px;color:var(--mute);line-height:1.5;margin-bottom:12px;min-height:32px}
+
+  .dots{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;margin-bottom:10px}
+  .dot{aspect-ratio:1/1;background:var(--line);border-radius:2px;transition:background .2s ease}
+  .dot.filled{background:var(--acc)}
+
+  .cat__meta{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--mute);
+    padding-top:8px;border-top:1px dashed var(--line)}
   .cat__count{font-weight:600;color:var(--ink)}
 
-  /* recent */
   .recent{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
   .recent h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
   .note-list{display:grid;gap:12px}
-  .note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 22px;transition:all .15s ease}
+  .note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;transition:all .15s ease;display:block}
   .note:hover{border-color:var(--acc)}
-  .note__top{display:flex;gap:10px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
-  .note__cat{font-size:11px;font-weight:700;color:var(--acc);background:var(--acc-soft);padding:3px 9px;border-radius:4px;letter-spacing:-.005em}
-  .note__date{font-size:12px;color:var(--mute);margin-left:auto}
+  .note__top{display:flex;gap:10px;align-items:center;margin-bottom:6px;flex-wrap:wrap;font-size:11px}
+  .note__pillar{font-weight:700;color:var(--acc);background:var(--acc-soft);padding:3px 8px;border-radius:4px}
+  .note__cat{color:var(--mute)}
+  .note__format{color:var(--mute);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  .note__date{color:var(--mute);margin-left:auto}
   .note__title{font-size:15px;font-weight:700;color:var(--ink);line-height:1.45;margin-bottom:4px}
-  .note__source{font-size:12px;color:var(--mute);font-style:italic}
-  .note__excerpt{font-size:13px;color:var(--soft);line-height:1.65;margin-top:8px}
+  .note__excerpt{font-size:13px;color:var(--soft);line-height:1.6;margin-top:6px}
 
   .empty-msg{padding:36px 24px;text-align:center;color:var(--mute);font-size:14px;background:#fff;border:1px dashed var(--line);border-radius:12px}
 
@@ -74,6 +92,7 @@
   @media(max-width:680px){
     .hero h1{font-size:30px}
     .cat-grid{grid-template-columns:1fr}
+    .giants__grid{grid-template-columns:repeat(2,1fr)}
   }
 </style>
 </head>
@@ -87,7 +106,6 @@
       <a href="/programs.html">강의</a>
       <a href="/ai.html">AI 작업실</a>
       <a href="/learning.html" class="active">학습노트</a>
-      <a href="/growing.html">성장하는 인간</a>
       <a href="/magazine.html">매거진</a>
       <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
     </div>
@@ -95,103 +113,172 @@
 </nav>
 
 <header class="hero">
-  <span class="hero__kicker">Learning Notes · 학습노트</span>
-  <h1>매일 <em>학습하는 사람</em>의<br>누적 기록</h1>
-  <p class="lead">고대 자료부터 현대 자료까지, 30개 영역에서 30단계로. 김창환 강사가 매일 읽고 학습한 자료를 영역별로 누적합니다. 한 권의 책, 한 편의 논문, 한 줄의 메모도 그날의 한 단계로 남깁니다.</p>
+  <span class="hero__kicker">Learning Matrix · 5거인 합집합</span>
+  <h1>인류 마지막<br><em>지식 고학습자</em>의 매트릭스</h1>
+  <p class="lead">에라스무스·라이프니츠·자크 바전·C.S. Lewis·레오나르도 다 빈치 — 다섯 거인의 영역 합집합 40카테고리. 카테고리당 6단계(입문·정독·비교·재구성·적용·교수)를 5회전 = 1,200 좌표 평생 매트릭스. 강의는 부산물, 본질은 섭렵 자체.</p>
   <div class="hero__stats">
-    <div><strong id="stat-total">0</strong>총 학습 기록</div>
-    <div><strong id="stat-cats">30</strong>학습 영역</div>
-    <div><strong id="stat-stages">30</strong>단계 (영역당)</div>
-    <div><strong id="stat-days">0</strong>누적 학습일</div>
+    <div><strong id="stat-entries">0</strong>총 학습 기록</div>
+    <div><strong id="stat-coords">0/1200</strong>채움 좌표</div>
+    <div><strong id="stat-sar">0%</strong>매트릭스 진척률</div>
+    <div><strong>10</strong>학습 기둥</div>
+    <div><strong>40</strong>카테고리</div>
   </div>
 </header>
 
-<section class="cats">
-  <div class="cats__head">
-    <h2>30개 학습 영역</h2>
-    <div class="filter" id="filter-bar"></div>
-  </div>
-  <div class="cat-grid" id="cat-grid"></div>
+<section class="giants">
+  <h2>다섯 거인</h2>
+  <div class="giants__grid" id="giants-grid"></div>
 </section>
+
+<nav class="tabs">
+  <div class="tabs__inner" id="tab-bar"></div>
+</nav>
+
+<section class="pillars" id="pillars-root"></section>
 
 <section class="recent">
   <h2>최근 학습 기록</h2>
   <div class="note-list" id="recent-list">
-    <div class="empty-msg">학습 기록은 매일 누적됩니다. 첫 기록이 곧 등록됩니다.</div>
+    <div class="empty-msg">학습 기록은 매일 누적됩니다. 5거인 1년차 자리부터 시작합니다.</div>
   </div>
 </section>
 
 <footer class="foot">
-  <p>학습노트 · 김창환 · 네다바웨이 — 매일 자라는 사람의 자리.<br>
-  <a href="/blog/perspective/">관점 노트</a> · <a href="/growing.html">성장하는 인간 페이지</a></p>
+  <p>학습노트 · 김창환 · 네다바웨이 — 인류 마지막 지식 고학습자의 자리.<br>
+  자료 SSoT: <code>learning/_data/notes.json</code> · 빌더: <code>_build/render_all.py</code> · 검증: <code>_build/validate.py</code> · 전략: <a href="/learning/STRATEGY_v1.md">구조</a> · <a href="/learning/QUALITY_STRATEGY_v1.md">품질</a></p>
 </footer>
 
 <script>
-// 30개 학습 영역
-const CATEGORIES = [
-  {name:'직업철학·이타성', desc:'직업의 본질, 일의 의미, 노동의 윤리'},
-  {name:'진로·자기이해', desc:'자기 발견, 진로 선택, 적성·강점·동기'},
-  {name:'코칭·국제 표준', desc:'ICF, 코액티브, 솔루션 포커스'},
-  {name:'리더십·팀 성과', desc:'팀빌딩, 1on1, 심리적 안전감'},
-  {name:'퍼실리테이션·회의', desc:'그룹 진행, 워크숍 설계, 시민참여'},
-  {name:'AI 리터러시', desc:'AI 시대 도구·윤리·자기 자리'},
-  {name:'교육공학·학습설계', desc:'ADDIE, 학습 곡선, 평가'},
-  {name:'성인학습·HRD', desc:'기업 교육, 학습효과 측정'},
-  {name:'발달심리·생애주기', desc:'아동·청소년·성인 발달 단계'},
-  {name:'관계·소통', desc:'가족, 동료, 친구의 자리'},
-  {name:'부모-자녀 교육', desc:'학부모 역할, 자녀 동행'},
-  {name:'정책·교육행정', desc:'한국 교육부, 자유학기제, AIDT'},
-  {name:'기업가정신·창직', desc:'1인 사업, 린, MVP, 검증'},
-  {name:'웰니스·회복', desc:'번아웃 예방, 회복 의례'},
-  {name:'동양 고전', desc:'논어, 맹자, 도덕경, 한국 고전'},
-  {name:'서양 고전', desc:'그리스 철학, 스토아, 아리스토텔레스'},
-  {name:'성경·신학', desc:'구약·신약, 묵상, 신학 사상'},
-  {name:'철학·윤리', desc:'현대 철학, 도덕 철학'},
-  {name:'심리학·행동과학', desc:'카네만, 자기결정성 이론'},
-  {name:'사회학·문화', desc:'사회 구조, 세대, 문화 코드'},
-  {name:'경제학·노동', desc:'노동시장, 미래 일자리'},
-  {name:'문학·서사', desc:'소설, 에세이, 시'},
-  {name:'역사·인물', desc:'한국사, 세계사, 인물 평전'},
-  {name:'미디어·콘텐츠', desc:'블로그·뉴스레터·영상 제작'},
-  {name:'데이터·통계', desc:'데이터 해석, 통계 리터러시'},
-  {name:'시각화·디자인', desc:'정보 디자인, 발표 자료'},
-  {name:'글쓰기·편집', desc:'문장, 구성, 편집의 자리'},
-  {name:'코딩·자동화', desc:'Python, 1인 사업의 자동화'},
-  {name:'예술·음악', desc:'음악, 미술, 공연'},
-  {name:'자연·생태', desc:'자연 관찰, 생태 사고'},
-];
-
+let CATEGORIES = null, STAGES = null, NOTES = null, PROGRESS = null;
 let activeFilter = 'all';
 
-function init(){
-  const bar = document.getElementById('filter-bar');
-  ['all','동양','서양','실무','자기이해'].forEach(name=>{
-    const b = document.createElement('button');
-    b.className = 'chip' + (name==='all'?' active':'');
-    b.textContent = name === 'all' ? '전체' : name;
-    b.onclick = () => { activeFilter = name; document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active')); b.classList.add('active'); render(); };
-    bar.appendChild(b);
-  });
-  document.getElementById('stat-total').textContent = '0';
-  document.getElementById('stat-cats').textContent = CATEGORIES.length;
-  render();
+async function loadAll(){
+  const [c, s, n, p] = await Promise.all([
+    fetch('/learning/_data/categories.json').then(r=>r.json()),
+    fetch('/learning/_data/stages.json').then(r=>r.json()),
+    fetch('/learning/_data/notes.json').then(r=>r.json()),
+    fetch('/learning/_data/progress.json').then(r=>r.json()).catch(()=>({total_entries:0,coords_filled:0,matrix_total:1200,sar_percent:0,by_category:{}})),
+  ]);
+  CATEGORIES = c; STAGES = s; NOTES = n; PROGRESS = p;
+  renderGiants();
+  renderTabs();
+  renderStats();
+  renderPillars();
+  renderRecent();
 }
 
-function render(){
-  const grid = document.getElementById('cat-grid');
-  grid.innerHTML = CATEGORIES.map((c, i) => `
-    <div class="cat" onclick="alert('${c.name} 영역의 학습 기록은 곧 누적됩니다.')">
-      <div class="cat__name">${i+1}. ${c.name}</div>
-      <div class="cat__desc">${c.desc}</div>
-      <div class="cat__meta">
-        <div class="cat__progress"><div class="cat__progress-fill" style="width:0%"></div></div>
-        <span class="cat__count">0/30</span>
+function renderStats(){
+  document.getElementById('stat-entries').textContent = PROGRESS.total_entries || 0;
+  document.getElementById('stat-coords').textContent = `${PROGRESS.coords_filled||0}/${PROGRESS.matrix_total||1200}`;
+  document.getElementById('stat-sar').textContent = `${PROGRESS.sar_percent||0}%`;
+}
+
+function renderGiants(){
+  const g = document.getElementById('giants-grid');
+  g.innerHTML = CATEGORIES.five_giants.map(x => `
+    <div class="giant"><div class="giant__name">${x.name}</div><div class="giant__core">${x.core}</div></div>
+  `).join('');
+}
+
+function renderTabs(){
+  const bar = document.getElementById('tab-bar');
+  bar.innerHTML = '';
+  CATEGORIES.filter_groups.forEach(name => {
+    const b = document.createElement('button');
+    b.className = 'tab' + (name===activeFilter?' active':'');
+    b.textContent = name === 'all' ? '전체' : name;
+    b.onclick = () => { activeFilter = name; document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); b.classList.add('active'); renderPillars(); };
+    bar.appendChild(b);
+  });
+}
+
+function renderPillars(){
+  const root = document.getElementById('pillars-root');
+  const filtered = activeFilter === 'all'
+    ? CATEGORIES.categories
+    : CATEGORIES.categories.filter(c => c.group === activeFilter);
+
+  const byPillar = {};
+  filtered.forEach(c => {
+    if (!byPillar[c.pillar]) byPillar[c.pillar] = [];
+    byPillar[c.pillar].push(c);
+  });
+
+  root.innerHTML = CATEGORIES.pillars
+    .filter(p => byPillar[p.id])
+    .map(p => `
+    <div class="pillar-block">
+      <div class="pillar-block__head">
+        <span class="pillar-block__num">기둥 ${p.id}</span>
+        <span class="pillar-block__name">${p.name}</span>
+        <span class="pillar-block__giants">${p.giants.join(' · ')}</span>
+      </div>
+      <div class="cat-grid">
+        ${byPillar[p.id].map(c => renderCatCard(c)).join('')}
       </div>
     </div>
   `).join('');
 }
 
-init();
+function renderCatCard(c){
+  const stat = (PROGRESS.by_category||{})[String(c.id)] || {count:0,score:0,stages:{},rotations:{}};
+  const dots = [];
+  for (let r = 1; r <= 5; r++) {
+    for (let s = 1; s <= 6; s++) {
+      const filled = ((stat.stages||{})[s]||0) >= r;
+      dots.push(`<div class="dot ${filled?'filled':''}" title="단계 ${s} · 회전 ${r}"></div>`);
+    }
+  }
+  return `
+    <div class="cat" onclick="showCat(${c.id})">
+      <div class="cat__top">
+        <div class="cat__name">${c.name}</div>
+        <div class="cat__id">#${c.id}</div>
+      </div>
+      <div class="cat__desc">${c.desc}</div>
+      <div class="dots">${dots.join('')}</div>
+      <div class="cat__meta">
+        <span>${c.slug}</span>
+        <span class="cat__count">${stat.count}건 · ${stat.score||0}점</span>
+      </div>
+    </div>
+  `;
+}
+
+function showCat(id){
+  const c = CATEGORIES.categories.find(x => x.id === id);
+  if (c) alert(`${c.name}\n\n${c.desc}\n\n6단계×5회전 = 30좌표가 매트릭스를 채웁니다.`);
+}
+
+function renderRecent(){
+  const list = document.getElementById('recent-list');
+  const entries = (NOTES.entries || []).filter(e => e.visibility === 'public').slice(-12).reverse();
+  if (!entries.length) {
+    list.innerHTML = '<div class="empty-msg">학습 기록은 매일 누적됩니다. 5거인 1년차 자리부터 시작합니다.</div>';
+    return;
+  }
+  list.innerHTML = entries.map(e => {
+    const cat = CATEGORIES.categories.find(c => c.id === e.category_id);
+    const pillar = CATEGORIES.pillars.find(p => p.id === e.pillar_id);
+    return `
+    <a class="note" href="/learning/notes/${e.id}.html">
+      <div class="note__top">
+        <span class="note__pillar">${pillar ? pillar.name : ''}</span>
+        <span class="note__cat">${cat ? cat.name : ''}</span>
+        <span class="note__format">${e.format}</span>
+        <span class="note__date">${e.published}</span>
+      </div>
+      <div class="note__title">${e.title}</div>
+      <div class="note__excerpt">${e.summary || ''}</div>
+    </a>
+    `;
+  }).join('');
+}
+
+loadAll().catch(err => {
+  console.error(err);
+  document.getElementById('pillars-root').innerHTML = '<div class="empty-msg">데이터 로드 실패. _build/render_all.py를 먼저 실행해 주세요.</div>';
+});
 </script>
 </body>
 </html>

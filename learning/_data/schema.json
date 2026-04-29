@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nedabahway Learning Note",
+  "type": "object",
+  "required": ["id","format","visibility","title","summary","category_id","pillar_id","stage_id","rotation","source","published","url","qa_passed"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^lrn-[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-z0-9-]+$"},
+    "format": {"enum": ["paper","book","field","essay","diary","synth"]},
+    "visibility": {"enum": ["public","internal","draft"]},
+    "title": {"type": "string", "minLength": 4},
+    "summary": {"type": "string", "minLength": 20},
+    "category_id": {"type": "integer", "minimum": 1, "maximum": 40},
+    "pillar_id": {"type": "integer", "minimum": 1, "maximum": 10},
+    "stage_id": {"type": "integer", "minimum": 1, "maximum": 6},
+    "rotation": {"type": "integer", "minimum": 1, "maximum": 5},
+    "giant_id": {"enum": ["erasmus","leibniz","barzun","lewis","davinci",""]},
+    "topics": {"type": "array", "items": {"type": "string"}},
+    "level": {"enum": ["beginner","intermediate","advanced","any"]},
+    "time_min": {"type": "integer"},
+    "version": {"type": "string"},
+    "published": {"type": "string", "format": "date"},
+    "updated": {"type": "string", "format": "date"},
+    "source": {"type": "string", "minLength": 5},
+    "source_label": {"enum": ["PEER","POLICY","STAT","PRESS","INFORMAL",""]},
+    "cites": {"type": "array", "items": {"type": "string"}},
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type","source"],
+        "properties": {
+          "type": {"enum": ["image","chart","table","quote"]},
+          "path": {"type": "string"},
+          "caption": {"type": "string"},
+          "source": {"type": "string", "minLength": 3}
+        }
+      }
+    },
+    "url": {"type": "string"},
+    "qa_passed": {"type": "boolean"},
+    "qa_check": {
+      "type": "object",
+      "properties": {
+        "source_filled": {"type": "boolean"},
+        "no_fabricated_chars": {"type": "boolean"},
+        "no_banned_endings": {"type": "boolean"},
+        "phrase_quota_ok": {"type": "boolean"},
+        "flow_8steps": {"type": "boolean"},
+        "emotion_9steps": {"type": "boolean"},
+        "wfo_style_3plus": {"type": "boolean"},
+        "primary_sources_3plus": {"type": "boolean"},
+        "trust_label_set": {"type": "boolean"},
+        "quote_under_30w": {"type": "boolean"},
+        "data_honest": {"type": "boolean"},
+        "asset_source_filled": {"type": "boolean"},
+        "wordcount_600_1200": {"type": "boolean"},
+        "no_self_imitation": {"type": "boolean"},
+        "review_done": {"type": "boolean"},
+        "anonymized": {"type": "boolean"}
+      }
+    }
+  }
+}

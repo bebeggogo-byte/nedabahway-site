@@ -582,10 +582,8 @@ def main():
         for ch in range(1, total + 1):
             ch_out = OUT / code / str(ch) / "index.html"
             has = chap_dir(sbm_dir, ch) is not None
-            # 기존 손수 만든 GEN/1은 건너뜀(이미 정교한 버전 존재)
-            if code == "GEN" and ch == 1 and ch_out.exists():
-                skipped_existing += 1
-                continue
+            # 사용자 직접 지시 2026-04-29: "창세기 1장부터 제대로 정리하면서 진행해라"
+            # → GEN/1 skip 가드 제거. 모든 장이 LOCKED 9단계 빌더 표준으로 통일 렌더.
             ch_out.parent.mkdir(parents=True, exist_ok=True)
             ch_out.write_text(render_chapter(code, kr, en, ch, sbm_dir, total, lang, block), encoding="utf-8")
             if has:
