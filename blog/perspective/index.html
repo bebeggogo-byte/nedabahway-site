@@ -4,537 +4,58 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>관점 노트 — 직업본질연구원 | 네다바웨이</title>
-<meta name="description" content="직업본질연구원(D25) 관점 노트 — 5개 대분류·12개 클러스터·4단계 깊이로 분류된 매일의 관찰 시리즈.">
+<meta name="description" content="직업본질연구원의 관점 노트. 짧고 깊은 단편 시리즈.">
 <style>
 :root{--c-acc:#6366F1;--c-fg:#0a0a0a;--c-mute:#777;--c-line:#eee;--c-soft:#f5f6ff}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Pretendard Variable','Apple SD Gothic Neo',sans-serif;background:#fff;color:var(--c-fg);
-  line-height:1.65;font-size:15.5px;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1080px;margin:0 auto;padding:48px 24px}
+body{font-family:'Pretendard','Noto Serif KR',serif;background:#fff;color:var(--c-fg);
+  line-height:1.7;font-size:16px}
+.wrap{max-width:760px;margin:0 auto;padding:56px 24px 96px}
 .home{color:var(--c-mute);font-size:.85rem;text-decoration:none;display:inline-block;margin-bottom:24px}
 .home:hover{color:var(--c-acc)}
 h1{font-size:2.2rem;letter-spacing:-.03em;margin-bottom:10px;font-weight:800}
-.lead{color:var(--c-mute);font-size:1.02rem;margin-bottom:36px;max-width:680px;line-height:1.75}
-
-.stats{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
-.stat{padding:14px 20px;background:var(--c-soft);border:1px solid #d8dbff;border-radius:12px;
-  flex:1;min-width:140px}
-.stat__num{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;color:var(--c-acc)}
-.stat__label{font-size:.78rem;color:var(--c-mute);margin-top:2px}
-
-.tabs{display:flex;gap:6px;margin-bottom:32px;border-bottom:2px solid var(--c-line);
-  flex-wrap:wrap;padding-bottom:0}
-.tab{padding:10px 18px;border:none;background:transparent;cursor:pointer;
-  font-size:.92rem;font-weight:600;color:var(--c-mute);border-bottom:2px solid transparent;
-  margin-bottom:-2px;font-family:inherit}
-.tab.active{color:var(--c-acc);border-bottom-color:var(--c-acc)}
-.tab:hover{color:var(--c-fg)}
-
-.view{display:none}
-.view.active{display:block}
-
-/* Domain (Tier 1) */
-.domains{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:32px}
-.domain-card{padding:24px;border:1px solid var(--c-line);border-radius:14px;
-  text-decoration:none;color:inherit;display:block;transition:all .2s;
-  border-top:3px solid var(--c-acc)}
-.domain-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
-.domain-card__num{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--c-mute);margin-bottom:8px}
-.domain-card__title{font-size:1.3rem;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
-.domain-card__desc{font-size:.86rem;color:var(--c-mute);margin-bottom:14px;line-height:1.55}
-.domain-card__count{font-size:.78rem;color:var(--c-acc);font-weight:700}
-.domain-card__clusters{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
-.cluster-pill{font-size:.72rem;padding:3px 9px;border-radius:999px;
-  background:#eef0ff;color:#3730a3;font-weight:600}
-
-/* Cluster (Tier 2) */
-.cluster-block{margin-bottom:36px}
-.cluster-head{display:flex;justify-content:space-between;align-items:baseline;
-  border-bottom:1px solid var(--c-line);padding-bottom:8px;margin-bottom:12px}
-.cluster-head h2{font-size:1.1rem;font-weight:800;letter-spacing:-.02em}
-.cluster-head .count{color:var(--c-mute);font-size:.78rem;margin-left:8px}
+.lead{color:var(--c-mute);font-size:1.02rem;margin-bottom:48px;max-width:680px;line-height:1.75}
+.cluster{margin-bottom:42px}
+.cluster h2{font-size:1.05rem;font-weight:800;margin-bottom:16px;padding-bottom:8px;
+  border-bottom:1px solid var(--c-line);letter-spacing:-.01em}
+.cluster h2 .count{color:var(--c-mute);font-weight:500;font-size:.85rem;margin-left:8px}
 ul.entries{list-style:none}
-ul.entries li{padding:9px 0;border-bottom:1px dashed #f5f5f5;
-  display:grid;grid-template-columns:88px 1fr auto;gap:14px;align-items:baseline}
-ul.entries li a{color:inherit;text-decoration:none}
-ul.entries li a:hover{color:var(--c-acc)}
-.date{color:#aaa;font-size:.78rem}
-.depth-tag{font-size:.7rem;padding:2px 8px;border-radius:6px;
-  background:#f0f4ff;color:#6366F1;font-weight:600;border:1px solid #d8dbff}
-.depth-tag.L1{background:#ecfeff;color:#0e7490;border-color:#a5f3fc}
-.depth-tag.L2{background:#eef0ff;color:#4338ca;border-color:#c7cdff}
-.depth-tag.L3{background:#fef3c7;color:#92400e;border-color:#fde68a}
-.depth-tag.L4{background:#dcfce7;color:#166534;border-color:#86efac}
-
-/* Depth view */
-.depth-block{margin-bottom:32px}
-.depth-block h2{font-size:1.05rem;font-weight:800;margin-bottom:6px}
-.depth-block .desc{color:var(--c-mute);font-size:.88rem;margin-bottom:14px}
-
-/* Timeline view */
-.month-block{margin-bottom:24px}
-.month-block h2{font-size:.98rem;font-weight:800;margin-bottom:10px;
-  color:var(--c-acc);letter-spacing:.02em}
-
-/* Keyword cloud */
-.kw-cloud{padding:20px;background:var(--c-soft);border-radius:12px;margin-bottom:32px;
-  display:flex;flex-wrap:wrap;gap:8px}
-.kw{font-size:.82rem;padding:5px 12px;background:#fff;border:1px solid #d8dbff;
-  border-radius:999px;color:#3730a3;font-weight:600}
-.kw.top{background:var(--c-acc);color:#fff;border-color:var(--c-acc)}
+ul.entries li{padding:14px 0;border-bottom:1px dashed #f0f0f0}
+ul.entries li:last-child{border-bottom:none}
+ul.entries li a{color:inherit;text-decoration:none;display:block}
+ul.entries li a:hover .title{color:var(--c-acc)}
+.entry-date{color:#aaa;font-size:.75rem;letter-spacing:.05em;margin-bottom:4px}
+.title{font-size:1rem;font-weight:700;line-height:1.5;letter-spacing:-.01em;margin-bottom:4px}
+.subtitle{color:var(--c-mute);font-size:.86rem;line-height:1.55}
+.foot{margin-top:60px;padding-top:24px;border-top:1px solid var(--c-line);
+  font-size:.85rem;color:var(--c-mute);text-align:center}
 </style></head><body>
 <div class="wrap">
-  <a class="home" href="/">← 네다바웨이</a>
-  <h1>관점 노트</h1>
-  <p class="lead">직업본질연구원(D25) — 도구가 아니라 좌표를, 결과가 아니라 ‘누구를 위해’를 묻는 글.<br>
-    매일의 관찰을 5개 대분류 · 12개 클러스터 · 4단계 깊이로 정리한 시리즈.</p>
-
-  <div class="stats">
-    <div class="stat"><div class="stat__num">129</div><div class="stat__label">전체 글</div></div>
-    <div class="stat"><div class="stat__num">5</div><div class="stat__label">대분류 (Domain)</div></div>
-    <div class="stat"><div class="stat__num">12</div><div class="stat__label">클러스터</div></div>
-    <div class="stat"><div class="stat__num">2</div><div class="stat__label">활동 월</div></div>
-  </div>
-
-  <div class="tabs">
-    <button class="tab active" data-view="domain">5 대분류</button>
-    <button class="tab" data-view="cluster">12 클러스터</button>
-    <button class="tab" data-view="depth">깊이별</button>
-    <button class="tab" data-view="timeline">월별</button>
-    <button class="tab" data-view="keywords">키워드</button>
-  </div>
-<div class="view active" data-view="domain">
-<div class="domains">
-<a class="domain-card" href="#cluster-인간" style="border-top-color:#6366F1" data-jump="cluster">
-  <div class="domain-card__num">DOMAIN 01</div>
-  <div class="domain-card__title">인간</div>
-  <div class="domain-card__desc">한 사람의 자리에서 출발하는 글</div>
-  <div class="domain-card__count">11편</div>
-  <div class="domain-card__clusters"><span class="cluster-pill">진로교육</span><span class="cluster-pill">웰니스코칭</span><span class="cluster-pill">기업가정신</span></div>
-</a>
-<a class="domain-card" href="#cluster-시스템" style="border-top-color:#0EA5E9" data-jump="cluster">
-  <div class="domain-card__num">DOMAIN 02</div>
-  <div class="domain-card__title">시스템</div>
-  <div class="domain-card__desc">측정·근거·운영 구조에 관한 글</div>
-  <div class="domain-card__count">69편</div>
-  <div class="domain-card__clusters"><span class="cluster-pill">HRD학습효과</span><span class="cluster-pill">강의운영</span><span class="cluster-pill">조직개발</span></div>
-</a>
-<a class="domain-card" href="#cluster-기술" style="border-top-color:#10B981" data-jump="cluster">
-  <div class="domain-card__num">DOMAIN 03</div>
-  <div class="domain-card__title">기술</div>
-  <div class="domain-card__desc">기술이 비운 자리에 들어서는 좌표</div>
-  <div class="domain-card__count">33편</div>
-  <div class="domain-card__clusters"><span class="cluster-pill">AI리터러시</span><span class="cluster-pill">AI워크숍</span></div>
-</a>
-<a class="domain-card" href="#cluster-관계" style="border-top-color:#F59E0B" data-jump="cluster">
-  <div class="domain-card__num">DOMAIN 04</div>
-  <div class="domain-card__title">관계</div>
-  <div class="domain-card__desc">사람과 사람 사이의 좌표</div>
-  <div class="domain-card__count">8편</div>
-  <div class="domain-card__clusters"><span class="cluster-pill">퍼실리테이션</span><span class="cluster-pill">리더십팀성과</span></div>
-</a>
-<a class="domain-card" href="#cluster-사회" style="border-top-color:#EF4444" data-jump="cluster">
-  <div class="domain-card__num">DOMAIN 05</div>
-  <div class="domain-card__title">사회</div>
-  <div class="domain-card__desc">사회 구조와 발화 채널의 좌표</div>
-  <div class="domain-card__count">8편</div>
-  <div class="domain-card__clusters"><span class="cluster-pill">정책관찰</span><span class="cluster-pill">콘텐츠전략</span></div>
-</a>
-</div></div>
-<div class="view" data-view="cluster">
-<div class="cluster-block" id="cluster-진로교육">
-<div class="cluster-head"><h2>진로교육 <span class="count">— 인간 · 5편</span></h2></div>
+<a class="home" href="/">← 네다바웨이</a>
+<h1>관점 노트</h1>
+<p class="lead">직업본질연구원의 짧고 깊은 단편 시리즈. 한 장면에서 시작해 한 명제로 끝나는 글.<br>
+강의·코칭·정책의 자리에서 매주 다시 묻는다 — 누구의 어떤 결핍을 향한 일인가.</p>
+<div class="cluster"><h2>진로교육 <span class="count">8편</span></h2>
 <ul class="entries">
-<li><span class="date">2026-04-02</span><a href="2026-04-02_진로교육_004_f3aa4bcf96.html">진로교육은 활동이 아니라 좌표다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-31</span><a href="2026-03-31_진로교육_003_f9fef381ed.html">사라지는 직업의 공통 형식, 남는 좌표의 모양</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-28</span><a href="2026-03-28_진로교육_002_faca4c7637.html">직업이라는 말의 형식 — 누구를 먼저 상상하는가</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-25</span><a href="2026-03-25_진로교육_001_5e7b7845b9.html">직업이라는 말의 형식 — 누구를 먼저 상상하는가</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-21</span><a href="2026-03-21_진로교육_000_51e6809ab0.html">진로교육은 활동이 아니라 좌표다</a><span class="depth-tag L3">L3 원칙</span></li>
+<li><a href="2026-04-29_진로교육_01_방향.html"><div class="entry-date">2026-04-29</div><div class="title">진로는 도착이 아니라 방향이다</div><div class="subtitle">직업명을 정하기 전에, 누구를 향할지 먼저 정한다</div></a></li>
+<li><a href="2026-04-28_진로교육_02_빠른답.html"><div class="entry-date">2026-04-28</div><div class="title">빠른 답이 좋은 답을 가린다</div><div class="subtitle">자녀가 직업명을 빨리 말하지 못해도 조급하지 마시라</div></a></li>
+<li><a href="2026-04-27_진로교육_03_강점에이름붙이기.html"><div class="entry-date">2026-04-27</div><div class="title">강점은 이미 하고 있는 일에 이름이 붙는 순간 작동한다</div><div class="subtitle">‘잘하는 게 없어요’와 30분</div></a></li>
+<li><a href="2026-04-26_진로교육_04_결정하지않을권리.html"><div class="entry-date">2026-04-26</div><div class="title">결정하지 않을 권리에 대하여</div><div class="subtitle">고3 마지막 학기를 보내고 있는 너에게</div></a></li>
+<li><a href="2026-04-25_진로교육_05_의사가되라는말.html"><div class="entry-date">2026-04-25</div><div class="title">‘의사가 되라’는 말을 멈춘 어머니의 한 달</div><div class="subtitle">부모가 가장 어려운 자리에서 한 일</div></a></li>
+<li><a href="2026-04-24_진로교육_06_좋은결정과좋은결과.html"><div class="entry-date">2026-04-24</div><div class="title">좋은 결정과 좋은 결과는 다른 일이다</div><div class="subtitle">진로 결정을 함께 본 교사의 메모</div></a></li>
+<li><a href="2026-04-23_진로교육_07_흔들림과표류.html"><div class="entry-date">2026-04-23</div><div class="title">흔들림은 좌표가 있을 때 생긴다</div><div class="subtitle">표류는 좌표가 없을 때 생긴다</div></a></li>
+<li><a href="2026-04-22_진로교육_08_그학생의발표를막은날.html"><div class="entry-date">2026-04-22</div><div class="title">그 학생의 발표를 막은 날</div><div class="subtitle">‘지금은 안 된다’가 ‘앞으로도 안 된다’가 되는 자리</div></a></li>
 </ul></div>
-<div class="cluster-block" id="cluster-웰니스코칭">
-<div class="cluster-head"><h2>웰니스코칭 <span class="count">— 인간 · 2편</span></h2></div>
+<div class="cluster"><h2>AI리터러시 <span class="count">8편</span></h2>
 <ul class="entries">
-<li><span class="date">2026-03-24</span><a href="2026-03-24_웰니스코칭_000_908164d86b.html">1인 강사의 회복탄력성, 일정표가 아니라 호흡에서 시작된다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-20</span><a href="2026-03-20_웰니스코칭_000_3f9abeb7b3.html">1인 강사의 회복탄력성, 일정표가 아니라 호흡에서 시작된다</a><span class="depth-tag L3">L3 원칙</span></li>
+<li><a href="2026-04-29_AI리터러시_01_마지막한줄.html"><div class="entry-date">2026-04-29</div><div class="title">AI는 9분, 사람은 한 시간</div><div class="subtitle">마지막 한 줄에 사람이 남는다</div></a></li>
+<li><a href="2026-04-28_AI리터러시_02_출처검증.html"><div class="entry-date">2026-04-28</div><div class="title">AI가 만든 직업 정보를 가르친 날</div><div class="subtitle">교사의 첫 번째 자기 의심</div></a></li>
+<li><a href="2026-04-27_AI리터러시_03_프롬프트는무엇이아닌가.html"><div class="entry-date">2026-04-27</div><div class="title">프롬프트는 명령이 아니다</div><div class="subtitle">다섯 줄을 가진 짧은 편지에 가깝다</div></a></li>
+<li><a href="2026-04-26_AI리터러시_04_AI에게맡긴숙제.html"><div class="entry-date">2026-04-26</div><div class="title">아이가 AI에게 숙제를 맡긴 날</div><div class="subtitle">학부모의 두 번째 결정</div></a></li>
+<li><a href="2026-04-25_AI리터러시_05_AIDT가비운자리.html"><div class="entry-date">2026-04-25</div><div class="title">AIDT가 비워둔 자리에 무엇이 들어설까</div><div class="subtitle">사용률 8.1%는 도구의 실패가 아니다</div></a></li>
+<li><a href="2026-04-24_AI리터러시_06_의존의신호.html"><div class="entry-date">2026-04-24</div><div class="title">AI 없으면 보고서를 못 쓰겠어요</div><div class="subtitle">중간관리자와 30분</div></a></li>
+<li><a href="2026-04-23_AI리터러시_07_사이클이도구를대체한다.html"><div class="entry-date">2026-04-23</div><div class="title">다음 학교는 ‘어떤 도구’가 아니라 ‘어떤 사이클’로 평가된다</div><div class="subtitle">교장이 결정해야 할 한 가지</div></a></li>
+<li><a href="2026-04-22_AI리터러시_08_AI앞에서무력해진너에게.html"><div class="entry-date">2026-04-22</div><div class="title">AI 앞에서 무력해진 너에게</div><div class="subtitle">도구가 너의 자리를 가져갔다고 느낀 날</div></a></li>
 </ul></div>
-<div class="cluster-block" id="cluster-기업가정신">
-<div class="cluster-head"><h2>기업가정신 <span class="count">— 인간 · 4편</span></h2></div>
-<ul class="entries">
-<li><span class="date">2026-03-30</span><a href="2026-03-30_기업가정신_003_269c0fcac9.html">문제 발견에서 가치 제안까지의 작은 동작들</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-27</span><a href="2026-03-27_기업가정신_002_5ea321d740.html">린 캔버스 너머, 사람이 먼저 있는 기업가정신</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-23</span><a href="2026-03-23_기업가정신_001_ea1e5207d2.html">린 캔버스 너머, 사람이 먼저 있는 기업가정신</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-19</span><a href="2026-03-19_기업가정신_000_cfa59e49b3.html">창직 — 자기 길의 좌표를 만드는 일</a><span class="depth-tag L3">L3 원칙</span></li>
-</ul></div>
-<div class="cluster-block" id="cluster-HRD학습효과">
-<div class="cluster-head"><h2>HRD학습효과 <span class="count">— 시스템 · 34편</span></h2></div>
-<ul class="entries">
-<li><span class="date">2026-04-29</span><a href="2026-04-29_HRD학습효과_033_cf93d88803.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-29</span><a href="2026-04-29_HRD학습효과_032_81a93f0232.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-28</span><a href="2026-04-28_HRD학습효과_031_f02c5778e3.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-28</span><a href="2026-04-28_HRD학습효과_030_e21e4629cb.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-27</span><a href="2026-04-27_HRD학습효과_029_ba431b12f7.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-26</span><a href="2026-04-26_HRD학습효과_028_3fbdf639bf.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-25</span><a href="2026-04-25_HRD학습효과_027_36a9df7e31.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-24</span><a href="2026-04-24_HRD학습효과_026_4edc7236c1.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-23</span><a href="2026-04-23_HRD학습효과_025_38fa1123f3.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-22</span><a href="2026-04-22_HRD학습효과_024_f09215e2b2.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-21</span><a href="2026-04-21_HRD학습효과_023_067b175df7.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-20</span><a href="2026-04-20_HRD학습효과_022_2c9bedf6ea.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-19</span><a href="2026-04-19_HRD학습효과_021_d86ed4ea02.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-18</span><a href="2026-04-18_HRD학습효과_020_b3f23aa3e2.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-17</span><a href="2026-04-17_HRD학습효과_019_fca61472ce.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-16</span><a href="2026-04-16_HRD학습효과_018_c83cec7a1f.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-15</span><a href="2026-04-15_HRD학습효과_017_53ada437b3.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-14</span><a href="2026-04-14_HRD학습효과_016_e736a54a05.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-13</span><a href="2026-04-13_HRD학습효과_015_e0c1284b77.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-12</span><a href="2026-04-12_HRD학습효과_014_1dd34929cf.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-11</span><a href="2026-04-11_HRD학습효과_013_6a8a546e53.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-10</span><a href="2026-04-10_HRD학습효과_012_3ee709150e.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-09</span><a href="2026-04-09_HRD학습효과_011_551f9738a5.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-08</span><a href="2026-04-08_HRD학습효과_010_d226e2133a.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-07</span><a href="2026-04-07_HRD학습효과_009_2e86a9f0cd.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-06</span><a href="2026-04-06_HRD학습효과_008_0e00da860d.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-05</span><a href="2026-04-05_HRD학습효과_007_6f2ce28372.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-04</span><a href="2026-04-04_HRD학습효과_006_544790ae8a.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-03</span><a href="2026-04-03_HRD학습효과_005_3f3c26e20c.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-02</span><a href="2026-04-02_HRD학습효과_004_fc2695ea21.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-30</span><a href="2026-03-30_HRD학습효과_003_19ca2555dc.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-26</span><a href="2026-03-26_HRD학습효과_002_3e11c17359.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-22</span><a href="2026-03-22_HRD학습효과_001_8a4b90eff9.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-18</span><a href="2026-03-18_HRD학습효과_000_3e30db9422.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">L3 원칙</span></li>
-</ul></div>
-<div class="cluster-block" id="cluster-강의운영">
-<div class="cluster-head"><h2>강의운영 <span class="count">— 시스템 · 32편</span></h2></div>
-<ul class="entries">
-<li><span class="date">2026-04-29</span><a href="2026-04-29_강의운영_031_7d06501a96.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-28</span><a href="2026-04-28_강의운영_030_b391a780f3.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-27</span><a href="2026-04-27_강의운영_029_4d4b64d862.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-26</span><a href="2026-04-26_강의운영_028_b800a802ac.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-25</span><a href="2026-04-25_강의운영_027_55f20f6154.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-24</span><a href="2026-04-24_강의운영_026_7de88a2987.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-23</span><a href="2026-04-23_강의운영_025_a0520784d9.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-22</span><a href="2026-04-22_강의운영_024_71c267a078.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-21</span><a href="2026-04-21_강의운영_023_ba791d107d.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-20</span><a href="2026-04-20_강의운영_022_f664d6d6a4.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-19</span><a href="2026-04-19_강의운영_021_5ea03979ad.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-18</span><a href="2026-04-18_강의운영_020_7d05cdce91.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-17</span><a href="2026-04-17_강의운영_019_5cedccdda2.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-16</span><a href="2026-04-16_강의운영_018_3f80298255.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-15</span><a href="2026-04-15_강의운영_017_83869e05ac.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-14</span><a href="2026-04-14_강의운영_016_554527ca86.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-13</span><a href="2026-04-13_강의운영_015_ccc76a0a9d.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-12</span><a href="2026-04-12_강의운영_014_55c1769bd0.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-11</span><a href="2026-04-11_강의운영_013_0dbe9fca1c.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-10</span><a href="2026-04-10_강의운영_012_e3818b606b.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-09</span><a href="2026-04-09_강의운영_011_77e2a2fd06.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-08</span><a href="2026-04-08_강의운영_010_2e1df4013f.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-07</span><a href="2026-04-07_강의운영_009_1c760ed7c4.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-06</span><a href="2026-04-06_강의운영_008_40d481db03.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-05</span><a href="2026-04-05_강의운영_007_927b0ff166.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-04</span><a href="2026-04-04_강의운영_006_f2c683a216.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-03</span><a href="2026-04-03_강의운영_005_9d7cdb3c2e.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-02</span><a href="2026-04-02_강의운영_004_2d83df84e4.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-30</span><a href="2026-03-30_강의운영_003_5ed8646a60.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-27</span><a href="2026-03-27_강의운영_002_05ca1a7377.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-23</span><a href="2026-03-23_강의운영_001_213284d975.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-19</span><a href="2026-03-19_강의운영_000_16e2f12e9f.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-</ul></div>
-<div class="cluster-block" id="cluster-조직개발">
-<div class="cluster-head"><h2>조직개발 <span class="count">— 시스템 · 3편</span></h2></div>
-<ul class="entries">
-<li><span class="date">2026-03-28</span><a href="2026-03-28_조직개발_002_b78a35d73a.html">OD 현장에서 가장 늦게 적히는 동작들에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-24</span><a href="2026-03-24_조직개발_001_32d6b43879.html">OD 현장에서 가장 늦게 적히는 동작들에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-20</span><a href="2026-03-20_조직개발_000_76d7286245.html">OD 현장에서 가장 늦게 적히는 동작들에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-</ul></div>
-<div class="cluster-block" id="cluster-AI리터러시">
-<div class="cluster-head"><h2>AI리터러시 <span class="count">— 기술 · 30편</span></h2></div>
-<ul class="entries">
-<li><span class="date">2026-04-27</span><a href="2026-04-27_AI리터러시_029_87fe2c129a.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-26</span><a href="2026-04-26_AI리터러시_028_ac66ee8d6b.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-25</span><a href="2026-04-25_AI리터러시_027_d11f92e038.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-24</span><a href="2026-04-24_AI리터러시_026_612e0b291a.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-23</span><a href="2026-04-23_AI리터러시_025_154479a25f.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-22</span><a href="2026-04-22_AI리터러시_024_33a8dd3f48.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-21</span><a href="2026-04-21_AI리터러시_023_1da2895529.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-20</span><a href="2026-04-20_AI리터러시_022_4ffab3eeeb.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-19</span><a href="2026-04-19_AI리터러시_021_3b60d13fc1.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-18</span><a href="2026-04-18_AI리터러시_020_ef8e776021.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-17</span><a href="2026-04-17_AI리터러시_019_cac7434af3.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-16</span><a href="2026-04-16_AI리터러시_018_04262b40f4.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-15</span><a href="2026-04-15_AI리터러시_017_08df8687fd.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-14</span><a href="2026-04-14_AI리터러시_016_b1b42df05a.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-13</span><a href="2026-04-13_AI리터러시_015_539d198f39.html">공공기관 AI 워크숍이 가르치지 않는 것에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-12</span><a href="2026-04-12_AI리터러시_014_446f446651.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-11</span><a href="2026-04-11_AI리터러시_013_b8fbd81e5f.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-10</span><a href="2026-04-10_AI리터러시_012_52fe65a922.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-09</span><a href="2026-04-09_AI리터러시_011_ba087ebc87.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-08</span><a href="2026-04-08_AI리터러시_010_2cb90f3693.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-07</span><a href="2026-04-07_AI리터러시_009_ff0a8ede19.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-06</span><a href="2026-04-06_AI리터러시_008_b792cb066b.html">공공기관 AI 워크숍이 가르치지 않는 것에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-05</span><a href="2026-04-05_AI리터러시_007_fe3fd7126c.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-04</span><a href="2026-04-04_AI리터러시_006_dc6c17dad7.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-03</span><a href="2026-04-03_AI리터러시_005_48f0f55058.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-04-01</span><a href="2026-04-01_AI리터러시_004_f65c45dcd6.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-29</span><a href="2026-03-29_AI리터러시_003_a19c2feeff.html">공공기관 AI 워크숍이 가르치지 않는 것에 대하여</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-26</span><a href="2026-03-26_AI리터러시_002_03500d31ba.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-22</span><a href="2026-03-22_AI리터러시_001_b172c5dbb7.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-18</span><a href="2026-03-18_AI리터러시_000_9142d6f03b.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">L3 원칙</span></li>
-</ul></div>
-<div class="cluster-block" id="cluster-AI워크숍">
-<div class="cluster-head"><h2>AI워크숍 <span class="count">— 기술 · 3편</span></h2></div>
-<ul class="entries">
-<li><span class="date">2026-03-26</span><a href="2026-03-26_AI워크숍_002_5a90d4bac0.html">하루 워크숍, 다음날 현업 적용을 만드는 설계</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-22</span><a href="2026-03-22_AI워크숍_001_89c2734192.html">하루 워크숍, 다음날 현업 적용을 만드는 설계</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-18</span><a href="2026-03-18_AI워크숍_000_819eab29fc.html">하루 워크숍, 다음날 현업 적용을 만드는 설계</a><span class="depth-tag L3">L3 원칙</span></li>
-</ul></div>
-<div class="cluster-block" id="cluster-퍼실리테이션">
-<div class="cluster-head"><h2>퍼실리테이션 <span class="count">— 관계 · 4편</span></h2></div>
-<ul class="entries">
-<li><span class="date">2026-04-01</span><a href="2026-04-01_퍼실리테이션_003_2497915b80.html">여백을 먼저 여는 일, 퍼실리테이션의 시작</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-29</span><a href="2026-03-29_퍼실리테이션_002_2414f6ff2d.html">참여형 워크숍은 기법보다 자리에서 출발한다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-25</span><a href="2026-03-25_퍼실리테이션_001_f9f9d6b346.html">쉬는 시간도 설계 — 표정 한 번 살피는 동작의 무게</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-21</span><a href="2026-03-21_퍼실리테이션_000_60b0de4515.html">쉬는 시간도 설계 — 표정 한 번 살피는 동작의 무게</a><span class="depth-tag L3">L3 원칙</span></li>
-</ul></div>
-<div class="cluster-block" id="cluster-리더십팀성과">
-<div class="cluster-head"><h2>리더십팀성과 <span class="count">— 관계 · 4편</span></h2></div>
-<ul class="entries">
-<li><span class="date">2026-03-31</span><a href="2026-03-31_리더십팀성과_003_6955c93f6f.html">5R 리더십이 묻는 한 가지 — 누구의 결핍을 채우는가</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-27</span><a href="2026-03-27_리더십팀성과_002_76d8476381.html">리더십, 방향성과 성과 사이의 구체적 동작들</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-23</span><a href="2026-03-23_리더십팀성과_001_7845916f0f.html">리더십, 방향성과 성과 사이의 구체적 동작들</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-19</span><a href="2026-03-19_리더십팀성과_000_847e552481.html">리더십, 방향성과 성과 사이의 구체적 동작들</a><span class="depth-tag L3">L3 원칙</span></li>
-</ul></div>
-<div class="cluster-block" id="cluster-정책관찰">
-<div class="cluster-head"><h2>정책관찰 <span class="count">— 사회 · 4편</span></h2></div>
-<ul class="entries">
-<li><span class="date">2026-03-31</span><a href="2026-03-31_정책관찰_003_700c8f25eb.html">정책의 빈자리에서 다시 출발하는 진로교육</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-28</span><a href="2026-03-28_정책관찰_002_542612a4e0.html">고교학점제·자유학기제 변동 — 수업이 묻는 좌표</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-24</span><a href="2026-03-24_정책관찰_001_4b00eb44f9.html">고교학점제·자유학기제 변동 — 수업이 묻는 좌표</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-20</span><a href="2026-03-20_정책관찰_000_3a8c01a213.html">AIDT의 좌초, 본질이 다시 들어서는 자리</a><span class="depth-tag L3">L3 원칙</span></li>
-</ul></div>
-<div class="cluster-block" id="cluster-콘텐츠전략">
-<div class="cluster-head"><h2>콘텐츠전략 <span class="count">— 사회 · 4편</span></h2></div>
-<ul class="entries">
-<li><span class="date">2026-04-01</span><a href="2026-04-01_콘텐츠전략_003_efdcf2e98e.html">Thought leadership은 발화량이 아니라 도착 지점에서 결정된다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-29</span><a href="2026-03-29_콘텐츠전략_002_10d5f1e37a.html">콘텐츠 전략, 채널이 아니라 한 사람의 다음 동작을 묻는다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-25</span><a href="2026-03-25_콘텐츠전략_001_02fbafc2ca.html">콘텐츠 전략, 채널이 아니라 한 사람의 다음 동작을 묻는다</a><span class="depth-tag L3">L3 원칙</span></li>
-<li><span class="date">2026-03-21</span><a href="2026-03-21_콘텐츠전략_000_31179cb005.html">퍼스널 브랜딩은 자기 자랑이 아니라, 누군가의 다음 결정에 보탬이 되는 것</a><span class="depth-tag L3">L3 원칙</span></li>
-</ul></div>
-</div>
-<div class="view" data-view="depth">
-<div class="depth-block">
-<h2>L3 원칙 <span style="color:var(--c-mute);font-weight:500;font-size:.82rem">(129편)</span></h2>
-<div class="desc">일반화된 관점·원칙</div>
-<ul class="entries">
-<li><span class="date">2026-04-29</span><a href="2026-04-29_강의운영_031_7d06501a96.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag">강의운영</span></li>
-<li><span class="date">2026-04-29</span><a href="2026-04-29_HRD학습효과_033_cf93d88803.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag">HRD학습효과</span></li>
-<li><span class="date">2026-04-29</span><a href="2026-04-29_HRD학습효과_032_81a93f0232.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag">HRD학습효과</span></li>
-<li><span class="date">2026-04-28</span><a href="2026-04-28_강의운영_030_b391a780f3.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag">강의운영</span></li>
-<li><span class="date">2026-04-28</span><a href="2026-04-28_HRD학습효과_031_f02c5778e3.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag">HRD학습효과</span></li>
-<li><span class="date">2026-04-28</span><a href="2026-04-28_HRD학습효과_030_e21e4629cb.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag">HRD학습효과</span></li>
-<li><span class="date">2026-04-27</span><a href="2026-04-27_강의운영_029_4d4b64d862.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag">강의운영</span></li>
-<li><span class="date">2026-04-27</span><a href="2026-04-27_HRD학습효과_029_ba431b12f7.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag">HRD학습효과</span></li>
-<li><span class="date">2026-04-27</span><a href="2026-04-27_AI리터러시_029_87fe2c129a.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag">AI리터러시</span></li>
-<li><span class="date">2026-04-26</span><a href="2026-04-26_강의운영_028_b800a802ac.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag">강의운영</span></li>
-<li><span class="date">2026-04-26</span><a href="2026-04-26_HRD학습효과_028_3fbdf639bf.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag">HRD학습효과</span></li>
-<li><span class="date">2026-04-26</span><a href="2026-04-26_AI리터러시_028_ac66ee8d6b.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag">AI리터러시</span></li>
-<li><span class="date">2026-04-25</span><a href="2026-04-25_강의운영_027_55f20f6154.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag">강의운영</span></li>
-<li><span class="date">2026-04-25</span><a href="2026-04-25_HRD학습효과_027_36a9df7e31.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag">HRD학습효과</span></li>
-<li><span class="date">2026-04-25</span><a href="2026-04-25_AI리터러시_027_d11f92e038.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag">AI리터러시</span></li>
-<li><span class="date">2026-04-24</span><a href="2026-04-24_강의운영_026_7de88a2987.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag">강의운영</span></li>
-<li><span class="date">2026-04-24</span><a href="2026-04-24_HRD학습효과_026_4edc7236c1.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag">HRD학습효과</span></li>
-<li><span class="date">2026-04-24</span><a href="2026-04-24_AI리터러시_026_612e0b291a.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag">AI리터러시</span></li>
-<li><span class="date">2026-04-23</span><a href="2026-04-23_강의운영_025_a0520784d9.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag">강의운영</span></li>
-<li><span class="date">2026-04-23</span><a href="2026-04-23_HRD학습효과_025_38fa1123f3.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag">HRD학습효과</span></li>
-<li><span class="date">2026-04-23</span><a href="2026-04-23_AI리터러시_025_154479a25f.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag">AI리터러시</span></li>
-<li><span class="date">2026-04-22</span><a href="2026-04-22_강의운영_024_71c267a078.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag">강의운영</span></li>
-<li><span class="date">2026-04-22</span><a href="2026-04-22_HRD학습효과_024_f09215e2b2.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag">HRD학습효과</span></li>
-<li><span class="date">2026-04-22</span><a href="2026-04-22_AI리터러시_024_33a8dd3f48.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag">AI리터러시</span></li>
-<li><span class="date">2026-04-21</span><a href="2026-04-21_강의운영_023_ba791d107d.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag">강의운영</span></li>
-<li><span class="date">2026-04-21</span><a href="2026-04-21_HRD학습효과_023_067b175df7.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag">HRD학습효과</span></li>
-<li><span class="date">2026-04-21</span><a href="2026-04-21_AI리터러시_023_1da2895529.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag">AI리터러시</span></li>
-<li><span class="date">2026-04-20</span><a href="2026-04-20_강의운영_022_f664d6d6a4.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag">강의운영</span></li>
-<li><span class="date">2026-04-20</span><a href="2026-04-20_HRD학습효과_022_2c9bedf6ea.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag">HRD학습효과</span></li>
-<li><span class="date">2026-04-20</span><a href="2026-04-20_AI리터러시_022_4ffab3eeeb.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag">AI리터러시</span></li>
-<li style="color:var(--c-mute);font-size:.85rem">... +99편</li>
-</ul></div>
-</div>
-<div class="view" data-view="timeline">
-<div class="month-block">
-<h2>2026-04</h2>
-<ul class="entries">
-<li><span class="date">2026-04-29</span><a href="2026-04-29_강의운영_031_7d06501a96.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-29</span><a href="2026-04-29_HRD학습효과_033_cf93d88803.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-29</span><a href="2026-04-29_HRD학습효과_032_81a93f0232.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-28</span><a href="2026-04-28_강의운영_030_b391a780f3.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-28</span><a href="2026-04-28_HRD학습효과_031_f02c5778e3.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-28</span><a href="2026-04-28_HRD학습효과_030_e21e4629cb.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-27</span><a href="2026-04-27_강의운영_029_4d4b64d862.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-27</span><a href="2026-04-27_HRD학습효과_029_ba431b12f7.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-27</span><a href="2026-04-27_AI리터러시_029_87fe2c129a.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-26</span><a href="2026-04-26_강의운영_028_b800a802ac.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-26</span><a href="2026-04-26_HRD학습효과_028_3fbdf639bf.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-26</span><a href="2026-04-26_AI리터러시_028_ac66ee8d6b.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-25</span><a href="2026-04-25_강의운영_027_55f20f6154.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-25</span><a href="2026-04-25_HRD학습효과_027_36a9df7e31.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-25</span><a href="2026-04-25_AI리터러시_027_d11f92e038.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-24</span><a href="2026-04-24_강의운영_026_7de88a2987.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-24</span><a href="2026-04-24_HRD학습효과_026_4edc7236c1.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-24</span><a href="2026-04-24_AI리터러시_026_612e0b291a.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-23</span><a href="2026-04-23_강의운영_025_a0520784d9.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-23</span><a href="2026-04-23_HRD학습효과_025_38fa1123f3.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-23</span><a href="2026-04-23_AI리터러시_025_154479a25f.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-22</span><a href="2026-04-22_강의운영_024_71c267a078.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-22</span><a href="2026-04-22_HRD학습효과_024_f09215e2b2.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-22</span><a href="2026-04-22_AI리터러시_024_33a8dd3f48.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-21</span><a href="2026-04-21_강의운영_023_ba791d107d.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-21</span><a href="2026-04-21_HRD학습효과_023_067b175df7.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-21</span><a href="2026-04-21_AI리터러시_023_1da2895529.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-20</span><a href="2026-04-20_강의운영_022_f664d6d6a4.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-20</span><a href="2026-04-20_HRD학습효과_022_2c9bedf6ea.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-20</span><a href="2026-04-20_AI리터러시_022_4ffab3eeeb.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-19</span><a href="2026-04-19_강의운영_021_5ea03979ad.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-19</span><a href="2026-04-19_HRD학습효과_021_d86ed4ea02.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-19</span><a href="2026-04-19_AI리터러시_021_3b60d13fc1.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-18</span><a href="2026-04-18_강의운영_020_7d05cdce91.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-18</span><a href="2026-04-18_HRD학습효과_020_b3f23aa3e2.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-18</span><a href="2026-04-18_AI리터러시_020_ef8e776021.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-17</span><a href="2026-04-17_강의운영_019_5cedccdda2.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-17</span><a href="2026-04-17_HRD학습효과_019_fca61472ce.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-17</span><a href="2026-04-17_AI리터러시_019_cac7434af3.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-16</span><a href="2026-04-16_강의운영_018_3f80298255.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-16</span><a href="2026-04-16_HRD학습효과_018_c83cec7a1f.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-16</span><a href="2026-04-16_AI리터러시_018_04262b40f4.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-15</span><a href="2026-04-15_강의운영_017_83869e05ac.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-15</span><a href="2026-04-15_HRD학습효과_017_53ada437b3.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-15</span><a href="2026-04-15_AI리터러시_017_08df8687fd.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-14</span><a href="2026-04-14_강의운영_016_554527ca86.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-14</span><a href="2026-04-14_HRD학습효과_016_e736a54a05.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-14</span><a href="2026-04-14_AI리터러시_016_b1b42df05a.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-13</span><a href="2026-04-13_강의운영_015_ccc76a0a9d.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-13</span><a href="2026-04-13_HRD학습효과_015_e0c1284b77.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-13</span><a href="2026-04-13_AI리터러시_015_539d198f39.html">공공기관 AI 워크숍이 가르치지 않는 것에 대하여</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-12</span><a href="2026-04-12_강의운영_014_55c1769bd0.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-12</span><a href="2026-04-12_HRD학습효과_014_1dd34929cf.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-12</span><a href="2026-04-12_AI리터러시_014_446f446651.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-11</span><a href="2026-04-11_강의운영_013_0dbe9fca1c.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-11</span><a href="2026-04-11_HRD학습효과_013_6a8a546e53.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-11</span><a href="2026-04-11_AI리터러시_013_b8fbd81e5f.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-10</span><a href="2026-04-10_강의운영_012_e3818b606b.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-10</span><a href="2026-04-10_HRD학습효과_012_3ee709150e.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-10</span><a href="2026-04-10_AI리터러시_012_52fe65a922.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-09</span><a href="2026-04-09_강의운영_011_77e2a2fd06.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-09</span><a href="2026-04-09_HRD학습효과_011_551f9738a5.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-09</span><a href="2026-04-09_AI리터러시_011_ba087ebc87.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-08</span><a href="2026-04-08_강의운영_010_2e1df4013f.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-08</span><a href="2026-04-08_HRD학습효과_010_d226e2133a.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-08</span><a href="2026-04-08_AI리터러시_010_2cb90f3693.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-07</span><a href="2026-04-07_강의운영_009_1c760ed7c4.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-07</span><a href="2026-04-07_HRD학습효과_009_2e86a9f0cd.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-07</span><a href="2026-04-07_AI리터러시_009_ff0a8ede19.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-06</span><a href="2026-04-06_강의운영_008_40d481db03.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-06</span><a href="2026-04-06_HRD학습효과_008_0e00da860d.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-06</span><a href="2026-04-06_AI리터러시_008_b792cb066b.html">공공기관 AI 워크숍이 가르치지 않는 것에 대하여</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-05</span><a href="2026-04-05_강의운영_007_927b0ff166.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-05</span><a href="2026-04-05_HRD학습효과_007_6f2ce28372.html">학습효과를 묻는 일은 결국 작동 여부를 묻는 일이다</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-05</span><a href="2026-04-05_AI리터러시_007_fe3fd7126c.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-04</span><a href="2026-04-04_강의운영_006_f2c683a216.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-04</span><a href="2026-04-04_HRD학습효과_006_544790ae8a.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-04</span><a href="2026-04-04_AI리터러시_006_dc6c17dad7.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-03</span><a href="2026-04-03_강의운영_005_9d7cdb3c2e.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-03</span><a href="2026-04-03_HRD학습효과_005_3f3c26e20c.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-03</span><a href="2026-04-03_AI리터러시_005_48f0f55058.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-04-02</span><a href="2026-04-02_진로교육_004_f3aa4bcf96.html">진로교육은 활동이 아니라 좌표다</a><span class="depth-tag L3">진로교육</span></li>
-<li><span class="date">2026-04-02</span><a href="2026-04-02_강의운영_004_2d83df84e4.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-04-02</span><a href="2026-04-02_HRD학습효과_004_fc2695ea21.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-04-01</span><a href="2026-04-01_퍼실리테이션_003_2497915b80.html">여백을 먼저 여는 일, 퍼실리테이션의 시작</a><span class="depth-tag L3">퍼실리테이션</span></li>
-<li><span class="date">2026-04-01</span><a href="2026-04-01_콘텐츠전략_003_efdcf2e98e.html">Thought leadership은 발화량이 아니라 도착 지점에서 결정된다</a><span class="depth-tag L3">콘텐츠전략</span></li>
-<li><span class="date">2026-04-01</span><a href="2026-04-01_AI리터러시_004_f65c45dcd6.html">AI 리터러시 — 시연을 넘어 위험 등급 판단으로</a><span class="depth-tag L3">AI리터러시</span></li>
-</ul></div>
-<div class="month-block">
-<h2>2026-03</h2>
-<ul class="entries">
-<li><span class="date">2026-03-31</span><a href="2026-03-31_진로교육_003_f9fef381ed.html">사라지는 직업의 공통 형식, 남는 좌표의 모양</a><span class="depth-tag L3">진로교육</span></li>
-<li><span class="date">2026-03-31</span><a href="2026-03-31_정책관찰_003_700c8f25eb.html">정책의 빈자리에서 다시 출발하는 진로교육</a><span class="depth-tag L3">정책관찰</span></li>
-<li><span class="date">2026-03-31</span><a href="2026-03-31_리더십팀성과_003_6955c93f6f.html">5R 리더십이 묻는 한 가지 — 누구의 결핍을 채우는가</a><span class="depth-tag L3">리더십팀성과</span></li>
-<li><span class="date">2026-03-30</span><a href="2026-03-30_기업가정신_003_269c0fcac9.html">문제 발견에서 가치 제안까지의 작은 동작들</a><span class="depth-tag L3">기업가정신</span></li>
-<li><span class="date">2026-03-30</span><a href="2026-03-30_강의운영_003_5ed8646a60.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-03-30</span><a href="2026-03-30_HRD학습효과_003_19ca2555dc.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-03-29</span><a href="2026-03-29_퍼실리테이션_002_2414f6ff2d.html">참여형 워크숍은 기법보다 자리에서 출발한다</a><span class="depth-tag L3">퍼실리테이션</span></li>
-<li><span class="date">2026-03-29</span><a href="2026-03-29_콘텐츠전략_002_10d5f1e37a.html">콘텐츠 전략, 채널이 아니라 한 사람의 다음 동작을 묻는다</a><span class="depth-tag L3">콘텐츠전략</span></li>
-<li><span class="date">2026-03-29</span><a href="2026-03-29_AI리터러시_003_a19c2feeff.html">공공기관 AI 워크숍이 가르치지 않는 것에 대하여</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-03-28</span><a href="2026-03-28_진로교육_002_faca4c7637.html">직업이라는 말의 형식 — 누구를 먼저 상상하는가</a><span class="depth-tag L3">진로교육</span></li>
-<li><span class="date">2026-03-28</span><a href="2026-03-28_조직개발_002_b78a35d73a.html">OD 현장에서 가장 늦게 적히는 동작들에 대하여</a><span class="depth-tag L3">조직개발</span></li>
-<li><span class="date">2026-03-28</span><a href="2026-03-28_정책관찰_002_542612a4e0.html">고교학점제·자유학기제 변동 — 수업이 묻는 좌표</a><span class="depth-tag L3">정책관찰</span></li>
-<li><span class="date">2026-03-27</span><a href="2026-03-27_리더십팀성과_002_76d8476381.html">리더십, 방향성과 성과 사이의 구체적 동작들</a><span class="depth-tag L3">리더십팀성과</span></li>
-<li><span class="date">2026-03-27</span><a href="2026-03-27_기업가정신_002_5ea321d740.html">린 캔버스 너머, 사람이 먼저 있는 기업가정신</a><span class="depth-tag L3">기업가정신</span></li>
-<li><span class="date">2026-03-27</span><a href="2026-03-27_강의운영_002_05ca1a7377.html">강의 운영, 슬라이드 매수가 아니라 쉬는 시간의 표정을 본다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-03-26</span><a href="2026-03-26_HRD학습효과_002_3e11c17359.html">근거설계, 옳음 증명이 아니라 도착 여부 점검</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-03-26</span><a href="2026-03-26_AI워크숍_002_5a90d4bac0.html">하루 워크숍, 다음날 현업 적용을 만드는 설계</a><span class="depth-tag L3">AI워크숍</span></li>
-<li><span class="date">2026-03-26</span><a href="2026-03-26_AI리터러시_002_03500d31ba.html">프롬프트는 기술이 아니라 누군가에게 닿으려는 자세다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-03-25</span><a href="2026-03-25_퍼실리테이션_001_f9f9d6b346.html">쉬는 시간도 설계 — 표정 한 번 살피는 동작의 무게</a><span class="depth-tag L3">퍼실리테이션</span></li>
-<li><span class="date">2026-03-25</span><a href="2026-03-25_콘텐츠전략_001_02fbafc2ca.html">콘텐츠 전략, 채널이 아니라 한 사람의 다음 동작을 묻는다</a><span class="depth-tag L3">콘텐츠전략</span></li>
-<li><span class="date">2026-03-25</span><a href="2026-03-25_진로교육_001_5e7b7845b9.html">직업이라는 말의 형식 — 누구를 먼저 상상하는가</a><span class="depth-tag L3">진로교육</span></li>
-<li><span class="date">2026-03-24</span><a href="2026-03-24_조직개발_001_32d6b43879.html">OD 현장에서 가장 늦게 적히는 동작들에 대하여</a><span class="depth-tag L3">조직개발</span></li>
-<li><span class="date">2026-03-24</span><a href="2026-03-24_정책관찰_001_4b00eb44f9.html">고교학점제·자유학기제 변동 — 수업이 묻는 좌표</a><span class="depth-tag L3">정책관찰</span></li>
-<li><span class="date">2026-03-24</span><a href="2026-03-24_웰니스코칭_000_908164d86b.html">1인 강사의 회복탄력성, 일정표가 아니라 호흡에서 시작된다</a><span class="depth-tag L3">웰니스코칭</span></li>
-<li><span class="date">2026-03-23</span><a href="2026-03-23_리더십팀성과_001_7845916f0f.html">리더십, 방향성과 성과 사이의 구체적 동작들</a><span class="depth-tag L3">리더십팀성과</span></li>
-<li><span class="date">2026-03-23</span><a href="2026-03-23_기업가정신_001_ea1e5207d2.html">린 캔버스 너머, 사람이 먼저 있는 기업가정신</a><span class="depth-tag L3">기업가정신</span></li>
-<li><span class="date">2026-03-23</span><a href="2026-03-23_강의운영_001_213284d975.html">교수 설계의 진짜 단위는 차시가 아니라 한 사람의 이해 순서다</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-03-22</span><a href="2026-03-22_HRD학습효과_001_8a4b90eff9.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-03-22</span><a href="2026-03-22_AI워크숍_001_89c2734192.html">하루 워크숍, 다음날 현업 적용을 만드는 설계</a><span class="depth-tag L3">AI워크숍</span></li>
-<li><span class="date">2026-03-22</span><a href="2026-03-22_AI리터러시_001_b172c5dbb7.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">AI리터러시</span></li>
-<li><span class="date">2026-03-21</span><a href="2026-03-21_퍼실리테이션_000_60b0de4515.html">쉬는 시간도 설계 — 표정 한 번 살피는 동작의 무게</a><span class="depth-tag L3">퍼실리테이션</span></li>
-<li><span class="date">2026-03-21</span><a href="2026-03-21_콘텐츠전략_000_31179cb005.html">퍼스널 브랜딩은 자기 자랑이 아니라, 누군가의 다음 결정에 보탬이 되는 것</a><span class="depth-tag L3">콘텐츠전략</span></li>
-<li><span class="date">2026-03-21</span><a href="2026-03-21_진로교육_000_51e6809ab0.html">진로교육은 활동이 아니라 좌표다</a><span class="depth-tag L3">진로교육</span></li>
-<li><span class="date">2026-03-20</span><a href="2026-03-20_조직개발_000_76d7286245.html">OD 현장에서 가장 늦게 적히는 동작들에 대하여</a><span class="depth-tag L3">조직개발</span></li>
-<li><span class="date">2026-03-20</span><a href="2026-03-20_정책관찰_000_3a8c01a213.html">AIDT의 좌초, 본질이 다시 들어서는 자리</a><span class="depth-tag L3">정책관찰</span></li>
-<li><span class="date">2026-03-20</span><a href="2026-03-20_웰니스코칭_000_3f9abeb7b3.html">1인 강사의 회복탄력성, 일정표가 아니라 호흡에서 시작된다</a><span class="depth-tag L3">웰니스코칭</span></li>
-<li><span class="date">2026-03-19</span><a href="2026-03-19_리더십팀성과_000_847e552481.html">리더십, 방향성과 성과 사이의 구체적 동작들</a><span class="depth-tag L3">리더십팀성과</span></li>
-<li><span class="date">2026-03-19</span><a href="2026-03-19_기업가정신_000_cfa59e49b3.html">창직 — 자기 길의 좌표를 만드는 일</a><span class="depth-tag L3">기업가정신</span></li>
-<li><span class="date">2026-03-19</span><a href="2026-03-19_강의운영_000_16e2f12e9f.html">강의가 끝난 다음 날 펼쳐지는 활동지에 대하여</a><span class="depth-tag L3">강의운영</span></li>
-<li><span class="date">2026-03-18</span><a href="2026-03-18_HRD학습효과_000_3e30db9422.html">측정 너머의 HRD — 자리를 비운 강사가 남기는 무게</a><span class="depth-tag L3">HRD학습효과</span></li>
-<li><span class="date">2026-03-18</span><a href="2026-03-18_AI워크숍_000_819eab29fc.html">하루 워크숍, 다음날 현업 적용을 만드는 설계</a><span class="depth-tag L3">AI워크숍</span></li>
-<li><span class="date">2026-03-18</span><a href="2026-03-18_AI리터러시_000_9142d6f03b.html">도구가 늘어난 자리에서, AI 리터러시는 다시 좌표를 묻는다</a><span class="depth-tag L3">AI리터러시</span></li>
-</ul></div>
-</div>
-<div class="view" data-view="keywords">
-<div class="kw-cloud">
-<span class="kw top">저자 · 87</span>
-<span class="kw top">발행 · 86</span>
-<span class="kw top">게재 · 82</span>
-<span class="kw top">인용수 · 59</span>
-<span class="kw top">초록 · 52</span>
-<span class="kw">참고문헌 · 32</span>
-<span class="kw">부서 · 25</span>
-<span class="kw">자료 · 9</span>
-<span class="kw">오늘의 · 6</span>
-<span class="kw">아이디어 · 4</span>
-<span class="kw">야간 · 4</span>
-<span class="kw">생성 · 4</span>
-<span class="kw">씨앗 · 4</span>
-<span class="kw">의사결정 · 3</span>
-<span class="kw">학습일지 · 1</span>
-</div></div>
-
-</div>
-<script>
-document.querySelectorAll('.tab').forEach(t=>{
-  t.addEventListener('click',()=>{
-    const v = t.dataset.view;
-    document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x===t));
-    document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active', x.dataset.view===v));
-  });
-});
-// Domain card → cluster view jump
-document.querySelectorAll('.domain-card').forEach(c=>{
-  c.addEventListener('click',e=>{
-    e.preventDefault();
-    document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x.dataset.view==='cluster'));
-    document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active', x.dataset.view==='cluster'));
-    const tgt = document.querySelector(c.getAttribute('href'));
-    if(tgt) setTimeout(()=>tgt.scrollIntoView({behavior:'smooth',block:'start'}),100);
-  });
-});
-</script>
-</body></html>
+<div class="foot">총 16편 · 직업본질연구원 · 네다바웨이</div>
+</div></body></html>
