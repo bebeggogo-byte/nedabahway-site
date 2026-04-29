@@ -47,13 +47,24 @@ a{color:inherit;text-decoration:none}
 .badge--acc{background:var(--acc);color:#fff}
 .badge--soft{background:var(--acc-soft);color:var(--acc)}
 .frame h2{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.4}
-.frame__sub{font-size:14px;color:var(--mute);margin-top:4px;margin-bottom:18px}
-.frame__steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:16px}
-.step{padding:14px 12px;border-radius:8px;background:var(--light);text-align:center}
-.step__num{font-size:11px;font-weight:700;color:var(--acc);letter-spacing:.08em}
-.step__eng{font-size:16px;font-weight:800;margin:4px 0;letter-spacing:-.01em}
-.step__kor{font-size:12px;color:var(--mute)}
-.frame__link{display:inline-block;margin-top:18px;font-size:13px;color:var(--acc);font-weight:600;border-bottom:1px solid currentColor;padding-bottom:1px}
+.frame__sub{font-size:14px;color:var(--mute);margin-top:4px;margin-bottom:24px}
+
+/* 5S 직감형 5단계 시각화 */
+.frame__steps{display:flex;align-items:stretch;gap:10px;margin-top:16px;flex-wrap:wrap}
+.step{flex:1;min-width:130px;padding:18px 14px;border-radius:10px;background:linear-gradient(180deg,var(--acc-soft) 0%,#fff 100%);
+  border:1px solid var(--line);text-align:center;position:relative;transition:transform .15s ease}
+.step:hover{transform:translateY(-2px);border-color:var(--acc)}
+.step__num{font-size:10px;font-weight:700;color:var(--acc);letter-spacing:.14em;text-transform:uppercase}
+.step__eng{font-size:24px;font-weight:800;margin:8px 0 2px;letter-spacing:-.02em;color:var(--acc);line-height:1.1}
+.step__bar{display:block;width:32px;height:2px;background:var(--acc);margin:6px auto;border-radius:2px;opacity:.6}
+.step__kor{font-size:14px;color:var(--ink);font-weight:700;letter-spacing:-.01em}
+.step__verb{font-size:11px;color:var(--mute);margin-top:6px;font-weight:500;line-height:1.5}
+.step__arrow{position:absolute;right:-8px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--mute);
+  background:var(--bg);width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2}
+.step:last-child .step__arrow{display:none}
+@media(max-width:760px){.frame__steps{flex-direction:column}.step__arrow{display:none !important}}
+
+.frame__link{display:inline-block;margin-top:24px;font-size:13px;color:var(--acc);font-weight:600;border-bottom:1px solid currentColor;padding-bottom:1px}
 
 /* axes — 5축 시각화 */
 .axes{max-width:1240px;margin:0 auto 40px;padding:0 24px}
@@ -137,10 +148,11 @@ a{color:inherit;text-decoration:none}
   <div class="nav__inner">
     <a href="/" class="nav__logo">네다바웨이</a>
     <div class="nav__links">
-      <a href="/programs.html">강의</a>
       <a href="/blog/perspective/" class="active">관점 노트</a>
-      <a href="/cases.html">사례</a>
       <a href="/about.html">소개</a>
+      <a href="/programs.html">강의</a>
+      <a href="/ai.html">AI 작업실</a>
+      <a href="/magazine.html">매거진</a>
       <a href="/contact.html">강의 의뢰</a>
     </div>
   </div>
@@ -166,13 +178,47 @@ a{color:inherit;text-decoration:none}
       <span class="badge badge--soft">학문 매핑 검증</span>
     </div>
     <h2>5S 사이클 — 강의·코칭·진로·직업의 5단계 동사</h2>
-    <p class="frame__sub">교육공학(ADDIE·Merrill) · 국제코칭(ICF) · 리더십(SL2·Goleman) · 진로(Krumboltz·Savickas·Super) · 직업(Schein·Hall·Holland) — 5개 학문 영역에서 동시에 검증되는 네다바웨이 고유 프레임</p>
+    <p class="frame__sub">교육공학·국제코칭·리더십·진로·직업 5개 학문 영역에서 동시에 검증되는 네다바웨이 고유 프레임. <b>한 동사 = 한 단계 = 한 한국어 의미</b>로 매칭됩니다.</p>
     <div class="frame__steps">
-      <div class="step"><div class="step__num">STEP 1</div><div class="step__eng">See</div><div class="step__kor">자기 위치</div></div>
-      <div class="step"><div class="step__num">STEP 2</div><div class="step__eng">Speak</div><div class="step__kor">방향</div></div>
-      <div class="step"><div class="step__num">STEP 3</div><div class="step__eng">Sense</div><div class="step__kor">함께 듣기</div></div>
-      <div class="step"><div class="step__num">STEP 4</div><div class="step__eng">Steer</div><div class="step__kor">다음 결정</div></div>
-      <div class="step"><div class="step__num">STEP 5</div><div class="step__eng">Sustain</div><div class="step__kor">다시 시작</div></div>
+      <div class="step">
+        <div class="step__num">1단계</div>
+        <div class="step__eng">See</div>
+        <span class="step__bar"></span>
+        <div class="step__kor">본다</div>
+        <div class="step__verb">자기 위치를<br>먼저 보기</div>
+        <span class="step__arrow">→</span>
+      </div>
+      <div class="step">
+        <div class="step__num">2단계</div>
+        <div class="step__eng">Speak</div>
+        <span class="step__bar"></span>
+        <div class="step__kor">말한다</div>
+        <div class="step__verb">방향을<br>한 줄로</div>
+        <span class="step__arrow">→</span>
+      </div>
+      <div class="step">
+        <div class="step__num">3단계</div>
+        <div class="step__eng">Sense</div>
+        <span class="step__bar"></span>
+        <div class="step__kor">느낀다</div>
+        <div class="step__verb">사람과<br>함께 듣기</div>
+        <span class="step__arrow">→</span>
+      </div>
+      <div class="step">
+        <div class="step__num">4단계</div>
+        <div class="step__eng">Steer</div>
+        <span class="step__bar"></span>
+        <div class="step__kor">잡는다</div>
+        <div class="step__verb">다음 결정의<br>키 잡기</div>
+        <span class="step__arrow">→</span>
+      </div>
+      <div class="step">
+        <div class="step__num">5단계</div>
+        <div class="step__eng">Sustain</div>
+        <span class="step__bar"></span>
+        <div class="step__kor">잇는다</div>
+        <div class="step__verb">다시 시작<br>다음 사이클</div>
+      </div>
     </div>
     <a class="frame__link" href="/resources/evidence/2026-04-29_5s-framework-academic-mapping.html">5S × 5개 학문 영역 매핑표 자세히 보기 →</a>
   </div>
@@ -183,10 +229,13 @@ a{color:inherit;text-decoration:none}
     <h3>5축 좌표로 좁혀 보기</h3>
     <button class="clear" id="clearAll" type="button">전체 초기화</button>
   </div>
-  <div class="axis-row"><div class="axis-row__label">클러스터 (Cluster)</div><div class="chips" id="chips-cluster"></div></div>
-  <div class="axis-row"><div class="axis-row__label">독자 시선 (Lens)</div><div class="chips" id="chips-lens"></div></div>
-  <div class="axis-row"><div class="axis-row__label">상황 프레임 (Situation)</div><div class="chips" id="chips-situation"></div></div>
-  <div class="axis-row"><div class="axis-row__label">글의 형태 (Form)</div><div class="chips" id="chips-form"></div></div>
+  <p style="font-size:13px;color:var(--mute);margin:-6px 0 16px;line-height:1.6">
+    각 축의 칩을 눌러 글을 좁혀 보실 수 있습니다. 예를 들어 <b>‘진로교사’ + ‘처음흔들릴때’</b>를 동시에 누르면 그 자리에 적합한 글만 카드로 보입니다.
+  </p>
+  <div class="axis-row"><div class="axis-row__label">클러스터 (Cluster) — 어떤 주제 영역</div><div class="chips" id="chips-cluster"></div></div>
+  <div class="axis-row"><div class="axis-row__label">독자 시선 (Lens) — 누가 읽는 자리</div><div class="chips" id="chips-lens"></div></div>
+  <div class="axis-row"><div class="axis-row__label">상황 프레임 (Situation) — 어떤 자리에서</div><div class="chips" id="chips-situation"></div></div>
+  <div class="axis-row"><div class="axis-row__label">글의 형태 (Form) — 어떤 글로</div><div class="chips" id="chips-form"></div></div>
 </section>
 
 <div class="searchbar">
