@@ -90,6 +90,15 @@ a:hover{text-decoration:underline}
 .recipe__chip--m6{color:var(--c-purple);border-color:rgba(167,139,250,.3)}
 .recipe__plus{color:var(--c-mute);font-weight:700;margin:0 2px}
 
+/* Recipe stage — 학년별 그룹 라벨 */
+.recipe-stage{margin-top:32px;padding-top:24px;border-top:1px solid var(--c-dim);
+  position:relative}
+.recipe-stage:first-of-type{border-top:none;padding-top:8px;margin-top:24px}
+.recipe-stage__label{display:inline-block;font-size:.75rem;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--c-acc);
+  background:rgba(129,140,248,.1);border:1px solid rgba(129,140,248,.3);
+  padding:6px 14px;border-radius:999px;margin-bottom:16px}
+
 /* Who We Teach - simplified */
 .audience{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:12px;margin-top:28px}
@@ -188,11 +197,17 @@ a:hover{text-decoration:underline}
 .print-only{display:none}
 
 @media print{
-  /* === 페이지 기본 === */
+  /* === 페이지 기본 — 모든 배경을 흰색으로 강제 === */
   @page{size:A4;margin:16mm 14mm}
   @page :first{margin:0}
   html,body{background:#fff!important;color:#0a0a0a!important;font-size:10.5pt;line-height:1.55}
   body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  *,*::before,*::after{
+    background-color:transparent!important;
+    box-shadow:none!important;
+    text-shadow:none!important;
+  }
+  body,.section,.inner,main,header,footer{background:#fff!important}
 
   /* === 화면 전용 요소 모두 숨김 === */
   .top-bar,.iden-banner__arrow,.next-card__arrow,
@@ -202,23 +217,22 @@ a:hover{text-decoration:underline}
   /* === 인쇄 전용 표지·목차 노출 === */
   .print-only{display:block!important}
 
-  /* 표지 페이지 */
+  /* 표지 페이지 — 흰 배경 + 검정 텍스트 (프린트 가독성) */
   .pdf-cover{
     page-break-after:always;break-after:page;
     page-break-inside:avoid;break-inside:avoid-page;
     height:100vh;min-height:267mm;
     display:flex!important;flex-direction:column;justify-content:space-between;
-    padding:30mm 20mm;background:#0a0a0a!important;color:#fff!important;
-    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    padding:30mm 20mm;background:#fff!important;color:#0a0a0a!important;
   }
   .pdf-cover__kicker{font-size:9pt;letter-spacing:.3em;text-transform:uppercase;
-    color:#818CF8!important;margin-bottom:10mm}
+    color:#6366F1!important;margin-bottom:10mm}
   .pdf-cover__title{font-size:32pt;font-weight:900;line-height:1.2;letter-spacing:-.04em;
-    margin-bottom:6mm;color:#fff!important}
-  .pdf-cover__sub{font-size:13pt;line-height:1.6;color:#bbb!important;max-width:120mm}
-  .pdf-cover__meta{font-size:10pt;color:#888!important;border-top:1px solid #333;
+    margin-bottom:6mm;color:#0a0a0a!important}
+  .pdf-cover__sub{font-size:13pt;line-height:1.6;color:#444!important;max-width:120mm}
+  .pdf-cover__meta{font-size:10pt;color:#666!important;border-top:1px solid #ccc;
     padding-top:6mm;margin-top:auto}
-  .pdf-cover__meta b{color:#fff!important}
+  .pdf-cover__meta b{color:#0a0a0a!important}
 
   /* 목차 페이지 */
   .pdf-toc{page-break-after:always;break-after:page;
@@ -314,8 +328,13 @@ a:hover{text-decoration:underline}
   .recipe__need{font-size:9pt!important;color:#444!important;
     border-left:2px solid #c7cdff!important}
   .recipe__chip{font-size:8pt!important;padding:1mm 2.5mm!important}
-  /* CASE C 이후를 새 페이지로 (5 cases → 2+3 분할) */
-  #s-recipe .recipe:nth-of-type(3){page-break-before:always;break-before:page}
+  /* 학년 stage별 새 페이지 — 초/중/고/대학·취준 4개 페이지로 자연 분할 */
+  #s-recipe .recipe-stage{page-break-before:always;break-before:page;
+    border-top:none!important;padding-top:0!important;margin-top:0!important}
+  #s-recipe .recipe-stage:first-of-type{page-break-before:auto;break-before:auto}
+  .recipe-stage__label{background:#eef0ff!important;color:#3730a3!important;
+    border:1px solid #c7cdff!important;font-size:9pt!important;
+    padding:3mm 6mm!important;margin-bottom:5mm!important}
 
   /* === Audience 8 chips — 4x2 === */
   .audience{display:grid!important;grid-template-columns:repeat(4,1fr)!important;
@@ -396,8 +415,10 @@ a:hover{text-decoration:underline}
     <li><span>네다바웨이 소개</span><span>제주 기관과 함께</span></li>
     <li><span>설계 4단계</span><span>How We Design</span></li>
     <li><span>6가지 핵심 모듈</span><span>Module Library</span></li>
-    <li><span>실제 배합 사례</span><span>Design Recipes (CASE A·B)</span></li>
-    <li><span>실제 배합 사례 (이어서)</span><span>Design Recipes (CASE C·D·E)</span></li>
+    <li><span>학년별 배합 — 초등 5·6학년</span><span>Recipe 01</span></li>
+    <li><span>학년별 배합 — 중학생</span><span>Recipe 02·03·04</span></li>
+    <li><span>학년별 배합 — 고등학생</span><span>Recipe 05·06·07·08</span></li>
+    <li><span>학년별 배합 — 대학생·취준생</span><span>Recipe 09</span></li>
     <li><span>대상별 현장</span><span>Who We Teach</span></li>
     <li><span>배합의 7원칙</span><span>Approach</span></li>
     <li><span>강의 의뢰 안내</span><span>Contact</span></li>
@@ -573,85 +594,162 @@ a:hover{text-decoration:underline}
 </div>
 </section>
 
-<!-- Recipe - how modules combine -->
+<!-- Recipe - 학년별 배합 시리즈 (초·중·고·대학·취준) -->
 <section class="section" id="s-recipe">
 <div class="inner fade-up">
   <div class="kicker">Design Recipes</div>
-  <h2 class="section-title">실제 어떻게<br>배합되는지 보여드립니다.</h2>
-  <p class="section-desc">같은 모듈이라도 누구에게, 왜, 얼마큼 담느냐에 따라 전혀 다른 교육이 됩니다. 아래는 지난 현장에서 실제로 배합한 예시들입니다.</p>
-  <div style="margin-top:32px">
+  <h2 class="section-title">학년별로<br>이렇게 배합합니다.</h2>
+  <p class="section-desc">같은 모듈이라도 학년·발달 단계에 따라 전혀 다른 무게로 담깁니다. 초등학교 5·6학년부터 대학생·취업준비생까지, 현장에서 실제로 검증한 배합 8가지.</p>
+
+  <div class="recipe-stage">
+    <div class="recipe-stage__label">초등 5·6학년</div>
     <div class="recipe">
       <div class="recipe__head">
-        <span class="recipe__for">CASE A</span>
-        <div class="recipe__title">보호종료청년을 위한 자립·취업 4회기</div>
+        <span class="recipe__for">RECIPE 01</span>
+        <div class="recipe__title">초등 5·6학년 직업 가치관 — 일이라는 말의 첫인상</div>
       </div>
-      <div class="recipe__need"><b>상황:</b> 감정 기복이 크고 자기표현이 어려운 청년들. 강의보다 관계와 회복이 먼저 필요한 현장.</div>
+      <div class="recipe__need"><b>상황:</b> 직업을 ‘돈벌이 도구’로 단편적으로 인식하기 시작하는 시기. 가치관 형성의 가장 빠른 진입점이며, 부모·미디어의 영향을 크게 받는다.</div>
+      <div class="recipe__need"><b>설계 포인트:</b> 직업 카드 분류 게임 → 가치 단어 30종 매칭 → ‘내가 좋아하는 일 vs 잘하는 일 vs 도움이 되는 일’ 3원 그림. 가르치지 않고 발견하게 만든다.</div>
       <div class="recipe__mix">
         <span class="recipe__label">BLEND</span>
-        <span class="recipe__chip recipe__chip--m1">M1 진로</span>
+        <span class="recipe__chip recipe__chip--m1">M1 진로(가치관 도입)</span>
         <span class="recipe__plus">+</span>
-        <span class="recipe__chip recipe__chip--m4">M4 코칭</span>
-        <span class="recipe__plus">+</span>
-        <span class="recipe__chip recipe__chip--m2">M2 AI(소량)</span>
+        <span class="recipe__chip recipe__chip--m4">M4 퍼실리테이션(놀이형)</span>
       </div>
     </div>
+  </div>
 
+  <div class="recipe-stage">
+    <div class="recipe-stage__label">중학생</div>
     <div class="recipe">
       <div class="recipe__head">
-        <span class="recipe__for">CASE B</span>
-        <div class="recipe__title">공공기관 실무자 AI 직무역량강화</div>
+        <span class="recipe__for">RECIPE 02</span>
+        <div class="recipe__title">중학생 진로교육 — 자기이해에서 직업탐색으로</div>
       </div>
-      <div class="recipe__need"><b>상황:</b> 홍보물을 외주에 맡기던 비영리·공공 종사자. 스스로 만들 수 있게 되는 것이 목표.</div>
-      <div class="recipe__mix">
-        <span class="recipe__label">BLEND</span>
-        <span class="recipe__chip recipe__chip--m2">M2 AI(메인)</span>
-        <span class="recipe__plus">+</span>
-        <span class="recipe__chip recipe__chip--m4">M4 퍼실리테이션(운영)</span>
-      </div>
-    </div>
-
-    <div class="recipe">
-      <div class="recipe__head">
-        <span class="recipe__for">CASE C</span>
-        <div class="recipe__title">특성화고 1학년 진로 캠프</div>
-      </div>
-      <div class="recipe__need"><b>상황:</b> 자기 강점을 말해본 적 없는 학생들. 잠들지 않는 교실을 만드는 것이 첫 과제.</div>
+      <div class="recipe__need"><b>상황:</b> 자유학기제·자유학년제 시기. 강점·흥미·가치를 처음 명시화하는 단계. ‘무엇이 되고 싶은가’보다 ‘어떻게 살고 싶은가’를 먼저 묻는다.</div>
+      <div class="recipe__need"><b>설계 포인트:</b> 8종 강점 진단 → NCS 직업 매칭 → 만다라트 1장 작성. 학생이 자기 언어로 한 문장 진로 선언을 남긴다.</div>
       <div class="recipe__mix">
         <span class="recipe__label">BLEND</span>
         <span class="recipe__chip recipe__chip--m1">M1 진로(메인)</span>
         <span class="recipe__plus">+</span>
-        <span class="recipe__chip recipe__chip--m6">M6 기업가정신(워크숍)</span>
+        <span class="recipe__chip recipe__chip--m4">M4 코칭</span>
       </div>
     </div>
-
     <div class="recipe">
       <div class="recipe__head">
-        <span class="recipe__for">CASE D</span>
-        <div class="recipe__title">중소기업 중간관리자 리더십 과정</div>
+        <span class="recipe__for">RECIPE 03</span>
+        <div class="recipe__title">중학생 학습법 — 공부의 이유와 도구</div>
       </div>
-      <div class="recipe__need"><b>상황:</b> 팀장 역할은 맡았지만 대화·피드백이 서툰 리더들. 방향성과 성과 관리가 같이 필요.</div>
+      <div class="recipe__need"><b>상황:</b> 시험·내신 압박이 본격화되는 시기. 공부 자체를 거부하는 학생도, 무작정 외우는 학생도 같은 자리에 있다. 동기와 메타인지가 동시에 필요하다.</div>
+      <div class="recipe__need"><b>설계 포인트:</b> 학습 동기 자가진단 → 인지·메타인지·정의 3축 점검 → 1주 학습 일지 템플릿 + AI 학습 도구 활용 가이드 1장.</div>
       <div class="recipe__mix">
         <span class="recipe__label">BLEND</span>
-        <span class="recipe__chip recipe__chip--m3">M3 팀 성과(메인)</span>
+        <span class="recipe__chip recipe__chip--m1">M1 진로(학습 동기)</span>
         <span class="recipe__plus">+</span>
-        <span class="recipe__chip recipe__chip--m5">M5 5R 리더십</span>
+        <span class="recipe__chip recipe__chip--m2">M2 AI(학습 보조)</span>
       </div>
     </div>
-
     <div class="recipe">
       <div class="recipe__head">
-        <span class="recipe__for">CASE E</span>
-        <div class="recipe__title">주민자치위원회 사업계획 워크숍</div>
+        <span class="recipe__for">RECIPE 04</span>
+        <div class="recipe__title">중학생 기업가정신 기초 — 작은 문제에서 시작</div>
       </div>
-      <div class="recipe__need"><b>상황:</b> 다양한 이해관계자의 의견을 모아 사업 아이디어를 사업계획서까지 만들어야 하는 자리.</div>
+      <div class="recipe__need"><b>상황:</b> 진로교육과 별도 트랙으로, ‘만들어 보는 경험’을 통해 자기 효능감을 형성하는 시기. 거창한 창업이 아니라 학교·동네의 작은 문제에서 출발한다.</div>
+      <div class="recipe__need"><b>설계 포인트:</b> 일상 불편 30개 발견 → 한 가지 선택 → 5W1H 정리 → 종이 시제품 발표. ‘불편을 해결한 사람이 직업을 만든다’는 감각을 심는다.</div>
       <div class="recipe__mix">
         <span class="recipe__label">BLEND</span>
-        <span class="recipe__chip recipe__chip--m4">M4 퍼실리테이션(메인)</span>
+        <span class="recipe__chip recipe__chip--m6">M6 기업가정신(메인)</span>
         <span class="recipe__plus">+</span>
-        <span class="recipe__chip recipe__chip--m6">M6 기업가정신(소량)</span>
+        <span class="recipe__chip recipe__chip--m4">M4 퍼실리테이션</span>
       </div>
     </div>
   </div>
+
+  <div class="recipe-stage">
+    <div class="recipe-stage__label">고등학생</div>
+    <div class="recipe">
+      <div class="recipe__head">
+        <span class="recipe__for">RECIPE 05</span>
+        <div class="recipe__title">고등학생 진로교육 심화 — 결정 근거를 만드는 작업</div>
+      </div>
+      <div class="recipe__need"><b>상황:</b> 진학·취업·창업의 갈림길에서 결정의 근거가 약한 학생이 다수. 정보의 양보다 자기 판단 기준의 명료함이 부족하다.</div>
+      <div class="recipe__need"><b>설계 포인트:</b> 자기이해 3차원(능력·성향·가치) → 직업 정보의 1차 출처 검증 → 결정 매트릭스 작성. 결과보다 ‘어떻게 결정했는가’를 글로 남긴다.</div>
+      <div class="recipe__mix">
+        <span class="recipe__label">BLEND</span>
+        <span class="recipe__chip recipe__chip--m1">M1 진로(심화)</span>
+        <span class="recipe__plus">+</span>
+        <span class="recipe__chip recipe__chip--m4">M4 코칭</span>
+      </div>
+    </div>
+    <div class="recipe">
+      <div class="recipe__head">
+        <span class="recipe__for">RECIPE 06</span>
+        <div class="recipe__title">고등학생 고교학점제 대응 — 과목 선택의 근거</div>
+      </div>
+      <div class="recipe__need"><b>상황:</b> 2026년 학업성취율 요건 완화 이후, 과목 선택은 ‘학점 따기 쉬운 과목’으로 쏠릴 위험이 커졌다. 진로 좌표와 과목 선택을 연결하는 작업이 필요하다.</div>
+      <div class="recipe__need"><b>설계 포인트:</b> 진로 좌표 1장 → 3개 후보 진로별 핵심 과목 매핑 → 1·2·3학년 선택 시뮬레이션 → 학교 진로상담 시 사용할 1쪽 자료 제작.</div>
+      <div class="recipe__mix">
+        <span class="recipe__label">BLEND</span>
+        <span class="recipe__chip recipe__chip--m1">M1 진로(매핑)</span>
+        <span class="recipe__plus">+</span>
+        <span class="recipe__chip recipe__chip--m4">M4 코칭(개별)</span>
+      </div>
+    </div>
+    <div class="recipe">
+      <div class="recipe__head">
+        <span class="recipe__for">RECIPE 07</span>
+        <div class="recipe__title">고등학생 기업가정신 심화 — 린 캔버스 1장 시뮬레이션</div>
+      </div>
+      <div class="recipe__need"><b>상황:</b> 창업 동아리·진로 캠프에서 ‘아이디어는 나오는데 실행이 멈춘다’. 문제 검증·고객 인터뷰·MVP 개념을 학년 수준에서 익히게 한다.</div>
+      <div class="recipe__need"><b>설계 포인트:</b> 문제-고객-가치-채널 4칸 작성 → 5명 인터뷰 설계 → 1주 후 결과 발표. ‘아이디어가 아니라 검증’이 핵심이라는 감각.</div>
+      <div class="recipe__mix">
+        <span class="recipe__label">BLEND</span>
+        <span class="recipe__chip recipe__chip--m6">M6 기업가정신(린 캔버스)</span>
+        <span class="recipe__plus">+</span>
+        <span class="recipe__chip recipe__chip--m1">M1 진로(자기이해)</span>
+      </div>
+    </div>
+    <div class="recipe">
+      <div class="recipe__head">
+        <span class="recipe__for">RECIPE 08</span>
+        <div class="recipe__title">고등학생 멘탈코칭·진로고민 1:1 코칭</div>
+      </div>
+      <div class="recipe__need"><b>상황:</b> 진학·시험·관계 스트레스가 겹치면 진로 결정 자체가 멈춘다. 단체 강의로는 닿지 않는 영역. 1:1 코칭과 단기 멘탈 정리 도구가 같이 필요하다.</div>
+      <div class="recipe__need"><b>설계 포인트:</b> 감정 그래프 1주 기록 → 핵심 스트레스 좌표화 → ICF 코칭 질문 카드 → 1주 실천계획 1장. 결정을 강요하지 않고 결정 가능한 상태를 회복한다.</div>
+      <div class="recipe__mix">
+        <span class="recipe__label">BLEND</span>
+        <span class="recipe__chip recipe__chip--m4">M4 코칭(메인)</span>
+        <span class="recipe__plus">+</span>
+        <span class="recipe__chip recipe__chip--m5">M5 5R(관계 회복)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="recipe-stage">
+    <div class="recipe-stage__label">대학생 · 취업준비생</div>
+    <div class="recipe">
+      <div class="recipe__head">
+        <span class="recipe__for">RECIPE 09</span>
+        <div class="recipe__title">대학생·취준생 자기소개서 — 자기이해 · 키워드 · 자기분석 기반 커스터마이징</div>
+      </div>
+      <div class="recipe__need"><b>상황:</b> 템플릿 자기소개서가 통하지 않는 시대. 동일한 스펙·동일한 학과에서 합격이 갈리는 지점은 ‘이 회사·이 직무·이 사람을 위한 한 줄’이다.</div>
+      <div class="recipe__need"><b>설계 포인트:</b><br>
+        ① 자기이해 — 강점 8종 진단 + 인생 5장면 인터뷰<br>
+        ② 키워드 — 본인 진술에서 반복되는 동사·명사 20개 추출<br>
+        ③ 자기분석 — 직무 요구역량과 본인 키워드 매칭표 1장<br>
+        ④ 커스터마이징 — 회사·직무별 첫 문장 3종 + 스토리 라인 재배열<br>
+        결과물 : 1쪽 자기분석 카드 + 회사별 자기소개서 골격 3종.</div>
+      <div class="recipe__mix">
+        <span class="recipe__label">BLEND</span>
+        <span class="recipe__chip recipe__chip--m1">M1 진로(자기이해·심화)</span>
+        <span class="recipe__plus">+</span>
+        <span class="recipe__chip recipe__chip--m4">M4 코칭(1:1)</span>
+        <span class="recipe__plus">+</span>
+        <span class="recipe__chip recipe__chip--m2">M2 AI(키워드 추출 보조)</span>
+      </div>
+    </div>
+  </div>
+
 </div>
 </section>
 
