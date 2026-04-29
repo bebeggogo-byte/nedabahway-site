@@ -36,10 +36,20 @@
 
   .giants{max-width:1080px;margin:0 auto;padding:16px 24px 32px}
   .giants h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
-  .giants__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-  .giant{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px}
-  .giant__name{font-size:14px;font-weight:700;margin-bottom:4px}
-  .giant__core{font-size:12px;color:var(--mute);line-height:1.5}
+  .bento{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--line);aspect-ratio:5/2}
+  .bento__cell{position:relative;overflow:hidden;background:#0a0a0a;cursor:pointer;transition:flex .3s ease}
+  .bento__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(.3) contrast(1.05);transition:filter .3s ease,transform .3s ease}
+  .bento__cell:hover .bento__img{filter:grayscale(0) contrast(1.1);transform:scale(1.04)}
+  .bento__overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.85) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 18px 16px;color:#fff}
+  .bento__num{font-size:11px;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.7);margin-bottom:4px}
+  .bento__name{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-bottom:3px;line-height:1.25}
+  .bento__year{font-size:11px;color:rgba(255,255,255,.65);margin-bottom:8px}
+  .bento__core{font-size:11px;color:rgba(255,255,255,.85);line-height:1.5}
+  @media(max-width:680px){
+    .bento{grid-template-columns:repeat(2,1fr);aspect-ratio:auto}
+    .bento__cell{aspect-ratio:3/4}
+    .bento__cell:nth-child(5){grid-column:span 2;aspect-ratio:5/2}
+  }
 
   .tabs{position:sticky;top:53px;background:var(--bg);z-index:90;padding:14px 0;border-bottom:1px solid var(--line)}
   .tabs__inner{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
@@ -126,8 +136,8 @@
 </header>
 
 <section class="giants">
-  <h2>다섯 거인</h2>
-  <div class="giants__grid" id="giants-grid"></div>
+  <h2>다섯 거인 — 인류가 마지막 지식인을 보여준 자리</h2>
+  <div class="bento" id="giants-bento"></div>
 </section>
 
 <nav class="tabs">
@@ -174,10 +184,29 @@ function renderStats(){
 }
 
 function renderGiants(){
-  const g = document.getElementById('giants-grid');
-  g.innerHTML = CATEGORIES.five_giants.map(x => `
-    <div class="giant"><div class="giant__name">${x.name}</div><div class="giant__core">${x.core}</div></div>
-  `).join('');
+  const g = document.getElementById('giants-bento');
+  // 시간순 줄세우기: 다 빈치 1452 → 에라스무스 1466 → 라이프니츠 1646 → Lewis 1898 → 바전 1907
+  const order = ['davinci','erasmus','leibniz','lewis','barzun'];
+  const meta = {
+    davinci:  {img:'/learning/assets/giants/davinci.jpg',  year:'1452—1519', name:'레오나르도 다 빈치', core:'회화·해부·공학·자연관찰'},
+    erasmus:  {img:'/learning/assets/giants/erasmus.jpg',  year:'1466—1536', name:'에라스무스',         core:'언어·신학·풍자·번역'},
+    leibniz:  {img:'/learning/assets/giants/leibniz.jpg',  year:'1646—1716', name:'고트프리트 라이프니츠', core:'수학·논리·외교·중국학'},
+    lewis:    {img:'/learning/assets/giants/lewis.jpg',    year:'1898—1963', name:'C.S. 루이스',         core:'변증·서간·아동문학'},
+    barzun:   {img:'/learning/assets/giants/barzun.jpg',   year:'1907—2012', name:'자크 바전',           core:'문화비평·예술·역사기록'},
+  };
+  g.innerHTML = order.map((id, i) => {
+    const m = meta[id];
+    return `
+    <div class="bento__cell" title="${m.name}">
+      <img class="bento__img" src="${m.img}" alt="${m.name}" loading="lazy">
+      <div class="bento__overlay">
+        <div class="bento__num">${String(i+1).padStart(2,'0')}</div>
+        <div class="bento__name">${m.name}</div>
+        <div class="bento__year">${m.year}</div>
+        <div class="bento__core">${m.core}</div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 function renderTabs(){
