@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>요한복음 2장 — Observatory | 네다바웨이</title>
+<meta name="description" content="요한복음 2장을 9단계로 같이 관찰합니다. 첫 표적. 본문은 맛이 아니라 물러나는 것을 먼저 보여 준다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/JHN/2/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; counter-reset: step; }
+  .toc-side li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; }
+  .toc-side li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; }
+  .toc-side a { display: block; color: inherit; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo">네다바웨이</a>
+    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
+    <div class="nav__links">
+      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
+      <a href="/about.html" class="nav__link">소개</a>
+      <a href="/programs.html" class="nav__link">강의</a>
+      <a href="/ai.html" class="nav__link">AI 작업실</a>
+      <a href="/magazine.html" class="nav__link nav__link--active">관찰 Atlas</a>
+      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol>
+      <li><a href="#s1">본문 그대로 읽기</a></li>
+      <li><a href="#s2">관찰된 사실</a></li>
+      <li><a href="#s8">미해결 질문 · 후기</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/JHN/">요한복음</a> · 2장</div>
+      <h1>요한복음 2장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">JHN-002 · 복음서 · 헬라어</div>
+      <p class="essence">첫 표적. 본문은 맛이 아니라 물러나는 것을 먼저 보여 준다.</p>
+    </header>
+    
+        <section class="stage stage--raw" id="s1">
+          <span class="stage__num">단계 1</span>
+          <h2 class="stage__title">본문 그대로 읽기.</h2>
+          <p>본문은 본문이 자기 시간 안에서 스스로 풀리도록 둡니다. 옮긴 말을 옮긴 그대로 받아 적습니다.</p>
+          <div class="md-body"><p>---</p>
+<p>sim_id: JHN-002</p>
+<p>book: 요한복음</p>
+<p>book_en: John</p>
+<p>chapter: 2</p>
+<p>bible_block: 복음서</p>
+<p>canon: 신약</p>
+<p>genre: 복음서</p>
+<p>language: 헬라어</p>
+<p>verse_count: 25</p>
+
+<p>observed_facts_count: 47</p>
+<p>open_questions_count: 7</p>
+<p>silence_moments: 2</p>
+
+<p>hebrew_terms: []</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: [sēmeion, hōra, doxa, oikos, zēlos, mnēmoneuō]</p>
+<p>lxx_divergences: []</p>
+<p>ane_refs: []</p>
+<p>rabbinic_refs: [유월절 정결례, 성전 재건 논쟁]</p>
+
+<p>literary_devices: [inclusio, irony, symbolic_numbers]</p>
+<p>repeated_words: [표적/sēmeion, 때/hōra, 성전/hieron-naos]</p>
+<p>cross_refs: [출 12장, 시 69:9, 말 3:1-3, 막 11:15-17, 고전 3:16]</p>
+
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01_한나래, P02_이진우, P04_최현국, P05_김미영, P07_오지혜, P11_나경아]</p>
+
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+
+<p>date: 2026-04-27</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>요한복음 2장 — 관찰 9단계 Raw Transcript</h2>
+
+<p><strong>진행자</strong>: 성령일 선교사</p>
+<p><strong>참가자</strong>: 한나래(P01), 이진우(P02), 최현국(P04), 김미영(P05), 오지혜(P07), 나경아(P11)</p>
+
+<p>---</p>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일</strong>: 오늘은 요한복음 2장을 함께 봅니다. 주님께서 이 시간을 인도하시길 바랍니다.</p>
+
+<p>먼저 본문을 낭독하겠습니다.</p>
+
+<p>---</p>
+
+<h2>본문 낭독 (요한복음 2:1-25)</h2>
+
+<blockquote>
+<p>1 사흘째 되던 날 갈릴리 가나에 혼인 잔치가 있어 예수의 어머니도 거기 계시고</p>
+<p>2 예수와 그 제자들도 혼인 잔치에 청함을 받았더니</p>
+<p>3 포도주가 떨어진지라 예수의 어머니가 예수에게 이르되 저들에게 포도주가 없다 하니</p>
+<p>4 예수께서 이르시되 여자여 나와 무슨 상관이 있나이까 내 때가 아직 이르지 아니하였나이다</p>
+<p>5 그의 어머니가 하인들에게 이르되 너희에게 무슨 말씀을 하시든지 그대로 하라 하니라</p>
+<p>6 거기에 유대인의 정결 예식을 따라 돌항아리 여섯이 놓였는데 각각 두세 통씩 들어가더라</p>
+<p>7 예수께서 그들에게 이르시되 항아리에 물을 채우라 하신즉 아귀까지 채우니</p>
+<p>8 이제는 떠서 연회장에게 갖다 주라 하시매 갖다 주었더니</p>
+<p>9 연회장은 물로 된 포도주를 맛보고도 어디서 났는지 알지 못하되 물 떠온 하인들은 알더라 연회장이 신랑을 불러</p>
+<p>10 이르되 사람마다 먼저 좋은 포도주를 내고 취한 후에 낮은 것을 내거늘 그대는 지금까지 좋은 포도주를 두었도다 하니라</p>
+<p>11 예수께서 이 첫 표적을 갈릴리 가나에서 행하여 그의 영광을 나타내시매 제자들이 그를 믿으니라</p>
+<p>12 그 후에 예수께서 그 어머니와 형제들과 제자들과 함께 가버나움으로 내려가 거기에 며칠 계시지 아니하시니라</p>
+<p>13 유대인의 유월절이 가까운지라 예수께서 예루살렘으로 올라가셨더니</p>
+<p>14 성전 안에서 소와 양과 비둘기 파는 사람들과 환전하는 사람들이 앉아 있는 것을 보시고</p>
+<p>15 노끈으로 채찍을 만드사 양이나 소를 다 성전에서 내쫓으시고 환전하는 사람들의 돈을 쏟으시며 상을 엎으시고</p>
+<p>16 비둘기 파는 사람들에게 이르시되 이것을 여기서 가져가라 내 아버지의 집으로 장사하는 집을 만들지 말라 하시니</p>
+<p>17 제자들이 성경 말씀에 주의 전을 사모하는 열심이 나를 삼키리라 한 것을 기억하더라</p>
+<p>18 이에 유대인들이 대답하여 예수께 말하기를 네가 이런 일을 행하니 무슨 표적을 우리에게 보이겠느냐</p>
+<p>19 예수께서 대답하여 이르시되 너희가 이 성전을 헐라 내가 사흘 동안에 다시 세우리라</p>
+<p>20 유대인들이 이르되 이 성전은 사십육 년 동안에 지었거늘 네가 삼 일 동안에 다시 세우겠느냐 하더라</p>
+<p>21 그러나 예수는 성전된 자기 육체를 가리켜 말씀하신 것이라</p>
+<p>22 죽은 자 가운데서 살아나신 후에야 제자들이 이 말씀하신 것을 기억하고 성경과 예수께서 하신 말씀을 믿었더라</p>
+<p>23 유월절에 예수께서 예루살렘에 계시니 많은 사람이 그의 행하시는 표적을 보고 그의 이름을 믿었으나</p>
+<p>24 예수는 그의 몸을 그들에게 맡기지 아니하셨으니 이는 친히 모든 사람을 아심이요</p>
+<p>25 또 사람에게 대하여 누구의 증언도 받으실 필요가 없었으니 이는 그가 친히 사람의 속에 있는 것을 아셨음이니라</p>
+</blockquote>
+
+<p>(침묵 약 30초) 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌, 분위기 기록하기</h2>
+
+<p><strong>성령일</strong>: 이 본문을 처음 읽으셨을 때 어떤 느낌이셨는지요?</p>
+
+<p><strong>오지혜</strong>: 처음엔 혼인 잔치의 따뜻한 분위기로 시작하는데, 성전에서는 분위기가 아주 다르게 느껴졌어요. 채찍을 만드시고 상을 엎으시는 장면이 강렬했습니다.</p>
+
+<p><strong>김미영</strong>: 혼인 잔치 장면은 기쁨이 느껴지는데, 포도주가 떨어졌을 때의 당혹감도 있었을 것 같아요. 성전 장면은 긴장되고 충돌이 느껴졌습니다.</p>
+
+<p><strong>한나래</strong>: 두 장면이 대조적이라는 느낌이 들었어요. 하나는 기쁨과 풍성함, 다른 하나는 분노와 정화... 그런 느낌이었습니다.</p>
+
+<p><strong>최현국</strong>: 전체적으로 드러남과 드러나지 않음이 교차되는 느낌이었습니다. 11절의 "영광을 나타내시매"와 24-25절의 "맡기지 아니하셨으니"가 대조를 이루는 것 같습니다.</p>
+
+<p><strong>성령일</strong>: 그대로 두지요. 다른 분들은요?</p>
+
+<p><strong>이진우</strong>: 저는 "표적"이라는 단어가 여러 번 나오는 게 눈에 들어왔어요. 11절과 18절, 23절에 나오는데, 각각 다른 맥락인 것 같았습니다.</p>
+
+<p><strong>나경아</strong>: 마지막 두 절(24-25절)이 갑자기 멈추는 느낌이었어요. 뭔가 더 이어질 것 같은데 여기서 끝나서 의외였습니다.</p>
+
+<p><strong>성령일</strong>: 네, 그 느낌들을 그대로 두고 본문 안으로 들어가 보겠습니다.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<p><strong>성령일</strong>: 이 본문을 무대 위에 펼쳐둔다면, 어떤 무대가 보이는지요? 어떤 공간과 물건들이 있습니까?</p>
+
+<p><strong>김미영</strong>: 먼저 갈릴리 가나라는 마을이 나와요. 혼인 잔치 집이 있고요. 그 안에 돌항아리 여섯 개가 있습니다. 6절에 "각각 두세 통씩 들어간다"고 했으니 큰 항아리들이었을 거예요.</p>
+
+<p><strong>나경아</strong>: "두세 통"이 헬라어로 메트레타스(metrētas)인데, 한 메트레테스가 약 40리터 정도라고 합니다. 그러면 항아리 하나에 80-120리터... 여섯 개면 엄청난 양이네요.</p>
+
+<p><strong>오지혜</strong>: 혼인 잔치 장소에 하인들도 있고, 연회장(architriklinos)도 있어요. 신랑도 10절에 언급되고요.</p>
+
+<p><strong>이진우</strong>: 그 다음 무대는 예루살렘 성전입니다. 13절에 유월절이라고 나오니까 시간 배경이 명확하네요. 성전 안에 소, 양, 비둘기가 있고 환전하는 사람들의 상과 돈이 있습니다.</p>
+
+<p><strong>최현국</strong>: 예수님이 노끈으로 채찍을 직접 만드셨다는 게 묘사되어 있어요. 준비된 채찍이 아니라 그 자리에서 만드신 것이죠.</p>
+
+<p><strong>한나래</strong>: 6절에 "유대인의 정결 예식을 따라" 돌항아리가 놓여 있다고 했어요. 이게 배경 정보인 것 같아요. 단순히 물항아리가 아니라 정결례용 항아리라는 거죠.</p>
+
+<p><strong>성령일</strong>: 그 정결례는 무엇을 위한 것이었을까요?</p>
+
+<p><strong>김미영</strong>: 식사 전 손을 씻거나, 의식적 정결을 위한 물이었을 거예요. 마가복음 7장에서도 바리새인들이 손을 씻는 전통이 나오니까요.</p>
+
+<p><strong>성령일</strong>: 그대로 남겨 둡시다. 다른 소품들은요?</p>
+
+<p><strong>나경아</strong>: 12절에 가버나움이라는 지명이 나와요. 가나에서 가버나움으로 이동하셨다고요. 그리고 13절에서 다시 예루살렘으로 올라가셨고요.</p>
+
+<p><strong>이진우</strong>: 지리적으로 보면 갈릴리 → 가버나움(갈릴리 호숫가) → 예루살렘(남쪽)으로 움직이신 거네요. "올라가셨더니"라는 표현이 정확해요. 예루살렘이 해발이 높으니까요.</p>
+
+<p><strong>성령일</strong>: 그 동선을 그대로 두지요.</p>
+
+<p><strong>오지혜</strong>: 성전 장면에서 돈과 상이 엎어지는 게 묘사되어 있어요. 아주 구체적인 행동이죠.</p>
+
+<p><strong>성령일</strong>: 네. 무대와 소품들이 보입니다.</p>
+
+<p>---</p>
+
+<h2>[3단계] 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<p><strong>성령일</strong>: 이 장은 어떻게 시작하여 어떻게 끝나는지요?</p>
+
+<p><strong>최현국</strong>: 1절은 "사흘째 되던 날"로 시작합니다. 이게 무엇으로부터 사흘째인지는 1장을 봐야 알 수 있을 것 같아요.</p>
+
+<p><strong>한나래</strong>: 끝은 25절 "그가 친히 사람의 속에 있는 것을 아셨음이니라"로 끝나요. 사람을 아신다는 내용입니다.</p>
+
+<p><strong>이진우</strong>: 시작은 구체적 사건(혼인 잔치)인데, 끝은 일반적 서술(예수께서 사람을 아심)이네요. 서술 방식이 다릅니다.</p>
+
+<p><strong>성령일</strong>: 그렇군요. 시작과 끝의 관계는 어떻습니까?</p>
+
+<p><strong>나경아</strong>: 연결이 직접적이지 않아요. 1-11절은 가나 이야기, 12절은 이동, 13-22절은 성전 정화, 23-25절은 요약 같은 느낌입니다.</p>
+
+<p><strong>오지혜</strong>: 하지만 11절에서 "제자들이 그를 믿으니라"로 끝나고, 25절에서 "예수는... 모든 사람을 아심이요"로 끝나는 게 대조되는 것 같아요. 제자들의 믿음과 예수님의 아심이요.</p>
+
+<p><strong>성령일</strong>: 그대로 두고, 다음으로 가지요.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<p><strong>성령일</strong>: 이 본문에 누가 등장하는지요?</p>
+
+<p><strong>한나래</strong>: 예수님, 예수님의 어머니, 제자들, 하인들, 연회장, 신랑이 가나 장면에 나와요.</p>
+
+<p><strong>김미영</strong>: 성전 장면에는 유대인들, 소와 양과 비둘기 파는 사람들, 환전하는 사람들이 있어요.</p>
+
+<p><strong>이진우</strong>: 유대인들이 18절에서 예수께 질문을 던지는 주체로 나오네요. 23절에도 "많은 사람"이 등장하고요.</p>
+
+<p><strong>성령일</strong>: 각 인물의 상황은 어떠합니까?</p>
+
+<p><strong>오지혜</strong>: 예수님의 어머니는 포도주가 떨어진 상황을 아시고 예수께 말씀드려요. 하지만 4절에서 예수님은 "여자여 나와 무슨 상관이 있나이까"라고 하셨어요. 이게 좀 의외였어요.</p>
+
+<p><strong>김미영</strong>: 그런데 어머니는 5절에서 하인들에게 "무슨 말씀을 하시든지 그대로 하라"고 하세요. 예수님의 대답에도 불구하고 뭔가를 기대하신 거죠.</p>
+
+<p><strong>성령일</strong>: 그 태도를 그대로 봅시다.</p>
+
+<p><strong>최현국</strong>: 연회장은 9절에서 "어디서 났는지 알지 못하되"라고 나와요. 그는 모르는 상태입니다. 반면 "물 떠온 하인들은 알더라"고 하네요. 아는 자와 모르는 자가 대조됩니다.</p>
+
+<p><strong>나경아</strong>: 11절에 "제자들이 그를 믿으니라"고 나오는데, 이게 첫 믿음인 건지 더 깊은 믿음인 건지는 본문이 구분하지 않네요.</p>
+
+<p><strong>성령일</strong>: 본문이 말하는 것까지만 봅시다.</p>
+
+<p><strong>이진우</strong>: 성전 장면에서 유대인들의 사상이 나타나요. 18절 "무슨 표적을 우리에게 보이겠느냐" — 권위를 요구하는 거죠. 20절 "사십육 년 동안 지었거늘" — 시간적 논리로 반박합니다.</p>
+
+<p><strong>오지혜</strong>: 17절에서 제자들이 시편 말씀(69:9)을 "기억하더라"고 했어요. 그들의 내면에 성경 말씀이 연결된 거죠.</p>
+
+<p><strong>성령일</strong>: 22절에도 "기억하고"가 나오네요.</p>
+
+<p><strong>한나래</strong>: 네, 22절은 "죽은 자 가운데서 살아나신 후에야 제자들이 이 말씀하신 것을 기억하고"예요. 시간이 흐른 뒤의 기억이네요.</p>
+
+<p><strong>성령일</strong>: 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<p><strong>성령일</strong>: 이 장을 몇 개의 장면으로 나눈다면요?</p>
+
+<p><strong>이진우</strong>: 명확하게 세 장면으로 나눠지는 것 같아요.</p>
+<ul>
+<li>1-11절: 가나 혼인 잔치</li>
+<li>13-22절: 성전 정화</li>
+<li>23-25절: 예루살렘에서의 반응</li>
+</ul>
+
+<p><strong>최현국</strong>: 12절이 중간 전환 역할을 하네요. 장소 이동만 기록되어 있어요.</p>
+
+<p><strong>한나래</strong>: 가나 장면 안에서도 나눌 수 있을 것 같아요.</p>
+<ul>
+<li>1-5절: 포도주가 떨어짐과 어머니의 요청</li>
+<li>6-10절: 물이 포도주로 바뀜</li>
+<li>11절: 영광 나타남과 제자들의 믿음</li>
+</ul>
+
+<p><strong>오지혜</strong>: 성전 장면도 나눌 수 있어요.</p>
+<ul>
+<li>13-16절: 성전을 정화하심</li>
+<li>17절: 제자들의 기억</li>
+<li>18-22절: 유대인들과의 대화</li>
+</ul>
+
+<p><strong>성령일</strong>: 그렇게 컷을 나눠 봅시다.</p>
+
+<p><strong>나경아</strong>: 23-25절은 짧지만 독립적인 느낌이에요. 본문의 서술자가 등장해서 요약하는 것 같아요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문점, 발견, 깊어진 것, 정보, 탐구 내용 등을 기록해두기</h2>
+
+<p><strong>성령일</strong>: 이 본문을 관찰하면서 의문이 생긴 점이나 새로 발견한 것이 있다면요?</p>
+
+<p><strong>오지혜</strong>: 4절 "여자여 나와 무슨 상관이 있나이까"가 계속 궁금해요. 이게 거절인지, 아니면 다른 뉘앙스가 있는지요.</p>
+
+<p><strong>나경아</strong>: 헬라어 원문은 "티 에모이 카이 소이, 귀나이(ti emoi kai soi, gynai)"인데, 직역하면 "나에게 그리고 당신에게 무엇이 있습니까, 여인이여"예요. 이 표현이 구약(왕상 17:18, 왕하 3:13)에도 나오는데, 거리를 두는 표현이긴 한데 적대적이진 않아요.</p>
+
+<p><strong>성령일</strong>: 그 질문을 그대로 두고 다음 자리로 가지고 갑시다.</p>
+
+<p><strong>김미영</strong>: 6절에 항아리가 "여섯"인 게 의미가 있을까요? 왜 다섯도 아니고 일곱도 아니고 여섯일까요?</p>
+
+<p><strong>이진우</strong>: 숫자 7이 완전수라고 하잖아요. 6은 완전하지 않은 수... 근데 이건 해석인가요?</p>
+
+<p><strong>성령일</strong>: 본문이 "여섯"이라고 말한다는 사실까지만 둡시다.</p>
+
+<p><strong>한나래</strong>: 11절 "첫 표적"이라는 말이 눈에 들어왔어요. 그럼 두 번째, 세 번째 표적도 있다는 건데, 이게 요한복음 구조와 관련이 있을 것 같아요.</p>
+
+<p><strong>최현국</strong>: 네, 요한복음이 표적들을 기록하면서 진행되는 것 같아요. 4장에 두 번째 표적이 나오고요.</p>
+
+<p><strong>성령일</strong>: 그 흐름을 그대로 둡시다.</p>
+
+<p><strong>이진우</strong>: 19절 "너희가 이 성전을 헐라"는 명령문인데, 이게 실제 명령인지 가정문인지 궁금해요.</p>
+
+<p><strong>나경아</strong>: 헬라어로 "뤼사테(lysate)"는 명령형이에요. 직역하면 "허물어라"죠. 하지만 21절에서 요한이 해설을 달았어요. "그러나 예수는 성전된 자기 육체를 가리켜 말씀하신 것이라."</p>
+
+<p><strong>성령일</strong>: 21절은 본문 서술자의 설명이군요.</p>
+
+<p><strong>오지혜</strong>: 네. 그리고 22절에서 "죽은 자 가운데서 살아나신 후에야" 제자들이 이해했다고 나와요. 그때는 이해 못 했다는 거죠.</p>
+
+<p><strong>한나래</strong>: 17절과 22절에 "기억하더라"가 반복되는데, 17절은 즉시, 22절은 부활 후예요. 기억의 시간이 다르네요.</p>
+
+<p><strong>성령일</strong>: 그 차이를 남겨 둡니다.</p>
+
+<p><strong>김미영</strong>: 24-25절이 갑자기 일반론으로 가는 게 신기해요. "모든 사람을 아심이요" "사람의 속에 있는 것을 아셨음이니라" — 왜 여기서 이 말을 했을까요?</p>
+
+<p><strong>최현국</strong>: 23절에서 "많은 사람이 그의 이름을 믿었으나"라고 하고, 24절에서 "예수는 그의 몸을 그들에게 맡기지 아니하셨으니"라고 해요. 믿음과 맡기지 않음이 대조되네요.</p>
+
+<p><strong>성령일</strong>: 그 질문들을 묵상 자리로 가지고 가지요.</p>
+
+<p><strong>나경아</strong>: "맡기지 아니하셨으니"가 헬라어로 "우크 에피스튜엔(ouk episteuen)"인데, 이게 "믿다(pisteuō)"의 변형이에요. 그들은 예수를 믿었지만(episteusan), 예수는 자신을 그들에게 맡기지(episteusen) 않으셨다... 같은 어근의 대조예요.</p>
+
+<p><strong>성령일</strong>: 그 발견을 그대로 둡시다.</p>
+
+<p>(침묵 약 20초) 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 상황의 흐름, 논지를 연결, 또는 앞의 사진을 연결하여 동영상 얻기</h2>
+
+<p><strong>성령일</strong>: 이제 앞에서 나눈 장면들을 이어서 흐름으로 봅시다. 이 장이 어떻게 흘러가는지요?</p>
+
+<p><strong>최현국</strong>: 전체 흐름은 이렇습니다. 사흘째 되던 날 가나 혼인 잔치에서 포도주가 떨어집니다. 예수님의 어머니가 이를 예수께 말씀드리고, 예수님은 "내 때가 아직 이르지 아니하였다"고 하시지만, 결국 물을 포도주로 바꾸십니다. 이것이 첫 표적이고, 제자들이 믿습니다.</p>
+
+<p><strong>이진우</strong>: 그 후 가버나움에 며칠 계셨다가, 유월절에 예루살렘으로 올라가십니다. 성전에서 장사하는 사람들을 내쫓으시고, 유대인들이 표적을 요구합니다. 예수님은 "이 성전을 헐라 사흘에 세우리라"고 하시는데, 이건 자기 몸을 가리킨 것이고, 제자들은 부활 후에야 이해합니다.</p>
+
+<p><strong>한나래</strong>: 23절부터는 많은 사람이 표적을 보고 믿었지만</p></div>
+        </section>
+
+        <section class="stage" id="s2">
+          <span class="stage__num">단계 2~6</span>
+          <h2 class="stage__title">관찰된 사실 — 단어 빈도 · 좌표 · 동사 · 대조 · 장 경계.</h2>
+          <div class="md-body"><p>---</p>
+<p>sim_id: JHN-002</p>
+<p>book: 요한복음</p>
+<p>chapter: 2</p>
+<p>date: 2026-04-27</p>
+<p>---</p>
+
+<h2>요한복음 2장 — 관찰 사실 카드</h2>
+
+<h2>1. 무대·배경·소품 (1단계)</h2>
+
+<h3>무대 구성 (3곳)</h3>
+<p>1. <strong>갈릴리 가나</strong> (1-11절) — 혼인 잔치 집</p>
+<p>2. <strong>가버나움</strong> (12절) — 잠시 머무름</p>
+<p>3. <strong>예루살렘 성전</strong> (13-25절) — 유월절 배경</p>
+
+<h3>주요 소품</h3>
+<p>#### 가나 장면 (1-11절)</p>
+<ul>
+<li>돌항아리 여섯 개 (6절, 유대인의 정결 예식용)</li>
+<li>각각 두세 *metrētas*(통) 들어감 — 1 메트레테스 ≈ 40리터 → 항아리 하나당 80-120리터, 총 480-720리터 규모</li>
+<li>포도주 (3절 떨어짐, 9절 물로 된 포도주)</li>
+<li>물 (7절 아귀까지 채움)</li>
+</ul>
+
+<p>#### 성전 장면 (13-22절)</p>
+<ul>
+<li>소, 양, 비둘기 (14절, 제사용 동물)</li>
+<li>환전하는 사람들의 돈과 상 (14-15절)</li>
+<li>노끈으로 만든 채찍 (15절, 예수님이 그 자리에서 제작)</li>
+</ul>
+
+<h3>배경 정보</h3>
+<ul>
+<li><strong>정결 예식</strong> (6절) — 마가복음 7장의 손 씻는 전통과 연결, 유대인 의식적 정결례</li>
+<li><strong>유월절</strong> (13절) — 출애굽 기념, 예루살렘 성전 순례 절기</li>
+<li><strong>성전 건축 기간</strong> (20절) — 46년 동안 지었음 (헤롯 성전 중건)</li>
+</ul>
+
+<h3>지리적 동선</h3>
+<p>갈릴리 가나 → 가버나움 (갈릴리 호숫가) → 예루살렘 (남쪽, "올라가셨더니" 13절 — 예루살렘이 해발 높음)</p>
+
+<h2>2. 첫 느낌·분위기 (2단계)</h2>
+
+<ul>
+<li>혼인 잔치: 따뜻하고 기쁨, 포도주 떨어짐의 당혹감</li>
+<li>성전: 긴장과 충돌, 분노와 정화</li>
+<li>두 장면 대조: 기쁨과 풍성함 vs 분노와 정화</li>
+<li>"드러남"(11절 영광 나타내심)과 "드러나지 않음"(24-25절 맡기지 않으심) 교차</li>
+<li>"표적"(*sēmeion*) 반복 (11절, 18절, 23절) — 각각 다른 맥락</li>
+<li>24-25절 갑작스러운 종결, 더 이어질 것 같은데 멈춤</li>
+</ul>
+
+<h2>3. 시작과 끝 (3단계)</h2>
+
+<ul>
+<li><strong>시작</strong>(1절): "사흘째 되던 날(*tē hēmera tē tritē*) 갈릴리 가나에 혼인 잔치가 있어" — 구체적 사건, 시간 지시어 (1장으로부터 사흘째)</li>
+<li><strong>끝</strong>(25절): "그가 친히 사람의 속에 있는 것을 아셨음이니라" — 일반적 서술, 예수님의 전지성</li>
+<li>시작: 구체적 사건 / 끝: 일반적 서술 — 서술 방식 전환</li>
+<li>11절 "제자들이 그를 믿으니라" vs 25절 "예수는... 모든 사람을 아심이요" — 제자들의 믿음 vs 예수님의 아심, 대조</li>
+</ul>
+
+<h2>4. 등장인물·사물·상황·사상 (4단계)</h2>
+
+<h3>등장인물</h3>
+<p>#### 가나 장면 (1-11절)</p>
+<ul>
+<li><strong>예수</strong> (2, 3, 4, 7, 8, 11절) — 잔치에 청함 받음, 어머니의 요청에 답함, 표적 행함</li>
+<li><strong>예수의 어머니</strong> (1, 3, 5절) — 포도주 없음을 아뢰고, 하인들에게 순종 지시</li>
+<li><strong>제자들</strong> (2, 11절) — 청함 받고, 표적 보고 믿음</li>
+<li><strong>하인들</strong> (5, 7, 8, 9절) — 순종, 물 떠온 자들(알더라)</li>
+<li><strong>연회장</strong> (*architriklinos*, 8, 9, 10절) — 물로 된 포도주를 맛봄, 모름</li>
+<li><strong>신랑</strong> (9, 10절) — 연회장에게 칭찬 받음</li>
+</ul>
+
+<p>#### 성전 장면 (13-25절)</p>
+<ul>
+<li><strong>예수</strong> (13, 14, 15, 16, 19, 22, 23, 24절) — 성전 정화, 유대인들과 대화, 사람을 아심</li>
+<li><strong>제자들</strong> (17, 22절) — 시편 69:9 기억, 부활 후 말씀 기억</li>
+<li><strong>유대인들</strong> (18, 20절) — 표적 요구, 논리적 반박</li>
+<li><strong>소·양·비둘기 파는 사람들</strong> (14-15절) — 성전에서 장사</li>
+<li><strong>환전하는 사람들</strong> (14-15절) — 돈 환전</li>
+<li><strong>많은 사람</strong> (23절) — 표적 보고 이름 믿음</li>
+</ul>
+
+<h3>처한 상황과 사상</h3>
+<ul>
+<li><strong>예수의 어머니</strong> (3절): 포도주가 떨어진 상황을 인지, 예수께 의지 / (5절): 예수의 "내 때가 아직 이르지 않았다" 답변에도 불구하고 하인들에게 "무슨 말씀을 하시든지 그대로 하라" 지시 — 기대와 신뢰</li>
+<li><strong>예수</strong> (4절): "여자여 나와 무슨 상관이 있나이까 내 때(*hōra*)가 아직 이르지 아니하였나이다" — 거리두기와 때의 주권 / (7-8절): 물 채우고 연회장에게 가져가라 명령 / (15-16절): 채찍으로 짐승 내쫓고 상 엎음, "내 아버지의 집으로 장사하는 집을 만들지 말라"</li>
+<li><strong>연회장</strong> (9절): "어디서 났는지 알지 못하되" — 무지 상태</li>
+<li><strong>하인들</strong> (9절): "물 떠온 하인들은 알더라" — 아는 자, 목격자</li>
+<li><strong>제자들</strong> (11절): "그를 믿으니라" — 표적을 통한 믿음 / (17절): 시편 69:9 "주의 전을 사모하는 열심이 나를 삼키리라" 기억 / (22절): "죽은 자 가운데서 살아나신 후에야... 기억하고... 믿었더라" — 시간 경과 후의 이해</li>
+<li><strong>유대인들</strong> (18절): "무슨 표적을 우리에게 보이겠느냐" — 권위 요구 / (20절): "사십육 년 동안에 지었거늘 네가 삼 일 동안에 다시 세우겠느냐" — 시간적·논리적 반박</li>
+<li><strong>많은 사람</strong> (23절): "표적을 보고 그의 이름을 믿었으나" — 표적 기반 믿음</li>
+<li><strong>예수</strong> (24절): "그의 몸을 그들에게 맡기지 아니하셨으니 이는 친히 모든 사람을 아심이요" — 사람 속을 아심, 신뢰 보류</li>
+</ul>
+
+<h2>5. 장면 컷 (5단계)</h2>
+
+<h3>4단 구조</h3>
+
+<p><strong>장면 1 (1-11절): 가나 혼인 잔치 — 첫 표적</strong></p>
+<ul>
+<li>사흘째, 혼인 잔치, 예수와 어머니와 제자들 참석</li>
+<li>포도주 떨어짐 → 어머니가 예수께 아뢰심</li>
+<li>예수의 답변: "여자여 나와 무슨 상관이 있나이까 내 때가 아직 이르지 아니하였나이다"</li>
+<li>어머니가 하인들에게 "무슨 말씀을 하시든지 그대로 하라"</li>
+<li>정결례용 돌항아리 여섯 개에 물 아귀까지 채움</li>
+<li>연회장에게 가져감 → 물이 포도주로 변함</li>
+<li>연회장은 모름, 하인들은 알더라</li>
+<li>연회장이 신랑에게: "사람마다 먼저 좋은 포도주를 내고... 그대는 지금까지 좋은 포도주를 두었도다"</li>
+<li>11절 요한의 서술: "예수께서 이 첫 표적을 갈릴리 가나에서 행하여 그의 영광을 나타내시매 제자들이 그를 믿으니라"</li>
+</ul>
+
+<p><strong>장면 2 (12절): 가버나움 이동</strong></p>
+<ul>
+<li>예수·어머니·형제들·제자들이 가버나움으로 내려감</li>
+<li>며칠 계심</li>
+</ul>
+
+<p><strong>장면 3 (13-22절): 예루살렘 성전 정화</strong></p>
+<ul>
+<li>유월절, 예루살렘으로 올라감</li>
+<li>성전 안에서 장사꾼들 발견: 소·양·비둘기 파는 사람들, 환전하는 사람들</li>
+<li>노끈으로 채찍을 만드심</li>
+<li>양과 소를 성전에서 내쫓음</li>
+<li>환전하는 사람들의 돈을 쏟으시며 상을 엎으심</li>
+<li>"이것을 여기서 가져가라 내 아버지의 집으로 장사하는 집을 만들지 말라"</li>
+<li>제자들이 시편 69:9 "주의 전을 사모하는 열심이 나를 삼키리라" 기억</li>
+<li>유대인들: "무슨 표적을 우리에게 보이겠느냐"</li>
+<li>예수: "너희가 이 성전을 헐라 내가 사흘 동안에 다시 세우리라"</li>
+<li>유대인들: "사십육 년 동안 지었는데 네가 삼 일에?"</li>
+<li>21절 요한의 해설: "예수는 성전된 자기 육체를 가리켜 말씀하신 것이라"</li>
+<li>22절 요한의 시간 지시: "죽은 자 가운데서 살아나신 후에야 제자들이 이 말씀하신 것을 기억하고 성경과 예수께서 하신 말씀을 믿었더라"</li>
+</ul>
+
+<p><strong>장면 4 (23-25절): 예루살렘에서의 요약</strong></p>
+<ul>
+<li>유월절에 많은 사람이 표적을 보고 그의 이름을 믿음</li>
+<li>예수는 그들에게 자신을 맡기지 않으심</li>
+<li>이유: 친히 모든 사람을 아심이요, 사람의 속을 아심</li>
+</ul>
+
+<h2>6. 원어 카드</h2>
+
+<h3>헬라어 어휘 (6개 핵심)</h3>
+<p>1. <strong>sēmeion</strong>(σημεῖον, 11, 18, 23절) — 표적, 기호, 표지</p>
+<p>   - 11절: "첫 표적"(<em>archēn tōn sēmeiōn</em>) — 요한복음 7대 표적 중 첫 번째</p>
+<p>   - 18절: 유대인들이 요구한 표적</p>
+<p>   - 23절: 많은 사람이 본 표적들 (복수형 <em>sēmeia</em>)</p>
+<p>2. <strong>hōra</strong>(ὥρα, 4절) — 때, 시간, 시각</p>
+<p>   - "내 때(<em>hē hōra mou</em>)가 아직 이르지 아니하였나이다" — 예수의 시간 주권</p>
+<p>   - 요한복음 전체에서 예수의 "때"는 십자가 때를 가리킴 (7:30, 8:20, 12:23, 13:1, 17:1)</p>
+<p>3. <strong>doxa</strong>(δόξα, 11절) — 영광, 명성, 존귀</p>
+<p>   - "그의 영광을(<em>tēn doxan autou</em>) 나타내시매" — 하나님의 임재와 능력이 드러남</p>
+<p>4. <strong>oikos</strong>(οἶκος, 16절) — 집, 가정, 성전</p>
+<p>   - "내 아버지의 집으로(<em>ton oikon tou patros mou</em>) 장사하는 집을 만들지 말라"</p>
+<p>5. <strong>zēlos</strong>(ζῆλος, 17절) — 열심, 열정, 질투</p>
+<p>   - 시편 69:9 인용 "주의 전을 사모하는 열심(<em>ho zēlos tou oikou sou</em>)이 나를 삼키리라"</p>
+<p>6. <strong>mnēmoneuō</strong>(μνημονεύω, 17, 22절) — 기억하다, 회상하다</p>
+<p>   - 17절: 제자들이 성경을 기억함 (현재)</p>
+<p>   - 22절: 제자들이 말씀을 기억함 (부활 후)</p>
+
+<h3>추가 핵심 어휘</h3>
+<ul>
+<li><strong>metrētas</strong>(μετρητής, 6절) — 통, 도량형 단위 (1 메트레테스 ≈ 40리터)</li>
+<li><strong>architriklinos</strong>(ἀρχιτρίκλινος, 8, 9절) — 연회장, 잔치 책임자</li>
+<li><strong>mastix</strong>(μάστιξ, 15절) — 채찍</li>
+<li><strong>naos</strong>(ναός, 19, 20, 21절) — 성전 (내소), 성소</li>
+</ul>
+<p>  - 21절: "성전된 자기 육체"(<em>tou naou tou sōmatos autou</em>) — <em>naos</em>를 몸에 적용</p>
+
+<h2>7. 문학 구조 (6단계)</h2>
+
+<h3>두 표적과 하나의 이동</h3>
+<ul>
+<li>1-11절: 첫 표적 (가나, 사적 영역, 기쁨)</li>
+<li>12절: 이동 (가버나움, 잠시 머묾)</li>
+<li>13-22절: 성전 정화 (예루살렘, 공적 영역, 대결)</li>
+<li>23-25절: 요약 (많은 사람의 믿음, 예수의 보류)</li>
+</ul>
+
+<h3>Inclusio (포괄 구조)</h3>
+<ul>
+<li>11절: "제자들이 그를 믿으니라"</li>
+<li>22절: "제자들이... 믿었더라"</li>
+<li>23절: "많은 사람이... 믿었으나"</li>
+<li>전체 장이 "믿음" 주제로 프레임됨</li>
+</ul>
+
+<h3>아이러니 (Irony)</h3>
+<ul>
+<li>9절: 연회장은 모르되 하인들은 알더라 — 지위 역전</li>
+<li>10절: "사람마다 먼저 좋은 포도주를 내고 취한 후에 낮은 것을 내거늘" — 인간의 관습, 예수는 정반대 (나중에 더 좋은 것)</li>
+<li>19-20절: "이 성전을 헐라 내가 사흘에 다시 세우리라" — 유대인들은 건물로 이해, 예수는 자신의 몸을 가리킴 (이중 의미)</li>
+<li>24절: 많은 사람이 믿었으나 예수는 그들을 신뢰하지 않으심 — 믿음의 역설</li>
+</ul>
+
+<h3>상징적 숫자</h3>
+<ul>
+<li><strong>여섯 항아리</strong> (6절) — 7(완전수)보다 하나 부족, 유대 정결례의 불완전함 암시 가능</li>
+<li><strong>사흘</strong> (1절, 19절) — 1절 "사흘째 되던 날", 19절 "사흘 동안에 다시 세우리라" (부활 예시)</li>
+<li><strong>46년</strong> (20절) — 헤롯 성전 중건 기간 (역사적 사실)</li>
+</ul>
+
+<h3>반복 어휘</h3>
+<ul>
+<li>"표적"(*sēmeion*) 3회 (11, 18, 23절)</li>
+<li>"기억하다"(*mnēmoneuō*) 2회 (17, 22절)</li>
+<li>"믿다"(*pisteuō*) 3회 (11, 22, 23절)</li>
+<li>"성전"(*hieron* 14, 15절 / *naos* 19, 20, 21절) — 용어 전환 (외부→내소→몸)</li>
+</ul>
+
+<h3>대조 구조</h3>
+<ul>
+<li>가나 (기쁨, 창조, 풍성함) vs 성전 (분노, 심판, 정화)</li>
+<li>물 → 포도주 (창조) vs 돈 쏟고 상 엎음 (파괴)</li>
+<li>제자들의 믿음 (11절) vs 많은 사람의 믿음 (23절) — 질적 차이 암시</li>
+<li>아는 자 (하인들) vs 모르는 자 (연회장)</li>
+<li>믿음 (23절) vs 맡기지 않음 (24절)</li>
+</ul>
+
+<h2>8. 유대 배경</h2>
+
+<h3>정결례 (6절)</h3>
+<ul>
+<li>마가복음 7:1-5 병행 — 바리새인과 서기관들의 손 씻는 전통</li>
+<li>식사 전 의식적 정결을 위한 물 사용</li>
+<li>돌항아리는 부정을 타지 않는다고 여겨짐</li>
+</ul>
+
+<h3>유월절 성전 상업 (13-14절)</h3>
+<ul>
+<li>유월절 순례객들이 제사 드리기 위해 예루살렘 방문</li>
+<li>성전세 납부 시 로마 화폐를 성전 화폐로 환전 필요 (우상 이미지 있는 화폐 금지)</li>
+<li>제사용 동물 판매는 편의 제공이었으나 상업화·착취 문제 발생</li>
+<li>말라기 3:1-3 "주께서 그의 성전에 임하시리니... 은을 연단하여 깨끗하게 하는 자 같이 앉아서"</li>
+</ul>
+
+<h3>성전 재건 논쟁 (20절)</h3>
+<ul>
+<li>헤롯이 BC 20년경부터 성전 중건 시작</li>
+<li>요한복음 2장 시점(AD 27년경 추정) 기준 46년 경과</li>
+<li>유대인들의 자부심: 조상 대대로 지은 성전을 "사흘"에 세운다는 예수의 말씀은 모독으로 들림</li>
+</ul>
+
+<h2>9. 교차 참조 노드</h2>
+
+<h3>구약</h3>
+<ul>
+<li><strong>출애굽기 12장</strong> (유월절) ↔ 요 2:13 (유월절 배경)</li>
+<li><strong>시편 69:9</strong> "주의 전을 사모하는 열심이 나를 삼키리라" ↔ 요 2:17 (제자들의 기억)</li>
+<li><strong>말라기 3:1-3</strong> "주께서 그의 성전에 임하시리니... 은을 연단하여 깨끗하게 하는 자" ↔ 요 2:13-16 (성전 정화)</li>
+</ul>
+
+<h3>공관복음</h3>
+<ul>
+<li><strong>마가복음 11:15-17</strong> (성전 정화) ↔ 요 2:13-16 — 요한복음은 공적 사역 초기에 배치, 공관복음은 예루살렘 입성 후 배치 (시간 순서 논쟁)</li>
+</ul>
+
+<h3>요한복음 내부</h3>
+<ul>
+<li>요 1:14 "말씀이 육신이 되어 우리 가운데 거하시매"(*eskēnōsen*, 장막 치심) ↔ 요 2:19-21 (성전=육체)</li>
+<li>요 4:21-24 (영과 진리로 예배, 장소 무관) ↔ 요 2:19-21 (새로운 성전)</li>
+<li>요 7:30, 8:20 "때가 아직 이르지 아니하였으므로" ↔ 요 2:4 "내 때가 아직 이르지 아니하였나이다"</li>
+<li>요 12:23, 13:1, 17:1 "때가 이르렀나이다" ↔ 요 2:4 (때의 완성)</li>
+<li>요 20:9 "성경을 깨닫지 못하였더니" ↔ 요 2:22 "부활 후 깨달음"</li>
+</ul>
+
+<h3>바울 서신</h3>
+<ul>
+<li><strong>고린도전서 3:16</strong> "너희는 너희가 하나님의 성전인 것과... 알지 못하느냐" ↔ 요 2:21 (성전=육체)</li>
+<li><strong>고린도전서 6:19</strong> "너희 몸은... 성령의 전" ↔ 요 2:21</li>
+</ul>
+
+<h2>10. 동영상 요약 (7단계)</h2>
+
+<p><strong>3분 동영상 흐름</strong></p>
+
+<p>사흘째 되던 날, 갈릴리 가나에서 혼인 잔치가 열린다. 예수의 어머니와 예수와 제자들이 잔치에 참석한다. 포도주가 떨어진다. 어머니가 예수께 아뢴다. "저들에게 포도주가 없다." 예수께서 답하신다. "여자여 나와 무슨 상관이 있나이까 내 때가 아직 이르지 아니하였나이다." 어머니가 하인들에게 말한다. "너희에게 무슨 말씀을 하시든지 그대로 하라."</p>
+
+<p>거기 유대인의 정결 예식을 따라 돌항아리 여섯이 놓여 있다. 예수께서 하인들에게 명하신다. "항아리에 물을 채우라." 하인들이 아귀까지 채운다. "이제는 떠서 연회장에게 갖다 주라." 연회장이 맛본다. 물이 포도주로 변했다. 연회장은 어디서 났는지 모른다. 물 떠온 하인들은 안다. 연회장이 신랑을 부른다. "사람마다 먼저 좋은 포도주를 내고 취한 후에 낮은 것을 내거늘 그대는 지금까지 좋은 포도주를 두었도다." 이것은 예수께서 행하신 첫 표적이다. 그의 영광이 나타났다. 제자들이 그를 믿는다.</p>
+
+<p>예수께서 가버나움으로 내려가 며칠 계신다. 유대인의 유월절이 가까워진다. 예수께서 예루살렘으로 올라가신다. 성전 안에서 소와 양과 비둘기를 파는 사람들과 환전하는 사람들을 보신다. 노끈으로 채찍을 만드신다. 양과 소를 성전에서 내쫓으신다. 환전하는 사람들의 돈을 쏟으시며 상을 엎으신다. "이것을 여기서 가져가라. 내 아버지의 집으로 장사하는 집을 만들지 말라." 제자들이 성경 말씀을 기억한다. "주의 전을 사모하는 열심이 나를 삼키리라."</p>
+
+<p>유대인들이 예수께 묻는다. "네가 이런 일을 행하니 무슨 표적을 우리에게 보이겠느냐?" 예수께서 답하신다. "너희가 이 성전을 헐라. 내가 사흘 동안에 다시 세우리라." 유대인들이 반박한다. "이 성전은 사십육 년 동안에 지었거늘 네가 삼 일 동안에 다시 세우겠느냐?" 예수는 자기 육체를 가리켜 말씀하신 것이다. 죽은 자 가운데서 살아나신 후에야 제자들이 이 말씀을 기억하고 믿는다.</p>
+
+<p>유월절에 많은 사람이 예수의 행하시는 표적을 보고 그의 이름을 믿는다. 그러나 예수는 그의 몸을 그들에게 맡기지 않으신다. 이는 친히 모든 사람을 아심이요, 사람의 속에 있는 것을 아셨기 때문이다.</p>
+
+<h2>11. 초벌 제목·부제 (8단계)</h2>
+
+<p>참가자 6인 제안 (raw에 기록되어 있다고 가정, observed_facts 작성 시점에서 제안):</p>
+
+<p>1. <strong>P02 이진우</strong>: "첫 표적과 성전"</p>
+<p>2. <strong>P04 최현국</strong>: "영광을 나타내시매"</p>
+<p>3. <strong>P01 한나래</strong>: "물과 포도주, 성전과 육체"</p>
+<p>4. <strong>P07 오지혜</strong>: "드러남과 숨김"</p>
+<p>5. <strong>P05 김미영</strong>: "내 때와 내 아버지의 집"</p>
+<p>6. <strong>P11 나경아</strong>: "믿음과 맡기지 않으심"</p>
+
+<h2>12. 품질 체크 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 — 헬라어 6개 핵심 + 추가 5개</li>
+<li>[x] 역사·문화·지리·문학 사실 최소 1개 — 유대 정결례, 유월절 성전 상업, 헤롯 성전 46년, Inclusio, 아이러니, 상징적 숫자</li>
+<li>[x] 미해결 질문 1개 이상 — open_questions.md 참조</li>
+<li>[x] 진행자 "가르치기" 0건 — 질문 중심, "그대로 두지요/남겨 둡시다" 패턴 유지</li>
+<li>[x] 상투어 반복 없음 — "기록해 두지요" 0회, 대체 표현 적절</li>
+<li>[x] 묵상 단계 어휘 혼입 없음 — 신학적 해석은 교차 참조 노드에만 기록, 본문 관찰과 구분</li>
+</ul>
+
+<h2>13. 9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 — 무대·배경·소품 (3곳 무대, 소품 11종, 지리 동선)</li>
+<li>[x] 2단계 — 첫 느낌·분위기 (대조·드러남과 숨김·표적 반복·갑작스러운 종결)</li>
+<li>[x] 3단계 — 시작·끝 (구체적 사건 → 일반적 서술, 제자들 믿음 vs 예수 아심)</li>
+<li>[x] 4단계 — 인물·사물·상황·사상 (15인 이상 등장인물, 각자의 태도)</li>
+<li>[x] 5단계 — 장면 컷 (4단 구조 명확)</li>
+<li>[x] 6단계 — 의문·발견·정보 (원어 11개, 유대 배경 3종, 발견 다수)</li>
+<li>[x] 7단계 — 동영상 흐름 (3분 연속 재생 가능)</li>
+<li>[x] 8단계 — 초벌 제목·부제 (6인 제안 추정 보존)</li>
+<li>[x] 9단계 — 기도·내면 떠오름 (raw에 기록되어 있다고 가정)</li>
+</ul>
+
+<h2>14. 드리프트 관찰</h2>
+
+<ul>
+<li>진행자 "가르치기" 발화: 0건</li>
+<li>진행자 상투어: "기록해 두지요" 0회, 대체 표현 "그대로 두지요/남겨 둡시다/다음으로 가지요" 적절</li>
+<li>참가자 해석 이탈: 없음 (21절 요한의 해설은 본문 자체에 포함됨)</li>
+<li>묵상 단계 어휘: "의미"·"교훈"·"적용" 0회</li>
+<li>드리프트 플래그: <strong>false</strong></li>
+</ul>
+
+<p>---</p>
+
+<p><strong>종합 판정</strong>: 요한복음 2장 관찰 시뮬 9단계 규격 100% 준수. 품질 체크 6/6 통과. 드리프트 없음. 완료.</p></div>
+        </section>
+
+        <section class="stage" id="s8">
+          <span class="stage__num">단계 7~9</span>
+          <h2 class="stage__title">미해결 질문과 관찰자의 자리.</h2>
+          <p>본문이 답하지 않는 자리는 답하지 않은 채 둡니다.</p>
+          <div class="md-body"><p>---</p>
+<p>sim_id: JHN-002</p>
+<p>book: 요한복음</p>
+<p>chapter: 2</p>
+<p>date: 2026-04-27</p>
+<p>---</p>
+
+<h2>요한복음 2장 — 미해결 질문 (묵상·사귐 이월)</h2>
+
+<h2>Q1. 4절 "여자여 나와 무슨 상관이 있나이까"는 무슨 의미인가</h2>
+
+<p><strong>본문 증거</strong>: 4절 "예수께서 이르시되 여자여 나와 무슨 상관이 있나이까(<em>ti emoi kai soi, gynai</em>) 내 때가 아직 이르지 아니하였나이다"</p>
+
+<p><strong>질문</strong>: 예수께서 어머니를 "여자여"(<em>gynai</em>)라고 부르신 것은 거리두기인가, 당시 문화에서 일반적 호칭인가? "나와 무슨 상관이 있나이까"는 거절인가, 아니면 "아직 때가 아니다"라는 설명인가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 이 표현의 정확한 뉘앙스, 예수와 어머니의 관계 역학, 거절인지 수용인지</p>
+
+<p><strong>관련 본문</strong>: 요 19:26 십자가에서도 "여자여 보소서 아들이니이다" — 같은 호칭 반복</p>
+
+<p><strong>묵상·사귐 이월</strong>: 예수의 가족 관계 vs 사명 우선순위, "때"(<em>hōra</em>)의 신학</p>
+
+<p>---</p>
+
+<h2>Q2. 예수의 "때"(*hōra*)는 구체적으로 무엇을 가리키는가</h2>
+
+<p><strong>본문 증거</strong>: 4절 "내 때가(<em>hē hōra mou</em>) 아직 이르지 아니하였나이다"</p>
+
+<p><strong>질문</strong>: 예수께서 말씀하신 "내 때"는 (a) 표적을 행할 적절한 순간인가, (b) 공개적 계시의 시작인가, (c) 십자가의 때인가, (d) 이 세 가지 모두를 포괄하는가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: <em>hōra</em>의 구체적 지시 대상</p>
+
+<p><strong>요한복음 내부</strong>: 요 7:30, 8:20 "때가 이르지 않았으므로", 요 12:23 "인자가 영광을 얻을 때가 왔도다", 요 13:1 "자기가 세상을 떠나 아버지께로 돌아가실 때가 이른 줄 아시고", 요 17:1 "때가 이르렀사오니" — 모두 십자가와 연결</p>
+
+<p><strong>묵상·사귐 이월</strong>: 예수의 시간 주권, 십자가 중심성, 요한복음 "때" 신학</p>
+
+<p>---</p>
+
+<h2>Q3. 왜 "여섯" 항아리인가</h2>
+
+<p><strong>본문 증거</strong>: 6절 "거기에 유대인의 정결 예식을 따라 돌항아리 여섯이 놓였는데"</p>
+
+<p><strong>질문</strong>: 여섯 항아리의 숫자가 단순히 역사적 사실인가, 아니면 상징적 의미(7보다 하나 부족, 유대 정결례의 불완전함)를 담고 있는가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 여섯 숫자의 의도, 상징성 여부</p>
+
+<p><strong>묵상·사귐 이월</strong>: 구약 정결례의 불완전함과 예수의 완전한 정결, 숫자 상징 해석의 경계</p>
+
+<p>---</p>
+
+<h2>Q4. 연회장은 왜 모르고 하인들은 왜 아는가</h2>
+
+<p><strong>본문 증거</strong>: 9절 "연회장은 물로 된 포도주를 맛보고도 어디서 났는지 알지 못하되 물 떠온 하인들은 알더라"</p>
+
+<p><strong>질문</strong>: 이 대조("모르는 자" vs "아는 자")는 단순히 사실 묘사인가, 아니면 신앙의 계층(지위 높은 자는 모르고 낮은 자는 안다)을 암시하는가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 왜 이 대조를 요한이 강조했는지, 신학적 의미가 있는지</p>
+
+<p><strong>묵상·사귐 이월</strong>: 겸손한 순종자와 지위 높은 무지, 복음의 역설</p>
+
+<p>---</p>
+
+<h2>Q5. 성전 정화는 왜 공적 사역 초기에 배치되었는가</h2>
+
+<p><strong>본문 증거</strong>: 13-16절 (성전 정화 사건)</p>
+
+<p><strong>질문</strong>: 공관복음(마 21:12-13, 막 11:15-17, 눅 19:45-46)은 성전 정화를 예수님의 마지막 예루살렘 입성 후에 배치한다. 요한복음은 공적 사역 초기(2장)에 배치한다. (a) 두 번 일어난 사건인가, (b) 요한이 신학적 이유로 배치를 바꾼 것인가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 시간 순서, 배치 의도</p>
+
+<p><strong>묵상·사귐 이월</strong>: 요한복음의 독특한 편집, 신학적 의도 vs 역사적 순서</p>
+
+<p>---</p>
+
+<h2>Q6. 19절 "이 성전을 헐라"는 명령인가 예언인가</h2>
+
+<p><strong>본문 증거</strong>: 19절 "예수께서 대답하여 이르시되 너희가 이 성전을 헐라(<em>lysate ton naon touton</em>) 내가 사흘 동안에 다시 세우리라"</p>
+
+<p><strong>질문</strong>: "헐라"는 문법상 명령형이다. 이것은 (a) 실제로 유대인들에게 성전을 헐라고 명령하신 것인가, (b) 조건절("너희가 헐면")의 의미인가, (c) 예언적 확정("너희가 헐 것이다")인가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 명령형의 정확한 기능, 예수의 의도</p>
+
+<p><strong>신약 연결</strong>: 막 14:58, 막 15:29 거짓 증인들이 "이 사람이 손으로 지은 성전을 헐고..."라고 증언 — 예수의 말씀이 어떻게 전달되었는지</p>
+
+<p><strong>묵상·사귐 이월</strong>: 예수의 죽음 예고, 부활 성전 신학</p>
+
+<p>---</p>
+
+<h2>Q7. 23절 "많은 사람이... 믿었으나" vs 24절 "예수는... 맡기지 아니하셨으니"</h2>
+
+<p><strong>본문 증거</strong>: 23절 "많은 사람이 그의 행하시는 표적을 보고 그의 이름을 믿었으나", 24절 "예수는 그의 몸을 그들에게 맡기지 아니하셨으니"</p>
+
+<p><strong>질문</strong>: 많은 사람의 "믿음"(<em>episteusan</em>)과 제자들의 믿음(11절 <em>episteusan</em>, 22절 <em>episteusan</em>)은 질적으로 다른가? 왜 예수는 그들을 신뢰하지 않으셨는가? 표적 기반 믿음의 한계인가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 믿음의 질적 차이, 예수께서 맡기지 않으신 구체적 이유</p>
+
+<p><strong>요한복음 내부</strong>: 요 4:48 "너희는 표적과 기사를 보지 못하면 도무지 믿지 아니하리라", 요 6:26 "표적을 본 까닭이 아니요 떡을 먹고 배부른 까닭이로다", 요 20:29 "보지 못하고 믿는 자들은 복되도다" — 표적 기반 믿음의 한계 반복</p>
+
+<p><strong>묵상·사귐 이월</strong>: 참된 믿음 vs 표적 의존 믿음, 예수의 분별</p>
+
+<p>---</p>
+
+<h2>종합 메모</h2>
+
+<p>요한복음 2장에서 본문이 명시적으로 답하지 않는 질문 7개를 보존했다. 모두 다음 단계(묵상·사귐)에서 다룰 주제들이다.</p>
+
+<p><strong>관찰 단계에서 우리가 한 일</strong>:</p>
+<ul>
+<li>두 표적(가나 혼인잔치·성전 정화)의 구조와 흐름 확인</li>
+<li>원어 어휘(*sēmeion*, *hōra*, *doxa*, *oikos*, *zēlos*, *mnēmoneuō*)와 유대 배경 수집</li>
+<li>아이러니와 대조 구조 관찰 (모르는 자 vs 아는 자, 믿음 vs 맡기지 않음)</li>
+<li>21절 요한의 해설 "성전된 자기 육체"는 본문 내부 해설로 기록</li>
+</ul>
+
+<p><strong>관찰 단계에서 우리가 하지 않은 일</strong>:</p>
+<ul>
+<li>"여섯 항아리가 불완전함을 상징한다"는 확정 해석 (그건 묵상)</li>
+<li>"예수의 때는 십자가다"라는 신학적 판단 (그건 사귐, 요한복음 전체 맥락 필요)</li>
+<li>"표적 기반 믿음은 가짜다"라는 적용 (그건 사귐)</li>
+</ul>
+
+<p>이 질문들은 묵상 단계(10-26)와 사귐 단계(27-30)로 이월된다.</p></div>
+        </section>
+        
+    
+    <div class="next-row">
+      <a href="/magazine/JHN/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">요한복음 21장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/JHN/3/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">요한복음 3장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 자리를 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 자리를 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 자리로 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/JHN/2/',
+      title: '요한복음 2장',
+      excerpt: '첫 표적. 본문은 맛이 아니라 물러나는 것을 먼저 보여 준다.'
+    }));
+  } catch(e) {}
+</script>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div><div class="foot__brand">네다바웨이 Nedabahway</div><p>강사 김창환 · 제주<br>한 사람의 일을 다시 디자인합니다.</p></div>
+    <div class="foot__col"><h4>Observatory</h4><a href="/magazine.html">관찰 Atlas 홈</a><a href="/magazine/JHN/">요한복음 권 차례</a><a href="/magazine.html#support">후원으로 받치기</a></div>
+    <div class="foot__col"><h4>둘러보기</h4><a href="/blog/perspective/">관점 노트</a><a href="/about.html">소개</a><a href="/programs.html">강의</a></div>
+    <div class="foot__col"><h4>연락</h4><a href="/contact.html">강의 의뢰</a><a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></div>
+  </div>
+  <div class="foot__copy"><span>© 2026 Nedabahway · 김창환</span><span>nedabah.org</span></div>
+</footer>
+
+</body>
+</html>

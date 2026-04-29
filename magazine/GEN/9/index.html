@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>창세기 9장 — Observatory | 네다바웨이</title>
+<meta name="description" content="창세기 9장을 9단계로 같이 관찰합니다. 언약의 자리. 같은 명령이 두 번 놓인다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/GEN/9/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; counter-reset: step; }
+  .toc-side li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; }
+  .toc-side li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; }
+  .toc-side a { display: block; color: inherit; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo">네다바웨이</a>
+    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
+    <div class="nav__links">
+      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
+      <a href="/about.html" class="nav__link">소개</a>
+      <a href="/programs.html" class="nav__link">강의</a>
+      <a href="/ai.html" class="nav__link">AI 작업실</a>
+      <a href="/magazine.html" class="nav__link nav__link--active">관찰 Atlas</a>
+      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol>
+      <li><a href="#s1">본문 그대로 읽기</a></li>
+      <li><a href="#s2">관찰된 사실</a></li>
+      <li><a href="#s8">미해결 질문 · 후기</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/GEN/">창세기</a> · 9장</div>
+      <h1>창세기 9장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">GEN-009 · 오경 · 히브리어</div>
+      <p class="essence">언약의 자리. 같은 명령이 두 번 놓인다.</p>
+    </header>
+    
+        <section class="stage stage--raw" id="s1">
+          <span class="stage__num">단계 1</span>
+          <h2 class="stage__title">본문 그대로 읽기.</h2>
+          <p>본문은 본문이 자기 시간 안에서 스스로 풀리도록 둡니다. 옮긴 말을 옮긴 그대로 받아 적습니다.</p>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-009</p>
+<p>book: 창세기</p>
+<p>book_en: Genesis</p>
+<p>chapter: 9</p>
+<p>bible_block: 오경</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브</p>
+<p>language: 히브리어</p>
+<p>verse_count: 29</p>
+<p>observed_facts_count: 28</p>
+<p>open_questions_count: 9</p>
+<p>silence_moments: 6</p>
+<p>hebrew_terms: [parah, ravah, morא, chatat, nephesh, basar, dam, tselem, shaphak, berit, ot, qeshet, anan, zakar, brit_olam, kofer, erva, qalal, aved, kena'an, yapht, ohel, shem]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: [diatheke]</p>
+<p>lxx_divergences: ["창9:3 'כָּל־רֶמֶשׂ אֲשֶׁר הוּא־חָי' → 'πάντα τὰ ἑρπετὰ τὰ ζῶντα' (모든 살아있는 기는 것)", "창9:6 'כִּי בְּצֶלֶם אֱלֹהִים עָשָׂה אֶת־הָאָדָם' → 'ὅτι ἐν εἰκόνι θεοῦ ἐποίησα τὸν ἄνθρωπον' (하나님의 형상으로 사람을 만들었음)"]</p>
+<p>ane_refs: ["Hammurabi Code §§ 196-214 — 생명에 대한 생명 보복법 / 창 9:6과 평행", "Mesopotamian rainbow mythology — 무지개를 전쟁 신의 활로 해석 / 창 9:13은 전쟁 종료·평화 상징으로 재해석", "Atrahasis 홍수 이후 인구 제한 규정 / 창 9:1은 정반대로 '생육·번성' 명령"]</p>
+<p>rabbinic_refs: ["Genesis Rabbah 34:13 — 노아 이전에도 육식이 있었는지 논의", "b.Sanhedrin 56a-60a — 노아 7계명(Noahide Laws) 근거", "Midrash Tanchuma Noach 16 — 무지개가 나타나지 않는 세대는 의로운 세대", "Genesis Rabbah 36:7 — 노아의 포도주 취함과 사탄의 역할"]</p>
+<p>literary_devices: [covenant_formula, divine_speech, blessing_repetition, sevenfold_berit, chiasm_blood_life, curse_blessing_contrast, genealogical_closure, rainbow_sign, image_of_god_centrality]</p>
+<p>repeated_words: ["berit(언약, 7회)", "dam(피, 6회)", "nephesh(생명, 4회)", "basar(육체/고기, 6회)", "kol(모든, 18회)", "parah(번성하다, 3회)", "zakar(기억하다, 2회)", "qeshet(무지개, 4회)", "ot(표징, 3회)", "olam(영원, 3회)"]</p>
+<p>cross_refs: ["창 1:26-28 (하나님의 형상·생육하고 번성) ↔ 창 9:1, 9:6", "창 1:29-30 (채소 허락) ↔ 창 9:3 (육식 허락)", "창 2:17 (먹으면 죽으리라) ↔ 창 9:4 (피째 먹지 말라)", "창 3:21 (가죽옷) ↔ 창 9:3 (짐승 고기)", "창 4:10-11 (피가 땅에서 호소) ↔ 창 9:5-6 (피 흘림 금지)", "창 8:21-22 (다시는 저주 않겠다) ↔ 창 9:11-15 (언약)", "출 20:13 (살인 금지)", "레 17:11 (피는 생명)", "신 12:23 (피는 생명)", "사 54:9-10 (노아 언약)", "마 24:37-39 (노아의 때)", "벧전 3:20-21 (노아 방주)", "벧후 2:5 (노아 세대)", "히 11:7 (믿음으로 방주 준비)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-04-27</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>창세기 9장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 창세기 9장입니다. 8장에서 노아가 제단을 쌓고 번제를 드렸지요. 이 장은 하나님이 노아와 그 아들들에게 복을 주시고 언약을 세우시는 자리예요. 낭독합시다.</p>
+
+<p>(본문 낭독 9:1~29, 약 4분)</p>
+
+<p><strong>(침묵 약 50초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>P05 김미영</strong>: 축복의 공기가 느껴졌어요. "생육하고 번성하라"(9:1)는 창 1:28과 똑같은 말씀이 다시 주어져요.</p>
+
+<p><strong>P01 한나래</strong>: 그런데 동시에 무거운 경고도 있어요. "피를 흘리면 그 피가 반드시 찾아진다"(9:5-6). 축복과 경고가 섞여 있어요.</p>
+
+<p><strong>P07 오지혜</strong>: 무지개(<em>qeshet</em>)가 인상적이었어요. "내가 내 무지개를 구름 속에 두었나니"(9:13). 그게 언약의 표징이에요.</p>
+
+<p><strong>P04 최현국</strong>: 이 장은 크게 세 단락으로 보여요. (1) 복과 새 질서(1-7), (2) 언약과 무지개(8-17), (3) 노아의 포도원과 저주·축복(18-29).</p>
+
+<p><strong>P02 이진우</strong>: "언약"(<em>berit</em>) 단어가 7번 반복돼요(9:9, 9:11, 9:12, 9:13, 9:15, 9:16, 9:17). 7이라는 숫자가 또 나와요.</p>
+
+<p><strong>P11 나경아</strong>: 9:6 "하나님이 자기 형상대로 사람을 지으셨음이니라"(<em>ki be-tselem Elohim asah et-ha-adam</em>)가 핵심이에요. 창 1:26-27이 여기서 재등장해요. 사람의 생명이 신성한 이유가 <em>tselem Elohim</em>(하나님의 형상) 때문이라고 명시돼요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 축복과 경고, 언약과 형상의 공기를 관찰로 남깁니다.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>P04 최현국</strong>: 무대가 세 단위로 나뉩니다.</p>
+<ul>
+<li>(1) 방주에서 나온 직후, 하나님이 노아와 아들들을 축복하고 새 질서를 선포 (9:1-7)</li>
+<li>(2) 하나님이 노아와 모든 생물과 언약을 세우심, 무지개 표징 (9:8-17)</li>
+<li>(3) 노아가 포도원을 가꾸고 포도주에 취함, 함이 아버지의 하체를 봄, 저주와 축복 (9:18-29)</li>
+</ul>
+
+<p><strong>P07 오지혜</strong>: 소품이 단락마다 달라요. 1단락: 짐승·새·물고기·피·칼. 2단락: 언약·무지개·구름. 3단락: 포도나무·포도주·장막·하체·옷.</p>
+
+<p><strong>P02 이진우</strong>: 9:2 "땅의 모든 짐승과 공중의 모든 새와 땅에 기는 모든 것과 바다의 모든 물고기가 너희를 두려워하며 너희를 무서워하리니". 이건 창 1:28의 "다스리라"와 비슷하지만 뉘앙스가 달라요. 창 1:28은 <em>radah</em>(다스리다), 9:2는 <em>mora</em>와 <em>chatat</em>(두려움과 무서움)이에요.</p>
+
+<p><strong>P11 나경아</strong>: <em>mora</em>(모라, 두려움)와 <em>chatat</em>(하타트, 무서움)는 공포 어휘예요. 창조 때는 인간이 짐승을 "다스렸다"면, 홍수 후는 짐승이 인간을 "두려워한다". 관계의 질이 바뀌었어요.</p>
+
+<p><strong>P01 한나래</strong>: 9:3 "모든 산 동물은 너희의 먹을 것이 될지라"(<em>kol-remesh asher hu-chai lakhem yihyeh le-oklah</em>). 창 1:29는 "채소"(<em>esev</em>)만 허락하셨는데, 여기선 "모든 산 동물"을 허락하세요.</p>
+
+<p><strong>P05 김미영</strong>: 채식에서 육식으로 전환이에요. 홍수 이후 새 질서예요.</p>
+
+<p><strong>P11 나경아</strong>: 그런데 9:4 "그러나 고기를 그 생명 되는 피째 먹지 말 것이니라"(<em>akh-basar be-naphsho damo lo tokhelu</em>). 육식은 허락하되, 피(<em>dam</em>)는 금지돼요. 피가 생명(<em>nephesh</em>)이기 때문이에요.</p>
+
+<p><strong>P04 최현국</strong>: 9:5-6이 중심 구절이에요. "내가 반드시 너희의 피 곧 너희의 생명의 피를 찾으리니...무릇 사람의 피를 흘리면 사람이 그 피를 흘릴 것이니 이는 하나님이 자기 형상대로 사람을 지으셨음이니라". 피 흘림 금지와 하나님의 형상이 직결돼요.</p>
+
+<p><strong>P07 오지혜</strong>: 9:5는 짐승이 사람을 죽여도, 사람이 사람을 죽여도 다 찾으신다고 해요. "짐승은 물론이요 사람에게서도 찾으리라 각 사람의 형제에게서도".</p>
+
+<p><strong>P02 이진우</strong>: 9:6은 키아즘이에요.</p>
+<ul>
+<li>A: 사람의 피를 흘리면 (*shophekh dam ha-adam*)</li>
+<li>B: 사람이 (*ba-adam*)</li>
+<li>B': 그 피를 흘릴 것이니 (*damo yishaphekh*)</li>
+<li>A': 하나님이 자기 형상대로 사람을 지으셨음이니라 (*ki be-tselem Elohim asah et-ha-adam*)</li>
+</ul>
+
+<p>중심은 "사람"이고, 이유는 "하나님의 형상"이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 키아즘 구조를 그대로 남겨 둡시다.</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p><strong>P01 한나래</strong>: 9:9 "내가 너희와 너희 후손과 언약을 세우리라". 여기서부터 <em>berit</em>(언약) 단어가 7번 반복돼요.</p>
+
+<p><strong>P11 나경아</strong>: 9:10의 언약 대상이 독특해요. "너희와 함께 한 모든 생물 곧 너희와 함께 한 새와 가축과 땅의 모든 생물에게". 사람만이 아니라 모든 생물이 언약 당사자예요.</p>
+
+<p><strong>P05 김미영</strong>: 하나님이 새와 짐승과도 언약을 맺으시는군요.</p>
+
+<p><strong>P04 최현국</strong>: 9:11 "내가 너희와 언약을 세우리니 다시는 모든 생물을 홍수로 멸하지 아니할 것이라 땅을 멸할 홍수가 다시 있지 아니하리라". 이게 언약의 핵심 내용이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 9:12-13 "내가 나와 너희와 및 너희와 함께 하는 모든 생물 사이에 대대로 영원히 세우는 언약의 표징은 이것이라 내가 내 무지개를 구름 속에 두었나니".</p>
+
+<p><strong>P02 이진우</strong>: <em>ot</em>(표징)이 9:12, 9:13, 9:17에 세 번 나와요. 무지개(<em>qeshet</em>)가 그 표징이에요.</p>
+
+<p><strong>P11 나경아</strong>: <em>qeshet</em>(קֶשֶׁת)는 "활"이에요. 전쟁에서 쓰는 활. 그런데 여기선 구름 속에 걸린 활이에요. 고대 근동에서 무지개를 신의 활로 본 신화가 있었는데, 여기선 하나님이 활을 내려놓으시는 평화 상징이에요.</p>
+
+<p><strong>P05 김미영</strong>: 전쟁이 끝났다는 표시군요.</p>
+
+<p><strong>P04 최현국</strong>: 9:14-16 "내가 구름으로 땅을 덮을 때에 무지개가 구름 속에 나타나면...내가 기억하여"(<em>zakar</em>). 8:1의 "기억하사"가 여기서도 나와요. 무지개는 하나님이 언약을 기억하시게 하는 표징이에요.</p>
+
+<p><strong>P01 한나래</strong>: 9:16 "영원한 언약"(<em>berit olam</em>). 이 표현이 중요해요.</p>
+
+<p><strong>성령일 선교사</strong>: 영원한 언약의 무게를 간직합시다.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>P01 한나래</strong>: 시작은 "하나님이 노아와 그 아들들에게 복을 주시며 그들에게 이르시되 생육하고 번성하여 땅에 충만하라"(9:1). 끝은 "노아가 구백오십 세를 살고 죽었더라"(9:29). 복으로 시작해서 죽음으로 끝나요.</p>
+
+<p><strong>P04 최현국</strong>: 9:29는 5장 족보 공식과 같아요. "○○세를 살고 죽었더라". 노아의 생애가 여기서 닫혀요.</p>
+
+<p><strong>P11 나경아</strong>: 시작(9:1)의 "생육하고 번성하라"(<em>peru u-revu</em>)는 창 1:28과 정확히 같은 어구예요. 재창조가 창조 명령을 반복해요.</p>
+
+<p><strong>P05 김미영</strong>: 그런데 끝(9:29)은 노아가 죽는 것으로 마무리돼요. 축복으로 시작했지만 인간의 한계는 남아 있어요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 시작과 끝을 그대로 두지요.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>P07 오지혜</strong>: 등장인물은 하나님, 노아, 셈, 함, 야벳, 가나안(함의 아들).</p>
+
+<p><strong>P05 김미영</strong>: 하나님이 9:1-17에서 계속 말씀하세요. 복 주심(9:1-7), 언약 세우심(9:8-17). 9:1, 9:8, 9:12, 9:17이 모두 "하나님이 이르시되"로 시작해요.</p>
+
+<p><strong>P01 한나래</strong>: 노아는 9:1-17에서는 듣기만 하고, 9:20부터 행동해요. 농사를 시작하고(9:20), 포도주를 마시고 취해서 장막 안에서 벗고 있어요(9:21).</p>
+
+<p><strong>P02 이진우</strong>: 9:22 "가나안의 아버지 함이 그의 아버지의 하체를 보고 밖으로 나가서 그의 두 형제에게 말하매". 함이 본 것이 문제고, 그걸 밖에 말한 게 또 문제예요.</p>
+
+<p><strong>P11 나경아</strong>: <em>erva</em>(에르와, 하체/벌거벗음)는 레 18장에서 반복되는 성적 수치 용어예요. 함이 본 것이 단순 실수가 아니라 아버지의 수치를 드러낸 것으로 해석돼요.</p>
+
+<p><strong>P07 오지혜</strong>: 9:23 셈과 야벳은 "옷을 가져다가 자기들의 어깨에 메고 뒷걸음쳐 들어가서 그들의 아버지의 하체를 덮었다". 얼굴을 돌이켜 아버지의 하체를 보지 않았어요.</p>
+
+<p><strong>P04 최현국</strong>: 그들의 행동이 함과 정반대예요. 함은 "보고 말했다", 셈·야벳은 "얼굴을 돌려 안 보고 덮었다".</p>
+
+<p><strong>P01 한나래</strong>: 9:24 "노아가 술이 깨어 그의 작은 아들이 자기에게 행한 일을 알고". 여기 "작은 아들"(<em>beno ha-qatan</em>)이 누구인지 본문이 애매해요. 9:18에서는 "셈, 함, 야벳" 순서이고, 10:21은 "셈 곧 에벨의 조상"이라 해요.</p>
+
+<p><strong>P11 나경아</strong>: 히브리어 <em>ha-qatan</em>은 "작은·어린" 뜻인데, 형제 순서상 막내는 야벳인 것 같지만, 9:22의 문맥은 함이에요. 본문이 명확하지 않아요.</p>
+
+<p><strong>P05 김미영</strong>: 9:25 노아가 말합니다. "가나안은 저주를 받아 그의 형제의 종들의 종이 되기를 원하노라". 함이 잘못했는데 저주는 함의 아들 가나안에게 내려져요.</p>
+
+<p><strong>P07 오지혜</strong>: 왜 가나안이 저주받는지 본문은 설명하지 않아요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 질문을 그대로 남겨 둡니다.</p>
+
+<p><strong>(침묵 약 35초)</strong> 🌿</p>
+
+<p><strong>P02 이진우</strong>: 9:26-27 노아의 축복이에요.</p>
+<ul>
+<li>9:26 "셈의 하나님 여호와를 찬송하리로다 가나안은 셈의 종이 되고"</li>
+<li>9:27 "하나님이 야벳을 창대하게 하사 셈의 장막에 거하게 하시고 가나안은 그의 종이 되리로다"</li>
+</ul>
+
+<p><strong>P04 최현국</strong>: 셈에게는 "여호와를 찬송"이라는 신앙적 축복, 야벳에게는 "창대하게 하사"라는 확장 축복이에요. 둘 다 가나안이 종 된다는 말이 붙어요.</p>
+
+<p><strong>P11 나경아</strong>: 9:27 "하나님이 야벳을 창대하게 하사"(<em>yapht Elohim le-Yaphet</em>)는 말장난이에요. <em>yapht</em>(넓히다)와 <em>Yaphet</em>(야벳)이 같은 어근이에요.</p>
+
+<p><strong>P01 한나래</strong>: 9:27 "셈의 장막에 거하게 하시고"는 야벳이 셈의 영역에 들어온다는 뜻 같아요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 말장난과 거주 이미지를 간직합시다.</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷</h2>
+
+<p><strong>P04 최현국</strong>: 장면을 나눠보면 이렇습니다.</p>
+
+<p><strong>장면 1 (9:1-7)</strong> — 하나님이 노아와 아들들을 축복하심. "생육하고 번성하라". 짐승이 사람을 두려워함. 육식 허락. 피 금지. 생명 보호 명령. "하나님의 형상".</p>
+
+<p><strong>장면 2 (9:8-17)</strong> — 하나님이 노아 및 모든 생물과 언약을 세우심. 다시는 홍수로 멸하지 않겠다. 무지개를 표징으로 주심. "영원한 언약".</p>
+
+<p><strong>장면 3 (9:18-23)</strong> — 노아가 포도원을 가꿈. 포도주에 취해 장막 안에서 벗음. 함이 아버지의 하체를 보고 밖에 말함. 셈과 야벳이 뒷걸음쳐 들어가 옷으로 덮음.</p>
+
+<p><strong>장면 4 (9:24-29)</strong> — 노아가 술이 깨어 알고 저주와 축복을 선포함. 가나안 저주, 셈 축복, 야벳 축복. 노아의 남은 생애와 죽음.</p>
+
+<p><strong>P07 오지혜</strong>: 장면 1-2는 하나님 중심, 장면 3-4는 노아 가정 중심이에요.</p>
+
+<p><strong>P02 이진우</strong>: 장면 1-2는 우주적 질서, 장면 3-4는 가족 내부 사건이에요. 스케일이 축소돼요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 스케일 변화를 그대로 두지요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·깨달음·정보·탐구</h2>
+
+<p><strong>P01 한나래</strong>: 9:3 육식 허락이 언제부터 실제로 시행됐는지 궁금해요. 노아 이전에는 정말 아무도 고기를 안 먹었나요?</p>
+
+<p><strong>P11 나경아</strong>: Genesis Rabbah 34:13에서 그 질문을 다뤄요. 일부 랍비는 노아 이전에도 실제로는 먹었을 거라 보고, 일부는 본문대로 9:3이 첫 허락이라고 봐요. 본문은 명시하지 않아요.</p>
+
+<p><strong>P07 오지혜</strong>: 9:4 "피째 먹지 말라"는 규정이 레 17:11 "육체의 생명은 피에 있다"와 연결돼요. 왜 피가 생명</p></div>
+        </section>
+
+        <section class="stage" id="s2">
+          <span class="stage__num">단계 2~6</span>
+          <h2 class="stage__title">관찰된 사실 — 단어 빈도 · 좌표 · 동사 · 대조 · 장 경계.</h2>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-009</p>
+<p>book: 창세기</p>
+<p>chapter: 9</p>
+<p>date: 2026-04-27</p>
+<p>---</p>
+
+<h2>창세기 9장 — 관찰 사실 카드</h2>
+
+<h2>1. 무대·배경·소품 (1단계)</h2>
+
+<h3>무대 구성</h3>
+<ul>
+<li>장면 1-2: 방주에서 나온 직후, 하나님이 노아와 아들들에게 새 질서와 언약을 선포하는 자리</li>
+<li>장면 3-4: 노아의 포도원, 노아의 장막 안, 가족 내부 사건</li>
+<li>전체 시공간: 홍수 이후 새 세계, 노아의 생애 950년 중 후반부 (홍수 후 350년)</li>
+</ul>
+
+<h3>주요 소품</h3>
+<ul>
+<li>1단락(9:1-7): 짐승·새·물고기(두려워하는 대상), 피(금지 대상), 칼/무기(생명 흐름의 도구)</li>
+<li>2단락(9:8-17): 언약, 무지개(*qeshet*, 활), 구름</li>
+<li>3단락(9:18-29): 포도나무, 포도주, 장막, 하체(*erva*), 옷(덮개)</li>
+</ul>
+
+<h3>배경 전환</h3>
+<ul>
+<li>창 1:28의 "생육하고 번성하라" 명령이 9:1에서 재등장 (재창조)</li>
+<li>창 1:29 채식 허락 → 9:3 육식 허락 (새 질서)</li>
+<li>창 1:28 "다스리라"(*radah*) → 9:2 "두려워하며"(*mora*, *chatat*) — 지배에서 공포로 관계 변화</li>
+</ul>
+
+<h2>2. 첫 느낌·분위기 (2단계)</h2>
+
+<ul>
+<li>축복의 공기 (9:1 "생육하고 번성하라")</li>
+<li>동시에 무거운 경고 (9:5-6 "피를 흘리면 그 피가 반드시 찾아진다")</li>
+<li>무지개의 평화 이미지 (9:13 "내가 내 무지개를 구름 속에 두었나니")</li>
+<li>후반부(9:18-29) 가정 내 수치와 긴장</li>
+<li>축복과 경고, 우주적 언약과 가족 내 실패가 혼재</li>
+</ul>
+
+<h2>3. 시작과 끝 (3단계)</h2>
+
+<ul>
+<li><strong>시작</strong>(9:1): "하나님이 노아와 그 아들들에게 복을 주시며 그들에게 이르시되 생육하고 번성하여 땅에 충만하라" — 창 1:28과 동일 어구, 재창조 선언</li>
+<li><strong>끝</strong>(9:29): "노아가 구백오십 세를 살고 죽었더라" — 창 5장 계보 공식과 동일, 노아의 생애 마감</li>
+<li>복으로 시작, 죽음으로 끝. 축복 속에서도 인간의 한계 지속.</li>
+</ul>
+
+<h2>4. 등장인물·사물·상황·사상 (4단계)</h2>
+
+<h3>등장인물</h3>
+<ul>
+<li><strong>하나님</strong>: 9:1-17 주도, 복 주심·언약 세우심·무지개 표징. 9:1, 9:8, 9:12, 9:17 "하나님이 이르시되"</li>
+<li><strong>노아</strong>: 9:1-17 듣기만 함, 9:20부터 행동 (농사·포도원·취함), 9:24 술이 깨어 저주·축복 선포</li>
+<li><strong>셈, 함, 야벳</strong>: 9:18 방주에서 나온 세 아들, 9:19 온 땅 사람의 조상</li>
+<li><strong>함</strong>: 9:22 아버지의 하체(*erva*)를 보고 밖에 말함</li>
+<li><strong>셈·야벳</strong>: 9:23 뒷걸음쳐 들어가 옷으로 덮음, 얼굴 돌려 안 봄</li>
+<li><strong>가나안</strong>: 9:25 저주 받음 (함의 아들, 9:18 "가나안의 아버지 함")</li>
+</ul>
+
+<h3>처한 상황</h3>
+<ul>
+<li>홍수 이후 새 세계, 인류의 재출발</li>
+<li>하나님이 새 질서(육식·피 금지·생명 보호)를 선포하시는 자리</li>
+<li>노아 가정 내부에서 수치와 저주·축복이 일어남</li>
+</ul>
+
+<h3>사상 (본문이 보여주는 생각·태도)</h3>
+<ul>
+<li>하나님: 영원한 언약(*berit olam*), 다시는 홍수로 멸하지 않겠다는 신실함, 모든 생물을 언약 대상에 포함</li>
+<li>노아: 9:1-17 침묵·순종, 9:20-21 농사·취함(평가 없음), 9:24-27 저주·축복 선포</li>
+<li>함: 아버지의 수치를 드러냄</li>
+<li>셈·야벡: 아버지의 수치를 가림, 존중</li>
+</ul>
+
+<h2>5. 장면 컷 (5단계)</h2>
+
+<h3>장면 1 (9:1-7): 새 질서 선포</h3>
+<ul>
+<li>하나님이 노아와 아들들을 축복, "생육하고 번성하라"</li>
+<li>모든 짐승이 사람을 두려워함(*mora*, *chatat*)</li>
+<li>육식 허락, 피(*dam*) 금지 (피는 생명 *nephesh*)</li>
+<li>생명 보호 명령: "사람의 피를 흘리면 사람이 그 피를 흘릴 것이니"(9:6a)</li>
+<li>이유: "하나님이 자기 형상(*tselem*)대로 사람을 지으셨음이니라"(9:6b)</li>
+</ul>
+
+<h3>장면 2 (9:8-17): 영원한 언약과 무지개</h3>
+<ul>
+<li>하나님이 노아와 모든 생물(*kol basar*)과 언약(*berit*) 맺으심</li>
+<li>언약 내용: 다시는 홍수로 모든 생물을 멸하지 않겠다(9:11)</li>
+<li>언약 표징(*ot*): 무지개(*qeshet*, 활)를 구름에 두심(9:13)</li>
+<li>무지개를 보실 때마다 하나님이 언약을 기억하심(*zakar*, 9:14-16)</li>
+<li>"영원한 언약"(*berit olam*, 9:16)</li>
+</ul>
+
+<h3>장면 3 (9:18-23): 노아의 취함과 함의 실수</h3>
+<ul>
+<li>노아가 농사 시작, 포도나무를 심음(9:20, *ish ha-adamah*, 땅의 사람)</li>
+<li>포도주에 취해 장막 안에서 벗음(9:21)</li>
+<li>함이 아버지의 하체(*erva*)를 보고 밖에 나가 형제들에게 말함(9:22)</li>
+<li>셈과 야벳이 옷을 어깨에 메고 뒷걸음쳐 들어가 덮음, 얼굴을 돌려 안 봄(9:23)</li>
+</ul>
+
+<h3>장면 4 (9:24-29): 저주와 축복 선포</h3>
+<ul>
+<li>노아가 술이 깨어 "작은 아들"(*beno ha-qatan*)이 한 일을 알게 됨(9:24)</li>
+<li>가나안 저주: "그의 형제의 종들의 종이 되리라"(9:25)</li>
+<li>셈 축복: "셈의 하나님 여호와를 찬송하리로다"(9:26)</li>
+<li>야벳 축복: "하나님이 야벳을 창대하게 하사(*yapht*) 셈의 장막에 거하게 하시고"(9:27, 말장난: *yapht*-*Yaphet*)</li>
+<li>노아의 남은 생애: 홍수 후 350년, 총 950세, 죽음(9:28-29)</li>
+</ul>
+
+<h2>6. 원어 카드</h2>
+
+<h3>히브리어 어휘 (23개)</h3>
+<p>1. <strong>parah</strong>(פָּרָה, 9:1,7) — 번성하다, 많아지다</p>
+<p>2. <strong>ravah</strong>(רָבָה, 9:1,7) — 많아지다, 불어나다</p>
+<p>3. <strong>mora</strong>(מוֹרָא, 9:2) — 두려움, 공포</p>
+<p>4. <strong>chatat</strong>(חַתַּת, 9:2) — 무서움, 공포</p>
+<p>5. <strong>nephesh</strong>(נֶפֶשׁ, 9:4,5,10,12,15,16) — 생명, 목숨, 영혼 (4회)</p>
+<p>6. <strong>basar</strong>(בָּשָׂר, 9:4,11,15,16,17) — 육체, 고기, 살 (6회)</p>
+<p>7. <strong>dam</strong>(דָּם, 9:4,5,6) — 피 (6회, 생명과 동일시)</p>
+<p>8. <strong>tselem</strong>(צֶלֶם, 9:6) — 형상, 이미지 (창 1:26-27 재등장)</p>
+<p>9. <strong>shaphak</strong>(שָׁפַךְ, 9:6) — 흘리다, 쏟다 (피를)</p>
+<p>10. <strong>berit</strong>(בְּרִית, 9:9,11,12,13,15,16,17) — 언약, 계약 (7회 반복, 이 장의 핵심 단어)</p>
+<p>11. <strong>ot</strong>(אוֹת, 9:12,13,17) — 표징, 신호, 증거 (3회)</p>
+<p>12. <strong>qeshet</strong>(קֶשֶׁת, 9:13,14,16) — 무지개, 활 (4회, 원래는 전쟁 무기)</p>
+<p>13. <strong>anan</strong>(עָנָן, 9:13,14,16) — 구름</p>
+<p>14. <strong>zakar</strong>(זָכַר, 9:15,16) — 기억하다 (2회, 창 8:1과 연결)</p>
+<p>15. <strong>berit olam</strong>(בְּרִית עוֹלָם, 9:16) — 영원한 언약</p>
+<p>16. <strong>ish ha-adamah</strong>(אִישׁ הָאֲדָמָה, 9:20) — 땅의 사람 (창 2:5, 3:23 아담 이미지)</p>
+<p>17. <strong>karem</strong>(כֶּרֶם, 9:20) — 포도원</p>
+<p>18. <strong>erva</strong>(עֶרְוָה, 9:22,23) — 하체, 벌거벗음, 수치 (레 18장 성적 수치 용어)</p>
+<p>19. <strong>qalal</strong>(קָלַל, 9:25) — 저주하다, 가볍게 하다</p>
+<p>20. <strong>aved</strong>(עֶבֶד, 9:25,26,27) — 종, 노예 (3회 반복)</p>
+<p>21. <strong>kena'an</strong>(כְּנַעַן, 9:25,26,27) — 가나안 (3회, 저주 대상)</p>
+<p>22. <strong>yapht</strong>(יַפְתְּ, 9:27) — 넓히다, 확장하다 (말장난: <em>yapht</em> ↔ <em>Yaphet</em> 야벳)</p>
+<p>23. <strong>ohel</strong>(אֹהֶל, 9:27) — 장막, 텐트 (셈의 장막)</p>
+<p>24. <strong>shem</strong>(שֵׁם, 9:26) — 셈 (이름 뜻: "이름")</p>
+
+<h3>헬라어 (70인역 참조)</h3>
+<ul>
+<li><strong>diatheke</strong>(διαθήκη) — 언약 (히브리어 *berit*의 70인역 번역, 신약 계승)</li>
+</ul>
+
+<h2>7. 문학 구조 (6단계)</h2>
+
+<h3>키아즘 (9:6)</h3>
+<p>```</p>
+<p>A: 사람의 피를 흘리면 (shophekh dam ha-adam)</p>
+<p>  B: 사람이 (ba-adam)</p>
+<p>  B': 그 피를 흘릴 것이니 (damo yishaphekh)</p>
+<p>A': 하나님이 자기 형상대로 사람을 지으셨음이니라 (ki be-tselem Elohim asah et-ha-adam)</p>
+<p>```</p>
+<p>중심: "사람"(<em>adam</em>), 이유: "하나님의 형상"(<em>tselem Elohim</em>)</p>
+
+<h3>반복 구조</h3>
+<ul>
+<li>"berit"(언약) 7회 반복 (9:9, 9:11, 9:12, 9:13, 9:15, 9:16, 9:17) — 7은 완전수, 언약의 완결성</li>
+<li>"kol"(모든) 18회 — 보편성·전체성 강조</li>
+<li>"dam"(피) 6회 — 생명과 피의 신성함</li>
+<li>축복 공식 반복: 9:1 "생육하고 번성하라", 9:7 재반복</li>
+</ul>
+
+<h3>대조 구조</h3>
+<ul>
+<li>창 1:28 지배(*radah*) vs 9:2 공포(*mora*, *chatat*)</li>
+<li>창 1:29 채식 vs 9:3 육식</li>
+<li>함(보고 말함) vs 셈·야벳(눈 돌려 덮음)</li>
+<li>가나안(저주) vs 셈·야벳(축복)</li>
+</ul>
+
+<h3>포괄 구조 (Inclusio)</h3>
+<ul>
+<li>9:1 "생육하고 번성하라" ↔ 9:7 "생육하고 번성하라" (1-7절 단락 프레임)</li>
+<li>9:1 복 주심 ↔ 9:29 죽음 (장 전체 프레임: 축복과 죽음)</li>
+</ul>
+
+<h3>세분화 4단락</h3>
+<p>1. 9:1-7 — 새 질서 선포 (축복·두려움·육식·피 금지·하나님의 형상)</p>
+<p>2. 9:8-17 — 언약과 무지개 (모든 생물·영원한 언약·표징)</p>
+<p>3. 9:18-23 — 노아의 취함과 함의 실수 (가정 내부 사건)</p>
+<p>4. 9:24-29 — 저주와 축복 선포 (가나안·셈·야벳·노아의 죽음)</p>
+
+<h2>8. ANE(고대 근동) 배경</h2>
+
+<h3>함무라비 법전 § 196-214 (BC 1750년경)</h3>
+<ul>
+<li>"눈에는 눈, 이에는 이" 보복법 (lex talionis)</li>
+<li>창 9:6 "사람의 피를 흘리면 사람이 그 피를 흘릴 것이니"와 평행</li>
+<li>차이: 함무라비는 계급별 차등, 창세기는 보편적 (이유: *tselem Elohim*)</li>
+</ul>
+
+<h3>메소포타미아 무지개 신화</h3>
+<ul>
+<li>무지개를 전쟁 신(Marduk, Ninurta)의 활로 해석</li>
+<li>창 9:13은 그 이미지를 전복 — 하나님이 활(*qeshet*)을 내려놓으심, 전쟁 종료·평화 상징</li>
+<li>"내 무지개"(*qashti*, 9:13) — 하나님의 소유, 인간에게 위협이 아님</li>
+</ul>
+
+<h3>아트라하시스 서사시 (홍수 후 인구 제한)</h3>
+<ul>
+<li>홍수 이후 신들이 인구 증가를 제한하려 했음 (불임·질병 도입)</li>
+<li>창 9:1은 정반대 — "생육하고 번성하라" 명령 재확인, 인류 번성 축복</li>
+</ul>
+
+<h2>9. 교차 참조 노드</h2>
+
+<h3>창세기 내부</h3>
+<ul>
+<li>창 1:26-28 (하나님의 형상, 생육하고 번성) ↔ 9:1, 9:6 (재창조, 형상 근거)</li>
+<li>창 1:29-30 (채소 허락) ↔ 9:3 (육식 허락)</li>
+<li>창 2:17 (먹으면 죽으리라) ↔ 9:4 (피째 먹지 말라)</li>
+<li>창 3:21 (가죽옷) ↔ 9:3 (짐승 고기, 동물 사용 확대)</li>
+<li>창 4:10-11 (아벨의 피가 땅에서 호소) ↔ 9:5-6 (피 흘림 금지)</li>
+<li>창 8:1 (기억하사) ↔ 9:15-16 (언약을 기억하심)</li>
+<li>창 8:21-22 (다시는 저주 않겠다) ↔ 9:11-15 (홍수 금지 언약)</li>
+</ul>
+
+<h3>율법서</h3>
+<ul>
+<li>레 17:11 "육체의 생명은 피에 있음이라" ↔ 9:4 (피는 생명)</li>
+<li>신 12:23 "피는 그 생명인즉" ↔ 9:4</li>
+<li>출 20:13 "살인하지 말라" ↔ 9:6 (생명 보호)</li>
+</ul>
+
+<h3>선지서</h3>
+<ul>
+<li>사 54:9-10 "이는 노아의 홍수에 비하리라...내가 다시는 땅을 멸하지 않으리라" ↔ 9:11 (노아 언약 재확인)</li>
+</ul>
+
+<h3>신약</h3>
+<ul>
+<li>마 24:37-39 "노아의 때와 같이" ↔ 9장 (종말론적 경고)</li>
+<li>행 15:20, 15:29 "피와 목매어 죽인 것" 금지 ↔ 9:4 (초대교회 적용)</li>
+<li>벧전 3:20-21 "노아의 방주에서...물로 말미암아 구원을 얻었으니" ↔ 9장 (세례 예표)</li>
+<li>벧후 2:5 "옛 세상을 용서하지 아니하시고" ↔ 9:11 (심판과 언약)</li>
+<li>히 11:7 "믿음으로 노아는...방주를 준비하여" ↔ 9장 (믿음의 열전)</li>
+</ul>
+
+<h2>10. 동영상 요약 (7단계)</h2>
+
+<p><strong>3분 동영상 흐름</strong></p>
+
+<p>하나님이 노아와 세 아들을 축복하신다. "생육하고 번성하라." 모든 짐승이 사람을 두려워하게 된다. 하나님이 모든 산 동물을 먹을 것으로 주신다. 그러나 피째 먹지 말라 경고하신다. 피는 생명이기 때문이다. 사람의 피를 흘리면 하나님이 반드시 찾으실 것이다. "무릇 사람의 피를 흘리면 사람이 그 피를 흘릴 것이니 이는 하나님이 자기 형상대로 사람을 지으셨음이니라."</p>
+
+<p>하나님이 노아와 모든 생물에게 말씀하신다. "내가 너희와 언약을 세우리라. 다시는 홍수로 모든 생물을 멸하지 않겠다." 언약의 표징을 주신다. "내가 내 무지개를 구름 속에 두었나니." 구름으로 땅을 덮을 때 무지개가 나타나면, 하나님이 언약을 기억하실 것이다. 이것은 "영원한 언약"이다.</p>
+
+<p>노아가 포도원을 가꾼다. 포도주를 마시고 취해 장막 안에서 벗고 있다. 함이 아버지의 하체를 보고 밖에 나가 형제들에게 말한다. 셈과 야벳이 옷을 어깨에 메고 뒷걸음쳐 들어가 아버지의 하체를 덮는다. 얼굴을 돌려 아버지의 하체를 보지 않는다.</p>
+
+<p>노아가 술이 깨어 작은 아들이 한 일을 알게 된다. 노아가 말한다. "가나안은 저주를 받아 그의 형제의 종들의 종이 되리라. 셈의 하나님 여호와를 찬송하리로다. 하나님이 야벳을 창대하게 하사 셈의 장막에 거하게 하시고." 노아는 홍수 후 350년을 더 살았다. 950세에 죽었다.</p>
+
+<h2>11. 초벌 제목·부제 (8단계)</h2>
+
+<p>참가자 6인 제안 전부 보존:</p>
+
+<p>1. <strong>P02 이진우</strong>: "무지개 언약" (9:8-17 중심)</p>
+<p>2. <strong>P04 최현국</strong>: "노아 언약과 새 질서" (1-7절 새 질서 + 8-17절 언약)</p>
+<p>3. <strong>P07 오지혜</strong>: "형상과 무지개" (두 핵심 이미지)</p>
+<p>4. <strong>P11 나경아</strong>: "영원한 언약" (<em>berit olam</em>, 9:16)</p>
+<p>5. <strong>P01 한나래</strong>: "축복과 저주 사이" (전반 축복, 후반 저주)</p>
+<p>6. <strong>P05 김미영</strong>: "하나님의 형상과 언약" (9:6과 9:9-17, 두 기둥)</p>
+
+<h2>12. 품질 체크 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 — 히브리어 23개 + 헬라어 1개</li>
+<li>[x] 역사·문화·지리·문학 사실 최소 1개 — ANE 3개 (함무라비·메소포타미아 무지개·아트라하시스), 키아즘 구조, 반복 구조</li>
+<li>[x] 미해결 질문 1개 이상 — open_questions.md 참조</li>
+<li>[x] 진행자 "가르치기" 0건 — 질문 중심·접어두기 패턴 유지</li>
+<li>[x] 상투어 반복 없음 — "기록해 두지요" 블랙리스트 사용 0회, 대체 표현 "그대로 남깁니다/두지요/간직합시다" 사용</li>
+<li>[x] 묵상 단계 어휘 혼입 없음 — 해석·적용·교훈 전부 open_questions로 이월</li>
+</ul>
+
+<h2>13. 9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 — 무대·배경·소품 (3단락 구분, 소품 목록, ANE 배경)</li>
+<li>[x] 2단계 — 첫 느낌·분위기 (축복과 경고 혼재, 무지개 평화 이미지)</li>
+<li>[x] 3단계 — 시작·끝 (9:1 축복 ↔ 9:29 죽음)</li>
+<li>[x] 4단계 — 인물·사물·상황·사상 (하나님·노아·세 아들·가나안, 각자의 사상)</li>
+<li>[x] 5단계 — 장면 컷 (4컷: 새 질서·언약·취함·저주축복)</li>
+<li>[x] 6단계 — 의문·발견·정보 (원어 23+1, ANE 3, 발견 7건)</li>
+<li>[x] 7단계 — 동영상 흐름 (3분 연속 재생 가능)</li>
+<li>[x] 8단계 — 초벌 제목·부제 (6인 제안 전부 보존)</li>
+<li>[x] 9단계 — 기도·내면 떠오름 (6인 각자 1~3문장 기도, 침묵)</li>
+</ul>
+
+<h2>14. 드리프트 관찰</h2>
+
+<ul>
+<li>진행자 "가르치기" 발화: 0건</li>
+<li>진행자 상투어: "기록해 두지요" 0회 (블랙리스트 준수), 대체 표현 "그대로 남깁니다/두지요/간직합시다" 6회 (적절)</li>
+<li>참가자 해석 이탈: P02 이진우가 9:25 "가나안 저주" 해석 언급 → 진행자가 "본문이 이유를 말하지 않음"으로 접어둠 (방어 성공)</li>
+<li>묵상 단계 어휘: "의미"·"교훈"·"적용" 0회</li>
+<li>드리프트 플래그: <strong>false</strong></li>
+</ul>
+
+<p>---</p>
+
+<p><strong>종합 판정</strong>: 창세기 9장 관찰 시뮬 9단계 규격 100% 준수. 품질 체크 6/6 통과. 드리프트 없음. 완료.</p></div>
+        </section>
+
+        <section class="stage" id="s8">
+          <span class="stage__num">단계 7~9</span>
+          <h2 class="stage__title">미해결 질문과 관찰자의 자리.</h2>
+          <p>본문이 답하지 않는 자리는 답하지 않은 채 둡니다.</p>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-009</p>
+<p>book: 창세기</p>
+<p>chapter: 9</p>
+<p>date: 2026-04-27</p>
+<p>---</p>
+
+<h2>창세기 9장 — 미해결 질문 (묵상·사귐 이월)</h2>
+
+<h2>Q1. 육식 허락 시점과 실제 이행</h2>
+
+<p><strong>본문 증거</strong>: 9:3 "모든 산 동물은 너희의 먹을 것이 될지라 채소 같이 내가 이것을 다 너희에게 주노라"</p>
+
+<p><strong>질문</strong>: 창 1:29는 채소만 허락했고, 9:3이 육식 허락이라면, 노아 이전 인류는 정말 아무도 고기를 먹지 않았는가? 가인과 아벨이 제물로 드린 양(창 4:4)은 어떻게 존재했는가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 9:3 이전의 실제 식생활, 가축 사육의 목적, 홍수 이전 식단의 실체</p>
+
+<p><strong>관련 자료</strong>: Genesis Rabbah 34:13 — 랍비들도 이 질문을 두고 논쟁함. 일부는 노아 이전에도 실제로는 먹었을 것이라 보고, 일부는 본문대로 9:3이 첫 허락이라고 봄.</p>
+
+<p><strong>묵상·사귐 이월</strong>: 하나님이 식단을 바꾸신 이유, 홍수 전후 세계의 질적 차이</p>
+
+<p>---</p>
+
+<h2>Q2. 피는 왜 생명인가</h2>
+
+<p><strong>본문 증거</strong>: 9:4 "그러나 고기를 그 생명 되는 피째 먹지 말 것이니라"</p>
+
+<p><strong>질문</strong>: 본문은 피(<em>dam</em>)가 생명(<em>nephesh</em>)이라는 것을 전제로 금지한다. 왜 피가 생명인가? 고대 이스라엘의 생명 이해는 무엇인가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 피=생명의 생리학적·신학적 근거, 피의 신성함의 기원</p>
+
+<p><strong>관련 본문</strong>: 레 17:11 "육체의 생명은 피에 있음이라 내가 이 피를 너희에게 주어 제단에 뿌려 너희의 생명을 위하여 속죄하게 하였나니 생명이 피에 있으므로 피가 죄를 속하느니라" — 속죄 신학과 연결되지만, 왜 피=생명인지는 여전히 전제</p>
+
+<p><strong>묵상·사귐 이월</strong>: 예수 그리스도의 피, 레위기 제사 체계와의 연결</p>
+
+<p>---</p>
+
+<h2>Q3. 하나님은 왜 짐승과도 언약을 맺으시는가</h2>
+
+<p><strong>본문 증거</strong>: 9:9-10 "내가 너희와 너희 후손과 언약을 세우리라 너희와 함께 한 모든 생물 곧 너희와 함께 한 새와 가축과 땅의 모든 생물에게"</p>
+
+<p><strong>질문</strong>: 언약 대상에 사람만이 아니라 새, 가축, 땅의 모든 생물이 포함된다. 짐승은 언약을 이해할 수 없는데, 왜 하나님은 그들과도 언약을 맺으시는가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 동물이 언약에서 차지하는 지위, 피조세계 전체를 언약 안에 두는 신학적 의미</p>
+
+<p><strong>묵상·사귐 이월</strong>: 롬 8:19-22 피조물의 탄식, 창조 회복, 생태신학</p>
+
+<p>---</p>
+
+<h2>Q4. 무지개는 누구를 위한 표징인가</h2>
+
+<p><strong>본문 증거</strong>: 9:14-16 "내가 구름으로 땅을 덮을 때에 무지개가 구름 속에 나타나면 내가 나와 너희와 및 모든 혈기 있는 생물 사이의 내 언약을 기억하리니...내가 보고 나와 모든 생물 사이의 영원한 언약을 기억하리라"</p>
+
+<p><strong>질문</strong>: 무지개는 "내가 보고"(<em>zakar</em>, 기억하리라)라고 되어 있다. 하나님이 기억하시려고 무지개를 두신 것인가, 아니면 사람이 보고 언약을 기억하도록 두신 것인가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 무지개의 1차 대상(하나님 자신 vs 인간), 하나님이 "잊으실" 가능성이 있는가</p>
+
+<p><strong>관련 자료</strong>: Midrash Tanchuma Noach 16 — 무지개가 나타나지 않는 세대는 의로운 세대 (하나님이 굳이 기억 표징이 필요 없을 정도)</p>
+
+<p><strong>묵상·사귐 이월</strong>: 하나님의 기억과 신실함, 성례전의 표징 신학</p>
+
+<p>---</p>
+
+<h2>Q5. 노아는 왜 포도주에 취했는가</h2>
+
+<p><strong>본문 증거</strong>: 9:20-21 "노아가 농사를 시작하여 포도나무를 심었더니 포도주를 마시고 취하여 그 장막 안에서 벗은지라"</p>
+
+<p><strong>질문</strong>: 본문은 노아의 취함을 사실로만 기록하고, 도덕적 평가나 이유를 제시하지 않는다. 왜 의인 노아가 취했는가? 이것은 실수인가, 아니면 포도주의 효과를 몰랐기 때문인가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 노아의 의도, 포도주 지식의 유무, 이 사건에 대한 신학적 평가</p>
+
+<p><strong>관련 자료</strong>: Genesis Rabbah 36:7 — 일부 미드라시는 사탄이 노아에게 포도나무를 심도록 유혹했다고 추가하지만, 본문엔 없음</p>
+
+<p><strong>묵상·사귐 이월</strong>: 의인의 연약함, 홍수 후 새 세계의 위험 요소</p>
+
+<p>---</p>
+
+<h2>Q6. 함이 "본" 것은 정확히 무엇인가</h2>
+
+<p><strong>본문 증거</strong>: 9:22 "가나안의 아버지 함이 그의 아버지의 하체(<em>erva</em>)를 보고 밖으로 나가서 그의 두 형제에게 말하매"</p>
+
+<p><strong>질문</strong>: 함이 "본" 것이 단순히 눈으로 본 것인가, 아니면 더 심각한 행위(성적 수치, 주술적 행위 등)를 암시하는가? <em>erva</em>(하체)는 레 18장에서 성적 금기를 지칭하는데, 이 본문에서도 그런 의미인가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 함의 구체적 행위, "보고 말함"이 왜 그토록 심각한 죄인지</p>
+
+<p><strong>묵상·사귐 이월</strong>: 부모 공경, 수치를 덮는 것과 드러내는 것의 신학</p>
+
+<p>---</p>
+
+<h2>Q7. 왜 함이 아니라 가나안이 저주받는가</h2>
+
+<p><strong>본문 증거</strong>: 9:24-25 "노아가 술이 깨어 그의 작은 아들이 자기에게 행한 일을 알고 이에 이르되 가나안은 저주를 받아 그의 형제의 종들의 종이 되기를 원하노라"</p>
+
+<p><strong>질문</strong>: 9:22에서 잘못한 사람은 함인데, 9:25에서 저주는 함의 아들 가나안에게 내려진다. 왜 가나안이 저주받는가? "작은 아들"(<em>beno ha-qatan</em>)은 함인가 가나안인가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 가나안이 저주받는 이유, 노아가 함을 직접 저주하지 않은 이유, <em>beno ha-qatan</em>의 정확한 지시 대상</p>
+
+<p><strong>역사 배경</strong>: 이스라엘이 가나안을 정복하는 역사적 사건(여호수아)과 연결된다는 해석이 있지만, 본문 자체는 그 연결을 명시하지 않음</p>
+
+<p><strong>묵상·사귐 이월</strong>: 죄의 대물림, 집단 책임, 언약 공동체의 운명</p>
+
+<p>---</p>
+
+<h2>Q8. "셈의 장막에 거하게 하시고"는 무엇을 의미하는가</h2>
+
+<p><strong>본문 증거</strong>: 9:27 "하나님이 야벳을 창대하게 하사 셈의 장막에 거하게 하시고 가나안은 그의 종이 되리로다"</p>
+
+<p><strong>질문</strong>: 야벳이 "셈의 장막"에 거한다는 것은 지리적 거주인가, 신앙적 편입인가, 아니면 정치적 종속인가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: "장막"의 의미(물리적 공간 vs 신앙 공동체), 야벳과 셈의 미래 관계</p>
+
+<p><strong>신약 연결 가능성</strong>: 이방인(야벳 후손)이 유대인(셈 후손)의 신앙 공동체로 들어오는 것(롬 11:17-24 접붙임)으로 읽을 수 있으나, 본문 자체는 그것을 명시하지 않음</p>
+
+<p><strong>묵상·사귐 이월</strong>: 이방인의 구원, 아브라함 언약과의 연결, 교회론</p>
+
+<p>---</p>
+
+<h2>Q9. 노아의 생애 950년의 의미</h2>
+
+<p><strong>본문 증거</strong>: 9:28-29 "홍수 후에 노아가 삼백오십 년을 살았고 그의 나이가 구백오십 세에 죽었더라"</p>
+
+<p><strong>질문</strong>: 창 5장 족보에서 아담은 930세, 므두셀라는 969세를 살았다. 노아는 950세. 홍수 후 수명이 급격히 줄어들기 시작한다(11:10-26, 셈 600세 → 아르박삿 438세 → ... → 아브라함 175세). 홍수가 인간 수명을 바꾸었는가?</p>
+
+<p><strong>본문이 답하지 않는 것</strong>: 수명 단축의 원인, 950년의 신학적 의미</p>
+
+<p><strong>묵상·사귐 이월</strong>: 창 6:3 "그의 날은 백이십 년이 되리라"와의 관계, 인간의 유한성, 죽음의 신학</p>
+
+<p>---</p>
+
+<h2>종합 메모</h2>
+
+<p>창세기 9장에서 본문이 명시적으로 답하지 않는 질문 9개를 보존했다. 모두 다음 단계(묵상·사귐)에서 다룰 주제들이다.</p>
+
+<p><strong>관찰 단계에서 우리가 한 일</strong>:</p>
+<ul>
+<li>본문이 말하는 사실 수집 (원어·구조·ANE 배경)</li>
+<li>본문이 전제하는 것 확인 (피=생명, 형상=생명 가치 근거)</li>
+<li>본문이 말하지 않는 것 표시 (이 9개 질문)</li>
+</ul>
+
+<p><strong>관찰 단계에서 우리가 하지 않은 일</strong>:</p>
+<ul>
+<li>이 질문들에 대한 답 제시 (그건 해석)</li>
+<li>신학적 의미·적용 (그건 묵상·사귐)</li>
+<li>현대적 적용 (그건 사귐 단계 27-30)</li>
+</ul>
+
+<p>이 질문들은 묵상 단계(10-26)와 사귐 단계(27-30)로 이월된다.</p></div>
+        </section>
+        
+    
+    <div class="next-row">
+      <a href="/magazine/GEN/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">창세기 50장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/GEN/10/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">창세기 10장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 자리를 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 자리를 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 자리로 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/GEN/9/',
+      title: '창세기 9장',
+      excerpt: '언약의 자리. 같은 명령이 두 번 놓인다.'
+    }));
+  } catch(e) {}
+</script>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div><div class="foot__brand">네다바웨이 Nedabahway</div><p>강사 김창환 · 제주<br>한 사람의 일을 다시 디자인합니다.</p></div>
+    <div class="foot__col"><h4>Observatory</h4><a href="/magazine.html">관찰 Atlas 홈</a><a href="/magazine/GEN/">창세기 권 차례</a><a href="/magazine.html#support">후원으로 받치기</a></div>
+    <div class="foot__col"><h4>둘러보기</h4><a href="/blog/perspective/">관점 노트</a><a href="/about.html">소개</a><a href="/programs.html">강의</a></div>
+    <div class="foot__col"><h4>연락</h4><a href="/contact.html">강의 의뢰</a><a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></div>
+  </div>
+  <div class="foot__copy"><span>© 2026 Nedabahway · 김창환</span><span>nedabah.org</span></div>
+</footer>
+
+</body>
+</html>

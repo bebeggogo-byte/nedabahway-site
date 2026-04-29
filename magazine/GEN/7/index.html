@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>창세기 7장 — Observatory | 네다바웨이</title>
+<meta name="description" content="창세기 7장을 9단계로 같이 관찰합니다. 들어가는 자리. 같은 동사가 일곱 번 놓인다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/GEN/7/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; counter-reset: step; }
+  .toc-side li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; }
+  .toc-side li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; }
+  .toc-side a { display: block; color: inherit; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo">네다바웨이</a>
+    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
+    <div class="nav__links">
+      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
+      <a href="/about.html" class="nav__link">소개</a>
+      <a href="/programs.html" class="nav__link">강의</a>
+      <a href="/ai.html" class="nav__link">AI 작업실</a>
+      <a href="/magazine.html" class="nav__link nav__link--active">관찰 Atlas</a>
+      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol>
+      <li><a href="#s1">본문 그대로 읽기</a></li>
+      <li><a href="#s2">관찰된 사실</a></li>
+      <li><a href="#s8">미해결 질문 · 후기</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/GEN/">창세기</a> · 7장</div>
+      <h1>창세기 7장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">GEN-007 · 오경 · 히브리어</div>
+      <p class="essence">들어가는 자리. 같은 동사가 일곱 번 놓인다.</p>
+    </header>
+    
+        <section class="stage stage--raw" id="s1">
+          <span class="stage__num">단계 1</span>
+          <h2 class="stage__title">본문 그대로 읽기.</h2>
+          <p>본문은 본문이 자기 시간 안에서 스스로 풀리도록 둡니다. 옮긴 말을 옮긴 그대로 받아 적습니다.</p>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-007</p>
+<p>book: 창세기</p>
+<p>book_en: Genesis</p>
+<p>chapter: 7</p>
+<p>bible_block: 오경</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브</p>
+<p>language: 히브리어</p>
+<p>verse_count: 24</p>
+<p>observed_facts_count: 22</p>
+<p>open_questions_count: 7</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [tahor, tame, shiva, sheva, maabbul, maayanot_tehom_rabbah, arubot_ha-shamayim, nishmat_ruach_hayyim, machah, sagar, gavar, kisah, harim_ha-gevohim]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: [kataklysmos]</p>
+<p>lxx_divergences: ["창7:11 'maayanot tehom rabbah' → 'αἱ πηγαὶ τῆς ἀβύσσου' (깊음의 샘들)", "창7:16 'wa-yisgor YHWH ba'ado' → 'ἔκλεισεν κύριος ὁ θεὸς ἔξωθεν αὐτοῦ' (밖에서 닫으심)", "창7:20 '15 cubits upward' — MT와 LXX 동일"]</p>
+<p>ane_refs: ["Gilgamesh XI 128-131 — 배가 물 위에 떠오르는 장면 / 창 7:17 평행", "Atrahasis III — 7일 7밤의 폭풍 / 창 7:4·12의 40일 vs 이 차이", "Sumerian Ziusudra — 신이 배를 닫아 주는 모티프 / 창 7:16 'YHWH가 그를 닫으셨다'와 평행 관찰"]</p>
+<p>rabbinic_refs: ["Genesis Rabbah 32:8 — 정결·부정 짐승 구분의 시점 논의 (시내산 이전 규정)", "b.Sanhedrin 108b — 방주에 들어간 짐승 수 해석", "Midrash Tanchuma Noach 5 — '여호와께서 닫으시니라'의 의미"]</p>
+<p>literary_devices: [chiastic_structure_7-8_flood_narrative, sevenfold_repetition, reversal_of_creation, narrative_symmetry, dated_precision, days_and_waters_pattern]</p>
+<p>repeated_words: ["mabbul(홍수, 6회)", "mayim(물, 11회)", "tevah(방주, 10회)", "kol basar(모든 육체, 6회)", "bo(들어가다, 8회)", "shiva(7, 4회)", "arbaim(40, 2회)", "yom(날, 14회)"]</p>
+<p>cross_refs: ["창 1:2 (tehom, 깊음) ↔ 창 7:11 (tehom rabbah, 큰 깊음의 샘)", "창 1:6-7 (궁창 위·아래 물) ↔ 창 7:11 (위의 물·깊음의 물 동시 터짐)", "창 2:7 (생기 nishmat hayyim) ↔ 창 7:22 (생명의 기운 nishmat ruach hayyim)", "창 8-9 (홍수 이후)", "출 20:10 (7일 구조)", "이사야 24장 (종말적 홍수 심상)", "마태 24:38-39 (노아 때와 같이)", "누가 17:27 (같음)", "베드로전서 3:20 (8영혼)", "베드로후서 2:5, 3:5-6 (노아 세대 심판·물 심판)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-04-21</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>창세기 7장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 창세기 7장. 방주가 닫히고 물이 덮는 장이지요. 6장에서 "내가 너와 언약을 세우리라" 그 약속 뒤의 첫 날이에요. 낭독하고 머뭅시다.</p>
+
+<p>(본문 낭독 7:1~24, 약 3분)</p>
+
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>P05 김미영</strong>: 무거운 물소리가 들리는 것 같았어요. 물이 위아래에서 동시에 터져요.</p>
+
+<p><strong>P01 한나래</strong>: 날짜가 아주 구체적이에요. "노아 육백 세 되던 해 둘째 달 곧 그 달 열이렛날"(7:11). 이런 정확한 날짜가 창세기에 여기가 처음이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 그리고 "여호와께서 그를 닫으시니라"(7:16)가 마음에 남았어요. 노아가 닫은 게 아니라 하나님이 닫으셔요.</p>
+
+<p><strong>P04 최현국</strong>: 구조가 정교해요. 들어감·비·물 상승·덮음·죽음·남음. 각 단계가 어떤 숫자와 붙어 있어요.</p>
+
+<p><strong>P02 이진우</strong>: "7"과 "40"이 반복돼요. 7이 네 번, 40이 두 번.</p>
+
+<p><strong>P11 나경아</strong>: 저는 1장의 어휘가 여기서 뒤집히는 걸 들었어요. <em>tehom</em>(깊음)이 1:2에 있었는데, 7:11에 <em>tehom rabbah</em>(큰 깊음)가 터지고, 1:6-7의 궁창 위 물과 아래 물이 다시 만납니다. 창조의 나눔이 풀리는 자리 같아요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 "창조 역행"의 공기를 오늘 관찰에 남깁시다.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>P04 최현국</strong>: 무대가 큰 단위로 이동합니다. (1) 하나님의 지시(1-5), (2) 노아와 짐승이 방주로 들어감(6-16), (3) 물의 상승과 덮음(17-20), (4) 생명의 소멸과 남음(21-24).</p>
+
+<p><strong>P07 오지혜</strong>: 소품이 창조 기사와 대칭이에요. 물·땅·산·하늘의 창·깊음의 샘·비·짐승·새·기는 것·사람·코로 숨을 쉬는 것. 1장에서 나누어졌던 것이 하나로 덮이는 장면이에요.</p>
+
+<p><strong>P02 이진우</strong>: 정결한 짐승(<em>tahor</em>)과 부정한 짐승(<em>tame</em>)의 구분이 7:2에 나와요. 창세기 여기가 첫 등장입니다. 시내산 이전에 이 구분이 이미 전제돼 있어요.</p>
+
+<p><strong>P11 나경아</strong>: 그 구분이 본문에서 <strong>어느 시점부터 적용됐는지는 말하지 않고</strong> 이미 있는 것처럼 전제됩니다.</p>
+
+<p><strong>P05 김미영</strong>: 정결한 짐승은 일곱 쌍, 부정한 짐승은 한 쌍. 새도 각 일곱 쌍.</p>
+
+<p><strong>P01 한나래</strong>: 7:11의 "큰 깊음의 샘들이 터지며 하늘의 창문들이 열려"는 표현이 사실상 창세기에서 여기만의 이미지예요.</p>
+
+<p><strong>P11 나경아</strong>: <em>arubot ha-shamayim</em>(하늘의 창)은 이후 말라기 3:10, 왕하 7:2에도 쓰여요. <em>maayanot tehom rabbah</em>(큰 깊음의 샘)는 이사야·잠언 맥락에서 재등장.</p>
+
+<p><strong>성령일 선교사</strong>: 그 이미지의 큰 단위를 그대로 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>P04 최현국</strong>: 시작은 "여호와께서 노아에게 이르시되 너와 네 온 집은 방주로 들어가라"(7:1), 끝은 "물이 백 오십 일을 땅에 넘쳤더라"(7:24).</p>
+
+<p><strong>P02 이진우</strong>: 시작은 안으로 들어가라는 초청, 끝은 물의 지속 시간이에요. 들어감(<em>bo</em>)과 덮임(<em>gavar/kisah</em>)의 대축.</p>
+
+<p><strong>P11 나경아</strong>: 7:1의 "너는 의로움을 보았으니"(<em>ra'iti tsaddiq lefanay</em>)가 6:9의 "의인이요"(<em>ish tsaddiq</em>)를 이어받아요.</p>
+
+<p><strong>성령일 선교사</strong>: 6장에서 인정된 의가 7장에서 초청의 근거가 되는 연결이 어휘로 드러나네요.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>P04 최현국</strong>: 인물이 간결해요. 여호와, 노아, 그의 아내, 세 아들, 세 자부 — 모두 여덟 영혼. 그리고 짐승 각 종류.</p>
+
+<p><strong>P11 나경아</strong>: "8영혼"이라는 숫자는 벧전 3:20에서 따로 강조돼요.</p>
+
+<p><strong>P07 오지혜</strong>: 대화가 거의 없어요. 7:1-4만 하나님이 직접 말씀하시고, 나머지 장은 서술자 시점.</p>
+
+<p><strong>P02 이진우</strong>: 상황 — 시간 흐름이 촘촘해요. "칠 일이 지난 후"(7:10), "둘째 달 열이렛날"(7:11), "사십 주야"(7:12), "바로 그 날"(7:13), "일곱 쌍"(7:2), "백오십 일"(7:24).</p>
+
+<p><strong>P04 최현국</strong>: 숫자의 구체성이 이전 장들과 대조돼요. 창 1장엔 날수 6·7, 창 5장엔 장수명, 창 7장엔 정확한 날짜·기간.</p>
+
+<p><strong>P05 김미영</strong>: 7:16에 "여호와께서 그를 닫으시니라"(<em>wa-yisgor YHWH ba'ado</em>)가 나와요. "그를 위하여" 또는 "그의 뒤에서" 닫으셨다는 어감. 노아 스스로 닫은 게 아니에요.</p>
+
+<p><strong>P11 나경아</strong>: <em>sagar</em>(닫다) 동사의 주어가 YHWH인 것이 주목됩니다. 방주의 안전이 인간의 공학이 아닌 하나님의 닫으심에 달린 셈.</p>
+
+<p><strong>P01 한나래</strong>: 사상으로 보면 — 6장이 "언약·은혜·준행"이었다면 7장은 "들어감·닫으심·덮임".</p>
+
+<p><strong>성령일 선교사</strong>: 표면까지만.</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>P02 이진우</strong>: 다섯 컷이 자연스러울 것 같아요.</p>
+
+<ul>
+<li><strong>컷 1 (7:1-5)</strong>: 초청·정결/부정 짐승 수·"이레 후에 내가 비를 내리리라"</li>
+<li><strong>컷 2 (7:6-10)</strong>: 육백 세·이레 기다림·들어감</li>
+<li><strong>컷 3 (7:11-16)</strong>: 그 날 바로 — 깊음의 샘·하늘의 창 열림 / 방주에 들어감 / 여호와께서 닫으심</li>
+<li><strong>컷 4 (7:17-20)</strong>: 40일·물 증가·방주 떠오름·산들이 덮임 (15규빗 위)</li>
+<li><strong>컷 5 (7:21-24)</strong>: 모든 육체 소멸·노아와 방주만 남음·150일 물 지속</li>
+</ul>
+
+<p><strong>P04 최현국</strong>: 컷 3이 장의 축이에요. 물 터짐·들어감·닫으심이 한 지점에 모입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견 — 정결·부정 짐승 구분이 이미 전제로 나와요. 시내산 레위기 이전인데요. 본문은 설명 없이 그 구분을 사용해요.</p>
+
+<p><strong>P11 나경아</strong>: 좋은 관찰입니다. 이 구분의 기원은 본문에서 밝혀지지 않아요.</p>
+
+<p><strong>P02 이진우</strong>: 발견 — 창 6:19-20에선 짐승 "한 쌍씩" 말씀하셨는데, 7:2에선 정결한 짐승은 "일곱 쌍"이라 하세요. 두 언명이 공존합니다.</p>
+
+<p><strong>P11 나경아</strong>: 전통적으로 6:19는 기본 수, 7:2는 정결한 짐승에 대한 추가 지시로 읽습니다. 본문은 모순이나 편집 흔적을 명시하지 않아요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문 — 7:11의 "큰 깊음의 샘들"과 "하늘의 창"이 동시에 터져요. 1:6-7의 궁창 창조가 되돌려지는 이미지라면, 이게 무엇을 말하는가.</p>
+
+<p><strong>P11 나경아</strong>: 관찰의 핵심 포인트예요. 본문이 창 1의 어휘를 정확히 뒤집어 사용합니다. 창조의 "나눔"이 홍수의 "합침"이 되는 어휘 대칭. 해석은 묵상으로 넘깁시다.</p>
+
+<p><strong>P04 최현국</strong>: 의문 — "큰 깊음"(<em>tehom rabbah</em>)의 <em>tehom</em>은 창 1:2의 그 <em>tehom</em>과 같은 단어예요. 어원적으로 메소포타미아 Tiamat(태초의 바다 신)과 연결 가능하다는 학설도 있는데, 본문은 어원을 설명하지 않아요.</p>
+
+<p><strong>P11 나경아</strong>: 구약 전체 35회 등장. 창 1·7·8 외에 시 편, 이사야, 욥기 등에 우주적 바다·심연의 이미지로 재등장합니다.</p>
+
+<p><strong>P05 김미영</strong>: 정보 — 150일(7:24)은 5개월에 해당해요. 40일 비(7:12)와 150일 물의 관계가 어떻게 되는지 본문이 바로 말하지 않고, 8:1에서 서서히 풀어갑니다.</p>
+
+<p><strong>P07 오지혜</strong>: 의문 — 7:22 "코로 생명의 기운의 숨을 쉬는 육지의 모든 것이 죽었더라"(<em>kol asher nishmat ruach hayyim be-apaw</em>)는 창 2:7과 어휘가 거의 같아요. 창조 때 불어넣은 바로 그 숨이 여기서 멈춤으로 서술돼요.</p>
+
+<p><strong>P11 나경아</strong>: <em>nishmat hayyim</em>(2:7) ↔ <em>nishmat ruach hayyim</em>(7:22). 거의 동일한 어휘로 창조와 역창조가 수미처럼 붙어 있어요.</p>
+
+<p><strong>P04 최현국</strong>: 의문 — 7:16 "여호와께서 그를 닫으시니라"는 하나님이 <strong>바깥에서</strong> 닫으셨다는 어감. 안에 있는 노아 가족·짐승이 나오거나 외부인이 들어오는 것이 모두 차단돼요. 이 "닫음"이 안전인가 격리인가 본문이 양가로 두는 것 같아요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 양가성을 관찰에 남겨 둡시다.</p>
+
+<p><strong>P02 이진우</strong>: 정보 — 고대 근동 홍수 서사 길가메시 토판 XI에서도 신이 방주를 닫는 장면이 있어요 (Utnapishtim의 배 문을 신 Puzur-Amurri가 닫음). 창 7:16의 "여호와께서 닫으시니라"와 어휘 패턴 일치는 주목할 배경.</p>
+
+<p><strong>P11 나경아</strong>: 동기는 다르지만 행위는 유사한 병행입니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상</h2>
+
+<p><strong>P04 최현국</strong>: 하나님이 노아에게 말씀하십니다. "너는 네 온 집과 함께 방주로 들어가라. 내가 너의 의로움을 보았음이니라. 정결한 짐승은 일곱 쌍, 부정한 짐승은 한 쌍. 칠 일 후에 내가 사십 주야를 땅에 비를 내려 지은 모든 생물을 지면에서 쓸어버리리라."</p>
+
+<p><strong>P05 김미영</strong>: 노아가 다 순종합니다. 칠 일이 지납니다. 그 칠 일 동안 아무 일도 일어나지 않는데, 기다림이 흐릅니다.</p>
+
+<p><strong>P07 오지혜</strong>: 노아 육백 세 되던 해 둘째 달 열이렛날, 바로 그 날에 큰 깊음의 샘들이 터지고 하늘의 창들이 열립니다. 비가 사십 주야 땅에 내립니다.</p>
+
+<p><strong>P02 이진우</strong>: 그 날 노아와 세 아들과 아내와 자부 — 여덟 영혼이 방주로 들어갑니다. 모든 짐승이 각 종류대로 들어갑니다. 마지막 절이 조용히 기록됩니다 — "여호와께서 그를 닫으시니라."</p>
+
+<p><strong>P01 한나래</strong>: 물이 불어납니다. 방주가 떠올라 땅에서 들려집니다. 물이 더 불어나 땅에 가득하고, 모든 높은 산이 다 덮입니다. 산 위 15규빗 더. 물이 높이 오릅니다.</p>
+
+<p><strong>P11 나경아</strong>: 땅에 움직이는 모든 육체 — 새·가축·짐승·땅에 기는 것·사람 — 코로 생명의 기운의 숨을 쉬는 모든 육지의 것이 죽습니다. 지면의 모든 것이 쓸어짐을 당합니다. 오직 노아와 방주에 함께 한 자들만 남습니다.</p>
+
+<p><strong>P04 최현국</strong>: 물이 백오십 일을 땅에 넘칩니다. 장이 닫힙니다. 아직 비는 그쳤는지 말해주지 않고, 남은 자들이 어떻게 될지도 말해주지 않습니다. 다음 장에서 이어집니다.</p>
+
+<p><strong>성령일 선교사</strong>: 닫힌 문·덮인 산·오르는 물·한 방주만 떠 있는 그 장면을 마음에 그대로 담읍시다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>P01 한나래</strong>: "여호와께서 그를 닫으시니라"</p>
+<p><strong>P02 이진우</strong>: "7, 40, 150 — 숫자의 장"</p>
+<p><strong>P04 최현국</strong>: "깊음이 터지고 창이 열린 날"</p>
+<p><strong>P05 김미영</strong>: "여덟 영혼과 모든 육체"</p>
+<p><strong>P07 오지혜</strong>: "창 1의 나눔이 풀리던 자리"</p>
+<p><strong>P11 나경아</strong>: "<em>Tehom Rabbah · Arubot ha-Shamayim</em>"</p>
+
+<p><strong>성령일 선교사</strong>: 부제 — "들어감과 닫으심과 덮임의 장".</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장의 동영상 안으로 상상으로 들어갑시다. 들어가기 전 칠 일의 기다림에 서도, 깊음이 터지는 첫 순간에 서도, 문이 바깥에서 닫히는 자리에 서도, 떠오르는 방주 안의 숨결 곁에 서도 좋습니다. 아뢰고 머뭅시다.</p>
+
+<p><strong>(긴 침묵 약 1분 10초)</strong> 🌿🌿🌿</p>
+
+<p><strong>P01 한나래</strong>: 주님, "너의 의로움을 보았다" 하신 그 말씀이 저에게도 들릴 자리를 간직하게 하소서.</p>
+<p><em>— 떠오름: "보고 있다."</em></p>
+
+<p><strong>P02 이진우</strong>: 주여, 제 닫힘이 당신의 닫으심이기를 구합니다. 제 공학으로 지켜지지 않게 하소서.</p>
+<p><em>— 떠오름: 조용한 봉합감.</em></p>
+
+<p><strong>P04 최현국</strong>: 주님, 바깥에서 닫으시는 손을 오늘 느낍니다. 그 안전은 당신의 편이심을 압니다.</p>
+<p><em>— 떠오름: "안에 있어라."</em></p>
+
+<p><strong>P05 김미영</strong>: 주여, 여덟 영혼이 서로 붙어 있던 그 시간이 제 식탁에도 재현되기를.</p>
+<p><em>— 떠오름: 따뜻한 모임감.</em></p>
+
+<p><strong>P07 오지혜</strong>: 주님, 창조의 나눔이 풀리는 자리에 당신의 언약이 이미 서 있었음을 기억합니다.</p>
+<p><em>— 떠오름: "약속을 붙들어라."</em></p>
+
+<p><strong>P11 나경아</strong>: 주여, <em>wa-yisgor YHWH</em>. 이 한 구절을 번역하지 않고 제 호흡에 실어 나르겠습니다.</p>
+<p><em>— 떠오름: 조용한 끄덕임.</em></p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p><strong>성령일 선교사</strong>: 물이 아직 오르고 있습니다. 8장에서 물이 멎는 자리로 다시 만납시다. 수고하셨습니다.</p>
+
+<p>---</p>
+
+<p>*시뮬 종료. 관찰 9단계 전부 수행. AN</p></div>
+        </section>
+
+        <section class="stage" id="s2">
+          <span class="stage__num">단계 2~6</span>
+          <h2 class="stage__title">관찰된 사실 — 단어 빈도 · 좌표 · 동사 · 대조 · 장 경계.</h2>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-007</p>
+<p>book: 창세기</p>
+<p>chapter: 7</p>
+<p>date: 2026-04-21</p>
+<p>---</p>
+
+<h2>창세기 7장 — 관찰된 사실</h2>
+
+<h2>무대·배경·소품 (1단계)</h2>
+<ul>
+<li>4단계 무대 이동: 지시(1-5) → 들어감(6-16) → 물 상승·덮음(17-20) → 소멸·남음(21-24).</li>
+<li>소품: 정결·부정 짐승, 큰 깊음의 샘(*maayanot tehom rabbah*), 하늘의 창(*arubot ha-shamayim*), 비, 방주, 물, 산.</li>
+<li>시간 소품 구체성: 노아 600세 2월 17일(7:11), 7일 기다림(7:10), 40주야(7:12), 150일(7:24).</li>
+</ul>
+
+<h2>첫 느낌·분위기 (2단계)</h2>
+<ul>
+<li>창조 1장 어휘의 역행: *tehom*(1:2) ↔ *tehom rabbah*(7:11), 궁창 나눔(1:6-7) ↔ 위·아래 물 동시 터짐(7:11).</li>
+<li>대화 거의 없음 — 하나님 지시(1-4)만 직접 발언, 나머지는 서술 시점.</li>
+<li>숫자·날짜의 정확성이 장의 공기를 지배.</li>
+</ul>
+
+<h2>시작·끝 (3단계)</h2>
+<ul>
+<li>시작: "여호와께서 노아에게 이르시되 너와 네 온 집은 방주로 들어가라…내가 너의 의로움을 보았음이니라"(7:1) — *ra'iti tsaddiq lefanay*.</li>
+<li>끝: "물이 백 오십 일을 땅에 넘쳤더라"(7:24).</li>
+<li>6:9 *ish tsaddiq* ↔ 7:1 *tsaddiq lefanay* 어휘 이음.</li>
+<li>들어감(*bo*) ↔ 덮임(*kisah·gavar*)의 대축.</li>
+</ul>
+
+<h2>등장인물·사물·사상 (4단계)</h2>
+<ul>
+<li>인물: 여호와, 노아, 아내, 세 아들, 세 자부 = <strong>여덟 영혼</strong>(벧전 3:20 재인용).</li>
+<li>짐승 수 언명 2중: 6:19-20 "한 쌍" vs 7:2 정결한 짐승 "일곱 쌍"·부정한 것 "한 쌍"·새 "일곱 쌍".</li>
+<li>7:11 "그 달 열이렛날" — 창세기 최초의 정확한 날짜.</li>
+<li>7:16 *wa-yisgor YHWH ba'ado* — 여호와가 밖에서 닫으심.</li>
+<li>정결(*tahor*) / 부정(*tame*) 구분이 시내산 이전에 이미 전제됨 — 기원 미설명.</li>
+<li>7:22 *kol asher nishmat ruach hayyim be-apaw* — "코로 생명의 기운의 숨을 쉬는 모든 것". 2:7 *nishmat hayyim be-apaw*와 거의 동일 어휘 (창조 ↔ 역창조).</li>
+<li>7:17 방주가 떠올라 땅에서 들림(*wa-tarom*).</li>
+<li>7:19-20 모든 높은 산이 덮이고 15규빗 더 위로.</li>
+</ul>
+
+<h2>장면 컷 (5단계)</h2>
+<ul>
+<li>컷 1 (7:1-5): 초청·짐승 수 지시·7일 후 비 예고·순종.</li>
+<li>컷 2 (7:6-10): 노아 600세·들어감·7일 후 물 시작.</li>
+<li>컷 3 (7:11-16): 그 날 바로 — 깊음·하늘의 창 동시 터짐 / 들어감 / 여호와의 닫으심.</li>
+<li>컷 4 (7:17-20): 40일·물 증가·방주 상승·산 덮임·15규빗.</li>
+<li>컷 5 (7:21-24): 모든 육체 소멸·노아와 방주만 남음·150일.</li>
+</ul>
+
+<h2>원어 카드 (6단계 포함)</h2>
+<ul>
+<li>*tahor*(טָהוֹר) — 정결한. 시내산 이전 첫 등장.</li>
+<li>*tame*(טָמֵא) — 부정한.</li>
+<li>*shiva*(שִׁבְעָה) — 7. 4회 반복.</li>
+<li>*arbaim*(אַרְבָּעִים) — 40. 7:4·12·17.</li>
+<li>*mabbul*(מַבּוּל) — 홍수. 6회.</li>
+<li>*maayanot tehom rabbah*(מַעְיְנֹת תְּהוֹם רַבָּה) — 큰 깊음의 샘들.</li>
+<li>*tehom*(תְּהוֹם) — 깊음. 창 1:2와 어휘 동일.</li>
+<li>*arubot ha-shamayim*(אֲרֻבֹּת הַשָּׁמַיִם) — 하늘의 창들.</li>
+<li>*nishmat ruach hayyim*(נִשְׁמַת רוּחַ חַיִּים) — 생명의 기운의 숨. 2:7 *nishmat hayyim*과 공명.</li>
+<li>*machah*(מָחָה) — 쓸어버리다/지우다. 7:4·23.</li>
+<li>*sagar*(סָגַר) — 닫다. 7:16, 주어 YHWH.</li>
+<li>*gavar*(גָּבַר) — 강해지다/넘치다. 물의 증가.</li>
+<li>*kisah*(כִּסָּה) — 덮다. 산을 덮음.</li>
+<li>*harim ha-gevohim*(הֶהָרִים הַגְּבֹהִים) — 높은 산들.</li>
+<li>*kataklysmos* (LXX) — 홍수 역어. 신약 마 24:38-39·눅 17:27·벧후 2:5에도 동일.</li>
+</ul>
+
+<h2>문학 구조 (6단계 포함)</h2>
+<ul>
+<li>창 6-9 전체가 chiastic 구조 (Wenham 분석): 7:17-19 물 상승 ↔ 8:1-5 물 감소, 7:11 샘·창 ↔ 8:2 샘·창 닫힘 등.</li>
+<li>7장 내부 sevenfold 구조: 7·7일·일곱 쌍·7 반복.</li>
+<li>창조 역행 어휘 대칭: *tehom*, 궁창 물, *nishmat hayyim* 등 창 1-2의 생명 어휘가 역으로 재등장.</li>
+<li>*mabbul*과 *tevah*의 대조: 파괴의 물 / 보존의 그릇.</li>
+</ul>
+
+<h2>ANE 배경</h2>
+<ul>
+<li>Gilgamesh Epic XI 128-131: 배가 물 위에 떠오르는 장면이 창 7:17과 어휘·이미지 평행.</li>
+<li>Atrahasis III: 7일 7밤 폭풍 vs 창 7:4·12의 40일.</li>
+<li>Sumerian Ziusudra: 신이 배를 닫아 주는 모티프가 창 7:16 *wa-yisgor YHWH*와 평행.</li>
+<li>동기 대조: ANE 서사는 신들의 결정이 자의적/인간 과잉 반응, 창 6-7은 악·포악에 대한 심판 + 언약적 구원.</li>
+</ul>
+
+<h2>교차 참조 노드</h2>
+<ul>
+<li>창 7 ↔ 창 1:2 (*tehom* 공유)</li>
+<li>창 7 ↔ 창 1:6-7 (궁창 나눔 ↔ 물 합침)</li>
+<li>창 7 ↔ 창 2:7 (생명의 숨 ↔ 역창조)</li>
+<li>창 7 ↔ 창 8-9 (홍수 완결·언약)</li>
+<li>창 7 ↔ 이사야 24장 (우주적 심판 심상)</li>
+<li>창 7 ↔ 시 29:10 (*mabbul* 재등장)</li>
+<li>창 7 ↔ 마 24:38-39, 눅 17:26-27 (노아 때)</li>
+<li>창 7 ↔ 벧전 3:20 (8 영혼)</li>
+<li>창 7 ↔ 벧후 2:5, 3:5-6 (물 심판·도래)</li>
+<li>창 7 ↔ 왕하 7:2, 말 3:10 (하늘의 창 재등장)</li>
+</ul>
+
+<h2>동영상 요약 (7단계)</h2>
+<p>하나님이 노아에게 "들어가라" 말씀하신다 — "너의 의로움을 보았음이니라." 정결한 짐승 일곱 쌍, 부정한 짐승 한 쌍. 칠 일 후 비가 사십 주야. 칠 일이 흐른다. 노아 600세 되던 해 둘째 달 열이렛날, 바로 그 날 큰 깊음의 샘들이 터지고 하늘의 창들이 열린다. 여덟 영혼이 들어가고 짐승이 각 종류대로 들어간다. 여호와께서 바깥에서 닫으신다. 물이 불어난다. 방주가 떠오른다. 물이 높이 솟아 모든 높은 산이 덮이고 십오 규빗 위까지 올라온다. 코로 숨을 쉬는 모든 육체가 소멸한다. 지면의 모든 것이 쓸어짐을 당한다. 노아와 방주에 함께 한 자들만 남는다. 물이 백오십 일을 땅에 넘친다. 장이 닫히되 아직 비는 그쳤는지, 남은 자들이 어떻게 될지 말해지지 않는다.</p>
+
+<h2>초벌 제목·부제 (8단계)</h2>
+<ul>
+<li>초벌 제목: <strong>"*Wa-yisgor YHWH* — 여호와께서 그를 닫으시니라"</strong></li>
+<li>초벌 부제: "창 1의 나눔이 풀리는 장, 한 방주만 떠 있는 장"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (15개)</li>
+<li>[x] 역사·문화·문학 사실 (ANE 3종, chiastic 구조, 창 1-2와 어휘 대칭)</li>
+<li>[x] 미해결 질문 1개 이상 (7건)</li>
+<li>[x] 진행자 "가르치기" 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9 전부 수행</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>홍수 규모(전지구 vs 지역) 해석 보류.</li>
+<li>정결·부정 짐승 구분의 기원 해석 보류.</li>
+<li>노아 600세 역사적 연대 해석 보류 (사본 전통 차이).</li>
+<li>"여호와께서 닫으시니라"의 양가(안전 vs 격리) 해석 보류.</li>
+</ul></div>
+        </section>
+
+        <section class="stage" id="s8">
+          <span class="stage__num">단계 7~9</span>
+          <h2 class="stage__title">미해결 질문과 관찰자의 자리.</h2>
+          <p>본문이 답하지 않는 자리는 답하지 않은 채 둡니다.</p>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-007</p>
+<p>book: 창세기</p>
+<p>chapter: 7</p>
+<p>date: 2026-04-21</p>
+<p>---</p>
+
+<h2>창세기 7장 — 미해결 질문</h2>
+
+<h2>Q1. 정결·부정 짐승 구분의 기원은?</h2>
+<ul>
+<li>7:2에서 이미 전제된 채 등장. 시내산 레위기 이전.</li>
+<li>본문이 그 기원·규정 근거를 설명하지 않음.</li>
+</ul>
+
+<h2>Q2. 6:19-20 "한 쌍" vs 7:2 "일곱 쌍"의 관계는?</h2>
+<ul>
+<li>전통적으로 "모든 짐승 한 쌍 + 정결한 짐승 추가"로 조화.</li>
+<li>본문 자체는 두 언명이 병존하는 이유를 밝히지 않음.</li>
+</ul>
+
+<h2>Q3. 40일과 150일의 관계는?</h2>
+<ul>
+<li>비는 40일(7:12), 물 넘침은 150일(7:24).</li>
+<li>겹치는지 순차인지 본문이 7장 안에서 말하지 않음. 8장에서 부분 해소.</li>
+</ul>
+
+<h2>Q4. 깊음의 샘·하늘의 창의 실체는?</h2>
+<ul>
+<li>고대 근동 우주관의 "하늘 위 바다·땅 아래 바다" 구조와 본문 어휘의 관계.</li>
+<li>물리적 현상인지 우주 구조 표현인지 본문이 선택하지 않음.</li>
+</ul>
+
+<h2>Q5. "여호와께서 그를 닫으시니라"(7:16)는 어떤 닫으심인가?</h2>
+<ul>
+<li>*sagar*의 주어 YHWH.</li>
+<li>안전의 닫으심인지, 돌이킬 수 없는 결정의 닫으심인지 본문이 양가로 둠.</li>
+</ul>
+
+<h2>Q6. "높은 산들이 덮이고 15규빗 위"(7:20)의 물리적 해석은?</h2>
+<ul>
+<li>에베레스트·아라랏 산 등 높이를 기준으로 한 물리적 계산 vs 문학·고대 우주관 표현.</li>
+<li>본문은 "*harim ha-gevohim tachat kol ha-shamayim*" (온 하늘 아래 높은 산들)으로 표현.</li>
+</ul>
+
+<h2>Q7. 노아와 여덟 영혼의 방주 안 150일은 어떤 시간이었는가?</h2>
+<ul>
+<li>본문은 물의 움직임만 서술하고, 안에서의 경험·대화·공포·기도를 기록하지 않음.</li>
+<li>이 침묵이 의도적인지, 장르 특징인지 해석 영역.</li>
+</ul>
+
+<p>---</p>
+<p><em>묵상·사귐 단계에서 재방문.</em></p></div>
+        </section>
+        
+    
+    <div class="next-row">
+      <a href="/magazine/GEN/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">창세기 50장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/GEN/8/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">창세기 8장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 자리를 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 자리를 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 자리로 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/GEN/7/',
+      title: '창세기 7장',
+      excerpt: '들어가는 자리. 같은 동사가 일곱 번 놓인다.'
+    }));
+  } catch(e) {}
+</script>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div><div class="foot__brand">네다바웨이 Nedabahway</div><p>강사 김창환 · 제주<br>한 사람의 일을 다시 디자인합니다.</p></div>
+    <div class="foot__col"><h4>Observatory</h4><a href="/magazine.html">관찰 Atlas 홈</a><a href="/magazine/GEN/">창세기 권 차례</a><a href="/magazine.html#support">후원으로 받치기</a></div>
+    <div class="foot__col"><h4>둘러보기</h4><a href="/blog/perspective/">관점 노트</a><a href="/about.html">소개</a><a href="/programs.html">강의</a></div>
+    <div class="foot__col"><h4>연락</h4><a href="/contact.html">강의 의뢰</a><a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></div>
+  </div>
+  <div class="foot__copy"><span>© 2026 Nedabahway · 김창환</span><span>nedabah.org</span></div>
+</footer>
+
+</body>
+</html>

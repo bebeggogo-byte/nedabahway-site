@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>창세기 11장 — Observatory | 네다바웨이</title>
+<meta name="description" content="창세기 11장을 9단계로 같이 관찰합니다. 창세기 11장 — 본문이 자기 시간 안에서 풀리는 자리.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/GEN/11/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; counter-reset: step; }
+  .toc-side li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; }
+  .toc-side li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; }
+  .toc-side a { display: block; color: inherit; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo">네다바웨이</a>
+    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
+    <div class="nav__links">
+      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
+      <a href="/about.html" class="nav__link">소개</a>
+      <a href="/programs.html" class="nav__link">강의</a>
+      <a href="/ai.html" class="nav__link">AI 작업실</a>
+      <a href="/magazine.html" class="nav__link nav__link--active">관찰 Atlas</a>
+      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol>
+      <li><a href="#s1">본문 그대로 읽기</a></li>
+      <li><a href="#s2">관찰된 사실</a></li>
+      <li><a href="#s8">미해결 질문 · 후기</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/GEN/">창세기</a> · 11장</div>
+      <h1>창세기 11장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">GEN-011 · 오경 · 히브리어</div>
+      <p class="essence">창세기 11장 — 본문이 자기 시간 안에서 풀리는 자리.</p>
+    </header>
+    
+        <section class="stage stage--raw" id="s1">
+          <span class="stage__num">단계 1</span>
+          <h2 class="stage__title">본문 그대로 읽기.</h2>
+          <p>본문은 본문이 자기 시간 안에서 스스로 풀리도록 둡니다. 옮긴 말을 옮긴 그대로 받아 적습니다.</p>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-011</p>
+<p>book: 창세기</p>
+<p>book_en: Genesis</p>
+<p>chapter: 11</p>
+<p>bible_block: 오경</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브+계보</p>
+<p>language: 히브리어</p>
+<p>verse_count: 32</p>
+
+<p>observed_facts_count: 38</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 2</p>
+
+<p>hebrew_terms: [echad, safah, davar, laben, labenim, shem, balal]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: []</p>
+<p>ane_refs: [지구라트, 바벨론 에테멘앙키, 아카드 언어정책]</p>
+<p>rabbinic_refs: []</p>
+
+<p>literary_devices: [반어, 하강 모티프, 이름 짓기, 계보-서사 교차]</p>
+<p>repeated_words: [echad, shamayim, aretz, shem]</p>
+
+<p>cross_refs: [창 10:10, 창 10:25, 신 4:27, 시 2:1-4, 행 2:1-11]</p>
+
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01_한나래, P02_이진우, P04_최현국, P05_김미영, P07_오지혜, P11_나경아]</p>
+
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+
+<p>date: 2026-04-30</p>
+<p>track: quick</p>
+<p>---</p>
+
+<h2>창세기 11장 — 관찰 9단계 시뮬레이션 raw transcript</h2>
+
+<h2>시뮬 시작</h2>
+
+<p><strong>성령일</strong>: 창세기 11장입니다. 10장에서 노아의 세 아들로부터 온 땅으로 민족이 퍼져나갔습니다. 11장은 두 부분으로 나뉩니다. 먼저 바벨 이야기, 그 다음 셈의 계보입니다. 함께 본문을 낭독하겠습니다.</p>
+
+<p>(본문 낭독 — 창 11:1-32, 약 3분)</p>
+
+<p>(침묵 약 30초) 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌, 분위기 기록하기</h2>
+
+<p><strong>성령일</strong>: 첫 느낌은 어떠셨나요.</p>
+
+<p><strong>P07 오지혜</strong>: 1-9절은 긴장감이 있었어요. 사람들이 탑을 쌓는데 여호와께서 내려오셔서 언어를 흩으시잖아요. 10절부터는 다시 계보로 돌아가서 담담한 느낌입니다.</p>
+
+<p><strong>P01 한나래</strong>: "하나"라는 단어가 처음에 반복되다가 "흩으신다"로 바뀌는 게 인상적이었어요.</p>
+
+<p><strong>P05 김미영</strong>: 사람들이 벽돌을 만들고 성을 쌓는 장면이 구체적으로 그려졌어요. 노동하는 모습이 보이더라고요.</p>
+
+<p><strong>P02 이진우</strong>: 1-9절은 서사, 10-32절은 계보인데, 10장과 비슷한 구조가 반복됩니다. "toledot"가 또 나와요.</p>
+
+<p><strong>성령일</strong>: 그 느낌들을 그대로 둡시다.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<p><strong>성령일</strong>: 이 장의 무대는 어떤 곳인가요.</p>
+
+<p><strong>P04 최현국</strong>: 1-9절은 시날 평지입니다. 2절에 명시되어 있어요. 10장에서 니므롯의 나라가 시작된 곳이기도 하고요.</p>
+
+<p><strong>P11 나경아</strong>: 소품이 구체적입니다. 벽돌(laben), 역청(chemar), 탑(migdal), 성(ir). 3절에 "벽돌을 돌 대신, 역청을 진흙 대신"이라는 재료 설명이 나옵니다.</p>
+
+<p><strong>P05 김미영</strong>: 시날 평지는 메소포타미아 지역이고, 그곳은 돌이 없어서 벽돌을 구워 썼다고 들었어요. 본문이 그걸 반영하는 것 같아요.</p>
+
+<p><strong>P07 오지혜</strong>: 4절에 "꼭대기를 하늘에 닿게 하여"라는 표현이 나오는데, 탑의 높이를 강조하는 것 같습니다.</p>
+
+<p><strong>P02 이진우</strong>: 10절부터는 무대가 사라지고 계보만 나옵니다. 셈에서 아브람까지 10대입니다.</p>
+
+<p><strong>성령일</strong>: 배경이 잘 보이는군요. 간직합니다.</p>
+
+<p>---</p>
+
+<h2>[3단계] 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<p><strong>P01 한나래</strong>: 1절은 "온 땅의 언어가 하나요 말이 하나였더라"로 시작하고, 9절은 "온 지면의 언어를 거기서 혼잡하게 하셨음이라"로 끝납니다. 하나에서 혼잡으로 바뀌었어요.</p>
+
+<p><strong>P02 이진우</strong>: 32절은 "데라는 하란에서 죽었더라"로 끝납니다. 아브람의 아버지 데라가 하란에 머물다 죽은 걸로 이 장이 끝나요.</p>
+
+<p><strong>P04 최현국</strong>: 바벨 이야기(1-9절)와 셈 계보(10-32절)가 한 장 안에 있는데, 끝은 아브람으로 이어집니다. 12장으로 연결되는 구조네요.</p>
+
+<p><strong>성령일</strong>: 그 흐름을 그대로 두지요.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<p><strong>P07 오지혜</strong>: 1-9절에는 "그들"이라는 집단이 등장합니다. 누구인지 구체적으로 나오지 않아요. 그리고 여호와께서 등장하십니다.</p>
+
+<p><strong>P02 이진우</strong>: "그들"의 사상이 4절에 나옵니다. "탑을 건설하여 이름을 내고, 온 지면에 흩어짐을 면하자." 두 가지 목표입니다.</p>
+
+<p><strong>P11 나경아</strong>: 5절에 "여호와께서 <strong>내려오사</strong>"라는 표현이 나옵니다. 사람들은 올라가려 하는데 하나님은 내려오셔야 볼 정도로 탑이 낮다는 반어입니다.</p>
+
+<p><strong>P05 김미영</strong>: 6절에 여호와께서 하시는 말씀이 나옵니다. "이 일을 시작하였으니 이제 그들이 하고자 하는 일을 막을 수 없으리로다." 이게 우려인지 판단인지 본문만으로는 알기 어려워요.</p>
+
+<p><strong>P01 한나래</strong>: 7절에 "우리가 내려가서 거기서 그들의 언어를 혼잡하게 하여…"라고 하셨는데, "우리"는 누구인지 궁금합니다.</p>
+
+<p><strong>P04 최현국</strong>: 10-26절은 셈의 계보입니다. 10대가 나열되고, 27절부터 데라의 가족 이야기로 전환됩니다. 아브람, 나홀, 하란이 데라의 아들이고, 하란은 일찍 죽습니다.</p>
+
+<p><strong>P07 오지혜</strong>: 30절에 사래가 임신하지 못한다는 기록이 나옵니다. 이게 12장으로 이어지는 복선 같아요.</p>
+
+<p><strong>성령일</strong>: 다음 자리로 가지고 갑니다.</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<p><strong>P02 이진우</strong>:</p>
+<ul>
+<li>장면 1 (1절): 온 땅 언어 하나</li>
+<li>장면 2 (2절): 동방에서 시날 평지로 이동, 거기 거주</li>
+<li>장면 3 (3-4절): 벽돌 굽고 탑 건설 계획, "이름을 내자, 흩어지지 말자"</li>
+<li>장면 4 (5절): 여호와 내려오사 성과 탑을 보심</li>
+<li>장면 5 (6-7절): 여호와의 판단과 결정 ("우리가 내려가서 언어를 혼잡하게")</li>
+<li>장면 6 (8-9절): 여호와께서 흩으심, 건설 중단, 이름 "바벨"</li>
+<li>장면 7 (10-26절): 셈의 계보 (10대)</li>
+<li>장면 8 (27-32절): 데라의 가족, 하란에서 머물다 데라 죽음</li>
+</ul>
+
+<p><strong>성령일</strong>: 잘 나누었습니다. 그대로 둡시다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기</h2>
+
+<p><strong>P11 나경아</strong>: 1절 "echad safah"(한 언어), "echad davar"(한 말)라는 표현에서 "echad"(하나)가 반복됩니다. 그런데 9절에서 "balal"(혼잡하게 하다)로 바뀝니다. 이 동사가 "바벨"(Babel)의 어원이 됩니다.</p>
+
+<p><strong>P01 한나래</strong>: 3절에 "서로 말하되"라는 표현이 나오는데, 누가 먼저 제안했는지는 나오지 않아요.</p>
+
+<p><strong>P05 김미영</strong>: 4절 "이름을 내자"(shem)라는 단어가 10절 "셈"(Shem)과 같은 철자입니다. 우연일까요?</p>
+
+<p><strong>P07 오지혜</strong>: 창 10:25에서 벨렉 때 "땅이 나뉘었다"는 기록이 있었는데, 이 바벨 사건과 연결되는 건지 궁금합니다.</p>
+
+<p><strong>P02 이진우</strong>: 10-26절 계보의 나이가 점점 줄어듭니다. 셈은 600세(11절), 아르박삿 438세, 셀라 433세… 데라 205세. 홍수 이전 아담 계보보다 수명이 짧아지는 게 보입니다.</p>
+
+<p><strong>P04 최현국</strong>: 31절에 데라가 갈대아 우르에서 가나안 땅으로 가려고 떠났는데, 하란에 머물렀다고 합니다. 왜 중도에 멈췄는지 본문은 말하지 않습니다.</p>
+
+<p><strong>성령일</strong>: 답하지 않고 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[7단계] 상황의 흐름, 논지를 연결 — 동영상 얻기</h2>
+
+<p><strong>P04 최현국</strong>: 이 장은 두 개의 흐름이 교차합니다. 1-9절은 인류의 집중과 분산, 10-32절은 셈에서 아브람으로 이어지는 좁혀짐입니다.</p>
+
+<p><strong>P02 이진우</strong>: 바벨 이야기는 이렇게 흐릅니다. 하나의 언어 → 한 곳에 모임 → 탑 건설 시작 → 여호와 내려오심 → 언어 혼잡 → 온 지면에 흩어짐. "하나"에서 "흩어짐"으로 가는 동영상입니다.</p>
+
+<p><strong>P11 나경아</strong>: 흥미로운 건 사람들은 "위로" 올라가려 하는데, 여호와는 "아래로" 내려오셔야 볼 정도라는 아이러니입니다. 5절이 이걸 보여줍니다.</p>
+
+<p><strong>P07 오지혜</strong>: 계보 부분(10-32절)은 셈 → 아르박삿 → … → 데라 → 아브람으로 이어지며, 12장 아브람 부르심의 준비가 됩니다. 바벨에서 흩어진 인류 중에서 한 사람(아브람)을 부르시는 흐름입니다.</p>
+
+<p><strong>P01 한나래</strong>: 30절 사래의 임신하지 못함이 마지막 긴장으로 남습니다. 이게 12장으로 이어지는 복선이에요.</p>
+
+<p><strong>P05 김미영</strong>: 전체 흐름은 "하나 → 흩어짐 → 한 사람"입니다. 인류가 하나였다가 흩어지고, 그 가운데 아브람 한 사람이 선택되는 구조입니다.</p>
+
+<p><strong>성령일</strong>: 그 흐름이 잘 보입니다. 다음 자리로 갑니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목과 부제 정하기</h2>
+
+<p><strong>P02 이진우</strong>: "바벨의 언어 혼잡과 셈의 계보"는 어떨까요.</p>
+
+<p><strong>P04 최현국</strong>: "하나에서 흩어짐으로, 그리고 한 사람으로"가 전체 흐름을 담는 것 같습니다.</p>
+
+<p><strong>P11 나경아</strong>: "바벨 — 이름 짓기와 이름 잃기"도 가능할 것 같아요. 4절에서 "이름을 내자"고 했는데, 결국 하나님이 "바벨"이라는 이름을 주셨으니까요.</p>
+
+<p><strong>P01 한나래</strong>: 저는 "언어의 하나됨과 흩어짐"이 마음에 남습니다.</p>
+
+<p><strong>성령일</strong>: 좋은 제안들입니다. 초벌이니 묵상에서 다시 다듬어볼 수 있겠습니다.</p>
+
+<p>---</p>
+
+<h2>[9단계] 동영상 안을 걸으며 기도하고 내면의 감동에 귀 기울이기</h2>
+
+<p><strong>성령일</strong>: 이 장의 동영상 안으로 들어가 걸으며, 관찰한 것들을 주님께 아뢰겠습니다.</p>
+
+<p>(침묵 약 40초) 🌿</p>
+
+<p><strong>P01 한나래</strong>: 주님, 사람들이 "이름을 내자"고 했는데, 주님께서 "바벨"이라는 이름을 주셨어요. 이름 짓는 권한이 누구에게 있는지 생각하게 됩니다.</p>
+
+<p><strong>P02 이진우</strong>: 주님, 사람들은 흩어지지 않으려 했는데 주님은 흩으셨습니다. 왜 흩으셔야 했는지, 다음 자리에서 여쭙겠습니다.</p>
+
+<p><strong>P04 최현국</strong>: 주님, 바벨에서 온 땅으로 흩어진 인류 가운데 아브람 한 사람을 부르시는 흐름이 보입니다. 그 선택이 어디로 향하는지 궁금합니다.</p>
+
+<p><strong>P05 김미영</strong>: 주님, 벽돌을 굽고 역청을 바르는 노동의 장면이 마음에 남습니다. 사람들이 함께 일했지만 결국 흩어졌다는 게 아프게 다가옵니다.</p>
+
+<p><strong>P07 오지혜</strong>: 주님, 사래가 임신하지 못한다는 기록이 마지막에 나왔어요. 이게 어떻게 풀릴지 기다립니다.</p>
+
+<p><strong>P11 나경아</strong>: 주님, "echad"에서 "balal"로, 하나에서 혼잡으로 바뀐 언어의 흐름이 마음에 남습니다. 언어가 무엇인지 생각하게 됩니다.</p>
+
+<p><strong>성령일</strong>: 주님, 이 장의 흐름 안에서 주님의 주권을 봅니다. 답하지 않으신 질문들을 다음 자리로 가지고 갑니다. 아멘.</p>
+
+<p>---</p>
+
+<h2>시뮬 종료</h2>
+
+<p>관찰 9단계 전부 수행.</p></div>
+        </section>
+
+        <section class="stage" id="s2">
+          <span class="stage__num">단계 2~6</span>
+          <h2 class="stage__title">관찰된 사실 — 단어 빈도 · 좌표 · 동사 · 대조 · 장 경계.</h2>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-011</p>
+<p>book: 창세기</p>
+<p>chapter: 11</p>
+<p>date: 2026-04-30</p>
+<p>---</p>
+
+<h2>창세기 11장 — 관찰된 사실 카드</h2>
+
+<h2>무대·배경·소품 (1단계)</h2>
+
+<h3>바벨 이야기 (1-9절)</h3>
+<ul>
+<li><strong>시간</strong>: 언어가 하나였던 시기</li>
+<li><strong>무대</strong>: 시날 평지 (2절) — 메소포타미아, 창 10:10 니므롯의 나라와 같은 지역</li>
+<li><strong>소품</strong>: 벽돌(laben), 역청(chemar), 탑(migdal), 성(ir)</li>
+<li><strong>재료 교체</strong>: 3절 "벽돌을 돌 대신, 역청을 진흙 대신" — 메소포타미아 지역 건축 양식 반영</li>
+</ul>
+
+<h3>셈 계보 (10-32절)</h3>
+<ul>
+<li><strong>시간</strong>: 홍수 이후, 셈에서 아브람까지 10대</li>
+<li><strong>무대</strong>: 갈대아 우르 → 하란 (31절)</li>
+</ul>
+
+<h2>첫 느낌·분위기 (2단계)</h2>
+
+<ul>
+<li>1-9절: 긴장감, 집중 → 흩어짐</li>
+<li>"하나"의 반복 → "흩으심"으로 전환</li>
+<li>벽돌 굽고 성 쌓는 노동 장면의 구체성</li>
+<li>10-32절: 계보의 담담한 리듬, 12장 준비</li>
+</ul>
+
+<h2>시작·끝 (3단계)</h2>
+
+<ul>
+<li><strong>시작 (1절)</strong>: "온 땅의 언어가 <strong>하나</strong>요 말이 <strong>하나</strong>였더라"</li>
+<li><strong>중간 끝 (9절)</strong>: "여호와께서 거기서 온 지면의 언어를 <strong>혼잡하게</strong> 하셨음이요 거기서 그들을 온 지면에 <strong>흩으셨더라</strong>"</li>
+<li><strong>최종 끝 (32절)</strong>: "데라는 하란에서 죽었더라"</li>
+<li><strong>대조</strong>: 하나 → 혼잡, 모임 → 흩어짐</li>
+</ul>
+
+<h2>등장인물·사물·상황·사상 (4단계)</h2>
+
+<h3>"그들" (1-9절)</h3>
+<ul>
+<li>구체적 정체 명시 안 됨</li>
+<li>동방에서 이동하여 시날 평지에 거주 (2절)</li>
+<li><strong>사상 (4절)</strong>:</li>
+</ul>
+<p>  1. "탑을 건설하여 그 꼭대기를 하늘에 닿게 하여"</p>
+<p>  2. "우리 이름을 내고"</p>
+<p>  3. "온 지면에 흩어짐을 면하자"</p>
+
+<h3>여호와</h3>
+<ul>
+<li><strong>5절</strong>: "내려오사" — 사람들이 올라가려 하는데 하나님은 내려오셔야 볼 정도</li>
+<li><strong>6절</strong>: "이제 그들이 하고자 하는 일을 막을 수 없으리로다"</li>
+<li><strong>7절</strong>: "우리가 내려가서 거기서 그들의 언어를 혼잡하게 하여…"</li>
+<li><strong>8절</strong>: "여호와께서 거기서 그들을 온 지면에 흩으시니"</li>
+</ul>
+
+<h3>셈의 계보 (10-26절)</h3>
+<ul>
+<li>10대: 셈 → 아르박삿 → 셀라 → 에벨 → 벨렉 → 르우 → 스룩 → 나홀 → 데라 → 아브람</li>
+<li>각 인물의 나이 기록 (점점 감소)</li>
+</ul>
+
+<h3>데라의 가족 (27-32절)</h3>
+<ul>
+<li>데라의 아들: 아브람, 나홀, 하란</li>
+<li>하란: 일찍 죽음 (28절), 아들 롯</li>
+<li>아브람의 아내 사래: 임신하지 못함 (30절)</li>
+<li>데라: 갈대아 우르에서 출발, 가나안 땅으로 가려다 하란에 머물러 거기서 죽음 (31-32절)</li>
+</ul>
+
+<h2>장면 컷 (5단계)</h2>
+
+<p>1. <strong>온 땅 언어 하나 (1절)</strong></p>
+<p>2. <strong>시날 평지 이동·거주 (2절)</strong></p>
+<p>3. <strong>벽돌 굽고 탑 건설 계획 (3-4절)</strong> — "이름을 내자, 흩어지지 말자"</p>
+<p>4. <strong>여호와 내려오사 성과 탑을 보심 (5절)</strong></p>
+<p>5. <strong>여호와의 판단과 결정 (6-7절)</strong> — "우리가 내려가서 언어를 혼잡하게"</p>
+<p>6. <strong>여호와께서 흩으심 (8-9절)</strong> — 건설 중단, 이름 "바벨"</p>
+<p>7. <strong>셈의 계보 (10-26절)</strong> — 10대</p>
+<p>8. <strong>데라의 가족, 하란 이주 (27-32절)</strong> — 데라 죽음</p>
+
+<h2>원어 카드 (6단계)</h2>
+
+<h3>히브리어</h3>
+<p>1. <strong>echad</strong> (אֶחָד) — "하나" (1절, 2회)</p>
+<p>   - "echad safah"(한 언어), "echad davar"(한 말)</p>
+<p>2. <strong>safah</strong> (שָׂפָה) — "언어, 입술" (1, 6, 7, 9절)</p>
+<p>3. <strong>davar</strong> (דָּבָר) — "말" (1절)</p>
+<p>4. <strong>laben</strong> (לָבֵן) → <strong>labenim</strong> (לְבֵנִים) — "벽돌" (3절)</p>
+<p>   - 돌 대신 벽돌 사용</p>
+<p>5. <strong>shem</strong> (שֵׁם) — "이름" (4, 9절)</p>
+<p>   - 4절 "이름을 내자" / 10절 "셈"(Shem)과 동일 철자</p>
+<p>6. <strong>balal</strong> (בָּלַל) — "혼잡하게 하다, 섞다" (7, 9절)</p>
+<p>   - "바벨"(Babel) 어원</p>
+<p>   - 아카드어 "Bab-ilu"(신의 문)와 어원 장난</p>
+
+<h2>문학 구조 (6단계)</h2>
+
+<h3>반어 (Irony)</h3>
+<ul>
+<li>사람들: 꼭대기를 "하늘에 닿게" (4절)</li>
+<li>여호와: "내려오사" 보심 (5절)</li>
+<li>→ 사람들이 올라가려 하는 탑이 하나님 눈에는 내려와야 볼 정도로 낮음</li>
+</ul>
+
+<h3>하강 모티프</h3>
+<ul>
+<li>5절: 여호와 "내려오사"</li>
+<li>7절: "우리가 내려가서"</li>
+</ul>
+
+<h3>이름 짓기</h3>
+<ul>
+<li>4절: 사람들 "우리 이름을 내고"</li>
+<li>9절: 여호와 "그 이름을 바벨이라 하니"</li>
+<li>→ 이름 짓는 권한의 역전</li>
+</ul>
+
+<h3>계보-서사 교차 구조</h3>
+<ul>
+<li>창 10장: 민족 계보 (셈·함·야벳)</li>
+<li>창 11:1-9: 바벨 서사</li>
+<li>창 11:10-32: 셈 계보 (셈 → 아브람)</li>
+</ul>
+
+<h3>수명 감소 패턴</h3>
+<ul>
+<li>셈 600세 → 데라 205세</li>
+<li>홍수 이전 아담 계보(창 5장)보다 수명 짧아짐</li>
+</ul>
+
+<h2>ANE·유대 배경</h2>
+
+<h3>지구라트 (Ziggurat)</h3>
+<ul>
+<li>메소포타미아 신전 탑</li>
+<li>바벨론의 에테멘앙키(Etemenanki) — "하늘과 땅의 기초"</li>
+<li>바벨탑과 연결 가능성</li>
+</ul>
+
+<h3>바벨(Babel) 어원</h3>
+<ul>
+<li>히브리어: "balal"(혼잡하게 하다)</li>
+<li>아카드어: "Bab-ilu"(신의 문)</li>
+<li>→ 언어 유희 (word play)</li>
+</ul>
+
+<h3>아카드 언어정책</h3>
+<ul>
+<li>고대 제국의 통일 언어 정책과 대조</li>
+<li>바벨은 언어 "분산" 정책</li>
+</ul>
+
+<h2>교차 참조 노드</h2>
+
+<ul>
+<li><strong>창 10:10</strong> — 니므롯의 나라 시작: 바벨</li>
+<li><strong>창 10:25</strong> — 벨렉 때 땅이 나뉨 (바벨 사건과 연결 가능성)</li>
+<li><strong>신 4:27</strong> — 여호와께서 이스라엘을 민족 중에 흩으시리라</li>
+<li><strong>시 2:1-4</strong> — 민족들이 모여 헛된 일을 꾸미나 여호와께서 웃으심</li>
+<li><strong>행 2:1-11</strong> — 오순절 언어의 역전 (흩어진 언어 → 각자의 언어로 듣는 복음)</li>
+</ul>
+
+<h2>동영상 요약 (7단계)</h2>
+
+<p><strong>Part 1 (1-9절)</strong>: 온 땅 언어가 하나였던 시절, 사람들이 동방에서 시날 평지로 이동하여 벽돌을 구워 탑을 쌓는다. "이름을 내고 흩어지지 말자"는 목표. 그러나 여호와께서 내려오사 그들의 탑을 보시고, "우리가 내려가서 언어를 혼잡하게 하자"고 하신다. 여호와께서 언어를 혼잡하게 하시고 온 지면에 흩으시니 건설이 중단된다. 그 이름을 "바벨"이라 한다.</p>
+
+<p><strong>Part 2 (10-32절)</strong>: 계보가 이어진다. 셈에서 아브람까지 10대. 수명이 점점 줄어든다. 데라의 세 아들 중 하란은 일찍 죽고, 아브람의 아내 사래는 임신하지 못한다. 데라가 우르에서 가나안 땅으로 가려다 하란에 머물러 거기서 죽는다.</p>
+
+<p><strong>전체 흐름</strong>: "하나 → 흩어짐 → 한 사람". 인류가 하나의 언어로 모였다가 흩어지고, 그 가운데 아브람 한 사람이 선택되는 구조. 바벨의 분산과 아브람의 부르심이 대조를 이룬다.</p>
+
+<h2>초벌 제목·부제 (8단계)</h2>
+
+<ul>
+<li>제목 후보 1: "바벨의 언어 혼잡과 셈의 계보"</li>
+<li>제목 후보 2: "하나에서 흩어짐으로, 그리고 한 사람으로"</li>
+<li>제목 후보 3: "바벨 — 이름 짓기와 이름 잃기"</li>
+<li>제목 후보 4: "언어의 하나됨과 흩어짐"</li>
+</ul>
+
+<h2>품질 체크 (6/6)</h2>
+
+<ul>
+<li>[x] 1단계 — 무대·배경·소품·소재 기록됨</li>
+<li>[x] 2단계 — 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 — 시작·끝 기록됨</li>
+<li>[x] 4단계 — 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 — 장면 컷 8개</li>
+<li>[x] 6단계 — 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 — 동영상 흐름 기록됨</li>
+<li>[x] 8단계 — 초벌 제목 4개 제안</li>
+<li>[x] 9단계 — 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>원어 어휘: 히브리어 7개 (echad, safah, davar, laben, labenim, shem, balal) ✅</li>
+<li>문학 구조: 반어, 하강 모티프, 이름 짓기, 계보-서사 교차, 수명 감소 ✅</li>
+<li>ANE 배경: 지구라트, 바벨론 에테멘앙키, 어원 장난 ✅</li>
+<li>진행자 가르치기: 0건 ✅</li>
+<li>드리프트: 없음 ✅</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>진행자 추임새: "그대로 둡시다", "간직합니다", "다음 자리로 갑니다" — 다양화 양호</li>
+<li>블랙리스트 "기록해 두지요": 0회 ✅</li>
+<li>묵상·사귐 어휘 혼입: 없음 ✅</li>
+</ul></div>
+        </section>
+
+        <section class="stage" id="s8">
+          <span class="stage__num">단계 7~9</span>
+          <h2 class="stage__title">미해결 질문과 관찰자의 자리.</h2>
+          <p>본문이 답하지 않는 자리는 답하지 않은 채 둡니다.</p>
+          <div class="md-body"></div>
+        </section>
+        
+    
+    <div class="next-row">
+      <a href="/magazine/GEN/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">창세기 50장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/GEN/12/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">창세기 12장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 자리를 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 자리를 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 자리로 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/GEN/11/',
+      title: '창세기 11장',
+      excerpt: '창세기 11장 — 본문이 자기 시간 안에서 풀리는 자리.'
+    }));
+  } catch(e) {}
+</script>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div><div class="foot__brand">네다바웨이 Nedabahway</div><p>강사 김창환 · 제주<br>한 사람의 일을 다시 디자인합니다.</p></div>
+    <div class="foot__col"><h4>Observatory</h4><a href="/magazine.html">관찰 Atlas 홈</a><a href="/magazine/GEN/">창세기 권 차례</a><a href="/magazine.html#support">후원으로 받치기</a></div>
+    <div class="foot__col"><h4>둘러보기</h4><a href="/blog/perspective/">관점 노트</a><a href="/about.html">소개</a><a href="/programs.html">강의</a></div>
+    <div class="foot__col"><h4>연락</h4><a href="/contact.html">강의 의뢰</a><a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></div>
+  </div>
+  <div class="foot__copy"><span>© 2026 Nedabahway · 김창환</span><span>nedabah.org</span></div>
+</footer>
+
+</body>
+</html>

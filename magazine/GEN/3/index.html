@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>창세기 3장 — Observatory | 네다바웨이</title>
+<meta name="description" content="창세기 3장을 9단계로 같이 관찰합니다. 묻는 자리. 처음의 질문이 본문을 가른다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/GEN/3/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; counter-reset: step; }
+  .toc-side li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; }
+  .toc-side li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; }
+  .toc-side a { display: block; color: inherit; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo">네다바웨이</a>
+    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
+    <div class="nav__links">
+      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
+      <a href="/about.html" class="nav__link">소개</a>
+      <a href="/programs.html" class="nav__link">강의</a>
+      <a href="/ai.html" class="nav__link">AI 작업실</a>
+      <a href="/magazine.html" class="nav__link nav__link--active">관찰 Atlas</a>
+      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol>
+      <li><a href="#s1">본문 그대로 읽기</a></li>
+      <li><a href="#s2">관찰된 사실</a></li>
+      <li><a href="#s8">미해결 질문 · 후기</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/GEN/">창세기</a> · 3장</div>
+      <h1>창세기 3장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">GEN-003 · 오경 · 히브리어</div>
+      <p class="essence">묻는 자리. 처음의 질문이 본문을 가른다.</p>
+    </header>
+    
+        <section class="stage stage--raw" id="s1">
+          <span class="stage__num">단계 1</span>
+          <h2 class="stage__title">본문 그대로 읽기.</h2>
+          <p>본문은 본문이 자기 시간 안에서 스스로 풀리도록 둡니다. 옮긴 말을 옮긴 그대로 받아 적습니다.</p>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-003</p>
+<p>book: 창세기</p>
+<p>book_en: Genesis</p>
+<p>chapter: 3</p>
+<p>bible_block: 오경</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브</p>
+<p>language: 히브리어</p>
+<p>verse_count: 24</p>
+<p>observed_facts_count: 26</p>
+<p>open_questions_count: 9</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [nachash, arum, erom, tzeniphut, ayyeka, teshuqah, eytsev, zera, chawwah, kerubim, lahat_hachereb, keton_or, shuph, aqeb]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: [ophis, phronimos]</p>
+<p>lxx_divergences: ["창3:15 '그가 네 머리를 상하게 할 것이요' → 'αὐτός σου τηρήσει κεφαλήν'(70인역은 남성 대명사로 옮김)", "창3:8 '바람 불 때' (히브리 'le-ruach ha-yom') → 'τὸ δειλινόν'(저녁 무렵으로 의역)"]</p>
+<p>ane_refs: ["메소포타미아 Adapa 전설 — 생명 얻을 기회를 놓친 인간", "Gilgamesh Epic XI — 뱀이 영생 식물을 훔침", "고대 근동 뱀 상징의 이중성 — 지혜와 파괴, 치유와 독"]</p>
+<p>rabbinic_refs: ["Genesis Rabbah 19:3 — 뱀의 언어 능력 해석 논의", "b.Sanhedrin 29a — '네가 어디 있느냐'(ayyeka) 해석"]</p>
+<p>literary_devices: [wordplay_arum_erom, chiastic_structure, dialogic_irony, inclusio_tree_garden, protoevangelium, ring_composition]</p>
+<p>repeated_words: ["akhal(먹다, 21회)", "YHWH elohim(대화에선 elohim만, 뱀·여자 대화)", "etz(나무, 10회)", "pqch(눈이 밝아지다, 3:5·3:7)", "yada(알다, 3:5·3:7·3:22)", "shuph(짓밟다/물다, 3:15 두 번)"]</p>
+<p>cross_refs: ["창 2:25 (부끄러움 없음 → 3:7 부끄러움)", "창 2:17 (선악지식나무 금령)", "창 4장 (가인·아벨의 죄 결과)", "창 5:29 (땅이 저주받음의 언급)", "욥 1-2 (대적자의 역할)", "시 8편 (사람·피조물 관계)", "롬 5:12-21 (한 사람을 통한 죄)", "롬 16:20 (사탄을 너희 발 아래서 짓밟으심)", "계 12:9 (큰 용 옛뱀)", "계 22:2-14 (생명나무 회복)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-04-21</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>창세기 3장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ SBM 관찰 단계 시뮬레이션. 가상 페르소나 6인 + 가상 진행자.</p>
+<p>본 장은 해석 이탈이 가장 많이 일어나는 본문이므로 진행자가 평소보다 긴장하여 접어둠.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 오늘은 창세기 3장입니다. 이 장은 신학적으로 말이 많이 쌓인 본문이지요. 우리는 오늘 쌓인 말을 옆으로 밀어두고 본문이 실제로 말하는 것에만 집중합시다. 답은 구하지 않고 머뭅니다.</p>
+
+<p>(본문 낭독 3:1~24, 약 3분)</p>
+
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>P01 한나래</strong>: 갑자기 공기가 차가워졌어요. 2장 끝의 "부끄러워 아니하니라" 다음에 바로 "뱀이 간교하더라"가 이어지니까요.</p>
+
+<p><strong>P07 오지혜</strong>: 질문이 계속 나와요. 뱀의 질문, 하나님의 질문, 인물들이 서로에게 돌리는 대답.</p>
+
+<p><strong>P04 최현국</strong>: 거리가 늘어나는 느낌이에요. 가까웠던 존재들이 하나씩 물러서요.</p>
+
+<p><strong>P02 이진우</strong>: 저는 "먹다"가 계속 반복되는 게 귀에 남았어요. 이 장에서 <em>akhal</em>이 엄청 많이 나와요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 마지막에 "가죽옷을 지어 입히시니라"에서 마음이 풀렸어요. 다른 부분은 점점 멀어지는데 거기서 손길이 와요.</p>
+
+<p><strong>P11 나경아</strong>: 저는 3:8의 "바람 불 때" 표현이 독특했어요. <em>le-ruach ha-yom</em>, '날의 바람/숨결에'.</p>
+
+<p><strong>성령일 선교사</strong>: 이 공기의 변화·거리감·먹다의 반복을 그대로 놓아 둡시다.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>P04 최현국</strong>: 무대는 여전히 에덴 동산인데, 카메라 위치가 바뀌어요. 2장은 창조자의 시선이었다면 3장은 대화의 한복판, 그 다음엔 추궁의 자리, 마지막엔 동쪽 추방의 자리로 이동합니다.</p>
+
+<p><strong>P07 오지혜</strong>: 소품이 적어요. 나무 하나, 열매, 무화과 잎, 가죽옷, 그리고 마지막에 "그룹과 두루 도는 불 칼".</p>
+
+<p><strong>P11 나경아</strong>: 3:24의 "그룹"(<em>kerubim</em>)은 구약에서 거룩한 공간을 지키는 존재로 자주 등장합니다 — 성막 법궤 위(출 25:18), 성전 장식(왕상 6장), 에스겔 환상(겔 1·10). 여기가 첫 등장이에요.</p>
+
+<p><strong>P05 김미영</strong>: "두루 도는 불칼"(<em>lahat ha-chereb ha-mit-happeket</em>)도 눈에 걸려요. 구약에서 이런 물건이 또 나오는지 모르겠어요.</p>
+
+<p><strong>P11 나경아</strong>: 구약 이 구절 외엔 없습니다. 독특한 소품이에요.</p>
+
+<p><strong>P01 한나래</strong>: 그리고 "생명나무"가 3:22, 24에 두 번 더 나옵니다. 2장에선 있다고만 하고 먹는 장면이 없었는데, 3장 끝에서 그 나무가 오히려 닿을 수 없는 자리로 옮겨가요.</p>
+
+<p><strong>성령일 선교사</strong>: 무대가 동산 안에서 동산 밖으로, 접근 가능에서 차단으로 바뀌네요. 그 이동을 기억합시다.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>P02 이진우</strong>: 시작은 "뱀은 여호와 하나님이 지으신 들짐승 중에 가장 간교하니라"(3:1), 끝은 "생명나무의 길을 지키게 하시니라"(3:24).</p>
+
+<p><strong>P04 최현국</strong>: 시작이 "가장 간교한 존재"의 등장, 끝이 "지킴"(<em>shamar</em>)입니다. 2:15에 사람에게 "지키라" 하셨던 그 단어가 3:24에선 그룹과 불칼이 "지킨다"로 돌아와요.</p>
+
+<p><strong>P11 나경아</strong>: <em>shamar</em>의 주어가 바뀐 거예요. 사람 → 그룹·불칼.</p>
+
+<p><strong>P07 오지혜</strong>: 그리고 시작 단어 <em>arum</em>(간교)과 2:25 "벌거벗음"(<em>arummim</em>)이 히브리어로 음성이 거의 같아요. 두 장을 잇는 유희입니다.</p>
+
+<p><strong>P11 나경아</strong>: 맞습니다. <em>arummim</em>(벌거벗은)과 <em>arum</em>(간교한)이 사실상 말장난이에요. 2:25 → 3:1 연결에서 편집 의도가 강하게 느껴지는 자리.</p>
+
+<p><strong>성령일 선교사</strong>: 그 음성 유희는 2장 끝에서 3장 시작으로 청각적 다리를 놓네요. 그 자리를 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>P04 최현국</strong>: 인물은 뱀, 여자, 남자, 하나님, 그리고 마지막에 그룹입니다. 순서대로 등장합니다.</p>
+
+<p><strong>P07 오지혜</strong>: 대화 구조가 독특해요. 1-5절은 뱀·여자, 6-7절은 행위·결과, 8-13절은 하나님·남자·여자, 14-19절은 하나님의 선고, 20-24절은 결말입니다. <strong>뱀이 첫 대화에서 질문, 하나님이 두 번째 대화에서 질문</strong>입니다.</p>
+
+<p><strong>P01 한나래</strong>: 하나님의 첫 질문이 놀랍게도 "네가 어디 있느냐"(<em>ayyeka</em>)예요. 물리적 위치라기보다…</p>
+
+<p><strong>성령일 선교사</strong>: 본문이 왜 이 질문을 먼저 두는지는 우리가 답하지 않고 그대로 둡시다.</p>
+
+<p><strong>P02 이진우</strong>: 상황이 연쇄적이에요. 뱀 → 여자 → 남자 → 숨음 → 질문 → 책임 전가 → 선고 → 가죽옷 → 추방.</p>
+
+<p><strong>P11 나경아</strong>: "이브"라는 이름도 이 장 3:20에서 처음 불립니다. <em>Chawwah</em>(하와), "모든 산 자의 어머니"라는 설명과 함께. 그 전에는 그냥 "여자"(<em>ishshah</em>)였어요.</p>
+
+<p><strong>P05 김미영</strong>: 3:15에 처음으로 "여자의 후손"이라는 표현이 나와요. 구체적이에요. "네가 그의 발꿈치를 상하게 할 것이니라"도요.</p>
+
+<p><strong>P11 나경아</strong>: 3:15의 동사 <em>shuph</em>는 희귀어입니다. "짓밟다/물다" 양쪽 해석 가능. 본문이 한 단어를 앞뒤에 두 번 쓰면서 대칭을 만들어요 — "그가 네 머리를 <em>shuph</em>, 너는 그의 발꿈치를 <em>shuph</em>". 70인역은 중성 후손 대신 남성 단수 대명사 <em>αὐτός</em>로 옮겨요.</p>
+
+<p><strong>성령일 선교사</strong>: 3:15에 쌓인 해석은 오늘 옆으로 둡시다. 본문이 말한 어휘·구조만 기록합시다.</p>
+
+<p><strong>P04 최현국</strong>: 사상으로는 — 본문 표면에서 "먹다(akhal)"가 이 장의 지배 동사예요. 21번 나와요. 2장의 창조(<em>bara·yatsar·banah</em>) 3중주에서 3장 먹음(<em>akhal</em>)으로 축이 바뀌었어요.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>P02 이진우</strong>: 다섯 컷으로 나눌 수 있을 것 같아요.</p>
+
+<ul>
+<li><strong>컷 1 (3:1-5)</strong>: 뱀·여자 대화 — 질문·왜곡·약속</li>
+<li><strong>컷 2 (3:6-7)</strong>: 여자·남자 먹음 → 눈이 밝아짐 → 무화과 잎</li>
+<li><strong>컷 3 (3:8-13)</strong>: 하나님 발걸음·숨음·질문·책임 전가 연쇄</li>
+<li><strong>컷 4 (3:14-19)</strong>: 뱀·여자·남자에 대한 선고 (3단계)</li>
+<li><strong>컷 5 (3:20-24)</strong>: 이름 부름·가죽옷·추방·그룹·불칼</li>
+</ul>
+
+<p><strong>P11 나경아</strong>: 컷 4의 구조가 중요해요. 선고 순서가 뱀→여자→남자로 등장 순의 역순입니다. 뱀이 먼저 말했고, 여자가 받았고, 남자가 먹었는데, 선고는 뱀 먼저, 남자 마지막.</p>
+
+<p><strong>P04 최현국</strong>: 역순 배치는 구약 내러티브에서 자주 나오는 ring composition이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 구조 관찰을 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견 — 3:1에서 뱀이 여자에게 하는 첫 말은 질문이 아니라 <strong>왜곡된 인용</strong>이에요. "하나님이 참으로 너희에게 동산 모든 나무의 열매를 먹지 말라 하시더냐?" 하나님은 2:16에서 "동산 각종 나무의 열매는 네가 임의로 먹되"라고 하셨거든요.</p>
+
+<p><strong>P07 오지혜</strong>: 그리고 여자의 대답도 살짝 달라져 있어요. 3:3에서 "만지지도 말라"가 덧붙여져요. 2:17의 원 명령에는 "만지지 말라"가 없거든요.</p>
+
+<p><strong>P11 나경아</strong>: 그 관찰이 중요해요. 금령의 변형이 여자 쪽에도 일어납니다. 누가 먼저 변형시켰는지는 본문이 밝히지 않아요.</p>
+
+<p><strong>P02 이진우</strong>: 발견 — 3:5의 뱀 발언 "너희 눈이 밝아 하나님과 같이 되어 선악을 알줄을 하나님이 아심이니라"와 3:22의 하나님 발언 "보라 이 사람이 선악을 아는 일에 우리 중 하나 같이 되었으니"가 놀랍도록 평행해요. 뱀의 말이 거짓말처럼 시작했는데, 3:22에서 하나님이 비슷한 표현으로 인정하세요.</p>
+
+<p><strong>P04 최현국</strong>: 그래요. 뱀 발언의 '진실성'이 평면적이지 않다는 것만 관찰에 기록합시다. 해석은 더 나아가지 맙시다.</p>
+
+<p><strong>P05 김미영</strong>: 발견 — 가죽옷 장면이요. 3:21에서 하나님이 가죽옷을 지어 입히세요. 이 장면은 앞의 무화과 잎(3:7)과 대비돼요. 무화과 잎은 사람이 직접 만든 가림, 가죽옷은 하나님이 지으신 가림.</p>
+
+<p><strong>P07 오지혜</strong>: 발견 — 3:15의 "여자의 후손"(<em>zera ha-ishshah</em>). 구약에서 "후손"이 보통 남성의 계보로 나오는데 여기선 여자의 후손이라 특이해요.</p>
+
+<p><strong>P11 나경아</strong>: 흥미로운 관찰입니다. <em>zera</em>는 집합명사라 단수·복수 양쪽으로 읽을 수 있고, 70인역은 <em>αὐτός</em>(남성 단수)로 대명사를 옮긴 점이 주목됩니다. 라틴 불가타는 <em>ipsa</em>(여성)로 옮긴 전통이 있어요 — 본문과 다른 사본 전통이 역사적으로 쌓였습니다.</p>
+
+<p><strong>P04 최현국</strong>: 의문 — 3:8의 "바람 불 때"(<em>le-ruach ha-yom</em>)는 직역이 '날의 바람/숨에'예요. '저녁 서늘할 때'라는 통상 번역이 맞는지, 혹은 '심판의 날의 숨결'처럼 읽는 전통이 있는지 본문만으로는 확정 안 돼요.</p>
+
+<p><strong>P11 나경아</strong>: 랍비 전통은 후자 쪽 해석도 있습니다. 본문은 열려 있어요.</p>
+
+<p><strong>P02 이진우</strong>: 정보 — 3:16의 "너는 남편을 원하고 남편은 너를 다스릴 것이니라"의 "원하다"는 <em>teshuqah</em>. 이 단어는 4:7에서 "죄가 너를 원한다"에 다시 쓰입니다. 창세기 초반 두 번만 특이하게 등장하는 어휘예요.</p>
+
+<p><strong>P04 최현국</strong>: 정보 — 3:17-19의 "땅이 저주를 받고", "땀이 흘러야", "흙으로 돌아가리니"는 2:7의 "흙에서 빚으심"과 수미 구조를 이룹니다. 사람이 시작한 흙으로 돌아가요.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상</h2>
+
+<p><strong>P04 최현국</strong>: 장면은 동산 안, 뱀이 여자에게 다가와 말을 겁니다. "하나님이 참으로…" 질문은 금령을 약간 비틀어 놓습니다. 여자는 답하면서 자기도 모르게 금령에 한 단어를 덧붙입니다. 뱀은 확신에 찬 거짓 같은 진실을 말합니다. "너희가 결코 죽지 아니하리라. 눈이 밝아져 하나님 같이 될 것이다."</p>
+
+<p><strong>P01 한나래</strong>: 여자가 나무를 보니 먹음직하고 보암직하고 지혜롭게 할 만큼 탐스러워요. 따 먹고 함께한 남편에게도 줍니다. 남편도 먹습니다. 그 순간 두 사람의 눈이 밝아집니다. 그런데 본 것이 <strong>벌거벗음</strong>이에요. 무화과 잎을 엮어 치마를 만듭니다.</p>
+
+<p><strong>P05 김미영</strong>: 날의 바람이 불 때 여호와 하나님의 소리가 동산 안에 들립니다. 두 사람이 나무들 사이에 숨어요. 하나님의 음성이 들려와요. "네가 어디 있느냐." 남자가 답합니다. "당신 소리를 듣고 내가 벗었으므로 두려워하여 숨었나이다." 질문이 이어집니다. "누가 네게 알렸느냐. 그 나무 열매를 네가 먹었느냐." 남자는 여자에게, 여자는 뱀에게 책임을 돌립니다.</p>
+
+<p><strong>P07 오지혜</strong>: 선고가 내려집니다. 등장의 역순으로 뱀부터요. 뱀은 배로 다니고 흙을 먹을 것이며, 여자의 후손과 적대가 놓입니다. 여자는 해산의 고통과 남편과의 긴장 구조를 받습니다. 남자는 땅의 저주와 수고와 흙으로 돌아감의 선고를 받습니다.</p>
+
+<p><strong>P02 이진우</strong>: 장면이 바뀝니다. 남자가 여자의 이름을 "하와"라고 부릅니다. 모든 산 자의 어머니. 하나님이 가죽옷을 지어 두 사람에게 입히십니다.</p>
+
+<p><strong>P11 나경아</strong>: 마지막 장면입니다. 하나님이 "사람이 선악을 아는 일에 우리 중 하나 같이 되었으니 생명나무 열매도 따먹고 영생할까 하노라" 하시며 사람을 동산에서 내보내십니다. 동산 동쪽에 그룹들과 두루 도는 불칼을 두어 생명나무의 길을 <em>지키게</em> 하십니다.</p>
+
+<p><strong>성령일 선교사</strong>: 지키라 하셨던 사람이 이제 동산 밖에 서 있고, 다른 존재들이 나무의 길을 지키는 자리가 되었습니다. 그 이동을 그대로 마음에 담읍시다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>P01 한나래</strong>: "<em>Arum</em> 과 <em>Arummim</em> — 벌거벗음과 간교함"</p>
+<p><strong>P02 이진우</strong>: "먹다 21번, 선고 3번, 이름 1번"</p>
+<p><strong>P04 최현국</strong>: "지킴의 주어가 바뀌던 날"</p>
+<p><strong>P05 김미영</strong>: "가죽옷을 지어 입히시니라"</p>
+<p><strong>P07 오지혜</strong>: "뱀의 질문과 하나님의 질문"</p>
+<p><strong>P11 나경아</strong>: "<em>Ayyeka</em> — 네가 어디 있느냐"</p>
+
+<p><strong>성령일 선교사</strong>: 부제 — "동산 안에서 동산 밖으로".</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장의 동영상 안으로 들어가 걸어봅시다. 어디에 서도 좋습니다. 나무 곁이든, 숨었던 수풀이든, 가죽옷이 지어지는 자리든, 동산 동쪽 그룹 앞이든. 아뢰고, 듣고, 머뭅시다.</p>
+
+<p><strong>(긴 침묵 약 1분 10초)</strong> 🌿🌿🌿</p>
+
+<p><strong>P01 한나래</strong>: 주님, 저의 금령 변형을 오늘 처음 봤습니다. 제가 덧붙이고 빼는 말들이 많습니다.</p>
+<p><em>— 떠오름: "내가 말한 그대로를 들어라."</em></p>
+
+<p><strong>P02 이진우</strong>: 주여, "네가 어디 있느냐" 그 한 마디 앞에서 저의 정교한 대답들이 멈춥니다.</p>
+<p><em>— 떠오름: 숨이 가만해지는 느낌.</em></p>
+
+<p><strong>P04 최현국</strong>: 주님, 지킴의 주어가 저에게서 떠났던 그 자리에 오늘 제가 서 있음을 봅니다. 그 자리에서 저를 다시 불러 주시기를.</p>
+<p>*— 떠오</p></div>
+        </section>
+
+        <section class="stage" id="s2">
+          <span class="stage__num">단계 2~6</span>
+          <h2 class="stage__title">관찰된 사실 — 단어 빈도 · 좌표 · 동사 · 대조 · 장 경계.</h2>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-003</p>
+<p>book: 창세기</p>
+<p>chapter: 3</p>
+<p>date: 2026-04-21</p>
+<p>---</p>
+
+<h2>창세기 3장 — 관찰된 사실</h2>
+
+<h2>무대·배경·소품 (1단계)</h2>
+<ul>
+<li>무대 이동: 동산 안(대화·먹음) → 숨은 자리(나무들 사이) → 대화의 자리(질문·답) → 동산 바깥(추방 후).</li>
+<li>소품: 나무 한 그루, 열매, 무화과 잎, 가죽옷, 그룹(*kerubim*), 두루 도는 불칼(*lahat ha-chereb ha-mit-happeket*).</li>
+<li>그룹 첫 등장(3:24) — 이후 출 25:18(성막), 왕상 6장(성전), 겔 1·10장(환상)에 재등장.</li>
+<li>두루 도는 불칼은 구약에서 유일 표현.</li>
+<li>생명나무가 3:22·24에 재등장, 접근 차단 대상으로 전환.</li>
+</ul>
+
+<h2>첫 느낌·분위기 (2단계)</h2>
+<ul>
+<li>2:25 "부끄러워 아니하니라" ↔ 3:1 "뱀은 간교하니라" 연결 시 공기 급변.</li>
+<li>질문의 장 — 뱀의 질문, 하나님의 질문, 책임 전가의 연쇄.</li>
+<li>거리가 늘어나는 감각 — 가까웠던 존재들이 물러남.</li>
+<li>"먹다"(*akhal*) 21회 반복이 청각적 지배.</li>
+</ul>
+
+<h2>시작·끝 (3단계)</h2>
+<ul>
+<li>시작: "뱀은 여호와 하나님이 지으신 들짐승 중에 가장 간교하니라"(3:1).</li>
+<li>끝: "생명나무의 길을 지키게 하시니라"(3:24).</li>
+<li>2:25 *arummim*(벌거벗은)과 3:1 *arum*(간교한)의 음성 유희로 장 간 연결.</li>
+<li>*shamar*(지키다)의 주어 이동: 2:15 사람 → 3:24 그룹·불칼.</li>
+</ul>
+
+<h2>등장인물·사물·사상 (4단계)</h2>
+<ul>
+<li>뱀(*nachash*) / 여자 / 남자 / YHWH Elohim / 그룹.</li>
+<li>대화 구조: 1-5(뱀·여자) / 6-7(행위) / 8-13(하나님·남녀 심문) / 14-19(선고) / 20-24(결말).</li>
+<li>뱀과 하나님의 질문: "하나님이 참으로…하시더냐"(3:1) vs "네가 어디 있느냐"(3:9 *ayyeka*).</li>
+<li>선고 순서 = 등장 순의 역순 (뱀→여자→남자), ring composition.</li>
+<li>3:6 동사들: "보다", "먹음직하다", "보암직하다", "지혜롭게 할 만큼 탐스럽다".</li>
+<li>3:7 "눈이 밝아"(*wa-tippaqachnah eynehem*) ↔ 3:5 뱀 약속 "눈이 밝아"(*niphqechu eynekem*).</li>
+<li>3:8 *le-ruach ha-yom* — '날의 바람/숨결에'. 70인역 *τὸ δειλινόν*(저녁 무렵).</li>
+<li>3:15 *shuph*(희귀어, 짓밟다/물다) 두 번 대칭 — "그가 네 머리를 shuph, 너는 그의 발꿈치를 shuph". 70인역 *αὐτός*(남성 단수 대명사).</li>
+<li>3:16 *teshuqah*(원하다) — 4:7에 재등장, 창세기 초반 2회만.</li>
+<li>3:17-19 땅 저주·수고·흙으로 돌아감 — 2:7 "흙에서 빚으심"과 수미.</li>
+<li>3:20 여자 이름 *Chawwah*(하와) — "모든 산 자의 어머니".</li>
+<li>3:21 가죽옷(*kotenot or*) ↔ 3:7 무화과 잎(*hagorot*): 사람 가림 vs 하나님 가림.</li>
+<li>3:22 하나님 발언 "선악을 아는 일에 우리 중 하나 같이 되었으니" — 3:5 뱀 발언과 어휘 평행.</li>
+</ul>
+
+<h2>장면 컷 (5단계)</h2>
+<ul>
+<li>컷 1 (3:1-5): 뱀·여자 대화.</li>
+<li>컷 2 (3:6-7): 먹음 → 눈 밝아짐 → 무화과 잎.</li>
+<li>컷 3 (3:8-13): 발걸음·숨음·심문·책임 전가.</li>
+<li>컷 4 (3:14-19): 뱀→여자→남자 선고 (역순).</li>
+<li>컷 5 (3:20-24): 하와 명명·가죽옷·추방·그룹·불칼.</li>
+</ul>
+
+<h2>원어 카드 (6단계 포함)</h2>
+<ul>
+<li>*nachash*(נָחָשׁ) — 뱀. 70인역 *ὄφις*.</li>
+<li>*arum*(עָרוּם) — 간교한/영리한. 2:25 *arummim*(벌거벗은)과 청각 유희.</li>
+<li>*phronimos* (LXX 3:1) — 영리한. 뱀 서술.</li>
+<li>*erom*(עֵירֹם) — 벌거벗음. 3:7·10·11.</li>
+<li>*akhal*(אָכַל) — 먹다. 3장 21회.</li>
+<li>*ayyeka*(אַיֶּכָּה) — "네가 어디 있느냐". 3:9.</li>
+<li>*paqach*(פָּקַח) — 눈을 뜨다/밝아지다. 3:5·7.</li>
+<li>*yada*(יָדַע) — 알다. 3:5·7·22.</li>
+<li>*shuph*(שׁוּף) — 짓밟다/물다. 3:15 두 번.</li>
+<li>*aqeb*(עָקֵב) — 발꿈치. 3:15.</li>
+<li>*teshuqah*(תְּשׁוּקָה) — 원함/갈망. 3:16, 4:7.</li>
+<li>*eytsev*(עֶצֶב) — 고통/수고. 3:16·17.</li>
+<li>*zera*(זֶרַע) — 씨/후손. 집합명사.</li>
+<li>*chawwah*(חַוָּה) — 하와. "생명" 어근 연결.</li>
+<li>*kotenot or*(כָּתְנוֹת עוֹר) — 가죽옷.</li>
+<li>*kerubim*(כְּרֻבִים) — 그룹. 복수형.</li>
+<li>*lahat ha-chereb ha-mit-happeket* — 두루 도는 불칼.</li>
+</ul>
+
+<h2>문학 구조 (6단계 포함)</h2>
+<ul>
+<li>2:25 ↔ 3:1 *arummim/arum* 음성 유희 다리.</li>
+<li>대화 ↔ 선고 대칭: 등장 순(뱀·여자·남자) vs 선고 역순(뱀·여자·남자 → 역).</li>
+<li>3:5 뱀 발언 ↔ 3:22 하나님 발언 어휘 평행 ("선악을 아는 일에…되다").</li>
+<li>3:7 무화과 잎 ↔ 3:21 가죽옷: 인간 가림 vs 하나님 가림.</li>
+<li>*shamar* 주어 전환: 2:15 사람 → 3:24 그룹·불칼.</li>
+<li>*akhal* 21회 — 3장 지배 동사.</li>
+<li>2:7 "흙에서 빚으심" ↔ 3:19 "흙으로 돌아가리니" 수미.</li>
+<li>3:15 *shuph* 대칭 쌍 — '머리'와 '발꿈치'의 상하 대립.</li>
+</ul>
+
+<h2>ANE 배경 (배경 자료)</h2>
+<ul>
+<li>메소포타미아 *Adapa* 전설: 영생 얻을 기회를 놓친 인간 모티프.</li>
+<li>*Gilgamesh Epic* XI: 뱀이 영생 식물을 훔치는 장면.</li>
+<li>고대 근동 뱀 상징의 이중성: 지혜와 파괴, 치유와 독.</li>
+<li>창 3이 이 전승들과 어휘·이미지 일부 공유하나 <strong>갈등·전쟁·죽음의 원인을 제의가 아닌 관계 파손으로 서술</strong>하는 점에서 독특함 (배경 관찰, 해석 아님).</li>
+</ul>
+
+<h2>교차 참조 노드</h2>
+<ul>
+<li>창 3 ↔ 창 2 (2:25 → 3:1 음성 연결, 2:17 금령 이행)</li>
+<li>창 3 ↔ 창 4:7 (*teshuqah* 재등장)</li>
+<li>창 3 ↔ 창 5:29 (땅 저주의 기억)</li>
+<li>창 3 ↔ 욥 1-2 (대적자 역할)</li>
+<li>창 3 ↔ 롬 5:12-21 (한 사람을 통한 죄)</li>
+<li>창 3 ↔ 롬 16:20 (사탄을 발 아래 짓밟음)</li>
+<li>창 3 ↔ 계 12:9 (큰 용 옛뱀)</li>
+<li>창 3 ↔ 계 22:2-14 (생명나무 회복)</li>
+</ul>
+
+<h2>동영상 요약 (7단계)</h2>
+<p>뱀이 여자에게 질문으로 다가온다. 금령은 살짝 비틀려 인용되고, 여자의 대답에도 한 단어가 덧붙는다. 뱀은 확신에 찬 말로 "눈이 밝아 하나님 같이" 되리라 선포한다. 여자가 나무를 본다 — 먹음직, 보암직, 탐스러움. 따 먹고 남편에게도 준다. 남편도 먹는다. 눈이 밝아진다. 본 것은 벌거벗음이다. 무화과 잎을 엮는다. 날의 바람이 분다. 하나님의 소리가 들린다. 두 사람이 숨는다. 음성이 들린다 — "네가 어디 있느냐". 질문이 이어지고 책임 전가의 연쇄가 일어난다. 선고가 내려진다: 뱀, 여자, 남자 순으로. 사람이 여자의 이름을 하와라 부른다. 하나님이 가죽옷을 지어 입히신다. 하나님이 "생명나무 열매도 따먹고 영생할까" 하시며 사람을 동산 밖으로 내보내신다. 동쪽에 그룹과 두루 도는 불칼을 두어 생명나무의 길을 지키게 하신다.</p>
+
+<h2>초벌 제목·부제 (8단계)</h2>
+<ul>
+<li>초벌 제목: <strong>"*Arum*과 *Arummim* — 지킴의 주어가 바뀌던 날"</strong></li>
+<li>초벌 부제: "동산 안에서 동산 밖으로"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (17개)</li>
+<li>[x] 역사·문화·문학 사실 (ANE 3종, 문학 구조 다수, LXX 비교)</li>
+<li>[x] 미해결 질문 1개 이상 (9건)</li>
+<li>[x] 진행자 "가르치기" 0건 — 해석 이탈 본문임에도 방어 성공</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘("원죄·타락") 진행자 0건, 참가자 튐 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9 전부 수행</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>3:15 protoevangelium 해석, 3:5·22 "선악 앎" 의미 확장, "타락"·"원죄" 용어 모두 open_questions로 이월. 관찰에선 어휘 분포·구조·LXX 차이만 기록.</li>
+<li>뱀의 정체(사탄/구렁이/상징) 해석 생략 — "본문은 '여호와 하나님이 지으신 들짐승 중'이라고만 말함"까지만.</li>
+<li>3:16 여성·남성 역학 해석 확장 생략 — *teshuqah*·*yimshol* 어휘 분포만 기록.</li>
+</ul></div>
+        </section>
+
+        <section class="stage" id="s8">
+          <span class="stage__num">단계 7~9</span>
+          <h2 class="stage__title">미해결 질문과 관찰자의 자리.</h2>
+          <p>본문이 답하지 않는 자리는 답하지 않은 채 둡니다.</p>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-003</p>
+<p>book: 창세기</p>
+<p>chapter: 3</p>
+<p>date: 2026-04-21</p>
+<p>---</p>
+
+<h2>창세기 3장 — 미해결 질문</h2>
+
+<h2>Q1. 뱀은 어떤 존재인가?</h2>
+<ul>
+<li>본문은 "여호와 하나님이 지으신 들짐승 중 가장 간교한 자"라고만 함.</li>
+<li>사탄·대적·비유·실제 뱀 중 어느 층위인지 본문이 확정하지 않음.</li>
+<li>계 12:9 "큰 용 옛뱀"과의 연결은 신약 이후 해석 역사.</li>
+</ul>
+
+<h2>Q2. "반드시 죽으리라"(2:17)의 성취 방식은?</h2>
+<ul>
+<li>3장에서 육체적 즉사 없음, 그러나 추방·죽음 선고 내려짐.</li>
+<li>본문이 말하는 '죽음'의 정의가 2-3장 안에서 완전히 풀리지 않음.</li>
+</ul>
+
+<h2>Q3. 3:5 뱀의 말과 3:22 하나님의 말의 관계는?</h2>
+<ul>
+<li>어휘가 평행("선악을 아는 일에…되다").</li>
+<li>뱀의 말이 완전 거짓인지, 부분 진실인지, 무엇이 진실이고 무엇이 왜곡인지 본문이 명시하지 않음.</li>
+</ul>
+
+<h2>Q4. 3:15의 "여자의 후손"은 누구인가?</h2>
+<ul>
+<li>*zera*는 집합명사 — 단수·복수 양쪽 읽기 가능.</li>
+<li>70인역 *αὐτός* 남성 단수 대명사 / 불가타 *ipsa* 여성.</li>
+<li>본문 자체가 특정하지 않음. 메시아 예표 해석은 후대 전통.</li>
+</ul>
+
+<h2>Q5. 3:8의 "날의 바람"(*le-ruach ha-yom*)은?</h2>
+<ul>
+<li>'저녁 서늘할 때'(통상 번역) / '심판의 날의 숨결'(랍비 전통) 가능.</li>
+<li>본문이 시간·의미를 확정하지 않음.</li>
+</ul>
+
+<h2>Q6. 3:16 *teshuqah*(원하다·갈망)의 의미는?</h2>
+<ul>
+<li>4:7에서 "죄가 너를 원한다"에 같은 단어.</li>
+<li>여자-남자 관계 방향성의 정확한 의미를 본문이 명확히 말하지 않음.</li>
+</ul>
+
+<h2>Q7. 가죽옷(3:21)은 어디서 왔는가?</h2>
+<ul>
+<li>짐승 가죽 → 짐승 죽음 → 최초의 희생? 본문이 그 절차를 기록하지 않음.</li>
+<li>"하나님이 지으셨다"는 사실만 남음.</li>
+</ul>
+
+<h2>Q8. 그룹과 두루 도는 불칼(3:24)의 실체는?</h2>
+<ul>
+<li>그룹은 이후 성막·성전·환상에 재등장하지만 여기선 설명 없이 등장.</li>
+<li>불칼은 구약에서 유일 표현.</li>
+</ul>
+
+<h2>Q9. 추방은 형벌인가 보호인가?</h2>
+<ul>
+<li>3:22의 "생명나무 열매도 따먹고 영생할까" 구절이 보호의 의미 가능성을 열어 둠.</li>
+<li>본문이 추방의 동기를 단일하게 정의하지 않음.</li>
+</ul>
+
+<p>---</p>
+<p><em>묵상·사귐 단계에서 재방문.</em></p></div>
+        </section>
+        
+    
+    <div class="next-row">
+      <a href="/magazine/GEN/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">창세기 50장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/GEN/4/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">창세기 4장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 자리를 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 자리를 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 자리로 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/GEN/3/',
+      title: '창세기 3장',
+      excerpt: '묻는 자리. 처음의 질문이 본문을 가른다.'
+    }));
+  } catch(e) {}
+</script>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div><div class="foot__brand">네다바웨이 Nedabahway</div><p>강사 김창환 · 제주<br>한 사람의 일을 다시 디자인합니다.</p></div>
+    <div class="foot__col"><h4>Observatory</h4><a href="/magazine.html">관찰 Atlas 홈</a><a href="/magazine/GEN/">창세기 권 차례</a><a href="/magazine.html#support">후원으로 받치기</a></div>
+    <div class="foot__col"><h4>둘러보기</h4><a href="/blog/perspective/">관점 노트</a><a href="/about.html">소개</a><a href="/programs.html">강의</a></div>
+    <div class="foot__col"><h4>연락</h4><a href="/contact.html">강의 의뢰</a><a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></div>
+  </div>
+  <div class="foot__copy"><span>© 2026 Nedabahway · 김창환</span><span>nedabah.org</span></div>
+</footer>
+
+</body>
+</html>

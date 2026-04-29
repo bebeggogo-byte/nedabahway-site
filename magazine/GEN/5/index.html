@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>창세기 5장 — Observatory | 네다바웨이</title>
+<meta name="description" content="창세기 5장을 9단계로 같이 관찰합니다. 족보의 자리. 같은 형식이 한 사람에서 멈춘다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/GEN/5/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; counter-reset: step; }
+  .toc-side li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; }
+  .toc-side li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; }
+  .toc-side a { display: block; color: inherit; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo">네다바웨이</a>
+    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
+    <div class="nav__links">
+      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
+      <a href="/about.html" class="nav__link">소개</a>
+      <a href="/programs.html" class="nav__link">강의</a>
+      <a href="/ai.html" class="nav__link">AI 작업실</a>
+      <a href="/magazine.html" class="nav__link nav__link--active">관찰 Atlas</a>
+      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol>
+      <li><a href="#s1">본문 그대로 읽기</a></li>
+      <li><a href="#s2">관찰된 사실</a></li>
+      <li><a href="#s8">미해결 질문 · 후기</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/GEN/">창세기</a> · 5장</div>
+      <h1>창세기 5장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">GEN-005 · 오경 · 히브리어</div>
+      <p class="essence">족보의 자리. 같은 형식이 한 사람에서 멈춘다.</p>
+    </header>
+    
+        <section class="stage stage--raw" id="s1">
+          <span class="stage__num">단계 1</span>
+          <h2 class="stage__title">본문 그대로 읽기.</h2>
+          <p>본문은 본문이 자기 시간 안에서 스스로 풀리도록 둡니다. 옮긴 말을 옮긴 그대로 받아 적습니다.</p>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-005</p>
+<p>book: 창세기</p>
+<p>book_en: Genesis</p>
+<p>chapter: 5</p>
+<p>bible_block: 오경</p>
+<p>canon: 구약</p>
+<p>genre: 계보</p>
+<p>language: 히브리어</p>
+<p>verse_count: 32</p>
+<p>observed_facts_count: 20</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 3</p>
+<p>hebrew_terms: [toledoth, tselem, demut, zakar_u-neqevah, Adam, Shet, Enosh, Qenan, Mahalalel, Yered, Hanokh, Metushelah, Lamek, Noach, hithalek, laqach, nacham]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: [metatitheimi, metatithemai]</p>
+<p>lxx_divergences: ["창 5장 연대의 MT vs LXX 차이 — LXX는 대부분 출생 연도를 100년씩 더함 (마태·누가 족보의 연대 계산 차이 발생)", "창 5:24 'hithalek im ha-elohim... ki laqach oto elohim' → LXX 'εὐηρέστησεν τῷ θεῷ... οὐχ ηὑρίσκετο, ὅτι μετέθηκεν αὐτὸν ὁ θεός' (하나님을 기쁘게 함 / 옮기심)"]</p>
+<p>ane_refs: ["Sumerian King List — 홍수 이전 왕 8-10명, 수천 년 재위 기록. 수명이 길고 흥수로 단절되는 구조 유사", "메소포타미아 Antediluvian Sages 전통 — 홍수 이전 현자 7인", "Atrahasis에서 인간 장수의 감소 모티프"]</p>
+<p>rabbinic_refs: ["b.Shabbat 55a — 죽음이 '아담 때문에'가 아니라 각자의 죄 때문이라는 논의", "Genesis Rabbah 23:7 — 에녹의 승천 해석 다양성", "Targum Onkelos 5:24 — '하나님이 그를 죽이셨다'로 해석"]</p>
+<p>literary_devices: [toledoth_formula, formulaic_repetition, genealogy_pattern, 10_generations_structure, break_in_pattern_Enoch, break_in_pattern_Lamek_speech, name_etymology_Noach]</p>
+<p>repeated_words: ["wa-yichi(그가 살았더라, 각 대 반복)", "wa-yoled(낳았고)", "wayamot(죽었더라 — 에녹 제외 모두)", "shanah(년)", "ben(아들, 복수 banim)", "bat(딸, 복수 banot)"]</p>
+<p>cross_refs: ["창 1:26-27 (형상·모양 — 5:1-3 재인용)", "창 4:25-26 (셋·에노스 계보 시작)", "창 9:29 (노아의 죽음)", "창 11:10-26 (셈 계보의 평행 구조)", "역대상 1:1-4 (5장 계보 요약)", "누가복음 3:36-38 (예수 계보가 셋·아담으로 역추적)", "히브리서 11:5 (에녹의 옮겨감)", "유다서 14 (에녹의 예언 인용 — 1Enoch 참조)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-04-21</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>창세기 5장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 계보(족보) 본문의 관찰 규격 실험 자리. 짧은 시뮬도 유효함을 파일럿에서 확인.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 오늘은 창세기 5장, 계보의 장입니다. 계보 본문을 어떻게 관찰할지 오늘 우리가 배우는 자리이기도 합니다. 반복되는 형식 자체가 본문의 말이지요. 낭독하고 잠시 머무르겠습니다.</p>
+
+<p>(본문 낭독 5:1~32, 약 3분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>P02 이진우</strong>: 반복이에요. 같은 형식이 열 번 돌아요. 한 번 눈에 익으면 눈이 저절로 리듬을 탑니다.</p>
+
+<p><strong>P04 최현국</strong>: 숫자가 지배적이에요. 나이·연수·죽음.</p>
+
+<p><strong>P05 김미영</strong>: "그리고 죽었더라"가 장 전체에 깔려 있어요.</p>
+
+<p><strong>P01 한나래</strong>: 그런데 한 자리가 다릅니다. 에녹 차례에 "죽었더라"가 없어요.</p>
+
+<p><strong>P07 오지혜</strong>: 마지막 노아 차례에도 특이점이 있어요. 아버지 라멕이 이름의 의미를 말해줍니다 — "이 아들은 여호와께서 땅을 저주하셨으므로 수고롭게 일하는 우리를 안위하리라."</p>
+
+<p><strong>P11 나경아</strong>: 그 이름 해설이 4장 라멕의 노래와 대조돼요. 가인 계보 라멕은 폭력의 노래, 셋 계보 라멕은 안위의 기대.</p>
+
+<p><strong>성령일 선교사</strong>: 반복의 리듬과 그 리듬을 깨는 두 자리(에녹·노아) 이 세 가지를 마음에 담아 둡시다.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>P04 최현국</strong>: 무대는 구체적 장소가 아닌 '시간' 자체예요. 몇 백 년 몇 년 단위로 시간이 흘러갑니다.</p>
+
+<p><strong>P02 이진우</strong>: 소품도 추상적이에요. "아들"·"딸"·"연수"·"날"·"죽음"·"낳음". 명사가 줄어들고 숫자가 늘어납니다.</p>
+
+<p><strong>P11 나경아</strong>: 첫 두 절(5:1-2)은 무대 설정에 해당해요. "이것은 아담의 계보를 적은 책이라(<em>sefer toledoth adam</em>)"로 장을 여는데, 1:26-27의 창조 장면을 축약해 다시 꺼냅니다 — "하나님의 형상"(<em>demut elohim</em>)·"남자와 여자"·"이름을 아담"이라.</p>
+
+<p><strong>P07 오지혜</strong>: 그리고 5:3에서 "아담이 그의 모양 곧 그의 형상과 같은 아들을 낳아 이름을 셋이라." 하나님 형상이 아담의 형상으로 이어져 셋에게 전달됩니다.</p>
+
+<p><strong>P04 최현국</strong>: 형상·모양이 1:26의 어휘 그대로 5장에 재등장해요. 이어지는 다리 같습니다.</p>
+
+<p><strong>성령일 선교사</strong>: 그 어휘 반복을 남깁시다.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>P11 나경아</strong>: 시작은 "이것은 아담의 계보를 적은 책이라"(5:1), 끝은 "노아가 오백 세 된 후에 셈과 함과 야벳을 낳았더라"(5:32).</p>
+
+<p><strong>P04 최현국</strong>: 시작은 "책"이라는 단어로 문서화됩니다. 이 계보가 '기억해야 할 기록'이라는 자기 선언이에요. 끝은 아들 셋의 이름으로 정해지는데, 그 셋이 6장 이후의 홍수와 재출발의 주인공들이죠.</p>
+
+<p><strong>P02 이진우</strong>: 시작에서 아담의 창조가 다시 기억되고, 끝에서 홍수 직전의 세 아들에게 바통이 넘어갑니다. 5장은 창조에서 홍수로 연결하는 다리예요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 다리 구조를 그대로 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>P04 최현국</strong>: 인물 열 명의 계보입니다. 아담·셋·에노스·게난·마할랄렐·야렛·에녹·므두셀라·라멕·노아. 열 세대.</p>
+
+<p><strong>P02 이진우</strong>: 각 인물에 대해 동일한 6요소 구조가 반복돼요.</p>
+<p>1. 아버지의 나이 + 아들 낳음</p>
+<p>2. 아들 이름</p>
+<p>3. 아들 낳은 후 몇 년 살며 다른 자녀들 낳음</p>
+<p>4. 평생 몇 년</p>
+<p>5. 죽었더라</p>
+
+<p><strong>P01 한나래</strong>: 그 형식을 3회 깨는 자리가 있어요. (1) 3절 아담의 형상 전달 부가 서술, (2) 22-24절 에녹, (3) 29절 라멕의 노아 이름 해설.</p>
+
+<p><strong>P11 나경아</strong>: 에녹 부분이 가장 눈에 띕니다. 5:22에서 "에녹이 므두셀라를 낳은 후 삼백 년을 하나님과 동행하며 자녀들을 낳았으며"(<em>wayithallech</em> <em>et ha-elohim</em>). 5:24는 "에녹이 하나님과 동행하더니 하나님이 그를 데려가시므로 세상에 있지 아니하였더라"(<em>ki laqach oto elohim</em>).</p>
+
+<p><strong>P07 오지혜</strong>: 두 번 "하나님과 동행"이 나오고, 또 두 번 "자녀들"이 나오고, 죽음 대신 "데려가심"이 기록돼요.</p>
+
+<p><strong>P05 김미영</strong>: 라멕 부분도 다릅니다. 아들 이름에 의미 해설이 붙어요. 노아(<em>Noach</em>) 이름은 "안위/위로"(<em>nacham</em>) 어근과 연결된 설명이에요.</p>
+
+<p><strong>P02 이진우</strong>: 상황으로는 전체가 '출생 → 후손 → 죽음'의 반복 패턴. 예외는 에녹·노아 두 자리.</p>
+
+<p><strong>P04 최현국</strong>: 사상 표면으론 — 반복 자체가 본문의 말이에요. "죽음이 계속된다"는 공기와 "그런데 예외가 있다"는 공기가 함께 있습니다.</p>
+
+<p><strong>성령일 선교사</strong>: 관찰까지만.</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>P01 한나래</strong>: 열 개 계보를 분절하기보다는, 반복·예외 구조로 3컷이 적당할 것 같아요.</p>
+
+<ul>
+<li><strong>컷 1 (5:1-2)</strong>: 장의 서문 — 창조 재인용 (형상·모양·남녀·이름)</li>
+<li><strong>컷 2 (5:3-20, 5:25-27)</strong>: 열 계보의 기본 패턴 (아담→셋→에노스→게난→마할랄렐→야렛→...→므두셀라)</li>
+<li><strong>컷 3 (5:21-24)</strong>: 에녹 — 형식을 깨는 첫 예외</li>
+<li><strong>컷 4 (5:28-31)</strong>: 라멕 — 노아 이름 해설 + 형식 약간 변형</li>
+<li><strong>컷 5 (5:32)</strong>: 노아와 세 아들 — 다음 장으로 건너가는 다리</li>
+</ul>
+
+<p><strong>P04 최현국</strong>: 단순한 반복 속의 예외 자리들이 드러나는 구조 분절이네요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P02 이진우</strong>: 발견 — 연수가 MT와 LXX가 다릅니다. 70인역은 대부분 첫아이 출생 연도를 100년씩 더 써요. 그래서 홍수까지의 누적 년수가 히브리본과 70인역이 꽤 차이 납니다.</p>
+
+<p><strong>P11 나경아</strong>: 그리고 사마리아 오경도 또 다른 숫자 체계를 가집니다. 세 사본 계통이 서로 다른 연대를 전해요. 본문이 어느 한 숫자를 확정하지 않습니다.</p>
+
+<p><strong>P05 김미영</strong>: 발견 — 에녹의 생애 나이가 365세인데, 이게 태양년의 날 수와 같아요. 우연인지 상징인지 본문이 말하지 않아요.</p>
+
+<p><strong>P07 오지혜</strong>: 발견 — 므두셀라가 969세로 성경에서 가장 오래 산 사람으로 기록돼요. 그의 이름 <em>Metushelah</em>는 종종 '그가 죽을 때 그것이 보내짐'으로 풀이되는데, 그가 죽는 해가 홍수 해와 일치합니다.</p>
+
+<p><strong>P11 나경아</strong>: 계산 가능합니다. 라멕 182세에 노아 출생(5:28), 노아 600세에 홍수(7:6). 므두셀라가 라멕을 낳은 나이 187세(5:25) + 182 + 600 = 969. 정확히 므두셀라 수명. 본문이 이 계산을 명시하진 않지만 숫자가 맞아떨어져요.</p>
+
+<p><strong>P04 최현국</strong>: 의문 — 에녹의 "데려가심"(<em>laqach</em>)은 어떤 상태인지 본문이 설명하지 않아요.</p>
+
+<p><strong>P11 나경아</strong>: 70인역은 <em>μετέθηκεν</em>(옮기심)로 옮겼고, 히 11:5이 이를 인용해요. 유다서 14절은 에녹 저술(1Enoch)을 인용합니다.</p>
+
+<p><strong>P01 한나래</strong>: 의문 — 왜 이 열 세대인가? 가인 계보(4:17-22)의 일곱 이름과 셋 계보(5장)의 열 이름이 일부 겹치는 것 같기도 해요 (에녹·므두셀라/므후야엘·라멕).</p>
+
+<p><strong>P11 나경아</strong>: 그 겹침이 의도적인지, 다른 인물들인지 본문이 설명하지 않아요.</p>
+
+<p><strong>P02 이진우</strong>: 정보 — 계보의 각 인물 나이는 학계에서 "상징적 숫자"·"문학적 장치"·"실제 연수"로 해석이 분기합니다. 본문은 숫자를 주고 해석을 주지 않아요.</p>
+
+<p><strong>성령일 선교사</strong>: 해석은 묵상으로 넘깁시다. 관찰 카드에는 "세 사본 전통의 연대 차이"·"므두셀라-홍수 일치"·"에녹 365세 상징 가능성"만 남깁시다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상</h2>
+
+<p><strong>P04 최현국</strong>: 책 한 권이 열립니다. "이것은 아담의 계보를 적은 책이라." 창조의 장면이 한 문장으로 축약되어 재등장합니다. 사람이 남자와 여자로 지어지고 이름이 불립니다.</p>
+
+<p><strong>P05 김미영</strong>: 아담이 아들을 낳아 셋이라 합니다. 형상이 전해집니다. 셋이 에노스를, 에노스가 게난을, 게난이 마할랄렐을, 마할랄렐이 야렛을 낳습니다. 같은 형식이 반복됩니다. 각 대마다 "낳고…살았고…죽었더라".</p>
+
+<p><strong>P07 오지혜</strong>: 일곱째에 에녹이 등장합니다. 그는 삼백 년을 하나님과 동행하며 자녀들을 낳습니다. 에녹의 생애가 365년에 이르렀을 때, "하나님이 그를 데려가시므로 세상에 있지 아니하였더라." "죽었더라"가 이 자리에만 없습니다.</p>
+
+<p><strong>P02 이진우</strong>: 에녹의 아들 므두셀라가 라멕을 낳고, 라멕이 노아를 낳습니다. 라멕이 말합니다 — "여호와께서 땅을 저주하셨으므로 수고롭게 일하는 우리를 이 아들이 안위하리라." 노아의 이름이 안위(<em>nacham</em>)의 어감을 가집니다.</p>
+
+<p><strong>P11 나경아</strong>: 노아가 오백 세가 되어 셈과 함과 야벳을 낳습니다. 장이 닫힙니다.</p>
+
+<p><strong>P01 한나래</strong>: 닫힘 직후엔 홍수가 기다리고 있어요. 5장의 끝이 6장의 문이 됩니다.</p>
+
+<p><strong>성령일 선교사</strong>: 열 세대의 반복 안에서, 하나님과 동행한 한 사람의 자리와 안위를 기대한 한 이름의 자리를 마음에 새겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>P01 한나래</strong>: "죽었더라 여덟 번, 데려가심 한 번"</p>
+<p><strong>P02 이진우</strong>: "열 세대, 세 예외"</p>
+<p><strong>P04 최현국</strong>: "형상이 이어진 계보"</p>
+<p><strong>P05 김미영</strong>: "노아 — 안위라는 이름"</p>
+<p><strong>P07 오지혜</strong>: "에녹, 하나님과 동행하더니"</p>
+<p><strong>P11 나경아</strong>: "<em>Toledoth Adam</em> — 창조에서 홍수로"</p>
+
+<p><strong>성령일 선교사</strong>: 부제 — "반복의 리듬과 세 예외의 자리".</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 이 계보 안으로 상상으로 들어가 봅시다. 반복의 리듬 속을 걷거나, 에녹이 동행한 자리, 므두셀라의 오랜 날, 노아의 이름 앞에 서 보셔도 좋습니다. 답을 구하지 말고 머뭅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P01 한나래</strong>: 주님, "죽었더라"가 반복되는 이 장이 저의 짧은 인생을 겸손케 합니다.</p>
+<p><em>— 떠오름: "그 반복 안에 내가 있다."</em></p>
+
+<p><strong>P02 이진우</strong>: 주여, 에녹의 삼백 년 동행이 제 얼마 안 되는 날수에도 가능한 공기임을 오늘 배웁니다.</p>
+<p><em>— 떠오름: 조용한 동행감.</em></p>
+
+<p><strong>P04 최현국</strong>: 주님, 제 계보의 한 줄이 되기 전에 형상 하나가 저를 통해 이어짐을 기억하겠습니다.</p>
+<p><em>— 떠오름: "너도 한 절이다."</em></p>
+
+<p><strong>P05 김미영</strong>: 주여, 라멕의 입에서 나온 "안위"라는 기대를, 제 자녀들을 보며 제 마음에도 품게 하소서.</p>
+<p><em>— 떠오름: 따뜻함.</em></p>
+
+<p><strong>P07 오지혜</strong>: 주님, "세상에 있지 아니하였더라"의 그 빈자리 옆을 당신이 지나가셨음을 봅니다.</p>
+<p><em>— 떠오름: 말이 아직 없음.</em></p>
+
+<p><strong>P11 나경아</strong>: 주여, <em>hithalek et ha-elohim</em>. 그 동반 동사의 어감을 오늘 제 언어로 새기지 않겠습니다. 히브리어 그대로 두겠습니다.</p>
+<p><em>— 떠오름: 조용한 끄덕임.</em></p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p><strong>성령일 선교사</strong>: 수고하셨습니다. 답 받지 못한 것은 다음 자리로.</p>
+
+<p>---</p>
+
+<p><em>시뮬 종료. 계보 본문 규격 실험 성공 — 관찰 9단계 축소 없이 전부 수행.</em></p></div>
+        </section>
+
+        <section class="stage" id="s2">
+          <span class="stage__num">단계 2~6</span>
+          <h2 class="stage__title">관찰된 사실 — 단어 빈도 · 좌표 · 동사 · 대조 · 장 경계.</h2>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-005</p>
+<p>book: 창세기</p>
+<p>chapter: 5</p>
+<p>date: 2026-04-21</p>
+<p>---</p>
+
+<h2>창세기 5장 — 관찰된 사실</h2>
+
+<h2>무대·배경·소품 (1단계)</h2>
+<ul>
+<li>공간보다 시간 지배적. 연·월·일·수명이 주요 소품.</li>
+<li>5:1-2 서문에서 1:26-27 창조 장면을 축약 재인용 (*demut elohim*, 남녀, 이름 아담).</li>
+<li>소품 어휘: *wa-yichi*(살았더라), *wa-yoled*(낳았고), *wayamot*(죽었더라), *shanah*(년), *ben/bat*(아들/딸).</li>
+</ul>
+
+<h2>첫 느낌·분위기 (2단계)</h2>
+<ul>
+<li>반복의 리듬 — 각 대마다 동일 6요소 구조.</li>
+<li>"죽었더라" 반복 → 에녹 자리에서 깨짐.</li>
+<li>숫자가 지배하는 장.</li>
+<li>라멕의 노아 이름 해설이 4장 가인 계보 라멕의 폭력 노래와 대조.</li>
+</ul>
+
+<h2>시작·끝 (3단계)</h2>
+<ul>
+<li>시작: "이것은 아담의 계보를 적은 책이라"(5:1) — *sefer toledoth adam*.</li>
+<li>끝: "노아가 오백 세 된 후에 셈과 함과 야벳을 낳았더라"(5:32).</li>
+<li>창조 재인용(1-2)에서 시작, 홍수 전 세 아들로 닫힘 → 창조에서 홍수로 이어지는 다리.</li>
+</ul>
+
+<h2>등장인물·사물·사상 (4단계)</h2>
+<ul>
+<li>10세대: 아담·셋·에노스·게난·마할랄렐·야렛·에녹·므두셀라·라멕·노아.</li>
+<li>각 인물의 기본 6요소 구조:</li>
+</ul>
+<p>  1. 아버지 나이 + 아들 낳음</p>
+<p>  2. 아들 이름</p>
+<p>  3. 낳은 후 몇 년 + 다른 자녀들</p>
+<p>  4. 총 수명</p>
+<p>  5. 죽었더라</p>
+<ul>
+<li>형식 예외 3곳:</li>
+</ul>
+<p>  - 5:3: 아담 → 셋, "형상·모양" 전달 부가 서술 (창 1:26-27 어휘 재사용)</p>
+<p>  - 5:22-24: 에녹 — "하나님과 동행"(<em>hithallech et ha-elohim</em>) 2회, "죽었더라" 부재, "데려가심"(<em>laqach</em>)</p>
+<p>  - 5:29: 라멕 — 노아 이름 해설, <em>nacham</em>(안위) 어근</p>
+<ul>
+<li>에녹: 365세 (태양년 날수와 같음). 5:24가 장의 유일 예외.</li>
+<li>므두셀라: 969세. 이름 *Metushelah*의 전통적 해석 "그가 죽을 때 그것이 보내짐". 죽는 해 계산상 홍수 해와 일치.</li>
+<li>노아 출생 나이 계산: 라멕 182세(5:28) + 노아 600세(7:6) = 782 = 므두셀라의 노아 출생 시점(969-187=782)와 정합.</li>
+</ul>
+
+<h2>장면 컷 (5단계)</h2>
+<ul>
+<li>컷 1 (5:1-2): 서문 — 창조 재인용.</li>
+<li>컷 2 (5:3-20, 25-27): 열 계보 기본 패턴.</li>
+<li>컷 3 (5:21-24): 에녹 — 형식 예외.</li>
+<li>컷 4 (5:28-31): 라멕 — 노아 이름 해설 + 형식 변형.</li>
+<li>컷 5 (5:32): 노아와 세 아들 — 다음 장으로 다리.</li>
+</ul>
+
+<h2>원어 카드 (6단계 포함)</h2>
+<ul>
+<li>*toledoth*(תּוֹלְדוֹת) — 계보/내력. 창 2:4 이후 창세기의 구조 표지.</li>
+<li>*sefer*(סֵפֶר) — 책/문서. 5:1 "계보를 적은 책" — 첫 등장 문서화 어휘.</li>
+<li>*tselem*(צֶלֶם) — 형상. 1:26 재사용.</li>
+<li>*demut*(דְּמוּת) — 모양. 1:26·5:1·5:3 재사용.</li>
+<li>*zakar u-neqevah*(זָכָר וּנְקֵבָה) — 남자와 여자. 1:27·5:2.</li>
+<li>*hithallech*(הִתְהַלֵּךְ) — 동행하다 (히트파엘, 재귀·반복). 에녹·노아에 사용. 훗날 아브라함(17:1)에도.</li>
+<li>*laqach*(לָקַח) — 취하다/데려가다. 5:24 에녹의 "데려가심".</li>
+<li>*nacham*(נָחַם) — 위로하다/안위하다. 노아 이름 어근.</li>
+<li>*shanah*(שָׁנָה) — 년. 장 전체 반복.</li>
+<li>*yamim*(יָמִים) — 날들. "그가 산 모든 날"(*kol yemei*) 공식.</li>
+<li>*Metushelah*(מְתוּשֶׁלַח) — 므두셀라. 어근 해석 다양.</li>
+<li>*Hanokh*(חֲנוֹךְ) — 에녹. "헌신/시작" 어근. 가인 계보 에녹(4:17)과 이름 동일.</li>
+<li>*μετατίθημι* (LXX) — 옮기다. 5:24 "데려가심"의 70인역 역어. 히 11:5 인용.</li>
+</ul>
+
+<h2>문학 구조 (6단계 포함)</h2>
+<ul>
+<li>10세대 구조 — 창 11장 셈 계보(11:10-26)도 동일 10세대 구조로 병행.</li>
+<li>공식 반복 + 3회 예외 (아담 형상, 에녹, 라멕).</li>
+<li>1:26-27 ↔ 5:1-2 창조 재인용으로 창세기 1-5장을 inclusio로 묶음.</li>
+<li>4장 라멕 노래(폭력) ↔ 5장 라멕 노래(안위 기대) 대조.</li>
+<li>가인 계보 이름 7개(4:17-22) ↔ 셋 계보 이름 10개(5장)의 부분 겹침 (에녹·라멕·므후야엘-므두셀라 등).</li>
+</ul>
+
+<h2>ANE 배경</h2>
+<ul>
+<li>Sumerian King List: 홍수 이전 왕 8-10명, 수천 년 재위. 장수와 홍수 단절 구조가 창 5와 병행.</li>
+<li>Antediluvian Sages 전통: 홍수 이전 현자 7인.</li>
+<li>Atrahasis: 인간 장수 감소 모티프 — 창 5-11장에서 수명이 점차 단축되는 흐름과 병행 관찰.</li>
+</ul>
+
+<h2>교차 참조 노드</h2>
+<ul>
+<li>창 5 ↔ 창 1:26-27 (형상·모양 재인용).</li>
+<li>창 5 ↔ 창 4:25-26 (셋 계보 시작).</li>
+<li>창 5 ↔ 창 9:29 (노아의 죽음 — 5장 공식이 뒤늦게 완성).</li>
+<li>창 5 ↔ 창 11:10-26 (셈 계보 10세대 구조 병행).</li>
+<li>창 5 ↔ 대상 1:1-4 (계보 요약).</li>
+<li>창 5 ↔ 눅 3:36-38 (예수 계보 역추적, 셋·아담까지).</li>
+<li>창 5 ↔ 히 11:5 (에녹의 옮겨감).</li>
+<li>창 5 ↔ 유 14 (에녹 예언 인용, 1Enoch 참조).</li>
+</ul>
+
+<h2>사본 비교 (MT vs LXX vs Samaritan Pentateuch)</h2>
+<ul>
+<li>연대 체계 3종이 상이함. LXX는 대부분 첫아이 출생 연도를 100년 더 씀.</li>
+<li>홍수까지의 누적 연수 차이: MT ~1656년, LXX ~2242년, Samaritan ~1307년.</li>
+<li>본문 자체가 어느 한 숫자를 확정하지 않음.</li>
+</ul>
+
+<h2>동영상 요약 (7단계)</h2>
+<p>책 한 권이 열린다. "이것은 아담의 계보를 적은 책이라." 창조가 한 문장으로 재연된다. 형상이 아담에게서 셋에게로 전해지고 이름이 불린다. 세대가 흐른다. 같은 형식이 반복된다 — 낳고, 살고, 죽었다. 일곱째에 한 사람이 다른 공기로 기록된다. 에녹이다. 삼백 년을 하나님과 동행하며 자녀들을 낳는다. 365세에 이르러 하나님이 그를 데려가신다. 세상에 있지 아니한다. 계보가 이어진다. 므두셀라의 긴 날. 라멕이 아들을 낳고 말한다 — "안위하리라." 이름은 노아. 노아가 오백 세 된 후에 세 아들을 낳는다. 셈·함·야벳. 장이 닫히고 홍수가 다음 페이지에서 기다린다.</p>
+
+<h2>초벌 제목·부제 (8단계)</h2>
+<ul>
+<li>초벌 제목: <strong>"*Sefer Toledoth Adam* — 열 세대와 세 예외"</strong></li>
+<li>초벌 부제: "형상이 이어지고 한 사람이 동행하다"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (12개)</li>
+<li>[x] 역사·문화·문학 사실 (ANE 3종, 사본 3계통 비교, 므두셀라-홍수 계산)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 0건</li>
+<li>[x] 상투어 반복 없음 (계보 본문도 9단계 축소 없이 통과)</li>
+<li>[x] 묵상 어휘 0건 — 수명 의미·에녹 의미 해석 보류</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 계보 본문임에도 1~9단계 전부 수행 — <strong>계보 본문 관찰 규격 실험 성공</strong></li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>수명의 의미(문자/상징/문학 장치) 해석 보류.</li>
+<li>에녹 "데려가심"의 정체 해석 보류 (1Enoch·랍비 전통 언급만).</li>
+<li>가인 계보-셋 계보 이름 겹침 해석 보류.</li>
+<li>노아 이름 "안위"와 홍수의 관계 해석 보류 — 6장에서 재방문.</li>
+</ul></div>
+        </section>
+
+        <section class="stage" id="s8">
+          <span class="stage__num">단계 7~9</span>
+          <h2 class="stage__title">미해결 질문과 관찰자의 자리.</h2>
+          <p>본문이 답하지 않는 자리는 답하지 않은 채 둡니다.</p>
+          <div class="md-body"><p>---</p>
+<p>sim_id: GEN-005</p>
+<p>book: 창세기</p>
+<p>chapter: 5</p>
+<p>date: 2026-04-21</p>
+<p>---</p>
+
+<h2>창세기 5장 — 미해결 질문</h2>
+
+<h2>Q1. 계보의 연수는 문자인가 상징인가?</h2>
+<ul>
+<li>MT/LXX/Samaritan 세 사본 전통의 수치가 서로 다름.</li>
+<li>본문이 어떤 체계를 선택하라고 말하지 않음.</li>
+</ul>
+
+<h2>Q2. 에녹의 "데려가심"(*laqach*)은?</h2>
+<ul>
+<li>본문은 "데려가시므로 세상에 있지 아니하였더라"만 기록.</li>
+<li>죽음 없는 이동인지, 다른 공간으로의 옮김인지, 영적 상태인지 본문이 설명하지 않음.</li>
+<li>히 11:5, 1Enoch, 2열왕 2장 엘리야 승천과의 관계는 해석 영역.</li>
+</ul>
+
+<h2>Q3. 므두셀라의 969세 계산과 홍수 일치는 의도된 것인가?</h2>
+<ul>
+<li>계산상 라멕(182) + 노아(600) = 782 → 므두셀라 969 - 187 = 782. 정확히 일치.</li>
+<li>본문이 이 계산을 명시하지는 않지만 숫자가 맞아떨어짐.</li>
+<li>편집 의도인지 우연인지 본문이 말하지 않음.</li>
+</ul>
+
+<h2>Q4. 에녹 365세는 태양년 상징인가?</h2>
+<ul>
+<li>수치 일치 우연/상징 가능성 공존.</li>
+<li>본문은 해석 없이 수치만 제시.</li>
+</ul>
+
+<h2>Q5. 가인 계보(4:17-22)와 셋 계보(5:3-32)의 이름 유사성은?</h2>
+<ul>
+<li>에녹·므후야엘/므두셀라·라멕 등 유사 이름이 양쪽에 출현.</li>
+<li>의도된 대조인지, 동일 인물 다른 전승인지 본문이 언급하지 않음.</li>
+</ul>
+
+<h2>Q6. 5:29 "이 아들이 안위하리라"(*yenachameinu*)는 무엇으로 성취되는가?</h2>
+<ul>
+<li>노아 이름의 약속이 홍수 심판으로 흘러가는 것과의 관계.</li>
+<li>직후의 홍수가 "안위"의 성취인지 지연인지 본문이 명시하지 않음.</li>
+</ul>
+
+<p>---</p>
+<p><em>묵상·사귐 단계에서 재방문.</em></p></div>
+        </section>
+        
+    
+    <div class="next-row">
+      <a href="/magazine/GEN/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">창세기 50장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/GEN/6/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">창세기 6장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 자리를 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 자리를 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 자리로 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/GEN/5/',
+      title: '창세기 5장',
+      excerpt: '족보의 자리. 같은 형식이 한 사람에서 멈춘다.'
+    }));
+  } catch(e) {}
+</script>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div><div class="foot__brand">네다바웨이 Nedabahway</div><p>강사 김창환 · 제주<br>한 사람의 일을 다시 디자인합니다.</p></div>
+    <div class="foot__col"><h4>Observatory</h4><a href="/magazine.html">관찰 Atlas 홈</a><a href="/magazine/GEN/">창세기 권 차례</a><a href="/magazine.html#support">후원으로 받치기</a></div>
+    <div class="foot__col"><h4>둘러보기</h4><a href="/blog/perspective/">관점 노트</a><a href="/about.html">소개</a><a href="/programs.html">강의</a></div>
+    <div class="foot__col"><h4>연락</h4><a href="/contact.html">강의 의뢰</a><a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></div>
+  </div>
+  <div class="foot__copy"><span>© 2026 Nedabahway · 김창환</span><span>nedabah.org</span></div>
+</footer>
+
+</body>
+</html>
