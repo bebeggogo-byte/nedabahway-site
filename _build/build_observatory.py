@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """Observatory builder — SBM 산출물을 nedabah.org 매거진 페이지로 자동 변환.
 
 입력:
