@@ -1,0 +1,50 @@
+/* print-guard.css — 페이지 넘김 방지 영구 가드 (정책 B, 2026-04-29).
+ * 모든 인쇄용 페이지에 import 권장.
+ * 주제·소주제·단락이 페이지 경계에서 잘리지 않게 한다.
+ */
+@media print {
+  /* 헤더 직후 끊김 방지 */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid !important;
+    break-after: avoid-page !important;
+    -webkit-column-break-after: avoid !important;
+  }
+
+  /* 블록 단위 분할 방지 */
+  section, article, aside, figure, blockquote,
+  pre, table, tr, thead, tfoot,
+  .card, .module, .recipe, .rcpx,
+  .pdfx-section, .pdfx-cover,
+  .axis, .checklist, .feat, .flow__step,
+  .b2b-card, .next-card, .jeju-inst,
+  .recipe-stage, .module__keywords {
+    page-break-inside: avoid !important;
+    break-inside: avoid-page !important;
+    -webkit-column-break-inside: avoid !important;
+  }
+
+  /* 리스트 — 항목 단위 분할 방지 */
+  li {
+    page-break-inside: avoid !important;
+    break-inside: avoid-page !important;
+  }
+
+  /* 표 헤더 매 페이지 반복 */
+  thead { display: table-header-group !important; }
+  tfoot { display: table-footer-group !important; }
+
+  /* 단락 — 1줄만 페이지 끝/시작에 남는 widow/orphan 방지 */
+  p {
+    orphans: 3 !important;
+    widows: 3 !important;
+  }
+
+  /* 제목+첫 단락 묶기 (CSS keep-with-next 대체) */
+  h1 + p, h2 + p, h3 + p, h4 + p,
+  h1 + ul, h2 + ul, h3 + ul,
+  h1 + ol, h2 + ol, h3 + ol,
+  h1 + table, h2 + table, h3 + table {
+    page-break-before: avoid !important;
+    break-before: avoid-page !important;
+  }
+}
