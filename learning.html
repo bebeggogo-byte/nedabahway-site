@@ -37,11 +37,16 @@
   .giants{max-width:1080px;margin:0 auto;padding:16px 24px 32px}
   .giants h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
   .bento{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;border-radius:14px;background:transparent}
-  .bento__cell{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
-  .bento__cell:hover{transform:translateY(-2px);border-color:var(--acc);box-shadow:0 8px 24px rgba(8,145,178,.10)}
-  .bento__imgwrap{aspect-ratio:1/1;background:#f3efe8;display:flex;align-items:center;justify-content:center;overflow:hidden}
-  .bento__img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:grayscale(.2) contrast(1.05);transition:filter .25s ease,transform .25s ease}
-  .bento__cell:hover .bento__img{filter:grayscale(0) contrast(1.1);transform:scale(1.04)}
+  .bento__cell{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;position:relative}
+  .bento__cell:hover{transform:translateY(-3px);border-color:var(--acc);box-shadow:0 12px 28px rgba(8,145,178,.16)}
+  .bento__imgwrap{aspect-ratio:1/1;background:#f3efe8;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+  .bento__img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:grayscale(.25) contrast(1.05);opacity:.78;transition:opacity .3s ease,filter .3s ease,transform .3s ease}
+  .bento__cell:hover .bento__img{opacity:.45;filter:grayscale(.35) contrast(1) blur(.5px);transform:scale(1.02)}
+  .bento__hover{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.86) 0%,rgba(255,255,255,.96) 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px 12px;text-align:center;opacity:0;transition:opacity .3s ease;pointer-events:none}
+  .bento__cell:hover .bento__hover{opacity:1}
+  .bento__hover-title{font-size:13px;font-weight:800;color:var(--ink);margin-bottom:4px;letter-spacing:-.01em}
+  .bento__hover-line{font-size:11px;color:var(--soft);line-height:1.55;margin-bottom:8px}
+  .bento__hover-cta{font-size:11px;font-weight:700;color:var(--acc);background:var(--acc-soft);padding:5px 10px;border-radius:99px;letter-spacing:.04em}
   .bento__caption{padding:10px 12px 12px;color:var(--ink);text-align:center}
   .bento__num{font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--mute);margin-bottom:4px}
   .bento__name{font-size:13px;font-weight:800;letter-spacing:-.01em;margin-bottom:2px;line-height:1.25;color:var(--ink)}
@@ -50,7 +55,18 @@
   @media(max-width:680px){
     .bento{grid-template-columns:repeat(2,1fr)}
     .bento__cell:nth-child(5){grid-column:span 2}
+    .bento__cell:hover .bento__img{opacity:.78}
+    .bento__hover{display:none}
   }
+
+  .legend{max-width:1080px;margin:0 auto;padding:8px 24px 24px}
+  .legend__inner{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 24px}
+  .legend h2{font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--ink);margin-bottom:14px}
+  .legend__row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .legend__item{font-size:13px;color:var(--soft);line-height:1.55}
+  .legend__item strong{display:block;color:var(--acc);font-size:12px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+  .legend__dot{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--line);vertical-align:middle;margin:0 2px}
+  .legend__dot--filled{background:var(--acc)}
 
   .tabs{position:sticky;top:53px;background:var(--bg);z-index:90;padding:14px 0;border-bottom:1px solid var(--line)}
   .tabs__inner{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
@@ -97,6 +113,25 @@
 
   .empty-msg{padding:36px 24px;text-align:center;color:var(--mute);font-size:14px;background:#fff;border:1px dashed var(--line);border-radius:12px}
 
+  /* 모달 */
+  .modal{position:fixed;inset:0;background:rgba(10,10,10,.7);display:none;align-items:center;justify-content:center;z-index:200;padding:24px;backdrop-filter:blur(4px)}
+  .modal.open{display:flex}
+  .modal__box{background:#fff;border-radius:14px;max-width:560px;width:100%;max-height:80vh;overflow-y:auto;padding:28px 28px 24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+  .modal__close{position:absolute;top:14px;right:16px;background:transparent;border:0;font-size:22px;color:var(--mute);cursor:pointer;line-height:1;padding:6px}
+  .modal__close:hover{color:var(--ink)}
+  .modal__kicker{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--acc);text-transform:uppercase;margin-bottom:8px}
+  .modal__title{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px;color:var(--ink)}
+  .modal__sub{font-size:13px;color:var(--mute);margin-bottom:18px;line-height:1.6}
+  .modal__progress{display:flex;gap:14px;font-size:12px;color:var(--mute);padding:12px 0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);margin-bottom:18px;flex-wrap:wrap}
+  .modal__progress strong{color:var(--ink);font-weight:800;font-size:15px;display:block;margin-bottom:2px}
+  .modal__entries{display:grid;gap:8px;margin-bottom:14px}
+  .modal__entry{padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:13px;color:var(--soft);text-decoration:none;display:block;transition:all .15s ease}
+  .modal__entry:hover{border-color:var(--acc);background:var(--acc-soft)}
+  .modal__entry strong{display:block;color:var(--ink);margin-bottom:2px}
+  .modal__entry small{color:var(--mute);font-size:11px}
+  .modal__giants{margin-top:12px;font-size:12px;color:var(--mute);padding-top:12px;border-top:1px dashed var(--line)}
+  .modal__cta{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--acc)}
+
   .foot{max-width:1080px;margin:0 auto;padding:24px 24px 60px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
   .foot a{color:var(--acc);font-weight:600}
 
@@ -141,18 +176,49 @@
   <div class="bento" id="giants-bento"></div>
 </section>
 
+<section class="recent">
+  <h2>학습 기록 — 매트릭스에 채워진 글</h2>
+  <div class="note-list" id="recent-list">
+    <div class="empty-msg">학습 기록은 매일 누적됩니다. 5거인 1년차 자리부터 시작합니다.</div>
+  </div>
+</section>
+
+<section class="legend">
+  <div class="legend__inner">
+    <h2>매트릭스 읽는 법 — 아래 블록은 무엇인가</h2>
+    <div class="legend__row">
+      <div class="legend__item">
+        <strong>10기둥</strong>
+        <span>언어·수사·고전·역사·철학·신학·과학·인간사회·표현·시각관찰. 한 기둥 = 4카테고리.</span>
+      </div>
+      <div class="legend__item">
+        <strong>40카테고리</strong>
+        <span>각 블록 = 한 카테고리 = 평생 공부 영역 1개. 카드에 이름·번호·설명.</span>
+      </div>
+      <div class="legend__item">
+        <strong>30 도트</strong>
+        <span>카드 안 5×6 도트 = 30좌표. 6단계(입문·정독·비교·재구성·적용·교수) × 5회전.</span>
+      </div>
+      <div class="legend__item">
+        <strong>채움 색</strong>
+        <span><i class="legend__dot legend__dot--filled"></i> 청록 = 학습 도달 / <i class="legend__dot"></i> 회색 = 비어 있는 자리.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <nav class="tabs">
   <div class="tabs__inner" id="tab-bar"></div>
 </nav>
 
 <section class="pillars" id="pillars-root"></section>
 
-<section class="recent">
-  <h2>최근 학습 기록</h2>
-  <div class="note-list" id="recent-list">
-    <div class="empty-msg">학습 기록은 매일 누적됩니다. 5거인 1년차 자리부터 시작합니다.</div>
+<div class="modal" id="modal" onclick="if(event.target===this) closeModal()">
+  <div class="modal__box" id="modal-box">
+    <button class="modal__close" onclick="closeModal()" aria-label="닫기">×</button>
+    <div id="modal-content"></div>
   </div>
-</section>
+</div>
 
 <footer class="foot">
   <p>학습노트 · 김창환 · 네다바웨이 — 인류 마지막 지식 고학습자의 자리.<br>
@@ -184,22 +250,60 @@ function renderStats(){
   document.getElementById('stat-sar').textContent = `${PROGRESS.sar_percent||0}%`;
 }
 
+const GIANT_BIOS = {
+  davinci: {
+    img:'/learning/assets/giants/davinci.jpg', year:'1452—1519', name:'레오나르도 다 빈치', core:'회화·해부·공학·자연관찰',
+    bio:'이탈리아 르네상스 polymath. 모나리자·최후의 만찬을 그렸다. 그러나 본업은 그림이 아니라 평생 노트(Codex Atlanticus·Codex Leicester 등 약 1만 3천 장)였다. 인체를 직접 해부해 30구 이상을 그렸고, 비행기·잠수정·기관차의 설계도를 새겨 놓았다. 자연의 모든 작동 원리를 “보고·그리고·쪼개고·기록한다”의 4단계로 옮겼다.',
+    why:'학습 그 자체의 형식을 보여준 자리. 디지털 자동화로 못 채우는 좌표 — 매일 종이 노트 1장.',
+    works:['Codex Atlanticus','Codex Leicester','Vitruvian Man (인간 비례 도면)','Anatomical Studies'],
+    pillar:'10. 시각·관찰·공학'
+  },
+  erasmus: {
+    img:'/learning/assets/giants/erasmus.jpg', year:'1466—1536', name:'에라스무스 (데시데리위스)', core:'언어·신학·풍자·번역',
+    bio:'네덜란드 출신 르네상스 인문주의자. 헬라어·라틴어·히브리어로 1차 출처를 직독한 첫 세대. 1516년 헬라어 신약 비평본(Novum Instrumentum)을 출간해 종교개혁의 본문 기초를 놓았다. 같은 해 *우신예찬*(Moriae Encomium)으로 교회 부패를 풍자했다. 평생 약 3천 통의 라틴어 서간을 남겼다.',
+    why:'언어 직독의 자리를 가장 단단히 보여준 자. 1년차 자리 = 헬라어 신약 마가복음 직독.',
+    works:['Novum Instrumentum (1516, 헬라어 신약)','Moriae Encomium (우신예찬, 1511)','Adagia (속담집)','Colloquia (대화집)'],
+    pillar:'1. 언어·번역 + 6. 신학·기독교 사상'
+  },
+  leibniz: {
+    img:'/learning/assets/giants/leibniz.jpg', year:'1646—1716', name:'고트프리트 라이프니츠', core:'수학·논리·외교·중국학',
+    bio:'독일 polymath. 미적분학을 뉴턴과 독립 발명(현재 표기법은 라이프니츠 것). 이진법·논리학·도서관학을 새로 짰다. 외교관으로 30년 전쟁 후 유럽 통합을 시도, 청 강희제와 서신을 주고받았다. 모나드론(1714)으로 “창문 없는 거울이 우주를 비춘다”는 형이상학을 적었다.',
+    why:'1인 학습자의 사고 폭이 어디까지 갈 수 있는지 보여준 자리. 1년차 = 미적분 + 모나드론 + 중국학 1편.',
+    works:['미적분학 표기법 (dx, ∫)','이진법 (Explication de l\'Arithmétique Binaire, 1703)','Monadologie (1714)','Discours sur la théologie naturelle des Chinois (1716)'],
+    pillar:'5. 철학 + 7. 과학·수학 + 4. 역사(중국학)'
+  },
+  lewis: {
+    img:'/learning/assets/giants/lewis.jpg', year:'1898—1963', name:'C.S. (클라이브 스테이플스) 루이스', core:'변증·서간·아동문학',
+    bio:'옥스퍼드·케임브리지 중세·르네상스 문학 교수. 무신론자였다가 회심해 20세기 가장 영향력 있는 기독교 변증가가 됐다. BBC 라디오 강연(1941~1944)을 모은 *Mere Christianity*는 변증의 표준이 됐다. 동시에 *나니아 연대기* 7권으로 아동문학을 다시 썼다. 평생 수만 통의 손편지에 일일이 답했다.',
+    why:'학자 폭과 대중 도달을 같이 가진 자. 1년차 = Mere Christianity + Letters to Malcolm + Narnia 1권.',
+    works:['Mere Christianity (1952)','The Chronicles of Narnia (1950~1956, 7권)','The Screwtape Letters (1942)','Letters to Malcolm: Chiefly on Prayer (1964)'],
+    pillar:'6. 신학·기독교 사상 + 9. 표현·창작'
+  },
+  barzun: {
+    img:'/learning/assets/giants/barzun.jpg', year:'1907—2012', name:'자크 바전', core:'문화비평·예술·역사기록',
+    bio:'프랑스계 미국 역사가·문화비평가. 컬럼비아대 학장·교수. 만 93세에 서양 문화사 1권 *From Dawn to Decadence: 500 Years of Western Cultural Life 1500 to the Present*(2000)를 출간 — 한 권에 18개 영역을 통합했다. 평생 약 30권 저술, 100세 넘어서까지 집필. 30영역 polymath의 종착지를 보여줬다.',
+    why:'다영역 평생 학습이 책 1권으로 닫히는 자리. 1년차 = From Dawn to Decadence 1권 정독 + 인물평전 1편.',
+    works:['From Dawn to Decadence (2000)','Berlioz and the Romantic Century (1950)','The House of Intellect (1959)','Teacher in America (1945)'],
+    pillar:'8. 인간·사회 + 9. 표현·창작'
+  }
+};
+
 function renderGiants(){
   const g = document.getElementById('giants-bento');
-  // 시간순 줄세우기: 다 빈치 1452 → 에라스무스 1466 → 라이프니츠 1646 → Lewis 1898 → 바전 1907
   const order = ['davinci','erasmus','leibniz','lewis','barzun'];
-  const meta = {
-    davinci:  {img:'/learning/assets/giants/davinci.jpg',  year:'1452—1519', name:'레오나르도 다 빈치', core:'회화·해부·공학·자연관찰'},
-    erasmus:  {img:'/learning/assets/giants/erasmus.jpg',  year:'1466—1536', name:'에라스무스',         core:'언어·신학·풍자·번역'},
-    leibniz:  {img:'/learning/assets/giants/leibniz.jpg',  year:'1646—1716', name:'고트프리트 라이프니츠', core:'수학·논리·외교·중국학'},
-    lewis:    {img:'/learning/assets/giants/lewis.jpg',    year:'1898—1963', name:'C.S. 루이스',         core:'변증·서간·아동문학'},
-    barzun:   {img:'/learning/assets/giants/barzun.jpg',   year:'1907—2012', name:'자크 바전',           core:'문화비평·예술·역사기록'},
-  };
   g.innerHTML = order.map((id, i) => {
-    const m = meta[id];
+    const m = GIANT_BIOS[id];
+    const hoverLine = m.bio.split('. ').slice(0,2).join('. ') + '.';
     return `
-    <div class="bento__cell" title="${m.name}">
-      <div class="bento__imgwrap"><img class="bento__img" src="${m.img}" alt="${m.name}" loading="lazy"></div>
+    <div class="bento__cell" title="${m.name} — 클릭하여 생애 보기" onclick="showGiant('${id}')">
+      <div class="bento__imgwrap">
+        <img class="bento__img" src="${m.img}" alt="${m.name}" loading="lazy">
+        <div class="bento__hover">
+          <div class="bento__hover-title">${m.name}</div>
+          <div class="bento__hover-line">${hoverLine}</div>
+          <div class="bento__hover-cta">생애 보기 →</div>
+        </div>
+      </div>
       <div class="bento__caption">
         <div class="bento__num">${String(i+1).padStart(2,'0')}</div>
         <div class="bento__name">${m.name}</div>
@@ -209,6 +313,72 @@ function renderGiants(){
     </div>`;
   }).join('');
 }
+
+function showGiant(id){
+  const g = GIANT_BIOS[id];
+  if (!g) return;
+  // 이 거인의 학습 entry
+  const entries = (NOTES.entries || []).filter(e => e.giant_id === id && e.visibility === 'public');
+  const entriesHtml = entries.length ? `
+    <div style="font-size:12px;color:var(--mute);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin:18px 0 8px">이 거인 자리 학습 기록 (${entries.length}건)</div>
+    <div class="modal__entries">${entries.map(e => `
+      <a class="modal__entry" href="${e.url}">
+        <strong>${e.title}</strong>
+        <small>${e.format.toUpperCase()} · 단계 ${e.stage_id} · ${e.published}</small>
+      </a>`).join('')}</div>` : '';
+
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal__kicker">5거인 · ${g.year}</div>
+    <div class="modal__title">${g.name}</div>
+    <div class="modal__sub">${g.core}</div>
+    <p style="font-size:14px;line-height:1.75;color:var(--soft);margin-bottom:14px">${g.bio}</p>
+    <div style="background:var(--acc-soft);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--soft);margin-bottom:14px;line-height:1.6">
+      <strong style="color:var(--acc);font-weight:800">왜 이 거인인가</strong><br>${g.why}
+    </div>
+    <div style="font-size:13px;color:var(--soft);margin-bottom:6px"><strong>대표 작업</strong></div>
+    <ul style="font-size:13px;color:var(--soft);line-height:1.7;padding-left:18px;margin-bottom:14px">
+      ${g.works.map(w => `<li>${w}</li>`).join('')}
+    </ul>
+    <div class="modal__giants">학습 기둥 위치 — ${g.pillar}</div>
+    ${entriesHtml}
+  `;
+  openModal();
+}
+
+function showCat(id){
+  const c = CATEGORIES.categories.find(x => x.id === id);
+  if (!c) return;
+  const pillar = CATEGORIES.pillars.find(p => p.id === c.pillar);
+  const stat = (PROGRESS.by_category||{})[String(c.id)] || {count:0,score:0,stages:{},rotations:{}};
+  const entries = (NOTES.entries || []).filter(e => e.category_id === c.id && e.visibility === 'public');
+  const entriesHtml = entries.length ? `
+    <div style="font-size:12px;color:var(--mute);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin:0 0 8px">학습 기록 ${entries.length}건</div>
+    <div class="modal__entries">${entries.map(e => `
+      <a class="modal__entry" href="${e.url}">
+        <strong>${e.title}</strong>
+        <small>${e.format.toUpperCase()} · 단계 ${e.stage_id} · 회전 ${e.rotation} · ${e.published}</small>
+      </a>`).join('')}</div>` : `
+    <div class="empty-msg" style="margin-top:6px">아직 비어 있는 좌표입니다. 30 좌표(6단계×5회전)가 채워질 자리.</div>`;
+
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal__kicker">${pillar ? '기둥 ' + pillar.id + ' · ' + pillar.name : ''}</div>
+    <div class="modal__title">#${c.id} ${c.name}</div>
+    <div class="modal__sub">${c.desc}</div>
+    <div class="modal__progress">
+      <div><strong>${stat.count}</strong>학습 기록</div>
+      <div><strong>${stat.score||0}</strong>누적 점수</div>
+      <div><strong>${Object.keys(stat.stages||{}).length}/6</strong>단계 도달</div>
+      <div><strong>${Object.keys(stat.rotations||{}).length}/5</strong>회전 도달</div>
+    </div>
+    ${entriesHtml}
+    <div class="modal__giants">6단계 = 입문·정독·비교·재구성·적용·교수 / 5회전 = 같은 카테고리 5번 더 깊게</div>
+  `;
+  openModal();
+}
+
+function openModal(){ document.getElementById('modal').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(){ document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 function renderTabs(){
   const bar = document.getElementById('tab-bar');
