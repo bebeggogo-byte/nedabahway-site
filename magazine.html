@@ -125,6 +125,71 @@
   }
   .support-banner__cta:hover { background: var(--c-copper); color: var(--c-bg); }
 
+  /* === 사명 선언 박스 === */
+  .mission-banner {
+    max-width: 1180px;
+    margin: 36px auto 0;
+    padding: 0 28px;
+  }
+  .mission-banner__inner {
+    background: var(--c-surface);
+    border: 1px solid var(--c-line);
+    border-left: 4px solid var(--c-copper);
+    border-radius: 4px 14px 14px 4px;
+    padding: 36px 40px;
+  }
+  @media (max-width: 720px) { .mission-banner__inner { padding: 28px 26px; } }
+  .mission-banner__kicker {
+    font-size: 0.78rem;
+    color: var(--c-copper);
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .mission-banner__title {
+    font-family: var(--ff-serif);
+    font-size: clamp(1.4rem, 3.6vw, 1.85rem);
+    font-weight: 800;
+    line-height: 1.4;
+    margin: 12px 0 18px;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .mission-banner__body p {
+    font-size: 1.02rem;
+    line-height: 1.95;
+    color: var(--c-ink);
+    text-wrap: pretty;
+    max-width: 64ch;
+  }
+  .mission-banner__body p + p { margin-top: 14px; }
+  .mission-banner__body strong {
+    color: var(--c-copper);
+    font-weight: 700;
+  }
+  .mission-banner__verse {
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--c-line2);
+    font-family: var(--ff-serif);
+    font-size: 0.98rem;
+    line-height: 1.85;
+    color: var(--c-mute);
+    text-wrap: pretty;
+    font-style: italic;
+  }
+  .mission-banner__verse-ref {
+    display: block;
+    margin-top: 6px;
+    color: var(--c-copper);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    font-size: 0.82rem;
+    font-style: normal;
+    font-family: var(--ff);
+    text-align: right;
+  }
+
   /* === 이어서 보기 + 오늘의 한 장 === */
   .resume-row {
     max-width: 1180px;
@@ -731,7 +796,23 @@
   </div>
 </header>
 
-<!-- ===== 후원 배너 (마스트 직하 — 가장 먼저 눈에 들어오는 자리) ===== -->
+<!-- ===== 사명 선언 (왜 이 작업을 하는가 — 마스트 직하 첫 자리) ===== -->
+<section class="mission-banner" aria-label="이 작업의 자리">
+  <div class="mission-banner__inner">
+    <div class="mission-banner__kicker">왜 이 자리를 만드는가</div>
+    <h2 class="mission-banner__title">성숙한 자녀로, 아버지의 마음을 알아드리는 자리에서.</h2>
+    <div class="mission-banner__body">
+      <p>이 자리는 청소년·청년·장년에 이르기까지, <strong>스스로 성경을 읽고 스스로 기도할 수 있는 삶</strong>을 응원하기 위해 만들어졌습니다. 누군가의 해석을 빌려 듣는 자리가 아니라, 본문 앞에 한 사람이 자기 자리를 두고 앉을 수 있는 결을 같이 만들어 갑니다.</p>
+      <p>공동체가 무너진 영역에서 다시 일어설 수 있는 길은 한 가지입니다. <strong>말씀과 기도가 한 사람 안에 쌓이는 것.</strong> 이 자리는 그 쌓임을 위한 옆자리입니다. 가르침을 얹지 않고, 결론을 미리 적지 않고, 본문이 본문대로 한 사람을 만나도록 비워 둡니다. 그 비워둠 위에서 한 사람의 기도가 다시 일어납니다.</p>
+    </div>
+    <div class="mission-banner__verse">
+      "오직 너희는 이 세대를 본받지 말고 오직 마음을 새롭게 함으로 변화를 받아 하나님의 선하시고 기뻐하시고 온전하신 뜻이 무엇인지 분별하도록 하라."
+      <span class="mission-banner__verse-ref">— 로마서 12:2</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 후원 배너 ===== -->
 <section class="support-banner" aria-label="후원">
   <div class="support-banner__inner">
     <div class="support-banner__copy">
