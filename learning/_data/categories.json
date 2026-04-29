@@ -3,67 +3,488 @@
   "updated": "2026-04-30",
   "concept": "인류 마지막 지식 고학습자 — 5거인 합집합 매트릭스",
   "five_giants": [
-    {"id": "erasmus", "name": "에라스무스 (1466~1536)", "core": "언어·신학·풍자"},
-    {"id": "leibniz", "name": "라이프니츠 (1646~1716)", "core": "수학·외교·중국학"},
-    {"id": "barzun", "name": "자크 바전 (1907~2012)", "core": "문화비평·예술·역사기록"},
-    {"id": "lewis", "name": "C.S. Lewis (1898~1963)", "core": "변증·아동문학·서간"},
-    {"id": "davinci", "name": "레오나르도 다 빈치 (1452~1519)", "core": "회화·해부·공학·자연관찰"}
+    {
+      "id": "erasmus",
+      "name": "에라스무스 (1466~1536)",
+      "core": "언어·신학·풍자"
+    },
+    {
+      "id": "leibniz",
+      "name": "라이프니츠 (1646~1716)",
+      "core": "수학·외교·중국학"
+    },
+    {
+      "id": "barzun",
+      "name": "자크 바전 (1907~2012)",
+      "core": "문화비평·예술·역사기록"
+    },
+    {
+      "id": "lewis",
+      "name": "C.S. Lewis (1898~1963)",
+      "core": "변증·아동문학·서간"
+    },
+    {
+      "id": "davinci",
+      "name": "레오나르도 다 빈치 (1452~1519)",
+      "core": "회화·해부·공학·자연관찰"
+    }
   ],
   "stages_per_category": 30,
   "stage_model": "6단계×5회전",
   "pillars": [
-    {"id": 1, "name": "언어·번역",      "giants": ["erasmus","leibniz","lewis","barzun"]},
-    {"id": 2, "name": "수사학·논리",    "giants": ["erasmus","barzun","leibniz"]},
-    {"id": 3, "name": "고전·고대문학",  "giants": ["erasmus","lewis","barzun"]},
-    {"id": 4, "name": "역사",           "giants": ["leibniz","barzun"]},
-    {"id": 5, "name": "철학",           "giants": ["leibniz","barzun","lewis"]},
-    {"id": 6, "name": "신학·기독교 사상","giants": ["erasmus","lewis"]},
-    {"id": 7, "name": "과학·수학·논리", "giants": ["leibniz","barzun"]},
-    {"id": 8, "name": "인간·사회",      "giants": ["leibniz","barzun"]},
-    {"id": 9, "name": "표현·창작",      "giants": ["erasmus","leibniz","barzun","lewis","davinci"]},
-    {"id":10, "name": "시각·관찰·공학", "giants": ["davinci"]}
+    {
+      "id": 1,
+      "name": "언어·번역",
+      "giants": [
+        "erasmus",
+        "leibniz",
+        "lewis",
+        "barzun"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "수사학·논리",
+      "giants": [
+        "erasmus",
+        "barzun",
+        "leibniz"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "고전·고대문학",
+      "giants": [
+        "erasmus",
+        "lewis",
+        "barzun"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "역사",
+      "giants": [
+        "leibniz",
+        "barzun"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "철학",
+      "giants": [
+        "leibniz",
+        "barzun",
+        "lewis"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "신학·기독교 사상",
+      "giants": [
+        "erasmus",
+        "lewis"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "과학·수학·논리",
+      "giants": [
+        "leibniz",
+        "barzun"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "인간·사회",
+      "giants": [
+        "leibniz",
+        "barzun"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "표현·창작",
+      "giants": [
+        "erasmus",
+        "leibniz",
+        "barzun",
+        "lewis",
+        "davinci"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "시각·관찰·공학",
+      "giants": [
+        "davinci"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "첨단 과학·인지",
+      "giants": []
+    }
   ],
-  "filter_groups": ["all","고전·언어","인문학","과학","실무·인간","표현·시각"],
+  "filter_groups": [
+    "all",
+    "고전·언어",
+    "인문학",
+    "과학",
+    "실무·인간",
+    "표현·시각"
+  ],
   "categories": [
-    {"id": 1,  "pillar": 1, "slug": "lang-hebrew-greek", "name": "히브리어·헬라어",          "group": "고전·언어", "desc": "성경·신약 1차 출처 직독"},
-    {"id": 2,  "pillar": 1, "slug": "lang-latin",        "name": "라틴어",                   "group": "고전·언어", "desc": "키케로·아우구스티누스·에라스무스"},
-    {"id": 3,  "pillar": 1, "slug": "lang-classical-cn", "name": "한문·고전번역",            "group": "고전·언어", "desc": "사서삼경·한국 고전 한문"},
-    {"id": 4,  "pillar": 1, "slug": "lang-korean-etym",  "name": "한국어 어원·국어학",        "group": "고전·언어", "desc": "훈민정음·이두·향찰"},
-    {"id": 5,  "pillar": 2, "slug": "rhet-classical",    "name": "고전 수사학",              "group": "인문학",   "desc": "아리스토텔레스·키케로·퀸틸리아누스"},
-    {"id": 6,  "pillar": 2, "slug": "rhet-dialectic",    "name": "변증법",                  "group": "인문학",   "desc": "소크라테스·헤겔·근대 토론술"},
-    {"id": 7,  "pillar": 2, "slug": "rhet-logic",        "name": "논리학",                  "group": "인문학",   "desc": "삼단논법·기호논리·라이프니츠"},
-    {"id": 8,  "pillar": 2, "slug": "rhet-satire",       "name": "풍자·아이러니",            "group": "인문학",   "desc": "에라스무스 우신예찬·스위프트"},
-    {"id": 9,  "pillar": 3, "slug": "cls-greek-latin",   "name": "헬라·라틴 고전",           "group": "고전·언어", "desc": "호메로스·플라톤·베르길리우스"},
-    {"id":10,  "pillar": 3, "slug": "cls-eastern",       "name": "동양 고전",                "group": "고전·언어", "desc": "논어·맹자·도덕경·장자"},
-    {"id":11,  "pillar": 3, "slug": "cls-medieval-lit",  "name": "중세 문학",                "group": "고전·언어", "desc": "단테·초서·아서왕 전설"},
-    {"id":12,  "pillar": 3, "slug": "cls-poetics",       "name": "시학",                    "group": "고전·언어", "desc": "아리스토텔레스 시학·시 이론"},
-    {"id":13,  "pillar": 4, "slug": "hist-israel",       "name": "이스라엘 역사",            "group": "고전·언어", "desc": "타나크·미슈나·탈무드·디아스포라·현대"},
-    {"id":14,  "pillar": 4, "slug": "hist-western",      "name": "서양사",                  "group": "인문학",   "desc": "그리스·로마·중세·근대·현대"},
-    {"id":15,  "pillar": 4, "slug": "hist-eastern-cn",   "name": "동양사·중국학",            "group": "인문학",   "desc": "사기·한서·일본사·라이프니츠 중국학"},
-    {"id":16,  "pillar": 4, "slug": "hist-korea",        "name": "한국사",                  "group": "인문학",   "desc": "삼국사기·조선왕조실록·근현대"},
-    {"id":17,  "pillar": 5, "slug": "phil-ancient",      "name": "고대 철학",                "group": "인문학",   "desc": "소크라테스·플라톤·아리스토텔레스·스토아"},
-    {"id":18,  "pillar": 5, "slug": "phil-medieval-mod", "name": "중세·근대 철학",           "group": "인문학",   "desc": "아우구스티누스·아퀴나스·데카르트·칸트"},
-    {"id":19,  "pillar": 5, "slug": "phil-contemporary", "name": "현대 철학",                "group": "인문학",   "desc": "키에르케고르·하이데거·아렌트·테일러"},
-    {"id":20,  "pillar": 5, "slug": "phil-ethics-pol",   "name": "윤리·정치철학",            "group": "인문학",   "desc": "도덕철학·정의론·공동체주의"},
-    {"id":21,  "pillar": 6, "slug": "thl-biblical",      "name": "성경신학",                "group": "고전·언어", "desc": "구약·신약 신학·내러티브 신학"},
-    {"id":22,  "pillar": 6, "slug": "thl-patristic",     "name": "교부학",                  "group": "고전·언어", "desc": "아우구스티누스·크리소스토무스·아타나시우스"},
-    {"id":23,  "pillar": 6, "slug": "thl-apologetics",   "name": "변증·악마학",              "group": "인문학",   "desc": "Lewis Mere Christianity·악의 문제"},
-    {"id":24,  "pillar": 6, "slug": "thl-spirituality",  "name": "영성·수도전통",            "group": "인문학",   "desc": "사막교부·이그나티우스·신학적 묵상"},
-    {"id":25,  "pillar": 7, "slug": "sci-mathematics",   "name": "수학",                    "group": "과학",     "desc": "기하·확률·미적분·라이프니츠"},
-    {"id":26,  "pillar": 7, "slug": "sci-physics-optics","name": "물리·광학",                "group": "과학",     "desc": "역학·광학·우주론"},
-    {"id":27,  "pillar": 7, "slug": "sci-life-ecology",  "name": "생명과학·생태",            "group": "과학",     "desc": "진화·생태·자연사"},
-    {"id":28,  "pillar": 7, "slug": "sci-history-tech",  "name": "과학사·기술사",            "group": "과학",     "desc": "쿤·과학혁명·기술 계보"},
-    {"id":29,  "pillar": 8, "slug": "hum-psychology",    "name": "심리·발달",                "group": "실무·인간", "desc": "자기결정성·발달심리·실존심리"},
-    {"id":30,  "pillar": 8, "slug": "hum-soc-culture",   "name": "사회·문화비평",            "group": "실무·인간", "desc": "바전·문화 코드·세대"},
-    {"id":31,  "pillar": 8, "slug": "hum-law-pol",       "name": "법학·정치·외교",           "group": "실무·인간", "desc": "라이프니츠 외교·법사상사"},
-    {"id":32,  "pillar": 8, "slug": "hum-customs-travel","name": "관습·여행기",              "group": "실무·인간", "desc": "민속·여행 문학·문화기록"},
-    {"id":33,  "pillar": 9, "slug": "exp-letters",       "name": "서간문학",                "group": "표현·시각", "desc": "에라스무스·Lewis·다 빈치 서신"},
-    {"id":34,  "pillar": 9, "slug": "exp-poetry-child",  "name": "시·아동문학",              "group": "표현·시각", "desc": "Lewis Narnia·시 작법"},
-    {"id":35,  "pillar": 9, "slug": "exp-music-art",     "name": "음악·예술",                "group": "표현·시각", "desc": "바전 음악사·예술비평"},
-    {"id":36,  "pillar": 9, "slug": "exp-bio-portrait",  "name": "자서전·인물평전",          "group": "표현·시각", "desc": "평전 작법·자기 서술"},
-    {"id":37,  "pillar":10, "slug": "viz-drawing",       "name": "회화·드로잉",              "group": "표현·시각", "desc": "다 빈치 노트·매일 1장"},
-    {"id":38,  "pillar":10, "slug": "viz-anatomy",       "name": "해부·인체비례",            "group": "표현·시각", "desc": "비트루비안 맨·해부도"},
-    {"id":39,  "pillar":10, "slug": "viz-engineering",   "name": "기계·공학",                "group": "과학",     "desc": "다 빈치 기계도·작동원리 분해"},
-    {"id":40,  "pillar":10, "slug": "viz-nature-notes",  "name": "자연관찰·노트작성",        "group": "표현·시각", "desc": "Codex Atlanticus·평생 노트"}
+    {
+      "id": 1,
+      "pillar": 1,
+      "slug": "lang-hebrew-greek",
+      "name": "히브리어·헬라어",
+      "group": "고전·언어",
+      "desc": "성경·신약 1차 출처 직독"
+    },
+    {
+      "id": 2,
+      "pillar": 1,
+      "slug": "lang-latin",
+      "name": "라틴어",
+      "group": "고전·언어",
+      "desc": "키케로·아우구스티누스·에라스무스"
+    },
+    {
+      "id": 3,
+      "pillar": 1,
+      "slug": "lang-classical-cn",
+      "name": "한문·고전번역",
+      "group": "고전·언어",
+      "desc": "사서삼경·한국 고전 한문"
+    },
+    {
+      "id": 4,
+      "pillar": 1,
+      "slug": "lang-korean-etym",
+      "name": "한국어 어원·국어학",
+      "group": "고전·언어",
+      "desc": "훈민정음·이두·향찰"
+    },
+    {
+      "id": 5,
+      "pillar": 2,
+      "slug": "rhet-classical",
+      "name": "고전 수사학",
+      "group": "인문학",
+      "desc": "아리스토텔레스·키케로·퀸틸리아누스"
+    },
+    {
+      "id": 6,
+      "pillar": 2,
+      "slug": "rhet-dialectic",
+      "name": "변증법",
+      "group": "인문학",
+      "desc": "소크라테스·헤겔·근대 토론술"
+    },
+    {
+      "id": 7,
+      "pillar": 2,
+      "slug": "rhet-logic",
+      "name": "논리학",
+      "group": "인문학",
+      "desc": "삼단논법·기호논리·라이프니츠"
+    },
+    {
+      "id": 8,
+      "pillar": 2,
+      "slug": "rhet-satire",
+      "name": "풍자·아이러니",
+      "group": "인문학",
+      "desc": "에라스무스 우신예찬·스위프트"
+    },
+    {
+      "id": 9,
+      "pillar": 3,
+      "slug": "cls-greek-latin",
+      "name": "헬라·라틴 고전",
+      "group": "고전·언어",
+      "desc": "호메로스·플라톤·베르길리우스"
+    },
+    {
+      "id": 10,
+      "pillar": 3,
+      "slug": "cls-eastern",
+      "name": "동양 고전",
+      "group": "고전·언어",
+      "desc": "논어·맹자·도덕경·장자"
+    },
+    {
+      "id": 11,
+      "pillar": 3,
+      "slug": "cls-medieval-lit",
+      "name": "중세 문학",
+      "group": "고전·언어",
+      "desc": "단테·초서·아서왕 전설"
+    },
+    {
+      "id": 12,
+      "pillar": 3,
+      "slug": "cls-poetics",
+      "name": "시학",
+      "group": "고전·언어",
+      "desc": "아리스토텔레스 시학·시 이론"
+    },
+    {
+      "id": 13,
+      "pillar": 4,
+      "slug": "hist-israel",
+      "name": "이스라엘 역사",
+      "group": "고전·언어",
+      "desc": "타나크·미슈나·탈무드·디아스포라·현대"
+    },
+    {
+      "id": 14,
+      "pillar": 4,
+      "slug": "hist-western",
+      "name": "서양사",
+      "group": "인문학",
+      "desc": "그리스·로마·중세·근대·현대"
+    },
+    {
+      "id": 15,
+      "pillar": 4,
+      "slug": "hist-eastern-cn",
+      "name": "동양사·중국학",
+      "group": "인문학",
+      "desc": "사기·한서·일본사·라이프니츠 중국학"
+    },
+    {
+      "id": 16,
+      "pillar": 4,
+      "slug": "hist-korea",
+      "name": "한국사",
+      "group": "인문학",
+      "desc": "삼국사기·조선왕조실록·근현대"
+    },
+    {
+      "id": 17,
+      "pillar": 5,
+      "slug": "phil-ancient",
+      "name": "고대 철학",
+      "group": "인문학",
+      "desc": "소크라테스·플라톤·아리스토텔레스·스토아"
+    },
+    {
+      "id": 18,
+      "pillar": 5,
+      "slug": "phil-medieval-mod",
+      "name": "중세·근대 철학",
+      "group": "인문학",
+      "desc": "아우구스티누스·아퀴나스·데카르트·칸트"
+    },
+    {
+      "id": 19,
+      "pillar": 5,
+      "slug": "phil-contemporary",
+      "name": "현대 철학",
+      "group": "인문학",
+      "desc": "키에르케고르·하이데거·아렌트·테일러"
+    },
+    {
+      "id": 20,
+      "pillar": 5,
+      "slug": "phil-ethics-pol",
+      "name": "윤리·정치철학",
+      "group": "인문학",
+      "desc": "도덕철학·정의론·공동체주의"
+    },
+    {
+      "id": 21,
+      "pillar": 6,
+      "slug": "thl-biblical",
+      "name": "성경신학",
+      "group": "고전·언어",
+      "desc": "구약·신약 신학·내러티브 신학"
+    },
+    {
+      "id": 22,
+      "pillar": 6,
+      "slug": "thl-patristic",
+      "name": "교부학",
+      "group": "고전·언어",
+      "desc": "아우구스티누스·크리소스토무스·아타나시우스"
+    },
+    {
+      "id": 23,
+      "pillar": 6,
+      "slug": "thl-apologetics",
+      "name": "변증·악마학",
+      "group": "인문학",
+      "desc": "Lewis Mere Christianity·악의 문제"
+    },
+    {
+      "id": 24,
+      "pillar": 6,
+      "slug": "thl-spirituality",
+      "name": "영성·수도전통",
+      "group": "인문학",
+      "desc": "사막교부·이그나티우스·신학적 묵상"
+    },
+    {
+      "id": 25,
+      "pillar": 7,
+      "slug": "sci-mathematics",
+      "name": "수학",
+      "group": "과학",
+      "desc": "기하·확률·미적분·라이프니츠"
+    },
+    {
+      "id": 26,
+      "pillar": 7,
+      "slug": "sci-physics-optics",
+      "name": "물리·광학",
+      "group": "과학",
+      "desc": "역학·광학·우주론"
+    },
+    {
+      "id": 27,
+      "pillar": 7,
+      "slug": "sci-life-ecology",
+      "name": "생명과학·생태",
+      "group": "과학",
+      "desc": "진화·생태·자연사"
+    },
+    {
+      "id": 28,
+      "pillar": 7,
+      "slug": "sci-history-tech",
+      "name": "과학사·기술사",
+      "group": "과학",
+      "desc": "쿤·과학혁명·기술 계보"
+    },
+    {
+      "id": 29,
+      "pillar": 8,
+      "slug": "hum-psychology",
+      "name": "심리·발달",
+      "group": "실무·인간",
+      "desc": "자기결정성·발달심리·실존심리"
+    },
+    {
+      "id": 30,
+      "pillar": 8,
+      "slug": "hum-soc-culture",
+      "name": "사회·문화비평",
+      "group": "실무·인간",
+      "desc": "바전·문화 코드·세대"
+    },
+    {
+      "id": 31,
+      "pillar": 8,
+      "slug": "hum-law-pol",
+      "name": "법학·정치·외교",
+      "group": "실무·인간",
+      "desc": "라이프니츠 외교·법사상사"
+    },
+    {
+      "id": 32,
+      "pillar": 8,
+      "slug": "hum-customs-travel",
+      "name": "관습·여행기",
+      "group": "실무·인간",
+      "desc": "민속·여행 문학·문화기록"
+    },
+    {
+      "id": 33,
+      "pillar": 9,
+      "slug": "exp-letters",
+      "name": "서간문학",
+      "group": "표현·시각",
+      "desc": "에라스무스·Lewis·다 빈치 서신"
+    },
+    {
+      "id": 34,
+      "pillar": 9,
+      "slug": "exp-poetry-child",
+      "name": "시·아동문학",
+      "group": "표현·시각",
+      "desc": "Lewis Narnia·시 작법"
+    },
+    {
+      "id": 35,
+      "pillar": 9,
+      "slug": "exp-music-art",
+      "name": "음악·예술",
+      "group": "표현·시각",
+      "desc": "바전 음악사·예술비평"
+    },
+    {
+      "id": 36,
+      "pillar": 9,
+      "slug": "exp-bio-portrait",
+      "name": "자서전·인물평전",
+      "group": "표현·시각",
+      "desc": "평전 작법·자기 서술"
+    },
+    {
+      "id": 37,
+      "pillar": 10,
+      "slug": "viz-drawing",
+      "name": "회화·드로잉",
+      "group": "표현·시각",
+      "desc": "다 빈치 노트·매일 1장"
+    },
+    {
+      "id": 38,
+      "pillar": 10,
+      "slug": "viz-anatomy",
+      "name": "해부·인체비례",
+      "group": "표현·시각",
+      "desc": "비트루비안 맨·해부도"
+    },
+    {
+      "id": 39,
+      "pillar": 10,
+      "slug": "viz-engineering",
+      "name": "기계·공학",
+      "group": "과학",
+      "desc": "다 빈치 기계도·작동원리 분해"
+    },
+    {
+      "id": 40,
+      "pillar": 10,
+      "slug": "viz-nature-notes",
+      "name": "자연관찰·노트작성",
+      "group": "표현·시각",
+      "desc": "Codex Atlanticus·평생 노트"
+    },
+    {
+      "id": 41,
+      "pillar": 11,
+      "slug": "sci-quantum",
+      "name": "양자역학·양자정보",
+      "group": "과학",
+      "desc": "코펜하겐·다세계·양자얽힘·양자컴퓨팅"
+    },
+    {
+      "id": 42,
+      "pillar": 11,
+      "slug": "sci-neuroscience",
+      "name": "뇌과학·인지신경",
+      "group": "과학",
+      "desc": "예측 부호화·신경가소성·의식 연구"
+    },
+    {
+      "id": 43,
+      "pillar": 11,
+      "slug": "sci-cosmology",
+      "name": "천문·우주론",
+      "group": "과학",
+      "desc": "빅뱅·암흑물질·다중우주·시공간"
+    },
+    {
+      "id": 44,
+      "pillar": 11,
+      "slug": "sci-biotech",
+      "name": "생명공학·유전체",
+      "group": "과학",
+      "desc": "CRISPR·후성유전·합성생물학"
+    }
   ]
 }
