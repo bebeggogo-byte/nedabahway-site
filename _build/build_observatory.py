@@ -174,34 +174,35 @@ def render_chapter(code: str, kr: str, en: str, ch: int, book_sbm_dir: str, tota
         <details class="stage stage--collapsed" id="s1">
           <summary>
             <span class="stage__num">단계 1</span>
-            <span class="stage__title-inline">본문 그대로 읽기</span>
+            <span class="stage__title-inline">무대·배경·소품·소재 (본문 그대로 옮겨 적기)</span>
             <span class="stage__toggle">시뮬레이션 보기 →</span>
           </summary>
           <div class="stage__inner">
-            <p class="stage__intro">본문은 본문이 자기 시간 안에서 스스로 풀리도록 둡니다. 옮긴 말을 옮긴 그대로 받아 적습니다.</p>
+            <p class="stage__intro">본문을 연극 무대처럼 상상합니다. 공간·소품·배경 요소·재료를 그대로 받아 적습니다. 해석이 아니라 무대 설정만.</p>
             <div class="md-body">{md_to_html(raw[:8000])}</div>
           </div>
         </details>
 
         <details class="stage stage--collapsed" id="s2">
           <summary>
-            <span class="stage__num">단계 2~6</span>
-            <span class="stage__title-inline">관찰된 사실 — 단어 빈도 · 좌표 · 동사 · 대조 · 장 경계</span>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 인물 · 장면 컷 · 의문 · 동영상 흐름</span>
             <span class="stage__toggle">시뮬레이션 보기 →</span>
           </summary>
           <div class="stage__inner">
+            <p class="stage__intro">분위기를 먼저 잡고, 시작·끝의 결을 보고, 등장인물의 자리를 잡고, 장면을 컷으로 분절한 다음, 컷들을 이어 동영상으로 만듭니다.</p>
             <div class="md-body">{md_to_html(facts[:12000])}</div>
           </div>
         </details>
 
         <details class="stage stage--collapsed" id="s8">
           <summary>
-            <span class="stage__num">단계 7~9</span>
-            <span class="stage__title-inline">미해결 질문과 관찰자의 자리</span>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
             <span class="stage__toggle">시뮬레이션 보기 →</span>
           </summary>
           <div class="stage__inner">
-            <p class="stage__intro">본문이 답하지 않는 자리는 답하지 않은 채 둡니다.</p>
+            <p class="stage__intro">한 줄 제목을 초벌로 잡고, 7단계의 동영상 안에 들어가 걸으며 알게 된 것을 주께 아룁니다. 답을 구하지 않고 머뭅니다.</p>
             <div class="md-body">{md_to_html(questions[:8000])}</div>
           </div>
         </details>
@@ -256,10 +257,16 @@ def render_chapter(code: str, kr: str, en: str, ch: int, book_sbm_dir: str, tota
   .toc-side {{ position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }}
   @media (max-width: 880px) {{ .toc-side {{ position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; }} }}
   .toc-side__head {{ font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }}
-  .toc-side ol {{ list-style: none; padding: 0; counter-reset: step; }}
-  .toc-side li {{ counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; }}
-  .toc-side li::before {{ content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; }}
-  .toc-side a {{ display: block; color: inherit; }}
+  .toc-side ol {{ list-style: none; padding: 0; }}
+  .toc-side .toc-9steps {{ counter-reset: step; }}
+  .toc-side .toc-9steps li {{ counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }}
+  .toc-side .toc-9steps li::before {{ content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }}
+  .toc-side .toc-synthesis {{ counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }}
+  .toc-side .toc-synthesis li {{ counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }}
+  .toc-side .toc-synthesis li::before {{ content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }}
+  .toc-side a {{ display: inline; color: inherit; transition: color .15s; }}
+  .toc-side a:hover {{ color: var(--c-copper); }}
+  .toc-side a.is-active {{ color: var(--c-copper); font-weight: 600; }}
   .obs-mast {{ border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }}
   .obs-mast .crumb {{ font-size: 0.82rem; color: var(--c-mute); }}
   .obs-mast .crumb a {{ border-bottom: 1px solid currentColor; padding-bottom:1px; }}
@@ -338,11 +345,19 @@ def render_chapter(code: str, kr: str, en: str, ch: int, book_sbm_dir: str, tota
 <div class="obs-shell">
   <aside class="toc-side">
     <div class="toc-side__head">9단계 차례</div>
-    <ol>
-      <li><a href="#s1">본문 그대로 읽기</a></li>
-      <li><a href="#s2">관찰된 사실</a></li>
-      <li><a href="#s8">미해결 질문 · 후기</a></li>
-      <li><a href="#synthesis" style="color:var(--c-copper);font-weight:600;">종합 정리</a></li>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
     </ol>
   </aside>
   <main class="obs-main" style="min-width:0;">
@@ -359,6 +374,7 @@ def render_chapter(code: str, kr: str, en: str, ch: int, book_sbm_dir: str, tota
 </div>
 
 <script>
+  // 1) Resume 쿠키
   try {{
     localStorage.setItem('observatory:last', JSON.stringify({{
       href: '/magazine/{code}/{ch}/',
@@ -366,6 +382,58 @@ def render_chapter(code: str, kr: str, en: str, ch: int, book_sbm_dir: str, tota
       excerpt: '{essence}'
     }}));
   }} catch(e) {{}}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {{
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {{
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) {{ a.classList.remove('is-active'); }});
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) {{ a.classList.add('is-active'); }});
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {{
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({{ top: window.scrollY + rect.top - 80, behavior: 'smooth' }});
+      }}, 30);
+    }}
+    navLinks.forEach(function(a) {{
+      a.addEventListener('click', function(e) {{
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      }});
+    }});
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {{
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {{
+        setTimeout(function() {{ openAndScroll(initial); }}, 60);
+      }}
+    }}
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) {{ var n = document.getElementById(id); return n ? {{id: id, el: n}} : null; }})
+      .filter(Boolean);
+    function updateActive() {{
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {{
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }}
+      if (current) {{
+        navLinks.forEach(function(a) {{
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        }});
+      }}
+    }}
+    window.addEventListener('scroll', updateActive, {{ passive: true }});
+    updateActive();
+  }})();
 </script>
 
 <footer class="foot">
