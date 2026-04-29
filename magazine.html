@@ -546,17 +546,34 @@
     line-height: 1.65;
     text-wrap: pretty;
   }
-  .copy-btn {
-    background: var(--c-ink);
-    color: var(--c-bg);
-    padding: 8px 14px;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    border: 0;
-    cursor: pointer;
+  /* 계좌 복사 아이콘 버튼 */
+  .copy-icon-btn {
+    width: 40px; height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--c-ink); color: var(--c-bg);
+    border-radius: 50%; border: 0; cursor: pointer;
+    transition: background .2s, transform .15s;
+    flex-shrink: 0;
   }
-  .copy-btn:active { transform: scale(0.97); }
+  .copy-icon-btn:hover { background: var(--c-copper); }
+  .copy-icon-btn:active { transform: scale(0.92); }
+  .copy-icon-btn svg { width: 18px; height: 18px; }
+  /* 감사 편지 아이콘 링크 */
+  .letter-icon-link {
+    width: 40px; height: 40px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--c-copper); color: var(--c-bg);
+    border-radius: 50%; cursor: pointer;
+    transition: background .2s, transform .15s;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+  .letter-icon-link:hover { background: var(--c-ink); color: var(--c-bg); transform: translateY(-1px); }
+  .letter-icon-link svg { width: 18px; height: 18px; }
+  .icon-tip {
+    font-size: 0.72rem; color: var(--c-mute2);
+    margin-left: 6px; letter-spacing: 0.04em;
+  }
 
   /* === 편집 원칙 === */
   .principles-section {
@@ -986,14 +1003,28 @@
     <div class="support-account">
       <h3>후원 계좌</h3>
       <div class="support-account__row">
-        <div>
-          <div class="support-account__label">계좌</div>
-          <div class="support-account__value" id="acct-num">우리은행 1002-***-****** · 김창환</div>
+        <div style="flex:1 1 auto;">
+          <div class="support-account__label">예금주 · 은행</div>
+          <div class="support-account__value">네다바웨이 · 하나은행</div>
         </div>
-        <button class="copy-btn" onclick="copyAcct()">계좌 복사</button>
-        <a class="copy-btn" style="text-decoration:none;background:var(--c-copper);" href="mailto:nedabah.way@gmail.com?subject=Observatory%20%ED%9B%84%EC%9B%90%20%EC%95%88%EB%82%B4%20%EC%9A%94%EC%B2%AD&body=%ED%9B%84%EC%9B%90%20%EC%95%88%EB%82%B4(%EA%B3%84%EC%A2%8C%EB%B2%88%ED%98%B8%C2%B7%EB%B0%A9%EB%B2%95)%EB%A5%BC%20%EB%B0%9B%EA%B3%A0%20%EC%8B%B6%EC%8A%B5%EB%8B%88%EB%8B%A4.">계좌번호 안내 메일 받기</a>
+        <div style="flex:1 1 auto;">
+          <div class="support-account__label">계좌번호</div>
+          <div class="support-account__value" id="acct-num">927-910009-77504</div>
+        </div>
+        <button class="copy-icon-btn" onclick="copyAcct()" title="계좌 정보 복사" aria-label="계좌 정보 복사">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+        <a class="letter-icon-link" href="/magazine/letter/" title="후원자에게 드리는 감사 편지" aria-label="후원자에게 드리는 감사 편지">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </a>
       </div>
-      <p class="support-account__note">계좌번호는 안내 요청 메일을 보내 주시면 회신드립니다(번호 노출로 인한 보이스피싱·도용 방지를 위해 직접 회신 방식으로만 보냅니다). 후원자 명단은 *이름 없이* 분기 PDF 안표지에 누적된 인원수만 적습니다. 영수증·기부금 처리가 필요하시면 메일에 같이 적어 주세요.</p>
+      <p class="support-account__note">송금 후 따로 알리지 않으셔도 됩니다. 영수증·기부금 처리·후원자 안표지 기재가 필요하시면 <a href="mailto:nedabah.way@gmail.com?subject=Observatory%20%ED%9B%84%EC%9B%90%20%EC%98%81%EC%88%98%EC%A6%9D%C2%B7%EA%B8%B0%EC%9E%AC%20%EC%9A%94%EC%B2%AD" style="color:inherit;border-bottom:1px solid currentColor;">nedabah.way@gmail.com</a>으로 송금 일자와 함께 알려 주세요. <a href="/magazine/letter/" style="color:var(--c-copper);border-bottom:1px solid currentColor;">후원자에게 드리는 편지</a>를 같이 두었습니다.</p>
     </div>
   </section>
 
@@ -1054,7 +1085,7 @@
     }
   });
   function copyAcct(){
-    var t = document.getElementById('acct-num').textContent;
+    var t = '하나은행 927-910009-77504 네다바웨이';
     if (navigator.clipboard) {
       navigator.clipboard.writeText(t).then(function(){
         var x = document.getElementById('toast');

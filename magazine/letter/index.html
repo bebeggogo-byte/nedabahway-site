@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>후원자에게 드리는 편지 — Observatory | 네다바웨이</title>
+<meta name="description" content="이 자리를 함께 받쳐 주신 분께 진심으로 드리는 한 통의 편지. 성경 본문이 옆에 같이 놓입니다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/letter/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<style>
+  .letter-shell {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 96px 28px 64px;
+  }
+  .letter-mast {
+    text-align: center;
+    margin-bottom: 56px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--c-line);
+  }
+  .letter-mast .crumb {
+    font-size: 0.82rem;
+    color: var(--c-mute);
+  }
+  .letter-mast .crumb a {
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+  }
+  .letter-mast .seal {
+    margin: 22px auto 14px;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #C2410C 0%, #7A5C3E 100%);
+    color: #FAFAF7;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--ff-serif);
+    font-weight: 800;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 14px rgba(122, 92, 62, 0.3);
+  }
+  .letter-mast h1 {
+    font-family: var(--ff-serif);
+    font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.3;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .letter-mast .subtitle {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--c-mute);
+    font-style: italic;
+    text-wrap: pretty;
+  }
+
+  .letter-body {
+    font-family: var(--ff-serif);
+    font-size: 1.08rem;
+    line-height: 2;
+    color: var(--c-ink);
+    text-wrap: pretty;
+  }
+  .letter-body p {
+    margin-bottom: 22px;
+    text-wrap: pretty;
+  }
+  .letter-body p.greeting {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 28px;
+  }
+  .letter-body p.signoff {
+    margin-top: 40px;
+    text-align: right;
+    font-size: 1rem;
+    color: var(--c-mute);
+  }
+  .letter-body p.signature {
+    text-align: right;
+    font-family: var(--ff-serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--c-ink);
+    margin-top: 6px;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .letter-body p.signature-meta {
+    text-align: right;
+    font-size: 0.86rem;
+    color: var(--c-mute);
+    margin-top: 0;
+  }
+
+  /* 성경 인용 박스 */
+  .scripture {
+    margin: 36px -8px;
+    padding: 28px 32px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FAF6EE 100%);
+    border-left: 4px solid var(--c-canon-ot, #7A5C3E);
+    border-radius: 4px 14px 14px 4px;
+  }
+  .scripture__verse {
+    font-family: var(--ff-serif);
+    font-size: 1.08rem;
+    line-height: 2;
+    color: var(--c-ink);
+    text-wrap: pretty;
+  }
+  .scripture__ref {
+    margin-top: 12px;
+    font-size: 0.86rem;
+    color: var(--c-copper);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-align: right;
+    font-family: var(--ff);
+    font-style: normal;
+  }
+
+  /* 작은 메모 — 본문 마지막 가까이 */
+  .letter-meta {
+    margin-top: 56px;
+    padding: 22px 24px;
+    border: 1px dashed var(--c-line2);
+    border-radius: 12px;
+    font-size: 0.92rem;
+    color: var(--c-mute);
+    line-height: 1.75;
+    text-wrap: pretty;
+    font-family: var(--ff);
+  }
+  .letter-meta strong { color: var(--c-ink); }
+
+  .back-link {
+    margin-top: 48px;
+    text-align: center;
+  }
+  .back-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--c-ink);
+    color: var(--c-bg);
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: background .2s;
+    font-family: var(--ff);
+  }
+  .back-link a:hover { background: var(--c-copper); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo">네다바웨이</a>
+    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
+    <div class="nav__links">
+      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
+      <a href="/about.html" class="nav__link">소개</a>
+      <a href="/programs.html" class="nav__link">강의</a>
+      <a href="/ai.html" class="nav__link">AI 작업실</a>
+      <a href="/magazine.html" class="nav__link nav__link--active">관찰 Atlas</a>
+      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
+    </div>
+  </div>
+</nav>
+
+<main class="letter-shell">
+
+  <header class="letter-mast">
+    <div class="crumb"><a href="/magazine.html">Observatory</a> · 후원자에게 드리는 편지</div>
+    <div class="seal" aria-hidden="true">네</div>
+    <h1>이 한 통의 편지를<br>당신께 남깁니다.</h1>
+    <p class="subtitle">— 본문이 본문을 읽도록 옆자리를 같이 받쳐 주신 분께</p>
+  </header>
+
+  <article class="letter-body">
+
+    <p class="greeting">받는 분께.</p>
+
+    <p>먼저, 이 자리를 함께 받쳐 주신 손에 진심으로 감사를 전합니다. 한 장을 9단계로 푸는 자리는 화면 너머에서는 보이지 않는 시간의 묶음입니다. 본문을 본문대로 받아 적고, 단어 하나가 어디에서 다른 무게를 받는지 헤아리고, 인물과 장소와 시간을 좌표에 옮기고, 미해결 질문을 답하지 않은 채 그대로 두는 일. 그 시간이 한 사람의 손만으로는 닿지 않습니다. 당신의 후원이 그 자리를 끊기지 않게 합니다.</p>
+
+    <p>저는 이 일을 시작하면서 한 가지를 분명히 적어 두었습니다. 본문 위에 가르침을 얹지 않는 것. 결론을 미리 적지 않는 것. 본문이 자기 시간 안에서 풀리도록 옆자리를 비워 두는 것. 광고를 붙이지 않고 결제 벽을 세우지 않는 까닭은 여기에 있습니다. 본문은 누구에게나 그대로 열려 있어야 합니다. 그러나 그 열림을 유지하는 비용은 누군가 받쳐 주어야 합니다. 당신이 그 받침이 되어 주셨습니다.</p>
+
+    <div class="scripture">
+      <p class="scripture__verse">한 알의 밀이 땅에 떨어져 죽지 아니하면 한 알 그대로 있고 죽으면 많은 열매를 맺느니라.</p>
+      <p class="scripture__ref">— 요한복음 12:24</p>
+    </div>
+
+    <p>당신의 후원은 한 알처럼 보일지 모릅니다. 한 번의 송금, 한 달의 자리, 한 호의 받침. 그러나 한 알이 여러 자리에서 함께 떨어질 때 본문은 더 깊이 읽힙니다. 한 권을 닫는 자리에서 다음 권이 시작되고, 한 단어가 정확해지면 옆 단어가 다시 보이고, 한 분의 후원이 다른 분의 후원을 부릅니다. 이 자리에 떨어진 당신의 한 알은 보이지 않는 곳에서 여러 열매로 자라고 있습니다.</p>
+
+    <div class="scripture">
+      <p class="scripture__verse">각각 그 마음에 정한 대로 할 것이요 인색함으로나 억지로 하지 말지니 하나님은 즐겨 내는 자를 사랑하시느니라.</p>
+      <p class="scripture__ref">— 고린도후서 9:7</p>
+    </div>
+
+    <p>당신께서 이 자리에 보내 주신 마음이 인색함이나 억지에서 나오지 않았음을 압니다. 그래서 더 무겁게 받습니다. 한 사람의 마음을 한 사람이 헤아릴 수는 없지만, 본문을 같이 관찰하는 자리에서 그 마음의 결을 옆에 두고 일하겠습니다. 당신이 보내 주신 한 알이 본문 한 자리에서 한 단어로 자라고, 그 단어가 다른 본문에서 다른 결로 다시 살아나는 모습을 함께 보게 되시기를 바랍니다.</p>
+
+    <div class="scripture">
+      <p class="scripture__verse">너희의 빛이 사람 앞에 비치게 하여 그들로 너희 착한 행실을 보고 하늘에 계신 너희 아버지께 영광을 돌리게 하라.</p>
+      <p class="scripture__ref">— 마태복음 5:16</p>
+    </div>
+
+    <p>이 일은 제 이름으로 시작했지만, 제 이름으로 닫히지 않습니다. 본문은 본문의 이름으로 열려 있고, 후원은 후원자의 이름으로 받쳐지지만, 빛은 한 자리에서만 비치지 않습니다. 분기 PDF의 안표지에 후원자 명단을 *이름 없이 누적된 인원수*로만 기록하는 까닭이 여기에 있습니다. 받쳐 주신 마음이 한 사람의 영광이 아니라 더 높은 자리로 돌아가도록, 이름을 비워 둡니다. 그러나 그 빈자리에 당신의 손이 있음을 저는 압니다.</p>
+
+    <p>1,189장은 길고 한 장의 시간은 짧지 않습니다. 그러나 당신처럼 한 자리를 받쳐 주시는 분이 한 분 더 늘 때마다, 한 장이 한 자리에 더 빨리 닿습니다. 한 장이 닫힐 때마다 본문은 더 깊은 결로 열립니다. 그 닫힘과 열림 사이에 당신의 이름은 적히지 않지만, 당신의 시간이 그 자리에 살아 있습니다.</p>
+
+    <p>다시 한 번 진심으로 감사드립니다. 본문이 본문을 읽는 자리에서, 당신의 자리도 함께 옆에 두겠습니다.</p>
+
+    <div class="scripture">
+      <p class="scripture__verse">우리가 선을 행하되 낙심하지 말지니 포기하지 아니하면 때가 이르매 거두리라.</p>
+      <p class="scripture__ref">— 갈라디아서 6:9</p>
+    </div>
+
+    <p class="signoff">한 사람의 일을 다시 디자인하는 자리에서,</p>
+    <p class="signature">김창환 드림.</p>
+    <p class="signature-meta">네다바웨이 · 제주</p>
+
+    <div class="letter-meta">
+      <p><strong>영수증 · 기부금 처리 · 분기 PDF 안표지 기재</strong>가 필요하시면 <a href="mailto:nedabah.way@gmail.com?subject=Observatory%20%ED%9B%84%EC%9B%90%20%EC%98%81%EC%88%98%EC%A6%9D%C2%B7%EA%B8%B0%EC%9E%AC%20%EC%9A%94%EC%B2%AD" style="color:inherit;border-bottom:1px solid currentColor;">nedabah.way@gmail.com</a>으로 송금 일자와 함께 알려 주세요. 먼저 알리지 않으셔도 자리는 그대로 받쳐집니다.</p>
+    </div>
+
+  </article>
+
+  <div class="back-link">
+    <a href="/magazine.html#support">후원 자리로 돌아가기 →</a>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div><div class="foot__brand">네다바웨이 Nedabahway</div><p>강사 김창환 · 제주<br>한 사람의 일을 다시 디자인합니다.</p></div>
+    <div class="foot__col"><h4>Observatory</h4><a href="/magazine.html">관찰 Atlas 홈</a><a href="/magazine/words/">원어 단어집</a><a href="/magazine.html#support">후원으로 받치기</a></div>
+    <div class="foot__col"><h4>둘러보기</h4><a href="/blog/perspective/">관점 노트</a><a href="/about.html">소개</a><a href="/programs.html">강의</a></div>
+    <div class="foot__col"><h4>연락</h4><a href="/contact.html">강의 의뢰</a><a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></div>
+  </div>
+  <div class="foot__copy"><span>© 2026 Nedabahway · 김창환</span><span>nedabah.org</span></div>
+</footer>
+
+</body>
+</html>
