@@ -36,19 +36,20 @@
 
   .giants{max-width:1080px;margin:0 auto;padding:16px 24px 32px}
   .giants h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
-  .bento{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--line);aspect-ratio:5/2}
-  .bento__cell{position:relative;overflow:hidden;background:#0a0a0a;cursor:pointer;transition:flex .3s ease}
-  .bento__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(.3) contrast(1.05);transition:filter .3s ease,transform .3s ease}
+  .bento{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;border-radius:14px;background:transparent}
+  .bento__cell{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+  .bento__cell:hover{transform:translateY(-2px);border-color:var(--acc);box-shadow:0 8px 24px rgba(8,145,178,.10)}
+  .bento__imgwrap{aspect-ratio:1/1;background:#f3efe8;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .bento__img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:grayscale(.2) contrast(1.05);transition:filter .25s ease,transform .25s ease}
   .bento__cell:hover .bento__img{filter:grayscale(0) contrast(1.1);transform:scale(1.04)}
-  .bento__overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.85) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:18px 18px 16px;color:#fff}
-  .bento__num{font-size:11px;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.7);margin-bottom:4px}
-  .bento__name{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-bottom:3px;line-height:1.25}
-  .bento__year{font-size:11px;color:rgba(255,255,255,.65);margin-bottom:8px}
-  .bento__core{font-size:11px;color:rgba(255,255,255,.85);line-height:1.5}
+  .bento__caption{padding:10px 12px 12px;color:var(--ink);text-align:center}
+  .bento__num{font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--mute);margin-bottom:4px}
+  .bento__name{font-size:13px;font-weight:800;letter-spacing:-.01em;margin-bottom:2px;line-height:1.25;color:var(--ink)}
+  .bento__year{font-size:11px;color:var(--mute);margin-bottom:6px}
+  .bento__core{font-size:11px;color:var(--soft);line-height:1.4}
   @media(max-width:680px){
-    .bento{grid-template-columns:repeat(2,1fr);aspect-ratio:auto}
-    .bento__cell{aspect-ratio:3/4}
-    .bento__cell:nth-child(5){grid-column:span 2;aspect-ratio:5/2}
+    .bento{grid-template-columns:repeat(2,1fr)}
+    .bento__cell:nth-child(5){grid-column:span 2}
   }
 
   .tabs{position:sticky;top:53px;background:var(--bg);z-index:90;padding:14px 0;border-bottom:1px solid var(--line)}
@@ -198,8 +199,8 @@ function renderGiants(){
     const m = meta[id];
     return `
     <div class="bento__cell" title="${m.name}">
-      <img class="bento__img" src="${m.img}" alt="${m.name}" loading="lazy">
-      <div class="bento__overlay">
+      <div class="bento__imgwrap"><img class="bento__img" src="${m.img}" alt="${m.name}" loading="lazy"></div>
+      <div class="bento__caption">
         <div class="bento__num">${String(i+1).padStart(2,'0')}</div>
         <div class="bento__name">${m.name}</div>
         <div class="bento__year">${m.year}</div>
