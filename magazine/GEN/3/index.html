@@ -37,6 +37,43 @@
   .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
   .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
   .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
 </style>
 </head>
 <body>
@@ -63,6 +100,7 @@
       <li><a href="#s1">본문 그대로 읽기</a></li>
       <li><a href="#s2">관찰된 사실</a></li>
       <li><a href="#s8">미해결 질문 · 후기</a></li>
+      <li><a href="#synthesis" style="color:var(--c-copper);font-weight:600;">종합 정리</a></li>
     </ol>
   </aside>
   <main class="obs-main" style="min-width:0;">
@@ -73,11 +111,15 @@
       <p class="essence">묻는 자리. 처음의 질문이 본문을 가른다.</p>
     </header>
     
-        <section class="stage stage--raw" id="s1">
-          <span class="stage__num">단계 1</span>
-          <h2 class="stage__title">본문 그대로 읽기.</h2>
-          <p>본문은 본문이 자기 시간 안에서 스스로 풀리도록 둡니다. 옮긴 말을 옮긴 그대로 받아 적습니다.</p>
-          <div class="md-body"><p>---</p>
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">본문 그대로 읽기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro">본문은 본문이 자기 시간 안에서 스스로 풀리도록 둡니다. 옮긴 말을 옮긴 그대로 받아 적습니다.</p>
+            <div class="md-body"><p>---</p>
 <p>sim_id: GEN-003</p>
 <p>book: 창세기</p>
 <p>book_en: Genesis</p>
@@ -297,12 +339,17 @@
 
 <p><strong>P04 최현국</strong>: 주님, 지킴의 주어가 저에게서 떠났던 그 자리에 오늘 제가 서 있음을 봅니다. 그 자리에서 저를 다시 불러 주시기를.</p>
 <p>*— 떠오</p></div>
-        </section>
+          </div>
+        </details>
 
-        <section class="stage" id="s2">
-          <span class="stage__num">단계 2~6</span>
-          <h2 class="stage__title">관찰된 사실 — 단어 빈도 · 좌표 · 동사 · 대조 · 장 경계.</h2>
-          <div class="md-body"><p>---</p>
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~6</span>
+            <span class="stage__title-inline">관찰된 사실 — 단어 빈도 · 좌표 · 동사 · 대조 · 장 경계</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <div class="md-body"><p>---</p>
 <p>sim_id: GEN-003</p>
 <p>book: 창세기</p>
 <p>chapter: 3</p>
@@ -445,13 +492,18 @@
 <li>뱀의 정체(사탄/구렁이/상징) 해석 생략 — "본문은 '여호와 하나님이 지으신 들짐승 중'이라고만 말함"까지만.</li>
 <li>3:16 여성·남성 역학 해석 확장 생략 — *teshuqah*·*yimshol* 어휘 분포만 기록.</li>
 </ul></div>
-        </section>
+          </div>
+        </details>
 
-        <section class="stage" id="s8">
-          <span class="stage__num">단계 7~9</span>
-          <h2 class="stage__title">미해결 질문과 관찰자의 자리.</h2>
-          <p>본문이 답하지 않는 자리는 답하지 않은 채 둡니다.</p>
-          <div class="md-body"><p>---</p>
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 7~9</span>
+            <span class="stage__title-inline">미해결 질문과 관찰자의 자리</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro">본문이 답하지 않는 자리는 답하지 않은 채 둡니다.</p>
+            <div class="md-body"><p>---</p>
 <p>sim_id: GEN-003</p>
 <p>book: 창세기</p>
 <p>chapter: 3</p>
@@ -518,6 +570,16 @@
 
 <p>---</p>
 <p><em>묵상·사귐 단계에서 재방문.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">이 한 장이 한 사람을 데려가는 자리.</h2>
+          <p class="stage__intro">9단계 관찰을 한 자리에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 자리입니다.</p>
+          <div class="md-body synthesis-body">
+            <p style="color:#9A9A9A;font-style:italic;padding:20px 0;">종합 정리는 이 장의 9단계가 모두 닫힌 뒤 작성됩니다. 다른 자료가 거의 불필요할 정도로 이 장 하나가 자족적이도록 통합하는 자리입니다.<br><br>이 작업에는 원어 사전·교차참조·역사 자료 등 정보 취합 시간이 더 필요합니다. 후원으로 그 시간을 같이 받쳐 주실 수 있습니다.</p><a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:600;font-size:0.88rem;text-decoration:none;">종합 정리를 후원으로 앞당기기 →</a>
+          </div>
         </section>
         
     
