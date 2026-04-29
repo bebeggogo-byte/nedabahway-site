@@ -111,12 +111,29 @@
   </div>
 
   <div class="iden-form">
+    <style>
+      .iden-domains{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:18px;border-bottom:1px dashed #e5e7eb}
+      .iden-domains__label{font-size:12px;color:#888;margin-bottom:8px;width:100%}
+      .iden-domain{padding:8px 14px;background:#f7f7f5;border:1px solid #e5e7eb;border-radius:99px;font-size:13px;
+        color:#1f1f23;cursor:pointer;font-weight:500;font-family:inherit;transition:all .15s ease;display:inline-flex;align-items:center;gap:6px}
+      .iden-domain:hover{border-color:#4f46e5;color:#4f46e5;transform:translateY(-1px)}
+      .iden-domain.active{background:#4f46e5;color:#fff;border-color:#4f46e5}
+      .iden-domain__emo{font-size:14px}
+    </style>
+    <div class="iden-domains" role="group" aria-label="예시 영역">
+      <div class="iden-domains__label">💡 예시 자동 채움 — 어떤 자리를 향한 좌표가 궁금하세요?</div>
+      <button class="iden-domain" type="button" data-domain="leadership" onclick="idcFill('leadership', this)"><span class="iden-domain__emo">👥</span>리더십</button>
+      <button class="iden-domain" type="button" data-domain="career" onclick="idcFill('career', this)"><span class="iden-domain__emo">🧭</span>진로</button>
+      <button class="iden-domain" type="button" data-domain="relationship" onclick="idcFill('relationship', this)"><span class="iden-domain__emo">🤝</span>관계</button>
+      <button class="iden-domain" type="button" data-domain="communication" onclick="idcFill('communication', this)"><span class="iden-domain__emo">💬</span>소통</button>
+    </div>
+
     <div class="iden-form__step">
       <div class="iden-form__num">1</div>
       <div class="iden-form__field">
         <div class="iden-form__label">자주 떠오르는 한 사람</div>
-        <div class="iden-form__hint">이름은 안 적으셔도 됩니다. 가족·친구·동료·이웃 중 한 명. 자주 마음이 머무는 사람을 떠올리세요.</div>
-        <input type="text" id="idc-person" class="iden-form__input" placeholder="예: 어머니 / 동생 / 옆자리 동료 / 옆집 할머니">
+        <div class="iden-form__hint">이름은 안 적으셔도 됩니다. 가족·친구·동료·이웃·팀원 중 한 명. 자주 마음이 머무는 사람을 떠올리세요.</div>
+        <input type="text" id="idc-person" class="iden-form__input" placeholder="여기에 입력…">
       </div>
     </div>
     <div class="iden-form__step">
@@ -124,15 +141,15 @@
       <div class="iden-form__field">
         <div class="iden-form__label">그 사람이 매일 부족해하시는 한 가지</div>
         <div class="iden-form__hint">큰 사회 문제가 아니라, 그 사람의 일상에서 자주 보이는 작은 결핍 한 가지로.</div>
-        <input type="text" id="idc-need" class="iden-form__input lg" placeholder="예: 허리 통증으로 일어서기 힘들어하심 / 식단을 정리할 시간이 없으심 / 외로움">
+        <input type="text" id="idc-need" class="iden-form__input lg" placeholder="여기에 입력…">
       </div>
     </div>
     <div class="iden-form__step">
       <div class="iden-form__num">3</div>
       <div class="iden-form__field">
         <div class="iden-form__label">내가 자주 칭찬받는 강점 한 가지</div>
-        <div class="iden-form__hint">한 단어로 적으세요. 친구·선생님·가족이 자주 하는 한 마디를 떠올리면 쉽습니다.</div>
-        <input type="text" id="idc-strength" class="iden-form__input lg" placeholder="예: 정리 / 듣기 / 글쓰기 / 가르치기 / 손재주 / 문제 푸는 능력">
+        <div class="iden-form__hint">한 단어로 적으세요. 친구·선생님·가족·동료가 자주 하는 한 마디를 떠올리면 쉽습니다.</div>
+        <input type="text" id="idc-strength" class="iden-form__input lg" placeholder="여기에 입력…">
       </div>
     </div>
     <div class="iden-form__btn">
@@ -170,6 +187,78 @@
 </section>
 
 <script>
+// 영역별 1·2·3단계 사례 데이터
+const IDC_DOMAINS = {
+  leadership: {
+    label: '리더십',
+    person: ['우리 팀 신입 사원', '입사 6개월 차 후배', '늦게까지 남는 팀원', '회의에서 말 없는 동료', '신임 팀장', '전임자 그늘에 가린 후배'],
+    need: ['결정의 근거를 모른 채 따라가야 함', '자기 의견을 말할 자리가 없음', '피드백 없이 평가만 받음', '과부하 상태인데 거절을 못 함', '팀 방향이 흐려서 매주 헤맴', '실수 한 번에 신뢰를 잃음'],
+    strength: ['듣기', '정리', '복잡한 일 단순화', '갈등 조정', '문서화', '인내']
+  },
+  career: {
+    label: '진로',
+    person: ['진로 의심하는 후배', '전직을 고민하는 친구', '대학 신입생 사촌', '고3 조카', '경력 단절 후 복귀하는 동료', '50대 중반의 선배'],
+    need: ['‘무엇이 될까’만 묻고 ‘누구를 향할까’를 못 묻고 있음', '관심 분야는 많은데 첫 걸음을 못 떼고 있음', '부모 시선과 자기 마음 사이에 갇혀 있음', '자기 강점이 보이지 않음', '실패가 두려워 안 움직임', '자기 좌표를 한 줄로 못 적음'],
+    strength: ['질문 정리', '경청', '진로 자료 분석', '글쓰기', '관계 연결', '함께 머물기']
+  },
+  relationship: {
+    label: '관계',
+    person: ['오래된 친구', '거리감이 생긴 동생', '관계가 흐려진 부부', '같이 일하지만 멀어진 동료', '연로하신 부모님', '사춘기 자녀'],
+    need: ['진심으로 이야기 들어줄 자리가 없음', '판단받지 않고 머물 수 있는 시간이 없음', '오랜 오해를 풀 자리가 안 만들어짐', '하루 5분도 같이 있지 않음', '자기 감정을 정리할 도구가 없음', '가까운 사람의 칭찬이 부족함'],
+    strength: ['공감', '듣기', '먼저 사과하기', '편지 쓰기', '곁에 있어주기', '침묵 견디기']
+  },
+  communication: {
+    label: '소통',
+    person: ['말 없는 신입 직원', '회의 때마다 끝까지 말 못 하는 동료', '의견 충돌이 잦은 팀', '자녀와 대화가 끊긴 학부모', '회의록을 매번 다시 쓰는 담당자', '소그룹 진행자'],
+    need: ['자기 말을 한 줄로 정리할 시간이 없음', '발언량이 많은데 결정의 무게가 약함', '갈등을 줄이려다 결정이 흐려짐', '침묵 4초를 못 견디고 답을 채워 버림', '같이 정한 일이 다음 주에 흐려짐', '회의 후 24시간이 비어 있음'],
+    strength: ['요약', '한 줄 진술', '구조화', '침묵 견디기', '질문 카드 만들기', '회의록 정리']
+  }
+};
+
+const IDC_PLACEHOLDERS = ['리더십', 'career', 'relationship', 'communication'];
+let _idcRotateTimer = null;
+let _idcDomainSelected = false;
+
+function _idcRandPick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+function _idcRotatePlaceholders(){
+  if(_idcDomainSelected) return;
+  const keys = Object.keys(IDC_DOMAINS);
+  const k = keys[Math.floor(Math.random()*keys.length)];
+  const d = IDC_DOMAINS[k];
+  const personEl = document.getElementById('idc-person');
+  const needEl = document.getElementById('idc-need');
+  const strengthEl = document.getElementById('idc-strength');
+  if(!personEl.value) personEl.placeholder = `예: ${_idcRandPick(d.person)} (${d.label})`;
+  if(!needEl.value) needEl.placeholder = `예: ${_idcRandPick(d.need)} (${d.label})`;
+  if(!strengthEl.value) strengthEl.placeholder = `예: ${_idcRandPick(d.strength)} (${d.label})`;
+}
+
+function idcFill(key, btn){
+  const d = IDC_DOMAINS[key]; if(!d) return;
+  document.querySelectorAll('.iden-domain').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.getElementById('idc-person').value = _idcRandPick(d.person);
+  document.getElementById('idc-need').value = _idcRandPick(d.need);
+  document.getElementById('idc-strength').value = _idcRandPick(d.strength);
+  _idcDomainSelected = true;
+  if(_idcRotateTimer){ clearInterval(_idcRotateTimer); _idcRotateTimer=null; }
+  document.getElementById('idc-warn').style.display='none';
+}
+
+// 페이지 로드 시 placeholder 회전 시작
+document.addEventListener('DOMContentLoaded', ()=>{
+  _idcRotatePlaceholders();
+  _idcRotateTimer = setInterval(_idcRotatePlaceholders, 3500);
+  // 사용자가 입력 시작하면 회전 멈춤
+  ['idc-person','idc-need','idc-strength'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('input', ()=>{
+      if(el.value && _idcRotateTimer){ clearInterval(_idcRotateTimer); _idcRotateTimer=null; }
+    });
+  });
+});
+
 function idcRun(){
   const person = document.getElementById('idc-person').value.trim();
   const need = document.getElementById('idc-need').value.trim();
@@ -215,6 +304,11 @@ function idcReset(){
   document.getElementById('idc-strength').value='';
   document.getElementById('idc-result').style.display='none';
   document.getElementById('idc-warn').style.display='none';
+  document.querySelectorAll('.iden-domain').forEach(b=>b.classList.remove('active'));
+  _idcDomainSelected = false;
+  if(_idcRotateTimer){ clearInterval(_idcRotateTimer); }
+  _idcRotatePlaceholders();
+  _idcRotateTimer = setInterval(_idcRotatePlaceholders, 3500);
   document.getElementById('idc-person').focus();
 }
 
