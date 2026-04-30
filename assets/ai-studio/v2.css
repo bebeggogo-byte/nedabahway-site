@@ -1,0 +1,189 @@
+/* AI 작업실 v2 — 보조 스타일
+ * 기존 ai.html 코드를 손대지 않고 추가만 한다.
+ * 사용처: <link rel="stylesheet" href="/assets/ai-studio/v2.css">
+ *
+ * v2 신규 컴포넌트
+ *   .as-cta-row      블럭 끝 보조 CTA (강의 의뢰·자료실 교차)
+ *   .as-counter      textarea 실시간 글자수 카운터
+ *   .as-meter        실시간 게이트 사전 점검 막대
+ *   .as-tools        블럭 끝 복사·다운로드·저장 버튼 묶음
+ *   .as-toast        하단 알림 토스트
+ *   .as-restore      마지막 결과 복원 안내 박스
+ *   .as-block6       ⑥ IDEN×5S 통합 진단 컨테이너
+ *   .as-link-strip   블럭 끝 자료실/관점 노트 교차 링크
+ */
+
+:root{
+  --as-acc:#4f46e5; --as-acc-soft:#eef0ff;
+  --as-ok:#10803D;  --as-ok-soft:#E8F2EC;
+  --as-warn:#dc2626; --as-warn-soft:#fee2e2;
+  --as-mute:#6b7280; --as-line:#e5e7eb;
+  --as-bg:#fafaf7;
+}
+
+/* ───── 블럭 끝 보조 CTA ───── */
+.as-cta-row{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+  margin-top:18px;padding-top:14px;border-top:1px dashed var(--as-line);
+  font-size:13px;color:var(--as-mute);
+}
+.as-cta-row strong{color:var(--ink,#0a0a0a);font-weight:700}
+.as-cta-row a{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:6px 12px;border-radius:6px;background:var(--as-acc-soft);
+  color:var(--as-acc);font-weight:600;font-size:12px;text-decoration:none;
+  transition:transform .1s ease,background .1s ease;
+}
+.as-cta-row a:hover{background:var(--as-acc);color:#fff;transform:translateY(-1px)}
+.as-cta-row a.alt{background:#fff;border:1px solid var(--as-line);color:var(--as-mute)}
+.as-cta-row a.alt:hover{border-color:var(--as-acc);color:var(--as-acc);background:#fff}
+
+/* ───── 자료실/관점 노트 교차 링크 스트립 ───── */
+.as-link-strip{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;
+  font-size:12px;color:var(--as-mute);
+}
+.as-link-strip span{font-weight:600;color:#444}
+.as-link-strip a{color:var(--as-acc);font-weight:500;text-decoration:underline;text-decoration-style:dotted}
+.as-link-strip a:hover{text-decoration-style:solid}
+
+/* ───── 실시간 카운터 / 사전 게이트 미터 ───── */
+.as-counter{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:6px;font-size:11px;color:var(--as-mute);
+}
+.as-counter .ok{color:var(--as-ok);font-weight:700}
+.as-counter .warn{color:var(--as-warn);font-weight:700}
+.as-meter{
+  height:4px;background:var(--as-line);border-radius:2px;overflow:hidden;
+  margin-top:6px;
+}
+.as-meter > i{
+  display:block;height:100%;background:var(--as-warn);
+  transition:width .25s ease,background .25s ease;
+}
+.as-meter > i.ok{background:var(--as-ok)}
+.as-meter > i.mid{background:#f59e0b}
+
+/* ───── 도구 버튼 묶음 ───── */
+.as-tools{
+  display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;
+  padding:10px;background:var(--as-bg);border-radius:8px;
+}
+.as-tools button{
+  padding:6px 12px;font-size:12px;font-weight:600;
+  background:#fff;border:1px solid var(--as-line);border-radius:6px;
+  color:#444;cursor:pointer;transition:all .1s ease;
+}
+.as-tools button:hover{border-color:var(--as-acc);color:var(--as-acc)}
+.as-tools button.is-saved{background:var(--as-ok-soft);border-color:var(--as-ok);color:var(--as-ok)}
+.as-tools .as-tools__hint{
+  margin-left:auto;align-self:center;font-size:11px;color:var(--as-mute);
+}
+
+/* ───── 마지막 결과 복원 안내 ───── */
+.as-restore{
+  margin-top:14px;padding:12px 16px;border-radius:8px;
+  background:var(--as-acc-soft);border-left:3px solid var(--as-acc);
+  font-size:13px;color:#333;display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:10px;
+}
+.as-restore button{
+  padding:5px 11px;font-size:12px;font-weight:700;background:var(--as-acc);
+  color:#fff;border:none;border-radius:6px;cursor:pointer;
+}
+.as-restore button.dismiss{background:transparent;color:var(--as-mute);font-weight:500}
+
+/* ───── 알림 토스트 ───── */
+.as-toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  padding:11px 22px;background:#0a0a0a;color:#fff;border-radius:8px;
+  font-size:13px;font-weight:600;box-shadow:0 4px 14px rgba(0,0,0,.18);
+  opacity:0;pointer-events:none;transition:opacity .2s ease,transform .25s ease;
+  z-index:200;
+}
+.as-toast.show{opacity:1;transform:translate(-50%,-6px)}
+.as-toast.ok{background:var(--as-ok)}
+.as-toast.warn{background:var(--as-warn)}
+
+/* ───── 블럭 ⑥ IDEN×5S 통합 진단 ───── */
+.as-block6 .widget{margin-top:8px}
+.as-block6 .as-q{
+  margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--as-line);
+}
+.as-block6 .as-q:last-child{border-bottom:0}
+.as-block6 .as-q__title{
+  font-size:14px;font-weight:700;color:#0a0a0a;margin-bottom:10px;
+  display:flex;gap:8px;align-items:flex-start;
+}
+.as-block6 .as-q__title b{
+  flex-shrink:0;width:22px;height:22px;border-radius:50%;
+  background:var(--as-acc-soft);color:var(--as-acc);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;
+}
+.as-block6 .as-q__opts{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:6px;
+}
+.as-block6 .as-q__opts label{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:10px 4px;background:var(--as-bg);border:1px solid var(--as-line);
+  border-radius:8px;font-size:11px;color:var(--as-mute);cursor:pointer;
+  transition:all .1s ease;
+}
+.as-block6 .as-q__opts label:hover{border-color:var(--as-acc);color:var(--as-acc)}
+.as-block6 .as-q__opts input[type="radio"]{display:none}
+.as-block6 .as-q__opts input[type="radio"]:checked + span{color:var(--as-acc);font-weight:800}
+.as-block6 .as-q__opts label:has(input:checked){
+  background:var(--as-acc-soft);border-color:var(--as-acc);
+}
+.as-block6 .as-q__opts strong{font-size:18px;font-weight:800;color:#0a0a0a}
+@media(max-width:600px){
+  .as-block6 .as-q__opts{grid-template-columns:repeat(5,1fr);gap:4px}
+  .as-block6 .as-q__opts label{padding:8px 2px}
+  .as-block6 .as-q__opts strong{font-size:14px}
+}
+
+.as-block6 .as-result{
+  margin-top:20px;padding:22px;border-radius:12px;
+  background:linear-gradient(135deg,var(--as-acc-soft) 0%,#fff 100%);
+  border:1px solid var(--as-acc);display:none;
+}
+.as-block6 .as-result.show{display:block}
+.as-block6 .as-result h3{
+  font-size:16px;font-weight:800;color:var(--as-acc);
+  margin-bottom:8px;letter-spacing:-.02em;
+}
+.as-block6 .as-result p{font-size:14px;line-height:1.7;color:#222;margin-bottom:8px}
+.as-block6 .as-result .as-result__quote{
+  font-size:18px;font-weight:700;color:#0a0a0a;line-height:1.5;
+  padding:14px 18px;background:#fff;border-left:3px solid var(--as-acc);
+  border-radius:6px;margin:14px 0;
+}
+.as-block6 .as-result__bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.as-block6 .as-result__bar{padding:10px 12px;background:#fff;border-radius:6px;font-size:12px}
+.as-block6 .as-result__bar b{display:block;color:var(--as-acc);margin-bottom:4px;font-size:11px}
+
+/* ───── 강점·결핍 동일 단어 검증 안내 ───── */
+.as-twin-warn{
+  margin-top:8px;font-size:12px;color:var(--as-warn);
+  display:none;padding:8px 12px;background:var(--as-warn-soft);border-radius:6px;
+}
+.as-twin-warn.show{display:block}
+
+/* ───── 시간 배분 슬라이더 ───── */
+.as-slider-row{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+.as-slider-row label{font-size:12px;font-weight:600;color:var(--as-mute)}
+.as-slider-row input[type="range"]{width:100%;accent-color:var(--as-acc)}
+.as-slider-row .as-slider-vals{
+  display:flex;justify-content:space-between;font-size:11px;color:var(--as-mute);
+}
+.as-slider-row .as-slider-vals span{font-variant-numeric:tabular-nums;font-weight:700;color:#0a0a0a}
+
+/* ───── 프린트 (활동지 출력) ───── */
+@media print{
+  .nav,.gnav,.hero,.hero__nav,.foot,.foot--mini,.as-tools,.as-cta-row,.as-link-strip,.as-toast{display:none !important}
+  .block{padding:12px 0;page-break-inside:avoid}
+  .widget{box-shadow:none;border:1px solid #999;page-break-inside:avoid}
+  .out{background:#fff !important;border:1px solid #999 !important;page-break-inside:avoid}
+}

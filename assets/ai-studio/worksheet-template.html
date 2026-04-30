@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>AI 작업실 — 5S 강의 활동지 (자동 생성)</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{size:A4;margin:18mm 16mm}
+  body{font-family:'Pretendard','Noto Sans KR',-apple-system,sans-serif;
+    color:#0a0a0a;line-height:1.65;font-size:14px;background:#fff;padding:24px}
+  .doc{max-width:780px;margin:0 auto}
+  h1{font-size:24px;letter-spacing:-.02em;margin-bottom:6px}
+  h2{font-size:15px;margin-top:18px;margin-bottom:8px;padding-bottom:4px;
+    border-bottom:1px solid #999;letter-spacing:-.01em}
+  .meta{font-size:12px;color:#555;margin-bottom:16px}
+  .meta b{color:#0a0a0a}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+  .box{border:1px solid #999;border-radius:6px;padding:12px 14px;font-size:13px;min-height:60px}
+  .box b{display:block;font-size:11px;color:#4f46e5;margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase}
+  .step{margin:10px 0;padding:10px 14px;border-left:3px solid #4f46e5;background:#f7f7f5}
+  .step b{display:block;font-size:11px;color:#4f46e5;margin-bottom:3px}
+  .write-line{border-bottom:1px solid #aaa;height:22px;margin:4px 0}
+  .footer{margin-top:24px;padding-top:10px;border-top:1px solid #ccc;
+    font-size:11px;color:#666;display:flex;justify-content:space-between}
+  .check{display:inline-block;width:14px;height:14px;border:1.2px solid #888;margin-right:6px;vertical-align:-2px}
+  @media print{body{padding:0}.doc{max-width:100%}}
+</style>
+</head>
+<body>
+<div class="doc">
+  <h1>5S 강의 활동지</h1>
+  <div class="meta" id="docMeta">
+    <span><b>대상</b> <span data-fill="target">—</span></span>
+    &nbsp;·&nbsp;<span><b>주제</b> <span data-fill="topic">—</span></span>
+    &nbsp;·&nbsp;<span><b>시간</b> <span data-fill="mins">—</span>분</span>
+    &nbsp;·&nbsp;<span><b>인원</b> <span data-fill="head">—</span>명</span>
+  </div>
+
+  <h2>① See — 자기 위치 (시작 5분)</h2>
+  <div class="step"><b>도입 — 한 줄 적기</b>
+    오늘 가장 무거운 자리는 어디인가?
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+  </div>
+
+  <h2>② Speak — 방향 (한 줄 목표)</h2>
+  <div class="grid">
+    <div class="box"><b>이 N분 후</b>무엇이 달라져야 하는가
+      <div class="write-line"></div><div class="write-line"></div></div>
+    <div class="box"><b>공동 진술</b>오늘 자리에서 우리가 향할 한 사람
+      <div class="write-line"></div><div class="write-line"></div></div>
+  </div>
+
+  <h2>③ Sense — 함께 듣기 (가장 긴 자리)</h2>
+  <div class="step" id="senseBody"><b>본문 흐름</b><span data-fill="senseBody">—</span></div>
+  <div class="grid">
+    <div class="box"><b>침묵 4초 의례</b><span class="check"></span>들어옴 침묵<br>
+      <span class="check"></span>발언 후 침묵 <br><span class="check"></span>마무리 침묵</div>
+    <div class="box"><b>발언 분포 메모</b>
+      <div class="write-line"></div><div class="write-line"></div></div>
+  </div>
+
+  <h2>④ Steer — 다음 결정 (활동지 한 칸)</h2>
+  <div class="step"><b>다음 1주 한 걸음 (자기 손으로)</b>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+  </div>
+
+  <h2>⑤ Sustain — 다시 시작</h2>
+  <div class="grid">
+    <div class="box"><b>1주 뒤 자기 점검</b><span class="check"></span>한 줄 메일<br>
+      <span class="check"></span>자기 노트 점검<br><span class="check"></span>한 사람과 5분</div>
+    <div class="box"><b>다음 회차 입구</b>이 사이클의 마지막이 다음 See가 됨
+      <div class="write-line"></div></div>
+  </div>
+
+  <div class="footer">
+    <span>네다바웨이 · 김창환 직업본질연구원</span>
+    <span><span data-fill="date">YYYY-MM-DD</span></span>
+    <span>nedabah.org/ai.html</span>
+  </div>
+</div>
+
+<script>
+// URL 파라미터로 호출 시 자동 채움 (예: ?target=중학생&topic=진로&mins=90&head=20)
+(function(){
+  const params = new URLSearchParams(location.search);
+  const fillMap = {
+    target: params.get('target') || '—',
+    topic:  params.get('topic')  || '—',
+    mins:   params.get('mins')   || '—',
+    head:   params.get('head')   || '—',
+    senseBody: params.get('body') || '— (강의 시뮬레이터에서 생성된 본문 흐름)',
+    date:   new Date().toISOString().slice(0,10)
+  };
+  Object.entries(fillMap).forEach(([k,v])=>{
+    document.querySelectorAll(`[data-fill="${k}"]`).forEach(el=>{ el.textContent = v; });
+  });
+})();
+</script>
+</body>
+</html>
