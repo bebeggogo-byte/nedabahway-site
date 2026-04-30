@@ -1,0 +1,205 @@
+/* warm-tone-v1.css — 사이트 전체 따뜻한 페이퍼 톤 통일 (v1, 2026-04-30)
+   사용자 영구 지시: "홈페이지 너무 밝을 필요 없다. 따뜻함이 느껴지게. 노란색 쓰지마."
+
+   팔레트:
+   --paper      페이지 배경      #f7f3ec
+   --paper-2    섹션 배경        #efe7d6
+   --paper-3    카드 배경        #fdfaf3
+   --ink        본문 텍스트      #2a241c
+   --ink-2      보조 텍스트      #6b6155
+   --line       구분선          #d8cdb8
+   --copper     강조선·포인트    #a4541a
+   --copper-d   진한 카퍼        #7a4317
+   --bronze     보조 포인트      #6e5a3e
+   --sage       부드러운 강조    #8a9a7a
+   --rose       경고·안내        #c89b7e
+*/
+
+:root{
+  --paper: #f7f3ec;
+  --paper-2: #efe7d6;
+  --paper-3: #fdfaf3;
+  --ink: #2a241c;
+  --ink-2: #6b6155;
+  --line: #d8cdb8;
+  --copper: #a4541a;
+  --copper-d: #7a4317;
+  --bronze: #6e5a3e;
+  --sage: #8a9a7a;
+  --rose: #c89b7e;
+  /* v3 호환 변수 갱신 */
+  --c-bg: var(--paper);
+  --c-line: var(--line);
+  --c-line2: #c4b88f;
+  --c-mute: var(--ink-2);
+  --c-copper: var(--copper);
+}
+
+/* 전역 배경·텍스트 — 너무 밝지 않게 */
+html, body{
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* 메인 헤더(masthead)도 페이퍼 톤 */
+.masthead{
+  background: var(--paper);
+}
+
+/* 섹션 카드·박스가 흰색이면 모두 cream 톤으로 */
+.iden-form,
+.iden-result__detail,
+.ai-coach,
+.iden-next__card{
+  background: var(--paper-3) !important;
+}
+
+/* 회색 톤 배경(여러 곳) → oat */
+.iden-domains,
+.iden-form__input{
+  background: var(--paper) !important;
+}
+.iden-form__input:focus{
+  background: var(--paper-3) !important;
+  border-color: var(--copper) !important;
+}
+
+/* 결과 카드 main 자리 — 검은 배경을 따뜻한 짙은 잉크로 */
+.iden-result__main{
+  background: linear-gradient(135deg, #2a241c 0%, #3a322a 100%) !important;
+}
+
+/* 도메인 칩 */
+.iden-domain{
+  background: var(--paper-2) !important;
+  border-color: var(--line) !important;
+  color: var(--ink) !important;
+}
+.iden-domain:hover{
+  border-color: var(--copper) !important;
+  color: var(--copper) !important;
+}
+.iden-domain.active{
+  background: var(--copper) !important;
+  border-color: var(--copper) !important;
+  color: #fff !important;
+}
+
+/* 폼 버튼 */
+.iden-form__btn .btn--primary,
+.btn--primary{
+  background: var(--copper) !important;
+}
+.iden-form__btn .btn--primary:hover,
+.btn--primary:hover{
+  background: var(--copper-d) !important;
+}
+
+/* 진행 막대 — 노랑 → 카퍼 그라디언트 */
+.iden-progress__seg.is-on{
+  background: linear-gradient(90deg, var(--copper), var(--copper-d)) !important;
+}
+.iden-progress__seg.is-on--3{
+  background: linear-gradient(90deg, var(--copper), var(--copper-d), var(--rose)) !important;
+}
+.iden-progress__txt.is-full{
+  color: var(--copper) !important;
+}
+
+/* 코어 hero (보라 그라디언트 → 따뜻한 카퍼·브론즈 그라디언트) */
+.iden-core__hero{
+  background: linear-gradient(135deg, #6e5a3e 0%, #8a6f3a 100%) !important;
+}
+
+/* AI 코치 카드 상단 가는 줄 */
+.ai-coach::before{
+  background: linear-gradient(90deg, var(--copper), var(--rose)) !important;
+}
+.ai-coach__cta{
+  background: var(--ink) !important;
+}
+.ai-coach__cta:hover{
+  background: var(--copper) !important;
+}
+
+/* 다음 동선 카드 호버 */
+.iden-next__card:hover{
+  border-color: var(--copper) !important;
+  box-shadow: 0 12px 28px rgba(164,84,26,.12) !important;
+}
+.iden-next__card:hover .arrow{
+  color: var(--copper) !important;
+}
+
+/* footer 미니 */
+.foot--mini{
+  background: var(--paper-2) !important;
+  border-top-color: var(--line) !important;
+  color: var(--ink-2) !important;
+}
+.foot--mini a:hover{
+  color: var(--copper) !important;
+  border-color: var(--copper) !important;
+}
+
+/* 글로벌 nav — 페이퍼 톤 */
+.gnav{
+  background: rgba(247,243,236,.92) !important;
+  border-bottom-color: var(--line) !important;
+}
+.gnav__logo:hover,
+.gnav__link:hover,
+.gnav__link.is-active{
+  color: var(--copper) !important;
+  border-bottom-color: var(--copper) !important;
+}
+.gnav__cta{
+  background: var(--ink) !important;
+}
+.gnav__cta:hover{
+  background: var(--copper) !important;
+}
+
+/* 자동 타이핑 좌표 미리보기 — 검정 배경 → 따뜻한 잉크 */
+.typed-quote{
+  background: var(--ink) !important;
+  color: #f7f3ec !important;
+  border-left-color: var(--copper) !important;
+}
+.typed-quote__label{
+  color: var(--rose) !important;
+}
+.typed-quote__cursor{
+  background: var(--rose) !important;
+}
+
+/* SBM 안내 카드 — 이미 따뜻한 톤이지만 통일 */
+.sbm-intro{
+  background: var(--paper-2) !important;
+  border-color: var(--line) !important;
+}
+
+/* 매니페스토 강조 색상 — 보라 → 카퍼 */
+.manifesto__title em{
+  color: var(--copper) !important;
+}
+.manifesto__row--cta{
+  background: var(--paper-2) !important;
+}
+
+/* 5S 박스 */
+.iden-result__step__name{
+  color: var(--copper) !important;
+}
+
+/* 결과 따옴표 */
+.iden-result__quote{
+  border-left-color: var(--copper) !important;
+}
+
+/* 너무 밝은 텍스트 라이트 그레이 → 따뜻한 그레이 */
+.iden-form__hint,
+.iden-result__sig,
+.foot--mini__build{
+  color: var(--ink-2) !important;
+}

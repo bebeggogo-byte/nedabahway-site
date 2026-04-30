@@ -6,15 +6,28 @@
 
 | 파일 | 역할 |
 |---|---|
+| `bootstrap.js` | 자동 로더 — v2 자산·메타·이중 nav 정리까지 한 줄로 처리 (권장) |
 | `v2.css` | 보조 CSS — CTA·카운터·미터·도구바·토스트·블럭⑥·슬라이더·프린트 |
 | `v2.js` | 보조 JS — localStorage 영속 / 복사·다운로드·프린트 / 카운터 / 시간 슬라이더 / OG 메타 보강 |
 | `block6.js` | ⑥ IDEN×5S 통합 7문항 진단 (자동 마운트) |
 | `worksheet-template.html` | 블럭① 출력값을 받아 A4 활동지로 인쇄하는 템플릿 (URL 파라미터 사용) |
 | `../og/ai-studio.svg` | OG·트위터 카드 이미지 (1200×630) |
 
-## ai.html에 1줄로 통합하는 방법
+## ai.html에 1줄로 통합하는 방법 (권장 — bootstrap)
 
-`</head>` 바로 앞에:
+`</body>` 바로 앞에 **이 한 줄만** 두면 v2 모든 기능이 자동 로드된다:
+```html
+<script src="/assets/ai-studio/bootstrap.js" defer></script>
+```
+
+bootstrap이 자동으로:
+- v2.css·v2.js·block6.js 주입 (중복 차단)
+- og·twitter:card 메타 자동 주입
+- 이중 네비(`nav.nav` + `nav.gnav` 동시 존재) 자동 정리 — gnav 유지
+
+## ai.html에 직접 link하는 방법 (대안)
+
+`</head>` 앞:
 ```html
 <link rel="stylesheet" href="/assets/ai-studio/v2.css">
 <meta property="og:image" content="https://www.nedabah.org/assets/og/ai-studio.svg">
@@ -22,13 +35,11 @@
 <meta name="twitter:image" content="https://www.nedabah.org/assets/og/ai-studio.svg">
 ```
 
-`</body>` 바로 앞에:
+`</body>` 앞:
 ```html
 <script src="/assets/ai-studio/v2.js" defer></script>
 <script src="/assets/ai-studio/block6.js" defer></script>
 ```
-
-> v2.js의 `ensureOGImage()`가 OG 메타가 없을 때 자동 삽입하므로, head의 og 메타는 생략해도 무방하다. 단, 정적 크롤러를 위해 head 삽입 권장.
 
 ## v2 신규 기능
 
