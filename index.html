@@ -42,6 +42,150 @@
 
 
 
+<!-- ★ 학습노트 5거인 패턴 ★ -->
+<style>
+  /* === Home Hero (5거인 결) === */
+  .home-hero{max-width:1080px;margin:0 auto;padding:48px 24px 24px}
+  .home-hero__kicker{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.18em;color:#a4541a;
+    background:#efe7d6;padding:5px 12px;border-radius:4px;margin-bottom:20px;text-transform:uppercase;border:1px solid #d8cdb8}
+  .home-hero h1{font-size:42px;font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:14px;color:#2a241c;font-family:'Noto Serif KR',serif;text-wrap:balance}
+  .home-hero h1 em{color:#a4541a;font-style:normal}
+  .home-hero .lead{font-size:17px;color:#3a322a;max-width:720px;line-height:1.7;margin-bottom:28px;text-wrap:pretty}
+  .home-hero__stats{display:flex;gap:28px;flex-wrap:wrap;padding-top:20px;border-top:1px solid #d8cdb8;font-size:13px;color:#6b6155}
+  .home-hero__stats strong{color:#2a241c;font-size:22px;font-weight:800;display:block;margin-bottom:2px;font-family:'Noto Serif KR',serif}
+  .home-hero__cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid #d8cdb8}
+  .home-hero__cta a{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;text-decoration:none;font-size:14px;font-weight:600;transition:all .15s ease}
+  .home-hero__cta a.primary{background:#a4541a;color:#fdfaf3}
+  .home-hero__cta a.primary:hover{background:#7a4317;transform:translateY(-1px)}
+  .home-hero__cta a.ghost{background:#fdfaf3;border:1px solid #d8cdb8;color:#2a241c}
+  .home-hero__cta a.ghost:hover{border-color:#a4541a;color:#a4541a}
+
+  /* === 4축 Bento (학습노트 .bento 패턴 그대로) === */
+  .home-bento{max-width:1080px;margin:0 auto;padding:16px 24px 32px}
+  .home-bento h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b6155;margin-bottom:14px}
+  .home-bento .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .home-bento .cell{display:flex;flex-direction:column;background:#fdfaf3;border:1px solid #d8cdb8;border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;position:relative;cursor:pointer}
+  .home-bento .cell:hover{transform:translateY(-3px);border-color:#a4541a;box-shadow:0 12px 28px rgba(164,84,26,.16)}
+  .home-bento .cell .ico-wrap{aspect-ratio:1/1;background:#efe7d6;display:flex;align-items:center;justify-content:center;font-size:46px;line-height:1;color:#a4541a}
+  .home-bento .cell .cap{padding:10px 12px 12px;text-align:center}
+  .home-bento .cell .num{font-size:10px;font-weight:700;letter-spacing:.18em;color:#6b6155;margin-bottom:4px}
+  .home-bento .cell .nm{font-size:13px;font-weight:800;letter-spacing:-.01em;margin-bottom:2px;line-height:1.25;color:#2a241c}
+  .home-bento .cell .yr{font-size:11px;color:#6b6155;margin-bottom:6px}
+  .home-bento .cell .core{font-size:11px;color:#3a322a;line-height:1.4}
+  .home-bento .cell .hover{position:absolute;inset:0;background:linear-gradient(180deg,rgba(253,250,243,.92) 0%,rgba(253,250,243,.98) 100%);
+    display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px 12px;text-align:center;opacity:0;transition:opacity .3s ease;pointer-events:none}
+  .home-bento .cell:hover .hover{opacity:1}
+  .home-bento .hover .h-tt{font-size:13px;font-weight:800;color:#2a241c;margin-bottom:4px;letter-spacing:-.01em}
+  .home-bento .hover .h-ln{font-size:11px;color:#3a322a;line-height:1.55;margin-bottom:8px}
+  .home-bento .hover .h-cta{font-size:11px;font-weight:700;color:#a4541a;background:#efe7d6;padding:5px 10px;border-radius:99px;letter-spacing:.04em;border:1px solid #d8cdb8}
+  @media(max-width:680px){
+    .home-bento .grid{grid-template-columns:repeat(2,1fr)}
+    .home-bento .cell:nth-child(5){grid-column:span 2}
+    .home-bento .cell .hover{display:none}
+    .home-hero h1{font-size:30px}
+  }
+</style>
+
+<header class="home-hero">
+  <span class="home-hero__kicker">Nedabahway · 직업본질의 자리</span>
+  <h1>직업의 속성은 <em>이타성</em>이다.<br>한 사람의 일을 다시 <em>디자인</em>합니다.</h1>
+  <p class="lead">"무엇이 될까"가 아니라 "누구의 어떤 결핍을 향할까"가 첫 질문입니다. 자기 일상에서 자주 떠오르는 한 사람과, 그 사람의 결핍, 자기 강점 — 이 셋이 한 줄로 묶이는 자리에 1년 진로 방향이 적힙니다. 강의·코칭·관점 노트·SBM(성경관찰)·AI 작업실은 이 한 좌표를 다섯 자리로 풀어 놓은 결과입니다.</p>
+
+  <div class="home-hero__stats">
+    <div><strong id="hh-perspective">19</strong>관점 노트 (목표 100)</div>
+    <div><strong id="hh-learning">8</strong>학습 노트 (5거인)</div>
+    <div><strong id="hh-sbm">32</strong>SBM 관찰 (목표 1,189)</div>
+    <div><strong id="hh-ai">2</strong>AI 코치</div>
+    <div><strong>5</strong>고객 도달 길</div>
+    <div><strong>1</strong>좌표 도출기</div>
+  </div>
+
+  <div class="home-hero__cta">
+    <a href="#iden-core" class="primary">→ 5분 좌표 도출 시작</a>
+    <a href="#five-paths" class="ghost">↓ 5가지 도착 경로</a>
+    <a href="#recent-flow" class="ghost">↓ 최근 작업 흐름</a>
+  </div>
+</header>
+
+<!-- 5-Bento 도착 경로 (학습노트 5거인 결) -->
+<section class="home-bento" id="five-paths">
+  <h2>다섯 자리 — 한 좌표가 풀어지는 도착 길</h2>
+  <div class="grid">
+    <a href="#iden-core" class="cell">
+      <div class="ico-wrap">🧭</div>
+      <div class="cap">
+        <div class="num">01 / CORE</div>
+        <div class="nm">IDEN 좌표 도출기</div>
+        <div class="yr">5분 · 로그인 0</div>
+        <div class="core">한 사람·결핍·강점</div>
+      </div>
+      <div class="hover">
+        <div class="h-tt">IDEN 좌표 도출기</div>
+        <div class="h-ln">3개 칸을 채우면 진로 좌표 한 줄이 만들어집니다. 자기소개·면접 답변까지 같은 흐름.</div>
+        <div class="h-cta">→ 5분 시작</div>
+      </div>
+    </a>
+    <a href="/blog/perspective/" class="cell">
+      <div class="ico-wrap">📓</div>
+      <div class="cap">
+        <div class="num">02 / NOTES</div>
+        <div class="nm">관점 노트 Still Hands</div>
+        <div class="yr">격주 · 600~1,200자</div>
+        <div class="core">한 사람의 일 관찰</div>
+      </div>
+      <div class="hover">
+        <div class="h-tt">관점 노트 Still Hands</div>
+        <div class="h-ln">10대 주제 × 8독자 × 8형태 × 8감정 = 5,120 좌표 매트릭스. 1만 편 누적의 출발.</div>
+        <div class="h-cta">→ 19/100 보기</div>
+      </div>
+    </a>
+    <a href="/learning.html" class="cell">
+      <div class="ico-wrap">📚</div>
+      <div class="cap">
+        <div class="num">03 / MATRIX</div>
+        <div class="nm">학습 노트 5거인</div>
+        <div class="yr">10기둥 · 40카테고리</div>
+        <div class="core">1,200좌표 평생 학습</div>
+      </div>
+      <div class="hover">
+        <div class="h-tt">학습 노트 5거인</div>
+        <div class="h-ln">에라스무스·라이프니츠·바전·루이스·다 빈치 — 다섯 거인의 영역 합집합 매트릭스.</div>
+        <div class="h-cta">→ 매트릭스 열기</div>
+      </div>
+    </a>
+    <a href="/programs.html" class="cell">
+      <div class="ico-wrap">🎙</div>
+      <div class="cap">
+        <div class="num">04 / TEACH</div>
+        <div class="nm">강의·코칭</div>
+        <div class="yr">진로·AI·리더십·퍼실</div>
+        <div class="core">기관·기업·학교</div>
+      </div>
+      <div class="hover">
+        <div class="h-tt">강의·코칭</div>
+        <div class="h-ln">학습자의 실제 업무 맥락에서 4축 통합. 1회·다회차·맞춤 모듈 재조합.</div>
+        <div class="h-cta">→ 의뢰하기</div>
+      </div>
+    </a>
+    <a href="/sbm.html" class="cell">
+      <div class="ico-wrap">📖</div>
+      <div class="cap">
+        <div class="num">05 / OBSERV</div>
+        <div class="nm">SBM 성경관찰</div>
+        <div class="yr">66권 · 1,189장</div>
+        <div class="core">9단계 관찰 노트</div>
+      </div>
+      <div class="hover">
+        <div class="h-tt">SBM Scripture Bible Magazine</div>
+        <div class="h-ln">가르침이 아닌 관찰. 한 장씩 9단계로 펼쳐 본문이 본문을 읽는 자리를 공개.</div>
+        <div class="h-cta">→ 32/1,189 보기</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- 매니페스토 (기존 보존, 자리만 이동) -->
 <header class="masthead">
   <style>
     .manifesto{display:grid;gap:18px;margin:24px 0 32px;max-width:780px}
@@ -61,9 +205,9 @@
     }
   </style>
 
-  <div class="kicker">Nedabahway · 김창환 + 직업본질연구원(AI agent) · 제주</div>
-  <h1 class="h1">직업의 속성은 <em>이타성</em>이다.</h1>
-  <p class="lead" style="margin-bottom:8px">한 사람의 일. 다시 디자인. 1차 좌표 한 줄.</p>
+  <div class="kicker" style="font-size:11px;color:#6b6155;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">3가지 핵심 좌표 — 진로의 첫 질문이 바뀝니다</div>
+  <h2 style="font-size:24px;font-weight:800;letter-spacing:-.02em;color:#2a241c;font-family:'Noto Serif KR',serif;margin-bottom:6px">왜 이 활동인가</h2>
+  <p class="lead" style="margin-bottom:8px">"무엇이 될까"가 아니라 "누구의 어떤 결핍을 향할까".</p>
 
   <!-- 자동 타이핑 좌표 미리보기 (A1·W11) -->
   <style>
@@ -475,7 +619,103 @@
       <div class="ai-coach__hint">복사 후 ChatGPT 또는 지피터스(gpters)에서 그대로 검색하세요.</div>
     </article>
   </div>
+</section>
 
+<!-- ★ 최근 작업 / 다음 흐름 / 읽는 법 (학습노트 결) ★ -->
+<section class="recent-flow wrap" id="recent-flow">
+  <style>
+    .recent-flow{max-width:1080px;margin:0 auto;padding:48px 24px 32px}
+    .rf-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:32px}
+    @media(max-width:880px){ .rf-grid{grid-template-columns:1fr} }
+    .rf-col h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6b6155;margin-bottom:14px}
+    .rf-list{display:grid;gap:10px}
+    .rf-item{background:#fdfaf3;border:1px solid #d8cdb8;border-radius:10px;padding:14px 18px;text-decoration:none;color:inherit;
+      transition:all .18s ease;display:block}
+    .rf-item:hover{border-color:#a4541a;transform:translateX(2px)}
+    .rf-item .top{display:flex;gap:10px;align-items:center;margin-bottom:6px;flex-wrap:wrap;font-size:11px}
+    .rf-item .pillar{font-weight:700;color:#a4541a;background:#efe7d6;padding:3px 8px;border-radius:4px;border:1px solid #d8cdb8}
+    .rf-item .cat{color:#6b6155}
+    .rf-item .date{color:#6b6155;margin-left:auto;font-family:ui-monospace,Menlo,monospace}
+    .rf-item .ttl{font-size:14.5px;font-weight:700;color:#2a241c;line-height:1.45;letter-spacing:-.01em}
+    .rf-item .excerpt{font-size:12.5px;color:#3a322a;line-height:1.6;margin-top:4px}
+    .rf-side{display:flex;flex-direction:column;gap:24px}
+    .rf-card{background:#fdfaf3;border:1px solid #d8cdb8;border-radius:12px;padding:18px 20px}
+    .rf-card h3{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#a4541a;margin-bottom:10px}
+    .rf-legend dl{display:grid;gap:10px;margin:0}
+    .rf-legend dt{font-size:12px;font-weight:700;color:#7a4317;letter-spacing:.04em;margin-bottom:2px}
+    .rf-legend dd{font-size:12.5px;color:#3a322a;line-height:1.55;margin:0 0 6px}
+    .rf-mini-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;font-size:12px;color:#6b6155}
+    .rf-mini-stats strong{display:block;color:#2a241c;font-size:18px;font-weight:800;font-family:'Noto Serif KR',serif}
+  </style>
+
+  <div class="rf-grid">
+    <div class="rf-col">
+      <h2>최근 작업 흐름 — 매트릭스에 채워진 자리</h2>
+      <div class="rf-list">
+        <a class="rf-item" href="/blog/perspective/">
+          <div class="top"><span class="pillar">관점 노트</span><span class="cat">한 사람의 일 관찰</span><span class="date">2025-11~2026-04</span></div>
+          <div class="ttl">19편 / 100편 — 결 잡기 단계</div>
+          <div class="excerpt">10대 주제·8독자·8형태·8감정 4축 매트릭스 위에서 빈 좌표 자동 발행. 격주 발행 → 일주 발행으로 이행 중.</div>
+        </a>
+        <a class="rf-item" href="/learning.html">
+          <div class="top"><span class="pillar">학습 노트</span><span class="cat">5거인 매트릭스</span><span class="date">2026-04</span></div>
+          <div class="ttl">8편 / 1,200좌표 — 1년차 시작</div>
+          <div class="excerpt">에라스무스·라이프니츠·바전·루이스·다 빈치 5거인의 영역 합집합 40카테고리. 6단계×5회전.</div>
+        </a>
+        <a class="rf-item" href="/sbm.html">
+          <div class="top"><span class="pillar">SBM</span><span class="cat">성경관찰</span><span class="date">2026-04~</span></div>
+          <div class="ttl">32장 / 1,189장 — Observatory 운영</div>
+          <div class="excerpt">9단계 관찰 노트로 한 장씩 본문이 본문을 읽는 자리를 공개. 권 카드·후원 자리 포함.</div>
+        </a>
+        <a class="rf-item" href="#ai-coaches">
+          <div class="top"><span class="pillar">AI 작업실</span><span class="cat">자기소개서·면접</span><span class="date">2026-04</span></div>
+          <div class="ttl">2개 코치 — ChatGPT GPTs 무료 체험</div>
+          <div class="excerpt">위 좌표를 자기이해부터 자기소개·면접까지 한 흐름으로. 10여 년 컨설턴트 노하우.</div>
+        </a>
+      </div>
+    </div>
+
+    <aside class="rf-side">
+      <div class="rf-card">
+        <h3>다음 도착 큐</h3>
+        <div class="rf-list">
+          <div class="rf-item" style="cursor:default" onclick="event.preventDefault()">
+            <div class="top"><span class="pillar">관점 노트</span><span class="cat">번아웃·40대</span></div>
+            <div class="ttl">"하루의 끝에서 자기 한 줄을 못 적는 자리"</div>
+          </div>
+          <div class="rf-item" style="cursor:default" onclick="event.preventDefault()">
+            <div class="top"><span class="pillar">학습 노트</span><span class="cat">에라스무스 1년차</span></div>
+            <div class="ttl">헬라어 마가복음 직독 — 단계 1 입문</div>
+          </div>
+          <div class="rf-item" style="cursor:default" onclick="event.preventDefault()">
+            <div class="top"><span class="pillar">SBM</span><span class="cat">JHN 요한복음</span></div>
+            <div class="ttl">2장~21장 9단계 관찰 누적</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rf-card rf-legend">
+        <h3>읽는 법 — 사이트 구조 한눈에</h3>
+        <dl>
+          <dt>좌표 도출기 (CORE)</dt>
+          <dd>한 사람·결핍·강점 3칸으로 진로 좌표 한 줄. 5분, 로그인 0.</dd>
+          <dt>다섯 도착 길</dt>
+          <dd>그 좌표가 관점 노트·학습 노트·강의·SBM·AI 코치 5자리로 풀려 나옵니다.</dd>
+          <dt>매트릭스 누적</dt>
+          <dd>관점 100편 → 1,000편 → 1만 편. SBM 1,189장. 학습 1,200좌표. 누적이 신뢰.</dd>
+          <dt>강의·코칭 의뢰</dt>
+          <dd>같은 좌표를 기관·기업·학교 워크숍으로 옮깁니다. 활동지·코칭·후속.</dd>
+        </dl>
+        <div class="rf-mini-stats" style="margin-top:14px;padding-top:14px;border-top:1px dashed #d8cdb8">
+          <div><strong>137-82-94771</strong>고유번호</div>
+          <div><strong>2025</strong>설립년</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="hidden-noop">
   <script>
   function copyCoachKeyword(keyword, btn){
     const original = btn.querySelector('.ai-coach__cta-txt').textContent;

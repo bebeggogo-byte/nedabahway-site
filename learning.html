@@ -200,7 +200,7 @@
     <div><strong id="stat-queue">0</strong>다음 학습 큐</div>
   </div>
   <nav style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)">
-    <a href="/learning/persons.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;background:var(--acc);color:#fff;text-decoration:none;font-size:14px;font-weight:600">→ 인물 22명 매트릭스 (4시대×4영역)</a>
+    <a href="/learning/persons.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;background:var(--acc);color:#fff;text-decoration:none;font-size:14px;font-weight:600">→ 2026 인물들 — 한 해의 학습 동반자 22명</a>
     <a href="#queue" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;background:#fff;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:14px;font-weight:500">↓ 다음 학습 큐</a>
     <a href="#matrix" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;background:#fff;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:14px;font-weight:500">↓ 카테고리 매트릭스</a>
   </nav>
@@ -210,10 +210,10 @@
   <h2>다섯 거인 — 인류가 마지막 지식인을 보여준 자리</h2>
   <div class="bento" id="giants-bento"></div>
 
-  <h2 style="margin-top:48px">확장 인물 — 거인의 합집합 너머, 4시대×4영역에 자리잡은 사람들</h2>
-  <p style="font-size:13px;color:var(--mute);margin-bottom:16px;max-width:680px">5거인을 base로 두고 인류사에 지대한 영향을 준 17명을 더 등재. 르네상스·근대·19세기·20세기 4시대 × 신학·과학·예술·철학·문화 5영역 매트릭스. 각 인물 카드 클릭 시 1차 출처·작품·기독교세계관 정직 라벨이 적힌 인물 페이지로 이동합니다.</p>
+  <h2 style="margin-top:48px">2026 인물들 — 한 해의 학습 동반자 17명</h2>
+  <p style="font-size:13px;color:var(--mute);margin-bottom:16px;max-width:680px">5거인 너머. 2026년 한 해 동안 함께 학습할 인물 17명. 4시대(르네상스·근대·19세기·20세기) × 5영역(신학·과학·예술·철학·문화) 매트릭스. 각 카드 클릭 시 사진·작품·기독교세계관 정직 라벨·1차 출처가 적힌 인물 페이지로.</p>
   <div id="persons-extended-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px"></div>
-  <div style="margin-top:18px;text-align:right"><a href="/learning/persons.html" style="font-size:13px;color:var(--acc);text-decoration:none;font-weight:600">→ 인물 22명 전체 매트릭스 보기</a></div>
+  <div style="margin-top:18px;text-align:right"><a href="/learning/persons.html" style="font-size:13px;color:var(--acc);text-decoration:none;font-weight:600">→ 2026 인물들 전체 매트릭스 보기</a></div>
 </section>
 
 <section class="recent">
@@ -330,14 +330,17 @@ function renderPersonsExtended(){
     const domain = DOMAIN_LABEL[p.domain_id] || p.domain_id || '';
     const why = (p.why_giant || '').slice(0, 70);
     return `
-      <a href="/learning/persons/${p.id}.html" style="display:flex;flex-direction:column;gap:6px;padding:14px;border:1px solid var(--line);border-radius:12px;background:transparent;text-decoration:none;color:inherit;transition:border-color .15s">
-        <div style="font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--ink)">${p.name_ko}</div>
-        <div style="font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums">${p.lived}</div>
-        <div style="font-size:12px;color:#374151;line-height:1.55;flex-grow:1;margin:4px 0">${why}…</div>
-        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:4px">
-          <span style="font-size:10px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:#4b5563">${era}</span>
-          <span style="font-size:10px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:#4b5563">${domain}</span>
-          <span style="font-size:10px;padding:2px 8px;border-radius:999px;border:1.5px solid ${cw[1]};color:${cw[1]}">${cw[0]}</span>
+      <a href="/learning/persons/${p.id}.html" style="display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;background:transparent;text-decoration:none;color:inherit;transition:border-color .15s;overflow:hidden">
+        <img src="/learning/assets/persons/${p.id}.jpg" alt="${p.name_ko}" loading="lazy" style="width:100%;height:180px;object-fit:cover;object-position:center top;background:#f3eee2;display:block" onerror="this.style.display='none'">
+        <div style="padding:14px;display:flex;flex-direction:column;gap:6px;flex-grow:1">
+          <div style="font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--ink)">${p.name_ko}</div>
+          <div style="font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums">${p.lived}</div>
+          <div style="font-size:12px;color:#374151;line-height:1.55;flex-grow:1;margin:4px 0">${why}…</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:4px">
+            <span style="font-size:10px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:#4b5563">${era}</span>
+            <span style="font-size:10px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:#4b5563">${domain}</span>
+            <span style="font-size:10px;padding:2px 8px;border-radius:999px;border:1.5px solid ${cw[1]};color:${cw[1]}">${cw[0]}</span>
+          </div>
         </div>
       </a>`;
   }).join('');
