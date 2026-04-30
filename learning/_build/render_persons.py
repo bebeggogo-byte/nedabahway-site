@@ -203,43 +203,121 @@ def render_person_page(p: Dict) -> str:
 <style>{PAGE_CSS}</style>
 </head>
 <body>
-<div class="wrap">
-  <div class="crumb"><a href="/learning.html">← 학습노트</a> · <a href="/learning/persons.html">2026 인물들</a></div>
-  <img class="hero-photo" src="/learning/assets/persons/{_esc(p['id'])}.jpg" alt="{_esc(p.get('name_ko',''))}" onerror="this.style.display='none'">
-  <h1>{_esc(p.get('name_ko',''))}</h1>
-  <div class="subtitle">{_esc(p.get('name_en',''))} · {_esc(p.get('lived',''))}</div>
-  <div class="tags">
-    <span class="tag">{_esc(era)}</span>
-    <span class="tag">{_esc(domain)}</span>
-    <span class="tag cw" style="border-color:{cw_color};color:{cw_color}">{_esc(cw_label)}</span>
-  </div>
-
-  <section>
-    <h2>왜 이 사람인가</h2>
-    <p>{_esc(p.get('why_giant',''))}</p>
+<main class="deck" id="deck">
+  <section class="deck-page">
+    <div class="deck-inner">
+      <div class="crumb"><a href="/learning.html">← 학습노트</a> · <a href="/learning/persons.html">2026 인물들</a></div>
+      <img class="hero-photo" src="/learning/assets/persons/{_esc(p['id'])}.jpg" alt="{_esc(p.get('name_ko',''))}" onerror="this.style.display='none'">
+      <h1>{_esc(p.get('name_ko',''))}</h1>
+      <div class="subtitle">{_esc(p.get('name_en',''))} · {_esc(p.get('lived',''))}</div>
+      <div class="tags">
+        <span class="tag">{_esc(era)}</span>
+        <span class="tag">{_esc(domain)}</span>
+        <span class="tag cw" style="border-color:{cw_color};color:{cw_color}">{_esc(cw_label)}</span>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2>기독교세계관 좌표</h2>
-    <p>{_esc(p.get('cw_note',''))}</p>
+  <section class="deck-page">
+    <div class="deck-inner">
+      <section><h2>왜 이 사람인가</h2><p>{_esc(p.get('why_giant',''))}</p></section>
+    </div>
   </section>
 
-  <section>
-    <h2>핵심 작품</h2>
-    <ul class="works">{works}</ul>
+  <section class="deck-page">
+    <div class="deck-inner">
+      <section><h2>기독교세계관 좌표</h2><p>{_esc(p.get('cw_note',''))}</p></section>
+    </div>
   </section>
 
-  <section>
-    <h2>1차 출처</h2>
-    <ul class="cites">{sources}</ul>
+  <section class="deck-page">
+    <div class="deck-inner">
+      <section><h2>핵심 작품</h2><ul class="works">{works}</ul></section>
+    </div>
   </section>
 
-  {entries_html}
+  <section class="deck-page">
+    <div class="deck-inner">
+      <section><h2>1차 출처</h2><ul class="cites">{sources}</ul></section>
+    </div>
+  </section>
 
-  {f"<section><h2>연결된 사람들</h2><div class='related'>{related}</div></section>" if related else ""}
+  <section class="deck-page">
+    <div class="deck-inner">
+      {entries_html or '<section><h2>이 사람 학습노트</h2><p>아직 학습노트가 없습니다.</p></section>'}
+      {f"<section><h2>연결된 사람들</h2><div class='related'>{related}</div></section>" if related else ""}
+      <a class="back" href="/learning/persons.html">← 2026 인물들로</a>
+    </div>
+  </section>
+</main>
 
-  <a class="back" href="/learning/persons.html">← 2026 인물들로</a>
-</div>
+<button class="deck-arrow prev" id="deck-prev" aria-label="이전">◂</button>
+<button class="deck-arrow next" id="deck-next" aria-label="다음">▸</button>
+<div class="deck-dots" id="deck-dots"></div>
+<div class="deck-pagenum" id="deck-pagenum">01 / 06</div>
+
+<script>
+(function(){{
+  const deck = document.getElementById('deck');
+  const pages = deck.querySelectorAll('.deck-page');
+  const total = pages.length;
+  const prev = document.getElementById('deck-prev');
+  const next = document.getElementById('deck-next');
+  const dotsEl = document.getElementById('deck-dots');
+  const pageNum = document.getElementById('deck-pagenum');
+  let current = 0;
+  const dots = [];
+  for (let i = 0; i < total; i++) {{
+    const d = document.createElement('div');
+    d.className = 'deck-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+    dots.push(d);
+  }}
+  function pad(n){{ return String(n).padStart(2,'0'); }}
+  function update(idx){{
+    current = idx;
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    pageNum.textContent = pad(idx+1) + ' / ' + pad(total);
+    prev.disabled = idx === 0;
+    next.disabled = idx === total - 1;
+  }}
+  function goTo(idx){{
+    idx = Math.max(0, Math.min(total-1, idx));
+    pages[idx].scrollIntoView({{behavior:'smooth', inline:'start'}});
+    update(idx);
+  }}
+  prev.addEventListener('click', () => goTo(current - 1));
+  next.addEventListener('click', () => goTo(current + 1));
+  // 휠 → 가로 변환 (디바운스)
+  let wheelTimer = null;
+  deck.addEventListener('wheel', (e) => {{
+    if (e.deltaY === 0) return;
+    e.preventDefault();
+    if (wheelTimer) return;
+    wheelTimer = setTimeout(() => {{ wheelTimer = null; }}, 600);
+    goTo(current + (e.deltaY > 0 ? 1 : -1));
+  }}, {{passive:false}});
+  // 키보드
+  document.addEventListener('keydown', (e) => {{
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {{ e.preventDefault(); goTo(current + 1); }}
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {{ e.preventDefault(); goTo(current - 1); }}
+    else if (e.key === 'Home') {{ goTo(0); }}
+    else if (e.key === 'End') {{ goTo(total - 1); }}
+  }});
+  // IntersectionObserver
+  const obs = new IntersectionObserver((entries) => {{
+    entries.forEach(en => {{
+      if (en.isIntersecting && en.intersectionRatio > 0.5) {{
+        const idx = Array.from(pages).indexOf(en.target);
+        if (idx >= 0 && idx !== current) update(idx);
+      }}
+    }});
+  }}, {{root: deck, threshold: 0.5}});
+  pages.forEach(p => obs.observe(p));
+  update(0);
+}})();
+</script>
 </body>
 </html>
 """
@@ -301,24 +379,91 @@ def render_index_page() -> str:
 <style>{INDEX_CSS}</style>
 </head>
 <body>
-<div class="wrap">
-  <div class="crumb"><a href="/learning.html">← 학습노트</a> · 2026 인물들</div>
-  <h1>2026 인물들 — 한 해의 학습 동반자 22명</h1>
-  <p class="lead">2026년 김창환 강사가 만나는 자리. 다섯 사람(에라스무스·라이프니츠·바전·Lewis·다 빈치)을 base로 두고 인류사에 지대한 영향을 준 17명을 더 등재. 4시대 × 5영역 매트릭스. 각 사람에 기독교세계관 정직 라벨과 1차 출처 디렉터리. 2026년 동안 한 명씩 좌표를 채워 간다.</p>
+<main class="deck" id="deck">
+  <section class="deck-page">
+    <div class="deck-inner">
+      <div class="crumb"><a href="/learning.html">← 학습노트</a> · 2026 인물들</div>
+      <h1>2026 인물들 — 한 해의 학습 동반자 22명</h1>
+      <p class="lead">2026년 김창환 강사가 만나는 자리. 다섯 사람(에라스무스·라이프니츠·바전·Lewis·다 빈치)을 base로 두고 인류사에 지대한 영향을 준 17명을 더 등재. 4시대 × 5영역 매트릭스. 각 사람에 기독교세계관 정직 라벨과 1차 출처 디렉터리. 2026년 동안 한 명씩 좌표를 채워 간다.</p>
+      <div class="kpi">
+        <div class="box"><div class="num">{len(persons)}</div><div class="lab">총 인물</div></div>
+        <div class="box"><div class="num">{by_era.get('renaissance',0)}</div><div class="lab">르네상스</div></div>
+        <div class="box"><div class="num">{by_era.get('modern',0)}</div><div class="lab">근대</div></div>
+        <div class="box"><div class="num">{by_era.get('nineteenth',0)}</div><div class="lab">19세기</div></div>
+        <div class="box"><div class="num">{by_era.get('twentieth',0)}</div><div class="lab">20세기</div></div>
+        <div class="box"><div class="num">{by_cw.get('affirming',0)}</div><div class="lab">신앙 명시</div></div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:18px">→ 화살표/키보드 ←→/마우스 휠로 시대별 인물을 책 넘기듯 봅니다.</p>
+      <p class="legend">기독교세계관 정직 라벨 — {legend}</p>
+    </div>
+  </section>
+  {''.join(f'<section class="deck-page"><div class="deck-inner">{s}</div></section>' for s in era_sections)}
+</main>
 
-  <div class="kpi">
-    <div class="box"><div class="num">{len(persons)}</div><div class="lab">총 인물</div></div>
-    <div class="box"><div class="num">{by_era.get('renaissance',0)}</div><div class="lab">르네상스</div></div>
-    <div class="box"><div class="num">{by_era.get('modern',0)}</div><div class="lab">근대</div></div>
-    <div class="box"><div class="num">{by_era.get('nineteenth',0)}</div><div class="lab">19세기</div></div>
-    <div class="box"><div class="num">{by_era.get('twentieth',0)}</div><div class="lab">20세기</div></div>
-    <div class="box"><div class="num">{by_cw.get('affirming',0)}</div><div class="lab">신앙 명시</div></div>
-  </div>
+<button class="deck-arrow prev" id="deck-prev" aria-label="이전">◂</button>
+<button class="deck-arrow next" id="deck-next" aria-label="다음">▸</button>
+<div class="deck-dots" id="deck-dots"></div>
+<div class="deck-pagenum" id="deck-pagenum">01 / 01</div>
 
-  {''.join(era_sections)}
-
-  <p class="legend">기독교세계관 정직 라벨 — {legend}</p>
-</div>
+<script>
+(function(){{
+  const deck = document.getElementById('deck');
+  const pages = deck.querySelectorAll('.deck-page');
+  const total = pages.length;
+  const prev = document.getElementById('deck-prev');
+  const next = document.getElementById('deck-next');
+  const dotsEl = document.getElementById('deck-dots');
+  const pageNum = document.getElementById('deck-pagenum');
+  let current = 0;
+  const dots = [];
+  for (let i = 0; i < total; i++) {{
+    const d = document.createElement('div');
+    d.className = 'deck-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+    dots.push(d);
+  }}
+  function pad(n){{ return String(n).padStart(2,'0'); }}
+  function update(idx){{
+    current = idx;
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    pageNum.textContent = pad(idx+1) + ' / ' + pad(total);
+    prev.disabled = idx === 0;
+    next.disabled = idx === total - 1;
+  }}
+  function goTo(idx){{
+    idx = Math.max(0, Math.min(total-1, idx));
+    pages[idx].scrollIntoView({{behavior:'smooth', inline:'start'}});
+    update(idx);
+  }}
+  prev.addEventListener('click', () => goTo(current - 1));
+  next.addEventListener('click', () => goTo(current + 1));
+  let wheelTimer = null;
+  deck.addEventListener('wheel', (e) => {{
+    if (e.deltaY === 0) return;
+    e.preventDefault();
+    if (wheelTimer) return;
+    wheelTimer = setTimeout(() => {{ wheelTimer = null; }}, 600);
+    goTo(current + (e.deltaY > 0 ? 1 : -1));
+  }}, {{passive:false}});
+  document.addEventListener('keydown', (e) => {{
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {{ e.preventDefault(); goTo(current + 1); }}
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {{ e.preventDefault(); goTo(current - 1); }}
+    else if (e.key === 'Home') {{ goTo(0); }}
+    else if (e.key === 'End') {{ goTo(total - 1); }}
+  }});
+  const obs = new IntersectionObserver((entries) => {{
+    entries.forEach(en => {{
+      if (en.isIntersecting && en.intersectionRatio > 0.5) {{
+        const idx = Array.from(pages).indexOf(en.target);
+        if (idx >= 0 && idx !== current) update(idx);
+      }}
+    }});
+  }}, {{root: deck, threshold: 0.5}});
+  pages.forEach(p => obs.observe(p));
+  update(0);
+}})();
+</script>
 </body>
 </html>
 """

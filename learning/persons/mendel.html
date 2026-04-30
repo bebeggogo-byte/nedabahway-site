@@ -9,8 +9,26 @@
 <style>
 :root{--ink:#1f1f23;--muted:#6b7280;--accent:#b45309;--warm:#d97706;--bg:#fafaf7;--card:transparent;--line:#e5d8c4}
 *{box-sizing:border-box}
-body{font-family:'Pretendard','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;margin:0}
-.wrap{max-width:880px;margin:0 auto;padding:48px 24px}
+html,body{margin:0;padding:0;height:100%;overflow:hidden}
+body{font-family:'Pretendard','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+main.deck{display:flex;flex-direction:row;height:100vh;width:100vw;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
+main.deck::-webkit-scrollbar{display:none}
+main.deck{scrollbar-width:none}
+.deck-page{flex:0 0 100vw;height:100vh;scroll-snap-align:center;scroll-snap-stop:always;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;padding:48px 24px 60px;overflow-y:auto;-webkit-overflow-scrolling:touch;position:relative}
+.deck-page::-webkit-scrollbar{width:6px}
+.deck-page::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+.deck-inner{max-width:880px;margin:0 auto;width:100%}
+.deck-arrow{position:fixed;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.85);border:1px solid var(--line);color:var(--accent);font-size:20px;cursor:pointer;z-index:50;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}
+.deck-arrow:hover{background:#fff;border-color:var(--accent)}
+.deck-arrow:disabled{opacity:.3;cursor:not-allowed}
+.deck-arrow.prev{left:14px}
+.deck-arrow.next{right:14px}
+.deck-dots{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:50;background:rgba(255,255,255,.7);padding:8px 14px;border-radius:99px;border:1px solid var(--line)}
+.deck-dot{width:8px;height:8px;border-radius:50%;background:var(--line);cursor:pointer;transition:background .2s}
+.deck-dot.active{background:var(--accent);transform:scale(1.3)}
+.deck-pagenum{position:fixed;top:14px;right:18px;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.08em;z-index:50;background:rgba(255,255,255,.7);padding:4px 10px;border-radius:99px;border:1px solid var(--line)}
+@media(prefers-reduced-motion:reduce){main.deck{scroll-snap-type:none;scroll-behavior:auto}}
+.wrap{max-width:880px;margin:0 auto}
 .crumb{font-size:13px;color:var(--muted);margin-bottom:16px}
 .crumb a{color:var(--accent);text-decoration:none}
 h1{font-size:34px;letter-spacing:-.02em;margin:0 0 8px;line-height:1.25}
@@ -40,44 +58,122 @@ section p{margin:0 0 12px;font-size:15px}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="crumb"><a href="/learning.html">← 학습노트</a> · <a href="/learning/persons.html">2026 인물들</a></div>
-  <img class="hero-photo" src="/learning/assets/persons/mendel.jpg" alt="그레고어 멘델" onerror="this.style.display='none'">
-  <h1>그레고어 멘델</h1>
-  <div class="subtitle">Gregor Mendel · 1822-1884</div>
-  <div class="tags">
-    <span class="tag">19세기 (1800-1900)</span>
-    <span class="tag">자연과학·수학</span>
-    <span class="tag cw" style="border-color:#0d9488;color:#0d9488">신앙 명시</span>
-  </div>
-
-  <section>
-    <h2>왜 이 사람인가</h2>
-    <p>한 수도사의 8년 정원 실험이 20세기 생명과학 전체의 기초. 신앙·과학이 분리되지 않은 자리.</p>
+<main class="deck" id="deck">
+  <section class="deck-page">
+    <div class="deck-inner">
+      <div class="crumb"><a href="/learning.html">← 학습노트</a> · <a href="/learning/persons.html">2026 인물들</a></div>
+      <img class="hero-photo" src="/learning/assets/persons/mendel.jpg" alt="그레고어 멘델" onerror="this.style.display='none'">
+      <h1>그레고어 멘델</h1>
+      <div class="subtitle">Gregor Mendel · 1822-1884</div>
+      <div class="tags">
+        <span class="tag">19세기 (1800-1900)</span>
+        <span class="tag">자연과학·수학</span>
+        <span class="tag cw" style="border-color:#0d9488;color:#0d9488">신앙 명시</span>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2>기독교세계관 좌표</h2>
-    <p>가톨릭 아우구스티노회 수도사·수도원장. 브륀(브르노) 수도원 정원에서 8년간 완두콩 28,000개 실험 → 유전 법칙. 사후 35년 잊혔다가 재발견(1900).</p>
+  <section class="deck-page">
+    <div class="deck-inner">
+      <section><h2>왜 이 사람인가</h2><p>한 수도사의 8년 정원 실험이 20세기 생명과학 전체의 기초. 신앙·과학이 분리되지 않은 자리.</p></section>
+    </div>
   </section>
 
-  <section>
-    <h2>핵심 작품</h2>
-    <ul class="works"><li><span>Versuche über Pflanzen-Hybriden</span><span class='year'>1866</span></li>
-<li><span>수도원장 행정 기록</span><span class='year'>1868-84</span></li></ul>
+  <section class="deck-page">
+    <div class="deck-inner">
+      <section><h2>기독교세계관 좌표</h2><p>가톨릭 아우구스티노회 수도사·수도원장. 브륀(브르노) 수도원 정원에서 8년간 완두콩 28,000개 실험 → 유전 법칙. 사후 35년 잊혔다가 재발견(1900).</p></section>
+    </div>
   </section>
 
-  <section>
-    <h2>1차 출처</h2>
-    <ul class="cites"><li>Mendel, G., Versuche über Pflanzen-Hybriden, Verh. Naturf. Verein Brünn 4 (1866) [PEER 1차]</li>
-<li>Henig, R., The Monk in the Garden, Houghton Mifflin 2000 [PEER]</li></ul>
+  <section class="deck-page">
+    <div class="deck-inner">
+      <section><h2>핵심 작품</h2><ul class="works"><li><span>Versuche über Pflanzen-Hybriden</span><span class='year'>1866</span></li>
+<li><span>수도원장 행정 기록</span><span class='year'>1868-84</span></li></ul></section>
+    </div>
   </section>
 
-  <section><h2>이 인물 학습노트</h2><ul class='entries'><li><a href='/learning/notes/lrn-2026-04-30-mendel-peas-1.html'>멘델 1866 — 수도원 정원 8년 완두콩 28,000개가 유전 법칙에 도착한 자리</a></li></ul></section>
+  <section class="deck-page">
+    <div class="deck-inner">
+      <section><h2>1차 출처</h2><ul class="cites"><li>Mendel, G., Versuche über Pflanzen-Hybriden, Verh. Naturf. Verein Brünn 4 (1866) [PEER 1차]</li>
+<li>Henig, R., The Monk in the Garden, Houghton Mifflin 2000 [PEER]</li></ul></section>
+    </div>
+  </section>
 
-  
+  <section class="deck-page">
+    <div class="deck-inner">
+      <section><h2>이 인물 학습노트</h2><ul class='entries'><li><a href='/learning/notes/lrn-2026-04-30-mendel-peas-1.html'>멘델 1866 — 수도원 정원 8년 완두콩 28,000개가 유전 법칙에 도착한 자리</a></li></ul></section>
+      
+      <a class="back" href="/learning/persons.html">← 2026 인물들로</a>
+    </div>
+  </section>
+</main>
 
-  <a class="back" href="/learning/persons.html">← 2026 인물들로</a>
-</div>
+<button class="deck-arrow prev" id="deck-prev" aria-label="이전">◂</button>
+<button class="deck-arrow next" id="deck-next" aria-label="다음">▸</button>
+<div class="deck-dots" id="deck-dots"></div>
+<div class="deck-pagenum" id="deck-pagenum">01 / 06</div>
+
+<script>
+(function(){
+  const deck = document.getElementById('deck');
+  const pages = deck.querySelectorAll('.deck-page');
+  const total = pages.length;
+  const prev = document.getElementById('deck-prev');
+  const next = document.getElementById('deck-next');
+  const dotsEl = document.getElementById('deck-dots');
+  const pageNum = document.getElementById('deck-pagenum');
+  let current = 0;
+  const dots = [];
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('div');
+    d.className = 'deck-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+    dots.push(d);
+  }
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function update(idx){
+    current = idx;
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    pageNum.textContent = pad(idx+1) + ' / ' + pad(total);
+    prev.disabled = idx === 0;
+    next.disabled = idx === total - 1;
+  }
+  function goTo(idx){
+    idx = Math.max(0, Math.min(total-1, idx));
+    pages[idx].scrollIntoView({behavior:'smooth', inline:'start'});
+    update(idx);
+  }
+  prev.addEventListener('click', () => goTo(current - 1));
+  next.addEventListener('click', () => goTo(current + 1));
+  // 휠 → 가로 변환 (디바운스)
+  let wheelTimer = null;
+  deck.addEventListener('wheel', (e) => {
+    if (e.deltaY === 0) return;
+    e.preventDefault();
+    if (wheelTimer) return;
+    wheelTimer = setTimeout(() => { wheelTimer = null; }, 600);
+    goTo(current + (e.deltaY > 0 ? 1 : -1));
+  }, {passive:false});
+  // 키보드
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); goTo(current - 1); }
+    else if (e.key === 'Home') { goTo(0); }
+    else if (e.key === 'End') { goTo(total - 1); }
+  });
+  // IntersectionObserver
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting && en.intersectionRatio > 0.5) {
+        const idx = Array.from(pages).indexOf(en.target);
+        if (idx >= 0 && idx !== current) update(idx);
+      }
+    });
+  }, {root: deck, threshold: 0.5});
+  pages.forEach(p => obs.observe(p));
+  update(0);
+})();
+</script>
 </body>
 </html>
