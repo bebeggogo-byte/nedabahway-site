@@ -226,3 +226,70 @@ html, body{
 .foot--mini__build{
   color: var(--ink-2) !important;
 }
+
+/* === 카퍼 배경 위 텍스트 강제 가독성 (#a4541a / #7a4317 위에 흰색 톤) === */
+.iden-result__main,
+.iden-result__main *,
+.typed-quote,
+.typed-quote *,
+.ai-coach__cta,
+.gnav__cta,
+.sbm-intro__btn--primary,
+.iden-domain.active,
+.iden-form__num,
+.iden-progress__seg.is-on,
+.iden-progress__seg.is-on--3{
+  /* 자식 요소가 inherit 못 가져갈 때를 대비해 fallback */
+}
+.iden-result__main{ color: #fdfaf3 !important; }
+.iden-result__main .iden-result__label{ color: rgba(253,250,243,.85) !important; }
+.iden-result__main .iden-result__quote{
+  background: rgba(253,250,243,.16) !important;
+  color: #fdfaf3 !important;
+  border-left-color: #fdfaf3 !important;
+}
+.iden-result__main .iden-result__sig{ color: rgba(253,250,243,.78) !important; font-style: italic; }
+.iden-result__main .iden-result__copy-btn{
+  background: rgba(253,250,243,.18) !important;
+  border: 1px solid rgba(253,250,243,.32) !important;
+  color: #fdfaf3 !important;
+}
+.iden-result__main .iden-result__copy-btn:hover{
+  background: rgba(253,250,243,.28) !important;
+}
+
+/* AI 코치 kicker — 같은 색 텍스트/배경 같은 자리 차단 */
+.ai-coaches__kicker{
+  background: var(--paper-2) !important;
+  color: var(--copper-d) !important;
+  border: 1px solid var(--line);
+}
+
+/* iden hero (브론즈 그라디언트) 위 텍스트 */
+.iden-core__hero{ color: #fdfaf3 !important; }
+.iden-core__hero .iden-core__title,
+.iden-core__hero .iden-core__sub,
+.iden-core__hero .iden-core__kicker,
+.iden-core__hero .pill{ color: #fdfaf3 !important; }
+.iden-core__hero .iden-core__sub{ color: rgba(253,250,243,.92) !important; }
+
+/* 결과 카드 main 안 모든 텍스트 inherit 흰색 */
+.iden-result__main *:not(.iden-sparkles):not(.iden-sparkles span){
+  color: inherit;
+}
+.iden-result__main .iden-result__copy-btn{ color: #fdfaf3 !important; }
+
+/* 도메인 칩 active — 카퍼 배경에 흰 글자 강제 */
+.iden-domain.active{ color: #fdfaf3 !important; }
+
+/* 폼 번호 원 */
+.iden-form__num{ color: #fdfaf3 !important; }
+
+/* 폼 input hint — 너무 밝은 회색은 잘 안 보임 → 톤 다운 */
+.iden-form__hint{ color: var(--ink-2) !important; }
+
+/* SBM intro 호버 색이 검정으로 가던 자리 */
+.sbm-intro__btn--primary:hover{
+  background: var(--copper-d) !important;
+  color: #fdfaf3 !important;
+}

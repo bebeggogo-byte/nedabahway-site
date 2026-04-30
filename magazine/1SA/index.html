@@ -7,23 +7,29 @@
 <meta name="description" content="SBM 관찰 Atlas 1SA 사무엘상 — 시뮬레이션 진행 대기 중. 곧 만나뵙겠습니다.">
 <link rel="stylesheet" href="/assets/v3.css">
 <link rel="stylesheet" href="/assets/typography-v4.css">
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
 </head>
 <body>
-<nav class="nav">
-  <div class="nav__inner">
-    <a href="/" class="nav__logo">네다바웨이</a>
-    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
-    <div class="nav__links">
-      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
-      <a href="/learning.html" class="nav__link">학습 노트</a>
-      <a href="/ai.html" class="nav__link">AI 작업실</a>
-      <a href="/programs.html" class="nav__link">강의·코칭</a>
-      <a href="/magazine.html" class="nav__link">SBM</a>
-      <a href="/about.html" class="nav__link">소개</a>
-      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
-    </div>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
   </div>
 </nav>
+
+
+
 <main class="wrap" style="max-width:760px;margin:0 auto;padding:80px 24px;text-align:center;min-height:60vh">
   <div class="kicker" style="margin-bottom:16px">SBM 관찰 Atlas · 1SA</div>
   <h1 class="h1" style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:18px">사무엘상</h1>
@@ -43,5 +49,24 @@
 <footer style="border-top:1px solid #E8E6E0;padding:32px 24px;text-align:center;margin-top:64px">
   <p style="font-size:.75rem;color:#9A9A9A">© 2025 Nedabahway · 김창환 · nedabah.org</p>
 </footer>
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #e5e7eb;background:#fafaf7;font-size:12px;color:#666;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini a{color:#444;text-decoration:none;border-bottom:1px dotted #bbb}
+    .foot--mini a:hover{color:#4f46e5;border-color:#4f46e5}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#888}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 517a086 · 2026-04-30 15:48</span>
+  </div>
+</footer>
+
 </body>
 </html>

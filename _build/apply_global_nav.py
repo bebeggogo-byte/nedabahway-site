@@ -23,7 +23,7 @@ NAV_HTML = '''<nav class="gnav" role="navigation" aria-label="주요 메뉴">
       <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
       <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
       <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
-      <li><a href="/magazine.html" class="gnav__link">성경관찰</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
       <li><a href="/about.html" class="gnav__link">소개</a></li>
       <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
     </ul>
