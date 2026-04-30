@@ -62,6 +62,55 @@
   <h1 class="h1">직업의 속성은 <em>이타성</em>이다.</h1>
   <p class="lead" style="margin-bottom:8px">한 사람의 일을 다시 디자인하는 1차 좌표.</p>
 
+  <!-- 자동 타이핑 좌표 미리보기 (A1·W11) -->
+  <style>
+    .typed-quote{margin:14px 0 18px;padding:14px 18px;background:#0a0a0a;color:#fff;
+      border-radius:10px;border-left:3px solid #ffd700;font-family:'Noto Serif KR',serif;
+      font-size:16px;line-height:1.55;letter-spacing:-.005em;
+      max-width:680px;min-height:54px;position:relative;overflow:hidden}
+    .typed-quote__label{display:inline-block;font-family:ui-monospace,Menlo,Consolas,monospace;
+      font-size:10.5px;color:#ffd700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;font-weight:700}
+    .typed-quote__line{font-weight:500}
+    .typed-quote__cursor{display:inline-block;width:2px;height:1em;background:#ffd700;
+      vertical-align:-3px;margin-left:2px;animation:typedBlink 1s steps(2) infinite}
+    @keyframes typedBlink{50%{opacity:0}}
+    @media(max-width:680px){
+      .typed-quote{font-size:14.5px;padding:12px 14px}
+    }
+  </style>
+  <div class="typed-quote" aria-live="polite">
+    <span class="typed-quote__label">▣ 결과물 한 줄 미리보기</span>
+    <div><span class="typed-quote__line" id="typed-line"></span><span class="typed-quote__cursor"></span></div>
+  </div>
+  <script>
+  (function(){
+    const lines = [
+      '"우리 팀 신입 사원의 결정 근거 부재를, 나의 정리 능력으로 향한다."',
+      '"진로 의심하는 후배의 첫 걸음 막힘을, 나의 질문 정리로 향한다."',
+      '"오래된 친구의 들어줄 자리 부재를, 나의 경청으로 향한다."',
+      '"회의에서 침묵하는 동료의 한 줄 정리 부재를, 나의 요약으로 향한다."',
+    ];
+    const el = document.getElementById('typed-line');
+    if(!el) return;
+    let li = 0, ci = 0, dir = 1;
+    function tick(){
+      const s = lines[li];
+      if(dir > 0){
+        ci++;
+        el.textContent = s.slice(0, ci);
+        if(ci >= s.length){ dir = -1; setTimeout(tick, 1800); return; }
+      } else {
+        ci -= 2;
+        if(ci <= 0){ ci = 0; dir = 1; li = (li+1) % lines.length; setTimeout(tick, 280); return; }
+        el.textContent = s.slice(0, ci);
+      }
+      setTimeout(tick, dir > 0 ? 38 : 14);
+    }
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ tick(); }
+    else { el.textContent = lines[0]; }
+  })();
+  </script>
+
   <div class="manifesto">
     <div class="manifesto__row">
       <div class="manifesto__num">1</div>
@@ -153,6 +202,27 @@
     .iden-result__step__line{font-size:11px;color:#444;margin-top:6px;line-height:1.45;min-height:32px}
     .iden-result__action{padding:14px 18px;background:#fef3c7;border-left:3px solid #b45309;border-radius:0 8px 8px 0;font-size:14px;line-height:1.7;color:#1f1f23}
     .iden-warn{padding:12px 16px;background:#fee2e2;border-left:3px solid #dc2626;border-radius:0 6px 6px 0;font-size:13px;color:#991b1b;margin-top:14px;display:none}
+    /* === 결과 등장 모션 (A4·A5) === */
+    @keyframes idcResultIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+    @keyframes idcQuoteBar{0%{transform:scaleY(0)}100%{transform:scaleY(1)}}
+    @keyframes idcStepIn{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+    @keyframes idcSparkle{0%{opacity:0;transform:scale(.4) translate(0,0)}40%{opacity:1}100%{opacity:0;transform:scale(1.2) translate(var(--dx,0),var(--dy,0))}}
+    .iden-result.is-in{animation:idcResultIn .55s cubic-bezier(.2,.8,.2,1) both}
+    .iden-result.is-in .iden-result__quote{position:relative;overflow:hidden}
+    .iden-result.is-in .iden-result__quote::before{
+      content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#ffd700;
+      transform-origin:top center;animation:idcQuoteBar .5s .15s ease-out both;
+    }
+    .iden-result.is-in .iden-result__step{opacity:0;animation:idcStepIn .35s ease-out forwards}
+    .iden-result.is-in .iden-result__step:nth-child(1){animation-delay:.45s}
+    .iden-result.is-in .iden-result__step:nth-child(2){animation-delay:.55s}
+    .iden-result.is-in .iden-result__step:nth-child(3){animation-delay:.65s}
+    .iden-result.is-in .iden-result__step:nth-child(4){animation-delay:.75s}
+    .iden-result.is-in .iden-result__step:nth-child(5){animation-delay:.85s}
+    /* 결과 등장 시 별 입자 */
+    .iden-sparkles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .iden-sparkles span{position:absolute;width:6px;height:6px;background:#ffd700;border-radius:50%;
+      box-shadow:0 0 8px #ffd700;animation:idcSparkle .9s ease-out forwards}
     @media(max-width:760px){
       .iden-core__title{font-size:24px}
       .iden-result__quote{font-size:18px}
@@ -246,13 +316,15 @@
   </div>
 
   <div id="idc-result" class="iden-result">
-    <div class="iden-result__main">
+    <div class="iden-result__main" style="position:relative">
+      <div class="iden-sparkles" id="idc-sparkles" aria-hidden="true"></div>
       <div class="iden-result__label">▣ 당신의 진로 좌표 한 줄</div>
       <div id="idc-quote" class="iden-result__quote"></div>
       <div class="iden-result__sig">— 직업본질연구원(AI agent) IDEN 좌표 (네다바웨이)</div>
       <div class="iden-result__copy-row">
         <button class="iden-result__copy-btn" onclick="idcCopy('quote')" id="idc-btn-quote">📋 좌표만 복사</button>
         <button class="iden-result__copy-btn" onclick="idcCopy('full')" id="idc-btn-full">📋 전체 결과 복사</button>
+        <button class="iden-result__copy-btn" onclick="idcDownloadCard()" id="idc-btn-card">📷 공유 카드 저장</button>
         <button class="iden-result__copy-btn" onclick="idcShare()" id="idc-btn-share">🔗 링크 공유</button>
       </div>
     </div>
@@ -269,6 +341,44 @@
         <strong>📍 다음 1주 권장</strong> · <span id="idc-action"></span>
       </div>
     </div>
+  </div>
+
+  <!-- 결과 다음 동선 3카드 (B5) -->
+  <style>
+    .iden-next{display:none;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+    .iden-next.is-on{display:grid}
+    .iden-next__card{display:flex;flex-direction:column;gap:8px;padding:18px 20px;
+      background:#fff;border:1px solid #e5e7eb;border-radius:12px;text-decoration:none;
+      transition:all .18s ease;color:#0a0a0a;position:relative;overflow:hidden}
+    .iden-next__card:hover{transform:translateY(-3px);border-color:#4f46e5;box-shadow:0 12px 28px rgba(79,70,229,.10)}
+    .iden-next__card .ico{font-size:24px;line-height:1}
+    .iden-next__card .ttl{font-size:14.5px;font-weight:700;letter-spacing:-.01em;color:#0a0a0a}
+    .iden-next__card .sub{font-size:12.5px;color:#666;line-height:1.55}
+    .iden-next__card .arrow{position:absolute;right:16px;bottom:14px;font-size:14px;color:#888;transition:transform .18s ease}
+    .iden-next__card:hover .arrow{transform:translateX(4px);color:#4f46e5}
+    @media(max-width:760px){
+      .iden-next{grid-template-columns:1fr;gap:10px}
+    }
+  </style>
+  <div class="iden-next" id="idc-next" aria-label="좌표 한 줄 다음 자리">
+    <a href="/blog/perspective/" class="iden-next__card">
+      <span class="ico">📓</span>
+      <span class="ttl">관점 노트 1편 추천</span>
+      <span class="sub">좌표 한 줄과 닿는 격주 글 Still Hands에서 한 편 골라 읽기</span>
+      <span class="arrow">→</span>
+    </a>
+    <a href="#ai-coaches" class="iden-next__card">
+      <span class="ico">📝</span>
+      <span class="ttl">AI 코치로 자기소개서</span>
+      <span class="sub">위 좌표를 자기소개서·면접 답변까지 한 흐름으로 끌고 가기</span>
+      <span class="arrow">↓</span>
+    </a>
+    <a href="/contact.html" class="iden-next__card">
+      <span class="ico">📩</span>
+      <span class="ttl">강의 의뢰 / 1대1 상담</span>
+      <span class="sub">기관·기업·학교에서 같은 좌표 워크숍을 진행하고 싶다면</span>
+      <span class="arrow">→</span>
+    </a>
   </div>
 </section>
 
@@ -565,7 +675,37 @@ function idcRun(){
     `${person}의 1주를 가까이서 한 번 보세요. ${need}이(가) 어떤 자리에서 가장 무거운지를 메모지에 한 줄로 적어 두면, 다음 한 걸음의 좌표가 명확해집니다.`;
 
   result.style.display='block';
+  // 결과 등장 모션 클래스 재적용 (재생성 시 애니메이션 다시)
+  result.classList.remove('is-in');
+  void result.offsetWidth;
+  result.classList.add('is-in');
+  // 별 입자 5개 흩뿌리기
+  _idcSpawnSparkles();
   result.scrollIntoView({behavior:'smooth', block:'start'});
+  // 다음 동선 카드 표시 (B5)
+  const nextRow = document.getElementById('idc-next');
+  if(nextRow) nextRow.classList.add('is-on');
+}
+
+function _idcSpawnSparkles(){
+  const host = document.getElementById('idc-sparkles');
+  if(!host) return;
+  host.innerHTML = '';
+  const rect = host.getBoundingClientRect();
+  for(let i=0;i<6;i++){
+    const s = document.createElement('span');
+    const x = Math.random()*80 + 10;
+    const y = Math.random()*40 + 30;
+    const dx = (Math.random()*40 - 20) + 'px';
+    const dy = (Math.random()*-40 - 10) + 'px';
+    s.style.left = x + '%';
+    s.style.top = y + '%';
+    s.style.setProperty('--dx', dx);
+    s.style.setProperty('--dy', dy);
+    s.style.animationDelay = (i*0.05) + 's';
+    host.appendChild(s);
+  }
+  setTimeout(()=>{ if(host) host.innerHTML=''; }, 1200);
 }
 
 function idcReset(){
@@ -575,6 +715,8 @@ function idcReset(){
   });
   document.getElementById('idc-result').style.display='none';
   document.getElementById('idc-warn').style.display='none';
+  const nextRow = document.getElementById('idc-next');
+  if(nextRow) nextRow.classList.remove('is-on');
   document.querySelectorAll('.iden-domain').forEach(b=>b.classList.remove('active'));
   _idcDomainSelected = false;
   if(_idcRotateTimer){ clearInterval(_idcRotateTimer); }
@@ -637,6 +779,72 @@ function fallbackCopy(text, btn, original){
     setTimeout(()=>{ btn.innerHTML = original; btn.classList.remove('copied'); }, 1800);
   } catch(e){ alert('복사 실패. 수동으로 선택해 주세요.'); }
   document.body.removeChild(ta);
+}
+
+function idcDownloadCard(){
+  const person = document.getElementById('idc-person').value.trim();
+  const need = document.getElementById('idc-need').value.trim();
+  const str = document.getElementById('idc-strength').value.trim();
+  if(!person || !need || !str){ idcRun(); return; }
+  const quote = `${person}의 ${need}을(를),\n나의 ${str}(으)로 향한다.`;
+
+  // 1080x1080 SVG 카드 생성 (인스타·블로그 친화)
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#1f1f23"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <rect x="60" y="60" width="960" height="960" fill="none" stroke="rgba(255,215,0,0.18)" stroke-width="1"/>
+  <text x="120" y="180" fill="#ffd700" font-family="ui-monospace,Menlo,monospace" font-size="24" letter-spacing="6" font-weight="700">▣ IDEN COORDINATE</text>
+  <text x="120" y="220" fill="rgba(255,255,255,0.55)" font-family="-apple-system,'Pretendard',sans-serif" font-size="22">한 사람의 일을 다시 디자인하는 1차 좌표</text>
+  <line x1="120" y1="270" x2="200" y2="270" stroke="#ffd700" stroke-width="3"/>
+  ${_idcSvgWrapText(quote, 120, 420, 840, 80, '#ffffff', "'Noto Serif KR',serif", 64)}
+  <text x="120" y="940" fill="rgba(255,255,255,0.6)" font-family="-apple-system,'Pretendard',sans-serif" font-size="22">— 직업본질연구원(AI agent) IDEN 좌표</text>
+  <text x="120" y="980" fill="rgba(255,255,255,0.85)" font-family="ui-monospace,monospace" font-size="22" letter-spacing="2">nedabah.org · 네다바웨이</text>
+</svg>`;
+  const blob = new Blob([svg], {type:'image/svg+xml'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const safeName = person.slice(0,8).replace(/[^\w가-힣]/g,'') || 'iden';
+  a.download = `iden-card-${safeName}.svg`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url), 1500);
+
+  const btn = document.getElementById('idc-btn-card');
+  if(btn){
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ 카드 저장됨!';
+    btn.classList.add('copied');
+    setTimeout(()=>{ btn.innerHTML = orig; btn.classList.remove('copied'); }, 1800);
+  }
+}
+
+function _idcSvgWrapText(text, x, y, maxW, lineH, fill, font, size){
+  // 줄바꿈 문자 + 너비 추정으로 단순 래핑
+  const lines = [];
+  text.split('\n').forEach(raw=>{
+    const words = raw.split(/(\s+)/);
+    let line = '';
+    words.forEach(w=>{
+      // 한 글자당 약 size*0.6 너비 가정
+      if((line+w).length * size * 0.55 > maxW && line){
+        lines.push(line); line = w.trim();
+      } else {
+        line += w;
+      }
+    });
+    if(line) lines.push(line);
+  });
+  return lines.map((ln, i)=>{
+    const ny = y + i*lineH;
+    const safe = ln.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return `<text x="${x}" y="${ny}" fill="${fill}" font-family="${font}" font-size="${size}" font-weight="700">${safe}</text>`;
+  }).join('\n  ');
 }
 
 function idcShare(){
