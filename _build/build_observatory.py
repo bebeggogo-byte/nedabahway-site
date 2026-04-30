@@ -337,7 +337,7 @@ def render_chapter(code: str, kr: str, en: str, ch: int, book_sbm_dir: str, tota
       <a href="/about.html" class="nav__link">소개</a>
       <a href="/programs.html" class="nav__link">강의</a>
       <a href="/ai.html" class="nav__link">AI 작업실</a>
-      <a href="/magazine.html" class="nav__link nav__link--active">관찰 Atlas</a>
+      <a href="/magazine.html" class="nav__link nav__link--active">SBM</a>
       <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
     </div>
   </div>
@@ -440,7 +440,7 @@ def render_chapter(code: str, kr: str, en: str, ch: int, book_sbm_dir: str, tota
 <footer class="foot">
   <div class="foot__inner">
     <div><div class="foot__brand">네다바웨이 Nedabahway</div><p>강사 김창환 · 제주<br>한 사람의 일을 다시 디자인합니다.</p></div>
-    <div class="foot__col"><h4>Observatory</h4><a href="/magazine.html">관찰 Atlas 홈</a><a href="/magazine/{code}/">{kr} 권 차례</a><a href="/magazine.html#support">후원으로 받치기</a></div>
+    <div class="foot__col"><h4>Observatory</h4><a href="/magazine.html">SBM 홈</a><a href="/magazine/{code}/">{kr} 권 차례</a><a href="/magazine.html#support">후원으로 받치기</a></div>
     <div class="foot__col"><h4>둘러보기</h4><a href="/blog/perspective/">관점 노트</a><a href="/about.html">소개</a><a href="/programs.html">강의</a></div>
     <div class="foot__col"><h4>연락</h4><a href="/contact.html">강의 의뢰</a><a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></div>
   </div>
@@ -521,7 +521,7 @@ def render_book_index(code: str, kr: str, en: str, book_sbm_dir: str, total: int
       <a href="/about.html" class="nav__link">소개</a>
       <a href="/programs.html" class="nav__link">강의</a>
       <a href="/ai.html" class="nav__link">AI 작업실</a>
-      <a href="/magazine.html" class="nav__link nav__link--active">관찰 Atlas</a>
+      <a href="/magazine.html" class="nav__link nav__link--active">SBM</a>
       <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
     </div>
   </div>
@@ -551,7 +551,7 @@ def render_book_index(code: str, kr: str, en: str, book_sbm_dir: str, total: int
 <footer class="foot">
   <div class="foot__inner">
     <div><div class="foot__brand">네다바웨이 Nedabahway</div><p>강사 김창환 · 제주<br>한 사람의 일을 다시 디자인합니다.</p></div>
-    <div class="foot__col"><h4>Observatory</h4><a href="/magazine.html">관찰 Atlas 홈</a><a href="/magazine.html#support">후원으로 받치기</a></div>
+    <div class="foot__col"><h4>Observatory</h4><a href="/magazine.html">SBM 홈</a><a href="/magazine.html#support">후원으로 받치기</a></div>
     <div class="foot__col"><h4>둘러보기</h4><a href="/blog/perspective/">관점 노트</a><a href="/about.html">소개</a><a href="/programs.html">강의</a></div>
     <div class="foot__col"><h4>연락</h4><a href="/contact.html">강의 의뢰</a><a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></div>
   </div>
