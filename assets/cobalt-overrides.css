@@ -79,3 +79,79 @@ a:hover { color: #1E40AF !important; }
 /* 카드 라인 따뜻하게 + 코발트 호버 */
 .card:hover { border-color: #1E40AF !important; }
 .logo:hover { border-color: #1E40AF !important; color: #1A1A1A !important; }
+
+/* ============================================================
+   snap-deck 모드에서 .section 의 큰 패딩·min-height 제어
+   2026-04-30: programs.html 가로 스냅에서 위·아래 잘림 해소
+   ============================================================ */
+body.snap-deck-on .deck-page.section,
+body.snap-deck-on section.deck-page {
+  min-height: 0 !important;
+  height: calc(100vh - 56px - 88px) !important;
+  height: calc(100dvh - 56px - 88px) !important;
+  padding: 24px clamp(20px, 5vw, 64px) !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+}
+body.snap-deck-on .deck-page.section + .deck-page.section,
+body.snap-deck-on section.deck-page + section.deck-page {
+  padding-top: 24px !important;
+}
+body.snap-deck-on .deck-page .inner,
+body.snap-deck-on .deck-page__inner {
+  max-width: 760px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 16px 0 32px 0 !important;
+}
+
+/* hero 섹션은 콘텐츠 적으니 가운데 정렬 유지 */
+body.snap-deck-on .deck-page#s-hero {
+  align-items: center !important;
+}
+
+/* 모듈·시나리오 등 그리드 페이지는 위로 배열 */
+body.snap-deck-on .deck-page#s-modules,
+body.snap-deck-on .deck-page#s-recipe,
+body.snap-deck-on .deck-page#s-audience,
+body.snap-deck-on .deck-page#cases,
+body.snap-deck-on .deck-page#resources {
+  align-items: flex-start !important;
+}
+
+/* 모바일에선 패딩 더 작게 */
+@media (max-width: 480px) {
+  body.snap-deck-on .deck-page.section,
+  body.snap-deck-on section.deck-page {
+    padding: 16px 16px !important;
+    height: calc(100vh - 52px - 74px) !important;
+    height: calc(100dvh - 52px - 74px) !important;
+  }
+  body.snap-deck-on .deck-page__inner {
+    padding: 12px 0 24px 0 !important;
+  }
+}
+
+/* 화면 짧은 데스크톱 (1024 이하 높이 768 미만) — 폰트·여백 압축 */
+@media (max-height: 760px) {
+  body.snap-deck-on .deck-page .hero-title { font-size: clamp(1.6rem, 4vw, 2.4rem) !important; }
+  body.snap-deck-on .deck-page .section-title { font-size: clamp(1.2rem, 3vw, 1.8rem) !important; }
+  body.snap-deck-on .deck-page .hero-sub,
+  body.snap-deck-on .deck-page .section-desc { font-size: .92rem !important; line-height: 1.6 !important; }
+}
+
+/* 도트 네비 자리 보장 (가려지지 않게) */
+body.snap-deck-on .deck-dots,
+body.snap-deck-on .deck-arrow {
+  z-index: 70 !important;
+}
+
+/* 인쇄 모드에선 deck 무력화 (PDF 출력 보존) */
+@media print {
+  body.snap-deck-on { overflow: visible !important; height: auto !important; }
+  body.snap-deck-on main.deck { position: static !important; display: block !important; height: auto !important; overflow: visible !important; padding: 0 !important; }
+  body.snap-deck-on .deck-page { flex: none !important; width: 100% !important; height: auto !important; min-height: 100vh !important; padding: 80px 24px !important; }
+}
