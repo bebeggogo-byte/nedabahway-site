@@ -31,11 +31,12 @@ def get_build_ts() -> str:
 def build_footer(build_id: str, build_ts: str) -> str:
     return f'''<footer class="foot foot--mini">
   <style>
-    .foot--mini{{padding:18px 20px;border-top:1px solid #e5e7eb;background:#fafaf7;font-size:12px;color:#666;line-height:1.6}}
+    .foot--mini{{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}}
     .foot--mini .foot--mini__inner{{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}}
-    .foot--mini a{{color:#444;text-decoration:none;border-bottom:1px dotted #bbb}}
-    .foot--mini a:hover{{color:#4f46e5;border-color:#4f46e5}}
-    .foot--mini .foot--mini__build{{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#888}}
+    .foot--mini strong{{color:#2a241c}}
+    .foot--mini a{{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}}
+    .foot--mini a:hover{{color:#a4541a;border-color:#a4541a}}
+    .foot--mini .foot--mini__build{{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}}
     @media(max-width:680px){{
       .foot--mini .foot--mini__inner{{justify-content:flex-start}}
       .foot--mini>div>span{{display:block}}

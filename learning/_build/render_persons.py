@@ -59,6 +59,7 @@ h1{font-size:34px;letter-spacing:-.02em;margin:0 0 8px;line-height:1.25}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
 .tag{font-size:12px;padding:4px 12px;border-radius:999px;background:transparent;border:1px solid var(--line);color:#374151}
 .tag.cw{color:inherit;background:transparent;border-width:1.5px}
+.hero-photo{width:100%;max-height:420px;object-fit:cover;object-position:center top;border-radius:14px;border:1px solid var(--line);margin-bottom:24px;display:block}
 section{background:transparent;border:1px solid var(--line);border-radius:14px;padding:24px;margin-bottom:18px}
 section h2{font-size:18px;margin:0 0 14px;letter-spacing:-.01em}
 section p{margin:0 0 12px;font-size:15px}
@@ -96,7 +97,9 @@ h1{font-size:36px;letter-spacing:-.02em;margin:0 0 8px}
 .filters button{font-size:13px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:#374151;cursor:pointer}
 .filters button.active{background:transparent;color:var(--accent);border-color:var(--accent);border-width:1.5px}
 .matrix{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.card{background:transparent;border:1px solid var(--line);border-radius:14px;padding:18px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;transition:transform .15s,border-color .15s}
+.card{background:transparent;border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0;transition:transform .15s,border-color .15s}
+.card .photo{width:100%;height:200px;object-fit:cover;object-position:center top;display:block;background:#f3eee2}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex-grow:1}
 .card:hover{transform:translateY(-2px);border-color:var(--accent);border-width:1.5px}
 .card .name{font-size:17px;font-weight:600;letter-spacing:-.01em}
 .card .lived{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
@@ -158,7 +161,8 @@ def render_person_page(p: Dict) -> str:
 </head>
 <body>
 <div class="wrap">
-  <div class="crumb"><a href="/learning.html">← 학습노트</a> · <a href="/learning/persons.html">인물</a></div>
+  <div class="crumb"><a href="/learning.html">← 학습노트</a> · <a href="/learning/persons.html">2026 인물들</a></div>
+  <img class="hero-photo" src="/learning/assets/persons/{_esc(p['id'])}.jpg" alt="{_esc(p.get('name_ko',''))}" onerror="this.style.display='none'">
   <h1>{_esc(p.get('name_ko',''))}</h1>
   <div class="subtitle">{_esc(p.get('name_en',''))} · {_esc(p.get('lived',''))}</div>
   <div class="tags">
@@ -255,9 +259,9 @@ def render_index_page() -> str:
 </head>
 <body>
 <div class="wrap">
-  <div class="crumb"><a href="/learning.html">← 학습노트</a> · 인물</div>
-  <h1>인물 22명</h1>
-  <p class="lead">5거인(에라스무스·라이프니츠·바전·Lewis·다 빈치)을 base로 두고 인류사에 지대한 영향을 준 17명을 더 등재. 4시대(르네상스·근대·19세기·20세기) × 5영역(신학·과학·철학·예술·문화) 매트릭스. 각 인물에 기독교세계관 정직 라벨과 1차 출처 디렉터리.</p>
+  <div class="crumb"><a href="/learning.html">← 학습노트</a> · 2026 인물들</div>
+  <h1>2026 인물들 — 한 해의 학습 동반자 22명</h1>
+  <p class="lead">2026년 김창환 강사가 함께 학습하는 자리. 5거인(에라스무스·라이프니츠·바전·Lewis·다 빈치)을 base로 두고 인류사에 지대한 영향을 준 17명을 더 등재. 4시대 × 5영역 매트릭스. 각 인물에 기독교세계관 정직 라벨과 1차 출처 디렉터리. 2026년 동안 한 명씩 좌표를 채워 간다.</p>
 
   <div class="kpi">
     <div class="box"><div class="num">{len(persons)}</div><div class="lab">총 인물</div></div>
@@ -282,12 +286,15 @@ def _render_card(p: Dict) -> str:
     domain = DOMAIN_LABEL.get(p.get("domain_id", ""), p.get("domain_id", ""))
     why = p.get("why_giant", "")[:120]
     return f"""<a class="card" href="/learning/persons/{_esc(p['id'])}.html">
-  <div class="name">{_esc(p.get('name_ko',''))}</div>
-  <div class="lived">{_esc(p.get('lived',''))}</div>
-  <div class="why">{_esc(why)}</div>
-  <div class="meta">
-    <span class="chip">{_esc(domain)}</span>
-    <span class="chip cw" style="border-color:{cw_color};color:{cw_color}">{_esc(cw_label)}</span>
+  <img class="photo" src="/learning/assets/persons/{_esc(p['id'])}.jpg" alt="{_esc(p.get('name_ko',''))}" loading="lazy" onerror="this.style.display='none'">
+  <div class="body">
+    <div class="name">{_esc(p.get('name_ko',''))}</div>
+    <div class="lived">{_esc(p.get('lived',''))}</div>
+    <div class="why">{_esc(why)}</div>
+    <div class="meta">
+      <span class="chip">{_esc(domain)}</span>
+      <span class="chip cw" style="border-color:{cw_color};color:{cw_color}">{_esc(cw_label)}</span>
+    </div>
   </div>
 </a>"""
 
