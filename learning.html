@@ -247,10 +247,7 @@
   </div>
 </div>
 
-<footer class="foot">
-  <p>학습노트 · 김창환 · 네다바웨이 — 인류 마지막 지식 고학습자의 자리.<br>
-  자료 SSoT: <code>learning/_data/notes.json</code> · 빌더: <code>_build/render_all.py</code> · 검증: <code>_build/validate.py</code> · 전략: <a href="/learning/STRATEGY_v1.md">구조</a> · <a href="/learning/QUALITY_STRATEGY_v1.md">품질</a></p>
-</footer>
+
 
 <script>
 let CATEGORIES = null, STAGES = null, NOTES = null, PROGRESS = null;
@@ -533,5 +530,24 @@ loadAll().catch(err => {
   document.getElementById('pillars-root').innerHTML = '<div class="empty-msg">데이터 로드 실패. _build/render_all.py를 먼저 실행해 주세요.</div>';
 });
 </script>
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #e5e7eb;background:#fafaf7;font-size:12px;color:#666;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini a{color:#444;text-decoration:none;border-bottom:1px dotted #bbb}
+    .foot--mini a:hover{color:#4f46e5;border-color:#4f46e5}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#888}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build a24842e · 2026-04-30 11:35</span>
+  </div>
+</footer>
+
 </body>
 </html>
