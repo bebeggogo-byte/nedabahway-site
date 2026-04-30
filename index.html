@@ -12,6 +12,8 @@
 <link rel="canonical" href="https://www.nedabah.org/">
 <link rel="stylesheet" href="/assets/v3.css">
 <link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
   <link rel="stylesheet" href="/assets/global-fonts.css">
   <link rel="stylesheet" href="/assets/global-nav.css">
 </head>
@@ -188,6 +190,28 @@
       <button class="iden-domain" type="button" data-domain="career" onclick="idcFill('career', this)"><span class="iden-domain__emo">🧭</span>진로</button>
       <button class="iden-domain" type="button" data-domain="relationship" onclick="idcFill('relationship', this)"><span class="iden-domain__emo">🤝</span>관계</button>
       <button class="iden-domain" type="button" data-domain="communication" onclick="idcFill('communication', this)"><span class="iden-domain__emo">💬</span>소통</button>
+    </div>
+
+    <!-- 3칸 진행 막대 -->
+    <style>
+      .iden-progress{display:flex;align-items:center;gap:10px;margin:6px 0 22px;padding:0}
+      .iden-progress__bar{flex:1;display:flex;gap:6px}
+      .iden-progress__seg{flex:1;height:6px;background:#eee;border-radius:99px;transition:background .25s ease,transform .25s ease}
+      .iden-progress__seg.is-on{background:linear-gradient(90deg,#4f46e5,#7c3aed)}
+      .iden-progress__seg.is-on--3{background:linear-gradient(90deg,#4f46e5,#7c3aed,#ffd700)}
+      .iden-progress__txt{font-size:11.5px;color:#888;font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:.04em;min-width:36px;text-align:right;font-weight:700}
+      .iden-progress__txt.is-full{color:#4f46e5}
+      /* 입력 칸 빈칸 흔들림 */
+      @keyframes idcShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}}
+      .iden-form__input.is-error{border-color:#dc2626 !important;background:#fef2f2 !important;animation:idcShake .35s ease}
+    </style>
+    <div class="iden-progress" aria-label="입력 진행 상태">
+      <div class="iden-progress__bar">
+        <div class="iden-progress__seg" id="idc-prog-1"></div>
+        <div class="iden-progress__seg" id="idc-prog-2"></div>
+        <div class="iden-progress__seg" id="idc-prog-3"></div>
+      </div>
+      <span class="iden-progress__txt" id="idc-prog-txt">0 / 3</span>
     </div>
 
     <div class="iden-form__step">
@@ -423,22 +447,67 @@ function idcFill(key, btn){
   document.getElementById('idc-person').value = _idcRandPick(d.person);
   document.getElementById('idc-need').value = _idcRandPick(d.need);
   document.getElementById('idc-strength').value = _idcRandPick(d.strength);
+  ['idc-person','idc-need','idc-strength'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.classList.remove('is-error');
+  });
   _idcDomainSelected = true;
   if(_idcRotateTimer){ clearInterval(_idcRotateTimer); _idcRotateTimer=null; }
   document.getElementById('idc-warn').style.display='none';
+  if(typeof _idcUpdateProgress === 'function') _idcUpdateProgress();
 }
 
-// 페이지 로드 시 placeholder 회전 시작
+// 진행 막대 갱신
+function _idcUpdateProgress(){
+  const ids = ['idc-person','idc-need','idc-strength'];
+  let filled = 0;
+  ids.forEach((id, i)=>{
+    const el = document.getElementById(id);
+    const seg = document.getElementById('idc-prog-'+(i+1));
+    if(el && seg){
+      const v = el.value.trim();
+      if(v){
+        seg.classList.add('is-on');
+        if(i === 2) seg.classList.add('is-on--3');
+        filled++;
+      } else {
+        seg.classList.remove('is-on','is-on--3');
+      }
+    }
+  });
+  const txt = document.getElementById('idc-prog-txt');
+  if(txt){
+    txt.textContent = filled + ' / 3';
+    txt.classList.toggle('is-full', filled === 3);
+  }
+}
+
+// 페이지 로드 시 placeholder 회전 시작 + 진행 막대 + Enter 다음 칸
 document.addEventListener('DOMContentLoaded', ()=>{
   _idcRotatePlaceholders();
   _idcRotateTimer = setInterval(_idcRotatePlaceholders, 3500);
-  // 사용자가 입력 시작하면 회전 멈춤
-  ['idc-person','idc-need','idc-strength'].forEach(id=>{
+  const ids = ['idc-person','idc-need','idc-strength'];
+  ids.forEach((id, i)=>{
     const el = document.getElementById(id);
-    if(el) el.addEventListener('input', ()=>{
+    if(!el) return;
+    el.addEventListener('input', ()=>{
       if(el.value && _idcRotateTimer){ clearInterval(_idcRotateTimer); _idcRotateTimer=null; }
+      el.classList.remove('is-error');
+      _idcUpdateProgress();
+    });
+    el.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){
+        e.preventDefault();
+        if(i < ids.length - 1){
+          const next = document.getElementById(ids[i+1]);
+          if(next) next.focus();
+        } else {
+          idcRun();
+        }
+      }
     });
   });
+  _idcUpdateProgress();
 });
 
 function idcRun(){
@@ -448,18 +517,37 @@ function idcRun(){
   const warn = document.getElementById('idc-warn');
   const result = document.getElementById('idc-result');
 
-  // 검증 — 부드러운 안내
+  // 검증 — 부드러운 안내 + 칸 자체 빨간 흔들림
   if(!person || !need || !str){
     const missing = [];
-    if(!person) missing.push('① 한 사람');
-    if(!need) missing.push('② 그 사람의 결핍');
-    if(!str) missing.push('③ 나의 강점');
+    const fields = [
+      {ok: !!person, id: 'idc-person', label: '① 한 사람'},
+      {ok: !!need,   id: 'idc-need',   label: '② 그 사람의 결핍'},
+      {ok: !!str,    id: 'idc-strength', label: '③ 나의 강점'},
+    ];
+    let firstEmpty = null;
+    fields.forEach(f=>{
+      const el = document.getElementById(f.id);
+      if(!f.ok){
+        missing.push(f.label);
+        if(el){
+          el.classList.remove('is-error');
+          // 강제 reflow → 애니메이션 재시작
+          void el.offsetWidth;
+          el.classList.add('is-error');
+        }
+        if(!firstEmpty) firstEmpty = el;
+      }
+    });
+    if(firstEmpty) firstEmpty.focus();
     warn.textContent = `${missing.join(', ')} 칸을 채워 주세요. 한 칸이 비면 좌표가 흔들립니다.`;
     warn.style.display='block';
     result.style.display='none';
     return;
   }
   warn.style.display='none';
+  // 진행 막대 갱신 (모두 채워졌을 때 Sustain 단계까지 보여주기)
+  _idcUpdateProgress();
 
   // 좌표 한 줄
   const quote = `${person}의 ${need}을(를), 나의 ${str}(으)로 향한다.`;
@@ -481,9 +569,10 @@ function idcRun(){
 }
 
 function idcReset(){
-  document.getElementById('idc-person').value='';
-  document.getElementById('idc-need').value='';
-  document.getElementById('idc-strength').value='';
+  ['idc-person','idc-need','idc-strength'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el){ el.value=''; el.classList.remove('is-error'); }
+  });
   document.getElementById('idc-result').style.display='none';
   document.getElementById('idc-warn').style.display='none';
   document.querySelectorAll('.iden-domain').forEach(b=>b.classList.remove('active'));
@@ -491,6 +580,7 @@ function idcReset(){
   if(_idcRotateTimer){ clearInterval(_idcRotateTimer); }
   _idcRotatePlaceholders();
   _idcRotateTimer = setInterval(_idcRotatePlaceholders, 3500);
+  if(typeof _idcUpdateProgress === 'function') _idcUpdateProgress();
   document.getElementById('idc-person').focus();
 }
 
