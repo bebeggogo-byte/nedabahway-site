@@ -1,0 +1,429 @@
+{
+  "schema_version": "1.0",
+  "updated": "2026-05-01",
+  "concept": "학습 노트 자동 선택 정독 시스템 — 인물·자료 풀에서 다음 정독 대상을 알아서 고르고, 1차 출처를 직접 찾아 본질 정독을 누적한다.",
+  "policy": {
+    "voice": "본인 일화 0건, 자료 자체의 본질로 들어감",
+    "depth": "분석·통합·지혜·사실·아름다움·다양한 생각·고찰·성숙",
+    "form": "번호·라벨·기계 골격 0, 자연스러운 한국어 산문",
+    "length": "1,300~1,800자",
+    "cites": "1차 출처 3건 이상 직접 인용",
+    "quote": "1차 출처 본문 직접 1건+ (자연스럽게 본문에 녹임)",
+    "reader": "독자에게 질문 가능 (본인 답은 안 함)"
+  },
+  "persons_pool": [
+    {
+      "id": "newton",
+      "name_ko": "아이작 뉴턴",
+      "era": "1643~1727",
+      "field": "물리·자연철학·신학",
+      "primary_sources": [
+        "Principia 1687/1713",
+        "Yahuda MS 15 신학원고",
+        "Opticks 1704",
+        "De Gravitatione 미발표"
+      ],
+      "studied": [
+        "Principia General Scholium"
+      ]
+    },
+    {
+      "id": "pascal",
+      "name_ko": "블레즈 파스칼",
+      "era": "1623~1662",
+      "field": "수학·물리·신학·철학",
+      "primary_sources": [
+        "Pensées 1670",
+        "Lettres provinciales 1656",
+        "Traité du triangle arithmétique 1654",
+        "De l'esprit géométrique"
+      ],
+      "studied": [
+        "Le cœur a ses raisons — 마음에는 이성이 모르는 자기 이성이 있다"
+      ]
+    },
+    {
+      "id": "bach",
+      "name_ko": "요한 제바스티안 바흐",
+      "era": "1685~1750",
+      "field": "음악·신학",
+      "primary_sources": [
+        "Matthäus-Passion BWV244 1727",
+        "h-Moll Messe BWV232",
+        "Goldberg Variations BWV988",
+        "Wohltemperiertes Klavier"
+      ],
+      "studied": []
+    },
+    {
+      "id": "vangogh",
+      "name_ko": "빈센트 반 고흐",
+      "era": "1853~1890",
+      "field": "회화·서간문학",
+      "primary_sources": [
+        "Brieven aan Theo (902통)",
+        "Self-portraits 1885~90",
+        "Wheatfield with Crows 1890",
+        "The Starry Night 1889"
+      ],
+      "studied": []
+    },
+    {
+      "id": "monet",
+      "name_ko": "클로드 모네",
+      "era": "1840~1926",
+      "field": "회화·인상주의",
+      "primary_sources": [
+        "Cathédrales de Rouen 30점 1892~94",
+        "Nymphéas 250점 1899~1926",
+        "Impression, soleil levant 1872",
+        "Haystacks series 1890~91"
+      ],
+      "studied": []
+    },
+    {
+      "id": "rachmaninoff",
+      "name_ko": "세르게이 라흐마니노프",
+      "era": "1873~1943",
+      "field": "음악·작곡",
+      "primary_sources": [
+        "All-Night Vigil Op.37 1915",
+        "Piano Concerto No.2 Op.18 1901",
+        "Piano Concerto No.3 Op.30 1909",
+        "Symphonic Dances Op.45 1940"
+      ],
+      "studied": []
+    },
+    {
+      "id": "kepler",
+      "name_ko": "요하네스 케플러",
+      "era": "1571~1630",
+      "field": "천문학·수학·신학",
+      "primary_sources": [
+        "Astronomia Nova 1609",
+        "Harmonices Mundi 1619",
+        "Mysterium Cosmographicum 1596",
+        "Somnium 1634"
+      ],
+      "studied": []
+    },
+    {
+      "id": "beethoven",
+      "name_ko": "루트비히 판 베토벤",
+      "era": "1770~1827",
+      "field": "음악·작곡",
+      "primary_sources": [
+        "Heiligenstadt Testament 1802",
+        "Symphony No.9 Op.125 1824",
+        "Late String Quartets 1825~26",
+        "Conversation Books"
+      ],
+      "studied": []
+    },
+    {
+      "id": "calvin",
+      "name_ko": "장 칼뱅",
+      "era": "1509~1564",
+      "field": "신학·법학",
+      "primary_sources": [
+        "Institutio Christianae Religionis 1559",
+        "Commentaries (성경 주석)",
+        "Letters 1500여 통",
+        "Sermons"
+      ],
+      "studied": []
+    },
+    {
+      "id": "luther",
+      "name_ko": "마르틴 루터",
+      "era": "1483~1546",
+      "field": "신학·번역",
+      "primary_sources": [
+        "95 Theses 1517",
+        "Luther Bible 1534",
+        "On the Bondage of the Will 1525",
+        "Tischreden"
+      ],
+      "studied": []
+    },
+    {
+      "id": "kierkegaard",
+      "name_ko": "쇠렌 키르케고르",
+      "era": "1813~1855",
+      "field": "철학·신학",
+      "primary_sources": [
+        "Frygt og Bæven 1843",
+        "Enten — Eller 1843",
+        "Sygdommen til Døden 1849",
+        "Journals"
+      ],
+      "studied": []
+    },
+    {
+      "id": "bonhoeffer",
+      "name_ko": "디트리히 본회퍼",
+      "era": "1906~1945",
+      "field": "신학·윤리학",
+      "primary_sources": [
+        "Widerstand und Ergebung 옥중서신 1944~45",
+        "Nachfolge 1937",
+        "Ethik 미완성",
+        "Sanctorum Communio 1930"
+      ],
+      "studied": []
+    },
+    {
+      "id": "tolkien",
+      "name_ko": "J.R.R. 톨킨",
+      "era": "1892~1973",
+      "field": "문학·언어학·신화학",
+      "primary_sources": [
+        "Mythopoeia 1931",
+        "On Fairy-Stories 1947",
+        "The Lord of the Rings 1954~55",
+        "Letters"
+      ],
+      "studied": []
+    },
+    {
+      "id": "chesterton",
+      "name_ko": "G.K. 체스터턴",
+      "era": "1874~1936",
+      "field": "변증·문학·저널리즘",
+      "primary_sources": [
+        "Orthodoxy 1908",
+        "The Everlasting Man 1925",
+        "Heretics 1905",
+        "Father Brown stories"
+      ],
+      "studied": []
+    },
+    {
+      "id": "plantinga",
+      "name_ko": "앨빈 플랜팅가",
+      "era": "1932~",
+      "field": "철학·인식론·종교철학",
+      "primary_sources": [
+        "Warrant: The Current Debate 1993",
+        "Warrant and Proper Function 1993",
+        "Warranted Christian Belief 2000",
+        "God and Other Minds 1967"
+      ],
+      "studied": []
+    },
+    {
+      "id": "einstein",
+      "name_ko": "알베르트 아인슈타인",
+      "era": "1879~1955",
+      "field": "물리학",
+      "primary_sources": [
+        "1905 Annus Mirabilis 4편 논문",
+        "Die Grundlage der allgemeinen Relativitätstheorie 1916",
+        "Letters to Born",
+        "Out of My Later Years 1950"
+      ],
+      "studied": []
+    },
+    {
+      "id": "maxwell",
+      "name_ko": "제임스 클러크 맥스웰",
+      "era": "1831~1879",
+      "field": "물리·전자기학",
+      "primary_sources": [
+        "A Treatise on Electricity and Magnetism 1873",
+        "On Physical Lines of Force 1861",
+        "On Faraday's Lines of Force 1855",
+        "Theory of Heat 1871"
+      ],
+      "studied": []
+    },
+    {
+      "id": "faraday",
+      "name_ko": "마이클 패러데이",
+      "era": "1791~1867",
+      "field": "물리·화학·실험",
+      "primary_sources": [
+        "Experimental Researches in Electricity 1831~55",
+        "Diary (laboratory notebooks)",
+        "The Chemical History of a Candle 1861",
+        "On the Various Forces of Nature 1860"
+      ],
+      "studied": []
+    },
+    {
+      "id": "mendel",
+      "name_ko": "그레고어 멘델",
+      "era": "1822~1884",
+      "field": "생물학·유전학",
+      "primary_sources": [
+        "Versuche über Pflanzen-Hybriden 1866",
+        "Letters to Carl Nägeli",
+        "Meteorological observations",
+        "Sermons"
+      ],
+      "studied": []
+    },
+    {
+      "id": "polanyi",
+      "name_ko": "마이클 폴라니",
+      "era": "1891~1976",
+      "field": "철학·과학철학·인식론",
+      "primary_sources": [
+        "Personal Knowledge 1958",
+        "The Tacit Dimension 1966",
+        "Science, Faith and Society 1946",
+        "Knowing and Being 1969"
+      ],
+      "studied": []
+    },
+    {
+      "id": "michelangelo",
+      "name_ko": "미켈란젤로 부오나로티",
+      "era": "1475~1564",
+      "field": "조각·회화·건축·시",
+      "primary_sources": [
+        "Pietà 1499",
+        "David 1504",
+        "Sistine Chapel ceiling 1508~12",
+        "Rime (시 300여 편)"
+      ],
+      "studied": []
+    },
+    {
+      "id": "shakespeare",
+      "name_ko": "윌리엄 셰익스피어",
+      "era": "1564~1616",
+      "field": "문학·드라마",
+      "primary_sources": [
+        "King Lear 1606",
+        "Hamlet 1600",
+        "The Tempest 1611",
+        "Sonnets 154편 1609"
+      ],
+      "studied": []
+    }
+  ],
+  "extension_pool": {
+    "comment": "22명 외 자연스럽게 추가될 인물·자료. 정독 큐가 비면 여기서도 선택.",
+    "candidates": [
+      {
+        "id": "erasmus",
+        "name_ko": "에라스무스",
+        "era": "1466~1536",
+        "field": "인문주의·신학·번역",
+        "primary_sources": [
+          "Novum Instrumentum 1516",
+          "In Praise of Folly 1511",
+          "Adagia 1500"
+        ]
+      },
+      {
+        "id": "leibniz",
+        "name_ko": "라이프니츠",
+        "era": "1646~1716",
+        "field": "수학·철학·외교",
+        "primary_sources": [
+          "Monadologie 1714",
+          "Theodicy 1710",
+          "Novissima Sinica 1697"
+        ]
+      },
+      {
+        "id": "lewis-cs",
+        "name_ko": "C.S. 루이스",
+        "era": "1898~1963",
+        "field": "변증·문학",
+        "primary_sources": [
+          "Mere Christianity 1952",
+          "Screwtape Letters 1942",
+          "Surprised by Joy 1955"
+        ]
+      },
+      {
+        "id": "barzun",
+        "name_ko": "자크 바전",
+        "era": "1907~2012",
+        "field": "문화비평·역사",
+        "primary_sources": [
+          "From Dawn to Decadence 2000",
+          "The House of Intellect 1959"
+        ]
+      },
+      {
+        "id": "davinci",
+        "name_ko": "레오나르도 다 빈치",
+        "era": "1452~1519",
+        "field": "회화·해부·공학",
+        "primary_sources": [
+          "Vitruvian Man 1490",
+          "Codex Atlanticus",
+          "Notebooks"
+        ]
+      },
+      {
+        "id": "cicero",
+        "name_ko": "키케로",
+        "era": "BC 106~43",
+        "field": "수사학·정치철학·법학",
+        "primary_sources": [
+          "De Officiis 44 BC",
+          "De Re Publica",
+          "Letters to Atticus"
+        ]
+      },
+      {
+        "id": "augustine",
+        "name_ko": "아우구스티누스",
+        "era": "354~430",
+        "field": "교부신학·철학",
+        "primary_sources": [
+          "Confessiones 397~400",
+          "De Civitate Dei 413~426",
+          "De Trinitate"
+        ]
+      },
+      {
+        "id": "aquinas",
+        "name_ko": "토마스 아퀴나스",
+        "era": "1225~1274",
+        "field": "스콜라 신학·철학",
+        "primary_sources": [
+          "Summa Theologiae 1265~73",
+          "Summa Contra Gentiles",
+          "Quaestiones Disputatae"
+        ]
+      }
+    ]
+  },
+  "study_queue": [
+    {
+      "trigger_from": "lrn-2026-04-30-erasmus-mark-1",
+      "next_target": "요한복음 1:1 ἐν ἀρχῇ",
+      "person": "erasmus",
+      "rationale": "마가의 ἀρχή가 요한의 ἐν ἀρχῇ와 만나는 자리"
+    },
+    {
+      "trigger_from": "lrn-2026-04-30-newton-principia-1",
+      "next_target": "Yahuda MS 15 다니엘서 주석",
+      "person": "newton",
+      "rationale": "Pantokrator의 신학적 근거가 어디서 왔는가"
+    }
+  ],
+  "studied_log": [
+    {
+      "date": "2026-04-30",
+      "id": "lrn-2026-04-30-erasmus-mark-1",
+      "topic": "마가복음 ἀρχή"
+    },
+    {
+      "date": "2026-04-30",
+      "id": "lrn-2026-04-30-newton-principia-1",
+      "topic": "Newton General Scholium Pantokrator"
+    },
+    {
+      "date": "2026-05-01",
+      "id": "lrn-2026-05-01-pascal-pensees-277",
+      "topic": "Le cœur a ses raisons — 마음에는 이성이 모르는 자기 이성이 있다"
+    }
+  ]
+}
