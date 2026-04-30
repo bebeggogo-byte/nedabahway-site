@@ -1,0 +1,176 @@
+/* mobile-v1.css — 네다바웨이 모바일 UX 보강 (2026-04-30)
+   기존 v3.css·typography-v4.css는 손대지 않고, 모바일 한정 미디어쿼리만 추가.
+   사용자 영구 지시: "모든 페이지마다 간격이나 여백 등 고객 편리한지 확인하라"
+   적용 원칙
+   - 360~430px 폰: 가로 패딩 28→18px, section 80→52px, 카드/버튼 터치 타깃 강화
+   - 600px 이하 : 본문 행간/폰트 안전 보강 (typography-v4.css 와 충돌 없음)
+   - 769px 이상 데스크톱은 영향 0 */
+
+/* ===== 1) 모바일 일반(≤640px) — 가로 여백·세로 호흡 ===== */
+@media (max-width: 640px) {
+  :root {
+    --w-narrow: 100%;
+  }
+
+  /* 사이트 전체 가로 패딩 통일 */
+  .nav__inner,
+  .masthead,
+  .wrap,
+  .foot,
+  .cta {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .nav__inner { padding-top: 12px; padding-bottom: 12px; gap: 12px; }
+  .nav__logo  { font-size: 1.06rem; }
+
+  /* 햄버거 패널 — 터치 타깃 확대 */
+  .nav__links.is-open {
+    padding: 16px 18px 22px;
+    gap: 4px;
+  }
+  .nav__links.is-open .nav__link {
+    padding: 13px 4px;
+    font-size: 0.98rem;
+    border-bottom: 1px solid var(--c-line);
+  }
+  .nav__links.is-open .nav__link:last-child { border-bottom: none; }
+  .nav__cta {
+    padding: 11px 18px;
+    font-size: 0.92rem;
+  }
+
+  /* 마스트헤드 — 모바일에서 위 60 / 아래 28 */
+  .masthead {
+    padding-top: 56px;
+    padding-bottom: 28px;
+  }
+  .h1 { margin-bottom: 16px; }
+  .lead { font-size: 1rem; line-height: 1.8; }
+
+  /* 본문 wrap — 64 / 28 정도가 모바일 표준 */
+  .wrap { padding-top: 48px; padding-bottom: 48px; }
+  .wrap--narrow { padding-top: 40px; padding-bottom: 40px; }
+
+  /* 섹션 호흡 — 80→52 */
+  .section { padding: 52px 0; }
+  .section__head { margin-bottom: 24px; }
+
+  /* 통계 바 — 모바일 1열·여백 축소 */
+  .stats {
+    gap: 18px;
+    padding: 22px 20px;
+    border-radius: 12px;
+    margin: 18px 0;
+  }
+  .stats__num { font-size: 1.7rem; }
+
+  /* 카드 — 모바일 패딩 22 / 20 */
+  .card { padding: 22px 20px; border-radius: 12px; }
+  .card__title { font-size: 1.12rem; }
+  .card__desc { font-size: 0.92rem; line-height: 1.7; }
+
+  /* 카드 그리드 — 모바일 gap 축소 */
+  .grid { gap: 16px; }
+
+  /* 버튼·액션 — 가로 폭 확보 */
+  .btn {
+    padding: 13px 22px;
+    font-size: 0.95rem;
+    min-height: 44px; /* iOS HIG 권장 터치 타깃 */
+  }
+  .actions { gap: 10px; margin-top: 22px; }
+  .actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  /* CTA 블록 — 80 / 28 → 56 / 18 */
+  .cta { padding-top: 56px; padding-bottom: 56px; }
+  .cta__title { margin-bottom: 14px; }
+  .cta__sub { font-size: 0.96rem; margin-bottom: 22px; }
+
+  /* 푸터 — 50→34 / 가로 18 */
+  .foot { padding-top: 34px; padding-bottom: 30px; }
+  .foot__inner { gap: 22px; }
+  .foot__col h4 { margin-bottom: 8px; }
+  .foot__col a { padding: 6px 0; font-size: 0.92rem; min-height: 32px; line-height: 1.4; }
+  .foot__copy {
+    margin-top: 22px;
+    padding-top: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 0.76rem;
+  }
+
+  /* 콜아웃 — 모바일 좁은 공간 보정 */
+  .callout { padding: 18px 18px; margin: 22px 0; border-radius: 10px; }
+
+  /* 폼 — 모바일에서 입력 영역 확대(기본 12→13, 글자 16px로 iOS 자동 확대 방지) */
+  .form { gap: 16px; margin: 24px 0; }
+  .form__input,
+  .form__textarea,
+  .form__select {
+    padding: 13px 14px;
+    font-size: 1rem; /* 16px 미만이면 iOS Safari가 자동 확대 — 16px 강제 */
+    border-radius: 8px;
+  }
+  .form__textarea { min-height: 120px; }
+
+  /* 블로그 entry 리스트 호흡 */
+  .entry { padding: 18px 0; }
+  .entry__title { font-size: 1.12rem; }
+
+  /* 로고 그리드 — 모바일 gap 축소 */
+  .logos { gap: 12px; margin-top: 22px; }
+  .logo { padding: 18px 14px; font-size: 0.84rem; }
+
+  /* 본문 prose — 헤딩 사이 여백 모바일 보정 */
+  .prose h2 { margin: 36px 0 14px; font-size: 1.35rem; }
+  .prose h3 { margin: 24px 0 10px; font-size: 1.05rem; }
+  .prose blockquote { padding-left: 14px; margin: 18px 0; }
+}
+
+/* ===== 2) 작은 폰(≤390px) — 추가 미세 조정 ===== */
+@media (max-width: 390px) {
+  .nav__inner,
+  .masthead,
+  .wrap,
+  .foot,
+  .cta {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .stats { padding: 20px 16px; }
+  .card  { padding: 20px 16px; }
+  .actions { flex-direction: column; }
+  .actions .btn { width: 100%; }
+}
+
+/* ===== 3) 가로 스크롤 차단 (모바일 안전판) ===== */
+@media (max-width: 640px) {
+  html, body { max-width: 100%; overflow-x: hidden; }
+  img, video, iframe, table, pre { max-width: 100%; }
+}
+
+/* ===== 4) 터치 인터랙션 명료화 ===== */
+@media (hover: none) and (pointer: coarse) {
+  .card:hover { transform: none; } /* 모바일 hover lift 제거(잔상 방지) */
+  .btn, .nav__link, .nav__cta, .card, .logo, .entry {
+    -webkit-tap-highlight-color: rgba(194, 65, 12, 0.12);
+  }
+}
+
+/* ===== 5) 다크모드 대응 — 시스템 환경 따름(가독성 최소 보정) ===== */
+@media (prefers-color-scheme: dark) and (max-width: 640px) {
+  /* 사이트 자체는 라이트톤 고정이라 큰 변경 없음. 단 모바일 OLED 눈부심 완화 */
+  body { -webkit-text-size-adjust: 100%; }
+}
+
+/* ===== 6) 모션 줄이기 환경 ===== */
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
