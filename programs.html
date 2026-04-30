@@ -566,8 +566,10 @@ a:hover{text-decoration:underline}
   <link rel="stylesheet" href="/assets/global-nav.css">
   <link rel="stylesheet" href="/assets/warm-tone-v1.css">
 <link rel="stylesheet" href="/assets/cobalt-overrides.css">
+<link rel="stylesheet" href="/assets/snap-deck-v1.css">
+<script defer src="/assets/snap-deck-v1.js"></script>
 </head>
-<body>
+<body class="snap-deck-on">
 
 <nav class="gnav" role="navigation" aria-label="주요 메뉴">
   <div class="gnav__inner">
@@ -684,8 +686,9 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- Hero -->
-<section class="section" id="s-hero">
-<div class="inner fade-up">
+<main class="deck">
+<section class="deck-page section" id="s-hero" data-deck-label="인트로">
+<div class="inner fade-up deck-page__inner">
   <div class="kicker">for organizations · b2b education design</div>
   <h1 class="hero-title">기관에는 <b>표준 제안서</b>가 아니라,<br>상황에 맞춘 <b>설계</b>가 필요합니다.</h1>
   <p class="hero-sub">
@@ -743,8 +746,8 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- How We Design - THE CORE MESSAGE -->
-<section class="section" id="s-design">
-<div class="inner fade-up">
+<section class="deck-page section" id="s-design" data-deck-label="설계 흐름">
+<div class="inner fade-up deck-page__inner">
   <div class="kicker">How We Design</div>
   <h2 class="section-title">네다바웨이의 교육은<br>이렇게 설계됩니다.</h2>
   <p class="section-desc">10년간 수백 번의 현장에서 배운 것은, <b>"완성된 프로그램"을 파는 것이 아니라</b> 고객의 상황·사람·목표에 맞게 <b>핵심 요소를 분해하고 재조합</b>하는 일이었습니다.</p>
@@ -782,8 +785,8 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- Module Library -->
-<section class="section" id="s-modules">
-<div class="inner fade-up">
+<section class="deck-page section" id="s-modules" data-deck-label="모듈">
+<div class="inner fade-up deck-page__inner">
   <div class="kicker">Module Library</div>
   <h2 class="section-title">배합에 쓰이는<br>7가지 핵심 모듈</h2>
   <p class="section-desc">각 모듈은 단일 교육으로도, 조합 교육으로도 운영됩니다. 아래는 현재 준비된 모듈 라이브러리입니다.</p>
@@ -863,8 +866,8 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- Recipe - 학년별 배합 9가지 (컴팩트 그리드, A4 2장) -->
-<section class="section" id="s-recipe">
-<div class="inner fade-up">
+<section class="deck-page section" id="s-recipe" data-deck-label="시나리오">
+<div class="inner fade-up deck-page__inner">
   <div class="kicker">Design Recipes</div>
   <h2 class="section-title">학년별로<br>이렇게 배합합니다.</h2>
   <p class="section-desc">같은 모듈이라도 학년·발달 단계에 따라 다른 무게로 담깁니다. 초등 5·6학년부터 대학생·취준생까지, 현장에서 검증한 배합 9가지.</p>
@@ -946,8 +949,8 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- Who We Teach -->
-<section class="section" id="s-audience">
-<div class="inner fade-up">
+<section class="deck-page section" id="s-audience" data-deck-label="대상">
+<div class="inner fade-up deck-page__inner">
   <div class="kicker">Who We Teach</div>
   <h2 class="section-title">이런 현장에서<br>배합해 왔습니다.</h2>
   <p class="section-desc">대상이 다르면 배합도 다릅니다. 그동안 만나온 현장의 유형입니다.</p>
@@ -965,8 +968,8 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- Approach -->
-<section class="section" id="s-approach">
-<div class="inner fade-up">
+<section class="deck-page section" id="s-approach" data-deck-label="접근">
+<div class="inner fade-up deck-page__inner">
   <div class="kicker">Approach</div>
   <h2 class="section-title">배합의 기준이 되는<br>7가지 원칙.</h2>
   <div class="feat-grid">
@@ -1010,8 +1013,8 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- IDEN Cross-link -->
-<section class="section section--short" id="s-iden-link">
-<div class="inner fade-up">
+<section class="deck-page section section--short" id="s-iden-link" data-deck-label="IDEN">
+<div class="inner fade-up deck-page__inner">
   <a class="iden-banner" href="iden.html">
     <span class="iden-banner__icon" aria-hidden="true" style="font-family:var(--ff-serif,Georgia,serif);font-weight:800;font-size:1.4rem;color:var(--c-acc)">IDEN</span>
     <div class="iden-banner__body">
@@ -1025,7 +1028,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- Next Reading -->
-<section class="section section--short" id="s-next">
+<section class="deck-page section section--short" id="s-next" data-deck-label="다음">
 <style>
 .next-grid{display:grid;gap:14px;grid-template-columns:1fr;margin-top:32px}
 @media(min-width:760px){.next-grid{grid-template-columns:1fr 1fr 1fr}}
@@ -1036,7 +1039,7 @@ a:hover{text-decoration:underline}
 .next-card__desc{font-size:.82rem;color:var(--c-mute);line-height:1.65}
 .next-card__arrow{color:var(--c-green);font-size:.9rem;font-weight:700;margin-top:12px;display:inline-block}
 </style>
-<div class="inner fade-up">
+<div class="inner fade-up deck-page__inner">
   <div class="kicker" style="color:var(--c-green)">Next Reading</div>
   <h2 class="section-title" style="margin-bottom:20px">현장 언어로 쓴<br>사례·가이드·도구.</h2>
   <p class="section-desc" style="color:var(--c-mute);max-width:520px">교육 설계의 핵심 3축 — 관점 노트 통찰, 실제 케이스, 바로 쓰는 워크시트.</p>
@@ -1065,8 +1068,8 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- Contact -->
-<section class="section section--short" id="s-contact">
-<div class="inner fade-up" style="text-align:center">
+<section class="deck-page section section--short" id="s-contact" data-deck-label="의뢰">
+<div class="inner fade-up deck-page__inner" style="text-align:center">
   <div class="kicker">Let's Talk</div>
   <h2 class="section-title">당신의 상황을<br>먼저 들려주십시오.</h2>
   <p class="section-desc" style="margin:0 auto">표준 커리큘럼이 아닌, 현장에 맞춘 설계.<br>짧은 대화 한 번으로 시작합니다.</p>
@@ -1079,7 +1082,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- ======== 강의 보조: 사례 ======== -->
-<section id="cases" class="section" style="padding:64px 24px;background:#f7f3ec;border-top:1px solid var(--c-dim)">
+<section id="cases" class="deck-page section" style="padding:64px 24px;background:#f7f3ec;border-top:1px solid var(--c-dim)" data-deck-label="강의 사례">
   <div class="inner" style="max-width:1080px;margin:0 auto">
     <div style="text-align:center;margin-bottom:36px">
       <div style="font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:#3a3a3a;margin-bottom:10px">Cases · 강의 사례</div>
@@ -1101,7 +1104,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- ======== 강의 보조: 자료실 ======== -->
-<section id="resources" class="section" style="padding:64px 24px;border-top:1px solid var(--c-dim)">
+<section id="resources" class="deck-page section" style="padding:64px 24px;border-top:1px solid var(--c-dim)" data-deck-label="자료실">
   <div class="inner" style="max-width:1080px;margin:0 auto">
     <div style="text-align:center;margin-bottom:36px">
       <div style="font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:#3a3a3a;margin-bottom:10px">Resources · 강의 자료실</div>
@@ -1835,6 +1838,8 @@ document.addEventListener('keydown', e=>{
 
 
 
+
+</main>
 
 <footer class="foot foot--mini">
   <style>
