@@ -252,8 +252,8 @@ def render_index_page() -> str:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>인물 22명 — 4시대×4영역 거인 매트릭스 · 네다바웨이 학습</title>
-<meta name="description" content="에라스무스·뉴턴·바흐·반 고흐·라흐마니노프 등 인류사 거인 22명을 4시대×4영역 매트릭스에 둠. 기독교세계관 정직 라벨과 1차 출처 직접 연결.">
+<title>2026 인물들 — 한 해의 학습 동반자 22명 · 네다바웨이 학습</title>
+<meta name="description" content="2026년 한 해 동안 함께 학습하는 인류사 거인 22명. 5거인(에라스무스·라이프니츠·바전·Lewis·다 빈치) + 뉴턴·바흐·반 고흐·라흐마니노프 외 17명. 4시대 × 5영역 매트릭스, 기독교세계관 정직 라벨, 1차 출처 직접 연결.">
 <link rel="canonical" href="https://www.nedabah.org/learning/persons.html">
 <style>{INDEX_CSS}</style>
 </head>
