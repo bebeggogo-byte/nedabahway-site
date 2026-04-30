@@ -1,0 +1,149 @@
+/* compact-v1.css — 메인 페이지 수직 스크롤 압박 해소 (v1, 2026-04-30)
+   사용자 영구 지시: '스크롤 압박이 너무 심하다. 구조 바꿔라.'
+
+   전략:
+   - 모든 큰 padding (64px·48px) → 32px 이하
+   - margin-bottom 60~80px → 32~40px
+   - 매니페스토 세로 누적 → 데스크톱 3컬럼 그리드
+   - IDEN core hero(보라 큰 카드) → 슬림 1줄 kicker
+   - 폼 3입력 → 데스크톱 3컬럼 한 행
+   - AI 코치·SBM 큰 padding 축소
+*/
+
+/* === 1. 전역 섹션 padding 축소 === */
+.home-hero{ padding: 32px 24px 16px !important }
+.home-hero .lead{ margin-bottom: 18px !important }
+.home-hero__stats{ padding-top: 14px !important }
+.home-hero__cta{ margin-top: 16px !important; padding-top: 14px !important }
+
+.home-bento{ padding: 8px 24px 24px !important }
+.home-bento h2{ margin-bottom: 10px !important }
+
+.iden-core{ margin: 16px auto 32px !important }
+.iden-core__hero{ display:none !important }  /* 보라 큰 hero 카드 자체 숨김 — 폼 안에 슬림 kicker로 대체 */
+
+.iden-form{ padding: 22px 24px !important; border-radius: 12px !important }
+
+/* === 2. 매니페스토 3행 → 데스크톱 3컬럼 가로 그리드 === */
+.masthead{ padding: 8px 24px 16px !important; max-width: 1080px; margin: 0 auto }
+.masthead > .kicker{ margin-bottom: 4px !important }
+.masthead > h2{ margin-bottom: 14px !important }
+.manifesto{
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 12px !important;
+  max-width: 100% !important;
+  margin: 12px 0 24px !important;
+}
+.manifesto__row{
+  background: #fdfaf3 !important;
+  border: 1px solid #d8cdb8 !important;
+  border-radius: 10px !important;
+  padding: 14px 16px !important;
+  grid-template-columns: 24px 1fr !important;
+  gap: 10px !important;
+  align-items: flex-start;
+}
+.manifesto__num{
+  width: 22px !important; height: 22px !important;
+  font-size: 11px !important;
+  margin-top: 1px !important;
+}
+.manifesto__title{
+  font-size: 14px !important;
+  margin-bottom: 4px !important;
+}
+.manifesto__body{
+  font-size: 12.5px !important;
+  line-height: 1.6 !important;
+}
+.manifesto__row--cta{
+  grid-column: 1 / -1 !important;
+  background: #efe7d6 !important;
+  margin-top: 0 !important;
+  padding: 12px 16px !important;
+}
+@media(max-width: 760px){
+  .manifesto{ grid-template-columns: 1fr !important }
+  .manifesto__row--cta{ grid-column: auto !important }
+}
+
+/* === 3. IDEN 폼 슬림 kicker 1줄로 hero 대체 === */
+.iden-form::before{
+  content: "⚡ 핵심 활동 · 5분이면 됩니다 · 3개 칸으로 진로 좌표 한 줄";
+  display: block;
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: #a4541a; background: #efe7d6; border: 1px solid #d8cdb8;
+  padding: 6px 12px; border-radius: 4px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* === 4. IDEN 폼 3입력 한 행 그리드 (데스크톱) === */
+@media(min-width: 880px){
+  .iden-form__step{
+    display: grid !important;
+    grid-template-columns: 24px 1fr !important;
+    gap: 8px !important;
+    margin-bottom: 12px !important;
+  }
+  .iden-form__num{
+    width: 22px !important; height: 22px !important;
+    font-size: 11px !important;
+  }
+  .iden-form__hint{ font-size: 11.5px !important; margin-bottom: 4px !important }
+  .iden-form__label{ font-size: 13px !important; margin-bottom: 2px !important }
+  .iden-form__input{ padding: 10px 12px !important; font-size: 14px !important }
+}
+
+/* === 5. 도메인 칩 라벨 1줄 압축 === */
+.iden-domains{ padding-bottom: 12px !important; margin-bottom: 16px !important }
+.iden-domains__label{ margin-bottom: 6px !important; font-size: 11.5px !important }
+.iden-domain{ padding: 6px 12px !important; font-size: 12.5px !important }
+
+/* === 6. 진행 막대 콤팩트 === */
+.iden-progress{ margin: 4px 0 14px !important }
+
+/* === 7. 결과 카드 padding 축소 + 5S 박스 콤팩트 === */
+.iden-result__main{ padding: 22px 24px 18px !important }
+.iden-result__detail{ padding: 18px 24px !important }
+.iden-result__step{ padding: 8px 4px !important }
+.iden-result__step__line{ font-size: 10.5px !important; min-height: 28px !important }
+.iden-result__quote{ font-size: 20px !important; padding: 10px 14px !important }
+.iden-result__sig{ margin-top: 10px !important }
+.iden-result__copy-row{ margin-top: 12px !important }
+
+/* === 8. 다음 동선 카드 콤팩트 === */
+.iden-next{ margin-top: 14px !important; gap: 10px !important }
+.iden-next__card{ padding: 14px 16px !important }
+
+/* === 9. AI 코치·SBM·Recent Flow padding 축소 === */
+.ai-coaches{ margin: 0 auto 32px !important; padding: 0 24px !important }
+.ai-coaches__head{ margin-bottom: 18px !important }
+.ai-coaches__title{ font-size: 22px !important; margin-bottom: 6px !important }
+.ai-coaches__grid{ gap: 14px !important; margin-top: 16px !important }
+.ai-coach{ padding: 20px 22px !important }
+.ai-coach__icon{ font-size: 26px !important; margin-bottom: 8px !important }
+.ai-coach__name{ font-size: 17px !important; margin-bottom: 6px !important }
+.ai-coach__desc{ margin-bottom: 12px !important }
+.ai-coach__steps{ padding: 10px 12px !important; margin-bottom: 12px !important }
+
+.recent-flow{ padding: 32px 24px 24px !important }
+.rf-grid{ gap: 24px !important }
+
+.sbm-intro{ padding: 32px 20px !important }
+.sbm-intro__inner{ gap: 18px !important }
+.sbm-intro__title{ font-size: 1.5rem !important; margin-bottom: 8px !important }
+.sbm-intro__lead{ margin-bottom: 12px !important; font-size: .96rem !important }
+.sbm-intro__bullets{ margin-bottom: 14px !important; gap: 10px !important }
+.sbm-intro__bullets li{ padding: 12px 14px !important; font-size: .88rem !important }
+
+/* === 10. footer 사이 여백 축소 === */
+.foot--mini{ padding: 14px 20px !important }
+
+/* === 11. Hero h1 모바일 보강 === */
+@media(max-width: 680px){
+  .home-hero h1{ font-size: 26px !important; line-height: 1.2 !important }
+  .home-hero .lead{ font-size: 14.5px !important }
+  .home-hero__stats{ gap: 14px !important; font-size: 12px !important }
+  .home-hero__stats strong{ font-size: 18px !important }
+}
