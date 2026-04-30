@@ -1,0 +1,61 @@
+/* global-fonts.css — 사이트 전체 폰트 컨셉 통일 (v1, 2026-04-30)
+   사용자 영구 지시: "글씨체 컨셉도 통일하라"
+
+   3-tier 시스템:
+   --ff       (sans, 본문)   : Pretendard Variable → Pretendard → Apple SD Gothic Neo → system
+   --ff-serif (serif, 제목·인용): Noto Serif KR → Georgia → serif
+   --ff-mono  (mono, 메타·코드): ui-monospace → SF Mono → JetBrains Mono → monospace
+
+   기존 27종 흩어진 font-family 선언은 모두 이 변수 체계로 수렴.
+*/
+
+/* ① 폰트 로드 — Pretendard CDN, Noto Serif KR, JetBrains Mono */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* ② 변수 박기 */
+:root{
+  --ff: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', 'Malgun Gothic', sans-serif;
+  --ff-serif: 'Noto Serif KR', 'Apple SD Gothic Neo', Georgia, serif;
+  --ff-mono: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+
+/* ③ 글로벌 적용 — 본문 = Pretendard sans */
+html, body{
+  font-family: var(--ff);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ④ 제목·인용 = Noto Serif KR */
+h1, h2, h3, h4,
+.h1, .h2, .h3,
+blockquote,
+.quote, .quote-serif,
+.iden-result__quote,
+.book-card__title,
+.chapter-card__title{
+  font-family: var(--ff-serif);
+  letter-spacing: -.01em;
+}
+
+/* ⑤ 메타·라벨·코드 = mono */
+.kicker,
+.foot--mini__build,
+code, pre, kbd, samp,
+.meta--mono{
+  font-family: var(--ff-mono);
+}
+
+/* ⑥ 폼·버튼은 본문 폰트 강제 (브라우저 기본 폰트 차단) */
+button, input, select, textarea{
+  font-family: var(--ff);
+}
+
+/* ⑦ 한국어 가독성 최적화 (typography-v4 보강) */
+body{
+  font-feature-settings: "tnum","kern","ss01";
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}

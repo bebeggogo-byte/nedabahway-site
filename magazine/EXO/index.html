@@ -28,23 +28,30 @@
   .toc-card__essence { font-size: 0.8rem; color: var(--c-mute); margin-top: 4px; line-height: 1.5; text-wrap: pretty; }
   .toc-card__status { margin-top: auto; font-size: 0.7rem; color: var(--c-copper); font-weight: 700; letter-spacing: 0.06em; }
 </style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav__inner">
-    <a href="/" class="nav__logo">네다바웨이</a>
-    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
-    <div class="nav__links">
-      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
-      <a href="/about.html" class="nav__link">소개</a>
-      <a href="/programs.html" class="nav__link">강의</a>
-      <a href="/ai.html" class="nav__link">AI 작업실</a>
-      <a href="/magazine.html" class="nav__link nav__link--active">SBM</a>
-      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
-    </div>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/magazine.html" class="gnav__link">성경관찰</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
   </div>
 </nav>
+
+
+
+
 
 <header class="book-mast">
   <div class="crumb"><a href="/magazine.html">Observatory</a> · 오경 · 출애굽기</div>
