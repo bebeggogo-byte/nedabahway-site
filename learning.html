@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<link rel="stylesheet" href="/assets/cobalt-tokens-v1.css">
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>학습노트 — 인간의 지혜·지식 학습은 역사적 인물들을 만나는 결 (2026 22명) · 네다바웨이</title>
@@ -199,19 +199,11 @@
     .px-hover{display:none}
   }
 </style>
-<link rel="stylesheet" href="/assets/v3.css">
-
-<link rel="stylesheet" href="/assets/nav-right.css">
 
 
-<link rel="stylesheet" href="/assets/deck-toggle.css">
 
-<link rel="stylesheet" href="/assets/back-to-top.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
 
-<link rel="stylesheet" href="/assets/mobile-v1.css">
-  <link rel="stylesheet" href="/assets/global-fonts.css">
-  <link rel="stylesheet" href="/assets/global-nav.css">
+
 <meta property="og:image" content="https://www.nedabah.org/assets/og-default.svg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -228,11 +220,12 @@
   "url": "https://www.nedabah.org/learning.html"
 }
 </script>
-<link rel="stylesheet" href="/assets/a11y-fixes-v1.css">
 <script src="/assets/404-helper-v1.js" defer></script>
 <script src="/assets/a11y-runtime-v1.js" defer></script>
+<!-- bundled: cobalt-tokens-v1.css a11y-fixes-v1.css -->
 </head>
 <body>
+<main id="main" tabindex="-1">
 
 <nav class="gnav" role="navigation" aria-label="주요 메뉴">
   <div class="gnav__inner">
@@ -409,7 +402,7 @@ function renderPersonsExtended(){
     return `
       <a class="px-card" href="/learning/persons/${p.id}.html">
         <div class="px-imgwrap">
-          <img class="px-photo" src="/learning/assets/persons/${p.id}.jpg" alt="${p.name_ko}" loading="lazy" onerror="this.style.display='none'">
+          <img class="px-photo" src="/learning/assets/persons/${p.id}.jpg" alt="${p.name_ko}" loading="lazy" onerror="this.style.display='none'" width="40" height="40">
           <div class="px-hover">
             <div class="px-h-name">${p.name_ko}</div>
             <div class="px-h-lived">${p.lived}</div>
@@ -505,7 +498,7 @@ function renderGiants(){
     return `
     <div class="bento__cell" title="${m.name} — 클릭하여 생애 보기" onclick="showGiant('${id}')">
       <div class="bento__imgwrap">
-        <img class="bento__img" src="${m.img}" alt="${m.name}" loading="lazy">
+        <img class="bento__img" src="${m.img}" alt="${m.name}" loading="lazy" width="40" height="40">
         <div class="bento__hover">
           <div class="bento__hover-title">${m.name}</div>
           <div class="bento__hover-line">${hoverLine}</div>
@@ -716,5 +709,6 @@ loadAll().catch(err => {
 <script src="/assets/back-to-top.js" defer></script>
 
 <script src="/assets/deck-toggle.js" defer></script>
+</main>
 </body>
 </html>
