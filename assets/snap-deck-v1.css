@@ -1,0 +1,123 @@
+/* snap-deck-v1.css — 스크롤 스냅 페이지 데크 + 우측 도트 네비
+   2026-04-30 신설. about.html 등 단일 길이 페이지에 페이지 넘기듯 스크롤 적용.
+   적용: <body class="snap-deck-on">  +  <main class="deck"> <section class="deck-page">…</section> … </main>
+*/
+
+/* 데크 활성 시 body는 스냅 컨테이너 */
+body.snap-deck-on{
+  height:100vh;
+  height:100dvh;
+  overflow-y:auto;
+  scroll-snap-type:y mandatory;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-y:contain;
+}
+
+/* 데크 안의 nav는 sticky, masthead 등 일반 영역에서는 평문처럼 */
+body.snap-deck-on .gnav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+}
+
+/* 데크: 안의 .deck-page 요소가 한 화면 단위 */
+.deck-page{
+  min-height:100vh;
+  min-height:100dvh;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:96px 24px 56px;  /* 상단 nav 자리 확보 */
+  box-sizing:border-box;
+}
+
+/* 데크 페이지 안 컨텐츠 폭 제한 */
+.deck-page__inner{
+  width:100%;
+  max-width:980px;
+  margin:0 auto;
+}
+
+/* 데크 페이지 안 prose 자리 가독성 */
+.deck-page .prose{
+  max-width:760px;
+  margin:0 auto;
+}
+.deck-page h2{
+  font-family:'Noto Serif KR',serif;
+  font-weight:700;
+  margin-top:0;
+}
+
+/* 우측 도트 네비 */
+.deck-dots{
+  position:fixed;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:60;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  padding:14px 10px;
+  border-radius:24px;
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 2px 12px rgba(0,0,0,.05);
+}
+.deck-dots__btn{
+  width:11px;height:11px;
+  border-radius:50%;
+  border:1.5px solid #8a7a64;
+  background:transparent;
+  cursor:pointer;
+  padding:0;
+  transition:.18s;
+  position:relative;
+}
+.deck-dots__btn:hover{
+  background:#c4a87a;
+  border-color:#a4541a;
+}
+.deck-dots__btn.is-active{
+  background:#a4541a;
+  border-color:#a4541a;
+  transform:scale(1.25);
+}
+.deck-dots__btn::after{
+  content:attr(data-label);
+  position:absolute;
+  right:22px;top:50%;
+  transform:translateY(-50%) translateX(8px);
+  background:#1f1d18;color:#fff;
+  padding:4px 10px;border-radius:4px;
+  font-size:11px;letter-spacing:.04em;
+  white-space:nowrap;
+  opacity:0;pointer-events:none;
+  transition:.18s;
+}
+.deck-dots__btn:hover::after,
+.deck-dots__btn:focus::after{
+  opacity:1;transform:translateY(-50%) translateX(0);
+}
+
+/* 모바일에서는 도트 살짝 작게 */
+@media (max-width:680px){
+  .deck-dots{right:10px;gap:10px;padding:10px 7px}
+  .deck-dots__btn{width:9px;height:9px}
+  .deck-page{padding:88px 18px 40px}
+}
+
+/* footer는 스냅 영역에 포함하지 않음 — 자연 흐름으로 마지막 페이지에 이어 붙음 */
+body.snap-deck-on .foot--mini{
+  scroll-snap-align:end;
+}
+
+/* 사용자가 모션 줄이기 선호 시 스냅 해제 */
+@media (prefers-reduced-motion: reduce){
+  body.snap-deck-on{scroll-snap-type:none;scroll-behavior:auto}
+  .deck-page{scroll-snap-align:none}
+}
