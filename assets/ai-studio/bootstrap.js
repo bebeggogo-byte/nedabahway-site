@@ -17,8 +17,10 @@
   const BASE = '/assets/ai-studio/';
   const ASSETS = [
     {tag:'link', rel:'stylesheet', href:BASE+'v2.css'},
+    {tag:'link', rel:'stylesheet', href:BASE+'tabs.css'},
     {tag:'script', src:BASE+'v2.js', defer:true},
-    {tag:'script', src:BASE+'block6.js', defer:true}
+    {tag:'script', src:BASE+'block6.js', defer:true},
+    {tag:'script', src:BASE+'tabs.js', defer:true}
   ];
 
   // 1) 자산 주입 (중복 차단)
@@ -73,8 +75,10 @@
   function selfCheck(){
     const checks = {
       v2css: !!document.querySelector('link[href*="ai-studio/v2.css"]'),
+      tabsCss: !!document.querySelector('link[href*="ai-studio/tabs.css"]'),
       v2js: !!document.querySelector('script[src*="ai-studio/v2.js"]'),
       block6js: !!document.querySelector('script[src*="ai-studio/block6.js"]'),
+      tabsJs: !!document.querySelector('script[src*="ai-studio/tabs.js"]'),
       ogImage: !!document.querySelector('meta[property="og:image"]'),
       gnav: !!document.querySelector('nav.gnav'),
       duplicateNav: !!document.querySelector('nav.nav') && !!document.querySelector('nav.gnav')
