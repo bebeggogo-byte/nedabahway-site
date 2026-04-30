@@ -269,9 +269,14 @@
     .ai-coach__cta-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
     .ai-coach__cta{display:inline-flex;align-items:center;gap:6px;padding:11px 18px;background:#0a0a0a;color:#fff;
       border-radius:8px;font-size:13.5px;font-weight:700;text-decoration:none;transition:all .15s ease;flex:1;justify-content:center;min-width:120px}
+    .ai-coach__cta{border:none;cursor:pointer;font-family:inherit}
     .ai-coach__cta:hover{background:#4f46e5}
-    .ai-coach__cta--ghost{background:#fff;color:#0a0a0a;border:1px solid #e5e7eb;flex:0 0 auto;min-width:90px}
-    .ai-coach__cta--ghost:hover{border-color:#4f46e5;color:#4f46e5;background:#fff}
+    .ai-coach__cta:active{transform:scale(.98)}
+    .ai-coach__cta.is-copied{background:#10803D !important;animation:coachPulse .35s ease}
+    .ai-coach__cta-ico{font-size:15px;line-height:1}
+    .ai-coach__cta-txt{font-weight:700}
+    .ai-coach__hint{font-size:11.5px;color:#888;margin-top:10px;line-height:1.55;text-align:center;letter-spacing:-.005em}
+    @keyframes coachPulse{0%{transform:scale(1)}50%{transform:scale(1.04)}100%{transform:scale(1)}}
     .ai-coaches__bridge{text-align:center;font-size:13px;color:#666;margin-top:20px;padding:14px 18px;
       background:#fef3c7;border-left:3px solid #b45309;border-radius:0 8px 8px 0;line-height:1.7}
     .ai-coaches__bridge b{color:#0a0a0a}
@@ -302,9 +307,12 @@
         <div class="ai-coach__step"><b>3.</b><span>5~7개 질문에 답하면 자기소개서 초안 완성</span></div>
       </div>
       <div class="ai-coach__cta-row">
-        <a href="https://chatgpt.com/g/g-685e96e98aa48191b7b4c5e9d041e1d6-nedaba-jagisogaeseokoci" target="_blank" rel="noopener" class="ai-coach__cta">ChatGPT에서 열기 →</a>
-        <a href="https://www.gpters.org/" target="_blank" rel="noopener" class="ai-coach__cta ai-coach__cta--ghost">지피터스</a>
+        <button type="button" class="ai-coach__cta" onclick="copyCoachKeyword('네다바_자기소개서코치', this)" aria-label="네다바_자기소개서코치 검색어 복사">
+          <span class="ai-coach__cta-ico" aria-hidden="true">📋</span>
+          <span class="ai-coach__cta-txt">검색어 복사 · 네다바_자기소개서코치</span>
+        </button>
       </div>
+      <div class="ai-coach__hint">복사 후 ChatGPT 또는 지피터스(gpters)에서 그대로 검색하세요.</div>
     </article>
 
     <article class="ai-coach">
@@ -318,11 +326,41 @@
         <div class="ai-coach__step"><b>3.</b><span>답변별 1줄 피드백 + 다시 쓰기</span></div>
       </div>
       <div class="ai-coach__cta-row">
-        <a href="https://chatgpt.com/g/g-685e98c2c0508191a08c3c47acebf4c0-nedaba_myeonjeobcoci" target="_blank" rel="noopener" class="ai-coach__cta">ChatGPT에서 열기 →</a>
-        <a href="https://www.gpters.org/" target="_blank" rel="noopener" class="ai-coach__cta ai-coach__cta--ghost">지피터스</a>
+        <button type="button" class="ai-coach__cta" onclick="copyCoachKeyword('네다바_면접코치', this)" aria-label="네다바_면접코치 검색어 복사">
+          <span class="ai-coach__cta-ico" aria-hidden="true">📋</span>
+          <span class="ai-coach__cta-txt">검색어 복사 · 네다바_면접코치</span>
+        </button>
       </div>
+      <div class="ai-coach__hint">복사 후 ChatGPT 또는 지피터스(gpters)에서 그대로 검색하세요.</div>
     </article>
   </div>
+
+  <script>
+  function copyCoachKeyword(keyword, btn){
+    const original = btn.querySelector('.ai-coach__cta-txt').textContent;
+    const ico = btn.querySelector('.ai-coach__cta-ico');
+    const txt = btn.querySelector('.ai-coach__cta-txt');
+    const done = ()=>{
+      ico.textContent = '✓';
+      txt.textContent = '복사됨 — ' + keyword;
+      btn.classList.add('is-copied');
+      setTimeout(()=>{ ico.textContent = '📋'; txt.textContent = original; btn.classList.remove('is-copied'); }, 1800);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(keyword).then(done).catch(()=>fallbackCopyCoach(keyword, done));
+    } else {
+      fallbackCopyCoach(keyword, done);
+    }
+  }
+  function fallbackCopyCoach(text, done){
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); done(); }
+    catch(e){ alert('복사 실패. 수동 복사: ' + text); }
+    document.body.removeChild(ta);
+  }
+  </script>
 
   <div class="ai-coaches__bridge">
     💡 <b>한 흐름 사용법</b> — 위 좌표 도출기 → <b>자기소개서코치</b>로 자기 이해 정리 → <b>면접코치</b>로 답변 다듬기. 세 단계가 한 좌표로 묶이는 자리에 자기소개의 결이 갱신됩니다.
