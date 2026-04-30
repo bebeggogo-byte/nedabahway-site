@@ -59,7 +59,7 @@ h1{font-size:34px;letter-spacing:-.02em;margin:0 0 8px;line-height:1.25}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
 .tag{font-size:12px;padding:4px 12px;border-radius:999px;background:transparent;border:1px solid var(--line);color:#374151}
 .tag.cw{color:inherit;background:transparent;border-width:1.5px}
-.hero-photo{width:100%;max-height:420px;object-fit:cover;object-position:center top;border-radius:14px;border:1px solid var(--line);margin-bottom:24px;display:block}
+.hero-photo{width:100%;max-height:480px;object-fit:contain;background:#f3eee2;border-radius:14px;border:1px solid var(--line);margin-bottom:24px;display:block}
 section{background:transparent;border:1px solid var(--line);border-radius:14px;padding:24px;margin-bottom:18px}
 section h2{font-size:18px;margin:0 0 14px;letter-spacing:-.01em}
 section p{margin:0 0 12px;font-size:15px}
@@ -97,15 +97,23 @@ h1{font-size:36px;letter-spacing:-.02em;margin:0 0 8px}
 .filters button{font-size:13px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:#374151;cursor:pointer}
 .filters button.active{background:transparent;color:var(--accent);border-color:var(--accent);border-width:1.5px}
 .matrix{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.card{background:transparent;border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0;transition:transform .15s,border-color .15s}
-.card .photo{width:100%;height:200px;object-fit:cover;object-position:center top;display:block;background:#f3eee2}
-.card .body{padding:16px;display:flex;flex-direction:column;gap:8px;flex-grow:1}
+.card{background:transparent;border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0;transition:transform .25s,border-color .25s;position:relative}
+.card .imgwrap{aspect-ratio:1/1;background:#f3eee2;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.card .photo{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:grayscale(.15) contrast(1.04);opacity:.92;transition:opacity .3s ease,filter .3s ease,transform .3s ease;display:block}
+.card:hover .photo{opacity:.35;filter:grayscale(.3) contrast(.95) blur(.5px);transform:scale(1.02)}
+.card .hover{position:absolute;left:0;right:0;top:0;bottom:auto;height:0;background:linear-gradient(180deg,rgba(250,250,247,.94) 0%,rgba(250,250,247,.98) 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px 16px;text-align:center;opacity:0;transition:opacity .3s ease;pointer-events:none}
+.card:hover .hover{opacity:1;height:100%;bottom:0}
+.card .hover .h-name{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:-.01em}
+.card .hover .h-lived{font-size:11px;color:var(--muted);margin-bottom:8px;font-variant-numeric:tabular-nums}
+.card .hover .h-why{font-size:12px;color:#374151;line-height:1.55;margin-bottom:10px}
+.card .hover .h-cta{font-size:11px;font-weight:700;color:var(--accent);border:1px solid var(--accent);padding:4px 10px;border-radius:999px;letter-spacing:.04em}
+.card .body{padding:14px 16px;display:flex;flex-direction:column;gap:6px;flex-grow:1}
 .card:hover{transform:translateY(-2px);border-color:var(--accent);border-width:1.5px}
-.card .name{font-size:17px;font-weight:600;letter-spacing:-.01em}
-.card .lived{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
-.card .why{font-size:13px;color:#374151;line-height:1.55;flex-grow:1}
-.card .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.card .chip{font-size:11px;padding:3px 9px;border-radius:999px;background:transparent;border:1px solid var(--line);color:#4b5563}
+.card .name{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.card .lived{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.card .why{font-size:12px;color:#374151;line-height:1.55;flex-grow:1;display:none}
+.card .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.card .chip{font-size:10px;padding:2px 8px;border-radius:999px;background:transparent;border:1px solid var(--line);color:#4b5563}
 .card .chip.cw{color:inherit;background:transparent;border-width:1.5px}
 .legend{font-size:12px;color:var(--muted);margin-top:24px}
 .legend span{display:inline-block;padding:3px 10px;border-radius:999px;color:inherit;background:transparent;border:1.5px solid currentColor;margin-right:6px;font-size:11px}
@@ -172,7 +180,7 @@ def render_person_page(p: Dict) -> str:
   </div>
 
   <section>
-    <h2>왜 거인인가</h2>
+    <h2>왜 이 사람인가</h2>
     <p>{_esc(p.get('why_giant',''))}</p>
   </section>
 
@@ -193,9 +201,9 @@ def render_person_page(p: Dict) -> str:
 
   {entries_html}
 
-  {f"<section><h2>5거인·연결 인물</h2><div class='related'>{related}</div></section>" if related else ""}
+  {f"<section><h2>연결된 사람들</h2><div class='related'>{related}</div></section>" if related else ""}
 
-  <a class="back" href="/learning/persons.html">← 인물 22명으로</a>
+  <a class="back" href="/learning/persons.html">← 2026 인물들로</a>
 </div>
 </body>
 </html>
@@ -236,7 +244,7 @@ def render_index_page() -> str:
         cards = "\n".join(_render_card(p) for p in no_era)
         era_sections.append(
             f"""<div class="era-section">
-  <h2>시드 (5거인)</h2>
+  <h2>다섯 사람 — 첫 만남의 자리</h2>
   <div class="span">시대 매트릭스 base · {len(no_era)}명</div>
   <div class="matrix">{cards}</div>
 </div>"""
@@ -253,7 +261,7 @@ def render_index_page() -> str:
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>2026 인물들 — 한 해의 학습 동반자 22명 · 네다바웨이 학습</title>
-<meta name="description" content="2026년 한 해 동안 함께 학습하는 인류사 거인 22명. 5거인(에라스무스·라이프니츠·바전·Lewis·다 빈치) + 뉴턴·바흐·반 고흐·라흐마니노프 외 17명. 4시대 × 5영역 매트릭스, 기독교세계관 정직 라벨, 1차 출처 직접 연결.">
+<meta name="description" content="2026년 한 해 동안 함께 만나는 22명. 다섯 사람(에라스무스·라이프니츠·바전·Lewis·다 빈치) + 뉴턴·바흐·반 고흐·라흐마니노프 외 17명. 4시대 × 5영역 매트릭스, 기독교세계관 정직 라벨, 1차 출처 직접 연결.">
 <link rel="canonical" href="https://www.nedabah.org/learning/persons.html">
 <style>{INDEX_CSS}</style>
 </head>
@@ -261,7 +269,7 @@ def render_index_page() -> str:
 <div class="wrap">
   <div class="crumb"><a href="/learning.html">← 학습노트</a> · 2026 인물들</div>
   <h1>2026 인물들 — 한 해의 학습 동반자 22명</h1>
-  <p class="lead">2026년 김창환 강사가 함께 학습하는 자리. 5거인(에라스무스·라이프니츠·바전·Lewis·다 빈치)을 base로 두고 인류사에 지대한 영향을 준 17명을 더 등재. 4시대 × 5영역 매트릭스. 각 인물에 기독교세계관 정직 라벨과 1차 출처 디렉터리. 2026년 동안 한 명씩 좌표를 채워 간다.</p>
+  <p class="lead">2026년 김창환 강사가 만나는 자리. 다섯 사람(에라스무스·라이프니츠·바전·Lewis·다 빈치)을 base로 두고 인류사에 지대한 영향을 준 17명을 더 등재. 4시대 × 5영역 매트릭스. 각 사람에 기독교세계관 정직 라벨과 1차 출처 디렉터리. 2026년 동안 한 명씩 좌표를 채워 간다.</p>
 
   <div class="kpi">
     <div class="box"><div class="num">{len(persons)}</div><div class="lab">총 인물</div></div>
@@ -286,11 +294,18 @@ def _render_card(p: Dict) -> str:
     domain = DOMAIN_LABEL.get(p.get("domain_id", ""), p.get("domain_id", ""))
     why = p.get("why_giant", "")[:120]
     return f"""<a class="card" href="/learning/persons/{_esc(p['id'])}.html">
-  <img class="photo" src="/learning/assets/persons/{_esc(p['id'])}.jpg" alt="{_esc(p.get('name_ko',''))}" loading="lazy" onerror="this.style.display='none'">
+  <div class="imgwrap">
+    <img class="photo" src="/learning/assets/persons/{_esc(p['id'])}.jpg" alt="{_esc(p.get('name_ko',''))}" loading="lazy" onerror="this.style.display='none'">
+    <div class="hover">
+      <div class="h-name">{_esc(p.get('name_ko',''))}</div>
+      <div class="h-lived">{_esc(p.get('lived',''))}</div>
+      <div class="h-why">{_esc(why)}</div>
+      <div class="h-cta">→ 자세히 보기</div>
+    </div>
+  </div>
   <div class="body">
     <div class="name">{_esc(p.get('name_ko',''))}</div>
     <div class="lived">{_esc(p.get('lived',''))}</div>
-    <div class="why">{_esc(why)}</div>
     <div class="meta">
       <span class="chip">{_esc(domain)}</span>
       <span class="chip cw" style="border-color:{cw_color};color:{cw_color}">{_esc(cw_label)}</span>

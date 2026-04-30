@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>학습노트 — 인간의 지혜·지식 학습은 역사적 인물들을 만나는 자리 (2026 22명) · 네다바웨이</title>
-<meta name="description" content="2026년 22명의 역사적 인물을 만난다. 5거인(에라스무스·라이프니츠·바전·Lewis·다 빈치) + 뉴턴·바흐·반 고흐·라흐마니노프 외 17명. 4시대×5영역 매트릭스, 카테고리당 6단계 5회전 = 1,200 좌표. 학습은 책이 아니라 사람.">
+<meta name="description" content="2026년 22명의 역사적 인물을 만난다. 다섯 사람(에라스무스·라이프니츠·바전·Lewis·다 빈치) + 뉴턴·바흐·반 고흐·라흐마니노프 외 17명. 4시대×5영역 매트릭스, 카테고리당 6단계 5회전 = 1,200 좌표. 학습은 책이 아니라 사람.">
 <meta property="og:title" content="2026 — 22명의 만남 · 인간의 지혜·지식 학습은 역사적 인물들을 만나는 자리">
 <meta property="og:description" content="22명의 역사적 인물을 한 해의 만남으로. 4시대×5영역 매트릭스, 1,200 좌표 평생 학습.">
 <meta property="og:type" content="website">
@@ -155,6 +155,28 @@
     .cat-grid{grid-template-columns:1fr}
     .giants__grid{grid-template-columns:repeat(2,1fr)}
   }
+
+  /* 17명 인물 카드 — 다섯 사람 bento와 같은 hover 오버레이 패턴 */
+  .px-card{display:flex;flex-direction:column;background:transparent;border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .25s ease,border-color .25s ease;position:relative;cursor:pointer}
+  .px-card:hover{transform:translateY(-3px);border-color:var(--acc);border-width:1.5px}
+  .px-imgwrap{aspect-ratio:1/1;background:#f3eee2;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+  .px-photo{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:grayscale(.18) contrast(1.04);opacity:.92;transition:opacity .3s ease,filter .3s ease,transform .3s ease;display:block}
+  .px-card:hover .px-photo{opacity:.32;filter:grayscale(.3) contrast(.95) blur(.5px);transform:scale(1.02)}
+  .px-hover{position:absolute;inset:0;background:linear-gradient(180deg,rgba(250,250,247,.94) 0%,rgba(250,250,247,.98) 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px 16px;text-align:center;opacity:0;transition:opacity .3s ease;pointer-events:none}
+  .px-card:hover .px-hover{opacity:1}
+  .px-h-name{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:4px;letter-spacing:-.01em}
+  .px-h-lived{font-size:11px;color:var(--mute);margin-bottom:8px;font-variant-numeric:tabular-nums}
+  .px-h-why{font-size:12px;color:var(--soft);line-height:1.55;margin-bottom:10px}
+  .px-h-cta{font-size:11px;font-weight:700;color:var(--acc);border:1px solid var(--acc);padding:4px 10px;border-radius:99px;letter-spacing:.04em}
+  .px-body{padding:12px 14px;display:flex;flex-direction:column;gap:5px;flex-grow:1}
+  .px-name{font-size:14px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+  .px-lived{font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums}
+  .px-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+  .px-chip{font-size:10px;padding:2px 8px;border-radius:99px;background:transparent;border:1px solid var(--line);color:#4b5563}
+  @media(max-width:680px){
+    .px-card:hover .px-photo{opacity:.92;filter:grayscale(.18) contrast(1.04)}
+    .px-hover{display:none}
+  }
 </style>
 <link rel="stylesheet" href="/assets/v3.css">
 <link rel="stylesheet" href="/assets/typography-v4.css">
@@ -190,7 +212,7 @@
 <header class="hero">
   <span class="hero__kicker">2026 — 22명의 만남 · 인간의 지혜·지식 학습</span>
   <h1>인간의 지혜·지식을 학습하는 자리.<br><em>역사적 인물들을 만난다.</em></h1>
-  <p class="lead">학습은 책이 아니라 사람이다. 한 사람의 평생이 한 권의 책으로 닫히고, 한 권의 책이 다음 사람에게 닿는다. 2026년 한 해 동안 22명을 만난다. 5거인(에라스무스·라이프니츠·바전·Lewis·다 빈치) + 17명(뉴턴·바흐·반 고흐·라흐마니노프·칼뱅·키르케고르·본회퍼·아인슈타인 외). 4시대 × 5영역 매트릭스. 카테고리당 6단계 5회전 = 1,200 좌표. 강의는 부산물, 본질은 만남 그 자체.</p>
+  <p class="lead">학습은 책이 아니라 사람이다. 한 사람의 평생이 한 권의 책으로 닫히고, 한 권의 책이 다음 사람에게 닿는다. 2026년 한 해 동안 22명을 만난다. 다섯 사람(에라스무스·라이프니츠·바전·Lewis·다 빈치) + 17명(뉴턴·바흐·반 고흐·라흐마니노프·칼뱅·키르케고르·본회퍼·아인슈타인 외). 4시대 × 5영역 매트릭스. 카테고리당 6단계 5회전 = 1,200 좌표. 강의는 부산물, 본질은 만남 그 자체.</p>
   <div class="hero__stats">
     <div><strong id="stat-entries">0</strong>총 학습 기록</div>
     <div><strong id="stat-coords">0/1320</strong>채움 좌표</div>
@@ -207,12 +229,12 @@
 </header>
 
 <section class="giants">
-  <h2>다섯 거인 — 첫 만남의 자리</h2>
+  <h2>다섯 사람 — 첫 만남의 자리</h2>
   <p style="font-size:13px;color:var(--mute);margin-bottom:16px;max-width:680px">에라스무스·라이프니츠·자크 바전·C.S. Lewis·레오나르도 다 빈치. 평생 학습의 base 자리. 한 사람이 평생을 어떻게 한 매트릭스로 닫는가의 5가지 모형.</p>
   <div class="bento" id="giants-bento"></div>
 
   <h2 style="margin-top:48px">2026 인물들 — 한 해의 학습 동반자 17명</h2>
-  <p style="font-size:13px;color:var(--mute);margin-bottom:16px;max-width:680px">5거인 너머. 2026년 한 해 동안 함께 학습할 인물 17명. 4시대(르네상스·근대·19세기·20세기) × 5영역(신학·과학·예술·철학·문화) 매트릭스. 각 카드 클릭 시 사진·작품·기독교세계관 정직 라벨·1차 출처가 적힌 인물 페이지로.</p>
+  <p style="font-size:13px;color:var(--mute);margin-bottom:16px;max-width:680px">다섯 사람 너머. 2026년 한 해 동안 함께 만날 인물 17명. 4시대(르네상스·근대·19세기·20세기) × 5영역(신학·과학·예술·철학·문화) 매트릭스. 각 카드에 마우스를 올리면 짧은 소개가 보입니다.</p>
   <div id="persons-extended-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px"></div>
   <div style="margin-top:18px;text-align:right"><a href="/learning/persons.html" style="font-size:13px;color:var(--acc);text-decoration:none;font-weight:600">→ 2026 인물들 전체 매트릭스 보기</a></div>
 </section>
@@ -220,7 +242,7 @@
 <section class="recent">
   <h2>학습 기록 — 매트릭스에 채워진 글</h2>
   <div class="note-list" id="recent-list">
-    <div class="empty-msg">학습 기록은 매일 누적됩니다. 5거인 1년차 자리부터 시작합니다.</div>
+    <div class="empty-msg">학습 기록은 매일 누적됩니다. 다섯 사람 1년차 자리부터 시작합니다.</div>
   </div>
 </section>
 
@@ -319,7 +341,7 @@ const DOMAIN_LABEL = {
 function renderPersonsExtended(){
   const root = document.getElementById('persons-extended-grid');
   if (!root || !PERSONS || !PERSONS.persons) return;
-  // 5거인(seed) 제외하고 17명 노출
+  // 다섯 사람(seed) 제외하고 17명 노출
   const fiveGiants = ['erasmus','leibniz','barzun','lewis','davinci'];
   const extended = PERSONS.persons.filter(p => !fiveGiants.includes(p.id));
   // 시대순 정렬
@@ -329,18 +351,25 @@ function renderPersonsExtended(){
     const cw = CW_LABEL[p.cw_orientation] || ['미분류','#6b7280'];
     const era = ERA_LABEL[p.era_id] || '';
     const domain = DOMAIN_LABEL[p.domain_id] || p.domain_id || '';
-    const why = (p.why_giant || '').slice(0, 70);
+    const why = (p.why_giant || '').slice(0, 90);
     return `
-      <a href="/learning/persons/${p.id}.html" style="display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;background:transparent;text-decoration:none;color:inherit;transition:border-color .15s;overflow:hidden">
-        <img src="/learning/assets/persons/${p.id}.jpg" alt="${p.name_ko}" loading="lazy" style="width:100%;height:180px;object-fit:cover;object-position:center top;background:#f3eee2;display:block" onerror="this.style.display='none'">
-        <div style="padding:14px;display:flex;flex-direction:column;gap:6px;flex-grow:1">
-          <div style="font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--ink)">${p.name_ko}</div>
-          <div style="font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums">${p.lived}</div>
-          <div style="font-size:12px;color:#374151;line-height:1.55;flex-grow:1;margin:4px 0">${why}…</div>
-          <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:4px">
-            <span style="font-size:10px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:#4b5563">${era}</span>
-            <span style="font-size:10px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:#4b5563">${domain}</span>
-            <span style="font-size:10px;padding:2px 8px;border-radius:999px;border:1.5px solid ${cw[1]};color:${cw[1]}">${cw[0]}</span>
+      <a class="px-card" href="/learning/persons/${p.id}.html">
+        <div class="px-imgwrap">
+          <img class="px-photo" src="/learning/assets/persons/${p.id}.jpg" alt="${p.name_ko}" loading="lazy" onerror="this.style.display='none'">
+          <div class="px-hover">
+            <div class="px-h-name">${p.name_ko}</div>
+            <div class="px-h-lived">${p.lived}</div>
+            <div class="px-h-why">${why}…</div>
+            <div class="px-h-cta">→ 자세히 보기</div>
+          </div>
+        </div>
+        <div class="px-body">
+          <div class="px-name">${p.name_ko}</div>
+          <div class="px-lived">${p.lived}</div>
+          <div class="px-meta">
+            <span class="px-chip">${era}</span>
+            <span class="px-chip">${domain}</span>
+            <span class="px-chip" style="border:1.5px solid ${cw[1]};color:${cw[1]}">${cw[0]}</span>
           </div>
         </div>
       </a>`;
@@ -442,10 +471,10 @@ function renderGiants(){
 function showGiant(id){
   const g = GIANT_BIOS[id];
   if (!g) return;
-  // 이 거인의 학습 entry
+  // 이 사람의 학습 entry
   const entries = (NOTES.entries || []).filter(e => e.giant_id === id && e.visibility === 'public');
   const entriesHtml = entries.length ? `
-    <div style="font-size:12px;color:var(--mute);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin:18px 0 8px">이 거인 자리 학습 기록 (${entries.length}건)</div>
+    <div style="font-size:12px;color:var(--mute);font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin:18px 0 8px">이 사람 자리 학습 기록 (${entries.length}건)</div>
     <div class="modal__entries">${entries.map(e => `
       <a class="modal__entry" href="${e.url}">
         <strong>${e.title}</strong>
@@ -453,12 +482,12 @@ function showGiant(id){
       </a>`).join('')}</div>` : '';
 
   document.getElementById('modal-content').innerHTML = `
-    <div class="modal__kicker">5거인 · ${g.year}</div>
+    <div class="modal__kicker">다섯 사람 · ${g.year}</div>
     <div class="modal__title">${g.name}</div>
     <div class="modal__sub">${g.core}</div>
     <p style="font-size:14px;line-height:1.75;color:var(--soft);margin-bottom:14px">${g.bio}</p>
     <div style="background:var(--acc-soft);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--soft);margin-bottom:14px;line-height:1.6">
-      <strong style="color:var(--acc);font-weight:800">왜 이 거인인가</strong><br>${g.why}
+      <strong style="color:var(--acc);font-weight:800">왜 이 사람인가</strong><br>${g.why}
     </div>
     <div style="font-size:13px;color:var(--soft);margin-bottom:6px"><strong>대표 작업</strong></div>
     <ul style="font-size:13px;color:var(--soft);line-height:1.7;padding-left:18px;margin-bottom:14px">
@@ -579,7 +608,7 @@ function renderRecent(){
   const list = document.getElementById('recent-list');
   const entries = (NOTES.entries || []).filter(e => e.visibility === 'public').slice(-12).reverse();
   if (!entries.length) {
-    list.innerHTML = '<div class="empty-msg">학습 기록은 매일 누적됩니다. 5거인 1년차 자리부터 시작합니다.</div>';
+    list.innerHTML = '<div class="empty-msg">학습 기록은 매일 누적됩니다. 다섯 사람 1년차 자리부터 시작합니다.</div>';
     return;
   }
   list.innerHTML = entries.map(e => {
