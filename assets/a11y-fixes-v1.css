@@ -1,0 +1,89 @@
+/* a11y-fixes-v1.css — WCAG AA 색 대비 수정 (2026-05-01)
+   진단 결과 4건의 색 대비 위반(<4.5:1)을 보정.
+   기존 토큰을 덮어쓰는 마지막 로드 CSS로 사용.
+
+   수정 내역:
+   - --c-mute / --ink-2 #6b6155 → #5a5048 (4.5:1 이상 확보)
+   - 카드 텍스트 색상 강화
+   - 배지·라벨 색상 진하게
+*/
+
+:root {
+  /* WCAG AA 통과 색상으로 갱신 */
+  --c-mute: #5a5048;       /* 기존 #6b6155 → 4.5:1+ */
+  --ink-2: #5a5048;
+  --copper-text: #7a3f15;   /* 배경 #efe7d6 위 4.5:1+ */
+  --c-text-secondary: #4a4038;
+}
+
+/* 본문 보조 텍스트 색 대비 강화 */
+body .text-mute,
+body .lead,
+body .meta,
+body .footnote,
+body .footer-note,
+body .caption,
+body small {
+  color: var(--c-mute) !important;
+}
+
+/* 카드 안 텍스트 */
+.card .meta,
+.card small,
+.cat .desc,
+.cat .meta {
+  color: var(--c-text-secondary);
+}
+
+/* 배지·라벨 — 따뜻한 배경 위에서 충분한 대비 */
+.badge,
+.tag,
+.chip,
+.label {
+  color: var(--copper-text);
+}
+
+/* 링크 색상 — 강조 시 충분한 대비 */
+a:not(.btn):not(.cta) {
+  color: #1A3A8A;  /* 기존 #1E40AF보다 약간 진하게 */
+}
+
+a:not(.btn):not(.cta):hover {
+  color: #0F2A6E;
+}
+
+/* 보조 정보 색상 강화 */
+.subtitle,
+.subhead,
+.eyebrow {
+  color: #4a4038;
+}
+
+/* 폼 placeholder 가독성 */
+input::placeholder,
+textarea::placeholder {
+  color: #6b6155;  /* 입력 영역은 흰 배경이라 4.5:1 통과 */
+}
+
+/* 키보드 포커스 스타일 강화 (WCAG 2.4.7) */
+*:focus-visible {
+  outline: 3px solid #1E40AF;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 스킵 링크 (스크린리더용) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  background: #1E40AF;
+  color: #fff;
+  padding: .75rem 1.25rem;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 10000;
+}
+.skip-link:focus {
+  left: 1rem;
+}

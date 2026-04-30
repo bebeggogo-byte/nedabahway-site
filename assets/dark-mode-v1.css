@@ -1,0 +1,94 @@
+/* dark-mode-v1.css — 다크 모드 지원 (2026-05-01, H4)
+   사용자 시스템 설정(prefers-color-scheme: dark) 자동 감지.
+   페이퍼 톤 → 진한 잉크 톤으로 전환.
+*/
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 페이퍼 → 다크 잉크 */
+    --paper:   #16110a;
+    --paper-2: #1f1810;
+    --paper-3: #2a221a;
+    /* 텍스트 */
+    --ink:    #f0e9dc;
+    --ink-2:  #c4b8a4;
+    --ink-3:  #8a7e6c;
+    /* 분리선 */
+    --line:   #3a322a;
+    --line-2: #5a5048;
+    /* 코발트 (다크에서 명도 상향) */
+    --c-cobalt:      #5b8af0;
+    --c-cobalt-deep: #7da4f5;
+    --c-cobalt-soft: #3B82F6;
+    --c-cobalt-bg:   #1a2540;
+    --c-cobalt-tint: rgba(91,138,240,.15);
+    --c-cobalt-line: #2a3a6e;
+    /* a11y 보정 */
+    --c-mute: #c4b8a4;
+    --copper: #5b8af0;
+    --copper-d: #7da4f5;
+  }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  /* 카드·섹션 */
+  .card, .cat, .iden-form, .iden-result__detail, .ai-coach, .iden-next__card {
+    background: var(--paper-3);
+    border-color: var(--line);
+  }
+
+  /* 텍스트 강제 갱신 */
+  body .text-mute,
+  body .lead,
+  body .meta,
+  body .footnote,
+  body small {
+    color: var(--c-mute) !important;
+  }
+
+  /* 링크 */
+  a:not(.btn):not(.cta) {
+    color: var(--c-cobalt-deep);
+  }
+  a:not(.btn):not(.cta):hover {
+    color: #a0c0ff;
+  }
+
+  /* 버튼 */
+  .btn--primary {
+    background: var(--c-cobalt);
+    color: #16110a;
+  }
+  .btn--ghost {
+    border-color: var(--line-2);
+    color: var(--ink);
+  }
+
+  /* 코드 블록 */
+  pre, code {
+    background: var(--paper-2);
+    color: var(--ink);
+  }
+
+  /* 표 */
+  table {
+    border-color: var(--line);
+  }
+  th, td {
+    border-color: var(--line);
+  }
+
+  /* 이미지 살짝 톤다운 (광원 부담 줄이기) */
+  img:not(.no-dark-tone) {
+    filter: brightness(.9) contrast(.95);
+  }
+
+  /* placeholder 자료 페이지 */
+  .notice {
+    background: var(--paper-3) !important;
+    border-color: var(--line);
+  }
+}
