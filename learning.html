@@ -25,16 +25,19 @@
   .nav__links a:hover,.nav__links .active{color:var(--ink)}
   .nav__cta{background:var(--ink);color:#fff;padding:7px 14px;border-radius:6px;font-size:13px;font-weight:600}
 
-  .hero{max-width:1080px;margin:0 auto;padding:64px 24px 32px}
+  .hero{max-width:1080px;margin:0 auto;padding:32px 24px 16px}
   .hero__kicker{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--acc);
     background:var(--acc-soft);padding:5px 12px;border-radius:4px;margin-bottom:24px;text-transform:uppercase}
   .hero h1{font-size:42px;font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:14px}
   .hero h1 em{color:var(--acc);font-style:normal}
-  .hero .lead{font-size:17px;color:var(--soft);max-width:720px;line-height:1.7;margin-bottom:28px}
+  .hero h1{font-size:28px !important;margin-bottom:8px !important;line-height:1.2 !important}
+  .hero .lead{font-size:14px;color:var(--soft);max-width:780px;line-height:1.55;margin-bottom:14px}
+  .hero__stats{padding-top:12px !important;font-size:11px !important}
+  .hero__stats strong{font-size:18px !important}
   .hero__stats{display:flex;gap:28px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
   .hero__stats strong{color:var(--ink);font-size:22px;font-weight:800;display:block;margin-bottom:2px}
 
-  .giants{max-width:1080px;margin:0 auto;padding:16px 24px 32px}
+  .giants{max-width:1080px;margin:0 auto;padding:8px 24px 16px}
   .giants h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:14px}
   .bento{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;border-radius:14px;background:transparent}
   .bento__cell{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;position:relative}
@@ -59,7 +62,12 @@
     .bento__hover{display:none}
   }
 
-  .legend{max-width:1080px;margin:0 auto;padding:8px 24px 24px}
+  .legend{max-width:1080px;margin:0 auto;padding:8px 24px 16px}
+  .legend__inner details{cursor:pointer}
+  .legend__inner summary{font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--ink);list-style:none;outline:none}
+  .legend__inner summary::-webkit-details-marker{display:none}
+  .legend__inner summary::after{content:" ▾";color:var(--mute);font-size:12px}
+  .legend__inner[open] summary::after,.legend__inner details[open] summary::after{content:" ▴"}
   .legend__inner{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 24px}
   .legend h2{font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--ink);margin-bottom:14px}
   .legend__row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
@@ -75,7 +83,11 @@
     cursor:pointer;font-weight:500;color:var(--soft);font-family:inherit;white-space:nowrap}
   .tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
 
-  .pillars{max-width:1080px;margin:0 auto;padding:24px 24px 16px}
+  .pillars{max-width:1080px;margin:0 auto;padding:8px 24px 32px}
+  .pillars details summary{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);cursor:pointer;list-style:none;outline:none;padding:8px 0}
+  .pillars details summary::-webkit-details-marker{display:none}
+  .pillars details summary::after{content:" ▾";color:var(--mute);font-size:11px}
+  .pillars details[open] summary::after{content:" ▴"}
   .pillar-block{margin-bottom:32px}
   .pillar-block__head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
   .pillar-block__num{font-size:11px;font-weight:700;color:var(--acc);background:var(--acc-soft);padding:3px 8px;border-radius:4px;letter-spacing:.05em}
@@ -98,9 +110,12 @@
     padding-top:8px;border-top:1px dashed var(--line)}
   .cat__count{font-weight:600;color:var(--ink)}
 
-  .recent{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
-  .recent h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
-  .note-list{display:grid;gap:12px}
+  .recent{max-width:1080px;margin:0 auto;padding:16px 24px}
+  .recent h2{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+  .note-list{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+  .note-list::-webkit-scrollbar{height:6px}
+  .note-list::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+  .note-list > *{flex:0 0 280px;scroll-snap-align:start}
   .note{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;transition:all .15s ease;display:block}
   .note:hover{border-color:var(--acc)}
   .note__top{display:flex;gap:10px;align-items:center;margin-bottom:6px;flex-wrap:wrap;font-size:11px}
@@ -114,11 +129,14 @@
   .empty-msg{padding:36px 24px;text-align:center;color:var(--mute);font-size:14px;background:#fff;border:1px dashed var(--line);border-radius:12px}
 
   /* 다음 학습 큐 */
-  .queue{max-width:1080px;margin:0 auto;padding:8px 24px 24px}
-  .queue__head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+  .queue{max-width:1080px;margin:0 auto;padding:16px 24px}
+  .queue__head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;flex-wrap:wrap;gap:8px}
   .queue h2{font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--ink)}
   .queue__filter{font-size:11px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
-  .queue__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+  .queue__grid{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+  .queue__grid::-webkit-scrollbar{height:6px}
+  .queue__grid::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+  .queue__grid > *{flex:0 0 280px;scroll-snap-align:start}
   .queue__card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;transition:all .15s ease;cursor:default}
   .queue__card:hover{border-color:var(--acc);transform:translateY(-1px)}
   .queue__cat{font-size:11px;font-weight:700;color:var(--acc);background:var(--acc-soft);padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:6px}
@@ -156,8 +174,10 @@
     .giants__grid{grid-template-columns:repeat(2,1fr)}
   }
 
-  /* 17명 인물 카드 — 다섯 사람 bento와 같은 hover 오버레이 패턴 */
-  .px-card{display:flex;flex-direction:column;background:transparent;border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .25s ease,border-color .25s ease;position:relative;cursor:pointer}
+  /* 17명 인물 카드 — 가로 스크롤 + 다섯 사람 bento와 같은 hover 오버레이 패턴 */
+  #persons-extended-grid::-webkit-scrollbar{height:6px}
+  #persons-extended-grid::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+  .px-card{flex:0 0 200px;scroll-snap-align:start;display:flex;flex-direction:column;background:transparent;border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .25s ease,border-color .25s ease;position:relative;cursor:pointer}
   .px-card:hover{transform:translateY(-3px);border-color:var(--acc);border-width:1.5px}
   .px-imgwrap{aspect-ratio:1/1;background:#f3eee2;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
   .px-photo{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:grayscale(.18) contrast(1.04);opacity:.92;transition:opacity .3s ease,filter .3s ease,transform .3s ease;display:block}
@@ -184,6 +204,7 @@
 <link rel="stylesheet" href="/assets/mobile-v1.css">
   <link rel="stylesheet" href="/assets/global-fonts.css">
   <link rel="stylesheet" href="/assets/global-nav.css">
+<link rel="stylesheet" href="/assets/cobalt-overrides.css">
 </head>
 <body>
 
@@ -221,7 +242,7 @@
     <div><strong>44</strong>카테고리</div>
     <div><strong id="stat-queue">0</strong>다음 학습 큐</div>
   </div>
-  <nav style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line)">
+  <nav style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)">
     <a href="/learning/persons.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;background:var(--acc);color:#fff;text-decoration:none;font-size:14px;font-weight:600">→ 2026 인물들 — 한 해의 학습 동반자 22명</a>
     <a href="#queue" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;background:#fff;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:14px;font-weight:500">↓ 다음 학습 큐</a>
     <a href="#matrix" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;background:#fff;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:14px;font-weight:500">↓ 카테고리 매트릭스</a>
@@ -235,7 +256,7 @@
 
   <h2 style="margin-top:48px">2026 인물들 — 한 해의 학습 동반자 17명</h2>
   <p style="font-size:13px;color:var(--mute);margin-bottom:16px;max-width:680px">다섯 사람 너머. 2026년 한 해 동안 함께 만날 인물 17명. 4시대(르네상스·근대·19세기·20세기) × 5영역(신학·과학·예술·철학·문화) 매트릭스. 각 카드에 마우스를 올리면 짧은 소개가 보입니다.</p>
-  <div id="persons-extended-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px"></div>
+  <div id="persons-extended-grid" style="display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;-webkit-overflow-scrolling:touch"></div>
   <div style="margin-top:18px;text-align:right"><a href="/learning/persons.html" style="font-size:13px;color:var(--acc);text-decoration:none;font-weight:600">→ 2026 인물들 전체 매트릭스 보기</a></div>
 </section>
 
@@ -256,25 +277,27 @@
 
 <section class="legend">
   <div class="legend__inner">
-    <h2>매트릭스 읽는 법 — 아래 블록은 무엇인가</h2>
-    <div class="legend__row">
-      <div class="legend__item">
-        <strong>10기둥</strong>
-        <span>언어·수사·고전·역사·철학·신학·과학·인간사회·표현·시각관찰. 한 기둥 = 4카테고리.</span>
+    <details>
+      <summary>매트릭스 읽는 법 — 펼쳐 보기</summary>
+      <div class="legend__row" style="margin-top:12px">
+        <div class="legend__item">
+          <strong>10기둥</strong>
+          <span>언어·수사·고전·역사·철학·신학·과학·인간사회·표현·시각관찰. 한 기둥 = 4카테고리.</span>
+        </div>
+        <div class="legend__item">
+          <strong>40카테고리</strong>
+          <span>각 블록 = 한 카테고리 = 평생 공부 영역 1개. 카드에 이름·번호·설명.</span>
+        </div>
+        <div class="legend__item">
+          <strong>30 도트</strong>
+          <span>카드 안 5×6 도트 = 30좌표. 6단계 × 5회전.</span>
+        </div>
+        <div class="legend__item">
+          <strong>채움 색</strong>
+          <span><i class="legend__dot legend__dot--filled"></i> 호박 = 학습 도달 / <i class="legend__dot"></i> 회색 = 비어 있는 자리.</span>
+        </div>
       </div>
-      <div class="legend__item">
-        <strong>40카테고리</strong>
-        <span>각 블록 = 한 카테고리 = 평생 공부 영역 1개. 카드에 이름·번호·설명.</span>
-      </div>
-      <div class="legend__item">
-        <strong>30 도트</strong>
-        <span>카드 안 5×6 도트 = 30좌표. 6단계(입문·정독·비교·재구성·적용·교수) × 5회전.</span>
-      </div>
-      <div class="legend__item">
-        <strong>채움 색</strong>
-        <span><i class="legend__dot legend__dot--filled"></i> 호박 = 학습 도달 / <i class="legend__dot"></i> 회색 = 비어 있는 자리.</span>
-      </div>
-    </div>
+    </details>
   </div>
 </section>
 
@@ -282,7 +305,12 @@
   <div class="tabs__inner" id="tab-bar"></div>
 </nav>
 
-<section class="pillars" id="pillars-root"></section>
+<section class="pillars">
+  <details>
+    <summary>카테고리 매트릭스 — 펼쳐 보기 (10기둥·40카테고리)</summary>
+    <div id="pillars-root"></div>
+  </details>
+</section>
 
 <div class="modal" id="modal" onclick="if(event.target===this) closeModal()">
   <div class="modal__box" id="modal-box">
