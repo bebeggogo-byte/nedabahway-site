@@ -28,6 +28,9 @@
       const pct = book.total > 0 ? Math.round(book.completed / book.total * 100) : 0;
       const arc = card.querySelector('.book-card__progress-arc');
       if (arc) arc.style.setProperty('--p', pct);
+      // 착수된 권(진행률 > 0) 강조
+      if (book.completed > 0) card.classList.add('is-started');
+      else card.classList.remove('is-started');
       const txt = card.querySelector('[data-book-progress]') || card.querySelector('.book-card__progress');
       if (txt) {
         const arcHtml = '<span class="book-card__progress-arc" style="--p:' + pct + '"></span>';
