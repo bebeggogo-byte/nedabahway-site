@@ -218,17 +218,14 @@
   </nav>
 </header>
 
-<section class="queue">
-  <div class="queue__head">
-    <h2>다음 학습 큐 — 채워질 좌표 후보</h2>
-    <span class="queue__filter" id="queue-filter">기둥별 보기</span>
-  </div>
-  <div class="queue__grid" id="queue-grid"></div>
-</section>
-
 <section class="giants">
   <h2>다섯 거인 — 인류가 마지막 지식인을 보여준 자리</h2>
   <div class="bento" id="giants-bento"></div>
+
+  <h2 style="margin-top:48px">확장 인물 — 거인의 합집합 너머, 4시대×4영역에 자리잡은 사람들</h2>
+  <p style="font-size:13px;color:var(--mute);margin-bottom:16px;max-width:680px">5거인을 base로 두고 인류사에 지대한 영향을 준 17명을 더 등재. 르네상스·근대·19세기·20세기 4시대 × 신학·과학·예술·철학·문화 5영역 매트릭스. 각 인물 카드 클릭 시 1차 출처·작품·기독교세계관 정직 라벨이 적힌 인물 페이지로 이동합니다.</p>
+  <div id="persons-extended-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px"></div>
+  <div style="margin-top:18px;text-align:right"><a href="/learning/persons.html" style="font-size:13px;color:var(--acc);text-decoration:none;font-weight:600">→ 인물 22명 전체 매트릭스 보기</a></div>
 </section>
 
 <section class="recent">
@@ -236,6 +233,14 @@
   <div class="note-list" id="recent-list">
     <div class="empty-msg">학습 기록은 매일 누적됩니다. 5거인 1년차 자리부터 시작합니다.</div>
   </div>
+</section>
+
+<section class="queue">
+  <div class="queue__head">
+    <h2>다음 학습 큐 — 채워질 좌표 후보</h2>
+    <span class="queue__filter" id="queue-filter">기둥별 보기</span>
+  </div>
+  <div class="queue__grid" id="queue-grid"></div>
 </section>
 
 <section class="legend">
@@ -284,20 +289,70 @@ let activeFilter = 'all';
 let QUEUE = [];
 
 async function loadAll(){
-  const [c, s, n, p, q] = await Promise.all([
+  const [c, s, n, p, q, persons] = await Promise.all([
     fetch('/learning/_data/categories.json').then(r=>r.json()),
     fetch('/learning/_data/stages.json').then(r=>r.json()),
     fetch('/learning/_data/notes.json').then(r=>r.json()),
     fetch('/learning/_data/progress.json').then(r=>r.json()).catch(()=>({total_entries:0,coords_filled:0,matrix_total:1320,sar_percent:0,by_category:{}})),
     fetch('/learning/_data/seeds_queue.jsonl').then(r=>r.text()).then(t=>t.trim().split('\n').filter(Boolean).map(l=>JSON.parse(l))).catch(()=>[]),
+    fetch('/learning/_data/persons.json').then(r=>r.json()).catch(()=>({persons:[]})),
   ]);
-  CATEGORIES = c; STAGES = s; NOTES = n; PROGRESS = p; QUEUE = q;
+  CATEGORIES = c; STAGES = s; NOTES = n; PROGRESS = p; QUEUE = q; PERSONS = persons;
   renderGiants();
+  renderPersonsExtended();
   renderTabs();
   renderStats();
   renderPillars();
   renderRecent();
   renderQueue();
+}
+
+let PERSONS = null;
+
+const CW_LABEL = {
+  affirming: ['신앙 명시', '#0d9488'],
+  theist_compatible: ['유신론 호환', '#0891b2'],
+  wrestling: ['씨름의 자리', '#ca8a04'],
+  secular_christian_heritage: ['세속·기독 전통 위에', '#6b7280'],
+  critic: ['비판자', '#7f1d1d'],
+};
+const ERA_LABEL = {
+  renaissance: '르네상스',
+  modern: '근대',
+  nineteenth: '19세기',
+  twentieth: '20세기',
+};
+const DOMAIN_LABEL = {
+  theology: '신학', science: '과학', philosophy: '철학',
+  art: '예술', culture: '문화', language: '언어', vision: '시각',
+};
+
+function renderPersonsExtended(){
+  const root = document.getElementById('persons-extended-grid');
+  if (!root || !PERSONS || !PERSONS.persons) return;
+  // 5거인(seed) 제외하고 17명 노출
+  const fiveGiants = ['erasmus','leibniz','barzun','lewis','davinci'];
+  const extended = PERSONS.persons.filter(p => !fiveGiants.includes(p.id));
+  // 시대순 정렬
+  const eraOrder = {renaissance:1, modern:2, nineteenth:3, twentieth:4};
+  extended.sort((a,b) => (eraOrder[a.era_id]||9) - (eraOrder[b.era_id]||9));
+  root.innerHTML = extended.map(p => {
+    const cw = CW_LABEL[p.cw_orientation] || ['미분류','#6b7280'];
+    const era = ERA_LABEL[p.era_id] || '';
+    const domain = DOMAIN_LABEL[p.domain_id] || p.domain_id || '';
+    const why = (p.why_giant || '').slice(0, 70);
+    return `
+      <a href="/learning/persons/${p.id}.html" style="display:flex;flex-direction:column;gap:6px;padding:14px;border:1px solid var(--line);border-radius:12px;background:transparent;text-decoration:none;color:inherit;transition:border-color .15s">
+        <div style="font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--ink)">${p.name_ko}</div>
+        <div style="font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums">${p.lived}</div>
+        <div style="font-size:12px;color:#374151;line-height:1.55;flex-grow:1;margin:4px 0">${why}…</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:4px">
+          <span style="font-size:10px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:#4b5563">${era}</span>
+          <span style="font-size:10px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:#4b5563">${domain}</span>
+          <span style="font-size:10px;padding:2px 8px;border-radius:999px;border:1.5px solid ${cw[1]};color:${cw[1]}">${cw[0]}</span>
+        </div>
+      </a>`;
+  }).join('');
 }
 
 function renderQueue(){
