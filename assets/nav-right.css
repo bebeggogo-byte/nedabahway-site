@@ -1,0 +1,48 @@
+/* nav-right.css — 메뉴를 우측으로 모두 모으기 (2026-04-30 사용자 지시)
+   기존 global-nav.css는 손대지 않고, 이 파일로 정렬만 보강.
+   - 로고는 좌측 고정
+   - 메뉴 링크 + CTA는 모두 오른쪽 끝에 정렬
+*/
+
+/* gnav 형식 — 메뉴/CTA 우측 정렬 */
+.gnav__inner {
+  /* space-between → 로고는 좌, 메뉴는 우측에 자동 모임 */
+  justify-content: flex-start;
+}
+.gnav__inner > .gnav__links {
+  margin-left: auto;            /* 우측 끝으로 밀기 */
+}
+.gnav__inner > .gnav__toggle {
+  margin-left: auto;
+}
+
+/* CTA(강의 의뢰)는 메뉴 안에 있을 때 살짝 간격 */
+.gnav__links > .gnav__cta {
+  margin-left: 6px;
+}
+
+/* CTA가 ul 바깥에 따로 있을 때(레거시 패턴 호환) */
+.gnav__inner > .gnav__cta {
+  margin-left: 8px;
+}
+
+/* 옛 .nav 형식 (구 디자인 잔존 페이지 호환) */
+.nav__inner {
+  justify-content: flex-start;
+}
+.nav__inner > .nav__links {
+  margin-left: auto;
+}
+.nav__inner > .nav__cta {
+  margin-left: 8px;
+}
+
+/* 모바일 — 햄버거 토글만 우측, 펼친 메뉴는 풀폭 */
+@media (max-width: 760px) {
+  .gnav__inner > .gnav__links {
+    margin-left: 0;
+  }
+  .nav__inner > .nav__links {
+    margin-left: 0;
+  }
+}
