@@ -64,3 +64,9 @@
   .gnav__link:last-of-type{ border-bottom: none; }
   .gnav__cta{ margin-top: 8px; justify-content: center; }
 }
+
+/* 옛 nav 자동 숨김 (글로벌 nav와 중복 방지) — 2026-04-30
+   레거시 페이지나 자동화로 박혀 있는 <nav class="nav"> 블록을 시각적으로 차단.
+   .gnav가 같은 페이지에 있을 때만 옛 .nav를 숨김. .gnav 없는 페이지는 옛 nav 보존. */
+body:has(> nav.gnav) > nav.nav { display: none !important; }
+
