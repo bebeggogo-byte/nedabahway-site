@@ -1,0 +1,317 @@
+/* horizontal-deck.css — 네다바웨이 가로 페이지 넘기기 데크
+   2026-04-30 사용자 지시: "스크롤 내리는 긴 페이지를 가로 페이지 넘기기로 전면 개편"
+   - CSS Scroll Snap 기반 (네이티브 스와이프·키보드)
+   - 데스크톱: 화살표 버튼·점·키보드 ←→·PageUp/Down·Home/End
+   - 모바일: 좌우 스와이프 자연 동작
+   - 1 슬라이드 = 1 뷰포트(100vw × 100dvh - 네비)
+   - 사용법: <main class="deck"> <section class="slide"> ... </section> </main>
+*/
+
+:root {
+  --deck-nav-h: 60px;        /* 상단 네비 높이 (모바일에서 살짝 더 작음) */
+  --deck-pad-x: clamp(20px, 5vw, 64px);
+  --deck-pad-y: clamp(28px, 5vh, 60px);
+  --deck-accent: var(--c-copper, #1E40AF);
+  --deck-bg: var(--c-bg, #FAFAF7);
+  --deck-line: var(--c-line, #E8E6E0);
+}
+
+@media (max-width: 640px) {
+  :root { --deck-nav-h: 52px; }
+}
+
+/* ===== 0. body·html 자체는 스크롤 막지 않음 (오버레이만 fixed) ===== */
+html.deck-mode, body.deck-mode {
+  overflow: hidden;          /* 페이지 전체 세로 스크롤 차단 */
+  height: 100dvh;
+  height: 100vh;
+}
+
+/* ===== 1. 데크 컨테이너 ===== */
+.deck {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100vw;
+  height: calc(100dvh - var(--deck-nav-h));
+  height: calc(100vh - var(--deck-nav-h));
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  /* 모바일 관성 스크롤 */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.deck::-webkit-scrollbar { display: none; }
+
+/* ===== 2. 슬라이드 ===== */
+.slide {
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--deck-pad-y) var(--deck-pad-x);
+  position: relative;
+  overflow-y: auto;          /* 슬라이드 내부가 너무 길면 세로 스크롤만 허용 */
+  background: var(--deck-bg);
+}
+
+.slide__inner {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.slide__inner--narrow { max-width: 680px; }
+.slide__inner--wide { max-width: 1100px; }
+
+/* 슬라이드 변형 */
+.slide--center { justify-content: center; align-items: center; text-align: center; }
+.slide--ink { background: var(--c-ink, #1A1A1A); color: var(--c-bg, #FAFAF7); }
+.slide--copper { background: var(--deck-accent); color: #fff; }
+.slide--surface { background: var(--c-surface, #fff); }
+.slide--cobalt-tint { background: var(--c-cobalt-tint, rgba(30, 64, 175, .08)); }
+
+.slide--ink .slide__title,
+.slide--copper .slide__title { color: inherit; }
+
+/* ===== 3. 슬라이드 내부 타이포 ===== */
+.slide__kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--deck-accent);
+  margin-bottom: 14px;
+}
+.slide--ink .slide__kicker,
+.slide--copper .slide__kicker { color: rgba(255,255,255,.78); }
+
+.slide__title {
+  font-family: var(--ff-serif, 'Noto Serif KR', serif);
+  font-size: clamp(1.8rem, 4.4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  margin-bottom: 18px;
+  color: var(--c-ink, #1A1A1A);
+  text-wrap: balance;
+  word-break: keep-all;
+}
+.slide__title em {
+  font-style: italic;
+  color: var(--deck-accent);
+  font-weight: 700;
+}
+
+.slide__lead {
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  line-height: 1.85;
+  color: var(--c-mute, #6B6B6B);
+  max-width: 640px;
+  margin-bottom: 22px;
+  text-wrap: pretty;
+  word-break: keep-all;
+}
+.slide--ink .slide__lead { color: rgba(255,255,255,.78); }
+.slide--copper .slide__lead { color: rgba(255,255,255,.92); }
+
+.slide__body { font-size: 0.98rem; line-height: 1.85; }
+.slide__body p { margin-bottom: 14px; word-break: keep-all; }
+
+.slide__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+/* 슬라이드 번호 표시(좌하단) */
+.slide__num {
+  position: absolute;
+  left: var(--deck-pad-x);
+  bottom: 20px;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--c-mute2, #9A9A9A);
+}
+.slide--ink .slide__num,
+.slide--copper .slide__num { color: rgba(255,255,255,.5); }
+
+/* ===== 4. 데크 컨트롤 (화살표·점·진행바) ===== */
+.deck-ctrl {
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;       /* 자식만 클릭 가능 */
+}
+.deck-ctrl > * { pointer-events: auto; }
+
+.deck-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid var(--deck-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--c-ink, #1A1A1A);
+  z-index: 60;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease;
+  user-select: none;
+}
+.deck-arrow:hover { background: var(--deck-accent); color: #fff; transform: translateY(-50%) scale(1.05); }
+.deck-arrow--prev { left: 18px; }
+.deck-arrow--next { right: 18px; }
+.deck-arrow[disabled],
+.deck-arrow.is-disabled { opacity: 0; pointer-events: none; }
+
+@media (max-width: 640px) {
+  .deck-arrow { display: none; }   /* 모바일은 스와이프만 */
+}
+
+/* 점 인디케이터(하단 중앙) */
+.deck-dots {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 60;
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--deck-line);
+}
+.deck-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--deck-line);
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+  border: 0;
+  padding: 0;
+}
+.deck-dot.is-active {
+  background: var(--deck-accent);
+  transform: scale(1.4);
+}
+@media (max-width: 640px) {
+  .deck-dots { bottom: 14px; padding: 6px 10px; gap: 8px; }
+  .deck-dot { width: 7px; height: 7px; }
+}
+
+/* 진행바(상단 1px) */
+.deck-progress {
+  position: fixed;
+  top: var(--deck-nav-h);
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  z-index: 55;
+}
+.deck-progress__bar {
+  height: 100%;
+  width: 0%;
+  background: var(--deck-accent);
+  transition: width .25s ease;
+}
+
+/* 도움말(첫 방문 시 잠깐) */
+.deck-hint {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  background: var(--c-ink, #1A1A1A);
+  color: var(--c-bg, #FAFAF7);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  z-index: 70;
+  opacity: 0;
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+.deck-hint.is-show { opacity: 1; }
+@media (max-width: 640px) {
+  .deck-hint { right: 12px; bottom: 70px; font-size: 0.78rem; }
+}
+
+/* ===== 5. 카드/그리드 (슬라이드 안에서 짧게 사용) ===== */
+.slide-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .slide-grid--2 { grid-template-columns: 1fr 1fr; }
+  .slide-grid--3 { grid-template-columns: 1fr 1fr 1fr; }
+}
+.slide-card {
+  background: var(--c-surface, #fff);
+  border: 1px solid var(--deck-line);
+  border-radius: 14px;
+  padding: 22px 20px;
+}
+.slide-card__title {
+  font-family: var(--ff-serif, serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.slide-card__desc {
+  font-size: 0.92rem;
+  color: var(--c-mute, #6B6B6B);
+  line-height: 1.7;
+}
+
+/* ===== 6. 키보드 도움 표 (선택 슬라이드용) ===== */
+.deck-shortcuts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 18px;
+  font-size: 0.86rem;
+  margin-top: 14px;
+}
+.deck-shortcuts kbd {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.78rem;
+  background: var(--c-surface, #fff);
+  border: 1px solid var(--deck-line);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+/* ===== 7. 모션 줄이기 ===== */
+@media (prefers-reduced-motion: reduce) {
+  .deck { scroll-behavior: auto; }
+  .deck-arrow, .deck-dot, .deck-progress__bar { transition: none; }
+}
+
+/* ===== 8. 데크 모드일 때 기존 v3 wrap·section 격리 (충돌 방지) ===== */
+body.deck-mode .wrap,
+body.deck-mode .section,
+body.deck-mode .masthead { padding: 0; border: 0; max-width: none; }
+body.deck-mode .foot { display: none; }   /* 푸터는 마지막 슬라이드 안에 통합 */
+
+/* 네비는 그대로 두되 높이 통일 */
+body.deck-mode .nav { height: var(--deck-nav-h); }
+body.deck-mode .nav__inner { padding-top: 8px; padding-bottom: 8px; }

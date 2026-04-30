@@ -1,0 +1,72 @@
+/* perspective-pager.css — 글 페이지 가로 슬라이드 네비
+   100편(또는 그 이상) 어디서든 ←/→로 이전·다음 글로 책 넘김처럼 이동.
+   작성: 2026-04-30 */
+
+.psp-pager{
+  position:fixed; inset:auto 0 0 0; z-index:90;
+  pointer-events:none; /* 화살표 영역만 받기 */
+}
+.psp-pager__btn{
+  position:fixed; top:50%; transform:translateY(-50%);
+  width:48px; height:72px; border-radius:8px;
+  background:rgba(250,250,247,.92); backdrop-filter:blur(8px);
+  border:1px solid #d8cdb8; color:#3a322a;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Pretendard','Noto Serif KR',serif; font-size:24px; font-weight:700;
+  cursor:pointer; pointer-events:auto;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  transition:all .15s ease;
+  text-decoration:none; line-height:1;
+}
+.psp-pager__btn:hover{ border-color:#a4541a; color:#a4541a; background:#fff; }
+.psp-pager__btn--prev{ left:18px; }
+.psp-pager__btn--next{ right:18px; }
+.psp-pager__btn[aria-disabled="true"]{ opacity:.25; cursor:not-allowed; }
+
+.psp-pager__hover{
+  position:absolute; top:-94px; padding:10px 14px; background:#fff;
+  border:1px solid #d8cdb8; border-radius:8px; font-size:12px; color:#3a322a;
+  white-space:nowrap; max-width:280px; overflow:hidden; text-overflow:ellipsis;
+  box-shadow:0 8px 24px rgba(0,0,0,.10); display:none; pointer-events:none;
+}
+.psp-pager__btn--prev .psp-pager__hover{ left:0; }
+.psp-pager__btn--next .psp-pager__hover{ right:0; }
+.psp-pager__btn:hover .psp-pager__hover{ display:block; }
+
+/* 진행 막대 + 인덱스 표시 */
+.psp-progress{
+  position:fixed; left:0; right:0; bottom:0; height:3px;
+  background:rgba(255,255,255,.5); z-index:88; pointer-events:none;
+}
+.psp-progress__bar{
+  height:100%; background:#a4541a; width:0;
+  transition:width .35s cubic-bezier(.6,.05,.3,1);
+}
+.psp-meta{
+  position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
+  background:rgba(250,250,247,.94); backdrop-filter:blur(8px);
+  border:1px solid #d8cdb8; border-radius:999px;
+  padding:7px 16px; font-size:12px; color:#3a322a;
+  font-family:'Pretendard',-apple-system,sans-serif; font-weight:600;
+  letter-spacing:-.01em; z-index:90; pointer-events:auto;
+  box-shadow:0 4px 14px rgba(0,0,0,.06); white-space:nowrap;
+  text-decoration:none;
+}
+.psp-meta__idx{ color:#a4541a; font-family:ui-monospace,Menlo,Consolas,monospace; }
+.psp-meta__sep{ color:#d8cdb8; margin:0 6px; }
+.psp-meta__back{ color:#3a322a; }
+.psp-meta:hover{ background:#fff; border-color:#a4541a; }
+
+/* 모바일: 화살표 살짝 작고 안쪽 */
+@media (max-width:760px){
+  .psp-pager__btn{ width:40px; height:56px; font-size:20px; }
+  .psp-pager__btn--prev{ left:8px; }
+  .psp-pager__btn--next{ right:8px; }
+  .psp-pager__hover{ display:none !important; }
+  .psp-meta{ font-size:11px; padding:6px 13px; bottom:12px; }
+}
+
+/* 본문이 화살표에 가려지지 않게 약간의 여백 보장 */
+@media (min-width:1080px){
+  .wrap{ padding-bottom:120px !important; }
+}
