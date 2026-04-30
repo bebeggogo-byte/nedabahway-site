@@ -10,7 +10,7 @@
  *   - 블럭 ⑥ IDEN×5S 통합 진단 (별도 모듈 block6.js가 담당)
  *
  * 호환: ai.html 기존 코드를 손대지 않는다.
- *       이 스크립트는 DOMContentLoaded 후 비파괴적으로 자리만 추가한다.
+ *       이 스크립트는 DOMContentLoaded 후 비파괴적으로 곳만 추가한다.
  */
 
 (function(){
@@ -168,7 +168,7 @@
     const box = document.createElement('div');
     box.className = 'as-restore';
     box.innerHTML = `
-      <span>마지막 결과가 ${ago} 자리에 있습니다.</span>
+      <span>마지막 결과가 ${ago} 곳에 있습니다.</span>
       <span>
         <button data-act="restore">결과 다시 보기</button>
         <button class="dismiss" data-act="dismiss">닫기</button>
@@ -218,7 +218,7 @@
     const row = document.createElement('div');
     row.className = 'as-cta-row';
     row.innerHTML = `
-      <strong>다음 자리</strong>
+      <strong>다음 결</strong>
       <a href="${cta.target}">${cta.label} →</a>
       <a class="alt" href="${cta.alt}">${cta.altLabel}</a>
     `;
@@ -239,7 +239,7 @@
     if(!need || !str) return;
     const warn = document.createElement('div');
     warn.className = 'as-twin-warn';
-    warn.textContent = '⚠️ 강점과 결핍이 같은 단어입니다. 좌표가 빈 자리가 됩니다 — 다른 단어로 시도해 주세요.';
+    warn.textContent = '⚠️ 강점과 결핍이 같은 단어입니다. 좌표가 빈 곳이 됩니다 — 다른 단어로 시도해 주세요.';
     str.parentElement.parentElement.parentElement.appendChild(warn);
 
     const check = ()=>{

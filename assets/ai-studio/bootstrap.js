@@ -1,6 +1,6 @@
 /* AI 작업실 — Bootstrap (모든 자산 자동 로드)
  *
- * 자리: ai.html이 이 한 줄만 있으면 v2 모든 기능이 켜진다.
+ * 결: ai.html이 이 한 줄만 있으면 v2 모든 기능이 켜진다.
  *   <script src="/assets/ai-studio/bootstrap.js" defer></script>
  *
  * 역할:

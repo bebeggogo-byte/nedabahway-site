@@ -1,6 +1,6 @@
 /* AI 작업실 블럭 ⑥ — IDEN × 5S 통합 7문항 진단
  *
- * 자리: ai.html 페이지 끝, 5번째 SBM 블럭 다음에 자동 마운트.
+ * 결: ai.html 페이지 끝, 5번째 SBM 블럭 다음에 자동 마운트.
  * 사용처: <script src="/assets/ai-studio/block6.js" defer></script>
  *         (v2.js가 init() 끝에서 AS_BLOCK6.mount()를 호출함)
  *
@@ -8,9 +8,9 @@
  *   Q1 한 사람 떠올림 (이타 좌표의 입구)
  *   Q2 그 사람의 결핍 인지 정도 (See 깊이)
  *   Q3 자기 강점 한 줄 정리 (Speak 정확도)
- *   Q4 그 사람과 5분 듣는 자리 (Sense 빈도)
- *   Q5 다음 결정 1건을 글로 적는 자리 (Steer 키)
- *   Q6 분기 회고 자리 (Sustain 이음)
+ *   Q4 그 사람과 5분 듣는 결 (Sense 빈도)
+ *   Q5 다음 결정 1건을 글로 적는 결 (Steer 키)
+ *   Q6 분기 회고 결 (Sustain 이음)
  *   Q7 직업 = 누군가의 결핍을 향한 자기 숙련 — 동의 (IDEN 정렬)
  *
  * 결과: 평균 점수 + IDEN 좌표 한 줄(축약형) + 5S 약축 + 다음 1주 한 동작
@@ -30,13 +30,13 @@
      q:'내 강점 1개를 한 줄로 말할 수 있다.',
      opts:['못한다','막연히','두 줄','한 줄','즉답']},
     {id:'q4', axis:'Sense', label:'5S-Sense',
-     q:'한 사람과 듣기만 하는 자리를 매주 만든다.',
+     q:'한 사람과 듣기만 하는 곳을 매주 만든다.',
      opts:['안 한다','월1회','격주','주1회','주3회+']},
     {id:'q5', axis:'Steer', label:'5S-Steer',
      q:'다음 결정 1건을 글로 적어 점검 날짜를 둔다.',
      opts:['안 한다','즉흥','월1회','주1회','매 결정']},
     {id:'q6', axis:'Sustain', label:'5S-Sustain',
-     q:'분기 마지막에 지난 분기를 다시 읽는 자리가 있다.',
+     q:'분기 마지막에 지난 분기를 다시 읽는 곳이 있다.',
      opts:['없다','연1회','반기','분기','매월']},
     {id:'q7', axis:'IDEN', label:'IDEN-2',
      q:'직업이란 누군가의 결핍을 향한 자기 숙련이다 — 동의한다.',
@@ -129,7 +129,7 @@
   }
 
   const ACTION_BY_AXIS = {
-    See:      '일요일 5분, 그 사람이 가장 무거웠던 자리를 한 줄로 적기.',
+    See:      '일요일 5분, 그 사람이 가장 무거웠던 곳을 한 줄로 적기.',
     Speak:    '월요일 시작 5분, 이번 주 자기 강점 한 줄을 책상 위에 두기.',
     Sense:    '매일 한 사람과 5분, 답을 미리 준비하지 않고 듣기.',
     Steer:    '주 1회, 결정 1건만 "근거·대안·다음 점검일" 세 줄로 적기.',
@@ -153,10 +153,10 @@
       return;
     }
     const av = d.avg.toFixed(1);
-    const grade = d.avg >= 4 ? '균형 작동 자리' :
-                  d.avg >= 3 ? '평균 자리 — 약축 보강 필요' :
+    const grade = d.avg >= 4 ? '균형 작동 결' :
+                  d.avg >= 3 ? '평균 결 — 약축 보강 필요' :
                   d.avg >= 2 ? '사이클 흔들림 — 1축 누적 권장' :
-                               '사이클 재설계 자리';
+                               '사이클 재설계 결';
     box.classList.add('show');
     box.innerHTML = `
       <h3>▣ 통합 진단 — 평균 ${av}/5 · ${grade}</h3>
@@ -218,12 +218,12 @@
     });
     form.addEventListener('change', autoSaveAnswers);
 
-    // 보조 CTA 자리 추가
+    // 보조 CTA 결 추가
     const widget = document.getElementById('block6Widget');
     const cta = document.createElement('div');
     cta.className = 'as-cta-row';
     cta.innerHTML = `
-      <strong>다음 자리</strong>
+      <strong>다음 결</strong>
       <a href="/contact.html">통합 진단 후 1on1 코칭 의뢰 →</a>
       <a class="alt" href="/iden-onepager.html">IDEN 1pager</a>
     `;
