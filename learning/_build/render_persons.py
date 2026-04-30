@@ -48,7 +48,7 @@ CW_LABEL = {
 
 
 PAGE_CSS = """
-:root{--ink:#0a0a0a;--muted:#6b7280;--accent:#0891b2;--bg:#fafaf7;--card:#fff;--line:#e5e7eb}
+:root{--ink:#1f1f23;--muted:#6b7280;--accent:#b45309;--warm:#d97706;--bg:#fafaf7;--card:transparent;--line:#e5d8c4}
 *{box-sizing:border-box}
 body{font-family:'Pretendard','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;margin:0}
 .wrap{max-width:880px;margin:0 auto;padding:48px 24px}
@@ -57,9 +57,9 @@ body{font-family:'Pretendard','Noto Sans KR',sans-serif;background:var(--bg);col
 h1{font-size:34px;letter-spacing:-.02em;margin:0 0 8px;line-height:1.25}
 .subtitle{font-size:15px;color:var(--muted);margin-bottom:28px}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
-.tag{font-size:12px;padding:4px 12px;border-radius:999px;background:#f3f4f6;color:#374151}
-.tag.cw{color:#fff}
-section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:20px}
+.tag{font-size:12px;padding:4px 12px;border-radius:999px;background:transparent;border:1px solid var(--line);color:#374151}
+.tag.cw{color:inherit;background:transparent;border-width:1.5px}
+section{background:transparent;border:1px solid var(--line);border-radius:14px;padding:24px;margin-bottom:18px}
 section h2{font-size:18px;margin:0 0 14px;letter-spacing:-.01em}
 section p{margin:0 0 12px;font-size:15px}
 .works{list-style:none;padding:0;margin:0}
@@ -69,8 +69,8 @@ section p{margin:0 0 12px;font-size:15px}
 .cites{font-size:13px;color:#374151}
 .cites li{margin-bottom:6px}
 .related{display:flex;flex-wrap:wrap;gap:8px}
-.related a{font-size:13px;padding:6px 12px;border-radius:8px;background:#f3f4f6;color:#374151;text-decoration:none}
-.related a:hover{background:var(--accent);color:#fff}
+.related a{font-size:13px;padding:6px 12px;border-radius:8px;background:transparent;border:1px solid var(--line);color:#374151;text-decoration:none;transition:border-color .15s,color .15s}
+.related a:hover{border-color:var(--accent);color:var(--accent)}
 .back{display:inline-block;margin-top:32px;font-size:13px;color:var(--accent);text-decoration:none}
 .entries{margin-top:8px}
 .entries li{padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
@@ -80,7 +80,7 @@ section p{margin:0 0 12px;font-size:15px}
 """
 
 INDEX_CSS = """
-:root{--ink:#0a0a0a;--muted:#6b7280;--accent:#0891b2;--bg:#fafaf7;--card:#fff;--line:#e5e7eb}
+:root{--ink:#1f1f23;--muted:#6b7280;--accent:#b45309;--warm:#d97706;--bg:#fafaf7;--card:transparent;--line:#e5d8c4}
 *{box-sizing:border-box}
 body{font-family:'Pretendard','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;margin:0}
 .wrap{max-width:1180px;margin:0 auto;padding:48px 24px}
@@ -89,23 +89,23 @@ body{font-family:'Pretendard','Noto Sans KR',sans-serif;background:var(--bg);col
 h1{font-size:36px;letter-spacing:-.02em;margin:0 0 8px}
 .lead{font-size:15px;color:var(--muted);margin-bottom:24px;max-width:680px}
 .kpi{display:flex;gap:18px;margin-bottom:32px;flex-wrap:wrap}
-.kpi .box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 20px;min-width:120px}
+.kpi .box{background:transparent;border:1px solid var(--line);border-radius:10px;padding:14px 20px;min-width:120px}
 .kpi .num{font-size:24px;font-weight:600;color:var(--accent)}
 .kpi .lab{font-size:12px;color:var(--muted);margin-top:4px}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
-.filters button{font-size:13px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#374151;cursor:pointer}
-.filters button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.filters button{font-size:13px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:#374151;cursor:pointer}
+.filters button.active{background:transparent;color:var(--accent);border-color:var(--accent);border-width:1.5px}
 .matrix{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;transition:transform .15s,box-shadow .15s}
-.card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.06);border-color:var(--accent)}
+.card{background:transparent;border:1px solid var(--line);border-radius:14px;padding:18px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-2px);border-color:var(--accent);border-width:1.5px}
 .card .name{font-size:17px;font-weight:600;letter-spacing:-.01em}
 .card .lived{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
 .card .why{font-size:13px;color:#374151;line-height:1.55;flex-grow:1}
 .card .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.card .chip{font-size:11px;padding:3px 9px;border-radius:999px;background:#f3f4f6;color:#374151}
-.card .chip.cw{color:#fff}
+.card .chip{font-size:11px;padding:3px 9px;border-radius:999px;background:transparent;border:1px solid var(--line);color:#4b5563}
+.card .chip.cw{color:inherit;background:transparent;border-width:1.5px}
 .legend{font-size:12px;color:var(--muted);margin-top:24px}
-.legend span{display:inline-block;padding:3px 10px;border-radius:999px;color:#fff;margin-right:6px;font-size:11px}
+.legend span{display:inline-block;padding:3px 10px;border-radius:999px;color:inherit;background:transparent;border:1.5px solid currentColor;margin-right:6px;font-size:11px}
 .era-section{margin-top:32px}
 .era-section h2{font-size:20px;margin:0 0 4px;letter-spacing:-.01em}
 .era-section .span{font-size:12px;color:var(--muted);margin-bottom:14px}
@@ -164,7 +164,7 @@ def render_person_page(p: Dict) -> str:
   <div class="tags">
     <span class="tag">{_esc(era)}</span>
     <span class="tag">{_esc(domain)}</span>
-    <span class="tag cw" style="background:{cw_color}">{_esc(cw_label)}</span>
+    <span class="tag cw" style="border-color:{cw_color};color:{cw_color}">{_esc(cw_label)}</span>
   </div>
 
   <section>
@@ -239,7 +239,7 @@ def render_index_page() -> str:
         )
 
     legend = " ".join(
-        f"<span style='background:{c}'>{_esc(l)}</span>"
+        f"<span style='color:{c};border-color:{c}'>{_esc(l)}</span>"
         for l, c in CW_LABEL.values()
     )
 
@@ -287,7 +287,7 @@ def _render_card(p: Dict) -> str:
   <div class="why">{_esc(why)}</div>
   <div class="meta">
     <span class="chip">{_esc(domain)}</span>
-    <span class="chip cw" style="background:{cw_color}">{_esc(cw_label)}</span>
+    <span class="chip cw" style="border-color:{cw_color};color:{cw_color}">{_esc(cw_label)}</span>
   </div>
 </a>"""
 
