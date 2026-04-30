@@ -100,12 +100,12 @@ h1{font-size:36px;letter-spacing:-.02em;margin:0 0 8px}
 .card{background:transparent;border:1px solid var(--line);border-radius:14px;padding:0;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0;transition:transform .25s,border-color .25s;position:relative}
 .card .imgwrap{aspect-ratio:1/1;background:#f3eee2;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
 .card .photo{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:grayscale(.15) contrast(1.04);opacity:.92;transition:opacity .3s ease,filter .3s ease,transform .3s ease;display:block}
-.card:hover .photo{opacity:.35;filter:grayscale(.3) contrast(.95) blur(.5px);transform:scale(1.02)}
-.card .hover{position:absolute;left:0;right:0;top:0;bottom:auto;height:0;background:linear-gradient(180deg,rgba(250,250,247,.94) 0%,rgba(250,250,247,.98) 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px 16px;text-align:center;opacity:0;transition:opacity .3s ease;pointer-events:none}
+.card:hover .photo{opacity:.6;filter:grayscale(.2) contrast(1) blur(0);transform:scale(1.02)}
+.card .hover{position:absolute;left:0;right:0;top:0;bottom:auto;height:0;background:linear-gradient(180deg,rgba(250,250,247,.5) 0%,rgba(250,250,247,.78) 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px 16px;text-align:center;opacity:0;transition:opacity .3s ease;pointer-events:none}
 .card:hover .hover{opacity:1;height:100%;bottom:0}
-.card .hover .h-name{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:-.01em}
-.card .hover .h-lived{font-size:11px;color:var(--muted);margin-bottom:8px;font-variant-numeric:tabular-nums}
-.card .hover .h-why{font-size:12px;color:#374151;line-height:1.55;margin-bottom:10px}
+.card .hover .h-name{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:-.01em;text-shadow:0 1px 2px rgba(255,255,255,.95)}
+.card .hover .h-lived{font-size:11px;color:var(--ink);margin-bottom:8px;font-variant-numeric:tabular-nums;text-shadow:0 1px 2px rgba(255,255,255,.95)}
+.card .hover .h-why{font-size:12px;color:var(--ink);line-height:1.55;margin-bottom:10px;text-shadow:0 1px 2px rgba(255,255,255,.95)}
 .card .hover .h-cta{font-size:11px;font-weight:700;color:var(--accent);border:1px solid var(--accent);padding:4px 10px;border-radius:999px;letter-spacing:.04em}
 .card .body{padding:14px 16px;display:flex;flex-direction:column;gap:6px;flex-grow:1}
 .card:hover{transform:translateY(-2px);border-color:var(--accent);border-width:1.5px}
