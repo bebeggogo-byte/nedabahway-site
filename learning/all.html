@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/cobalt-tokens-v1.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>학습노트 전체보기 — 100편 매트릭스 | 네다바웨이</title>
+<meta name="description" content="김창환 강사·네다바웨이의 학습노트 전체 100편. 1차 출처 정독 결과를 6영역(고전·인문학·과학·실무·자기이해·예술자연)·6단계 매트릭스로 정리.">
+<link rel="canonical" href="https://www.nedabah.org/learning/all.html">
+<meta property="og:title" content="학습노트 전체보기 — 100편 매트릭스">
+<meta property="og:description" content="6영역 100편 학습노트 — 필터·검색 가능한 전체 그리드">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-default.svg">
+<meta property="og:url" content="https://www.nedabah.org/learning/all.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="학습노트 전체보기 — 100편 매트릭스">
+<meta name="twitter:description" content="6영역 100편 학습노트 그리드">
+<meta name="twitter:image" content="https://www.nedabah.org/assets/og-default.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"학습노트 전체보기","description":"김창환 강사 학습노트 100편 매트릭스","url":"https://www.nedabah.org/learning/all.html","publisher":{"@type":"Organization","name":"네다바웨이"}}
+</script>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<link rel="stylesheet" href="/assets/a11y-fixes-v1.css">
+<script src="/assets/a11y-runtime-v1.js" defer></script>
+<script src="/assets/404-helper-v1.js" defer></script>
+<!-- bundled: cobalt-tokens-v1.css a11y-fixes-v1.css -->
+<style>
+:root{
+  --ink:#0a0a0a;--mute:#6b7280;--bg:#fafaf7;--card:#fff;--line:#e5e7eb;--acc:#1E40AF;
+  --acc-bg:#EFF4FB;--acc-line:#C7D2FE;--paper-3:#fdfaf3;
+}
+*{box-sizing:border-box}
+body{font-family:'Pretendard','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;margin:0;padding:0}
+.skip-link{position:absolute;left:-9999px;top:1rem;background:var(--acc);color:#fff;padding:.75rem 1.25rem;text-decoration:none;border-radius:4px;z-index:10000}
+.skip-link:focus{left:1rem}
+
+.hero{max-width:1200px;margin:0 auto;padding:48px 24px 24px}
+.hero__back{font-size:13px;color:var(--acc);text-decoration:none;margin-bottom:14px;display:inline-flex;align-items:center;gap:6px}
+.hero__back:hover{text-decoration:underline}
+.hero h1{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:0 0 10px;line-height:1.25}
+.hero__sub{font-size:16px;color:var(--mute);margin:0 0 18px}
+.hero__stats{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 16px;font-size:14px}
+.stat strong{color:var(--acc);font-weight:700;font-size:20px;display:block}
+
+.controls{max-width:1200px;margin:0 auto;padding:8px 24px 24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.search-box{flex:1;min-width:280px;position:relative}
+.search-box input{width:100%;padding:11px 14px 11px 40px;font-size:15px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+.search-box svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--mute)}
+.area-filter{display:flex;flex-wrap:wrap;gap:6px}
+.area-chip{background:var(--card);border:1px solid var(--line);color:var(--ink);padding:7px 13px;border-radius:18px;font-size:13px;cursor:pointer;transition:all .15s;font-weight:500}
+.area-chip:hover{background:var(--acc-bg);border-color:var(--acc-line)}
+.area-chip.active{background:var(--acc);color:#fff;border-color:var(--acc)}
+.area-chip .count{font-size:11px;opacity:.7;margin-left:4px}
+
+.format-filter{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.format-chip{background:transparent;border:1px solid var(--line);color:var(--mute);padding:5px 11px;border-radius:14px;font-size:12px;cursor:pointer;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.format-chip:hover{border-color:var(--acc-line);color:var(--acc)}
+.format-chip.active{background:var(--acc-bg);color:var(--acc);border-color:var(--acc-line)}
+
+.sort-select{padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font-size:13px;cursor:pointer}
+
+.results-info{max-width:1200px;margin:0 auto;padding:0 24px 12px;font-size:13px;color:var(--mute)}
+.results-info span{color:var(--acc);font-weight:600}
+
+.grid{max-width:1200px;margin:0 auto;padding:8px 24px 96px;display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.note-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 18px 16px;text-decoration:none;color:inherit;transition:all .18s;display:flex;flex-direction:column;min-height:180px;position:relative;border-left:3px solid var(--acc)}
+.note-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(30,64,175,.12);border-left-color:var(--acc)}
+.note-card__meta{display:flex;flex-wrap:wrap;gap:8px;font-size:11px;color:var(--mute);margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase}
+.note-card__meta .area{color:var(--acc);font-weight:600}
+.note-card__title{font-size:15px;font-weight:700;color:var(--ink);line-height:1.4;margin:0 0 8px;letter-spacing:-.01em}
+.note-card__summary{font-size:13.5px;color:#374151;line-height:1.55;flex:1;margin:0 0 10px}
+.note-card__footer{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--mute);padding-top:10px;border-top:1px solid var(--line);margin-top:auto}
+.note-card__cites{display:inline-flex;align-items:center;gap:4px}
+
+.empty-state{max-width:600px;margin:60px auto;padding:40px 24px;text-align:center;background:var(--card);border-radius:10px;border:1px solid var(--line)}
+.empty-state h3{font-size:17px;font-weight:700;margin:0 0 10px;color:var(--ink)}
+.empty-state p{color:var(--mute);font-size:14px;margin:0 0 8px}
+
+.foot{padding:24px;text-align:center;font-size:12px;color:var(--mute);border-top:1px solid var(--line);background:var(--paper-3)}
+.foot a{color:var(--acc);text-decoration:none}
+
+@media (max-width:680px){
+  .hero h1{font-size:26px}
+  .grid{grid-template-columns:1fr;gap:12px}
+  .controls{flex-direction:column;align-items:stretch}
+  .area-filter,.format-filter{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">본문으로 건너뛰기</a>
+
+<main id="main">
+
+<header class="hero">
+  <a href="/learning.html" class="hero__back">← 학습노트 매트릭스로</a>
+  <h1>학습노트 전체보기</h1>
+  <p class="hero__sub">김창환 강사가 1차 출처를 직접 정독한 학습 결과 — 6영역 매트릭스로 누적 중</p>
+  <div class="hero__stats">
+    <div class="stat"><strong id="stat-total">—</strong><span>전체</span></div>
+    <div class="stat"><strong id="stat-public">—</strong><span>공개</span></div>
+    <div class="stat"><strong id="stat-areas">6</strong><span>영역</span></div>
+    <div class="stat"><strong id="stat-recent">—</strong><span>최근 7일</span></div>
+  </div>
+</header>
+
+<section class="controls">
+  <div class="search-box">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="search" id="search-input" placeholder="제목·요약·카테고리 검색" aria-label="학습노트 검색">
+  </div>
+  <select id="sort-select" class="sort-select" aria-label="정렬">
+    <option value="newest">최신순</option>
+    <option value="oldest">오래된 순</option>
+    <option value="title">제목순</option>
+    <option value="area">영역순</option>
+  </select>
+</section>
+
+<section class="controls" style="padding-top:0">
+  <div style="width:100%">
+    <div class="area-filter" id="area-filter"></div>
+    <div class="format-filter" id="format-filter"></div>
+  </div>
+</section>
+
+<div class="results-info">
+  <span id="results-count">로딩 중…</span> · 클릭하면 개별 글로 이동
+</div>
+
+<section class="grid" id="grid">
+  <div class="empty-state"><p>로딩 중…</p></div>
+</section>
+
+</main>
+
+<footer class="foot">
+  학습노트 100편은 김창환 강사 직업본질연구원의 1차 출처 정독 누적입니다. ·
+  <a href="/learning.html">매트릭스로 돌아가기</a> ·
+  <a href="/contact.html">강의 의뢰</a>
+</footer>
+
+<script>
+(async function() {
+  'use strict';
+
+  const grid = document.getElementById('grid');
+  const searchInput = document.getElementById('search-input');
+  const sortSelect = document.getElementById('sort-select');
+  const areaFilterEl = document.getElementById('area-filter');
+  const formatFilterEl = document.getElementById('format-filter');
+  const resultsCount = document.getElementById('results-count');
+
+  let allEntries = [];
+  let categories = [];
+  let activeArea = 'all';
+  let activeFormat = 'all';
+  let searchQuery = '';
+  let sortBy = 'newest';
+
+  function escapeHtml(s) {
+    return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // 데이터 로드
+  try {
+    const [notesRes, catsRes] = await Promise.all([
+      fetch('/learning/_data/notes.json').then(r => r.json()),
+      fetch('/learning/_data/categories.json').then(r => r.json()).catch(() => ({categories: []})),
+    ]);
+
+    allEntries = (notesRes.entries || notesRes.items || [])
+      .filter(e => e.visibility === 'public' || !e.visibility);
+    categories = catsRes.categories || [];
+  } catch (err) {
+    grid.innerHTML = '<div class="empty-state"><h3>데이터 로드 실패</h3><p>잠시 후 다시 시도해주세요.</p></div>';
+    return;
+  }
+
+  // 통계 채우기
+  document.getElementById('stat-total').textContent = allEntries.length;
+  document.getElementById('stat-public').textContent = allEntries.filter(e => e.visibility === 'public').length;
+
+  const today = new Date();
+  const week = today.getTime() - 7 * 24 * 60 * 60 * 1000;
+  const recent = allEntries.filter(e => {
+    const d = new Date(e.published || e.date);
+    return d.getTime() >= week;
+  }).length;
+  document.getElementById('stat-recent').textContent = recent;
+
+  // 영역 필터 칩
+  const areaCount = {};
+  allEntries.forEach(e => {
+    const a = e.area || '미분류';
+    areaCount[a] = (areaCount[a] || 0) + 1;
+  });
+  const areaOrder = ['all', 'A. 고전', 'B. 인문학', 'C. 과학', 'D. 실무', 'E. 자기이해', 'F. 예술·자연'];
+  areaFilterEl.innerHTML = areaOrder.map(a => {
+    const count = a === 'all' ? allEntries.length : (areaCount[a] || 0);
+    const label = a === 'all' ? '전체' : a;
+    return `<button class="area-chip ${a==='all'?'active':''}" data-area="${escapeHtml(a)}">${escapeHtml(label)}<span class="count">${count}</span></button>`;
+  }).join('');
+
+  // 형식 필터 칩
+  const formatCount = {};
+  allEntries.forEach(e => {
+    const f = (e.format || 'paper').toLowerCase();
+    formatCount[f] = (formatCount[f] || 0) + 1;
+  });
+  const formatOrder = ['all', 'paper', 'book', 'essay', 'synth', 'field', 'diary'];
+  formatFilterEl.innerHTML = formatOrder
+    .filter(f => f === 'all' || formatCount[f])
+    .map(f => {
+      const count = f === 'all' ? allEntries.length : (formatCount[f] || 0);
+      return `<button class="format-chip ${f==='all'?'active':''}" data-format="${escapeHtml(f)}">${escapeHtml(f)} <span class="count">${count}</span></button>`;
+    }).join('');
+
+  function renderCard(entry) {
+    const cat = categories.find(c => c.id === entry.category_id);
+    const catName = cat ? cat.name : (entry.category || '');
+    const area = entry.area || '미분류';
+    const cites = entry.cites_count || 0;
+
+    return `
+    <a class="note-card" href="${entry.url}">
+      <div class="note-card__meta">
+        <span class="area">${escapeHtml(area)}</span>
+        <span>${escapeHtml((entry.format || 'paper').toUpperCase())}</span>
+      </div>
+      <h3 class="note-card__title">${escapeHtml(entry.title)}</h3>
+      <p class="note-card__summary">${escapeHtml((entry.summary || '').slice(0, 140))}${(entry.summary || '').length > 140 ? '…' : ''}</p>
+      <div class="note-card__footer">
+        <span>${escapeHtml(catName)}</span>
+        <span class="note-card__cites">📚 ${cites}건</span>
+      </div>
+      <div class="note-card__footer" style="border:0;padding:4px 0 0">
+        <span>${escapeHtml(entry.published || entry.date || '')}</span>
+        <span>회전 ${entry.rotation || 1}</span>
+      </div>
+    </a>
+    `;
+  }
+
+  function applyFilters() {
+    let filtered = allEntries;
+
+    if (activeArea !== 'all') {
+      filtered = filtered.filter(e => (e.area || '') === activeArea);
+    }
+    if (activeFormat !== 'all') {
+      filtered = filtered.filter(e => (e.format || '').toLowerCase() === activeFormat);
+    }
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(e => {
+        const text = `${e.title || ''} ${e.summary || ''} ${e.category || ''} ${e.area || ''}`.toLowerCase();
+        return text.includes(q);
+      });
+    }
+
+    if (sortBy === 'newest') {
+      filtered.sort((a, b) => (b.published || b.date || '').localeCompare(a.published || a.date || ''));
+    } else if (sortBy === 'oldest') {
+      filtered.sort((a, b) => (a.published || a.date || '').localeCompare(b.published || b.date || ''));
+    } else if (sortBy === 'title') {
+      filtered.sort((a, b) => (a.title || '').localeCompare(b.title || '', 'ko'));
+    } else if (sortBy === 'area') {
+      filtered.sort((a, b) => (a.area || '').localeCompare(b.area || '', 'ko'));
+    }
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `<div class="empty-state"><h3>일치하는 학습노트가 없습니다</h3><p>다른 영역·형식·검색어로 시도해 보세요.</p></div>`;
+      resultsCount.textContent = '0편';
+    } else {
+      grid.innerHTML = filtered.map(renderCard).join('');
+      resultsCount.textContent = `${filtered.length}편 표시`;
+    }
+  }
+
+  // 이벤트 바인딩
+  areaFilterEl.addEventListener('click', e => {
+    const btn = e.target.closest('.area-chip');
+    if (!btn) return;
+    activeArea = btn.dataset.area;
+    areaFilterEl.querySelectorAll('.area-chip').forEach(b => b.classList.toggle('active', b === btn));
+    applyFilters();
+  });
+
+  formatFilterEl.addEventListener('click', e => {
+    const btn = e.target.closest('.format-chip');
+    if (!btn) return;
+    activeFormat = btn.dataset.format;
+    formatFilterEl.querySelectorAll('.format-chip').forEach(b => b.classList.toggle('active', b === btn));
+    applyFilters();
+  });
+
+  let debounceTimer;
+  searchInput.addEventListener('input', e => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      searchQuery = e.target.value.trim();
+      applyFilters();
+    }, 200);
+  });
+
+  sortSelect.addEventListener('change', e => {
+    sortBy = e.target.value;
+    applyFilters();
+  });
+
+  // ?area=...·?q=... URL 파라미터 자동 적용
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('area')) {
+    activeArea = params.get('area');
+    const btn = areaFilterEl.querySelector(`.area-chip[data-area="${activeArea}"]`);
+    if (btn) {
+      areaFilterEl.querySelectorAll('.area-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  }
+  if (params.get('q')) {
+    searchQuery = params.get('q');
+    searchInput.value = searchQuery;
+  }
+
+  applyFilters();
+})();
+</script>
+
+</body>
+</html>
