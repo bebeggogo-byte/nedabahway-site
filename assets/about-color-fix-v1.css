@@ -1,0 +1,56 @@
+/* about-color-fix-v1.css — about.html 색 조합 보정 (2026-05-01)
+   사용자 지시: "소개페이지만 색조합이 문제다"
+   문제: 인라인 스타일에 #b45309(앰버)·#3a6fb4(옅은 블루)가 코발트 정책과 충돌
+   전략: 인라인 스타일 직접 수정 안 하고 attribute selector + !important로 일괄 덮어쓰기
+*/
+
+/* 앰버 #b45309 → 코발트 #1E40AF (인간 결·작업 결·약속하지 않는 것 라벨) */
+[style*="color:#b45309"],
+[style*="color: #b45309"],
+[style*="color:#B45309"] {
+  color: #1E40AF !important;
+}
+
+/* 옅은 블루 #3a6fb4 → 코발트 #1E40AF (AI 결·약속하는 것 라벨) */
+[style*="color:#3a6fb4"],
+[style*="color: #3a6fb4"],
+[style*="color:#3A6FB4"] {
+  color: #1E40AF !important;
+}
+
+/* 카드 보더 색 통일 — 인간/AI 두 카드의 분리는 텍스트로만 표현 */
+[style*="border:1px solid #e5d8c4"],
+[style*="border: 1px solid #e5d8c4"] {
+  border-color: #d8cdb8 !important;
+}
+[style*="border:1px solid #c4d8e5"],
+[style*="border: 1px solid #c4d8e5"] {
+  border-color: #C7D2FE !important;
+}
+
+/* 카드 배경 흰색 → 페이퍼 톤 (paper-3) */
+.deck-page [style*="background:#fff"],
+.deck-page [style*="background: #fff"],
+.deck-page [style*="background:#FFF"],
+.deck-page [style*="background: #FFF"] {
+  background: #fdfaf3 !important;
+}
+
+/* footer dotted underline 옅은 블루 #3B82F6 → 코발트 톤 자국 */
+[style*="border-bottom:1px dotted #1E40AF"] {
+  border-color: #1E40AF !important;
+}
+
+/* 카드 안 텍스트 색 통일 (#3a322a·#4b5563 → 본문 잉크) */
+.deck-page p[style*="color:#4b5563"],
+.deck-page p[style*="color: #4b5563"] {
+  color: #5a5048 !important;
+}
+
+/* 보조 텍스트 #6b6155 → 진하게 (WCAG AA) */
+.deck-page [style*="color:#6b6155"] {
+  color: #5a5048 !important;
+}
+.deck-page [style*="color:#8a7a64"] {
+  color: #6b6155 !important;
+}

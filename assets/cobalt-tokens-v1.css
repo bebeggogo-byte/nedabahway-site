@@ -1,0 +1,29 @@
+/* cobalt-tokens-v1.css — 코발트 단일 진실 원천 + 별칭 (2026-05-01, F6)
+   목적: 변수명 'copper'(이름)와 값 #1E40AF(코발트) 충돌 해소.
+   전략: --c-cobalt-* 를 단일 진실 원천으로 두고, 기존 --copper·--c-copper는 별칭으로.
+   기존 코드 안 깨고 새 코드는 --c-cobalt-* 사용 권장.
+   2026-04-30 사용자 영구 결정: 강조색 = 코발트 블루 #1E40AF.
+*/
+
+:root {
+  /* === 단일 진실 원천 (Single Source of Truth) === */
+  --c-cobalt:        #1E40AF;          /* 기본 강조 */
+  --c-cobalt-deep:   #1E3A8A;          /* hover · 진한 강조 */
+  --c-cobalt-soft:   #3B82F6;          /* 보조 강조 · 아이콘 */
+  --c-cobalt-bg:     #EFF4FB;          /* 강조 영역 옅은 배경 */
+  --c-cobalt-tint:   rgba(30, 64, 175, .08);
+  --c-cobalt-line:   #C7D2FE;          /* 분리선 */
+
+  /* === 별칭 (deprecated, 점진 마이그레이션) === */
+  --copper:          var(--c-cobalt);
+  --copper-d:        var(--c-cobalt-deep);
+  --c-copper:        var(--c-cobalt);
+  --bronze:          var(--c-cobalt-soft);
+}
+
+/*
+   사용 가이드:
+   - 신규 코드: var(--c-cobalt) 권장
+   - 기존 코드: var(--copper) 그대로 유지 (별칭이 자동 코발트로 매핑)
+   - 다음 디자인 작업 시 --copper → --c-cobalt 점진 교체
+*/
