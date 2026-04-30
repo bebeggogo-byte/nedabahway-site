@@ -199,6 +199,58 @@ a{color:inherit;text-decoration:none}
   .book__page--left::after,.book__page--right::before{display:none}
 }
 
+/* === 표 보기 (카테고리별 슬림 직사각형 행) === */
+.tabl{max-width:1240px;margin:0 auto;padding:0 24px 80px}
+.tabl__sec{margin-bottom:18px;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.tabl__head{display:flex;align-items:center;gap:10px;padding:11px 16px;background:linear-gradient(180deg,#fafaf7 0%,#fff 100%);
+  border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.tabl__title{font-size:14px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.tabl__count{font-size:11px;color:var(--mute);font-family:ui-monospace,Menlo,Consolas,monospace}
+.tabl__bar{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden;max-width:120px;margin-left:auto}
+.tabl__bar i{display:block;height:100%;background:var(--acc);transition:width .3s ease}
+
+/* 가로 스크롤 행 — 슬림 직사각형 */
+.tabl__row{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x proximity;
+  scrollbar-width:thin;scrollbar-color:#ccc transparent}
+.tabl__row::-webkit-scrollbar{height:6px}
+.tabl__row::-webkit-scrollbar-thumb{background:#ddd;border-radius:3px}
+.tabl__row::-webkit-scrollbar-thumb:hover{background:#bbb}
+
+.tabl__cell{flex:0 0 220px;min-width:220px;padding:10px 14px;border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:3px;text-decoration:none;color:inherit;
+  transition:background .12s ease;scroll-snap-align:start;position:relative}
+.tabl__cell:hover{background:var(--acc-soft)}
+.tabl__cell:last-child{border-right:0}
+.tabl__date{font-size:10px;color:var(--mute);letter-spacing:.04em;font-family:ui-monospace,Menlo,Consolas,monospace}
+.tabl__t{font-size:13px;font-weight:700;line-height:1.35;color:var(--ink);letter-spacing:-.01em;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tabl__sub{font-size:11px;color:var(--mute);line-height:1.45;margin-top:2px;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.tabl__lens{font-size:10px;color:var(--acc);font-weight:700;margin-top:auto;padding-top:4px;letter-spacing:-.005em}
+.tabl__num{position:absolute;top:6px;right:8px;font-size:9px;color:var(--mute);font-family:ui-monospace,Menlo,Consolas,monospace}
+
+/* 카테고리별 색상 액센트 (좌측 얇은 띠) */
+.tabl__sec::before{content:"";position:absolute}
+.tabl__sec[data-cat="진로"] .tabl__head{box-shadow:inset 4px 0 0 #0369a1}
+.tabl__sec[data-cat="자기이해"] .tabl__head{box-shadow:inset 4px 0 0 #5b21b6}
+.tabl__sec[data-cat="관계·소통"] .tabl__head{box-shadow:inset 4px 0 0 #047857}
+.tabl__sec[data-cat="리더십"] .tabl__head{box-shadow:inset 4px 0 0 #b91c1c}
+.tabl__sec[data-cat="번아웃"] .tabl__head{box-shadow:inset 4px 0 0 #b45309}
+.tabl__sec[data-cat="부모/자녀"] .tabl__head{box-shadow:inset 4px 0 0 #9d174d}
+.tabl__sec[data-cat="AI 시대"] .tabl__head{box-shadow:inset 4px 0 0 #7e22ce}
+.tabl__sec[data-cat="창직"] .tabl__head{box-shadow:inset 4px 0 0 #115e59}
+.tabl__sec[data-cat="일·일터"] .tabl__head{box-shadow:inset 4px 0 0 #1e40af}
+.tabl__sec[data-cat="기타"] .tabl__head{box-shadow:inset 4px 0 0 #6b7280}
+
+/* 빈 행 */
+.tabl__empty{padding:14px 16px;color:var(--mute);font-size:12px;font-style:italic}
+
+@media (max-width:720px){
+  .tabl__cell{flex:0 0 180px;min-width:180px;padding:9px 12px}
+  .tabl__t{font-size:12.5px}
+  .tabl__head{padding:10px 14px}
+}
+
 /* responsive */
 @media (max-width:720px){
   .hero h1{font-size:32px}
@@ -214,6 +266,10 @@ a{color:inherit;text-decoration:none}
   <link rel="stylesheet" href="/assets/global-fonts.css">
   <link rel="stylesheet" href="/assets/global-nav.css">
 <link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
 <link rel="stylesheet" href="/assets/typography-v4.css">
 
 <link rel="stylesheet" href="/assets/mobile-v1.css">
@@ -332,12 +388,15 @@ a{color:inherit;text-decoration:none}
 <div class="results-meta"><span id="resultCount"><strong>100</strong>편 표시 중</span></div>
 
 <div class="viewmode" role="tablist" aria-label="보기 모드">
-  <button type="button" class="viewmode__btn active" id="vm-book" role="tab" aria-selected="true">📖 책 넘김</button>
+  <button type="button" class="viewmode__btn active" id="vm-table" role="tab" aria-selected="true">▤ 표(카테고리)</button>
+  <button type="button" class="viewmode__btn" id="vm-book" role="tab" aria-selected="false">📖 책 넘김</button>
   <button type="button" class="viewmode__btn" id="vm-grid" role="tab" aria-selected="false">▦ 그리드</button>
   <span class="viewmode__hint">
-    <kbd>←</kbd> <kbd>→</kbd> 키 또는 좌우 스와이프 · 페이지당 12편 (좌우 6편씩)
+    표: 카테고리별 가로 스크롤 · 책: <kbd>←</kbd><kbd>→</kbd> · 그리드: 전부 펼침
   </span>
 </div>
+
+<section class="tabl" id="tabl" aria-label="관점 노트 카테고리 표"></section>
 
 <section class="book" id="book" aria-label="관점 노트 책 넘김 보기">
   <div class="book__spine">
@@ -666,6 +725,53 @@ function bookGo(i){
   applyBookOffset();
 }
 
+/* === 카테고리 표 === */
+const TABL_ORDER = ['진로','일·일터','관계·소통','리더십','번아웃','부모/자녀','AI 시대','자기이해','창직','기타'];
+function renderTable(items){
+  const tabl = document.getElementById('tabl');
+  if(!tabl) return;
+  if(!items.length){
+    tabl.innerHTML = `<div class="tabl__empty">해당 좌표로 발행된 글이 아직 없습니다. <button type="button" onclick="clearAll()" style="color:var(--acc);background:none;border:none;border-bottom:1px solid currentColor;cursor:pointer;font:inherit">전체 초기화</button></div>`;
+    return;
+  }
+  // 카테고리별 그룹 (안에서는 최신순)
+  const byCat = {};
+  items.forEach(it=>{
+    const c = clusterDisplay(it.cluster) || '기타';
+    (byCat[c] = byCat[c] || []).push(it);
+  });
+  Object.keys(byCat).forEach(k=>{
+    byCat[k].sort((a,b)=> (b.date||'').localeCompare(a.date||''));
+  });
+  // 정해진 순서 + 알 수 없는 카테고리 뒤로
+  const seenCats = new Set();
+  const cats = [];
+  TABL_ORDER.forEach(c=>{ if(byCat[c]){ cats.push(c); seenCats.add(c); }});
+  Object.keys(byCat).sort().forEach(c=>{ if(!seenCats.has(c)) cats.push(c); });
+
+  const total = items.length;
+  tabl.innerHTML = cats.map(cat=>{
+    const arr = byCat[cat];
+    const pct = total ? Math.round(arr.length / total * 100) : 0;
+    const cells = arr.map((it,i)=>`
+      <a class="tabl__cell" href="${encodeURI(it.url)}">
+        <span class="tabl__num">#${i+1}</span>
+        <span class="tabl__date">${escapeHtml(it.date||'')}</span>
+        <span class="tabl__t">${escapeHtml(it.title||'')}</span>
+        <span class="tabl__sub">${escapeHtml(it.subtitle||'')}</span>
+        <span class="tabl__lens">${escapeHtml(it.lens||'전체')} 자리</span>
+      </a>`).join('');
+    return `<div class="tabl__sec" data-cat="${escapeAttr(cat)}">
+      <div class="tabl__head">
+        <span class="tabl__title">${escapeHtml(cat)}</span>
+        <span class="tabl__count">${arr.length}편</span>
+        <div class="tabl__bar"><i style="width:${pct}%"></i></div>
+      </div>
+      <div class="tabl__row">${cells}</div>
+    </div>`;
+  }).join('');
+}
+
 function render(){
   const items = filterAndSort(DATA.items);
   document.getElementById('resultCount').innerHTML = `<strong>${items.length}</strong>편 표시 중`;
@@ -678,30 +784,40 @@ function render(){
       <div class="book__spread"><div class="book__page book__page--left" style="grid-column:1/-1;justify-content:center;align-items:center;color:var(--mute);font-size:14px">
         해당 좌표로 발행된 글이 아직 없습니다. <button type="button" onclick="clearAll()" style="margin-left:8px;color:var(--acc);background:none;border:none;border-bottom:1px solid currentColor;cursor:pointer;font:inherit">전체 초기화</button>
       </div></div>`;
+    renderTable([]);
     return;
   }
   // 그리드
   grid.innerHTML = items.map(cardHtml).join('');
   // 책
   renderBook(items);
+  // 표
+  renderTable(items);
 }
 
-/* === 뷰 토글 === */
+/* === 뷰 토글 (3-way: table / book / grid) === */
 function setView(mode){
   state.view = mode;
   const grid = document.getElementById('grid');
   const book = document.getElementById('book');
+  const tabl = document.getElementById('tabl');
   const bGrid = document.getElementById('vm-grid');
   const bBook = document.getElementById('vm-book');
-  if(mode === 'grid'){
-    grid.hidden = false; book.hidden = true;
-    bGrid.classList.add('active'); bGrid.setAttribute('aria-selected','true');
-    bBook.classList.remove('active'); bBook.setAttribute('aria-selected','false');
-  } else {
-    grid.hidden = true; book.hidden = false;
-    bBook.classList.add('active'); bBook.setAttribute('aria-selected','true');
-    bGrid.classList.remove('active'); bGrid.setAttribute('aria-selected','false');
-  }
+  const bTabl = document.getElementById('vm-table');
+  // 모두 숨김
+  if(grid) grid.hidden = true;
+  if(book) book.hidden = true;
+  if(tabl) tabl.hidden = true;
+  [bGrid,bBook,bTabl].forEach(b=>{
+    if(!b) return;
+    b.classList.remove('active');
+    b.setAttribute('aria-selected','false');
+  });
+  let active;
+  if(mode === 'grid'){ if(grid) grid.hidden=false; active=bGrid; }
+  else if(mode === 'book'){ if(book) book.hidden=false; active=bBook; }
+  else { if(tabl) tabl.hidden=false; active=bTabl; mode='table'; state.view='table'; }
+  if(active){ active.classList.add('active'); active.setAttribute('aria-selected','true'); }
   try{ localStorage.setItem('persp.view', mode); }catch(e){}
 }
 
@@ -714,6 +830,7 @@ document.getElementById('clearAll').addEventListener('click', ()=>{ BOOK.current
 
 document.getElementById('vm-grid').addEventListener('click', ()=>setView('grid'));
 document.getElementById('vm-book').addEventListener('click', ()=>setView('book'));
+document.getElementById('vm-table').addEventListener('click', ()=>setView('table'));
 
 document.getElementById('bookPrev').addEventListener('click', ()=>bookGo(BOOK.current-1));
 document.getElementById('bookNext').addEventListener('click', ()=>bookGo(BOOK.current+1));
@@ -775,9 +892,9 @@ document.addEventListener('keydown', e=>{
   }, {passive:false});
 })();
 
-// 초기화
-state.view = 'book';
-try{ const saved = localStorage.getItem('persp.view'); if(saved==='grid' || saved==='book') state.view = saved; }catch(e){}
+// 초기화 — 기본은 카테고리 표
+state.view = 'table';
+try{ const saved = localStorage.getItem('persp.view'); if(saved==='grid' || saved==='book' || saved==='table') state.view = saved; }catch(e){}
 load().then(()=> setView(state.view));
 </script>
 
@@ -804,5 +921,7 @@ load().then(()=> setView(state.view));
   </div>
 </footer>
 
+
+<script src="/assets/back-to-top.js" defer></script>
 </body>
 </html>
