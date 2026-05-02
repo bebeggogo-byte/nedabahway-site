@@ -1,15 +1,57 @@
 {
-  "evaluated_at": "2026-04-26T00:00:00+00:00",
-  "paper_days": 0,
+  "evaluated_at": "2026-05-02T14:11:35+00:00",
+  "paper_days": 5,
   "all_passed": false,
-  "n_passed": 0,
+  "n_passed": 2,
   "n_total": 6,
   "criteria": [
-    {"name": "paper_days_min", "label": "Paper trading 일수", "threshold": "≥ 60일", "passed": false, "measured": "0일", "detail": "Phase 2 최소 운영 기간 (~3개월)"},
-    {"name": "realized_sharpe", "label": "실현 OOS Sharpe (연환산)", "threshold": "> 0.5", "passed": false, "measured": "0.00", "detail": "실제 페이퍼 매매 결과 기반"},
-    {"name": "max_drawdown", "label": "실현 최대 낙폭", "threshold": "> -25%", "passed": false, "measured": "0.0%", "detail": "자본 보호 기준"},
-    {"name": "trade_count", "label": "실집행 거래 횟수", "threshold": "≥ 50", "passed": false, "measured": "0", "detail": "통계적 의미 확보"},
-    {"name": "critics_no_fail_4w", "label": "4주간 비판자 FAIL 없음", "threshold": "0 FAIL", "passed": false, "measured": "PASS=0 WARN=0 FAIL=0", "detail": "구조적 문제 없음"},
-    {"name": "backtest_realized_gap", "label": "백테스트 vs 실현 갭", "threshold": "< 30%", "passed": false, "measured": "N/A", "detail": "과적합·realistic execution 검증"}
+    {
+      "name": "paper_days_min",
+      "label": "Paper trading 일수",
+      "threshold": "≥ 60일",
+      "passed": false,
+      "measured": "5일",
+      "detail": "Phase 2 최소 운영 기간 (~3개월)"
+    },
+    {
+      "name": "realized_sharpe",
+      "label": "실현 OOS Sharpe (연환산)",
+      "threshold": "> 0.5",
+      "passed": false,
+      "measured": "0.00",
+      "detail": "실제 페이퍼 매매 결과 기반"
+    },
+    {
+      "name": "max_drawdown",
+      "label": "실현 최대 낙폭",
+      "threshold": "> -25%",
+      "passed": true,
+      "measured": "0.0%",
+      "detail": "자본 보호 기준"
+    },
+    {
+      "name": "trade_count",
+      "label": "실집행 거래 횟수",
+      "threshold": "≥ 50",
+      "passed": false,
+      "measured": "0",
+      "detail": "통계적 의미 확보"
+    },
+    {
+      "name": "critics_no_fail_4w",
+      "label": "4주간 비판자 FAIL 없음",
+      "threshold": "0 FAIL",
+      "passed": true,
+      "measured": "PASS=0 WARN=0 FAIL=0",
+      "detail": "구조적 문제 없음"
+    },
+    {
+      "name": "backtest_realized_gap",
+      "label": "백테스트 vs 실현 갭",
+      "threshold": "< 30%",
+      "passed": false,
+      "measured": "N/A",
+      "detail": "과적합·realistic execution 검증"
+    }
   ]
 }
