@@ -186,9 +186,10 @@ VALUES (
   value = EXCLUDED.value, valid_until = EXCLUDED.valid_until, max_uses = EXCLUDED.max_uses;
 
 -- ── cohorts: 트랙당 1개 (1기) ───────────────────────────────
+-- tracks.id (text PRIMARY KEY) → cohorts.track_id (FK)
 INSERT INTO cohorts (track_id, name, start_date, end_date, status, max_seats)
-SELECT track_id, '1기', '2026-06-01'::date,
-       ('2026-06-01'::date + (duration_weeks || ' weeks')::interval)::date,
-       'recruiting', capacity
-FROM tracks
+SELECT t.id, '1기', '2026-06-01'::date,
+       ('2026-06-01'::date + (t.duration_weeks || ' weeks')::interval)::date,
+       'recruiting', t.capacity
+FROM tracks t
 ON CONFLICT DO NOTHING;
