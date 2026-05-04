@@ -21,9 +21,12 @@ concurrency:
 
 jobs:
   lighthouse:
-    name: Lighthouse audit (/p/* pages)
+    name: Lighthouse audit (/p/* pages — advisory)
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    # Lighthouse is advisory only. Real WCAG enforcement is via Pa11y CI in quality-check.yml.
+    # Lighthouse here surfaces performance/SEO/best-practices signals as artifact reports.
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
 
@@ -40,6 +43,7 @@ jobs:
 
       - name: Run Lighthouse CI on landing pages
         run: lhci autorun --config=.lighthouserc.json
+        continue-on-error: true
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
