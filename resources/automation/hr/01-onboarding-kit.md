@@ -46,7 +46,12 @@
 - `SLACK_HOOK` (HR 공지 채널)
 - `HR_FROM_NAME` (메일 발신 표시명)
 
-### Step 4. 트리거: `onEdit` 시트 편집 시.
+### Step 4. 설치형 트리거 등록 (단순 트리거 아님, 중요)
+
+> **왜 설치형인가**: 단순 `onEdit`은 권한 한도가 낮아 `GmailApp.sendEmail`, `DriveApp.getFolderById`, `CalendarApp.createEvent` 같은 외부 서비스를 호출할 수 없습니다. 반드시 설치형 트리거로 등록해야 합니다.
+
+1. 스크립트 상단의 **`installTrigger`** 함수를 한 번 실행 → 권한 동의 화면이 뜨면 모두 허용
+2. Apps Script 좌측 **트리거(시계 아이콘)** 메뉴에서 `onEditInstallable`이 `from spreadsheet → on edit` 으로 등록되어 있는지 확인
 
 ---
 
@@ -61,7 +66,21 @@ const FOLDER    = PROPS.getProperty('OUTPUT_FOLDER_ID');
 const SLACK     = PROPS.getProperty('SLACK_HOOK') || '';
 const FROM_NAME = PROPS.getProperty('HR_FROM_NAME') || 'HR팀';
 
-function onEdit(e) {
+/**
+ * 셋업 시 1회 실행: 설치형 onEdit 트리거를 등록한다.
+ * 단순 트리거(onEdit)는 외부 서비스 권한이 없어 메일/캘린더/Drive 호출이 실패한다.
+ */
+function installTrigger() {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  // 기존 동일 트리거가 있으면 제거 (중복 방지)
+  ScriptApp.getProjectTriggers()
+    .filter(t => t.getHandlerFunction() === 'onEditInstallable')
+    .forEach(t => ScriptApp.deleteTrigger(t));
+  ScriptApp.newTrigger('onEditInstallable').forSpreadsheet(ss).onEdit().create();
+  Logger.log('설치형 onEdit 트리거 등록 완료');
+}
+
+function onEditInstallable(e) {
   const sheet = e.source.getActiveSheet();
   if (sheet.getName() !== 'hires') return;
   const row = e.range.getRow();
@@ -156,7 +175,7 @@ function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate()+n); return
 
 | 증상 | 원인 | 해결 |
 |---|---|---|
-| `onEdit` 미발동 | 단순 트리거의 권한 한계 | 설치형 트리거(`installOnEdit` 함수 만들어 트리거 등록) 사용 |
+| `onEdit` 미발동 / 권한 오류 | 단순 트리거는 외부 서비스 호출 권한이 없음 | 셋업 Step 4에 따라 `installTrigger()`를 1회 실행해 설치형 트리거로 등록 |
 | 캘린더 이벤트 중복 생성 | 같은 행을 다시 편집 | `status` 컬럼이 `완료`면 조기 return — 이미 처리됨 |
 | 환영 메일 스팸 분류 | 발신 도메인/SPF 미설정 | Workspace 도메인 발신 + SPF/DKIM 설정 |
 | 멘토 미정 시 캘린더 오류 | guests 빈값 | `mentorEmail`이 빈문자열일 때 분기 처리(이미 코드에 반영) |

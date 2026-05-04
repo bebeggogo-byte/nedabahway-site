@@ -33,6 +33,8 @@
 5. 가장 답답한 점 (장문) ← AI 분석 대상
 6. 자유 의견 (장문) ← AI 분석 대상
 
+> **중요**: Google Forms는 응답 시트 첫 컬럼에 **Timestamp**를 자동으로 추가합니다. 따라서 시트 구조는 `A=Timestamp, B=직군, C=몰입, D=ENPS, E=잘된 점, F=답답한 점, G=자유 의견`이 됩니다. 코드의 `enpsCol`, `TEXT_COLS` 상수는 이 1-base 인덱스에 맞춰져 있습니다(폼 질문 순서를 바꾸면 두 상수도 함께 조정).
+
 ### Step 2. 응답 시트
 폼이 자동 생성한 응답 시트를 그대로 사용. 추가 탭 두 개 만들기:
 - `analyzed`: `행 | 직군 | 감성 | 주제 | 요지` (AI가 채움)
@@ -57,7 +59,11 @@ const SHEET_ID   = PROPS.getProperty('RESPONSE_SHEET_ID');
 const GEMINI_KEY = PROPS.getProperty('GEMINI_API_KEY');
 const EMAIL_TO   = PROPS.getProperty('RECIPIENT_EMAIL');
 
-const TEXT_COLS = [4, 5, 6]; // 정성 응답 컬럼 인덱스(1-base) — 폼에 맞게 조정
+// 응답 시트 1-base 컬럼 인덱스
+// A(1)=Timestamp, B(2)=직군, C(3)=몰입(1~5), D(4)=ENPS(0~10),
+// E(5)=잘된 점, F(6)=답답한 점, G(7)=자유 의견
+const GROUP_COL = 2;          // 직군 (B열)
+const TEXT_COLS = [5, 6, 7];  // 정성 응답 컬럼 인덱스 — AI에 전송되는 유일한 데이터
 
 // ─────────────────────────────────────────────
 // 1) 응답 일괄 분석
@@ -74,8 +80,8 @@ function analyzeAll() {
   const batch = []; // [{row, group, text}]
   for (let i = 1; i < data.length; i++) {
     if (processed.has(String(i+1))) continue;
-    const group = data[i][1]; // 직군 컬럼 가정 (B열)
-    const merged = TEXT_COLS.map(c => (data[i][c-1] || '').trim()).filter(Boolean).join(' / ');
+    const group = data[i][GROUP_COL - 1]; // 직군 (B열, 1-base index 2)
+    const merged = TEXT_COLS.map(c => String(data[i][c-1] || '').trim()).filter(Boolean).join(' / ');
     if (!merged) continue;
     batch.push({row: i+1, group, text: merged});
   }
@@ -127,7 +133,8 @@ function buildReport() {
 
   // 정량
   const all = src.getDataRange().getValues();
-  const enpsCol = 3; // ENPS 컬럼(예: C열) — 폼에 맞춰 조정
+  // Forms는 첫 컬럼에 Timestamp를 자동 추가하므로 ENPS는 D열(1-base 4)에 위치한다.
+  const enpsCol = 4;
   const enpsScores = all.slice(1).map(r => Number(r[enpsCol-1])).filter(n => !isNaN(n));
   const enps = enpsScore(enpsScores);
 
@@ -232,6 +239,7 @@ function renderReport(enps, sent, topTopics, samples, ins) {
 | `analyzed` 시트가 일부만 채워짐 | 50건 배치에서 일부 응답 비어 있음 | 빈 응답 사전 필터링(코드에 반영됨) |
 | Gemini가 라벨을 영어로 반환 | 프롬프트 강제 부족 | 시스템 메시지에 "한국어 명사구"를 한 번 더 강조 |
 | ENPS가 NaN | 객관식 응답이 텍스트로 들어옴 | 폼 질문을 0~10 척도형으로 정확히 설정 |
+| ENPS가 항상 -100 | 폼 질문 순서를 바꿔 컬럼 인덱스가 틀어짐 | 본 문서 Step 1의 6개 질문 순서를 그대로 유지하거나, `GROUP_COL`/`enpsCol`/`TEXT_COLS` 상수를 새 순서에 맞게 갱신 |
 | 직군 식별 위험 | 본부가 5명 미만 | 직군 라벨링을 본부→사업부 단위로 묶어 익명성 보장 |
 
 ## 응용 아이디어

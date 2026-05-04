@@ -51,8 +51,11 @@
 - `SLACK_BOT_TOKEN`
 
 ### Step 5. 트리거 + Web App 배포
-1. 트리거: `onFormSubmit` → 폼 제출 시 실행
-2. **배포 → 새 배포 → 웹 앱** → 누구나 접근 가능 → URL 복사 → Slack App의 Interactivity Request URL에 붙여넣기
+1. 트리거 1: `onFormSubmit` → 폼 제출 시 실행 (Apps Script 트리거 메뉴에서 추가)
+2. 트리거 2: 스크립트 편집기에서 **`installApprovalTrigger`** 함수를 1회 실행 → 권한 동의 후 설치형 onEdit 트리거가 등록됨 (단순 트리거가 아니어야 GmailApp/CalendarApp 호출 가능)
+3. **배포 → 새 배포 → 웹 앱** → 실행: 본인 / 액세스: 누구나 → URL 복사 → Slack App의 Interactivity Request URL에 붙여넣기
+
+> **왜 트리거가 두 개인가**: Slack은 인터랙션 응답을 3초 안에 받지 못하면 사용자에게 오류를 노출합니다. 따라서 `doPost`는 sheet 상태만 갱신하고 즉시 응답하며, 캘린더 등록·연차 차감·신청자 메일은 sheet 변화를 감지하는 별도 설치형 트리거가 비동기로 처리합니다.
 
 ---
 
@@ -116,6 +119,13 @@ function onFormSubmit(e) {
 
 // ─────────────────────────────────────────────
 // 2) Slack 인터랙션 콜백: 버튼 눌림 처리
+//
+// Slack은 Interactive payload에 대한 HTTP 응답을 3초 안에 받지 못하면
+// "This app took too long to respond" 오류를 노출한다. 따라서 doPost는
+// (a) 빠른 sheet 상태 갱신만 수행하고 (b) 즉시 Slack에 message 교체 응답을
+// 반환한다. 캘린더 등록·연차 잔여 갱신·신청자 메일은 sheet 상태 컬럼을
+// 감시하는 설치형 onEdit 트리거(`onApprovalStatusChange`)에서 비동기로
+// 처리한다. 이 분리가 라이브 시연 안정성의 핵심이다.
 // ─────────────────────────────────────────────
 function doPost(e) {
   const payload = JSON.parse(e.parameter.payload);
@@ -125,35 +135,86 @@ function doPost(e) {
 
   const ss = SpreadsheetApp.openById(SHEET_ID);
   const sheet = ss.getSheets()[0];
-  const row = sheet.getRange(value.row, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const lastCol = sheet.getLastColumn();
+  const row = sheet.getRange(value.row, 1, 1, lastCol).getValues()[0];
+  const [ts, email, name, type] = row;
+
+  // 멱등성 가드: 이미 처리된 행이면 무시 (사용자가 메시지를 새로고쳐 두 번 누르는 경우 방지)
+  const meta = String(row[lastCol - 1] || '').split('|');
+  if (meta[2] && meta[2] !== '대기') {
+    return jsonResponse({text: `이미 ${meta[2]} 처리된 신청입니다.`, response_type: 'ephemeral'});
+  }
+
+  // sheet의 마지막 컬럼(`channel|ts|상태`)을 갱신 — onApprovalStatusChange 트리거가 이 변화를 감지해 무거운 작업을 수행
+  const decided = value.action === 'approve' ? '승인' : '반려';
+  sheet.getRange(value.row, lastCol).setValue(`${meta[0]||payload.channel.id}|${meta[1]||payload.message.ts}|${decided}|${userName}`);
+
+  // 즉시 Slack에 message 교체 응답 — chat.update API 호출 불필요 (왕복 시간 절약)
+  const resultText = decided === '승인'
+    ? `✅ ${userName} 님이 ${name}의 ${type} *승인* 했습니다.`
+    : `❌ ${userName} 님이 ${name}의 ${type} *반려* 했습니다.`;
+  return jsonResponse({
+    replace_original: true,
+    text: resultText,
+    blocks: [
+      ...payload.message.blocks.filter(b => b.type !== 'actions'),
+      {type:'context', elements:[{type:'mrkdwn', text: resultText + ' (후속 처리 진행 중)'}]}
+    ]
+  });
+}
+
+function jsonResponse(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
+ * 설치형 onEdit 트리거. 폼 응답 시트의 마지막 컬럼이 `...|승인` 또는 `...|반려`로
+ * 바뀌면 캘린더·연차잔여·신청자 메일을 처리한다. 셋업 시 `installApprovalTrigger()`를 1회 실행.
+ */
+function onApprovalStatusChange(e) {
+  if (!e || !e.range) return;
+  const sheet = e.range.getSheet();
+  if (sheet.getName() !== SpreadsheetApp.openById(SHEET_ID).getSheets()[0].getName()) return;
+  const lastCol = sheet.getLastColumn();
+  if (e.range.getColumn() !== lastCol) return; // 메타 컬럼만 감시
+
+  const r = e.range.getRow();
+  if (r === 1) return;
+  const meta = String(e.value || '').split('|');
+  const decided = meta[2];
+  if (decided !== '승인' && decided !== '반려') return;
+  // 처리 멱등성: 4번째 토큰("done")이 이미 있으면 skip
+  if (meta[4] === 'done') return;
+
+  const row = sheet.getRange(r, 1, 1, lastCol).getValues()[0];
   const [ts, email, name, type, start, end, reason, leadEmail] = row;
   const days = calcDays(type, start, end);
 
-  let resultText;
-  if (value.action === 'approve') {
-    // 캘린더 등록
+  if (decided === '승인') {
     CalendarApp.getCalendarById(CAL_ID).createAllDayEvent(
       `${name} ${type}`, new Date(start), new Date(new Date(end).getTime()+86400000)
     );
     if (type === '연차') updateBalance(email, days);
     notifyApplicant(email, `✅ ${type} 승인되었습니다. (${fmt(start)} ~ ${fmt(end)})`);
-    resultText = `✅ ${userName} 님이 ${name}의 ${type} *승인* 했습니다.`;
   } else {
     notifyApplicant(email, `❌ ${type} 신청이 반려되었습니다. 팀장과 협의해주세요.`);
-    resultText = `❌ ${userName} 님이 ${name}의 ${type} *반려* 했습니다.`;
   }
+  // done 마킹으로 멱등성 보장
+  sheet.getRange(r, lastCol).setValue(`${meta[0]}|${meta[1]}|${decided}|${meta[3]||''}|done`);
+}
 
-  // 슬랙 메시지 갱신 (버튼 제거)
-  slackPost('chat.update', {
-    channel: payload.channel.id, ts: payload.message.ts,
-    text: resultText,
-    blocks: [
-      ...payload.message.blocks.filter(b => b.type !== 'actions'),
-      {type:'context', elements:[{type:'mrkdwn', text: resultText}]}
-    ]
-  });
-
-  return ContentService.createTextOutput('ok');
+/**
+ * 셋업 시 1회 실행: onApprovalStatusChange를 설치형 onEdit 트리거로 등록.
+ * 단순 트리거는 GmailApp/CalendarApp 호출 권한이 없으므로 반드시 설치형이어야 한다.
+ */
+function installApprovalTrigger() {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  ScriptApp.getProjectTriggers()
+    .filter(t => t.getHandlerFunction() === 'onApprovalStatusChange')
+    .forEach(t => ScriptApp.deleteTrigger(t));
+  ScriptApp.newTrigger('onApprovalStatusChange').forSpreadsheet(ss).onEdit().create();
+  Logger.log('승인 상태 변경 트리거 등록 완료');
 }
 
 // ─────────────────────────────────────────────
@@ -216,7 +277,8 @@ function fmt(d) { return new Date(d).toISOString().slice(0,10); }
 | 슬랙 카드 미수신 | Bot이 채널/DM에 미초대 | 팀장 DM은 `users:read` 후 `slackUid`를 정확히 (U… 형식) |
 | `doPost`가 동작 안 함 | Web App 배포가 "본인만"으로 됨 | "누구나"로 재배포, 새 URL을 Slack App에 갱신 |
 | 캘린더 권한 오류 | `CALENDAR_ID`가 비공개 | 캘린더 공유 → 스크립트 실행 계정에 변경 권한 부여 |
-| 메시지 update 실패 | 30초 안에 응답 못함 | 메시지 처리는 `doPost`에서 즉시 `ok` 반환, 무거운 작업은 별도 함수로 분리 |
+| Slack에 "took too long to respond" 표시 | `doPost`가 3초 안에 응답 못함 | 본 가이드 코드는 무거운 작업을 설치형 onEdit 트리거로 분리해 `doPost`를 0.5~1초 수준으로 유지함. `installApprovalTrigger`가 등록되어 있는지 확인 |
+| 같은 신청을 두 번 처리 | 메시지 새로고침 후 재클릭 | sheet 메타 컬럼의 멱등성 가드(`'대기' 외 상태면 무시`)가 자동으로 차단함 |
 
 ## 응용 아이디어
 

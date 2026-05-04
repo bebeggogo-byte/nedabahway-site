@@ -138,7 +138,14 @@
 <li><code>SLACK_HOOK</code> (HR 공지 채널)</li>
 <li><code>HR_FROM_NAME</code> (메일 발신 표시명)</li>
 </ul>
-<h3 id="step-4-onedit">Step 4. 트리거: <code>onEdit</code> 시트 편집 시.</h3>
+<h3 id="step-4">Step 4. 설치형 트리거 등록 (단순 트리거 아님, 중요)</h3>
+<blockquote>
+<p><strong>왜 설치형인가</strong>: 단순 <code>onEdit</code>은 권한 한도가 낮아 <code>GmailApp.sendEmail</code>, <code>DriveApp.getFolderById</code>, <code>CalendarApp.createEvent</code> 같은 외부 서비스를 호출할 수 없습니다. 반드시 설치형 트리거로 등록해야 합니다.</p>
+</blockquote>
+<ol>
+<li>스크립트 상단의 <strong><code>installTrigger</code></strong> 함수를 한 번 실행 → 권한 동의 화면이 뜨면 모두 허용</li>
+<li>Apps Script 좌측 <strong>트리거(시계 아이콘)</strong> 메뉴에서 <code>onEditInstallable</code>이 <code>from spreadsheet → on edit</code> 으로 등록되어 있는지 확인</li>
+</ol>
 <hr>
 <h2 id="scriptgs">완성 코드 (<code>script.gs</code>)</h2>
 <pre><code class="language-javascript">const PROPS = PropertiesService.getScriptProperties();
@@ -149,7 +156,21 @@ const FOLDER    = PROPS.getProperty('OUTPUT_FOLDER_ID');
 const SLACK     = PROPS.getProperty('SLACK_HOOK') || '';
 const FROM_NAME = PROPS.getProperty('HR_FROM_NAME') || 'HR팀';
 
-function onEdit(e) {
+/**
+ * 셋업 시 1회 실행: 설치형 onEdit 트리거를 등록한다.
+ * 단순 트리거(onEdit)는 외부 서비스 권한이 없어 메일/캘린더/Drive 호출이 실패한다.
+ */
+function installTrigger() {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  // 기존 동일 트리거가 있으면 제거 (중복 방지)
+  ScriptApp.getProjectTriggers()
+    .filter(t =&gt; t.getHandlerFunction() === 'onEditInstallable')
+    .forEach(t =&gt; ScriptApp.deleteTrigger(t));
+  ScriptApp.newTrigger('onEditInstallable').forSpreadsheet(ss).onEdit().create();
+  Logger.log('설치형 onEdit 트리거 등록 완료');
+}
+
+function onEditInstallable(e) {
   const sheet = e.source.getActiveSheet();
   if (sheet.getName() !== 'hires') return;
   const row = e.range.getRow();
@@ -249,9 +270,9 @@ function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate()+n); return
 </thead>
 <tbody>
 <tr>
-<td><code>onEdit</code> 미발동</td>
-<td>단순 트리거의 권한 한계</td>
-<td>설치형 트리거(<code>installOnEdit</code> 함수 만들어 트리거 등록) 사용</td>
+<td><code>onEdit</code> 미발동 / 권한 오류</td>
+<td>단순 트리거는 외부 서비스 호출 권한이 없음</td>
+<td>셋업 Step 4에 따라 <code>installTrigger()</code>를 1회 실행해 설치형 트리거로 등록</td>
 </tr>
 <tr>
 <td>캘린더 이벤트 중복 생성</td>

@@ -79,7 +79,13 @@ function dailyDigest() {
   }
 
   const dedup = deduplicate(collected);
-  const summarized = summarizeBatch(dedup);
+  // Gemini 입력 토큰 한도를 넘지 않도록 50건 단위로 청크 처리
+  const summarized = [];
+  for (let i = 0; i < dedup.length; i += 50) {
+    const chunk = dedup.slice(i, i + 50);
+    summarized.push(...summarizeBatch(chunk));
+    if (i + 50 < dedup.length) Utilities.sleep(2000);
+  }
   const html = buildDigestHTML(summarized);
 
   // 로그 적재

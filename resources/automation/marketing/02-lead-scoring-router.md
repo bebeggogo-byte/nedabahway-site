@@ -115,9 +115,11 @@ function onFormSubmit(e) {
 
 function matchesCond(cond, job, hc, budget, timing) {
   cond = String(cond).trim();
+  // 정확한 옵션 문자열만 매칭한다. 부분문자열 매칭은 절대 사용하지 않는다
+  // (예: budget이 '5천~1억'이면 '예산>=1억' 룰이 부분일치로 잘못 발동되어 점수가 이중 가산되는 버그)
   if (cond.startsWith('직무=')) return job === cond.slice(3);
-  if (cond.startsWith('직원 ') || cond.startsWith('직원=')) return hc === cond.replace(/^직원[ =]/,'');
-  if (cond === '예산>=1억') return budget && budget.indexOf('1억') >= 0 && budget.indexOf('미만') < 0;
+  if (cond.startsWith('직원=')) return hc === cond.slice(3);
+  if (cond === '예산>=1억') return budget === '1억+';
   if (cond === '예산 5천~1억') return budget === '5천~1억';
   if (cond === '예산 1천~5천') return budget === '1천~5천';
   if (cond === '직원 200+') return hc === '200+';
@@ -206,6 +208,11 @@ function autoReplyToProspect(email, name, fromName) {
 | Slack 카드 미수신 | 채널에 Bot 미초대 | `/invite @봇이름` |
 | AI가 너무 후함 | 프롬프트의 "적합성" 강조 부족 | "우리 솔루션과 맞지 않으면 50 미만" 한 줄 추가 |
 | 자동 응답이 누락 | Gmail 송신 실패 | `MailApp.sendEmail`로 대체 가능 |
+
+## 안전·윤리 메모
+
+- 본 자동화의 `aiAssess`는 회사명·이름·의뢰 내용을 Gemini에 전송합니다. **B2B 영업 적합성 평가**라는 명확한 비즈니스 목적이 있으므로 PII 위반에 해당하지 않습니다 — 개인 응답 분석과는 다른 맥락이라는 점이 중요합니다.
+- 비교: HR 펄스서베이(가이드 HR-03)는 **개인 익명 응답**이므로 식별 정보를 AI에 절대 전송하지 않도록 별도 설계되어 있습니다. 강의에서는 이 두 케이스를 함께 보여 "어떤 데이터를 AI에 보낼지의 판단 기준"을 토론합니다.
 
 ## 응용 아이디어
 
