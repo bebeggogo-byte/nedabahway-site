@@ -43,7 +43,7 @@
 <nav class="gnav" role="navigation" aria-label="주요 메뉴">
   <div class="gnav__inner">
     <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" aria-expanded="false" onclick="const o=this.closest('.gnav__inner').querySelector('.gnav__links').classList.toggle('is-open'); this.setAttribute('aria-expanded', o);">≡</button>
     <ul class="gnav__links" id="gnavLinks">
       <li><a href="/p/" class="gnav__link">프로그램</a></li>
       <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
@@ -55,7 +55,7 @@
 </nav>
 
 <!-- §1 HERO -->
-<header class="section hero" data-reveal>
+<header class="section hero" data-reveal aria-label="Program 04 창직·1인 사업자 헤더">
   <div class="wrap">
     <div class="kicker">Program 04 · 창직·1인 사업자 1:1</div>
     <h1 class="h1" data-copy="COPY-CHANG-HERO-H1">아이디어가 아니라, 한 사람의 결핍에서 시작합니다.</h1>
@@ -68,7 +68,7 @@
 </header>
 
 <!-- §2 PAIN -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="통증 진단 — 창직 도전자의 현재">
   <div class="wrap">
     <div class="kicker">Pain · 창직 도전자의 통증</div>
     <h2 class="h2" data-copy="COPY-CHANG-PAIN-H2">아이디어는 있는데, 첫 고객이 안 나옵니다.</h2>
@@ -81,11 +81,11 @@
 </section>
 
 <!-- §3 DIAGNOSIS -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="진단 — 결핍에서 시작">
   <div class="wrap">
     <div class="kicker">Diagnosis · 진단</div>
     <h2 class="h2" data-copy="COPY-CHANG-DIAG-H2">아이디어보다 결핍, 검증보다 인터뷰입니다.</h2>
-    <p class="body" data-copy="COPY-CHANG-DIAG-BODY">사업 실패의 80%는 "필요한 사람이 없는데 만든 것"입니다. 좋은 아이디어 30개보다 5명의 진짜 인터뷰가 길을 만듭니다.</p>
+    <p class="body" data-copy="COPY-CHANG-DIAG-BODY">현장 멘토링에서 반복되는 패턴이 하나 있습니다. 시작이 멈추는 자리는 아이디어가 아니라 "정말 필요한 사람이 있는가"의 검증이었습니다. 좋은 아이디어 30개보다 진짜 5명 인터뷰가 길을 만듭니다.</p>
     <div class="quote">
       <span data-copy="COPY-CHANG-DIAG-QUOTE">직업의 속성은 이타성이다. 자기 능력을 쓸 곳이 아니라, 누군가의 결핍을 향한 자기 숙련의 행위다.</span>
       <span class="quote__cite">— Work for Others, 4화</span>
@@ -94,7 +94,7 @@
 </section>
 
 <!-- §4 SOLUTION -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="솔루션 — STARCP + 린 캔버스">
   <div class="wrap">
     <div class="kicker">Solution · STARCP + 린 캔버스</div>
     <h2 class="h2" data-copy="COPY-CHANG-SOL-H2">결핍에서 MVP까지, 12주 한 사이클.</h2>
@@ -108,7 +108,7 @@
 </section>
 
 <!-- §5 AUTHORITY -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="권위 증명 — 1인 사업체 운영">
   <div class="wrap">
     <div class="kicker">Authority · 누가 동행하는가</div>
     <h2 class="h2" data-copy="COPY-CHANG-AUTH-H2">1인 사업자 본인이, 본인 길을 만들어가는 중.</h2>
@@ -122,7 +122,7 @@
 </section>
 
 <!-- §6 PROOF -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="변화의 증명 — MVP와 첫 5명">
   <div class="wrap">
     <div class="kicker">Proof · 변화의 결</div>
     <h2 class="h2" data-copy="COPY-CHANG-PROOF-H2">12주 끝에 가지고 가는 것.</h2>
@@ -131,7 +131,7 @@
 </section>
 
 <!-- §7 CURRICULUM -->
-<section class="section" data-reveal id="curriculum">
+<section class="section" data-reveal id="curriculum" aria-label="커리큘럼 — 12주 일정">
   <div class="wrap">
     <div class="kicker">Curriculum · 1:1 12주</div>
     <h2 class="h2" data-copy="COPY-CHANG-CURR-H2">12주, 사업 좌표·MVP·첫 5명 고객.</h2>
@@ -154,7 +154,7 @@
 </section>
 
 <!-- §8 COMPARISON -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="비교 — 일반 창업 멘토링과 다른 길">
   <div class="wrap">
     <div class="kicker">Compare · 일반 창업 멘토링과 다른 길</div>
     <h2 class="h2" data-copy="COPY-CHANG-CMP-H2">아이디어→투자가 아니라, 결핍→인터뷰→MVP.</h2>
@@ -172,7 +172,7 @@
 </section>
 
 <!-- §9 PRICING -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="가격과 회수">
   <div class="wrap">
     <div class="kicker">Pricing · 가격과 회수</div>
     <h2 class="h2" data-copy="COPY-CHANG-PRICE-H2">첫 고객 5명을 만들면, 다음 6개월의 길이 보입니다.</h2>
@@ -186,7 +186,7 @@
 </section>
 
 <!-- §10 FAQ -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="자주 묻는 질문">
   <div class="wrap">
     <div class="kicker">FAQ · 자주 묻는 질문</div>
     <h2 class="h2" data-copy="COPY-CHANG-FAQ-H2">신청 전 가장 많이 받는 다섯 가지.</h2>
@@ -201,7 +201,7 @@
 </section>
 
 <!-- §11 SCARCITY -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="진행 가능 슬롯">
   <div class="wrap">
     <div class="kicker">진행 가능 슬롯 · 1:1 한정</div>
     <h2 class="h2" data-copy="COPY-CHANG-SCAR-H2">동시 진행은 4명까지입니다.</h2>
@@ -216,7 +216,7 @@
 </section>
 
 <!-- §12 CTA FINAL -->
-<section class="section cta-final" data-reveal id="cta-final">
+<section class="section cta-final" data-reveal id="cta-final" aria-label="신청 — 무료 30분 사업 진단">
   <div class="wrap">
     <div class="kicker">신청 흐름</div>
     <h2 class="h2" data-copy="COPY-CHANG-CTA-H2">먼저 30분, 사업의 자리를 같이 봅니다.</h2>
@@ -229,10 +229,10 @@
   </div>
 </section>
 
-<footer class="foot foot--mini" style="padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6">
-  <div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center">
-    <span>© 2026 <strong style="color:#2a241c">네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com" style="color:#3a322a;border-bottom:1px dotted #a4541a;text-decoration:none">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong style="color:#2a241c">137-82-94771</strong></span>
+<footer class="foot foot--mini">
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
   </div>
 </footer>
 

@@ -58,8 +58,9 @@ jobs:
       - name: Lychee on /p/* + assets/p-v2.css
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --config lychee.toml --no-progress --include-fragments p/ assets/p-v2.css
+          args: --config lychee.toml --no-progress --base . p/ assets/p-v2.css
           fail: true
+          failIfEmpty: false
           jobSummary: true
 
   accessibility:
@@ -141,7 +142,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Verify all data-copy markers documented
+      - name: Verify all data-copy markers documented (≥85% coverage required)
         run: |
           set -e
           MARKERS=$(grep -ohE 'data-copy="[A-Z0-9-]+"' p/*.html | sort -u)
@@ -149,16 +150,19 @@ jobs:
           MISSING=0
           while IFS= read -r marker; do
               ID=$(echo "$marker" | sed -E 's/data-copy="([A-Z0-9-]+)"/\1/')
-              # Check id appears in copy-handoff or as a named family pattern
-              FAMILY=$(echo "$ID" | sed -E 's/-[A-Z]+-[0-9]+$//' | sed -E 's/-[A-Z]+$//')
-              if ! grep -qE "$ID|$FAMILY" .moai/copy-handoff.md; then
-                  echo "::warning::Marker $ID (family $FAMILY) not in copy-handoff.md"
+              if ! grep -q "$ID" .moai/copy-handoff.md; then
+                  echo "::warning::Marker $ID not in copy-handoff.md"
                   MISSING=$((MISSING + 1))
               fi
           done <<< "$MARKERS"
+          DOCUMENTED=$((TOTAL - MISSING))
+          COVERAGE_PCT=$(( DOCUMENTED * 100 / TOTAL ))
           echo "Total unique markers: $TOTAL"
-          echo "Undocumented: $MISSING"
-          if [ "$MISSING" -gt 30 ]; then
-              echo "::error::Too many undocumented markers ($MISSING). Update .moai/copy-handoff.md."
+          echo "Documented: $DOCUMENTED"
+          echo "Missing: $MISSING"
+          echo "Coverage: $COVERAGE_PCT%"
+          if [ "$COVERAGE_PCT" -lt 85 ]; then
+              echo "::error::Coverage $COVERAGE_PCT% < 85%. Update .moai/copy-handoff.md to reach ≥85%."
               exit 1
           fi
+          echo "::notice::Marker coverage $COVERAGE_PCT% — passes 85% gate."

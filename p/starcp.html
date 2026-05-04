@@ -48,7 +48,7 @@
 <nav class="gnav" role="navigation" aria-label="주요 메뉴">
   <div class="gnav__inner">
     <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" aria-expanded="false" onclick="const o=this.closest('.gnav__inner').querySelector('.gnav__links').classList.toggle('is-open'); this.setAttribute('aria-expanded', o);">≡</button>
     <ul class="gnav__links" id="gnavLinks">
       <li><a href="/p/" class="gnav__link">프로그램</a></li>
       <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
@@ -60,7 +60,7 @@
 </nav>
 
 <!-- §1 HERO ====================================================== -->
-<header class="section hero" data-reveal>
+<header class="section hero" data-reveal aria-label="Program 01 STARCP 마스터 헤더">
   <div class="wrap">
     <div class="kicker">Program 01 · 취업컨설턴트 1:1 양성</div>
     <h1 class="h1" data-copy="COPY-STARCP-HERO-H1">사람인이 자소서를 무료로 써준다. 컨설턴트, 다음 한 수는 무엇인가.</h1>
@@ -73,7 +73,7 @@
 </header>
 
 <!-- §2 PAIN ======================================================= -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="통증 진단 — 컨설턴트의 현재">
   <div class="wrap">
     <div class="kicker">Pain · 지금 컨설턴트의 통증</div>
     <h2 class="h2" data-copy="COPY-STARCP-PAIN-H2">자격증 더 따도, 단가는 그대로다.</h2>
@@ -95,7 +95,7 @@
 </section>
 
 <!-- §3 DIAGNOSIS ================================================== -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="진단 — 정보가 아닌 방향">
   <div class="wrap">
     <div class="kicker">Diagnosis · 진단</div>
     <h2 class="h2" data-copy="COPY-STARCP-DIAG-H2">정보가 아니라 방향이 부족한 시대다.</h2>
@@ -108,7 +108,7 @@
 </section>
 
 <!-- §4 SOLUTION =================================================== -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="솔루션 — STARCP 흐름">
   <div class="wrap">
     <div class="kicker">Solution · STARCP 흐름</div>
     <h2 class="h2" data-copy="COPY-STARCP-SOL-H2">STARCP — 합격을 만들어내는 한 사람의 흐름.</h2>
@@ -131,7 +131,7 @@
 </section>
 
 <!-- §5 AUTHORITY ================================================== -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="권위 증명 — 강사 약력">
   <div class="wrap">
     <div class="kicker">Authority · 누가 가르치는가</div>
     <h2 class="h2" data-copy="COPY-STARCP-AUTH-H2">10년, 한 지역의 모든 학교를 다녀본 사람.</h2>
@@ -157,7 +157,7 @@
 </section>
 
 <!-- §6 PROOF ====================================================== -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="변화의 증명">
   <div class="wrap">
     <div class="kicker">Proof · 변화의 결</div>
     <h2 class="h2" data-copy="COPY-STARCP-PROOF-H2">1기는 같이 사례를 만듭니다.</h2>
@@ -176,7 +176,7 @@
 </section>
 
 <!-- §7 CURRICULUM ================================================= -->
-<section class="section" data-reveal id="curriculum">
+<section class="section" data-reveal id="curriculum" aria-label="커리큘럼 — 12주 일정">
   <div class="wrap">
     <div class="kicker">Curriculum · 1:1 12회기 (예정)</div>
     <h2 class="h2" data-copy="COPY-STARCP-CURR-H2">12주, STARCP 한 사이클을 본인 손으로.</h2>
@@ -196,7 +196,7 @@
 </section>
 
 <!-- §8 COMPARISON ================================================= -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="비교 — 자격증과 다른 길">
   <div class="wrap">
     <div class="kicker">Compare · 자격증과 다른 길</div>
     <h2 class="h2" data-copy="COPY-STARCP-CMP-H2">자격증을 또 따는 게 아니라, 본인 시그니처를 만든다.</h2>
@@ -246,7 +246,7 @@
 </section>
 
 <!-- §9 PRICING ==================================================== -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="가격과 회수">
   <div class="wrap">
     <div class="kicker">Pricing · 가격과 회수</div>
     <h2 class="h2" data-copy="COPY-STARCP-PRICE-H2">단가가 회수하는 자리에 가격이 있습니다.</h2>
@@ -260,7 +260,7 @@
 </section>
 
 <!-- §10 FAQ ======================================================= -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="자주 묻는 질문">
   <div class="wrap">
     <div class="kicker">FAQ · 자주 묻는 질문</div>
     <h2 class="h2" data-copy="COPY-STARCP-FAQ-H2">신청 전 가장 많이 받는 다섯 가지.</h2>
@@ -290,7 +290,7 @@
 </section>
 
 <!-- §11 SCARCITY ================================================== -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="1기 모집 정원과 일정">
   <div class="wrap">
     <div class="kicker">1기 모집 · 정원과 일정</div>
     <h2 class="h2" data-copy="COPY-STARCP-SCAR-H2">1기는 12명에서 마감합니다.</h2>
@@ -317,7 +317,7 @@
 </section>
 
 <!-- §12 CTA FINAL ================================================= -->
-<section class="section cta-final" data-reveal id="cta-final">
+<section class="section cta-final" data-reveal id="cta-final" aria-label="신청 — 무료 30분 진단">
   <div class="wrap">
     <div class="kicker">신청 흐름</div>
     <h2 class="h2" data-copy="COPY-STARCP-CTA-H2">먼저 30분, 적합한 자리인지 같이 확인합니다.</h2>
@@ -330,10 +330,10 @@
   </div>
 </section>
 
-<footer class="foot foot--mini" style="padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6">
-  <div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center">
-    <span>© 2026 <strong style="color:#2a241c">네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com" style="color:#3a322a;border-bottom:1px dotted #a4541a;text-decoration:none">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong style="color:#2a241c">137-82-94771</strong></span>
+<footer class="foot foot--mini">
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
   </div>
 </footer>
 

@@ -24,7 +24,7 @@ The system **shall** provide a single lineup index page at `/p/index.html` listi
 The system **shall** render each individual landing page at `/p/{slug}.html` following the 12-section template defined in `.moai/strategy/site-strategy.yaml#landing_section_template`.
 
 ### REQ-LD-003 카피 핸드오프 마커
-Each copy block intended for Claude.ai prose refinement **shall** be wrapped with a HTML comment marker `<!-- COPY-{section}-{n}: {1-line intent} -->` and referenced in `.moai/copy-handoff.md`.
+Each copy block intended for Claude.ai prose refinement **shall** carry a `data-copy="COPY-{PAGE}-{SECTION}-{N}"` HTML attribute on the wrapping element and **shall** be referenced in `.moai/copy-handoff.md` either by exact ID or by per-page family pattern (e.g., `COPY-STARCP-*`). The CI gate `copy-marker-coverage` enforces ≥85% coverage and **shall** fail the build when undocumented markers exceed the threshold.
 
 ### REQ-LD-004 권위 자산 단일 출처
 All authority claims (제주 99%, 제주도청, 책 출간 등) **shall** reference `.moai/strategy/site-strategy.yaml#authority_assets` — copy must not invent unverified facts.

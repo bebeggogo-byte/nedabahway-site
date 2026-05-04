@@ -989,3 +989,36 @@ body.copy-debug .p-scope [data-copy]::before {
   }
   .p-scope .pain-card .num { font-size: 1.3rem; }
 }
+
+/* ── Footer (mini) — WCAG AA-compliant ────────────────────── */
+.p-scope .foot--mini {
+  padding: 18px 22px;
+  border-top: 1px solid var(--p-line);
+  background: var(--p-bg-alt);
+  font-size: 12px;
+  color: var(--p-ink-soft);
+  line-height: 1.6;
+}
+.p-scope .foot--mini__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 22px;
+  align-items: center;
+}
+.p-scope .foot--mini strong { color: var(--p-ink); font-weight: 600; }
+.p-scope .foot--mini a {
+  color: var(--p-ink);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--p-acc-deep);
+  transition: color 0.15s, border-color 0.15s;
+}
+.p-scope .foot--mini a:hover {
+  color: var(--p-acc-deep);
+  border-bottom-color: var(--p-acc-deep);
+}
+@media (max-width: 680px) {
+  .p-scope .foot--mini__inner { justify-content: flex-start; }
+}

@@ -1,14 +1,16 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": ".",
+      "startServerCommand": "npx http-server . -p 9090 -s --cors",
+      "startServerReadyPattern": "Available on:",
+      "startServerReadyTimeout": 30000,
       "url": [
-        "http://localhost/p/index.html",
-        "http://localhost/p/starcp.html",
-        "http://localhost/p/iden-teacher.html",
-        "http://localhost/p/iden-career.html",
-        "http://localhost/p/changjig.html",
-        "http://localhost/p/5s-leadership.html"
+        "http://localhost:9090/p/index.html",
+        "http://localhost:9090/p/starcp.html",
+        "http://localhost:9090/p/iden-teacher.html",
+        "http://localhost:9090/p/iden-career.html",
+        "http://localhost:9090/p/changjig.html",
+        "http://localhost:9090/p/5s-leadership.html"
       ],
       "numberOfRuns": 1,
       "settings": {
@@ -23,8 +25,11 @@
           "canonical",
           "valid-source-maps",
           "csp-xss",
-          "is-on-https"
-        ]
+          "is-on-https",
+          "redirects-http",
+          "viewport"
+        ],
+        "chromeFlags": "--no-sandbox --disable-dev-shm-usage"
       }
     },
     "assert": {

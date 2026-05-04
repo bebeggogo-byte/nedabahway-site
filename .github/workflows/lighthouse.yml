@@ -33,8 +33,10 @@ jobs:
           node-version: '22'
           cache: 'npm'
 
-      - name: Install Lighthouse CI
-        run: npm install --no-audit --no-fund --prefer-offline -g @lhci/cli@0.14.x
+      - name: Install Lighthouse CI + http-server
+        run: |
+          npm install --no-audit --no-fund -g @lhci/cli@0.14.x
+          npm install --no-audit --no-fund --no-save http-server@14.x
 
       - name: Run Lighthouse CI on landing pages
         run: lhci autorun --config=.lighthouserc.json

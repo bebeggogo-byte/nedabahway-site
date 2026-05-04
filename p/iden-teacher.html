@@ -43,7 +43,7 @@
 <nav class="gnav" role="navigation" aria-label="주요 메뉴">
   <div class="gnav__inner">
     <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" aria-expanded="false" onclick="const o=this.closest('.gnav__inner').querySelector('.gnav__links').classList.toggle('is-open'); this.setAttribute('aria-expanded', o);">≡</button>
     <ul class="gnav__links" id="gnavLinks">
       <li><a href="/p/" class="gnav__link">프로그램</a></li>
       <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
@@ -55,7 +55,7 @@
 </nav>
 
 <!-- §1 HERO -->
-<header class="section hero" data-reveal>
+<header class="section hero" data-reveal aria-label="Program 02 IDEN 좌표 마스터 헤더">
   <div class="wrap">
     <div class="kicker">Program 02 · 진로교사·진로상담사 1:1 양성</div>
     <h1 class="h1" data-copy="COPY-IDENT-HERO-H1">학생 1:1 상담 30분 안에 좌표 한 줄을 만들 수 있다.</h1>
@@ -68,7 +68,7 @@
 </header>
 
 <!-- §2 PAIN -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="통증 진단 — 진로교사의 현재">
   <div class="wrap">
     <div class="kicker">Pain · 진로교사의 통증</div>
     <h2 class="h2" data-copy="COPY-IDENT-PAIN-H2">표준 진로교육 자료는 학생을 못 움직인다.</h2>
@@ -81,7 +81,7 @@
 </section>
 
 <!-- §3 DIAGNOSIS -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="진단 — 자기이해의 부재">
   <div class="wrap">
     <div class="kicker">Diagnosis · 진단</div>
     <h2 class="h2" data-copy="COPY-IDENT-DIAG-H2">정보가 아니라 자기이해가 부족하다.</h2>
@@ -94,7 +94,7 @@
 </section>
 
 <!-- §4 SOLUTION -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="솔루션 — IDEN + 5S 학교 적용">
   <div class="wrap">
     <div class="kicker">Solution · IDEN + 5S 학교 적용</div>
     <h2 class="h2" data-copy="COPY-IDENT-SOL-H2">학생 한 명을 움직이는 30분, 한 학기를 끌고 가는 사이클.</h2>
@@ -108,7 +108,7 @@
 </section>
 
 <!-- §5 AUTHORITY -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="권위 증명 — 학교 출강 누적">
   <div class="wrap">
     <div class="kicker">Authority · 누가 가르치는가</div>
     <h2 class="h2" data-copy="COPY-IDENT-AUTH-H2">한 지역의 모든 학교 교실을 다녀본 사람.</h2>
@@ -122,7 +122,7 @@
 </section>
 
 <!-- §6 PROOF -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="변화의 증명 — 학교 매뉴얼">
   <div class="wrap">
     <div class="kicker">Proof · 변화의 결</div>
     <h2 class="h2" data-copy="COPY-IDENT-PROOF-H2">1기는 본인 학교 매뉴얼을 같이 만듭니다.</h2>
@@ -131,7 +131,7 @@
 </section>
 
 <!-- §7 CURRICULUM -->
-<section class="section" data-reveal id="curriculum">
+<section class="section" data-reveal id="curriculum" aria-label="커리큘럼 — 12주 일정">
   <div class="wrap">
     <div class="kicker">Curriculum · 1:1 12회기 (예정)</div>
     <h2 class="h2" data-copy="COPY-IDENT-CURR-H2">12주, 본인 학교 매뉴얼 한 부.</h2>
@@ -154,7 +154,7 @@
 </section>
 
 <!-- §8 COMPARISON -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="비교 — 일반 연수와 다른 길">
   <div class="wrap">
     <div class="kicker">Compare · 일반 연수와 다른 길</div>
     <h2 class="h2" data-copy="COPY-IDENT-CMP-H2">강의 듣고 끝이 아니라, 본인 학교 매뉴얼을 들고 간다.</h2>
@@ -172,7 +172,7 @@
 </section>
 
 <!-- §9 PRICING -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="가격과 회수">
   <div class="wrap">
     <div class="kicker">Pricing · 가격과 회수</div>
     <h2 class="h2" data-copy="COPY-IDENT-PRICE-H2">학교 연수 예산으로 회수 가능한 가격.</h2>
@@ -186,7 +186,7 @@
 </section>
 
 <!-- §10 FAQ -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="자주 묻는 질문">
   <div class="wrap">
     <div class="kicker">FAQ · 자주 묻는 질문</div>
     <h2 class="h2" data-copy="COPY-IDENT-FAQ-H2">신청 전 가장 많이 받는 다섯 가지.</h2>
@@ -201,7 +201,7 @@
 </section>
 
 <!-- §11 SCARCITY -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="1기 모집 정원과 일정">
   <div class="wrap">
     <div class="kicker">1기 모집 · 정원과 일정</div>
     <h2 class="h2" data-copy="COPY-IDENT-SCAR-H2">1기는 8명에서 마감합니다.</h2>
@@ -216,7 +216,7 @@
 </section>
 
 <!-- §12 CTA FINAL -->
-<section class="section cta-final" data-reveal id="cta-final">
+<section class="section cta-final" data-reveal id="cta-final" aria-label="신청 — 교사 무료 30분 상담">
   <div class="wrap">
     <div class="kicker">신청 흐름</div>
     <h2 class="h2" data-copy="COPY-IDENT-CTA-H2">먼저 30분, 본인 학교 상황을 같이 듣습니다.</h2>
@@ -229,10 +229,10 @@
   </div>
 </section>
 
-<footer class="foot foot--mini" style="padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6">
-  <div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center">
-    <span>© 2026 <strong style="color:#2a241c">네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com" style="color:#3a322a;border-bottom:1px dotted #a4541a;text-decoration:none">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong style="color:#2a241c">137-82-94771</strong></span>
+<footer class="foot foot--mini">
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
   </div>
 </footer>
 

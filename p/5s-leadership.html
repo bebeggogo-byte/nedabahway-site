@@ -43,7 +43,7 @@
 <nav class="gnav" role="navigation" aria-label="주요 메뉴">
   <div class="gnav__inner">
     <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" aria-expanded="false" onclick="const o=this.closest('.gnav__inner').querySelector('.gnav__links').classList.toggle('is-open'); this.setAttribute('aria-expanded', o);">≡</button>
     <ul class="gnav__links" id="gnavLinks">
       <li><a href="/p/" class="gnav__link">프로그램</a></li>
       <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
@@ -55,7 +55,7 @@
 </nav>
 
 <!-- §1 HERO -->
-<header class="section hero" data-reveal>
+<header class="section hero" data-reveal aria-label="Program 05 5S 리더십 마스터 헤더">
   <div class="wrap">
     <div class="kicker">Program 05 · 임원·중간관리자 1:1 코칭</div>
     <h1 class="h1" data-copy="COPY-5SL-HERO-H1">팀이 처리만 하고 설계는 안 됩니다. 그 자리를 다시 짭니다.</h1>
@@ -68,7 +68,7 @@
 </header>
 
 <!-- §2 PAIN -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="통증 진단 — 리더의 현재">
   <div class="wrap">
     <div class="kicker">Pain · 리더의 통증</div>
     <h2 class="h2" data-copy="COPY-5SL-PAIN-H2">다 하고 있는데, 성과가 안 나옵니다.</h2>
@@ -81,7 +81,7 @@
 </section>
 
 <!-- §3 DIAGNOSIS -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="진단 — 팀의 동사 전환">
   <div class="wrap">
     <div class="kicker">Diagnosis · 진단</div>
     <h2 class="h2" data-copy="COPY-5SL-DIAG-H2">팀의 동사를 바꾸면 성과가 따라옵니다.</h2>
@@ -94,7 +94,7 @@
 </section>
 
 <!-- §4 SOLUTION -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="솔루션 — 5S 사이클">
   <div class="wrap">
     <div class="kicker">Solution · 5S 사이클</div>
     <h2 class="h2" data-copy="COPY-5SL-SOL-H2">5개 학문에서 동시 검증된 한 사이클.</h2>
@@ -110,7 +110,7 @@
 </section>
 
 <!-- §5 AUTHORITY -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="권위 증명 — 제주 공공 퍼실">
   <div class="wrap">
     <div class="kicker">Authority · 누가 동행하는가</div>
     <h2 class="h2" data-copy="COPY-5SL-AUTH-H2">제주의 회의·조직·결정을 가장 많이 다녀본 사람.</h2>
@@ -124,7 +124,7 @@
 </section>
 
 <!-- §6 PROOF -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="변화의 증명 — 6개월 산출">
   <div class="wrap">
     <div class="kicker">Proof · 변화의 결</div>
     <h2 class="h2" data-copy="COPY-5SL-PROOF-H2">6개월 끝에 가지고 가는 것.</h2>
@@ -133,7 +133,7 @@
 </section>
 
 <!-- §7 CURRICULUM -->
-<section class="section" data-reveal id="curriculum">
+<section class="section" data-reveal id="curriculum" aria-label="커리큘럼 — 6개월 일정">
   <div class="wrap">
     <div class="kicker">Curriculum · 1:1 6개월 (월 2회)</div>
     <h2 class="h2" data-copy="COPY-5SL-CURR-H2">6개월, 본인 5S 운영 한 매뉴얼.</h2>
@@ -150,7 +150,7 @@
 </section>
 
 <!-- §8 COMPARISON -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="비교 — 일반 리더십 코칭과 다른 길">
   <div class="wrap">
     <div class="kicker">Compare · 일반 리더십 코칭과 다른 길</div>
     <h2 class="h2" data-copy="COPY-5SL-CMP-H2">자격 코칭이 아니라, 본인 팀에 그대로 옮기는 매뉴얼.</h2>
@@ -168,7 +168,7 @@
 </section>
 
 <!-- §9 PRICING -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="가격과 회수">
   <div class="wrap">
     <div class="kicker">Pricing · 가격과 회수</div>
     <h2 class="h2" data-copy="COPY-5SL-PRICE-H2">본인 팀의 다음 1년이 정렬되는 자리.</h2>
@@ -182,7 +182,7 @@
 </section>
 
 <!-- §10 FAQ -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="자주 묻는 질문">
   <div class="wrap">
     <div class="kicker">FAQ · 자주 묻는 질문</div>
     <h2 class="h2" data-copy="COPY-5SL-FAQ-H2">신청 전 가장 많이 받는 다섯 가지.</h2>
@@ -197,7 +197,7 @@
 </section>
 
 <!-- §11 SCARCITY -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="진행 가능 슬롯">
   <div class="wrap">
     <div class="kicker">진행 가능 슬롯 · 1:1 한정</div>
     <h2 class="h2" data-copy="COPY-5SL-SCAR-H2">동시 진행은 4명까지입니다.</h2>
@@ -212,7 +212,7 @@
 </section>
 
 <!-- §12 CTA FINAL -->
-<section class="section cta-final" data-reveal id="cta-final">
+<section class="section cta-final" data-reveal id="cta-final" aria-label="신청 — 무료 30분 리더십 진단">
   <div class="wrap">
     <div class="kicker">신청 흐름</div>
     <h2 class="h2" data-copy="COPY-5SL-CTA-H2">먼저 30분, 본인 팀의 자리를 같이 봅니다.</h2>
@@ -225,10 +225,10 @@
   </div>
 </section>
 
-<footer class="foot foot--mini" style="padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6">
-  <div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center">
-    <span>© 2026 <strong style="color:#2a241c">네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com" style="color:#3a322a;border-bottom:1px dotted #a4541a;text-decoration:none">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong style="color:#2a241c">137-82-94771</strong></span>
+<footer class="foot foot--mini">
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
   </div>
 </footer>
 

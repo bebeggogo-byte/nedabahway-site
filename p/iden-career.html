@@ -43,7 +43,7 @@
 <nav class="gnav" role="navigation" aria-label="주요 메뉴">
   <div class="gnav__inner">
     <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" aria-expanded="false" onclick="const o=this.closest('.gnav__inner').querySelector('.gnav__links').classList.toggle('is-open'); this.setAttribute('aria-expanded', o);">≡</button>
     <ul class="gnav__links" id="gnavLinks">
       <li><a href="/p/" class="gnav__link">프로그램</a></li>
       <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
@@ -55,7 +55,7 @@
 </nav>
 
 <!-- §1 HERO -->
-<header class="section hero" data-reveal>
+<header class="section hero" data-reveal aria-label="Program 03 IDEN 진로 재설계 헤더">
   <div class="wrap">
     <div class="kicker">Program 03 · 이직·전직 30~40대 1:1</div>
     <h1 class="h1" data-copy="COPY-IDENC-HERO-H1">"무엇이 될까"보다 먼저 "누구를 향할까"를 정합니다.</h1>
@@ -68,7 +68,7 @@
 </header>
 
 <!-- §2 PAIN -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="통증 진단 — 30~40대 직장인의 현재">
   <div class="wrap">
     <div class="kicker">Pain · 30~40대의 통증</div>
     <h2 class="h2" data-copy="COPY-IDENC-PAIN-H2">이력서를 다시 쓰는데, 좌표가 흔들립니다.</h2>
@@ -81,7 +81,7 @@
 </section>
 
 <!-- §3 DIAGNOSIS -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="진단 — 정보 과잉의 시대">
   <div class="wrap">
     <div class="kicker">Diagnosis · 진단</div>
     <h2 class="h2" data-copy="COPY-IDENC-DIAG-H2">정보 과잉의 시대, 결정은 정보로 안 됩니다.</h2>
@@ -94,7 +94,7 @@
 </section>
 
 <!-- §4 SOLUTION -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="솔루션 — IDEN + 5S 사이클">
   <div class="wrap">
     <div class="kicker">Solution · IDEN 좌표 + 5S 사이클</div>
     <h2 class="h2" data-copy="COPY-IDENC-SOL-H2">3칸 좌표에서 시작해 90일 행동까지.</h2>
@@ -108,7 +108,7 @@
 </section>
 
 <!-- §5 AUTHORITY -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="권위 증명 — 진로 코칭 누적">
   <div class="wrap">
     <div class="kicker">Authority · 누가 동행하는가</div>
     <h2 class="h2" data-copy="COPY-IDENC-AUTH-H2">10년, 한 사람의 좌표를 같이 적어 온 사람.</h2>
@@ -122,7 +122,7 @@
 </section>
 
 <!-- §6 PROOF -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="변화의 증명 — 12주 산출">
   <div class="wrap">
     <div class="kicker">Proof · 변화의 결</div>
     <h2 class="h2" data-copy="COPY-IDENC-PROOF-H2">12주 끝에 가지고 가는 것.</h2>
@@ -131,7 +131,7 @@
 </section>
 
 <!-- §7 CURRICULUM -->
-<section class="section" data-reveal id="curriculum">
+<section class="section" data-reveal id="curriculum" aria-label="커리큘럼 — 12주 일정">
   <div class="wrap">
     <div class="kicker">Curriculum · 1:1 12주</div>
     <h2 class="h2" data-copy="COPY-IDENC-CURR-H2">12주, 자기 좌표 한 줄과 90일 계획.</h2>
@@ -154,7 +154,7 @@
 </section>
 
 <!-- §8 COMPARISON -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="비교 — 일반 컨설팅과 다른 길">
   <div class="wrap">
     <div class="kicker">Compare · 일반 컨설팅과 다른 길</div>
     <h2 class="h2" data-copy="COPY-IDENC-CMP-H2">이력서 첨삭이 아니라, 자기 좌표를 만든 다음 이력서를 씁니다.</h2>
@@ -172,7 +172,7 @@
 </section>
 
 <!-- §9 PRICING -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="가격과 회수">
   <div class="wrap">
     <div class="kicker">Pricing · 가격과 회수</div>
     <h2 class="h2" data-copy="COPY-IDENC-PRICE-H2">한 번 좌표를 만들면, 다음 5년이 흔들리지 않습니다.</h2>
@@ -180,13 +180,13 @@
       <div style="font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85">1:1 12주</div>
       <div class="price">250만원</div>
       <div class="price-meta">매주 1회 60분 1:1 + 자기 진술 한 줄 + 회사별 이력서 골격 3종 + 90일 행동계획</div>
-      <div class="roi" data-copy="COPY-IDENC-PRICE-ROI">이직 후 첫 연봉 +500만원 인상 시 5개월이면 회수합니다. 12주 동안 다음 5년의 좌표를 같이 만듭니다.</div>
+      <div class="roi" data-copy="COPY-IDENC-PRICE-ROI">연봉이 한 단계 오르면 회수되는 자리입니다. 12주 동안 다음 5년의 좌표를 같이 만듭니다.</div>
     </div>
   </div>
 </section>
 
 <!-- §10 FAQ -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="자주 묻는 질문">
   <div class="wrap">
     <div class="kicker">FAQ · 자주 묻는 질문</div>
     <h2 class="h2" data-copy="COPY-IDENC-FAQ-H2">신청 전 가장 많이 받는 다섯 가지.</h2>
@@ -201,7 +201,7 @@
 </section>
 
 <!-- §11 SCARCITY -->
-<section class="section" data-reveal>
+<section class="section" data-reveal aria-label="진행 가능 슬롯">
   <div class="wrap">
     <div class="kicker">진행 가능 슬롯 · 1:1 한정</div>
     <h2 class="h2" data-copy="COPY-IDENC-SCAR-H2">동시 진행은 6명까지입니다.</h2>
@@ -216,7 +216,7 @@
 </section>
 
 <!-- §12 CTA FINAL -->
-<section class="section cta-final" data-reveal id="cta-final">
+<section class="section cta-final" data-reveal id="cta-final" aria-label="신청 — 무료 30분 진단">
   <div class="wrap">
     <div class="kicker">신청 흐름</div>
     <h2 class="h2" data-copy="COPY-IDENC-CTA-H2">먼저 30분, 지금 좌표를 같이 봅니다.</h2>
@@ -229,10 +229,10 @@
   </div>
 </section>
 
-<footer class="foot foot--mini" style="padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6">
-  <div style="max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center">
-    <span>© 2026 <strong style="color:#2a241c">네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com" style="color:#3a322a;border-bottom:1px dotted #a4541a;text-decoration:none">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong style="color:#2a241c">137-82-94771</strong></span>
+<footer class="foot foot--mini">
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
   </div>
 </footer>
 
