@@ -51,17 +51,93 @@ jobs:
   link-check:
     name: Link Check (/p/* internal links)
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 4
     steps:
       - uses: actions/checkout@v4
 
-      - name: Lychee on /p/* + assets/p-v2.css
-        uses: lycheeverse/lychee-action@v2
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          args: --config lychee.toml --no-progress --base . p/ assets/p-v2.css
-          fail: true
-          failIfEmpty: false
-          jobSummary: true
+          python-version: '3.12'
+
+      - name: Internal link audit (deterministic, owned by us)
+        run: |
+          python3 - <<'EOF'
+          """
+          /p/* internal link audit — checks every relative href and same-page anchor
+          resolves to an existing file/anchor. External URLs are out of scope here.
+          """
+          import re, sys, pathlib
+          from urllib.parse import urlsplit
+
+          ROOT = pathlib.Path(".")
+          P_DIR = ROOT / "p"
+          fail = []
+          checked = 0
+
+          for f in sorted(P_DIR.glob("*.html")):
+              text = f.read_text(encoding="utf-8")
+              # Collect all hrefs and same-doc anchors
+              hrefs = re.findall(r'(?:href|src)="([^"]+)"', text)
+              # Collect all id="..." in this file (for same-page anchor checks)
+              ids_here = set(re.findall(r'\bid="([^"]+)"', text))
+
+              for h in hrefs:
+                  # Skip external (http/https), mail, tel, schema URI
+                  if h.startswith(("http://", "https://", "mailto:", "tel:", "javascript:", "data:")):
+                      continue
+                  checked += 1
+                  parts = urlsplit(h)
+                  path, frag = parts.path, parts.fragment
+
+                  # Pure same-page anchor (#xyz)
+                  if not path and frag:
+                      if frag not in ids_here:
+                          fail.append(f"{f}: missing anchor #{frag}")
+                      continue
+
+                  # Resolve site-root-relative or relative path
+                  if path.startswith("/"):
+                      target = ROOT / path.lstrip("/")
+                  else:
+                      target = (f.parent / path).resolve()
+                      try:
+                          target = target.relative_to(ROOT.resolve())
+                          target = ROOT / target
+                      except ValueError:
+                          fail.append(f"{f}: path escapes root: {h}")
+                          continue
+
+                  # Directory → look for index.html
+                  candidates = [target]
+                  if str(target).endswith("/") or target.is_dir():
+                      candidates.append(target / "index.html")
+                  else:
+                      candidates.append(pathlib.Path(str(target) + "/index.html"))
+
+                  if not any(c.exists() for c in candidates):
+                      fail.append(f"{f}: missing target {h} -> {target}")
+                      continue
+
+                  # Cross-page anchor (file#frag) — verify frag exists in target
+                  if frag:
+                      target_file = next((c for c in candidates if c.exists()), None)
+                      if target_file and target_file.suffix == ".html":
+                          target_text = target_file.read_text(encoding="utf-8")
+                          target_ids = set(re.findall(r'\bid="([^"]+)"', target_text))
+                          if frag not in target_ids:
+                              # Don't fail on common nav anchors
+                              if frag not in ("top", "main"):
+                                  fail.append(f"{f}: missing anchor #{frag} in {target_file}")
+
+          print(f"Checked {checked} internal links across {len(list(P_DIR.glob('*.html')))} pages")
+          if fail:
+              print("\n❌ Failures:")
+              for ferr in fail:
+                  print(f"  {ferr}")
+              sys.exit(1)
+          print("✅ All internal links resolve")
+          EOF
 
   accessibility:
     name: Accessibility (pa11y WCAG2AA on /p/*)

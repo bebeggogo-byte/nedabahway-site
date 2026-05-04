@@ -1022,3 +1022,26 @@ body.copy-debug .p-scope [data-copy]::before {
 @media (max-width: 680px) {
   .p-scope .foot--mini__inner { justify-content: flex-start; }
 }
+
+/* ── Skip to content (WCAG 2.4.1 bypass blocks) ───────────── */
+.p-scope .skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  background: var(--p-ink);
+  color: var(--p-paper);
+  padding: 12px 18px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  z-index: 9999;
+  text-decoration: none;
+  transition: top 0.18s ease;
+}
+.p-scope .skip-link:focus,
+.p-scope .skip-link:focus-visible {
+  top: 12px;
+  outline: 2px solid var(--p-acc);
+  outline-offset: 2px;
+  text-decoration: none;
+}
