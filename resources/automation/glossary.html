@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>자동화 용어집 — 9선 강의 보조자료 | 네다바웨이</title>
+<meta name="description" content="조직 자동화 9선에 등장하는 15개 핵심 용어를 한 줄씩 설명한 초보자용 사전. 트리거·웹훅·HMAC·OAuth·Properties 등.">
+<link rel="canonical" href="https://www.nedabah.org/resources/automation/glossary.html">
+<meta property="og:title" content="자동화 용어집 — 9선 강의 보조자료">
+<meta property="og:description" content="자동화에 등장하는 15개 핵심 용어를 한 줄씩 설명한 초보자용 사전.">
+<meta property="og:url" content="https://www.nedabah.org/resources/automation/glossary.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.nedabah.org/assets/og-automation-9.svg">
+<style>
+.gl-body{font-family:'Noto Sans KR',sans-serif;line-height:1.85;color:#222;max-width:780px;margin:2rem auto;padding:0 1.4rem;}
+.gl-body h1{font-family:'Noto Serif KR',serif;font-size:2rem;line-height:1.3;margin:.4rem 0 .6rem;}
+.gl-body p.lead{color:#6a604f;font-size:.98rem;margin:0 0 2rem;}
+.gl-row{padding:1rem 0;border-bottom:1px solid #ece1cd;}
+.gl-row:last-child{border-bottom:none;}
+.gl-term{display:inline-block;background:#fbf6ec;color:#b45309;font-weight:700;padding:.2rem .65rem;border-radius:99px;font-size:.85rem;margin-right:.5rem;border:1px solid #e5d8c4;}
+.gl-en{color:#8a7a64;font-size:.78rem;letter-spacing:.05em;}
+.gl-def{margin:.45rem 0 .25rem;color:#3a322a;}
+.gl-where{font-size:.85rem;color:#6a604f;}
+.gl-where a{color:#b45309;}
+.related-aside{margin:3rem auto 4rem;max-width:780px;padding:1.6rem 1.8rem;background:#fbf6ec;border-radius:12px;font-family:'Noto Sans KR',sans-serif;}
+.related-aside h2{margin-top:0;font-size:1.05rem;border:none;padding:0;}
+.related-aside ul{list-style:none;padding:0;line-height:2;}
+@media (max-width:520px){
+  .gl-body{font-size:.95rem;padding:0 1.1rem;}
+  .gl-body h1{font-size:1.55rem;}
+}
+</style>
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/lectures/business-automation.html" class="gnav__link">강의</a></li>
+      <li><a href="/resources/automation/" class="gnav__link">자동화 허브</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header style="max-width:780px;margin:2.4rem auto 0;padding:0 1.4rem;font-family:'Noto Sans KR',sans-serif;">
+  <p style="font-size:.78rem;color:#b45309;letter-spacing:.18em;font-weight:700;">RESOURCE · GLOSSARY</p>
+</header>
+
+<article class="gl-body">
+<h1>자동화 용어집 (15개)</h1>
+<p class="lead">9선 가이드를 보다가 처음 보는 단어가 나왔다면 여기서 1줄로 확인하세요. 더 자세한 설명은 각 가이드의 본문에 있습니다.</p>
+
+<div class="gl-row">
+  <span class="gl-term">트리거 Trigger</span>
+  <p class="gl-def">"이런 일이 일어나면 → 이 함수를 자동 실행" 규칙. Apps Script에서는 <em>설치형(installable)</em>과 <em>단순(simple)</em> 두 종류가 있고, 메일·캘린더 같은 외부 서비스 호출은 반드시 설치형이어야 합니다.</p>
+  <p class="gl-where">→ <a href="/resources/automation/hr/01-onboarding-kit.html">HR-01 온보딩 키트</a>에서 사용</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">웹훅 Webhook</span>
+  <p class="gl-def">외부 서비스가 "사건이 일어났다"고 우리 서버에 HTTP 요청을 보내는 알림 방식. Slack에서 메시지를 받거나 보낼 때 자주 사용합니다.</p>
+  <p class="gl-where">→ <a href="/resources/automation/hr/02-leave-approval-workflow.html">HR-02 휴가 승인</a>의 doPost가 웹훅 수신 함수</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">HMAC 서명</span>
+  <p class="gl-def">"이 요청이 진짜 그 회사가 보낸 것인지" 검증하는 암호 기법. 같은 비밀키로 만든 짧은 코드(서명)를 비교해 위조 요청을 거른다.</p>
+  <p class="gl-where">→ HR-02 응용 아이디어의 verifySlackSignature 참고</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">JSON</span>
+  <p class="gl-def">중괄호와 따옴표로 데이터를 구조화한 텍스트 포맷. AI 응답을 안정적으로 받기 위해 모든 가이드의 Gemini 호출에서 <code>responseMimeType: 'application/json'</code> 옵션을 켭니다.</p>
+  <p class="gl-where">→ 9개 가이드 전부에서 사용</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">Properties (스크립트 속성)</span>
+  <p class="gl-def">Apps Script가 코드와 분리해 보관하는 안전한 설정 저장소. API 키·시트 ID 같은 민감한 값은 코드에 직접 쓰지 않고 여기에 넣습니다.</p>
+  <p class="gl-where">→ 9개 가이드 전부에서 사용 (예: <code>PROPS.getProperty('GEMINI_API_KEY')</code>)</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">OAuth · 권한 부여</span>
+  <p class="gl-def">"이 스크립트가 내 Gmail에 접근해도 됩니까?" 같은 동의 절차. Apps Script는 함수를 처음 실행할 때 한 번에 권한 동의 창을 띄웁니다.</p>
+  <p class="gl-where">→ 모든 가이드 첫 실행 시</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">RSS / 피드</span>
+  <p class="gl-def">블로그·뉴스가 새 글을 자동으로 알려주는 표준 XML 포맷. <code>https://news.google.com/rss/search?q=키워드</code> 같은 형태로 제공.</p>
+  <p class="gl-where">→ <a href="/resources/automation/planning/02-competitor-news-digest.html">PLAN-02 다이제스트</a>의 핵심 입력</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">Bearer 토큰</span>
+  <p class="gl-def">"이 토큰을 가진 사람은 누구든 인증된 사용자"라는 뜻. Slack Bot Token을 HTTP 헤더 <code>Authorization: Bearer xoxb-...</code> 형태로 보내 인증합니다.</p>
+  <p class="gl-where">→ HR-02·MKT-02 Slack 호출</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">멱등성 Idempotency</span>
+  <p class="gl-def">"같은 요청을 두 번 보내도 결과가 한 번과 같다"는 성질. 사용자가 승인 버튼을 두 번 누르거나 네트워크가 재전송할 때 중복 처리를 막습니다.</p>
+  <p class="gl-where">→ HR-02 doPost·onApprovalStatusChange 가드</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">크론 · 시간 트리거</span>
+  <p class="gl-def">"매일 06:30" 같은 일정에 함수가 자동 실행되도록 등록. Apps Script는 트리거 메뉴에서 시간 기반 트리거로 설정합니다.</p>
+  <p class="gl-where">→ PLAN-02 일일 다이제스트, PLAN-03 주간 KPI</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">Web App 배포</span>
+  <p class="gl-def">Apps Script 프로젝트를 외부에서 HTTP로 호출 가능한 URL로 발행하는 기능. Slack·외부 서비스가 이 URL로 콜백을 보내야 할 때 필수.</p>
+  <p class="gl-where">→ HR-02 휴가 승인의 Slack Interactivity URL</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">멀티 채널 전송 / Block Kit</span>
+  <p class="gl-def">Slack 메시지를 단순 텍스트가 아니라 카드·버튼·필드 형태로 표시하는 JSON 포맷. 본 가이드 코드의 <code>blocks: [...]</code> 배열이 곧 Block Kit.</p>
+  <p class="gl-where">→ HR-02·MKT-02</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">청크 처리 Chunking</span>
+  <p class="gl-def">데이터가 너무 많을 때 50개씩 잘라서 처리하는 패턴. AI 모델 입력 토큰 한도를 넘기지 않으려고 사용합니다.</p>
+  <p class="gl-where">→ PLAN-02·HR-03</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">Schema.org · JSON-LD</span>
+  <p class="gl-def">검색엔진이 페이지를 더 정확히 이해하도록 추가하는 구조화 데이터. 본 사이트의 강의·가이드 페이지마다 HowTo·Course 타입으로 들어 있습니다.</p>
+  <p class="gl-where">→ 9개 가이드 페이지 head</p>
+</div>
+
+<div class="gl-row">
+  <span class="gl-term">ENPS</span>
+  <p class="gl-def">Employee Net Promoter Score. "회사를 동료에게 추천할 의향이 얼마나 되는가"를 0~10점으로 묻고 (추천자 비율 − 비추천자 비율)을 산출하는 지표.</p>
+  <p class="gl-where">→ <a href="/resources/automation/hr/03-pulse-survey-sentiment.html">HR-03 펄스서베이</a></p>
+</div>
+
+</article>
+
+<aside class="related-aside">
+  <h2>이 페이지를 본 다음에는</h2>
+  <ul>
+    <li>→ <a href="/resources/automation/">자동화 9선 자료 허브</a></li>
+    <li>→ <a href="/resources/automation/planning/01-meeting-notes-to-actions.html">난이도 ★ 부터 시작 — 회의록 자동 정리</a></li>
+    <li>→ <a href="/lectures/business-automation.html">강의 페이지</a></li>
+  </ul>
+</aside>
+
+<footer style="max-width:780px;margin:0 auto 4rem;padding:1.5rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;font-family:'Noto Sans KR',sans-serif;">
+  <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
+</footer>
+
+<script src="/assets/share-bar.js" defer></script>
+</body>
+</html>
