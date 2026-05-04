@@ -35,6 +35,8 @@ interface UserSpec {
   role: "student" | "coach" | "system_admin";
 }
 
+// NOTE: Supabase Auth rejects domains without valid DNS as "invalid format".
+// nedabahway.com is the live owned domain (DNS resolves via GitHub Pages).
 const USERS: UserSpec[] = [
   { email: "[email protected]", display_name: "김창환 코치", role: "coach" },
   { email: "[email protected]", display_name: "STARCP 베타 학생", role: "student" },
