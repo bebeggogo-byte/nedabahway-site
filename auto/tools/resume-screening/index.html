@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>이력서 5분 스크리닝 | 네다바웨이</title>
+<meta name="description" content="채용 공고와 이력서를 입력하면 매칭도, 강점·우려, 면접 질문 5개를 즉시 만들어줍니다.">
+<link rel="canonical" href="https://www.nedabah.org/auto/tools/resume-screening/">
+<meta property="og:title" content="이력서 5분 스크리닝">
+<meta property="og:description" content="공고와 이력서를 붙이면 매칭도·강점·우려·면접 질문을 만들어줍니다.">
+<meta property="og:url" content="https://www.nedabah.org/auto/tools/resume-screening/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/auto/tools/_style.css">
+<style>
+  .screen-meta { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+  .screen-score { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .screen-score__num { font-size: 2.4rem; font-weight: 700; color: #b45309; line-height: 1; min-width: 80px; }
+  .screen-score__bar { flex: 1; height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
+  .screen-score__fill { height: 100%; background: #b45309; transition: width .4s; }
+  .screen-summary { margin: 8px 0 0; line-height: 1.6; word-break: keep-all; color: #444; }
+  .screen-section { margin: 16px 0; }
+  .screen-section h4 { margin: 0 0 8px; font-size: 0.95rem; color: #333; }
+  .screen-list { list-style: none; padding: 0; margin: 0; }
+  .screen-list li { background: #fafafa; border-left: 3px solid #b45309; padding: 10px 14px; margin: 6px 0; border-radius: 4px; }
+  .screen-list--concern li { border-left-color: #c0392b; background: #fdecec; }
+  .screen-list__point { font-weight: 600; margin: 0 0 4px; line-height: 1.5; word-break: keep-all; }
+  .screen-list__evidence { margin: 0; font-size: 0.88rem; color: #555; line-height: 1.6; word-break: keep-all; }
+  .screen-questions { padding-left: 22px; margin: 0; }
+  .screen-questions li { margin: 6px 0; line-height: 1.65; word-break: keep-all; }
+  .screen-disclaimer { font-size: 0.82rem; color: #777; margin-top: 12px; padding-top: 8px; border-top: 1px dashed #ddd; line-height: 1.55; word-break: keep-all; }
+</style>
+</head>
+<body>
+<nav class="gnav" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/auto/tools/" class="gnav__link">도구 모음</a></li>
+      <li><a href="/auto/" class="gnav__link">자료 허브</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="tool-shell">
+  <p class="crumb"><a href="/auto/tools/">← 도구 모음</a> · HR</p>
+  <div class="tool-header">
+    <h1>이력서 5분 스크리닝</h1>
+    <p class="lead">채용 공고와 이력서를 붙이면 매칭도, 강점 3개·우려 2개(이력서 근거 포함), 면접 질문 5개를 만들어줍니다. 평가 근거는 이력서 원문에서만 가져옵니다.</p>
+  </div>
+  <div class="tool-pills">
+    <span class="pill accent">난이도 ★★</span>
+    <span class="pill">소요 약 25초</span>
+  </div>
+
+  <div id="mz-key-box" class="key-box"></div>
+
+  <div class="field">
+    <label for="jd">채용 공고 <small>· 직무·핵심 자격·우대 조건 위주로</small></label>
+    <textarea id="jd" rows="6" placeholder="예) [B2B 세일즈 매니저] 중소·중견 고객사 신규 발굴 및 관리. 필수: 영업 경력 3년 이상, CRM 사용 경험. 우대: 교육·HR 산업 경험, 영문 메일 작성 가능."></textarea>
+  </div>
+
+  <div class="field">
+    <label for="resume">이력서 텍스트 <small>· 학력·경력·프로젝트·역량 모두 포함 가능</small></label>
+    <textarea id="resume" rows="10" placeholder="예) 홍길동 / 영업 5년차. ㅇㅇ에듀(2021–2024) B2B 영업 담당. 신규 고객사 38곳 발굴, 월 평균 매출 1.2억. CRM(Salesforce, HubSpot) 운영. ㅇㅇ테크(2019–2021) 인사이드 세일즈."></textarea>
+  </div>
+
+  <div class="run-row">
+    <button class="btn-go" id="runBtn"><span class="spin"></span><span class="label">스크리닝 시작</span></button>
+  </div>
+
+  <div id="result"><div class="result-empty">결과가 여기에 나타납니다.</div></div>
+
+  <aside class="next-aside">
+    <h2>지원자 시트를 일괄 처리하려면</h2>
+    <p>지원자 시트 → 스크리닝 보고서 자동 생성을 Apps Script로 옮기는 가이드는 향후 추가됩니다. 1차 참고용으로 한 명씩 빠르게 검토하기에 적합합니다.</p>
+  </aside>
+</main>
+
+<footer class="foot"><p>김창환 · 네다바웨이 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p></footer>
+
+<script src="/auto/tools/_lib.js" defer></script>
+<script src="/assets/share-bar.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = (id) => document.getElementById(id);
+
+  $('runBtn').addEventListener('click', async () => {
+    const jd = $('jd').value.trim();
+    const resume = $('resume').value.trim();
+    if (!jd || !resume) { alert('채용 공고와 이력서를 모두 입력하세요.'); return; }
+
+    const result = $('result');
+    result.innerHTML = '<div class="result-empty">스크리닝 중…</div>';
+    MZ.setLoading($('runBtn'), true);
+
+    const prompt = `당신은 한국어 채용 스크리닝을 돕는 HR 전문가입니다.
+채용 공고와 이력서를 비교해 매칭도와 객관적 평가를 제시합니다.
+
+JSON만 반환(설명 없이).
+
+스키마:
+{
+  "match_score": 0,
+  "summary": "한 줄 종합 평가 (60자 이하)",
+  "strengths": [
+    {"point": "강점 한 줄", "evidence": "이력서에서 그대로 가져온 짧은 인용"}
+  ],
+  "concerns": [
+    {"point": "우려 한 줄", "evidence": "이력서에서 그대로 가져온 짧은 인용 또는 '이력서에 언급 없음'"}
+  ],
+  "interview_questions": ["질문1", "질문2", "질문3", "질문4", "질문5"]
+}
+
+규칙:
+- "match_score"는 0~100 정수. 채용 공고의 필수 자격 충족도가 60% 이상의 가중치를 갖도록.
+- "strengths"는 정확히 3개, "concerns"는 정확히 2개, "interview_questions"는 정확히 5개.
+- 각 강점·우려의 "evidence"는 반드시 이력서 원문에서 가져온 짧은 인용. 이력서에 없으면 "이력서에 언급 없음"이라고 명시.
+- 이력서에 없는 경험·역량을 추측해 강점으로 만들지 말 것.
+- 평가에 반영하지 말 것: 나이, 성별, 출신 학교 서열, 출신 지역, 결혼 여부, 사진. 이런 항목으로 점수를 깎거나 올리지 말 것.
+- "interview_questions"는 STAR(상황·과제·행동·결과) 또는 행동 기반 질문으로 작성. 예/아니오 단답형 금지.
+- 한국어 정중체. 자기과시·과장 표현 금지.
+
+채용 공고:
+"""
+${jd}
+"""
+
+이력서:
+"""
+${resume}
+"""`;
+
+    try {
+      const data = await MZ.generate(prompt);
+      render(result, data);
+    } catch (e) {
+      MZ.renderError(result, e);
+    } finally {
+      MZ.setLoading($('runBtn'), false);
+    }
+  });
+
+  function render(target, data) {
+    const score = Math.max(0, Math.min(100, parseInt(data.match_score, 10) || 0));
+    const summary = data.summary || '';
+    const strengths = Array.isArray(data.strengths) ? data.strengths.slice(0, 3) : [];
+    const concerns = Array.isArray(data.concerns) ? data.concerns.slice(0, 2) : [];
+    const qs = Array.isArray(data.interview_questions) ? data.interview_questions.slice(0, 5) : [];
+
+    const itemHtml = (item) => `
+      <li>
+        <p class="screen-list__point">${MZ.escapeHtml(item.point || '')}</p>
+        <p class="screen-list__evidence">근거: ${MZ.escapeHtml(item.evidence || '이력서에 언급 없음')}</p>
+      </li>`;
+
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `
+      <div class="screen-meta">
+        <div class="screen-score">
+          <div class="screen-score__num">${score}</div>
+          <div class="screen-score__bar"><div class="screen-score__fill" style="width:${score}%"></div></div>
+        </div>
+        <p class="screen-summary">${MZ.escapeHtml(summary)}</p>
+      </div>
+      <div class="screen-section">
+        <h4>강점 3</h4>
+        <ul class="screen-list">${strengths.map(itemHtml).join('')}</ul>
+      </div>
+      <div class="screen-section">
+        <h4>우려 2</h4>
+        <ul class="screen-list screen-list--concern">${concerns.map(itemHtml).join('')}</ul>
+      </div>
+      <div class="screen-section">
+        <h4>면접 질문 5</h4>
+        <ol class="screen-questions">${qs.map(q => `<li>${MZ.escapeHtml(q)}</li>`).join('')}</ol>
+      </div>
+      <p class="screen-disclaimer">이 결과는 1차 참고용 초안입니다. 실제 채용 결정은 법적 가이드라인과 사람의 판단으로 진행하세요.</p>
+    `;
+
+    const reportText = [
+      `매칭도: ${score}/100`,
+      `종합: ${summary}`,
+      '',
+      '【강점】',
+      ...strengths.map((s, i) => `${i + 1}. ${s.point || ''}\n   근거: ${s.evidence || '이력서에 언급 없음'}`),
+      '',
+      '【우려】',
+      ...concerns.map((c, i) => `${i + 1}. ${c.point || ''}\n   근거: ${c.evidence || '이력서에 언급 없음'}`),
+      '',
+      '【면접 질문】',
+      ...qs.map((q, i) => `${i + 1}. ${q}`),
+    ].join('\n');
+
+    const csvRows = [
+      ['항목', '내용', '근거'],
+      ['매칭도', String(score), summary],
+      ...strengths.map((s, i) => [`강점${i + 1}`, s.point || '', s.evidence || '']),
+      ...concerns.map((c, i) => [`우려${i + 1}`, c.point || '', c.evidence || '']),
+      ...qs.map((q, i) => [`질문${i + 1}`, q, '']),
+    ];
+
+    MZ.renderResult(target, {
+      title: '스크리닝 결과',
+      body: wrap,
+      actions: [
+        { label: '📋 보고서 복사', run: async () => MZ.copyText(reportText) },
+        { label: '📋 면접 질문만', run: async () => MZ.copyText(qs.map((q, i) => `${i + 1}. ${q}`).join('\n')) },
+        { label: '⬇️ CSV', run: async () => MZ.downloadFile('screening.csv', '﻿' + MZ.toCSV(csvRows), 'text/csv;charset=utf-8') },
+        { label: '⬇️ TXT', run: async () => MZ.downloadFile('screening.txt', reportText, 'text/plain;charset=utf-8') },
+      ],
+    });
+  }
+});
+</script>
+</body>
+</html>

@@ -212,3 +212,56 @@ PR #53로 9선 자동화 강의 자료가 evaluator-active 100/100 PASS 상태�
 3. **Phase 3 (L~O, 별도 PR·시기 분리)** — Notion → 이메일 → 영상 → 마켓플레이스 순.
 
 본 PR은 Phase 1 + Phase 2까지 한 번에 밀어붙일 수 있다. 분량은 `scripts/`에 빌더 3개 추가 + 템플릿 확장 + 자산 1~2개 추가 수준으로 통제 가능. Phase 3는 본질적으로 운영(이메일·영상·마켓플레이스)이라 별도 PR이 맞다.
+
+---
+
+# 부록 — 도구 3개 확장 (claude/tools-extension-3 브랜치)
+
+## Context
+
+PR #54 (도구 9개) 머지 후, 사용자가 chat에서 작성한 4개 baseline 파일(3개 도구 + 1개 카드 스니펫)을
+받아 `_baseline/`에 저장했다. baseline은 초안이라 로컬 실제 패턴에 맞춰 검증·수정한 뒤 정확한 위치에
+통합해야 한다. 새 도구 3개:
+
+- **mail-reply-drafter** (운영) — 메일 텍스트 + 톤 → 한 줄·짧은·자세한 답장 3종
+- **sales-followup** (영업) — 미팅 메모 → 후속 메일 + 다음 단계 3개 + 일정 제안 (메모에 없는 항목은 [확인 필요])
+- **resume-screening** (HR) — 공고 + 이력서 → 매칭도 + 강점 3·우려 2(이력서 근거 인용) + 면접 질문 5
+
+## 진행 현황 (이미 완료된 작업)
+
+| 단계 | 작업 | 상태 |
+|---|---|---|
+| 0 | baseline 4/4 식별·저장 (`_baseline/`) | ✅ |
+| 1 | 실제 코드 패턴 파악 (OG 단일파일 9, `tag {plan/hr/mkt}` 클래스) | ✅ |
+| 2 | baseline 3개 검증·수정 — markdown 자동링크 11곳, OG 10/11/12 → 9, 색상 #0d6b4e → #b45309, 누락 textarea 복원 | ✅ |
+| 3 | 3개 도구 파일 `auto/tools/{slug}/index.html` 배치 | ✅ |
+| 4 | `auto/tools/index.html` 신규 섹션 + `tag.ops` `tag.sales` 색상 정의 | ✅ |
+| 5 | `sitemap.xml` 3개 URL 추가 (총 217개) | ✅ |
+| 6 | 12개 도구 모두 `node --check` PASS | ✅ |
+| 8 | `.gitignore`에 `_baseline/` 추가 | ✅ (commit 대기) |
+
+## 남은 작업 (이 ExitPlanMode 후 실행 요청)
+
+1. **commit + push** (브랜치 `claude/tools-extension-3`)
+   - 추가: `auto/tools/{mail-reply-drafter,sales-followup,resume-screening}/index.html`
+   - 수정: `.gitignore`, `auto/tools/index.html`, `sitemap.xml`
+2. **PR 생성** (base=main, head=claude/tools-extension-3)
+3. **PR 머지** (squash, 사용자 동의 시) → 1~3분 후 라이브
+
+## 중요 결정 기록
+
+- **OG 이미지**: 기존 도구 9개가 모두 `og-automation-9.svg` 단일 파일 공용. baseline이 부여한 10/11/12는 존재하지 않으므로 모두 9로 통일.
+- **색상 팔레트**: baseline의 `#0d6b4e` (녹색)는 사이트 팔레트(`#b45309` accent)와 충돌. 모두 사이트 색상으로 교체.
+- **새 카테고리 태그**: `운영`, `영업` 두 카테고리는 기존 `plan/hr/mkt`에 없어 새 색상 클래스(`.tag.ops`, `.tag.sales`) 추가.
+- **자동화 가이드 매칭**: 3개 도구 모두 `resources/automation/` 안에 매칭되는 자동화 가이드가 없으므로 `automation_meta.py` 수정은 SKIP. `next-aside`는 "향후 추가됩니다" 안내로 작성.
+- **baseline 보존**: `_baseline/`은 .gitignore에 추가해 PR에 포함되지 않도록 함.
+
+## 검증 결과
+
+- `python3 -c "import xml.etree.ElementTree as ET; ET.parse('sitemap.xml')"` → 217 URLs valid
+- 12개 도구 인라인 script `node --check` → 12/12 PASS
+- `grep markdown autolink 잔존` → 0 (모두 수정됨)
+- `grep og-automation-(10|11|12)` → 0 (모두 9로 교체됨)
+- 카드 인덱스에 새 카드 3개 정상 노출
+
+브라우저 시연 (Step 7)은 환경에 chromium 없어 SKIP. 실제 동작은 머지 후 라이브에서 확인.
