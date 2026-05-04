@@ -205,7 +205,8 @@ function onFormSubmit(e) {
     ]
   };
   const r = slackPost('chat.postMessage', payload);
-  // 메시지 ts 저장하여 추후 update
+  // channel·ts·상태 저장 → doPost에서 meta 구성용(chat.update API는 호출하지 않으며,
+  // 메시지 갱신은 doPost 응답 본문의 replace_original 으로 처리한다)
   responses.getRange(lastRow, responses.getLastColumn()+1).setValue(`${r.channel}|${r.ts}|대기`);
 }
 
