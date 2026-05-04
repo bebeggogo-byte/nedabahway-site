@@ -1,0 +1,47 @@
+# Lychee link checker config — only /p/* + assets/p-v2.css
+# Scope: 신규 랜딩 시스템만. 레거시 콘텐츠는 별도 처리.
+# https://lychee.cli.rs/usage/config/
+
+include_verbatim = false
+include_fragments = true
+max_concurrency = 12
+max_redirects = 5
+max_retries = 2
+retry_wait_time = 2
+timeout = 20
+
+# 외부 도메인 + 동적 경로는 차단/제외
+exclude = [
+  "^https?://localhost",
+  "^http://127\\.0\\.0\\.1",
+  "^mailto:",
+  "^tel:",
+  "^javascript:",
+  "^https://www\\.youtube\\.com/channel/",
+  "^https://blog\\.naver\\.com/",
+  "^https://www\\.linkedin\\.com/",
+  "^https://github\\.com/",
+  "^https://schema\\.org",
+  "^https://orcid\\.org",
+  "^https://www\\.googletagmanager\\.com",
+  "^https://www\\.google\\.com",
+  "^https://www\\.youtube\\.com/embed/",
+  "^https://i\\.ytimg\\.com",
+  "^https://chatgpt\\.com",
+  "^https://chat\\.openai\\.com",
+  "^https://gpters\\.org",
+  "^https://kmong\\.com",
+  "^https://www\\.saramin\\.co\\.kr",
+  "^https://mcc\\.megastudy\\.net",
+  "^https://www\\.nedabah\\.org",
+  "^https://cdn\\.jsdelivr\\.net",
+  "^https://fonts\\.googleapis\\.com",
+  "^https://fonts\\.gstatic\\.com"
+]
+
+# 200·30x·40x 모두 허용 (외부 401·429·503은 통신 일시 오류일 수 있음)
+accept = ["200", "204", "206", "301", "302", "304", "307", "308", "401", "403", "429"]
+
+cache = true
+max_cache_age = "1d"
+base = "."

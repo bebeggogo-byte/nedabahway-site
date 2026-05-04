@@ -1,0 +1,60 @@
+name: Lighthouse CI
+
+# Lighthouse는 advisory 도구로만 운영. PR 자동 실행 없음.
+# 실 WCAG 차단은 quality-check.yml의 Pa11y CI가 담당.
+# 수동 감사 시 Actions UI에서 "Run workflow" 또는 main 머지 후 자동 실행.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'p/**'
+      - 'assets/p-v2.css'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: lighthouse-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    name: Lighthouse audit (/p/* pages — advisory)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Lighthouse is advisory only. Real WCAG enforcement is via Pa11y CI in quality-check.yml.
+    # Lighthouse here surfaces performance/SEO/best-practices signals as artifact reports.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Lighthouse CI + http-server
+        run: |
+          npm install --no-audit --no-fund -g @lhci/cli@0.14.x
+          npm install --no-audit --no-fund --no-save http-server@14.x
+
+      - name: Run Lighthouse CI on landing pages (advisory — exit 0 always)
+        run: |
+          lhci autorun --config=.lighthouserc.json || {
+            echo "::notice::Lighthouse exited non-zero — see uploaded report artifact for details (advisory only, not a launch blocker)";
+            exit 0;
+          }
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci/
+          retention-days: 14
+          if-no-files-found: ignore

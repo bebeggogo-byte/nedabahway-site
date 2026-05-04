@@ -1,0 +1,244 @@
+name: Quality Check
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'p/**'
+      - 'assets/p-v2.css'
+      - '.moai/strategy/**'
+      - '.moai/specs/SPEC-LANDING-001/**'
+      - 'package.json'
+      - '.github/workflows/quality-check.yml'
+      - '.htmlhintrc'
+      - '.stylelintrc.json'
+      - 'lychee.toml'
+      - '.pa11yci.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  html-css:
+    name: HTML / CSS lint (/p/* + p-v2.css)
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install lint tools
+        run: |
+          npm install --no-audit --no-fund --no-save \
+            htmlhint@1.x stylelint@16.x stylelint-config-standard@36.x
+
+      - name: HTML lint — /p/*.html only (new landing pages)
+        run: npx htmlhint p/*.html
+
+      - name: CSS lint — assets/p-v2.css only (new design system)
+        run: npx stylelint assets/p-v2.css
+
+  link-check:
+    name: Link Check (/p/* internal links)
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Internal link audit (deterministic, owned by us)
+        run: |
+          python3 - <<'EOF'
+          """
+          /p/* internal link audit — checks every relative href and same-page anchor
+          resolves to an existing file/anchor. External URLs are out of scope here.
+          """
+          import re, sys, pathlib
+          from urllib.parse import urlsplit
+
+          ROOT = pathlib.Path(".")
+          P_DIR = ROOT / "p"
+          fail = []
+          checked = 0
+
+          for f in sorted(P_DIR.glob("*.html")):
+              text = f.read_text(encoding="utf-8")
+              # Collect all hrefs and same-doc anchors
+              hrefs = re.findall(r'(?:href|src)="([^"]+)"', text)
+              # Collect all id="..." in this file (for same-page anchor checks)
+              ids_here = set(re.findall(r'\bid="([^"]+)"', text))
+
+              for h in hrefs:
+                  # Skip external (http/https), mail, tel, schema URI
+                  if h.startswith(("http://", "https://", "mailto:", "tel:", "javascript:", "data:")):
+                      continue
+                  checked += 1
+                  parts = urlsplit(h)
+                  path, frag = parts.path, parts.fragment
+
+                  # Pure same-page anchor (#xyz)
+                  if not path and frag:
+                      if frag not in ids_here:
+                          fail.append(f"{f}: missing anchor #{frag}")
+                      continue
+
+                  # Resolve site-root-relative or relative path
+                  if path.startswith("/"):
+                      target = ROOT / path.lstrip("/")
+                  else:
+                      target = (f.parent / path).resolve()
+                      try:
+                          target = target.relative_to(ROOT.resolve())
+                          target = ROOT / target
+                      except ValueError:
+                          fail.append(f"{f}: path escapes root: {h}")
+                          continue
+
+                  # Directory → look for index.html
+                  candidates = [target]
+                  if str(target).endswith("/") or target.is_dir():
+                      candidates.append(target / "index.html")
+                  else:
+                      candidates.append(pathlib.Path(str(target) + "/index.html"))
+
+                  if not any(c.exists() for c in candidates):
+                      fail.append(f"{f}: missing target {h} -> {target}")
+                      continue
+
+                  # Cross-page anchor (file#frag) — verify frag exists in target
+                  if frag:
+                      target_file = next((c for c in candidates if c.exists()), None)
+                      if target_file and target_file.suffix == ".html":
+                          target_text = target_file.read_text(encoding="utf-8")
+                          target_ids = set(re.findall(r'\bid="([^"]+)"', target_text))
+                          if frag not in target_ids:
+                              # Don't fail on common nav anchors
+                              if frag not in ("top", "main"):
+                                  fail.append(f"{f}: missing anchor #{frag} in {target_file}")
+
+          print(f"Checked {checked} internal links across {len(list(P_DIR.glob('*.html')))} pages")
+          if fail:
+              print("\n❌ Failures:")
+              for ferr in fail:
+                  print(f"  {ferr}")
+              sys.exit(1)
+          print("✅ All internal links resolve")
+          EOF
+
+  accessibility:
+    name: Accessibility (pa11y WCAG2AA on /p/*)
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pa11y-ci, http-server, wait-on
+        run: |
+          npm install --no-audit --no-fund --no-save \
+            pa11y-ci@3.x http-server@14.x wait-on@8.x
+
+      - name: Start static server
+        run: nohup npx http-server . -p 8080 -s > /tmp/server.log 2>&1 &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:8080/p/index.html --timeout 30000
+
+      - name: Run pa11y-ci on /p/* pages
+        run: npx pa11y-ci --config .pa11yci.json
+
+      - name: Upload pa11y screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pa11y-screenshots
+          path: tmp/
+          if-no-files-found: ignore
+
+  schema-jsonld:
+    name: JSON-LD validation (/p/*)
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate JSON-LD blocks
+        run: |
+          python3 - <<'EOF'
+          import json, re, sys, pathlib
+          fail = False
+          for f in pathlib.Path("p").glob("*.html"):
+              text = f.read_text(encoding="utf-8")
+              blocks = re.findall(r'<script type="application/ld\+json">\s*(\{.*?\})\s*</script>', text, re.DOTALL)
+              if not blocks:
+                  print(f"::error file={f}::No JSON-LD found")
+                  fail = True
+                  continue
+              for i, b in enumerate(blocks):
+                  try:
+                      data = json.loads(b)
+                      if "@context" not in data:
+                          print(f"::warning file={f}::Block #{i+1} missing @context")
+                      if "@type" not in data and "@graph" not in data:
+                          print(f"::warning file={f}::Block #{i+1} missing @type")
+                  except json.JSONDecodeError as e:
+                      print(f"::error file={f}::Block #{i+1} invalid JSON: {e}")
+                      fail = True
+              print(f"OK {f}: {len(blocks)} JSON-LD block(s)")
+          sys.exit(1 if fail else 0)
+          EOF
+
+  copy-marker-coverage:
+    name: Copy marker coverage (data-copy)
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify all data-copy markers documented (≥85% coverage required)
+        run: |
+          set -e
+          MARKERS=$(grep -ohE 'data-copy="[A-Z0-9-]+"' p/*.html | sort -u)
+          TOTAL=$(echo "$MARKERS" | wc -l)
+          MISSING=0
+          while IFS= read -r marker; do
+              ID=$(echo "$marker" | sed -E 's/data-copy="([A-Z0-9-]+)"/\1/')
+              if ! grep -q "$ID" .moai/copy-handoff.md; then
+                  echo "::warning::Marker $ID not in copy-handoff.md"
+                  MISSING=$((MISSING + 1))
+              fi
+          done <<< "$MARKERS"
+          DOCUMENTED=$((TOTAL - MISSING))
+          COVERAGE_PCT=$(( DOCUMENTED * 100 / TOTAL ))
+          echo "Total unique markers: $TOTAL"
+          echo "Documented: $DOCUMENTED"
+          echo "Missing: $MISSING"
+          echo "Coverage: $COVERAGE_PCT%"
+          if [ "$COVERAGE_PCT" -lt 85 ]; then
+              echo "::error::Coverage $COVERAGE_PCT% < 85%. Update .moai/copy-handoff.md to reach ≥85%."
+              exit 1
+          fi
+          echo "::notice::Marker coverage $COVERAGE_PCT% — passes 85% gate."

@@ -1,0 +1,77 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.moai/state/**'
+      - '_archive_v2/**'
+      - '_archive_magazine_old/**'
+      - 'quant/**'
+      - 'swarm/**'
+      - 'trading/**'
+      - 'vault/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Prepare static artifact
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Strip non-public directories and configs
+        run: |
+          # Remove CI/dev tooling that should not be public
+          rm -rf .github .github-pending .git .githooks .devtools
+          rm -rf _archive_v2 _archive_magazine_old node_modules
+          rm -rf .moai .claude
+          rm -rf quant swarm trading vault
+          rm -rf resources/_console resources/_data resources/_build _build
+          rm -rf blog/perspective/_archive_v2_20 blog/perspective/perspective_old_129
+          rm -rf tmp .pa11yci-screenshots .lighthouseci
+
+          # Remove config dotfiles
+          rm -f .ai-hooks.yml .editorconfig .stylelintrc.json .htmlhintrc
+          rm -f .prettierrc.json .prettierignore .gitattributes .gitignore
+          rm -f .lighthouserc.json .pa11yci.json lychee.toml
+          rm -f package.json package-lock.json capacitor.config.json
+          rm -f CLAUDE.md DEVELOPER.md ARCHITECTURE.md README.md
+          rm -f node_modules .nvmrc
+
+          # Keep .nojekyll for GitHub Pages routing
+          touch .nojekyll
+
+          echo "=== public artifact root ==="
+          ls -la | head -40
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
