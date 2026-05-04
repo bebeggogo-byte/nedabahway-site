@@ -1,19 +1,20 @@
 /**
- * share-bar.js — 9개 글로벌 SNS 공유 버튼
- * Twitter/X · WhatsApp · LinkedIn · Facebook · Telegram · Reddit · Weibo · LINE · Copy
- * 각 국가·지역 주력 SNS 망라
+ * share-bar.js — 한국 + 글로벌 SNS 공유 버튼
+ * KakaoTalk · Naver · X · LinkedIn · Facebook · Telegram · WhatsApp · LINE · Copy
+ * KakaoTalk·Naver를 좌측 상단에 배치(한국 인앱 사용자 우선).
  */
 (function() {
+  // KakaoTalk 공식 공유 URL: 모바일에서 카카오톡 앱 호출, 데스크탑에서는 카카오스토리/이메일 공유 페이지로 fallback
   const SHARES = [
-    { name: 'X (Twitter)', icon: '𝕏',  url: u => 'https://twitter.com/intent/tweet?url=' + u + '&text=' + T },
-    { name: 'WhatsApp',    icon: '💬', url: u => 'https://api.whatsapp.com/send?text=' + T + '%20' + u },
+    { name: '카카오톡',    icon: '💬', url: u => 'https://story.kakao.com/share?url=' + u },
+    { name: '네이버',      icon: 'N',  url: u => 'https://share.naver.com/web/shareView?url=' + u + '&title=' + T },
+    { name: 'X (Twitter)', icon: '𝕏', url: u => 'https://twitter.com/intent/tweet?url=' + u + '&text=' + T },
     { name: 'LinkedIn',    icon: 'in', url: u => 'https://www.linkedin.com/sharing/share-offsite/?url=' + u },
     { name: 'Facebook',    icon: 'f',  url: u => 'https://www.facebook.com/sharer/sharer.php?u=' + u },
-    { name: 'Telegram',    icon: '✈',  url: u => 'https://t.me/share/url?url=' + u + '&text=' + T },
-    { name: 'Reddit',      icon: 'r/', url: u => 'https://www.reddit.com/submit?url=' + u + '&title=' + T },
-    { name: 'Weibo 微博',  icon: '微', url: u => 'https://service.weibo.com/share/share.php?url=' + u + '&title=' + T },
+    { name: 'Telegram',    icon: '✈', url: u => 'https://t.me/share/url?url=' + u + '&text=' + T },
+    { name: 'WhatsApp',    icon: 'W',  url: u => 'https://api.whatsapp.com/send?text=' + T + '%20' + u },
     { name: 'LINE',        icon: 'L',  url: u => 'https://social-plugins.line.me/lineit/share?url=' + u },
-    { name: 'Copy link',   icon: '⧉',  url: () => null, copy: true },
+    { name: '링크 복사',   icon: '⧉', url: () => null, copy: true },
   ];
 
   let T = '';
@@ -27,7 +28,7 @@
     bar.id = 'share-bar';
     bar.setAttribute('aria-label', 'Share this page');
     bar.innerHTML =
-      '<div class="sb__label">Share</div>' +
+      '<div class="sb__label">공유</div>' +
       SHARES.map(function(s, i) {
         if (s.copy) {
           return '<button class="sb__btn sb__copy" data-i="' + i + '" title="' + s.name + '" aria-label="' + s.name + '">' + s.icon + '</button>';

@@ -3,73 +3,29 @@
 
 Usage: python3 scripts/build-automation-pages.py
 Output: HTML next to each .md, in resources/automation/{section}/{slug}.html
+
+Each guide is wrapped with:
+- Site nav and footer
+- Open Graph + Twitter card meta + Schema.org HowTo JSON-LD
+- "초보자 카드" (난이도 / 예상 소요 / 전제조건)
+- Code copy buttons + line numbers (assets/code-copy.js)
+- Share bar floating widget (assets/share-bar.js)
+- Mobile-tuned typography
 """
 from __future__ import annotations
 
 import re
+import sys
 from pathlib import Path
 
 import markdown
 
 ROOT = Path(__file__).resolve().parent.parent
 AUTO_DIR = ROOT / "resources" / "automation"
+sys.path.insert(0, str(ROOT / "scripts"))
+from automation_meta import CARDS, OG_IMAGE  # noqa: E402
 
-CARDS = {
-    "planning/01-meeting-notes-to-actions": {
-        "section": "기획",
-        "tag": "PLAN-01",
-        "title": "회의록 → 액션아이템 자동 정리",
-        "summary": "Google Doc 한 장을 던지면 AI가 결정사항·할일·담당자·기한을 추출해 시트·Slack에 적재합니다.",
-    },
-    "planning/02-competitor-news-digest": {
-        "section": "기획",
-        "tag": "PLAN-02",
-        "title": "경쟁사·뉴스 일일 다이제스트",
-        "summary": "매일 새벽 RSS·키워드를 수집·요약해 메일/Slack 한 장 다이제스트로 발송합니다.",
-    },
-    "planning/03-weekly-kpi-report": {
-        "section": "기획",
-        "tag": "PLAN-03",
-        "title": "주간 KPI 자동 리포트",
-        "summary": "AI가 변동·이상·다음 주 권고를 함께 작성한 한 장 KPI 리포트를 매주 임원진에 발송합니다.",
-    },
-    "hr/01-onboarding-kit": {
-        "section": "HR",
-        "tag": "HR-01",
-        "title": "신규 입사자 온보딩 키트",
-        "summary": "합격자 한 줄 입력 → 환영 메일·90일 체크리스트·1on1 캘린더·Slack 공지 자동 생성.",
-    },
-    "hr/02-leave-approval-workflow": {
-        "section": "HR",
-        "tag": "HR-02",
-        "title": "휴가 신청 슬랙 승인 워크플로우",
-        "summary": "Form → 팀장 Slack 승인 카드 → 캘린더·연차 잔여 시트 자동 갱신.",
-    },
-    "hr/03-pulse-survey-sentiment": {
-        "section": "HR",
-        "tag": "HR-03",
-        "title": "분기 펄스서베이 + AI 감성 분석",
-        "summary": "응답 1,000건도 30분 안에. 식별 정보는 AI에 전달되지 않도록 분리 설계.",
-    },
-    "marketing/01-content-calendar-generator": {
-        "section": "마케팅",
-        "tag": "MKT-01",
-        "title": "30일 콘텐츠 캘린더 자동 생성",
-        "summary": "월 테마 한 줄 → 30일치 채널별 헤드라인·후크·CTA·해시태그 자동 채움.",
-    },
-    "marketing/02-lead-scoring-router": {
-        "section": "마케팅",
-        "tag": "MKT-02",
-        "title": "인입 리드 자동 스코어링·배정",
-        "summary": "룰 60% + AI 40%로 0~100점 스코어링, Hot/Warm/Cold 등급별 담당자 Slack 카드 발송.",
-    },
-    "marketing/03-review-mention-digest": {
-        "section": "마케팅",
-        "tag": "MKT-03",
-        "title": "리뷰·멘션 주간 다이제스트",
-        "summary": "네이버 블로그·카페·뉴스 멘션 자동 수집. 부정 멘션은 24시간 안에 즉시 알림.",
-    },
-}
+# CARDS / OG_IMAGE imported from automation_meta — single source of truth.
 
 PAGE_TPL = """<!DOCTYPE html>
 <html lang="ko">
@@ -84,7 +40,15 @@ PAGE_TPL = """<!DOCTYPE html>
 <meta property="og:description" content="{summary}">
 <meta property="og:url" content="https://www.nedabah.org{canonical}">
 <meta property="og:type" content="article">
-<meta name="keywords" content="{section} 자동화, Apps Script, Gemini, 노코드, {tag}">
+<meta property="og:image" content="{og_image}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{summary}">
+<meta name="twitter:image" content="{og_image}">
+<meta name="keywords" content="{section} 자동화, Apps Script, Gemini, 노코드, 업무자동화, {tag}">
 
 <script type="application/ld+json">
 {{
@@ -95,12 +59,13 @@ PAGE_TPL = """<!DOCTYPE html>
   "url": "https://www.nedabah.org{canonical}",
   "inLanguage": "ko-KR",
   "tool": ["Google Apps Script","Google Sheets","Gemini API","Slack"],
+  "totalTime": "{iso_time}",
   "publisher": {{"@id": "https://www.nedabah.org/#organization"}}
 }}
 </script>
 
 <style>
-.guide-body {{ font-family:'Noto Sans KR',sans-serif; line-height:1.8; color:#222; max-width:780px; margin:3rem auto; padding:0 1.5rem; }}
+.guide-body {{ font-family:'Noto Sans KR',sans-serif; line-height:1.8; color:#222; max-width:780px; margin:2rem auto; padding:0 1.4rem; }}
 .guide-body h1 {{ font-family:'Noto Serif KR',serif; font-size:2rem; line-height:1.3; margin:.4rem 0 1rem; }}
 .guide-body h2 {{ font-size:1.35rem; margin-top:2.5rem; padding-left:.6rem; border-left:4px solid #b45309; color:#3a322a; }}
 .guide-body h3 {{ font-size:1.1rem; margin-top:1.6rem; color:#3a322a; }}
@@ -116,9 +81,21 @@ PAGE_TPL = """<!DOCTYPE html>
 .guide-body a {{ color:#b45309; }}
 .tag-pill {{ display:inline-block; font-size:.72rem; letter-spacing:.14em; font-weight:700; padding:.22rem .6rem; border-radius:99px; background:#fbf6ec; color:#b45309; border:1px solid #e5d8c4; }}
 .guide-meta {{ color:#6a604f; font-size:.92rem; margin-top:.4rem; }}
+.starter-card {{ display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:.8rem; max-width:780px; margin:1.4rem auto 0; padding:1rem 1.2rem; background:#fbf6ec; border:1px solid #e5d8c4; border-radius:10px; font-family:'Noto Sans KR',sans-serif; }}
+.starter-card .si {{ font-size:.72rem; color:#8a7a64; letter-spacing:.1em; font-weight:700; text-transform:uppercase; }}
+.starter-card .sv {{ font-size:1rem; color:#3a322a; margin-top:.2rem; font-weight:600; }}
 .related-aside {{ margin:3rem auto 4rem; max-width:780px; padding:1.6rem 1.8rem; background:#fbf6ec; border-radius:12px; }}
 .related-aside h2 {{ margin-top:0; font-size:1.05rem; border:none; padding:0; }}
 .related-aside ul {{ list-style:none; padding:0; line-height:2; }}
+.glossary-link {{ display:inline-block; margin-top:.4rem; font-size:.85rem; color:#6a604f; }}
+@media (max-width:520px) {{
+  .guide-body {{ font-size:.96rem; padding:0 1.1rem; }}
+  .guide-body h1 {{ font-size:1.55rem; }}
+  .guide-body h2 {{ font-size:1.15rem; }}
+  .guide-body table {{ font-size:.86rem; }}
+  .guide-body table th, .guide-body table td {{ padding:.4rem .45rem; }}
+  .starter-card {{ grid-template-columns:repeat(2, 1fr); padding:.85rem 1rem; }}
+}}
 </style>
 </head>
 <body>
@@ -126,26 +103,35 @@ PAGE_TPL = """<!DOCTYPE html>
   <div class="gnav__inner">
     <a href="/" class="gnav__logo">네다바웨이</a>
     <ul class="gnav__links">
-      <li><a href="/lectures/" class="gnav__link">강의 목록</a></li>
+      <li><a href="/lectures/business-automation.html" class="gnav__link">강의</a></li>
       <li><a href="/resources/automation/" class="gnav__link">자동화 허브</a></li>
-      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/resources/automation/glossary.html" class="gnav__link">용어집</a></li>
       <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
     </ul>
   </div>
 </nav>
 
-<header style="max-width:780px;margin:3rem auto 0;padding:0 1.5rem;font-family:'Noto Sans KR',sans-serif;">
+<header style="max-width:780px;margin:2.4rem auto 0;padding:0 1.4rem;font-family:'Noto Sans KR',sans-serif;">
   <p style="font-size:.78rem;color:#b45309;letter-spacing:.18em;font-weight:700;">RESOURCE · {section_upper} 자동화 · <span class="tag-pill">{tag}</span></p>
 </header>
 
+<section class="starter-card" aria-label="이 자동화 한눈에">
+  <div><div class="si">난이도</div><div class="sv">{level}</div></div>
+  <div><div class="si">예상 소요</div><div class="sv">{time}</div></div>
+  <div><div class="si">전제 조건</div><div class="sv">{prereq}</div></div>
+  <div><div class="si">월 비용</div><div class="sv">0원</div></div>
+</section>
+
 <article class="guide-body">
 {body}
+<p class="glossary-link">처음 보는 용어가 있나요? → <a href="/resources/automation/glossary.html">자동화 용어집(15개)</a></p>
 </article>
 
 <aside class="related-aside">
   <h2>이 자동화와 함께 보면 좋은 자료</h2>
   <ul>
     <li>→ <a href="/resources/automation/">자동화 9선 자료 허브로 돌아가기</a></li>
+    <li>→ <a href="/resources/automation/glossary.html">초보자 용어집</a></li>
     <li>→ <a href="/lectures/business-automation.html">강의 페이지: 조직 업무 자동화 실무 9선</a></li>
     <li>→ <a href="/contact.html">조직 맞춤 워크숍 의뢰</a></li>
   </ul>
@@ -154,6 +140,9 @@ PAGE_TPL = """<!DOCTYPE html>
 <footer style="max-width:780px;margin:0 auto 4rem;padding:1.5rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;font-family:'Noto Sans KR',sans-serif;">
   <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
 </footer>
+
+<script src="/assets/code-copy.js" defer></script>
+<script src="/assets/share-bar.js" defer></script>
 </body>
 </html>
 """
@@ -174,6 +163,20 @@ def render(md_text: str) -> str:
     )
 
 
+def to_iso_duration(time_str: str) -> str:
+    """Convert "30분" / "1시간 30분" to ISO 8601 duration."""
+    minutes = 0
+    for n, unit in re.findall(r"(\d+)\s*(분|시간)", time_str):
+        minutes += int(n) * (60 if unit == "시간" else 1)
+    hours, rem = divmod(minutes, 60)
+    parts = "PT"
+    if hours:
+        parts += f"{hours}H"
+    if rem or not hours:
+        parts += f"{rem}M"
+    return parts
+
+
 def main() -> None:
     for slug, meta in CARDS.items():
         md_path = AUTO_DIR / f"{slug}.md"
@@ -181,8 +184,6 @@ def main() -> None:
             print(f"SKIP missing: {md_path}")
             continue
         body_html = render(md_path.read_text(encoding="utf-8"))
-        # Drop the first H1 because the file starts with "# Title" we already
-        # showcase as breadcrumb tag. Replace first <h1>..</h1> with empty.
         body_html = re.sub(r"<h1[^>]*>.*?</h1>", "", body_html, count=1, flags=re.DOTALL)
         page = PAGE_TPL.format(
             title=meta["title"],
@@ -190,10 +191,14 @@ def main() -> None:
             section=meta["section"],
             section_upper=meta["section"].upper(),
             tag=meta["tag"],
+            level=meta["level"],
+            time=meta["time"],
+            prereq=meta["prereq"],
+            iso_time=to_iso_duration(meta["time"]),
             canonical=f"/resources/automation/{slug}.html",
+            og_image=OG_IMAGE,
             body=body_html,
         )
-        # Insert title as h1 inside guide-body so styled correctly
         page = page.replace(
             '<article class="guide-body">\n',
             f'<article class="guide-body">\n<h1>{meta["title"]}</h1>\n<p class="guide-meta">{meta["summary"]}</p>\n',
