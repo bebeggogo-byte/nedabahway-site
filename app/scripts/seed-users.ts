@@ -35,13 +35,16 @@ interface UserSpec {
   role: "student" | "coach" | "system_admin";
 }
 
-// NOTE: Supabase Auth rejects domains without valid DNS as "invalid format".
-// nedabahway.com is the live owned domain (DNS resolves via GitHub Pages).
+// NOTE: Supabase Auth strict validator requires domain MX records.
+// nedabahway.com / nedabah.dev have no MX (static sites only) -> rejected.
+// gmail.com has guaranteed MX -> passes any validator.
+// Override domain via TEST_EMAIL_DOMAIN env var if needed.
+const TEST_DOMAIN = process.env.TEST_EMAIL_DOMAIN || "gmail.com";
 const USERS: UserSpec[] = [
-  { email: "[email protected]", display_name: "김창환 코치", role: "coach" },
-  { email: "[email protected]", display_name: "STARCP 베타 학생", role: "student" },
-  { email: "[email protected]", display_name: "IDEN 교사 베타", role: "student" },
-  { email: "[email protected]", display_name: "이직 베타 학생", role: "student" },
+  { email: `nedabahway.coach@${TEST_DOMAIN}`, display_name: "김창환 코치", role: "coach" },
+  { email: `nedabahway.starcp@${TEST_DOMAIN}`, display_name: "STARCP 베타 학생", role: "student" },
+  { email: `nedabahway.iden@${TEST_DOMAIN}`, display_name: "IDEN 교사 베타", role: "student" },
+  { email: `nedabahway.pivot@${TEST_DOMAIN}`, display_name: "이직 베타 학생", role: "student" },
 ];
 
 async function ensureUser(spec: UserSpec): Promise<string> {
@@ -223,11 +226,11 @@ async function main() {
     ids[u.email] = await ensureUser(u);
   }
 
-  const coachId = ids["[email protected]"];
+  const coachId = ids[`nedabahway.coach@${TEST_DOMAIN}`];
 
   // STARCP 베타: 25h 전 결제 (50% 환불 시나리오)
   await createEnrollmentAndPayment({
-    user_id: ids["[email protected]"],
+    user_id: ids[`nedabahway.starcp@${TEST_DOMAIN}`],
     coach_id: coachId,
     track_id: "starcp",
     paid_hours_ago: 25,
@@ -236,7 +239,7 @@ async function main() {
 
   // IDEN 진로 재설계 베타: 2h 전 결제 (100% 환불 시나리오)
   await createEnrollmentAndPayment({
-    user_id: ids["[email protected]"],
+    user_id: ids[`nedabahway.pivot@${TEST_DOMAIN}`],
     coach_id: coachId,
     track_id: "iden_pivot",
     paid_hours_ago: 2,
@@ -245,13 +248,13 @@ async function main() {
 
   // IDEN 교사 베타: 등록 + 학교·반·학생 더미
   await createEnrollmentAndPayment({
-    user_id: ids["[email protected]"],
+    user_id: ids[`nedabahway.iden@${TEST_DOMAIN}`],
     coach_id: coachId,
     track_id: "iden_teacher",
     paid_hours_ago: 100,
     amount_krw: 3_500_000,
   });
-  await seedIdenTeacherSchool(ids["[email protected]"]);
+  await seedIdenTeacherSchool(ids[`nedabahway.iden@${TEST_DOMAIN}`]);
 
   console.log("\n[seed-users] 완료. 로그인 정보:");
   console.log("  비밀번호 공통: nedabah1!");
