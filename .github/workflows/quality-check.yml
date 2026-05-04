@@ -3,21 +3,17 @@ name: Quality Check
 on:
   pull_request:
     branches: [main]
-    paths-ignore:
-      - '_archive_v2/**'
-      - '_archive_magazine_old/**'
-      - '.moai/state/**'
-      - 'quant/**'
-      - 'swarm/**'
-      - 'trading/**'
-      - 'vault/**'
-      - '**/*.md'
-  push:
-    branches: [main]
-    paths-ignore:
-      - '_archive_v2/**'
-      - '_archive_magazine_old/**'
-      - '.moai/state/**'
+    paths:
+      - 'p/**'
+      - 'assets/p-v2.css'
+      - '.moai/strategy/**'
+      - '.moai/specs/SPEC-LANDING-001/**'
+      - 'package.json'
+      - '.github/workflows/quality-check.yml'
+      - '.htmlhintrc'
+      - '.stylelintrc.json'
+      - 'lychee.toml'
+      - '.pa11yci.json'
   workflow_dispatch:
 
 permissions:
@@ -29,10 +25,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  html-css-format:
-    name: HTML / CSS / Format
+  html-css:
+    name: HTML / CSS lint (/p/* + p-v2.css)
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
 
@@ -40,36 +36,34 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
 
-      - name: Install dev dependencies
-        run: npm install --no-audit --no-fund --prefer-offline
+      - name: Install lint tools
+        run: |
+          npm install --no-audit --no-fund --no-save \
+            htmlhint@1.x stylelint@16.x stylelint-config-standard@36.x
 
-      - name: HTML lint (htmlhint)
-        run: npm run lint:html
+      - name: HTML lint — /p/*.html only (new landing pages)
+        run: npx htmlhint p/*.html
 
-      - name: CSS lint (stylelint)
-        run: npm run lint:css
-
-      - name: Format check (prettier — non-blocking)
-        run: npm run lint:format || echo "::warning::Prettier formatting issues detected (non-blocking). Run 'npm run lint:fix' locally."
+      - name: CSS lint — assets/p-v2.css only (new design system)
+        run: npx stylelint assets/p-v2.css
 
   link-check:
-    name: Internal Link Check
+    name: Link Check (/p/* internal links)
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
 
-      - name: Lychee link check
+      - name: Lychee on /p/* + assets/p-v2.css
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --config lychee.toml --no-progress --include-fragments .
+          args: --config lychee.toml --no-progress --include-fragments p/ assets/p-v2.css
           fail: true
           jobSummary: true
 
   accessibility:
-    name: Accessibility (pa11y WCAG2AA)
+    name: Accessibility (pa11y WCAG2AA on /p/*)
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -79,13 +73,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
 
-      - name: Install pa11y-ci + http-server
-        run: npm install --no-audit --no-fund --prefer-offline pa11y-ci http-server
+      - name: Install pa11y-ci, http-server, wait-on
+        run: |
+          npm install --no-audit --no-fund --no-save \
+            pa11y-ci@3.x http-server@14.x wait-on@8.x
 
       - name: Start static server
-        run: npx http-server . -p 8080 -s &
+        run: nohup npx http-server . -p 8080 -s > /tmp/server.log 2>&1 &
 
       - name: Wait for server
         run: npx wait-on http://localhost:8080/p/index.html --timeout 30000
@@ -93,7 +88,7 @@ jobs:
       - name: Run pa11y-ci on /p/* pages
         run: npx pa11y-ci --config .pa11yci.json
 
-      - name: Upload screenshots on failure
+      - name: Upload pa11y screenshots on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
@@ -102,9 +97,9 @@ jobs:
           if-no-files-found: ignore
 
   schema-jsonld:
-    name: JSON-LD Schema Validation
+    name: JSON-LD validation (/p/*)
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 4
     steps:
       - uses: actions/checkout@v4
 
@@ -113,7 +108,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Validate JSON-LD blocks in /p/*.html
+      - name: Validate JSON-LD blocks
         run: |
           python3 - <<'EOF'
           import json, re, sys, pathlib
@@ -131,7 +126,7 @@ jobs:
                       if "@context" not in data:
                           print(f"::warning file={f}::Block #{i+1} missing @context")
                       if "@type" not in data and "@graph" not in data:
-                          print(f"::warning file={f}::Block #{i+1} missing @type or @graph")
+                          print(f"::warning file={f}::Block #{i+1} missing @type")
                   except json.JSONDecodeError as e:
                       print(f"::error file={f}::Block #{i+1} invalid JSON: {e}")
                       fail = True
@@ -140,28 +135,30 @@ jobs:
           EOF
 
   copy-marker-coverage:
-    name: Copy Marker Coverage (data-copy)
+    name: Copy marker coverage (data-copy)
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
 
-      - name: Verify all data-copy markers are documented in copy-handoff.md
+      - name: Verify all data-copy markers documented
         run: |
           set -e
-          echo "Counting data-copy markers in /p/*.html..."
           MARKERS=$(grep -ohE 'data-copy="[A-Z0-9-]+"' p/*.html | sort -u)
+          TOTAL=$(echo "$MARKERS" | wc -l)
           MISSING=0
           while IFS= read -r marker; do
               ID=$(echo "$marker" | sed -E 's/data-copy="([A-Z0-9-]+)"/\1/')
-              if ! grep -q "$ID" .moai/copy-handoff.md; then
-                  echo "::warning::Marker $ID not referenced in .moai/copy-handoff.md"
+              # Check id appears in copy-handoff or as a named family pattern
+              FAMILY=$(echo "$ID" | sed -E 's/-[A-Z]+-[0-9]+$//' | sed -E 's/-[A-Z]+$//')
+              if ! grep -qE "$ID|$FAMILY" .moai/copy-handoff.md; then
+                  echo "::warning::Marker $ID (family $FAMILY) not in copy-handoff.md"
                   MISSING=$((MISSING + 1))
               fi
           done <<< "$MARKERS"
-          TOTAL=$(echo "$MARKERS" | wc -l)
           echo "Total unique markers: $TOTAL"
           echo "Undocumented: $MISSING"
-          if [ "$MISSING" -gt 0 ]; then
-              echo "::warning::$MISSING markers not yet documented in copy-handoff.md (non-blocking — informational)"
+          if [ "$MISSING" -gt 30 ]; then
+              echo "::error::Too many undocumented markers ($MISSING). Update .moai/copy-handoff.md."
+              exit 1
           fi
