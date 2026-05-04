@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>30일 콘텐츠 캘린더 자동 생성 — 자동화 9선 | 네다바웨이</title>
+<meta name="description" content="월 테마 한 줄 → 30일치 채널별 헤드라인·후크·CTA·해시태그 자동 채움.">
+<link rel="canonical" href="https://www.nedabah.org/resources/automation/marketing/01-content-calendar-generator.html">
+<meta property="og:title" content="30일 콘텐츠 캘린더 자동 생성 — 자동화 9선">
+<meta property="og:description" content="월 테마 한 줄 → 30일치 채널별 헤드라인·후크·CTA·해시태그 자동 채움.">
+<meta property="og:url" content="https://www.nedabah.org/resources/automation/marketing/01-content-calendar-generator.html">
+<meta property="og:type" content="article">
+<meta name="keywords" content="마케팅 자동화, Apps Script, Gemini, 노코드, MKT-01">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "30일 콘텐츠 캘린더 자동 생성",
+  "description": "월 테마 한 줄 → 30일치 채널별 헤드라인·후크·CTA·해시태그 자동 채움.",
+  "url": "https://www.nedabah.org/resources/automation/marketing/01-content-calendar-generator.html",
+  "inLanguage": "ko-KR",
+  "tool": ["Google Apps Script","Google Sheets","Gemini API","Slack"],
+  "publisher": {"@id": "https://www.nedabah.org/#organization"}
+}
+</script>
+
+<style>
+.guide-body { font-family:'Noto Sans KR',sans-serif; line-height:1.8; color:#222; max-width:780px; margin:3rem auto; padding:0 1.5rem; }
+.guide-body h1 { font-family:'Noto Serif KR',serif; font-size:2rem; line-height:1.3; margin:.4rem 0 1rem; }
+.guide-body h2 { font-size:1.35rem; margin-top:2.5rem; padding-left:.6rem; border-left:4px solid #b45309; color:#3a322a; }
+.guide-body h3 { font-size:1.1rem; margin-top:1.6rem; color:#3a322a; }
+.guide-body h4 { font-size:1rem; margin-top:1.2rem; color:#6a604f; }
+.guide-body blockquote { background:#fbf6ec; border-left:4px solid #b45309; padding:.6rem 1.2rem; color:#3a322a; margin:1rem 0; border-radius:0 8px 8px 0; }
+.guide-body table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
+.guide-body th { background:#fbf6ec; text-align:left; padding:.55rem .7rem; border-bottom:2px solid #e5d8c4; }
+.guide-body td { padding:.5rem .7rem; border-bottom:1px solid #eee; vertical-align:top; }
+.guide-body code { background:#f3eee2; padding:.1rem .35rem; border-radius:4px; font-family:'JetBrains Mono','Menlo',monospace; font-size:.92em; }
+.guide-body pre { background:#1f1a14; color:#f5e9d4; padding:1rem 1.2rem; border-radius:8px; overflow-x:auto; line-height:1.55; font-size:.86rem; }
+.guide-body pre code { background:transparent; color:inherit; padding:0; }
+.guide-body ul, .guide-body ol { line-height:1.8; }
+.guide-body a { color:#b45309; }
+.tag-pill { display:inline-block; font-size:.72rem; letter-spacing:.14em; font-weight:700; padding:.22rem .6rem; border-radius:99px; background:#fbf6ec; color:#b45309; border:1px solid #e5d8c4; }
+.guide-meta { color:#6a604f; font-size:.92rem; margin-top:.4rem; }
+.related-aside { margin:3rem auto 4rem; max-width:780px; padding:1.6rem 1.8rem; background:#fbf6ec; border-radius:12px; }
+.related-aside h2 { margin-top:0; font-size:1.05rem; border:none; padding:0; }
+.related-aside ul { list-style:none; padding:0; line-height:2; }
+</style>
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/lectures/" class="gnav__link">강의 목록</a></li>
+      <li><a href="/resources/automation/" class="gnav__link">자동화 허브</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header style="max-width:780px;margin:3rem auto 0;padding:0 1.5rem;font-family:'Noto Sans KR',sans-serif;">
+  <p style="font-size:.78rem;color:#b45309;letter-spacing:.18em;font-weight:700;">RESOURCE · 마케팅 자동화 · <span class="tag-pill">MKT-01</span></p>
+</header>
+
+<article class="guide-body">
+<h1>30일 콘텐츠 캘린더 자동 생성</h1>
+<p class="guide-meta">월 테마 한 줄 → 30일치 채널별 헤드라인·후크·CTA·해시태그 자동 채움.</p>
+
+<blockquote>
+<p><strong>한 줄 핵심</strong>: 한 달 테마 1줄과 채널 목록만 입력하면, AI가 30일치 콘텐츠 캘린더(블로그·SNS·뉴스레터)를 헤드라인·후크·CTA·해시태그까지 자동 생성해 시트에 적재한다.</p>
+</blockquote>
+<h2 id="_1">왜 이 자동화인가</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>수동(Before)</th>
+<th>자동(After)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>콘텐츠 캘린더 작성</td>
+<td>1~2일</td>
+<td>5분</td>
+</tr>
+<tr>
+<td>아이디어 고갈</td>
+<td>자주</td>
+<td>드묾 (AI가 30개 변주)</td>
+</tr>
+<tr>
+<td>채널별 톤 분기</td>
+<td>누락 빈번</td>
+<td>자동</td>
+</tr>
+<tr>
+<td>월 절감</td>
+<td>—</td>
+<td><strong>약 12시간/마케터 1인</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>적용 시나리오</strong>: 1인 운영·SMB 마케팅·에이전시·신규 캠페인 런칭.</p>
+<h2 id="_2">구성요소</h2>
+<ul>
+<li>Google Sheet (입력 + 결과)</li>
+<li>Gemini API</li>
+<li>Apps Script (커스텀 메뉴 + 단일 함수)</li>
+<li>(선택) Notion API — 캘린더 자동 sync</li>
+</ul>
+<h2 id="_3">셋업 가이드</h2>
+<h3 id="step-1-4">Step 1. 시트 4탭 구성</h3>
+<p><strong>탭 <code>input</code></strong>:
+| 키 | 값 |
+|---|---|
+| 월 테마 | 5월 — '실전형 사이드프로젝트' |
+| 비즈니스 | 1인 코치/컨설턴트 |
+| 타깃 | 30대 직장인, 부업 시작 단계 |
+| 채널 | 블로그, 인스타그램, 링크드인, 뉴스레터 |
+| 톤 | 따뜻하고 단정한, 거품 없는 |
+| 시작일 | 2026-05-01 |</p>
+<p><strong>탭 <code>calendar</code></strong>: <code>날짜 | 채널 | 형식 | 헤드라인 | 후크 | 본문 가이드 | CTA | 해시태그 | 상태</code></p>
+<p><strong>탭 <code>pillars</code></strong> (선택, 입력하면 AI가 균형 있게 분배):
+| 기둥 |
+|---|
+| 마인드셋 |
+| 실전 케이스 |
+| 도구 사용법 |
+| 커뮤니티/Q&amp;A |
+| 자기 사례 |</p>
+<p><strong>탭 <code>prompts</code></strong> (수정하면 AI 결과가 바뀜): 시스템 프롬프트 텍스트 1셀.</p>
+<h3 id="step-2">Step 2. 스크립트 속성</h3>
+<ul>
+<li><code>SHEET_ID</code></li>
+<li><code>GEMINI_API_KEY</code></li>
+</ul>
+<h3 id="step-3-apps-script">Step 3. Apps Script — 메뉴 추가 후 시트에서 클릭으로 실행.</h3>
+<hr>
+<h2 id="scriptgs">완성 코드 (<code>script.gs</code>)</h2>
+<pre><code class="language-javascript">const PROPS = PropertiesService.getScriptProperties();
+const SHEET_ID  = PROPS.getProperty('SHEET_ID');
+const GEMINI    = PROPS.getProperty('GEMINI_API_KEY');
+
+function onOpen() {
+  SpreadsheetApp.getUi()
+    .createMenu('🤖 콘텐츠 자동화')
+    .addItem('30일 캘린더 생성', 'generateCalendar')
+    .addItem('선택 행 다시 쓰기', 'regenerateRow')
+    .addToUi();
+}
+
+function readInputs() {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  const inp = Object.fromEntries(ss.getSheetByName('input').getDataRange().getValues().slice(1));
+  const pillars = ss.getSheetByName('pillars').getRange('A2:A').getValues().flat().filter(Boolean);
+  const channels = String(inp['채널']||'').split(',').map(s=&gt;s.trim()).filter(Boolean);
+  return {
+    theme: inp['월 테마'], business: inp['비즈니스'], target: inp['타깃'],
+    channels, tone: inp['톤'], startDate: new Date(inp['시작일']),
+    pillars
+  };
+}
+
+function generateCalendar() {
+  const ui = SpreadsheetApp.getUi();
+  const i = readInputs();
+  if (!i.theme || !i.channels.length) {
+    ui.alert('input 탭의 월 테마/채널을 먼저 입력하세요.'); return;
+  }
+
+  const prompt = buildMonthPrompt(i);
+  const items = callGemini(prompt); // [{date, channel, format, headline, hook, body, cta, hashtags}, ...]
+
+  const cal = SpreadsheetApp.openById(SHEET_ID).getSheetByName('calendar');
+  cal.clearContents();
+  cal.appendRow(['날짜','채널','형식','헤드라인','후크','본문 가이드','CTA','해시태그','상태']);
+  items.forEach(it =&gt; cal.appendRow([
+    it.date, it.channel, it.format, it.headline, it.hook, it.body, it.cta, (it.hashtags||[]).join(' '), '예정'
+  ]));
+  ui.alert(`✅ ${items.length}건 생성 완료`);
+}
+
+function buildMonthPrompt(i) {
+  const pillarLine = i.pillars.length ? `다음 콘텐츠 기둥을 균형 있게 분배: ${i.pillars.join(', ')}` : '주제는 자율적으로 다양화';
+  return `
+당신은 ${i.business} 도메인의 시니어 콘텐츠 디렉터입니다.
+다음 정보로 30일 콘텐츠 캘린더를 작성하세요.
+
+월 테마: ${i.theme}
+타깃: ${i.target}
+채널: ${i.channels.join(', ')}
+톤: ${i.tone}
+시작일: ${i.startDate.toISOString().slice(0,10)}
+${pillarLine}
+
+규칙:
+- 각 채널 특성에 맞춰 톤·형식 분기 (예: 블로그=long, 인스타=짧은 후크+이미지 가이드, 링크드인=인사이트, 뉴스레터=주제 묶음)
+- 같은 주제도 채널별 변주
+- 날짜는 시작일부터 30일, 하루에 1~2건 배치 (총 약 30~40건)
+- 헤드라인은 12~22자, 후크는 1문장, 본문 가이드는 50자 이내, CTA는 명확한 행동 1개, 해시태그 3~6개
+- 자기과시·과장 금지
+
+JSON 배열만 반환:
+[{&quot;date&quot;:&quot;YYYY-MM-DD&quot;,&quot;channel&quot;:&quot;...&quot;,&quot;format&quot;:&quot;long|short|image|reel|email&quot;,&quot;headline&quot;:&quot;...&quot;,&quot;hook&quot;:&quot;...&quot;,&quot;body&quot;:&quot;...&quot;,&quot;cta&quot;:&quot;...&quot;,&quot;hashtags&quot;:[&quot;...&quot;]}]
+`;
+}
+
+function callGemini(prompt) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI}`;
+  const res = UrlFetchApp.fetch(url, {
+    method:'post', contentType:'application/json',
+    payload: JSON.stringify({
+      contents:[{parts:[{text: prompt}]}],
+      generationConfig:{responseMimeType:'application/json', maxOutputTokens: 8192}
+    })
+  });
+  return JSON.parse(JSON.parse(res.getContentText()).candidates[0].content.parts[0].text);
+}
+
+function regenerateRow() {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  const sh = ss.getSheetByName('calendar');
+  const r  = sh.getActiveCell().getRow();
+  if (r === 1) return;
+  const row = sh.getRange(r, 1, 1, 9).getValues()[0];
+  const [date, channel, format, headline] = row;
+
+  const i = readInputs();
+  const prompt = `
+다음 한 건만 새로운 변형으로 다시 작성하세요(같은 날짜·채널·형식 유지).
+원본 헤드라인: ${headline}
+월 테마: ${i.theme}, 타깃: ${i.target}, 톤: ${i.tone}
+
+JSON 단일 객체:
+{&quot;headline&quot;:&quot;...&quot;,&quot;hook&quot;:&quot;...&quot;,&quot;body&quot;:&quot;...&quot;,&quot;cta&quot;:&quot;...&quot;,&quot;hashtags&quot;:[&quot;...&quot;]}
+`;
+  const o = JSON.parse(JSON.parse(UrlFetchApp.fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI}`,
+    {method:'post', contentType:'application/json',
+     payload: JSON.stringify({contents:[{parts:[{text:prompt}]}], generationConfig:{responseMimeType:'application/json'}})}
+  ).getContentText()).candidates[0].content.parts[0].text);
+
+  sh.getRange(r, 4).setValue(o.headline);
+  sh.getRange(r, 5).setValue(o.hook);
+  sh.getRange(r, 6).setValue(o.body);
+  sh.getRange(r, 7).setValue(o.cta);
+  sh.getRange(r, 8).setValue((o.hashtags||[]).join(' '));
+}
+</code></pre>
+<hr>
+<h2 id="_4">강의 시연 포인트</h2>
+<ol>
+<li>빈 시트에서 <code>input</code> 입력 → 메뉴 한 번 클릭 → 30일치 헤드라인이 30초 내 채워지는 모습</li>
+<li>한 행 선택 후 "다시 쓰기" → 같은 주제의 다른 변주 시연</li>
+<li>강의 후 워크숍: 학습자가 자기 비즈니스로 직접 시도 — 결과 비교 토론</li>
+</ol>
+<h2 id="_5">트러블슈팅</h2>
+<table>
+<thead>
+<tr>
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>30건 미만 생성</td>
+<td>토큰 부족</td>
+<td><code>maxOutputTokens</code> 8192 유지 + 프롬프트 단순화</td>
+</tr>
+<tr>
+<td>날짜가 시작일 이전</td>
+<td>AI가 가끔 거꾸로</td>
+<td>후처리에서 정렬 + 시작일 검증 추가</td>
+</tr>
+<tr>
+<td>채널별 톤 비슷함</td>
+<td>프롬프트 강조 부족</td>
+<td>채널별 미니 톤 가이드를 <code>pillars</code>에 추가</td>
+</tr>
+<tr>
+<td>JSON 깨짐</td>
+<td>따옴표 이스케이프</td>
+<td><code>responseMimeType: 'application/json'</code> 필수</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">응용 아이디어</h2>
+<ul>
+<li><strong>이미지 자동 시안</strong>: 헤드라인을 받아 DALL·E API로 인스타 카드 이미지 자동 생성</li>
+<li><strong>Notion sync</strong>: Notion DB로 양방향 동기화 → 팀 협업</li>
+<li><strong>A/B 헤드라인</strong>: 한 행에 헤드라인 2개 생성 → 게시 후 클릭률 시트로 회수</li>
+<li><strong>계절·트렌드 보강</strong>: 발행일 기준 검색 트렌드(네이버 트렌드) 반영하도록 입력 자동화</li>
+</ul>
+</article>
+
+<aside class="related-aside">
+  <h2>이 자동화와 함께 보면 좋은 자료</h2>
+  <ul>
+    <li>→ <a href="/resources/automation/">자동화 9선 자료 허브로 돌아가기</a></li>
+    <li>→ <a href="/lectures/business-automation.html">강의 페이지: 조직 업무 자동화 실무 9선</a></li>
+    <li>→ <a href="/contact.html">조직 맞춤 워크숍 의뢰</a></li>
+  </ul>
+</aside>
+
+<footer style="max-width:780px;margin:0 auto 4rem;padding:1.5rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;font-family:'Noto Sans KR',sans-serif;">
+  <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
+</footer>
+</body>
+</html>

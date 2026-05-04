@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>휴가 신청 슬랙 승인 워크플로우 — 자동화 9선 | 네다바웨이</title>
+<meta name="description" content="Form → 팀장 Slack 승인 카드 → 캘린더·연차 잔여 시트 자동 갱신.">
+<link rel="canonical" href="https://www.nedabah.org/resources/automation/hr/02-leave-approval-workflow.html">
+<meta property="og:title" content="휴가 신청 슬랙 승인 워크플로우 — 자동화 9선">
+<meta property="og:description" content="Form → 팀장 Slack 승인 카드 → 캘린더·연차 잔여 시트 자동 갱신.">
+<meta property="og:url" content="https://www.nedabah.org/resources/automation/hr/02-leave-approval-workflow.html">
+<meta property="og:type" content="article">
+<meta name="keywords" content="HR 자동화, Apps Script, Gemini, 노코드, HR-02">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "휴가 신청 슬랙 승인 워크플로우",
+  "description": "Form → 팀장 Slack 승인 카드 → 캘린더·연차 잔여 시트 자동 갱신.",
+  "url": "https://www.nedabah.org/resources/automation/hr/02-leave-approval-workflow.html",
+  "inLanguage": "ko-KR",
+  "tool": ["Google Apps Script","Google Sheets","Gemini API","Slack"],
+  "publisher": {"@id": "https://www.nedabah.org/#organization"}
+}
+</script>
+
+<style>
+.guide-body { font-family:'Noto Sans KR',sans-serif; line-height:1.8; color:#222; max-width:780px; margin:3rem auto; padding:0 1.5rem; }
+.guide-body h1 { font-family:'Noto Serif KR',serif; font-size:2rem; line-height:1.3; margin:.4rem 0 1rem; }
+.guide-body h2 { font-size:1.35rem; margin-top:2.5rem; padding-left:.6rem; border-left:4px solid #b45309; color:#3a322a; }
+.guide-body h3 { font-size:1.1rem; margin-top:1.6rem; color:#3a322a; }
+.guide-body h4 { font-size:1rem; margin-top:1.2rem; color:#6a604f; }
+.guide-body blockquote { background:#fbf6ec; border-left:4px solid #b45309; padding:.6rem 1.2rem; color:#3a322a; margin:1rem 0; border-radius:0 8px 8px 0; }
+.guide-body table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
+.guide-body th { background:#fbf6ec; text-align:left; padding:.55rem .7rem; border-bottom:2px solid #e5d8c4; }
+.guide-body td { padding:.5rem .7rem; border-bottom:1px solid #eee; vertical-align:top; }
+.guide-body code { background:#f3eee2; padding:.1rem .35rem; border-radius:4px; font-family:'JetBrains Mono','Menlo',monospace; font-size:.92em; }
+.guide-body pre { background:#1f1a14; color:#f5e9d4; padding:1rem 1.2rem; border-radius:8px; overflow-x:auto; line-height:1.55; font-size:.86rem; }
+.guide-body pre code { background:transparent; color:inherit; padding:0; }
+.guide-body ul, .guide-body ol { line-height:1.8; }
+.guide-body a { color:#b45309; }
+.tag-pill { display:inline-block; font-size:.72rem; letter-spacing:.14em; font-weight:700; padding:.22rem .6rem; border-radius:99px; background:#fbf6ec; color:#b45309; border:1px solid #e5d8c4; }
+.guide-meta { color:#6a604f; font-size:.92rem; margin-top:.4rem; }
+.related-aside { margin:3rem auto 4rem; max-width:780px; padding:1.6rem 1.8rem; background:#fbf6ec; border-radius:12px; }
+.related-aside h2 { margin-top:0; font-size:1.05rem; border:none; padding:0; }
+.related-aside ul { list-style:none; padding:0; line-height:2; }
+</style>
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/lectures/" class="gnav__link">강의 목록</a></li>
+      <li><a href="/resources/automation/" class="gnav__link">자동화 허브</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header style="max-width:780px;margin:3rem auto 0;padding:0 1.5rem;font-family:'Noto Sans KR',sans-serif;">
+  <p style="font-size:.78rem;color:#b45309;letter-spacing:.18em;font-weight:700;">RESOURCE · HR 자동화 · <span class="tag-pill">HR-02</span></p>
+</header>
+
+<article class="guide-body">
+<h1>휴가 신청 슬랙 승인 워크플로우</h1>
+<p class="guide-meta">Form → 팀장 Slack 승인 카드 → 캘린더·연차 잔여 시트 자동 갱신.</p>
+
+<blockquote>
+<p><strong>한 줄 핵심</strong>: 직원이 Google Form에 휴가를 신청하면, 팀장 슬랙에 "승인/반려" 버튼 카드가 가고, 승인 시 캘린더·연차 잔여 시트가 자동으로 갱신된다.</p>
+</blockquote>
+<h2 id="_1">왜 이 자동화인가</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>수동(Before)</th>
+<th>자동(After)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>신청→승인 평균 시간</td>
+<td>2~3일</td>
+<td>평균 30분</td>
+</tr>
+<tr>
+<td>연차 잔여 계산 오류</td>
+<td>종종 발생</td>
+<td>즉시 갱신·검증</td>
+</tr>
+<tr>
+<td>팀 캘린더 누락</td>
+<td>흔함</td>
+<td>자동 등록</td>
+</tr>
+<tr>
+<td>HR 인보크 횟수/주</td>
+<td>많음</td>
+<td>거의 0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>적용 시나리오</strong>: 연차·반차·재택근무 신청·외근 등록.</p>
+<h2 id="_2">구성요소</h2>
+<ul>
+<li>Google Form (휴가 신청)</li>
+<li>Google Sheet (응답 + 잔여 잔고 + 마스터)</li>
+<li>Google Calendar (전사 휴가 캘린더)</li>
+<li>Slack App (Bot Token + Block Kit) — <code>chat.postMessage</code> + <code>chat.update</code></li>
+<li>Apps Script Web App (Slack 인터랙션 콜백 수신)</li>
+</ul>
+<h2 id="_3">셋업 가이드</h2>
+<h3 id="step-1-google-form">Step 1. Google Form</h3>
+<p>필수 질문:
+1. 이름 (단답)
+2. 직원 이메일 (단답, "응답을 기록할 수 있도록 이메일 수집"으로 자동 채움 권장)
+3. 종류 (객관식: 연차 / 반차 오전 / 반차 오후 / 재택)
+4. 시작일 (날짜)
+5. 종료일 (날짜)
+6. 사유 (장문)
+7. 팀장 이메일 (단답)</p>
+<p>응답 → 시트로 연결.</p>
+<h3 id="step-2">Step 2. 시트 추가 탭 만들기</h3>
+<p><strong>탭 <code>balances</code></strong>: <code>이메일 | 연초잔고 | 사용 | 잔여</code>
+<strong>탭 <code>team_lead_slack</code></strong>: <code>팀장이메일 | slack_user_id</code> (Slack 멤버 ID; @팀장 → 옵션 → 멤버 ID 복사)</p>
+<h3 id="step-3-slack-app">Step 3. Slack App 설정</h3>
+<ol>
+<li><a href="https://api.slack.com/apps">https://api.slack.com/apps</a> → 새 앱 → Bot Token Scopes:
+   <code>chat:write</code>, <code>chat:write.public</code>, <code>users:read</code>, <code>users:read.email</code></li>
+<li><strong>Interactivity &amp; Shortcuts</strong> ON → Request URL = (Apps Script Web App URL — Step 5에서 받음)</li>
+<li>Bot User OAuth Token 복사 → Apps Script 속성 <code>SLACK_BOT_TOKEN</code></li>
+</ol>
+<h3 id="step-4-apps-script">Step 4. Apps Script 속성 등록</h3>
+<ul>
+<li><code>RESPONSE_SHEET_ID</code></li>
+<li><code>CALENDAR_ID</code> (전사 캘린더 ID — 캘린더 설정에서 복사)</li>
+<li><code>SLACK_BOT_TOKEN</code></li>
+</ul>
+<h3 id="step-5-web-app">Step 5. 트리거 + Web App 배포</h3>
+<ol>
+<li>트리거: <code>onFormSubmit</code> → 폼 제출 시 실행</li>
+<li><strong>배포 → 새 배포 → 웹 앱</strong> → 누구나 접근 가능 → URL 복사 → Slack App의 Interactivity Request URL에 붙여넣기</li>
+</ol>
+<hr>
+<h2 id="scriptgs">완성 코드 (<code>script.gs</code>)</h2>
+<pre><code class="language-javascript">const PROPS = PropertiesService.getScriptProperties();
+const SHEET_ID  = PROPS.getProperty('RESPONSE_SHEET_ID');
+const CAL_ID    = PROPS.getProperty('CALENDAR_ID');
+const SLACK_TOK = PROPS.getProperty('SLACK_BOT_TOKEN');
+
+// ─────────────────────────────────────────────
+// 1) 폼 제출 시: 팀장 슬랙으로 승인 요청 카드 발송
+// ─────────────────────────────────────────────
+function onFormSubmit(e) {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  const responses = ss.getSheets()[0]; // 폼 응답 시트
+  const lastRow = responses.getLastRow();
+  const row = responses.getRange(lastRow, 1, 1, responses.getLastColumn()).getValues()[0];
+
+  const [ts, email, name, type, start, end, reason, leadEmail] = row;
+  const days = calcDays(type, start, end);
+
+  // 잔여 확인
+  const bal = getBalance(email);
+  if (type === '연차' &amp;&amp; bal &amp;&amp; bal.remaining &lt; days) {
+    notifyApplicant(email, `잔여(${bal.remaining}일)보다 신청(${days}일)이 큽니다. HR에 문의하세요.`);
+    return;
+  }
+
+  const slackUid = lookupTeamLeadSlack(leadEmail);
+  if (!slackUid) {
+    notifyApplicant(email, `팀장 Slack ID 미등록. HR에 알려주세요.`);
+    return;
+  }
+
+  const payload = {
+    channel: slackUid,
+    text: `${name}의 ${type} 신청이 도착했습니다`,
+    blocks: [
+      {type:'header', text:{type:'plain_text', text:`📋 ${name} - ${type} 신청`}},
+      {type:'section', fields: [
+        {type:'mrkdwn', text:`*기간*\n${fmt(start)} ~ ${fmt(end)} (${days}일)`},
+        {type:'mrkdwn', text:`*잔여(연차기준)*\n${bal? bal.remaining: '—'}일`},
+      ]},
+      {type:'section', text:{type:'mrkdwn', text:`*사유*\n${reason || '—'}`}},
+      {type:'actions', block_id: `req_${lastRow}`, elements: [
+        {type:'button', style:'primary', text:{type:'plain_text', text:'승인'},
+         value: JSON.stringify({row: lastRow, action: 'approve'}),
+         action_id: 'approve'},
+        {type:'button', style:'danger',  text:{type:'plain_text', text:'반려'},
+         value: JSON.stringify({row: lastRow, action: 'reject'}),
+         action_id: 'reject'}
+      ]}
+    ]
+  };
+  const r = slackPost('chat.postMessage', payload);
+  // 메시지 ts 저장하여 추후 update
+  responses.getRange(lastRow, responses.getLastColumn()+1).setValue(`${r.channel}|${r.ts}|대기`);
+}
+
+// ─────────────────────────────────────────────
+// 2) Slack 인터랙션 콜백: 버튼 눌림 처리
+// ─────────────────────────────────────────────
+function doPost(e) {
+  const payload = JSON.parse(e.parameter.payload);
+  const action = payload.actions[0];
+  const value = JSON.parse(action.value);
+  const userName = payload.user.name;
+
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  const sheet = ss.getSheets()[0];
+  const row = sheet.getRange(value.row, 1, 1, sheet.getLastColumn()).getValues()[0];
+  const [ts, email, name, type, start, end, reason, leadEmail] = row;
+  const days = calcDays(type, start, end);
+
+  let resultText;
+  if (value.action === 'approve') {
+    // 캘린더 등록
+    CalendarApp.getCalendarById(CAL_ID).createAllDayEvent(
+      `${name} ${type}`, new Date(start), new Date(new Date(end).getTime()+86400000)
+    );
+    if (type === '연차') updateBalance(email, days);
+    notifyApplicant(email, `✅ ${type} 승인되었습니다. (${fmt(start)} ~ ${fmt(end)})`);
+    resultText = `✅ ${userName} 님이 ${name}의 ${type} *승인* 했습니다.`;
+  } else {
+    notifyApplicant(email, `❌ ${type} 신청이 반려되었습니다. 팀장과 협의해주세요.`);
+    resultText = `❌ ${userName} 님이 ${name}의 ${type} *반려* 했습니다.`;
+  }
+
+  // 슬랙 메시지 갱신 (버튼 제거)
+  slackPost('chat.update', {
+    channel: payload.channel.id, ts: payload.message.ts,
+    text: resultText,
+    blocks: [
+      ...payload.message.blocks.filter(b =&gt; b.type !== 'actions'),
+      {type:'context', elements:[{type:'mrkdwn', text: resultText}]}
+    ]
+  });
+
+  return ContentService.createTextOutput('ok');
+}
+
+// ─────────────────────────────────────────────
+// 헬퍼
+// ─────────────────────────────────────────────
+function calcDays(type, start, end) {
+  if (type.indexOf('반차') &gt;= 0) return 0.5;
+  if (!end) return 1;
+  const ms = new Date(end) - new Date(start);
+  return Math.max(1, Math.round(ms / 86400000) + 1);
+}
+function getBalance(email) {
+  const sh = SpreadsheetApp.openById(SHEET_ID).getSheetByName('balances');
+  const data = sh.getDataRange().getValues();
+  for (let i = 1; i &lt; data.length; i++) {
+    if (data[i][0] === email) {
+      return {row: i+1, initial: data[i][1], used: data[i][2], remaining: data[i][3]};
+    }
+  }
+  return null;
+}
+function updateBalance(email, days) {
+  const bal = getBalance(email); if (!bal) return;
+  const sh = SpreadsheetApp.openById(SHEET_ID).getSheetByName('balances');
+  sh.getRange(bal.row, 3).setValue((bal.used||0) + days);
+  sh.getRange(bal.row, 4).setValue((bal.initial||0) - ((bal.used||0)+days));
+}
+function lookupTeamLeadSlack(leadEmail) {
+  const sh = SpreadsheetApp.openById(SHEET_ID).getSheetByName('team_lead_slack');
+  const data = sh.getDataRange().getValues();
+  for (let i = 1; i &lt; data.length; i++) if (data[i][0] === leadEmail) return data[i][1];
+  return null;
+}
+function notifyApplicant(email, text) {
+  GmailApp.sendEmail(email, '[휴가 신청 알림]', text);
+}
+function slackPost(method, body) {
+  const r = UrlFetchApp.fetch(`https://slack.com/api/${method}`, {
+    method: 'post', contentType: 'application/json; charset=utf-8',
+    headers: {Authorization: `Bearer ${SLACK_TOK}`},
+    payload: JSON.stringify(body)
+  });
+  return JSON.parse(r.getContentText());
+}
+function fmt(d) { return new Date(d).toISOString().slice(0,10); }
+</code></pre>
+<hr>
+<h2 id="_4">강의 시연 포인트</h2>
+<ol>
+<li>강사가 폼 제출 → 30초 내 팀장(강사 본인) Slack에 카드 도착</li>
+<li>"승인" 버튼 클릭 → 캘린더·시트가 동시 갱신, Slack 카드 본문도 즉시 업데이트</li>
+<li>잔여 부족 시나리오: 연차 잔여를 0으로 미리 세팅한 직원의 신청이 자동 차단되는 모습 시연</li>
+</ol>
+<h2 id="_5">트러블슈팅</h2>
+<table>
+<thead>
+<tr>
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>슬랙 카드 미수신</td>
+<td>Bot이 채널/DM에 미초대</td>
+<td>팀장 DM은 <code>users:read</code> 후 <code>slackUid</code>를 정확히 (U… 형식)</td>
+</tr>
+<tr>
+<td><code>doPost</code>가 동작 안 함</td>
+<td>Web App 배포가 "본인만"으로 됨</td>
+<td>"누구나"로 재배포, 새 URL을 Slack App에 갱신</td>
+</tr>
+<tr>
+<td>캘린더 권한 오류</td>
+<td><code>CALENDAR_ID</code>가 비공개</td>
+<td>캘린더 공유 → 스크립트 실행 계정에 변경 권한 부여</td>
+</tr>
+<tr>
+<td>메시지 update 실패</td>
+<td>30초 안에 응답 못함</td>
+<td>메시지 처리는 <code>doPost</code>에서 즉시 <code>ok</code> 반환, 무거운 작업은 별도 함수로 분리</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">응용 아이디어</h2>
+<ul>
+<li><strong>2단계 승인</strong>: 팀장 → 임원 두 단계가 필요한 경우 <code>state</code> 컬럼으로 단계 관리</li>
+<li><strong>연차 자동 적립</strong>: 매월 1일 트리거로 <code>balances</code>에 비례 적립 자동 추가</li>
+<li><strong>공휴일 보정</strong>: <code>calcDays</code>에서 공공API(공휴일 RSS)로 주말·공휴일 제외</li>
+<li><strong>이상 신청 감지</strong>: 같은 직원이 단기간 반복 신청할 때 HR에 부드러운 알림</li>
+</ul>
+</article>
+
+<aside class="related-aside">
+  <h2>이 자동화와 함께 보면 좋은 자료</h2>
+  <ul>
+    <li>→ <a href="/resources/automation/">자동화 9선 자료 허브로 돌아가기</a></li>
+    <li>→ <a href="/lectures/business-automation.html">강의 페이지: 조직 업무 자동화 실무 9선</a></li>
+    <li>→ <a href="/contact.html">조직 맞춤 워크숍 의뢰</a></li>
+  </ul>
+</aside>
+
+<footer style="max-width:780px;margin:0 auto 4rem;padding:1.5rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;font-family:'Noto Sans KR',sans-serif;">
+  <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
+</footer>
+</body>
+</html>

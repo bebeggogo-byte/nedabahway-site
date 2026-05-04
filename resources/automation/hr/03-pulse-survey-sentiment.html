@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>분기 펄스서베이 + AI 감성 분석 — 자동화 9선 | 네다바웨이</title>
+<meta name="description" content="응답 1,000건도 30분 안에. 식별 정보는 AI에 전달되지 않도록 분리 설계.">
+<link rel="canonical" href="https://www.nedabah.org/resources/automation/hr/03-pulse-survey-sentiment.html">
+<meta property="og:title" content="분기 펄스서베이 + AI 감성 분석 — 자동화 9선">
+<meta property="og:description" content="응답 1,000건도 30분 안에. 식별 정보는 AI에 전달되지 않도록 분리 설계.">
+<meta property="og:url" content="https://www.nedabah.org/resources/automation/hr/03-pulse-survey-sentiment.html">
+<meta property="og:type" content="article">
+<meta name="keywords" content="HR 자동화, Apps Script, Gemini, 노코드, HR-03">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "분기 펄스서베이 + AI 감성 분석",
+  "description": "응답 1,000건도 30분 안에. 식별 정보는 AI에 전달되지 않도록 분리 설계.",
+  "url": "https://www.nedabah.org/resources/automation/hr/03-pulse-survey-sentiment.html",
+  "inLanguage": "ko-KR",
+  "tool": ["Google Apps Script","Google Sheets","Gemini API","Slack"],
+  "publisher": {"@id": "https://www.nedabah.org/#organization"}
+}
+</script>
+
+<style>
+.guide-body { font-family:'Noto Sans KR',sans-serif; line-height:1.8; color:#222; max-width:780px; margin:3rem auto; padding:0 1.5rem; }
+.guide-body h1 { font-family:'Noto Serif KR',serif; font-size:2rem; line-height:1.3; margin:.4rem 0 1rem; }
+.guide-body h2 { font-size:1.35rem; margin-top:2.5rem; padding-left:.6rem; border-left:4px solid #b45309; color:#3a322a; }
+.guide-body h3 { font-size:1.1rem; margin-top:1.6rem; color:#3a322a; }
+.guide-body h4 { font-size:1rem; margin-top:1.2rem; color:#6a604f; }
+.guide-body blockquote { background:#fbf6ec; border-left:4px solid #b45309; padding:.6rem 1.2rem; color:#3a322a; margin:1rem 0; border-radius:0 8px 8px 0; }
+.guide-body table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
+.guide-body th { background:#fbf6ec; text-align:left; padding:.55rem .7rem; border-bottom:2px solid #e5d8c4; }
+.guide-body td { padding:.5rem .7rem; border-bottom:1px solid #eee; vertical-align:top; }
+.guide-body code { background:#f3eee2; padding:.1rem .35rem; border-radius:4px; font-family:'JetBrains Mono','Menlo',monospace; font-size:.92em; }
+.guide-body pre { background:#1f1a14; color:#f5e9d4; padding:1rem 1.2rem; border-radius:8px; overflow-x:auto; line-height:1.55; font-size:.86rem; }
+.guide-body pre code { background:transparent; color:inherit; padding:0; }
+.guide-body ul, .guide-body ol { line-height:1.8; }
+.guide-body a { color:#b45309; }
+.tag-pill { display:inline-block; font-size:.72rem; letter-spacing:.14em; font-weight:700; padding:.22rem .6rem; border-radius:99px; background:#fbf6ec; color:#b45309; border:1px solid #e5d8c4; }
+.guide-meta { color:#6a604f; font-size:.92rem; margin-top:.4rem; }
+.related-aside { margin:3rem auto 4rem; max-width:780px; padding:1.6rem 1.8rem; background:#fbf6ec; border-radius:12px; }
+.related-aside h2 { margin-top:0; font-size:1.05rem; border:none; padding:0; }
+.related-aside ul { list-style:none; padding:0; line-height:2; }
+</style>
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/lectures/" class="gnav__link">강의 목록</a></li>
+      <li><a href="/resources/automation/" class="gnav__link">자동화 허브</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header style="max-width:780px;margin:3rem auto 0;padding:0 1.5rem;font-family:'Noto Sans KR',sans-serif;">
+  <p style="font-size:.78rem;color:#b45309;letter-spacing:.18em;font-weight:700;">RESOURCE · HR 자동화 · <span class="tag-pill">HR-03</span></p>
+</header>
+
+<article class="guide-body">
+<h1>분기 펄스서베이 + AI 감성 분석</h1>
+<p class="guide-meta">응답 1,000건도 30분 안에. 식별 정보는 AI에 전달되지 않도록 분리 설계.</p>
+
+<blockquote>
+<p><strong>한 줄 핵심</strong>: 익명 설문을 자동 발송·수집한 뒤, AI가 감성·핵심 주제·위험 신호를 분류해 경영진 1페이지 리포트로 전달한다.</p>
+</blockquote>
+<h2 id="_1">왜 이 자동화인가</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>수동(Before)</th>
+<th>자동(After)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>응답 1,000건 코딩</td>
+<td>외부 발주 시 200~500만 원</td>
+<td>0원 (Gemini 무료 티어로 충분)</td>
+</tr>
+<tr>
+<td>분석 소요</td>
+<td>1~2주</td>
+<td>30분</td>
+</tr>
+<tr>
+<td>무기명성</td>
+<td>종이/구글 폼만으로는 의심</td>
+<td>응답 분리·집계 자동화로 신뢰성↑</td>
+</tr>
+<tr>
+<td>액션 연결</td>
+<td>보고서로 끝남</td>
+<td>주제별 권고가 자동 작성됨</td>
+</tr>
+</tbody>
+</table>
+<p><strong>적용 시나리오</strong>: 분기 ENPS·번아웃 점검·회식 만족도·리더십 360°.</p>
+<h2 id="_2">구성요소</h2>
+<ul>
+<li>Google Form (익명 설문 — "응답자 이메일 수집 안 함"으로 설정)</li>
+<li>Google Sheet (응답 + 분석 결과)</li>
+<li>Gemini API (감성·주제 분류)</li>
+<li>Apps Script (배치 분석 + 리포트 생성)</li>
+<li>Gmail (경영진 리포트)</li>
+</ul>
+<blockquote>
+<p><strong>개인정보 안전 원칙</strong>: 정성 응답을 AI에 보낼 때 이름·부서 등 식별 정보는 절대 함께 전송하지 않는다. 본 스크립트는 정성 텍스트만 추출하여 전송한다.</p>
+</blockquote>
+<h2 id="_3">셋업 가이드</h2>
+<h3 id="step-1">Step 1. 폼 질문 설계 (예시)</h3>
+<ol>
+<li>직군 (객관식 — 식별 위험 낮은 큰 그룹만: 본부 단위)</li>
+<li>일에 몰입한다 (1~5)</li>
+<li>회사 추천의향(ENPS) (0~10)</li>
+<li>가장 잘된 점 (장문) ← AI 분석 대상</li>
+<li>가장 답답한 점 (장문) ← AI 분석 대상</li>
+<li>자유 의견 (장문) ← AI 분석 대상</li>
+</ol>
+<h3 id="step-2">Step 2. 응답 시트</h3>
+<p>폼이 자동 생성한 응답 시트를 그대로 사용. 추가 탭 두 개 만들기:
+- <code>analyzed</code>: <code>행 | 직군 | 감성 | 주제 | 요지</code> (AI가 채움)
+- <code>report</code>: HR/경영진용 1페이지 리포트 결과 저장</p>
+<h3 id="step-3">Step 3. 스크립트 속성</h3>
+<ul>
+<li><code>RESPONSE_SHEET_ID</code></li>
+<li><code>GEMINI_API_KEY</code></li>
+<li><code>RECIPIENT_EMAIL</code> (CHRO/CEO)</li>
+</ul>
+<h3 id="step-4">Step 4. 트리거</h3>
+<ul>
+<li><code>analyzeAll</code> — 매주 월요일 새벽 (또는 폼 마감일 다음 날)</li>
+<li><code>buildReport</code> — <code>analyzeAll</code> 직후 (5분 차이로 트리거 등록)</li>
+</ul>
+<hr>
+<h2 id="scriptgs">완성 코드 (<code>script.gs</code>)</h2>
+<pre><code class="language-javascript">const PROPS = PropertiesService.getScriptProperties();
+const SHEET_ID   = PROPS.getProperty('RESPONSE_SHEET_ID');
+const GEMINI_KEY = PROPS.getProperty('GEMINI_API_KEY');
+const EMAIL_TO   = PROPS.getProperty('RECIPIENT_EMAIL');
+
+const TEXT_COLS = [4, 5, 6]; // 정성 응답 컬럼 인덱스(1-base) — 폼에 맞게 조정
+
+// ─────────────────────────────────────────────
+// 1) 응답 일괄 분석
+// ─────────────────────────────────────────────
+function analyzeAll() {
+  const ss  = SpreadsheetApp.openById(SHEET_ID);
+  const src = ss.getSheets()[0];
+  const dst = ss.getSheetByName('analyzed') || ss.insertSheet('analyzed');
+  if (dst.getLastRow() === 0) dst.appendRow(['행', '직군', '감성', '주제', '요지']);
+
+  const data = src.getDataRange().getValues();
+  const processed = new Set(dst.getRange('A2:A').getValues().flat().map(String));
+
+  const batch = []; // [{row, group, text}]
+  for (let i = 1; i &lt; data.length; i++) {
+    if (processed.has(String(i+1))) continue;
+    const group = data[i][1]; // 직군 컬럼 가정 (B열)
+    const merged = TEXT_COLS.map(c =&gt; (data[i][c-1] || '').trim()).filter(Boolean).join(' / ');
+    if (!merged) continue;
+    batch.push({row: i+1, group, text: merged});
+  }
+  if (batch.length === 0) return;
+
+  // 50건씩 배치 처리
+  for (let i = 0; i &lt; batch.length; i += 50) {
+    const slice = batch.slice(i, i+50);
+    const result = classifyBatch(slice);
+    slice.forEach((b, idx) =&gt; {
+      const r = result[idx] || {};
+      dst.appendRow([b.row, b.group, r.sentiment || '중립', (r.topics||[]).join(','), r.gist || '']);
+    });
+    Utilities.sleep(2000);
+  }
+}
+
+function classifyBatch(items) {
+  // 식별정보 분리: text만 전송, group은 후처리
+  const prompt = `
+각 응답에 대해 한국어로 분석하세요. JSON 배열만 반환.
+- sentiment: positive/negative/neutral
+- topics: 1~3개 주제(짧은 한국어 명사구) — 회사문화/보상/성장/리더십/업무량/복지/관계/제도/도구/번아웃 등에서 자유롭게
+- gist: 한 문장 요약(15자 이내)
+
+응답:
+${items.map((it,i)=&gt;`[${i+1}] ${it.text}`).join('\n')}
+
+반환 형식: [{&quot;sentiment&quot;:&quot;...&quot;,&quot;topics&quot;:[&quot;...&quot;],&quot;gist&quot;:&quot;...&quot;}]
+`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
+  const res = UrlFetchApp.fetch(url, {
+    method:'post', contentType:'application/json',
+    payload: JSON.stringify({
+      contents:[{parts:[{text: prompt}]}],
+      generationConfig:{responseMimeType:'application/json'}
+    })
+  });
+  return JSON.parse(JSON.parse(res.getContentText()).candidates[0].content.parts[0].text);
+}
+
+// ─────────────────────────────────────────────
+// 2) 1페이지 경영진 리포트
+// ─────────────────────────────────────────────
+function buildReport() {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  const src = ss.getSheets()[0];
+  const ana = ss.getSheetByName('analyzed').getDataRange().getValues();
+
+  // 정량
+  const all = src.getDataRange().getValues();
+  const enpsCol = 3; // ENPS 컬럼(예: C열) — 폼에 맞춰 조정
+  const enpsScores = all.slice(1).map(r =&gt; Number(r[enpsCol-1])).filter(n =&gt; !isNaN(n));
+  const enps = enpsScore(enpsScores);
+
+  // 정성: 주제 카운트 + 감성 비율
+  const topicCount = {}, byTopicSamples = {};
+  let pos = 0, neg = 0, neu = 0;
+  for (let i = 1; i &lt; ana.length; i++) {
+    const sentiment = ana[i][2];
+    const topics = String(ana[i][3]).split(',').map(s =&gt; s.trim()).filter(Boolean);
+    const gist = ana[i][4];
+    topics.forEach(t =&gt; {
+      topicCount[t] = (topicCount[t]||0) + 1;
+      byTopicSamples[t] = byTopicSamples[t] || [];
+      if (byTopicSamples[t].length &lt; 3) byTopicSamples[t].push(gist);
+    });
+    if (sentiment === 'positive') pos++;
+    else if (sentiment === 'negative') neg++;
+    else neu++;
+  }
+
+  const topTopics = Object.entries(topicCount).sort((a,b)=&gt;b[1]-a[1]).slice(0, 6);
+  const insight = aiExecutiveSummary(enps, {pos, neg, neu}, topTopics, byTopicSamples);
+
+  const html = renderReport(enps, {pos, neg, neu}, topTopics, byTopicSamples, insight);
+  if (EMAIL_TO) GmailApp.sendEmail(EMAIL_TO, `[펄스서베이] ${new Date().toISOString().slice(0,10)} 분석 리포트`, '', {htmlBody: html});
+
+  const rep = ss.getSheetByName('report') || ss.insertSheet('report');
+  rep.appendRow([new Date(), enps, JSON.stringify(insight)]);
+}
+
+function enpsScore(scores) {
+  if (!scores.length) return 0;
+  const promoters = scores.filter(s =&gt; s &gt;= 9).length;
+  const detractors = scores.filter(s =&gt; s &lt;= 6).length;
+  return Math.round((promoters - detractors) / scores.length * 100);
+}
+
+function aiExecutiveSummary(enps, sent, topTopics, samples) {
+  const ctx = topTopics.map(([t,c]) =&gt; `- ${t}(${c}건): ${(samples[t]||[]).join(' | ')}`).join('\n');
+  const prompt = `
+당신은 CHRO 코치입니다. 분기 펄스서베이 결과로 경영진용 한 페이지 코멘트를 작성하세요.
+
+데이터:
+- ENPS: ${enps}
+- 감성 분포: 긍정 ${sent.pos} / 부정 ${sent.neg} / 중립 ${sent.neu}
+- 상위 주제:
+${ctx}
+
+규칙:
+- 추측 금지, 데이터 기반
+- 250자 이내
+- 1) 가장 시급한 주제 1건과 권고 행동 2개  2) 칭찬할 강점 1건  3) 다음 분기 측정 제안 1건
+JSON: {&quot;urgent&quot;:&quot;...&quot;,&quot;actions&quot;:[&quot;...&quot;,&quot;...&quot;],&quot;strength&quot;:&quot;...&quot;,&quot;next&quot;:&quot;...&quot;}
+`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
+  const res = UrlFetchApp.fetch(url, {method:'post', contentType:'application/json',
+    payload: JSON.stringify({contents:[{parts:[{text:prompt}]}], generationConfig:{responseMimeType:'application/json'}})
+  });
+  return JSON.parse(JSON.parse(res.getContentText()).candidates[0].content.parts[0].text);
+}
+
+function renderReport(enps, sent, topTopics, samples, ins) {
+  const total = sent.pos + sent.neg + sent.neu || 1;
+  const topicHtml = topTopics.map(([t,c]) =&gt; `&lt;li&gt;&lt;b&gt;${t}&lt;/b&gt; · ${c}건&lt;br&gt;&lt;span style=&quot;color:#666;font-size:.92em;&quot;&gt;${(samples[t]||[]).join(' · ')}&lt;/span&gt;&lt;/li&gt;`).join('');
+  return `&lt;div style=&quot;font-family:'Noto Sans KR',sans-serif;line-height:1.7;max-width:720px;color:#222;&quot;&gt;
+    &lt;h2 style=&quot;border-bottom:2px solid #b45309;padding-bottom:.4rem;&quot;&gt;분기 펄스서베이 — 경영진 요약&lt;/h2&gt;
+    &lt;p style=&quot;color:#6a604f;&quot;&gt;${new Date().toLocaleDateString('ko-KR')} 기준&lt;/p&gt;
+
+    &lt;h3&gt;정량 지표&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;b&gt;ENPS&lt;/b&gt;: ${enps}&lt;/li&gt;
+      &lt;li&gt;&lt;b&gt;감성 분포&lt;/b&gt;: 긍정 ${(sent.pos/total*100).toFixed(0)}% / 부정 ${(sent.neg/total*100).toFixed(0)}% / 중립 ${(sent.neu/total*100).toFixed(0)}%&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;h3&gt;상위 주제 (응답 빈도순)&lt;/h3&gt;
+    &lt;ul&gt;${topicHtml}&lt;/ul&gt;
+
+    &lt;h3&gt;📌 핵심 인사이트&lt;/h3&gt;
+    &lt;p&gt;&lt;b&gt;가장 시급한 이슈 — &lt;/b&gt;${ins.urgent}&lt;/p&gt;
+    &lt;p&gt;&lt;b&gt;권고 액션&lt;/b&gt;&lt;/p&gt;
+    &lt;ol&gt;${ins.actions.map(a=&gt;`&lt;li&gt;${a}&lt;/li&gt;`).join('')}&lt;/ol&gt;
+    &lt;p&gt;&lt;b&gt;강점 — &lt;/b&gt;${ins.strength}&lt;/p&gt;
+    &lt;p&gt;&lt;b&gt;다음 분기 측정 제안 — &lt;/b&gt;${ins.next}&lt;/p&gt;
+
+    &lt;p style=&quot;color:#999;font-size:.85em;margin-top:2rem;&quot;&gt;자동 생성 · 응답은 익명이며 식별 정보는 AI에 전달되지 않았습니다.&lt;/p&gt;
+  &lt;/div&gt;`;
+}
+</code></pre>
+<hr>
+<h2 id="_4">강의 시연 포인트</h2>
+<ol>
+<li>폼 응답 5건을 미리 준비, <code>analyzeAll()</code> 1회 실행 → <code>analyzed</code> 탭에 자동 채워지는 모습</li>
+<li><code>buildReport()</code> 실행 → 메일에 1페이지 리포트 도착</li>
+<li><strong>개인정보 안전 강조</strong>: 코드의 <code>classifyBatch</code>에서 직군은 별도 보관, AI에는 텍스트만 전송됨을 보여주기</li>
+</ol>
+<h2 id="_5">트러블슈팅</h2>
+<table>
+<thead>
+<tr>
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>analyzed</code> 시트가 일부만 채워짐</td>
+<td>50건 배치에서 일부 응답 비어 있음</td>
+<td>빈 응답 사전 필터링(코드에 반영됨)</td>
+</tr>
+<tr>
+<td>Gemini가 라벨을 영어로 반환</td>
+<td>프롬프트 강제 부족</td>
+<td>시스템 메시지에 "한국어 명사구"를 한 번 더 강조</td>
+</tr>
+<tr>
+<td>ENPS가 NaN</td>
+<td>객관식 응답이 텍스트로 들어옴</td>
+<td>폼 질문을 0~10 척도형으로 정확히 설정</td>
+</tr>
+<tr>
+<td>직군 식별 위험</td>
+<td>본부가 5명 미만</td>
+<td>직군 라벨링을 본부→사업부 단위로 묶어 익명성 보장</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">응용 아이디어</h2>
+<ul>
+<li><strong>부정 응답 즉시 핫라인</strong>: 감성이 negative이면서 키워드에 "괴롭힘/안전" 포함 시 윤리경영 채널로 즉시 알림</li>
+<li><strong>분기 비교 트렌드</strong>: <code>report</code> 탭에 분기별 누적, 다음 회차에 변화 자동 코멘트</li>
+<li><strong>부서별 미니 리포트</strong>: 본부장 권한 메일 자동 발송(개인 응답이 아닌 본부 단위 집계만)</li>
+<li><strong>번역</strong>: 외국인 직원 응답이 영어/일어인 경우 분류 전 한국어 번역 단계 추가</li>
+</ul>
+</article>
+
+<aside class="related-aside">
+  <h2>이 자동화와 함께 보면 좋은 자료</h2>
+  <ul>
+    <li>→ <a href="/resources/automation/">자동화 9선 자료 허브로 돌아가기</a></li>
+    <li>→ <a href="/lectures/business-automation.html">강의 페이지: 조직 업무 자동화 실무 9선</a></li>
+    <li>→ <a href="/contact.html">조직 맞춤 워크숍 의뢰</a></li>
+  </ul>
+</aside>
+
+<footer style="max-width:780px;margin:0 auto 4rem;padding:1.5rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;font-family:'Noto Sans KR',sans-serif;">
+  <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>리뷰·멘션 주간 다이제스트 — 자동화 9선 | 네다바웨이</title>
+<meta name="description" content="네이버 블로그·카페·뉴스 멘션 자동 수집. 부정 멘션은 24시간 안에 즉시 알림.">
+<link rel="canonical" href="https://www.nedabah.org/resources/automation/marketing/03-review-mention-digest.html">
+<meta property="og:title" content="리뷰·멘션 주간 다이제스트 — 자동화 9선">
+<meta property="og:description" content="네이버 블로그·카페·뉴스 멘션 자동 수집. 부정 멘션은 24시간 안에 즉시 알림.">
+<meta property="og:url" content="https://www.nedabah.org/resources/automation/marketing/03-review-mention-digest.html">
+<meta property="og:type" content="article">
+<meta name="keywords" content="마케팅 자동화, Apps Script, Gemini, 노코드, MKT-03">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "리뷰·멘션 주간 다이제스트",
+  "description": "네이버 블로그·카페·뉴스 멘션 자동 수집. 부정 멘션은 24시간 안에 즉시 알림.",
+  "url": "https://www.nedabah.org/resources/automation/marketing/03-review-mention-digest.html",
+  "inLanguage": "ko-KR",
+  "tool": ["Google Apps Script","Google Sheets","Gemini API","Slack"],
+  "publisher": {"@id": "https://www.nedabah.org/#organization"}
+}
+</script>
+
+<style>
+.guide-body { font-family:'Noto Sans KR',sans-serif; line-height:1.8; color:#222; max-width:780px; margin:3rem auto; padding:0 1.5rem; }
+.guide-body h1 { font-family:'Noto Serif KR',serif; font-size:2rem; line-height:1.3; margin:.4rem 0 1rem; }
+.guide-body h2 { font-size:1.35rem; margin-top:2.5rem; padding-left:.6rem; border-left:4px solid #b45309; color:#3a322a; }
+.guide-body h3 { font-size:1.1rem; margin-top:1.6rem; color:#3a322a; }
+.guide-body h4 { font-size:1rem; margin-top:1.2rem; color:#6a604f; }
+.guide-body blockquote { background:#fbf6ec; border-left:4px solid #b45309; padding:.6rem 1.2rem; color:#3a322a; margin:1rem 0; border-radius:0 8px 8px 0; }
+.guide-body table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
+.guide-body th { background:#fbf6ec; text-align:left; padding:.55rem .7rem; border-bottom:2px solid #e5d8c4; }
+.guide-body td { padding:.5rem .7rem; border-bottom:1px solid #eee; vertical-align:top; }
+.guide-body code { background:#f3eee2; padding:.1rem .35rem; border-radius:4px; font-family:'JetBrains Mono','Menlo',monospace; font-size:.92em; }
+.guide-body pre { background:#1f1a14; color:#f5e9d4; padding:1rem 1.2rem; border-radius:8px; overflow-x:auto; line-height:1.55; font-size:.86rem; }
+.guide-body pre code { background:transparent; color:inherit; padding:0; }
+.guide-body ul, .guide-body ol { line-height:1.8; }
+.guide-body a { color:#b45309; }
+.tag-pill { display:inline-block; font-size:.72rem; letter-spacing:.14em; font-weight:700; padding:.22rem .6rem; border-radius:99px; background:#fbf6ec; color:#b45309; border:1px solid #e5d8c4; }
+.guide-meta { color:#6a604f; font-size:.92rem; margin-top:.4rem; }
+.related-aside { margin:3rem auto 4rem; max-width:780px; padding:1.6rem 1.8rem; background:#fbf6ec; border-radius:12px; }
+.related-aside h2 { margin-top:0; font-size:1.05rem; border:none; padding:0; }
+.related-aside ul { list-style:none; padding:0; line-height:2; }
+</style>
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/lectures/" class="gnav__link">강의 목록</a></li>
+      <li><a href="/resources/automation/" class="gnav__link">자동화 허브</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header style="max-width:780px;margin:3rem auto 0;padding:0 1.5rem;font-family:'Noto Sans KR',sans-serif;">
+  <p style="font-size:.78rem;color:#b45309;letter-spacing:.18em;font-weight:700;">RESOURCE · 마케팅 자동화 · <span class="tag-pill">MKT-03</span></p>
+</header>
+
+<article class="guide-body">
+<h1>리뷰·멘션 주간 다이제스트</h1>
+<p class="guide-meta">네이버 블로그·카페·뉴스 멘션 자동 수집. 부정 멘션은 24시간 안에 즉시 알림.</p>
+
+<blockquote>
+<p><strong>한 줄 핵심</strong>: 네이버 블로그·카페·뉴스의 자사/제품 멘션을 매일 수집하고, 매주 월요일 AI가 감성·핵심 메시지를 분류한 1페이지 리포트를 발송한다.</p>
+</blockquote>
+<h2 id="_1">왜 이 자동화인가</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>수동(Before)</th>
+<th>자동(After)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>모니터링 시간</td>
+<td>주 4~6시간</td>
+<td>0분</td>
+</tr>
+<tr>
+<td>부정 멘션 인지 지연</td>
+<td>평균 1주</td>
+<td>24시간 이내</td>
+</tr>
+<tr>
+<td>VOC → 제품 반영 속도</td>
+<td>분기 1회 정리</td>
+<td>주 1회</td>
+</tr>
+<tr>
+<td>위기관리 골든타임</td>
+<td>놓침</td>
+<td>부정 멘션 즉시 알림 분기</td>
+</tr>
+</tbody>
+</table>
+<p><strong>적용 시나리오</strong>: 브랜드 매니저·PR·CS·제품팀 VOC.</p>
+<h2 id="_2">구성요소</h2>
+<ul>
+<li>네이버 검색 API (블로그·카페 무료 일 25,000건) — <code>client_id</code>, <code>client_secret</code> 필요</li>
+<li>Google News RSS (보강)</li>
+<li>Google Sheet (수집 + 분석)</li>
+<li>Gemini API</li>
+<li>Apps Script (일별 수집 트리거 + 주간 리포트 트리거)</li>
+</ul>
+<h2 id="_3">셋업 가이드</h2>
+<h3 id="step-1">Step 1. 네이버 개발자 센터 키 발급</h3>
+<ol>
+<li><a href="https://developers.naver.com/main/">https://developers.naver.com/main/</a> → 애플리케이션 등록</li>
+<li>"검색" API 사용 신청 → <code>Client ID</code>, <code>Client Secret</code> 복사</li>
+</ol>
+<h3 id="step-2">Step 2. 시트 구조</h3>
+<p><strong>탭 <code>keywords</code></strong>: <code>키워드 | 종류 (자사/경쟁사/카테고리)</code>
+<strong>탭 <code>mentions</code></strong>: <code>날짜 | 키워드 | 출처 | 제목 | URL | 본문스니펫 | 감성 | 주제</code>
+<strong>탭 <code>weekly_report</code></strong>: 누적 리포트 적재</p>
+<h3 id="step-3">Step 3. 스크립트 속성</h3>
+<ul>
+<li><code>SHEET_ID</code></li>
+<li><code>NAVER_ID</code>, <code>NAVER_SECRET</code></li>
+<li><code>GEMINI_API_KEY</code></li>
+<li><code>RECIPIENT_EMAIL</code></li>
+<li><code>URGENT_SLACK_HOOK</code> (부정 멘션 즉시 알림)</li>
+</ul>
+<h3 id="step-4">Step 4. 트리거</h3>
+<ul>
+<li><code>dailyCollect</code> — 매일 07:00</li>
+<li><code>weeklyReport</code> — 매주 월요일 08:00</li>
+</ul>
+<hr>
+<h2 id="scriptgs">완성 코드 (<code>script.gs</code>)</h2>
+<pre><code class="language-javascript">const PROPS = PropertiesService.getScriptProperties();
+const SHEET_ID = PROPS.getProperty('SHEET_ID');
+const N_ID = PROPS.getProperty('NAVER_ID');
+const N_SEC = PROPS.getProperty('NAVER_SECRET');
+const GEMINI = PROPS.getProperty('GEMINI_API_KEY');
+const EMAIL_TO = PROPS.getProperty('RECIPIENT_EMAIL');
+const URGENT = PROPS.getProperty('URGENT_SLACK_HOOK') || '';
+
+// ─────────────────────────────────────────────
+// 1) 매일 수집
+// ─────────────────────────────────────────────
+function dailyCollect() {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  const kws = ss.getSheetByName('keywords').getDataRange().getValues().slice(1);
+  const dst = ss.getSheetByName('mentions');
+  const today = new Date().toISOString().slice(0,10);
+
+  // 중복 방지
+  const seen = new Set(dst.getRange('E2:E').getValues().flat().map(String));
+
+  const newItems = [];
+  kws.forEach(([keyword, kind]) =&gt; {
+    if (!keyword) return;
+    ['blog','cafearticle','news'].forEach(api =&gt; {
+      const items = naverSearch(api, keyword);
+      items.forEach(it =&gt; {
+        if (seen.has(it.link)) return;
+        seen.add(it.link);
+        newItems.push({date: today, keyword, kind, source: api, title: stripHtml(it.title), url: it.link, snippet: stripHtml(it.description||'')});
+      });
+      Utilities.sleep(300);
+    });
+  });
+
+  if (newItems.length === 0) return;
+
+  // AI 감성·주제 분류 (배치)
+  for (let i = 0; i &lt; newItems.length; i += 30) {
+    const slice = newItems.slice(i, i+30);
+    const cls = classify(slice);
+    slice.forEach((it, idx) =&gt; {
+      const c = cls[idx] || {};
+      dst.appendRow([it.date, it.keyword, it.source, it.title, it.url, it.snippet, c.sentiment || '중립', (c.topics||[]).join(',')]);
+      // 부정 즉시 알림
+      if (c.sentiment === 'negative' &amp;&amp; URGENT) {
+        UrlFetchApp.fetch(URGENT, {
+          method:'post', contentType:'application/json',
+          payload: JSON.stringify({text: `:warning: 부정 멘션 — *${it.keyword}*\n• &lt;${it.url}|${it.title}&gt;\n• 주제: ${(c.topics||[]).join(', ')}`})
+        });
+      }
+    });
+    Utilities.sleep(2000);
+  }
+}
+
+function naverSearch(api, query) {
+  const url = `https://openapi.naver.com/v1/search/${api}.json?query=${encodeURIComponent(query)}&amp;display=20&amp;sort=date`;
+  try {
+    const res = UrlFetchApp.fetch(url, {
+      headers: {'X-Naver-Client-Id': N_ID, 'X-Naver-Client-Secret': N_SEC},
+      muteHttpExceptions: true
+    });
+    if (res.getResponseCode() !== 200) return [];
+    return JSON.parse(res.getContentText()).items || [];
+  } catch(e) { return []; }
+}
+
+function stripHtml(s) { return String(s||'').replace(/&lt;[^&gt;]+&gt;/g, '').replace(/&amp;[a-z]+;/gi, ' '); }
+
+function classify(items) {
+  const prompt = `
+각 멘션에 대해 한국어로 분류하세요. JSON 배열만 반환.
+- sentiment: positive/negative/neutral
+- topics: 1~3개 짧은 명사구 (가격/품질/배송/디자인/UX/CS/마케팅/이벤트/리더십/위기/기타)
+
+멘션:
+${items.map((it,i)=&gt;`[${i+1}] ${it.title} — ${it.snippet.slice(0,300)}`).join('\n')}
+
+[{&quot;sentiment&quot;:&quot;...&quot;,&quot;topics&quot;:[&quot;...&quot;]}]
+`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI}`;
+  const res = UrlFetchApp.fetch(url, {method:'post', contentType:'application/json',
+    payload: JSON.stringify({contents:[{parts:[{text:prompt}]}], generationConfig:{responseMimeType:'application/json'}})
+  });
+  return JSON.parse(JSON.parse(res.getContentText()).candidates[0].content.parts[0].text);
+}
+
+// ─────────────────────────────────────────────
+// 2) 주간 리포트
+// ─────────────────────────────────────────────
+function weeklyReport() {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  const all = ss.getSheetByName('mentions').getDataRange().getValues();
+  const head = all[0];
+  const since = new Date(Date.now() - 7*86400000);
+  const week = all.slice(1).filter(r =&gt; new Date(r[0]) &gt;= since);
+  if (week.length === 0) return;
+
+  const grouped = {};
+  let pos=0, neg=0, neu=0;
+  const topicCount = {};
+  week.forEach(r =&gt; {
+    const [date, keyword, source, title, url, snippet, sentiment, topics] = r;
+    grouped[keyword] = grouped[keyword] || {pos:0, neg:0, neu:0, items:[]};
+    grouped[keyword].items.push({title, url, sentiment, topics, snippet});
+    if (sentiment === 'positive') {pos++; grouped[keyword].pos++;}
+    else if (sentiment === 'negative') {neg++; grouped[keyword].neg++;}
+    else {neu++; grouped[keyword].neu++;}
+    String(topics||'').split(',').filter(Boolean).forEach(t =&gt; topicCount[t.trim()] = (topicCount[t.trim()]||0)+1);
+  });
+
+  const topTopics = Object.entries(topicCount).sort((a,b)=&gt;b[1]-a[1]).slice(0, 8);
+
+  const insight = aiInsight({total: week.length, pos, neg, neu, topTopics, grouped});
+  const html = render(week.length, {pos,neg,neu}, topTopics, grouped, insight);
+
+  if (EMAIL_TO) GmailApp.sendEmail(EMAIL_TO, `[주간] 브랜드 멘션 다이제스트 — ${new Date().toISOString().slice(0,10)}`, '', {htmlBody: html});
+  ss.getSheetByName('weekly_report').appendRow([new Date(), week.length, pos, neg, neu, JSON.stringify(insight)]);
+}
+
+function aiInsight(d) {
+  const ctx = d.topTopics.map(([t,c])=&gt;`${t}(${c})`).join(', ');
+  const prompt = `
+브랜드 매니저용 주간 코멘트 작성. 한국어 250자 이내.
+데이터:
+- 총 멘션: ${d.total}
+- 감성: 긍정 ${d.pos} / 부정 ${d.neg} / 중립 ${d.neu}
+- 상위 주제: ${ctx}
+
+JSON: {&quot;summary&quot;:&quot;...&quot;,&quot;watch&quot;:&quot;...&quot;,&quot;action&quot;:&quot;...&quot;}
+- summary: 한 문장 종합
+- watch: 다음 주 주의해서 지켜볼 한 가지
+- action: 마케팅·CS·제품팀 중 한 곳에 보낼 권고 한 줄
+`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI}`;
+  const r = UrlFetchApp.fetch(url, {method:'post', contentType:'application/json',
+    payload: JSON.stringify({contents:[{parts:[{text:prompt}]}], generationConfig:{responseMimeType:'application/json'}})
+  });
+  return JSON.parse(JSON.parse(r.getContentText()).candidates[0].content.parts[0].text);
+}
+
+function render(total, sent, topTopics, grouped, ins) {
+  const sumTotal = sent.pos + sent.neg + sent.neu || 1;
+  const topicHtml = topTopics.map(([t,c])=&gt;`&lt;li&gt;&lt;b&gt;${t}&lt;/b&gt; · ${c}건&lt;/li&gt;`).join('');
+  let kwHtml = '';
+  for (const k in grouped) {
+    const g = grouped[k];
+    const negs = g.items.filter(it=&gt;it.sentiment==='negative').slice(0,3);
+    const negHtml = negs.length ? `&lt;ul&gt;${negs.map(n=&gt;`&lt;li&gt;&lt;a href=&quot;${n.url}&quot;&gt;${n.title}&lt;/a&gt;&lt;/li&gt;`).join('')}&lt;/ul&gt;` : '&lt;p style=&quot;color:#888;&quot;&gt;부정 멘션 없음&lt;/p&gt;';
+    kwHtml += `&lt;h4&gt;${k}&lt;/h4&gt;
+      &lt;p&gt;긍정 ${g.pos} / 부정 ${g.neg} / 중립 ${g.neu}&lt;/p&gt;
+      &lt;p style=&quot;color:#b45309;&quot;&gt;&lt;b&gt;주의 멘션&lt;/b&gt;&lt;/p&gt;${negHtml}`;
+  }
+  return `&lt;div style=&quot;font-family:'Noto Sans KR',sans-serif;line-height:1.7;max-width:740px;color:#222;&quot;&gt;
+    &lt;h2 style=&quot;border-bottom:2px solid #b45309;padding-bottom:.5rem;&quot;&gt;브랜드 멘션 주간 다이제스트&lt;/h2&gt;
+    &lt;p style=&quot;color:#6a604f;&quot;&gt;${new Date().toLocaleDateString('ko-KR')} · 총 ${total}건&lt;/p&gt;
+    &lt;h3&gt;전체 감성&lt;/h3&gt;
+    &lt;p&gt;긍정 ${(sent.pos/sumTotal*100).toFixed(0)}% / 부정 ${(sent.neg/sumTotal*100).toFixed(0)}% / 중립 ${(sent.neu/sumTotal*100).toFixed(0)}%&lt;/p&gt;
+    &lt;h3&gt;상위 주제&lt;/h3&gt;
+    &lt;ul&gt;${topicHtml}&lt;/ul&gt;
+    &lt;h3&gt;📌 핵심 인사이트&lt;/h3&gt;
+    &lt;p&gt;&lt;b&gt;요약 — &lt;/b&gt;${ins.summary}&lt;/p&gt;
+    &lt;p&gt;&lt;b&gt;다음 주 관찰 — &lt;/b&gt;${ins.watch}&lt;/p&gt;
+    &lt;p&gt;&lt;b&gt;권고 액션 — &lt;/b&gt;${ins.action}&lt;/p&gt;
+    &lt;hr&gt;
+    &lt;h3&gt;키워드별 상세&lt;/h3&gt;
+    ${kwHtml}
+    &lt;p style=&quot;color:#999;font-size:.85em;margin-top:2rem;&quot;&gt;자동 생성 · 출처: 네이버 블로그/카페/뉴스&lt;/p&gt;
+  &lt;/div&gt;`;
+}
+</code></pre>
+<hr>
+<h2 id="_4">강의 시연 포인트</h2>
+<ol>
+<li><code>keywords</code> 시트에 자사 키워드 한 줄 추가 → <code>dailyCollect()</code> 즉시 실행 → 시트 채워지는 모습</li>
+<li><code>weeklyReport()</code> 즉시 실행 → 메일 도착</li>
+<li>일부러 부정 키워드("환불"·"후기 안 좋다") 추가 시 부정 즉시 Slack 알림 시연 → 위기관리 흐름 토론</li>
+</ol>
+<h2 id="_5">트러블슈팅</h2>
+<table>
+<thead>
+<tr>
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>네이버 API 401</td>
+<td>Key 누락/오타</td>
+<td>콘솔에서 새 Application 등록 확인</td>
+</tr>
+<tr>
+<td>일 25,000 한도 초과</td>
+<td>키워드 너무 많음</td>
+<td>키워드 5개 이내, 검색 sort=date 유지</td>
+</tr>
+<tr>
+<td>AI가 모두 "중립"</td>
+<td>본문 스니펫이 너무 짧음</td>
+<td>가능하면 검색결과 <code>description</code> 외 본문 일부 추가 (별도 fetch)</td>
+</tr>
+<tr>
+<td>부정 알림 폭주</td>
+<td>키워드가 흔한 단어</td>
+<td>키워드를 정확한 브랜드/제품명으로 좁힘</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">응용 아이디어</h2>
+<ul>
+<li><strong>자동 응답 초안</strong>: 네이버 블로그 부정 후기에 대해 CS 톤의 답변 초안 자동 작성 → 사람이 검토 후 발송</li>
+<li><strong>경쟁사 비교 트렌드</strong>: 자사·경쟁사 멘션 추이를 차트로 시각화</li>
+<li><strong>제품팀 VOC 자동 라우팅</strong>: 주제가 "품질/UX"이면 제품팀, "가격"이면 영업팀으로 자동 분기</li>
+<li><strong>인플루언서 스코어링</strong>: 자주 언급하는 블로거를 자동 식별해 협업 후보 리스트 작성</li>
+</ul>
+</article>
+
+<aside class="related-aside">
+  <h2>이 자동화와 함께 보면 좋은 자료</h2>
+  <ul>
+    <li>→ <a href="/resources/automation/">자동화 9선 자료 허브로 돌아가기</a></li>
+    <li>→ <a href="/lectures/business-automation.html">강의 페이지: 조직 업무 자동화 실무 9선</a></li>
+    <li>→ <a href="/contact.html">조직 맞춤 워크숍 의뢰</a></li>
+  </ul>
+</aside>
+
+<footer style="max-width:780px;margin:0 auto 4rem;padding:1.5rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;font-family:'Noto Sans KR',sans-serif;">
+  <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
+</footer>
+</body>
+</html>

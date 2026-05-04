@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>조직 업무 자동화 실무 9선 — 김창환 강의 | 네다바웨이</title>
+<meta name="description" content="기획·HR·마케팅 자동화 9가지를 누구나 30분 내 구축하도록 설계한 실무 강의. Google Apps Script + Gemini 무료 티어 + Slack/메일. 즉시 복사·실행 가능한 코드 제공.">
+<link rel="canonical" href="https://www.nedabah.org/lectures/business-automation.html">
+<meta property="og:title" content="조직 업무 자동화 실무 9선 — 김창환 강의">
+<meta property="og:description" content="기획·HR·마케팅 9가지 자동화를 누구나 30분에. 코드·시트 템플릿·트러블슈팅까지 모두 공개.">
+<meta property="og:url" content="https://www.nedabah.org/lectures/business-automation.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-default.svg">
+<meta name="keywords" content="업무 자동화, 기획 자동화, HR 자동화, 마케팅 자동화, Apps Script, Gemini, 노코드, RPA">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Service","Course"],
+  "name": "조직 업무 자동화 실무 9선",
+  "description": "기획·HR·마케팅 자동화 9가지를 누구나 30분 내 구축하도록 설계한 실무 강의.",
+  "provider": {"@id": "https://www.nedabah.org/#organization"},
+  "instructor": {"@id": "https://www.nedabah.org/about.html#kim-changhwan"},
+  "audience": {"@type":"Audience","audienceType":"기획·전략·HR·마케팅·운영 실무자, 팀장, SMB 대표"},
+  "url": "https://www.nedabah.org/lectures/business-automation.html",
+  "inLanguage": "ko-KR",
+  "courseMode": "blended",
+  "timeRequired": "120분~6시간",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.nedabah.org/contact.html",
+    "priceCurrency": "KRW",
+    "availability": "https://schema.org/InStock",
+    "description": "강의료는 형식·인원·이동거리 종합 협의. 비영리·교육기관 협의 가능."
+  },
+  "keywords": "업무 자동화, 기획 자동화, HR 자동화, 마케팅 자동화, Apps Script, Gemini, 노코드"
+}
+</script>
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/lectures/" class="gnav__link">강의 목록</a></li>
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main style="max-width:760px;margin:4rem auto;padding:0 1.5rem;font-family:'Noto Serif KR',serif;line-height:1.85;">
+<header style="margin-bottom:3rem;">
+  <p style="font-size:.8rem;color:#b45309;letter-spacing:.18em;font-weight:700;">LECTURE · 조직 자동화</p>
+  <h1 style="font-size:2.2rem;line-height:1.3;margin:.6rem 0 1rem;">조직 업무 자동화 실무 9선</h1>
+  <p style="font-size:1.1rem;color:#6a604f;font-style:italic;">기획 3 · HR 3 · 마케팅 3. 누구나 30분에 만들 수 있도록 설계했고, 코드·시트 템플릿·트러블슈팅까지 모두 공개합니다.</p>
+</header>
+
+<article class="prose">
+
+<section style="background:#fbf6ec;padding:1.5rem 2rem;border-radius:10px;margin-bottom:2rem;">
+<h2 style="font-size:1.05rem;margin-top:0;">한눈에</h2>
+<table style="width:100%;font-size:.95rem;">
+<tr><td style="padding:.4rem 0;color:#6a604f;width:30%;">대상</td><td>기획·전략·HR·마케팅·운영 실무자, 팀장, SMB 대표</td></tr>
+<tr><td style="padding:.4rem 0;color:#6a604f;">시간</td><td>120분(쇼케이스) / 4시간(워크숍) / 6시간(직접 구축)</td></tr>
+<tr><td style="padding:.4rem 0;color:#6a604f;">형식</td><td>강의 + 라이브 시연 + 핸즈온. 노트북 1대만 있으면 됨</td></tr>
+<tr><td style="padding:.4rem 0;color:#6a604f;">스택</td><td>Google Apps Script · Sheets/Docs/Forms · Gemini 무료 티어 · Slack</td></tr>
+<tr><td style="padding:.4rem 0;color:#6a604f;">월 운영비</td><td>0원 ~ 매우 적음 (소규모 팀 기준)</td></tr>
+</table>
+</section>
+
+<h2 style="font-size:1.4rem;margin-top:2.5rem;">왜 이 강의인가</h2>
+<p>대다수 자동화 강의는 SaaS 시연으로 끝나거나, 코드가 있어도 발표용 슬라이드에 갇혀 있습니다. 이 강의는 "강의가 끝나는 순간 9가지 자동화의 코드와 시트가 학습자 손에 그대로 남는 것"을 목표로 설계했습니다. 모든 코드는 <strong>복붙 즉시 실행</strong>되며, 시트 템플릿과 트러블슈팅 표가 함께 제공됩니다.</p>
+
+<h2 style="font-size:1.4rem;margin-top:2.5rem;">다루는 9가지</h2>
+
+<h3 style="margin-top:1.6rem;font-size:1.1rem;color:#b45309;">기획 자동화</h3>
+<ol style="line-height:2;">
+  <li><a href="/resources/automation/planning/01-meeting-notes-to-actions.html">회의록 → 액션아이템 자동 정리</a> — Doc 한 장이 시트·Slack으로 분해된다</li>
+  <li><a href="/resources/automation/planning/02-competitor-news-digest.html">경쟁사·뉴스 일일 다이제스트</a> — 출근 전 한 장의 메일</li>
+  <li><a href="/resources/automation/planning/03-weekly-kpi-report.html">주간 KPI 자동 리포트</a> — AI가 변동·이상·권고를 함께 작성</li>
+</ol>
+
+<h3 style="margin-top:1.6rem;font-size:1.1rem;color:#b45309;">HR 자동화</h3>
+<ol style="line-height:2;" start="4">
+  <li><a href="/resources/automation/hr/01-onboarding-kit.html">신규 입사자 온보딩 키트</a> — 입사자 한 줄 입력 → 메일·캘린더·Slack·체크리스트 동시 생성</li>
+  <li><a href="/resources/automation/hr/02-leave-approval-workflow.html">휴가 신청 슬랙 승인 워크플로우</a> — 폼 → 팀장 슬랙 카드 → 캘린더·잔여 자동 갱신</li>
+  <li><a href="/resources/automation/hr/03-pulse-survey-sentiment.html">분기 펄스서베이 + AI 감성 분석</a> — 응답 1,000건도 30분 안에</li>
+</ol>
+
+<h3 style="margin-top:1.6rem;font-size:1.1rem;color:#b45309;">마케팅 자동화</h3>
+<ol style="line-height:2;" start="7">
+  <li><a href="/resources/automation/marketing/01-content-calendar-generator.html">30일 콘텐츠 캘린더 자동 생성</a> — 테마 한 줄 → 30일 헤드라인·후크·CTA</li>
+  <li><a href="/resources/automation/marketing/02-lead-scoring-router.html">인입 리드 자동 스코어링·배정</a> — Hot/Warm/Cold 분류 + 담당자 즉시 알림</li>
+  <li><a href="/resources/automation/marketing/03-review-mention-digest.html">리뷰·멘션 주간 다이제스트</a> — 부정 멘션 24시간 안에 인지</li>
+</ol>
+
+<p style="margin-top:1.5rem;"><a href="/resources/automation/" style="display:inline-block;background:#fbf6ec;border:1px solid #e5d8c4;padding:.6rem 1.2rem;border-radius:8px;text-decoration:none;color:#3a322a;">전체 자료 허브로 이동 →</a></p>
+
+<h2 style="font-size:1.4rem;margin-top:2.5rem;">강의 후 가져가는 것</h2>
+<ol style="line-height:1.9;">
+<li>9가지 자동화의 완성 코드와 시트 템플릿 (즉시 실행)</li>
+<li>자기 조직에 적용할 수 있는 첫 1가지 선택과 30분 셋업 경험</li>
+<li>"AI는 보조, 사람은 검토" 원칙이 담긴 워크플로 설계 감각</li>
+<li>각 자동화의 트러블슈팅 표와 응용 아이디어 4가지씩</li>
+</ol>
+
+<h2 style="font-size:1.4rem;margin-top:2.5rem;">진행 방식</h2>
+<p>이 강의는 <strong>핸즈온 중심</strong>으로 진행됩니다. 강사가 1개를 라이브로 끝까지 만든 뒤, 학습자가 자기 비즈니스 데이터로 1개를 직접 구축합니다. 강의가 끝났을 때 학습자의 노트북에는 실제로 동작하는 자동화 1~3개가 남아 있어야 합니다.</p>
+<p>인원은 10~50명이 가장 효과적이며, 100명 이상 청중일 경우 시연 중심으로 형식을 조정합니다. 온·오프라인 모두 가능하지만 핸즈온 효과가 뚜렷한 오프라인을 권장합니다.</p>
+
+<h2 style="font-size:1.4rem;margin-top:2.5rem;">사전 준비</h2>
+<ul style="line-height:1.9;">
+  <li>구글 계정 (Workspace 또는 일반 계정)</li>
+  <li>Gemini API 키 — 강의 시작 시 함께 발급</li>
+  <li>(선택) Slack Workspace · 네이버 개발자 키</li>
+  <li>코딩 경험 불필요. 복사·붙여넣기만 가능하면 됨</li>
+</ul>
+
+<h2 style="font-size:1.4rem;margin-top:2.5rem;">강의료 안내</h2>
+<p>강의료는 (1) 강의 형식·시간, (2) 인원, (3) 이동 거리, (4) 기관 성격(영리/비영리/교육)을 종합해 1대1로 안내합니다. 비영리·교육기관 협의 가능합니다. 정확한 견적은 의뢰 시 회신해 드립니다.</p>
+
+</article>
+
+<aside style="margin-top:4rem;padding:2rem;background:#3a322a;color:#fbf6ec;border-radius:12px;text-align:center;">
+  <h2 style="margin-top:0;font-size:1.4rem;">의뢰</h2>
+  <p style="font-size:1rem;line-height:1.7;">이메일 또는 사이트에서 1분 안에 의뢰 가능. 24~48시간 내 회신.</p>
+  <p><a href="/contact.html" style="display:inline-block;background:#b45309;color:white;padding:.8rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;margin-top:.5rem;">강의 의뢰 →</a></p>
+</aside>
+
+<aside style="margin-top:3rem;padding:2rem;background:#fbf6ec;border-radius:12px;">
+  <h2 style="margin-top:0;font-size:1.1rem;">관련 자료</h2>
+  <ul style="list-style:none;padding:0;line-height:2;">
+    <li>→ <a href="/resources/automation/">자동화 자료 허브 (9개 가이드)</a></li>
+    <li>→ <a href="/lectures/solo-operator-ai.html">1인 사업자 AI 자동화 실전</a></li>
+    <li>→ <a href="/lectures/">강의 전체 목록</a></li>
+    <li>→ <a href="/blog/perspective/">관점 노트 100+편</a></li>
+  </ul>
+</aside>
+
+<footer style="margin-top:4rem;padding-top:2rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;">
+  <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
+</footer>
+</main>
+</body>
+</html>

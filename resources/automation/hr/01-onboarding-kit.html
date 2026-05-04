@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>신규 입사자 온보딩 키트 — 자동화 9선 | 네다바웨이</title>
+<meta name="description" content="합격자 한 줄 입력 → 환영 메일·90일 체크리스트·1on1 캘린더·Slack 공지 자동 생성.">
+<link rel="canonical" href="https://www.nedabah.org/resources/automation/hr/01-onboarding-kit.html">
+<meta property="og:title" content="신규 입사자 온보딩 키트 — 자동화 9선">
+<meta property="og:description" content="합격자 한 줄 입력 → 환영 메일·90일 체크리스트·1on1 캘린더·Slack 공지 자동 생성.">
+<meta property="og:url" content="https://www.nedabah.org/resources/automation/hr/01-onboarding-kit.html">
+<meta property="og:type" content="article">
+<meta name="keywords" content="HR 자동화, Apps Script, Gemini, 노코드, HR-01">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "신규 입사자 온보딩 키트",
+  "description": "합격자 한 줄 입력 → 환영 메일·90일 체크리스트·1on1 캘린더·Slack 공지 자동 생성.",
+  "url": "https://www.nedabah.org/resources/automation/hr/01-onboarding-kit.html",
+  "inLanguage": "ko-KR",
+  "tool": ["Google Apps Script","Google Sheets","Gemini API","Slack"],
+  "publisher": {"@id": "https://www.nedabah.org/#organization"}
+}
+</script>
+
+<style>
+.guide-body { font-family:'Noto Sans KR',sans-serif; line-height:1.8; color:#222; max-width:780px; margin:3rem auto; padding:0 1.5rem; }
+.guide-body h1 { font-family:'Noto Serif KR',serif; font-size:2rem; line-height:1.3; margin:.4rem 0 1rem; }
+.guide-body h2 { font-size:1.35rem; margin-top:2.5rem; padding-left:.6rem; border-left:4px solid #b45309; color:#3a322a; }
+.guide-body h3 { font-size:1.1rem; margin-top:1.6rem; color:#3a322a; }
+.guide-body h4 { font-size:1rem; margin-top:1.2rem; color:#6a604f; }
+.guide-body blockquote { background:#fbf6ec; border-left:4px solid #b45309; padding:.6rem 1.2rem; color:#3a322a; margin:1rem 0; border-radius:0 8px 8px 0; }
+.guide-body table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
+.guide-body th { background:#fbf6ec; text-align:left; padding:.55rem .7rem; border-bottom:2px solid #e5d8c4; }
+.guide-body td { padding:.5rem .7rem; border-bottom:1px solid #eee; vertical-align:top; }
+.guide-body code { background:#f3eee2; padding:.1rem .35rem; border-radius:4px; font-family:'JetBrains Mono','Menlo',monospace; font-size:.92em; }
+.guide-body pre { background:#1f1a14; color:#f5e9d4; padding:1rem 1.2rem; border-radius:8px; overflow-x:auto; line-height:1.55; font-size:.86rem; }
+.guide-body pre code { background:transparent; color:inherit; padding:0; }
+.guide-body ul, .guide-body ol { line-height:1.8; }
+.guide-body a { color:#b45309; }
+.tag-pill { display:inline-block; font-size:.72rem; letter-spacing:.14em; font-weight:700; padding:.22rem .6rem; border-radius:99px; background:#fbf6ec; color:#b45309; border:1px solid #e5d8c4; }
+.guide-meta { color:#6a604f; font-size:.92rem; margin-top:.4rem; }
+.related-aside { margin:3rem auto 4rem; max-width:780px; padding:1.6rem 1.8rem; background:#fbf6ec; border-radius:12px; }
+.related-aside h2 { margin-top:0; font-size:1.05rem; border:none; padding:0; }
+.related-aside ul { list-style:none; padding:0; line-height:2; }
+</style>
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/lectures/" class="gnav__link">강의 목록</a></li>
+      <li><a href="/resources/automation/" class="gnav__link">자동화 허브</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header style="max-width:780px;margin:3rem auto 0;padding:0 1.5rem;font-family:'Noto Sans KR',sans-serif;">
+  <p style="font-size:.78rem;color:#b45309;letter-spacing:.18em;font-weight:700;">RESOURCE · HR 자동화 · <span class="tag-pill">HR-01</span></p>
+</header>
+
+<article class="guide-body">
+<h1>신규 입사자 온보딩 키트</h1>
+<p class="guide-meta">합격자 한 줄 입력 → 환영 메일·90일 체크리스트·1on1 캘린더·Slack 공지 자동 생성.</p>
+
+<blockquote>
+<p><strong>한 줄 핵심</strong>: 인사 담당자가 Sheet에 합격자 정보 한 줄을 넣으면, 환영 메일·계정 신청서·90일 체크리스트·1on1 일정·슬랙 초대 안내가 자동 생성·발송된다.</p>
+</blockquote>
+<h2 id="_1">왜 이 자동화인가</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>수동(Before)</th>
+<th>자동(After)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>입사자 1인 준비 시간</td>
+<td>3~5시간</td>
+<td>10분(데이터 입력)</td>
+</tr>
+<tr>
+<td>누락 발생률</td>
+<td>높음 (장비·계정·소개)</td>
+<td>0에 수렴</td>
+</tr>
+<tr>
+<td>입사 첫날 만족도</td>
+<td>부서마다 격차</td>
+<td>표준화</td>
+</tr>
+<tr>
+<td>연 50명 채용 시 절감</td>
+<td>—</td>
+<td><strong>약 200시간 + 휴먼에러 사실상 제거</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>적용 시나리오</strong>: 정규직 채용·인턴·계약직·파트너 입사.</p>
+<h2 id="_2">구성요소</h2>
+<ul>
+<li>Google Sheet (입사자 마스터)</li>
+<li>Google Docs 템플릿 (환영 레터·체크리스트)</li>
+<li>Gmail (자동 발송)</li>
+<li>Google Calendar (1on1·교육 일정)</li>
+<li>Slack Webhook (HR 채널 공지)</li>
+<li>Apps Script (편집 트리거)</li>
+</ul>
+<h2 id="_3">셋업 가이드</h2>
+<h3 id="step-1">Step 1. 입사자 마스터 시트</h3>
+<p><strong>탭 <code>hires</code></strong>:
+| 이름 | 이메일 | 입사일 | 부서 | 직책 | 멘토 | 멘토이메일 | 상태 |
+|---|---|---|---|---|---|---|---|
+| 김신입 | sin@example.com | 2026-05-12 | 마케팅 | 매니저 | 박선배 | park@example.com | (자동) |</p>
+<blockquote>
+<p>마지막 컬럼은 비워두세요. 스크립트가 <code>완료</code> 표시.</p>
+</blockquote>
+<h3 id="step-2-docs">Step 2. Docs 템플릿 두 개 만들기</h3>
+<ol>
+<li><strong>환영 레터</strong> (<code>{{이름}}</code>, <code>{{입사일}}</code>, <code>{{부서}}</code>, <code>{{멘토}}</code> 변수 포함)</li>
+<li><strong>90일 체크리스트</strong> (Day 1·Day 7·Day 30·Day 60·Day 90 항목)</li>
+</ol>
+<p>각 Doc URL의 ID 복사 → 스크립트 속성에 등록.</p>
+<h3 id="step-3-apps-script">Step 3. Apps Script 속성</h3>
+<ul>
+<li><code>MASTER_SHEET_ID</code></li>
+<li><code>WELCOME_TEMPLATE_ID</code></li>
+<li><code>CHECKLIST_TEMPLATE_ID</code></li>
+<li><code>OUTPUT_FOLDER_ID</code> (생성된 Doc 저장 폴더)</li>
+<li><code>SLACK_HOOK</code> (HR 공지 채널)</li>
+<li><code>HR_FROM_NAME</code> (메일 발신 표시명)</li>
+</ul>
+<h3 id="step-4-onedit">Step 4. 트리거: <code>onEdit</code> 시트 편집 시.</h3>
+<hr>
+<h2 id="scriptgs">완성 코드 (<code>script.gs</code>)</h2>
+<pre><code class="language-javascript">const PROPS = PropertiesService.getScriptProperties();
+const SHEET_ID  = PROPS.getProperty('MASTER_SHEET_ID');
+const TPL_WEL   = PROPS.getProperty('WELCOME_TEMPLATE_ID');
+const TPL_CHK   = PROPS.getProperty('CHECKLIST_TEMPLATE_ID');
+const FOLDER    = PROPS.getProperty('OUTPUT_FOLDER_ID');
+const SLACK     = PROPS.getProperty('SLACK_HOOK') || '';
+const FROM_NAME = PROPS.getProperty('HR_FROM_NAME') || 'HR팀';
+
+function onEdit(e) {
+  const sheet = e.source.getActiveSheet();
+  if (sheet.getName() !== 'hires') return;
+  const row = e.range.getRow();
+  if (row === 1) return;
+
+  const data = sheet.getRange(row, 1, 1, 8).getValues()[0];
+  const [name, email, joinDate, dept, role, mentor, mentorEmail, status] = data;
+  if (status === '완료' || !name || !email || !joinDate) return;
+
+  // 1) 환영 레터 + 체크리스트 Doc 생성
+  const welcomeDoc = copyAndFill(TPL_WEL, `[환영] ${name} 님 - ${fmt(joinDate)}`, {
+    이름: name, 입사일: fmt(joinDate), 부서: dept, 직책: role, 멘토: mentor || '추후 안내'
+  });
+  const checklistDoc = copyAndFill(TPL_CHK, `[체크리스트] ${name} 90일 플랜`, {
+    이름: name, 입사일: fmt(joinDate), 부서: dept, 멘토: mentor || ''
+  });
+
+  // 2) 환영 메일 (입사자 + 멘토 cc)
+  const body = buildWelcomeBody(name, joinDate, dept, role, mentor, welcomeDoc.url, checklistDoc.url);
+  GmailApp.sendEmail(email, `${name} 님, ${fmt(joinDate)} 입사를 환영합니다`, body, {
+    name: FROM_NAME,
+    cc: mentorEmail || '',
+    htmlBody: body
+  });
+
+  // 3) 캘린더 — Day 1 환영미팅 + Day 7·30·90 체크인 자동 생성
+  const cal = CalendarApp.getDefaultCalendar();
+  const join = new Date(joinDate);
+  cal.createEvent(`${name} 환영 미팅`, atHour(join, 10), atHour(join, 11), {guests: `${email},${mentorEmail||''}`});
+  [7, 30, 90].forEach(d =&gt; {
+    const day = addDays(join, d);
+    cal.createEvent(`${name} ${d}일 체크인`, atHour(day, 14), atHour(day, 14, 30), {guests: `${email},${mentorEmail||''}`});
+  });
+
+  // 4) 슬랙 공지
+  if (SLACK) {
+    UrlFetchApp.fetch(SLACK, {
+      method: 'post', contentType: 'application/json',
+      payload: JSON.stringify({text:
+        `🎉 *신규 입사 안내* \n*${name}* 님이 ${fmt(joinDate)} *${dept}/${role}* 으로 합류합니다.\n멘토: ${mentor||'미정'}\n환영 한 마디 남겨주세요.`
+      })
+    });
+  }
+
+  // 5) 상태 업데이트
+  sheet.getRange(row, 8).setValue('완료');
+  sheet.getRange(row, 9).setValue(welcomeDoc.url);
+  sheet.getRange(row, 10).setValue(checklistDoc.url);
+}
+
+function copyAndFill(templateId, title, vars) {
+  const folder = DriveApp.getFolderById(FOLDER);
+  const file = DriveApp.getFileById(templateId).makeCopy(title, folder);
+  const doc = DocumentApp.openById(file.getId());
+  const body = doc.getBody();
+  for (const k in vars) {
+    body.replaceText(`{{${k}}}`, String(vars[k]));
+  }
+  doc.saveAndClose();
+  return {id: file.getId(), url: file.getUrl()};
+}
+
+function buildWelcomeBody(name, joinDate, dept, role, mentor, welcomeUrl, checklistUrl) {
+  return `&lt;div style=&quot;font-family:'Noto Sans KR',sans-serif;line-height:1.7;max-width:620px;&quot;&gt;
+    &lt;h2 style=&quot;color:#b45309;&quot;&gt;${name} 님, 환영합니다 🎉&lt;/h2&gt;
+    &lt;p&gt;${fmt(joinDate)} ${dept}/${role}로 입사하시는 ${name} 님께 첫날을 위한 안내를 드립니다.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;📄 &lt;a href=&quot;${welcomeUrl}&quot;&gt;환영 레터(개인 맞춤)&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;✅ &lt;a href=&quot;${checklistUrl}&quot;&gt;90일 온보딩 체크리스트&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;👥 멘토: ${mentor || '추후 배정'}&lt;/li&gt;
+      &lt;li&gt;🗓️ 첫날 10:00 환영 미팅이 캘린더에 등록되었습니다.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;입사 전 궁금한 점은 언제든 회신주세요. 좋은 인연이 되길 기대합니다.&lt;/p&gt;
+    &lt;p style=&quot;color:#6a604f;&quot;&gt;— ${FROM_NAME}&lt;/p&gt;
+  &lt;/div&gt;`;
+}
+
+function fmt(d) { return new Date(d).toISOString().slice(0,10); }
+function atHour(d, h, m=0) { const x = new Date(d); x.setHours(h,m,0,0); return x; }
+function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate()+n); return x; }
+</code></pre>
+<hr>
+<h2 id="_4">강의 시연 포인트</h2>
+<ol>
+<li>시트에 입사자 한 줄을 시연용으로 입력 → 캘린더·메일·슬랙·드라이브가 동시에 반응</li>
+<li>Docs 템플릿의 <code>{{이름}}</code> 같은 변수가 어떻게 치환되는지 강조</li>
+<li>"왜 이 작업은 사람이 해야 하는가" 토론: 멘토 매칭·문화 안내 영상은 자동화 대상에서 의도적으로 제외했음을 설명</li>
+</ol>
+<h2 id="_5">트러블슈팅</h2>
+<table>
+<thead>
+<tr>
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onEdit</code> 미발동</td>
+<td>단순 트리거의 권한 한계</td>
+<td>설치형 트리거(<code>installOnEdit</code> 함수 만들어 트리거 등록) 사용</td>
+</tr>
+<tr>
+<td>캘린더 이벤트 중복 생성</td>
+<td>같은 행을 다시 편집</td>
+<td><code>status</code> 컬럼이 <code>완료</code>면 조기 return — 이미 처리됨</td>
+</tr>
+<tr>
+<td>환영 메일 스팸 분류</td>
+<td>발신 도메인/SPF 미설정</td>
+<td>Workspace 도메인 발신 + SPF/DKIM 설정</td>
+</tr>
+<tr>
+<td>멘토 미정 시 캘린더 오류</td>
+<td>guests 빈값</td>
+<td><code>mentorEmail</code>이 빈문자열일 때 분기 처리(이미 코드에 반영)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">응용 아이디어</h2>
+<ul>
+<li><strong>계정 신청 연동</strong>: 입사일 −7일에 IT팀 채널로 계정 신청 카드 발송</li>
+<li><strong>온보딩 진행률</strong>: 체크리스트 Doc의 체크 항목을 주 1회 스캔해 시트에 진행률 적재</li>
+<li><strong>퇴사자 오프보딩 미러</strong>: 같은 패턴으로 퇴사 절차(자료 인계·계정 정리) 자동화</li>
+<li><strong>다국어</strong>: 외국인 직원의 경우 환영 레터를 영어 템플릿으로 분기</li>
+</ul>
+</article>
+
+<aside class="related-aside">
+  <h2>이 자동화와 함께 보면 좋은 자료</h2>
+  <ul>
+    <li>→ <a href="/resources/automation/">자동화 9선 자료 허브로 돌아가기</a></li>
+    <li>→ <a href="/lectures/business-automation.html">강의 페이지: 조직 업무 자동화 실무 9선</a></li>
+    <li>→ <a href="/contact.html">조직 맞춤 워크숍 의뢰</a></li>
+  </ul>
+</aside>
+
+<footer style="max-width:780px;margin:0 auto 4rem;padding:1.5rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;font-family:'Noto Sans KR',sans-serif;">
+  <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
+</footer>
+</body>
+</html>

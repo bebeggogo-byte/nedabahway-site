@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>회의록 → 액션아이템 자동 정리 — 자동화 9선 | 네다바웨이</title>
+<meta name="description" content="Google Doc 한 장을 던지면 AI가 결정사항·할일·담당자·기한을 추출해 시트·Slack에 적재합니다.">
+<link rel="canonical" href="https://www.nedabah.org/resources/automation/planning/01-meeting-notes-to-actions.html">
+<meta property="og:title" content="회의록 → 액션아이템 자동 정리 — 자동화 9선">
+<meta property="og:description" content="Google Doc 한 장을 던지면 AI가 결정사항·할일·담당자·기한을 추출해 시트·Slack에 적재합니다.">
+<meta property="og:url" content="https://www.nedabah.org/resources/automation/planning/01-meeting-notes-to-actions.html">
+<meta property="og:type" content="article">
+<meta name="keywords" content="기획 자동화, Apps Script, Gemini, 노코드, PLAN-01">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "회의록 → 액션아이템 자동 정리",
+  "description": "Google Doc 한 장을 던지면 AI가 결정사항·할일·담당자·기한을 추출해 시트·Slack에 적재합니다.",
+  "url": "https://www.nedabah.org/resources/automation/planning/01-meeting-notes-to-actions.html",
+  "inLanguage": "ko-KR",
+  "tool": ["Google Apps Script","Google Sheets","Gemini API","Slack"],
+  "publisher": {"@id": "https://www.nedabah.org/#organization"}
+}
+</script>
+
+<style>
+.guide-body { font-family:'Noto Sans KR',sans-serif; line-height:1.8; color:#222; max-width:780px; margin:3rem auto; padding:0 1.5rem; }
+.guide-body h1 { font-family:'Noto Serif KR',serif; font-size:2rem; line-height:1.3; margin:.4rem 0 1rem; }
+.guide-body h2 { font-size:1.35rem; margin-top:2.5rem; padding-left:.6rem; border-left:4px solid #b45309; color:#3a322a; }
+.guide-body h3 { font-size:1.1rem; margin-top:1.6rem; color:#3a322a; }
+.guide-body h4 { font-size:1rem; margin-top:1.2rem; color:#6a604f; }
+.guide-body blockquote { background:#fbf6ec; border-left:4px solid #b45309; padding:.6rem 1.2rem; color:#3a322a; margin:1rem 0; border-radius:0 8px 8px 0; }
+.guide-body table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
+.guide-body th { background:#fbf6ec; text-align:left; padding:.55rem .7rem; border-bottom:2px solid #e5d8c4; }
+.guide-body td { padding:.5rem .7rem; border-bottom:1px solid #eee; vertical-align:top; }
+.guide-body code { background:#f3eee2; padding:.1rem .35rem; border-radius:4px; font-family:'JetBrains Mono','Menlo',monospace; font-size:.92em; }
+.guide-body pre { background:#1f1a14; color:#f5e9d4; padding:1rem 1.2rem; border-radius:8px; overflow-x:auto; line-height:1.55; font-size:.86rem; }
+.guide-body pre code { background:transparent; color:inherit; padding:0; }
+.guide-body ul, .guide-body ol { line-height:1.8; }
+.guide-body a { color:#b45309; }
+.tag-pill { display:inline-block; font-size:.72rem; letter-spacing:.14em; font-weight:700; padding:.22rem .6rem; border-radius:99px; background:#fbf6ec; color:#b45309; border:1px solid #e5d8c4; }
+.guide-meta { color:#6a604f; font-size:.92rem; margin-top:.4rem; }
+.related-aside { margin:3rem auto 4rem; max-width:780px; padding:1.6rem 1.8rem; background:#fbf6ec; border-radius:12px; }
+.related-aside h2 { margin-top:0; font-size:1.05rem; border:none; padding:0; }
+.related-aside ul { list-style:none; padding:0; line-height:2; }
+</style>
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/lectures/" class="gnav__link">강의 목록</a></li>
+      <li><a href="/resources/automation/" class="gnav__link">자동화 허브</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header style="max-width:780px;margin:3rem auto 0;padding:0 1.5rem;font-family:'Noto Sans KR',sans-serif;">
+  <p style="font-size:.78rem;color:#b45309;letter-spacing:.18em;font-weight:700;">RESOURCE · 기획 자동화 · <span class="tag-pill">PLAN-01</span></p>
+</header>
+
+<article class="guide-body">
+<h1>회의록 → 액션아이템 자동 정리</h1>
+<p class="guide-meta">Google Doc 한 장을 던지면 AI가 결정사항·할일·담당자·기한을 추출해 시트·Slack에 적재합니다.</p>
+
+<blockquote>
+<p><strong>한 줄 핵심</strong>: 회의록 Google Doc 한 장을 던지면, AI가 의사결정·할일·담당자·기한을 추출해 Sheet에 적재하고 Slack에 발송한다.</p>
+</blockquote>
+<h2 id="_1">왜 이 자동화인가</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>수동(Before)</th>
+<th>자동(After)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>회의록 정리 시간</td>
+<td>30~60분/회</td>
+<td>0분(트리거만)</td>
+</tr>
+<tr>
+<td>액션아이템 누락률</td>
+<td>30~50%</td>
+<td>&lt;5%</td>
+</tr>
+<tr>
+<td>담당자 통보 지연</td>
+<td>평균 2일</td>
+<td>즉시</td>
+</tr>
+<tr>
+<td>주간 회의 기준 연 절감</td>
+<td>—</td>
+<td><strong>약 130시간/팀</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>적용 시나리오</strong>: 주간 팀회의 / 임원회의 / 프로젝트 스탠드업 / 1on1 정리.</p>
+<h2 id="_2">구성요소 (모두 무료 또는 매우 저렴)</h2>
+<ul>
+<li>Google Docs (회의록 원본)</li>
+<li>Google Sheets (액션아이템 적재)</li>
+<li>Google Apps Script (실행 엔진)</li>
+<li>Gemini API — <code>gemini-2.5-flash</code> 무료 티어 (15 RPM)</li>
+<li>Slack Incoming Webhook (선택)</li>
+</ul>
+<p>총 비용: <strong>월 0원</strong> (소규모 팀 기준).</p>
+<h2 id="30">셋업 30분 가이드</h2>
+<h3 id="step-1">Step 1. 시트 만들기</h3>
+<ol>
+<li>새 Google Sheet 생성 → 이름: <code>회의록-액션아이템</code></li>
+<li>1행에 헤더 추가:
+   <code>회의일 | 회의명 | 결정사항 | 액션아이템 | 담당자 | 기한 | 상태 | 원본링크</code></li>
+<li>URL에서 시트 ID 복사 (<code>/d/{여기}/edit</code>).</li>
+</ol>
+<h3 id="step-2-gemini-api">Step 2. Gemini API 키 발급</h3>
+<ol>
+<li><a href="https://aistudio.google.com/apikey">https://aistudio.google.com/apikey</a> 접속</li>
+<li><strong>Create API key</strong> → 키 복사 (한번만 노출됨)</li>
+</ol>
+<h3 id="step-3-slack-webhook">Step 3. Slack Webhook (선택)</h3>
+<ol>
+<li><a href="https://api.slack.com/apps">https://api.slack.com/apps</a> → Create New App → From scratch</li>
+<li>Incoming Webhooks 활성화 → 채널 선택 → Webhook URL 복사</li>
+</ol>
+<h3 id="step-4-apps-script">Step 4. Apps Script 붙여넣기</h3>
+<ol>
+<li>Google Sheet에서 <strong>확장 프로그램 → Apps Script</strong></li>
+<li><code>script.gs</code> 내용 붙여넣기 (아래)</li>
+<li><strong>프로젝트 설정 → 스크립트 속성</strong>에 다음 추가:
+   - <code>GEMINI_API_KEY</code> = (발급받은 키)
+   - <code>SHEET_ID</code> = (시트 ID)
+   - <code>SLACK_WEBHOOK</code> = (선택)</li>
+<li><strong>트리거 추가</strong>: <code>onMeetingDocOpen</code> → 시간 기반 → 매일 오전 9시
+   또는 <strong>Docs 메뉴에서 직접 실행</strong>(아래 <code>installDocMenu</code> 사용)</li>
+</ol>
+<h3 id="step-5">Step 5. 회의록 작성 규칙 (사용자 약속)</h3>
+<ul>
+<li>문서 첫 줄: <code>회의명: 주간 마케팅 회의 / 2026-05-04</code></li>
+<li>본문은 자연어 그대로 작성 (별도 양식 불필요)</li>
+<li>작성 완료 후 메뉴 <strong>🤖 자동화 → 액션아이템 추출</strong> 클릭</li>
+</ul>
+<hr>
+<h2 id="scriptgs">완성 코드 (<code>script.gs</code>)</h2>
+<pre><code class="language-javascript">/**
+ * 회의록 → 액션아이템 자동 정리
+ * 사용: Google Docs에서 메뉴 [자동화 → 액션아이템 추출] 클릭
+ */
+
+const PROPS = PropertiesService.getScriptProperties();
+const GEMINI_KEY = PROPS.getProperty('GEMINI_API_KEY');
+const SHEET_ID   = PROPS.getProperty('SHEET_ID');
+const SLACK_HOOK = PROPS.getProperty('SLACK_WEBHOOK') || '';
+
+function onOpen() {
+  DocumentApp.getUi()
+    .createMenu('🤖 자동화')
+    .addItem('액션아이템 추출', 'extractActions')
+    .addToUi();
+}
+
+function extractActions() {
+  const doc  = DocumentApp.getActiveDocument();
+  const text = doc.getBody().getText();
+  const url  = doc.getUrl();
+
+  const ui = DocumentApp.getUi();
+  ui.alert('처리 중', 'AI가 회의록을 분석합니다. 10~20초 소요됩니다.', ui.ButtonSet.OK);
+
+  const result = callGemini(text);
+  appendToSheet(result, url);
+  if (SLACK_HOOK) postToSlack(result, url);
+
+  ui.alert('완료', `${result.actions.length}개 액션아이템을 시트에 적재했습니다.`, ui.ButtonSet.OK);
+}
+
+function callGemini(meetingText) {
+  const prompt = `
+다음 회의록에서 정보를 추출하세요. JSON만 반환하세요(설명 없이).
+
+회의록:
+&quot;&quot;&quot;
+${meetingText.slice(0, 30000)}
+&quot;&quot;&quot;
+
+JSON 스키마:
+{
+  &quot;meetingName&quot;: &quot;회의명&quot;,
+  &quot;meetingDate&quot;: &quot;YYYY-MM-DD&quot;,
+  &quot;decisions&quot;: [&quot;결정사항1&quot;, &quot;결정사항2&quot;],
+  &quot;actions&quot;: [
+    {&quot;task&quot;:&quot;액션내용&quot;,&quot;owner&quot;:&quot;담당자&quot;,&quot;due&quot;:&quot;YYYY-MM-DD 또는 빈문자열&quot;}
+  ]
+}
+
+규칙:
+- 담당자는 회의록에 등장한 사람만 사용. 추정 금지.
+- 기한이 명시되지 않으면 빈문자열.
+- 결정사항과 액션아이템은 다르다(결정=합의, 액션=실행).
+`;
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
+  const res = UrlFetchApp.fetch(url, {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify({
+      contents: [{parts: [{text: prompt}]}],
+      generationConfig: {responseMimeType: 'application/json'}
+    })
+  });
+  const json = JSON.parse(res.getContentText());
+  const content = json.candidates[0].content.parts[0].text;
+  return JSON.parse(content);
+}
+
+function appendToSheet(result, docUrl) {
+  const sheet = SpreadsheetApp.openById(SHEET_ID).getSheets()[0];
+  const decisionsStr = result.decisions.join(' | ');
+  result.actions.forEach(a =&gt; {
+    sheet.appendRow([
+      result.meetingDate || new Date().toISOString().slice(0,10),
+      result.meetingName || '',
+      decisionsStr,
+      a.task,
+      a.owner || '',
+      a.due || '',
+      '대기',
+      docUrl
+    ]);
+  });
+}
+
+function postToSlack(result, docUrl) {
+  const lines = result.actions.map((a,i) =&gt;
+    `${i+1}. *${a.task}* — ${a.owner || '미지정'}${a.due ? ` (~${a.due})` : ''}`
+  ).join('\n');
+  const text = `📝 *${result.meetingName}* 회의 요약\n\n*결정사항*\n• ${result.decisions.join('\n• ')}\n\n*액션아이템*\n${lines}\n\n🔗 ${docUrl}`;
+  UrlFetchApp.fetch(SLACK_HOOK, {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify({text})
+  });
+}
+</code></pre>
+<hr>
+<h2 id="10">강의 시연 시나리오 (10분)</h2>
+<ol>
+<li>강사가 미리 준비한 가짜 회의록 Doc 오픈</li>
+<li>메뉴 [🤖 자동화 → 액션아이템 추출] 클릭</li>
+<li>15초 대기 → Sheet에 5~7행 자동 추가되는 모습 시연</li>
+<li>Slack 채널에 자동 발송된 카드 시연</li>
+<li>잘못된 행을 직접 수정하며 "AI는 보조, 사람은 검토" 메시지 강조</li>
+</ol>
+<h2 id="_3">트러블슈팅</h2>
+<table>
+<thead>
+<tr>
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Cannot read properties of undefined</code></td>
+<td>Gemini 응답이 JSON이 아님</td>
+<td>프롬프트 끝에 "JSON만 반환" 강조 + <code>responseMimeType</code> 확인</td>
+</tr>
+<tr>
+<td>한국어 담당자 이름 깨짐</td>
+<td>UTF-8 처리 실패</td>
+<td>Apps Script v8 런타임 사용 (기본값)</td>
+</tr>
+<tr>
+<td>시트에 빈 행만 추가</td>
+<td><code>actions</code> 배열 0개</td>
+<td>회의록이 짧거나 액션이 없는 경우, 정상 동작</td>
+</tr>
+<tr>
+<td>Gemini 429 에러</td>
+<td>무료 티어 분당 한도 초과</td>
+<td><code>Utilities.sleep(4500)</code> 호출 사이 추가</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">응용 아이디어 (강의 후반 토론용)</h2>
+<ul>
+<li><strong>임원 회의 보안 강화</strong>: Sheet ID를 권한 그룹으로 잠그고 Slack은 비공개 채널만</li>
+<li><strong>다국어 회의</strong>: 프롬프트에 <code>"답변은 회의 원문 언어로"</code> 추가</li>
+<li><strong>CRM 연동</strong>: 액션의 <code>owner</code>가 영업일 경우 Salesforce/HubSpot Task로 자동 생성</li>
+<li><strong>음성 회의록</strong>: Google Meet 녹화 → Whisper API 전사 → 본 스크립트로 연결</li>
+</ul>
+</article>
+
+<aside class="related-aside">
+  <h2>이 자동화와 함께 보면 좋은 자료</h2>
+  <ul>
+    <li>→ <a href="/resources/automation/">자동화 9선 자료 허브로 돌아가기</a></li>
+    <li>→ <a href="/lectures/business-automation.html">강의 페이지: 조직 업무 자동화 실무 9선</a></li>
+    <li>→ <a href="/contact.html">조직 맞춤 워크숍 의뢰</a></li>
+  </ul>
+</aside>
+
+<footer style="max-width:780px;margin:0 auto 4rem;padding:1.5rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;font-family:'Noto Sans KR',sans-serif;">
+  <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
+</footer>
+</body>
+</html>

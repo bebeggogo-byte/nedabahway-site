@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>주간 KPI 자동 리포트 — 자동화 9선 | 네다바웨이</title>
+<meta name="description" content="AI가 변동·이상·다음 주 권고를 함께 작성한 한 장 KPI 리포트를 매주 임원진에 발송합니다.">
+<link rel="canonical" href="https://www.nedabah.org/resources/automation/planning/03-weekly-kpi-report.html">
+<meta property="og:title" content="주간 KPI 자동 리포트 — 자동화 9선">
+<meta property="og:description" content="AI가 변동·이상·다음 주 권고를 함께 작성한 한 장 KPI 리포트를 매주 임원진에 발송합니다.">
+<meta property="og:url" content="https://www.nedabah.org/resources/automation/planning/03-weekly-kpi-report.html">
+<meta property="og:type" content="article">
+<meta name="keywords" content="기획 자동화, Apps Script, Gemini, 노코드, PLAN-03">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "주간 KPI 자동 리포트",
+  "description": "AI가 변동·이상·다음 주 권고를 함께 작성한 한 장 KPI 리포트를 매주 임원진에 발송합니다.",
+  "url": "https://www.nedabah.org/resources/automation/planning/03-weekly-kpi-report.html",
+  "inLanguage": "ko-KR",
+  "tool": ["Google Apps Script","Google Sheets","Gemini API","Slack"],
+  "publisher": {"@id": "https://www.nedabah.org/#organization"}
+}
+</script>
+
+<style>
+.guide-body { font-family:'Noto Sans KR',sans-serif; line-height:1.8; color:#222; max-width:780px; margin:3rem auto; padding:0 1.5rem; }
+.guide-body h1 { font-family:'Noto Serif KR',serif; font-size:2rem; line-height:1.3; margin:.4rem 0 1rem; }
+.guide-body h2 { font-size:1.35rem; margin-top:2.5rem; padding-left:.6rem; border-left:4px solid #b45309; color:#3a322a; }
+.guide-body h3 { font-size:1.1rem; margin-top:1.6rem; color:#3a322a; }
+.guide-body h4 { font-size:1rem; margin-top:1.2rem; color:#6a604f; }
+.guide-body blockquote { background:#fbf6ec; border-left:4px solid #b45309; padding:.6rem 1.2rem; color:#3a322a; margin:1rem 0; border-radius:0 8px 8px 0; }
+.guide-body table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
+.guide-body th { background:#fbf6ec; text-align:left; padding:.55rem .7rem; border-bottom:2px solid #e5d8c4; }
+.guide-body td { padding:.5rem .7rem; border-bottom:1px solid #eee; vertical-align:top; }
+.guide-body code { background:#f3eee2; padding:.1rem .35rem; border-radius:4px; font-family:'JetBrains Mono','Menlo',monospace; font-size:.92em; }
+.guide-body pre { background:#1f1a14; color:#f5e9d4; padding:1rem 1.2rem; border-radius:8px; overflow-x:auto; line-height:1.55; font-size:.86rem; }
+.guide-body pre code { background:transparent; color:inherit; padding:0; }
+.guide-body ul, .guide-body ol { line-height:1.8; }
+.guide-body a { color:#b45309; }
+.tag-pill { display:inline-block; font-size:.72rem; letter-spacing:.14em; font-weight:700; padding:.22rem .6rem; border-radius:99px; background:#fbf6ec; color:#b45309; border:1px solid #e5d8c4; }
+.guide-meta { color:#6a604f; font-size:.92rem; margin-top:.4rem; }
+.related-aside { margin:3rem auto 4rem; max-width:780px; padding:1.6rem 1.8rem; background:#fbf6ec; border-radius:12px; }
+.related-aside h2 { margin-top:0; font-size:1.05rem; border:none; padding:0; }
+.related-aside ul { list-style:none; padding:0; line-height:2; }
+</style>
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/lectures/" class="gnav__link">강의 목록</a></li>
+      <li><a href="/resources/automation/" class="gnav__link">자동화 허브</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header style="max-width:780px;margin:3rem auto 0;padding:0 1.5rem;font-family:'Noto Sans KR',sans-serif;">
+  <p style="font-size:.78rem;color:#b45309;letter-spacing:.18em;font-weight:700;">RESOURCE · 기획 자동화 · <span class="tag-pill">PLAN-03</span></p>
+</header>
+
+<article class="guide-body">
+<h1>주간 KPI 자동 리포트</h1>
+<p class="guide-meta">AI가 변동·이상·다음 주 권고를 함께 작성한 한 장 KPI 리포트를 매주 임원진에 발송합니다.</p>
+
+<blockquote>
+<p><strong>한 줄 핵심</strong>: 흩어진 KPI 시트를 매주 월요일 새벽에 모아, AI가 변화 포인트와 다음 주 권고를 작성한 한 장 리포트로 임원진에 발송한다.</p>
+</blockquote>
+<h2 id="_1">왜 이 자동화인가</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>수동(Before)</th>
+<th>자동(After)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주간 리포트 작성</td>
+<td>3~5시간/주</td>
+<td>0분</td>
+</tr>
+<tr>
+<td>데이터 출처 일관성</td>
+<td>사람마다 다름</td>
+<td>단일 소스</td>
+</tr>
+<tr>
+<td>인사이트 깊이</td>
+<td>시간 압박으로 얕음</td>
+<td>AI가 변동·이상 자동 검출</td>
+</tr>
+<tr>
+<td>1년 시간 절감</td>
+<td>—</td>
+<td><strong>약 200시간/팀</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>적용 시나리오</strong>: 경영지원·전략기획·사업부장 보고·이사회 사전자료.</p>
+<h2 id="_2">구성요소</h2>
+<ul>
+<li>Google Sheet (KPI 원천 — 일별 적재 가정)</li>
+<li>Google Slides 또는 Gmail (리포트 출력)</li>
+<li>Apps Script + Gemini API</li>
+<li>Slack (선택)</li>
+</ul>
+<h2 id="_3">셋업 가이드</h2>
+<h3 id="step-1-kpi">Step 1. KPI 시트 형식 (예시)</h3>
+<p><strong>탭 <code>kpi_daily</code></strong>:
+| 날짜 | 지표 | 값 | 단위 | 주관 |
+|---|---|---|---|---|
+| 2026-04-28 | 신규가입 | 412 | 명 | 마케팅 |
+| 2026-04-28 | DAU | 18900 | 명 | 프로덕트 |
+| 2026-04-28 | 결제전환율 | 3.4 | % | 영업 |</p>
+<blockquote>
+<p><strong>약속</strong>: 한 행 = 한 지표의 하루 값. 시트는 "단일 truth source".</p>
+</blockquote>
+<h3 id="step-2-kpi">Step 2. KPI 정의 시트</h3>
+<p><strong>탭 <code>kpi_meta</code></strong>:
+| 지표 | 좋은방향 | 목표값 | 단위 |
+|---|---|---|---|
+| 신규가입 | up | 500 | 명 |
+| DAU | up | 20000 | 명 |
+| 결제전환율 | up | 4.0 | % |
+| 이탈율 | down | 5.0 | % |</p>
+<h3 id="step-3-apps-script-0630">Step 3. Apps Script 붙여넣기 → 트리거 매주 월요일 06:30.</h3>
+<hr>
+<h2 id="scriptgs">완성 코드 (<code>script.gs</code>)</h2>
+<pre><code class="language-javascript">const PROPS = PropertiesService.getScriptProperties();
+const GEMINI_KEY = PROPS.getProperty('GEMINI_API_KEY');
+const SHEET_ID   = PROPS.getProperty('SHEET_ID');
+const EMAIL_TO   = PROPS.getProperty('RECIPIENT_EMAIL');
+const SLACK_HOOK = PROPS.getProperty('SLACK_WEBHOOK') || '';
+
+function weeklyReport() {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  const daily = ss.getSheetByName('kpi_daily').getDataRange().getValues();
+  const meta  = ss.getSheetByName('kpi_meta').getDataRange().getValues();
+
+  const metaMap = {};
+  for (let i = 1; i &lt; meta.length; i++) {
+    metaMap[meta[i][0]] = {direction: meta[i][1], target: meta[i][2], unit: meta[i][3]};
+  }
+
+  const now = new Date();
+  const thisStart = startOfWeek(now);
+  const lastStart = new Date(thisStart.getTime() - 7*86400000);
+  const lastEnd   = new Date(thisStart.getTime() - 1);
+
+  const stats = {};
+  for (let i = 1; i &lt; daily.length; i++) {
+    const [date, indicator, value] = daily[i];
+    if (!indicator) continue;
+    const d = new Date(date);
+    stats[indicator] = stats[indicator] || {thisWeek:[], lastWeek:[]};
+    if (d &gt;= thisStart &amp;&amp; d &lt; now)        stats[indicator].thisWeek.push(Number(value));
+    else if (d &gt;= lastStart &amp;&amp; d &lt;= lastEnd) stats[indicator].lastWeek.push(Number(value));
+  }
+
+  const summary = Object.entries(stats).map(([ind, v]) =&gt; {
+    const tAvg = avg(v.thisWeek);
+    const lAvg = avg(v.lastWeek);
+    const wow  = lAvg ? ((tAvg - lAvg) / lAvg * 100) : 0;
+    const m = metaMap[ind] || {};
+    const status = judgeStatus(tAvg, m);
+    return {indicator: ind, thisAvg: tAvg, lastAvg: lAvg, wow, target: m.target, direction: m.direction, unit: m.unit, status};
+  });
+
+  const insight = aiCommentary(summary);
+  const html = buildReportHTML(summary, insight, thisStart);
+
+  if (EMAIL_TO) GmailApp.sendEmail(EMAIL_TO, `[주간] ${fmt(thisStart)} KPI 리포트`, '', {htmlBody: html});
+  if (SLACK_HOOK) UrlFetchApp.fetch(SLACK_HOOK, {
+    method: 'post', contentType: 'application/json',
+    payload: JSON.stringify({text: buildSlack(summary, insight)})
+  });
+}
+
+function startOfWeek(d) {
+  const x = new Date(d);
+  x.setHours(0,0,0,0);
+  x.setDate(x.getDate() - x.getDay() + (x.getDay() === 0 ? -6 : 1)); // 월요일 시작
+  return x;
+}
+function avg(arr) { return arr.length ? arr.reduce((a,b)=&gt;a+b,0)/arr.length : 0; }
+function fmt(d) { return d.toISOString().slice(0,10); }
+
+function judgeStatus(val, meta) {
+  if (!meta.target) return '—';
+  const reached = meta.direction === 'up' ? val &gt;= meta.target : val &lt;= meta.target;
+  return reached ? '✅ 달성' : '⚠️ 미달';
+}
+
+function aiCommentary(summary) {
+  const prompt = `
+당신은 경영진 보고를 작성하는 시니어 분석가입니다.
+다음 주간 KPI를 보고 한국어로 간결하게 작성하세요.
+
+규칙:
+- 사실만, 추측 금지
+- 5문장 이내
+- 1) 가장 좋은 변화 1건  2) 가장 우려되는 변화 1건  3) 다음 주 권고 1건
+- &quot;~합니다&quot;체
+
+데이터:
+${JSON.stringify(summary, null, 2)}
+
+JSON으로 반환:
+{&quot;highlight&quot;:&quot;...&quot;,&quot;concern&quot;:&quot;...&quot;,&quot;recommendation&quot;:&quot;...&quot;}
+`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`;
+  const res = UrlFetchApp.fetch(url, {
+    method:'post', contentType:'application/json',
+    payload: JSON.stringify({
+      contents:[{parts:[{text:prompt}]}],
+      generationConfig:{responseMimeType:'application/json'}
+    })
+  });
+  return JSON.parse(JSON.parse(res.getContentText()).candidates[0].content.parts[0].text);
+}
+
+function buildReportHTML(summary, insight, weekStart) {
+  let rows = summary.map(s =&gt; {
+    const arrow = s.wow &gt; 1 ? '🔺' : s.wow &lt; -1 ? '🔻' : '➖';
+    const wowStr = s.wow ? `${s.wow.toFixed(1)}%` : '—';
+    return `&lt;tr&gt;
+      &lt;td style=&quot;padding:.5rem;border-bottom:1px solid #eee;&quot;&gt;${s.indicator}&lt;/td&gt;
+      &lt;td style=&quot;padding:.5rem;border-bottom:1px solid #eee;text-align:right;&quot;&gt;${s.thisAvg.toFixed(1)} ${s.unit||''}&lt;/td&gt;
+      &lt;td style=&quot;padding:.5rem;border-bottom:1px solid #eee;text-align:right;&quot;&gt;${s.lastAvg.toFixed(1)}&lt;/td&gt;
+      &lt;td style=&quot;padding:.5rem;border-bottom:1px solid #eee;text-align:right;&quot;&gt;${arrow} ${wowStr}&lt;/td&gt;
+      &lt;td style=&quot;padding:.5rem;border-bottom:1px solid #eee;text-align:right;&quot;&gt;${s.target||'—'}&lt;/td&gt;
+      &lt;td style=&quot;padding:.5rem;border-bottom:1px solid #eee;&quot;&gt;${s.status}&lt;/td&gt;
+    &lt;/tr&gt;`;
+  }).join('');
+
+  return `&lt;div style=&quot;font-family:'Noto Sans KR',sans-serif;max-width:760px;line-height:1.6;color:#222;&quot;&gt;
+    &lt;h2 style=&quot;border-bottom:2px solid #b45309;padding-bottom:.5rem;&quot;&gt;주간 KPI 리포트&lt;/h2&gt;
+    &lt;p style=&quot;color:#6a604f;&quot;&gt;기준 주: ${fmt(weekStart)} ~ ${fmt(new Date())}&lt;/p&gt;
+
+    &lt;h3&gt;📌 핵심 코멘트&lt;/h3&gt;
+    &lt;p&gt;&lt;b&gt;가장 좋은 변화 — &lt;/b&gt;${insight.highlight}&lt;/p&gt;
+    &lt;p&gt;&lt;b&gt;우려 포인트 — &lt;/b&gt;${insight.concern}&lt;/p&gt;
+    &lt;p&gt;&lt;b&gt;다음 주 권고 — &lt;/b&gt;${insight.recommendation}&lt;/p&gt;
+
+    &lt;h3 style=&quot;margin-top:1.5rem;&quot;&gt;📊 지표별 표&lt;/h3&gt;
+    &lt;table style=&quot;width:100%;border-collapse:collapse;font-size:.95em;&quot;&gt;
+      &lt;thead style=&quot;background:#fbf6ec;&quot;&gt;
+        &lt;tr&gt;&lt;th style=&quot;padding:.5rem;text-align:left;&quot;&gt;지표&lt;/th&gt;
+            &lt;th style=&quot;padding:.5rem;text-align:right;&quot;&gt;이번주 평균&lt;/th&gt;
+            &lt;th style=&quot;padding:.5rem;text-align:right;&quot;&gt;지난주 평균&lt;/th&gt;
+            &lt;th style=&quot;padding:.5rem;text-align:right;&quot;&gt;WoW&lt;/th&gt;
+            &lt;th style=&quot;padding:.5rem;text-align:right;&quot;&gt;목표&lt;/th&gt;
+            &lt;th style=&quot;padding:.5rem;text-align:left;&quot;&gt;상태&lt;/th&gt;&lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;${rows}&lt;/tbody&gt;
+    &lt;/table&gt;
+    &lt;p style=&quot;color:#999;font-size:.85em;margin-top:2rem;&quot;&gt;자동 생성 · 원천 데이터: 회사 KPI 시트&lt;/p&gt;
+  &lt;/div&gt;`;
+}
+
+function buildSlack(summary, insight) {
+  const top = summary.map(s =&gt; `• ${s.indicator}: ${s.thisAvg.toFixed(1)}${s.unit||''} (${s.wow&gt;0?'+':''}${s.wow.toFixed(1)}% WoW) ${s.status}`).join('\n');
+  return `*📊 주간 KPI 리포트*\n\n${top}\n\n*하이라이트*: ${insight.highlight}\n*우려*: ${insight.concern}\n*권고*: ${insight.recommendation}`;
+}
+</code></pre>
+<hr>
+<h2 id="_4">강의 시연 포인트</h2>
+<ol>
+<li>KPI 시트의 한 셀을 일부러 큰 값으로 수정 → <code>weeklyReport()</code> 즉시 실행 → AI 코멘트가 "특정 지표 급등에 주목" 등으로 바뀌는 모습</li>
+<li><code>kpi_meta</code>의 <code>direction</code>을 <code>down</code>으로 바꿔 "이탈율 같은 부정 지표도 같은 코드로 처리됨" 시연</li>
+<li>임원에게 보낼 메일 미리보기로 "Excel 떡칠 보고서 vs 한 장 리포트" 비교</li>
+</ol>
+<h2 id="_5">트러블슈팅</h2>
+<table>
+<thead>
+<tr>
+<th>증상</th>
+<th>원인</th>
+<th>해결</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WoW가 모두 0</td>
+<td>일자가 문자열로 들어옴</td>
+<td><code>kpi_daily</code>의 날짜 컬럼 형식을 "날짜"로 강제</td>
+</tr>
+<tr>
+<td>AI 코멘트가 일반론</td>
+<td>데이터 너무 적음</td>
+<td><code>kpi_daily</code>에 최소 14일치 데이터 누적 후 사용</td>
+</tr>
+<tr>
+<td>트리거가 한 번도 안 돌아감</td>
+<td>인증 미완료</td>
+<td>Apps Script에서 한 번 수동 실행하여 권한 부여</td>
+</tr>
+<tr>
+<td>일부 지표 누락</td>
+<td>meta에 등록 안 됨</td>
+<td><code>kpi_meta</code>에 추가하지 않아도 표시되지만, 목표/상태가 비어 보임</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">응용 아이디어</h2>
+<ul>
+<li><strong>부서별 분기</strong>: 시트에 <code>부서</code> 컬럼 추가 → 부서별 메일을 다른 수신자에 발송</li>
+<li><strong>Looker Studio 연동</strong>: Apps Script가 Sheet에 적재한 결과를 Looker가 시각화</li>
+<li><strong>이상 감지 강화</strong>: 이번주 값이 표준편차 ±2σ 벗어나면 즉시 임원 알림 분리</li>
+<li><strong>OKR 연결</strong>: <code>kpi_meta</code>에 <code>okr_id</code> 컬럼 추가하여 OKR 트래킹과 통합</li>
+</ul>
+</article>
+
+<aside class="related-aside">
+  <h2>이 자동화와 함께 보면 좋은 자료</h2>
+  <ul>
+    <li>→ <a href="/resources/automation/">자동화 9선 자료 허브로 돌아가기</a></li>
+    <li>→ <a href="/lectures/business-automation.html">강의 페이지: 조직 업무 자동화 실무 9선</a></li>
+    <li>→ <a href="/contact.html">조직 맞춤 워크숍 의뢰</a></li>
+  </ul>
+</aside>
+
+<footer style="max-width:780px;margin:0 auto 4rem;padding:1.5rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;font-family:'Noto Sans KR',sans-serif;">
+  <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
+</footer>
+</body>
+</html>
