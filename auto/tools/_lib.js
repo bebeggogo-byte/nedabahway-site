@@ -175,21 +175,21 @@
 
   // SYNC: scripts/automation_meta.py CARDS — 신규 도구 추가 시 여기도 갱신
   // 형태: { slug: { name, summary, cat, level, guide(optional) } }
-  // cat: 'planning' | 'hr' | 'marketing' | 'sales' | 'ops'
+  // cat: 'create' (만들기) | 'analyze' (분석·분류)
   // level: 1=★, 2=★★, 3=★★★
   const TOOLS = {
-    'meeting-actions':   { name: '회의록 → 액션아이템',     summary: '회의록을 붙이면 결정·할일·담당자가 정리됩니다.',         cat: 'planning',  level: 1, guide: '/resources/automation/planning/01-meeting-notes-to-actions.html' },
-    'news-digest':       { name: '경쟁사·뉴스 다이제스트',  summary: '키워드 → RSS 후보 + 다이제스트 미리보기.',                cat: 'planning',  level: 2, guide: '/resources/automation/planning/02-competitor-news-digest.html' },
-    'kpi-comment':       { name: '주간 KPI 코멘트',           summary: 'KPI 표 → 변화·우려·다음 주 권고 코멘트.',                 cat: 'planning',  level: 2, guide: '/resources/automation/planning/03-weekly-kpi-report.html' },
-    'onboarding-kit':    { name: '입사자 환영 키트',           summary: '환영 메일 + 90일 체크리스트 + Slack 공지.',                cat: 'hr',        level: 2, guide: '/resources/automation/hr/01-onboarding-kit.html' },
-    'leave-summary':     { name: '휴가 신청 정리',              summary: '자유 텍스트 → 표 + 캘린더·Slack 카드.',                    cat: 'hr',        level: 3, guide: '/resources/automation/hr/02-leave-approval-workflow.html' },
-    'pulse-analysis':    { name: '설문 응답 분석',              summary: '익명 응답 → 감성·주제 + 1페이지 코멘트.',                  cat: 'hr',        level: 2, guide: '/resources/automation/hr/03-pulse-survey-sentiment.html' },
-    'resume-screening':  { name: '이력서 5분 스크리닝',       summary: '공고+이력서 → 매칭도 + 강점·우려 + 면접 질문.',             cat: 'hr',        level: 2 },
-    'content-calendar':  { name: '30일 콘텐츠 캘린더',         summary: '월 테마 → 30일치 헤드라인·후크·CTA.',                       cat: 'marketing', level: 1, guide: '/resources/automation/marketing/01-content-calendar-generator.html' },
-    'lead-scoring':      { name: '리드 스코어링',              summary: '리드 정보 → 룰+AI 점수 + 첫 응답 메시지.',                 cat: 'marketing', level: 2, guide: '/resources/automation/marketing/02-lead-scoring-router.html' },
-    'mention-classifier':{ name: '리뷰·멘션 분류기',          summary: '멘션 → 감성·주제 + 부정 멘션 즉시 강조.',                  cat: 'marketing', level: 2, guide: '/resources/automation/marketing/03-review-mention-digest.html' },
-    'sales-followup':    { name: '세일즈 콜 후속 메일',        summary: '미팅 메모 → 후속 메일 + 다음 단계 + 일정 제안.',           cat: 'sales',     level: 1 },
-    'mail-reply-drafter':{ name: '메일 답장 초안기',           summary: '받은 메일 + 톤 → 한 줄·짧은·자세한 답장 3종.',             cat: 'ops',       level: 1 },
+    'meeting-actions':   { name: '회의록 → 액션아이템',     summary: '회의록을 붙이면 결정·할일·담당자가 정리됩니다.',         cat: 'create',    level: 1, guide: '/resources/automation/planning/01-meeting-notes-to-actions.html' },
+    'news-digest':       { name: '경쟁사·뉴스 다이제스트',  summary: '키워드 → RSS 후보 + 다이제스트 미리보기.',                cat: 'create',    level: 2, guide: '/resources/automation/planning/02-competitor-news-digest.html' },
+    'kpi-comment':       { name: '주간 KPI 코멘트',           summary: 'KPI 표 → 변화·우려·다음 주 권고 코멘트.',                 cat: 'create',    level: 2, guide: '/resources/automation/planning/03-weekly-kpi-report.html' },
+    'onboarding-kit':    { name: '입사자 환영 키트',           summary: '환영 메일 + 90일 체크리스트 + Slack 공지.',                cat: 'create',    level: 2, guide: '/resources/automation/hr/01-onboarding-kit.html' },
+    'leave-summary':     { name: '휴가 신청 정리',              summary: '자유 텍스트 → 표 + 캘린더·Slack 카드.',                    cat: 'create',    level: 3, guide: '/resources/automation/hr/02-leave-approval-workflow.html' },
+    'pulse-analysis':    { name: '설문 응답 분석',              summary: '익명 응답 → 감성·주제 + 1페이지 코멘트.',                  cat: 'analyze',   level: 2, guide: '/resources/automation/hr/03-pulse-survey-sentiment.html' },
+    'resume-screening':  { name: '이력서 5분 스크리닝',       summary: '공고+이력서 → 매칭도 + 강점·우려 + 면접 질문.',             cat: 'analyze',   level: 2 },
+    'content-calendar':  { name: '30일 콘텐츠 캘린더',         summary: '월 테마 → 30일치 헤드라인·후크·CTA.',                       cat: 'create',    level: 1, guide: '/resources/automation/marketing/01-content-calendar-generator.html' },
+    'lead-scoring':      { name: '리드 스코어링',              summary: '리드 정보 → 룰+AI 점수 + 첫 응답 메시지.',                 cat: 'analyze',   level: 2, guide: '/resources/automation/marketing/02-lead-scoring-router.html' },
+    'mention-classifier':{ name: '리뷰·멘션 분류기',          summary: '멘션 → 감성·주제 + 부정 멘션 즉시 강조.',                  cat: 'analyze',   level: 2, guide: '/resources/automation/marketing/03-review-mention-digest.html' },
+    'sales-followup':    { name: '세일즈 콜 후속 메일',        summary: '미팅 메모 → 후속 메일 + 다음 단계 + 일정 제안.',           cat: 'create',    level: 1 },
+    'mail-reply-drafter':{ name: '메일 답장 초안기',           summary: '받은 메일 + 톤 → 한 줄·짧은·자세한 답장 3종.',             cat: 'create',    level: 1 },
   };
 
   const HISTORY_KEY = 'mz:history';
