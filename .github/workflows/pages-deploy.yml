@@ -1,0 +1,63 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.moai/state/**'
+      - '_archive_v2/**'
+      - '_archive_magazine_old/**'
+      - 'quant/**'
+      - 'swarm/**'
+      - 'trading/**'
+      - 'vault/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Prepare static artifact
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Strip non-public directories
+        run: |
+          rm -rf _archive_v2 _archive_magazine_old node_modules .moai .claude
+          rm -rf quant swarm trading vault .devtools .github-pending
+          rm -rf resources/_console resources/_data resources/_build _build
+          rm -rf blog/perspective/_archive_v2_20 blog/perspective/perspective_old_129
+          rm -f .ai-hooks.yml .editorconfig .stylelintrc.json .htmlhintrc .prettierrc.json .prettierignore
+          rm -f .lighthouserc.json .pa11yci.json lychee.toml package.json package-lock.json
+          rm -f capacitor.config.json
+          ls -la | head -30
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

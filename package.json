@@ -1,9 +1,18 @@
 {
-  "name": "classic-fm-app",
+  "name": "nedabahway-site",
   "version": "1.0.0",
   "private": true,
-  "description": "KBS 클래식FM 지역별 주파수 모바일 앱 (PWA + Capacitor)",
+  "description": "네다바웨이 — 직업의 속성은 이타성이다. 진로·AI·리더십·퍼실리테이션 1인 교육 작업실 (PWA + Capacitor + 정적 사이트)",
   "scripts": {
+    "lint:html": "htmlhint '**/*.html' --ignore '_archive_v2/**,_archive_magazine_old/**,node_modules/**,.moai/**,.claude/**,resources/_console/**,resources/_data/**,resources/_build/**,blog/perspective/_archive_v2_20/**,blog/perspective/perspective_old_129/**'",
+    "lint:css": "stylelint '**/*.css' --allow-empty-input",
+    "lint:format": "prettier --check '**/*.{html,css,md,json}'",
+    "lint": "npm run lint:html && npm run lint:css",
+    "lint:fix": "prettier --write '**/*.{html,css,md,json}'",
+    "links": "lychee --config lychee.toml --no-progress --include-fragments .",
+    "a11y": "pa11y-ci --config .pa11yci.json",
+    "lighthouse": "lhci autorun",
+    "qa": "npm run lint && npm run links && npm run a11y",
     "sync": "cap sync",
     "ios": "cap open ios",
     "android": "cap open android",
@@ -18,6 +27,12 @@
     "@capacitor/ios": "^6.1.2"
   },
   "devDependencies": {
-    "@capacitor/cli": "^6.1.2"
+    "@capacitor/cli": "^6.1.2",
+    "@lhci/cli": "^0.14.0",
+    "htmlhint": "^1.1.4",
+    "pa11y-ci": "^3.1.0",
+    "prettier": "^3.3.3",
+    "stylelint": "^16.10.0",
+    "stylelint-config-standard": "^36.0.1"
   }
 }

@@ -29,71 +29,13 @@
   ]
 }
 </script>
-<style>
-:root{--c-bg:#FAFAF7;--c-fg:#1A1A1A;--c-mute:#5B5B5B;--c-dim:#E8E6E0;--c-acc:#a4541a;--c-acc2:#7a4317;--c-paper:#f7f3ec;--c-line:#d8cdb8;--c-ink:#2a241c;--ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;--ff-serif:'Noto Serif KR',serif}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased;font-size:16px}
-a{color:var(--c-acc);text-decoration:none}
-a:hover{text-decoration:underline}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-
-/* Header */
-.lineup-hero{background:linear-gradient(180deg,#fff 0%,var(--c-paper) 100%);padding:88px 0 56px;border-bottom:1px solid var(--c-dim)}
-.kicker{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--c-acc);margin-bottom:14px;display:inline-block}
-.h1{font-family:var(--ff-serif);font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.2;letter-spacing:-.03em;color:var(--c-ink);text-wrap:balance}
-.lead{font-size:1.08rem;color:#3a322a;max-width:64ch;line-height:1.85;margin-top:18px}
-
-/* Filter chip strip */
-.filter-strip{margin-top:28px;display:flex;gap:8px;flex-wrap:wrap}
-.filter-chip{padding:8px 16px;background:#fff;border:1px solid var(--c-line);border-radius:999px;font-size:.85rem;color:var(--c-ink);font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
-.filter-chip:hover{border-color:var(--c-acc);color:var(--c-acc)}
-.filter-chip.is-on{background:var(--c-acc);color:#fff;border-color:var(--c-acc)}
-
-/* Lineup grid */
-.lineup-grid{padding:64px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
-.prog-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--c-line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
-.prog-card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(164,84,26,.12);border-color:var(--c-acc);text-decoration:none}
-.prog-card__head{padding:24px 24px 16px;border-bottom:1px solid var(--c-dim);background:var(--c-paper)}
-.prog-card__num{font-family:ui-monospace,monospace;font-size:.72rem;color:var(--c-mute);letter-spacing:.12em;font-weight:700}
-.prog-card__name{font-family:var(--ff-serif);font-size:1.4rem;font-weight:800;color:var(--c-ink);line-height:1.3;letter-spacing:-.02em;margin-top:6px;text-wrap:balance}
-.prog-card__body{padding:20px 24px;flex:1;display:flex;flex-direction:column;gap:14px}
-.prog-card__row{display:grid;grid-template-columns:64px 1fr;gap:12px;font-size:.88rem;line-height:1.55}
-.prog-card__label{color:var(--c-mute);font-weight:700;letter-spacing:.04em}
-.prog-card__val{color:var(--c-ink)}
-.prog-card__val b{color:var(--c-acc)}
-.prog-card__hook{margin-top:8px;padding:12px 14px;background:var(--c-paper);border-left:3px solid var(--c-acc);border-radius:0 6px 6px 0;font-size:.92rem;line-height:1.65;color:#3a322a}
-.prog-card__foot{padding:16px 24px;border-top:1px solid var(--c-dim);display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--c-mute)}
-.prog-card__price{font-family:var(--ff-serif);font-size:1.2rem;font-weight:800;color:var(--c-acc)}
-.prog-card__arrow{color:var(--c-acc);font-weight:700;transition:transform .2s}
-.prog-card:hover .prog-card__arrow{transform:translateX(4px)}
-
-/* Compare table (sticky reference) */
-.compare-section{padding:64px 0;background:var(--c-paper);border-top:1px solid var(--c-dim);border-bottom:1px solid var(--c-dim)}
-.h2{font-family:var(--ff-serif);font-size:clamp(1.4rem,3.5vw,2rem);font-weight:800;line-height:1.3;letter-spacing:-.02em;color:var(--c-ink);margin-bottom:20px;text-wrap:balance}
-.compare-table-wrap{overflow-x:auto;margin-top:28px}
-.compare-table{width:100%;border-collapse:collapse;font-size:.9rem;background:#fff;border:1px solid var(--c-line);border-radius:10px;overflow:hidden;min-width:720px}
-.compare-table th,.compare-table td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--c-dim);vertical-align:top}
-.compare-table thead th{background:var(--c-paper);font-weight:700;color:var(--c-ink);font-size:.82rem;letter-spacing:.04em;text-transform:uppercase}
-.compare-table tbody tr:last-child td{border-bottom:none}
-.compare-table tbody tr:hover{background:rgba(164,84,26,.04)}
-.compare-table .price{font-weight:800;color:var(--c-acc);font-family:var(--ff-serif)}
-
-/* CTA bottom */
-.cta-bottom{padding:72px 0 88px;text-align:center}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:8px;font-weight:700;font-size:.96rem;border:none;cursor:pointer;font-family:inherit;transition:transform .15s,background .15s}
-.btn--primary{background:var(--c-acc);color:#fff}
-.btn--primary:hover{background:var(--c-acc2);text-decoration:none;transform:translateY(-1px)}
-.btn--ghost{background:#fff;border:1px solid var(--c-line);color:var(--c-ink)}
-.btn--ghost:hover{border-color:var(--c-acc);color:var(--c-acc);text-decoration:none}
-.cta-bottom .btn-row{display:inline-flex;gap:12px;flex-wrap:wrap;margin-top:24px;justify-content:center}
-
-@media(max-width:680px){
-  .prog-card__row{grid-template-columns:56px 1fr;font-size:.85rem}
-}
-</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/p-v2.css">
 </head>
-<body>
+<body class="p-scope">
 
 <nav class="gnav" role="navigation" aria-label="주요 메뉴">
   <div class="gnav__inner">
@@ -109,7 +51,7 @@ a:hover{text-decoration:underline}
   </div>
 </nav>
 
-<header class="lineup-hero">
+<header class="lineup-hero" data-reveal>
   <div class="wrap">
     <div class="kicker">Programs · 네다바웨이 1:1 5트랙</div>
     <h1 class="h1" data-copy="COPY-LINEUP-HERO-H1">한 사람을 향한 1:1, 다섯 자리.</h1>
@@ -126,7 +68,7 @@ a:hover{text-decoration:underline}
 </header>
 
 <main class="wrap">
-  <section class="lineup-grid" id="lineup">
+  <section class="lineup-grid" data-reveal id="lineup">
 
     <a href="/p/starcp.html" class="prog-card" data-cat="consultant">
       <div class="prog-card__head">
@@ -220,7 +162,7 @@ a:hover{text-decoration:underline}
 
   </section>
 
-  <section class="compare-section">
+  <section class="compare-section" data-reveal>
     <div class="wrap">
       <div class="kicker">Compare · 한눈에 비교</div>
       <h2 class="h2" data-copy="COPY-LINEUP-CMP-H2">5트랙을 한 줄에 놓고 봅니다.</h2>
@@ -248,7 +190,7 @@ a:hover{text-decoration:underline}
     </div>
   </section>
 
-  <section class="cta-bottom">
+  <section class="cta-bottom" data-reveal>
     <div class="wrap">
       <div class="kicker">고민 중이라면</div>
       <h2 class="h2" data-copy="COPY-LINEUP-CTA-H2">먼저 30분, 어느 트랙이 본인 자리인지 같이 봅니다.</h2>
@@ -281,6 +223,20 @@ document.querySelectorAll('.filter-chip').forEach(chip => {
     });
   });
 });
+</script>
+
+<script>
+// p-v2 reveal observer — 무료, 외부 의존성 없음
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  const els = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('is-revealed'); io.unobserve(e.target); }
+    });
+  },{rootMargin:'-40px 0px',threshold:0.1});
+  els.forEach(el=>io.observe(el));
+})();
 </script>
 
 </body>

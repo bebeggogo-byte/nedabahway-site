@@ -32,77 +32,13 @@
   }
 }
 </script>
-<style>
-:root{--c-bg:#FAFAF7;--c-fg:#1A1A1A;--c-mute:#5B5B5B;--c-dim:#E8E6E0;--c-acc:#a4541a;--c-acc2:#7a4317;--c-paper:#f7f3ec;--c-line:#d8cdb8;--c-ink:#2a241c;--ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;--ff-serif:'Noto Serif KR',serif}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased;font-size:16px}
-a{color:var(--c-acc);text-decoration:none}
-a:hover{text-decoration:underline}
-.wrap{max-width:880px;margin:0 auto;padding:0 24px}
-.section{padding:72px 0;border-bottom:1px solid var(--c-dim)}
-.section:last-child{border-bottom:none}
-.kicker{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--c-acc);margin-bottom:14px;display:inline-block}
-.h1{font-family:var(--ff-serif);font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.2;letter-spacing:-.03em;color:var(--c-ink);text-wrap:balance}
-.h2{font-family:var(--ff-serif);font-size:clamp(1.4rem,3.5vw,2rem);font-weight:800;line-height:1.3;letter-spacing:-.02em;color:var(--c-ink);margin-bottom:20px;text-wrap:balance}
-.lead{font-size:1.08rem;color:#3a322a;max-width:60ch;line-height:1.85;margin-top:18px}
-.body{font-size:1rem;color:#3a322a;line-height:1.8;max-width:62ch}
-.body+.body{margin-top:14px}
-.hero{background:linear-gradient(180deg,#fff 0%,var(--c-paper) 100%);padding:88px 0 64px}
-.hero__cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:8px;font-weight:700;font-size:.96rem;border:none;cursor:pointer;transition:transform .15s,background .15s;font-family:inherit}
-.btn--primary{background:var(--c-acc);color:#fff}
-.btn--primary:hover{background:var(--c-acc2);text-decoration:none;transform:translateY(-1px)}
-.btn--ghost{background:#fff;border:1px solid var(--c-line);color:var(--c-ink)}
-.btn--ghost:hover{border-color:var(--c-acc);color:var(--c-acc);text-decoration:none}
-.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:28px}
-.pain-card{background:#fff;border:1px solid var(--c-line);border-left:3px solid var(--c-acc);border-radius:8px;padding:20px 22px}
-.pain-card .num{font-family:var(--ff-serif);font-weight:700;color:var(--c-acc);font-size:.95rem}
-.pain-card .text{font-size:.95rem;color:#3a322a;line-height:1.7;margin-top:8px}
-.quote{margin-top:28px;padding:22px 24px;background:var(--c-paper);border-left:3px solid var(--c-acc);border-radius:0 8px 8px 0;font-family:var(--ff-serif);font-size:1.05rem;line-height:1.75;color:var(--c-ink);font-style:italic}
-.quote__cite{display:block;margin-top:14px;font-style:normal;font-size:.85rem;color:var(--c-mute)}
-.axis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
-.axis-card{background:#fff;border:1px solid var(--c-line);border-radius:10px;padding:24px 20px;border-top:3px solid var(--c-acc)}
-.axis-card .label{font-family:var(--ff-serif);font-size:1.4rem;font-weight:800;color:var(--c-acc);margin-bottom:8px}
-.axis-card .desc{font-size:.92rem;color:#3a322a;line-height:1.7}
-@media(max-width:680px){.axis-grid{grid-template-columns:1fr}}
-.auth-list{display:grid;gap:12px;margin-top:28px}
-.auth-item{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:14px 18px;background:#fff;border:1px solid var(--c-line);border-radius:8px;font-size:.95rem;line-height:1.65}
-.auth-item .check{color:var(--c-acc);font-weight:800}
-.auth-item b{color:var(--c-ink)}
-.curr-table{margin-top:28px;border:1px solid var(--c-line);border-radius:10px;overflow:hidden}
-.curr-row{display:grid;grid-template-columns:80px 1fr 2fr;gap:16px;padding:16px 20px;border-bottom:1px solid var(--c-dim);align-items:start;font-size:.95rem}
-.curr-row:last-child{border-bottom:none}
-.curr-row:nth-child(even){background:var(--c-paper)}
-.curr-row .week{font-family:var(--ff-serif);font-weight:800;color:var(--c-acc);font-size:.92rem}
-.curr-row .title{font-weight:700;color:var(--c-ink)}
-.curr-row .detail{color:#3a322a;line-height:1.65}
-@media(max-width:680px){.curr-row{grid-template-columns:1fr;gap:6px}}
-.cmp-table{margin-top:28px;width:100%;border-collapse:collapse;font-size:.92rem;background:#fff;border:1px solid var(--c-line);border-radius:10px;overflow:hidden}
-.cmp-table th,.cmp-table td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--c-dim);vertical-align:top}
-.cmp-table thead th{background:var(--c-paper);font-weight:700;color:var(--c-ink);font-size:.85rem;letter-spacing:.04em;text-transform:uppercase}
-.cmp-table tbody tr:last-child td{border-bottom:none}
-.cmp-table .cmp-mine{background:rgba(164,84,26,.06);font-weight:700;color:var(--c-ink)}
-.price-card{margin-top:28px;background:linear-gradient(135deg,var(--c-acc) 0%,var(--c-acc2) 100%);color:#fff;border-radius:14px;padding:36px 32px}
-.price-card .price{font-family:var(--ff-serif);font-size:3rem;font-weight:800;line-height:1;letter-spacing:-.02em;margin:8px 0 4px}
-.price-card .price-meta{font-size:.92rem;opacity:.85;margin-bottom:22px}
-.price-card .roi{padding:16px 18px;background:rgba(255,255,255,.12);border-radius:8px;font-size:.95rem;line-height:1.7;margin-top:16px}
-.faq{margin-top:28px}
-.faq-item{border:1px solid var(--c-line);border-radius:8px;background:#fff;margin-bottom:10px;overflow:hidden}
-.faq-item summary{cursor:pointer;padding:16px 20px;font-weight:700;color:var(--c-ink);font-size:.98rem;list-style:none;position:relative;padding-right:48px}
-.faq-item summary::after{content:'+';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:1.4rem;color:var(--c-acc);font-weight:600;line-height:1}
-.faq-item[open] summary::after{content:'−'}
-.faq-item summary::-webkit-details-marker{display:none}
-.faq-item .answer{padding:0 20px 20px;color:#3a322a;line-height:1.8;font-size:.95rem}
-.scarcity{margin-top:28px;padding:24px 26px;background:#fff;border:1px solid var(--c-acc);border-radius:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px}
-.scarcity__cell .num{font-family:var(--ff-serif);font-size:1.8rem;font-weight:800;color:var(--c-acc);line-height:1.2}
-.scarcity__cell .label{font-size:.82rem;color:var(--c-mute);margin-top:4px}
-.cta-final{background:var(--c-paper);text-align:center;padding:72px 24px}
-.cta-final .lead{margin:18px auto 0;text-align:center}
-.cta-final .btn-row{display:inline-flex;gap:12px;flex-wrap:wrap;margin-top:32px;justify-content:center}
-</style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/p-v2.css">
 </head>
-<body>
+<body class="p-scope">
 
 <nav class="gnav" role="navigation" aria-label="주요 메뉴">
   <div class="gnav__inner">
@@ -119,7 +55,7 @@ a:hover{text-decoration:underline}
 </nav>
 
 <!-- §1 HERO -->
-<header class="section hero">
+<header class="section hero" data-reveal>
   <div class="wrap">
     <div class="kicker">Program 04 · 창직·1인 사업자 1:1</div>
     <h1 class="h1" data-copy="COPY-CHANG-HERO-H1">아이디어가 아니라, 한 사람의 결핍에서 시작합니다.</h1>
@@ -132,7 +68,7 @@ a:hover{text-decoration:underline}
 </header>
 
 <!-- §2 PAIN -->
-<section class="section">
+<section class="section" data-reveal>
   <div class="wrap">
     <div class="kicker">Pain · 창직 도전자의 통증</div>
     <h2 class="h2" data-copy="COPY-CHANG-PAIN-H2">아이디어는 있는데, 첫 고객이 안 나옵니다.</h2>
@@ -145,7 +81,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- §3 DIAGNOSIS -->
-<section class="section">
+<section class="section" data-reveal>
   <div class="wrap">
     <div class="kicker">Diagnosis · 진단</div>
     <h2 class="h2" data-copy="COPY-CHANG-DIAG-H2">아이디어보다 결핍, 검증보다 인터뷰입니다.</h2>
@@ -158,7 +94,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- §4 SOLUTION -->
-<section class="section">
+<section class="section" data-reveal>
   <div class="wrap">
     <div class="kicker">Solution · STARCP + 린 캔버스</div>
     <h2 class="h2" data-copy="COPY-CHANG-SOL-H2">결핍에서 MVP까지, 12주 한 사이클.</h2>
@@ -172,7 +108,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- §5 AUTHORITY -->
-<section class="section">
+<section class="section" data-reveal>
   <div class="wrap">
     <div class="kicker">Authority · 누가 동행하는가</div>
     <h2 class="h2" data-copy="COPY-CHANG-AUTH-H2">1인 사업자 본인이, 본인 길을 만들어가는 중.</h2>
@@ -186,7 +122,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- §6 PROOF -->
-<section class="section">
+<section class="section" data-reveal>
   <div class="wrap">
     <div class="kicker">Proof · 변화의 결</div>
     <h2 class="h2" data-copy="COPY-CHANG-PROOF-H2">12주 끝에 가지고 가는 것.</h2>
@@ -195,7 +131,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- §7 CURRICULUM -->
-<section class="section" id="curriculum">
+<section class="section" data-reveal id="curriculum">
   <div class="wrap">
     <div class="kicker">Curriculum · 1:1 12주</div>
     <h2 class="h2" data-copy="COPY-CHANG-CURR-H2">12주, 사업 좌표·MVP·첫 5명 고객.</h2>
@@ -218,7 +154,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- §8 COMPARISON -->
-<section class="section">
+<section class="section" data-reveal>
   <div class="wrap">
     <div class="kicker">Compare · 일반 창업 멘토링과 다른 길</div>
     <h2 class="h2" data-copy="COPY-CHANG-CMP-H2">아이디어→투자가 아니라, 결핍→인터뷰→MVP.</h2>
@@ -236,7 +172,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- §9 PRICING -->
-<section class="section">
+<section class="section" data-reveal>
   <div class="wrap">
     <div class="kicker">Pricing · 가격과 회수</div>
     <h2 class="h2" data-copy="COPY-CHANG-PRICE-H2">첫 고객 5명을 만들면, 다음 6개월의 길이 보입니다.</h2>
@@ -250,7 +186,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- §10 FAQ -->
-<section class="section">
+<section class="section" data-reveal>
   <div class="wrap">
     <div class="kicker">FAQ · 자주 묻는 질문</div>
     <h2 class="h2" data-copy="COPY-CHANG-FAQ-H2">신청 전 가장 많이 받는 다섯 가지.</h2>
@@ -265,7 +201,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- §11 SCARCITY -->
-<section class="section">
+<section class="section" data-reveal>
   <div class="wrap">
     <div class="kicker">진행 가능 슬롯 · 1:1 한정</div>
     <h2 class="h2" data-copy="COPY-CHANG-SCAR-H2">동시 진행은 4명까지입니다.</h2>
@@ -280,7 +216,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- §12 CTA FINAL -->
-<section class="section cta-final" id="cta-final">
+<section class="section cta-final" data-reveal id="cta-final">
   <div class="wrap">
     <div class="kicker">신청 흐름</div>
     <h2 class="h2" data-copy="COPY-CHANG-CTA-H2">먼저 30분, 사업의 자리를 같이 봅니다.</h2>
@@ -299,6 +235,20 @@ a:hover{text-decoration:underline}
     <span>고유번호 <strong style="color:#2a241c">137-82-94771</strong></span>
   </div>
 </footer>
+
+<script>
+// p-v2 reveal observer — 무료, 외부 의존성 없음
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  const els = document.querySelectorAll('[data-reveal]');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('is-revealed'); io.unobserve(e.target); }
+    });
+  },{rootMargin:'-40px 0px',threshold:0.1});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
 
 </body>
 </html>

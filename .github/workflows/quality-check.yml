@@ -1,0 +1,167 @@
+name: Quality Check
+
+on:
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - '_archive_v2/**'
+      - '_archive_magazine_old/**'
+      - '.moai/state/**'
+      - 'quant/**'
+      - 'swarm/**'
+      - 'trading/**'
+      - 'vault/**'
+      - '**/*.md'
+  push:
+    branches: [main]
+    paths-ignore:
+      - '_archive_v2/**'
+      - '_archive_magazine_old/**'
+      - '.moai/state/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  html-css-format:
+    name: HTML / CSS / Format
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dev dependencies
+        run: npm install --no-audit --no-fund --prefer-offline
+
+      - name: HTML lint (htmlhint)
+        run: npm run lint:html
+
+      - name: CSS lint (stylelint)
+        run: npm run lint:css
+
+      - name: Format check (prettier — non-blocking)
+        run: npm run lint:format || echo "::warning::Prettier formatting issues detected (non-blocking). Run 'npm run lint:fix' locally."
+
+  link-check:
+    name: Internal Link Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lychee link check
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config lychee.toml --no-progress --include-fragments .
+          fail: true
+          jobSummary: true
+
+  accessibility:
+    name: Accessibility (pa11y WCAG2AA)
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install pa11y-ci + http-server
+        run: npm install --no-audit --no-fund --prefer-offline pa11y-ci http-server
+
+      - name: Start static server
+        run: npx http-server . -p 8080 -s &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:8080/p/index.html --timeout 30000
+
+      - name: Run pa11y-ci on /p/* pages
+        run: npx pa11y-ci --config .pa11yci.json
+
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pa11y-screenshots
+          path: tmp/
+          if-no-files-found: ignore
+
+  schema-jsonld:
+    name: JSON-LD Schema Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate JSON-LD blocks in /p/*.html
+        run: |
+          python3 - <<'EOF'
+          import json, re, sys, pathlib
+          fail = False
+          for f in pathlib.Path("p").glob("*.html"):
+              text = f.read_text(encoding="utf-8")
+              blocks = re.findall(r'<script type="application/ld\+json">\s*(\{.*?\})\s*</script>', text, re.DOTALL)
+              if not blocks:
+                  print(f"::error file={f}::No JSON-LD found")
+                  fail = True
+                  continue
+              for i, b in enumerate(blocks):
+                  try:
+                      data = json.loads(b)
+                      if "@context" not in data:
+                          print(f"::warning file={f}::Block #{i+1} missing @context")
+                      if "@type" not in data and "@graph" not in data:
+                          print(f"::warning file={f}::Block #{i+1} missing @type or @graph")
+                  except json.JSONDecodeError as e:
+                      print(f"::error file={f}::Block #{i+1} invalid JSON: {e}")
+                      fail = True
+              print(f"OK {f}: {len(blocks)} JSON-LD block(s)")
+          sys.exit(1 if fail else 0)
+          EOF
+
+  copy-marker-coverage:
+    name: Copy Marker Coverage (data-copy)
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify all data-copy markers are documented in copy-handoff.md
+        run: |
+          set -e
+          echo "Counting data-copy markers in /p/*.html..."
+          MARKERS=$(grep -ohE 'data-copy="[A-Z0-9-]+"' p/*.html | sort -u)
+          MISSING=0
+          while IFS= read -r marker; do
+              ID=$(echo "$marker" | sed -E 's/data-copy="([A-Z0-9-]+)"/\1/')
+              if ! grep -q "$ID" .moai/copy-handoff.md; then
+                  echo "::warning::Marker $ID not referenced in .moai/copy-handoff.md"
+                  MISSING=$((MISSING + 1))
+              fi
+          done <<< "$MARKERS"
+          TOTAL=$(echo "$MARKERS" | wc -l)
+          echo "Total unique markers: $TOTAL"
+          echo "Undocumented: $MISSING"
+          if [ "$MISSING" -gt 0 ]; then
+              echo "::warning::$MISSING markers not yet documented in copy-handoff.md (non-blocking — informational)"
+          fi
