@@ -1,14 +1,14 @@
 name: Lighthouse CI
 
+# Lighthouse는 advisory 도구로만 운영. PR 자동 실행 없음.
+# 실 WCAG 차단은 quality-check.yml의 Pa11y CI가 담당.
+# 수동 감사 시 Actions UI에서 "Run workflow" 또는 main 머지 후 자동 실행.
 on:
-  pull_request:
+  push:
     branches: [main]
     paths:
       - 'p/**'
-      - 'assets/**'
-      - '**/*.html'
-      - '!_archive_v2/**'
-      - '!_archive_magazine_old/**'
+      - 'assets/p-v2.css'
   workflow_dispatch:
 
 permissions:
