@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>최근 결과 | 네다바웨이</title>
+<meta name="description" content="이 단말의 브라우저에 저장된 최근 도구 결과를 다시 봅니다. 다른 기기에서는 보이지 않습니다.">
+<link rel="canonical" href="https://www.nedabah.org/auto/history/">
+<meta property="og:title" content="최근 결과 — 네다바웨이">
+<meta property="og:description" content="이 단말의 브라우저에 저장된 최근 도구 결과를 다시 봅니다.">
+<meta property="og:url" content="https://www.nedabah.org/auto/history/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.nedabah.org/assets/og/history.svg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.nedabah.org/assets/og/history.svg">
+<link rel="stylesheet" href="/auto/tools/_style.css">
+<style>
+  .hist-hero { margin:0 0 1.4rem; }
+  .hist-hero h1 { font-family:'Noto Serif KR',serif; font-size:1.9rem; line-height:1.25; margin:.2rem 0 .4rem; }
+  .hist-hero p { font-size:.95rem; color:var(--muted); margin:0; }
+
+  .hist-controls { display:flex; gap:.6rem; align-items:center; flex-wrap:wrap; margin:1rem 0 1.4rem; padding:.7rem .9rem; background:var(--bg); border:1px solid var(--line); border-radius:8px; }
+  .hist-controls label { font-size:.85rem; color:var(--muted); }
+  .hist-controls select { padding:.4rem .6rem; border:1px solid var(--line); border-radius:6px; font-family:inherit; font-size:.88rem; background:#fff; }
+  .hist-controls .clear { margin-left:auto; padding:.4rem .85rem; background:#fff; border:1px solid var(--line); border-radius:6px; color:#a8410e; font-size:.85rem; cursor:pointer; }
+  .hist-controls .clear:hover { background:#fdecec; border-color:#a8410e; }
+  .hist-count { font-size:.82rem; color:var(--muted); }
+
+  .hist-list { display:flex; flex-direction:column; gap:.7rem; }
+  .hist-card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:.95rem 1.1rem; }
+  .hist-card__head { display:flex; justify-content:space-between; align-items:baseline; gap:.5rem; flex-wrap:wrap; margin-bottom:.4rem; }
+  .hist-card__tool { font-size:.78rem; letter-spacing:.06em; font-weight:700; color:var(--accent); }
+  .hist-card__time { font-size:.78rem; color:var(--muted); }
+  .hist-card__title { font-size:.98rem; margin:.2rem 0; color:var(--ink); font-weight:600; }
+  .hist-card__preview { font-size:.88rem; color:var(--muted); line-height:1.55; margin:.3rem 0 .8rem; word-break:keep-all; }
+  .hist-card__actions { display:flex; gap:.4rem; flex-wrap:wrap; }
+  .hist-card__actions button, .hist-card__actions a { padding:.3rem .65rem; font-size:.78rem; font-weight:600; background:#fff; border:1px solid var(--line); border-radius:5px; color:var(--ink); cursor:pointer; text-decoration:none; }
+  .hist-card__actions button:hover, .hist-card__actions a:hover { background:#fff8e8; border-color:var(--accent); color:var(--accent); }
+  .hist-card__actions button.is-done { background:#2f7a3d; color:#fff; border-color:#2f7a3d; }
+  .hist-card__actions .danger { color:#a8410e; }
+  .hist-card__actions .danger:hover { background:#fdecec; border-color:#a8410e; color:#a8410e; }
+
+  .hist-empty { padding:2.5rem 1.5rem; text-align:center; background:var(--bg); border:2px dashed var(--line); border-radius:12px; color:var(--muted); }
+  .hist-empty a { color:var(--accent); font-weight:700; }
+</style>
+</head>
+<body>
+<nav class="gnav" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/auto/tools/" class="gnav__link">도구 모음</a></li>
+      <li><a href="/auto/start/" class="gnav__link">시작하기</a></li>
+      <li><a href="/privacy.html" class="gnav__link">개인정보</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="tool-shell">
+
+<header class="hist-hero">
+  <p style="font-size:.78rem;color:var(--accent);letter-spacing:.18em;font-weight:700;">RECENT RESULTS</p>
+  <h1>최근 결과</h1>
+  <p>이 단말의 브라우저에만 저장됩니다. 다른 기기에서는 보이지 않습니다. 최근 30개까지.</p>
+</header>
+
+<div class="hist-controls" id="histControls" style="display:none;">
+  <label for="histFilter">도구 필터</label>
+  <select id="histFilter"><option value="">전체</option></select>
+  <span class="hist-count" id="histCount"></span>
+  <button class="clear" type="button" id="histClear">전부 지우기</button>
+</div>
+
+<div id="histRoot" class="hist-list"></div>
+
+</main>
+
+<footer class="foot">
+  <p>김창환 · 네다바웨이 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a> · <a href="/privacy.html">개인정보</a></p>
+</footer>
+
+<script src="/auto/tools/_lib.js" defer></script>
+<script src="/assets/share-bar.js" defer></script>
+<script defer>
+(function () {
+  const HISTORY_KEY = 'mz:history';
+
+  // 도구 slug → 한글명 (Batch 2 _lib.js TOOLS와 동기화 — sync source는 _lib.js)
+  const TOOL_NAMES = {
+    'meeting-actions':   '회의록 → 액션아이템',
+    'news-digest':       '경쟁사·뉴스 다이제스트',
+    'kpi-comment':       '주간 KPI 코멘트',
+    'onboarding-kit':    '입사자 환영 키트',
+    'leave-summary':     '휴가 신청 정리',
+    'pulse-analysis':    '설문 응답 분석',
+    'resume-screening':  '이력서 5분 스크리닝',
+    'content-calendar':  '30일 콘텐츠 캘린더',
+    'lead-scoring':      '리드 스코어링',
+    'mention-classifier':'리뷰·멘션 분류기',
+    'sales-followup':    '세일즈 콜 후속 메일',
+    'mail-reply-drafter':'메일 답장 초안기',
+  };
+
+  const $root = document.getElementById('histRoot');
+  const $filter = document.getElementById('histFilter');
+  const $count = document.getElementById('histCount');
+  const $controls = document.getElementById('histControls');
+  const $clear = document.getElementById('histClear');
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function load() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+      return Array.isArray(raw) ? raw : [];
+    } catch (_) { return []; }
+  }
+  function save(arr) {
+    try { localStorage.setItem(HISTORY_KEY, JSON.stringify(arr)); } catch (_) { /* swallow */ }
+  }
+
+  function relTime(iso) {
+    const t = new Date(iso).getTime();
+    if (isNaN(t)) return '';
+    const sec = Math.max(0, Math.floor((Date.now() - t) / 1000));
+    if (sec < 60) return '방금 전';
+    if (sec < 3600) return Math.floor(sec/60) + '분 전';
+    if (sec < 86400) return Math.floor(sec/3600) + '시간 전';
+    if (sec < 86400*2) return '어제';
+    if (sec < 86400*7) return Math.floor(sec/86400) + '일 전';
+    return new Date(iso).toLocaleDateString('ko-KR');
+  }
+
+  async function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.cssText = 'position:absolute;left:-9999px';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } finally { document.body.removeChild(ta); }
+    }
+  }
+
+  function render() {
+    const all = load();
+    if (!all.length) {
+      $controls.style.display = 'none';
+      $root.innerHTML = '<div class="hist-empty">아직 저장된 결과가 없습니다. 도구를 한 번 써 보세요 → <a href="/auto/tools/">도구 모음</a></div>';
+      return;
+    }
+    // 필터 옵션 갱신 (히스토리에 등장한 slug만)
+    const slugs = Array.from(new Set(all.map(e => e.slug))).sort();
+    const cur = $filter.value;
+    $filter.innerHTML = '<option value="">전체 (' + all.length + ')</option>' +
+      slugs.map(s => {
+        const cnt = all.filter(e => e.slug === s).length;
+        const label = (TOOL_NAMES[s] || s) + ' (' + cnt + ')';
+        return '<option value="' + escapeHtml(s) + '"' + (s === cur ? ' selected' : '') + '>' + escapeHtml(label) + '</option>';
+      }).join('');
+
+    const filter = $filter.value;
+    const items = filter ? all.filter(e => e.slug === filter) : all;
+    $count.textContent = items.length + '개';
+    $controls.style.display = 'flex';
+
+    $root.innerHTML = items.map(e => {
+      const toolName = TOOL_NAMES[e.slug] || e.slug;
+      return `<div class="hist-card" data-id="${escapeHtml(e.id)}">
+        <div class="hist-card__head">
+          <span class="hist-card__tool">${escapeHtml(toolName)}</span>
+          <span class="hist-card__time">${escapeHtml(relTime(e.ts))}</span>
+        </div>
+        <div class="hist-card__title">${escapeHtml(e.title || '')}</div>
+        <p class="hist-card__preview">${escapeHtml(e.preview || '')}${(e.preview || '').length >= 120 ? '…' : ''}</p>
+        <div class="hist-card__actions">
+          <button type="button" data-act="copy">📋 전체 복사</button>
+          <a href="/auto/tools/${escapeHtml(e.slug)}/">🔗 도구 다시 열기</a>
+          <button type="button" class="danger" data-act="delete">🗑 이 항목 삭제</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  $filter.addEventListener('change', render);
+
+  $clear.addEventListener('click', () => {
+    if (!confirm('저장된 결과 ' + load().length + '개를 모두 삭제할까요? 되돌릴 수 없습니다.')) return;
+    try { localStorage.removeItem(HISTORY_KEY); } catch (_) {}
+    $filter.value = '';
+    render();
+  });
+
+  $root.addEventListener('click', async (ev) => {
+    const btn = ev.target.closest('[data-act]');
+    if (!btn) return;
+    const card = btn.closest('.hist-card');
+    if (!card) return;
+    const id = card.dataset.id;
+    const act = btn.dataset.act;
+    const all = load();
+    const entry = all.find(e => e.id === id);
+    if (!entry) return;
+
+    if (act === 'copy') {
+      try {
+        await copyToClipboard(entry.fullText || entry.preview || '');
+        const orig = btn.textContent;
+        btn.textContent = '복사됨 ✓';
+        btn.classList.add('is-done');
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove('is-done'); }, 1600);
+      } catch (_) { alert('복사에 실패했습니다.'); }
+    } else if (act === 'delete') {
+      if (!confirm('이 결과 1건을 삭제할까요?')) return;
+      save(all.filter(e => e.id !== id));
+      render();
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
