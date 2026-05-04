@@ -110,9 +110,12 @@
 <li>Google Form (휴가 신청)</li>
 <li>Google Sheet (응답 + 잔여 잔고 + 마스터)</li>
 <li>Google Calendar (전사 휴가 캘린더)</li>
-<li>Slack App (Bot Token + Block Kit) — <code>chat.postMessage</code> + <code>chat.update</code></li>
-<li>Apps Script Web App (Slack 인터랙션 콜백 수신)</li>
+<li>Slack App (Bot Token + Block Kit) — <code>chat.postMessage</code>로 승인 카드 발송, 인터랙션 응답은 doPost 응답 본문의 <code>replace_original</code> 으로 처리(별도 <code>chat.update</code> 호출 불필요)</li>
+<li>Apps Script Web App (Slack 인터랙션 콜백 수신) + 설치형 onEdit 트리거(비동기 후속 작업)</li>
 </ul>
+<blockquote>
+<p><strong>운영 보안 권고</strong>: 본 가이드는 강의 시연·소규모 팀 사용을 전제로 합니다. 외부에서 임의로 <code>doPost</code> URL을 호출해 위조 페이로드를 보낼 가능성이 있으므로, 프로덕션에서는 Slack의 <code>X-Slack-Signature</code> 헤더와 <code>Slack Signing Secret</code>으로 HMAC 검증을 추가하세요. 검증 패턴은 가이드 끝 "응용 아이디어"에 요약되어 있습니다.</p>
+</blockquote>
 <h2 id="_3">셋업 가이드</h2>
 <h3 id="step-1-google-form">Step 1. Google Form</h3>
 <p>필수 질문:
@@ -264,7 +267,9 @@ function jsonResponse(obj) {
 function onApprovalStatusChange(e) {
   if (!e || !e.range) return;
   const sheet = e.range.getSheet();
-  if (sheet.getName() !== SpreadsheetApp.openById(SHEET_ID).getSheets()[0].getName()) return;
+  // 트리거는 폼 응답 시트(첫 시트)의 메타 컬럼 변화만 처리한다.
+  // 시트 인덱스 비교(getIndex === 1)가 이름 비교보다 가벼워 추가 openById 호출이 불필요하다.
+  if (sheet.getIndex() !== 1) return;
   const lastCol = sheet.getLastColumn();
   if (e.range.getColumn() !== lastCol) return; // 메타 컬럼만 감시
 
@@ -401,6 +406,25 @@ function fmt(d) { return new Date(d).toISOString().slice(0,10); }
 <li><strong>공휴일 보정</strong>: <code>calcDays</code>에서 공공API(공휴일 RSS)로 주말·공휴일 제외</li>
 <li><strong>이상 신청 감지</strong>: 같은 직원이 단기간 반복 신청할 때 HR에 부드러운 알림</li>
 </ul>
+<h3 id="slack-hmac">프로덕션 보강: Slack 서명 검증 (HMAC)</h3>
+<p>운영 환경에서는 외부 위조 페이로드를 차단하기 위해 <code>doPost</code> 진입 직후 Slack 서명 검증을 수행하세요. Slack App 관리 화면 → Basic Information → <strong>Signing Secret</strong>을 발급받아 스크립트 속성 <code>SLACK_SIGNING_SECRET</code>에 저장한 뒤, 다음 가드를 코드 최상단에 추가합니다.</p>
+<pre><code class="language-javascript">function verifySlackSignature(e) {
+  const secret = PROPS.getProperty('SLACK_SIGNING_SECRET');
+  if (!secret) return true; // 셋업 안 했으면 검증 생략 (개발용)
+  const ts  = e.parameter['X-Slack-Request-Timestamp'] || e.headers &amp;&amp; e.headers['X-Slack-Request-Timestamp'];
+  const sig = e.parameter['X-Slack-Signature']         || e.headers &amp;&amp; e.headers['X-Slack-Signature'];
+  if (!ts || !sig) return false;
+  // 5분 이상 지난 요청은 재전송 공격 가능성으로 거부
+  if (Math.abs(Date.now()/1000 - Number(ts)) &gt; 300) return false;
+  const base = `v0:${ts}:${e.postData &amp;&amp; e.postData.contents || ''}`;
+  const mac  = Utilities.computeHmacSha256Signature(base, secret)
+    .map(b =&gt; ('0' + (b &amp; 0xff).toString(16)).slice(-2)).join('');
+  return `v0=${mac}` === sig;
+}
+</code></pre>
+<blockquote>
+<p>Apps Script Web App은 표준 헤더 접근에 제한이 있어 Slack이 보내는 서명 정보를 캡처하려면 별도 프록시(Cloud Functions, Cloudflare Worker 등)를 두는 패턴이 가장 안전합니다. 강의에서는 "왜 검증이 필요한지·어디서 막을지"를 토론 주제로 다루고, 실제 코드 추가는 후속 워크숍에서 다룹니다.</p>
+</blockquote>
 </article>
 
 <aside class="related-aside">
