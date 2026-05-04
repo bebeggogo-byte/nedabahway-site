@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>경쟁사·뉴스 다이제스트 미리보기 | 네다바웨이</title>
+<meta name="description" content="키워드를 입력하면 모니터링할 RSS 후보와 다이제스트 출력 형식을 미리 보여줍니다. 헤드라인을 붙여넣어 바로 요약본을 만들 수도 있습니다.">
+<link rel="canonical" href="https://www.nedabah.org/auto/tools/news-digest/">
+<meta property="og:title" content="경쟁사·뉴스 다이제스트 미리보기"><meta property="og:description" content="키워드 → RSS 후보 + 다이제스트 형식, 헤드라인 → 즉시 요약본.">
+<meta property="og:url" content="https://www.nedabah.org/auto/tools/news-digest/"><meta property="og:type" content="website">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg"><meta property="og:locale" content="ko_KR">
+<link rel="stylesheet" href="/auto/tools/_style.css">
+</head>
+<body>
+<nav class="gnav" aria-label="주요 메뉴"><div class="gnav__inner"><a href="/" class="gnav__logo">네다바웨이</a>
+<ul class="gnav__links"><li><a href="/auto/tools/" class="gnav__link">도구 모음</a></li><li><a href="/auto/" class="gnav__link">자료 허브</a></li><li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li></ul></div></nav>
+
+<main class="tool-shell">
+  <p class="crumb"><a href="/auto/tools/">← 도구 모음</a> · PLAN-02</p>
+  <div class="tool-header">
+    <h1>경쟁사·뉴스 다이제스트 미리보기</h1>
+    <p class="lead">키워드를 입력하면 <strong>모니터링할 RSS·뉴스 소스 후보</strong>와 <strong>일일 다이제스트가 어떤 모습일지</strong> 미리 보여줍니다. 직접 모은 헤드라인을 붙여넣으면 바로 요약본을 받을 수 있습니다.</p>
+  </div>
+  <div class="tool-pills"><span class="pill accent">난이도 ★★</span><span class="pill">소요 20초</span></div>
+
+  <div id="mz-key-box" class="key-box"></div>
+
+  <div class="field">
+    <label for="keywords">모니터링 키워드 <small>· 쉼표로 구분, 5개 이내 권장</small></label>
+    <input id="keywords" type="text" placeholder="예: 토스, 핀테크, BNPL, 우리회사명">
+  </div>
+  <div class="field">
+    <label for="headlines">헤드라인 + 요약 <small>· 선택 — 직접 모은 뉴스가 있다면 한 줄당 한 건씩 붙여넣기</small></label>
+    <textarea id="headlines" rows="9" placeholder="예: 토스, 1분기 영업이익 흑자 전환 — 2년 만에 분기 흑자&#10;핀테크 규제 샌드박스 8개 신규 지정 — 핀테크진흥원&#10;..."></textarea>
+  </div>
+
+  <div class="run-row">
+    <button class="btn-go" id="runBtn"><span class="spin"></span><span class="label">다이제스트 미리보기</span></button>
+  </div>
+
+  <div id="result"><div class="result-empty">결과가 여기에 나타납니다.</div></div>
+
+  <aside class="next-aside">
+    <h2>매일 새벽 자동 수집 + 메일 발송하려면</h2>
+    <p><a href="/resources/automation/planning/02-competitor-news-digest.html" style="display:inline-block;background:var(--ink);color:#fbf6ec;padding:.7rem 1.2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.92rem;">자동화로 만들기 →</a></p>
+  </aside>
+</main>
+
+<footer class="foot"><p>김창환 · 네다바웨이 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p></footer>
+
+<script src="/auto/tools/_lib.js" defer></script>
+<script src="/assets/share-bar.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = (id) => document.getElementById(id);
+
+  $('runBtn').addEventListener('click', async () => {
+    const kw = $('keywords').value.trim();
+    if (!kw) { alert('키워드를 1개 이상 입력하세요.'); return; }
+    const keywords = kw.split(',').map(s => s.trim()).filter(Boolean);
+    const headlines = $('headlines').value.trim();
+
+    const result = $('result');
+    result.innerHTML = '<div class="result-empty">RSS 후보와 다이제스트 미리보기 생성 중...</div>';
+    MZ.setLoading($('runBtn'), true);
+
+    const prompt = `당신은 한국 시장 경쟁 인텔리전스 분석가입니다.
+
+키워드: ${keywords.join(', ')}
+
+${headlines ? `사용자가 직접 모은 헤드라인 (각 줄에 1건):\n"""\n${headlines}\n"""` : ''}
+
+JSON만 반환:
+{
+  "rssCandidates": [
+    {"keyword":"토스","url":"https://news.google.com/rss/search?q=토스&hl=ko&gl=KR&ceid=KR:ko","note":"Google News 한국어 일별 신선"},
+    ...
+  ],
+  ${headlines ? `"summarized": [{"title":"...","summary":"한 줄 요약, ~다체"}],` : `"sample": [{"title":"가상의 헤드라인 — 자연스러운 톤","summary":"한 줄 요약, ~다체"}],`}
+  "digestEmailSubject": "데일리 다이제스트 메일 제목 (오늘 날짜 포함)",
+  "digestEmailBody": "메일 본문 (HTML, 카테고리 헤더 + 항목 목록 + 한 줄 코멘트, <p><h3><ul><li><a> 만 사용)"
+}
+
+규칙:
+- rssCandidates: 키워드별 1~2개 후보. Google News RSS와 네이버 검색 RSS 패턴 권장.
+- ${headlines ? 'summarized: 입력 헤드라인 수와 동일' : 'sample: 키워드별 가상의 헤드라인 1개씩 (자연스러운 한국어, 톤은 사실적·중립적)'}
+- 코멘트는 사실만, 추측 금지`;
+
+    try {
+      const data = await MZ.generate(prompt, { maxOutputTokens: 4096 });
+      renderDigest(result, data, keywords);
+    } catch (e) {
+      MZ.renderError(result, e);
+    } finally {
+      MZ.setLoading($('runBtn'), false);
+    }
+  });
+
+  function renderDigest(target, data, keywords) {
+    const wrap = document.createElement('div');
+    const items = data.summarized || data.sample || [];
+    wrap.innerHTML = `
+      <h5 style="margin:.4rem 0 .3rem;">🔗 모니터링할 RSS 후보</h5>
+      <ul>${(data.rssCandidates||[]).map(c => `
+        <li><strong>${MZ.escapeHtml(c.keyword)}</strong> — <code style="font-size:.82rem;">${MZ.escapeHtml(c.url)}</code><br><span style="color:var(--muted);font-size:.85em;">${MZ.escapeHtml(c.note || '')}</span></li>
+      `).join('')}</ul>
+
+      <h5 style="margin:1.2rem 0 .3rem;">📰 ${data.summarized ? '요약된' : '샘플'} 헤드라인</h5>
+      <ul>${items.map(it => `<li><strong>${MZ.escapeHtml(it.title)}</strong><br><span style="color:var(--muted);font-size:.9em;">${MZ.escapeHtml(it.summary || '')}</span></li>`).join('')}</ul>
+
+      <h5 style="margin:1.2rem 0 .3rem;">📧 다이제스트 메일 미리보기</h5>
+      <p style="background:var(--bg);padding:.6rem .9rem;border-radius:6px;"><strong>제목: </strong>${MZ.escapeHtml(data.digestEmailSubject || '')}</p>
+      <div style="border:1px solid var(--line);border-radius:8px;padding:1rem 1.2rem;background:#fff;">${data.digestEmailBody || ''}</div>
+    `;
+    MZ.renderResult(target, {
+      title: `${keywords.join(' · ')} 다이제스트`,
+      body: wrap,
+      actions: [
+        { label: '📋 RSS URL 복사', run: async () => MZ.copyText((data.rssCandidates||[]).map(c => `${c.keyword}: ${c.url}`).join('\n')) },
+        { label: '📧 메일 HTML 복사', run: async () => MZ.copyText(data.digestEmailBody || '') },
+        { label: '⬇️ JSON', run: async () => MZ.downloadFile('news-digest-preview.json', JSON.stringify(data, null, 2), 'application/json') },
+      ]
+    });
+  }
+});
+</script>
+</body>
+</html>

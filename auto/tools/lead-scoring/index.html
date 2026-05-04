@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>리드 스코어링 도구 | 네다바웨이</title>
+<meta name="description" content="문의 리드 정보를 입력하면 룰 기반 점수와 AI 평가를 합산해 Hot/Warm/Cold 등급과 24시간 내 응답 권고까지 즉시 산출합니다.">
+<link rel="canonical" href="https://www.nedabah.org/auto/tools/lead-scoring/">
+<meta property="og:title" content="리드 스코어링 도구"><meta property="og:description" content="리드 정보를 넣으면 점수·등급·응답 권고가 즉시 출력됩니다.">
+<meta property="og:url" content="https://www.nedabah.org/auto/tools/lead-scoring/"><meta property="og:type" content="website">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg"><meta property="og:locale" content="ko_KR">
+<link rel="stylesheet" href="/auto/tools/_style.css">
+</head>
+<body>
+<nav class="gnav" aria-label="주요 메뉴"><div class="gnav__inner"><a href="/" class="gnav__logo">네다바웨이</a>
+<ul class="gnav__links"><li><a href="/auto/tools/" class="gnav__link">도구 모음</a></li><li><a href="/auto/" class="gnav__link">자료 허브</a></li><li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li></ul></div></nav>
+
+<main class="tool-shell">
+  <p class="crumb"><a href="/auto/tools/">← 도구 모음</a> · MKT-02</p>
+  <div class="tool-header">
+    <h1>리드 스코어링 도구</h1>
+    <p class="lead">문의 리드 정보를 입력하면 <strong>룰 기반 점수(60%) + AI 평가(40%)를 합산</strong>해 Hot/Warm/Cold 등급, 핵심 코멘트, 24시간 내 응답 권고 여부, 영업 담당자용 첫 메시지 초안까지 즉시 받습니다.</p>
+  </div>
+  <div class="tool-pills"><span class="pill accent">난이도 ★★</span><span class="pill">소요 15초</span></div>
+
+  <div id="mz-key-box" class="key-box"></div>
+
+  <div class="field-row">
+    <div class="field"><label for="company">회사·소속</label><input id="company" type="text" placeholder="대한컴퍼니"></div>
+    <div class="field"><label for="name">담당자 이름</label><input id="name" type="text" placeholder="홍길동"></div>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="job">직무</label>
+      <select id="job"><option>대표</option><option>임원</option><option>부서장</option><option selected>실무자</option><option>기타</option></select>
+    </div>
+    <div class="field">
+      <label for="hc">직원 수</label>
+      <select id="hc"><option>1~10</option><option selected>11~50</option><option>51~200</option><option>200+</option></select>
+    </div>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="budget">예상 예산</label>
+      <select id="budget"><option>1천만 미만</option><option selected>1천~5천</option><option>5천~1억</option><option>1억+</option></select>
+    </div>
+    <div class="field">
+      <label for="timing">희망 시작</label>
+      <select id="timing"><option>즉시</option><option selected>1개월</option><option>3개월</option><option>미정</option></select>
+    </div>
+  </div>
+  <div class="field">
+    <label for="content">의뢰 내용</label>
+    <textarea id="content" rows="6" placeholder="예: 분기 OKR 워크숍과 1on1 코칭을 동시에 도입하려고 합니다. 기존 워크숍이 형식적이라 평가가 낮아서 새 접근이 필요합니다. 임원진 6명 + 매니저 12명 대상으로 ..."></textarea>
+  </div>
+
+  <div class="run-row">
+    <button class="btn-go" id="runBtn"><span class="spin"></span><span class="label">스코어링하기</span></button>
+  </div>
+
+  <div id="result"><div class="result-empty">결과가 여기에 나타납니다.</div></div>
+
+  <aside class="next-aside">
+    <h2>이걸 폼 인입 → 자동 배정으로 만들려면</h2>
+    <p><a href="/resources/automation/marketing/02-lead-scoring-router.html" style="display:inline-block;background:var(--ink);color:#fbf6ec;padding:.7rem 1.2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.92rem;">자동화로 만들기 →</a></p>
+  </aside>
+</main>
+
+<footer class="foot"><p>김창환 · 네다바웨이 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p></footer>
+
+<script src="/auto/tools/_lib.js" defer></script>
+<script src="/assets/share-bar.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = (id) => document.getElementById(id);
+
+  // 룰 점수 (가이드 MKT-02와 동일)
+  const RULES = [
+    ['직무=대표', 30, (l) => l.job === '대표'],
+    ['직무=임원', 20, (l) => l.job === '임원'],
+    ['직무=실무자', 5, (l) => l.job === '실무자'],
+    ['예산>=1억', 35, (l) => l.budget === '1억+'],
+    ['예산 5천~1억', 25, (l) => l.budget === '5천~1억'],
+    ['예산 1천~5천', 12, (l) => l.budget === '1천~5천'],
+    ['직원 200+', 15, (l) => l.hc === '200+'],
+    ['시작=즉시', 20, (l) => l.timing === '즉시'],
+    ['시작=1개월', 10, (l) => l.timing === '1개월'],
+  ];
+
+  $('runBtn').addEventListener('click', async () => {
+    const lead = {
+      company: $('company').value.trim() || '미상',
+      name: $('name').value.trim() || '미상',
+      job: $('job').value, hc: $('hc').value, budget: $('budget').value, timing: $('timing').value,
+      content: $('content').value.trim(),
+    };
+    if (!lead.content) { alert('의뢰 내용을 입력하세요.'); return; }
+
+    const result = $('result');
+    result.innerHTML = '<div class="result-empty">AI가 적합성 평가 중...</div>';
+    MZ.setLoading($('runBtn'), true);
+
+    // 룰 점수
+    const fired = RULES.filter(([_, __, fn]) => fn(lead));
+    const ruleScore = fired.reduce((s, [_, v]) => s + v, 0);
+
+    const prompt = `당신은 B2B 세일즈 코치입니다. 다음 리드의 구매 의향과 솔루션 적합성을 평가하세요.
+
+리드:
+- 회사: ${lead.company} / 이름: ${lead.name}
+- 직무: ${lead.job} / 직원: ${lead.hc} / 예산: ${lead.budget} / 시작: ${lead.timing}
+- 의뢰: """${lead.content}"""
+
+JSON만 반환:
+{
+  "score": 0~100 정수,
+  "comment": "영업 담당자에게 도움될 핵심 한 문장",
+  "urgent": true|false,
+  "firstMessage": "담당자가 보낼 첫 답장 메시지 4~6문장 한국어, 따뜻·구체"
+}
+
+규칙: 우리 솔루션 적합성이 낮으면 50 미만. 추측 금지.`;
+
+    try {
+      const ai = await MZ.generate(prompt);
+      const final = Math.min(100, Math.round(ruleScore * 0.6 + (ai.score || 0) * 0.4));
+      const grade = final >= 70 ? 'HOT' : final >= 40 ? 'WARM' : 'COLD';
+      renderScore(result, { lead, ruleScore, fired, ai, final, grade });
+    } catch (e) {
+      MZ.renderError(result, e);
+    } finally {
+      MZ.setLoading($('runBtn'), false);
+    }
+  });
+
+  function renderScore(target, r) {
+    const gradeColor = r.grade === 'HOT' ? '#a8410e' : r.grade === 'WARM' ? '#d97706' : '#6a604f';
+    const gradeBg = r.grade === 'HOT' ? '#f0d6c8' : r.grade === 'WARM' ? '#fbe9c5' : '#ece1cd';
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `
+      <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem;">
+        <div style="background:${gradeBg};color:${gradeColor};padding:.6rem 1.2rem;border-radius:8px;font-weight:800;font-size:1.4rem;letter-spacing:.05em;">${r.grade} · ${r.final}점</div>
+        <div style="font-size:.86rem;color:var(--muted);">룰 ${r.ruleScore}점 · AI ${r.ai.score}점 (가중평균: 60/40)${r.ai.urgent ? ' · ⏰ 24h 내 응답 권고' : ''}</div>
+      </div>
+      <p><strong>📝 AI 코멘트</strong> — ${MZ.escapeHtml(r.ai.comment || '')}</p>
+
+      <h5 style="margin:1.2rem 0 .3rem;">발동된 룰</h5>
+      <ul>${r.fired.map(([n, v]) => `<li>${MZ.escapeHtml(n)} → +${v}점</li>`).join('') || '<li><em>해당 룰 없음</em></li>'}</ul>
+
+      <h5 style="margin:1.2rem 0 .3rem;">📧 첫 응답 메시지 초안</h5>
+      <pre style="white-space:pre-wrap;color:#fbf6ec;background:#3a322a;font-family:'Noto Sans KR',sans-serif;font-size:.92rem;line-height:1.7;">${MZ.escapeHtml(r.ai.firstMessage || '')}</pre>
+    `;
+    MZ.renderResult(target, {
+      title: `${r.lead.company} / ${r.lead.name}`,
+      body: wrap,
+      actions: [
+        { label: '📋 첫 메시지 복사', run: async () => MZ.copyText(r.ai.firstMessage || '') },
+        { label: '💬 Slack 카드', run: async () => {
+          const emoji = r.grade === 'HOT' ? '🔥' : r.grade === 'WARM' ? '⚠️' : '📭';
+          const txt = `${emoji} *${r.grade} 리드 (${r.final}점)* — ${r.lead.company}\n• 담당: ${r.lead.name} (${r.lead.job}, ${r.lead.hc})\n• 예산: ${r.lead.budget} / 시작: ${r.lead.timing}\n• AI 코멘트: ${r.ai.comment}${r.ai.urgent ? '\n• :alarm_clock: 24h 내 응답 권고' : ''}\n• 의뢰: ${r.lead.content.slice(0,300)}${r.lead.content.length > 300 ? '...' : ''}`;
+          await MZ.copyText(txt);
+        }},
+        { label: '⬇️ JSON', run: async () => MZ.downloadFile('lead-score.json', JSON.stringify(r, null, 2), 'application/json') },
+      ]
+    });
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>30일 콘텐츠 캘린더 생성기 | 네다바웨이</title>
+<meta name="description" content="월 테마 한 줄과 채널만 입력하면 30일치 헤드라인·후크·CTA·해시태그를 자동 생성합니다. CSV로 가져갈 수 있습니다.">
+<link rel="canonical" href="https://www.nedabah.org/auto/tools/content-calendar/">
+<meta property="og:title" content="30일 콘텐츠 캘린더 생성기">
+<meta property="og:description" content="월 테마와 채널만 입력하면 30일치 헤드라인·후크·CTA·해시태그까지 자동 생성.">
+<meta property="og:url" content="https://www.nedabah.org/auto/tools/content-calendar/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/auto/tools/_style.css">
+</head>
+<body>
+<nav class="gnav" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/auto/tools/" class="gnav__link">도구 모음</a></li>
+      <li><a href="/auto/" class="gnav__link">자료 허브</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="tool-shell">
+  <p class="crumb"><a href="/auto/tools/">← 도구 모음</a> · MKT-01</p>
+  <div class="tool-header">
+    <h1>30일 콘텐츠 캘린더 생성기</h1>
+    <p class="lead">월 테마 + 채널 + 톤만 입력하면 <strong>30일치 채널별 헤드라인·후크·본문 가이드·CTA·해시태그</strong>를 한 번에 만들어 표로 정리합니다. CSV로 가져갈 수 있습니다.</p>
+  </div>
+  <div class="tool-pills">
+    <span class="pill accent">난이도 ★</span><span class="pill">소요 30~60초</span><span class="pill">CSV 다운로드</span>
+  </div>
+
+  <div id="mz-key-box" class="key-box"></div>
+
+  <div class="field">
+    <label for="theme">월 테마 <small>· 한 줄로</small></label>
+    <input id="theme" type="text" placeholder="예: 6월 — 직장인 자기계발 시작하기">
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="business">비즈니스</label>
+      <input id="business" type="text" placeholder="예: 1인 컨설턴트 / SaaS 스타트업">
+    </div>
+    <div class="field">
+      <label for="target">타깃</label>
+      <input id="target" type="text" placeholder="예: 30대 직장인, 자기계발 시작 단계">
+    </div>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="channels">채널 <small>· 쉼표</small></label>
+      <input id="channels" type="text" placeholder="블로그, 인스타그램, 링크드인, 뉴스레터" value="블로그, 인스타그램, 링크드인, 뉴스레터">
+    </div>
+    <div class="field">
+      <label for="tone">톤</label>
+      <input id="tone" type="text" placeholder="따뜻하고 단정한, 거품 없는" value="따뜻하고 단정한, 거품 없는">
+    </div>
+  </div>
+  <div class="field-row">
+    <div class="field">
+      <label for="startDate">시작일</label>
+      <input id="startDate" type="date">
+    </div>
+    <div class="field">
+      <label for="pillars">콘텐츠 기둥 <small>· 쉼표, 선택</small></label>
+      <input id="pillars" type="text" placeholder="마인드셋, 실전 케이스, 도구 사용법, Q&A, 자기 사례" value="마인드셋, 실전 케이스, 도구 사용법, Q&A, 자기 사례">
+    </div>
+  </div>
+
+  <div class="run-row">
+    <button class="btn-go" id="runBtn"><span class="spin"></span><span class="label">30일 캘린더 만들기</span></button>
+    <span class="example-row">평균 30~60초 소요. 결과 표는 그대로 복사하거나 CSV로 받을 수 있습니다.</span>
+  </div>
+
+  <div id="result">
+    <div class="result-empty">결과가 여기에 나타납니다. 위 항목을 채우고 버튼을 누르세요.</div>
+  </div>
+
+  <aside class="next-aside">
+    <h2>이 캘린더를 매월 자동으로 받고 싶다면</h2>
+    <p>지금 만든 결과는 1회용입니다. 매월 1일에 자동으로 새 캘린더를 받으려면 동일한 로직을 Apps Script로 옮기세요.</p>
+    <p><a href="/resources/automation/marketing/01-content-calendar-generator.html" style="display:inline-block;background:var(--ink);color:#fbf6ec;padding:.7rem 1.2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.92rem;">이걸 매월 자동화로 만들기 →</a></p>
+  </aside>
+</main>
+
+<footer class="foot"><p>김창환 · 네다바웨이 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p></footer>
+
+<script src="/auto/tools/_lib.js" defer></script>
+<script src="/assets/share-bar.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = (id) => document.getElementById(id);
+  // default startDate = today
+  const t = new Date(); t.setMinutes(t.getMinutes() - t.getTimezoneOffset());
+  $('startDate').value = t.toISOString().slice(0, 10);
+
+  $('runBtn').addEventListener('click', async () => {
+    const theme = $('theme').value.trim();
+    if (!theme) { alert('월 테마를 입력하세요.'); return; }
+
+    const channels = $('channels').value.split(',').map(s => s.trim()).filter(Boolean);
+    if (!channels.length) { alert('채널을 한 개 이상 입력하세요.'); return; }
+    const pillars = $('pillars').value.split(',').map(s => s.trim()).filter(Boolean);
+
+    const result = $('result');
+    result.innerHTML = '<div class="result-empty">AI가 30일치 캘린더를 만드는 중... 30~60초 소요됩니다.</div>';
+    MZ.setLoading($('runBtn'), true);
+
+    const prompt = `당신은 시니어 콘텐츠 디렉터입니다. 다음 정보로 30일 콘텐츠 캘린더를 작성하세요.
+JSON 배열만 반환(설명·markdown 금지).
+
+월 테마: ${theme}
+비즈니스: ${$('business').value || '특정되지 않음'}
+타깃: ${$('target').value || '일반 직장인'}
+채널: ${channels.join(', ')}
+톤: ${$('tone').value || '단정한, 거품 없는'}
+시작일: ${$('startDate').value}
+콘텐츠 기둥: ${pillars.length ? pillars.join(', ') : '자유'}
+
+규칙:
+- 시작일부터 30일, 하루 1~2건 (총 30~40건)
+- 채널 특성별 톤·형식 분기 (블로그=long, 인스타=짧은 후크+이미지, 링크드인=인사이트, 뉴스레터=주제 묶음)
+- 헤드라인 12~22자, 후크 1문장, 본문 가이드 50자 이내, CTA 명확히, 해시태그 3~6개
+- 자기과시·과장 금지
+
+[{"date":"YYYY-MM-DD","channel":"채널","format":"long|short|image|reel|email","headline":"...","hook":"...","body":"...","cta":"...","hashtags":["..."]}]`;
+
+    try {
+      const items = await MZ.generate(prompt, { maxOutputTokens: 8192 });
+      if (!Array.isArray(items) || items.length === 0) {
+        throw Object.assign(new Error('EMPTY'), { userMessage: '생성된 항목이 없습니다. 테마를 더 구체적으로 다시 시도하세요.' });
+      }
+      renderCalendar(result, items);
+    } catch (e) {
+      MZ.renderError(result, e);
+    } finally {
+      MZ.setLoading($('runBtn'), false);
+    }
+  });
+
+  function renderCalendar(target, items) {
+    const rows = items.map((it, i) => `
+      <tr>
+        <td style="text-align:center;color:var(--muted);font-variant-numeric:tabular-nums;">${i+1}</td>
+        <td style="white-space:nowrap;">${MZ.escapeHtml(it.date||'')}</td>
+        <td><span class="pill" style="font-size:.7rem;">${MZ.escapeHtml(it.channel||'')}</span></td>
+        <td><strong>${MZ.escapeHtml(it.headline||'')}</strong><br><span style="color:var(--muted);font-size:.85em;">${MZ.escapeHtml(it.hook||'')}</span></td>
+        <td style="font-size:.85em;color:var(--muted);">${MZ.escapeHtml(it.cta||'')}<br>${MZ.escapeHtml((it.hashtags||[]).join(' '))}</td>
+      </tr>
+    `).join('');
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `
+      <p style="margin:.2rem 0 .8rem;color:var(--muted);font-size:.88rem;">${items.length}건 생성 · 채널 ${[...new Set(items.map(i=>i.channel))].join('·')}</p>
+      <div style="overflow-x:auto;"><table>
+        <thead><tr><th style="width:32px;">#</th><th>날짜</th><th>채널</th><th>헤드라인 · 후크</th><th>CTA · 태그</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>
+    `;
+
+    MZ.renderResult(target, {
+      title: `30일 캘린더 ${items.length}건`,
+      body: wrap,
+      actions: [
+        {
+          label: '⬇️ CSV (Excel)',
+          run: async () => {
+            const rows = [['#','날짜','채널','형식','헤드라인','후크','본문 가이드','CTA','해시태그']];
+            items.forEach((it, i) => rows.push([i+1, it.date||'', it.channel||'', it.format||'', it.headline||'', it.hook||'', it.body||'', it.cta||'', (it.hashtags||[]).join(' ')]));
+            MZ.downloadFile('content-calendar-30d.csv', '﻿' + MZ.toCSV(rows), 'text/csv;charset=utf-8');
+          }
+        },
+        {
+          label: '⬇️ JSON',
+          run: async () => MZ.downloadFile('content-calendar-30d.json', JSON.stringify(items, null, 2), 'application/json'),
+        },
+        {
+          label: '📋 표 텍스트 복사',
+          run: async () => {
+            const lines = items.map((it, i) => `${i+1}. ${it.date} · ${it.channel} · ${it.headline} — ${it.hook} | CTA: ${it.cta}`);
+            await MZ.copyText(lines.join('\n'));
+          }
+        },
+      ]
+    });
+  }
+});
+</script>
+</body>
+</html>

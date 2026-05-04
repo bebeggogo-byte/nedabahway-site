@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>입사자 환영 키트 만들기 | 네다바웨이</title>
+<meta name="description" content="이름·부서·입사일을 입력하면 환영 메일과 90일 체크리스트를 자동으로 만들어 가져갑니다.">
+<link rel="canonical" href="https://www.nedabah.org/auto/tools/onboarding-kit/">
+<meta property="og:title" content="입사자 환영 키트 만들기"><meta property="og:description" content="입사자 정보를 넣으면 환영 메일 + 90일 체크리스트를 가져갑니다.">
+<meta property="og:url" content="https://www.nedabah.org/auto/tools/onboarding-kit/"><meta property="og:type" content="website">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg"><meta property="og:locale" content="ko_KR">
+<link rel="stylesheet" href="/auto/tools/_style.css">
+</head>
+<body>
+<nav class="gnav" aria-label="주요 메뉴"><div class="gnav__inner"><a href="/" class="gnav__logo">네다바웨이</a>
+<ul class="gnav__links"><li><a href="/auto/tools/" class="gnav__link">도구 모음</a></li><li><a href="/auto/" class="gnav__link">자료 허브</a></li><li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li></ul></div></nav>
+
+<main class="tool-shell">
+  <p class="crumb"><a href="/auto/tools/">← 도구 모음</a> · HR-01</p>
+  <div class="tool-header">
+    <h1>입사자 환영 키트 만들기</h1>
+    <p class="lead">합격자 정보를 입력하면 <strong>환영 메일 + 90일 체크리스트(Day1·Day7·Day30·Day60·Day90) + Slack 공지 텍스트</strong>를 한 번에 만듭니다.</p>
+  </div>
+  <div class="tool-pills"><span class="pill accent">난이도 ★</span><span class="pill">소요 20초</span></div>
+
+  <div id="mz-key-box" class="key-box"></div>
+
+  <div class="field-row">
+    <div class="field"><label for="name">이름</label><input id="name" type="text" placeholder="김신입"></div>
+    <div class="field"><label for="role">직책</label><input id="role" type="text" placeholder="매니저"></div>
+  </div>
+  <div class="field-row">
+    <div class="field"><label for="dept">부서</label><input id="dept" type="text" placeholder="마케팅"></div>
+    <div class="field"><label for="joinDate">입사일</label><input id="joinDate" type="date"></div>
+  </div>
+  <div class="field-row">
+    <div class="field"><label for="mentor">멘토 이름 <small>· 선택</small></label><input id="mentor" type="text" placeholder="박선배"></div>
+    <div class="field"><label for="company">회사·팀 분위기 <small>· 한 줄</small></label><input id="company" type="text" placeholder="원격 협업 중심, 분기 1회 오프 워크숍"></div>
+  </div>
+  <div class="field">
+    <label for="responsibilities">주요 역할·책임 <small>· 한 줄</small></label>
+    <input id="responsibilities" type="text" placeholder="브랜드 캠페인 기획·집행, 콘텐츠 캘린더 운영">
+  </div>
+
+  <div class="run-row">
+    <button class="btn-go" id="runBtn"><span class="spin"></span><span class="label">환영 키트 만들기</span></button>
+  </div>
+
+  <div id="result"><div class="result-empty">결과가 여기에 나타납니다.</div></div>
+
+  <aside class="next-aside">
+    <h2>입사자 한 줄 입력만으로 자동 발송하려면</h2>
+    <p><a href="/resources/automation/hr/01-onboarding-kit.html" style="display:inline-block;background:var(--ink);color:#fbf6ec;padding:.7rem 1.2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.92rem;">자동화로 만들기 →</a></p>
+  </aside>
+</main>
+
+<footer class="foot"><p>김창환 · 네다바웨이 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p></footer>
+
+<script src="/auto/tools/_lib.js" defer></script>
+<script src="/assets/share-bar.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = (id) => document.getElementById(id);
+  const t = new Date(); t.setDate(t.getDate()+7); t.setMinutes(t.getMinutes() - t.getTimezoneOffset());
+  $('joinDate').value = t.toISOString().slice(0,10);
+
+  $('runBtn').addEventListener('click', async () => {
+    const name = $('name').value.trim();
+    const dept = $('dept').value.trim();
+    const role = $('role').value.trim();
+    const join = $('joinDate').value;
+    if (!name || !dept || !join) { alert('이름·부서·입사일은 필수입니다.'); return; }
+
+    const result = $('result');
+    result.innerHTML = '<div class="result-empty">AI가 환영 키트를 작성 중...</div>';
+    MZ.setLoading($('runBtn'), true);
+
+    const prompt = `당신은 따뜻하고 단정한 톤의 한국 HR 담당자입니다. 새 입사자를 위한 환영 키트를 작성하세요.
+
+입사자: ${name}
+부서/직책: ${dept} / ${role}
+입사일: ${join}
+멘토: ${$('mentor').value.trim() || '추후 배정'}
+회사 분위기: ${$('company').value.trim() || '협업 중심'}
+주요 역할: ${$('responsibilities').value.trim() || '담당 영역에서 빠르게 성장'}
+
+JSON만 반환:
+{
+  "subject": "환영 메일 제목 (이름 포함)",
+  "emailHtml": "환영 메일 본문 (HTML, 4~6단락, 첫날 안내·주요 일정·연락처 안내 포함, 거품 없는 따뜻한 톤)",
+  "slack": "HR 채널에 올릴 공지 한 단락 (이름·날짜·부서·환영 메시지)",
+  "checklist": {
+    "day1": ["...","..."],
+    "day7": ["...","..."],
+    "day30": ["...","..."],
+    "day60": ["...","..."],
+    "day90": ["...","..."]
+  }
+}
+
+규칙:
+- emailHtml은 <p>, <ul>, <li> 만 사용 (스타일 속성 금지)
+- 체크리스트는 각 시점마다 3~5개 구체 행동
+- 한국어. 자기과시·과장 금지`;
+
+    try {
+      const data = await MZ.generate(prompt, { maxOutputTokens: 4096 });
+      renderKit(result, data, { name, dept, role, join });
+    } catch (e) {
+      MZ.renderError(result, e);
+    } finally {
+      MZ.setLoading($('runBtn'), false);
+    }
+  });
+
+  function renderKit(target, d, ctx) {
+    const wrap = document.createElement('div');
+    const cls = (c) => (d.checklist && d.checklist[c]) ? d.checklist[c].map(s => `<li>${MZ.escapeHtml(s)}</li>`).join('') : '<li><em>없음</em></li>';
+    wrap.innerHTML = `
+      <h5 style="margin:0 0 .3rem;color:var(--accent);">📧 환영 메일 — 제목</h5>
+      <p style="background:var(--bg);padding:.6rem .9rem;border-radius:6px;margin:.2rem 0 1rem;">${MZ.escapeHtml(d.subject||'')}</p>
+
+      <h5 style="margin:.6rem 0 .3rem;color:var(--accent);">메일 본문 (HTML)</h5>
+      <div style="border:1px solid var(--line);border-radius:8px;padding:1rem 1.2rem;background:#fff;">${d.emailHtml || ''}</div>
+
+      <h5 style="margin:1.2rem 0 .3rem;color:var(--accent);">💬 HR 채널 Slack 공지</h5>
+      <p style="background:var(--bg);padding:.7rem .9rem;border-radius:6px;white-space:pre-wrap;">${MZ.escapeHtml(d.slack || '')}</p>
+
+      <h5 style="margin:1.2rem 0 .3rem;color:var(--accent);">✅ 90일 온보딩 체크리스트</h5>
+      <h6 style="margin:.4rem 0 .2rem;">Day 1 (${ctx.join})</h6><ul style="margin:.1rem 0 .8rem 1.2rem;">${cls('day1')}</ul>
+      <h6 style="margin:.4rem 0 .2rem;">Day 7</h6><ul style="margin:.1rem 0 .8rem 1.2rem;">${cls('day7')}</ul>
+      <h6 style="margin:.4rem 0 .2rem;">Day 30</h6><ul style="margin:.1rem 0 .8rem 1.2rem;">${cls('day30')}</ul>
+      <h6 style="margin:.4rem 0 .2rem;">Day 60</h6><ul style="margin:.1rem 0 .8rem 1.2rem;">${cls('day60')}</ul>
+      <h6 style="margin:.4rem 0 .2rem;">Day 90</h6><ul style="margin:.1rem 0 .8rem 1.2rem;">${cls('day90')}</ul>
+    `;
+    MZ.renderResult(target, {
+      title: `${ctx.name} 환영 키트`,
+      body: wrap,
+      actions: [
+        { label: '📧 메일 HTML 복사', run: async () => MZ.copyText(d.emailHtml || '') },
+        { label: '📋 메일 텍스트 복사', run: async () => MZ.copyText(`제목: ${d.subject}\n\n${(d.emailHtml||'').replace(/<[^>]+>/g, '').replace(/\n{3,}/g, '\n\n')}`) },
+        { label: '💬 Slack 공지 복사', run: async () => MZ.copyText(d.slack || '') },
+        { label: '⬇️ 체크리스트 CSV', run: async () => {
+          const rows = [['시점','액션']];
+          ['day1','day7','day30','day60','day90'].forEach((k) => {
+            (d.checklist?.[k] || []).forEach(item => rows.push([k.toUpperCase(), item]));
+          });
+          MZ.downloadFile(`${ctx.name}-onboarding-checklist.csv`, '﻿' + MZ.toCSV(rows), 'text/csv;charset=utf-8');
+        }},
+      ]
+    });
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>회의록 → 액션아이템 추출 도구 | 네다바웨이</title>
+<meta name="description" content="회의록 텍스트를 붙여넣으면 결정사항·할 일·담당자·기한을 표로 자동 정리합니다. 설치 없이 브라우저에서 바로 결과를 가져갑니다.">
+<link rel="canonical" href="https://www.nedabah.org/auto/tools/meeting-actions/">
+<meta property="og:title" content="회의록 → 액션아이템 추출 도구">
+<meta property="og:description" content="회의록을 붙여넣으면 결정사항·할 일·담당자·기한이 표로 자동 정리됩니다.">
+<meta property="og:url" content="https://www.nedabah.org/auto/tools/meeting-actions/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/auto/tools/_style.css">
+</head>
+<body>
+<nav class="gnav" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <ul class="gnav__links">
+      <li><a href="/auto/tools/" class="gnav__link">도구 모음</a></li>
+      <li><a href="/auto/" class="gnav__link">자료 허브</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="tool-shell">
+  <p class="crumb"><a href="/auto/tools/">← 도구 모음</a> · PLAN-01</p>
+  <div class="tool-header">
+    <h1>회의록 → 액션아이템 추출</h1>
+    <p class="lead">회의록을 그대로 붙여넣으면 AI가 <strong>결정사항·할 일·담당자·기한</strong>을 표로 정리합니다. 결과는 클립보드 복사 또는 CSV·이메일 본문으로 가져갈 수 있습니다.</p>
+  </div>
+  <div class="tool-pills">
+    <span class="pill accent">난이도 ★</span>
+    <span class="pill">소요 1분</span>
+    <span class="pill">결과 CSV·이메일·Slack 형식</span>
+  </div>
+
+  <div id="mz-key-box" class="key-box"></div>
+
+  <div class="field">
+    <label for="meetingName">회의명 / 날짜 <small>· 선택</small></label>
+    <input id="meetingName" type="text" placeholder="예: 주간 마케팅 회의 / 2026-05-04">
+  </div>
+
+  <div class="field">
+    <label for="participants">참석자 명단 <small>· 선택, 쉼표 구분 — AI가 담당자 인식 정확도를 높여줍니다</small></label>
+    <input id="participants" type="text" placeholder="예: 김창환, 박지민, 이수연, 정태호">
+  </div>
+
+  <div class="field">
+    <label for="transcript">회의록 본문 <small>· 자유 형식, 그대로 붙여넣으세요</small></label>
+    <textarea id="transcript" rows="14" placeholder="예) 김창환: 다음 캠페인 주제를 정해야 합니다. 박지민: 6월에 신학기 직장인 타깃이 좋겠어요. 정태호가 5/12까지 헤드라인 5종 시안을 잡고, 이수연이 5/15까지 광고비 견적 받기로 합니다. ..."></textarea>
+    <p class="example-row" style="margin-top:.4rem;"><a id="useSample">→ 샘플 회의록으로 채우기</a></p>
+  </div>
+
+  <div class="run-row">
+    <button class="btn-go" id="runBtn"><span class="spin"></span><span class="label">액션아이템 추출하기</span></button>
+    <span class="example-row">평균 10~20초 소요. 결과는 그대로 가져갈 수 있습니다.</span>
+  </div>
+
+  <div id="result">
+    <div class="result-empty">결과가 여기에 나타납니다. 회의록을 붙여넣고 위 버튼을 눌러보세요.</div>
+  </div>
+
+  <aside class="next-aside">
+    <h2>이 결과를 매주 자동으로 받고 싶다면</h2>
+    <p>지금 만든 결과는 <strong>1회용 즉석 추출</strong>입니다. 매주 회의 후 같은 일이 자동으로 일어나길 원하면 Apps Script로 옮겨두세요. 아래 가이드는 동일한 로직을 Google Doc 메뉴 한 번에서 동작시키는 30분 셋업입니다.</p>
+    <p><a href="/resources/automation/planning/01-meeting-notes-to-actions.html" style="display:inline-block;background:var(--ink);color:#fbf6ec;padding:.7rem 1.2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.92rem;">이걸 매주 자동화로 만들기 →</a></p>
+  </aside>
+</main>
+
+<footer class="foot">
+  <p>김창환 · 네다바웨이 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
+</footer>
+
+<script src="/auto/tools/_lib.js" defer></script>
+<script src="/assets/share-bar.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+  const sample = `회의명: 주간 마케팅 회의 / 2026-05-04
+참석: 김창환, 박지민, 정태호, 이수연
+
+박지민: 5월 캠페인 결과 공유드릴게요. 광고비 대비 회원가입은 작년 동기 대비 22% 증가했습니다. 다만 결제 전환은 3.1%로 정체.
+김창환: 결제 전환 정체가 가장 큰 문제군요. 결제 페이지 사용성 점검부터 합시다.
+정태호: 제가 5/14까지 결제 페이지 5명 사용성 인터뷰 정리해서 공유드릴게요.
+이수연: 다음달 신학기 캠페인은 직장인 자기계발로 톤 잡고 진행하면 어떨까요? 인스타·링크드인 중심.
+박지민: 좋습니다. 5/20까지 30일 콘텐츠 캘린더 1차 시안 잡아주세요.
+김창환: 광고비는 6월 부서 예산 안에서 1.2배까지 늘려도 됩니다. 그 이상은 사전 승인 필요.
+정태호: 알겠습니다. 그리고 작년 6월 콘텐츠 중 ROI 높았던 3개 분석 자료, 박지민님 5/16까지 부탁드려요.
+박지민: 네 5/16까지 정리하겠습니다.
+
+결정 사항: 6월 캠페인 톤은 '직장인 자기계발', 광고비는 1.2배까지 자율, 결제 페이지 사용성 점검을 최우선으로 한다.`;
+
+  const $ = (id) => document.getElementById(id);
+
+  $('useSample').addEventListener('click', (e) => {
+    e.preventDefault();
+    $('meetingName').value = '주간 마케팅 회의 / 2026-05-04';
+    $('participants').value = '김창환, 박지민, 정태호, 이수연';
+    $('transcript').value = sample;
+  });
+
+  $('runBtn').addEventListener('click', async () => {
+    const transcript = $('transcript').value.trim();
+    if (!transcript) { alert('회의록 본문을 붙여넣어주세요.'); return; }
+    if (transcript.length > 30000) { alert('회의록이 너무 깁니다(30,000자 초과). 핵심 발화만 남기고 다시 시도하세요.'); return; }
+
+    const meetingName = $('meetingName').value.trim();
+    const participants = $('participants').value.trim();
+    const result = $('result');
+
+    result.innerHTML = '<div class="result-empty">AI가 회의록을 분석 중입니다... 보통 10~20초.</div>';
+    MZ.setLoading($('runBtn'), true);
+
+    const prompt = `당신은 회의록 정리 전문 보조자입니다. 다음 회의록에서 정보를 추출해 한국어 JSON으로 반환하세요(설명 없이 JSON만).
+
+${meetingName ? `회의명/날짜 힌트: ${meetingName}\n` : ''}${participants ? `참석자 명단: ${participants}\n` : ''}
+회의록:
+"""
+${transcript}
+"""
+
+JSON 스키마:
+{
+  "meetingName": "회의명 (회의록에서 추출 또는 힌트 반영)",
+  "meetingDate": "YYYY-MM-DD (확인되지 않으면 빈문자열)",
+  "decisions": ["결정사항1", "결정사항2"],
+  "actions": [
+    {"task":"액션내용 (한 문장)","owner":"담당자 이름","due":"YYYY-MM-DD 또는 빈문자열"}
+  ]
+}
+
+규칙:
+- 담당자는 회의록 안에 등장한 사람으로만. 추정 금지.
+- 기한이 명시되지 않으면 빈문자열.
+- 결정사항(합의)과 액션아이템(실행 책임)은 다르다.
+- 액션이 없으면 actions: [].`;
+
+    try {
+      const data = await MZ.generate(prompt);
+      renderActions(result, data);
+    } catch (e) {
+      MZ.renderError(result, e);
+    } finally {
+      MZ.setLoading($('runBtn'), false);
+    }
+  });
+
+  function renderActions(target, data) {
+    const decisions = (data.decisions || []).map((d) => `<li>${MZ.escapeHtml(d)}</li>`).join('') || '<li><em>결정사항 없음</em></li>';
+    const actionRows = (data.actions || []).map((a, i) => `
+      <tr>
+        <td style="text-align:center;color:var(--muted);font-variant-numeric:tabular-nums;">${i+1}</td>
+        <td>${MZ.escapeHtml(a.task)}</td>
+        <td>${MZ.escapeHtml(a.owner || '미지정')}</td>
+        <td>${MZ.escapeHtml(a.due || '미정')}</td>
+      </tr>
+    `).join('');
+    const html = `
+      <h4 style="margin:0 0 .4rem;font-size:.95rem;color:var(--accent);">📌 ${MZ.escapeHtml(data.meetingName || '회의')} ${data.meetingDate ? '· ' + MZ.escapeHtml(data.meetingDate) : ''}</h4>
+      <p style="margin:.2rem 0 .8rem;color:var(--muted);font-size:.88rem;">결정사항 ${(data.decisions||[]).length}건 · 액션아이템 ${(data.actions||[]).length}건</p>
+      <h5 style="margin:.6rem 0 .3rem;font-size:.92rem;">결정사항</h5>
+      <ul style="margin:.2rem 0 1rem 1.2rem;">${decisions}</ul>
+      <h5 style="margin:.6rem 0 .3rem;font-size:.92rem;">액션아이템</h5>
+      <table>
+        <thead><tr><th style="width:34px;">#</th><th>할 일</th><th style="width:90px;">담당자</th><th style="width:110px;">기한</th></tr></thead>
+        <tbody>${actionRows || '<tr><td colspan="4"><em>액션아이템 없음</em></td></tr>'}</tbody>
+      </table>
+    `;
+
+    const wrap = document.createElement('div');
+    wrap.innerHTML = html;
+
+    MZ.renderResult(target, {
+      title: '회의록 정리 결과',
+      body: wrap,
+      actions: [
+        {
+          label: '📋 표 텍스트 복사',
+          run: async () => {
+            const lines = (data.actions||[]).map((a, i) => `${i+1}. ${a.task} — ${a.owner || '미지정'}${a.due ? ` (~${a.due})` : ''}`);
+            const txt = `[${data.meetingName||'회의'}] ${data.meetingDate||''}\n\n결정사항:\n${(data.decisions||[]).map(d => `• ${d}`).join('\n')}\n\n액션아이템:\n${lines.join('\n')}`;
+            await MZ.copyText(txt);
+          }
+        },
+        {
+          label: '⬇️ CSV 다운로드',
+          run: async () => {
+            const rows = [['#','할 일','담당자','기한']];
+            (data.actions||[]).forEach((a, i) => rows.push([i+1, a.task, a.owner||'', a.due||'']));
+            const safeName = (data.meetingName || 'meeting').replace(/[\\/:*?"<>|]/g, '_');
+            MZ.downloadFile(`${safeName}-actions.csv`, '﻿' + MZ.toCSV(rows), 'text/csv;charset=utf-8');
+          }
+        },
+        {
+          label: '📧 이메일 본문 복사',
+          run: async () => {
+            const lines = (data.actions||[]).map((a, i) => `${i+1}. ${a.task} — ${a.owner||'미지정'}${a.due ? ` (~${a.due})` : ''}`);
+            const txt = `안녕하세요, ${data.meetingName||'회의'} 정리본을 공유드립니다.\n\n📌 결정사항\n${(data.decisions||[]).map(d => `• ${d}`).join('\n') || '• 없음'}\n\n📋 액션아이템\n${lines.join('\n') || '• 없음'}\n\n감사합니다.`;
+            await MZ.copyText(txt);
+          }
+        },
+        {
+          label: '💬 Slack 메시지 복사',
+          run: async () => {
+            const lines = (data.actions||[]).map((a, i) => `${i+1}. *${a.task}* — ${a.owner||'미지정'}${a.due ? ` (~${a.due})` : ''}`);
+            const txt = `📝 *${data.meetingName||'회의'}* 정리\n\n*결정사항*\n${(data.decisions||[]).map(d => `• ${d}`).join('\n') || '• 없음'}\n\n*액션아이템*\n${lines.join('\n') || '• 없음'}`;
+            await MZ.copyText(txt);
+          }
+        },
+      ]
+    });
+  }
+});
+</script>
+</body>
+</html>
