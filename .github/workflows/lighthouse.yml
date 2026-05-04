@@ -41,9 +41,12 @@ jobs:
           npm install --no-audit --no-fund -g @lhci/cli@0.14.x
           npm install --no-audit --no-fund --no-save http-server@14.x
 
-      - name: Run Lighthouse CI on landing pages
-        run: lhci autorun --config=.lighthouserc.json
-        continue-on-error: true
+      - name: Run Lighthouse CI on landing pages (advisory — exit 0 always)
+        run: |
+          lhci autorun --config=.lighthouserc.json || {
+            echo "::notice::Lighthouse exited non-zero — see uploaded report artifact for details (advisory only, not a launch blocker)";
+            exit 0;
+          }
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
