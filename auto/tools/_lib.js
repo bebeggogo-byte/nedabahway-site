@@ -161,6 +161,130 @@
     card.appendChild(head);
     card.appendChild(body);
     target.appendChild(card);
+
+    // ─── 결과 카드 훅 (Batch 2) ─────────────
+    // 자동 히스토리 저장 + 비슷한 도구 + 자동화 가이드 + 피드백
+    // 훅 생성 실패는 도구 본체 동작을 막지 않도록 모두 swallow한다.
+    try { saveToHistory(opts); } catch (_) { /* swallow */ }
+    try { appendHooks(card); } catch (_) { /* swallow */ }
+  }
+
+  // ─────────────────────────────────────────
+  // 결과 카드 훅 — 12개 도구 HTML 변경 0줄로 적용
+  // ─────────────────────────────────────────
+
+  // SYNC: scripts/automation_meta.py CARDS — 신규 도구 추가 시 여기도 갱신
+  // 형태: { slug: { name, summary, cat, level, guide(optional) } }
+  // cat: 'planning' | 'hr' | 'marketing' | 'sales' | 'ops'
+  // level: 1=★, 2=★★, 3=★★★
+  const TOOLS = {
+    'meeting-actions':   { name: '회의록 → 액션아이템',     summary: '회의록을 붙이면 결정·할일·담당자가 정리됩니다.',         cat: 'planning',  level: 1, guide: '/resources/automation/planning/01-meeting-notes-to-actions.html' },
+    'news-digest':       { name: '경쟁사·뉴스 다이제스트',  summary: '키워드 → RSS 후보 + 다이제스트 미리보기.',                cat: 'planning',  level: 2, guide: '/resources/automation/planning/02-competitor-news-digest.html' },
+    'kpi-comment':       { name: '주간 KPI 코멘트',           summary: 'KPI 표 → 변화·우려·다음 주 권고 코멘트.',                 cat: 'planning',  level: 2, guide: '/resources/automation/planning/03-weekly-kpi-report.html' },
+    'onboarding-kit':    { name: '입사자 환영 키트',           summary: '환영 메일 + 90일 체크리스트 + Slack 공지.',                cat: 'hr',        level: 2, guide: '/resources/automation/hr/01-onboarding-kit.html' },
+    'leave-summary':     { name: '휴가 신청 정리',              summary: '자유 텍스트 → 표 + 캘린더·Slack 카드.',                    cat: 'hr',        level: 3, guide: '/resources/automation/hr/02-leave-approval-workflow.html' },
+    'pulse-analysis':    { name: '설문 응답 분석',              summary: '익명 응답 → 감성·주제 + 1페이지 코멘트.',                  cat: 'hr',        level: 2, guide: '/resources/automation/hr/03-pulse-survey-sentiment.html' },
+    'resume-screening':  { name: '이력서 5분 스크리닝',       summary: '공고+이력서 → 매칭도 + 강점·우려 + 면접 질문.',             cat: 'hr',        level: 2 },
+    'content-calendar':  { name: '30일 콘텐츠 캘린더',         summary: '월 테마 → 30일치 헤드라인·후크·CTA.',                       cat: 'marketing', level: 1, guide: '/resources/automation/marketing/01-content-calendar-generator.html' },
+    'lead-scoring':      { name: '리드 스코어링',              summary: '리드 정보 → 룰+AI 점수 + 첫 응답 메시지.',                 cat: 'marketing', level: 2, guide: '/resources/automation/marketing/02-lead-scoring-router.html' },
+    'mention-classifier':{ name: '리뷰·멘션 분류기',          summary: '멘션 → 감성·주제 + 부정 멘션 즉시 강조.',                  cat: 'marketing', level: 2, guide: '/resources/automation/marketing/03-review-mention-digest.html' },
+    'sales-followup':    { name: '세일즈 콜 후속 메일',        summary: '미팅 메모 → 후속 메일 + 다음 단계 + 일정 제안.',           cat: 'sales',     level: 1 },
+    'mail-reply-drafter':{ name: '메일 답장 초안기',           summary: '받은 메일 + 톤 → 한 줄·짧은·자세한 답장 3종.',             cat: 'ops',       level: 1 },
+  };
+
+  const HISTORY_KEY = 'mz:history';
+  const HISTORY_MAX = 30;
+
+  // 현재 페이지 URL에서 /auto/tools/{slug}/ 패턴의 slug 추출
+  function currentSlug() {
+    const m = (window.location.pathname || '').match(/\/auto\/tools\/([a-z0-9-]+)\/?$/);
+    return m ? m[1] : '';
+  }
+
+  // 결과 본문 + 액션을 합쳐 가져갈 수 있는 텍스트 한 덩어리 반환
+  function extractFullText(opts, card) {
+    // body가 string이면 태그 제거 후 텍스트
+    if (typeof opts.body === 'string') {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = opts.body;
+      return (tmp.textContent || '').replace(/\s+/g, ' ').trim();
+    }
+    // DOM이면 textContent
+    const el = card.querySelector('.body');
+    return el ? (el.textContent || '').replace(/\s+/g, ' ').trim() : '';
+  }
+
+  function saveToHistory(opts) {
+    const slug = currentSlug();
+    if (!slug) return; // 도구 페이지가 아닌 곳에서는 저장 건너뛰기
+    let store;
+    try {
+      store = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+      if (!Array.isArray(store)) store = [];
+    } catch (_) { store = []; }
+    const card = document.querySelector('.result-card');
+    const fullText = extractFullText(opts, card || document.createElement('div'));
+    const entry = {
+      id: Math.random().toString(36).slice(2, 10),
+      ts: new Date().toISOString(),
+      slug,
+      title: String(opts.title || '결과'),
+      preview: fullText.slice(0, 120),
+      fullText: fullText.slice(0, 4000), // 너무 큰 결과는 잘림
+    };
+    store.unshift(entry);
+    if (store.length > HISTORY_MAX) store.length = HISTORY_MAX;
+    try {
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(store));
+    } catch (_) { /* QuotaExceeded 등 무시 */ }
+  }
+
+  function appendHooks(card) {
+    const slug = currentSlug();
+    if (!slug) return; // 도구 페이지 아닌 곳에서는 훅 미부착
+    const tool = TOOLS[slug];
+    if (!tool) return; // 매핑에 없는 slug면 미부착 (안전)
+
+    const block = document.createElement('div');
+    block.className = 'mz-hook-block';
+
+    // 1) 비슷한 도구 (같은 cat, 자기 제외, 난이도 오름차순, 최대 3개)
+    const related = Object.entries(TOOLS)
+      .filter(([s, t]) => s !== slug && t.cat === tool.cat)
+      .sort((a, b) => a[1].level - b[1].level)
+      .slice(0, 3);
+    if (related.length) {
+      const sec = document.createElement('div');
+      sec.className = 'mz-related';
+      sec.innerHTML = '<h5>비슷한 도구</h5><div class="mz-related__grid">' +
+        related.map(([s, t]) =>
+          `<a class="mz-related__card" href="/auto/tools/${s}/">` +
+            `<strong>${escapeHtml(t.name)}</strong>` +
+            `<span>${escapeHtml(t.summary)}</span>` +
+          `</a>`
+        ).join('') +
+        '</div>';
+      block.appendChild(sec);
+    }
+
+    // 2) 자동화 가이드 링크 (있는 도구만)
+    if (tool.guide) {
+      const a = document.createElement('a');
+      a.className = 'mz-guide';
+      a.href = tool.guide;
+      a.textContent = '이 작업을 매주/매일 자동으로 → 가이드 보기';
+      block.appendChild(a);
+    }
+
+    // 3) 피드백 한 줄 (모든 도구)
+    const fb = document.createElement('a');
+    fb.className = 'mz-feedback';
+    const subj = encodeURIComponent('[' + slug + '] 도구 피드백');
+    fb.href = 'mailto:nedabah.way@gmail.com?subject=' + subj;
+    fb.textContent = '이 결과 어땠나요? 한 줄 의견 → nedabah.way@gmail.com';
+    block.appendChild(fb);
+
+    card.appendChild(block);
   }
 
   function renderError(target, e) {

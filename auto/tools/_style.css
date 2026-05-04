@@ -156,3 +156,76 @@ footer.foot {
   max-width:880px; margin:0 auto 4rem; padding:1.2rem 1.5rem;
   border-top:1px solid var(--line); font-size:.85rem; color:var(--muted);
 }
+
+/* ─── Batch 2: 결과 카드 훅 (비슷한 도구 + 가이드 + 피드백) ─── */
+.mz-hook-block {
+  margin: 1.2rem 1.2rem 1.4rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+.mz-related h5 {
+  margin: 0 0 .5rem;
+  font-size: .82rem;
+  color: var(--muted);
+  letter-spacing: .08em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.mz-related__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: .55rem;
+}
+.mz-related__card {
+  display: block;
+  padding: .65rem .8rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color .15s ease, transform .15s ease;
+}
+.mz-related__card:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.mz-related__card strong {
+  display: block;
+  font-size: .92rem;
+  margin-bottom: .15rem;
+}
+.mz-related__card span {
+  display: block;
+  font-size: .8rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.mz-guide {
+  display: inline-block;
+  padding: .55rem .9rem;
+  background: var(--ink);
+  color: #fbf6ec;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: .88rem;
+  align-self: flex-start;
+}
+.mz-guide:hover { background: #2a241b; }
+.mz-feedback {
+  font-size: .82rem;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--line);
+  align-self: flex-start;
+  padding-bottom: .1rem;
+}
+.mz-feedback:hover { color: var(--accent); border-bottom-color: var(--accent); }
+@media (max-width:520px) {
+  .mz-hook-block { margin: 1rem .9rem 1.2rem; }
+  .mz-related__grid { grid-template-columns: 1fr; }
+}
