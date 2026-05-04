@@ -1,0 +1,30 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "regions": ["icn1"],
+  "functions": {
+    "src/app/api/ai/guide/route.ts": {
+      "maxDuration": 60
+    },
+    "src/app/api/refunds/[id]/approve/route.ts": {
+      "maxDuration": 30
+    },
+    "src/app/api/webhooks/toss/route.ts": {
+      "maxDuration": 30
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/embed-responses",
+      "schedule": "0 18 * * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    }
+  ]
+}
