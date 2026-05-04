@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>설문 응답 분석기 (감성·주제) | 네다바웨이</title>
+<meta name="description" content="익명 설문 응답을 붙여넣으면 감성·핵심 주제·요지를 자동 분류하고 1페이지 경영진 코멘트까지 만듭니다.">
+<link rel="canonical" href="https://www.nedabah.org/auto/tools/pulse-analysis/">
+<meta property="og:title" content="설문 응답 분석기 (감성·주제)"><meta property="og:description" content="익명 응답을 붙여넣으면 감성·주제·요지로 자동 분류, 경영진 1페이지 코멘트까지.">
+<meta property="og:url" content="https://www.nedabah.org/auto/tools/pulse-analysis/"><meta property="og:type" content="website">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg"><meta property="og:locale" content="ko_KR">
+<link rel="stylesheet" href="/auto/tools/_style.css">
+</head>
+<body>
+<nav class="gnav" aria-label="주요 메뉴"><div class="gnav__inner"><a href="/" class="gnav__logo">네다바웨이</a>
+<ul class="gnav__links"><li><a href="/auto/tools/" class="gnav__link">도구 모음</a></li><li><a href="/auto/" class="gnav__link">자료 허브</a></li><li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li></ul></div></nav>
+
+<main class="tool-shell">
+  <p class="crumb"><a href="/auto/tools/">← 도구 모음</a> · HR-03</p>
+  <div class="tool-header">
+    <h1>설문 응답 분석기 (감성·주제)</h1>
+    <p class="lead">익명 설문 응답을 붙여넣으면 AI가 응답마다 <strong>감성(긍정·부정·중립)·핵심 주제·요지</strong>로 분류하고, 마지막에 <strong>경영진 1페이지 요약</strong>까지 만듭니다.</p>
+  </div>
+  <div class="tool-pills"><span class="pill accent">난이도 ★★</span><span class="pill">소요 30~60초</span><span class="pill">개인정보 안전</span></div>
+
+  <div id="mz-key-box" class="key-box"></div>
+
+  <div class="field">
+    <label for="responses">응답 묶음 <small>· 빈 줄(2개 이상)로 응답 구분</small></label>
+    <textarea id="responses" rows="13" placeholder="응답 1)
+회사 문화는 마음에 드는데 보상 체계가 시장 평균보다 낮다고 느낍니다.
+
+응답 2)
+1on1이 형식적이라 답답합니다. 매니저 교육이 필요해 보입니다.
+
+응답 3)
+원격근무가 잘 자리잡았고 회의가 줄어 집중 시간이 늘었습니다.
+
+..."></textarea>
+    <p class="example-row" style="margin-top:.4rem;"><a id="useSample">→ 샘플 응답 6건으로 채우기</a></p>
+  </div>
+
+  <div class="run-row">
+    <button class="btn-go" id="runBtn"><span class="spin"></span><span class="label">감성·주제 분류하기</span></button>
+    <span class="example-row">개인 식별 정보(이름·이메일·부서)는 AI에 전송하지 않도록 본문만 보냅니다.</span>
+  </div>
+
+  <div id="result"><div class="result-empty">결과가 여기에 나타납니다.</div></div>
+
+  <aside class="next-aside">
+    <h2>응답 1,000건도 자동 처리하려면</h2>
+    <p><a href="/resources/automation/hr/03-pulse-survey-sentiment.html" style="display:inline-block;background:var(--ink);color:#fbf6ec;padding:.7rem 1.2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.92rem;">자동화로 만들기 →</a></p>
+  </aside>
+</main>
+
+<footer class="foot"><p>김창환 · 네다바웨이 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p></footer>
+
+<script src="/auto/tools/_lib.js" defer></script>
+<script src="/assets/share-bar.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = (id) => document.getElementById(id);
+  const sample = `회사 분위기는 좋은데 연봉 인상 폭이 시장 평균보다 낮습니다. 옮길 생각이 드는 이유 중 가장 큽니다.\n\n1on1이 매니저마다 편차가 너무 큽니다. 어떤 분은 전혀 안 하시고 어떤 분은 매주 하십니다. 표준이 필요합니다.\n\n원격근무가 정착되면서 회의가 줄어든 점이 가장 만족스럽습니다. 집중 시간이 확실히 늘었습니다.\n\n신규 입사자 온보딩이 부서마다 격차가 큽니다. 첫 2주 동안 무엇을 해야 하는지 가이드가 부족합니다.\n\n복지 중에 식비 지원이 가장 만족스럽고, 도서비 지원도 의외로 자주 씁니다.\n\n승진 기준이 모호합니다. 동일 직급에서 누가 다음 단계로 가는지 예측이 안 됩니다.`;
+  $('useSample').addEventListener('click', (e) => { e.preventDefault(); $('responses').value = sample; });
+
+  $('runBtn').addEventListener('click', async () => {
+    const raw = $('responses').value.trim();
+    if (!raw) { alert('응답을 붙여넣어주세요.'); return; }
+    const items = raw.split(/\n{2,}/).map(s => s.trim()).filter(Boolean);
+    if (!items.length) { alert('응답이 인식되지 않습니다. 빈 줄로 응답을 구분해주세요.'); return; }
+    if (items.length > 100) { alert('100건 이하로 잘라서 다시 시도해주세요.'); return; }
+
+    const result = $('result');
+    result.innerHTML = `<div class="result-empty">${items.length}건 분석 중...</div>`;
+    MZ.setLoading($('runBtn'), true);
+
+    const prompt = `다음 ${items.length}개의 익명 직원 설문 응답을 한국어로 분류하고 종합하세요.
+
+응답:
+${items.map((t, i) => `[${i+1}] ${t}`).join('\n\n')}
+
+JSON만 반환:
+{
+  "items": [
+    {"sentiment":"positive|negative|neutral","topics":["짧은 명사구1","..."],"gist":"15자 이내 요지"}
+  ],
+  "summary": {
+    "urgent":"가장 시급한 이슈 1건과 그 이유",
+    "actions":["권고 행동1","권고 행동2"],
+    "strength":"칭찬할 강점 1건",
+    "next":"다음 분기 측정 제안 1건"
+  }
+}
+
+규칙: items 길이 = 응답 수. topics는 1~3개 짧은 명사구(보상/리더십/온보딩/문화/복지/제도 등). 추측 금지.`;
+
+    try {
+      const data = await MZ.generate(prompt, { maxOutputTokens: 6000 });
+      if (!data.items || !Array.isArray(data.items) || data.items.length !== items.length) {
+        // best-effort tolerate length mismatch
+      }
+      renderPulse(result, data, items);
+    } catch (e) {
+      MZ.renderError(result, e);
+    } finally {
+      MZ.setLoading($('runBtn'), false);
+    }
+  });
+
+  function renderPulse(target, data, raws) {
+    const items = data.items || [];
+    let pos=0, neg=0, neu=0;
+    const topicCount = {};
+    items.forEach((it) => {
+      if (it.sentiment === 'positive') pos++;
+      else if (it.sentiment === 'negative') neg++;
+      else neu++;
+      (it.topics || []).forEach(t => topicCount[t] = (topicCount[t]||0)+1);
+    });
+    const total = items.length || 1;
+    const topTopics = Object.entries(topicCount).sort((a,b) => b[1]-a[1]).slice(0, 8);
+
+    const rows = items.map((it, i) => {
+      const cls = it.sentiment === 'positive' ? 'ok' : it.sentiment === 'negative' ? 'warn' : 'muted';
+      return `<tr>
+        <td style="text-align:center;color:var(--muted);">${i+1}</td>
+        <td><span class="pill ${cls === 'ok' ? '' : 'muted'}" style="font-size:.7rem;background:${cls === 'ok' ? '#d6e4d8' : cls === 'warn' ? '#f0d6c8' : '#ece1cd'};color:${cls === 'ok' ? '#3f6b46' : cls === 'warn' ? '#8a3f2d' : '#7a5a1f'};">${MZ.escapeHtml(it.sentiment || '')}</span></td>
+        <td>${MZ.escapeHtml((it.topics||[]).join(', '))}</td>
+        <td><strong>${MZ.escapeHtml(it.gist || '')}</strong><br><span style="color:var(--muted);font-size:.85em;">${MZ.escapeHtml((raws[i]||'').slice(0, 80))}${(raws[i]||'').length > 80 ? '…' : ''}</span></td>
+      </tr>`;
+    }).join('');
+
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `
+      <p style="margin:.2rem 0 .8rem;color:var(--muted);font-size:.88rem;">
+        총 ${items.length}건 · 긍정 ${(pos/total*100).toFixed(0)}% / 부정 ${(neg/total*100).toFixed(0)}% / 중립 ${(neu/total*100).toFixed(0)}%
+      </p>
+      <h5 style="margin:.5rem 0 .3rem;">상위 주제</h5>
+      <p>${topTopics.map(([t,c]) => `<span class="pill" style="margin:.1rem .2rem .1rem 0;">${MZ.escapeHtml(t)} · ${c}</span>`).join('')}</p>
+
+      <h5 style="margin:1.2rem 0 .3rem;">📌 경영진 코멘트</h5>
+      <p><strong style="color:var(--warn);">시급 이슈 — </strong>${MZ.escapeHtml(data.summary?.urgent || '')}</p>
+      <p><strong style="color:var(--accent);">권고 액션</strong></p>
+      <ol>${(data.summary?.actions || []).map(a => `<li>${MZ.escapeHtml(a)}</li>`).join('')}</ol>
+      <p><strong style="color:var(--ok);">강점 — </strong>${MZ.escapeHtml(data.summary?.strength || '')}</p>
+      <p><strong>다음 분기 측정 — </strong>${MZ.escapeHtml(data.summary?.next || '')}</p>
+
+      <h5 style="margin:1.2rem 0 .3rem;">응답별 분류</h5>
+      <div style="overflow-x:auto;"><table>
+        <thead><tr><th style="width:32px;">#</th><th style="width:70px;">감성</th><th style="width:140px;">주제</th><th>요지</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>
+    `;
+
+    MZ.renderResult(target, {
+      title: '펄스서베이 분석 리포트',
+      body: wrap,
+      actions: [
+        { label: '⬇️ 분류 CSV', run: async () => {
+          const rows = [['#','감성','주제','요지','원문 요약']];
+          items.forEach((it, i) => rows.push([i+1, it.sentiment||'', (it.topics||[]).join(';'), it.gist||'', (raws[i]||'').slice(0,200)]));
+          MZ.downloadFile('pulse-analysis.csv', '﻿' + MZ.toCSV(rows), 'text/csv;charset=utf-8');
+        }},
+        { label: '📧 경영진 메일 본문', run: async () => {
+          const txt = `안녕하십니까,\n분기 펄스서베이 결과 요약 보고드립니다.\n\n• 응답 ${items.length}건 (긍정 ${(pos/total*100).toFixed(0)}% / 부정 ${(neg/total*100).toFixed(0)}% / 중립 ${(neu/total*100).toFixed(0)}%)\n• 상위 주제: ${topTopics.map(([t,c]) => `${t}(${c})`).join(', ')}\n\n📌 시급 이슈\n${data.summary?.urgent}\n\n📌 권고 액션\n${(data.summary?.actions||[]).map((a,i)=>`${i+1}. ${a}`).join('\n')}\n\n📌 강점\n${data.summary?.strength}\n\n📌 다음 분기 측정 제안\n${data.summary?.next}\n\n감사합니다.`;
+          await MZ.copyText(txt);
+        }},
+        { label: '⬇️ 전체 JSON', run: async () => MZ.downloadFile('pulse-analysis.json', JSON.stringify(data, null, 2), 'application/json') },
+      ]
+    });
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>주간 KPI 코멘트 생성기 | 네다바웨이</title>
+<meta name="description" content="KPI 표를 붙여넣으면 가장 좋은 변화·우려·다음 주 권고 한 줄씩을 작성합니다.">
+<link rel="canonical" href="https://www.nedabah.org/auto/tools/kpi-comment/">
+<meta property="og:title" content="주간 KPI 코멘트 생성기"><meta property="og:description" content="KPI 표를 붙여넣으면 변화 분석·우려·권고를 한 줄씩.">
+<meta property="og:url" content="https://www.nedabah.org/auto/tools/kpi-comment/"><meta property="og:type" content="website">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg"><meta property="og:locale" content="ko_KR">
+<link rel="stylesheet" href="/auto/tools/_style.css">
+</head>
+<body>
+<nav class="gnav" aria-label="주요 메뉴"><div class="gnav__inner"><a href="/" class="gnav__logo">네다바웨이</a>
+<ul class="gnav__links"><li><a href="/auto/tools/" class="gnav__link">도구 모음</a></li><li><a href="/auto/" class="gnav__link">자료 허브</a></li><li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li></ul></div></nav>
+
+<main class="tool-shell">
+  <p class="crumb"><a href="/auto/tools/">← 도구 모음</a> · PLAN-03</p>
+  <div class="tool-header">
+    <h1>주간 KPI 코멘트 생성기</h1>
+    <p class="lead">KPI 표를 그대로 붙여넣으면 AI가 <strong>가장 좋은 변화 · 우려 포인트 · 다음 주 권고</strong>를 한 줄씩 작성합니다. 임원 메일 본문으로 바로 가져갈 수 있습니다.</p>
+  </div>
+  <div class="tool-pills"><span class="pill accent">난이도 ★★</span><span class="pill">소요 15초</span></div>
+
+  <div id="mz-key-box" class="key-box"></div>
+
+  <div class="field">
+    <label for="kpiText">KPI 표 / 데이터 <small>· 자유 형식. CSV, 마크다운 표, 줄글 모두 OK</small></label>
+    <textarea id="kpiText" rows="14" placeholder="예: 지표,이번주,지난주,WoW,목표&#10;신규가입,412,388,+6%,500&#10;DAU,18900,18200,+3.8%,20000&#10;결제전환율,3.4%,3.1%,+0.3%p,4.0%&#10;이탈율,5.2%,4.8%,+0.4%p,5.0%(낮을수록좋음)"></textarea>
+    <p class="example-row" style="margin-top:.4rem;"><a id="useSample">→ 샘플 데이터로 채우기</a></p>
+  </div>
+
+  <div class="run-row">
+    <button class="btn-go" id="runBtn"><span class="spin"></span><span class="label">코멘트 만들기</span></button>
+  </div>
+
+  <div id="result"><div class="result-empty">결과가 여기에 나타납니다.</div></div>
+
+  <aside class="next-aside">
+    <h2>이걸 매주 자동 발송하려면</h2>
+    <p><a href="/resources/automation/planning/03-weekly-kpi-report.html" style="display:inline-block;background:var(--ink);color:#fbf6ec;padding:.7rem 1.2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.92rem;">매주 자동화로 만들기 →</a></p>
+  </aside>
+</main>
+
+<footer class="foot"><p>김창환 · 네다바웨이 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p></footer>
+
+<script src="/auto/tools/_lib.js" defer></script>
+<script src="/assets/share-bar.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = (id) => document.getElementById(id);
+  const sample = `지표,이번주 평균,지난주 평균,WoW,목표,상태\n신규가입,412,388,+6%,500,미달\nDAU,18900,18200,+3.8%,20000,미달\n결제전환율,3.4%,3.1%,+0.3%p,4.0%,미달\n이탈율,5.2%,4.8%,+0.4%p,5.0%(낮을수록 좋음),미달\n광고비ROAS,2.3,2.5,-8%,2.5,미달\nNPS,42,38,+4,40,달성`;
+  $('useSample').addEventListener('click', (e) => { e.preventDefault(); $('kpiText').value = sample; });
+
+  $('runBtn').addEventListener('click', async () => {
+    const text = $('kpiText').value.trim();
+    if (!text) { alert('KPI 데이터를 붙여넣어주세요.'); return; }
+    const result = $('result');
+    result.innerHTML = '<div class="result-empty">AI가 KPI를 분석 중입니다...</div>';
+    MZ.setLoading($('runBtn'), true);
+
+    const prompt = `당신은 경영진 보고를 작성하는 시니어 분석가입니다. 다음 주간 KPI를 한국어로 분석하세요.
+
+데이터:
+"""
+${text}
+"""
+
+규칙: 사실만, 추측 금지, 250자 이내. "~합니다" 체.
+JSON만 반환:
+{
+  "highlight":"가장 좋은 변화 1건 + 그 의미 한 문장",
+  "concern":"가장 우려되는 변화 1건 + 그 이유 한 문장",
+  "recommendation":"다음 주 권고 1건 (구체 행동)"
+}`;
+
+    try {
+      const data = await MZ.generate(prompt);
+      renderInsight(result, data, text);
+    } catch (e) {
+      MZ.renderError(result, e);
+    } finally {
+      MZ.setLoading($('runBtn'), false);
+    }
+  });
+
+  function renderInsight(target, data, kpiText) {
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `
+      <p style="margin:.2rem 0 .8rem;color:var(--accent);"><strong>📈 가장 좋은 변화</strong></p>
+      <p>${MZ.escapeHtml(data.highlight)}</p>
+      <p style="margin:1rem 0 .3rem;color:var(--warn);"><strong>⚠️ 우려 포인트</strong></p>
+      <p>${MZ.escapeHtml(data.concern)}</p>
+      <p style="margin:1rem 0 .3rem;color:var(--ok);"><strong>🎯 다음 주 권고</strong></p>
+      <p>${MZ.escapeHtml(data.recommendation)}</p>
+    `;
+    MZ.renderResult(target, {
+      title: '주간 KPI 코멘트',
+      body: wrap,
+      actions: [
+        { label: '📧 임원 메일 본문', run: async () => {
+          const body = `안녕하세요,\n주간 KPI 요약 보고드립니다.\n\n📈 가장 좋은 변화\n${data.highlight}\n\n⚠️ 우려 포인트\n${data.concern}\n\n🎯 다음 주 권고\n${data.recommendation}\n\n원본 지표:\n${kpiText}\n\n감사합니다.`;
+          await MZ.copyText(body);
+        }},
+        { label: '💬 Slack', run: async () => {
+          const body = `*주간 KPI 코멘트*\n\n*하이라이트* — ${data.highlight}\n*우려* — ${data.concern}\n*권고* — ${data.recommendation}`;
+          await MZ.copyText(body);
+        }},
+        { label: '⬇️ JSON', run: async () => MZ.downloadFile('kpi-comment.json', JSON.stringify(data, null, 2), 'application/json') },
+      ]
+    });
+  }
+});
+</script>
+</body>
+</html>

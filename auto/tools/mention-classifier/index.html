@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>리뷰·멘션 분류기 | 네다바웨이</title>
+<meta name="description" content="네이버 블로그·카페·뉴스 멘션을 붙여넣으면 감성·핵심 주제로 자동 분류하고 부정 멘션을 즉시 표시합니다.">
+<link rel="canonical" href="https://www.nedabah.org/auto/tools/mention-classifier/">
+<meta property="og:title" content="리뷰·멘션 분류기"><meta property="og:description" content="멘션을 붙여넣으면 감성·주제로 분류하고 부정 멘션을 즉시 표시합니다.">
+<meta property="og:url" content="https://www.nedabah.org/auto/tools/mention-classifier/"><meta property="og:type" content="website">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg"><meta property="og:locale" content="ko_KR">
+<link rel="stylesheet" href="/auto/tools/_style.css">
+</head>
+<body>
+<nav class="gnav" aria-label="주요 메뉴"><div class="gnav__inner"><a href="/" class="gnav__logo">네다바웨이</a>
+<ul class="gnav__links"><li><a href="/auto/tools/" class="gnav__link">도구 모음</a></li><li><a href="/auto/" class="gnav__link">자료 허브</a></li><li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li></ul></div></nav>
+
+<main class="tool-shell">
+  <p class="crumb"><a href="/auto/tools/">← 도구 모음</a> · MKT-03</p>
+  <div class="tool-header">
+    <h1>리뷰·멘션 분류기</h1>
+    <p class="lead">네이버 블로그·카페·뉴스·SNS의 자사/제품 멘션을 붙여넣으면 AI가 <strong>감성·주제로 분류</strong>하고 <strong>부정 멘션은 즉시 강조</strong>합니다. 주간 다이제스트 본문도 함께 만들어 가져갈 수 있습니다.</p>
+  </div>
+  <div class="tool-pills"><span class="pill accent">난이도 ★★</span><span class="pill">소요 30~60초</span></div>
+
+  <div id="mz-key-box" class="key-box"></div>
+
+  <div class="field">
+    <label for="brand">자사 / 브랜드 / 제품명 <small>· 멘션 모니터링 대상</small></label>
+    <input id="brand" type="text" placeholder="예: 네다바웨이">
+  </div>
+  <div class="field">
+    <label for="mentions">멘션 묶음 <small>· 빈 줄로 멘션 구분. URL이나 출처는 그대로 두어도 OK</small></label>
+    <textarea id="mentions" rows="13" placeholder="블로그) 네다바웨이 강의 후기 — 1on1 코칭이 정말 도움이 되었어요. 다만 신청 절차가 복잡해서 처음에는 헷갈렸습니다.&#10;&#10;카페) 강의비가 좀 비싼 편이지만 실제 워크북이 매우 알차서 후회는 없네요.&#10;&#10;..."></textarea>
+    <p class="example-row" style="margin-top:.4rem;"><a id="useSample">→ 샘플 멘션 6건 채우기</a></p>
+  </div>
+
+  <div class="run-row">
+    <button class="btn-go" id="runBtn"><span class="spin"></span><span class="label">분류·다이제스트 만들기</span></button>
+  </div>
+
+  <div id="result"><div class="result-empty">결과가 여기에 나타납니다.</div></div>
+
+  <aside class="next-aside">
+    <h2>매일 자동 수집 → 주간 메일까지 자동화하려면</h2>
+    <p><a href="/resources/automation/marketing/03-review-mention-digest.html" style="display:inline-block;background:var(--ink);color:#fbf6ec;padding:.7rem 1.2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.92rem;">자동화로 만들기 →</a></p>
+  </aside>
+</main>
+
+<footer class="foot"><p>김창환 · 네다바웨이 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p></footer>
+
+<script src="/auto/tools/_lib.js" defer></script>
+<script src="/assets/share-bar.js" defer></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+  const $ = (id) => document.getElementById(id);
+  const sample = `[블로그] 네다바웨이 1on1 코칭 후기 — 매니저로 처음 1on1 운영을 시작했는데 형식이 잡혔습니다. 다만 신청 절차가 좀 복잡하다고 느꼈어요.\n\n[카페] 강의비가 시장 평균보다는 비싸지만 워크북 퀄리티가 좋아서 추천합니다.\n\n[네이버뉴스] 김창환 강사가 진행한 사내 워크숍 후 OKR 설정 방식이 바뀌었다는 인터뷰.\n\n[블로그] 신청한 강의가 일정 변경되면서 환불 처리가 늦어 답답했습니다. 결국 다음 분기로 미뤘네요.\n\n[카페] 책 발췌 PDF 무료로 받았는데 생각보다 너무 좋아서 본책도 구매할 예정입니다.\n\n[블로그] 워크숍 자료가 이메일로 잘 도착했고 슬랙 follow-up도 친절했습니다.`;
+  $('useSample').addEventListener('click', (e) => { e.preventDefault(); $('brand').value = '네다바웨이'; $('mentions').value = sample; });
+
+  $('runBtn').addEventListener('click', async () => {
+    const brand = $('brand').value.trim();
+    const raw = $('mentions').value.trim();
+    if (!brand || !raw) { alert('브랜드명과 멘션 텍스트가 필요합니다.'); return; }
+    const items = raw.split(/\n{2,}/).map(s => s.trim()).filter(Boolean);
+    if (!items.length) { alert('멘션이 인식되지 않습니다.'); return; }
+
+    const result = $('result');
+    result.innerHTML = `<div class="result-empty">${items.length}건 분류 중...</div>`;
+    MZ.setLoading($('runBtn'), true);
+
+    const prompt = `다음 ${items.length}개의 ${brand} 관련 멘션을 한국어로 분류하세요.
+
+멘션:
+${items.map((t, i) => `[${i+1}] ${t}`).join('\n\n')}
+
+JSON만 반환:
+{
+  "items": [{"sentiment":"positive|negative|neutral","topics":["가격","품질","CS"],"gist":"15자 이내"}],
+  "weekly": {
+    "summary": "한 문장 종합",
+    "watch": "다음 주 주의해서 지켜볼 한 가지",
+    "action": "어느 팀(마케팅·CS·제품) 어떤 행동 한 줄"
+  }
+}
+
+규칙: items 길이 = 멘션 수. topics 1~3개 짧은 명사구. 추측 금지.`;
+
+    try {
+      const data = await MZ.generate(prompt, { maxOutputTokens: 4096 });
+      renderMentions(result, data, items, brand);
+    } catch (e) {
+      MZ.renderError(result, e);
+    } finally {
+      MZ.setLoading($('runBtn'), false);
+    }
+  });
+
+  function renderMentions(target, data, raws, brand) {
+    const items = data.items || [];
+    let pos=0, neg=0, neu=0;
+    const topicCount = {};
+    items.forEach(it => {
+      if (it.sentiment === 'positive') pos++;
+      else if (it.sentiment === 'negative') neg++;
+      else neu++;
+      (it.topics||[]).forEach(t => topicCount[t] = (topicCount[t]||0)+1);
+    });
+    const total = items.length || 1;
+
+    const negs = items.map((it, i) => ({ ...it, original: raws[i], idx: i+1 })).filter(x => x.sentiment === 'negative');
+
+    const rows = items.map((it, i) => `
+      <tr>
+        <td style="text-align:center;color:var(--muted);">${i+1}</td>
+        <td><span class="pill" style="font-size:.7rem;background:${it.sentiment === 'positive' ? '#d6e4d8' : it.sentiment === 'negative' ? '#f0d6c8' : '#ece1cd'};color:${it.sentiment === 'positive' ? '#3f6b46' : it.sentiment === 'negative' ? '#8a3f2d' : '#7a5a1f'};">${MZ.escapeHtml(it.sentiment || '')}</span></td>
+        <td>${MZ.escapeHtml((it.topics||[]).join(', '))}</td>
+        <td><strong>${MZ.escapeHtml(it.gist||'')}</strong><br><span style="color:var(--muted);font-size:.85em;">${MZ.escapeHtml((raws[i]||'').slice(0,80))}${(raws[i]||'').length > 80 ? '…' : ''}</span></td>
+      </tr>
+    `).join('');
+
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `
+      <p style="margin:.2rem 0 .8rem;color:var(--muted);font-size:.88rem;">
+        ${brand} 멘션 ${items.length}건 · 긍정 ${(pos/total*100).toFixed(0)}% / 부정 ${(neg/total*100).toFixed(0)}% / 중립 ${(neu/total*100).toFixed(0)}%
+      </p>
+
+      ${negs.length ? `<div style="background:#fcecec;border:1px solid #f0c4c4;border-radius:8px;padding:.8rem 1rem;margin:.5rem 0 1rem;">
+        <strong style="color:#7a1f1f;">⚠️ 부정 멘션 ${negs.length}건 (즉시 검토 권장)</strong>
+        <ul style="margin:.4rem 0 0 1.2rem;">${negs.map(n => `<li><strong>#${n.idx}</strong> · ${MZ.escapeHtml((n.topics||[]).join(', '))} — ${MZ.escapeHtml(n.gist)}</li>`).join('')}</ul>
+      </div>` : ''}
+
+      <h5 style="margin:1rem 0 .3rem;">📌 주간 다이제스트 코멘트</h5>
+      <p><strong>요약 — </strong>${MZ.escapeHtml(data.weekly?.summary || '')}</p>
+      <p><strong>다음 주 관찰 — </strong>${MZ.escapeHtml(data.weekly?.watch || '')}</p>
+      <p><strong>권고 액션 — </strong>${MZ.escapeHtml(data.weekly?.action || '')}</p>
+
+      <h5 style="margin:1.2rem 0 .3rem;">멘션별 분류</h5>
+      <div style="overflow-x:auto;"><table>
+        <thead><tr><th style="width:32px;">#</th><th style="width:70px;">감성</th><th style="width:140px;">주제</th><th>요지</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>
+    `;
+
+    MZ.renderResult(target, {
+      title: `${brand} 멘션 분석 (${items.length}건)`,
+      body: wrap,
+      actions: [
+        { label: '⬇️ 분류 CSV', run: async () => {
+          const rows = [['#','감성','주제','요지','원문 요약']];
+          items.forEach((it, i) => rows.push([i+1, it.sentiment||'', (it.topics||[]).join(';'), it.gist||'', (raws[i]||'').slice(0,200)]));
+          MZ.downloadFile(`${brand}-mentions.csv`, '﻿' + MZ.toCSV(rows), 'text/csv;charset=utf-8');
+        }},
+        { label: '📧 다이제스트 메일 본문', run: async () => {
+          const txt = `[${brand}] 주간 멘션 다이제스트\n\n• 총 ${items.length}건 (긍정 ${pos} / 부정 ${neg} / 중립 ${neu})\n${negs.length ? `\n⚠️ 부정 멘션 ${negs.length}건:\n${negs.map(n => `- #${n.idx} ${(n.topics||[]).join(', ')}: ${n.gist}`).join('\n')}\n` : ''}\n📌 코멘트\n${data.weekly?.summary}\n\n📌 다음 주 관찰\n${data.weekly?.watch}\n\n📌 권고 액션\n${data.weekly?.action}`;
+          await MZ.copyText(txt);
+        }},
+        { label: '⬇️ 전체 JSON', run: async () => MZ.downloadFile('mentions-analysis.json', JSON.stringify(data, null, 2), 'application/json') },
+      ]
+    });
+  }
+});
+</script>
+</body>
+</html>
