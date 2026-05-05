@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient, createAdminClient } from "@/lib/supabase/server";
 import { cancelPayment } from "@/server/payments/toss-refund";
+import { sendRefundProcessed } from "@/server/email/send";
 
 /**
  * POST /api/refunds/[id]/approve
@@ -125,20 +126,43 @@ export async function POST(
     }).eq("id", r.enrollment_id);
   }
 
-  // 알림 (in_app)
+  // 알림 (in_app + email)
   const { data: refundReq } = await admin
     .from("refund_requests")
-    .select("requested_by")
+    .select("requested_by, profiles!refund_requests_requested_by_fkey(display_name, email)")
     .eq("id", id)
     .single();
   if (refundReq) {
+    type ReqRow = {
+      requested_by: string;
+      profiles: { display_name: string; email: string } | null;
+    };
+    const rq = refundReq as unknown as ReqRow;
+
+    // in_app 알림
     await admin.from("notifications").insert({
-      user_id: (refundReq as { requested_by: string }).requested_by,
+      user_id: rq.requested_by,
       kind: "refund_completed",
       payload: { refund_request_id: id, amount_krw: row.amount_krw },
       channel: "in_app",
       status: "queued",
     });
+
+    // email 알림 (실패해도 환불 처리 자체는 성공)
+    if (rq.profiles?.email) {
+      try {
+        await sendRefundProcessed(rq.profiles.email, rq.requested_by, {
+          displayName: rq.profiles.display_name ?? "회원",
+          originalAmountKrw: p.amount_krw,
+          refundAmountKrw: row.amount_krw,
+          refundRate: row.rate,
+          reasonCode: row.reason_code,
+          processedAt: new Date().toISOString(),
+        });
+      } catch (err) {
+        console.error("[refund-approve] 환불완료 메일 실패:", err);
+      }
+    }
   }
 
   return NextResponse.json({

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
 import { env } from "@/lib/env";
+import { sendPaymentSuccess } from "@/server/email/send";
 
 /**
  * 토스페이먼츠 결제 승인 webhook.
@@ -62,13 +63,19 @@ async function persistPaid(opts: {
   const admin = createAdminClient();
   const { data: enr } = await admin
     .from("enrollments")
-    .select("user_id")
+    .select("user_id, track_id, profiles!inner(display_name, email), tracks!inner(name)")
     .eq("id", opts.enrollmentId)
     .single();
   if (!enr) {
     return NextResponse.json({ error: "enrollment_not_found" }, { status: 404 });
   }
-  const e = enr as { user_id: string };
+  type EnrRow = {
+    user_id: string;
+    track_id: string;
+    profiles: { display_name: string; email: string };
+    tracks: { name: string };
+  };
+  const e = enr as unknown as EnrRow;
 
   await admin.from("payments").upsert(
     {
@@ -86,7 +93,24 @@ async function persistPaid(opts: {
     { onConflict: "toss_order_id" }
   );
 
-  await admin.from("enrollments").update({ status: "active", started_at: new Date().toISOString() }).eq("id", opts.enrollmentId);
+  await admin
+    .from("enrollments")
+    .update({ status: "active", started_at: new Date().toISOString() })
+    .eq("id", opts.enrollmentId);
+
+  // 결제 완료 메일 (실패해도 webhook은 성공 처리)
+  try {
+    if (e.profiles?.email) {
+      await sendPaymentSuccess(e.profiles.email, e.user_id, {
+        displayName: e.profiles.display_name ?? "회원",
+        trackName: e.tracks?.name ?? "코칭 트랙",
+        amountKrw: opts.amount,
+        dashboardUrl: `${env.site.url}/dashboard`,
+      });
+    }
+  } catch (err) {
+    console.error("[toss-webhook] 결제완료 메일 실패:", err);
+  }
 
   return NextResponse.json({ ok: true });
 }
