@@ -38,14 +38,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'pnpm'
-          cache-dependency-path: 'app/pnpm-lock.yaml'
 
       - name: Install
         run: pnpm install --no-frozen-lockfile
 
       - name: Lint
         run: pnpm lint || echo "::warning::lint warnings (non-blocking)"
+        continue-on-error: true
 
       - name: Typecheck
         run: pnpm typecheck
@@ -68,8 +67,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'pnpm'
-          cache-dependency-path: 'app/pnpm-lock.yaml'
 
       - name: Install
         run: pnpm install --no-frozen-lockfile
