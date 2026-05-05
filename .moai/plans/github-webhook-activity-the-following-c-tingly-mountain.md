@@ -290,3 +290,61 @@ CLAUDE.md `## 1. Core Identity` 또는 `## 11. Error Handling` 섹션 또는 aut
 - 스캔 결과 매칭되는 idle 패턴이 보이면 그 표현을 출력 직전 차단하고 actionable 1건으로 교체.
 - 사용자가 더 이상 "멈춰?" 같은 지적을 안 해도 되도록.
 
+---
+
+## SaaS 베타 1기 설치 진행 상황 (2026-05-04)
+
+### 현재 사용자 상태
+
+사장님 환경(MacBook Air, macOS, node v24.14.0, zsh) 터미널 위치 `~/Desktop/nedabah/app`. 브랜치 `claude/saas-app-baseline` 정상 체크아웃. `supabase/migrations/` 안에 `0001_init.sql`, `0002_rls.sql` 두 파일 확인됨. 디렉터리 구조·소스 코드 무결성 통과.
+
+### 이전 단계에서 막힌 지점들 (모두 해소)
+
+1. ✅ `supabase` CLI macOS npm 설치 차단 → 우회: Supabase Studio SQL Editor에서 직접 SQL 실행 (브라우저만 있으면 됨)
+2. ✅ Connection string UI 변경(설정 페이지에 안 보임) → 우회: 우상단 "Connect" 버튼 또는 `?showConnect=true` 쿼리
+3. ✅ 잘못된 브랜치 진입 → `git checkout claude/saas-app-baseline` 으로 전환 완료
+4. ✅ 키 노출 → 작업 후 사장님이 Supabase 대시보드에서 rotate 필요 (HANDOVER에 명시)
+
+### 사장님 컴퓨터에서 남은 6단계 (각 단계 1~5분)
+
+**Step A. SQL 3개 Studio에서 실행 (10분 — 가장 시간 소요)**
+- 위치: https://supabase.com/dashboard/project/wdxzndgbowigicbjsnbi/sql/new
+- 터미널에서 `cat supabase/migrations/0001_init.sql | pbcopy` → Studio에 `Cmd+V` → "RUN" → 성공 확인
+- 동일 방식으로 `0002_rls.sql` → `seed.sql` 순서대로 3회 반복
+- Table Editor 메뉴에서 `tracks` 테이블에 5개 row 보이면 통과
+
+**Step B. DB Connection string 가져오기 (2분)**
+- 우회 링크: https://supabase.com/dashboard/project/wdxzndgbowigicbjsnbi/?showConnect=true
+- 팝업에서 "Connection string" 탭 → "Transaction pooler" 라디오 (포트 6543) → Copy
+- 붙여넣은 문자열에서 `[YOUR-PASSWORD]` 자리에 DB 비밀번호 채움 (Reset password 버튼으로 새로 받을 수도)
+
+**Step C. .env.local 생성 (1분)**
+- 터미널 `cat > .env.local << 'ENVEOF' ... ENVEOF` heredoc 방식
+- 4개 키: URL, anon, service_role, DB URL
+- `nano .env.local` 로 DB URL의 `[YOUR-PASSWORD]` 자리만 실제 비번으로 교체
+
+**Step D. pnpm install (1~2분)**
+- 단일 명령. 의존성 설치만.
+
+**Step E. pnpm seed:users (30초)**
+- 4개 테스트 계정 + 결제 시나리오 row 자동 생성
+- coach@, student.starcp@, student.iden@, student.pivot@ (모두 비밀번호 `nedabah1!`)
+
+**Step F. pnpm dev → http://localhost:3000 (즉시)**
+- 5트랙 카드 보이면 셋업 완료
+- 각 계정으로 로그인하여 환불 시나리오 검증
+
+### 자동화 한계의 정직한 진단
+
+이 Claude Code 환경의 샌드박스 프록시는 `wdxzndgbowigicbjsnbi.supabase.co` 호스트를 명시적으로 차단(`x-deny-reason: host_not_allowed`)한다. 즉 사장님 키가 있어도 제가 직접 마이그레이션을 적용할 수 없다. 이는 키·인증 문제가 아니라 sandbox 네트워크 정책. 따라서 사장님 머신에서의 실행이 유일한 길이며, 위 6단계가 가장 좁힌 형태다.
+
+### 다음 응답 가이드 (Plan mode 종료 후)
+
+ExitPlanMode 호출 후, 사장님이 Step A~F를 순서대로 진행하도록 한 단계씩 안내한다. 각 단계는:
+- 명확한 명령어 1~3줄 (그대로 복사 가능)
+- 그 명령어 결과로 화면에 어떤 글자가 나와야 하는지 명시
+- 에러 시 어떻게 대응할지 1~2개 옵션 제공
+- 다음 단계로 넘어가는 트리거 명시
+
+사장님이 "다음" 또는 "Step A 끝났다" 같은 단순 신호만 줘도 다음 단계로 진행할 수 있도록 매 응답을 자체-완결 형태로 작성한다.
+

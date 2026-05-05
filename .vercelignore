@@ -1,0 +1,41 @@
+# Vercel은 app/ 디렉토리만 빌드 (SaaS Next.js 앱).
+# 정적 사이트(p/, blog/, learning/, tools/)는 GitHub Pages가 담당.
+
+# 정적 사이트 자산
+p/
+assets/
+blog/
+learning/
+tools/
+*.html
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.pdf
+
+# MoAI 메타데이터
+.moai/
+.lighthouseci/
+.claude/
+
+# 워크플로 (GitHub Actions만 사용, Vercel은 무시)
+.github/
+
+# 정적 사이트 의존성
+node_modules/
+package.json
+package-lock.json
+pnpm-lock.yaml
+
+# 캐시·로그
+.cache/
+*.log
+.DS_Store
+
+# 보안
+.env
+.env.*
+!.env.example
