@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>콘텐츠 — 네다바웨이 7가지 결</title>
+<meta name="description" content="네다바웨이의 모든 콘텐츠 카테고리를 한 곳에서. 프로그램·자동화·관점 노트·학습 노트·AI 작업실·강의·코칭·SBM 7가지 결을 탭으로 둘러보세요.">
+<meta property="og:title" content="콘텐츠 — 네다바웨이 7가지 결">
+<meta property="og:description" content="프로그램·자동화·관점 노트·학습 노트·AI 작업실·강의·코칭·SBM 7가지 결을 한 곳에서.">
+<meta property="og:url" content="https://www.nedabah.org/content.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<link rel="canonical" href="https://www.nedabah.org/content.html">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-default.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.nedabah.org/assets/og-default.svg">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/content.html" class="gnav__link" aria-current="page">콘텐츠</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .ch-wrap{max-width:1080px;margin:0 auto;padding:48px 24px 64px}
+  .ch-hero{margin-bottom:32px}
+  .ch-hero__kicker{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.18em;color:#a4541a;
+    background:#efe7d6;padding:5px 12px;border-radius:4px;margin-bottom:16px;text-transform:uppercase;border:1px solid #d8cdb8}
+  .ch-hero h1{font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:12px;color:#2a241c;font-family:'Noto Serif KR',serif}
+  .ch-hero h1 em{color:#a4541a;font-style:normal}
+  .ch-hero p{font-size:16px;color:#3a322a;max-width:720px;line-height:1.7}
+
+  .ch-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px;padding:6px;background:#fdfaf3;border:1px solid #d8cdb8;border-radius:14px;position:sticky;top:8px;z-index:5;box-shadow:0 2px 8px rgba(42,36,28,.04)}
+  .ch-tab{flex:1 1 auto;min-width:max-content;padding:10px 14px;border:1px solid transparent;border-radius:9px;background:transparent;
+    font-size:13px;font-weight:700;color:#6b6155;cursor:pointer;letter-spacing:-.005em;
+    transition:all .18s ease;font-family:inherit;text-align:center;white-space:nowrap}
+  .ch-tab:hover{color:#a4541a;background:#efe7d6}
+  .ch-tab[aria-selected="true"]{background:#a4541a;color:#fdfaf3;border-color:#a4541a;box-shadow:0 2px 6px rgba(164,84,26,.25)}
+  .ch-tab .ch-tab__num{font-size:10px;letter-spacing:.14em;opacity:.7;margin-right:6px;font-family:ui-monospace,Menlo,Consolas,monospace}
+
+  .ch-panel{display:none;animation:fadeIn .25s ease}
+  .ch-panel[aria-hidden="false"]{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+  .ch-panel__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;
+    padding:24px 28px;background:#fdfaf3;border:1px solid #d8cdb8;border-radius:14px 14px 0 0;border-bottom:none}
+  .ch-panel__title{display:flex;align-items:center;gap:14px}
+  .ch-panel__icon{width:48px;height:48px;background:#efe7d6;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:26px;color:#a4541a}
+  .ch-panel__title h2{font-size:22px;font-weight:800;color:#2a241c;font-family:'Noto Serif KR',serif;letter-spacing:-.02em;margin:0 0 2px}
+  .ch-panel__title .ch-panel__meta{font-size:12px;color:#6b6155;letter-spacing:.04em}
+  .ch-panel__cta{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:#a4541a;color:#fdfaf3;
+    text-decoration:none;border-radius:10px;font-size:13px;font-weight:700;transition:all .15s ease;white-space:nowrap}
+  .ch-panel__cta:hover{background:#7a4317;transform:translateY(-1px)}
+
+  .ch-panel__body{padding:28px;background:#fdfaf3;border:1px solid #d8cdb8;border-radius:0 0 14px 14px}
+  .ch-panel__lead{font-size:15px;color:#3a322a;line-height:1.75;margin-bottom:24px;max-width:760px}
+  .ch-panel__lead b{color:#2a241c}
+
+  .ch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+  .ch-grid .item{padding:16px 18px;background:#f5ecda;border:1px solid #d8cdb8;border-radius:10px;
+    text-decoration:none;color:inherit;transition:all .18s ease;display:block}
+  .ch-grid .item:hover{border-color:#a4541a;background:#efe7d6;transform:translateY(-2px)}
+  .ch-grid .item .num{font-size:10px;font-weight:700;letter-spacing:.16em;color:#a4541a;margin-bottom:6px;font-family:ui-monospace,Menlo,Consolas,monospace}
+  .ch-grid .item .ttl{font-size:14px;font-weight:800;color:#2a241c;letter-spacing:-.01em;margin-bottom:4px;line-height:1.35}
+  .ch-grid .item .desc{font-size:12px;color:#6b6155;line-height:1.55}
+
+  .ch-stats{display:flex;flex-wrap:wrap;gap:24px;padding:16px 0 0;border-top:1px solid #d8cdb8;font-size:12px;color:#6b6155}
+  .ch-stats div strong{display:block;font-size:20px;font-weight:800;color:#2a241c;font-family:'Noto Serif KR',serif;margin-bottom:2px}
+
+  @media(max-width:680px){
+    .ch-wrap{padding:32px 16px 48px}
+    .ch-hero h1{font-size:26px}
+    .ch-tabs{position:static;padding:4px;gap:4px}
+    .ch-tab{font-size:12px;padding:8px 10px;flex:1 1 calc(50% - 4px)}
+    .ch-tab .ch-tab__num{display:none}
+    .ch-panel__head{flex-direction:column;align-items:flex-start;padding:20px}
+    .ch-panel__body{padding:20px}
+    .ch-panel__cta{width:100%;justify-content:center}
+    .ch-grid{grid-template-columns:1fr}
+  }
+</style>
+
+<main class="ch-wrap">
+  <header class="ch-hero">
+    <span class="ch-hero__kicker">Content · 7가지 결</span>
+    <h1>한 좌표를 <em>일곱 결</em>로 풀어 놓았습니다</h1>
+    <p>네다바웨이의 모든 콘텐츠를 한 곳에서. 탭을 눌러 각 결의 미리보기를 확인하고, 더 보기 버튼으로 전체 페이지로 이동하세요.</p>
+  </header>
+
+  <div class="ch-tabs" role="tablist" aria-label="콘텐츠 카테고리">
+    <button class="ch-tab" role="tab" aria-selected="true"  aria-controls="panel-perspective" id="tab-perspective"  data-tab="perspective"><span class="ch-tab__num">01</span>관점 노트</button>
+    <button class="ch-tab" role="tab" aria-selected="false" aria-controls="panel-learning"    id="tab-learning"     data-tab="learning"><span class="ch-tab__num">02</span>학습 노트</button>
+    <button class="ch-tab" role="tab" aria-selected="false" aria-controls="panel-ai"          id="tab-ai"           data-tab="ai"><span class="ch-tab__num">03</span>AI 작업실</button>
+    <button class="ch-tab" role="tab" aria-selected="false" aria-controls="panel-programs"    id="tab-programs"     data-tab="programs"><span class="ch-tab__num">04</span>강의·코칭</button>
+    <button class="ch-tab" role="tab" aria-selected="false" aria-controls="panel-sbm"         id="tab-sbm"          data-tab="sbm"><span class="ch-tab__num">05</span>SBM</button>
+    <button class="ch-tab" role="tab" aria-selected="false" aria-controls="panel-automation"  id="tab-automation"   data-tab="automation"><span class="ch-tab__num">06</span>자동화</button>
+    <button class="ch-tab" role="tab" aria-selected="false" aria-controls="panel-program"     id="tab-program"      data-tab="program"><span class="ch-tab__num">07</span>프로그램</button>
+  </div>
+
+  <!-- 01 관점 노트 -->
+  <section class="ch-panel" id="panel-perspective" role="tabpanel" aria-labelledby="tab-perspective" aria-hidden="false">
+    <div class="ch-panel__head">
+      <div class="ch-panel__title">
+        <div class="ch-panel__icon">📓</div>
+        <div>
+          <h2>관점 노트 Still Hands</h2>
+          <div class="ch-panel__meta">격주 발행 · 600~1,200자 · 19/100</div>
+        </div>
+      </div>
+      <a href="/blog/perspective/" class="ch-panel__cta">전체 보기 →</a>
+    </div>
+    <div class="ch-panel__body">
+      <p class="ch-panel__lead"><b>10대 주제 × 8독자 × 8형태 × 8감정 = 5,120 좌표 매트릭스.</b> 한 사람의 일을 관찰한 짧은 노트의 누적. 1만 편을 향한 출발입니다.</p>
+      <div class="ch-grid">
+        <a href="/blog/perspective/" class="item"><div class="num">SERIES</div><div class="ttl">전체 시리즈</div><div class="desc">19편의 관점 노트 모음</div></a>
+        <a href="/topics/" class="item"><div class="num">TOPICS</div><div class="desc">10대 주제별 색인</div></a>
+        <a href="/keywords.html" class="item"><div class="num">KEYWORDS</div><div class="ttl">키워드 색인</div><div class="desc">전체 노트 키워드 맵</div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 학습 노트 -->
+  <section class="ch-panel" id="panel-learning" role="tabpanel" aria-labelledby="tab-learning" aria-hidden="true">
+    <div class="ch-panel__head">
+      <div class="ch-panel__title">
+        <div class="ch-panel__icon">📚</div>
+        <div>
+          <h2>학습 노트 다섯 사람</h2>
+          <div class="ch-panel__meta">10기둥 · 40카테고리 · 1,200좌표</div>
+        </div>
+      </div>
+      <a href="/learning.html" class="ch-panel__cta">매트릭스 열기 →</a>
+    </div>
+    <div class="ch-panel__body">
+      <p class="ch-panel__lead">에라스무스·라이프니츠·바전·루이스·다 빈치 — <b>다섯 사람의 영역 합집합</b>으로 짠 평생 학습 매트릭스. 자기 강점이 어느 칸에 떨어지는지 좌표를 찍어 봅니다.</p>
+      <div class="ch-grid">
+        <a href="/learning.html" class="item"><div class="num">MATRIX</div><div class="ttl">전체 매트릭스</div><div class="desc">10기둥 × 40카테고리</div></a>
+        <a href="/learning/" class="item"><div class="num">NOTES</div><div class="ttl">학습 노트 글</div><div class="desc">8편의 학습 기록</div></a>
+        <a href="/vault/" class="item"><div class="num">VAULT</div><div class="ttl">자료 보관함</div><div class="desc">참고 문헌·링크</div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 AI 작업실 -->
+  <section class="ch-panel" id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" aria-hidden="true">
+    <div class="ch-panel__head">
+      <div class="ch-panel__title">
+        <div class="ch-panel__icon">🤖</div>
+        <div>
+          <h2>AI 작업실</h2>
+          <div class="ch-panel__meta">2 코치 · 12 미니 도구</div>
+        </div>
+      </div>
+      <a href="/ai.html" class="ch-panel__cta">작업실 들어가기 →</a>
+    </div>
+    <div class="ch-panel__body">
+      <p class="ch-panel__lead">진로 좌표 도출, 자기소개 한 줄, 면접 답변 — <b>실제로 답이 나오는</b> AI 미니 도구들의 모음. 로그인 없이 바로 사용.</p>
+      <div class="ch-grid">
+        <a href="/ai.html#iden-core" class="item"><div class="num">CORE</div><div class="ttl">IDEN 좌표 도출기</div><div class="desc">5분 · 한 사람·결핍·강점</div></a>
+        <a href="/ai.html" class="item"><div class="num">TOOLS</div><div class="ttl">전체 미니 도구</div><div class="desc">12종 도구 모음</div></a>
+        <a href="/diagnosis.html" class="item"><div class="num">DIAG</div><div class="ttl">진단 도구</div><div class="desc">진로 진단 · 자가 점검</div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 강의·코칭 -->
+  <section class="ch-panel" id="panel-programs" role="tabpanel" aria-labelledby="tab-programs" aria-hidden="true">
+    <div class="ch-panel__head">
+      <div class="ch-panel__title">
+        <div class="ch-panel__icon">🎙</div>
+        <div>
+          <h2>강의·코칭</h2>
+          <div class="ch-panel__meta">진로·AI·리더십·퍼실리테이션</div>
+        </div>
+      </div>
+      <a href="/programs.html" class="ch-panel__cta">프로그램 보기 →</a>
+    </div>
+    <div class="ch-panel__body">
+      <p class="ch-panel__lead">학습자의 <b>실제 업무 맥락</b>에서 4축을 통합하는 강의·코칭. 1회·다회차·맞춤 모듈 재조합 — 기관·기업·학교에 맞춰 설계합니다.</p>
+      <div class="ch-grid">
+        <a href="/programs.html" class="item"><div class="num">CATALOG</div><div class="ttl">전체 프로그램</div><div class="desc">강의 카탈로그 · 모듈</div></a>
+        <a href="/cases.html" class="item"><div class="num">CASES</div><div class="ttl">강의 사례</div><div class="desc">진행한 강의 기록</div></a>
+        <a href="/contact.html" class="item"><div class="num">REQUEST</div><div class="ttl">강의 의뢰</div><div class="desc">문의 양식</div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 SBM -->
+  <section class="ch-panel" id="panel-sbm" role="tabpanel" aria-labelledby="tab-sbm" aria-hidden="true">
+    <div class="ch-panel__head">
+      <div class="ch-panel__title">
+        <div class="ch-panel__icon">📖</div>
+        <div>
+          <h2>SBM 성경관찰</h2>
+          <div class="ch-panel__meta">66권 · 1,189장 · 9단계 관찰</div>
+        </div>
+      </div>
+      <a href="/sbm.html" class="ch-panel__cta">관찰 노트 보기 →</a>
+    </div>
+    <div class="ch-panel__body">
+      <p class="ch-panel__lead"><b>가르침이 아닌 관찰.</b> Scripture Bible Magazine — 한 장씩 9단계로 펼쳐 본문이 본문을 읽는 곳을 공개합니다.</p>
+      <div class="ch-grid">
+        <a href="/sbm.html" class="item"><div class="num">INDEX</div><div class="ttl">전체 색인</div><div class="desc">66권 · 1,189장 진척도</div></a>
+        <a href="/sbm/" class="item"><div class="num">NOTES</div><div class="ttl">관찰 노트</div><div class="desc">완료된 장 보기</div></a>
+        <a href="/sgp-workbook.html" class="item"><div class="num">WORKBOOK</div><div class="ttl">SGP 워크북</div><div class="desc">9단계 관찰 양식</div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 자동화 -->
+  <section class="ch-panel" id="panel-automation" role="tabpanel" aria-labelledby="tab-automation" aria-hidden="true">
+    <div class="ch-panel__head">
+      <div class="ch-panel__title">
+        <div class="ch-panel__icon">⚙️</div>
+        <div>
+          <h2>자동화</h2>
+          <div class="ch-panel__meta">워크플로 · 스크립트 · 도구</div>
+        </div>
+      </div>
+      <a href="/resources/automation/" class="ch-panel__cta">자동화 자료 →</a>
+    </div>
+    <div class="ch-panel__body">
+      <p class="ch-panel__lead">반복되는 일을 <b>한 번 짜고 평생 굴리는</b> 자동화. 글쓰기·발행·수집·정리 — 강사·1인 운영자에게 필요한 워크플로 모음.</p>
+      <div class="ch-grid">
+        <a href="/resources/automation/" class="item"><div class="num">HUB</div><div class="ttl">자동화 허브</div><div class="desc">전체 자동화 자료</div></a>
+        <a href="/resources/" class="item"><div class="num">RESOURCES</div><div class="ttl">자료실 전체</div><div class="desc">템플릿 · 가이드</div></a>
+        <a href="/guide-github-mcp.html" class="item"><div class="num">GUIDE</div><div class="ttl">GitHub MCP 가이드</div><div class="desc">실전 셋업 가이드</div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 프로그램 -->
+  <section class="ch-panel" id="panel-program" role="tabpanel" aria-labelledby="tab-program" aria-hidden="true">
+    <div class="ch-panel__head">
+      <div class="ch-panel__title">
+        <div class="ch-panel__icon">🧭</div>
+        <div>
+          <h2>프로그램</h2>
+          <div class="ch-panel__meta">소형 워크숍 · 진행 중인 모임</div>
+        </div>
+      </div>
+      <a href="/p/" class="ch-panel__cta">프로그램 페이지 →</a>
+    </div>
+    <div class="ch-panel__body">
+      <p class="ch-panel__lead">현재 모집·진행 중인 <b>소형 워크숍과 모임</b>. 강의·코칭과 달리 자발 참여자 중심으로 짧게 굴러가는 프로그램들입니다.</p>
+      <div class="ch-grid">
+        <a href="/p/" class="item"><div class="num">ACTIVE</div><div class="ttl">진행 프로그램</div><div class="desc">현재 모집·운영 중</div></a>
+        <a href="/iden.html" class="item"><div class="num">IDEN</div><div class="ttl">IDEN 워크숍</div><div class="desc">좌표 도출 모임</div></a>
+        <a href="/swarm.html" class="item"><div class="num">SWARM</div><div class="ttl">SWARM</div><div class="desc">집합 학습 프로그램</div></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.ch-tab');
+  var panels = document.querySelectorAll('.ch-panel');
+
+  function activate(name){
+    tabs.forEach(function(t){
+      var on = t.dataset.tab === name;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    panels.forEach(function(p){
+      var on = p.id === 'panel-' + name;
+      p.setAttribute('aria-hidden', on ? 'false' : 'true');
+    });
+    if (history.replaceState) {
+      history.replaceState(null, '', '#' + name);
+    }
+  }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ activate(t.dataset.tab); });
+    t.addEventListener('keydown', function(e){
+      var idx = Array.prototype.indexOf.call(tabs, t);
+      if (e.key === 'ArrowRight') { e.preventDefault(); var n = tabs[(idx+1) % tabs.length]; n.focus(); activate(n.dataset.tab); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); var p = tabs[(idx-1+tabs.length) % tabs.length]; p.focus(); activate(p.dataset.tab); }
+      if (e.key === 'Home')       { e.preventDefault(); tabs[0].focus(); activate(tabs[0].dataset.tab); }
+      if (e.key === 'End')        { e.preventDefault(); tabs[tabs.length-1].focus(); activate(tabs[tabs.length-1].dataset.tab); }
+    });
+  });
+
+  // Open from URL hash on load
+  var hash = (location.hash || '').replace('#','');
+  if (hash) {
+    var match = Array.prototype.find.call(tabs, function(t){ return t.dataset.tab === hash; });
+    if (match) activate(hash);
+  }
+})();
+</script>
+
+</body>
+</html>
