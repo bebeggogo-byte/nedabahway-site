@@ -297,7 +297,7 @@
   <p class="lead">"무엇이 될까"가 아니라 "누구의 어떤 결핍을 향할까"가 첫 질문입니다. 자기 일상에서 자주 떠오르는 한 사람과, 그 사람의 결핍, 자기 강점 — 이 셋이 한 줄로 묶이는 곳에 1년 진로 방향이 적힙니다. 강의·코칭·관점 노트·SBM(성경관찰)·AI 작업실은 이 한 좌표를 다섯 결로 풀어 놓은 결과입니다.</p>
 
   <div class="home-hero__stats">
-    <div><strong id="hh-perspective">19</strong>관점 노트 (목표 100)</div>
+    <div><strong id="hh-perspective" data-goal="100">100</strong><span id="hh-perspective-lbl">관점 노트 (1차 100편 달성)</span></div>
     <div><strong id="hh-learning">8</strong>학습 노트 (다섯 사람)</div>
     <div><strong id="hh-sbm" data-stat="completed">32</strong>SBM 관찰 (목표 <span data-stat="total-chapters">1,189</span>)</div>
     <div><strong id="hh-ai">2</strong>AI 코치</div>
@@ -340,7 +340,7 @@
       <div class="hover">
         <div class="h-tt">관점 노트 Still Hands</div>
         <div class="h-ln">10대 주제 × 8독자 × 8형태 × 8감정 = 5,120 좌표 매트릭스. 1만 편 누적의 출발.</div>
-        <div class="h-cta">→ 19/100 보기</div>
+        <div class="h-cta" id="hh-perspective-cta">→ 100편 보기</div>
       </div>
     </a>
     <a href="/learning.html" class="cell">
@@ -711,10 +711,10 @@
     }
   </style>
   <div class="iden-next" id="idc-next" aria-label="좌표 한 줄 다음 결">
-    <a href="/blog/perspective/" class="iden-next__card">
+    <a href="/blog/perspective/" class="iden-next__card" id="idn-latest-note" data-default-href="/blog/perspective/">
       <span class="ico">📓</span>
-      <span class="ttl">관점 노트 1편 추천</span>
-      <span class="sub">좌표 한 줄과 닿는 격주 글 Still Hands에서 한 편 골라 읽기</span>
+      <span class="ttl" id="idn-latest-ttl">관점 노트 최신 한 편</span>
+      <span class="sub" id="idn-latest-sub">좌표 한 줄과 닿는 격주 글 Still Hands에서 한 편 골라 읽기</span>
       <span class="arrow">→</span>
     </a>
     <a href="#ai-coaches" class="iden-next__card">
@@ -1284,5 +1284,50 @@ function idcShare(){
 
 <script src="/assets/deck-toggle.js" defer></script>
 <script src="/assets/analytics.js" defer></script>
+
+<script>
+// Perspective Notes — live count + latest recommendation from feed.json
+(function(){
+  function setText(id, txt){ var el=document.getElementById(id); if(el) el.textContent=txt; }
+  function fmt(n){ return n>=1000 ? n.toLocaleString('ko-KR') : String(n); }
+
+  fetch('/blog/perspective/feed.json', { cache: 'no-store' })
+    .then(function(r){ if(!r.ok) throw new Error('feed http '+r.status); return r.json(); })
+    .then(function(feed){
+      var items = (feed && Array.isArray(feed.items)) ? feed.items : [];
+      var total = items.length;
+      if(total <= 0) return;
+
+      // 1) Hero counter
+      var cnt = document.getElementById('hh-perspective');
+      if(cnt) cnt.textContent = fmt(total);
+      var lbl = document.getElementById('hh-perspective-lbl');
+      if(lbl){
+        if(total >= 100) lbl.textContent = '관점 노트 (1차 100편 달성)';
+        else lbl.textContent = '관점 노트 (목표 100, ' + total + '편 누적)';
+      }
+
+      // 2) Bento hover CTA
+      var cta = document.getElementById('hh-perspective-cta');
+      if(cta) cta.textContent = '→ ' + total + '편 보기';
+
+      // 3) iden-next: latest note recommendation
+      var latest = items[0];
+      if(latest && latest.url){
+        var card = document.getElementById('idn-latest-note');
+        var ttl  = document.getElementById('idn-latest-ttl');
+        var sub  = document.getElementById('idn-latest-sub');
+        if(card) card.setAttribute('href', latest.url);
+        if(ttl)  ttl.textContent  = '관점 노트 최신 — ' + (latest.title || '한 편 읽기');
+        if(sub){
+          var s = (latest.summary || '').replace(/\s+/g,' ').trim();
+          if(s.length > 90) s = s.slice(0, 88) + '…';
+          sub.textContent = s || '좌표 한 줄과 닿는 격주 글 Still Hands에서 한 편 골라 읽기';
+        }
+      }
+    })
+    .catch(function(){ /* silent fallback: static markup remains */ });
+})();
+</script>
 </body>
 </html>
