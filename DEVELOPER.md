@@ -282,6 +282,56 @@ python3 _build/publish_v2.py
 
 ---
 
+## 10.5 일일 작업 자동화 (daily-content-watchdog)
+
+4개 트랙(학습노트·SBM·관점노트·AI작업실)의 일일 작업이 정체되지 않도록 GitHub Actions가 매일 자동 점검합니다.
+
+### 구성요소
+
+- `scripts/check_daily_progress.py` — 4 트랙의 마지막 갱신 시각을 git log/JSON 메타에서 읽어 staleness 판정. 사용법: `python3 scripts/check_daily_progress.py [--json] [--strict] [--threshold-hours N]`
+- `.github/workflows/daily-content-watchdog.yml` — 매일 21:00 / 09:00 UTC cron으로 실행. stale 감지 시 `daily-watchdog` 라벨로 GitHub 이슈 자동 생성/갱신, @claude 멘션. 모든 트랙 healthy 복귀 시 자동 close.
+
+### Staleness 임계 (DEFAULT_THRESHOLDS)
+
+| 트랙 | 임계 | 측정 방식 |
+|---|---|---|
+| 학습노트 | 48h | `learning/_data/notes.json` entries[].date 최신값 |
+| SBM | 48h | `sbm-progress.json` updated 필드 |
+| 관점노트 | 168h | `blog/drafts/`·`blog/perspective/` git log 최신 커밋 |
+| AI작업실 | 336h | `assets/ai-studio/`·`ai.html` git log 최신 커밋 |
+
+### 동작 흐름
+
+1. cron이 watchdog 실행 → `check_daily_progress.py --json` 호출
+2. stale 트랙이 있으면 `actions/github-script@v7`이 이슈 open/comment
+3. 이슈 본문에 정체 트랙·경과시간·다음 단계 힌트 포함, @claude 멘션
+4. Claude가 GitHub 통합으로 자동 응답해 작업 재개
+5. 모든 트랙이 임계 안으로 복귀하면 watchdog가 이슈를 자동 close
+
+### 수동 실행
+
+```bash
+# 로컬 점검
+python3 scripts/check_daily_progress.py
+
+# strict 모드 (stale 시 exit 1)
+python3 scripts/check_daily_progress.py --strict
+
+# 임계 조정
+python3 scripts/check_daily_progress.py --threshold-hours 24
+
+# Actions 탭 → daily-content-watchdog → Run workflow (수동 트리거)
+```
+
+### 이슈 라벨 정책
+
+- `daily-watchdog` — 자동 생성 이슈 식별
+- `automation` — 자동화 관련 이슈 묶음
+
+기존 watchdog 이슈가 있으면 새로 만들지 않고 comment + title 갱신만 수행.
+
+---
+
 ## 11. 외부 문서·SPEC
 
 - `CLAUDE.md` — 사이트 운영 룰 (D25 자료실 IA·3계층 분리)
