@@ -12,6 +12,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -92,7 +93,7 @@ def main() -> int:
         })
 
     output = {
-        "generated": data.get("generated", ""),
+        "generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "schema_version": "1.0",
         "total_indexed": len(indexed),
         "excluded_internal": excluded_internal,
