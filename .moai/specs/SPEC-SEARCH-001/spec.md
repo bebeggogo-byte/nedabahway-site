@@ -4,7 +4,9 @@
 - **SPEC ID**: SPEC-SEARCH-001
 - **Title**: 자료실 통합 검색 (Resources Search)
 - **Created**: 2026-05-01
-- **Status**: Planned
+- **Status**: in-progress (stale-index)
+- **Status Audit**: 2026-05-06
+- **Status Note**: 빌드 스크립트(`resources/_build/render_all.py`)와 인덱스 파일(`resources/_data/search-index.json`)은 존재하나 인덱스가 8일간 미갱신 상태(2026-04-28 빌드, 1건만 인덱싱). feed.json의 public 532건 중 531건이 인덱스에서 누락됨. SPEC 4.4에 명시된 경로 `_build/render_all.py`는 실제로는 `resources/_build/render_all.py`로 정정 필요.
 - **Priority**: High
 - **Lifecycle Level**: spec-anchored (사이트 핵심 기능, 변경 시 동기 갱신)
 - **Assigned**: expert-frontend (정적 사이트 클라이언트사이드 구현)

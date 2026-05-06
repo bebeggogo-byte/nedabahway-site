@@ -5,7 +5,9 @@ spec_id: SPEC-LANDING-001
 title: 5개 수익 카테고리 랜딩페이지 시스템 (개별 5 + 라인업 1)
 version: 1.0.0
 created: 2026-05-04
-status: in-progress
+status: near-complete
+status_audit: 2026-05-06
+status_note: "AC-1/2/3 검증 통과. AC-4(authority sourcing), AC-5(gnav 프로그램 링크), AC-6(전 페이지 CTA) 미검증."
 owner: 김창환 (네다바웨이)
 strategy_ref: .moai/strategy/site-strategy.yaml
 tags: [landing, conversion, b2c, b2b, product-launch]
