@@ -309,9 +309,13 @@
     pointer-events: none;
     fill: var(--cream);
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    text-shadow: 0 0 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.7);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    paint-order: stroke;
+    stroke: rgba(5, 8, 16, 0.85);
+    stroke-width: 3px;
+    stroke-linejoin: round;
   }
   .node.active circle.glow {
     transform-box: fill-box;
@@ -329,6 +333,16 @@
   .link {
     stroke-linecap: round;
     transition: stroke-opacity 0.2s, stroke-width 0.2s;
+  }
+  .link--active {
+    stroke-dasharray: 4 6;
+    animation: dashflow 1.2s linear infinite;
+  }
+  @keyframes dashflow {
+    to { stroke-dashoffset: -10; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .link--active { animation: none; stroke-dasharray: none; }
   }
   .link-pulse {
     fill: var(--teal);
@@ -446,8 +460,8 @@ function setupGradients() {
   for (const lobe of DATA.lobes) {
     const grad = defs.append('radialGradient')
       .attr('id', 'glow-' + lobe.id);
-    grad.append('stop').attr('offset', '0%').attr('stop-color', lobe.color).attr('stop-opacity', 0.6);
-    grad.append('stop').attr('offset', '60%').attr('stop-color', lobe.color).attr('stop-opacity', 0.15);
+    grad.append('stop').attr('offset', '0%').attr('stop-color', lobe.color).attr('stop-opacity', 0.55);
+    grad.append('stop').attr('offset', '60%').attr('stop-color', lobe.color).attr('stop-opacity', 0.13);
     grad.append('stop').attr('offset', '100%').attr('stop-color', lobe.color).attr('stop-opacity', 0);
   }
 
@@ -456,6 +470,26 @@ function setupGradients() {
   brainGrad.append('stop').attr('offset', '0%').attr('stop-color', '#1f2740').attr('stop-opacity', 0.4);
   brainGrad.append('stop').attr('offset', '70%').attr('stop-color', '#0a0e1a').attr('stop-opacity', 0.2);
   brainGrad.append('stop').attr('offset', '100%').attr('stop-color', '#0a0e1a').attr('stop-opacity', 0);
+}
+
+// Per-edge linear gradient (source-lobe → target-lobe color).
+// Endpoints are updated each tick so the gradient follows the curve.
+let edgeGrads = null;
+function buildEdgeGradients(links) {
+  const lobeColor = id => {
+    const lobe = DATA.lobes.find(l => l.id === id);
+    return lobe ? lobe.color : '#888';
+  };
+  const sel = defs.selectAll('linearGradient.edge-grad').data(links);
+  const enter = sel.enter().append('linearGradient')
+    .attr('class', 'edge-grad')
+    .attr('id', (_, i) => 'edge-grad-' + i)
+    .attr('gradientUnits', 'userSpaceOnUse');
+  enter.append('stop').attr('offset', '0%')
+    .attr('stop-color', d => lobeColor(nodeMap[d.source.id || d.source].lobe));
+  enter.append('stop').attr('offset', '100%')
+    .attr('stop-color', d => lobeColor(nodeMap[d.target.id || d.target].lobe));
+  edgeGrads = enter.merge(sel);
 }
 
 function renderLegend() {
@@ -559,32 +593,37 @@ function renderGraph() {
   const g = svg.append('g').attr('class', 'zoom-layer');
   svg.call(d3.zoom().scaleExtent([0.4, 3]).on('zoom', e => g.attr('transform', e.transform)));
 
-  // Links (시냅스)
+  // Per-edge bicolor gradients (must be in defs before <path stroke="url(#...)">).
+  buildEdgeGradients(links);
+
+  // Links (시냅스) — bicolor gradient stroke + soft curve
   const linkLayer = g.append('g').attr('class', 'links');
-  const link = linkLayer.selectAll('line').data(links).enter().append('line')
-    .attr('class', 'link')
-    .attr('stroke', d => {
-      const s = nodeMap[d.source], t = nodeMap[d.target];
-      const lobe = DATA.lobes.find(l => l.id === s.lobe);
-      return lobe ? lobe.color : '#666';
+  const link = linkLayer.selectAll('path').data(links).enter().append('path')
+    .attr('class', d => {
+      const s = nodeMap[d.source.id || d.source];
+      const t = nodeMap[d.target.id || d.target];
+      return 'link' + (s && t && s.active && t.active ? ' link--active' : '');
     })
-    .attr('stroke-width', d => 0.6 + d.weight * 0.6)
-    .attr('stroke-opacity', 0.35);
+    .attr('fill', 'none')
+    .attr('stroke', (_, i) => `url(#edge-grad-${i})`)
+    .attr('stroke-width', d => 0.9 + d.weight * 0.8)
+    .attr('stroke-opacity', 0.6)
+    .attr('stroke-linecap', 'round');
 
   // Nodes (뉴런)
   const nodeLayer = g.append('g').attr('class', 'nodes');
   const node = nodeLayer.selectAll('g').data(DATA.nodes).enter().append('g')
     .attr('class', d => 'node' + (d.active ? ' active' : ''));
 
-  // Glow halo (mid radius — scale animation handles breathing)
+  // Glow halo (tighter radius — scale animation handles breathing)
   node.append('circle')
     .attr('class', 'glow')
-    .attr('r', d => d.size + 9)
+    .attr('r', d => d.size + 6)
     .attr('fill', d => {
       const lobe = DATA.lobes.find(l => l.id === d.lobe);
       return lobe ? lobe.color : '#fff';
     })
-    .attr('opacity', d => d.active ? 0.6 : 0.25);
+    .attr('opacity', d => d.active ? 0.45 : 0.18);
 
   // Core circle (뉴런 본체)
   node.append('circle')
@@ -633,9 +672,21 @@ function renderGraph() {
       }
     })
     .on('tick', () => {
-      link
-        .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
-        .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+      link.attr('d', d => {
+        const sx = d.source.x, sy = d.source.y;
+        const tx = d.target.x, ty = d.target.y;
+        const dx = tx - sx, dy = ty - sy;
+        const len = Math.sqrt(dx * dx + dy * dy) || 1;
+        const bow = Math.min(28, len * 0.12);
+        const mx = (sx + tx) / 2 - (dy / len) * bow;
+        const my = (sy + ty) / 2 + (dx / len) * bow;
+        return `M${sx},${sy} Q${mx},${my} ${tx},${ty}`;
+      });
+      if (edgeGrads) {
+        edgeGrads
+          .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+          .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+      }
       node.attr('transform', d => `translate(${d.x},${d.y})`);
     });
 
