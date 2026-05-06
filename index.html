@@ -388,6 +388,73 @@
   </div>
 </section>
 
+<!-- 관점 노트 최신 3편 — 5-Bento 직후 띠 -->
+<section class="home-latest" id="latest-notes" aria-label="관점 노트 최근 글">
+  <style>
+    .home-latest{max-width:1080px;margin:0 auto 32px;padding:8px 24px 0}
+    .home-latest__head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+    .home-latest__lhs{display:flex;flex-direction:column;gap:4px}
+    .home-latest__kicker{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a4541a;display:inline-flex;align-items:center;gap:6px}
+    .home-latest__kicker::before{content:"";display:inline-block;width:18px;height:1px;background:#a4541a;opacity:.6}
+    .home-latest__title{font-size:18px;font-weight:800;letter-spacing:-.01em;color:#2a241c;line-height:1.4}
+    .home-latest__title em{color:#6e5a3e;font-style:normal}
+    .home-latest__more{font-size:13px;font-weight:700;color:#a4541a;text-decoration:none;border-bottom:1px dotted #a4541a;padding-bottom:1px;transition:color .15s ease,border-color .15s ease}
+    .home-latest__more:hover{color:#7a4317;border-color:#7a4317}
+    .home-latest__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .home-latest__card{display:flex;flex-direction:column;gap:8px;padding:18px 18px 16px;background:#fdfaf3;border:1px solid #d8cdb8;border-radius:12px;text-decoration:none;color:inherit;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;min-height:148px;position:relative}
+    .home-latest__card:hover,.home-latest__card:focus-visible{transform:translateY(-3px);border-color:#a4541a;box-shadow:0 12px 28px rgba(164,84,26,.14);outline:none}
+    .home-latest__card:focus-visible{box-shadow:0 0 0 3px rgba(164,84,26,.28),0 12px 28px rgba(164,84,26,.14)}
+    .home-latest__date{font-size:11px;font-weight:700;letter-spacing:.06em;color:#6b6155;text-transform:uppercase}
+    .home-latest__ttl{font-size:15px;font-weight:800;letter-spacing:-.01em;color:#2a241c;line-height:1.4;
+      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .home-latest__sub{font-size:12.5px;color:#3a322a;line-height:1.6;
+      display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .home-latest__arrow{margin-top:auto;font-size:12px;font-weight:700;color:#a4541a;letter-spacing:.04em;align-self:flex-start;transition:transform .18s ease}
+    .home-latest__card:hover .home-latest__arrow{transform:translateX(3px)}
+    .home-latest[data-state="loading"] .home-latest__ttl{background:linear-gradient(90deg,#efe7d6,#f7f3ec,#efe7d6);background-size:200% 100%;animation:hlShimmer 1.4s ease infinite;color:transparent;border-radius:4px;height:1.2em}
+    .home-latest[data-state="loading"] .home-latest__sub{background:#f7f3ec;color:transparent;border-radius:4px;height:3.6em}
+    .home-latest[data-state="loading"] .home-latest__date{color:#bbb}
+    @keyframes hlShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .home-latest[data-state="empty"]{display:none}
+    @media(max-width:880px){
+      .home-latest__grid{grid-template-columns:repeat(2,1fr)}
+      .home-latest__card:nth-child(3){grid-column:span 2}
+    }
+    @media(max-width:560px){
+      .home-latest__grid{grid-template-columns:1fr}
+      .home-latest__card:nth-child(3){grid-column:auto}
+      .home-latest__title{font-size:16px}
+    }
+  </style>
+  <div class="home-latest__head">
+    <div class="home-latest__lhs">
+      <span class="home-latest__kicker">관점 노트 · Still Hands</span>
+      <h2 class="home-latest__title">최근 한 사람의 일을 <em>관찰한 결</em></h2>
+    </div>
+    <a href="/blog/perspective/" class="home-latest__more" id="hl-more">100편 모두 보기 →</a>
+  </div>
+  <div class="home-latest__grid" id="hl-grid">
+    <a class="home-latest__card" href="/blog/perspective/" data-hl-slot="0">
+      <span class="home-latest__date">로딩중</span>
+      <span class="home-latest__ttl">최근 글을 불러오는 중</span>
+      <span class="home-latest__sub">600~1,200자 격주 시리즈에서 가장 최근 한 편을 가져옵니다.</span>
+      <span class="home-latest__arrow">읽기 →</span>
+    </a>
+    <a class="home-latest__card" href="/blog/perspective/" data-hl-slot="1">
+      <span class="home-latest__date">로딩중</span>
+      <span class="home-latest__ttl">최근 글을 불러오는 중</span>
+      <span class="home-latest__sub">600~1,200자 격주 시리즈에서 두 번째로 최근 한 편을 가져옵니다.</span>
+      <span class="home-latest__arrow">읽기 →</span>
+    </a>
+    <a class="home-latest__card" href="/blog/perspective/" data-hl-slot="2">
+      <span class="home-latest__date">로딩중</span>
+      <span class="home-latest__ttl">최근 글을 불러오는 중</span>
+      <span class="home-latest__sub">600~1,200자 격주 시리즈에서 세 번째로 최근 한 편을 가져옵니다.</span>
+      <span class="home-latest__arrow">읽기 →</span>
+    </a>
+  </div>
+</section>
+
 <!-- 매니페스토 (기존 보존, 곳만 이동) -->
 <header class="masthead">
   <style>
@@ -1286,17 +1353,33 @@ function idcShare(){
 <script src="/assets/analytics.js" defer></script>
 
 <script>
-// Perspective Notes — live count + latest recommendation from feed.json
+// Perspective Notes — live count + latest recommendation + latest-3 grid from feed.json
 (function(){
-  function setText(id, txt){ var el=document.getElementById(id); if(el) el.textContent=txt; }
   function fmt(n){ return n>=1000 ? n.toLocaleString('ko-KR') : String(n); }
+  function clamp(s, n){
+    s = (s || '').replace(/\s+/g,' ').trim();
+    return s.length > n ? s.slice(0, n-1) + '…' : s;
+  }
+  function fmtDate(iso){
+    if(!iso) return '';
+    var d = new Date(iso);
+    if(isNaN(d.getTime())) return '';
+    var y = d.getFullYear(), m = d.getMonth()+1, day = d.getDate();
+    return y + '.' + (m<10?'0'+m:m) + '.' + (day<10?'0'+day:day);
+  }
+
+  var grid = document.getElementById('latest-notes');
+  if(grid) grid.setAttribute('data-state', 'loading');
 
   fetch('/blog/perspective/feed.json', { cache: 'no-store' })
     .then(function(r){ if(!r.ok) throw new Error('feed http '+r.status); return r.json(); })
     .then(function(feed){
       var items = (feed && Array.isArray(feed.items)) ? feed.items : [];
       var total = items.length;
-      if(total <= 0) return;
+      if(total <= 0){
+        if(grid) grid.setAttribute('data-state', 'empty');
+        return;
+      }
 
       // 1) Hero counter
       var cnt = document.getElementById('hh-perspective');
@@ -1319,14 +1402,38 @@ function idcShare(){
         var sub  = document.getElementById('idn-latest-sub');
         if(card) card.setAttribute('href', latest.url);
         if(ttl)  ttl.textContent  = '관점 노트 최신 — ' + (latest.title || '한 편 읽기');
-        if(sub){
-          var s = (latest.summary || '').replace(/\s+/g,' ').trim();
-          if(s.length > 90) s = s.slice(0, 88) + '…';
-          sub.textContent = s || '좌표 한 줄과 닿는 격주 글 Still Hands에서 한 편 골라 읽기';
-        }
+        if(sub)  sub.textContent  = clamp(latest.summary, 90) || '좌표 한 줄과 닿는 격주 글 Still Hands에서 한 편 골라 읽기';
       }
+
+      // 4) Latest-3 preview grid
+      var slots = document.querySelectorAll('[data-hl-slot]');
+      slots.forEach(function(slot){
+        var idx = parseInt(slot.getAttribute('data-hl-slot'), 10) || 0;
+        var it = items[idx];
+        if(!it){
+          slot.style.display = 'none';
+          return;
+        }
+        slot.setAttribute('href', it.url || '/blog/perspective/');
+        slot.setAttribute('aria-label', (it.title || '관점 노트 한 편') + ' — 읽기');
+        var dateEl = slot.querySelector('.home-latest__date');
+        var ttlEl  = slot.querySelector('.home-latest__ttl');
+        var subEl  = slot.querySelector('.home-latest__sub');
+        if(dateEl) dateEl.textContent = fmtDate(it.date_published) || '관점 노트';
+        if(ttlEl)  ttlEl.textContent  = it.title || '한 편 읽기';
+        if(subEl)  subEl.textContent  = clamp(it.summary, 110) || '좌표 한 줄과 닿는 격주 글.';
+      });
+
+      // 5) "More" link total update
+      var more = document.getElementById('hl-more');
+      if(more) more.textContent = total + '편 모두 보기 →';
+
+      if(grid) grid.setAttribute('data-state', 'ready');
     })
-    .catch(function(){ /* silent fallback: static markup remains */ });
+    .catch(function(){
+      // Network or parse failure: hide latest-3 strip rather than show stale loading shimmer
+      if(grid) grid.setAttribute('data-state', 'empty');
+    });
 })();
 </script>
 </body>
