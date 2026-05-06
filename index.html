@@ -455,6 +455,93 @@
   </div>
 </section>
 
+<!-- 추천 강의 3종 — class.authorshouse 컨셉 차용, 홈 톤(베이지·브라운) 유지 -->
+<section class="home-programs" id="home-programs" aria-label="추천 강의 3종">
+  <style>
+    .home-programs{max-width:1080px;margin:0 auto 40px;padding:8px 24px 0}
+    .home-programs__head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;margin-bottom:22px}
+    .home-programs__kicker{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#a4541a;background:#efe7d6;border:1px solid #d8cdb8;padding:5px 14px;border-radius:4px}
+    .home-programs__title{font-size:24px;font-weight:800;letter-spacing:-.02em;color:#2a241c;line-height:1.35;max-width:24ch}
+    .home-programs__title em{color:#6e5a3e;font-style:normal;font-family:'Noto Serif KR',serif}
+    .home-programs__sub{font-size:14.5px;color:#3a322a;line-height:1.7;max-width:560px}
+    .home-programs__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+    .pcard{position:relative;display:flex;flex-direction:column;gap:10px;padding:24px 22px 20px;background:#fdfaf3;border:1px solid #d8cdb8;border-radius:14px;text-decoration:none;color:inherit;overflow:hidden;
+      transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+    .pcard:hover,.pcard:focus-visible{transform:translateY(-4px);border-color:#a4541a;box-shadow:0 16px 36px rgba(42,36,28,.14);outline:none}
+    .pcard:focus-visible{box-shadow:0 0 0 3px rgba(164,84,26,.28),0 16px 36px rgba(42,36,28,.14)}
+    .pcard--featured{background:linear-gradient(180deg,#f7f0e1 0%,#fdfaf3 60%);border-color:#a4541a}
+    .pcard__top{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;font-weight:700;letter-spacing:.06em;color:#6e5a3e}
+    .pcard__no{color:#a4541a;font-family:'Noto Serif KR',serif;font-size:13px;font-weight:800;letter-spacing:0}
+    .pcard__flag{display:inline-flex;align-items:center;gap:4px;background:#a4541a;color:#fff;padding:3px 9px;border-radius:99px;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+    .pcard__title{font-size:18px;font-weight:800;letter-spacing:-.015em;color:#2a241c;line-height:1.35;margin-top:4px}
+    .pcard__title em{color:#a4541a;font-style:normal;font-family:'Noto Serif KR',serif}
+    .pcard__desc{font-size:13.5px;color:#3a322a;line-height:1.7;
+      display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .pcard__meta{display:grid;grid-template-columns:max-content 1fr;column-gap:10px;row-gap:4px;font-size:12px;color:#6b6155;margin-top:6px;padding-top:12px;border-top:1px dashed #d8cdb8}
+    .pcard__meta dt{font-weight:700;color:#6e5a3e;letter-spacing:-.005em}
+    .pcard__meta dd{color:#3a322a;line-height:1.55}
+    .pcard__cta{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:#a4541a;margin-top:auto;padding-top:10px;letter-spacing:-.005em;transition:transform .18s ease}
+    .pcard:hover .pcard__cta{transform:translateX(3px)}
+    .home-programs__after{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px;padding-top:18px;border-top:1px solid #efe7d6}
+    .home-programs__btn{display:inline-flex;align-items:center;gap:6px;padding:11px 22px;font-size:13.5px;font-weight:700;border-radius:99px;text-decoration:none;transition:all .15s ease}
+    .home-programs__btn--primary{background:#a4541a;color:#fff;border:1px solid #a4541a}
+    .home-programs__btn--primary:hover{background:#7a4317;border-color:#7a4317}
+    .home-programs__btn--ghost{background:#fff;color:#2a241c;border:1px solid #d8cdb8}
+    .home-programs__btn--ghost:hover{border-color:#6e5a3e;color:#6e5a3e}
+    .home-programs__note{font-size:12px;color:#6b6155;text-align:center;margin-top:10px;line-height:1.6}
+    .home-programs__note b{color:#3a322a;font-weight:700}
+    @media(max-width:880px){
+      .home-programs__grid{grid-template-columns:1fr;gap:12px}
+      .home-programs__title{font-size:21px}
+    }
+  </style>
+  <div class="home-programs__head">
+    <span class="home-programs__kicker">강의 의뢰 · Curated 3</span>
+    <h2 class="home-programs__title">한 좌표를 <em>강의장으로</em> 가져옵니다.</h2>
+    <p class="home-programs__sub">표준 커리큘럼이 아닌 모듈 단위 배합. 현장 상황에 맞춰 한 회차로 재조립합니다 — 지금 가장 자주 의뢰되는 세 가지 결.</p>
+  </div>
+  <div class="home-programs__grid">
+    <a href="/programs.html#career" class="pcard">
+      <div class="pcard__top"><span class="pcard__no">강의 ①</span><span>진로·자기이해</span></div>
+      <h3 class="pcard__title">한 사람의 일을 <em>다시 묻는</em> 진로 워크숍</h3>
+      <p class="pcard__desc">'무엇이 될까'가 아니라 '누구의 어떤 결핍을 향할까'에서 출발. 8종 강점 진단·NCS 매칭·만다라트로 한 줄 좌표를 만듭니다.</p>
+      <dl class="pcard__meta">
+        <dt>대상</dt><dd>중·고·대학생, 청년 취업준비생, 학부모</dd>
+        <dt>형태</dt><dd>4시간 1회 / 8회 다회차 / 1:1 코칭</dd>
+        <dt>산출물</dt><dd>좌표 한 줄 + 진로 카드 + 자기소개 골격</dd>
+      </dl>
+      <span class="pcard__cta">강의 결 자세히 →</span>
+    </a>
+    <a href="/programs.html#communication" class="pcard pcard--featured">
+      <div class="pcard__top"><span class="pcard__no">강의 ②</span><span class="pcard__flag">고유 프레임</span></div>
+      <h3 class="pcard__title"><em>5S</em> — See · Speak · Sense · Steer · Sustain</h3>
+      <p class="pcard__desc">교육공학·코칭·리더십·진로·직업학 5개 영역에서 동시 검증된 네다바웨이 고유 5단계 프레임. 회의·1on1·진로 상담 모두 같은 사이클로.</p>
+      <dl class="pcard__meta">
+        <dt>대상</dt><dd>기관·기업 팀장, 교사, 시민참여 진행자</dd>
+        <dt>형태</dt><dd>3~6시간 특강 / 12회차 정규 / 워크숍 패키지</dd>
+        <dt>산출물</dt><dd>5S 카드 키트 + 회의 설계 템플릿</dd>
+      </dl>
+      <span class="pcard__cta">5S 깊게 보기 →</span>
+    </a>
+    <a href="/programs.html#ai" class="pcard">
+      <div class="pcard__top"><span class="pcard__no">강의 ③</span><span>AI · 실무 결합</span></div>
+      <h3 class="pcard__title">AI는 도구가 아니라 <em>좌표</em>입니다</h3>
+      <p class="pcard__desc">보고서·홍보물·기획안의 실무 흐름에 생성형 AI를 결합. 프롬프트 5요소·출처 검증·마지막 한 줄은 사람이 쓰는 원칙까지.</p>
+      <dl class="pcard__meta">
+        <dt>대상</dt><dd>기관·기업 실무자, 1인 사업자, 교사</dd>
+        <dt>형태</dt><dd>3시간 특강 / 6주 실무 적용 워크숍</dd>
+        <dt>산출물</dt><dd>업무별 프롬프트 카드 + 검증 체크리스트</dd>
+      </dl>
+      <span class="pcard__cta">AI 강의 자세히 →</span>
+    </a>
+  </div>
+  <div class="home-programs__after">
+    <a href="/programs.html" class="home-programs__btn home-programs__btn--primary">7가지 모듈 라이브러리 전체 →</a>
+    <a href="/contact.html" class="home-programs__btn home-programs__btn--ghost">강의 의뢰 / 1:1 상담</a>
+  </div>
+  <p class="home-programs__note">학년·발달 단계·기관 상황에 따라 <b>9가지 검증된 배합 시나리오</b>로 재조립됩니다.</p>
+</section>
+
 <!-- 매니페스토 (기존 보존, 곳만 이동) -->
 <header class="masthead">
   <style>
