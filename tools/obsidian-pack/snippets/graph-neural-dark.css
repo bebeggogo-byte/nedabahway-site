@@ -1,0 +1,107 @@
+/*
+ * Obsidian Graph View — Neural Dark
+ * Drop into:  <Vault>/.obsidian/snippets/graph-neural-dark.css
+ * Enable:     Settings → Appearance → CSS snippets → toggle on
+ *
+ * Why this works: Obsidian's graph view renders to <canvas>, but its color
+ * palette is sourced from CSS custom properties on `.graph-view.color-*` and
+ * the `body` theme tokens. We override those tokens; the canvas picks them up.
+ *
+ * Design intent (mirrors vault/brain.html):
+ *   - Deep navy background, cream-ish text
+ *   - Teal/cyan default node, warm accents for tags / attachments
+ *   - Subtle line color so the structure reads without overwhelming
+ *   - Strong highlight pop (cream fill + teal halo) for hover/selected
+ *
+ * Performance notes:
+ *   This snippet is purely color tokens — zero runtime cost, no filters,
+ *   no transitions added. The lag fix lives in graph.json (see README).
+ */
+
+/* ── Default graph view (whole-vault graph) ──────────────────────────── */
+.theme-dark .graph-view.color-fill,
+.theme-light .graph-view.color-fill {
+  color: #0a0e1a; /* canvas background */
+}
+
+.theme-dark .graph-view.color-line,
+.theme-light .graph-view.color-line {
+  color: rgba(245, 233, 215, 0.18); /* idle synapse line */
+}
+
+.theme-dark .graph-view.color-text,
+.theme-light .graph-view.color-text {
+  color: #e8eaed; /* node label */
+}
+
+.theme-dark .graph-view.color-circle,
+.theme-light .graph-view.color-circle {
+  color: #1abc9c; /* node fill (default / unmarked notes) */
+}
+
+.theme-dark .graph-view.color-fill-highlight,
+.theme-light .graph-view.color-fill-highlight {
+  color: #f5e9d7; /* selected/hovered node fill */
+}
+
+.theme-dark .graph-view.color-line-highlight,
+.theme-light .graph-view.color-line-highlight {
+  color: #1abc9c; /* selected/hovered synapse */
+}
+
+.theme-dark .graph-view.color-fill-tag,
+.theme-light .graph-view.color-fill-tag {
+  color: #9b59b6; /* tag node */
+}
+
+.theme-dark .graph-view.color-fill-attachment,
+.theme-light .graph-view.color-fill-attachment {
+  color: #3498db; /* attachment node */
+}
+
+.theme-dark .graph-view.color-fill-unresolved,
+.theme-light .graph-view.color-fill-unresolved {
+  color: rgba(138, 146, 166, 0.35); /* missing-link nodes muted */
+}
+
+/* ── Local graph view (per-note graph in a leaf) ─────────────────────── */
+.theme-dark .graph-view.color-fill.localgraph,
+.theme-light .graph-view.color-fill.localgraph,
+.workspace-leaf-content[data-type="localgraph"] .graph-view.color-fill {
+  color: #050810;
+}
+
+.theme-dark .graph-view.color-line.localgraph,
+.theme-light .graph-view.color-line.localgraph,
+.workspace-leaf-content[data-type="localgraph"] .graph-view.color-line {
+  color: rgba(26, 188, 156, 0.25);
+}
+
+.workspace-leaf-content[data-type="localgraph"] .graph-view.color-circle {
+  color: #f5e9d7;
+}
+
+.workspace-leaf-content[data-type="localgraph"] .graph-view.color-fill-highlight {
+  color: #1abc9c;
+}
+
+/* ── Graph control panel (the settings drawer) ───────────────────────── */
+.workspace-leaf-content[data-type="graph"] .graph-controls,
+.workspace-leaf-content[data-type="localgraph"] .graph-controls {
+  background: rgba(10, 14, 26, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  /* No backdrop-filter on purpose — kept solid for projector/large-screen perf. */
+}
+
+.workspace-leaf-content[data-type="graph"] .graph-controls .tree-item-self,
+.workspace-leaf-content[data-type="localgraph"] .graph-controls .tree-item-self {
+  color: #e8eaed;
+}
+
+/* ── Color group labels in the controls panel ────────────────────────── */
+.workspace-leaf-content[data-type="graph"] .graph-controls .graph-color-group input[type="text"],
+.workspace-leaf-content[data-type="localgraph"] .graph-controls .graph-color-group input[type="text"] {
+  background: rgba(0, 0, 0, 0.25);
+  color: #e8eaed;
+}
