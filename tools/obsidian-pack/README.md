@@ -20,7 +20,36 @@ This pack uses all four.
 
 ## Install
 
-### 1. Visual snippet (do first — zero risk)
+### One-command apply (recommended)
+
+On your PC, in your local clone of this repo:
+
+```bash
+python3 tools/obsidian-pack/apply.py /path/to/your/vault
+```
+
+What it does (idempotent — safe to re-run):
+
+1. Validates `/path/to/your/vault/.obsidian/` exists
+2. Copies `graph-neural-dark.css` into `<vault>/.obsidian/snippets/`
+3. Enables the snippet by patching `<vault>/.obsidian/appearance.json` (preserves your other settings)
+4. Backs up `<vault>/.obsidian/graph.json` to `graph.json.bak.<timestamp>`
+5. Merges the recommended performance fields into `graph.json`, preserving your `search`, `colorGroups`, `showTags`, and any unknown fields
+
+Then in Obsidian: **fully close and reopen the graph view (or restart the app)** — the canvas only picks up new colors / settings on a fresh open.
+
+Flags:
+
+```
+python3 apply.py /path/to/vault --dry-run        # show what would change, write nothing
+python3 apply.py /path/to/vault --snippet-only   # install + enable CSS only, leave graph.json alone
+```
+
+### Manual install (if you prefer)
+
+If you don't want to run the script:
+
+#### 1. Visual snippet (do first — zero risk)
 
 Copy `snippets/graph-neural-dark.css` into your vault:
 
@@ -34,7 +63,7 @@ You should see the graph immediately switch to the dark navy palette with teal d
 
 If you don't like a color, edit the snippet — values map 1:1 to the variable names.
 
-### 2. Performance settings (do via the UI, do NOT overwrite graph.json)
+#### 2. Performance settings (do via the UI, do NOT overwrite graph.json by hand)
 
 Open the graph view, click the gear icon (control panel), and apply these:
 
@@ -58,7 +87,7 @@ Two rules:
 - **Always start with Filters.** Reducing node count is 10× more effective than tuning forces. Use the search field aggressively.
 - **Don't touch graph.json by hand.** Use the UI. Obsidian saves your changes automatically.
 
-### 3. Color groups (optional — for the lecture demo)
+#### 3. Color groups (optional — for the lecture demo)
 
 Color groups are queries that paint matching nodes a specific color. Set up a few that match how you organize notes. Examples:
 
@@ -73,6 +102,36 @@ Color groups are queries that paint matching nodes a specific color. Set up a fe
 Add via the graph control panel → Color groups → +. Order matters: first match wins.
 
 ---
+
+## Advanced: ongoing automation via MCP (run Claude Code locally)
+
+`apply.py` does the one-shot install. If you want Claude Code to manipulate your vault on a continuing basis (search notes, edit content, manage colorGroups by chat), set up the Obsidian MCP server **on your local PC** — not on the remote Claude Code session in this repo, which can't reach your localhost.
+
+Prerequisites:
+1. In Obsidian, install the **Local REST API** community plugin and enable it
+2. In its settings, copy the API key (and note the port, default 27124 for HTTPS)
+
+Then create or extend `.mcp.json` at the root of your local clone of this repo:
+
+```json
+{
+  "mcpServers": {
+    "obsidian": {
+      "command": "uvx",
+      "args": ["mcp-obsidian"],
+      "env": {
+        "OBSIDIAN_API_KEY": "<paste-your-key-here>",
+        "OBSIDIAN_HOST": "127.0.0.1",
+        "OBSIDIAN_PORT": "27124"
+      }
+    }
+  }
+}
+```
+
+Then run Claude Code locally on your PC against this repo. The MCP server starts with the session and Claude can read/write notes, list files, and trigger commands.
+
+This config is intentionally NOT committed — the API key is per-user. Add `.mcp.json` to your local `.gitignore` if you don't have one.
 
 ## Recommended community plugins (in order of value)
 
