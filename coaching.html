@@ -30,7 +30,7 @@
   --muted:#6F665A;
   --line:#E2D9C4;
 }
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
 body{
   font-family:'Noto Sans KR',sans-serif;
   font-size:18px;line-height:1.9;
@@ -56,7 +56,7 @@ section{padding:84px 0}
 .float-cta.shown{transform:translateY(0)}
 .float-cta .msg{color:#F4EEDD;font-size:14px;font-weight:400}
 .float-cta .msg b{color:var(--gold);font-weight:700}
-.float-cta .go{background:var(--gold);color:var(--pine-deep);padding:8px 18px;border-radius:7px;font-weight:800;font-size:14px;text-decoration:none;white-space:nowrap}
+.float-cta .go{background:var(--gold);color:var(--pine-deep);padding:10px 18px;border-radius:7px;font-weight:800;font-size:14px;text-decoration:none;white-space:nowrap}
 @media(max-width:620px){.float-cta .msg{font-size:12px}.float-cta{gap:10px}}
 .mobile-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;background:var(--pine-deep);padding:13px 16px;box-shadow:0 -5px 18px rgba(0,0,0,.22)}
 .mobile-cta a{display:block;background:var(--gold);color:var(--pine-deep);text-align:center;padding:14px;border-radius:10px;font-weight:900;font-size:16px;text-decoration:none}
@@ -87,7 +87,7 @@ section{padding:84px 0}
 .hero .cta-sub a:hover{border-color:var(--gold);color:var(--gold)}
 .hero .note{text-align:center;margin-top:16px;font-size:13px;color:#CFC6AE;line-height:1.75}
 .hero .note b{color:var(--gold)}
-@media(max-width:480px){.hero h1{font-size:27px}.hero{padding:60px 0 54px}}
+@media(max-width:480px){.hero h1{font-size:27px}.hero{padding:60px 0 54px}.hero .meta-item{padding:12px 7px}.hero .meta-item .v{font-size:13px}}
 
 /* PROOF */
 .proof{background:var(--ink);color:#fff;padding:30px 0}
@@ -168,7 +168,7 @@ section{padding:84px 0}
 .method{background:var(--pine-soft)}
 .method .sec-eyebrow{color:var(--gold-deep)}
 .s5-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
-@media(max-width:560px){.s5-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.s5-grid{grid-template-columns:1fr 1fr}}
 .s5{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:18px 12px;text-align:center}
 .s5 .s5-en{font-family:'Nanum Myeongjo',serif;font-size:15px;font-weight:800;color:var(--pine)}
 .s5 .s5-kr{font-size:14px;font-weight:700;color:var(--ink);margin:5px 0 4px}
@@ -181,7 +181,7 @@ section{padding:84px 0}
 .out-list{display:grid;gap:11px}
 .out{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;display:flex;gap:15px;align-items:flex-start}
 .out .mark{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:var(--pine);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Nanum Myeongjo',serif;font-size:14px;font-weight:800}
-.out h4{font-size:15.5px;color:var(--ink);margin-bottom:3px}
+.out h3{font-size:15.5px;color:var(--ink);margin-bottom:3px}
 .out p{font-size:13.5px;color:var(--muted);line-height:1.78}
 
 /* AUDIENCE */
@@ -233,7 +233,7 @@ section{padding:84px 0}
 @media(max-width:560px){.book-grid{grid-template-columns:1fr}}
 .book{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:22px 20px;text-align:center;box-shadow:0 5px 15px rgba(28,26,24,.05)}
 .book .spine{height:4px;width:42px;background:var(--gold);border-radius:3px;margin:0 auto 16px}
-.book h4{font-family:'Nanum Myeongjo',serif;font-size:17px;color:var(--ink);line-height:1.5;margin-bottom:8px}
+.book h3{font-family:'Nanum Myeongjo',serif;font-size:17px;color:var(--ink);line-height:1.5;margin-bottom:8px}
 .book .b-meta{font-size:11px;color:var(--gold-deep);font-weight:700;letter-spacing:.4px;margin-bottom:10px}
 .book p{font-size:12.5px;color:var(--muted);line-height:1.75}
 .books-foot{text-align:center;font-size:13px;color:var(--muted);margin-top:24px;line-height:1.8}
@@ -248,11 +248,19 @@ section{padding:84px 0}
 .final .routes a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(182,138,52,.45)}
 @media(max-width:480px){.final h2{font-size:23px}}
 
+/* A11Y */
+a:focus-visible,summary:focus-visible{outline:2.5px solid var(--gold-deep);outline-offset:3px;border-radius:4px}
+.faq a:focus-visible,.final a:focus-visible{outline-color:var(--gold)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+
 /* FOOTER */
-footer{background:var(--ink);color:#8C8475;padding:38px 0;text-align:center;font-size:13px;line-height:1.9}
+footer{background:var(--ink);color:#9B9384;padding:38px 0;text-align:center;font-size:13px;line-height:1.9}
 footer a{color:var(--gold);text-decoration:none}
 footer .brand{font-family:'Nanum Myeongjo',serif;color:var(--gold);font-size:16px;font-weight:700;margin-bottom:9px}
-footer .reg{margin-top:13px;font-size:11px;color:#6C6557}
+footer .reg{margin-top:13px;font-size:11px;color:#8A8273}
 </style>
 </head>
 <body>
@@ -484,19 +492,19 @@ footer .reg{margin-top:13px;font-size:11px;color:#6C6557}
     <div class="out-list">
       <div class="out">
         <div class="mark">一</div>
-        <div><h4>나를 정리한 한 장</h4><p>3단계까지의 결과를 한 장에 담은 정리본. 결정이 흔들릴 때 다시 펴 보는 종이입니다.</p></div>
+        <div><h3>나를 정리한 한 장</h3><p>3단계까지의 결과를 한 장에 담은 정리본. 결정이 흔들릴 때 다시 펴 보는 종이입니다.</p></div>
       </div>
       <div class="out">
         <div class="mark">二</div>
-        <div><h4>김창환이 건네는 한 문장</h4><p>당신의 진로 가치관을 한 문장으로 정리해 드립니다. 다음 선택의 기준이 되는 문장입니다.</p></div>
+        <div><h3>김창환이 건네는 한 문장</h3><p>당신의 진로 가치관을 한 문장으로 정리해 드립니다. 다음 선택의 기준이 되는 문장입니다.</p></div>
       </div>
       <div class="out">
         <div class="mark">三</div>
-        <div><h4>90일 행동 계획</h4><p>다음 석 달에 할 일을 구체적인 행동으로 적은 계획서. 막연한 다짐과는 다릅니다.</p></div>
+        <div><h3>90일 행동 계획</h3><p>다음 석 달에 할 일을 구체적인 행동으로 적은 계획서. 막연한 다짐과는 다릅니다.</p></div>
       </div>
       <div class="out">
         <div class="mark">四</div>
-        <div><h4>석 달 뒤 점검 한 번</h4><p>계획이 실제 삶에 자리 잡았는지 확인하는 짧은 만남. 한 번 정하고 끝나는 것이 아닙니다.</p></div>
+        <div><h3>석 달 뒤 점검 한 번</h3><p>계획이 실제 삶에 자리 잡았는지 확인하는 짧은 만남. 한 번 정하고 끝나는 것이 아닙니다.</p></div>
       </div>
     </div>
   </div>
@@ -613,19 +621,19 @@ footer .reg{margin-top:13px;font-size:11px;color:#6C6557}
     <div class="book-grid">
       <div class="book">
         <div class="spine"></div>
-        <h4>진로해방</h4>
+        <h3>진로해방</h3>
         <div class="b-meta">IDEN · 네다바웨이</div>
         <p>진로를 ‘정답 찾기’의 불안에서 풀어내는 책. 4단계 ‘해방과 풍요’와 같은 이야기를 합니다.</p>
       </div>
       <div class="book">
         <div class="spine"></div>
-        <h4>직업의 속성은 이타성이다</h4>
+        <h3>직업의 속성은 이타성이다</h3>
         <div class="b-meta">IDEN · 네다바웨이</div>
         <p>김창환이 하는 모든 일의 출발점을 담은 책. 일의 의미를 처음부터 다시 묻습니다.</p>
       </div>
       <div class="book">
         <div class="spine"></div>
-        <h4>인공지능시대에 다음세대가 해야 할 준비</h4>
+        <h3>인공지능시대에 다음세대가 해야 할 준비</h3>
         <div class="b-meta">IDEN · 네다바웨이</div>
         <p>기술이 대신할 수 없는 것은 무엇인가. 다음 세대가 준비해야 할 것을 이야기하는 책.</p>
       </div>
