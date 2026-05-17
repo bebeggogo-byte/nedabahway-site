@@ -57,3 +57,9 @@ Must be binary yes/no questions following the eval-guide principles:
 - "Does the output include error handling for all external calls?"
 - NOT: "Rate the code quality 1-10" (no scales)
 - NOT: "Is the code good?" (not measurable)
+
+## Scope Boundaries
+
+IN SCOPE: Optimizing moai-adk components (skills, agents, rules, CLAUDE.md) through binary-eval autoresearch loops with worktree-isolated experimentation.
+
+OUT OF SCOPE: Production feature implementation (delegate to expert agents), documentation writing (delegate to manager-docs), git operations (delegate to manager-git), security audits (delegate to expert-security).

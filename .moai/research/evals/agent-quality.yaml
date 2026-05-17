@@ -1,0 +1,76 @@
+# Agent Quality Eval Suite
+# Binary pass/fail criteria for scoring agent definition files.
+# Consumed by scripts/agent-eval.py. Each criterion is objective and automatable.
+#
+# Tiers:
+#   must  - core correctness; a failure means the agent may not load or route correctly
+#   should - quality/consistency; a failure is an improvement-loop target
+#
+# The improvement loop (see .moai/research/agent-improvement-loop.md) only
+# mutates extended-roster agents (web/, engineering/, data/, writing/).
+# moai/ framework agents are reported but never auto-modified.
+
+version: 1
+target_glob: ".claude/agents/**/*.md"
+
+criteria:
+  - id: frontmatter_delimited
+    tier: must
+    question: "Does the file open with '---' and contain a closing '---'?"
+
+  - id: name_present
+    tier: must
+    question: "Does the frontmatter define a non-empty 'name' field?"
+
+  - id: name_matches_filename
+    tier: must
+    question: "Does the 'name' value equal the filename without extension?"
+
+  - id: description_present
+    tier: must
+    question: "Does the frontmatter define a non-empty 'description' field?"
+
+  - id: model_valid
+    tier: must
+    question: "If 'model' is set, is it one of opus/sonnet/haiku/inherit?"
+
+  - id: permissionmode_valid
+    tier: must
+    question: "If 'permissionMode' is set, is it a valid mode value?"
+
+  - id: no_broken_skill_ref
+    tier: must
+    question: "If 'skills' is listed, does every referenced skill directory exist?"
+
+  - id: body_nonempty
+    tier: must
+    question: "Is there non-whitespace body content after the frontmatter?"
+
+  - id: has_en_triggers
+    tier: should
+    question: "Does the description contain an 'EN:' trigger-keyword line?"
+
+  - id: has_ko_triggers
+    tier: should
+    question: "Does the description contain a 'KO:' trigger-keyword line?"
+
+  - id: has_not_for
+    tier: should
+    question: "Does the description contain a 'NOT for:' delegation-boundary line?"
+
+  - id: has_scope_section
+    tier: should
+    question: "Does the body contain a scope section (Scope Boundaries or equivalent)?"
+
+  - id: has_out_of_scope
+    tier: should
+    question: "Does the body explicitly state OUT OF SCOPE work?"
+
+  - id: has_mission_section
+    tier: should
+    question: "Does the body contain a mission/identity heading?"
+
+# Pass thresholds (used by CI gate). A run fails CI when violated.
+gates:
+  must_pass_rate: 1.0      # every must-criterion must pass for every agent
+  should_pass_rate: 0.85   # at least 85% of should-criteria across the roster
