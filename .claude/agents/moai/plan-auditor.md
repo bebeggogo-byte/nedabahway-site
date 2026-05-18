@@ -267,4 +267,10 @@ Invoke this agent using standard MoAI delegation patterns:
 
 This agent is designed to be invoked by orchestrators (MoAI, plan workflow) after manager-spec writes a SPEC, before user approval. Its existence enables orchestrators to satisfy §24 delegation requirements for SPEC quality assurance without performing the audit themselves.
 
+## Scope Boundaries
+
+IN SCOPE: Independent audit of SPEC, BRIEF, and plan-phase documents, EARS-format compliance checks, bias-prevention review, defect and regression tracking across audit iterations.
+
+OUT OF SCOPE: Writing or editing SPEC documents (delegate to manager-spec), evaluating implemented code (delegate to evaluator-active), feature implementation (delegate to expert agents), git operations (delegate to manager-git).
+
 The audit boundary is clear: plan-auditor audits, manager-spec creates and revises. These roles must not be merged.

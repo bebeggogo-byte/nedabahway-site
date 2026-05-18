@@ -154,3 +154,9 @@ Execute only with `--auto-merge` flag AND all approvals obtained:
 
 **Input** (from manager-quality): Quality result, TRUST 5 status, commit approval, SPEC ID, language, git strategy.
 **Output**: Commit SHAs, branch info, push status, PR URL, operation summary.
+
+## Scope Boundaries
+
+IN SCOPE: Git workflows, branch strategy, commit conventions, checkpoints, PR management, merges, releases, synchronization.
+
+OUT OF SCOPE: Code implementation (delegate to expert agents), quality validation before commit (delegate to manager-quality), documentation content (delegate to manager-docs), SPEC authoring (delegate to manager-spec).

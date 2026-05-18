@@ -101,6 +101,14 @@ For detailed design rules, see .claude/rules/moai/design/constitution.md
 3. Domain expertise needed? Use the expert-[domain] subagent
 4. Workflow coordination needed? Use the manager-[workflow] subagent
 5. Complex multi-step tasks? Use the manager-strategy subagent
+6. Website or content operations? Use a `web/` roster subagent
+7. General engineering, data, or documentation task? Use an `engineering/`, `data/`, or `writing/` roster subagent
+
+The roster has 100 agents: 22 MoAI framework agents (`.claude/agents/moai/`) plus
+78 extended-roster agents across four tiers. See `.moai/plans/agent-roster-100.md`
+for the full blueprint and audit notes.
+
+## MoAI Framework Agents (22)
 
 ### Manager Agents (8)
 
@@ -123,6 +131,28 @@ plan-auditor (independent plan-phase document audit, bias prevention, EARS compl
 
 copywriter (absorbed into moai-domain-copywriting skill), designer (absorbed into moai-domain-brand-design skill)
 planner, builder, evaluator, learner removed in SPEC-AGENCY-ABSORB-001 M5
+
+## Extended Roster Agents (78)
+
+Single-responsibility, proactive agents added on top of the framework set. Each
+declares explicit scope boundaries with OUT OF SCOPE delegation. Definitions live
+in tier subdirectories under `.claude/agents/`.
+
+### Web / Content Operations — `web/` (30)
+
+Website and content operations for the static site: web-seo-auditor, web-meta-tag-curator, web-structured-data-author, web-sitemap-manager, web-robots-curator, web-accessibility-auditor, web-lighthouse-optimizer, web-html-validator, web-css-linter, web-link-checker, web-image-optimizer, web-font-optimizer, web-i18n-translator, web-content-writer, web-magazine-editor, web-blog-publisher, web-newsletter-composer, web-rss-feed-builder, web-llms-txt-curator, web-copy-proofreader, web-landing-builder, web-form-handler, web-redirect-manager, web-pwa-curator, web-og-image-designer, web-darkmode-themer, web-vercel-deployer, web-analytics-integrator, web-changelog-writer, web-component-extractor.
+
+### General Software Engineering — `engineering/` (25)
+
+code-reviewer, api-designer, db-schema-architect, test-author, bug-triager, dependency-auditor, license-compliance-checker, log-analyzer, regex-crafter, shell-scripter, dockerfile-author, ci-pipeline-builder, env-config-manager, migration-writer, mock-data-generator, cli-builder, error-handler-designer, code-commenter, type-annotator, benchmark-runner, concurrency-auditor, git-hook-author, config-schema-validator, release-notes-writer, codemod-author.
+
+### Data / AI / Analysis — `data/` (10)
+
+data-cleaner, csv-json-transformer, data-visualizer, prompt-engineer, llm-eval-designer, json-schema-author, knowledge-graph-builder, spreadsheet-analyst, data-pipeline-designer, statistics-reporter.
+
+### Documentation / Communication — `writing/` (13)
+
+technical-writer, readme-author, tutorial-writer, faq-builder, glossary-curator, translator-ko-en, summarizer, proposal-writer, citation-formatter, meeting-notes-taker, email-drafter, presentation-builder, style-guide-enforcer.
 
 ### Dynamic Team Generation (Experimental)
 
