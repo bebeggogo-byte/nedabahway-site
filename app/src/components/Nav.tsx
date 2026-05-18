@@ -10,17 +10,22 @@ export async function Nav() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  let role: "student" | "coach" | "school_admin" | "system_admin" | null = null;
+  type Role = "student" | "coach" | "school_admin" | "system_admin";
+  let role: Role | null = null;
   let displayName: string | null = null;
 
   if (user) {
-    const { data: profile } = await supabase
+    const { data } = await supabase
       .from("profiles")
       .select("role, display_name")
       .eq("id", user.id)
       .single();
-    role = (profile?.role as typeof role) ?? "student";
-    displayName = (profile?.display_name as string | null) ?? user.email ?? null;
+    const profile = data as {
+      role: string | null;
+      display_name: string | null;
+    } | null;
+    role = (profile?.role as Role | null) ?? "student";
+    displayName = profile?.display_name ?? user.email ?? null;
   }
 
   return (
