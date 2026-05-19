@@ -337,6 +337,41 @@ def _build_head_block(*, title: str, description: str, canonical: str,
     return "\n".join(lines)
 
 
+# --- 전환 CTA 블록 -------------------------------------------------------
+# S2 무료가치 감사(REQ-FV-007)에서 자료실 개별 페이지는 무료 가치를 전달하지만
+# 본문에 다음 단계 CTA 가 없는 '퍼널 고아' 로 확인됐다. 아래 블록은 모든 공개
+# 자료 페이지 본문 끝(</main> 직전)에 무료 30분 상담으로 향하는 CTA 1개를 넣는다.
+# site-strategy.yaml 의 cta_secondary("무료 30분 ... 상담/진단") · voice_rules 를
+# 따른다 — 본문 중간 CTA 는 넣지 않는다.
+CTA_MARKER = 'class="cta-next"'
+
+# @MX:ANCHOR: [AUTO] 모든 공개 자료 페이지가 공유하는 단일 전환 CTA 블록
+# @MX:REASON: render_all 재실행 시 페이지 1281건이 이 문자열에 의존한다. 문구·링크
+#             변경은 site-strategy.yaml voice_rules / contact 경로와 함께 검토할 것.
+CTA_BLOCK = """<aside class="cta-next" aria-labelledby="cta-next-title">
+  <h2 id="cta-next-title">다음 한 걸음</h2>
+  <p>자료를 읽고 한 사람의 일을 다시 디자인하고 싶다면, 무료 30분 상담에서 좌표를 함께 잡아 봅니다.</p>
+  <p class="cta-next__links">
+    <a class="cta-next__primary" href="/contact.html">무료 30분 상담 신청</a>
+    <a class="cta-next__secondary" href="/p/">5개 과정 라인업 보기</a>
+  </p>
+</aside>
+"""
+
+
+def _inject_cta(text: str) -> str:
+    """본문 끝(</main> 직전)에 전환 CTA 블록을 1개 삽입한다.
+
+    이미 CTA 가 있으면(멱등성) 그대로 반환한다. <main> 이 없으면 보정 단계에서
+    추가되므로 호출 순서상 항상 <main> 이 있는 상태에서 실행돼야 한다.
+    """
+    if CTA_MARKER in text:
+        return text
+    if "</main>" not in text:
+        return text
+    return text.replace("</main>", CTA_BLOCK + "</main>", 1)
+
+
 def _breadcrumb_jsonld(*, subdir: str, page_title: str, canonical: str) -> str:
     """경로(홈 → 자료실 → 분류 → 페이지)를 반영한 BreadcrumbList JSON-LD."""
     subdir_label = SUBDIR_LABEL.get(subdir, subdir)
@@ -368,6 +403,8 @@ def _fix_resource_page(path: Path, subdir: str, by_url: dict[str, dict]) -> bool
         return False
 
     # 모든 보정 항목이 이미 갖춰져 있으면 건너뛴다 (멱등성).
+    # 전환 CTA(REQ-FV-007) 도 보정 항목에 포함 — 이미 SEO 보정된 페이지라도
+    # CTA 가 없으면 다시 처리해야 한다.
     fully_done = (
         BROKEN_STYLE_LINK not in text
         and 'rel="canonical"' in text
@@ -376,6 +413,7 @@ def _fix_resource_page(path: Path, subdir: str, by_url: dict[str, dict]) -> bool
         and "twitter:card" in text
         and "application/ld+json" in text
         and "<main" in text and "<header" in text
+        and CTA_MARKER in text
     )
     if fully_done:
         return False
@@ -463,6 +501,10 @@ def _fix_resource_page(path: Path, subdir: str, by_url: dict[str, dict]) -> bool
                            + mm.group(1) + "\n</main>",
                 text, count=1, flags=re.S,
             )
+
+    # 5) 전환 CTA: 본문 끝(</main> 직전)에 다음 단계 CTA 1개 삽입 (REQ-FV-007).
+    #    멱등 — 이미 cta-next 가 있으면 그대로 둔다. 4)에서 <main> 이 보장된 뒤 실행.
+    text = _inject_cta(text)
 
     if text == original:
         return False
