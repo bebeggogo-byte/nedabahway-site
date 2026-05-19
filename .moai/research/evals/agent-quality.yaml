@@ -70,6 +70,18 @@ criteria:
     tier: should
     question: "Does the body contain a mission/identity heading?"
 
+  # Worker-grade criteria — extended roster only (web/engineering/data/writing).
+  # Skipped for moai/ framework agents, which use an older template.
+  - id: has_operating_approach
+    tier: should
+    applies_to: extended
+    question: "Does the body contain an 'Operating Approach' heading (heuristics, not a step script)?"
+
+  - id: has_completion_evidence
+    tier: should
+    applies_to: extended
+    question: "Does the body contain a 'Completion Evidence' heading (evidence-gated completion)?"
+
 # Pass thresholds (used by CI gate). A run fails CI when violated.
 gates:
   must_pass_rate: 1.0      # every must-criterion must pass for every agent

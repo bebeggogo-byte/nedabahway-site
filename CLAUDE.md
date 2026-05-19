@@ -423,7 +423,7 @@ User and language configuration:
 
 MoAI-ADK uses Claude Code's official rules system at `.claude/rules/moai/`:
 
-- **Core rules**: TRUST 5 framework, documentation standards
+- **Core rules**: TRUST 5 framework, documentation standards, agent worker protocol (`.claude/rules/moai/core/agent-worker-protocol.md` — right-altitude heuristics, evidence-gated completion; see `.moai/strategy/agent-strategy-report.md`)
 - **Workflow rules**: Progressive disclosure, token budget, workflow modes
 - **Development rules**: Skill frontmatter schema, tool permissions
 - **Language rules**: Path-specific rules for 16 programming languages
