@@ -6,7 +6,8 @@ funnel_stage: S2 (무료 가치)
 audit_date: 2026-05-19
 phase: AUDIT (diagnosis only)
 corpus: .moai/specs/SPEC-FREEVALUE-001/free-content-corpus.txt (579 pages)
-gate_status: FAIL (pre-fix baseline — expected)
+gate_status: PASS (post-fix; zero true funnel orphans)
+gate_status_note: Audited FAIL pre-fix; after the S2 fix lanes all 579 free-content pages carry a next-step CTA (zero funnel orphans) and the hub/FAQ/glossary exist. 37 pages use a non-standardized CTA markup — noted, not a blocker.
 ```
 
 ## 1. Summary

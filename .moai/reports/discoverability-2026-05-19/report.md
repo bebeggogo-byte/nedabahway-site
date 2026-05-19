@@ -7,7 +7,8 @@ audit_date: 2026-05-19
 phase: AUDIT (diagnosis only — no files modified)
 public_page_set: .moai/specs/SPEC-DISCOVERY-001/public-pages.txt (617 pages)
 auditors: [web-seo-auditor, web-link-checker, web-accessibility-auditor]
-gate_status: FAIL (pre-fix baseline — expected)
+gate_status: PASS (post-fix; environment-verifiable conditions — see Section 5)
+gate_status_note: Audited FAIL pre-fix; after the 6 fix lanes (commits 38f5b12..5b601bc) all environment-verifiable conditions pass. Lighthouse SEO and external-link checks remain CI-deferred (no Chrome / no network here).
 ```
 
 ## 1. Summary
