@@ -45,7 +45,14 @@ CRITERIA_TIERS = {
     "has_scope_section": "should",
     "has_out_of_scope": "should",
     "has_mission_section": "should",
+    "has_operating_approach": "should",
+    "has_completion_evidence": "should",
 }
+
+# Worker-grade criteria apply only to the extended roster (web/engineering/
+# data/writing). The moai/ framework agents use an older template and are
+# managed by `moai update`, so these checks are skipped for them.
+EXTENDED_ONLY = {"has_operating_approach", "has_completion_evidence"}
 
 
 def parse_gates(yaml_path: Path) -> tuple[float, float]:
@@ -196,6 +203,16 @@ def run_checks(path: Path, text: str) -> dict[str, bool]:
             body, re.IGNORECASE | re.MULTILINE,
         )
     )
+
+    if path.parent.name != "moai":
+        results["has_operating_approach"] = bool(
+            re.search(r"^#{1,6}.*\boperating approach\b",
+                      body, re.IGNORECASE | re.MULTILINE)
+        )
+        results["has_completion_evidence"] = bool(
+            re.search(r"^#{1,6}.*\bcompletion evidence\b",
+                      body, re.IGNORECASE | re.MULTILINE)
+        )
     return results
 
 
@@ -208,8 +225,6 @@ def main() -> int:
     must_gate, should_gate = parse_gates(EVAL_YAML)
 
     files = sorted(REPO.glob(AGENTS_GLOB))
-    must_ids = [c for c, t in CRITERIA_TIERS.items() if t == "must"]
-    should_ids = [c for c, t in CRITERIA_TIERS.items() if t == "should"]
 
     per_file: list[dict] = []
     must_passed = must_total = 0
@@ -224,10 +239,12 @@ def main() -> int:
         f_must = [c for c in failed if CRITERIA_TIERS[c] == "must"]
         f_should = [c for c in failed if CRITERIA_TIERS[c] == "should"]
 
-        must_passed += len(must_ids) - len(f_must)
-        must_total += len(must_ids)
-        should_passed += len(should_ids) - len(f_should)
-        should_total += len(should_ids)
+        n_must = sum(1 for c in checks if CRITERIA_TIERS[c] == "must")
+        n_should = sum(1 for c in checks if CRITERIA_TIERS[c] == "should")
+        must_passed += n_must - len(f_must)
+        must_total += n_must
+        should_passed += n_should - len(f_should)
+        should_total += n_should
         if f_must:
             agents_with_must_failure += 1
 
