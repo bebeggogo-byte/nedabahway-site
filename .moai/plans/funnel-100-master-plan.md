@@ -415,6 +415,42 @@ the artifact-evidence trail the rubric requires.
   end-to-end; landing Core Web Vitals in the green; CTA pattern matches
   `cta_pattern` rules.
 
+#### Phase 5 design route — Claude Design (path A)
+
+The S5 landing-page design uses `/moai design` **path A — Claude Design import**
+as the primary route. Claude Design is part of the Claude subscription; it is
+used actively for this stage because it incurs no extra cost.
+
+Pipeline:
+
+1. **Design in Claude Design** — the five `/p/` revenue landing pages (STARCP,
+   IDEN-Teacher, IDEN-Career, 창직, 5S 리더십) are designed in Claude Design,
+   constrained by the brand context in `.moai/project/brand/` and the 12-section
+   landing template in `site-strategy.yaml`.
+2. **Export a handoff bundle** — Claude Design produces a handoff bundle
+   (ZIP or HTML).
+3. **Import** — the `moai-workflow-design-import` skill validates the bundle
+   version, then extracts design tokens, the component manifest, and static
+   assets into the reserved `.moai/design/` paths (`tokens.json`,
+   `components.json`, `assets/`).
+4. **Implement** — `expert-frontend` consumes the imported tokens + components
+   and builds the landing pages.
+5. **Gate** — `evaluator-active` scores the built pages against the BRIEF and
+   the Phase 5 gate criteria above.
+
+Path B fallback: if Claude Design or the design MCP servers (`pencil`,
+`claude-in-chrome`) are not available in the execution environment — for
+example a headless CI session — the stage falls back to `/moai design` **path
+B**, code-based brand design via the `moai-domain-brand-design` skill, with no
+loss of the gate criteria. Path A is preferred whenever the design tooling is
+connected.
+
+Environment note: Claude Design and the design MCP servers require a tooling
+environment (the Claude Code Chrome extension / Pencil app or a Claude Design
+session). They are not reachable from a headless cloud container, so actual
+path-A execution happens in a design-tooling-connected environment; planning
+and the path-B fallback remain available everywhere.
+
 ### Phase 6 — S6 수익 전환 (priority: Critical, last)
 
 - **Objective:** convert leads to paying clients and retain them.
