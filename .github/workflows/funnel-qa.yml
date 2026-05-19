@@ -1,0 +1,134 @@
+name: Funnel QA Gate
+
+# Continuous verification of the S1-S6 revenue funnel built in SPEC-DISCOVERY-001,
+# SPEC-FREEVALUE-001, SPEC-REACH-001, SPEC-REVISIT-001, SPEC-LANDING-001,
+# SPEC-REVENUE-001. Runs on every push, every PR to main, and weekly so the funnel
+# cannot silently regress. Lighthouse and external-link checks live in lighthouse.yml.
+
+on:
+  push:
+    branches: ['**']
+    paths-ignore:
+      - '.moai/state/**'
+      - 'quant/**'
+      - 'swarm/**'
+      - 'trading/**'
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: funnel-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  funnel-gates:
+    name: Funnel S1-S6 gate checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: S1-S4 funnel gate verification
+        run: |
+          python3 - <<'EOF'
+          import re, os, json, sys
+
+          fail = []
+
+          def pubpages():
+              p = ".moai/specs/SPEC-DISCOVERY-001/public-pages.txt"
+              return [l.strip() for l in open(p, encoding="utf-8")
+                      if l.strip() and not l.startswith("#")]
+
+          pub = pubpages()
+          print(f"public page set: {len(pub)} pages")
+
+          # S1 — sitemap covers exactly the public page set
+          sm = open("sitemap.xml", encoding="utf-8").read()
+          locs = re.findall(r"<loc>([^<]+)</loc>", sm)
+          if len(locs) != len(pub):
+              fail.append(f"S1 sitemap: {len(locs)} <loc> vs {len(pub)} public pages")
+
+          # S1 — every public page exists, has one <main>/<header>, valid JSON-LD
+          nm = nh = jbad = 0
+          for p in pub:
+              if not os.path.isfile(p):
+                  fail.append(f"S1 missing file: {p}"); continue
+              h = open(p, encoding="utf-8", errors="ignore").read()
+              if not re.search(r"<main[\s>]", h): nm += 1
+              if not re.search(r"<header[\s>]", h): nh += 1
+              for blk in re.findall(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>', h, re.S):
+                  try: json.loads(blk)
+                  except Exception: jbad += 1
+          if nm: fail.append(f"S1 landmarks: {nm} pages missing <main>")
+          if nh: fail.append(f"S1 landmarks: {nh} pages missing <header>")
+          if jbad: fail.append(f"S1 JSON-LD: {jbad} invalid blocks")
+
+          # S2 — every free-content page has a next-step CTA
+          corpus_path = ".moai/specs/SPEC-FREEVALUE-001/free-content-corpus.txt"
+          if os.path.isfile(corpus_path):
+              corpus = [l.strip() for l in open(corpus_path, encoding="utf-8")
+                        if l.strip() and not l.startswith("#")]
+              cta = re.compile(r'(무료\s*30분|/contact|/p/)')
+              orphan = 0
+              for p in corpus:
+                  if not os.path.isfile(p): continue
+                  h = open(p, encoding="utf-8", errors="ignore").read()
+                  body = h
+                  for t in ("nav", "footer", "header"):
+                      body = re.sub(r"<%s\b.*?</%s>" % (t, t), "", body, flags=re.S | re.I)
+                  if 'class="cta-next"' not in h and not cta.search(body):
+                      orphan += 1
+              if orphan: fail.append(f"S2 funnel orphans: {orphan} free-content pages with no CTA")
+
+          # S3 — feeds are valid and non-empty
+          import xml.etree.ElementTree as ET
+          for feed in ["magazine/feed.xml", "iden/feed.xml", "blog/feed.xml",
+                       "blog/perspective/feed.xml"]:
+              if not os.path.isfile(feed): continue
+              try:
+                  root = ET.parse(feed).getroot()
+                  items = root.findall(".//item")
+                  if not items:
+                      fail.append(f"S3 feed empty: {feed}")
+              except Exception as e:
+                  fail.append(f"S3 feed invalid: {feed}: {e}")
+
+          # S4 — PWA wired site-wide
+          nman = 0
+          for p in pub:
+              if not os.path.isfile(p): continue
+              if 'rel="manifest"' not in open(p, encoding="utf-8", errors="ignore").read():
+                  nman += 1
+          if nman: fail.append(f"S4 PWA: {nman} pages missing manifest link")
+
+          if fail:
+              print("\nFUNNEL QA GATE — FAIL:")
+              for f in fail: print(f"  - {f}")
+              sys.exit(1)
+          print("\nFUNNEL QA GATE — PASS (all S1-S4 environment-verifiable conditions)")
+          EOF
+
+  funnel-html-lint:
+    name: HTML lint — funnel pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install htmlhint
+        run: npm install --no-audit --no-fund --no-save htmlhint@1.x
+      - name: Lint funnel landing + hub pages
+        run: npx htmlhint index.html start.html faq.html glossary.html offline.html p/*.html
