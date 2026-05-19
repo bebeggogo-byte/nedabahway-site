@@ -367,6 +367,15 @@ CTA_BLOCK = """<aside class="cta-next" aria-labelledby="cta-next-title">
 """
 
 
+def _inject_manifest(text: str) -> str:
+    """<head> 에 PWA manifest 링크를 1개 보장한다 (S4 노출 빈도, 멱등)."""
+    if 'rel="manifest"' in text or "</head>" not in text:
+        return text
+    return text.replace(
+        "</head>",
+        '<link rel="manifest" href="/manifest.webmanifest">\n</head>', 1)
+
+
 def _inject_cta(text: str) -> str:
     """본문 끝(</main> 직전)에 전환 CTA 블록을 1개 삽입한다.
 
@@ -554,7 +563,10 @@ def main() -> None:
     kpi = update_kpi(items)
 
     # 외부 마스터 (최신 12건 카드만)
-    (ROOT / "index.html").write_text(render_master_external(items, kpi), encoding="utf-8")
+    # 재생성 시에도 S2 전환 CTA 와 S4 PWA manifest 링크가 보존되도록 후처리한다.
+    _master = render_master_external(items, kpi)
+    _master = _inject_cta(_inject_manifest(_master))
+    (ROOT / "index.html").write_text(_master, encoding="utf-8")
     # 콘솔 — _templates/console.html 이 있을 때만 생성 (내부 전용·noindex).
     # 템플릿이 없으면 외부 페이지 생성을 막지 않도록 건너뛴다.
     if (TPL / "console.html").is_file():
