@@ -19,6 +19,23 @@ import {
   formatBytes,
   type OgResult,
 } from "./wall-constants";
+import {
+  IconText,
+  IconImage,
+  IconFile,
+  IconLink,
+  IconPlus,
+  IconClose,
+  IconDownload,
+} from "./icons";
+
+/** 카드 종류별 아이콘 매핑 */
+const KIND_ICONS: Record<CardKind, () => React.ReactNode> = {
+  text: () => <IconText size={16} />,
+  image: () => <IconImage size={16} />,
+  file: () => <IconFile size={16} />,
+  link: () => <IconLink size={16} />,
+};
 
 interface AddCardComposerProps {
   wallSlug: string;
@@ -285,12 +302,13 @@ export function AddCardComposer({
               border: "none",
               background: "transparent",
               cursor: "pointer",
-              fontSize: "1.3rem",
+              display: "inline-flex",
+              alignItems: "center",
               lineHeight: 1,
               color: "var(--color-ink-soft)",
             }}
           >
-            ✕
+            <IconClose size={20} />
           </button>
         </div>
 
@@ -310,6 +328,10 @@ export function AddCardComposer({
                 }}
                 style={{
                   flex: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 6,
                   padding: "8px 4px",
                   borderRadius: "var(--radius-sm)",
                   border: active
@@ -322,6 +344,7 @@ export function AddCardComposer({
                   cursor: "pointer",
                 }}
               >
+                {KIND_ICONS[k]()}
                 {KIND_LABELS[k]}
               </button>
             );
@@ -441,6 +464,7 @@ export function AddCardComposer({
               disabled={ogLoading || !linkUrl.trim()}
               style={{ justifySelf: "start" }}
             >
+              <IconDownload size={16} />
               {ogLoading ? "불러오는 중…" : "미리보기 가져오기"}
             </button>
             {ogResult && (
@@ -526,6 +550,7 @@ export function AddCardComposer({
           disabled={submitting}
           style={{ width: "100%" }}
         >
+          <IconPlus size={16} />
           {submitting ? "추가하는 중…" : "카드 추가"}
         </button>
       </form>

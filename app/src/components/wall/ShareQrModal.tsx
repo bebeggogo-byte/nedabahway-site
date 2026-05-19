@@ -6,6 +6,7 @@
  */
 import { useEffect, useRef, useState } from "react";
 import QRCode from "qrcode";
+import { IconQr, IconClose, IconCopy, IconDownload } from "./icons";
 
 interface ShareQrModalProps {
   /** 담벼락 slug — URL은 클라이언트의 origin 기준으로 조립 */
@@ -93,7 +94,13 @@ export function ShareQrModal({ slug, wallTitle, onClose }: ShareQrModalProps) {
             marginBottom: 8,
           }}
         >
-          <h2 className="h3">담벼락 공유</h2>
+          <h2
+            className="h3"
+            style={{ display: "flex", alignItems: "center", gap: 8 }}
+          >
+            <IconQr size={20} />
+            담벼락 공유
+          </h2>
           <button
             ref={closeRef}
             type="button"
@@ -103,12 +110,13 @@ export function ShareQrModal({ slug, wallTitle, onClose }: ShareQrModalProps) {
               border: "none",
               background: "transparent",
               cursor: "pointer",
-              fontSize: "1.3rem",
+              display: "inline-flex",
+              alignItems: "center",
               lineHeight: 1,
               color: "var(--color-ink-soft)",
             }}
           >
-            ✕
+            <IconClose size={20} />
           </button>
         </div>
 
@@ -156,6 +164,7 @@ export function ShareQrModal({ slug, wallTitle, onClose }: ShareQrModalProps) {
             onClick={handleCopy}
             style={{ whiteSpace: "nowrap" }}
           >
+            <IconCopy size={16} />
             {copied ? "복사됨" : "복사"}
           </button>
         </div>
@@ -167,6 +176,7 @@ export function ShareQrModal({ slug, wallTitle, onClose }: ShareQrModalProps) {
           disabled={qrError}
           style={{ width: "100%" }}
         >
+          <IconDownload size={16} />
           QR 다운로드
         </button>
       </div>

@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getWallBySlug, listCards } from "@/server/walls/queries";
 import { env } from "@/lib/env";
 import { WallBoardClient } from "@/components/wall/WallBoardClient";
+import { IconLock, IconUnlock } from "@/components/wall/icons";
 import { toggleLockAction } from "./actions";
 
 export const dynamic = "force-dynamic";
@@ -80,6 +81,11 @@ export default async function WallBoardPage({
                 value={wall.contributions_locked ? "false" : "true"}
               />
               <button type="submit" className="btn btn--ghost">
+                {wall.contributions_locked ? (
+                  <IconLock size={16} />
+                ) : (
+                  <IconUnlock size={16} />
+                )}
                 {wall.contributions_locked ? "기여 잠금 해제" : "기여 잠그기"}
               </button>
             </form>

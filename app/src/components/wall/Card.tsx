@@ -12,6 +12,7 @@ import {
   formatRelativeTime,
   type OgResult,
 } from "./wall-constants";
+import { IconFile, IconExternalLink, IconTrash } from "./icons";
 
 interface CardProps {
   card: CardRow;
@@ -134,9 +135,7 @@ export function Card({ card, isOwner, onDeleted }: CardProps) {
               background: "var(--color-paper)",
             }}
           >
-            <span aria-hidden style={{ fontSize: "1.4rem" }}>
-              📄
-            </span>
+            <IconFile size={22} className="wall-card__file-icon" />
             <span style={{ minWidth: 0 }}>
               <span
                 style={{
@@ -187,12 +186,12 @@ export function Card({ card, isOwner, onDeleted }: CardProps) {
               background: "transparent",
               color: "var(--color-danger)",
               cursor: "pointer",
+              display: "inline-flex",
+              alignItems: "center",
               padding: "2px 6px",
-              fontSize: ".78rem",
-              fontWeight: 600,
             }}
           >
-            삭제
+            <IconTrash size={16} />
           </button>
         )}
       </footer>
@@ -300,7 +299,18 @@ function LinkPreview({
             {meta.description}
           </span>
         )}
-        <span style={{ fontSize: ".76rem", color: "var(--color-green-deep)" }}>{host}</span>
+        <span
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 4,
+            fontSize: ".76rem",
+            color: "var(--color-green-deep)",
+          }}
+        >
+          <IconExternalLink size={13} />
+          {host}
+        </span>
       </div>
     </a>
   );

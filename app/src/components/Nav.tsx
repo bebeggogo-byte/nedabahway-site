@@ -3,6 +3,7 @@
  */
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { IconWall } from "@/components/wall/icons";
 
 export async function Nav() {
   const supabase = await createClient();
@@ -43,6 +44,14 @@ export async function Nav() {
         ) : (
           <>
             <Link href="/dashboard" className="nav__link">내 학습</Link>
+            <Link
+              href="/wall"
+              className="nav__link"
+              style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+            >
+              <IconWall size={16} />
+              담벼락
+            </Link>
             {role === "coach" || role === "system_admin" ? (
               <Link href="/coach/dashboard" className="nav__link">코치</Link>
             ) : null}

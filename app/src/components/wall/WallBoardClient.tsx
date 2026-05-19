@@ -12,6 +12,7 @@ import type { CardRow, WallRow } from "@/types/database";
 import { MasonryBoard } from "./MasonryBoard";
 import { AddCardComposer } from "./AddCardComposer";
 import { ShareQrModal } from "./ShareQrModal";
+import { IconShare, IconPlus } from "./icons";
 
 interface WallBoardClientProps {
   wall: WallRow;
@@ -57,6 +58,7 @@ export function WallBoardClient({
           className="btn btn--ghost"
           onClick={() => setShareOpen(true)}
         >
+          <IconShare size={16} />
           공유
         </button>
         {canContribute ? (
@@ -65,7 +67,8 @@ export function WallBoardClient({
             className="btn btn--primary"
             onClick={() => setComposerOpen(true)}
           >
-            + 카드 추가
+            <IconPlus size={16} />
+            카드 추가
           </button>
         ) : (
           <span className="pill pill--mute" style={{ alignSelf: "center" }}>

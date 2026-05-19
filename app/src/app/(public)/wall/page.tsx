@@ -9,6 +9,7 @@ import { createClient } from "@/lib/supabase/server";
 import { listWallsByOwner } from "@/server/walls/queries";
 import { env } from "@/lib/env";
 import type { WallRow } from "@/types/database";
+import { IconPlus, IconLock, IconWall } from "@/components/wall/icons";
 
 export const dynamic = "force-dynamic";
 
@@ -65,7 +66,8 @@ export default async function WallDashboardPage() {
             </p>
           </div>
           <Link href="/wall/new" className="btn btn--primary">
-            + 새 담벼락 만들기
+            <IconPlus size={16} />
+            새 담벼락 만들기
           </Link>
         </header>
 
@@ -74,18 +76,31 @@ export default async function WallDashboardPage() {
             className="card card--soft"
             style={{ textAlign: "center", padding: 56, color: "var(--color-ink-soft)" }}
           >
+            {/* 빈 상태 — 큰 담벼락 아이콘으로 시각적 안내 */}
+            <span
+              aria-hidden
+              style={{
+                display: "inline-flex",
+                color: "var(--color-green-deep)",
+                marginBottom: 12,
+              }}
+            >
+              <IconWall size={64} />
+            </span>
             <p className="h3" style={{ color: "var(--color-ink)" }}>
               아직 만든 담벼락이 없습니다.
             </p>
-            <p className="body" style={{ marginTop: 8 }}>
-              첫 담벼락을 만들고 링크를 공유해 보세요.
+            <p className="body" style={{ marginTop: 8, maxWidth: "44ch", marginInline: "auto" }}>
+              담벼락을 만들면 링크 하나로 누구나 글·이미지·파일·링크 카드를 붙일 수
+              있습니다. 첫 담벼락을 만들고 친구에게 링크를 공유해 보세요.
             </p>
             <Link
               href="/wall/new"
               className="btn btn--primary"
               style={{ marginTop: 20 }}
             >
-              + 새 담벼락 만들기
+              <IconPlus size={16} />
+              새 담벼락 만들기
             </Link>
           </div>
         ) : (
@@ -129,7 +144,12 @@ export default async function WallDashboardPage() {
                       {wall.title}
                     </h2>
                     {wall.contributions_locked && (
-                      <span className="pill pill--mute" aria-label="기여 잠김">
+                      <span
+                        className="pill pill--mute"
+                        aria-label="기여 잠김"
+                        style={{ display: "inline-flex", alignItems: "center", gap: 4 }}
+                      >
+                        <IconLock size={13} />
                         잠김
                       </span>
                     )}
