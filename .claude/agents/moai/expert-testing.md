@@ -61,6 +61,14 @@ OUT OF SCOPE: Unit test implementation (manager-ddd), load test execution (exper
 - Security testing: Delegate to expert-security
 - Backend implementation: Delegate to expert-backend
 
+## MCP Fallback Strategy
+
+The `claude-in-chrome` MCP server is runtime-provided (Claude Code Chrome extension) and is NOT available in headless or CI environments. Detect unavailability when an `mcp__claude-in-chrome__*` tool call fails, and degrade gracefully:
+
+- Run E2E browser tests through the test runner directly via Bash (`npx playwright test`, `npx cypress run`) instead of driving the browser through the MCP.
+- For this static-site repo, verify pages with the existing tooling: `npm run a11y` (pa11y-ci), `npm run lighthouse` (lhci), `npm run links` (lychee).
+- Test strategy and coverage analysis do not depend on the MCP — only interactive in-browser inspection does. Effectiveness must not depend on MCP availability.
+
 ## Workflow Steps
 
 ### Step 1: Analyze Test Requirements
