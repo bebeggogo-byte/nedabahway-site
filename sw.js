@@ -70,8 +70,12 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(req)
         .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE_VERSION).then((cache) => cache.put(req, copy)).catch(() => {});
+          // Only cache successful, non-redirected, same-origin responses so a
+          // cached error page (404/500) is never served offline later.
+          if (res && res.ok && res.type === 'basic') {
+            const copy = res.clone();
+            caches.open(CACHE_VERSION).then((cache) => cache.put(req, copy)).catch(() => {});
+          }
           return res;
         })
         .catch(() => caches.match(req).then((cached) => cached || caches.match(OFFLINE_URL)))
@@ -90,7 +94,9 @@ self.addEventListener('fetch', (event) => {
           }
           return res;
         })
-        .catch(() => cached);
+        // On a cold-cache miss the network fetch may reject; never let the
+        // handler resolve to undefined (respondWith(undefined) is a hard error).
+        .catch(() => cached || Response.error());
       return cached || network;
     })
   );

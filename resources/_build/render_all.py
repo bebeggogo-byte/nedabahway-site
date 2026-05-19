@@ -54,16 +54,20 @@ def public_items(items: list[dict]) -> list[dict]:
 def render_card(item: dict, locked: bool = False) -> str:
     fmt = item["format"]
     label, _, color = FORMAT_LABEL[fmt]
-    href = "javascript:void(0)" if locked else item["url"]
+    # 피드 유래 값은 HTML/속성에 넣기 전 반드시 이스케이프한다 (Bug 2).
+    href = "javascript:void(0)" if locked else html.escape(item["url"], quote=True)
     aria_lock = ' aria-disabled="true"' if locked else ""
-    status = "🔒 검수 중" if locked else f"● {item.get('updated', item['published'])} 공개"
+    status = "🔒 검수 중" if locked else f"● {html.escape(str(item.get('updated', item['published'])))} 공개"
     cite_count = len(item.get("cites", []))
     cite_html = f"<span class='card__cite'>인용 {cite_count}건</span>" if cite_count else ""
+    version = html.escape(str(item.get('version', 'v1.0')))
+    title = html.escape(str(item['title']))
+    summary = html.escape(str(item['summary']))
     return f"""
     <a class="card card--{fmt}" href="{href}"{aria_lock} data-format="{fmt}">
-      <div class="card__abbr" style="color:{color}">{label} · {item.get('version','v1.0')}</div>
-      <div class="card__title">{item['title']}</div>
-      <p class="card__desc">{item['summary']}</p>
+      <div class="card__abbr" style="color:{color}">{label} · {version}</div>
+      <div class="card__title">{title}</div>
+      <p class="card__desc">{summary}</p>
       <div class="card__foot"><span class="card__status">{status}</span>{cite_html}</div>
     </a>
     """
@@ -130,10 +134,12 @@ def render_console(items: list[dict], kpi: dict) -> str:
               <p class="csec__empty">아직 자료 없음</p>
             </section>""")
             continue
+        # 피드 유래 값(url/title/date)은 출력 전 이스케이프한다 (Bug 2).
         rows_html = "\n".join(
             f'<li class="crow crow--{x["visibility"]}"><span class="crow__vis">{x["visibility"]}</span>'
-            f'<a href="{x["url"]}" target="_blank">{x["title"]}</a>'
-            f'<span class="crow__date">{x.get("updated", x["published"])}</span></li>'
+            f'<a href="{html.escape(str(x["url"]), quote=True)}" target="_blank">'
+            f'{html.escape(str(x["title"]))}</a>'
+            f'<span class="crow__date">{html.escape(str(x.get("updated", x["published"])))}</span></li>'
             for x in sorted(rows, key=lambda y: y.get("updated", y["published"]), reverse=True)
         )
         sections.append(f"""
@@ -157,10 +163,12 @@ def render_console(items: list[dict], kpi: dict) -> str:
 def render_changelog(items: list[dict]) -> str:
     pubs = public_items(items)
     rows = sorted(pubs, key=lambda x: x.get("updated", x["published"]), reverse=True)
+    # 피드 유래 값(date/url/title/version)은 출력 전 이스케이프한다 (Bug 2).
     rows_html = "\n".join(
-        f'<li><time>{x.get("updated", x["published"])}</time> '
+        f'<li><time>{html.escape(str(x.get("updated", x["published"])))}</time> '
         f'<span class="cl__fmt cl__fmt--{x["format"]}">{FORMAT_LABEL[x["format"]][0]}</span> '
-        f'<a href="{x["url"]}">{x["title"]}</a> <em>{x.get("version", "v1.0")}</em></li>'
+        f'<a href="{html.escape(str(x["url"]), quote=True)}">{html.escape(str(x["title"]))}</a> '
+        f'<em>{html.escape(str(x.get("version", "v1.0")))}</em></li>'
         for x in rows
     ) or "<li>공개된 자료가 곧 추가됩니다.</li>"
 
@@ -463,11 +471,12 @@ def _fix_resource_page(path: Path, subdir: str, by_url: dict[str, dict]) -> bool
     # 1) 끊어진 style.css <link> 제거 (앞 공백·줄바꿈 포함)
     text = re.sub(r"[ \t]*" + re.escape(BROKEN_STYLE_LINK) + r"\n?", "", text)
 
-    # 2) <title> 다음 줄에 누락된 SEO 메타 항목만 삽입
+    # 2) <title> 바로 뒤에 누락된 SEO 메타 항목만 삽입.
+    #    </title> 다음 문자가 줄바꿈/공백/태그 무엇이든(개행 비의존) 삽입한다.
     if head_block:
         text = re.sub(
-            r"(</title>\n)",
-            lambda mm: mm.group(1) + head_block + "\n",
+            r"(</title>)",
+            lambda mm: mm.group(1) + "\n" + head_block + "\n",
             text, count=1,
         )
 
@@ -488,10 +497,18 @@ def _fix_resource_page(path: Path, subdir: str, by_url: dict[str, dict]) -> bool
             return ("</nav>\n<main class=\"article-body\">\n"
                     + mm.group(1).strip()
                     + "\n</main>\n")
+        # footer 클래스가 약간 달라도(foot--mini / foot--full 등)
+        # 콘텐츠가 조용히 누락되지 않도록 <footer ...class="foot...">
+        # 또는 어떤 <footer> 든 후보로 본다.
         new_text, n = re.subn(
-            r"</nav>(.*?)(?=<footer class=\"foot foot--mini\")",
+            r"</nav>(.*?)(?=<footer\b[^>]*class=\"[^\"]*\bfoot\b)",
             wrap_main, text, count=1, flags=re.S,
         )
+        if not n:
+            new_text, n = re.subn(
+                r"</nav>(.*?)(?=<footer\b)",
+                wrap_main, text, count=1, flags=re.S,
+            )
         if n:
             text = new_text
         elif "<article>" in text and "</article>" in text:
