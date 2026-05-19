@@ -1,0 +1,97 @@
+name: Content Health Monitor
+
+# Monitoring dashboard for the content-accumulation strategy
+# (.moai/plans/content-accumulation-strategy.md). Unlike funnel-qa.yml
+# (a hard gate), this workflow only MEASURES and FLAGS — it never blocks
+# and never commits. It reports indexable-page growth, structured-data
+# coverage, funnel-CTA coverage, topic-cluster completeness, and thin or
+# stale content, so accumulation stays effective over time.
+
+on:
+  schedule:
+    - cron: '0 0 * * 3'
+  workflow_dispatch:
+  push:
+    branches: ['**']
+    paths:
+      - 'blog/**'
+      - '.moai/specs/SPEC-DISCOVERY-001/public-pages.txt'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: content-health-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  content-health:
+    name: Content health report
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Measure content health
+        run: |
+          python3 - <<'EOF'
+          import re, os, json
+
+          pub = [l.strip() for l in open(".moai/specs/SPEC-DISCOVERY-001/public-pages.txt", encoding="utf-8")
+                 if l.strip() and not l.startswith("#")]
+          posts = [p for p in pub if p.startswith("blog/posts/") and p.endswith(".html")
+                   and not p.endswith("index.html")]
+
+          # structured-data + CTA coverage across content
+          jsonld = cta = thin = 0
+          thin_pages = []
+          for p in posts:
+              if not os.path.isfile(p):
+                  continue
+              h = open(p, encoding="utf-8", errors="ignore").read()
+              if re.search(r'application/ld\+json', h):
+                  jsonld += 1
+              if 'class="cta-next"' in h:
+                  cta += 1
+              text = re.sub(r"<[^>]+>", "", re.sub(r"<(script|style)\b.*?</\1>", "", h, flags=re.S|re.I))
+              if len(text.split()) < 350:
+                  thin += 1
+                  thin_pages.append(p)
+
+          # topic-cluster completeness
+          clusters = {
+              "starcp": [p for p in posts if "starcp" in p],
+              "iden-teacher": [p for p in posts if "identeacher" in p or "iden-teacher" in p],
+              "iden-career": [p for p in posts if "idencareer" in p or "iden-career" in p],
+              "changjig": [p for p in posts if "changjig" in p],
+              "5s": [p for p in posts if "5sleadership" in p or "5s-leadership" in p or "5s-team" in p],
+          }
+
+          summary = []
+          summary.append("# Content Health Report\n")
+          summary.append(f"- Indexable pages: **{len(pub)}**")
+          summary.append(f"- Blog posts: **{len(posts)}**")
+          summary.append(f"- Structured-data coverage: **{jsonld}/{len(posts)}** "
+                          f"({100*jsonld//max(len(posts),1)}%)")
+          summary.append(f"- Funnel-CTA coverage: **{cta}/{len(posts)}** "
+                          f"({100*cta//max(len(posts),1)}%)")
+          summary.append(f"- Thin posts (<350 words): **{thin}**")
+          summary.append("\n## Topic clusters")
+          for name, ps in clusters.items():
+              summary.append(f"- {name}: **{len(ps)}** articles")
+          if thin_pages:
+              summary.append("\n## Flagged — thin content")
+              for p in thin_pages:
+                  summary.append(f"- {p}")
+
+          report = "\n".join(summary)
+          print(report)
+          sm = os.environ.get("GITHUB_STEP_SUMMARY")
+          if sm:
+              with open(sm, "a", encoding="utf-8") as fh:
+                  fh.write(report + "\n")
+          # monitoring only — always exit 0
+          EOF
