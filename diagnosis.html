@@ -11,6 +11,10 @@
 <meta property="og:url" content="https://www.nedabah.org/diagnosis.html">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://www.nedabah.org/assets/og-default.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="진로 가치관 30문항 자가진단 — 무료">
+<meta name="twitter:description" content="30분 안에 자기 진로 가치관 5축(이타성·전문성·자율성·안정성·창의성) 분포 확인. 김창환 책 부록 A 정식 진단지.">
+<meta name="twitter:image" content="https://www.nedabah.org/assets/og-default.svg">
 <link rel="stylesheet" href="/assets/nedabah.bundle.css">
 
 <!-- HowTo schema (이 페이지가 HowTo 절차의 entry point) -->
@@ -54,6 +58,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <!-- END seo_patches: meta_links -->
+<!-- SPEC-REVISIT-001 re-visit wiring -->
+<script src="/assets/analytics.js" defer></script>
 </head>
 <body>
 <main style="max-width: 720px; margin: 4rem auto; padding: 0 1.5rem; font-family: 'Noto Serif KR', serif; line-height: 1.7;">
@@ -74,11 +80,11 @@
   </section>
 
   <form id="diagnosisForm" style="background: white; padding: 2rem; border: 1px solid #e5d8c4; border-radius: 12px;">
-    <label style="display:block; font-size:.9rem; color:#3a322a; margin-bottom:.5rem;">이메일 (결과 수신용) *</label>
-    <input type="email" name="email" required placeholder="example@example.com" style="width:100%; padding:.8rem; font-size:1rem; border:1px solid #d0c8b6; border-radius:8px; margin-bottom:1.5rem;">
+    <label for="diagnosisEmail" style="display:block; font-size:.9rem; color:#3a322a; margin-bottom:.5rem;">이메일 (결과 수신용) *</label>
+    <input id="diagnosisEmail" type="email" name="email" required placeholder="example@example.com" style="width:100%; padding:.8rem; font-size:1rem; border:1px solid #d0c8b6; border-radius:8px; margin-bottom:1.5rem;">
 
-    <label style="display:block; font-size:.9rem; color:#3a322a; margin-bottom:.5rem;">자리 (학생/교사/직장인/부모/1인 사업자/기관 실무자/기타)</label>
-    <select name="role" style="width:100%; padding:.8rem; font-size:1rem; border:1px solid #d0c8b6; border-radius:8px; margin-bottom:1.5rem;">
+    <label for="diagnosisRole" style="display:block; font-size:.9rem; color:#3a322a; margin-bottom:.5rem;">자리 (학생/교사/직장인/부모/1인 사업자/기관 실무자/기타)</label>
+    <select id="diagnosisRole" name="role" style="width:100%; padding:.8rem; font-size:1rem; border:1px solid #d0c8b6; border-radius:8px; margin-bottom:1.5rem;">
       <option>학생</option>
       <option>교사</option>
       <option>직장인</option>
@@ -92,6 +98,11 @@
 
     <button type="submit" style="width:100%; padding: 1rem; background:#3a322a; color:white; border:none; border-radius:8px; font-size:1rem; font-weight:600; margin-top:1rem; cursor:pointer;">사전 등록하고 출간 시 알림 받기</button>
   </form>
+
+  <aside class="cta-next" style="margin-top:3rem;padding:2rem;background:#3a322a;color:#fbf6ec;border-radius:12px;">
+    <p style="font-size:1rem;line-height:1.7;margin:0 0 1rem;">자가진단 결과가 나왔다면, 다음은 그 좌표를 12주 동안 함께 짜는 자리입니다. 무료 30분 진로 상담으로 IDEN 좌표를 먼저 확인하세요.</p>
+    <p style="margin:0;"><a href="/contact.html" style="display:inline-block;background:#b45309;color:white;padding:.65rem 1.6rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem;">무료 30분 상담 신청 →</a>&ensp;<a href="/p/iden-career.html" style="font-size:.9rem;color:#e5d8c4;text-decoration:none;border-bottom:1px dotted #e5d8c4;">IDEN 진로 재설계 12주 보기</a></p>
+  </aside>
 
   <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #e5d8c4; font-size: .85rem; color: #8a7a64;">
     <p>김창환 · 네다바웨이 · <a href="/about.html">소개</a> · <a href="/contact.html">강의 의뢰</a></p>

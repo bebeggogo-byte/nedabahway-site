@@ -1,0 +1,67 @@
+# SPEC-REVISIT-001 — re-visit surface inventory (REQ-RV-001 / AC-1)
+# Frozen 2026-05-19.
+#
+# The re-visit surface is the set of files against which every surface-scoped
+# S4 requirement is measured. It excludes non-public paths, archive/build
+# directories, and the independently-scoped vault/ and radio/ subapps.
+#
+# ============================================================================
+# (a) PWA SHELL FILES
+# ============================================================================
+# The installable-PWA + offline layer added/audited by this SPEC.
+manifest.webmanifest          # web app manifest (REQ-RV-002/003)
+sw.js                         # site-wide service worker, scope '/' (REQ-RV-005/006)
+offline.html                  # offline navigation-miss fallback page (REQ-RV-008)
+assets/app-icon.svg           # maskable vector icon source (REQ-RV-003)
+assets/analytics.js           # re-visit bootstrap: analytics + SW register + events
+scripts/apply-revisit-wiring.py  # idempotent site-wide head-wiring patcher
+scripts/build-pwa-icons.sh    # raster-icon generator (run when image tooling exists)
+#
+# Pending (image tooling unavailable at authoring time — see assets/PWA-ICONS-TODO.md):
+#   assets/app-icon-192.png    # REQ-RV-003 maskable raster 192x192 — NOT YET GENERATED
+#   assets/app-icon-512.png    # REQ-RV-003 maskable raster 512x512 — NOT YET GENERATED
+#
+# ============================================================================
+# (b) MANIFEST / SERVICE-WORKER REGISTRATION PAGE SET
+# ============================================================================
+# Every public HTML page MUST declare <link rel="manifest"> and register the
+# service worker (REQ-RV-004 / REQ-RV-007). The registration is performed by
+# assets/analytics.js, so the page set is identical to the analytics page set
+# below: the SPEC-DISCOVERY-001 frozen public page set.
+#
+#   source of truth : .moai/specs/SPEC-DISCOVERY-001/public-pages.txt
+#   page count      : 595
+#   mechanism       : scripts/apply-revisit-wiring.py injects, into each page's
+#                     <head>, <link rel="manifest"> + <script src="analytics.js">
+#   index.html      : INCLUDED (was previously missing the manifest link)
+#
+# ============================================================================
+# (c) ANALYTICS + FUNNEL-EVENT INSTRUMENTATION PAGE SET
+# ============================================================================
+# Every public HTML page MUST load assets/analytics.js (REQ-RV-009). The four
+# funnel events (REQ-RV-011) are wired by analytics.js as follows:
+#
+#   page view        : all 595 pages (GoatCounter pageview)
+#   cta-click        : any page carrying .cta-next / a.gnav__cta / [data-cta]
+#                      (~1260 resources pages + nav-bearing pages)
+#   consult-reach    : contact.html (page-load trigger)
+#   subscribe        : subscribed-thanks.html (page-load trigger)
+#   subscribe-intent : newsletter.html (channel/confirm link click)
+#
+#   page set         : .moai/specs/SPEC-DISCOVERY-001/public-pages.txt (595)
+#
+# ============================================================================
+# (d) SUBSCRIPTION-PATH FILES
+# ============================================================================
+newsletter.html               # subscription page (REQ-RV-014/016)
+subscribed-thanks.html         # post-subscribe confirmation (REQ-RV-017)
+feeds/index.html               # S3 feed hub — machine-readable subscription channel
+#
+# ============================================================================
+# EXCLUSIONS (out of re-visit surface)
+# ============================================================================
+# vault/**         — scoped subapp, own manifest + vault/sw.js
+# radio/**         — scoped subapp, own manifest + radio/sw.js
+# _archive_*/**    — archived content
+# _build/**, **/_build/**, **/_console/**, **/_templates/**  — build/internal
+# 404.html, admin.html, robots-disallowed paths  — non-public

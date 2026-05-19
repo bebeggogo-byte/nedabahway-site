@@ -5,10 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>휴가 신청 슬랙 승인 워크플로우 — 자동화 9선 | 네다바웨이</title>
-<meta name="description" content="Form → 팀장 Slack 승인 카드 → 캘린더·연차 잔여 시트 자동 갱신.">
+<meta name="description" content="휴가신청 폼에서 팀장의 Slack 승인 카드, 캘린더와 연차 시트로 자동 연동됨.">
 <link rel="canonical" href="https://www.nedabah.org/resources/automation/hr/02-leave-approval-workflow.html">
 <meta property="og:title" content="휴가 신청 슬랙 승인 워크플로우 — 자동화 9선">
-<meta property="og:description" content="Form → 팀장 Slack 승인 카드 → 캘린더·연차 잔여 시트 자동 갱신.">
+<meta property="og:description" content="휴가 신청에서 팀장 승인 카드, 캘린더, 연차 시트 자동 연동 및 갱신.">
 <meta property="og:url" content="https://www.nedabah.org/resources/automation/hr/02-leave-approval-workflow.html">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg">
@@ -68,6 +68,9 @@
   .starter-card { grid-template-columns:repeat(2, 1fr); padding:.85rem 1rem; }
 }
 </style>
+<!-- SPEC-REVISIT-001 re-visit wiring -->
+<link rel="manifest" href="/manifest.webmanifest">
+<script src="/assets/analytics.js" defer></script>
 </head>
 <body>
 <nav class="gnav" role="navigation" aria-label="주요 메뉴">
@@ -87,6 +90,7 @@
   <p style="font-size:.78rem;color:#b45309;letter-spacing:.18em;font-weight:700;">RESOURCE · HR 자동화 · <span class="tag-pill">HR-02</span></p>
 </header>
 
+<main>
 <section class="starter-card" aria-label="이 자동화 한눈에">
   <div><div class="si">난이도</div><div class="sv">★★★</div></div>
   <div><div class="si">예상 소요</div><div class="sv">90분</div></div>
@@ -475,6 +479,7 @@ function fmt(d) { return new Date(d).toISOString().slice(0,10); }
     <li>→ <a href="/contact.html">조직 맞춤 워크숍 의뢰</a></li>
   </ul>
 </aside>
+</main>
 
 <footer style="max-width:780px;margin:0 auto 4rem;padding:1.5rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;font-family:'Noto Sans KR',sans-serif;">
   <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>

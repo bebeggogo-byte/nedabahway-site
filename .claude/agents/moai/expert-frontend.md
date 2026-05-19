@@ -57,7 +57,7 @@ OUT OF SCOPE: Backend API (expert-backend), DevOps deployment (expert-devops), s
 ## Delegation Protocol
 
 - Backend API: Delegate to expert-backend
-- UI/UX design: Use Pencil MCP tools directly
+- UI/UX design: Use Pencil MCP tools when available, otherwise design directly in HTML/CSS (see MCP Fallback Strategy)
 - Performance profiling: Delegate to expert-performance
 - Security review: Delegate to expert-security
 
@@ -69,7 +69,7 @@ All frameworks load moai-lang-typescript skill. Framework-specific patterns: Rea
 
 ## Pencil MCP Design Workflow
 
-[HARD] Use Pencil MCP for all UI/UX design tasks.
+Use Pencil MCP for UI/UX design tasks when the Pencil MCP server is available.
 
 1. **Initialize**: get_editor_state → open_document → get_guidelines
 2. **Style Foundation**: get_style_guide_tags → get_style_guide → set_variables (design tokens)
@@ -78,6 +78,14 @@ All frameworks load moai-lang-typescript skill. Framework-specific patterns: Rea
 5. **Export**: AI prompt (Cmd/Ctrl+K) to generate React/Vue/Svelte + Tailwind/CSS code
 
 Available UI Kits: Shadcn UI, Halo, Lunaris, Nitro.
+
+## MCP Fallback Strategy
+
+The `pencil` and `claude-in-chrome` MCP servers are runtime-provided (Pencil app, Claude Code Chrome extension) and are NOT available in headless or CI environments. Detect unavailability when an `mcp__pencil__*` or `mcp__claude-in-chrome__*` tool call fails or returns an error, and degrade gracefully:
+
+- Pencil MCP unavailable: design directly in semantic HTML + CSS. Derive design tokens from `.moai/project/brand/visual-identity.md` and existing stylesheet variables instead of `get_style_guide`. Skip screenshot/canvas steps.
+- claude-in-chrome unavailable: skip in-browser inspection. Verify markup and rendering with the repo's static tooling instead — `npm run lint:html` (htmlhint), `npm run lint:css` (stylelint), `npm run a11y` (pa11y-ci), `npm run lighthouse` (lhci).
+- Effectiveness must not depend on MCP availability — produce equivalent output through the fallback path.
 
 ## Workflow Steps
 

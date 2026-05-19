@@ -708,6 +708,8 @@ a:hover{text-decoration:underline}
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <!-- END seo_patches: meta_links -->
+<!-- SPEC-REVISIT-001 re-visit wiring -->
+<script src="/assets/analytics.js" defer></script>
 </head>
 <body class="snap-deck-on">
 
@@ -795,7 +797,7 @@ a:hover{text-decoration:underline}
 <section class="print-only pdf-cover">
   <div>
     <div class="pdf-cover__kicker">Nedabahway · Education Design Catalog</div>
-    <h1 class="pdf-cover__title">기관에는<br>표준 제안서가 아니라,<br>상황에 맞춘 <em>설계</em>가 필요합니다.</h1>
+    <h2 class="pdf-cover__title">기관에는<br>표준 제안서가 아니라,<br>상황에 맞춘 <em>설계</em>가 필요합니다.</h2>
     <p class="pdf-cover__sub">진로·AI 리터러시·리더십·퍼실리테이션 — 네 묶음을 기관 현장에 맞게 배합합니다.<br>제주에서 출발해 전국으로 출강하는 1인 교육 작업실.</p>
   </div>
   <div class="pdf-cover__meta">
@@ -1248,12 +1250,12 @@ a:hover{text-decoration:underline}
       <p style="color:#444;font-size:.95rem;margin-top:10px">활동지·제안서·근거자료·프롬프트·진단 도구. 검수 통과한 자료만 외부 공개.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
-      <a href="/resources/worksheets/" style="padding:18px;background:#fff;border:1px solid var(--c-dim);border-radius:10px;text-align:center;text-decoration:none"><strong style="display:block;font-size:.85rem;color:#0369a1">Worksheets</strong><span style="font-size:.78rem;color:#525252">활동지</span></a>
-      <a href="/resources/diagnostics/" style="padding:18px;background:#fff;border:1px solid var(--c-dim);border-radius:10px;text-align:center;text-decoration:none"><strong style="display:block;font-size:.85rem;color:#5b21b6">Diagnostics</strong><span style="font-size:.78rem;color:#525252">진단 도구</span></a>
-      <a href="/resources/evidence/" style="padding:18px;background:#fff;border:1px solid var(--c-dim);border-radius:10px;text-align:center;text-decoration:none"><strong style="display:block;font-size:.85rem;color:#047857">Evidence</strong><span style="font-size:.78rem;color:#525252">근거자료</span></a>
-      <a href="/resources/prompts/" style="padding:18px;background:#fff;border:1px solid var(--c-dim);border-radius:10px;text-align:center;text-decoration:none"><strong style="display:block;font-size:.85rem;color:#b45309">Prompts</strong><span style="font-size:.78rem;color:#525252">프롬프트</span></a>
-      <a href="/resources/guides/" style="padding:18px;background:#fff;border:1px solid var(--c-dim);border-radius:10px;text-align:center;text-decoration:none"><strong style="display:block;font-size:.85rem;color:#0891b2">Guides</strong><span style="font-size:.78rem;color:#525252">가이드</span></a>
-      <a href="/resources/curations/" style="padding:18px;background:#fff;border:1px solid var(--c-dim);border-radius:10px;text-align:center;text-decoration:none"><strong style="display:block;font-size:.85rem;color:#9d174d">Curations</strong><span style="font-size:.78rem;color:#525252">큐레이션</span></a>
+      <a href="/resources/" style="padding:18px;background:#fff;border:1px solid var(--c-dim);border-radius:10px;text-align:center;text-decoration:none"><strong style="display:block;font-size:.85rem;color:#0369a1">Worksheets</strong><span style="font-size:.78rem;color:#525252">활동지</span></a>
+      <a href="/resources/" style="padding:18px;background:#fff;border:1px solid var(--c-dim);border-radius:10px;text-align:center;text-decoration:none"><strong style="display:block;font-size:.85rem;color:#5b21b6">Diagnostics</strong><span style="font-size:.78rem;color:#525252">진단 도구</span></a>
+      <a href="/resources/" style="padding:18px;background:#fff;border:1px solid var(--c-dim);border-radius:10px;text-align:center;text-decoration:none"><strong style="display:block;font-size:.85rem;color:#047857">Evidence</strong><span style="font-size:.78rem;color:#525252">근거자료</span></a>
+      <a href="/resources/" style="padding:18px;background:#fff;border:1px solid var(--c-dim);border-radius:10px;text-align:center;text-decoration:none"><strong style="display:block;font-size:.85rem;color:#b45309">Prompts</strong><span style="font-size:.78rem;color:#525252">프롬프트</span></a>
+      <a href="/resources/" style="padding:18px;background:#fff;border:1px solid var(--c-dim);border-radius:10px;text-align:center;text-decoration:none"><strong style="display:block;font-size:.85rem;color:#0891b2">Guides</strong><span style="font-size:.78rem;color:#525252">가이드</span></a>
+      <a href="/resources/" style="padding:18px;background:#fff;border:1px solid var(--c-dim);border-radius:10px;text-align:center;text-decoration:none"><strong style="display:block;font-size:.85rem;color:#9d174d">Curations</strong><span style="font-size:.78rem;color:#525252">큐레이션</span></a>
     </div>
     <div style="text-align:center;margin-top:28px">
       <a href="/resources/" style="font-size:.9rem;color:#1a1a1a;border-bottom:1px solid currentColor;padding-bottom:1px">전체 자료실 페이지로 →</a>
@@ -1879,7 +1881,7 @@ function renderCustomPdf(){
     <section class="pdfx-cover">
       <div>
         <div class="pdfx-cover__kicker">Custom Curriculum · 맞춤 강의 설계서</div>
-        <h1 class="pdfx-cover__title">${sc.title}</h1>
+        <h2 class="pdfx-cover__title">${sc.title}</h2>
         <p class="pdfx-cover__sub">${sc.lead}</p>
         <div class="pdfx-cover__tags">
           <span class="pdfx-cover__tag">${aud.label}</span>

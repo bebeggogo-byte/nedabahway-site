@@ -1,0 +1,138 @@
+# Revenue Surface Inventory — SPEC-REVENUE-001
+# Frozen: 2026-05-19
+# This file is the authoritative contract for surface-scoped requirements.
+# Every requirement measured against these entries, not against guessed file paths.
+
+## LEAD-CAPTURE ENDPOINT
+
+file: contact.html
+canonical_url: https://www.nedabah.org/contact.html
+submission_mechanism: mailto: (action="mailto:nedabah.way@gmail.com", enctype="text/plain")
+consultation_section_anchor: #consult
+  - section heading: "1:1 코칭 프로그램 — 무료 30분 적합도 진단 신청"
+  - info box: states consultation is free, Google Meet format, 3-day response, offline payment
+  - form fields: 성함 (required), 이메일 (required), 전화번호 (optional), 관심트랙 (required), 현재상황 (optional)
+  - honeypot: present (id=website-url, aria-hidden, tabindex=-1)
+  - fallback contacts: nedabah.way@gmail.com and 010-6642-7749 shown inline
+  - application_flow: 4-step list (form → reply → meet → offline payment)
+  - retention_links: newsletter.html, feeds/index.html
+lecture_section_anchor: #lecture
+  - preserved, second section, separate form for institutional lecture requests
+
+## PRICING AND OFFER SURFACE — 5 /p/ LANDING PAGES
+
+file: p/starcp.html
+canonical_url: https://www.nedabah.org/p/starcp.html
+pricing_section: §9 (id not set, kicker "Pricing · 가격과 회수")
+  - displayed_price: 400만원
+  - price_krw_sso: 4000000
+  - match: YES
+json_ld_offers:
+  - @type: Offer
+  - price: "4000000"
+  - priceCurrency: "KRW"
+  - availability: "https://schema.org/InStock"
+  - url: "https://www.nedabah.org/contact.html#consult"
+  - price_match_sso: YES
+
+file: p/iden-teacher.html
+canonical_url: https://www.nedabah.org/p/iden-teacher.html
+pricing_section: §9 (kicker "Pricing · 가격과 회수")
+  - displayed_price: 350만원
+  - price_krw_sso: 3500000
+  - match: YES
+json_ld_offers:
+  - @type: Offer
+  - price: "3500000"
+  - priceCurrency: "KRW"
+  - availability: "https://schema.org/InStock"
+  - url: "https://www.nedabah.org/contact.html#consult"
+  - price_match_sso: YES
+
+file: p/iden-career.html
+canonical_url: https://www.nedabah.org/p/iden-career.html
+pricing_section: §9 (kicker "Pricing · 가격과 회수")
+  - displayed_price: 250만원
+  - price_krw_sso: 2500000
+  - match: YES
+json_ld_offers:
+  - @type: Offer
+  - price: "2500000"
+  - priceCurrency: "KRW"
+  - availability: "https://schema.org/InStock"
+  - url: "https://www.nedabah.org/contact.html#consult"
+  - price_match_sso: YES
+
+file: p/changjig.html
+canonical_url: https://www.nedabah.org/p/changjig.html
+pricing_section: §9 (kicker "Pricing · 가격과 회수")
+  - displayed_price: 500만원
+  - price_krw_sso: 5000000
+  - match: YES
+json_ld_offers:
+  - @type: Offer
+  - price: "5000000"
+  - priceCurrency: "KRW"
+  - availability: "https://schema.org/InStock"
+  - url: "https://www.nedabah.org/contact.html#consult"
+  - price_match_sso: YES
+
+file: p/5s-leadership.html
+canonical_url: https://www.nedabah.org/p/5s-leadership.html
+pricing_section: §9 (kicker "Pricing · 가격과 회수")
+  - displayed_price: 600만원
+  - price_krw_sso: 6000000
+  - match: YES
+json_ld_offers:
+  - @type: Offer
+  - price: "6000000"
+  - priceCurrency: "KRW"
+  - availability: "https://schema.org/InStock"
+  - url: "https://www.nedabah.org/contact.html#consult"
+  - price_match_sso: YES
+
+## LINEUP INDEX
+
+file: p/index.html
+canonical_url: https://www.nedabah.org/p/
+program_cards_prices:
+  - STARCP 마스터: 400만원 (matches SSoT 4000000 KRW)
+  - IDEN 좌표 마스터: 350만원 (matches SSoT 3500000 KRW)
+  - IDEN 진로 재설계: 250만원 (matches SSoT 2500000 KRW)
+  - 창직·1인 사업자 1:1: 500만원 (matches SSoT 5000000 KRW)
+  - 5S 리더십 마스터: 600만원 (matches SSoT 6000000 KRW)
+comparison_table_prices:
+  - 01 STARCP 마스터: 400만 (matches)
+  - 02 IDEN 좌표 마스터: 350만 (matches)
+  - 03 IDEN 진로 재설계: 250만 (matches)
+  - 04 창직·1인 사업자: 500만 (matches)
+  - 05 5S 리더십 마스터: 600만 (matches)
+
+## RETENTION TOUCHPOINTS
+
+newsletter_path: newsletter.html
+  - linked from: contact.html#consult (신청 흐름 section)
+  - status: link present, reachable
+
+feed_hub_path: feeds/index.html
+  - linked from: contact.html#consult (신청 흐름 section)
+  - status: link present, reachable
+
+## ANALYTICS EVENTS (SPEC-REVISIT-001)
+
+consult_reach_event:
+  - fires on: contact.html page load (/contact\.html$/ regex match in analytics.js)
+  - event name: consult-reach
+  - mechanism: GoatCounter via window.goatcounter.count
+
+cta_click_event:
+  - fires on: click on .cta-next a, a.cta-next__primary, a.gnav__cta, [data-cta]
+  - event name: cta-click
+  - note: /p/ page CTAs use .btn--primary inside .btn-row, not .cta-next; [data-cta] attribute
+           not present on those buttons. CTA click is tracked via gnav__cta clicks (nav link).
+
+## SSoT REFERENCE
+
+sso_file: .moai/strategy/site-strategy.yaml
+sso_section: revenue_lineup
+prices_verified: 2026-05-19
