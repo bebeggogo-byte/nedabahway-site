@@ -187,33 +187,31 @@ LAST	P856	"https://www.nedabah.org"
 
 ---
 
-## 7. 한국 검색엔진 등록 (병행 트랙)
+## 7. 한국/기타 검색엔진 등록 — 보류
 
-지식패널은 Google 의존이지만 한국 검색 시장은 Naver/Daum이 별도 색인 시스템을 운용합니다. Google 트랙과 무관하게 즉시 진행 가능.
+**사용자 결정 (2026-05-20)**: Naver, Daum 등 별도 검색엔진 등록 비추진. Google 트랙에 집중.
 
-### 7.1 등록 절차
+근거: 지식패널은 Google 의존이고, 별도 검색엔진은 운영 부담 대비 ROI 낮음. 한국 시장 노출은 Google 검색 + 자체 채널(LinkedIn/Naver Blog/YouTube)로 충분.
 
-| 검색엔진 | 등록 URL | 본인 인증 방식 |
-|---|---|---|
-| Naver Search Advisor | https://searchadvisor.naver.com/ | 네이버 ID 로그인 + 사이트 URL 등록 + 메타 태그 검증 |
-| Daum/Kakao Webmaster | https://webmaster.kakao.com/ | 카카오 계정 + 사이트 URL 등록 + 메타 태그 검증 |
-| Bing Webmaster Tools | https://www.bing.com/webmasters/ | Microsoft 계정 (옵션) |
+### 7.1 인프라는 유지 (필요 시 즉시 가동)
 
-각 검증 화면에서 표시되는 `<meta name="...-site-verification" content="XXX" />` 의 `XXX` 값을 복사한 뒤 아래 명령을 실행하면 `index.html`에 자동 주입됩니다.
+`scripts/add-search-engine-verification.py` 는 그대로 보존. 네 검색엔진 모두 지원하므로 향후 정책 변경 시 추가 작업 없이 코드 1줄로 등록 가능:
 
 ```bash
-python3 scripts/add-search-engine-verification.py naver <CONTENT-CODE>
-python3 scripts/add-search-engine-verification.py daum  <CONTENT-CODE>
-python3 scripts/add-search-engine-verification.py bing  <CONTENT-CODE>
+python3 scripts/add-search-engine-verification.py naver <CODE>
+python3 scripts/add-search-engine-verification.py daum  <CODE>
+python3 scripts/add-search-engine-verification.py bing  <CODE>
+python3 scripts/add-search-engine-verification.py yandex <CODE>
 ```
 
-(스크립트는 멱등 — 같은 provider로 재실행하면 기존 태그 교체. `--remove` 옵션으로 삭제 가능.)
+(idempotent — `--remove` 옵션으로 깨끗 롤백)
 
-### 7.2 등록 후 처리
+### 7.2 현재 한국 검색 전략
 
-- Naver: Search Advisor에서 사이트맵 등록 (이미 작성된 `sitemap-index.xml` 제출)
-- Daum: 사이트맵 자동 발견 (robots.txt에서 읽음 — 이미 갱신됨)
-- Bing: 사이트맵 + Google Search Console 연동 옵션 (선택)
+Naver/Daum 색인 없이 한국 사용자 도달은 다음 경로에 의존:
+- 자체 Naver Blog (`blog.naver.com/nedabah`) — sameAs 연결됨
+- LinkedIn 뉴스레터 — Korean 독자 일부
+- 구두/오프라인 채널 (코칭 세션, 강의)
 
 ---
 
