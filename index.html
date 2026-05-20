@@ -252,26 +252,52 @@ a{color:inherit;text-decoration:none;}
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <div class="nav-logo">
-      <div class="nav-logo-mark">ID</div>
-      <div class="nav-logo-text">IDEN</div>
-      <div class="nav-logo-sub">by 네다바웨이</div>
-    </div>
-    <div class="nav-links">
+<!-- NAV (표준 gnav v2 — 사이트 전체 통일) -->
+<link rel="stylesheet" href="/assets/global-nav.css">
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/content.html" class="gnav__link">콘텐츠</a></li>
+      <li><a href="/activities.html" class="gnav__link">활동기록</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- 페이지 내 섹션 점프 (IDEN 랜딩 sub-nav) -->
+<nav class="subnav" aria-label="IDEN 페이지 내 메뉴">
+  <div class="subnav__inner">
+    <span class="subnav__brand">
+      <span class="subnav__mark">ID</span>
+      <strong>IDEN</strong><small>by 네다바웨이</small>
+    </span>
+    <div class="subnav__links">
       <a href="#programs">학생 프로그램</a>
-      <a href="coaching.html">성인 프로그램</a>
-      <a href="/p/">1:1 트랙</a>
       <a href="#instructor">강사 소개</a>
       <a href="#curriculum">커리큘럼</a>
       <a href="#diagnosis">무료 진단</a>
-      <a href="start.html">무료 자료</a>
+      <a href="#consult" class="subnav__cta">상담 신청</a>
     </div>
-    <button class="nav-cta" onclick="document.getElementById('consult').scrollIntoView({behavior:'smooth'})">상담 신청</button>
   </div>
 </nav>
+<style>
+  .subnav{background:#fff;border-bottom:1px solid #f1ecdf;}
+  .subnav__inner{max-width:1180px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .subnav__brand{display:inline-flex;align-items:center;gap:8px;font-family:'Playfair Display',serif;}
+  .subnav__mark{width:24px;height:24px;border-radius:6px;background:#1a6b4e;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;}
+  .subnav__brand strong{font-size:14px;font-weight:800;letter-spacing:-.2px;color:#1A1A1A;}
+  .subnav__brand small{font-size:10px;color:#7a6f5f;margin-left:2px;font-family:inherit;}
+  .subnav__links{display:flex;gap:18px;align-items:center;margin-left:auto;font-family:'Pretendard Variable',sans-serif;}
+  .subnav__links a{font-size:13px;font-weight:500;color:#475569;text-decoration:none;padding:4px 0;}
+  .subnav__links a:hover{color:#1a6b4e;}
+  .subnav__cta{font-size:12.5px !important;font-weight:700 !important;color:#fff !important;background:#1a6b4e;padding:7px 14px !important;border-radius:6px;}
+  .subnav__cta:hover{background:#0f4030;color:#fff !important;}
+  @media(max-width:760px){.subnav__links{width:100%;gap:12px;overflow-x:auto;}}
+</style>
 
 <!-- ===== HERO ===== -->
 <header>
