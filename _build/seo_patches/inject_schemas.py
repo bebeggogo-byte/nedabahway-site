@@ -36,6 +36,10 @@ PAGE_SCHEMAS: Dict[str, List[str]] = {
     "content.html": ["sameas_supplement.json"],
     "korea-seo.html": ["sameas_supplement.json"],
     "newsletter.html": ["sameas_supplement.json"],
+    # Cycle 4: high-traffic content pages mentioning 김창환 without Person link
+    "magazine.html": ["sameas_supplement.json"],
+    "ai.html": ["sameas_supplement.json"],
+    "timeline.html": ["sameas_supplement.json"],
 }
 
 MARKER_BEGIN = "<!-- BEGIN seo_patches: inject_schemas.py -->"
