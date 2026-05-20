@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 코치 도구를 직접 운영해 본 기록 — 자소서코치·면접코치 2종 | 네다바웨이</title>
+<meta name="description" content="네다바_자기소개서코치와 네다바_면접코치를 ChatGPT·지피터스에서 직접 운영하면서 확인한 것들. AI가 하는 것과 인간 코치만이 할 수 있는 것의 경계를 기록한다.">
+<link rel="canonical" href="https://www.nedabah.org/blog/posts/2026-05-19_starcp-ai-coach-record.html">
+<meta property="og:title" content="AI 코치 도구를 직접 운영해 본 기록 — 자소서코치·면접코치 2종 | 네다바웨이">
+<meta property="og:description" content="네다바_자기소개서코치와 네다바_면접코치를 직접 운영하면서 AI가 하는 것과 인간 코치만이 할 수 있는 것의 경계를 확인했다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.nedabah.org/blog/posts/2026-05-19_starcp-ai-coach-record.html">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-default.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI 코치 운영 기록 — 네다바웨이">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 코치 도구를 직접 운영해 본 기록 — 자소서코치·면접코치 2종">
+<meta name="twitter:description" content="네다바_자기소개서코치와 네다바_면접코치를 직접 운영하면서 AI와 인간 코치의 경계를 확인했다.">
+<link rel="alternate" type="application/rss+xml" title="Still Hands RSS" href="/blog/feed.xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "AI 코치 도구를 직접 운영해 본 기록 — 자소서코치·면접코치 2종", "description": "네다바_자기소개서코치와 네다바_면접코치를 ChatGPT·지피터스에서 직접 운영하면서 확인한 것들. AI가 하는 것과 인간 코치만이 할 수 있는 것의 경계를 기록한다.", "datePublished": "2026-05-19", "dateModified": "2026-05-19", "author": {"@type": "Person", "@id": "https://www.nedabah.org/about.html#kim-changhwan", "name": "김창환", "alternateName": "Kim Changhwan", "url": "https://www.nedabah.org/about.html", "sameAs": ["https://www.linkedin.com/in/nedabah-way-3605413aa/", "https://www.youtube.com/channel/UCWnbno58Hrtiu8fPjrCCTfQ", "https://blog.naver.com/nedabah"]}, "publisher": {"@type": "Organization", "@id": "https://www.nedabah.org/#organization", "name": "네다바웨이", "alternateName": "Nedabahway", "url": "https://www.nedabah.org", "logo": {"@type": "ImageObject", "url": "https://www.nedabah.org/assets/og-default.svg"}}, "mainEntityOfPage": "https://www.nedabah.org/blog/posts/2026-05-19_starcp-ai-coach-record.html", "url": "https://www.nedabah.org/blog/posts/2026-05-19_starcp-ai-coach-record.html", "image": "https://www.nedabah.org/assets/og-default.svg", "inLanguage": "ko-KR", "isPartOf": {"@type": "Blog", "name": "Still Hands — 네다바웨이", "url": "https://www.nedabah.org/blog/posts/"}, "mentions": {"@type": "Course", "@id": "https://www.nedabah.org/p/starcp.html", "name": "STARCP 마스터 — 취업컨설턴트 양성과정", "provider": {"@id": "https://www.nedabah.org/#organization"}}, "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "네다바웨이", "item": "https://www.nedabah.org/"}, {"@type": "ListItem", "position": 2, "name": "매거진", "item": "https://www.nedabah.org/blog/posts/"}, {"@type": "ListItem", "position": 3, "name": "AI 코치 도구를 직접 운영해 본 기록", "item": "https://www.nedabah.org/blog/posts/2026-05-19_starcp-ai-coach-record.html"}]}, "wordCount": 1024, "articleSection": "STARCP 마스터", "keywords": ["취업 컨설턴트", "STARCP", "자기소개서 코칭", "면접 코칭", "진로 코칭"]}</script>
+<style>
+:root{--c-acc:#6366F1;--c-fg:#2a241c;--c-mute:#777;--c-line:#eee;--c-warm:#b45309}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Pretendard Variable','Apple SD Gothic Neo',sans-serif;background:#fff;color:var(--c-fg);
+  max-width:720px;margin:0 auto;padding:60px 24px 96px;line-height:1.85;font-size:16px}
+.home{color:var(--c-mute);font-size:.85rem;text-decoration:none;display:inline-block;margin-bottom:28px}
+.home:hover{color:var(--c-acc)}
+.post-meta{font-size:.78rem;color:#aaa;letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px}
+h1{font-size:2rem;letter-spacing:-.03em;line-height:1.3;margin-bottom:18px;font-weight:800}
+.lead{color:var(--c-mute);font-size:1.05rem;margin-bottom:40px;line-height:1.7;
+  border-bottom:1px solid var(--c-line);padding-bottom:28px}
+h2{font-size:1.2rem;font-weight:700;margin:2.4rem 0 .9rem;letter-spacing:-.02em;color:#1a1a1a}
+h3{font-size:1.05rem;font-weight:700;margin:1.8rem 0 .7rem;letter-spacing:-.01em;color:#2a241c}
+p{margin:1.1em 0;color:#3a322a;font-size:16px}
+.cta-next{margin-top:3rem;padding:2rem;background:#3a322a;color:#fbf6ec;border-radius:12px}
+.cta-next p{color:#fbf6ec;margin:0 0 1rem}
+.cta-next a.btn{display:inline-block;background:var(--c-warm);color:white;padding:.65rem 1.6rem;
+  border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem}
+.cta-next a.sec{font-size:.9rem;color:#e5d8c4;text-decoration:none;border-bottom:1px dotted #e5d8c4;margin-left:1rem}
+.related{margin-top:2.4rem;padding:1.2rem 1.6rem;background:#f8f6f2;border-radius:8px;border-left:3px solid var(--c-warm)}
+.related p{margin:0 0 .5rem;font-size:.88rem;color:var(--c-mute);font-weight:600}
+.related ul{list-style:none;padding:0}
+.related li{margin:.3rem 0}
+.related a{color:var(--c-acc);font-size:.92rem;text-decoration:none;border-bottom:1px dotted var(--c-acc)}
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<script src="/assets/analytics.js" defer></script>
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <a class="home" href="/blog/posts/">← 매거진</a>
+  <div class="post-meta">2026-05-19 · 취업컨설팅 · AI 코치 · 도구 운영</div>
+  <h1>AI 코치 도구를 직접 운영해 본 기록 — 자소서코치·면접코치 2종</h1>
+  <p class="lead">네다바_자기소개서코치와 네다바_면접코치, 두 개의 AI 코치를 ChatGPT와 지피터스에서 직접 운영하고 있다. 취업 컨설턴트로서 AI 도구를 만든 사람이 그 도구를 써보면서 알게 된 것들을 기록한다. AI가 잘 하는 것, AI가 하지 못하는 것, 그리고 그 경계에서 인간 코치의 자리가 어디인지.</p>
+</header>
+
+<main>
+<article>
+
+<h2>1. 왜 AI 코치를 직접 만들었는가</h2>
+
+<p>취업 컨설턴트가 AI 자소서 도구를 반대하는 것은 자연스러운 일처럼 보인다. 그러나 그 반대가 근거 없는 것이라면, 반대는 오래 가지 못한다. 나는 반대보다 이해가 먼저라고 생각했다. AI가 실제로 무엇을 하는지를 직접 만들고 운영하면서 확인하기로 했다.</p>
+
+<p>그렇게 만든 것이 네다바_자기소개서코치와 네다바_면접코치다. 두 도구는 각각 ChatGPT 커스텀 GPT와 지피터스 플랫폼에서 운영 중이다. 자소서 첨삭과 면접 질문 준비라는, 취업 컨설턴트가 가장 많이 하는 두 가지 작업을 AI로 구현해 본 것이다.</p>
+
+<p>만들면서 배운 것은 생각보다 많았다. 그리고 그 배움이 인간 코치의 역할을 더 명확하게 만들어줬다. AI가 잘 하는 것을 알면, 인간 코치가 무엇에 집중해야 하는지가 보인다.</p>
+
+<h2>2. 네다바_자기소개서코치가 실제로 하는 것</h2>
+
+<p>자소서코치는 사용자가 경험을 입력하면 STARCP 흐름을 안내하도록 설계되어 있다. 상황, 과제, 행동, 결과를 순서대로 정리하고, 지원 직무와의 연결을 찾도록 돕는다. 프롬프트 구조를 통해 문장 교정이 아니라 경험 정리에 집중하도록 방향을 잡았다.</p>
+
+<p>AI가 잘 하는 것은 빠른 구조화다. 사용자가 "팀 프로젝트를 이끌었다"고 입력하면, 즉시 "그 팀은 몇 명이었나요?", "어떤 역할을 맡았나요?", "가장 어려웠던 순간은 언제였나요?"와 같이 경험을 좁혀가는 질문을 생성한다. 이 속도는 인간 코치가 따라가기 어렵다.</p>
+
+<p>또한 AI는 일관성이 있다. 피로감 없이 같은 품질로 같은 질문 구조를 반복한다. 자소서 첨삭을 하루에 수십 건 처리해도 첫 번째 고객과 마지막 고객이 받는 응답의 수준 차이가 없다. 이것은 인간 코치에게 솔직히 어려운 영역이다.</p>
+
+<h2>3. 네다바_자기소개서코치가 하지 못하는 것</h2>
+
+<p>AI가 하지 못하는 것은 침묵을 읽는 것이다. 고객이 특정 경험을 말할 때 목소리가 작아지거나 말이 빨라지거나 잠깐 멈추는 순간이 있다. 그 순간에 어떤 질문을 던지느냐가 코칭의 깊이를 만든다. AI는 텍스트만 처리한다. 그 텍스트 이전에 있는 감정의 신호를 감지하지 못한다.</p>
+
+<p>고객이 "그때 팀이 많이 힘들었어요"라고 쓰면, AI는 "팀이 어떤 어려움을 겪었나요?"라고 질문한다. 이 질문은 틀리지 않다. 그러나 "그 상황에서 당신은 어떤 마음이었나요?"라는 질문이 더 중요한 순간이 있다. 그 판단은 고객의 상태를 실시간으로 감지하는 인간 코치만이 할 수 있다.</p>
+
+<p>또한 AI는 고객이 스스로 인식하지 못하는 강점을 발견하지 못한다. 고객이 "별거 아닌데요"라고 지나치는 경험에서 직무 연결의 핵심을 찾아내는 것, 그것이 인간 코치가 존재하는 이유다. 제주 중·고등학교 99%에 출강하면서 수백 명과 나눈 대화에서 반복적으로 경험한 것이다. 고객은 자신의 경험 중 어떤 것이 중요한지를 잘 모른다. 코치는 그것을 안다.</p>
+
+<h2>4. 네다바_면접코치의 설계와 한계</h2>
+
+<p>면접코치는 예상 질문을 생성하고 답변 구조를 잡는 데 집중하도록 설계되어 있다. 지원 직무와 회사명을 입력하면 관련 면접 질문 목록을 만들고, 각 질문에 대한 답변을 STARCP 흐름으로 구성하도록 안내한다.</p>
+
+<p>이 도구의 실제 사용에서 확인한 것은, AI가 생성하는 면접 질문의 패턴이 수렴한다는 것이다. "가장 힘들었던 경험은?", "팀에서 갈등이 있었을 때 어떻게 해결했나요?", "5년 후 목표는 무엇인가요?" — 이런 질문들은 대부분의 면접에서 나오는 예측 가능한 질문이다. AI는 이 예측 가능한 구간을 빠르게 커버한다.</p>
+
+<p>그러나 면접에서 실제로 합격을 가르는 것은 예측하기 어려운 질문들이다. "당신이 지원한 이유가 우리 회사 특성과 어떻게 연결되나요?"처럼 회사의 특수한 맥락을 요구하는 질문이나, 면접관이 지원자의 말을 듣다가 즉흥적으로 던지는 꼬리 질문들이다. AI는 이런 질문을 생성하기 어렵다. 특정 조직의 문화, 면접관의 관심사, 그 회사의 최근 이슈 같은 맥락이 필요하기 때문이다.</p>
+
+<p>인간 코치는 이 맥락을 채울 수 있다. 특히 J 자활센터, K 청년재단, S 복지관, P 공공기관, H 협동조합처럼 다양한 성격의 조직에서 현장 경험을 가진 코치는, 조직마다 면접에서 보는 것이 다르다는 것을 안다. 그 다름을 고객에게 전달하는 것은 AI가 하기 어려운 일이다.</p>
+
+<h2>5. AI가 코치에게 주는 것</h2>
+
+<p>AI 코치 도구를 만들고 운영하면서 얻은 예상 밖의 수확이 있다. 코치 자신이 AI가 처리하는 구조적인 부분을 분리해서 볼 수 있게 된다는 것이다.</p>
+
+<p>자소서 첨삭에서 AI가 처리할 수 있는 것들 — 문장의 문법적 정확성, 기본적인 STAR 구조의 완결성, 단어 선택의 적절성 — 을 AI에게 넘기면, 코치는 AI가 하지 못하는 것에만 집중할 수 있다. 경험의 의미를 찾는 대화, 고객이 보지 못하는 강점을 발견하는 작업, 그 고객이 이 직무를 해야 하는 서사를 함께 설계하는 과정.</p>
+
+<p>이 분리는 코치의 시간을 더 가치 있는 일에 쓰게 만든다. AI가 없던 시절에 코치가 문장 교정에 쓰던 시간이, 지금은 서사 설계에 쓰일 수 있다. 단가가 올라가는 이유가 여기 있다. AI는 코치의 경쟁자가 아니라, 코치가 더 중요한 일에 집중하게 만드는 도구가 될 수 있다.</p>
+
+<h2>6. AI 코치를 운영하는 코치만이 볼 수 있는 것</h2>
+
+<p>AI 도구를 반대하거나 무시하는 코치는 AI가 실제로 무엇을 하는지 모른다. AI가 하는 것을 정확히 알아야, 자신이 해야 하는 것도 명확해진다. 그 명확함이 고객에게 설명할 수 있는 언어가 된다.</p>
+
+<p>"AI로는 할 수 없는 것을 저는 합니다"라고 말할 수 있는 코치와, "AI보다 더 잘 합니다"라고만 말하는 코치는 다르다. 전자는 그 내용이 구체적이다. AI가 텍스트만 읽을 때 코치는 고객의 침묵과 망설임을 읽는다. AI가 패턴을 조합할 때 코치는 그 사람만의 경험에서 의미를 찾는다. AI가 구조를 완성할 때 코치는 서사를 만든다.</p>
+
+<p>이 구체성이 설득력이다. 취업 컨설턴트가 AI 시대에 단가를 유지하거나 높이려면, 자신이 AI와 무엇이 다른지를 이 수준으로 설명할 수 있어야 한다. 그 설명을 준비하는 가장 빠른 방법은, AI 도구를 직접 써보는 것이다.</p>
+
+<h2>7. 두 도구를 운영하면서 STARCP 흐름이 달라진 것</h2>
+
+<p>AI 코치 운영이 STARCP 흐름 자체를 바꾼 부분이 있다. Connection 단계다. AI는 경험과 직무의 논리적 연결을 만드는 것을 어느 정도 할 수 있다. 그러나 그 연결이 고객에게 진짜로 느껴지도록 만드는 것은 하지 못한다.</p>
+
+<p>진짜로 느껴지는 연결은 논리적 설명이 아니다. "이 경험이 왜 당신에게 중요했는가"라는 질문에 고객 스스로 답을 찾을 때 나온다. AI는 답을 제안하지만, 코치는 고객이 스스로 답을 발견하도록 대화를 설계한다. 이 차이가 Connection 단계에서 인간 코치가 해야 하는 일의 핵심임을 AI 도구를 운영하면서 더 선명하게 알게 됐다.</p>
+
+<p>Prospect 단계도 마찬가지다. AI는 앞으로의 방향을 문장으로 정리해준다. 그러나 그 방향이 고객의 삶에서 진짜로 작동하는 방향인지를 점검하는 것은 대화 속에서만 가능하다. 12주 STARCP 마스터 양성과정에서 코치가 체화해야 하는 것이 바로 이 점검 능력이다.</p>
+
+<div class="related">
+  <p>이 주제와 연결된 글</p>
+  <ul>
+    <li><a href="/blog/posts/2026-05-19_pillar-starcp-consultant-differentiation.html">취업 컨설턴트로 차별화하는 법 — AI 시대의 코칭 단가 설계 (필라)</a></li>
+    <li><a href="/blog/posts/2026-05-19_starcp-consultant-differentiation.html">자소서·면접 코치가 AI 무료 서비스와 달라야 하는 이유</a></li>
+    <li><a href="/blog/posts/2026-05-19_starcp-method-explained.html">STARCP 흐름이란 무엇인가 — 합격 트레이닝 코칭의 6단계</a></li>
+    <li><a href="/blog/posts/2026-05-19_starcp-coaching-question-design.html">똑같은 면접 답변을 만들지 않는 코칭 질문 설계</a></li>
+  </ul>
+</div>
+
+<aside class="cta-next">
+  <p>AI 코치 도구가 하지 못하는 것을 코칭의 핵심으로 삼는 STARCP 흐름을 체화하는 12주 양성과정이 궁금하다면, 무료 30분 적합도 진단으로 먼저 이야기 나눠봅시다. 네다바_자기소개서코치·면접코치를 직접 운영한 현장 경험을 그대로 전수합니다.</p>
+  <p><a class="btn" href="/contact.html#consult">무료 30분 적합도 진단 신청 →</a><a class="sec" href="/p/starcp.html">STARCP 마스터 양성과정 보기</a></p>
+</aside>
+
+</article>
+</main>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">blog/posts · 2026-05-19</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>

@@ -8,9 +8,9 @@
    --ink        본문 텍스트      #2a241c
    --ink-2      보조 텍스트      #6b6155
    --line       구분선          #d8cdb8
-   --copper     강조선·포인트    #a4541a
-   --copper-d   진한 카퍼        #7a4317
-   --bronze     보조 포인트      #6e5a3e
+   --copper     강조선·포인트    #1E40AF (코발트 — 변수명만 카퍼)
+   --copper-d   진한 카퍼        #1E3A8A (코발트 딥 — 변수명만 카퍼)
+   --bronze     보조 포인트      #3B82F6 (코발트 소프트 — 변수명만 브론즈)
    --sage       부드러운 강조    #8a9a7a
    --rose       경고·안내        #c89b7e
 */
@@ -22,18 +22,18 @@
   --ink: #2a241c;
   --ink-2: #6b6155;
   --line: #d8cdb8;
-  --copper: #a4541a;
-  --copper-d: #7a4317;
-  --bronze: #6e5a3e;
+  --copper: #1E40AF;
+  --copper-d: #1E3A8A;
+  --bronze: #3B82F6;
   --sage: #8a9a7a;
   --rose: #c89b7e;
-  /* 코발트 변수는 기존 호환만 유지 (사용 자제) */
-  --c-cobalt: #a4541a;
-  --c-cobalt-deep: #7a4317;
-  --c-cobalt-soft: #6e5a3e;
-  --c-cobalt-bg: #efe7d6;
-  --c-cobalt-tint: rgba(164, 84, 26, .08);
-  --c-cobalt-line: #d8cdb8;
+  /* 코발트 단일 진실 원천 (2026-05-19 카퍼 잔재 마이그레이션) */
+  --c-cobalt: #1E40AF;
+  --c-cobalt-deep: #1E3A8A;
+  --c-cobalt-soft: #3B82F6;
+  --c-cobalt-bg: #EFF4FB;
+  --c-cobalt-tint: rgba(30, 64, 175, .08);
+  --c-cobalt-line: #C7D2FE;
   /* v3 호환 변수 갱신 */
   --c-bg: var(--paper);
   --c-line: var(--line);
@@ -73,7 +73,7 @@ html, body{
 
 /* 결과 카드 main 결 — 검은 배경을 따뜻한 짙은 잉크로 */
 .iden-result__main{
-  background:linear-gradient(135deg,#a4541a 0%,#7a4317 100%)!important;
+  background:linear-gradient(135deg,#1E40AF 0%,#1E3A8A 100%)!important;
 }
 
 /* 도메인 칩 */
@@ -113,9 +113,9 @@ html, body{
   color: var(--copper) !important;
 }
 
-/* 코어 hero (보라 그라디언트 → 따뜻한 카퍼·브론즈 그라디언트) */
+/* 코어 hero (코발트 그라디언트) */
 .iden-core__hero{
-  background: linear-gradient(135deg, #6e5a3e 0%, #8a6f3a 100%) !important;
+  background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%) !important;
 }
 
 /* AI 코치 카드 상단 가는 줄 */
@@ -133,7 +133,7 @@ html, body{
 /* 다음 동선 카드 호버 */
 .iden-next__card:hover{
   border-color: var(--copper) !important;
-  box-shadow: 0 12px 28px rgba(164,84,26,.12) !important;
+  box-shadow: 0 12px 28px rgba(30,64,175,.12) !important;
 }
 .iden-next__card:hover .arrow{
   color: var(--copper) !important;
@@ -171,7 +171,7 @@ html, body{
 
 /* 자동 타이핑 좌표 미리보기 — 검정 0. 카퍼 배경 + 크림 텍스트 */
 .typed-quote{
-  background: linear-gradient(135deg,#a4541a 0%,#7a4317 100%) !important;
+  background: linear-gradient(135deg,#1E40AF 0%,#1E3A8A 100%) !important;
   color: #fdfaf3 !important;
   border-left-color: #fdfaf3 !important;
 }
@@ -234,7 +234,7 @@ html, body{
   color: var(--ink-2) !important;
 }
 
-/* === 카퍼 배경 위 텍스트 강제 가독성 (#a4541a / #7a4317 위에 흰색 톤) === */
+/* === 코발트 배경 위 텍스트 강제 가독성 (#1E40AF / #1E3A8A 위에 크림 톤) === */
 .iden-result__main,
 .iden-result__main *,
 .typed-quote,
@@ -342,8 +342,8 @@ p, li, dd, dt, span, td, th, dl, ol, ul, blockquote, figcaption, label{
 }
 /* footer 미니 안 a는 카퍼 hover만 */
 .foot--mini a{ color: #3a322a !important }
-.foot--mini a:hover{ color: #a4541a !important }
+.foot--mini a:hover{ color: #1E40AF !important }
 /* gnav link 색 강제 */
 .gnav__link{ color: #3a362e !important }
-.gnav__link:hover, .gnav__link.is-active{ color: #a4541a !important }
+.gnav__link:hover, .gnav__link.is-active{ color: #1E40AF !important }
 .gnav__logo{ color: #1f1d18 !important }
