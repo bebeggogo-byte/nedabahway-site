@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>한 마디 남기기 — 네다바웨이</title>
+<meta name="description" content="강의·코칭에 함께해 주신 분께 받는 한 마디. 이름과 짧은 내용만으로 충분합니다.">
+<meta name="robots" content="noindex">
+<style>
+  body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',sans-serif;background:#fbf7ee;color:#1A1A1A;margin:0;min-height:100vh;}
+  .rec{max-width:560px;margin:0 auto;padding:32px 20px 60px;}
+  .rec-head{text-align:center;margin-bottom:28px;}
+  .rec-logo{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:#a4541a;letter-spacing:.5px;}
+  .rec-title{font-family:'Noto Serif KR',serif;font-size:26px;font-weight:800;letter-spacing:-.02em;margin:18px 0 8px;line-height:1.35;}
+  .rec-desc{font-size:14px;color:#475569;line-height:1.7;margin:0;}
+  .session-tag{display:inline-block;font-size:12px;font-weight:600;padding:6px 14px;border-radius:999px;background:#fdf4ec;color:#a4541a;border:1px solid #f0d5b8;margin-top:14px;}
+
+  .card{background:#fff;border:1px solid #E2E8F0;border-radius:14px;padding:28px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13px;font-weight:600;color:#1A1A1A;margin-bottom:8px;}
+  .field .sub{font-size:11.5px;color:#94a3b8;font-weight:400;margin-left:6px;}
+  .field input, .field textarea{width:100%;font-size:15px;padding:13px 14px;border:1px solid #E2E8F0;border-radius:8px;font-family:inherit;line-height:1.6;}
+  .field input:focus, .field textarea:focus{outline:none;border-color:#a4541a;box-shadow:0 0 0 3px #fef0e2;}
+  .field textarea{min-height:130px;resize:vertical;}
+  .char-count{font-size:11px;color:#94a3b8;text-align:right;margin-top:4px;font-variant-numeric:tabular-nums;}
+
+  .btn-primary{width:100%;padding:15px;font-size:15px;font-weight:700;background:#a4541a;color:#fff;border:none;border-radius:10px;cursor:pointer;font-family:inherit;margin-top:8px;}
+  .btn-primary:hover{background:#7a4317;}
+  .btn-primary:disabled{opacity:.5;cursor:not-allowed;}
+
+  .privacy{font-size:11.5px;color:#7a6f5f;line-height:1.7;margin-top:14px;text-align:center;}
+  .privacy strong{color:#a4541a;}
+
+  .done{text-align:center;padding:40px 24px;}
+  .done-icon{font-size:48px;margin-bottom:14px;}
+  .done h2{font-family:'Noto Serif KR',serif;font-size:24px;font-weight:800;margin:0 0 10px;letter-spacing:-.02em;}
+  .done p{font-size:14px;color:#475569;line-height:1.75;margin:0 0 18px;}
+  .done a.link{color:#a4541a;font-weight:700;text-decoration:none;border-bottom:1px dotted #a4541a;}
+
+  .error-msg{background:#fef0e2;border:1px solid #fde2d4;border-radius:8px;padding:12px 14px;font-size:13px;color:#a4541a;line-height:1.6;margin-top:12px;}
+</style>
+</head>
+<body>
+
+<main class="rec">
+  <div class="rec-head">
+    <div class="rec-logo">네다바웨이</div>
+    <h1 class="rec-title">함께해 주셔서 감사합니다</h1>
+    <p class="rec-desc">짧게라도 한 마디 남겨 주시면 더 나은 강의와 코칭을 만들어 갑니다.</p>
+    <div id="sessionTag" class="session-tag" hidden></div>
+  </div>
+
+  <div class="card" id="formCard">
+    <form id="recForm">
+      <div class="field">
+        <label>이름 <span class="sub">실명 또는 닉네임</span></label>
+        <input type="text" id="recName" required maxlength="40" placeholder="예: 김지원">
+      </div>
+      <div class="field">
+        <label>소속 또는 역할 <span class="sub">선택</span></label>
+        <input type="text" id="recRole" maxlength="60" placeholder="예: 로고스교회 청년부">
+      </div>
+      <div class="field">
+        <label>한 마디 <span class="sub">최대 500자</span></label>
+        <textarea id="recContent" required maxlength="500" placeholder="오늘 강의에서 인상 깊었던 부분, 도움이 된 점, 다음에 더 듣고 싶은 주제를 자유롭게 적어 주세요."></textarea>
+        <div class="char-count"><span id="charCount">0</span> / 500</div>
+      </div>
+      <button type="submit" class="btn-primary" id="submitBtn">남기기</button>
+      <div class="privacy">
+        <strong>본인 검토 후</strong> 사이트에 공개됩니다. 부적절한 내용은 게재되지 않습니다.
+      </div>
+      <div class="error-msg" id="recError" hidden></div>
+    </form>
+  </div>
+
+  <div class="card done" id="doneCard" hidden>
+    <div class="done-icon">🙏</div>
+    <h2>감사합니다</h2>
+    <p>소중한 한 마디 잘 받았습니다.<br>검토 후 빠르게 사이트에 반영됩니다.</p>
+    <p><a class="link" href="/">네다바웨이 홈으로 →</a></p>
+  </div>
+</main>
+
+<script src="/assets/js/supabase-config.js" onerror="console.warn('supabase-config.js missing')"></script>
+<script type="module">
+import { submitTestimonial, sb } from '/assets/js/supabase-client.js';
+
+const params = new URLSearchParams(location.search);
+const sessionId = params.get('s') || null;
+
+// 세션 정보 가져와서 표시
+if (sessionId) {
+  (async () => {
+    try {
+      const { data } = await sb.from('sessions').select('title').eq('id', sessionId).maybeSingle();
+      if (data) {
+        const tag = document.getElementById('sessionTag');
+        tag.textContent = data.title;
+        tag.hidden = false;
+      }
+    } catch {}
+  })();
+}
+
+const contentEl = document.getElementById('recContent');
+const countEl = document.getElementById('charCount');
+contentEl.addEventListener('input', () => countEl.textContent = contentEl.value.length);
+
+document.getElementById('recForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const err = document.getElementById('recError');
+  err.hidden = true;
+  btn.disabled = true; btn.textContent = '보내는 중…';
+  try {
+    await submitTestimonial({
+      session_id: sessionId,
+      name: document.getElementById('recName').value.trim(),
+      role: document.getElementById('recRole').value.trim() || null,
+      content: contentEl.value.trim()
+    });
+    document.getElementById('formCard').hidden = true;
+    document.getElementById('doneCard').hidden = false;
+  } catch (e2) {
+    err.textContent = '전송 실패: ' + (e2.message || e2);
+    err.hidden = false;
+    btn.disabled = false; btn.textContent = '남기기';
+  }
+});
+</script>
+
+</body>
+</html>

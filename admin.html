@@ -1,66 +1,271 @@
-<!DOCTYPE html><html lang="ko"><head>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
 <link rel="stylesheet" href="/assets/nedabah.bundle.css">
-<meta http-equiv="refresh" content="0; url=/">
-<link rel="canonical" href="https://www.nedabah.org/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>관리 — 네다바웨이</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',sans-serif;background:#fbf7ee;color:#1A1A1A;margin:0;}
+  .admin{max-width:980px;margin:0 auto;padding:32px 20px 80px;}
+  .ad-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
+  .ad-title{font-family:'Noto Serif KR',serif;font-size:24px;font-weight:800;letter-spacing:-.02em;margin:0;}
+  .ad-userbar{font-size:12px;color:#7a6f5f;}
+  .ad-userbar a{color:#a4541a;}
 
+  .tabs{display:flex;gap:6px;border-bottom:1px solid #E2E8F0;margin-bottom:24px;}
+  .tab{padding:11px 18px;font-size:13.5px;font-weight:600;color:#475569;border:none;background:transparent;cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;margin-bottom:-1px;}
+  .tab:hover{color:#a4541a;}
+  .tab.is-on{color:#a4541a;border-bottom-color:#a4541a;}
+  .tab-count{font-size:11px;font-weight:700;background:#fef0e2;color:#a4541a;padding:2px 7px;border-radius:999px;margin-left:6px;}
 
-<meta property="og:image" content="https://www.nedabah.org/assets/og-default.svg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="네다바웨이 — 직업의 속성은 이타성이다">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.nedabah.org/assets/og-default.svg">
-<meta name="twitter:image:alt" content="네다바웨이 — 직업의 속성은 이타성이다">
-<script src="/assets/404-helper-v1.js" defer></script>
-<script src="/assets/a11y-runtime-v1.js" defer></script>
-<!-- bundled: cobalt-tokens-v1.css a11y-fixes-v1.css -->
+  .panel{display:none;}
+  .panel.is-on{display:block;}
+
+  /* 추천글 카드 */
+  .pending-list{display:flex;flex-direction:column;gap:14px;}
+  .pcard{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:20px 22px;}
+  .pcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;}
+  .pcard-who{font-size:15px;font-weight:700;letter-spacing:-.01em;}
+  .pcard-role{font-size:12px;color:#7a6f5f;margin-top:2px;}
+  .pcard-date{font-size:11px;color:#94a3b8;flex-shrink:0;font-variant-numeric:tabular-nums;}
+  .pcard-body{font-size:14px;line-height:1.75;color:#1A1A1A;padding:12px 0;border-top:1px solid #f1ecdf;}
+  .pcard-session{font-size:11px;color:#7a6f5f;margin-bottom:8px;}
+  .pcard-session strong{color:#a4541a;}
+  .pcard-actions{display:flex;gap:8px;margin-top:14px;}
+  .btn-ok{padding:9px 18px;font-size:13px;font-weight:700;background:#16a34a;color:#fff;border:none;border-radius:7px;cursor:pointer;font-family:inherit;}
+  .btn-ok:hover{background:#15803d;}
+  .btn-no{padding:9px 18px;font-size:13px;font-weight:600;background:#fff;color:#dc2626;border:1px solid #fecaca;border-radius:7px;cursor:pointer;font-family:inherit;}
+  .btn-no:hover{background:#fef2f2;}
+
+  /* QR 섹션 */
+  .qr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+  .qr-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:18px;text-align:center;}
+  .qr-card-title{font-size:14px;font-weight:700;margin-bottom:6px;}
+  .qr-card-date{font-size:11px;color:#94a3b8;margin-bottom:14px;}
+  .qr-img{width:100%;max-width:200px;height:auto;margin:0 auto 10px;background:#fff;padding:6px;border:1px solid #f1ecdf;border-radius:6px;display:block;}
+  .qr-link{font-size:11px;color:#7a6f5f;word-break:break-all;}
+  .qr-link a{color:#a4541a;}
+
+  /* 로그인 */
+  .auth-box{background:#fff;border:1px solid #E2E8F0;border-radius:14px;padding:36px 32px;max-width:420px;margin:80px auto;}
+  .auth-box h2{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:800;margin:0 0 8px;}
+  .auth-box p{font-size:13px;color:#7a6f5f;line-height:1.7;margin:0 0 22px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:12px;font-weight:600;color:#475569;margin-bottom:6px;}
+  .field input{width:100%;font-size:14px;padding:11px 13px;border:1px solid #E2E8F0;border-radius:8px;font-family:inherit;}
+  .field input:focus{outline:none;border-color:#a4541a;}
+  .btn-primary{width:100%;padding:13px;font-size:14px;font-weight:700;background:#a4541a;color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .btn-primary:hover{background:#7a4317;}
+  .auth-error{margin-top:12px;padding:10px 12px;background:#fef0e2;border:1px solid #fde2d4;border-radius:6px;font-size:12px;color:#a4541a;}
+
+  .empty{padding:60px 20px;text-align:center;color:#7a6f5f;font-size:13.5px;}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1A1A1A;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:600;z-index:200;}
+</style>
 </head>
 <body>
 
-<nav class="gnav" role="navigation" aria-label="주요 메뉴">
-  <div class="gnav__inner">
-    <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
-    <ul class="gnav__links" id="gnavLinks">
-      <li><a href="/content.html" class="gnav__link">콘텐츠</a></li>
-      <li><a href="/about.html" class="gnav__link">소개</a></li>
-      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
-    </ul>
-  </div>
-</nav>
+<!-- 로그인 -->
+<div id="loginView" class="auth-box" hidden>
+  <h2>관리자 로그인</h2>
+  <p>추천글 승인과 활동 기록 관리는 본인만 가능합니다.</p>
+  <form id="loginForm">
+    <div class="field"><label>이메일</label><input type="email" id="email" required autocomplete="username"></div>
+    <div class="field"><label>비밀번호</label><input type="password" id="password" required autocomplete="current-password"></div>
+    <button type="submit" class="btn-primary" id="loginBtn">로그인</button>
+    <div id="loginError" class="auth-error" hidden></div>
+  </form>
+</div>
 
+<!-- 메인 -->
+<main class="admin" id="adminView" hidden>
+  <header class="ad-head">
+    <h1 class="ad-title">관리</h1>
+    <div class="ad-userbar"><span id="userEmail"></span> · <a href="#" id="signOutBtn">로그아웃</a> · <a href="/studio.html">기록 도구</a></div>
+  </header>
 
+  <nav class="tabs">
+    <button class="tab is-on" data-panel="pending">대기 중인 추천글 <span class="tab-count" id="pendingCount">0</span></button>
+    <button class="tab" data-panel="approved">공개 중 <span class="tab-count" id="approvedCount">0</span></button>
+    <button class="tab" data-panel="qr">QR 코드</button>
+  </nav>
 
+  <section class="panel is-on" id="panel-pending">
+    <div class="pending-list" id="pendingList"><div class="empty">불러오는 중…</div></div>
+  </section>
 
+  <section class="panel" id="panel-approved">
+    <div class="pending-list" id="approvedList"><div class="empty">불러오는 중…</div></div>
+  </section>
 
+  <section class="panel" id="panel-qr">
+    <p style="font-size:13px;color:#7a6f5f;line-height:1.7;margin-bottom:18px;">각 활동마다 자동 생성된 QR 코드입니다. 강의장 화면에 띄우거나 인쇄해서 사용하세요. 스캔하면 해당 활동에 연결된 추천글 폼이 열립니다.</p>
+    <div class="qr-grid" id="qrGrid"><div class="empty">불러오는 중…</div></div>
+  </section>
+</main>
 
-<script>location.replace('/');</script>
-<p>새 위치로 이동합니다 → <a href="/">/</a></p>
+<script src="/assets/js/supabase-config.js" onerror="console.warn('supabase-config.js missing')"></script>
+<script type="module">
+import {
+  sb, signInWithPassword, signOut, currentUser,
+  listPendingTestimonials, approveTestimonial, rejectTestimonial,
+  subscribeTestimonialChanges, listApprovedTestimonials, listSessions
+} from '/assets/js/supabase-client.js';
 
+const $ = id => document.getElementById(id);
 
+function toast(msg){
+  const t = document.createElement('div'); t.className='toast'; t.textContent=msg;
+  document.body.appendChild(t); setTimeout(()=>t.remove(), 2200);
+}
 
-<footer class="foot foot--mini">
-  <style>
-    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
-    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
-    .foot--mini strong{color:#2a241c}
-    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
-    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
-    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
-    @media(max-width:680px){
-      .foot--mini .foot--mini__inner{justify-content:flex-start}
-      .foot--mini>div>span{display:block}
+function fmt(iso){
+  const d = new Date(iso);
+  return `${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+function fmtDate(iso){
+  const d = new Date(iso);
+  return `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}`;
+}
+function esc(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// ---- Auth ----
+async function boot(){
+  const u = await currentUser();
+  if (u) showAdmin(u); else showLogin();
+}
+function showLogin(){ $('loginView').hidden=false; $('adminView').hidden=true; }
+function showAdmin(u){
+  $('loginView').hidden=true; $('adminView').hidden=false;
+  $('userEmail').textContent = u.email;
+  loadPending(); loadApproved(); loadQR();
+  subscribeTestimonialChanges(() => { loadPending(); loadApproved(); });
+}
+$('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = $('loginBtn'); btn.disabled = true; btn.textContent = '로그인 중…';
+  const err = $('loginError'); err.hidden = true;
+  try {
+    await signInWithPassword($('email').value, $('password').value);
+    const u = await currentUser(); showAdmin(u);
+  } catch (e2) {
+    err.textContent = '로그인 실패: ' + (e2.message || e2); err.hidden = false;
+  } finally { btn.disabled = false; btn.textContent = '로그인'; }
+});
+$('signOutBtn').addEventListener('click', async e => {
+  e.preventDefault(); await signOut(); location.reload();
+});
+
+// ---- Tabs ----
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('is-on'));
+    btn.classList.add('is-on');
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('is-on'));
+    $('panel-' + btn.dataset.panel).classList.add('is-on');
+  });
+});
+
+// ---- Pending ----
+async function loadPending(){
+  try {
+    const items = await listPendingTestimonials();
+    $('pendingCount').textContent = items.length;
+    if (!items.length) {
+      $('pendingList').innerHTML = '<div class="empty">대기 중인 추천글이 없습니다.</div>';
+      return;
     }
-  </style>
-  <div class="foot--mini__inner">
-    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong>137-82-94771</strong></span>
-    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
-  </div>
-</footer>
+    // 세션 제목 채워넣기 위해 한 번에 조회
+    const sids = [...new Set(items.map(i=>i.session_id).filter(Boolean))];
+    let sessionMap = {};
+    if (sids.length) {
+      const { data } = await sb.from('sessions').select('id,title').in('id', sids);
+      sessionMap = Object.fromEntries((data||[]).map(s=>[s.id, s.title]));
+    }
+    $('pendingList').innerHTML = items.map(t => `
+      <div class="pcard" data-id="${t.id}">
+        ${t.session_id ? `<div class="pcard-session">관련 활동: <strong>${esc(sessionMap[t.session_id]||'알 수 없음')}</strong></div>` : ''}
+        <div class="pcard-top">
+          <div>
+            <div class="pcard-who">${esc(t.name)}</div>
+            ${t.role ? `<div class="pcard-role">${esc(t.role)}</div>` : ''}
+          </div>
+          <div class="pcard-date">${fmt(t.created_at)}</div>
+        </div>
+        <div class="pcard-body">${esc(t.content).replace(/\n/g,'<br>')}</div>
+        <div class="pcard-actions">
+          <button class="btn-ok" data-act="approve">공개로 승인</button>
+          <button class="btn-no" data-act="reject">거절</button>
+        </div>
+      </div>`).join('');
+    $('pendingList').querySelectorAll('.pcard').forEach(card => {
+      const id = card.dataset.id;
+      card.querySelector('[data-act="approve"]').addEventListener('click', async () => {
+        await approveTestimonial(id); toast('공개 승인됨'); loadPending(); loadApproved();
+      });
+      card.querySelector('[data-act="reject"]').addEventListener('click', async () => {
+        if (!confirm('정말 거절합니까?')) return;
+        await rejectTestimonial(id); toast('거절됨'); loadPending();
+      });
+    });
+  } catch (err) {
+    $('pendingList').innerHTML = `<div class="empty">로드 실패: ${esc(err.message||String(err))}</div>`;
+  }
+}
 
+// ---- Approved ----
+async function loadApproved(){
+  try {
+    const items = await listApprovedTestimonials({ limit: 100 });
+    $('approvedCount').textContent = items.length;
+    if (!items.length) {
+      $('approvedList').innerHTML = '<div class="empty">공개 중인 추천글이 없습니다.</div>';
+      return;
+    }
+    $('approvedList').innerHTML = items.map(t => `
+      <div class="pcard">
+        <div class="pcard-top">
+          <div>
+            <div class="pcard-who">${esc(t.name)}</div>
+            ${t.role ? `<div class="pcard-role">${esc(t.role)}</div>` : ''}
+          </div>
+          <div class="pcard-date">${fmt(t.approved_at || t.created_at)}</div>
+        </div>
+        <div class="pcard-body">${esc(t.content).replace(/\n/g,'<br>')}</div>
+      </div>`).join('');
+  } catch (err) {
+    $('approvedList').innerHTML = `<div class="empty">로드 실패: ${esc(err.message||String(err))}</div>`;
+  }
+}
 
-<script src="/assets/back-to-top.js" defer></script>
+// ---- QR ----
+async function loadQR(){
+  try {
+    const sessions = await listSessions({ limit: 50 });
+    if (!sessions.length) {
+      $('qrGrid').innerHTML = '<div class="empty">아직 활동이 없습니다. <a href="/studio.html" style="color:#a4541a;">기록 도구</a>에서 시작하세요.</div>';
+      return;
+    }
+    const origin = location.origin;
+    $('qrGrid').innerHTML = sessions.map(s => {
+      const url = `${origin}/recommend.html?s=${s.id}`;
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=10&data=${encodeURIComponent(url)}`;
+      return `
+        <div class="qr-card">
+          <div class="qr-card-title">${esc(s.title)}</div>
+          <div class="qr-card-date">${fmtDate(s.started_at)}</div>
+          <img class="qr-img" src="${qrUrl}" alt="QR for ${esc(s.title)}" loading="lazy">
+          <div class="qr-link"><a href="${url}" target="_blank">${url}</a></div>
+        </div>`;
+    }).join('');
+  } catch (err) {
+    $('qrGrid').innerHTML = `<div class="empty">로드 실패: ${esc(err.message||String(err))}</div>`;
+  }
+}
 
-<script src="/assets/deck-toggle.js" defer></script>
-</body></html>
+boot();
+</script>
+
+</body>
+</html>
