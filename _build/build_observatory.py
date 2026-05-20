@@ -16,6 +16,7 @@
 """
 from __future__ import annotations
 
+import os
 import re
 import sys
 from datetime import datetime
@@ -590,6 +591,20 @@ def main():
                 built_chapters += 1
 
     print(f"[observatory_build] books={built_books} chapters_with_data={built_chapters} skipped={skipped_existing}")
+
+    # Post-build: ensure every chapter page carries Article JSON-LD, OG/Twitter
+    # meta, rel=manifest, and is registered in sitemap.xml so it can be crawled.
+    # The Funnel S1-S6 Gate enforces these invariants; running the post-build
+    # step prevents silent regressions when new chapters are added.
+    repo_root = SITE
+    inject_script = repo_root / "_build" / "seo_patches" / "inject_magazine_articles.py"
+    sitemap_sync = repo_root / "scripts" / "sync-magazine-sitemap.py"
+    if inject_script.exists():
+        print(f"[observatory_build] post-build: {inject_script.name}")
+        os.system(f"python3 {inject_script}")
+    if sitemap_sync.exists():
+        print(f"[observatory_build] post-build: {sitemap_sync.name}")
+        os.system(f"python3 {sitemap_sync}")
 
 
 if __name__ == "__main__":
