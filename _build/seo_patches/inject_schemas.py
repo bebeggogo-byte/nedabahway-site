@@ -32,6 +32,10 @@ PAGE_SCHEMAS: Dict[str, List[str]] = {
     "blog/perspective/index.html": ["collection_perspective.json"],
     "learning.html": ["collection_learning.json"],
     "resources/index.html": ["collection_resources.json"],
+    # Knowledge panel discovery — Person reference on remaining content pages
+    "content.html": ["sameas_supplement.json"],
+    "korea-seo.html": ["sameas_supplement.json"],
+    "newsletter.html": ["sameas_supplement.json"],
 }
 
 MARKER_BEGIN = "<!-- BEGIN seo_patches: inject_schemas.py -->"
