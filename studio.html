@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/assets/nedabah.bundle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>활동 기록 도구 — 네다바웨이</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="manifest" href="/manifest.webmanifest">
+<style>
+  body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',sans-serif;background:#fbf7ee;color:#1A1A1A;margin:0;}
+  .studio{max-width:760px;margin:0 auto;padding:32px 20px 80px;}
+  .st-head{margin-bottom:24px;}
+  .st-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#a4541a;text-transform:uppercase;}
+  .st-title{font-family:'Noto Serif KR',serif;font-size:28px;font-weight:800;letter-spacing:-.02em;margin:6px 0 8px;}
+  .st-sub{font-size:14px;color:#475569;line-height:1.7;margin:0;}
+
+  /* 로그인 박스 */
+  .auth-box{background:#fff;border:1px solid #E2E8F0;border-radius:14px;padding:36px 32px;max-width:420px;margin:60px auto;}
+  .auth-box h2{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:800;margin:0 0 8px;}
+  .auth-box p{font-size:13px;color:#7a6f5f;line-height:1.7;margin:0 0 22px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:12px;font-weight:600;color:#475569;margin-bottom:6px;}
+  .field input{width:100%;font-size:14px;padding:11px 13px;border:1px solid #E2E8F0;border-radius:8px;font-family:inherit;}
+  .field input:focus{outline:none;border-color:#a4541a;}
+  .btn-primary{width:100%;padding:13px;font-size:14px;font-weight:700;background:#a4541a;color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .btn-primary:hover{background:#7a4317;}
+  .btn-primary:disabled{opacity:.5;cursor:not-allowed;}
+  .auth-error{margin-top:12px;padding:10px 12px;background:#fef0e2;border:1px solid #fde2d4;border-radius:6px;font-size:12px;color:#a4541a;}
+
+  /* 상태 보드 */
+  .status-board{background:#fff;border:1px solid #E2E8F0;border-radius:14px;padding:28px;margin-bottom:28px;}
+  .status-state{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+  .state-dot{width:14px;height:14px;border-radius:50%;background:#cbd5e1;flex-shrink:0;}
+  .state-dot.live{background:#dc2626;animation:pulse 1.2s ease-in-out infinite;}
+  .state-dot.idle{background:#94a3b8;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+  .state-label{font-size:13px;font-weight:600;color:#475569;}
+  .state-label.live{color:#dc2626;}
+
+  .session-info{padding:14px 18px;background:#fdf8ee;border:1px solid #f0e6d0;border-radius:10px;margin-bottom:18px;display:none;}
+  .session-info.show{display:block;}
+  .session-info-title{font-size:16px;font-weight:700;letter-spacing:-.01em;}
+  .session-info-meta{font-size:12px;color:#7a6f5f;margin-top:4px;font-variant-numeric:tabular-nums;}
+
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:520px){.actions{grid-template-columns:1fr;}}
+  .big-btn{padding:22px 18px;border:none;border-radius:12px;cursor:pointer;font-family:inherit;font-weight:700;font-size:15px;letter-spacing:-.01em;transition:transform .1s,box-shadow .2s;text-align:left;display:flex;flex-direction:column;gap:6px;}
+  .big-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.08);}
+  .big-btn:active{transform:translateY(0);}
+  .big-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none;}
+  .big-btn-start{background:#a4541a;color:#fff;}
+  .big-btn-stop{background:#1A1A1A;color:#fff;}
+  .big-btn-kbd{font-size:11px;font-weight:600;opacity:.7;font-family:ui-monospace,Menlo,Consolas,monospace;}
+
+  /* 모달 */
+  .modal-bg{position:fixed;inset:0;background:rgba(20,20,20,.5);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;}
+  .modal-bg.show{display:flex;}
+  .modal{background:#fff;border-radius:14px;padding:28px;max-width:480px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);}
+  .modal h3{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:800;margin:0 0 6px;}
+  .modal-desc{font-size:13px;color:#7a6f5f;line-height:1.6;margin:0 0 18px;}
+  .drop-zone{border:2px dashed #d4cdb8;border-radius:10px;padding:32px 20px;text-align:center;background:#fdf8ee;cursor:pointer;transition:all .15s;}
+  .drop-zone:hover, .drop-zone.dragover{border-color:#a4541a;background:#fef0e2;}
+  .drop-zone-icon{font-size:32px;margin-bottom:8px;}
+  .drop-zone-text{font-size:13px;color:#7a6f5f;line-height:1.6;}
+  .drop-zone-text strong{color:#a4541a;}
+  .preview{margin-top:14px;display:none;}
+  .preview.show{display:block;}
+  .preview img{width:100%;max-height:240px;object-fit:cover;border-radius:8px;}
+  .modal-actions{display:flex;gap:10px;margin-top:20px;}
+  .btn-ghost{flex:1;padding:11px;font-size:13px;font-weight:600;background:#fff;color:#475569;border:1px solid #E2E8F0;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .btn-ghost:hover{border-color:#a4541a;color:#a4541a;}
+
+  /* 최근 기록 */
+  .recent{margin-top:36px;}
+  .recent h3{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:800;margin:0 0 14px;}
+  .recent-list{display:flex;flex-direction:column;gap:10px;}
+  .recent-row{background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;}
+  .recent-thumb{width:48px;height:48px;border-radius:6px;background:#f1ecdf;overflow:hidden;flex-shrink:0;}
+  .recent-thumb img{width:100%;height:100%;object-fit:cover;}
+  .recent-meta{flex:1;min-width:0;}
+  .recent-title{font-size:14px;font-weight:600;letter-spacing:-.01em;}
+  .recent-date{font-size:11.5px;color:#94a3b8;margin-top:2px;font-variant-numeric:tabular-nums;}
+  .recent-status{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;}
+  .status-live{background:#fef0e2;color:#dc2626;}
+  .status-done{background:#dcfce7;color:#166534;}
+
+  /* 단축키 힌트 */
+  .kbd-hint{margin-top:24px;font-size:12px;color:#7a6f5f;line-height:1.7;background:#fdf8ee;border:1px solid #f0e6d0;border-radius:8px;padding:14px 16px;}
+  .kbd-hint kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:#fff;border:1px solid #d4cdb8;border-bottom-width:2px;padding:2px 6px;border-radius:4px;font-size:11px;}
+
+  .signed-as{font-size:11px;color:#7a6f5f;text-align:right;margin-bottom:14px;}
+  .signed-as a{color:#a4541a;}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1A1A1A;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:600;z-index:200;animation:tin .25s ease-out;}
+  @keyframes tin{from{opacity:0;transform:translate(-50%,10px);}to{opacity:1;transform:translate(-50%,0);}}
+</style>
+</head>
+<body>
+
+<div class="studio">
+
+  <!-- 로그인 화면 -->
+  <div id="loginView" class="auth-box" hidden>
+    <h2>본인 인증</h2>
+    <p>강의·코칭 기록은 본인만 남길 수 있습니다.<br>Supabase에 등록한 이메일과 비밀번호로 로그인하세요.</p>
+    <form id="loginForm">
+      <div class="field"><label>이메일</label><input type="email" id="email" required autocomplete="username"></div>
+      <div class="field"><label>비밀번호</label><input type="password" id="password" required autocomplete="current-password"></div>
+      <button type="submit" class="btn-primary" id="loginBtn">로그인</button>
+      <div id="loginError" class="auth-error" hidden></div>
+    </form>
+  </div>
+
+  <!-- 메인 화면 -->
+  <div id="mainView" hidden>
+    <div class="signed-as">
+      <span id="userEmail"></span>
+      · <a href="#" id="signOutBtn">로그아웃</a>
+    </div>
+
+    <header class="st-head">
+      <div class="st-eyebrow">Studio</div>
+      <h1 class="st-title">활동 기록 도구</h1>
+      <p class="st-sub">강의 시작 전 단축키를 누르고 제목을 입력합니다. 끝나면 사진 한 장을 드롭해 마무리합니다.</p>
+    </header>
+
+    <div class="status-board">
+      <div class="status-state">
+        <div class="state-dot" id="stateDot"></div>
+        <div class="state-label" id="stateLabel">대기 중 — 새 활동을 시작하세요</div>
+      </div>
+
+      <div class="session-info" id="sessionInfo">
+        <div class="session-info-title" id="sessionTitle"></div>
+        <div class="session-info-meta" id="sessionMeta"></div>
+      </div>
+
+      <div class="actions">
+        <button class="big-btn big-btn-start" id="startBtn">
+          새 활동 시작
+          <span class="big-btn-kbd">Ctrl+Shift+R</span>
+        </button>
+        <button class="big-btn big-btn-stop" id="stopBtn" disabled>
+          활동 종료 + 사진
+          <span class="big-btn-kbd">Ctrl+Shift+S</span>
+        </button>
+      </div>
+
+      <div class="kbd-hint">
+        <strong>자동화 흐름:</strong>
+        <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> → 제목 입력 (시작 시각 자동) →
+        강의 진행 → <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> → 사진 드롭 (종료 시각 자동) →
+        활동 기록 페이지에 즉시 등장.
+      </div>
+    </div>
+
+    <div class="recent">
+      <h3>최근 기록</h3>
+      <div class="recent-list" id="recentList">불러오는 중…</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 시작 모달 -->
+<div class="modal-bg" id="startModal">
+  <div class="modal">
+    <h3>새 활동 시작</h3>
+    <p class="modal-desc">제목만 입력하면 됩니다. 시작 시각은 자동으로 기록됩니다.</p>
+    <form id="startForm">
+      <div class="field"><label>강의·코칭 제목</label><input type="text" id="newTitle" required autofocus placeholder="예: 로고스교회 3040 부부학교"></div>
+      <div class="field"><label>장소 (선택)</label><input type="text" id="newLocation" placeholder="예: 서울 강남구"></div>
+      <div class="field"><label>태그 (쉼표로 구분, 선택)</label><input type="text" id="newTags" placeholder="예: 강의, 부부, 신앙"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" data-close>취소</button>
+        <button type="submit" class="btn-primary" style="flex:1;">시작</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 종료 모달 -->
+<div class="modal-bg" id="stopModal">
+  <div class="modal">
+    <h3>활동 종료</h3>
+    <p class="modal-desc">현장 사진 한 장을 드롭하거나 클릭해 선택하세요. 사진 없이도 마무리할 수 있습니다.</p>
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-zone-icon">📷</div>
+      <div class="drop-zone-text">사진을 끌어다 놓거나 <strong>클릭해서 선택</strong></div>
+      <input type="file" id="photoInput" accept="image/*" hidden>
+    </div>
+    <div class="preview" id="preview"><img id="previewImg" alt="미리보기"></div>
+    <div class="modal-actions">
+      <button type="button" class="btn-ghost" data-close>취소</button>
+      <button type="button" class="btn-ghost" id="finishWithoutPhoto">사진 없이 종료</button>
+      <button type="button" class="btn-primary" id="finishWithPhoto" style="flex:1;" disabled>사진과 함께 종료</button>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/supabase-config.js" onerror="console.warn('supabase-config.js missing')"></script>
+<script type="module">
+import { sb, createSession, endSession, signInWithPassword, signOut, currentUser, listSessions } from '/assets/js/supabase-client.js';
+
+const $ = id => document.getElementById(id);
+const loginView = $('loginView');
+const mainView  = $('mainView');
+
+function toast(msg){
+  const t = document.createElement('div');
+  t.className = 'toast'; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 2400);
+}
+
+function fmtDateTime(iso){
+  const d = new Date(iso);
+  return `${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+
+// ---- Auth ----
+async function boot(){
+  const u = await currentUser();
+  if (u) showMain(u); else showLogin();
+}
+
+function showLogin(){
+  loginView.hidden = false;
+  mainView.hidden = true;
+}
+
+function showMain(user){
+  loginView.hidden = true;
+  mainView.hidden = false;
+  $('userEmail').textContent = user.email;
+  loadRecent();
+  restoreState();
+}
+
+$('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = $('loginBtn'); btn.disabled = true; btn.textContent = '로그인 중…';
+  const err = $('loginError'); err.hidden = true;
+  try {
+    await signInWithPassword($('email').value, $('password').value);
+    const u = await currentUser();
+    showMain(u);
+  } catch (e2) {
+    err.textContent = '로그인 실패: ' + (e2.message || e2);
+    err.hidden = false;
+  } finally {
+    btn.disabled = false; btn.textContent = '로그인';
+  }
+});
+
+$('signOutBtn').addEventListener('click', async e => {
+  e.preventDefault();
+  await signOut();
+  localStorage.removeItem('studio.activeSession');
+  location.reload();
+});
+
+// ---- 세션 상태 (localStorage로 새로고침 견디기) ----
+const KEY = 'studio.activeSession';
+let activeSession = null;
+
+function persistState(){
+  if (activeSession) localStorage.setItem(KEY, JSON.stringify(activeSession));
+  else localStorage.removeItem(KEY);
+}
+
+function restoreState(){
+  const raw = localStorage.getItem(KEY);
+  if (!raw) { setIdle(); return; }
+  try { activeSession = JSON.parse(raw); setLive(); }
+  catch { localStorage.removeItem(KEY); setIdle(); }
+}
+
+function setLive(){
+  $('stateDot').classList.remove('idle'); $('stateDot').classList.add('live');
+  $('stateLabel').classList.add('live');
+  $('stateLabel').textContent = '진행 중';
+  $('startBtn').disabled = true;
+  $('stopBtn').disabled = false;
+  const info = $('sessionInfo');
+  info.classList.add('show');
+  $('sessionTitle').textContent = activeSession.title;
+  $('sessionMeta').textContent = `시작: ${fmtDateTime(activeSession.started_at)}${activeSession.location ? ' · ' + activeSession.location : ''}`;
+}
+
+function setIdle(){
+  $('stateDot').classList.add('idle'); $('stateDot').classList.remove('live');
+  $('stateLabel').classList.remove('live');
+  $('stateLabel').textContent = '대기 중 — 새 활동을 시작하세요';
+  $('startBtn').disabled = false;
+  $('stopBtn').disabled = true;
+  $('sessionInfo').classList.remove('show');
+}
+
+// ---- 모달 ----
+function openModal(id){ $(id).classList.add('show'); }
+function closeModal(id){ $(id).classList.remove('show'); }
+document.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', e => {
+  e.target.closest('.modal-bg').classList.remove('show');
+}));
+
+// ---- 시작 ----
+$('startBtn').addEventListener('click', () => {
+  $('newTitle').value = ''; $('newLocation').value = ''; $('newTags').value = '';
+  openModal('startModal');
+  setTimeout(()=>$('newTitle').focus(), 50);
+});
+
+$('startForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const title = $('newTitle').value.trim();
+  if (!title) return;
+  const tags = $('newTags').value.split(',').map(s=>s.trim()).filter(Boolean);
+  const location = $('newLocation').value.trim() || null;
+  try {
+    const s = await createSession({ title, location, tags });
+    activeSession = s; persistState(); setLive();
+    closeModal('startModal');
+    toast('활동 시작');
+    loadRecent();
+  } catch (err) {
+    alert('시작 실패: ' + (err.message || err));
+  }
+});
+
+// ---- 종료 (사진 업로드) ----
+let pendingPhoto = null;
+
+$('stopBtn').addEventListener('click', () => {
+  pendingPhoto = null;
+  $('preview').classList.remove('show');
+  $('finishWithPhoto').disabled = true;
+  openModal('stopModal');
+});
+
+const dz = $('dropZone');
+const fileInput = $('photoInput');
+dz.addEventListener('click', () => fileInput.click());
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('dragover'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+dz.addEventListener('drop', e => {
+  e.preventDefault(); dz.classList.remove('dragover');
+  const f = e.dataTransfer.files?.[0];
+  if (f) setPhoto(f);
+});
+fileInput.addEventListener('change', e => {
+  const f = e.target.files?.[0];
+  if (f) setPhoto(f);
+});
+
+function setPhoto(file){
+  if (!file.type.startsWith('image/')) { alert('이미지 파일만 가능합니다'); return; }
+  pendingPhoto = file;
+  const url = URL.createObjectURL(file);
+  $('previewImg').src = url;
+  $('preview').classList.add('show');
+  $('finishWithPhoto').disabled = false;
+}
+
+async function finishSession(photoFile){
+  if (!activeSession) return;
+  const btn = $('finishWithPhoto'); const btnNo = $('finishWithoutPhoto');
+  btn.disabled = true; btnNo.disabled = true; btn.textContent = '저장 중…';
+  try {
+    await endSession({ id: activeSession.id, photoFile });
+    activeSession = null; persistState(); setIdle();
+    closeModal('stopModal');
+    toast(photoFile ? '사진과 함께 저장됨' : '저장됨');
+    loadRecent();
+  } catch (err) {
+    alert('저장 실패: ' + (err.message || err));
+  } finally {
+    btn.disabled = false; btnNo.disabled = false; btn.textContent = '사진과 함께 종료';
+  }
+}
+
+$('finishWithPhoto').addEventListener('click', () => finishSession(pendingPhoto));
+$('finishWithoutPhoto').addEventListener('click', () => finishSession(null));
+
+// ---- 최근 기록 ----
+async function loadRecent(){
+  try {
+    const list = await listSessions({ limit: 10 });
+    if (!list.length) { $('recentList').innerHTML = '<div style="color:#7a6f5f;font-size:13px;">아직 기록이 없습니다.</div>'; return; }
+    $('recentList').innerHTML = list.map(s => {
+      const live = !s.ended_at;
+      const thumb = s.photo_url
+        ? `<img src="${s.photo_url}" alt="">`
+        : '';
+      return `
+        <div class="recent-row">
+          <div class="recent-thumb">${thumb}</div>
+          <div class="recent-meta">
+            <div class="recent-title">${escapeHtml(s.title)}</div>
+            <div class="recent-date">${fmtDateTime(s.started_at)}${s.ended_at ? ' → ' + fmtDateTime(s.ended_at) : ''}</div>
+          </div>
+          <span class="recent-status ${live ? 'status-live' : 'status-done'}">${live ? '진행중' : '완료'}</span>
+        </div>`;
+    }).join('');
+  } catch (err) {
+    $('recentList').innerHTML = `<div style="color:#a4541a;font-size:13px;">로드 실패: ${escapeHtml(err.message||String(err))}</div>`;
+  }
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ---- 단축키 ----
+document.addEventListener('keydown', e => {
+  if (mainView.hidden) return;
+  const mod = e.ctrlKey || e.metaKey;
+  if (mod && e.shiftKey && (e.key === 'R' || e.key === 'r')) {
+    if ($('startBtn').disabled) return;
+    e.preventDefault();
+    $('startBtn').click();
+  } else if (mod && e.shiftKey && (e.key === 'S' || e.key === 's')) {
+    if ($('stopBtn').disabled) return;
+    e.preventDefault();
+    $('stopBtn').click();
+  } else if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-bg.show').forEach(m => m.classList.remove('show'));
+  }
+});
+
+boot();
+</script>
+
+</body>
+</html>
