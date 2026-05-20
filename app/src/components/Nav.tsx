@@ -3,6 +3,7 @@
  */
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { IconWall } from "@/components/wall/icons";
 
 export async function Nav() {
   const supabase = await createClient();
@@ -10,17 +11,22 @@ export async function Nav() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  let role: "student" | "coach" | "school_admin" | "system_admin" | null = null;
+  type Role = "student" | "coach" | "school_admin" | "system_admin";
+  let role: Role | null = null;
   let displayName: string | null = null;
 
   if (user) {
-    const { data: profile } = await supabase
+    const { data } = await supabase
       .from("profiles")
       .select("role, display_name")
       .eq("id", user.id)
       .single();
-    role = (profile?.role as typeof role) ?? "student";
-    displayName = (profile?.display_name as string | null) ?? user.email ?? null;
+    const profile = data as {
+      role: string | null;
+      display_name: string | null;
+    } | null;
+    role = (profile?.role as Role | null) ?? "student";
+    displayName = profile?.display_name ?? user.email ?? null;
   }
 
   return (
@@ -38,6 +44,14 @@ export async function Nav() {
         ) : (
           <>
             <Link href="/dashboard" className="nav__link">내 학습</Link>
+            <Link
+              href="/wall"
+              className="nav__link"
+              style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+            >
+              <IconWall size={16} />
+              담벼락
+            </Link>
             {role === "coach" || role === "system_admin" ? (
               <Link href="/coach/dashboard" className="nav__link">코치</Link>
             ) : null}

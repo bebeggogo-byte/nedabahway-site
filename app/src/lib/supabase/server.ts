@@ -39,8 +39,8 @@ export function createAdminClient() {
   }
   // 동적 import로 클라이언트 번들 오염 방지
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { createClient: createSbClient } = require("@supabase/supabase-js");
-  return createSbClient<Database>(env.supabase.url, env.supabase.serviceRoleKey, {
+  const sb = require("@supabase/supabase-js") as typeof import("@supabase/supabase-js");
+  return sb.createClient<Database>(env.supabase.url, env.supabase.serviceRoleKey, {
     auth: { autoRefreshToken: false, persistSession: false },
   });
 }

@@ -226,11 +226,18 @@ async function main() {
     ids[u.email] = await ensureUser(u);
   }
 
-  const coachId = ids[`nedabahway.coach@${TEST_DOMAIN}`];
+  // 시드 유저 ID 조회 (누락 시 즉시 실패)
+  const need = (email: string): string => {
+    const v = ids[email];
+    if (!v) throw new Error(`[seed-users] 유저 ID 누락: ${email}`);
+    return v;
+  };
+
+  const coachId = need(`nedabahway.coach@${TEST_DOMAIN}`);
 
   // STARCP 베타: 25h 전 결제 (50% 환불 시나리오)
   await createEnrollmentAndPayment({
-    user_id: ids[`nedabahway.starcp@${TEST_DOMAIN}`],
+    user_id: need(`nedabahway.starcp@${TEST_DOMAIN}`),
     coach_id: coachId,
     track_id: "starcp",
     paid_hours_ago: 25,
@@ -239,7 +246,7 @@ async function main() {
 
   // IDEN 진로 재설계 베타: 2h 전 결제 (100% 환불 시나리오)
   await createEnrollmentAndPayment({
-    user_id: ids[`nedabahway.pivot@${TEST_DOMAIN}`],
+    user_id: need(`nedabahway.pivot@${TEST_DOMAIN}`),
     coach_id: coachId,
     track_id: "iden_pivot",
     paid_hours_ago: 2,
@@ -248,13 +255,13 @@ async function main() {
 
   // IDEN 교사 베타: 등록 + 학교·반·학생 더미
   await createEnrollmentAndPayment({
-    user_id: ids[`nedabahway.iden@${TEST_DOMAIN}`],
+    user_id: need(`nedabahway.iden@${TEST_DOMAIN}`),
     coach_id: coachId,
     track_id: "iden_teacher",
     paid_hours_ago: 100,
     amount_krw: 3_500_000,
   });
-  await seedIdenTeacherSchool(ids[`nedabahway.iden@${TEST_DOMAIN}`]);
+  await seedIdenTeacherSchool(need(`nedabahway.iden@${TEST_DOMAIN}`));
 
   console.log("\n[seed-users] 완료. 로그인 정보:");
   console.log("  비밀번호 공통: nedabah1!");
