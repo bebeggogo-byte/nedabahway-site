@@ -187,4 +187,34 @@ LAST	P856	"https://www.nedabah.org"
 
 ---
 
+## 7. 한국 검색엔진 등록 (병행 트랙)
+
+지식패널은 Google 의존이지만 한국 검색 시장은 Naver/Daum이 별도 색인 시스템을 운용합니다. Google 트랙과 무관하게 즉시 진행 가능.
+
+### 7.1 등록 절차
+
+| 검색엔진 | 등록 URL | 본인 인증 방식 |
+|---|---|---|
+| Naver Search Advisor | https://searchadvisor.naver.com/ | 네이버 ID 로그인 + 사이트 URL 등록 + 메타 태그 검증 |
+| Daum/Kakao Webmaster | https://webmaster.kakao.com/ | 카카오 계정 + 사이트 URL 등록 + 메타 태그 검증 |
+| Bing Webmaster Tools | https://www.bing.com/webmasters/ | Microsoft 계정 (옵션) |
+
+각 검증 화면에서 표시되는 `<meta name="...-site-verification" content="XXX" />` 의 `XXX` 값을 복사한 뒤 아래 명령을 실행하면 `index.html`에 자동 주입됩니다.
+
+```bash
+python3 scripts/add-search-engine-verification.py naver <CONTENT-CODE>
+python3 scripts/add-search-engine-verification.py daum  <CONTENT-CODE>
+python3 scripts/add-search-engine-verification.py bing  <CONTENT-CODE>
+```
+
+(스크립트는 멱등 — 같은 provider로 재실행하면 기존 태그 교체. `--remove` 옵션으로 삭제 가능.)
+
+### 7.2 등록 후 처리
+
+- Naver: Search Advisor에서 사이트맵 등록 (이미 작성된 `sitemap-index.xml` 제출)
+- Daum: 사이트맵 자동 발견 (robots.txt에서 읽음 — 이미 갱신됨)
+- Bing: 사이트맵 + Google Search Console 연동 옵션 (선택)
+
+---
+
 **다음 액션**: 본인이 책 ISBN 확정/언론 인용 1건 확보 후 §1.3, §2.3의 QuickStatements 텍스트로 등록.
