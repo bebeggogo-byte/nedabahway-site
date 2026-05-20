@@ -46,6 +46,9 @@ def extract_meta(html: str) -> dict:
     }
 
 
+OG_IMAGE = "https://www.nedabah.org/assets/og-magazine.svg"
+
+
 def build_article(meta: dict, page_path: Path) -> dict:
     canonical = meta["canonical"] or f"https://www.nedabah.org/{page_path.relative_to(ROOT)}"
     headline = (meta["title"] or "").split(" | ")[0].strip()
@@ -58,6 +61,7 @@ def build_article(meta: dict, page_path: Path) -> dict:
         "url": canonical,
         "mainEntityOfPage": canonical,
         "inLanguage": "ko-KR",
+        "image": OG_IMAGE,
         "isPartOf": {
             "@type": "Blog",
             "@id": "https://www.nedabah.org/magazine.html#blog",
@@ -82,14 +86,41 @@ def build_article(meta: dict, page_path: Path) -> dict:
     }
 
 
-def render_block(article: dict) -> str:
-    return "\n".join([
-        MARKER_BEGIN,
-        '<script type="application/ld+json">',
-        json.dumps(article, ensure_ascii=False, indent=2),
-        "</script>",
-        MARKER_END,
-    ])
+def _esc(value: str) -> str:
+    return (
+        value.replace("&", "&amp;")
+        .replace('"', "&quot;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+    )
+
+
+def build_og_meta(meta: dict, canonical: str) -> list[str]:
+    headline = (meta["title"] or "").split(" | ")[0].strip()
+    description = meta["description"] or ""
+    return [
+        f'<meta property="og:title" content="{_esc(headline)}">',
+        f'<meta property="og:description" content="{_esc(description)}">',
+        f'<meta property="og:url" content="{_esc(canonical)}">',
+        '<meta property="og:type" content="article">',
+        f'<meta property="og:image" content="{OG_IMAGE}">',
+        '<meta property="og:site_name" content="네다바웨이">',
+        '<meta property="og:locale" content="ko_KR">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        f'<meta name="twitter:title" content="{_esc(headline)}">',
+        f'<meta name="twitter:description" content="{_esc(description)}">',
+        f'<meta name="twitter:image" content="{OG_IMAGE}">',
+    ]
+
+
+def render_block(article: dict, meta: dict, canonical: str) -> str:
+    parts = [MARKER_BEGIN]
+    parts.extend(build_og_meta(meta, canonical))
+    parts.append('<script type="application/ld+json">')
+    parts.append(json.dumps(article, ensure_ascii=False, indent=2))
+    parts.append("</script>")
+    parts.append(MARKER_END)
+    return "\n".join(parts)
 
 
 def patch_file(page: Path, dry: bool) -> tuple[bool, str]:
@@ -98,8 +129,9 @@ def patch_file(page: Path, dry: bool) -> tuple[bool, str]:
     meta = extract_meta(html)
     if not meta["title"]:
         return False, f"no <title>: {rel}"
+    canonical = meta["canonical"] or f"https://www.nedabah.org/{rel}"
     article = build_article(meta, page)
-    block = render_block(article)
+    block = render_block(article, meta, canonical)
     pat = re.compile(re.escape(MARKER_BEGIN) + r".*?" + re.escape(MARKER_END), re.DOTALL)
     if pat.search(html):
         new_html = pat.sub(block, html)
