@@ -110,6 +110,7 @@ def build_og_meta(meta: dict, canonical: str) -> list[str]:
         f'<meta name="twitter:title" content="{_esc(headline)}">',
         f'<meta name="twitter:description" content="{_esc(description)}">',
         f'<meta name="twitter:image" content="{OG_IMAGE}">',
+        '<link rel="manifest" href="/manifest.webmanifest">',
     ]
 
 
