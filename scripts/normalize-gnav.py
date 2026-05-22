@@ -4,8 +4,8 @@
 Sweep all root-level *.html files and rewrite the <ul class="gnav__links">
 block so every page exposes the same top-level menu.
 
-Standard menu (v3 IA):
-  강의·코칭 / 콘텐츠 / 기획 / 활동기록 / 소개   +  강의 의뢰 → (CTA)
+Standard menu (v2 IA):
+  강의·코칭 / 콘텐츠 / 활동기록 / 소개   +  강의 의뢰 → (CTA)
 
 Per-file active mapping defines which menu item is highlighted.
 Pages without a gnav__links block are skipped (e.g. legacy redirect stubs).
@@ -22,7 +22,6 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 STANDARD_MENU = [
     ("/programs.html",   "강의·코칭"),
     ("/content.html",    "콘텐츠"),
-    ("/planning.html",   "기획"),
     ("/activities.html", "활동기록"),
     ("/about.html",      "소개"),
 ]
@@ -51,8 +50,6 @@ ACTIVE_BY_FILE = {
     "ai.html":         "/content.html",
     "sbm.html":        "/content.html",
     "korea-seo.html":  "/content.html",
-    # 기획
-    "planning.html":   "/planning.html",
     # 활동기록
     "activities.html": "/activities.html",
     "voices.html":     "/activities.html",
