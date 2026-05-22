@@ -1,0 +1,146 @@
+{
+  "name": "01 — News Curator",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "hours", "hoursInterval": 4 }
+          ]
+        }
+      },
+      "id": "trigger-cron",
+      "name": "Every 4h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://openapi.naver.com/v1/search/news.json",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "query", "value": "트로트" },
+            { "name": "display", "value": "30" },
+            { "name": "sort", "value": "date" }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "X-Naver-Client-Id", "value": "={{$env.NAVER_CLIENT_ID}}" },
+            { "name": "X-Naver-Client-Secret", "value": "={{$env.NAVER_CLIENT_SECRET}}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "naver-fetch",
+      "name": "Naver News API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "items",
+        "options": {}
+      },
+      "id": "split-items",
+      "name": "Split Items",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "const crypto = require('crypto');\nfor (const item of items) {\n  const url = item.json.originallink || item.json.link;\n  item.json.url = url;\n  item.json.url_hash = crypto.createHash('sha256').update(url).digest('hex');\n  item.json.snippet = (item.json.description || '').replace(/<[^>]+>/g, '').slice(0, 200);\n  item.json.title_plain = (item.json.title || '').replace(/<[^>]+>/g, '');\n}\nreturn items;"
+      },
+      "id": "normalize",
+      "name": "Normalize",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{$env.NOTION_DB_RAW_NEWS}}",
+        "returnAll": false,
+        "limit": 100,
+        "filterType": "manual",
+        "matchType": "anyFilter",
+        "filters": {
+          "conditions": [
+            {
+              "key": "URLHash|rich_text",
+              "condition": "equals",
+              "richTextValue": "={{$json.url_hash}}"
+            }
+          ]
+        }
+      },
+      "id": "notion-dedup",
+      "name": "Notion Dedup Lookup",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1200, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "loose" },
+          "conditions": [
+            {
+              "leftValue": "={{$json.results ? $json.results.length : 0}}",
+              "rightValue": 0,
+              "operator": { "type": "number", "operation": "equal" }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-new",
+      "name": "If New",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1440, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": "={{$env.NOTION_DB_RAW_NEWS}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Title|title", "title": "={{$('Normalize').item.json.title_plain}}" },
+            { "key": "URL|url", "urlValue": "={{$('Normalize').item.json.url}}" },
+            { "key": "URLHash|rich_text", "textContent": "={{$('Normalize').item.json.url_hash}}" },
+            { "key": "Source|select", "selectValue": "naver" },
+            { "key": "Snippet|rich_text", "textContent": "={{$('Normalize').item.json.snippet}}" },
+            { "key": "PublishedAt|date", "date": "={{$('Normalize').item.json.pubDate}}" },
+            { "key": "Status|select", "selectValue": "pending" }
+          ]
+        }
+      },
+      "id": "notion-create",
+      "name": "Create raw_news Row",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1680, 300]
+    }
+  ],
+  "connections": {
+    "Every 4h": { "main": [[{ "node": "Naver News API", "type": "main", "index": 0 }]] },
+    "Naver News API": { "main": [[{ "node": "Split Items", "type": "main", "index": 0 }]] },
+    "Split Items": { "main": [[{ "node": "Normalize", "type": "main", "index": 0 }]] },
+    "Normalize": { "main": [[{ "node": "Notion Dedup Lookup", "type": "main", "index": 0 }]] },
+    "Notion Dedup Lookup": { "main": [[{ "node": "If New", "type": "main", "index": 0 }]] },
+    "If New": { "main": [[{ "node": "Create raw_news Row", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "tags": [{ "name": "trot-automation" }, { "name": "phase-2" }]
+}

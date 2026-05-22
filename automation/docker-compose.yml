@@ -1,0 +1,67 @@
+services:
+  n8n:
+    image: n8nio/n8n:1.74.1
+    container_name: trot-n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=${N8N_HOST:-localhost}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=${N8N_PROTOCOL:-http}
+      - WEBHOOK_URL=${N8N_WEBHOOK_URL:-http://localhost:5678/}
+      - GENERIC_TIMEZONE=Asia/Seoul
+      - N8N_DEFAULT_LOCALE=ko
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      - N8N_USER_MANAGEMENT_JWT_SECRET=${N8N_JWT_SECRET}
+      - DB_TYPE=sqlite
+      - DB_SQLITE_DATABASE=/home/node/.n8n/database.sqlite
+      - N8N_RUNNERS_ENABLED=true
+      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+      - NODE_FUNCTION_ALLOW_BUILTIN=*
+      - NODE_FUNCTION_ALLOW_EXTERNAL=*
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./n8n/workflows:/workflows:ro
+      - ./scripts:/scripts:ro
+      - media:/media
+
+  worker:
+    image: python:3.12-slim
+    container_name: trot-worker
+    restart: unless-stopped
+    working_dir: /scripts
+    command: ["tail", "-f", "/dev/null"]
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - NAVER_CLIENT_ID=${NAVER_CLIENT_ID}
+      - NAVER_CLIENT_SECRET=${NAVER_CLIENT_SECRET}
+      - NOTION_TOKEN=${NOTION_TOKEN}
+      - NOTION_DB_RAW_NEWS=${NOTION_DB_RAW_NEWS}
+      - NOTION_DB_PIPELINE_RUNS=${NOTION_DB_PIPELINE_RUNS}
+      - NOTION_DB_BGM_LIBRARY=${NOTION_DB_BGM_LIBRARY}
+      - NOTION_DB_PERFORMANCE=${NOTION_DB_PERFORMANCE}
+      - TTS_PROVIDER=${TTS_PROVIDER:-edge}
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY:-}
+      - IMAGE_PROVIDER=${IMAGE_PROVIDER:-pollinations}
+      - STABILITY_API_KEY=${STABILITY_API_KEY:-}
+      - YOUTUBE_CLIENT_SECRETS=/secrets/youtube-client-secrets.json
+      - YOUTUBE_TOKEN=/secrets/youtube-token.json
+      - BUDGET_MAX_KRW=${BUDGET_MAX_KRW:-500000}
+      - BUDGET_HALT_PCT=${BUDGET_HALT_PCT:-90}
+      - ALERT_WEBHOOK=${ALERT_WEBHOOK:-}
+      - CHANNEL_ID=${CHANNEL_ID:-trot-radio-01}
+      - TZ=Asia/Seoul
+    volumes:
+      - ./scripts:/scripts
+      - ./assets:/assets:ro
+      - ./secrets:/secrets:ro
+      - media:/media
+      - worker_cache:/root/.cache
+    depends_on:
+      - n8n
+
+volumes:
+  n8n_data:
+  worker_cache:
+  media:
