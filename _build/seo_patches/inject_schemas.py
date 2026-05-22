@@ -32,6 +32,33 @@ PAGE_SCHEMAS: Dict[str, List[str]] = {
     "blog/perspective/index.html": ["collection_perspective.json"],
     "learning.html": ["collection_learning.json"],
     "resources/index.html": ["collection_resources.json"],
+    # Knowledge panel discovery — Person reference on remaining content pages
+    "content.html": ["sameas_supplement.json"],
+    "korea-seo.html": ["sameas_supplement.json"],
+    "newsletter.html": ["sameas_supplement.json"],
+    # Cycle 4: high-traffic content pages mentioning 김창환 without Person link
+    "magazine.html": ["sameas_supplement.json"],
+    "ai.html": ["sameas_supplement.json"],
+    "timeline.html": ["sameas_supplement.json"],
+}
+
+# 페이지별 breadcrumb trail (target -> [(label, optional href), ...])
+# Root "네다바웨이" is implicit position 1. Each entry adds one more level.
+# Use None for href when the label is the leaf page (auto-fills with target URL).
+PAGE_BREADCRUMBS: Dict[str, List[Tuple[str, str | None]]] = {
+    "about.html": [("소개", None)],
+    "magazine.html": [("매거진", None)],
+    "programs.html": [("프로그램", None)],
+    "learning.html": [("학습 노트", None)],
+    "contact.html": [("문의", None)],
+    "newsletter.html": [("뉴스레터 구독", None)],
+    "content.html": [("콘텐츠 카테고리", None)],
+    "start.html": [("시작하기", None)],
+    "faq.html": [("FAQ", None)],
+    "glossary.html": [("용어집", None)],
+    "korea-seo.html": [("한국 검색 자리", None)],
+    "ai.html": [("AI 작업실", None)],
+    "timeline.html": [("타임라인", None)],
 }
 
 MARKER_BEGIN = "<!-- BEGIN seo_patches: inject_schemas.py -->"
@@ -43,6 +70,19 @@ def load_schema(name: str) -> dict | None:
     if not p.exists():
         return None
     return json.loads(p.read_text(encoding="utf-8"))
+
+
+def build_breadcrumb(target: str, trail: List[Tuple[str, str | None]]) -> dict:
+    items = [{"@type": "ListItem", "position": 1, "name": "네다바웨이", "item": "https://www.nedabah.org/"}]
+    for i, (label, href) in enumerate(trail, start=2):
+        url = href if href else f"https://www.nedabah.org/{target}"
+        items.append({"@type": "ListItem", "position": i, "name": label, "item": url})
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "@id": f"https://www.nedabah.org/{target}#breadcrumb",
+        "itemListElement": items,
+    }
 
 
 def render_block(schemas: List[dict]) -> str:
@@ -89,19 +129,22 @@ def main():
     ap.add_argument("--target", help="단일 파일만 처리")
     args = ap.parse_args()
 
-    pages = PAGE_SCHEMAS
+    all_targets = set(PAGE_SCHEMAS.keys()) | set(PAGE_BREADCRUMBS.keys())
     if args.target:
-        pages = {args.target: PAGE_SCHEMAS.get(args.target, [])}
+        all_targets = {args.target}
 
     rc = 0
-    for target, schema_files in pages.items():
+    for target in sorted(all_targets):
         schemas = []
-        for sf in schema_files:
+        for sf in PAGE_SCHEMAS.get(target, []):
             s = load_schema(sf)
             if s is None:
                 print(f"  [skip] schema file missing: {sf}")
                 continue
             schemas.append(s)
+        trail = PAGE_BREADCRUMBS.get(target)
+        if trail:
+            schemas.append(build_breadcrumb(target, trail))
         if not schemas:
             print(f"[no-schema] {target}")
             continue
