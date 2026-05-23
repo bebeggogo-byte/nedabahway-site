@@ -1,0 +1,140 @@
+{
+  "name": "02 — Filter & Classify",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "hours", "hoursInterval": 1 }] }
+      },
+      "id": "trigger",
+      "name": "Every 1h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{$env.NOTION_DB_RAW_NEWS}}",
+        "returnAll": false,
+        "limit": 50,
+        "filterType": "manual",
+        "matchType": "anyFilter",
+        "filters": {
+          "conditions": [
+            { "key": "Status|select", "condition": "equals", "selectValue": "pending" }
+          ]
+        }
+      },
+      "id": "fetch-pending",
+      "name": "Fetch Pending Items",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "x-api-key", "value": "={{$env.ANTHROPIC_API_KEY}}" },
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"{{$env.CLAUDE_CLASSIFY_MODEL}}\",\n  \"max_tokens\": 200,\n  \"system\": \"Return STRICT JSON only: {\\\"confidence\\\": float 0-1, \\\"tags\\\": [string]}. Score how clearly this is a Korean trot-music news item suitable for a 50-70 viewer Shorts channel.\",\n  \"messages\": [{\"role\": \"user\", \"content\": \"Title: {{$json.property_Title}}\\n\\nSnippet: {{$json.property_Snippet}}\"}]\n}"
+      },
+      "id": "classify",
+      "name": "Claude Classify",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "for (const item of items) {\n  const raw = item.json.content?.[0]?.text || '{}';\n  try {\n    const parsed = JSON.parse(raw);\n    item.json.confidence = parsed.confidence ?? 0;\n    item.json.tags = parsed.tags ?? [];\n  } catch (e) {\n    item.json.confidence = 0;\n    item.json.tags = [];\n    item.json.parse_error = e.message;\n  }\n}\nreturn items;"
+      },
+      "id": "parse",
+      "name": "Parse Classification",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "typeValidation": "loose" },
+          "conditions": [
+            {
+              "leftValue": "={{$json.confidence}}",
+              "rightValue": 0.75,
+              "operator": { "type": "number", "operation": "gte" }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-confident",
+      "name": "If confidence >= 0.75",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1200, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{$('Fetch Pending Items').item.json.id}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Status|select", "selectValue": "classified" },
+            { "key": "GenreConfidence|number", "numberValue": "={{$json.confidence}}" }
+          ]
+        }
+      },
+      "id": "mark-classified",
+      "name": "Mark Classified",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1440, 200]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{$('Fetch Pending Items').item.json.id}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Status|select", "selectValue": "dropped" },
+            { "key": "GenreConfidence|number", "numberValue": "={{$json.confidence}}" }
+          ]
+        }
+      },
+      "id": "mark-dropped",
+      "name": "Mark Dropped",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1440, 400]
+    }
+  ],
+  "connections": {
+    "Every 1h": { "main": [[{ "node": "Fetch Pending Items", "type": "main", "index": 0 }]] },
+    "Fetch Pending Items": { "main": [[{ "node": "Claude Classify", "type": "main", "index": 0 }]] },
+    "Claude Classify": { "main": [[{ "node": "Parse Classification", "type": "main", "index": 0 }]] },
+    "Parse Classification": { "main": [[{ "node": "If confidence >= 0.75", "type": "main", "index": 0 }]] },
+    "If confidence >= 0.75": {
+      "main": [
+        [{ "node": "Mark Classified", "type": "main", "index": 0 }],
+        [{ "node": "Mark Dropped", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "tags": [{ "name": "trot-automation" }, { "name": "phase-2" }]
+}

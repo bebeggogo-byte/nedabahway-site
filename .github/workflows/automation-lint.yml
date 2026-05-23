@@ -1,0 +1,52 @@
+name: automation-lint
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'automation/**'
+      - '.github/workflows/automation-lint.yml'
+  pull_request:
+    paths:
+      - 'automation/**'
+      - '.github/workflows/automation-lint.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate n8n workflow JSON
+        run: |
+          set -e
+          fail=0
+          for f in automation/n8n/workflows/*.json; do
+            echo "::group::$f"
+            python -m json.tool "$f" > /dev/null || { echo "::error file=$f::invalid JSON"; fail=1; }
+            echo "::endgroup::"
+          done
+          exit $fail
+
+      - name: Validate Python syntax
+        run: |
+          set -e
+          fail=0
+          for f in $(find automation/scripts -name '*.py'); do
+            python -m py_compile "$f" || { echo "::error file=$f::syntax error"; fail=1; }
+          done
+          exit $fail
+
+      - name: Validate docker-compose
+        run: docker compose -f automation/docker-compose.yml config --quiet
+
+      - name: Ruff lint (informational, non-blocking)
+        continue-on-error: true
+        run: |
+          pip install ruff
+          ruff check automation/scripts || true

@@ -33,7 +33,18 @@ Import dependencies first so node references resolve:
 8. 08-takedown
 9. 09-performance
 
-Workflows 02-09 are deliberately left to be authored against your live n8n instance during Phase 2 because their node-version pins must match your specific n8n release. The shape of each is documented in `docs/architecture.md` and the SPEC.
+All 9 workflow JSONs are pinned to **n8n 1.74.x** node versions (matching `docker-compose.yml`). If you upgrade n8n, re-export each workflow from the UI after import so node `typeVersion` fields match your runtime. Behavior is documented in `docs/architecture.md` and in each workflow's stage row in `plan.md`.
+
+## Activation order (after Phase 1 manual MVP passes)
+
+Activate in this order, watching n8n executions for errors at each step:
+1. `01-news-curator` — wait one cron tick, confirm `raw_news` rows appear.
+2. `02-filter-classify` — wait one tick, confirm rows move to `classified` or `dropped`.
+3. `03-script-gen` — wait one tick, confirm `pipeline_runs` rows appear and reach `script_done`.
+4. `04-asset-gen` → `05-video-compose` → `06-publish` — activate one at a time.
+5. `07-budget-guard` — passive monitor; activate always.
+6. `08-takedown` — webhook-only; activate always (URL goes into operator's bookmark).
+7. `09-performance` — passive measurement; activate after first published video reaches T+48h.
 
 ## Credentials required (n8n credential store)
 

@@ -1,0 +1,110 @@
+{
+  "name": "04 — Asset Generation (parallel)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "minutes", "minutesInterval": 30 }] }
+      },
+      "id": "trigger",
+      "name": "Every 30m",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{$env.NOTION_DB_PIPELINE_RUNS}}",
+        "returnAll": false,
+        "limit": 5,
+        "filterType": "manual",
+        "matchType": "anyFilter",
+        "filters": {
+          "conditions": [
+            { "key": "Status|select", "condition": "equals", "selectValue": "script_done" }
+          ]
+        }
+      },
+      "id": "fetch-runs",
+      "name": "Fetch script_done Runs",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "command": "=docker compose exec -T worker python /scripts/llm/tts.py --run \"{{$json.property_RunID}}\""
+      },
+      "id": "tts",
+      "name": "TTS",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [720, 200]
+    },
+    {
+      "parameters": {
+        "command": "=docker compose exec -T worker python /scripts/video/imagegen.py --run \"{{$json.property_RunID}}\" --count 5"
+      },
+      "id": "images",
+      "name": "Images",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "command": "=docker compose exec -T worker python /scripts/video/pick_bgm.py --run \"{{$json.property_RunID}}\""
+      },
+      "id": "bgm",
+      "name": "Pick BGM",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [720, 400]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "merge",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{$('Fetch script_done Runs').item.json.id}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Status|select", "selectValue": "assets_done" }
+          ]
+        }
+      },
+      "id": "mark-assets-done",
+      "name": "Mark assets_done",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1200, 300]
+    }
+  ],
+  "connections": {
+    "Every 30m": { "main": [[{ "node": "Fetch script_done Runs", "type": "main", "index": 0 }]] },
+    "Fetch script_done Runs": {
+      "main": [[
+        { "node": "TTS", "type": "main", "index": 0 },
+        { "node": "Images", "type": "main", "index": 0 },
+        { "node": "Pick BGM", "type": "main", "index": 0 }
+      ]]
+    },
+    "TTS": { "main": [[{ "node": "Merge", "type": "main", "index": 0 }]] },
+    "Images": { "main": [[{ "node": "Merge", "type": "main", "index": 1 }]] },
+    "Pick BGM": { "main": [[{ "node": "Merge", "type": "main", "index": 2 }]] },
+    "Merge": { "main": [[{ "node": "Mark assets_done", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "tags": [{ "name": "trot-automation" }, { "name": "phase-2" }]
+}

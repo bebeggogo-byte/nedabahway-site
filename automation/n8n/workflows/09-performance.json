@@ -1,0 +1,109 @@
+{
+  "name": "09 — Performance (T+48h)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "hours", "hoursInterval": 6 }] }
+      },
+      "id": "trigger",
+      "name": "Every 6h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{$env.NOTION_DB_PIPELINE_RUNS}}",
+        "returnAll": false,
+        "limit": 20,
+        "filterType": "manual",
+        "matchType": "allFilter",
+        "filters": {
+          "conditions": [
+            { "key": "Status|select", "condition": "equals", "selectValue": "uploaded" },
+            { "key": "PublishedAt|date", "condition": "before", "date": "={{$now.minus({hours: 48}).toISO()}}" }
+          ]
+        }
+      },
+      "id": "fetch-due",
+      "name": "Fetch T+48h Runs",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "command": "=docker compose exec -T worker python /scripts/youtube/analytics.py --video \"{{$json.property_YouTubeVideoID}}\""
+      },
+      "id": "fetch-analytics",
+      "name": "YouTube Analytics",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "for (const item of items) {\n  const out = (item.json.stdout || '').trim();\n  try {\n    item.json.metrics = JSON.parse(out.split('\\n').pop());\n  } catch (e) {\n    item.json.metrics = {};\n  }\n}\nreturn items;"
+      },
+      "id": "parse",
+      "name": "Parse Metrics",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": "={{$env.NOTION_DB_PERFORMANCE}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "YouTubeVideoID|title", "title": "={{$('Fetch T+48h Runs').item.json.property_YouTubeVideoID}}" },
+            { "key": "Views48h|number", "numberValue": "={{$json.metrics.views || 0}}" },
+            { "key": "Impressions48h|number", "numberValue": "={{$json.metrics.impressions || 0}}" },
+            { "key": "AvgViewDurationSec|number", "numberValue": "={{$json.metrics.avg_view_duration_sec || 0}}" },
+            { "key": "RetentionPct|number", "numberValue": "={{$json.metrics.retention_pct || 0}}" },
+            { "key": "CTRPct|number", "numberValue": "={{$json.metrics.ctr_pct || 0}}" },
+            { "key": "Subscribers48h|number", "numberValue": "={{$json.metrics.subscribers_delta || 0}}" }
+          ]
+        }
+      },
+      "id": "create-perf",
+      "name": "Create performance Row",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1200, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{$('Fetch T+48h Runs').item.json.id}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Status|select", "selectValue": "measured" },
+            { "key": "MeasuredAt|date", "date": "={{$now.toISO()}}" }
+          ]
+        }
+      },
+      "id": "mark-measured",
+      "name": "Mark measured",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1440, 300]
+    }
+  ],
+  "connections": {
+    "Every 6h": { "main": [[{ "node": "Fetch T+48h Runs", "type": "main", "index": 0 }]] },
+    "Fetch T+48h Runs": { "main": [[{ "node": "YouTube Analytics", "type": "main", "index": 0 }]] },
+    "YouTube Analytics": { "main": [[{ "node": "Parse Metrics", "type": "main", "index": 0 }]] },
+    "Parse Metrics": { "main": [[{ "node": "Create performance Row", "type": "main", "index": 0 }]] },
+    "Create performance Row": { "main": [[{ "node": "Mark measured", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "tags": [{ "name": "trot-automation" }, { "name": "phase-2" }]
+}
