@@ -67,7 +67,7 @@ def score(seed: dict, *, keywords: list[str] | None = None) -> dict[str, Any]:
     body = seed.get("body_html", "") or ""
     text = _strip_html(body)
     coord = seed.get("coord", []) or []
-    kw_pool = [k for k in (keywords or []) + list(coord) if k]
+    kw_pool = [k for k in ([seed.get("keyword", "")] + (keywords or []) + list(coord)) if k]
 
     failed: list[str] = []
     s = {"search": 0, "depth": 0, "voice": 0, "structure": 0, "conversion": 0, "trust": 0}
@@ -102,7 +102,10 @@ def score(seed: dict, *, keywords: list[str] | None = None) -> dict[str, Any]:
     else:  # heuristic fallback (degraded)
         first_person = bool(re.search(r"(나는|내가|나의|우리는|내 )", text))
         s["voice"] += 5 if first_person else (failed.append("voice.first_person") or 0)
-        open_ending = text.rstrip().endswith("?") or text.rstrip()[-40:].find("?") >= 0
+        tail = text.rstrip()
+        # 물음표 또는 한국어 수사의문 종결(…했는가. / …일까. / …나요? 등) 인정
+        open_ending = ("?" in tail[-60:]) or bool(
+            re.search(r"(는가|은가|ㄴ가|을까|ㄹ까|할까|일까|까요|나요|는지|던가)[.…\"'’”\)\s]*$", tail))
         s["voice"] += 5 if open_ending else (failed.append("voice.open_ending") or 0)
         s["voice"] += 5 if coord else (failed.append("voice.coordinate") or 0)
 
