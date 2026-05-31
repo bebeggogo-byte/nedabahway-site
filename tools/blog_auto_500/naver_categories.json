@@ -1,14 +1,50 @@
 {
-  "version": "1.0",
-  "note": "네이버 블로그 카테고리 분류. 생성된 글은 naver_ready/<folder>/ 트레이에 분류되어 떨어진다. thxjx365님은 네이버 블로그에 아래 naver_category 이름으로 카테고리를 미리 만들어두면, 폴더↔카테고리가 1:1로 맞는다.",
+  "version": "2.0",
+  "note": "비즈니스 퍼널 기준 네이버 카테고리. 각 카테고리 = 타깃 바이어 + 주 CTA + 퍼널 단계. 6기둥의 시리즈를 수익 라인 위에 배치. 생성 글은 naver_ready/<folder>/ 트레이로 분류되어 떨어진다. thxjx365님은 naver_category 이름으로 카테고리를 미리 만들면 폴더↔카테고리가 1:1.",
   "tray_root": "agent/blog_auto/naver_ready",
+  "funnel": {"TOFU": "인지·브랜드", "MOFU": "신뢰·검토", "BOFU": "전환·구매"},
   "categories": [
-    {"key": "A", "clusters": ["진로교육"], "folder": "01_진로직업가치관", "naver_category": "진로·직업가치관", "pillars": ["A"]},
-    {"key": "B", "clusters": ["AI리터러시"], "folder": "02_AI리터러시자동화", "naver_category": "AI 리터러시·자동화", "pillars": ["B"]},
-    {"key": "C", "clusters": ["리더십"], "folder": "03_리더십팀", "naver_category": "리더십·팀", "pillars": ["C"]},
-    {"key": "D", "clusters": ["자기계발", "코칭"], "folder": "04_번아웃자기이해", "naver_category": "번아웃·자기이해", "pillars": ["D"]},
-    {"key": "E", "clusters": ["HRD"], "folder": "05_교육퍼실창직", "naver_category": "교육·퍼실리테이션·창직", "pillars": ["E"]},
-    {"key": "F", "clusters": [], "folder": "06_관찰SBM", "naver_category": "관찰·SBM", "pillars": ["F"]},
-    {"key": "R", "clusters": [], "folder": "00_관점노트", "naver_category": "관점 노트", "pillars": ["R"], "default": true}
+    {
+      "key": "BRAND", "folder": "00_브랜드관점", "naver_category": "관점 노트",
+      "target_buyer": "전체 방문자 (신규 인지)", "primary_cta": "뉴스레터 구독",
+      "funnel_stage": "TOFU", "revenue_line": "오디언스 빌드",
+      "series": ["F1", "F2", "R1", "R2"], "clusters": [], "default": true
+    },
+    {
+      "key": "LECTURE", "folder": "01_기관강의", "naver_category": "강의·특강 (기관·학교·기업)",
+      "target_buyer": "교육담당자·HRD·학교/기업 의사결정자", "primary_cta": "강의 의뢰 (nedabah.way@gmail.com)",
+      "funnel_stage": "BOFU", "revenue_line": "강의·특강 매출",
+      "series": ["B2", "E1", "E2"], "clusters": ["HRD"]
+    },
+    {
+      "key": "COACHING", "folder": "02_진로코칭", "naver_category": "진로·자기이해 코칭",
+      "target_buyer": "전환기 개인·번아웃 직장인·청년", "primary_cta": "본디 1:1 코칭 신청",
+      "funnel_stage": "BOFU", "revenue_line": "1:1 코칭 매출",
+      "series": ["A1", "D1", "D2", "D3", "E3"], "clusters": ["자기계발", "코칭", "진로교육"]
+    },
+    {
+      "key": "PARENT_STUDENT", "folder": "03_학부모학생", "naver_category": "학부모·학생 진로",
+      "target_buyer": "학부모·중고생·진학/취업 준비생", "primary_cta": "책 발췌 + 진로 자가진단 + 학부모 특강",
+      "funnel_stage": "MOFU", "revenue_line": "책·학부모특강·진단 리드",
+      "series": ["A3", "A4", "A5"], "clusters": []
+    },
+    {
+      "key": "SOLO_AI", "folder": "04_1인사업AI", "naver_category": "1인사업자·AI 자동화",
+      "target_buyer": "1인사업자·소상공인·실무자", "primary_cta": "AI 자동화 컨설팅 + 뉴스레터",
+      "funnel_stage": "MOFU", "revenue_line": "컨설팅·실무강의 매출",
+      "series": ["B1", "B3", "B4"], "clusters": ["AI리터러시"]
+    },
+    {
+      "key": "LEADERSHIP", "folder": "05_리더십팀", "naver_category": "팀장·관리자 리더십",
+      "target_buyer": "신임팀장·중간관리자·조직 HRD", "primary_cta": "리더십 강의 + 1:1 코칭",
+      "funnel_stage": "BOFU", "revenue_line": "리더십 강의·코칭 매출",
+      "series": ["C1", "C2", "C3"], "clusters": ["리더십"]
+    },
+    {
+      "key": "BOOK", "folder": "06_책인사이트", "naver_category": "책 «AI시대 진로직업가치관»",
+      "target_buyer": "잠재 독자·진로 실무자", "primary_cta": "책 구매·무료 발췌",
+      "funnel_stage": "BOFU", "revenue_line": "도서 판매",
+      "series": ["A2"], "clusters": []
+    }
   ]
 }

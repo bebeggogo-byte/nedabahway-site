@@ -1,14 +1,15 @@
-"""Map a seed to its Naver category + output tray folder.
+"""Map a seed to its Naver category (business-funnel taxonomy) + tray folder.
 
 Used by the daily organizer so each generated post lands in
 naver_ready/<folder>/<slug>/naver.html, ready for manual paste into the
-matching Naver blog category.
+matching Naver blog category. Categories are organized by buyer segment and
+conversion goal (see naver_categories.json), so each post funnels toward a
+specific revenue line.
 
 Routing precedence:
-  1. seed['pillar'] (plan-driven seeds carry A..F/R)
-  2. plan id prefix in seed['plan_id'] (e.g. "C1-001" -> "C")
-  3. seed['cluster'] (Obsidian-mined seeds: 진로교육|AI리터러시|리더십|HRD|자기계발|코칭)
-  4. default category (R / 관점 노트)
+  1. seed['series'] or plan_id series (e.g. "A2-001" -> "A2") -> category.series
+  2. seed['cluster'] (Obsidian-mined: 진로교육|AI리터러시|리더십|HRD|자기계발|코칭) -> category.clusters
+  3. default category (BRAND / 관점 노트)
 
 Standalone:
     python3 tools/blog_auto_500/categorize.py <seed.json>
@@ -29,27 +30,27 @@ def _load_categories() -> list[dict]:
 def categorize(seed: dict) -> dict:
     """Return the category record {key, folder, naver_category, ...} for a seed."""
     cats = _load_categories()
-    by_key = {c["key"]: c for c in cats}
-    default = next((c for c in cats if c.get("default")), cats[-1])
+    default = next((c for c in cats if c.get("default")), cats[0])
 
-    # 1. explicit pillar
-    pillar = (seed.get("pillar") or "").strip().upper()
-    if pillar in by_key:
-        return by_key[pillar]
+    # 1. series match (plan-driven seeds): seed['series'] or plan_id prefix "A2-001" -> "A2"
+    series = (seed.get("series") or "").strip().upper()
+    if not series:
+        plan_id = (seed.get("plan_id") or "").strip().upper()
+        if "-" in plan_id:
+            series = plan_id.split("-", 1)[0]
+    if series:
+        for c in cats:
+            if series in [s.upper() for s in c.get("series", [])]:
+                return c
 
-    # 2. plan id prefix (e.g. "C1-001" -> "C")
-    plan_id = seed.get("plan_id") or ""
-    if plan_id and plan_id[0].upper() in by_key:
-        return by_key[plan_id[0].upper()]
-
-    # 3. cluster match
+    # 2. cluster match (Obsidian-mined seeds)
     cluster = (seed.get("cluster") or "").strip()
     if cluster:
         for c in cats:
             if cluster in c.get("clusters", []):
                 return c
 
-    # 4. default
+    # 3. default
     return default
 
 
