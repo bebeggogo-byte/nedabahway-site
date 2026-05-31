@@ -5,6 +5,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>활동 기록 도구 — 네다바웨이</title>
+<meta name="description" content="강의와 코칭 활동을 기록하고 관리하는 도구. 단축키로 시작/종료하고 사진을 드롭해 활동 이력을 한눈에 정리합니다.">
+<link rel="canonical" href="https://www.nedabah.org/studio.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.nedabah.org/studio.html">
+<meta property="og:title" content="활동 기록 도구 — 네다바웨이">
+<meta property="og:description" content="강의와 코칭 활동을 기록하고 관리하는 도구. 단축키로 시작/종료하고 사진을 드롭해 활동 이력을 한눈에 정리합니다.">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-default.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="네다바웨이">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="활동 기록 도구 — 네다바웨이">
+<meta name="twitter:description" content="강의와 코칭 활동을 기록하고 관리하는 도구. 단축키로 시작/종료하고 사진을 드롭해 활동 이력을 한눈에 정리합니다.">
+<meta name="twitter:image" content="https://www.nedabah.org/assets/og-default.svg">
 <meta name="robots" content="noindex,nofollow">
 <link rel="manifest" href="/manifest.webmanifest">
 <style>
@@ -104,8 +118,8 @@
     <h2>본인 인증</h2>
     <p>강의·코칭 기록은 본인만 남길 수 있습니다.<br>Supabase에 등록한 이메일과 비밀번호로 로그인하세요.</p>
     <form id="loginForm">
-      <div class="field"><label>이메일</label><input type="email" id="email" required autocomplete="username"></div>
-      <div class="field"><label>비밀번호</label><input type="password" id="password" required autocomplete="current-password"></div>
+      <div class="field"><label for="email">이메일</label><input type="email" id="email" required autocomplete="username"></div>
+      <div class="field"><label for="password">비밀번호</label><input type="password" id="password" required autocomplete="current-password"></div>
       <button type="submit" class="btn-primary" id="loginBtn">로그인</button>
       <div id="loginError" class="auth-error" hidden></div>
     </form>
@@ -168,9 +182,9 @@
     <h3>새 활동 시작</h3>
     <p class="modal-desc">제목만 입력하면 됩니다. 시작 시각은 자동으로 기록됩니다.</p>
     <form id="startForm">
-      <div class="field"><label>강의·코칭 제목</label><input type="text" id="newTitle" required autofocus placeholder="예: 로고스교회 3040 부부학교"></div>
-      <div class="field"><label>장소 (선택)</label><input type="text" id="newLocation" placeholder="예: 서울 강남구"></div>
-      <div class="field"><label>태그 (쉼표로 구분, 선택)</label><input type="text" id="newTags" placeholder="예: 강의, 부부, 신앙"></div>
+      <div class="field"><label for="newTitle">강의·코칭 제목</label><input type="text" id="newTitle" required autofocus placeholder="예: 로고스교회 3040 부부학교"></div>
+      <div class="field"><label for="newLocation">장소 (선택)</label><input type="text" id="newLocation" placeholder="예: 서울 강남구"></div>
+      <div class="field"><label for="newTags">태그 (쉼표로 구분, 선택)</label><input type="text" id="newTags" placeholder="예: 강의, 부부, 신앙"></div>
       <div class="modal-actions">
         <button type="button" class="btn-ghost" data-close>취소</button>
         <button type="submit" class="btn-primary" style="flex:1;">시작</button>
@@ -187,7 +201,7 @@
     <div class="drop-zone" id="dropZone">
       <div class="drop-zone-icon">📷</div>
       <div class="drop-zone-text">사진을 끌어다 놓거나 <strong>클릭해서 선택</strong></div>
-      <input type="file" id="photoInput" accept="image/*" hidden>
+      <input type="file" id="photoInput" aria-label="활동 사진 업로드" accept="image/*" hidden>
     </div>
     <div class="preview" id="preview"><img id="previewImg" alt="미리보기"></div>
     <div class="modal-actions">
