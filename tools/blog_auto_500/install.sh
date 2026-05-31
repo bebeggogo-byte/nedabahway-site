@@ -13,10 +13,11 @@ if [ ! -d "$AGENT_BLOG" ]; then
 fi
 
 echo "→ 설치 대상: $AGENT_BLOG"
-for f in rubric_scorer.py categorize.py plan_runner.py daily3.py plan_500.json naver_categories.json; do
+for f in rubric_scorer.py categorize.py plan_runner.py daily3.py plan_500.json naver_categories.json run_daily3.sh; do
   cp "$HERE/$f" "$AGENT_BLOG/$f"
   echo "  복사: $f"
 done
+chmod +x "$AGENT_BLOG/run_daily3.sh"
 
 mkdir -p "$AGENT_BLOG/naver_ready" "$AGENT_BLOG/state"
 echo "  생성: naver_ready/ (카테고리 트레이), state/ (진행 기록)"
