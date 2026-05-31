@@ -143,6 +143,7 @@ next-row (이전 장 · 권 차례 · 다음 장)
 
 ## 7. PDF·공유 산출물 정책 [HARD]
 
-- **PDF·공유 버튼은 SBM 관찰(콘텐츠) 완수 후에만 작업한다.** 관찰이 끝나지 않은 장/권의 PDF를 미리 생성하지 않는다.
-- 도구는 준비만 해 둔다: `magazine/_meta/build_pdf.py`(권별), `build_pdf_chapter.py`(장별), `assets/sbm-share.js`(장 공유 버튼).
-- 생성 시점: 성경 전체(또는 사용자가 지정한 범위)의 관찰이 100점으로 완료된 뒤 일괄 생성·삽입.
+- **PDF·공유는 100점 통과(관찰 완료)한 장/권에 대해서만 생성·배포한다.** 100점 미달이거나 placeholder인 장의 PDF는 만들지 않는다.
+- 권이 100점으로 전권 완성되면: ① 권별 PDF(`build_pdf.py CODE`) ② 장별 PDF(`build_pdf_chapter.py CODE`) ③ 권 index에 권 PDF 다운로드 버튼 ④ 각 장 페이지에 `sbm-share.js`(장 PDF + 공유 버튼)를 일괄 적용한 뒤 배포한다.
+- 도구: `magazine/_meta/build_pdf.py`(권별), `build_pdf_chapter.py`(장별), `assets/sbm-share.js`(장 공유/PDF 버튼).
+- 승인·배포 흐름: 9단계 관찰 생산 → `score_chapter.py` 100점 → 커밋 → 권 완성 시 PDF·버튼 → main 머지(배포).
