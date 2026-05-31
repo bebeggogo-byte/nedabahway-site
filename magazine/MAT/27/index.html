@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>마태복음 27장 — Observatory | 네다바웨이</title>
+<meta name="description" content="마태복음 27장을 9단계로 같이 관찰합니다. 빌라도의 재판, 십자가 처형, "엘리 엘리 라마 사박다니", 그리고 죽음과 장사.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/MAT/27/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/MAT/">마태복음</a> · 27장</div>
+      <h1>마태복음 27장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">MAT-027 · 복음서 · 헬라어</div>
+      <p class="essence">손 씻는 빌라도와 두 갈래의 외침, 갈라진 휘장. 한 낮의 어둠 가운데 "엘리 엘리 라마 사박다니"가 한 번 울린다.</p>
+    </header>
+    
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: MAT-027</p>
+<p>book: 마태복음</p>
+<p>book_en: Matthew</p>
+<p>chapter: 27</p>
+<p>bible_block: 복음서</p>
+<p>canon: 신약</p>
+<p>genre: 수난 내러티브</p>
+<p>language: 헬라어 (+아람어 인용)</p>
+<p>verse_count: 66</p>
+<p>observed_facts_count: 26</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>greek_terms: [hegemon, stauros, golgotha, skotos, katapetasma, kentyrion, taphos, sphragizo]</p>
+<p>aramaic_terms: [Eli Eli lama sabachthani]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-31</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>마태복음 27장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 마태복음 27장입니다. 무거운 장입니다. 선정적 묘사 없이, 본문이 보여 주는 사실만 절제하여 따라가 보겠습니다. 먼저 끝까지 낭독하고, 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 27:1~66, 약 7분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 한 낮인데 어둠이 깔리는 게 크게 느껴졌어요. 45절 "낮 열두 시부터 온 땅에 어둠이 임하여 세 시까지"가 분위기를 통째로 바꿨어요.</p>
+
+<p><strong>P01 한나래</strong>: 저는 외침이 두 갈래로 갈리는 게 인상적이었어요. 무리는 "십자가에 못 박으소서" 하고, 끝에는 백부장이 "이는 진실로 하나님의 아들이었도다" 해요. 같은 자리에서 두 외침이 나와요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 셋으로 보여요. 빌라도의 재판 자리, 골고다의 십자가, 그리고 무덤이에요. 재판 → 처형 → 장사로 흐르는데, 가운데 어둠이 끼어 있어요.</p>
+
+<p><strong>P02 이진우</strong>: 반복이 들렸어요. "유대인의 왕"이라는 말이 여러 번 나오고(11·29·37·42절), 조롱과 함께 그 호칭이 자꾸 붙어요.</p>
+
+<p><strong>P05 김미영</strong>: 소품이 손에 잡혔어요. 손 씻는 물, 가시관, 갈대, 홍포, 제비 뽑는 옷, 신 포도주, 그리고 갈라진 휘장과 큰 돌. 작은 물건들이 무거운 자리를 채웠어요.</p>
+
+<p><strong>P11 나경아</strong>: 46절 "엘리 엘리 라마 사박다니"가 또렷이 남았어요. 본문이 그 소리를 그대로 음역해 주고, "곧 나의 하나님, 나의 하나님, 어찌하여 나를 버리셨나이까 하는 뜻이라"고 풀어 주는 게 인상적이었습니다.</p>
+
+<p><strong>성령일 선교사</strong>: 그 첫 느낌을 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P05 김미영</strong>: 무대가 셋이에요. 2절 "총독 빌라도에게 넘겨주니라"의 재판 자리, 33절 "골고다 즉 해골의 곳"의 처형 자리, 60절 "바위 속에 판 새 무덤"의 장사 자리예요.</p>
+
+<p><strong>P04 최현국</strong>: 소품이 줄줄이 나와요. 24절 손 씻는 물, 28-29절 홍포·가시관·갈대, 35절 제비 뽑아 나눈 옷, 34·48절 쓸개 탄 포도주·신 포도주, 51절 찢어진 휘장, 60절 큰 돌, 66절 인봉이에요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 몇 개 두면, 2절 "총독"은 <em>hegemon</em>(헤게몬), 33절 "골고다"는 <em>golgotha</em>로 아람어에서 온 '해골'이라는 뜻입니다. 45절 "어둠"은 <em>skotos</em>(스코토스), 51절 "휘장"은 <em>katapetasma</em>(카타페타스마)예요. 성전 휘장을 가리키는 말입니다. 배경으로만 둡니다.</p>
+
+<p><strong>P02 이진우</strong>: 9-10절에 "예레미야를 통하여 하신 말씀이 이루어졌나니"라며 은 삼십과 토기장이의 밭을 인용해요. 35절도 "내 겉옷을 나누며 속옷을 제비 뽑나이다"(시 22:18)를 배경으로 깔고요. 옛 본문이 자꾸 겹쳐요.</p>
+
+<p><strong>P07 오지혜</strong>: 시간 배경이 박혀 있어요. 45절 "낮 열두 시부터 세 시까지", 46절 "세 시쯤에", 57절 "저물었을 때에". 한 낮의 시간이 또렷이 표시돼요.</p>
+
+<p><strong>P11 나경아</strong>: 46절 "엘리 엘리 라마 사박다니"는 아람어 음역입니다(시 22:1의 결). 본문이 그 소리를 그대로 적고 뜻을 풀어 줍니다. 54절 "백부장"은 <em>kentyrion</em>(켄튀리온)이고요. 배경 자료로만 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: 손 씻는 물과 갈라진 휘장, 골고다와 새 무덤을 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계로 보이시는지요.</p>
+
+<p><strong>P02 이진우</strong>: 1-2절은 "새벽에… 결박하여 끌고 가서 총독 빌라도에게 넘겨주니라"로, 넘겨짐으로 열려요. 66절은 "그들이 경비병과 함께 가서 돌을 인봉하고 무덤을 굳게 지키니라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 사람의 손에 넘겨지는 자리고, 끝은 돌로 인봉된 무덤이에요. 끌려감으로 열려 닫힌 무덤으로 닫혀요.</p>
+
+<p><strong>P01 한나래</strong>: 가운데 50-51절이 경첩처럼 있어요. "예수께서 다시 크게 소리 지르시고 영혼이 떠나시니라. 이에 성소 휘장이 위로부터 아래까지 찢어져 둘이 되고." 떠나심과 찢어짐이 한 자리에 있어요.</p>
+
+<p><strong>성령일 선교사</strong>: 넘겨짐으로 열려 인봉된 무덤으로 닫히는 폭을 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 예수, 빌라도와 그의 아내(19절), 무리, 대제사장들, 바라바, 구레네 사람 시몬(32절), 강도 둘(38절), 백부장과 함께 지키던 자들(54절), 멀리서 보던 여자들(55-56절), 아리마대 요셉(57절)이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황은 넘겨짐과 갈라짐이에요. 17절 "바라바냐 그리스도라 하는 예수냐", 24절 빌라도가 손을 씻으며 "이 사람의 피에 대하여 나는 무죄하니". 선택과 책임이 갈라지는 자리예요.</p>
+
+<p><strong>P04 최현국</strong>: 사상은 "왕"과 "버림"이에요. 37절 패에 "이는 유대인의 왕 예수라" 적히고, 42절 "그가 이스라엘의 왕이로다 지금 십자가에서 내려올지어다", 46절 "어찌하여 나를 버리셨나이까". 왕이라는 조롱과 버림의 외침이 한 자리에 있어요.</p>
+
+<p><strong>P11 나경아</strong>: 46절의 외침은 아람어 "<em>Eli Eli lama sabachthani</em>"로, 본문이 그대로 음역하고 뜻을 풀어 줍니다(시 22:1의 첫 줄과 같은 결). 그리고 "왕"(<em>basileus</em>) 호칭이 조롱 속에 거듭 붙는 것을 어휘로만 기록합니다.</p>
+
+<p><strong>P02 이진우</strong>: 54절이 인상적이에요. 지키던 백부장과 함께한 자들이 "지진과 그 된 일들을 보고 심히 두려워하여 이는 진실로 하나님의 아들이었도다" 해요. 조롱하던 자리 곁에서 다른 고백이 나와요.</p>
+
+<p><strong>성령일 선교사</strong>: 아람어 음역의 한 번 울림과 "왕"의 거듭됨, 백부장의 고백을 어휘·위치로만 남기고, 해석은 서두르지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 여섯 컷 정도로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-10절)</strong>: 빌라도에게 넘겨짐, 유다가 은 삼십을 던지고 물러감, 토기장이의 밭</li>
+<li><strong>컷 2 (11-26절)</strong>: 빌라도의 심문, 바라바냐 예수냐, 빌라도가 손을 씻음, 넘겨줌</li>
+<li><strong>컷 3 (27-31절)</strong>: 군병들의 조롱, 홍포·가시관·갈대, "유대인의 왕이여"</li>
+<li><strong>컷 4 (32-44절)</strong>: 구레네 시몬, 골고다, 제비 뽑은 옷, 패의 글, 두 강도, 지나가는 자들의 조롱</li>
+<li><strong>컷 5 (45-56절)</strong>: 한 낮의 어둠, "엘리 엘리 라마 사박다니", 영혼이 떠나심, 찢어진 휘장, 백부장의 고백</li>
+<li><strong>컷 6 (57-66절)</strong>: 아리마대 요셉, 세마포와 새 무덤, 큰 돌, 경비병과 인봉</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 1-2가 재판, 컷 3-4가 처형의 길, 컷 5가 어둠과 떠나심, 컷 6이 장사예요. 재판 → 처형 → 장사의 흐름이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 흐름을 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 빌라도의 아내가 끼어들어요. 19절 "그 무죄한 사람에게 아무 상관도 하지 마옵소서 오늘 꿈에 내가 그 사람으로 인하여 애를 많이 태웠나이다." 재판 한가운데 꿈 이야기가 들어와요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 24절에서 빌라도가 손을 씻으며 "나는 무죄하니 너희가 당하라" 하는데, 손을 씻는 그 행동이 책임을 옮기는 자리로 놓여서요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 34절 "쓸개 탄 포도주"와 48절 "신 포도주"는 둘 다 시편 69:21("그들이 쓸개를 나의 음식물로 주며 내가 목마를 때에 초를 마시게 하였사오니")의 결과 겹칩니다. 옛 본문의 그림이 처형 자리에 놓이는 대목이에요. 배경으로만 둡니다.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 50-53절에 떠나심과 함께 여러 일이 한꺼번에 나와요. 휘장이 찢어지고, 땅이 진동하고, 바위가 터지고, 무덤이 열려요. 한 자리에 여러 표적이 겹쳐요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 46절의 "어찌하여 나를 버리셨나이까"가 시편 22편의 첫 줄과 같은 결인데, 그 시편은 뒤로 갈수록 찬송으로 바뀌어요. 첫 줄만 울리는 그 자리가 무엇을 여는지 물음으로 남겨요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 55-56절이 걸려요. "예수를 섬기며 갈릴리에서부터 따라온 많은 여자가 거기 있어 멀리서 바라보고 있으니." 멀리서 끝까지 바라본 이들이 조용히 기록돼서요.</p>
+
+<p><strong>P11 나경아</strong>: 그 여자들의 이름이 56절에 적힙니다(막달라 마리아 등). 끝까지 남아 본 증인이 누구인지 본문이 밝히는 위치만 관찰로 남기고, 결은 보류합니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요. 절제하여, 본문이 보여 주는 사실만 잇겠습니다.</p>
+
+<p><strong>P05 김미영</strong>: 새벽에 결박하여 빌라도에게 넘깁니다. 뉘우친 유다가 은 삼십을 성소에 던지고 물러가고, 그 돈으로 토기장이의 밭을 삽니다.</p>
+
+<p><strong>P01 한나래</strong>: 빌라도가 "유대인의 왕이냐" 묻고, 무리에게 "바라바냐 그리스도라 하는 예수냐" 합니다. 그의 아내가 꿈 이야기를 전하나, 무리는 "십자가에 못 박으소서" 합니다. 빌라도가 손을 씻으며 "나는 무죄하다" 하고 넘깁니다.</p>
+
+<p><strong>P04 최현국</strong>: 군병들이 홍포를 입히고 가시관을 씌우며 갈대를 들려 "유대인의 왕이여" 조롱합니다. 구레네 사람 시몬에게 십자가를 지우고, 골고다에 이릅니다. 옷을 제비 뽑아 나누고, "이는 유대인의 왕 예수라"는 패를 머리 위에 둡니다. 좌우에 두 강도가 있고, 지나가는 자들이 조롱합니다.</p>
+
+<p><strong>P02 이진우</strong>: 낮 열두 시부터 온 땅에 어둠이 임하여 세 시까지 이릅니다. 세 시쯤에 크게 "엘리 엘리 라마 사박다니" 부르짖으시고, 신 포도주를 적신 해면이 올려집니다.</p>
+
+<p><strong>P11 나경아</strong>: 다시 크게 소리 지르시고 영혼이 떠나십니다. 성소 휘장이 위로부터 아래까지 찢어지고, 땅이 진동하며 바위가 터집니다. 지키던 백부장과 함께한 자들이 두려워하며 "진실로 하나님의 아들이었도다" 합니다. 저물 때에 아리마대 요셉이 시신을 거두어 세마포로 싸 새 무덤에 두고 큰 돌을 굴려 막으며, 이튿날 경비병과 함께 돌을 인봉하는 것으로 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 손 씻는 재판 자리에서 시작해, 한 낮의 어둠과 한 번 울린 부르짖음을 지나, 갈라진 휘장과 인봉된 무덤으로 흐르는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "손을 씻은 빌라도, 두 갈래의 외침"</p>
+<p><strong>P02 이진우</strong>: "이는 유대인의 왕 예수라"</p>
+<p><strong>P04 최현국</strong>: "한 낮의 어둠, 세 시까지"</p>
+<p><strong>P05 김미영</strong>: "갈라진 휘장, 인봉된 무덤"</p>
+<p><strong>P07 오지혜</strong>: "엘리 엘리 라마 사박다니"</p>
+<p><strong>P11 나경아</strong>: "<em>Golgotha · Skotos · Katapetasma</em> — 해골·어둠·휘장"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "한 낮의 어둠 가운데 한 번 울린 부르짖음과 갈라진 휘장"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 그 재판 자리와 골고다와 무덤 앞을 천천히 걸으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 저는 한 낮의 어둠 가운데 멀리서 바라보는 자리에 섭니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: MAT-027</p>
+<p>book: 마태복음</p>
+<p>chapter: 27</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>마태복음 27장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대 셋 — 빌라도의 재판 자리(2), 골고다(33), 새 무덤(60).</li>
+<li>소품 = 손 씻는 물(24), 홍포·가시관·갈대(28-29), 제비 뽑은 옷(35), 신 포도주(48), 찢어진 휘장(51), 큰 돌·인봉(60·66).</li>
+<li>원어 — <em>hegemon</em>(총독)·<em>golgotha</em>(해골)·<em>skotos</em>(어둠)·<em>katapetasma</em>(휘장)·<em>kentyrion</em>(백부장).</li>
+<li>아람어 음역 — "<em>Eli Eli lama sabachthani</em>"(46절), 본문이 뜻을 풀어 줌(시 22:1의 결).</li>
+<li>시간 표지 — "열두 시부터 세 시까지"(45), "저물 때"(57).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>한 낮의 어둠(45)이 분위기를 통째로 바꿈.</li>
+<li>두 갈래의 외침 — 무리의 "못 박으소서"와 백부장의 "하나님의 아들이었도다".</li>
+<li>"유대인의 왕" 호칭이 조롱과 함께 거듭(11·29·37·42).</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1-2절: "총독 빌라도에게 넘겨주니라" — 넘겨짐으로 열림.</li>
+<li>66절: "돌을 인봉하고 무덤을 굳게 지키니라" — 인봉된 무덤으로 닫힘.</li>
+<li>50-51절이 경첩 — 영혼이 떠나심과 휘장이 찢어짐이 한 자리.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 예수 / 빌라도·그의 아내(19) / 무리·대제사장 / 바라바 / 구레네 시몬(32) / 강도 둘(38) / 백부장(54) / 여자들(55-56) / 아리마대 요셉(57).</li>
+<li>상황 = 넘겨짐과 갈라짐(17·24).</li>
+<li>사상 = "왕"과 "버림" — 패의 글(37), 조롱(42), 부르짖음(46).</li>
+<li>아람어 음역(46) 한 번 울림. "왕" 호칭 거듭. 백부장의 다른 고백(54).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-10): 빌라도에게 넘겨짐, 유다의 은 삼십, 토기장이의 밭.</li>
+<li>컷 2 (11-26): 심문, 바라바냐 예수냐, 손 씻음, 넘겨줌.</li>
+<li>컷 3 (27-31): 군병의 조롱, 홍포·가시관, "유대인의 왕이여".</li>
+<li>컷 4 (32-44): 구레네 시몬, 골고다, 옷, 패, 두 강도, 조롱.</li>
+<li>컷 5 (45-56): 어둠, 부르짖음, 떠나심, 찢어진 휘장, 백부장의 고백.</li>
+<li>컷 6 (57-66): 아리마대 요셉, 새 무덤, 큰 돌, 인봉.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>hegemon</em>(ἡγεμών) — 총독. 2·11·14·15·27절.</li>
+<li><em>stauros</em>(σταυρός) — 십자가. 32·40·42절.</li>
+<li><em>golgotha</em>(Γολγοθᾶ) — 해골의 곳. 33절(아람어 유래).</li>
+<li><em>skotos</em>(σκότος) — 어둠. 45절 "온 땅에 어둠".</li>
+<li><em>katapetasma</em>(καταπέτασμα) — 휘장. 51절 "성소 휘장이 찢어짐".</li>
+<li><em>kentyrion</em>(κεντυρίων) — 백부장. 54절(고백자).</li>
+<li>아람어 "<em>Eli Eli lama sabachthani</em>" — 46절(시 22:1의 결, 본문이 음역+풀이).</li>
+<li><em>taphos</em>(τάφος) — 무덤. 60·61·64절 "새 무덤".</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>재판(1-26) → 처형의 길(27-44) → 어둠·떠나심(45-56) → 장사(57-66)의 하강.</li>
+<li>"유대인의 왕" 호칭의 거듭(11·29·37·42).</li>
+<li>구약의 겹침 — 은 삼십·토기장이(슥 11·렘), 제비 뽑은 옷(시 22:18), 쓸개·신 포도주(시 69:21), 부르짖음(시 22:1).</li>
+<li>떠나심과 함께 겹치는 표적들(51-53) — 휘장·지진·바위·무덤.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>총독은 로마의 재판권을 가진 자 — "넘겨줌"(2)의 배경.</li>
+<li>"성소 휘장"(51)은 성전 안의 가림막 — 위로부터 아래까지 찢어짐을 본문이 보고.</li>
+<li>아람어 음역(46)은 시 22:1의 첫 줄과 같은 결 — 본문이 뜻을 직접 풀어 줌(배경).</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>마 27:9-10 ↔ 슥 11:12-13 / 렘 32 (은 삼십·토기장이의 밭)</li>
+<li>마 27:35 ↔ 시 22:18 (옷을 나누고 제비 뽑음)</li>
+<li>마 27:34·48 ↔ 시 69:21 (쓸개·초)</li>
+<li>마 27:46 ↔ 시 22:1 (나의 하나님, 어찌하여 나를 버리셨나이까)</li>
+<li>마 27:51 ↔ 출 26:31-33 (성소 휘장)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>새벽에 결박하여 빌라도에게 넘긴다. 뉘우친 유다가 은 삼십을 던지고 물러가며, 그 돈으로 토기장이의 밭을 산다. 빌라도가 "바라바냐 예수냐" 묻고, 아내가 꿈 이야기를 전하나 무리는 "못 박으소서" 한다. 빌라도가 손을 씻으며 넘긴다. 군병들이 홍포·가시관으로 조롱하고, 구레네 시몬에게 십자가를 지워 골고다에 이른다. 옷을 제비 뽑고, "이는 유대인의 왕 예수라"는 패를 둔다. 낮 열두 시부터 세 시까지 온 땅에 어둠이 임하고, 세 시쯤 "엘리 엘리 라마 사박다니" 부르짖으신다. 다시 크게 소리 지르시고 영혼이 떠나시니, 성소 휘장이 위로부터 아래까지 찢어지고 땅이 진동한다. 백부장이 "진실로 하나님의 아들이었도다" 한다. 저물 때 아리마대 요셉이 시신을 거두어 새 무덤에 두고 큰 돌로 막으며, 이튿날 경비병과 함께 인봉하는 것으로 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"손 씻은 빌라도, 한 낮의 어둠 — 엘리 엘리 라마 사박다니"</strong></li>
+<li>초벌 부제: "한 낮의 어둠 가운데 한 번 울린 부르짖음과 갈라진 휘장"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (헬라어 7 + 아람어 음역 1 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (총독·성소 휘장·구약 겹침)</li>
+<li>[x] 미해결 질문 1개 이상 (open_questions 6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음 / 수난 묘사 절제·비선정적</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 6개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>처형 장면(27-44)이 선정적 묘사로 가지 않도록 → 소품과 사건 사실만 절제하여 기록.</li>
+<li>46절 부르짖음이 신학 진술로 굳지 않도록 → 아람어 음역과 시 22:1의 결만 보존.</li>
+<li>51-53절의 겹친 표적은 한 자리에 놓인 사실로만 기록, 관계는 보류.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: MAT-027</p>
+<p>book: 마태복음</p>
+<p>chapter: 27</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>마태복음 27장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 재판 한가운데 왜 아내의 꿈(19절)이 들어오는가?</h2>
+
+<ul>
+<li>"그 무죄한 사람에게 아무 상관도 하지 마옵소서."</li>
+<li>꿈의 자리는 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q2. 손 씻음(24절)은 무엇을 옮기는가?</h2>
+
+<ul>
+<li>"나는 무죄하니 너희가 당하라."</li>
+<li>책임이 옮겨지는 결은 묵상으로 이월.</li>
+</ul>
+
+<h2>Q3. "어찌하여 나를 버리셨나이까"(46절)는 무엇을 여는가?</h2>
+
+<ul>
+<li>시 22:1의 첫 줄과 같은 결, 그 시편은 뒤에 찬송으로.</li>
+<li>첫 줄만 울리는 자리는 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q4. 떠나심과 함께 왜 표적이 겹치는가?(51-53절)</h2>
+
+<ul>
+<li>휘장·지진·바위·무덤이 한 자리에.</li>
+<li>겹침의 결은 보류.</li>
+</ul>
+
+<h2>Q5. 조롱 곁에서 왜 다른 고백(54절)이 나오는가?</h2>
+
+<ul>
+<li>지키던 백부장의 "진실로 하나님의 아들이었도다".</li>
+<li>같은 자리의 두 외침은 묵상에서 다시.</li>
+</ul>
+
+<h2>Q6. 멀리서 끝까지 본 여자들(55-56절)은 무엇을 증언하는가?</h2>
+
+<ul>
+<li>갈릴리에서부터 따라와 끝까지 바라봄.</li>
+<li>그 증인의 자리는 답하지 않고 머문다.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">손 씻은 빌라도, 한 낮의 어둠.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: MAT-027</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-31</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 마태복음 27장은 손 씻는 재판 자리에서 시작해 <em>한 낮의 어둠 가운데 한 번 울린 부르짖음과 갈라진 휘장으로 가는</em> 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 새벽에 넘겨짐으로 열린다. 빌라도가 "바라바냐 예수냐" 묻고 손을 씻어 책임을 옮기며, 무리는 한 갈래로 외친다. 조롱의 홍포와 가시관, 골고다의 패와 제비 뽑은 옷을 지나, 낮 열두 시부터 세 시까지 온 땅에 어둠이 임한다. "엘리 엘리 라마 사박다니"가 한 번 울리고, 영혼이 떠나시자 성소 휘장이 위로부터 아래까지 찢어진다. 조롱 곁에서 백부장이 "하나님의 아들이었도다" 고백하고, 저물 때 아리마대 요셉이 새 무덤에 두고 큰 돌로 막아 인봉하는 것으로 닫힌다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>재판 자리 → 골고다 → 새 무덤. 소품 — 손 씻는 물·가시관·옷·신 포도주·찢어진 휘장·큰 돌.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>한 낮의 어둠. 두 갈래의 외침. "유대인의 왕" 호칭의 거듭.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 넘겨짐(1-2). 끝 — 인봉된 무덤(66).</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>빌라도·아내 / 바라바 / 구레네 시몬 / 백부장 / 여자들 / 아리마대 요셉. 사상 = 왕과 버림.</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 넘겨짐(1-10). 컷 2 심문(11-26). 컷 3 조롱(27-31). 컷 4 골고다(32-44). 컷 5 어둠·떠나심(45-56). 컷 6 장사(57-66).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>아내의 꿈(19). 손 씻음(24). 시 22:1의 결(46). 겹친 표적(51-53). 끝까지 본 여자들(55-56).</td></tr>
+<tr><td>7 동영상</td><td>손 씻는 재판 → 조롱의 길 → 한 낮의 어둠·부르짖음 → 갈라진 휘장 → 인봉된 무덤으로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "손 씻은 빌라도, 한 낮의 어둠". 부제 — "한 낮의 어둠 가운데 한 번 울린 부르짖음과 갈라진 휘장".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>재판 자리와 골고다와 무덤 앞을 걷는다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 손 씻음과 외침</strong>: 빌라도가 손을 씻어 책임을 옮기고(24), 무리는 한 갈래로 외친다. 재판 자리에서 책임이 여러 손으로 갈린다.</p>
+<p>2. <strong>결 2 — 한 낮의 어둠</strong>: 정오의 빛이 세 시까지 어둠으로 덮인다(45). 가장 밝아야 할 시간에 어둠이 무대를 바꾼다.</p>
+<p>3. <strong>결 3 — 갈라진 휘장과 두 외침</strong>: 떠나심과 함께 휘장이 위로부터 아래까지 찢어지고(51), 조롱 곁에서 백부장의 다른 고백이 나온다. 닫힘의 자리에서 갈라짐과 고백이 함께 온다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>마 26:63-64</strong> (대제사장 앞의 답), <strong>마 16:21</strong> (수난 예고).</li>
+<li>다른 권 — <strong>시 22:1·18</strong> (버림·제비 뽑은 옷), <strong>시 69:21</strong> (쓸개·초), <strong>슥 11:12-13</strong> (은 삼십), <strong>출 26:31-33</strong> (성소 휘장).</li>
+<li>정경 흐름 — 27장의 인봉된 무덤은 곧 28장의 빈 무덤으로 이어지며, 닫힘에서 열림으로 자리를 넘긴다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 손 씻는 물이 담긴 재판 자리를 본다.</li>
+<li><strong>멈춤 1</strong>: "바라바냐 예수냐"는 선택 앞에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: 한 낮을 덮은 어둠 가운데 멈춘다.</li>
+<li><strong>멈춤 3</strong>: 한 번 울린 부르짖음과 갈라진 휘장 앞에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *닫힘의 자리에 갈라짐과 고백이 함께 있다*는 결을 손에 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *멀리서 끝까지 바라보는 자리* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 빌라도가 손을 씻는다</li>
+<li>[x] 무리가 한 갈래로 외친다</li>
+<li>[x] "유대인의 왕"이라는 패가 놓인다</li>
+<li>[x] 한 낮에 어둠이 임한다</li>
+<li>[x] "엘리 엘리 라마 사박다니"가 울린다</li>
+<li>[x] 성소 휘장이 찢어진다</li>
+<li>[x] 끝은 인봉된 무덤이다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>갈라진 휘장</em>.</p></div>
+        </section>
+
+    
+    <div class="next-row">
+      <a href="/magazine/MAT/26/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">마태복음 26장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/MAT/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">마태복음 28장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/MAT/28/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">마태복음 28장</div><div class="nav-preview">부활·빈 무덤·지상명령으로 이어집니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/MAT/27/',
+      title: '마태복음 27장',
+      excerpt: '손 씻는 빌라도와 두 갈래의 외침, 갈라진 휘장. 한 낮의 어둠 가운데 "엘리 엘리 라마 사박다니"가 한 번 울린다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+
+
+
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
