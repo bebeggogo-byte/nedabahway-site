@@ -44,6 +44,29 @@ def render_naver(seed: dict, cat: dict) -> str:
     )
 
 
+def load_seed(fp: Path) -> dict:
+    """Load a seed JSON, auto-repairing common agent output defects:
+    - unescaped straight double-quotes inside body_html (last string field)
+    - coord arrays with fewer than 3 entries (pad with title)
+    Repaired content is written back so generated trays stay consistent.
+    """
+    t = fp.read_text(encoding="utf-8")
+    try:
+        seed = json.loads(t)
+    except Exception:
+        key = '"body_html": "'
+        i = t.index(key) + len(key)
+        j = t.rindex('"')
+        t = t[:i] + t[i:j].replace('\\"', '"').replace('"', '\\"') + t[j:]
+        seed = json.loads(t)  # raise if still broken
+        fp.write_text(t, encoding="utf-8")
+    if len(seed.get("coord", [])) < 3:
+        while len(seed.get("coord", [])) < 3:
+            seed.setdefault("coord", []).append(seed.get("title", ""))
+        fp.write_text(json.dumps(seed, ensure_ascii=False, indent=2), encoding="utf-8")
+    return seed
+
+
 def load_progress() -> dict:
     if PROGRESS.exists():
         try:
@@ -57,9 +80,12 @@ def main() -> int:
     prog = load_progress()
     rows = []
     for fp in sorted(RAW.glob("*.seed.json")):
-        seed = json.loads(fp.read_text(encoding="utf-8"))
-        kw = []
-        result = score(seed, keywords=kw)
+        try:
+            seed = load_seed(fp)
+        except Exception as e:
+            print(f"SKIP {fp.stem}: invalid JSON ({e})")
+            continue
+        result = score(seed)
         cat = categorize(seed)
         slug = seed.get("slug", fp.stem)
         dest = OUT / cat["folder"] / slug
