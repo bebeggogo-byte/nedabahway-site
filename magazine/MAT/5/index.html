@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>마태복음 5장 — Observatory | 네다바웨이</title>
+<meta name="description" content="마태복음 5장을 9단계로 같이 관찰합니다. 산 위의 팔복, 소금과 빛, 그리고 "나는 너희에게 이르노니".">
+<link rel="canonical" href="https://www.nedabah.org/magazine/MAT/5/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/MAT/">마태복음</a> · 5장</div>
+      <h1>마태복음 5장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">MAT-005 · 복음서 · 헬라어</div>
+      <p class="essence">산 위에서 선언된 거꾸로 선 복이, 소금과 빛의 정체를 지나 "온전하라"는 율법의 온전함으로 이어진다.</p>
+    </header>
+
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: MAT-005</p>
+<p>book: 마태복음</p>
+<p>book_en: Matthew</p>
+<p>chapter: 5</p>
+<p>bible_block: 복음서</p>
+<p>canon: 신약</p>
+<p>genre: 담화·산상수훈</p>
+<p>language: 헬라어</p>
+<p>verse_count: 48</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>greek_terms: [makarios, basileia, dikaiosyne, halas, phos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-24</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>마태복음 5장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 마태복음 5장입니다. 산상수훈의 첫 장이지요. 먼저 끝까지 낭독하고, 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 5:1~48, 약 7분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 앞부분(3-10절)이 노래 같았어요. "복이 있나니"가 후렴처럼 반복돼서, 운율이 느껴졌어요. 포근하면서도 뒤집힌 복이라 묘했어요.</p>
+
+<p><strong>P01 한나래</strong>: 저도요. 앞은 노래인데, 21절부터는 갑자기 또박또박 가르치는 결로 바뀌어요. "너희가 들었으나… 나는 너희에게 이르노니"가 반복되며 단호해져요.</p>
+
+<p><strong>P04 최현국</strong>: 무대는 산이에요. 1절에 "산에 올라가 앉으시니 제자들이 나아온지라." 앉아서 가르치는 한 장면인데 말이 길어요.</p>
+
+<p><strong>P05 김미영</strong>: 소금과 빛(13-16절)이 손에 잡혔어요. "너희는 세상의 소금이라", "너희는 세상의 빛이라." 일상 소품이 비유로 와요.</p>
+
+<p><strong>P02 이진우</strong>: "나는 너희에게 이르노니"가 여섯 번쯤 반복돼요. 같은 형식이 줄지어 와요.</p>
+
+<p><strong>P11 나경아</strong>: "복이 있나니"가 묵직하게 열렸어요. 가난·애통·온유한 자에게 복이 선언되는데, 세상의 셈과 거꾸로라 인상적이었습니다.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. 그 첫 느낌을 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P05 김미영</strong>: 1절에 "무리를 보시고 산에 올라가 앉으시니 제자들이 나아온지라"라고 못이 박혀요. 산이 무대고, 앉아서 입을 열어 가르치세요(2절).</p>
+
+<p><strong>P04 최현국</strong>: 소품은 일상이에요. 소금(13절), 등불과 말(됫박)과 등경(15절), 산 위의 동네(14절)예요. 그리고 후반에 제단·예물(23-24절), 옥(25-26절), 눈·손(29-30절)이 나와요.</p>
+
+<p><strong>P07 오지혜</strong>: "천국"이 양 끝에 와요. 3절 "천국이 그들의 것임이요"와 10절 "천국이 그들의 것임이라." 첫 복과 마지막 복이 같은 말로 닫혀요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 하나 두면, "복이 있나니"가 헬라어 <em>makarios</em>예요. "복된"이라는 형용사로 각 복의 첫머리에 옵니다. "천국"은 <em>basileia</em>고요. 배경으로만 둡니다.</p>
+
+<p><strong>P01 한나래</strong>: 17절에 결의 문이 박혀 있어요. "내가 율법이나 선지자를 폐하러 온 줄로 생각하지 말라 폐하러 온 것이 아니요 완전하게 하려 함이라." 앞과 뒤를 잇는 자리예요.</p>
+
+<p><strong>P02 이진우</strong>: 그리고 "의"가 두 번 결정적으로 나와요. 6절 "의에 주리고 목마른 자", 20절 "너희 의가 서기관과 바리새인보다 더 낫지 못하면."</p>
+
+<p><strong>P11 나경아</strong>: "의"는 헬라어 <em>dikaiosyne</em>예요. 6·10·20절에 나옵니다. "소금"은 <em>halas</em>, "빛"은 <em>phos</em>고요. 배경으로 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: 산의 무대와 소금·빛·의의 소재를 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계로 보이시는지요.</p>
+
+<p><strong>P02 이진우</strong>: 2-3절은 "입을 열어 가르쳐 이르시되 심령이 가난한 자는 복이 있나니"로 열려요. 48절은 "그러므로 하늘에 계신 너희 아버지의 온전하심과 같이 너희도 온전하라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 "복이 있나니"의 선언이고, 끝은 "온전하라"는 부름이에요. 선언에서 부름으로 옮겨가요.</p>
+
+<p><strong>P01 한나래</strong>: 시작의 "심령이 가난한 자"와 끝의 "온전하라"가 멀어 보이는데, 한 산의 가르침 안에 양 끝으로 있어요. 낮음과 온전함이 한 장에 있어요.</p>
+
+<p><strong>성령일 선교사</strong>: 복의 선언에서 온전함의 부름으로 이어지는 폭을 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 예수, 제자들(1절), 둘러싼 무리, 그리고 말씀 안에 서기관·바리새인(20절), 형제(22-24절), 대적(25절)이 호명돼요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황은 가르침이에요. 앉아서 입을 열어 길게 말씀하시는 한 자리예요. 듣는 이는 제자들이고, 무리가 둘러싸요(7:28과 이어질 결).</p>
+
+<p><strong>P04 최현국</strong>: 사상은 두 묶음이에요. 앞은 "복"(3-12절)과 "소금·빛"(13-16절), 뒤는 "옛 사람에게… 나는 너희에게 이르노니"(21-48절)예요. 복 → 정체 → 가르침의 순서예요.</p>
+
+<p><strong>P11 나경아</strong>: "나는 너희에게 이르노니"가 여섯 단락의 머리예요. 살인(21절), 간음(27절), 이혼(31절), 맹세(33절), 보복(38절), 원수(43절). 같은 형식이 여섯 번 줄지어 옵니다. 어휘 분포만 기록합니다.</p>
+
+<p><strong>P02 이진우</strong>: 각 단락이 "들었으나 / 이르노니"의 대구로 짜여요. 들음과 이르심이 짝을 이뤄요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 여섯 대구를 그대로 두고, 해석은 서두르지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 다섯 컷 정도로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-2절)</strong>: 산에 올라 앉으심, 제자들이 나아옴, 입을 여심</li>
+<li><strong>컷 2 (3-12절)</strong>: 팔복 — "복이 있나니"의 줄, "천국이 그들의 것"으로 수미</li>
+<li><strong>컷 3 (13-16절)</strong>: 소금과 빛, 등경 위의 등불, 산 위의 동네</li>
+<li><strong>컷 4 (17-20절)</strong>: 율법을 완전하게 하려 함, "의가 더 낫지 못하면"</li>
+<li><strong>컷 5 (21-48절)</strong>: "들었으나… 이르노니" 여섯 단락 — 살인·간음·이혼·맹세·보복·원수, "온전하라"</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 2가 복, 컷 3이 정체, 컷 4-5가 율법의 결이에요. 복 → 빛 → 의의 흐름이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 흐름을 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 팔복의 첫 복과 여덟째 복이 같은 말로 닫혀요. 3절·10절 둘 다 "천국이 그들의 것"이에요. 액자처럼 묶여요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 왜 복이 세상과 거꾸로일까요. 가난·애통·온유·핍박받는 자에게 복이 선언돼요. 본문은 선언만 두고 까닭은 길게 풀지 않아요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, "나는 너희에게 이르노니"(<em>ego de lego hymin</em>)가 여섯 단락의 머리로 반복됩니다. 같은 화법이 율법 인용 뒤에 옵니다. 형식의 반복만 위치로 기록합니다.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 소금과 빛이 짝이에요. 소금은 "맛을 잃으면"(13절), 빛은 "등경 위에"(15절). 잃음과 비춤이 나란히 와요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 17절 "완전하게 하려 함이라"의 "완전하게"와 48절 "온전하라"가 같은 결로 보여요. 폐함이 아니라 채움·온전이라는 결이 양 끝에 있어요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 29-30절이 걸려요. "눈이 너를 범죄하게 하거든 빼어 내버리라", "손이 범죄하게 하거든 찍어 내버리라." 강한 표현이 가운데 박혀 있어요.</p>
+
+<p><strong>P11 나경아</strong>: 29-30절의 강한 표현은 본문이 둔 그대로입니다. 과장된 결까지가 본문의 화법이라는 것만 관찰로 남기고, 풀이는 보류합니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 무리를 보시고 산에 올라 앉으시니 제자들이 나아옵니다. 입을 열어 가르치기 시작하십니다.</p>
+
+<p><strong>P01 한나래</strong>: "심령이 가난한 자, 애통하는 자, 온유한 자, 의에 주린 자, 긍휼히 여기는 자, 마음이 청결한 자, 화평하게 하는 자, 의를 위하여 핍박받는 자"가 복이 있다 하시고, 첫 복과 끝 복을 "천국이 그들의 것"으로 묶으십니다.</p>
+
+<p><strong>P04 최현국</strong>: "너희는 세상의 소금이라, 맛을 잃으면 쓸 데 없다", "너희는 세상의 빛이라, 등경 위에 두어 비치게 하라" 하십니다. "산 위의 동네가 숨겨지지 못한다" 하시고요.</p>
+
+<p><strong>P02 이진우</strong>: "율법을 폐하러 온 것이 아니라 완전하게 하려 함이라", "너희 의가 서기관과 바리새인보다 더 낫지 못하면 천국에 들어가지 못하리라" 하십니다.</p>
+
+<p><strong>P11 나경아</strong>: 이어 "옛 사람에게 말한 바를 너희가 들었으나 나는 너희에게 이르노니" 하시며 살인·간음·이혼·맹세·보복·원수 사랑을 차례로 펴십니다. 그리고 "하늘 아버지의 온전하심과 같이 너희도 온전하라"는 한 줄로 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 산에 앉아 복을 선언하고, 소금과 빛으로 정체를 두고, 율법을 온전함으로 잇는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "복이 있나니 — 거꾸로 선 복의 노래"</p>
+<p><strong>P02 이진우</strong>: "너희가 들었으나, 나는 너희에게 이르노니"</p>
+<p><strong>P04 최현국</strong>: "세상의 소금과 빛"</p>
+<p><strong>P05 김미영</strong>: "천국이 그들의 것 — 팔복의 액자"</p>
+<p><strong>P07 오지혜</strong>: "온전하라 — 산 위의 부름"</p>
+<p><strong>P11 나경아</strong>: "<em>Makarios · Dikaiosyne · Phos</em> — 복·의·빛"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "산 위의 복에서 율법의 온전함으로"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 그 산 위에 앉아 복의 노래와 "이르노니"의 가르침을 천천히 들으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 저는 거꾸로 선 복과 온전하라는 부름 사이에 앉아 있습니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: MAT-005</p>
+<p>book: 마태복음</p>
+<p>chapter: 5</p>
+<p>date: 2026-05-24</p>
+<p>---</p>
+
+<h2>마태복음 5장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대 = 산(1절), 앉아서 입을 여심(2절). 한 자리의 긴 가르침.</li>
+<li>소품 = 소금(13), 등불·말·등경(15), 산 위의 동네(14), 제단·예물(23-24), 옥(25-26), 눈·손(29-30절).</li>
+<li>"천국"(<em>basileia</em>)이 양 끝 복에 옴 — 3절·10절 "천국이 그들의 것".</li>
+<li>결의 문 = 17절 "율법을 폐하러 온 것이 아니요 완전하게 하려 함이라".</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>앞(3-10절)은 "복이 있나니"의 후렴, 노래 같은 운율. 거꾸로 선 복.</li>
+<li>21절부터 또박또박 가르치는 결로 단호해짐 — "들었으나 / 이르노니".</li>
+<li>일상 소품(소금·빛)이 정체의 비유로 옴.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>2-3절: "입을 열어 가르쳐… 심령이 가난한 자는 복이 있나니" — 복의 선언으로 열림.</li>
+<li>48절: "하늘 아버지의 온전하심과 같이 너희도 온전하라" — 온전함의 부름으로 닫힘.</li>
+<li>복의 선언에서 온전함의 부름으로, 낮음과 온전함이 한 장에.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 예수 / 제자들(1) / 둘러싼 무리 / 말씀 안 서기관·바리새인(20)·형제(22-24)·대적(25).</li>
+<li>상황 = 산에 앉아 입을 연 긴 가르침의 한 자리.</li>
+<li>사상 = 복(3-12) → 소금·빛(13-16) → 율법의 완전(17-48).</li>
+<li>"나는 너희에게 이르노니"가 여섯 단락의 머리 — 살인·간음·이혼·맹세·보복·원수(21·27·31·33·38·43절).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-2): 산에 올라 앉으심, 입을 여심.</li>
+<li>컷 2 (3-12): 팔복, "천국이 그들의 것"의 수미.</li>
+<li>컷 3 (13-16): 소금과 빛, 등경, 산 위의 동네.</li>
+<li>컷 4 (17-20): 율법을 완전하게 함, "의가 더 낫지 못하면".</li>
+<li>컷 5 (21-48): "들었으나/이르노니" 여섯 단락, "온전하라".</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>makarios</em>(μακάριος) — 복된. 팔복 각 머리(3-11절).</li>
+<li><em>basileia</em>(βασιλεία) — 나라·천국. 3·10·19·20절, 양 끝 복에.</li>
+<li><em>dikaiosyne</em>(δικαιοσύνη) — 의. 6·10·20절.</li>
+<li><em>halas</em>(ἅλας) — 소금. 13절 "세상의 소금".</li>
+<li><em>phos</em>(φῶς) — 빛. 14·16절 "세상의 빛".</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>복(3-12) → 정체(13-16) → 율법(17-48)의 세 묶음.</li>
+<li>팔복 액자 — 3·10절 "천국이 그들의 것"의 수미 봉합.</li>
+<li>"들었으나 / 나는 너희에게 이르노니" 대구 6회(21·27·31·33·38·43절).</li>
+<li>"완전하게 하려 함"(17절) ↔ "온전하라"(48절)의 결 호응.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>"산에 올라가 앉으시니"(1절)는 앉아서 가르치는 한 자리로 본문이 그림 — 배경으로만.</li>
+<li>소금·등불·등경·말(됫박)은 일상의 소품으로 비유에 쓰임 — 소품 위치로 기록.</li>
+<li>29-30절의 강한 표현(눈·손)은 본문이 둔 화법 — 화법 위치로 기록, 풀이는 보류.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>마 5:3-12 ↔ 눅 6:20-23 (복의 줄)</li>
+<li>마 5:14-16 ↔ 마 6:22-23 (빛·등불)</li>
+<li>마 5:17 ↔ 마 7:12 (율법과 선지자)</li>
+<li>마 5:21·27 ↔ 출 20:13-14 (살인·간음 인용)</li>
+<li>마 5:48 ↔ 레 19:2 (거룩·온전의 결)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>무리를 보시고 산에 올라 앉으시니 제자들이 나아온다. 입을 열어 "심령이 가난한 자, 애통하는 자, 온유한 자, 의에 주린 자…"가 복이 있다 하시고, 첫 복과 끝 복을 "천국이 그들의 것"으로 묶으신다. "너희는 세상의 소금이라, 너희는 세상의 빛이라, 등경 위에 두어 비치게 하라" 하시고, "산 위의 동네가 숨겨지지 못한다" 하신다. "율법을 폐하러 온 것이 아니라 완전하게 하려 함이라, 너희 의가 서기관·바리새인보다 낫지 못하면 천국에 못 들어간다" 하신다. 이어 "들었으나 나는 너희에게 이르노니" 하시며 살인·간음·이혼·맹세·보복·원수 사랑을 차례로 펴시고, "하늘 아버지의 온전하심과 같이 너희도 온전하라"는 한 줄로 닫는다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"복이 있나니 — 소금·빛, 그리고 온전하라"</strong></li>
+<li>초벌 부제: "산 위의 복에서 율법의 온전함으로"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (5개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (산상 가르침·일상 소품·율법 인용·팔복 액자)</li>
+<li>[x] 미해결 질문 1개 이상 (open_questions 6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 5개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>팔복을 적용 목록으로 풀지 않도록 → 후렴과 액자 구조만 기록.</li>
+<li>"이르노니" 여섯 단락을 교리 도식으로 굳히지 않고 → 대구 형식의 반복만 보존.</li>
+<li>29-30절의 강한 표현을 문자/비유로 단정하지 않고 → 본문 화법으로만 보존.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: MAT-005</p>
+<p>book: 마태복음</p>
+<p>chapter: 5</p>
+<p>date: 2026-05-24</p>
+<p>---</p>
+
+<h2>마태복음 5장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 복은 왜 세상과 거꾸로인가(3-10절)?</h2>
+
+<ul>
+<li>가난·애통·온유·핍박받는 자에게 복이 선언된다.</li>
+<li>본문은 선언만 두고 까닭을 길게 풀지 않음. 결만 보존.</li>
+</ul>
+
+<h2>Q2. 팔복은 왜 "천국이 그들의 것"으로 양 끝을 묶는가?</h2>
+
+<ul>
+<li>3절과 10절이 같은 말로 닫힌다.</li>
+<li>액자의 까닭은 보류, 구조만 기록.</li>
+</ul>
+
+<h2>Q3. "완전하게 하려 함"(17절)은 무엇을 완전케 함인가?</h2>
+
+<ul>
+<li>폐함이 아니라 채움·온전이라는 결만 본문이 둔다.</li>
+<li>방식은 이어지는 단락들로 이월.</li>
+</ul>
+
+<h2>Q4. "들었으나 / 이르노니"의 대구는 왜 여섯 번인가?</h2>
+
+<ul>
+<li>같은 형식이 살인·간음·이혼·맹세·보복·원수에 반복된다.</li>
+<li>반복의 까닭은 묵상에서 다시.</li>
+</ul>
+
+<h2>Q5. 눈·손을 빼고 찍으라(29-30절)는 강한 표현은 어떤 화법인가?</h2>
+
+<ul>
+<li>과장된 결이 가운데 박혀 있다.</li>
+<li>문자/비유의 판단은 보류, 화법으로만 기록.</li>
+</ul>
+
+<h2>Q6. "온전하라"(48절)는 어디까지의 온전인가?</h2>
+
+<ul>
+<li>"하늘 아버지의 온전하심과 같이"라는 결만 본문이 둔다.</li>
+<li>범위는 답하지 않고 보존.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">산 위의 복에서 율법의 온전함으로.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: MAT-005</p>
+<p>book: 마태복음</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>date: 2026-05-24</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 마태복음 5장은 산 위에서 선언된 "복이 있나니"가 <em>소금과 빛의 정체를 지나 율법의 온전함으로</em> 이어지는 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 산에 앉아 입을 여신 가르침으로 열린다. "심령이 가난한 자"부터 "핍박받는 자"까지 거꾸로 선 복이 노래처럼 선언되고, 첫 복과 끝 복은 "천국이 그들의 것"으로 묶인다. 이어 "너희는 세상의 소금·빛"이라는 정체가 주어지고, "율법을 폐하러 온 것이 아니라 완전하게 하려 함이라"는 결의 문이 박힌다. 그리고 "들었으나 나는 너희에게 이르노니"의 여섯 대구가 살인·간음·이혼·맹세·보복·원수 사랑을 차례로 펴고, "하늘 아버지의 온전하심과 같이 너희도 온전하라"는 부름으로 닫힌다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>산에 앉으심. 소금·등불·등경·산 위의 동네. "천국"이 양 끝 복에. 결의 문(17절).</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>앞은 복의 후렴(노래), 뒤는 단호한 "이르노니". 일상 소품의 비유.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 복의 선언(3절). 끝 — "온전하라"(48절). 낮음과 온전함.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>예수·제자·무리. 사상 = 복 → 소금·빛 → 율법의 완전. "이르노니" 6단락.</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 산에 앉으심(1-2). 컷 2 팔복(3-12). 컷 3 소금·빛(13-16). 컷 4 율법 완전(17-20). 컷 5 여섯 대구·"온전하라"(21-48).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>팔복 액자. 거꾸로 선 복. "이르노니" 반복. 소금·빛의 짝. "완전"과 "온전"의 호응. 강한 화법(29-30).</td></tr>
+<tr><td>7 동영상</td><td>산에 앉음 → 복 선언 → 소금·빛 → 율법의 결 → "온전하라"로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "복이 있나니 — 소금·빛, 그리고 온전하라". 부제 — "산 위의 복에서 율법의 온전함으로".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>산 위에 앉아 복의 노래와 "이르노니" 사이에 머문다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 거꾸로 선 복의 액자</strong>: 가난·애통한 자에게 복이 선언되고(3절), 첫 복과 끝 복이 "천국이 그들의 것"(3·10절)으로 한 액자에 묶인다.</p>
+<p>2. <strong>결 2 — 소금과 빛의 정체</strong>: 가르침 한가운데 "너희는 세상의 소금·빛"(13·14절)이라는 정체가 놓인다. 명령 앞에 신분이 먼저 온다.</p>
+<p>3. <strong>결 3 — 완전과 온전의 호응</strong>: "완전하게 하려 함"(17절)이 "온전하라"(48절)와 양 끝에서 마주 본다. 폐함이 아니라 채움의 결이다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>마 5:17</strong>(율법과 선지자)은 <strong>마 7:12</strong>로, <strong>마 5:14-16</strong>(빛)은 <strong>마 6:22-23</strong>(등불)로 이어진다.</li>
+<li>다른 권 — <strong>눅 6:20-23</strong>(복의 줄), <strong>출 20:13-14</strong>(살인·간음 인용), <strong>레 19:2</strong>(거룩·온전).</li>
+<li>정경 흐름 — 본장의 산상수훈은 6장(구제·기도·염려)과 7장(비판·좁은 문)으로 한 가르침이 이어지는 결의 첫 자리다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 산 위에 앉은 무리 가운데 한 사람이 복의 노래를 듣는다.</li>
+<li><strong>멈춤 1</strong>: 가난한 자에게 복이 선언되는 자리에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: "너희는 세상의 소금·빛"이라는 정체 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: "들었으나 / 이르노니"의 단호함 앞에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *복의 선언이 온전함의 부름으로 이어졌다*는 결을 손에 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *복과 온전함 사이* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 산에 앉아 가르치신다</li>
+<li>[x] 가난·애통한 자에게 복을 선언하신다</li>
+<li>[x] 첫 복과 끝 복이 "천국이 그들의 것"으로 묶인다</li>
+<li>[x] "너희는 세상의 소금·빛"이라 하신다</li>
+<li>[x] 율법을 완전하게 하려 하신다</li>
+<li>[x] "들었으나 / 이르노니"가 여섯 번 온다</li>
+<li>[x] 끝은 "온전하라"는 부름이다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>의</em>.</p></div>
+        </section>
+
+    <div class="next-row">
+      <a href="/magazine/MAT/4/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">마태복음 4장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/MAT/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">마태복음 28장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/MAT/6/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">마태복음 6장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/MAT/5/',
+      title: '마태복음 5장',
+      excerpt: '산 위에서 선언된 거꾸로 선 복이, 소금과 빛의 정체를 지나 온전하라는 율법의 온전함으로 이어진다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
