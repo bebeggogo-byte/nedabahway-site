@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>마태복음 22장 — Observatory | 네다바웨이</title>
+<meta name="description" content="마태복음 22장을 9단계로 같이 관찰합니다. 혼인 잔치 비유, 가이사의 것, 부활 논쟁, 가장 큰 계명, 그리고 다윗의 자손 물음.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/MAT/22/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/MAT/">마태복음</a> · 22장</div>
+      <h1>마태복음 22장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">MAT-022 · 복음서 · 헬라어</div>
+      <p class="essence">혼인 잔치의 빈 자리와 던져진 질문들. 세금·부활·계명·다윗의 자손이 차례로 시험으로 오고, 끝엔 아무도 감히 묻지 못한다.</p>
+    </header>
+    
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: MAT-022</p>
+<p>book: 마태복음</p>
+<p>book_en: Matthew</p>
+<p>chapter: 22</p>
+<p>bible_block: 복음서</p>
+<p>canon: 신약</p>
+<p>genre: 내러티브·담화·비유</p>
+<p>language: 헬라어</p>
+<p>verse_count: 46</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>greek_terms: [basileia, gamos, denarion, eikon, anastasis, plalao, entole, agapao, kyrios, christos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-31</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>마태복음 22장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 마태복음 22장입니다. 비유 하나로 열리고, 그 뒤로 질문이 줄지어 들어옵니다. 먼저 끝까지 낭독하고, 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 22:1~46, 약 6분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 앞은 잔칫집인데 빈 자리가 자꾸 보였어요. 청함을 받은 이들이 안 와서, 흥겨운데 휑한 느낌이 같이 있었어요.</p>
+
+<p><strong>P01 한나래</strong>: 저는 뒤가 팽팽했어요. 한 무리가 가고 또 한 무리가 와서 묻고, 묻는 말마다 올가미 같았어요. 끝에 "감히 묻는 자가 없더라"가 조용해서 더 컸어요.</p>
+
+<p><strong>P04 최현국</strong>: 장면이 또렷이 둘로 갈려요. 앞(1-14절)은 비유 무대고, 뒤(15-46절)는 질문 대결이에요. 잔치 → 논쟁의 순서예요.</p>
+
+<p><strong>P02 이진우</strong>: 질문이 네 번 들어와요. 세금, 부활, 계명, 그리고 마지막엔 예수께서 거꾸로 물으세요. 묻고 묻고 묻다가 뒤집히는 구조였어요.</p>
+
+<p><strong>P05 김미영</strong>: 소품이 손에 잡혔어요. 혼인 예복, 동전 한 닢. "이 동전의 형상과 글이 누구의 것이냐" 할 때 손바닥에 동전이 놓이는 게 보였어요.</p>
+
+<p><strong>P11 나경아</strong>: "가이사의 것은 가이사에게"가 또렷이 남았어요. 그리고 끝의 "다윗이 그리스도를 주라 칭하였은즉"이 물음표로 닫혀서, 끝이 열려 있는 느낌이었습니다.</p>
+
+<p><strong>성령일 선교사</strong>: 그 첫 느낌을 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P05 김미영</strong>: 앞은 비유 속 무대예요. 임금의 혼인 잔치(2절), 짐승을 잡고 차린 상(4절), 길에 나가 모은 사람들(9-10절), 그리고 예복 없는 한 사람(11절). 뒤는 성전 뜰로 보여요. 21장에서 이어지는 자리니까요.</p>
+
+<p><strong>P04 최현국</strong>: 소품이 분명해요. 잔치상, 혼인 예복, 그리고 15절 뒤로는 "세금 낼 돈"인 데나리온 한 닢(19절)이에요. "이 형상과 글이 뉘 것이냐"(20절) 할 때 동전이 무대 한가운데 와요.</p>
+
+<p><strong>P07 오지혜</strong>: 등장 무리가 줄줄이 와요. 바리새인(15절), 헤롯당(16절), 사두개인(23절), 다시 바리새인 중 율법사(34-35절). 무리가 교대로 무대에 오르는 느낌이에요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 하나 두면, 19절 "세금 낼 돈"은 데나리온(<em>denarion</em>), 곧 로마 은전입니다. 20절 "형상"은 <em>eikon</em>(에이콘)이에요. 동전에 새겨진 가이사의 초상과 글을 가리키는 말입니다. 배경으로만 둡니다.</p>
+
+<p><strong>P02 이진우</strong>: 23절에 사두개인을 "부활이 없다 하는 자들"이라고 본문이 직접 소개해요. 24절은 모세의 "형이 자식 없이 죽으면 그 아우가…"(계대결혼) 규례를 그들이 인용하고요. 배경 제도가 깔려 있어요.</p>
+
+<p><strong>P01 한나래</strong>: 35절에 율법사가 "예수를 시험하여" 묻는다고, 본문이 의도를 밝혀 줘요. 무대 공기가 시험이라고 미리 알려주는 거예요.</p>
+
+<p><strong>성령일 선교사</strong>: 잔치상과 동전, 그리고 교대로 오르는 무리들을 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계로 보이시는지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "예수께서 다시 비유로 그들에게 대답하여 이르시되"로, 예수께서 비유로 여십니다. 46절은 "한마디도 능히 대답하는 자가 없고 그날부터 감히 그에게 묻는 자도 없더라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 예수께서 말씀하시고, 끝은 아무도 말하지 못해요. 말의 주고받음이 처음엔 비유, 끝엔 침묵으로 닫힙니다.</p>
+
+<p><strong>P01 한나래</strong>: 가운데 세 번의 질문이 들어왔다가, 41절에서 예수께서 거꾸로 물으세요. 받기만 하던 자리가 마지막에 뒤집혀요. 그 뒤에 침묵이 와서 끝이 더 조용했어요.</p>
+
+<p><strong>성령일 선교사</strong>: 비유로 열려 침묵으로 닫히는 폭을 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 예수, 그리고 비유 속 임금·종들·청함 받은 자들·예복 없는 한 사람. 뒤로는 바리새인·헤롯당·사두개인·율법사, 그리고 제자들과 무리예요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황이 줄줄이 시험이에요. 15절 "어떻게 하면 말의 올무에 걸리게 할까", 18절 "어찌하여 나를 시험하느냐". 본문이 시험임을 거듭 밝혀요.</p>
+
+<p><strong>P04 최현국</strong>: 사상은 네 마디로 모여요. 21절 "가이사의 것은 가이사에게, 하나님의 것은 하나님께", 32절 "하나님은 죽은 자의 하나님이 아니요 산 자의 하나님이시니라", 37·39절 "마음을 다하여 주를 사랑하라 / 이웃을 사랑하라", 45절 "다윗이 그리스도를 주라 칭하였은즉 어찌 그의 자손이 되겠느냐".</p>
+
+<p><strong>P11 나경아</strong>: 37절 "사랑하라"가 <em>agapao</em>(아가파오)예요. 신명기 6:5의 "들으라 이스라엘아"의 사랑 계명을 인용하신 자리고요. 39절은 레위기 19:18의 "네 이웃 사랑하기를"입니다. 두 본문이 한 자리에 묶입니다. 배경으로 둡니다.</p>
+
+<p><strong>P02 이진우</strong>: 44절은 시편 110:1을 직접 인용해요. "주께서 내 주께 이르시되 내 우편에 앉으라". <em>kyrios</em>(주)가 두 번 나오는 그 시편이에요. 거기서 "다윗의 자손" 물음이 나오고요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 네 마디와 두 인용을 어휘·배경으로만 남기고, 해석은 서두르지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 다섯 컷 정도로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-14절)</strong>: 혼인 잔치 비유 — 오지 않는 청함, 길에서 모은 손님, 예복 없는 한 사람이 쫓겨남, "청함을 받은 자는 많되 택함을 입은 자는 적으니라"</li>
+<li><strong>컷 2 (15-22절)</strong>: 바리새인·헤롯당의 세금 질문, 데나리온, "가이사의 것은 가이사에게", 그들이 놀라 떠남</li>
+<li><strong>컷 3 (23-33절)</strong>: 사두개인의 부활 질문(일곱 형제), "산 자의 하나님", 무리가 놀람</li>
+<li><strong>컷 4 (34-40절)</strong>: 율법사의 "가장 큰 계명" 질문, 하나님 사랑·이웃 사랑, "온 율법과 선지자의 강령"</li>
+<li><strong>컷 5 (41-46절)</strong>: 예수께서 거꾸로 물으심 — "다윗의 자손" 물음(시 110편), 아무도 대답 못함, 침묵</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 1이 비유, 컷 2-4가 세 번의 시험, 컷 5가 되묻기예요. 한 묶음·세 묶음·한 묶음으로도 묶입니다.</p>
+
+<p><strong>성령일 선교사</strong>: 그 묶음을 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 비유 속에서 청함이 두 번 나가요(3·4절). 처음엔 거절, 그다음엔 학대와 죽임(6절)까지 가요. 부름이 점점 강해지는 게 보였어요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 길에서 막 데려온 사람인데 왜 예복 없는 한 사람만 "친구여 어찌하여 예복을 입지 않고 들어왔느냐"(12절) 물으셨을까요. 다 길에서 온 사람들인데요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 21절 "가이사의 것은 가이사에게"에서 동전의 <em>eikon</em>(형상)과 "하나님의 것"이 나란히 놓입니다. 같은 단어 <em>eikon</em>이 창세기 1:27 "하나님의 형상"의 70인역(στερέωμα 아님, εἰκών)에 쓰인 말이기도 합니다. 어휘 분포만 기록합니다.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 사두개인에게 답하실 때 "성경도 하나님의 능력도 알지 못하는 까닭에 오해하였도다"(29절)라고, 두 가지를 짚으세요. 성경과 능력이 같이 나와요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 32절에서 "나는 아브라함의 하나님, 이삭의 하나님, 야곱의 하나님"(출 3:6)을 들어 "산 자의 하나님"이라 하시는데, 출애굽기의 옛 구절이 부활 논쟁의 답으로 쓰여요. 옛 본문이 어떻게 그 자리에 오는지 물음으로 남겨요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 46절이 걸려요. "그날부터 감히 묻는 자도 없더라." 질문이 끊긴 자리가 무엇을 여는지 궁금했어요.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 한 임금이 아들의 혼인을 차립니다. 종을 보내 청하나 오지 않고, 다시 보내도 밭으로 장사로 가버리고, 더러는 종을 학대하고 죽입니다. 임금이 노하여 군대를 보내고, 길에 나가 만나는 대로 데려와 잔칫상을 채웁니다.</p>
+
+<p><strong>P01 한나래</strong>: 그 가운데 예복 없는 한 사람이 보입니다. "친구여 어찌하여 예복을 입지 않았느냐" 물으시니 그가 잠잠합니다. 손발이 묶여 바깥 어둠으로 던져지고, "청함을 받은 자는 많되 택함을 입은 자는 적으니라"로 비유가 닫힙니다.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 바뀝니다. 바리새인이 헤롯당과 함께 와 "가이사에게 세금을 바치는 것이 옳으니이까" 묻습니다. 예수께서 데나리온을 보이라 하시고 "이 형상과 글이 뉘 것이냐… 가이사의 것은 가이사에게, 하나님의 것은 하나님께" 하시니, 그들이 놀라 떠납니다.</p>
+
+<p><strong>P02 이진우</strong>: 부활이 없다는 사두개인이 일곱 형제와 한 아내 이야기로 묻습니다. "너희가 성경도 하나님의 능력도 알지 못한다" 하시고, "하나님은 산 자의 하나님이라" 하시니 무리가 놀랍니다. 이어 율법사가 "가장 큰 계명이 무엇이니이까" 묻자, "주를 사랑하라"와 "이웃을 사랑하라"가 율법과 선지자의 강령이라 하십니다.</p>
+
+<p><strong>P11 나경아</strong>: 마지막엔 예수께서 거꾸로 물으십니다. "그리스도가 누구의 자손이냐"—"다윗의 자손"이라 하자, 시편 110편을 들어 "다윗이 그를 주라 칭하였은즉 어찌 그 자손이 되겠느냐" 하십니다. 아무도 한마디도 대답하지 못하고, 그날부터 감히 묻는 자가 없는 침묵으로 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 빈 자리가 보이는 잔치에서 시작해, 줄지은 질문을 지나, 되묻는 한 물음과 침묵으로 흐르는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "빈 자리의 잔치, 예복 없는 한 사람"</p>
+<p><strong>P02 이진우</strong>: "가이사의 것은 가이사에게"</p>
+<p><strong>P04 최현국</strong>: "산 자의 하나님 — 부활 논쟁"</p>
+<p><strong>P05 김미영</strong>: "온 율법의 강령 — 두 사랑"</p>
+<p><strong>P07 오지혜</strong>: "감히 묻는 자가 없더라"</p>
+<p><strong>P11 나경아</strong>: "<em>Eikon · Anastasis · Kyrios</em> — 형상·부활·주"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "줄지은 질문이 한 물음 앞에서 잦아드는 자리"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 그 잔칫집과 성전 뜰을 천천히 걸으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 저는 길에서 불려와 상에 앉은 사람 가운데 서 있습니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: MAT-022</p>
+<p>book: 마태복음</p>
+<p>chapter: 22</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>마태복음 22장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>앞 무대는 비유 속 임금의 혼인 잔치(2절), 차린 상(4절), 길에서 모은 손님(9-10절), 예복 없는 한 사람(11절).</li>
+<li>뒤 무대는 성전 뜰(21장에서 이어짐). 무리가 교대로 오름 — 바리새인(15)·헤롯당(16)·사두개인(23)·율법사(35).</li>
+<li>소품 = 혼인 예복, 데나리온 한 닢(19절). "이 형상과 글이 뉘 것이냐"(20절)에 동전이 중앙.</li>
+<li>제도 배경 = 사두개인은 "부활이 없다 하는 자들"(23절). 24절은 모세의 계대결혼 규례 인용.</li>
+<li>본문이 의도 밝힘 — 35절 "예수를 시험하여" 묻는다.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>앞은 잔치인데 빈 자리(오지 않음). 흥겨움과 휑함이 함께.</li>
+<li>뒤는 팽팽한 질문 대결 — 묻는 말마다 올가미. 끝의 침묵이 크게 남음.</li>
+<li>잔치(1-14) → 논쟁(15-46)으로 또렷이 둘로 갈림.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "다시 비유로 대답하여 이르시되" — 예수께서 비유로 여심.</li>
+<li>46절: "감히 그에게 묻는 자도 없더라" — 침묵으로 닫힘.</li>
+<li>비유로 열려 침묵으로 닫힘. 41절에서 받기만 하던 자리가 되묻기로 뒤집힘.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 예수 / 임금·종·청함 받은 자·예복 없는 자(비유) / 바리새인·헤롯당·사두개인·율법사 / 무리·제자.</li>
+<li>상황 = 거듭된 시험(15·18절). 본문이 시험임을 밝힘.</li>
+<li>사상 네 마디 — "가이사의 것은 가이사에게"(21), "산 자의 하나님"(32), "주·이웃 사랑"(37·39), "다윗의 자손" 물음(45).</li>
+<li>인용 — 신 6:5 + 레 19:18(두 사랑, 37·39), 출 3:6(산 자의 하나님, 32), 시 110:1(다윗의 주, 44).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-14): 혼인 잔치 비유, 예복 없는 자, "청함은 많되 택함은 적음".</li>
+<li>컷 2 (15-22): 세금 질문, 데나리온, "가이사의 것은 가이사에게", 놀라 떠남.</li>
+<li>컷 3 (23-33): 사두개인 부활 질문, "산 자의 하나님", 무리 놀람.</li>
+<li>컷 4 (34-40): 가장 큰 계명, 두 사랑, "율법과 선지자의 강령".</li>
+<li>컷 5 (41-46): 다윗의 자손 물음(시 110), 한마디도 대답 못함, 침묵.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>gamos</em>(γάμος) — 혼인·잔치. 2-12절 비유 무대.</li>
+<li><em>denarion</em>(δηνάριον) — 데나리온, 로마 은전. 19절 "세금 낼 돈".</li>
+<li><em>eikon</em>(εἰκών) — 형상·초상. 20절 "이 형상이 뉘 것이냐".</li>
+<li><em>anastasis</em>(ἀνάστασις) — 부활. 23·28·30·31절.</li>
+<li><em>entole</em>(ἐντολή) — 계명. 36·38·40절 "큰 계명".</li>
+<li><em>agapao</em>(ἀγαπάω) — 사랑하다. 37·39절(주·이웃 사랑).</li>
+<li><em>kyrios</em>(κύριος) — 주. 44절 시 110:1 인용("주께서 내 주께").</li>
+<li><em>christos</em>(χριστός) — 그리스도. 42절 "그리스도가 누구의 자손이냐".</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>비유(1-14) → 세 질문(15-40) → 되묻기(41-46)의 골격.</li>
+<li>세 질문의 동형 반복 — 무리가 옴 → 시험 질문 → 답 → 반응(놀람/떠남).</li>
+<li>구약 인용 사슬 4회 — 출 3:6(32), 신 6:5·레 19:18(37·39), 시 110:1(44).</li>
+<li>"감히 묻는 자가 없더라"(46)가 21~23장 논쟁을 닫는 경첩.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>데나리온에는 당대 황제의 초상·명문이 새겨짐 — 20절 "형상과 글"의 배경.</li>
+<li>사두개인은 부활을 부인한 집단(23절 본문 명시), 계대결혼(신 25:5)을 들어 부활을 반박함.</li>
+<li>바리새인·헤롯당은 평소 대립 집단이나 시험을 위해 함께 옴(16절) — 인물 배치로 기록.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>마 22:21 ↔ 창 1:27 (<em>eikon</em>·형상)</li>
+<li>마 22:32 ↔ 출 3:6 (아브라함·이삭·야곱의 하나님)</li>
+<li>마 22:37 ↔ 신 6:5 / 마 22:39 ↔ 레 19:18 (두 사랑)</li>
+<li>마 22:44 ↔ 시 110:1 (주께서 내 주께)</li>
+<li>마 22:1-14 ↔ 눅 14:16-24 (잔치 비유의 결)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>한 임금이 아들의 혼인을 차리고 종을 보내 청하나 오지 않는다. 다시 보내도 밭으로 장사로 가버리고, 더러는 종을 죽인다. 임금은 길에 나가 만나는 대로 데려와 상을 채운다. 그 가운데 예복 없는 한 사람이 묶여 바깥 어둠으로 던져지고, "청함은 많되 택함은 적으니라"로 비유가 닫힌다. 무대가 성전 뜰로 바뀐다. 바리새인이 헤롯당과 함께 세금을 묻자 데나리온을 보이시며 "가이사의 것은 가이사에게, 하나님의 것은 하나님께" 하신다. 부활이 없다는 사두개인이 일곱 형제로 묻자 "산 자의 하나님"이라 하시고, 율법사가 큰 계명을 묻자 "주를 사랑하라"와 "이웃을 사랑하라"가 강령이라 하신다. 끝으로 예수께서 다윗의 자손을 거꾸로 물으시니, 아무도 한마디도 대답하지 못하고 그날부터 감히 묻는 자가 없는 침묵으로 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"빈 자리의 잔치, 잦아드는 질문 — 가이사의 것과 하나님의 것"</strong></li>
+<li>초벌 부제: "줄지은 질문이 한 물음 앞에서 잦아드는 자리"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (8개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (데나리온·계대결혼·구약 인용 4회)</li>
+<li>[x] 미해결 질문 1개 이상 (open_questions 6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 5개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>"가이사의 것은 가이사에게"(21)가 정치 교리로 굳지 않도록 → <em>eikon</em> 어휘와 동전 소품 위치만 기록.</li>
+<li>"산 자의 하나님"(32)이 부활 교리 진술로 가지 않도록 → 출 3:6 인용 위치만 보존.</li>
+<li>"예복 없는 자"(11-13)의 까닭은 본문이 설명 않음 → 인물 반응만 기록, 관계는 보류.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: MAT-022</p>
+<p>book: 마태복음</p>
+<p>chapter: 22</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>마태복음 22장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 왜 예복 없는 한 사람만 물으셨는가?(12절)</h2>
+
+<ul>
+<li>다 길에서 막 데려온 손님인데 한 사람만 "어찌하여 예복을 입지 않았느냐".</li>
+<li>예복의 결은 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q2. "가이사의 것"과 "하나님의 것"은 어떻게 나뉘는가?(21절)</h2>
+
+<ul>
+<li>동전의 형상(<em>eikon</em>)이 기준으로 놓임.</li>
+<li>두 영역의 경계는 본문이 더 풀지 않음. 위치만 보존.</li>
+</ul>
+
+<h2>Q3. 옛 구절(출 3:6)이 어떻게 부활의 답이 되는가?(32절)</h2>
+
+<ul>
+<li>"아브라함·이삭·야곱의 하나님"에서 "산 자의 하나님"으로.</li>
+<li>옛 본문이 그 자리에 오는 길은 묵상으로 이월.</li>
+</ul>
+
+<h2>Q4. 두 계명이 어떻게 "온 율법의 강령"인가?(40절)</h2>
+
+<ul>
+<li>신 6:5와 레 19:18이 한 자리에 묶임.</li>
+<li>둘이 전체를 떠받친다는 결은 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q5. "다윗의 자손"이면서 "다윗의 주"는 어떻게 함께인가?(45절)</h2>
+
+<ul>
+<li>시 110:1의 두 <em>kyrios</em>가 물음으로 놓임.</li>
+<li>자손이자 주이심의 결은 묵상에서 다시.</li>
+</ul>
+
+<h2>Q6. "감히 묻는 자가 없더라"(46)는 무엇을 여는가?</h2>
+
+<ul>
+<li>질문이 끊긴 침묵이 다음(23장 화)으로 이어짐.</li>
+<li>그 침묵의 자리는 답하지 않고 머문다.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">빈 자리의 잔치, 잦아드는 질문.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: MAT-022</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-31</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 마태복음 22장은 잔치의 빈 자리로 열려 <em>줄지은 질문이 한 되묻기 앞에서 잦아드는</em> 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 임금의 혼인 잔치를 차리지만 청함 받은 이들은 오지 않고, 길에서 모은 손님으로 상이 채워진다. 그 뒤 무대가 성전 뜰로 바뀌면, 바리새인·헤롯당·사두개인·율법사가 차례로 와서 세금·부활·계명을 묻는다. 묻는 말마다 시험이지만, 마지막에 예수께서 다윗의 자손을 거꾸로 물으시자 아무도 대답하지 못하고, 그날부터 감히 묻는 자가 없는 침묵으로 장이 닫힌다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>비유 — 혼인 잔치·예복·길의 손님. 성전 뜰 — 교대로 오르는 무리. 소품 = 데나리온(<em>eikon</em>).</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>잔치인데 빈 자리, 뒤는 팽팽한 질문. 끝의 침묵이 큼.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 비유로 여심(1절). 끝 — "감히 묻는 자도 없더라"(46절).</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>임금·예복 없는 자 / 바리새인·헤롯당·사두개인·율법사. 네 마디 — 가이사·산 자의 하나님·두 사랑·다윗의 주.</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 잔치 비유(1-14). 컷 2 세금(15-22). 컷 3 부활(23-33). 컷 4 큰 계명(34-40). 컷 5 다윗의 자손(41-46).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>두 번의 청함. 예복 없는 자. <em>eikon</em>·창 1:27. 출 3:6→산 자의 하나님. 끊긴 질문.</td></tr>
+<tr><td>7 동영상</td><td>빈 잔치 → 길의 손님 → 세금·부활·계명 → 되묻기 → 침묵으로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "빈 자리의 잔치, 잦아드는 질문". 부제 — "줄지은 질문이 한 물음 앞에서 잦아드는 자리".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>잔칫집과 성전 뜰을 걸으며 불려와 상에 앉은 자리를 본다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 채워지는 빈 자리</strong>: 청함 받은 이들이 오지 않자 길에서 모은 손님으로 상이 채워진다. 비는 자리와 채워지는 자리가 한 잔치에 있다.</p>
+<p>2. <strong>결 2 — 형상이 가르는 두 영역</strong>: 동전의 <em>eikon</em>이 "가이사의 것"과 "하나님의 것"을 나누는 기준으로 놓인다. 한 동전이 두 영역을 묻게 한다.</p>
+<p>3. <strong>결 3 — 잦아드는 질문</strong>: 세 번의 시험이 들어오고, 한 번의 되묻기에 모두 잠잠해진다. 본문은 질문의 무리에서 침묵의 한 점으로 좁아진다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>마 16:16</strong> (그리스도 고백), <strong>마 21:33-46</strong> (앞 장 포도원 비유의 결).</li>
+<li>다른 권 — <strong>출 3:6</strong> (산 자의 하나님), <strong>신 6:5 / 레 19:18</strong> (두 사랑), <strong>시 110:1</strong> (주께서 내 주께), <strong>창 1:27</strong> (형상), <strong>눅 14:16-24</strong> (잔치 비유).</li>
+<li>정경 흐름 — 22장의 "다윗의 자손이자 다윗의 주" 물음은 복음서의 그리스도 물음을 한 줄로 모은다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 길에서 불려와 잔칫상에 앉은 한 사람이 선다.</li>
+<li><strong>멈춤 1</strong>: 예복 없는 한 사람이 물음 받는 자리에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: 손바닥에 놓인 동전 — "이 형상이 뉘 것이냐" 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: 모두 잠잠해진 침묵의 자리에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *묻기를 멈춘 자리에서 비로소 들린다*는 결을 손에 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *한마디도 대답 못한 침묵 앞* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 청함 받은 이들이 오지 않는다</li>
+<li>[x] 길의 손님으로 상이 채워진다</li>
+<li>[x] 예복 없는 한 사람이 던져진다</li>
+<li>[x] "가이사의 것은 가이사에게"가 선포된다</li>
+<li>[x] "산 자의 하나님"으로 부활이 답해진다</li>
+<li>[x] 두 사랑이 율법의 강령이 된다</li>
+<li>[x] 끝은 감히 묻지 못하는 침묵이다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>잦아든 질문</em>.</p></div>
+        </section>
+
+    
+    <div class="next-row">
+      <a href="/magazine/MAT/21/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">마태복음 21장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/MAT/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">마태복음 28장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/MAT/23/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">마태복음 23장</div><div class="nav-preview">서기관·바리새인을 향한 일곱 화로 이어집니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/MAT/22/',
+      title: '마태복음 22장',
+      excerpt: '혼인 잔치의 빈 자리와 던져진 질문들. 세금·부활·계명·다윗의 자손이 차례로 시험으로 오고, 끝엔 아무도 감히 묻지 못한다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+
+
+
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
