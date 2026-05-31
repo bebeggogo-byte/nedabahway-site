@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>사도행전 17장 — Observatory | 네다바웨이</title>
+<meta name="description" content="사도행전 17장을 9단계로 같이 관찰합니다. 데살로니가의 소동, 베뢰아의 상고함, 아덴 아레오바고의 '알지 못하는 신'.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/ACT/17/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/ACT/">사도행전</a> · 17장</div>
+      <h1>사도행전 17장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">ACT-017 · 역사서(신약) · 헬라어</div>
+      <p class="essence">데살로니가의 소동, 베뢰아의 상고함, 그리고 우상으로 가득한 아덴. "알지 못하는 신에게"라 새긴 단 앞에서 한 설교가 선다.</p>
+    </header>
+
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-017</p>
+<p>book: 사도행전</p>
+<p>book_en: Acts</p>
+<p>chapter: 17</p>
+<p>bible_block: 역사서(신약)</p>
+<p>canon: 신약</p>
+<p>genre: 내러티브·연설</p>
+<p>language: 헬라어</p>
+<p>verse_count: 34</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 3</p>
+<p>greek_terms: [dialegomai, anakrino, eugenes, agnostos, deisidaimon, zeteo, pselaphao, genos, metanoeo, anastasis]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-31</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>사도행전 17장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 사도행전 17장입니다. 세 성을 빠르게 지나, 마지막에 아덴의 한 단 앞에서 긴 설교가 섭니다. 먼저 끝까지 낭독하고 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 17:1~34, 약 5분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 세 성의 공기가 다 달랐어요. 데살로니가는 소란하고(5절), 베뢰아는 차분하고(11절), 아덴은 호기심과 비웃음이 섞여요(18·32절). 도시마다 색이 달랐어요.</p>
+
+<p><strong>P01 한나래</strong>: 저는 아덴에서 바울의 마음이 먼저 보였어요. "그 성에 우상이 가득한 것을 보고 마음에 격분하여"(16절)요. 분위기가 거리에서 가라앉다가 격해져요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 회당에서 시장으로, 시장에서 아레오바고로 옮겨가요(17·19절). 같은 아덴 안에서 장소가 세 번 바뀌어요.</p>
+
+<p><strong>P05 김미영</strong>: "단"이 손에 잡혔어요. "알지 못하는 신에게"라 새긴 단(23절)이요. 글자가 새겨진 돌이 무대 한가운데 있어요.</p>
+
+<p><strong>P02 이진우</strong>: 끝이 셋으로 갈려요. 조롱하는 자, "다시 듣겠다"는 자, 믿는 자(32-34절). 한 설교에 세 반응이 나란히 와요.</p>
+
+<p><strong>P11 나경아</strong>: "찾다·더듬다"라는 말이 울렸어요. 27절에 "하나님을 더듬어 찾아 발견하게 하려 하심"이라고요.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. 소란에서 상고함으로, 그리고 우상의 거리에서 한 단 앞으로 흐르는 그 공기를 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P05 김미영</strong>: 1절은 암비볼리·아볼로니아를 지나 데살로니가예요. "유대인의 회당이 있는지라"(1절). 10절은 밤에 베뢰아로, 15절은 아덴으로 옮겨가요.</p>
+
+<p><strong>P04 최현국</strong>: 아덴에서 무대가 세 곳이에요. 회당과 장터(17절), 그리고 아레오바고(19·22절). 본문이 "모든 아덴 사람과 거기서 나그네 된 외국인들이 가장 새로운 것을 말하고 듣는 것 이외에는 달리 시간을 쓰지 않음"(21절)이라 배경을 깔아줘요.</p>
+
+<p><strong>P07 오지혜</strong>: 소품을 모으면 — 회당(1절), 성경("성경을 가지고 강론하며", 2절), 우상(16절), "알지 못하는 신에게"라 새긴 단(23절)이에요. 소재가 회당의 성경에서 아덴의 우상으로 옮겨가요.</p>
+
+<p><strong>P11 나경아</strong>: 원어를 무대 자료로 두면, 2·17절의 "강론하며"는 헬라어 <em>dialegomai</em>(변론하다·대화하다)입니다. 11절 "상고하므로"는 <em>anakrino</em>(살펴 분간하다)예요. 23절 "알지 못하는"이 <em>agnostos</em>이고, 22절 "종교심이 많도다"가 <em>deisidaimon</em> 결입니다. 배경으로만 둡니다.</p>
+
+<p><strong>P02 이진우</strong>: 배경 사상이 깔려요. 18절에 "에피쿠로스와 스토아 철학자 몇 사람"이 나와요. 두 학파가 무대 배경으로 등장하고, 그들이 바울을 "이 말쟁이"라 부르고 "이방 신들을 전하는 사람"이라 해요(18절).</p>
+
+<p><strong>P01 한나래</strong>: 시간 표지도 박혀요. 2절 "세 안식일에 강론하며", 10절 "밤에", 21절은 아덴 사람들의 일상 시간을 묘사해요. 회당의 안식일이 데살로니가의 시간 배경이에요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>dialegomai</em>·<em>anakrino</em>·<em>agnostos</em>, 그리고 회당–베뢰아–아덴의 동선을 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계로 보이시는지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "암비볼리와 아볼로니아로 다녀가 데살로니가에 이르니 거기 유대인의 회당이 있는지라"로 회당에서 열려요. 34절은 "몇 사람이 그를 가까이하여 믿으니 그 중에는 아레오바고 관리 디오누시오와 다마리라 하는 여자와 또 다른 사람들도 있었더라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 유대인의 회당이고, 끝은 아레오바고에서 믿은 이방인 몇 사람이에요. 회당에서 이방 도시의 한 줌으로 옮겨가요.</p>
+
+<p><strong>P01 한나래</strong>: 그런데 끝이 작아요. "몇 사람"이에요. 데살로니가는 소동, 베뢰아는 많은 믿음(12절), 아덴은 몇 사람. 결과의 크기가 도시마다 다른 채로 닫혀요.</p>
+
+<p><strong>성령일 선교사</strong>: 회당에서 이방 도시의 몇 사람으로, 결과의 크기가 다른 채로 닫히는 폭을 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 바울·실라, 데살로니가의 유대인과 헬라인·귀부인(4절), 시기한 유대인과 야손(5-7절), 베뢰아 사람들(11절), 아덴의 철학자들(18절), 아레오바고 관리 디오누시오와 다마리(34절)예요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황이 도시마다 대조돼요. 데살로니가 유대인은 "시기하여"(5절) 소동을 일으키고, 베뢰아 사람은 "간절한 마음으로 말씀을 받고 날마다 상고"(11절)해요. 같은 말씀에 시기와 상고가 갈려요.</p>
+
+<p><strong>P04 최현국</strong>: 사상은 아레오바고 설교(22-31절)에 모여요. "만유의 주재", "손으로 지은 전에 계시지 않고"(24절), "우리가 그를 힘입어 살며 기동하며 존재하느니라"(28절), "이제는 어디든지 사람에게 다 회개하라 명하셨으니"(30절), "죽은 자 가운데서 다시 살리신 것으로 모든 사람에게 믿을 만한 증거를 주셨다"(31절)예요.</p>
+
+<p><strong>P11 나경아</strong>: 28절은 헬라 시인을 인용해요. "어떤 시인이 우리가 그의 소생이라 한 것과 같이"요. "소생"이 <em>genos</em>(족속·자손) 결입니다. 그리고 30절 "회개하라"가 <em>metanoeo</em>, 31·32절의 "부활"이 <em>anastasis</em>예요. 어휘 분포만 기록합니다.</p>
+
+<p><strong>P02 이진우</strong>: 설교 끝의 "부활"(31절)에서 청중이 갈려요. 32절 "죽은 자의 부활을 듣고 어떤 사람은 조롱도 하고 어떤 사람은 다시 듣겠다 하니". 한 단어에서 반응이 둘로 쪼개져요.</p>
+
+<p><strong>P11 나경아</strong>: 27절의 "더듬어 찾아"가 <em>pselaphao</em>(손으로 더듬다)예요. 눈이 아니라 손의 동작을 쓰는 단어입니다. "찾다"는 <em>zeteo</em>이고요. 같은 절에 더듬음과 찾음이 같이 놓여요. 위치만 기록합니다.</p>
+
+<p><strong>성령일 선교사</strong>: 시기와 상고, 더듬음과 찾음, 부활 앞의 갈라짐을 어휘 표시로만 두고, 관계는 서두르지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 여섯 컷 정도로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-4절)</strong>: 데살로니가 회당, 세 안식일의 강론, 더러는 믿고 헬라인·귀부인 다수가 따름</li>
+<li><strong>컷 2 (5-9절)</strong>: 시기한 유대인의 소동, 야손의 집 습격, "천하를 어지럽게 하던 이 사람들"</li>
+<li><strong>컷 3 (10-15절)</strong>: 밤에 베뢰아로, 날마다 상고함, 많은 이가 믿음, 데살로니가 유대인이 쫓아옴, 바울이 아덴으로</li>
+<li><strong>컷 4 (16-21절)</strong>: 우상 가득한 아덴, 격분, 회당·장터의 변론, 철학자들과의 만남, 아레오바고로 이끌림</li>
+<li><strong>컷 5 (22-31절)</strong>: 아레오바고 설교 — "알지 못하는 신", 만유의 주재, "그를 힘입어 살며", 회개와 부활</li>
+<li><strong>컷 6 (32-34절)</strong>: 부활을 듣고 셋으로 갈린 반응 — 조롱·유보·믿음(디오누시오·다마리)</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 1-3이 데살로니가·베뢰아, 컷 4-6이 아덴이에요. 두 묶음으로도 묶이는데, 아덴이 절반을 차지해요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 묶음을 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 베뢰아 사람을 본문이 "신사적이어서"(11절)라 평해요. 그 까닭을 "간절한 마음으로 말씀을 받고 날마다 상고"한 것으로 본문이 직접 붙여요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 바울은 아덴에서 왜 성경 대신 그들의 단(23절)과 시인(28절)으로 시작했을까요. 회당에서와 다른 출발점이 걸려요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 23절 "알지 못하는 신에게"(<em>AGNOSTO THEO</em>)라 새긴 단은 아덴의 종교 배경이에요. 본문이 그 새김을 인용해 "너희가 알지 못하고 위하는 그것을 내가 너희에게 알게 하리라" 잇습니다. 본문이 도시의 소품을 설교의 입구로 삼는 대목이에요. 배경으로만 둡니다.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 설교의 골격이 창조(24절) → 섭리(26절) → 가까움(27-28절) → 회개·심판(30-31절)으로 흘러요. 한 단의 새김에서 시작해 부활로 닫혀요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 데살로니가의 고발이 "다른 임금 곧 예수라 하는 이가 있다"(7절)예요. 정치적 죄목으로 바뀌어요. 왜 신앙의 문제가 임금의 문제로 옮겨졌을까요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 16절이 걸려요. "우상이 가득한 것을 보고 마음에 격분하여". 그런데 설교(22-31절)는 격분이 아니라 차분한 논증이에요. 격분과 설교의 결이 달라서요.</p>
+
+<p><strong>P11 나경아</strong>: 16절의 "격분"은 헬라어 <em>paroxyno</em> 결(<em>paroxysmos</em>와 어근 공유)입니다. 15장 39절의 "다투어"와 같은 어근이 다른 자리에 쓰여요. 같은 어근, 다른 결까지만 관찰로 남깁니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 바울이 데살로니가 회당에서 세 안식일에 성경으로 강론하니, 더러는 믿고 헬라인과 귀부인 다수가 따릅니다.</p>
+
+<p><strong>P01 한나래</strong>: 시기한 유대인들이 저자의 불량배를 모아 소동을 일으키고 야손의 집을 습격합니다. "천하를 어지럽게 하던 이들, 다른 임금 예수가 있다 한다" 고발합니다. 형제들이 야손에게 보를 받고 놓아줍니다.</p>
+
+<p><strong>P04 최현국</strong>: 밤에 바울과 실라가 베뢰아로 갑니다. 그곳 사람들은 신사적이어서 간절한 마음으로 말씀을 받고 날마다 상고하니, 믿는 자가 많습니다. 데살로니가 유대인이 쫓아와 소동을 일으키자, 바울만 아덴으로 떠납니다.</p>
+
+<p><strong>P02 이진우</strong>: 아덴에서 우상이 가득한 것을 보고 바울의 마음이 격분합니다. 회당과 장터에서 날마다 변론하다가, 에피쿠로스·스토아 철학자들과 마주칩니다. 그들이 그를 아레오바고로 데려가 "이 새로운 가르침을 알 수 있겠느냐" 묻습니다.</p>
+
+<p><strong>P11 나경아</strong>: 바울이 서서 "아덴 사람들아, 너희가 범사에 종교심이 많도다. 알지 못하는 신에게라 새긴 단을 보았으니, 너희가 알지 못하고 위하는 그것을 알게 하리라" 합니다. 만유의 주재, 그를 힘입어 살며 기동하며 존재함, 어디서나 회개를 명하심, 그리고 죽은 자 가운데서 다시 살리신 일로 증거를 주셨다 합니다. 부활을 듣고 어떤 이는 조롱하고 어떤 이는 다시 듣겠다 하는데, 몇 사람이 믿어 디오누시오와 다마리도 그 중에 있는 한 줄로 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 소란한 회당에서 상고하는 베뢰아를 지나, 우상의 거리에서 한 단의 새김을 입구로 삼은 설교까지 흐르는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "알지 못하는 신에게"</p>
+<p><strong>P02 이진우</strong>: "조롱·유보·믿음 — 한 설교의 세 반응"</p>
+<p><strong>P04 최현국</strong>: "소란·상고·격분 — 세 도시의 공기"</p>
+<p><strong>P05 김미영</strong>: "날마다 상고하므로"</p>
+<p><strong>P07 오지혜</strong>: "그를 힘입어 살며 기동하며 존재하느니라"</p>
+<p><strong>P11 나경아</strong>: "<em>Anakrino · Agnostos · Anastasis</em> — 상고·알지못함·부활"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "회당의 성경에서 아덴의 단까지, 같은 말씀의 다른 입구"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 베뢰아의 책상과 아덴의 단 앞을 천천히 걸으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 저는 알지 못하는 신을 위하던 단 앞에 서 있습니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-017</p>
+<p>book: 사도행전</p>
+<p>chapter: 17</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>사도행전 17장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대는 데살로니가 회당(1) → 베뢰아(10) → 아덴의 회당·장터·아레오바고(17·19)로 옮겨간다.</li>
+<li>아덴 배경 = "새로운 것을 말하고 듣는 일로 시간을 보냄"(21절), 에피쿠로스·스토아 철학(18절).</li>
+<li>소품 = 회당의 성경(2), 우상(16), "알지 못하는 신에게" 단(23).</li>
+<li><em>dialegomai</em>(강론)·<em>anakrino</em>(상고)·<em>agnostos</em>(알지 못하는)·<em>deisidaimon</em>(종교심)이 무대 어휘.</li>
+<li>시간 = 세 안식일(2)·밤의 이동(10).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>세 도시의 다른 색 — 데살로니가 소란(5), 베뢰아 차분(11), 아덴 호기심·비웃음(18·32).</li>
+<li>아덴에서 바울의 격분(16)이 먼저 보임.</li>
+<li>끝이 셋으로 갈림 — 조롱·유보·믿음(32-34).</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: 데살로니가 회당으로 열림.</li>
+<li>34절: 아레오바고에서 믿은 몇 사람(디오누시오·다마리)으로 닫힘.</li>
+<li>회당에서 이방 도시의 몇 사람으로. 도시마다 결과의 크기가 다른 채로 닫힘.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 바울·실라 / 데살로니가 유대인·헬라인·귀부인(4) / 야손(5) / 베뢰아 사람(11) / 철학자들(18) / 디오누시오·다마리(34).</li>
+<li>대조 — 시기(데살로니가 5) vs 상고(베뢰아 11).</li>
+<li>사상 = 아레오바고 설교(22-31) — 창조·섭리·가까움·회개·부활.</li>
+<li>28절 헬라 시인 인용("우리가 그의 소생", <em>genos</em>). 31·32절 부활(<em>anastasis</em>)에서 청중 갈림.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-4): 데살로니가 회당, 세 안식일 강론, 더러 믿음.</li>
+<li>컷 2 (5-9): 시기한 유대인의 소동, 야손의 집, "다른 임금 예수".</li>
+<li>컷 3 (10-15): 베뢰아의 상고, 많은 믿음, 추격, 바울이 아덴으로.</li>
+<li>컷 4 (16-21): 우상의 아덴, 격분, 변론, 아레오바고로.</li>
+<li>컷 5 (22-31): 아레오바고 설교 — 알지 못하는 신·창조·가까움·회개·부활.</li>
+<li>컷 6 (32-34): 셋으로 갈린 반응, 디오누시오·다마리의 믿음.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>dialegomai</em>(διαλέγομαι) — 변론하다·강론하다. 2·17절.</li>
+<li><em>anakrino</em>(ἀνακρίνω) — 살펴 분간하다·상고하다. 11절 베뢰아.</li>
+<li><em>eugenes</em>(εὐγενής) — 신사적·고상한. 11절 "신사적이어서".</li>
+<li><em>agnostos</em>(ἄγνωστος) — 알지 못하는. 23절 단의 새김.</li>
+<li><em>deisidaimon</em>(δεισιδαίμων) — 종교심이 많은. 22절.</li>
+<li><em>zeteo</em>(ζητέω) / <em>pselaphao</em>(ψηλαφάω) — 찾다 / 더듬다. 27절.</li>
+<li><em>metanoeo</em>(μετανοέω) — 회개하다. 30절.</li>
+<li><em>anastasis</em>(ἀνάστασις) — 부활. 31·32절(청중 갈림).</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>데살로니가·베뢰아(1-15) → 아덴(16-34)의 두 묶음. 아덴이 절반.</li>
+<li>대조 구조 — 시기(5)와 상고(11)가 같은 말씀 앞에 갈림.</li>
+<li>아레오바고 설교의 흐름 — 창조(24) → 섭리(26) → 가까움(27-28) → 회개·심판(30-31).</li>
+<li>본문이 평을 직접 붙임 — 베뢰아 "신사적"(11), 아덴 "새 것만 좇음"(21).</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>"알지 못하는 신에게"(<em>AGNOSTO THEO</em>, 23절)는 아덴의 종교 배경 — 본문이 그 새김을 설교 입구로 인용.</li>
+<li>에피쿠로스·스토아(18절)가 아덴 사상 배경으로 등장.</li>
+<li>28절의 "우리가 그의 소생"은 헬라 시인 인용 — 본문이 청중의 시를 끌어옴.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>행 17:11 ↔ 사 34:16 (말씀을 상고함의 결)</li>
+<li>행 17:24 ↔ 사 42:5 (천지를 지으신 하나님)</li>
+<li>행 17:28 ↔ 시 139편 (그를 힘입어 존재함의 결)</li>
+<li>행 17:30 ↔ 행 14:16 (그동안 묵인하신 때)</li>
+<li>행 17:7 ↔ 눅 23:2 ("다른 임금"의 정치적 죄목)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>바울이 데살로니가 회당에서 세 안식일에 강론하니 더러 믿고 헬라인·귀부인 다수가 따른다. 시기한 유대인들이 소동을 일으켜 야손의 집을 습격하고 "다른 임금 예수가 있다" 고발하니, 형제들이 밤에 바울·실라를 베뢰아로 보낸다. 베뢰아 사람들은 신사적이어서 날마다 말씀을 상고하니 많은 이가 믿는다. 데살로니가 유대인이 쫓아오자 바울만 아덴으로 간다. 우상 가득한 거리에 격분한 바울이 회당과 장터에서 변론하다가 철학자들에게 이끌려 아레오바고에 선다. "알지 못하는 신에게"라 새긴 단을 입구 삼아, 만유의 주재와 "그를 힘입어 살며 기동하며 존재함"과 회개와 부활을 전한다. 부활을 듣고 조롱하는 자, 다시 듣겠다는 자, 믿는 자(디오누시오·다마리)로 셋으로 갈리며 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"알지 못하는 신에게 — 한 설교의 세 반응"</strong></li>
+<li>초벌 부제: "회당의 성경에서 아덴의 단까지, 같은 말씀의 다른 입구"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (8개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (에피쿠로스·스토아·아덴 단·시인 인용)</li>
+<li>[x] 미해결 질문 1개 이상 (open_questions 6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 6개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>아레오바고 설교(22-31)를 자연신학 일반론으로 굳히지 않고 본문 문장 순서만 기록.</li>
+<li>"알지 못하는 신"(23)을 종교다원론으로 확장하지 않고 본문의 인용·이음만 보존.</li>
+<li>부활 앞의 세 반응(32-34)을 우열로 평가하지 않고 분포만 기록.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-017</p>
+<p>book: 사도행전</p>
+<p>chapter: 17</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>사도행전 17장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 같은 말씀에 시기(데살로니가)와 상고(베뢰아)가 갈린 까닭은?</h2>
+
+<ul>
+<li>5절의 시기와 11절의 상고가 같은 강론을 받음.</li>
+<li>두 반응의 결은 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q2. 아덴에서 왜 성경 대신 단과 시인으로 시작했는가?</h2>
+
+<ul>
+<li>23·28절에서 도시의 소품·시를 입구로 삼음.</li>
+<li>회당과 다른 출발점의 까닭은 보류.</li>
+</ul>
+
+<h2>Q3. 격분(16절)과 차분한 설교(22-31절)는 어떻게 함께인가?</h2>
+
+<ul>
+<li>마음은 격분, 말은 논증.</li>
+<li>두 결의 병치만 기록, 관계는 보류.</li>
+</ul>
+
+<h2>Q4. 왜 신앙의 문제가 "다른 임금"(7절)의 문제로 옮겨졌는가?</h2>
+
+<ul>
+<li>고발이 정치적 죄목으로 바뀜.</li>
+<li>옮겨감의 까닭은 본문이 설명하지 않음. 보존.</li>
+</ul>
+
+<h2>Q5. "더듬어 찾아"(27절)의 손의 동작은 무엇을 가리키는가?</h2>
+
+<ul>
+<li><em>pselaphao</em>(더듬다)와 <em>zeteo</em>(찾다)가 한 절에.</li>
+<li>두 동사의 결은 분포만 보존.</li>
+</ul>
+
+<h2>Q6. 도시마다 결과의 크기(소동·다수·몇 사람)가 다른 까닭은?</h2>
+
+<ul>
+<li>데살로니가·베뢰아·아덴의 열매가 다름.</li>
+<li>크기의 차이를 평가하지 않고 묵상에서 다시.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">알지 못하는 신에게 — 한 설교의 세 반응.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body">
+            <p>---</p>
+<p>sim_id: ACT-017</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-31</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 사도행전 17장은 같은 말씀이 세 도시에서 <em>소란·상고·갈라짐</em>의 다른 결을 부르고, 아덴의 "알지 못하는 신에게"라 새긴 단이 한 설교의 입구가 되는 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 데살로니가 회당의 강론으로 열린다. 더러는 믿고, 시기한 무리는 "다른 임금 예수가 있다"며 소동을 일으킨다. 밤에 옮겨간 베뢰아 사람들은 신사적이어서 날마다 말씀을 상고하고, 많은 이가 믿는다. 우상 가득한 아덴에서 바울은 격분하면서도, 그들의 단과 시인을 입구 삼아 아레오바고에서 만유의 주재와 "그를 힘입어 살며 기동하며 존재함"과 회개와 부활을 전한다. 부활이라는 한 단어 앞에서 청중은 조롱·유보·믿음의 셋으로 갈린다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>데살로니가 회당(1) → 베뢰아(10) → 아덴 회당·장터·아레오바고(17·19). 배경 = 에피쿠로스·스토아(18)·"새 것만 좇음"(21). 소품 = 성경·우상·단.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>소란·상고·호기심의 다른 색. 격분(16). 끝의 셋으로 갈림(32-34).</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 데살로니가 회당(1). 끝 — 아레오바고의 몇 사람(34). 도시마다 다른 결과의 크기.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>바울·실라 / 야손 / 베뢰아 사람 / 철학자 / 디오누시오·다마리. 시기 vs 상고. 사상 = 아레오바고 설교(창조·가까움·회개·부활).</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 데살로니가(1-4). 컷 2 소동(5-9). 컷 3 베뢰아(10-15). 컷 4 격분·변론(16-21). 컷 5 설교(22-31). 컷 6 세 반응(32-34).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>"신사적"의 까닭(11). 단·시인을 입구로(23·28). 설교의 흐름. "다른 임금"(7). 격분과 차분의 병치.</td></tr>
+<tr><td>7 동영상</td><td>회당 강론 → 소동 → 베뢰아 상고 → 격분·변론 → 아레오바고 설교 → 세 반응으로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "알지 못하는 신에게 — 한 설교의 세 반응". 부제 — "회당의 성경에서 아덴의 단까지, 같은 말씀의 다른 입구".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>베뢰아의 책상과 아덴의 단 앞을 걸으며 알지 못하던 신을 위하던 자리를 본다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 시기와 상고</strong>: 같은 강론이 데살로니가에서는 시기(5절)를, 베뢰아에서는 날마다의 상고(11절)를 부른다. 받는 자리에 따라 같은 말씀이 갈린다.</p>
+<p>2. <strong>결 2 — 도시의 소품을 입구로</strong>: 바울은 "알지 못하는 신에게"라 새긴 단(23절)과 헬라 시인(28절)을 설교의 입구로 삼는다. 회당의 성경과 다른 출발점이다.</p>
+<p>3. <strong>결 3 — 부활 앞의 갈라짐</strong>: 한 설교가 부활(31절)에 이르자 청중이 조롱·유보·믿음(32-34절)으로 셋이 된다. 같은 끝말에 세 결이 동시에 선다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>행 14:16</strong> (그동안 묵인하신 때, 30절과 닿음), <strong>행 16:9</strong> (마게도냐의 길), <strong>행 18:1</strong> (아덴에서 고린도로 이어짐).</li>
+<li>다른 권 — <strong>사 42:5</strong> (천지를 지으신 하나님, 24절), <strong>시 139편</strong> (그를 힘입어 존재함의 결).</li>
+<li>정경 흐름 — 17장의 아레오바고 설교는 사도행전에서 이방 지성을 향한 가장 긴 변증으로, 회당 밖 청중을 향한 결을 연다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 같은 말씀을 두고 시기와 상고가 갈리는 자리에 한 사람이 선다.</li>
+<li><strong>멈춤 1</strong>: 날마다 상고하는 베뢰아 사람 곁에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: "알지 못하는 신에게"라 새긴 단 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: "그를 힘입어 살며 기동하며 존재함" 앞에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *알지 못하던 신을 알게 하는 한 단어는 부활이다*는 결을 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *조롱과 유보와 믿음이 갈리는 자리* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 데살로니가에서 소동이 인다</li>
+<li>[x] 베뢰아 사람은 날마다 상고한다</li>
+<li>[x] 아덴은 우상으로 가득하다</li>
+<li>[x] "알지 못하는 신에게"라 새긴 단이 있다</li>
+<li>[x] "그를 힘입어 살며 기동하며 존재한다"</li>
+<li>[x] 회개를 명하시고 부활로 증거를 주신다</li>
+<li>[x] 부활 앞에서 청중이 셋으로 갈린다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>부활</em>.</p>
+          </div>
+        </section>
+
+
+    <div class="next-row">
+      <a href="/magazine/ACT/16/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">사도행전 16장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/ACT/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">사도행전 28장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/ACT/18/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">사도행전 18장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/ACT/17/',
+      title: '사도행전 17장',
+      excerpt: '데살로니가의 소동, 베뢰아의 상고함, 그리고 우상으로 가득한 아덴. "알지 못하는 신에게"라 새긴 단 앞에서 한 설교가 선다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+
+
+
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

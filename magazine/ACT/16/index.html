@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>사도행전 16장 — Observatory | 네다바웨이</title>
+<meta name="description" content="사도행전 16장을 9단계로 같이 관찰합니다. 디모데의 동행, 마게도냐 환상, 빌립보의 루디아·귀신들린 여종·간수의 회심.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/ACT/16/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/ACT/">사도행전</a> · 16장</div>
+      <h1>사도행전 16장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">ACT-016 · 역사서(신약) · 헬라어</div>
+      <p class="essence">"건너와서 우리를 도우라"는 한 환상이 바다를 가른다. 빌립보의 강가와 시장과 옥에서, 마음이 열리고 사슬이 풀리고 한 집이 세례를 받는다.</p>
+    </header>
+
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-016</p>
+<p>book: 사도행전</p>
+<p>book_en: Acts</p>
+<p>chapter: 16</p>
+<p>bible_block: 역사서(신약)</p>
+<p>canon: 신약</p>
+<p>genre: 내러티브·여행기</p>
+<p>language: 헬라어</p>
+<p>verse_count: 40</p>
+<p>observed_facts_count: 25</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 3</p>
+<p>greek_terms: [horama, dianoigo, parthenos, manteuomai, kolonia, sozo, oikos, baptizo, eirene, doulos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-31</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>사도행전 16장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 사도행전 16장입니다. 한 환상이 길을 틀고, 빌립보에서 세 사람이 차례로 나옵니다. 먼저 끝까지 낭독하고 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 16:1~40, 약 6분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 앞부분은 막히는 공기였어요. "성령이 아시아에서 말씀을 전하지 못하게 하시거늘"(6절), "예수의 영이 허락하지 아니하시는지라"(7절). 자꾸 닫혀요. 그러다 환상에서 갑자기 열려요.</p>
+
+<p><strong>P01 한나래</strong>: 저는 밤이 자주 느껴졌어요. 환상도 밤(9절), 옥에 갇힌 것도 밤(25절), 간수가 나온 것도 밤이에요. 어둠 속에서 일이 벌어져요.</p>
+
+<p><strong>P04 최현국</strong>: 빌립보에서 세 무대가 차례로 서요. 강가(13절) → 시장·옥(19·24절) → 간수의 집(34절). 장소가 바뀔 때마다 사람이 바뀌어요.</p>
+
+<p><strong>P05 김미영</strong>: "물"이 다시 깔려요. 강가에서 기도처를 찾고(13절), 루디아가 세례를 받고(15절), 끝에 간수도 세례를 받아요(33절). 씻음의 물이 반복돼요.</p>
+
+<p><strong>P02 이진우</strong>: "우리"라는 말이 갑자기 끼어들어요. 10절부터 "우리가 곧 마게도냐로 떠나기를 힘쓰니"라며 화자가 바뀌어요. 시점이 달라지는 게 느껴졌어요.</p>
+
+<p><strong>P11 나경아</strong>: "구원"이라는 단어가 두 결로 울렸어요. 17절 여종의 외침과 30-31절 간수의 물음에서 같은 말이 다르게 놓여요.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. 막힘에서 환상으로, 강가에서 옥으로 흐르는 그 공기를 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P05 김미영</strong>: 1-5절은 더베와 루스드라예요. 디모데를 만나는 곳이고요. 6-8절은 브루기아·갈라디아·무시아·드로아로 길이 이어져요. 9절 환상 뒤 11-12절에서 사모드라게·네압볼리를 거쳐 빌립보에 닿아요.</p>
+
+<p><strong>P04 최현국</strong>: 빌립보를 본문이 "마게도냐 지방의 첫 성이요 로마의 식민지라"(12절) 짚어줘요. 그리고 13절은 "안식일에 기도할 곳이 있을까 하여 문 밖 강가에" 나가요. 강가가 첫 무대예요.</p>
+
+<p><strong>P07 오지혜</strong>: 소품을 모으면 — 환상(9절), 자색 옷감(루디아, 14절), 점치는 귀신(16절), 옥문과 차꼬(24·26절), 칼(간수, 27절), 물(세례, 33절)이에요. 소재가 환상 → 장사 → 점 → 옥 → 씻음으로 옮겨가요.</p>
+
+<p><strong>P11 나경아</strong>: 원어를 무대 자료로 두면, 9절의 "환상"은 헬라어 <em>horama</em>입니다. 14절 "마음을 열어"는 <em>dianoigo</em>(활짝 열다)예요. 16절 "점치는"은 <em>mantenomai</em> 결이고요. 그리고 12절 "식민지"가 <em>kolonia</em>(로마 콜로니아)입니다. 배경으로만 둡니다.</p>
+
+<p><strong>P02 이진우</strong>: 배경 제도가 깔려요. 빌립보가 로마 식민지(12절)라 21·37절에서 "로마 사람"의 신분이 변수가 돼요. 바울이 "로마 사람인 우리를… 매질하고 옥에 가두었다가"(37절)라며 신분을 듭니다. 로마 시민권이 무대 장치예요.</p>
+
+<p><strong>P01 한나래</strong>: 시간 배경도 박혀요. 13절 "안식일에", 18절 "여러 날을 하는지라", 25절 "한밤중에", 35절 "날이 새매". 시간의 표지가 자주 찍혀요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>horama</em>·<em>dianoigo</em>·로마 식민지, 그리고 강가–시장–옥–집의 동선을 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계로 보이시는지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "바울이 더베와 루스드라에도 이르매 거기 디모데라 하는 제자가 있으니"로 한 사람을 만나며 열려요. 40절은 "두 사람이 옥에서 나와 루디아의 집에 들어가서 형제들을 보고 위로하고 가니라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 동행자를 얻는 것이고, 끝은 한 집에 모인 형제들을 위로하는 것이에요. 한 사람에서 한 공동체로 넓어져요.</p>
+
+<p><strong>P01 한나래</strong>: 그리고 끝의 "루디아의 집"은 13-15절에서 처음 열린 그 집이에요. 강가에서 만난 첫 사람의 집으로 장이 돌아와 닫혀요. 처음과 끝이 같은 문에서 만나요.</p>
+
+<p><strong>성령일 선교사</strong>: 한 사람을 얻음에서 한 집의 위로로, 그리고 첫 집으로 돌아와 닫히는 폭을 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 디모데(1절), 그의 어머니(유대 여자)와 헬라인 아버지(1절), 바울·실라, 화자 "우리"(10절), 루디아(자색 옷감 장사, 14절), 점치는 여종(16절), 그 주인들(19절), 상관들과 부하(20·22절), 간수(23절)와 그 온 집(34절)이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황이 세 번 반복돼요. 마음이 열림(루디아, 14절) / 귀신이 나감(여종, 18절) / 사슬이 풀림(간수, 26절). 각각 다른 풀림이에요.</p>
+
+<p><strong>P04 최현국</strong>: 사상은 "구원"이에요. 여종이 "이 사람들은 지극히 높은 하나님의 종으로 너희에게 구원의 길을 전하는 자라"(17절) 외치고, 간수가 "내가 어떻게 하여야 구원을 받으리이까"(30절) 묻고, "주 예수를 믿으라 그리하면 너와 네 집이 구원을 받으리라"(31절) 답이 와요.</p>
+
+<p><strong>P11 나경아</strong>: 17절의 "구원의 길"과 30-31절의 "구원을 받으리이까/받으리라"가 다 헬라어 <em>sozo</em>(구원하다)의 결이에요. 같은 단어를 여종도 간수도 말하는데 자리가 달라요. 그리고 31절의 "네 집"은 <em>oikos</em>예요. 어휘 분포만 기록합니다.</p>
+
+<p><strong>P02 이진우</strong>: 25절이 골격을 바꿔요. "한밤중에 바울과 실라가 기도하고 하나님을 찬송하매 죄수들이 듣더라". 그다음 26절 "큰 지진이 나서… 모든 사람의 매인 것이 다 벗어진지라". 찬송 다음에 지진이 와요.</p>
+
+<p><strong>P11 나경아</strong>: 16절 여종이 가진 영을 본문은 "점치는 귀신"(<em>pneuma pythona</em>, 비단뱀의 영 결)이라 합니다. 표준 음역으로는 <em>mantenomai</em>(점치다)와 닿고요. 그 여종이 "주인들에게 큰 이익을 주는"(16절) 처지인 것까지가 본문 보고예요.</p>
+
+<p><strong>성령일 선교사</strong>: 세 풀림과 구원의 두 자리를 어휘 표시로만 두고, 관계는 서두르지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 여섯 컷 정도로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-5절)</strong>: 더베·루스드라, 디모데를 데려감, 할례를 행함, 교회가 굳건해지고 수가 날마다 늘어남</li>
+<li><strong>컷 2 (6-10절)</strong>: 아시아·비두니아가 막힘, 드로아의 밤 환상 — "마게도냐로 건너와 우리를 도우라"</li>
+<li><strong>컷 3 (11-15절)</strong>: 빌립보 강가, 루디아의 마음이 열림, 그와 그 집이 세례받음</li>
+<li><strong>컷 4 (16-24절)</strong>: 점치는 여종, 귀신이 나감, 주인들의 고발, 바울·실라가 매 맞고 옥에 갇힘</li>
+<li><strong>컷 5 (25-34절)</strong>: 한밤중 찬송, 지진, 간수의 칼, "주 예수를 믿으라", 온 집의 세례</li>
+<li><strong>컷 6 (35-40절)</strong>: 날이 새고 놓아주려 함, 바울이 로마 시민권을 듦, 상관들의 사과, 루디아의 집에서 위로</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 1-2가 길의 방향, 컷 3-5가 빌립보의 세 사람, 컷 6이 풀려남이에요. 세 묶음으로도 묶입니다.</p>
+
+<p><strong>성령일 선교사</strong>: 그 세 묶음을 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 루디아의 회심을 본문이 "주께서 그 마음을 열어"(14절) 일이라 해요. 사람이 연 것이 아니라 본문이 주어를 주께 둬요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 여종이 외친 말(17절)은 옳은 말인데, 왜 바울이 "심히 괴로워하여"(18절) 귀신을 쫓았을까요. 맞는 말을 한 영을 내보낸 까닭이요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 1-3절에서 바울이 디모데에게 할례를 행한 일은 "그 지방에 있는 유대인으로 말미암아"(3절)라고 본문이 까닭을 답니다. 바로 앞 15장이 이방인 할례를 면제한 회의였던 것과 나란히 두면 배경이 됩니다. 본문이 까닭을 직접 밝히는 대목이에요.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 빌립보의 세 회심이 신분의 폭이 넓어요. 루디아(자색 장사, 부유한 여성) / 여종(노예) / 간수(로마 관리)예요. 한 성에서 세 계층이 차례로 나와요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 옥문이 열리고 매인 것이 풀렸는데도(26절), 죄수들이 도망치지 않아요. 간수가 "다 여기 있다"(28절) 들어요. 열린 문에서 머무는 까닭이 걸려요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 35-37절이 걸려요. 상관들이 그냥 놓아주려 하자, 바울이 "로마 사람인 우리를 죄도 정하지 아니하고 공중 앞에서 때리고… 이제는 가만히 내보내고자 하느냐"며 거절해요. 왜 조용히 나가지 않았을까요.</p>
+
+<p><strong>P11 나경아</strong>: 37절의 거절은 신분("로마 사람")을 근거로 듭니다. 12절의 식민지(<em>kolonia</em>) 배경과 닿아요. 본문은 그 신분의 사용을 비난도 칭찬도 없이 보고만 합니다. 어휘와 위치까지만 관찰로 남깁니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 바울이 루스드라에서 디모데를 만나 데려갑니다. 그 지방 유대인 때문에 디모데에게 할례를 행하고, 교회들은 믿음이 굳건해지며 수가 날마다 늘어납니다.</p>
+
+<p><strong>P01 한나래</strong>: 성령이 아시아의 길을 막고 비두니아도 막으시니, 드로아에 이릅니다. 밤에 환상이 보입니다. 한 마게도냐 사람이 서서 "건너와서 우리를 도우라" 청합니다. 일행은 곧 마게도냐로 떠나기를 힘씁니다.</p>
+
+<p><strong>P04 최현국</strong>: 빌립보에 이르러 안식일에 강가 기도처로 나갑니다. 자색 옷감 장사 루디아가 듣는데, 주께서 그 마음을 여시니 그와 그 집이 세례를 받고 일행을 자기 집에 머물게 합니다.</p>
+
+<p><strong>P02 이진우</strong>: 점치는 여종이 여러 날 따라다니며 외치자, 바울이 괴로워하여 예수의 이름으로 귀신을 내보냅니다. 이익이 끊긴 주인들이 바울·실라를 시장으로 끌고 가 고발하고, 두 사람은 매를 맞고 깊은 옥에 차꼬가 채워져 갇힙니다.</p>
+
+<p><strong>P11 나경아</strong>: 한밤중에 두 사람이 기도하고 찬송하니 죄수들이 듣습니다. 큰 지진이 일어 옥문이 열리고 매인 것이 다 풀립니다. 깨어난 간수가 죄수가 도망친 줄 알고 자결하려 하자, 바울이 "다 여기 있다" 외칩니다. 간수가 "어떻게 하여야 구원을 받으리이까" 묻고, "주 예수를 믿으라 그리하면 너와 네 집이 구원을 받으리라" 듣습니다. 그날 밤 그와 온 가족이 세례를 받습니다. 날이 새어 놓아주려 하자 바울이 로마 시민권을 들어 사과를 받고, 두 사람은 루디아의 집에서 형제들을 위로하고 떠나는 한 줄로 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 막힌 길에서 환상으로 방향을 틀고, 강가의 마음과 옥의 사슬과 한밤의 찬송을 지나, 세 사람이 차례로 풀려나는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "건너와서 우리를 도우라"</p>
+<p><strong>P02 이진우</strong>: "주께서 그 마음을 열어"</p>
+<p><strong>P04 최현국</strong>: "강가·시장·옥 — 빌립보의 세 사람"</p>
+<p><strong>P05 김미영</strong>: "한밤중의 찬송, 풀린 사슬"</p>
+<p><strong>P07 오지혜</strong>: "주 예수를 믿으라 — 너와 네 집이"</p>
+<p><strong>P11 나경아</strong>: "<em>Horama · Dianoigo · Sozo</em> — 환상·열림·구원"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "막힌 길에서 환상으로, 강가의 마음에서 옥의 사슬까지"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 빌립보의 강가와 옥과 그 집을 천천히 걸으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 저는 마음이 열리기를 기다리는 강가에 서 있습니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-016</p>
+<p>book: 사도행전</p>
+<p>chapter: 16</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>사도행전 16장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대는 루스드라(1) → 드로아(8) → 빌립보 강가(13) → 시장·옥(19·24) → 간수의 집(34)으로 옮겨간다.</li>
+<li>빌립보 = "마게도냐 첫 성, 로마의 식민지"(<em>kolonia</em>, 12절)가 배경 장치.</li>
+<li>소품 = 환상(<em>horama</em>, 9), 자색 옷감(14), 점치는 귀신(16), 옥문·차꼬(24·26), 칼(27), 물·세례(33).</li>
+<li>로마 시민권(37)이 끝의 변수로 작동.</li>
+<li>시간 표지 — 안식일(13)·밤 환상(9)·한밤중(25)·날이 새매(35).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>앞은 막힘("못하게 하시거늘", 6·7절) → 환상으로 열림(9절).</li>
+<li>밤이 반복(환상·옥·찬송). 어둠 속의 일.</li>
+<li>10절부터 화자가 "우리"로 바뀜(시점 전환).</li>
+<li>씻음의 물 반복(루디아 15·간수 33).</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: 디모데를 만남 — 한 사람을 얻으며 열림.</li>
+<li>40절: 루디아의 집에서 형제들을 위로 — 한 공동체로 닫힘.</li>
+<li>한 사람에서 한 집으로. 끝의 "루디아의 집"이 13-15절 첫 집으로 돌아옴(수미 호응).</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 디모데와 부모(1) / 바울·실라 / "우리"(10) / 루디아(14) / 점치는 여종(16)과 주인들(19) / 상관·부하(20·22) / 간수와 온 집(34).</li>
+<li>세 풀림 — 마음이 열림(루디아 14) / 귀신이 나감(여종 18) / 사슬이 풀림(간수 26).</li>
+<li>사상 = 구원(<em>sozo</em>). 여종의 외침(17)과 간수의 물음·답(30-31)에 같은 단어가 다른 자리.</li>
+<li>한밤 찬송(25) → 지진·풀림(26)의 순서.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-5): 디모데 동행, 할례, 교회가 굳건해지고 수가 늘어남.</li>
+<li>컷 2 (6-10): 아시아·비두니아 막힘, 드로아 밤 환상 "건너와 도우라".</li>
+<li>컷 3 (11-15): 빌립보 강가, 루디아의 마음 열림, 집의 세례.</li>
+<li>컷 4 (16-24): 점치는 여종, 귀신 나감, 고발, 매 맞고 옥에 갇힘.</li>
+<li>컷 5 (25-34): 한밤 찬송, 지진, "주 예수를 믿으라", 온 집의 세례.</li>
+<li>컷 6 (35-40): 놓아주려 함, 로마 시민권, 사과, 루디아의 집에서 위로.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>horama</em>(ὅραμα) — 환상. 9절 마게도냐 사람의 환상.</li>
+<li><em>dianoigo</em>(διανοίγω) — 활짝 열다. 14절 "주께서 그 마음을 열어".</li>
+<li><em>sozo</em>(σῴζω) — 구원하다. 17·30·31절(여종·간수).</li>
+<li><em>oikos</em>(οἶκος) — 집·가정. 31절 "너와 네 집".</li>
+<li><em>mantenomai</em>(μαντεύομαι) — 점치다. 16절 여종의 영(점치는 귀신).</li>
+<li><em>kolonia</em>(κολωνία) — 로마 식민지. 12절 빌립보.</li>
+<li><em>baptizo</em>(βαπτίζω) — 세례를 주다. 15·33절(루디아·간수).</li>
+<li><em>parthenos/paidiske</em> — 여종(16절, 종 신분의 결).</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>길의 방향(1-10) → 빌립보 세 사람(11-34) → 풀려남(35-40)의 세 묶음.</li>
+<li>세 회심이 신분의 폭 — 루디아(부유한 여성)·여종(노예)·간수(로마 관리).</li>
+<li>세 풀림의 평행 — 마음·귀신·사슬.</li>
+<li>수미 호응 — 13-15절 루디아의 집 ↔ 40절 루디아의 집.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>디모데 할례(3절)는 "그 지방 유대인으로 말미암아"라고 본문이 까닭을 댐 — 15장 이방인 할례 면제와 나란히 둠(배경).</li>
+<li>빌립보의 로마 식민지(<em>kolonia</em>, 12)·시민권(37)이 고발·석방의 배경.</li>
+<li>"점치는 귀신"(16)이 "주인에게 큰 이익"이 됨 — 본문 보고.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>행 16:3 ↔ 행 15:1-29 (할례 면제 회의와 디모데 할례)</li>
+<li>행 16:9-10 ↔ 행 13:2 (성령의 길 인도)</li>
+<li>행 16:14 ↔ 눅 24:45 ("마음을 열어"의 결)</li>
+<li>행 16:31 ↔ 행 11:14 (너와 네 집의 구원)</li>
+<li>행 16:25 ↔ 시 42:8 (밤의 찬송)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>바울이 루스드라에서 디모데를 만나 데려가고, 교회들은 믿음이 굳건해지며 수가 날마다 늘어난다. 성령이 아시아와 비두니아의 길을 막으시니 드로아에 이르고, 밤에 "마게도냐로 건너와 우리를 도우라"는 환상을 본다. 빌립보 강가에서 루디아의 마음이 열려 그와 집이 세례를 받는다. 점치는 여종에게서 귀신이 나가자, 이익이 끊긴 주인들의 고발로 바울·실라가 매 맞고 옥에 갇힌다. 한밤중에 두 사람이 찬송하니 지진이 나 옥문이 열리고 사슬이 풀린다. 자결하려던 간수가 "어떻게 구원받으리이까" 묻고, "주 예수를 믿으라, 너와 네 집이 구원받으리라" 듣고 온 가족이 세례를 받는다. 날이 새어 바울이 로마 시민권을 들어 사과를 받고, 루디아의 집에서 형제들을 위로하고 떠나는 한 줄로 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"건너와서 우리를 도우라 — 빌립보의 세 사람"</strong></li>
+<li>초벌 부제: "막힌 길에서 환상으로, 강가의 마음에서 옥의 사슬까지"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (8개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (로마 식민지·시민권·할례 배경·세 회심 신분)</li>
+<li>[x] 미해결 질문 1개 이상 (open_questions 6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 6개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>"주께서 그 마음을 열어"(14)를 예정론으로 굳히지 않고 본문 주어만 기록.</li>
+<li>여종의 귀신 축출(18)을 점술 일반론으로 확장하지 않고 본문 사건만 보존.</li>
+<li>로마 시민권 사용(37)을 옳고 그름으로 평가하지 않고 위치만 기록.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-016</p>
+<p>book: 사도행전</p>
+<p>chapter: 16</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>사도행전 16장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 막힌 길(6-7절)과 열린 환상(9절)은 어떻게 함께인가?</h2>
+
+<ul>
+<li>아시아·비두니아가 막힌 뒤에야 마게도냐가 열림.</li>
+<li>막힘과 열림의 결은 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q2. 맞는 말을 외친 여종의 영을 왜 내보냈는가?</h2>
+
+<ul>
+<li>17절의 외침은 옳은데 바울은 괴로워하여 내보냄(18절).</li>
+<li>옳은 말과 그 출처의 결은 보류.</li>
+</ul>
+
+<h2>Q3. 열린 옥문에서 죄수들은 왜 머물렀는가?</h2>
+
+<ul>
+<li>매인 것이 다 풀렸으나 도망치지 않음(26·28절).</li>
+<li>열림과 머묾의 까닭은 본문이 설명하지 않음. 보존.</li>
+</ul>
+
+<h2>Q4. 디모데의 할례(3절)와 15장의 할례 면제는 어떻게 함께인가?</h2>
+
+<ul>
+<li>회의는 면제했는데 여기선 행함, 본문은 "그 지방 유대인" 때문이라 함.</li>
+<li>두 자리의 까닭은 분포만 보존.</li>
+</ul>
+
+<h2>Q5. 바울은 왜 조용히 나가지 않고 로마 시민권을 들었는가?</h2>
+
+<ul>
+<li>가만히 내보내려는 것을 거절(37절).</li>
+<li>신분 사용의 까닭은 답하지 않고 위치만 보존.</li>
+</ul>
+
+<h2>Q6. 세 회심(루디아·여종·간수)이 한 성에 모인 까닭은?</h2>
+
+<ul>
+<li>부유한 여성·노예·로마 관리가 차례로 나옴.</li>
+<li>신분의 폭이 한 장에 놓인 까닭은 묵상에서 다시.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">건너와서 우리를 도우라 — 빌립보의 세 사람.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body">
+            <p>---</p>
+<p>sim_id: ACT-016</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-31</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 사도행전 16장은 막힌 길이 한 밤 <em>환상</em>으로 마게도냐를 향해 트이고, 빌립보의 강가와 옥과 한 집에서 신분이 다른 세 사람이 차례로 풀려나는 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 디모데를 동행으로 얻으며 열린다. 그러나 아시아와 비두니아로 가려는 길이 거듭 막히고, 드로아의 밤에 "건너와 우리를 도우라"는 환상이 방향을 튼다. 빌립보 강가에서 자색 옷감 장사 루디아의 마음이 열리고, 시장에서는 점치는 여종에게서 귀신이 나가며, 그 일이 바울과 실라를 옥으로 데려간다. 한밤중의 찬송 뒤 지진이 사슬을 풀고, 자결하려던 간수가 "어떻게 구원받으리이까" 묻는다. "주 예수를 믿으라, 너와 네 집이 구원받으리라"는 답이 한 가정을 적신다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>루스드라(1) → 드로아(8) → 빌립보 강가(13) → 옥(24) → 간수의 집(34). 식민지(<em>kolonia</em>, 12)·시민권(37). 소품 = 환상·자색 옷감·차꼬·물.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>막힘 → 환상으로 열림. 밤의 반복. "우리"로 시점 전환(10). 씻음의 물 반복.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 디모데 동행(1). 끝 — 루디아의 집에서 위로(40). 첫 집으로 돌아와 닫힘.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>디모데 / 루디아 / 여종 / 간수. 세 풀림 — 마음·귀신·사슬. 사상 = 구원(<em>sozo</em>, 17·30·31).</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 동행(1-5). 컷 2 환상(6-10). 컷 3 루디아(11-15). 컷 4 여종·옥(16-24). 컷 5 찬송·간수(25-34). 컷 6 석방(35-40).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>"마음을 열어"(14). 옳은 말의 영을 내보냄(18). 세 회심의 신분 폭. 열린 옥에서 머묾(28).</td></tr>
+<tr><td>7 동영상</td><td>막힌 길 → 환상 → 강가 → 옥 → 찬송·지진 → 세 사람의 풀림으로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "건너와서 우리를 도우라 — 빌립보의 세 사람". 부제 — "막힌 길에서 환상으로, 강가의 마음에서 옥의 사슬까지".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>강가와 옥과 그 집을 걸으며 마음이 열리기를 기다리는 자리를 본다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 막힘과 열림</strong>: 두 번 막힌 길(6·7절) 끝에 환상이 마게도냐를 연다(9절). 닫힌 문과 트인 바다가 한 자리에 있다.</p>
+<p>2. <strong>결 2 — 세 신분의 풀림</strong>: 부유한 여성의 마음, 노예 여종의 영, 로마 관리의 사슬이 차례로 풀린다. 한 성에서 세 계층이 같은 풀림에 든다.</p>
+<p>3. <strong>결 3 — 한밤의 찬송과 지진</strong>: 매 맞고 차꼬에 채인 두 사람의 찬송(25절) 뒤에 지진이 온다(26절). 갇힌 자리의 노래와 흔들림이 잇닿는다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>행 15:1-29</strong> (할례 면제와 디모데 할례, 3절), <strong>행 13:2</strong> (성령의 길 인도), <strong>행 11:14</strong> (너와 네 집의 구원).</li>
+<li>다른 권 — <strong>눅 24:45</strong> ("마음을 열어"의 결), <strong>시 42:8</strong> (밤의 찬송).</li>
+<li>정경 흐름 — 16장의 환상은 복음의 발걸음을 아시아에서 유럽(마게도냐)으로 넘기는 경첩으로, 빌립보 교회의 첫 문이 된다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 길이 막힌 자리에 한 사람이 선다.</li>
+<li><strong>멈춤 1</strong>: "건너와 도우라"는 환상 앞에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: "주께서 그 마음을 열어"라는 강가 장면에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: 한밤의 찬송과 풀린 사슬 앞에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *닫힌 길과 열린 마음은 같은 손 안에 있다*는 결을 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *마음이 열리기를 기다리는 강가* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 길이 두 번 막힌다</li>
+<li>[x] 밤 환상이 마게도냐를 연다</li>
+<li>[x] 루디아의 마음이 열린다</li>
+<li>[x] 여종에게서 귀신이 나간다</li>
+<li>[x] 한밤의 찬송 뒤 지진이 사슬을 푼다</li>
+<li>[x] 간수가 "어떻게 구원받으리이까" 묻는다</li>
+<li>[x] 너와 네 집이 구원받으리라는 답이 온다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>환상</em>.</p>
+          </div>
+        </section>
+
+
+    <div class="next-row">
+      <a href="/magazine/ACT/15/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">사도행전 15장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/ACT/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">사도행전 28장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/ACT/17/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">사도행전 17장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/ACT/16/',
+      title: '사도행전 16장',
+      excerpt: '"건너와서 우리를 도우라"는 한 환상이 바다를 가른다. 빌립보의 강가와 시장과 옥에서, 마음이 열리고 사슬이 풀리고 한 집이 세례를 받는다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+
+
+
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
