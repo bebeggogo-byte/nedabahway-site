@@ -138,3 +138,12 @@ next-row (이전 장 · 권 차례 · 다음 장)
 
 ### 보강 대기(회귀 항목)
 초기 약식 발행분 14장(GEN 3·4·5·6·7·8·9·10·11·12, JHN 1·2·3·4)은 synthesis 본문이 251자로 짧아 92/100이다. 향후 종합 정리를 보강해 100점화한다.
+
+---
+
+## 7. PDF·공유 산출물 정책 [HARD]
+
+- **PDF·공유는 100점 통과(관찰 완료)한 장/권에 대해서만 생성·배포한다.** 100점 미달이거나 placeholder인 장의 PDF는 만들지 않는다.
+- 권이 100점으로 전권 완성되면: ① 권별 PDF(`build_pdf.py CODE`) ② 장별 PDF(`build_pdf_chapter.py CODE`) ③ 권 index에 권 PDF 다운로드 버튼 ④ 각 장 페이지에 `sbm-share.js`(장 PDF + 공유 버튼)를 일괄 적용한 뒤 배포한다.
+- 도구: `magazine/_meta/build_pdf.py`(권별), `build_pdf_chapter.py`(장별), `assets/sbm-share.js`(장 공유/PDF 버튼).
+- 승인·배포 흐름: 9단계 관찰 생산 → `score_chapter.py` 100점 → 커밋 → 권 완성 시 PDF·버튼 → main 머지(배포).
