@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>마가복음 4장 — Observatory | 네다바웨이</title>
+<meta name="description" content="마가복음 4장을 9단계로 같이 관찰합니다. 씨 뿌리는 사람, 등불과 자라나는 씨, 겨자씨, 그리고 잠잠해진 풍랑.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/MRK/4/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/MRK/">마가복음</a> · 4장</div>
+      <h1>마가복음 4장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">MRK-004 · 복음서 · 헬라어</div>
+      <p class="essence">씨가 네 땅에 떨어지고, 작은 씨가 자란다. 비유로 가득한 하루 끝에 "잠잠하라"가 바다를 멈춘다.</p>
+    </header>
+    
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: MRK-004</p>
+<p>book: 마가복음</p>
+<p>book_en: Mark</p>
+<p>chapter: 4</p>
+<p>bible_block: 복음서</p>
+<p>canon: 신약</p>
+<p>genre: 비유·내러티브</p>
+<p>language: 헬라어</p>
+<p>verse_count: 41</p>
+<p>observed_facts_count: 23</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>greek_terms: [parabole, speiro, basileia, mysterion, akouo, lychnos, kokkos, siopao]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-22</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>마가복음 4장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 마가복음 4장입니다. 비유가 모여 있는 장이지요. 먼저 끝까지 낭독하고, 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 4:1~41, 약 5분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P05 김미영</strong>: 흙냄새가 났어요. 길가, 돌밭, 가시떨기, 좋은 땅. 땅 이야기가 계속 나오니까 손에 흙이 묻는 느낌이었어요.</p>
+
+<p><strong>P01 한나래</strong>: 앞은 잔잔한 농촌 풍경이었는데, 끝에서 갑자기 폭풍이 쳐요. 비유로 조용히 가다가 마지막에 물결이 거세져서 분위기가 확 바뀌었어요.</p>
+
+<p><strong>P07 오지혜</strong>: "들으라"가 자꾸 들렸어요. 3절 "들으라", 9절 "들을 귀 있는 자는 들으라", 23절도 같은 말. 들으라는 말이 후렴처럼 박혀 있어요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 바닷가 배 위예요. 1절에 "바다에 떠 있는 배에 올라앉으시고 온 무리는 바닷가 육지에 있더라". 끝에도 같은 바다인데, 한 번은 강단이고 한 번은 폭풍이에요.</p>
+
+<p><strong>P02 이진우</strong>: 씨앗 비유가 셋이에요. 씨 뿌리는 자, 자라나는 씨, 겨자씨. 작은 것에서 큰 것으로 가는 구조가 반복돼요.</p>
+
+<p><strong>P11 나경아</strong>: "비유"라는 말 자체가 거듭 나와요(2·10·11·13·30·33·34절). 비유로 말씀하신다는 게 본문이 강조하는 듯했어요.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. 그 흙냄새와 "들으라"의 후렴, 그리고 끝의 폭풍을 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P04 최현국</strong>: 1절에 "바닷가에서 다시 가르치시니… 배에 올라앉으시고". 배가 강단이에요. 무리는 육지에 있고요. 그리고 35절 "그날 저물 때에… 우리가 저편으로 건너가자"부터 무대가 바다 한가운데로 옮겨가요.</p>
+
+<p><strong>P05 김미영</strong>: 소품이 또렷해요. 씨, 길가, 돌밭, 가시떨기, 좋은 땅, 새, 해, 등불, 말(곡식 되는 그릇), 평상, 겨자씨, 베개. 농촌 살림과 바다 살림이 다 나와요.</p>
+
+<p><strong>P07 오지혜</strong>: 소재를 나열하면 — 네 가지 땅, 삼십 배·육십 배·백 배의 열매, 등불과 등경, 자라는 씨, 겨자씨와 공중의 새, 풍랑과 배와 베개. 자라는 것과 거세지는 것이 섞여요.</p>
+
+<p><strong>P11 나경아</strong>: 30-32절에 "겨자씨(<em>kokkos</em>의 작은 씨) 한 알 같으니 땅에 심길 때에는 땅 위의 모든 씨보다 작은 것이로되 심긴 후에는 자라서 모든 풀보다 커지며 큰 가지를 내니 공중의 새들이 그 그늘에 깃들일 만큼 되느니라"라고 해요. 가장 작은 씨와 가장 큰 가지가 한 비유에 있어요. 배경으로 둡니다.</p>
+
+<p><strong>P01 한나래</strong>: 38절의 베개가 눈에 걸렸어요. "예수께서는 고물에서 베개를 베고 주무시더니". 폭풍 한가운데 베개를 베고 주무시는 장면이 묘했어요.</p>
+
+<p><strong>P02 이진우</strong>: 21절의 등불과 등경, 말과 평상이 짝이에요. "사람이 등불을 가져오는 것은 말 아래에나 평상 아래에 두려 함이냐 등경 위에 두려 함이 아니냐".</p>
+
+<p><strong>성령일 선교사</strong>: 배 위의 강단·네 가지 땅·작은 씨·폭풍의 베개를 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계로 보이시는지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "다시 바닷가에서 가르치시니"로, 가르침으로 열려요. 41절은 "그가 누구이기에 바람과 바다도 순종하는가"라는 제자들의 물음으로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 비유를 듣는 무리고, 끝은 두려워하며 묻는 제자예요. 말씀을 듣는 자리에서 그 말씀이 바다를 멈추는 자리로 옮겨가요.</p>
+
+<p><strong>P01 한나래</strong>: 같은 바다인데 처음엔 잔잔한 강단이고 끝엔 잠잠해진 폭풍이에요. 바다가 처음과 끝을 감싸요.</p>
+
+<p><strong>성령일 선교사</strong>: 들음에서 두려운 물음으로, 바다의 강단에서 바다의 잠잠함으로 이어지는 폭을 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 예수, 온 무리(1절), 열둘과 함께한 자들(10절), 씨 뿌리는 자(비유 속), 그리고 35절부터 제자들과 풍랑이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황이 비유와 풀이로 나뉘어요. 무리에겐 비유로 말씀하시고(2절), 따로 열둘에게는 풀어 주세요(10·34절). 14-20절이 씨 뿌리는 비유의 풀이예요.</p>
+
+<p><strong>P11 나경아</strong>: 11절이 핵심이에요. "하나님 나라의 비밀을 너희에게는 주었으나 외인에게는 모든 것을 비유로 하나니". "비밀"이 <em>mysterion</em>(μυστήριον)이에요. "하나님 나라(<em>basileia</em>)"가 비유들의 한 축이고요. 26·30절도 "하나님의 나라는 ~과 같으니"로 시작해요.</p>
+
+<p><strong>P02 이진우</strong>: 사상은 "들음"이에요. "들으라"가 거듭 나오고(3·9·23·24절), 24절 "너희가 무엇을 듣는가 스스로 삼가라"까지 와요. 듣는 태도가 한 축이에요.</p>
+
+<p><strong>P11 나경아</strong>: "들으라"의 "듣다"가 <em>akouo</em>(ἀκούω)예요. 본장에 거듭 나옵니다. 그리고 39절 "잠잠하라 고요하라"의 "잠잠하라"가 <em>siopao</em>(σιωπάω)와 짝을 이루는 명령이에요. 바람에게 "꾸짖으시며" 말씀하세요.</p>
+
+<p><strong>P01 한나래</strong>: 40절이 아팠어요. "어찌하여 이렇게 무서워하느냐 너희가 어찌 믿음이 없느냐". 폭풍을 멈추신 뒤 두려움과 믿음을 물으세요.</p>
+
+<p><strong>성령일 선교사</strong>: 하나님 나라의 비밀·들음·잠잠함, 세 결을 어휘 표시로만 두고, 해석은 서두르지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 다섯 컷으로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-20절)</strong>: 배 위 강단, 씨 뿌리는 비유, "들을 귀 있는 자는 들으라", 따로 풀어 주심, 네 가지 땅</li>
+<li><strong>컷 2 (21-25절)</strong>: 등불과 등경, "숨긴 것이 드러나려 함", "너희가 무엇을 듣는가"</li>
+<li><strong>컷 3 (26-29절)</strong>: 자라나는 씨, "스스로 자라 어떻게 되는지 알지 못하느니라", 낫을 댐</li>
+<li><strong>컷 4 (30-34절)</strong>: 겨자씨, 가장 작은 씨에서 큰 가지로, 공중의 새</li>
+<li><strong>컷 5 (35-41절)</strong>: 저문 바다, 큰 광풍, 베개를 베고 주무심, "잠잠하라", 큰 평온, "그가 누구이기에"</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 1-4가 비유의 강단, 컷 5가 바다의 사건이에요. 말씀이 사건이 되는 전환이 컷 4와 5 사이에 있어요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 전환을 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 27절 "그가 밤낮 자고 깨고 하는 중에 씨가 나서 자라되 어떻게 그리 되는지를 알지 못하느니라". 자는 사이에 씨가 자라요. 사람이 모르는 자람이 있어요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 왜 무리에겐 비유로만 말씀하시고 열둘에겐 따로 풀어 주실까요(33-34절). "비유가 아니면 말씀하지 아니하시고 다만 혼자 계실 때에 그 제자들에게 모든 것을 해석하시더라".</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 12절에서 본문이 이사야의 결("보기는 보아도 알지 못하며 듣기는 들어도 깨닫지 못하게")을 끌어와요. 비유와 들음의 관계 배경으로 본문이 인용하는 대목이에요. 배경으로만 둡니다.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 39절에서 바람에게 "꾸짖으시며" 말씀하세요. 사람이 아니라 바람을 꾸짖으세요. 그리고 곧 "아주 잔잔하여지더라".</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 38절 "선생님이여 우리가 죽게 된 것을 돌보지 아니하시나이까". 주무시는 분께 던지는 그 물음이 거칠어요. 그 직후 41절엔 "심히 두려워하여" 서로 물어요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 38절의 베개가 다시 걸려요. 폭풍 속에서 주무실 수 있는 분과, 같은 배 안에서 죽을까 두려워하는 사람들이 한 배에 있어요.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 바닷가에 큰 무리가 모이자 배에 올라앉으시고, 육지의 무리에게 비유로 가르치십니다. 씨 뿌리는 자가 뿌리니 더러는 길가에, 더러는 돌밭에, 더러는 가시떨기에, 더러는 좋은 땅에 떨어져 삼십·육십·백 배의 열매를 맺습니다.</p>
+
+<p><strong>P01 한나래</strong>: 따로 계실 때 열둘에게 그 비유를 풀어 주십니다. 이어 등불은 등경 위에 두는 것이라 하시고, 숨긴 것이 드러나리라 하시며 "너희가 무엇을 듣는가 스스로 삼가라" 하십니다.</p>
+
+<p><strong>P04 최현국</strong>: 하나님 나라를 자라나는 씨에 비기십니다. 사람이 자고 깨는 사이 씨가 나서 자라되 어떻게 그리 되는지 알지 못하고, 열매가 익으면 낫을 댑니다. 또 겨자씨에 비기시니, 가장 작은 씨가 자라 큰 가지를 내어 공중의 새가 깃들입니다.</p>
+
+<p><strong>P02 이진우</strong>: 그날 저물 때 "저편으로 건너가자" 하시고 배로 떠나십니다. 큰 광풍이 일어 물결이 배에 부딪쳐 가득 차는데, 예수께서는 고물에서 베개를 베고 주무십니다.</p>
+
+<p><strong>P11 나경아</strong>: 제자들이 깨우며 "우리가 죽게 된 것을 돌보지 아니하시나이까" 하자, 일어나 바람을 꾸짖으시고 바다더러 "잠잠하라 고요하라" 하시니 바람이 그치고 아주 잔잔해집니다. "어찌하여 무서워하느냐, 믿음이 없느냐" 물으시고, 제자들이 "그가 누구이기에 바람과 바다도 순종하는가" 하며 두려워하는 장면으로 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 작은 씨가 자라는 비유의 하루에서, 저문 바다로 건너가, "잠잠하라"가 폭풍을 멈추는 자리로 흐르는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "자는 사이에 자라는 씨"</p>
+<p><strong>P02 이진우</strong>: "들을 귀 있는 자는 들으라"</p>
+<p><strong>P04 최현국</strong>: "가장 작은 씨에서 큰 가지로"</p>
+<p><strong>P05 김미영</strong>: "폭풍 속의 베개, 잠잠해진 바다"</p>
+<p><strong>P07 오지혜</strong>: "그가 누구이기에 바람과 바다도"</p>
+<p><strong>P11 나경아</strong>: "<em>Parabole · Basileia · Siopao</em> — 비유·나라·잠잠하라"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "씨 뿌리는 비유에서 잠잠해진 바다까지, 작은 것의 자람과 멈춤"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 그 바닷가 강단과 네 가지 땅과 저문 바다를 천천히 걸으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 저는 폭풍이 가득 찬 배 안에 함께 앉아 있습니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: MRK-004</p>
+<p>book: 마가복음</p>
+<p>chapter: 4</p>
+<p>date: 2026-05-22</p>
+<p>---</p>
+
+<h2>마가복음 4장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대 = 바닷가 배 위 강단(1절, 무리는 육지) → 저문 바다 한가운데(35절).</li>
+<li>소품 = 씨·네 가지 땅(길가·돌밭·가시떨기·좋은 땅)·새, 등불·등경·말·평상(21절), 겨자씨(31절), 베개(38절).</li>
+<li>열매의 셈 = 삼십·육십·백 배(8·20절).</li>
+<li>같은 바다가 처음(강단)과 끝(폭풍)을 감쌈.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>흙냄새 — 땅 이야기가 거듭 나옴.</li>
+<li>"들으라"가 후렴처럼 박힘(3·9·23·24절).</li>
+<li>잔잔한 농촌 풍경에서 끝의 폭풍으로 분위기가 급변.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "다시 바닷가에서 가르치시니" — 가르침으로 열림.</li>
+<li>41절: "그가 누구이기에 바람과 바다도 순종하는가" — 두려운 물음으로 닫힘.</li>
+<li>들음에서 두려운 물음으로, 바다의 강단에서 바다의 잠잠함으로 옮겨감.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 예수 / 온 무리(1) / 열둘과 함께한 자들(10) / 제자들·풍랑(35-41).</li>
+<li>무리에겐 비유, 열둘에겐 따로 풀이(10·33-34절).</li>
+<li>사상 = 하나님 나라의 비밀(<em>mysterion</em>, 11절), 하나님 나라(<em>basileia</em>, 26·30절), 들음(<em>akouo</em>, 3·9·23·24절), 잠잠함(<em>siopao</em>, 39절).</li>
+<li>비유 풀이 = 씨 뿌리는 비유 해석(14-20절).</li>
+<li>폭풍 뒤 물음 — "무서워하느냐, 믿음이 없느냐"(40절).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-20): 배 위 강단, 씨 뿌리는 비유와 풀이, 네 가지 땅.</li>
+<li>컷 2 (21-25): 등불과 등경, "너희가 무엇을 듣는가".</li>
+<li>컷 3 (26-29): 자라나는 씨, "알지 못하느니라", 낫.</li>
+<li>컷 4 (30-34): 겨자씨, 작은 씨 → 큰 가지, 공중의 새.</li>
+<li>컷 5 (35-41): 저문 바다, 큰 광풍, 베개, "잠잠하라", 큰 평온.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>parabole</em>(παραβολή) — 비유. 2·10·11·13·30·33·34절.</li>
+<li><em>speiro</em>(σπείρω) — 씨 뿌리다. 3·4·14절 등 (씨 뿌리는 비유).</li>
+<li><em>basileia</em>(βασιλεία) — 나라. 11·26·30절 (하나님 나라).</li>
+<li><em>mysterion</em>(μυστήριον) — 비밀. 11절 (하나님 나라의 비밀).</li>
+<li><em>akouo</em>(ἀκούω) — 듣다. 3·9·23·24절 (들으라).</li>
+<li><em>lychnos</em>(λύχνος) — 등불. 21절.</li>
+<li><em>kokkos</em>(κόκκος) — 씨알. 31절 (겨자씨 한 알).</li>
+<li><em>siopao</em>(σιωπάω) — 잠잠하다. 39절 (바다에게 "잠잠하라").</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>비유의 강단(1-34) → 바다의 사건(35-41)의 두 묶음.</li>
+<li>씨앗 비유 셋(씨 뿌리는 자·자라나는 씨·겨자씨)이 작은 것→큰 것의 결로 묶임.</li>
+<li>"들으라"가 후렴(3·9·23·24절).</li>
+<li>무리(비유)와 열둘(풀이)의 두 청중이 나뉨(11·33-34절).</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>12절은 이사야의 결("보아도 알지 못하며 들어도 깨닫지 못하게", 사 6:9-10)을 본문이 인용 — 배경으로만.</li>
+<li>겨자씨(31절)는 당시 밭에 흔히 심던 작은 씨 — "가장 작은 씨"의 셈은 본문의 표현. 배경으로만.</li>
+<li>갈릴리 바다는 급작스러운 돌풍이 잦은 지형 — 35-41절 폭풍의 배경. 배경으로만.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>막 4:12 ↔ 사 6:9-10 (보아도 알지 못함, 인용)</li>
+<li>막 4:11 "하나님 나라의 비밀" ↔ 막 1:15 (하나님 나라가 가까이)</li>
+<li>막 4:39 "잠잠하라" ↔ 막 1:25 (귀신에게 "잠잠하라", 같은 명령)</li>
+<li>막 4:41 "바람과 바다도 순종" ↔ 시 107:29 (광풍을 평온케 하심)</li>
+<li>막 4:31 겨자씨 ↔ 막 4:8 (좋은 땅의 열매, 자람의 결)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>바닷가 큰 무리 앞에서 배에 올라앉아 비유로 가르치신다. 씨가 네 땅에 떨어져 삼십·육십·백 배의 열매를 맺는 비유를 드시고, 따로 열둘에게 풀어 주신다. 등불은 등경 위에 두는 것이라 하시고, "너희가 무엇을 듣는가 삼가라" 하신다. 하나님 나라를 자고 깨는 사이 자라는 씨와, 가장 작은 겨자씨가 큰 가지를 내는 일에 비기신다. 그날 저물 때 배로 건너가시는데 큰 광풍이 일어 물결이 배에 가득 찬다. 고물에서 베개를 베고 주무시던 분을 제자들이 깨우자, 바람을 꾸짖고 바다더러 "잠잠하라 고요하라" 하시니 아주 잔잔해진다. "어찌하여 무서워하느냐, 믿음이 없느냐" 물으시고, 제자들은 "그가 누구이기에 바람과 바다도 순종하는가" 하며 두려워한다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"씨와 잠잠함 — 작은 씨에서 멈춘 바다까지"</strong></li>
+<li>초벌 부제: "씨 뿌리는 비유에서 잠잠해진 바다까지, 작은 것의 자람과 멈춤"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (8개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개</li>
+<li>[x] 미해결 질문 1개 이상 (open_questions 6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 5개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>네 가지 땅(14-20절)을 청중 분류 교리로 굳히지 않도록 → 비유와 풀이의 사실만 기록.</li>
+<li>"잠잠하라"(39절)와 1:25의 같은 명령은 어휘 반향만 표시, 신학적 연결은 묵상으로 이월.</li>
+<li>겨자씨의 "가장 작은 씨"(31절)를 식물학 논쟁으로 끌고 가지 않고 본문 표현 그대로 보존.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: MRK-004</p>
+<p>book: 마가복음</p>
+<p>chapter: 4</p>
+<p>date: 2026-05-22</p>
+<p>---</p>
+
+<h2>마가복음 4장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 왜 무리에겐 비유로, 열둘에겐 풀이로(33-34절) 나뉘는가?</h2>
+
+<ul>
+<li>두 청중에 두 말하심.</li>
+<li>나눔의 까닭은 본문이 인용으로만 짚음(12절). 사실만 보존.</li>
+</ul>
+
+<h2>Q2. "어떻게 그리 되는지 알지 못하느니라"(27절)는 무엇인가?</h2>
+
+<ul>
+<li>사람이 모르는 자람이 있음.</li>
+<li>자람의 결만 기록, 해석은 보류.</li>
+</ul>
+
+<h2>Q3. 왜 "가장 작은 씨"(31절)를 드시는가?</h2>
+
+<ul>
+<li>가장 작은 것에서 큰 가지로.</li>
+<li>작음과 큼의 대비만 기록.</li>
+</ul>
+
+<h2>Q4. 폭풍 속에서 어떻게 주무시는가(38절)?</h2>
+
+<ul>
+<li>물결이 가득 찬 배에서 베개를 베고 주무심.</li>
+<li>주무심과 두려움의 공존만 기록.</li>
+</ul>
+
+<h2>Q5. 왜 바람을 "꾸짖으시는가"(39절)?</h2>
+
+<ul>
+<li>사람이 아니라 바람을 꾸짖으심.</li>
+<li>꾸짖음의 대상만 기록, 까닭은 보류.</li>
+</ul>
+
+<h2>Q6. "그가 누구이기에"(41절)의 물음은 어디로 가는가?</h2>
+
+<ul>
+<li>두려움 가운데 정체를 묻는 물음.</li>
+<li>물음의 향방은 묵상에서 다시.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">씨와 잠잠함 — 작은 씨에서 멈춘 바다까지.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: MRK-004</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-22</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 마가복음 4장은 작은 씨가 자라는 비유의 하루 끝에서 <em>"잠잠하라"가 폭풍을 멈추는</em> 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 바닷가 배 위 강단에서 시작한다. 씨가 네 땅에 떨어지는 비유, 등불과 등경, 자고 깨는 사이 자라는 씨, 가장 작은 겨자씨가 큰 가지를 내는 비유가 잇따른다. "들으라"가 후렴처럼 박힌다. 그날 저물 때 배로 건너가시다 큰 광풍을 만나고, 베개를 베고 주무시던 분이 일어나 "잠잠하라"는 한마디로 바다를 멈추신다. 비유로 들리던 말씀이 바다 위에서 사건이 되고, 제자들은 "그가 누구이기에"라고 두려워한다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>배 위 강단(1) → 저문 바다(35). 소품 = 네 가지 땅·등불·겨자씨·베개.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>흙냄새와 "들으라"의 후렴. 잔잔한 농촌에서 끝의 폭풍으로 급변.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 가르치심(1). 끝 — "그가 누구이기에"(41). 바다가 처음·끝을 감쌈.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>무리(비유)·열둘(풀이)·제자(폭풍). 사상 = 하나님 나라의 비밀(<em>mysterion</em>)·들음(<em>akouo</em>)·잠잠함(<em>siopao</em>).</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 씨 뿌리는 비유(1-20). 컷 2 등불(21-25). 컷 3 자라나는 씨(26-29). 컷 4 겨자씨(30-34). 컷 5 풍랑(35-41).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>자는 사이의 자람(27). 이사야 인용(12). 바람을 꾸짖으심(39). 폭풍 속의 베개(38).</td></tr>
+<tr><td>7 동영상</td><td>비유의 강단 → 저문 바다 → 큰 광풍 → "잠잠하라" → 큰 평온으로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "씨와 잠잠함 — 작은 씨에서 멈춘 바다까지". 부제 — "작은 것의 자람과 멈춤".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>강단·네 가지 땅·저문 바다를 걸으며 폭풍 가득한 배를 본다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 모르는 자람</strong>: 자고 깨는 사이 씨가 "어떻게 그리 되는지 알지 못하게"(27절) 자란다. 사람이 모르는 자람이 하나님 나라의 결로 놓인다.</p>
+<p>2. <strong>결 2 — 작은 씨, 큰 가지</strong>: 가장 작은 겨자씨가 큰 가지를 내어 공중의 새가 깃든다(31-32절). 작음에서 큼으로의 거리가 한 비유에 담긴다.</p>
+<p>3. <strong>결 3 — 같은 "잠잠하라"</strong>: 1:25에서 귀신에게 하신 명령(<em>siopao</em>)이 4:39에서 바다에게 놓인다. 비유로 들리던 말씀이 바다 위에서 사건이 된다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>막 1:15</strong> (하나님 나라가 가까이), <strong>막 1:25</strong> ("잠잠하라"의 같은 명령), <strong>막 4:8</strong> (좋은 땅의 열매).</li>
+<li>다른 권 — <strong>사 6:9-10</strong> (보아도 알지 못함, 12절 인용), <strong>시 107:29</strong> (광풍을 평온케 하심).</li>
+<li>정경 흐름 — 4:11의 "하나님 나라의 비밀"은 비유 장(4장)의 표제이자, 이후 거라사·혈루증(5장)의 사건들이 그 나라의 결을 사건으로 풀어내는 다리가 된다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 바닷가 육지, 비유를 듣는 무리 가운데 한 사람이 선다.</li>
+<li><strong>멈춤 1</strong>: 씨가 네 땅에 떨어지는 비유 앞에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: 자는 사이 자라는 씨 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: 폭풍 가득한 배, "잠잠하라"가 들리는 자리에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *말씀은 들음에서 사건으로 건너간다*는 결을 손에 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *"그가 누구이기에"라는 물음 앞* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 씨가 네 땅에 떨어진다</li>
+<li>[x] 등불은 등경 위에 둔다</li>
+<li>[x] 씨가 자는 사이 자란다</li>
+<li>[x] 가장 작은 겨자씨가 큰 가지를 낸다</li>
+<li>[x] 저문 바다에 큰 광풍이 인다</li>
+<li>[x] "잠잠하라"에 바다가 잔잔해진다</li>
+<li>[x] 끝은 "그가 누구이기에"의 두려운 물음이다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>잠잠하라(siopao)</em>.</p></div>
+        </section>
+
+    
+    <div class="next-row">
+      <a href="/magazine/MRK/3/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">마가복음 3장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/MRK/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">마가복음 16장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/MRK/5/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">마가복음 5장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: 'https://www.nedabah.org/magazine/MRK/4/',
+      title: '마가복음 4장',
+      excerpt: '씨 뿌리는 비유로 시작해 등불·자라나는 씨·겨자씨가 이어지고, 비유의 하루 끝에 "잠잠하라"가 풍랑을 멈춘다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

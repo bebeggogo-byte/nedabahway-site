@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>누가복음 4장 — Observatory | 네다바웨이</title>
+<meta name="description" content="누가복음 4장을 9단계로 같이 관찰합니다. 광야의 세 시험, 나사렛 회당의 '주의 성령이 내게 임하셨으니', 그리고 가버나움의 사역.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/LUK/4/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/LUK/">누가복음</a> · 4장</div>
+      <h1>누가복음 4장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">LUK-004 · 복음서 · 헬라어</div>
+      <p class="essence">광야에서 세 번 물러서지 않은 입이, 회당에서 '오늘 이 글이 이루어졌다' 하자 같은 고향이 그를 밀어낸다.</p>
+    </header>
+    
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: LUK-004</p>
+<p>book: 누가복음</p>
+<p>book_en: Luke</p>
+<p>chapter: 4</p>
+<p>bible_block: 복음서</p>
+<p>canon: 신약</p>
+<p>genre: 내러티브·담화</p>
+<p>language: 헬라어</p>
+<p>verse_count: 44</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>greek_terms: [peirazo, pneuma, exousia, euangelizo, aphesis, eniautos, synagoge, Nazareth, epitimao, dektos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-31</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>누가복음 4장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 누가복음 4장입니다. 시험으로 열려 사역으로 이어지는 장이지요. 먼저 끝까지 낭독하고, 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 4:1~44, 약 6분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 앞은 팽팽했어요. 광야에서 세 번 밀고 당기는 긴장이요. 그런데 회당 장면에선 처음엔 칭찬하다가 갑자기 분노로 뒤집혀요. 같은 자리에서 공기가 확 바뀌어요.</p>
+
+<p><strong>P01 한나래</strong>: 저는 "오늘"이라는 말이 콕 박혔어요. "이 글이 오늘 너희 귀에 응하였느니라." 한 단어에 무게가 실렸어요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 세 번 바뀌어요. 광야 → 나사렛 회당 → 가버나움. 시험의 들에서 고향 회당으로, 또 다른 동네로요.</p>
+
+<p><strong>P05 김미영</strong>: "성령"이 자꾸 손에 만져졌어요. 처음에 "성령의 충만함을 입어"(1절), 또 "성령의 능력으로"(14절), 회당에서 "주의 성령이 내게 임하셨으니"(18절). 성령이 계속 따라와요.</p>
+
+<p><strong>P02 이진우</strong>: 시험이 셋, 회당의 인용도 둘(엘리야·엘리사), 사역도 여럿이라 묶음이 또렷했어요.</p>
+
+<p><strong>P11 나경아</strong>: "권위"라는 말이 귀에 남았어요. 가버나움에서 "그 말씀이 권위가 있음이러라"(32절), 또 귀신에게 "권위와 능력으로 명하매"(36절)요.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. 그 첫 느낌을 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P05 김미영</strong>: 1-2절에 "광야"가 나와요. 사십 일 동안이고요. 그다음 "성전 꼭대기"(9절)와 "높은 곳"(5절)이 시험의 무대로 들어와요. 14절부터는 갈릴리, 16절에 "자기가 자라나신 곳 나사렛", 31절에 "가버나움"이에요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 옮겨가요. 광야의 시험(1-13절) → 나사렛 회당(16-30절) → 가버나움 회당과 시몬의 집(31-44절)이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 소품이에요. 돌과 떡(3절), 천하 만국(5절), 성전 꼭대기(9절), 회당의 두루마리·이사야의 글(17절)이요. 회당에서 책을 받아 펴는 장면이 또렷해요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 하나 두면, "시험하더라"(2절)가 헬라어 <em>peirazo</em>입니다. "시험·시련에 부치다"의 결이에요. 회당의 "전파하게"(18절)는 <em>euangelizo</em>(복음을 전하다)고요. 음역만 배경으로 둡니다.</p>
+
+<p><strong>P01 한나래</strong>: 시간 배경이 회당의 안식일이에요. 16절 "안식일에 늘 하시던 대로 회당에 들어가사." 회당·안식일·두루마리 낭독의 결이 깔려요.</p>
+
+<p><strong>P02 이진우</strong>: 18-19절은 이사야 61장의 인용이에요. "주의 성령이 내게 임하셨으니… 은혜의 해를 전파하게 하려 하심이라." 본문이 앞선 글을 펴 읽어요. 배경으로 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: <em>peirazo</em>·<em>euangelizo</em>와 이사야 61장 낭독을 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계인지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "예수께서 성령의 충만함을 입어 요단강에서 돌아오사 광야에서… 이끌리시며"로, 성령에 이끌려 광야로 들어가며 열려요. 44절은 "갈릴리 여러 회당에서 전도하시더라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 홀로 광야의 시험, 끝은 여러 회당의 전도예요. 광야의 고립에서 동네들의 사역으로 펼쳐져요.</p>
+
+<p><strong>P01 한나래</strong>: 가운데 나사렛에서 "한 선지자가 고향에서 환영을 받는 자가 없느니라"(24절)가 있고, 끝에선 "다른 동네에서도 하나님의 나라 복음을 전하여야 하리니"(43절)예요. 한 고향에서 밀려나 여러 동네로 가요.</p>
+
+<p><strong>성령일 선교사</strong>: 광야의 시험에서 여러 회당으로, 고향의 밀려남에서 펼침으로 좁혀지는 폭을 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 예수, 마귀(2절), 나사렛 회당의 사람들(16·22절), 가버나움의 귀신 들린 사람(33절), 시몬의 장모(38절), 그리고 병자들과 귀신들(40-41절)이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황이 시험이에요. 세 번 다 "기록되었으되"로 받으세요(4·8·12절). 떡·나라·성전 꼭대기의 세 시험에 같은 틀로 물러서지 않으세요.</p>
+
+<p><strong>P04 최현국</strong>: 후반 사상은 나사렛의 뒤집힘이에요. "입에서 나오는 바 은혜로운 말을 놀랍게 여기"(22절)다가, 엘리야·엘리사의 예를 드시자 "분이 가득하여… 동네 밖으로 쫓아내어"(28-29절)요. 칭찬이 분노로 뒤집혀요.</p>
+
+<p><strong>P02 이진우</strong>: 가버나움 사역도 사상이에요. "권위"가 거듭돼요(32·36절). 말씀의 권위와 귀신을 명하는 권위가 같이 나와요.</p>
+
+<p><strong>P11 나경아</strong>: 18절 "포로 된 자에게 자유를"의 "자유"가 <em>aphesis</em>예요. "놓아줌·사면·용서"의 결입니다. 19절 "은혜의 해"는 <em>eniautos</em>(해·년)고요. 어휘 위치만 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: 그 자유·은혜의 해와 권위를 나란히 두고, 어느 하나로 좁히지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 여섯 컷으로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-13절)</strong>: 광야의 사십 일, 떡·나라·성전 꼭대기의 세 시험</li>
+<li><strong>컷 2 (14-15절)</strong>: 성령의 능력으로 갈릴리에 돌아옴, 회당에서 가르침</li>
+<li><strong>컷 3 (16-22절)</strong>: 나사렛 회당, 이사야 낭독, "오늘 이 글이 이루어졌다"</li>
+<li><strong>컷 4 (23-30절)</strong>: 엘리야·엘리사의 예, 분노, 동네 밖으로 쫓겨남</li>
+<li><strong>컷 5 (31-37절)</strong>: 가버나움, 권위 있는 말씀, 더러운 귀신 쫓음</li>
+<li><strong>컷 6 (38-44절)</strong>: 시몬 장모의 열병, 저녁의 많은 병자, 다른 동네로</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 1의 세 시험과 컷 4의 세 단계(칭찬→예시→분노)가 둘 다 "셋"의 결이에요. 시험의 셋과 뒤집힘의 셋이 겹쳐 보여요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 "셋"의 결을 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 세 시험의 답이 모두 신명기 인용이에요(8:3·6:13·6:16). 같은 책에서 세 번 길어 오세요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 왜 나사렛 사람들은 "요셉의 아들이 아니냐"(22절) 하며 칭찬에서 분노로 그렇게 빨리 뒤집힐까요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 25-27절의 엘리야(시돈의 과부)·엘리사(수리아의 나아만)는 둘 다 이방으로 보냄 받은 예예요. 고향이 아닌 밖으로 은혜가 간 사례를 드세요. 그 직후 분노가 터지는 것과 결이 이어져 보입니다. 교차로만 둡니다.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 마귀가 떠날 때 "얼마 동안 떠나니라"(13절)예요. 끝이 아니라 "얼마 동안"이에요. 다시 올 결을 남겨 둬요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 귀신들이 "당신은 하나님의 아들이니이다"(41절) 외칠 때 왜 "꾸짖으사 말하는 것을 허락하지 아니하시"는지요. 바른 말인데 막으세요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 18절의 긴 인용이 걸려요. "가난한 자·포로 된 자·눈먼 자·눌린 자"가 줄지어 나와요. 그런데 21절은 "오늘 이 글이 이루어졌다"라고만 하고 더 풀지 않으세요.</p>
+
+<p><strong>P11 나경아</strong>: 21절 "이루어졌느니라"의 결과 18절 "임하셨으니"가 한 호흡이에요. 인용 직후의 "오늘"이라는 한 단어까지만 관찰로 남깁니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 성령의 충만함을 입은 예수께서 광야로 이끌려 사십 일 동안 시험을 받으십니다. 돌을 떡으로, 천하 만국을, 성전 꼭대기에서 뛰어내리라는 세 시험에 "기록되었으되"로 물러서지 않으시니, 마귀가 얼마 동안 떠납니다.</p>
+
+<p><strong>P01 한나래</strong>: 성령의 능력으로 갈릴리에 돌아와 회당에서 가르치시고, 자라나신 나사렛 회당에서 이사야의 글을 펴 "주의 성령이 내게 임하셨으니"를 읽고 "오늘 이 글이 너희 귀에 응하였느니라" 하십니다.</p>
+
+<p><strong>P04 최현국</strong>: 사람들이 처음엔 놀라 칭찬하다 "요셉의 아들이 아니냐" 하고, 예수께서 엘리야·엘리사의 예를 드시자 분이 가득하여 동네 밖 낭떠러지로 끌고 갑니다. 그러나 그들 가운데로 지나 떠나십니다.</p>
+
+<p><strong>P02 이진우</strong>: 가버나움에서 권위 있는 말씀으로 가르치시고, 더러운 귀신 들린 사람에게서 귀신을 꾸짖어 쫓으시니 사람들이 그 권위와 능력을 놀랍니다.</p>
+
+<p><strong>P11 나경아</strong>: 시몬의 장모의 열병을 꾸짖어 고치시고, 저녁에 모인 많은 병자를 일일이 안수하여 고치십니다. 귀신들이 "하나님의 아들"이라 외치나 막으시고, 새벽에 한적한 곳으로 가셨다가 "다른 동네에서도 하나님의 나라를 전하여야 한다" 하시며 여러 회당으로 가신다는 한 줄로 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 광야의 세 시험에서 회당의 "오늘"로, 고향의 밀려남에서 여러 동네의 사역으로 흐르는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "오늘 이 글이 너희 귀에 응하였느니라"</p>
+<p><strong>P02 이진우</strong>: "기록되었으되 — 세 번 물러서지 않은 입"</p>
+<p><strong>P04 최현국</strong>: "고향이 밀어낸 자리"</p>
+<p><strong>P05 김미영</strong>: "주의 성령이 내게 임하셨으니"</p>
+<p><strong>P07 오지혜</strong>: "권위 있는 말씀 — 가버나움의 저녁"</p>
+<p><strong>P11 나경아</strong>: "<em>Peirazo · Aphesis · Exousia</em> — 시험·자유·권위"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "광야의 시험에서 회당의 '오늘'로, 그리고 여러 동네로"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 그 광야와 나사렛 회당과 가버나움의 저녁을 천천히 걸으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P01 한나래</strong>: (조용히) 주님, 저는 "오늘 이 글이 이루어졌다"는 말씀 앞에서 멈춰 섭니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: LUK-004</p>
+<p>book: 누가복음</p>
+<p>chapter: 4</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>누가복음 4장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대는 광야(1-13절) → 갈릴리 회당(15절) → 나사렛 회당(16-30절) → 가버나움 회당·시몬의 집(31-44절)으로 옮겨간다.</li>
+<li>시간 배경 = 안식일의 회당(16·31절), 사십 일의 시험(2절).</li>
+<li>소품 = 돌·떡(3절), 천하 만국(5절), 성전 꼭대기(9절), 회당의 두루마리·이사야의 글(17절).</li>
+<li>"시험하더라"(2절)는 <em>peirazo</em>, "전파하게"(18절)는 <em>euangelizo</em>.</li>
+<li>18-19절은 이사야 61장 인용 — "주의 성령이 내게 임하셨으니… 은혜의 해".</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>광야의 팽팽한 긴장과 회당의 갑작스런 뒤집힘(칭찬→분노).</li>
+<li>"성령"이 거듭 따라온다(1·14·18절).</li>
+<li>"오늘"(21절)·"권위"(32·36절)의 무게가 분위기를 끈다.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "성령의 충만함을 입어… 광야에서 이끌리시며" — 성령에 이끌려 광야로 들어가며 열림.</li>
+<li>44절: "갈릴리 여러 회당에서 전도하시더라" — 여러 회당의 사역으로 닫힘.</li>
+<li>광야의 고립에서 여러 동네의 사역으로, 고향의 밀려남에서 펼침으로 좁혀진다.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 예수 / 마귀(2) / 나사렛 회당 사람들(16·22) / 귀신 들린 사람(33) / 시몬 장모(38) / 병자·귀신들(40-41).</li>
+<li>세 시험에 "기록되었으되"의 같은 틀(4·8·12절).</li>
+<li>나사렛의 뒤집힘 — 칭찬(22)→엘리야·엘리사의 예(25-27)→분노·쫓아냄(28-29).</li>
+<li>가버나움의 "권위"(32·36절). "자유"(<em>aphesis</em>, 18절), "은혜의 해"(<em>eniautos</em>, 19절).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-13): 광야의 사십 일, 세 시험.</li>
+<li>컷 2 (14-15): 성령의 능력으로 돌아옴, 회당에서 가르침.</li>
+<li>컷 3 (16-22): 나사렛, 이사야 낭독, "오늘 이루어졌다".</li>
+<li>컷 4 (23-30): 엘리야·엘리사, 분노, 쫓겨남.</li>
+<li>컷 5 (31-37): 가버나움, 권위 있는 말씀, 귀신 쫓음.</li>
+<li>컷 6 (38-44): 장모의 열병, 저녁의 병자, 다른 동네로.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>peirazo</em>(πειράζω) — 시험하다. 2절.</li>
+<li><em>pneuma</em>(πνεῦμα) — 성령·영. 1·14·18절.</li>
+<li><em>exousia</em>(ἐξουσία) — 권위. 6·32·36절.</li>
+<li><em>euangelizo</em>(εὐαγγελίζω) — 복음을 전하다. 18·43절.</li>
+<li><em>aphesis</em>(ἄφεσις) — 놓아줌·자유·사면. 18절 "포로 된 자에게 자유를".</li>
+<li><em>eniautos</em>(ἐνιαυτός) — 해·년. 19절 "은혜의 해".</li>
+<li><em>dektos</em>(δεκτός) — 받으실 만한·환영받는. 19·24절 "은혜의 해"·"환영을 받는 자가 없느니라".</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>시험(1-13) → 사역의 시작(14-15) → 나사렛(16-30) → 가버나움(31-44)의 네 묶음.</li>
+<li>세 시험의 같은 틀 — 제안 → "기록되었으되" → 물러섬.</li>
+<li>나사렛의 뒤집힘 삼단 — 칭찬·예시·분노.</li>
+<li>"성령"이 여는 절마다 박힘(1·14·18절).</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>세 시험의 답은 모두 신명기 인용(8:3·6:13·6:16) — 교차로만.</li>
+<li>엘리야(시돈 과부)·엘리사(나아만)는 이방으로 간 은혜의 예(25-27절) — 배경으로만.</li>
+<li>회당의 두루마리 낭독은 안식일 예배의 결 — 무대 장치로만.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>눅 4:18-19 ↔ 사 61:1-2 (주의 성령이 내게 임하셨으니)</li>
+<li>눅 4:4·8·12 ↔ 신 8:3 / 6:13 / 6:16 (세 시험의 답)</li>
+<li>눅 4:25-26 ↔ 왕상 17:8-16 (시돈의 과부)</li>
+<li>눅 4:27 ↔ 왕하 5:1-14 (나아만)</li>
+<li>눅 4:24 ↔ 요 4:44 (고향에서 환영받지 못함)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>성령의 충만함을 입은 예수께서 광야로 이끌려 사십 일 동안 시험을 받으신다. 돌을 떡으로, 천하 만국을, 성전 꼭대기에서 뛰어내리라는 세 제안에 "기록되었으되"로 물러서지 않으시니 마귀가 얼마 동안 떠난다. 성령의 능력으로 갈릴리에 돌아와 자라나신 나사렛 회당에서 이사야의 글을 펴 "주의 성령이 내게 임하셨으니"를 읽고 "오늘 이 글이 너희 귀에 응하였느니라" 하신다. 사람들이 칭찬하다 "요셉의 아들이 아니냐" 하고, 엘리야·엘리사의 예를 드시자 분이 가득하여 동네 밖으로 끌고 가나 그들 가운데로 지나 떠나신다. 가버나움에서 권위 있는 말씀으로 가르치고 귀신을 쫓으시며, 시몬 장모의 열병과 저녁의 많은 병을 고치신다. 귀신들이 "하나님의 아들"이라 외치나 막으시고, "다른 동네에서도 하나님의 나라를 전하여야 한다" 하시며 여러 회당으로 가신다는 한 줄로 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"오늘 이 글이 이루어졌느니라 — 시험과 밀려남"</strong></li>
+<li>초벌 부제: "광야의 시험에서 회당의 '오늘'로, 그리고 여러 동네로"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (7개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (신명기 인용·이사야 61장·엘리야·엘리사)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 6개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>세 시험을 단계별 적용 설교로 풀지 않도록 → "기록되었으되"의 인용 위치만 기록.</li>
+<li>"주의 성령이 내게 임하셨으니"(18절)를 사역론으로 정식화하지 않고 낭독 사실만 보존.</li>
+<li>나사렛의 분노(28-29절) 원인을 단정하지 않고 칭찬→예시→분노의 순서만 기록.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: LUK-004</p>
+<p>book: 누가복음</p>
+<p>chapter: 4</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>누가복음 4장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 세 시험의 답이 왜 모두 "기록되었으되"(신명기)인가?</h2>
+
+<ul>
+<li>같은 책에서 세 번 길어 온다.</li>
+<li>같은 출처의 까닭은 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q2. 나사렛 사람들은 왜 칭찬에서 분노로 그토록 빨리 뒤집히는가?</h2>
+
+<ul>
+<li>"요셉의 아들이 아니냐"(22절) 뒤에 분노가 터진다.</li>
+<li>뒤집힘의 까닭은 본문이 다 설명하지 않음. 순서만 보존.</li>
+</ul>
+
+<h2>Q3. 마귀가 "얼마 동안 떠나니라"(13절)는 무엇을 남기는가?</h2>
+
+<ul>
+<li>끝이 아니라 "얼마 동안"이다.</li>
+<li>다시 올 결의 함의는 보류, 어휘 위치만 보존.</li>
+</ul>
+
+<h2>Q4. 왜 귀신들의 "하나님의 아들"(41절) 외침을 막으시는가?</h2>
+
+<ul>
+<li>바른 말인데 말하는 것을 허락하지 않으신다.</li>
+<li>막으심의 까닭은 본문이 설명하지 않음. 위치만 보존.</li>
+</ul>
+
+<h2>Q5. 긴 인용(18절) 뒤에 왜 "오늘 이루어졌다"(21절)로만 하고 더 풀지 않는가?</h2>
+
+<ul>
+<li>"오늘"이라는 한 단어에 멈춘다.</li>
+<li>풀지 않으심의 까닭은 관찰로는 보류.</li>
+</ul>
+
+<h2>Q6. 엘리야·엘리사의 이방 예(25-27절)는 왜 이 자리에 놓이는가?</h2>
+
+<ul>
+<li>고향 아닌 밖으로 간 은혜의 예가 분노 직전에 놓인다.</li>
+<li>나란히 둠의 까닭은 묵상에서 다시.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">광야의 시험에서 회당의 '오늘'로, 그리고 밀려남.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body">
+            <p>---</p>
+<p>sim_id: LUK-004</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-31</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 누가복음 4장은 광야에서 세 번 물러서지 않은 입이 회당에서 <em>"오늘 이 글이 이루어졌다"</em> 하자 같은 고향이 그를 밀어내는 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 성령에 이끌려 광야로 들어가 떡·나라·성전 꼭대기의 세 시험을 "기록되었으되"로 물리치는 장면으로 연다. 성령의 능력으로 돌아와 나사렛 회당에서 이사야의 글을 펴 "주의 성령이 내게 임하셨으니"를 읽고 "오늘 이루어졌다" 하자, 칭찬하던 고향이 곧 분노로 뒤집혀 동네 밖으로 끌고 간다. 그러나 그들 가운데로 지나 가버나움으로 옮겨, 권위 있는 말씀과 고침을 베푸신다. 끝은 "다른 동네에서도" 전하여야 한다며 여러 회당으로 가는 한 줄이다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>광야(1-13) → 나사렛 회당(16-30) → 가버나움(31-44). 안식일·두루마리. 이사야 61장 인용. <em>peirazo</em>·<em>euangelizo</em>.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>광야의 긴장과 회당의 뒤집힘. "성령"이 거듭. "오늘"·"권위"의 무게.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 성령에 이끌린 광야(1절). 끝 — 여러 회당의 전도(44절). 고립에서 펼침으로.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>예수 / 마귀 / 나사렛 사람들 / 귀신·병자. 세 시험의 "기록되었으되". 나사렛의 뒤집힘. <em>aphesis</em>·<em>exousia</em>.</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 시험(1-13). 컷 2 돌아옴(14-15). 컷 3 "오늘"(16-22). 컷 4 분노(23-30). 컷 5 가버나움(31-37). 컷 6 저녁의 고침(38-44).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>신명기 세 인용. "얼마 동안 떠나니라"(13). 귀신의 외침을 막음(41). "오늘"의 멈춤(21). 이방으로 간 은혜(25-27).</td></tr>
+<tr><td>7 동영상</td><td>광야의 세 시험 → 회당의 "오늘" → 고향의 분노 → 가버나움의 권위·고침 → 여러 동네로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "오늘 이 글이 이루어졌느니라 — 시험과 밀려남". 부제 — "광야의 시험에서 회당의 '오늘'로, 그리고 여러 동네로".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>광야와 나사렛 회당과 가버나움의 저녁을 걸으며 "오늘 이루어졌다" 앞에 선다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 셋의 시험</strong>: 떡·나라·성전 꼭대기의 세 제안이 모두 "기록되었으되"(4·8·12절)로 물러난다. 같은 틀이 세 번 반복된다.</p>
+<p>2. <strong>결 2 — "오늘"의 한 단어</strong>: 긴 이사야 인용 뒤에 "오늘 이 글이 이루어졌다"(21절)로 멈춘다. 본문은 한 단어에 무게를 싣는다.</p>
+<p>3. <strong>결 3 — 고향의 밀려남</strong>: 칭찬(22절)이 분노(28-29절)로 뒤집혀 고향이 밀어내고, 그 자리에서 여러 동네로 펼쳐진다(43-44절). 좁힘과 펼침이 한 장에 있다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>눅 4:18</strong>의 "성령이 내게 임하셨으니"가 <strong>눅 3:22</strong> 세례의 성령으로 이어진다.</li>
+<li>다른 권 — <strong>사 61:1-2</strong> (은혜의 해), <strong>신 8:3·6:13·6:16</strong> (세 시험의 답), <strong>왕상 17 / 왕하 5</strong> (엘리야·엘리사).</li>
+<li>정경 흐름 — 나사렛 회당의 선포는 누가복음 사역 전체의 표제(programmatic) 자리로 읽히는 문을 연다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 광야의 시험 곁에 한 사람이 선다.</li>
+<li><strong>멈춤 1</strong>: "기록되었으되"로 세 번 물러서는 자리에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: "오늘 이 글이 이루어졌다"는 선포 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: 고향이 밀어내는 자리에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *밀려난 자리에서도 사역은 다른 동네로 펼쳐진다*는 결을 손에 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *"오늘"이라는 선포 곁* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 광야에서 세 시험을 받으신다</li>
+<li>[x] "기록되었으되"로 세 번 물러서지 않으신다</li>
+<li>[x] 나사렛 회당에서 이사야를 낭독하신다</li>
+<li>[x] "오늘 이 글이 이루어졌다" 하신다</li>
+<li>[x] 고향이 분노하여 밀어낸다</li>
+<li>[x] 가버나움에서 권위 있는 말씀과 고침을 베푸신다</li>
+<li>[x] "다른 동네에서도" 전하여야 한다며 떠나신다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>오늘</em>.</p>
+          </div>
+        </section>
+
+    <div class="next-row">
+      <a href="/magazine/LUK/3/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">누가복음 3장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/LUK/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">누가복음 24장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/LUK/5/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">누가복음 5장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/LUK/4/',
+      title: '누가복음 4장',
+      excerpt: '광야의 세 시험을 지나 회당에서 '오늘 이루어졌다' 선포하자, 고향이 그를 밀어낸다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

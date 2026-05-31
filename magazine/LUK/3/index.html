@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>누가복음 3장 — Observatory | 네다바웨이</title>
+<meta name="description" content="누가복음 3장을 9단계로 같이 관찰합니다. 광야에 외치는 세례 요한, 예수의 세례와 하늘의 음성, 아담까지 거슬러 오르는 족보.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/LUK/3/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/LUK/">누가복음</a> · 3장</div>
+      <h1>누가복음 3장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">LUK-003 · 복음서 · 헬라어</div>
+      <p class="essence">광야의 외침이 골짜기를 메우고, 갈라진 하늘에서 음성이 내리며, 족보가 아담까지 거슬러 오른다.</p>
+    </header>
+    
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: LUK-003</p>
+<p>book: 누가복음</p>
+<p>book_en: Luke</p>
+<p>chapter: 3</p>
+<p>bible_block: 복음서</p>
+<p>canon: 신약</p>
+<p>genre: 내러티브·담화</p>
+<p>language: 헬라어</p>
+<p>verse_count: 38</p>
+<p>observed_facts_count: 23</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 3</p>
+<p>greek_terms: [metanoia, baptisma, karpos, pneuma, phone, huios, Christos, exomologesis, Adam, soterion]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-31</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>누가복음 3장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 누가복음 3장입니다. 광야의 외침으로 여는 장이지요. 먼저 끝까지 낭독하고, 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 3:1~38, 약 5분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 앞은 외침이에요. 광야에서 큰 소리로 회개를 부르고, 무리가 몰려와요. 그러다 뒤로 가면 갑자기 조용한 족보가 길게 이어져요. 소리와 침묵이 한 장에 같이 있어요.</p>
+
+<p><strong>P01 한나래</strong>: 저는 갈라지는 느낌이었어요. 알곡과 쭉정이, 좋은 나무와 나쁜 나무. 가르는 말이 계속 나왔어요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 광야예요(2절). 그러다 요단강(3절)으로, 그다음 하늘이 열리는 세례 장면(21-22절)으로 올라가요. 땅에서 하늘로 시선이 올라가요.</p>
+
+<p><strong>P05 김미영</strong>: "물"이 손에 만져졌어요. 세례의 물과, 또 "불"이 같이 나와요. "성령과 불로 세례를"이라는 말이요.</p>
+
+<p><strong>P02 이진우</strong>: 끝의 족보가 거꾸로 가는 게 인상적이었어요. 보통은 아래로 내려가는데, 여기선 예수에서 위로 올라가 "아담", "하나님"까지 가요.</p>
+
+<p><strong>P11 나경아</strong>: "회개"라는 말이 처음부터 박혀 있었어요. 광야의 외침이 곧 회개의 외침이었어요.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. 그 첫 느낌을 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P05 김미영</strong>: 1-2절에 시대가 길게 박혀요. "디베료 황제… 본디오 빌라도… 헤롯… 안나스와 가야바." 그러고 나서 "하나님의 말씀이 빈 들에서 사가랴의 아들 요한에게 임한지라"예요. 무대가 빈 들이에요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 옮겨가요. 광야의 외침(2-14절) → 요단강 세례(21절) → 끝은 족보의 목록(23-38절)이에요. 외침에서 물로, 또 이름들로요.</p>
+
+<p><strong>P07 오지혜</strong>: 소품이에요. 골짜기·산·험한 길·평탄케 함(5절, 사 40장 인용), 도끼와 나무뿌리(9절), 알곡·쭉정이·키·곳간·불(17절)이요. 가르는 도구가 많아요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 하나 두면, "회개"(3·8절)가 헬라어 <em>metanoia</em>입니다. "마음·생각을 바꿈, 돌이킴"의 결이에요. "세례"는 <em>baptisma</em>고요. 음역만 배경으로 둡니다.</p>
+
+<p><strong>P01 한나래</strong>: 시간 배경이 통치자들 이름으로 못 박혀요(1-2절). 누가가 세계사 속 한 시점에 이 장면을 놓아요. 무대 장치로만 둡니다.</p>
+
+<p><strong>P02 이진우</strong>: 4-6절은 이사야 40장의 인용이에요. "광야에서 외치는 자의 소리." 본문이 앞선 글을 끌어와 무대를 세워요. 배경으로 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: <em>metanoia</em>·<em>baptisma</em>와 이사야 인용을 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계인지요.</p>
+
+<p><strong>P02 이진우</strong>: 1-2절은 황제·총독·분봉왕·대제사장의 이름으로 한 시점을 못 박으며 열려요. 38절은 "그 위는 에노스요 그 위는 셋이요 그 위는 아담이요 그 위는 하나님이시니라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 당대의 권력자들 이름, 끝은 태초의 아담과 하나님이에요. 한 시점에서 시원(始原)까지 거슬러 올라가요.</p>
+
+<p><strong>P01 한나래</strong>: 가운데 세례 장면에서 하늘의 음성 "너는 내 사랑하는 아들이라"(22절)가 있고, 끝의 족보도 결국 "하나님"으로 닫혀요. 아들 됨이 양쪽에 걸려요.</p>
+
+<p><strong>성령일 선교사</strong>: 당대의 이름에서 아담·하나님까지, 외침에서 음성으로 좁혀지는 폭을 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 세례 요한(2절), 몰려온 무리(7절), 세리들(12절), 군인들(14절), 헤롯 분봉왕(19절), 그리고 세례 받으시는 예수(21절)예요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황이 물음과 답이에요. 무리가 "그러면 우리가 무엇을 하리이까"(10·12·14절) 세 번 묻고, 요한이 옷·양식·정직·만족을 답해요. 회개의 열매가 일상으로 내려와요.</p>
+
+<p><strong>P04 최현국</strong>: 후반 사상은 요한이 자기 자리를 낮추는 거예요. "나는 그의 신발끈을 풀기도 감당하지 못하겠노라"(16절), "나는 물로 세례를 베풀거니와 그는 성령과 불로"요. 자기를 가리키지 않고 다른 분을 가리켜요.</p>
+
+<p><strong>P02 이진우</strong>: 세례 장면(21-22절)이 가운데 사상이에요. 기도하실 때 하늘이 열리고, 성령이 비둘기 같은 형체로 내리고, 음성이 와요. 셋(하늘·성령·음성)이 한 장면에 모여요.</p>
+
+<p><strong>P11 나경아</strong>: 22절 "너는 내 사랑하는 아들이라"의 "아들"이 <em>huios</em>예요. 그리고 그 음성은 <em>phone</em>(소리)입니다. 광야 요한의 "소리"(4절)와 하늘의 "소리"가 같은 <em>phone</em> 계열이에요. 어휘 위치만 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: 그 두 소리와 아들 됨을 나란히 두고, 어느 하나로 좁히지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 여섯 컷으로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-6절)</strong>: 시대의 이름들, 광야의 외침, 이사야 인용</li>
+<li><strong>컷 2 (7-9절)</strong>: 무리를 향한 "독사의 자식들", 회개의 열매, 도끼</li>
+<li><strong>컷 3 (10-14절)</strong>: "무엇을 하리이까", 무리·세리·군인에게 준 답</li>
+<li><strong>컷 4 (15-18절)</strong>: "나보다 능력 많으신 이", 성령과 불, 알곡과 쭉정이</li>
+<li><strong>컷 5 (19-20절)</strong>: 헤롯의 책망과 요한의 갇힘</li>
+<li><strong>컷 6 (21-38절)</strong>: 예수의 세례, 하늘의 음성, 아담까지의 족보</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 5(요한의 갇힘)가 컷 6(예수의 세례) 앞에 미리 놓여요. 누가가 시간 순서를 살짝 당겨 요한을 먼저 갈무리해요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 순서 처리를 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. "무엇을 하리이까"가 세 번(10·12·14절) 같은 틀로 나와요. 묻는 이는 다른데 물음은 같아요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 왜 요한은 몰려온 무리에게 "독사의 자식들아"(7절)라고 거칠게 시작할까요. 부르러 온 자리에서 책망으로 여네요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 8절 "아브라함이 우리 조상이라 말하지 말라… 이 돌들로도 아브라함의 자손이 되게 하시리라"는 혈통의 자랑을 끊는 말이에요. 그리고 끝 족보가 아브라함을 넘어 아담까지 가는 것과 결이 이어져 보입니다. 교차로만 둡니다.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 세례 장면에 예수께서 "기도하실 때에"(21절)가 들어가요. 누가만 두는 결이에요. 하늘이 열린 자리에 기도가 있어요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 23절에 "사람들이 아는 대로는 요셉의 아들이니"라는 단서가 붙어요. 왜 족보 앞에 이 단서를 넣을까요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 16절 "성령과 불로 세례를"이 걸려요. 물의 세례와 불의 세례가 한 절에 같이 있어요. 같은 "세례"인데 결이 달라 보여서요.</p>
+
+<p><strong>P11 나경아</strong>: 16-17절의 "불"이 17절에서 "쭉정이는 꺼지지 않는 불에"로 이어져요. 같은 "불"이 두 결(성령의 불·심판의 불)로 쓰이는 것까지만 관찰로 남깁니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 디베료 황제 때 빈 들에서 하나님의 말씀이 요한에게 임합니다. 요한이 요단강 부근에서 죄 사함을 받게 하는 회개의 세례를 전파하니, 이사야의 "광야에서 외치는 자의 소리"가 이뤄집니다.</p>
+
+<p><strong>P01 한나래</strong>: 몰려온 무리에게 요한이 "독사의 자식들아, 회개에 합당한 열매를 맺으라" 하고, 도끼가 나무뿌리에 놓였다 경고합니다.</p>
+
+<p><strong>P04 최현국</strong>: 무리와 세리와 군인이 차례로 "우리가 무엇을 하리이까" 묻자, 요한이 옷을 나누고 정한 것 외에 받지 말고 강탈하지 말라 답합니다. 그리고 "나보다 능력 많으신 이가 오시니, 그는 성령과 불로 세례를 베푸시리라" 합니다.</p>
+
+<p><strong>P02 이진우</strong>: 헤롯을 책망한 요한이 옥에 갇힙니다. 백성이 다 세례를 받을 때 예수도 세례를 받으시고 기도하시니, 하늘이 열리고 성령이 비둘기 같은 형체로 내려오며 "너는 내 사랑하는 아들이라" 하는 음성이 옵니다.</p>
+
+<p><strong>P11 나경아</strong>: 그리고 예수의 족보가 요셉에서 거슬러 올라 다윗과 아브라함을 지나 "아담이요 그 위는 하나님이시니라"는 한 줄로 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 광야의 외침에서 갈라진 하늘의 음성으로, 또 아담·하나님까지 거슬러 오르는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "광야에서 외치는 자의 소리"</p>
+<p><strong>P02 이진우</strong>: "우리가 무엇을 하리이까"</p>
+<p><strong>P04 최현국</strong>: "나보다 능력 많으신 이 — 물과 불"</p>
+<p><strong>P05 김미영</strong>: "너는 내 사랑하는 아들이라"</p>
+<p><strong>P07 오지혜</strong>: "아담까지, 하나님까지 — 거슬러 오르는 족보"</p>
+<p><strong>P11 나경아</strong>: "<em>Metanoia · Phone · Huios</em> — 회개·소리·아들"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "광야의 외침에서 갈라진 하늘로, 아담까지 거슬러"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 그 광야와 요단강과 갈라진 하늘 아래를 천천히 걸으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P02 이진우</strong>: (조용히) 주님, 저는 "우리가 무엇을 하리이까" 묻던 자리에 서 있습니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: LUK-003</p>
+<p>book: 누가복음</p>
+<p>chapter: 3</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>누가복음 3장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대는 빈 들·광야(2절) → 요단강 부근(3절) → 요단강 세례(21절) → 족보의 목록(23-38절)으로 옮겨간다.</li>
+<li>시간 배경 = "디베료 황제… 빌라도… 헤롯… 안나스와 가야바"(1-2절)로 한 시점을 못 박음.</li>
+<li>소품 = 골짜기·산·평탄케 함(5절, 사 40장), 도끼·나무뿌리(9절), 키·곳간·알곡·쭉정이·불(17절).</li>
+<li>"회개"(3·8절)는 <em>metanoia</em>, "세례"는 <em>baptisma</em>.</li>
+<li>4-6절은 이사야 40장 인용 — "광야에서 외치는 자의 소리".</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>앞은 외침(소리), 뒤는 침묵(긴 족보). 소리와 침묵이 한 장에.</li>
+<li>가르는 말이 거듭 — 알곡·쭉정이, 좋은 나무·나쁜 나무.</li>
+<li>시선이 땅(광야)에서 하늘(열림)로 올라간다.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1-2절: 황제·총독·분봉왕·대제사장의 이름으로 한 시점을 못 박으며 열림.</li>
+<li>38절: "그 위는 아담이요 그 위는 하나님이시니라" — 시원으로 닫힘.</li>
+<li>당대의 이름에서 아담·하나님까지, 외침에서 음성으로 좁혀진다.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 요한(2) / 무리(7) / 세리(12) / 군인(14) / 헤롯(19) / 세례 받으시는 예수(21).</li>
+<li>"무엇을 하리이까"의 세 물음(10·12·14절)과 일상으로 내려온 답.</li>
+<li>요한의 자기 낮춤 — "신발끈을 풀기도 감당 못 한다"(16절).</li>
+<li>세례 장면(21-22절) = 하늘·성령·음성. "아들"(<em>huios</em>)·"소리"(<em>phone</em>).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-6): 시대의 이름들, 광야의 외침, 이사야 인용.</li>
+<li>컷 2 (7-9): "독사의 자식들", 회개의 열매, 도끼.</li>
+<li>컷 3 (10-14): "무엇을 하리이까", 무리·세리·군인의 답.</li>
+<li>컷 4 (15-18): "능력 많으신 이", 성령과 불, 알곡·쭉정이.</li>
+<li>컷 5 (19-20): 헤롯 책망, 요한의 갇힘.</li>
+<li>컷 6 (21-38): 예수의 세례, 하늘의 음성, 아담까지의 족보.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>metanoia</em>(μετάνοια) — 회개·돌이킴. 3·8절.</li>
+<li><em>baptisma</em>(βάπτισμα) — 세례. 3절 "회개의 세례".</li>
+<li><em>karpos</em>(καρπός) — 열매. 8·9절 "회개에 합당한 열매".</li>
+<li><em>pneuma</em>(πνεῦμα) — 성령·영. 16·22절.</li>
+<li><em>phone</em>(φωνή) — 소리. 4절(외치는 소리)·22절(하늘의 음성).</li>
+<li><em>huios</em>(υἱός) — 아들. 22절 "내 사랑하는 아들".</li>
+<li><em>soterion</em>(σωτήριον) — 구원. 6절 "하나님의 구원을 보리라".</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>외침(1-18) → 요한의 갈무리(19-20) → 세례·족보(21-38)의 세 묶음.</li>
+<li>"무엇을 하리이까"의 세 변주(10·12·14)가 같은 틀로 반복.</li>
+<li>"소리"(<em>phone</em>)가 광야(4절)와 하늘(22절)에 두 번.</li>
+<li>족보가 역순(예수→아담)으로 올라 보통의 내림차순과 반대.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>1-2절의 통치자 명단은 누가가 세계사 속 한 시점에 사건을 놓는 표지 — 배경으로만.</li>
+<li>"성령과 불로 세례"(16절)의 "불"은 정련·심판의 결을 함께 — 어휘로만.</li>
+<li>족보가 아브라함을 넘어 아담까지 가는 것은 누가복음의 보편 지향과 결이 이어짐 — 관찰로만.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>눅 3:4-6 ↔ 사 40:3-5 (광야에서 외치는 소리)</li>
+<li>눅 3:8 ↔ 마 3:9 (아브라함의 자손 자랑을 끊음)</li>
+<li>눅 3:22 ↔ 시 2:7 / 사 42:1 (내 아들·내 택한 자)</li>
+<li>눅 3:38 ↔ 창 5:1-3 (아담의 계보)</li>
+<li>눅 3:16 ↔ 행 2:3-4 (성령과 불)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>디베료 황제 때 빈 들에서 하나님의 말씀이 요한에게 임한다. 요한이 요단강 부근에서 회개의 세례를 전파하니 이사야의 "광야에서 외치는 자의 소리"가 이뤄진다. 몰려온 무리에게 "독사의 자식들아, 회개에 합당한 열매를 맺으라" 하고 도끼의 경고를 둔다. 무리·세리·군인이 "무엇을 하리이까" 묻자 옷을 나누고 정한 것 외에 받지 말라 답하며, "나보다 능력 많으신 이가 성령과 불로 세례를 베푸시리라" 한다. 헤롯을 책망한 요한이 옥에 갇히고, 백성이 세례 받을 때 예수도 세례를 받고 기도하시니 하늘이 열리고 성령이 비둘기 같은 형체로 내리며 "너는 내 사랑하는 아들이라" 음성이 온다. 끝으로 예수의 족보가 요셉에서 거슬러 올라 아담과 하나님까지 이른다는 한 줄로 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"광야에서 외치는 소리 — 갈라진 하늘과 아담까지"</strong></li>
+<li>초벌 부제: "광야의 외침에서 갈라진 하늘로, 아담까지 거슬러"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (7개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (통치자 명단·이사야 인용·아담 계보)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 6개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>"성령과 불"(16절)을 곧장 특정 체험 교리로 굳히지 않도록 → 어휘·위치만 기록.</li>
+<li>세례 시 삼중 장면(하늘·성령·음성)을 교의로 정식화하지 않도록 본문 보고만 보존.</li>
+<li>족보의 "하나님"(38절)을 신학화하지 않고, 역순·아담까지라는 사실만 기록.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: LUK-003</p>
+<p>book: 누가복음</p>
+<p>chapter: 3</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>누가복음 3장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 왜 부르러 온 자리에서 "독사의 자식들아"(7절)로 거칠게 여는가?</h2>
+
+<ul>
+<li>책망으로 회개를 부른다.</li>
+<li>여는 어조의 까닭은 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q2. "무엇을 하리이까"(10·12·14절)는 왜 세 번 같은 틀인가?</h2>
+
+<ul>
+<li>묻는 이는 다른데 물음은 같다.</li>
+<li>반복의 까닭은 본문이 말하지 않음. 분포만 보존.</li>
+</ul>
+
+<h2>Q3. "성령과 불로 세례"(16절)의 두 결은 어떻게 함께인가?</h2>
+
+<ul>
+<li>물·성령·불이 한 자리에 놓인다.</li>
+<li>관계는 답하지 않고 어휘 위치만 보존.</li>
+</ul>
+
+<h2>Q4. 왜 세례 장면에 "기도하실 때에"(21절)가 들어가는가?</h2>
+
+<ul>
+<li>하늘이 열린 자리에 기도가 있다(누가만 둠).</li>
+<li>둠의 까닭은 본문이 설명하지 않음. 위치만 보존.</li>
+</ul>
+
+<h2>Q5. 왜 족보 앞에 "아는 대로는 요셉의 아들이니"(23절) 단서가 붙는가?</h2>
+
+<ul>
+<li>족보 첫머리에 한 단서가 놓인다.</li>
+<li>단서의 까닭은 관찰로는 보류.</li>
+</ul>
+
+<h2>Q6. 족보가 왜 아브라함을 넘어 아담·하나님까지 오르는가?</h2>
+
+<ul>
+<li>역순으로 시원까지 거슬러 오른다.</li>
+<li>거슬러 오름의 까닭은 묵상에서 다시.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">광야의 외침에서 갈라진 하늘로, 아담까지.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body">
+            <p>---</p>
+<p>sim_id: LUK-003</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-31</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 누가복음 3장은 광야의 외침이 골짜기를 메우고, <em>갈라진 하늘에서 음성이 내리며</em>, 족보가 아담까지 거슬러 오르는 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 당대의 통치자 이름으로 한 시점을 못 박고, 빈 들의 요한에게 임한 말씀으로 연다. 요한은 회개의 세례를 외치며 "무엇을 하리이까"라는 물음에 일상의 답을 주고, 자기를 낮추어 "능력 많으신 이"를 가리킨다. 헤롯에게 갇힌 뒤, 세례 받으시고 기도하는 예수 위로 하늘이 열려 "너는 내 사랑하는 아들이라"는 음성이 온다. 끝은 예수에서 아담과 하나님까지 거슬러 오르는 족보의 한 줄이다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>광야(2) → 요단강(3·21) → 족보(23-38). 통치자 명단(1-2). 이사야 40장 인용. 도끼·키·불. <em>metanoia</em>·<em>baptisma</em>.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>외침(소리)과 긴 족보(침묵). 가르는 말. 땅에서 하늘로 시선이 오름.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 당대의 이름(1절). 끝 — 아담·하나님(38절). 한 시점에서 시원으로.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>요한 / 무리·세리·군인 / 헤롯 / 세례 받으시는 예수. "무엇을 하리이까" 셋. 하늘·성령·음성. <em>phone</em>·<em>huios</em>.</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 외침(1-6). 컷 2 도끼(7-9). 컷 3 답(10-14). 컷 4 성령과 불(15-18). 컷 5 갇힘(19-20). 컷 6 세례·족보(21-38).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>세 물음의 같은 틀(10·12·14). "기도하실 때에"(21, 누가만). 두 결의 "불". 역순 족보. "요셉의 아들" 단서(23).</td></tr>
+<tr><td>7 동영상</td><td>광야의 외침 → 회개의 답 → 능력 많으신 이 → 세례·하늘의 음성 → 아담까지의 족보로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "광야에서 외치는 소리 — 갈라진 하늘과 아담까지". 부제 — "광야의 외침에서 갈라진 하늘로, 아담까지 거슬러".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>광야와 요단강과 갈라진 하늘 아래를 걸으며 "무엇을 하리이까" 묻던 자리를 본다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 두 소리</strong>: 광야에서 외치는 "소리"(4절)와 하늘에서 오는 "음성"(22절)이 같은 <em>phone</em> 계열로 놓인다. 땅의 외침이 하늘의 음성으로 이어진다.</p>
+<p>2. <strong>결 2 — 회개와 일상</strong>: "회개에 합당한 열매"(8절)가 곧 옷·양식·정직·만족(10-14절)으로 내려온다. 외침이 일상의 답으로 좁아진다.</p>
+<p>3. <strong>결 3 — 거슬러 오르는 족보</strong>: 족보가 예수에서 아담과 하나님까지(23-38절) 역순으로 오른다. 본문은 한 시점에서 시원으로 거슬러 간다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>눅 3:22</strong>의 "내 사랑하는 아들"이 <strong>눅 9:35</strong> 변화산의 음성으로 되울린다.</li>
+<li>다른 권 — <strong>사 40:3-5</strong> (광야의 소리), <strong>창 5:1-3</strong> (아담의 계보).</li>
+<li>정경 흐름 — 아담까지의 족보는 4장 광야 시험의 "둘째 아담" 결로 이어지는 자리를 연다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 광야의 외침 앞에 한 사람이 선다.</li>
+<li><strong>멈춤 1</strong>: "무엇을 하리이까"라는 물음 앞에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: 갈라진 하늘의 음성 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: 아담까지 거슬러 오르는 이름들 앞에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *외침은 일상의 열매로, 하늘의 음성은 아들 됨으로 닿는다*는 결을 손에 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *갈라진 하늘 아래* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 요한이 회개의 세례를 외친다</li>
+<li>[x] "무엇을 하리이까"에 일상의 답이 주어진다</li>
+<li>[x] 요한이 자기를 낮추어 다른 분을 가리킨다</li>
+<li>[x] 요한이 옥에 갇힌다</li>
+<li>[x] 예수가 세례 받고 기도하신다</li>
+<li>[x] 하늘에서 "내 사랑하는 아들" 음성이 온다</li>
+<li>[x] 족보가 아담·하나님까지 오른다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>내 사랑하는 아들</em>.</p>
+          </div>
+        </section>
+
+    <div class="next-row">
+      <a href="/magazine/LUK/2/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">누가복음 2장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/LUK/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">누가복음 24장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/LUK/4/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">누가복음 4장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/LUK/3/',
+      title: '누가복음 3장',
+      excerpt: '광야의 외침과 갈라진 하늘의 음성, 그리고 아담까지 오르는 족보.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

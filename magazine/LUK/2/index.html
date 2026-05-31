@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>누가복음 2장 — Observatory | 네다바웨이</title>
+<meta name="description" content="누가복음 2장을 9단계로 같이 관찰합니다. 호적·구유·목자들, 성전의 시므온과 안나, 그리고 열두 살 예수.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/LUK/2/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/LUK/">누가복음</a> · 2장</div>
+      <h1>누가복음 2장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">LUK-002 · 복음서 · 헬라어</div>
+      <p class="essence">구유의 강보에서 성전의 칼까지. 가장 낮은 자리에 영광이 내리고, 한 노인이 '평안히 떠나게 하소서' 한다.</p>
+    </header>
+    
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: LUK-002</p>
+<p>book: 누가복음</p>
+<p>book_en: Luke</p>
+<p>chapter: 2</p>
+<p>bible_block: 복음서</p>
+<p>canon: 신약</p>
+<p>genre: 내러티브·담화</p>
+<p>language: 헬라어</p>
+<p>verse_count: 52</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>greek_terms: [soter, Christos, doxa, eirene, splanchna, phos, nomos, hagios, rhema, anthropos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-31</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>누가복음 2장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 누가복음 2장입니다. 탄생의 장이지요. 먼저 끝까지 낭독하고, 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 2:1~52, 약 6분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 낮은 데로 내려가는 느낌이었어요. 호적·여관·구유로 자꾸 낮아지는데, 그 위로 갑자기 하늘 군대가 빛나요. 낮음과 영광이 같이 있어요.</p>
+
+<p><strong>P01 한나래</strong>: 저는 "강보"와 "구유"가 두 번 세 번 반복되는 게 따뜻하면서도 짠했어요. 표적이 화려한 게 아니라 강보였어요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 넓다 좁아져요. 천하 호적령(로마)에서 베들레헴 구유로, 또 성전으로. 큰 무대에서 작은 자리로요.</p>
+
+<p><strong>P05 김미영</strong>: 성전에 나이 든 두 사람이 손에 만져졌어요. 시므온과 안나, 늙은 두 사람이 아기를 안고 기다림을 마쳐요.</p>
+
+<p><strong>P02 이진우</strong>: "평안"(평강)이라는 말이 천사들 노래에 박혀 있었어요. "지극히 높은 곳에서는 영광, 땅에서는 평화."</p>
+
+<p><strong>P11 나경아</strong>: 끝의 열두 살 예수가 인상적이었어요. 앞은 탄생, 끝은 소년이 성전에서 "내 아버지 집"이라 말해요. 시작과 끝이 멀리 떨어진 두 장면 같았어요.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. 그 첫 느낌을 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P05 김미영</strong>: 1-3절에 "가이사 아구스도"의 호적령이 깔려요. 그래서 요셉이 나사렛에서 베들레헴으로 올라가고, 7절에 "여관에 있을 곳이 없어" 구유에 뉘여요. 들엔 목자들과 양 떼(8절)가 있어요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 옮겨가요. 베들레헴 구유(1-20절) → 할례·정결예식의 예루살렘 성전(21-38절) → 다시 나사렛(39절) → 열두 살의 성전(41-50절)으로요.</p>
+
+<p><strong>P07 오지혜</strong>: 소품이 거듭돼요. 강보·구유(7·12·16절), 천사·하늘 군대(13절), 한 쌍의 산비둘기·어린 집비둘기(24절, 가난한 자의 제물)요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 하나 두면, 천사가 전한 "구주"(11절)가 헬라어 <em>soter</em>입니다. "곧 그리스도 주시니라"의 "그리스도"는 <em>Christos</em>(기름 부음 받은 자)고요. 음역만 배경으로 둡니다.</p>
+
+<p><strong>P01 한나래</strong>: 시간 배경이 율법의 절기로 잡혀요. 21절 팔 일 만의 할례, 22절 "모세의 법대로 정결예식의 날", 41절 "해마다 유월절"이요. 율법(<em>nomos</em>)의 결이 깔려요.</p>
+
+<p><strong>P02 이진우</strong>: "가이사 아구스도"·"구레뇨"(2절)의 호적이 배경이에요. 한 황제의 명령이 가장 낮은 구유로 이어지는 무대 장치로만 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: <em>soter</em>·<em>Christos</em>와 율법 절기의 결을 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계인지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "그 때에 가이사 아구스도가 영을 내려 천하로 다 호적하라 하였으니"로, 황제의 천하령으로 열려요. 52절은 "예수는 지혜와 키가 자라가며 하나님과 사람에게 더욱 사랑스러워 가시더라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 온 세상의 호적, 끝은 한 소년의 자람이에요. 천하에서 한 아이로 좁혀져요.</p>
+
+<p><strong>P01 한나래</strong>: 가운데 강보의 아기(7절)와 끝의 열두 살 소년(42절)이 양끝에 걸려요. 갓난아기에서 묻고 답하는 소년으로 자라요.</p>
+
+<p><strong>성령일 선교사</strong>: 천하에서 한 아이로, 강보에서 자람으로 좁혀지는 폭을 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 가이사 아구스도(1절), 요셉과 마리아(4-5절), 아기 예수, 목자들(8절), 천사와 하늘 군대(13절), 시므온(25절), 안나(36절), 그리고 성전의 선생들(46절)이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황이 기다림의 마침이에요. 시므온은 "그리스도를 보기 전에 죽지 아니하리라"(26절) 들었던 사람이고, 안나는 "구속을 바라는 모든 사람에게"(38절) 말해요. 두 노인의 오랜 기다림이 채워져요.</p>
+
+<p><strong>P04 최현국</strong>: 후반 사상은 시므온의 노래(29-32절)와 예고(34-35절)예요. "평안히 떠나게 하소서"와 "이 아이는… 비방을 받는 표적", "칼이 네 마음을 찌르리라"가 같이 있어요. 빛과 칼이 한 입에서 나와요.</p>
+
+<p><strong>P02 이진우</strong>: 천사들의 노래(14절)도 사상이에요. "지극히 높은 곳에서는 하나님께 영광이요 땅에서는… 평화로다." <em>doxa</em>(영광)와 <em>eirene</em>(평화)가 위·아래로 갈려요.</p>
+
+<p><strong>P11 나경아</strong>: 32절 "이방을 비추는 빛"의 "빛"이 <em>phos</em>입니다. 시므온의 노래에 빛이 들어와요. 어휘 위치만 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: 빛과 칼, 영광과 평화를 나란히 두고, 어느 하나로 좁히지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 여섯 컷으로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-7절)</strong>: 호적령, 베들레헴, 구유에 뉘인 아기</li>
+<li><strong>컷 2 (8-20절)</strong>: 들의 목자들, 하늘 군대의 노래, 구유를 찾아옴</li>
+<li><strong>컷 3 (21-24절)</strong>: 팔 일 만의 할례·작명, 성전의 정결예식</li>
+<li><strong>컷 4 (25-35절)</strong>: 시므온, "평안히 떠나게 하소서", 칼의 예고</li>
+<li><strong>컷 5 (36-40절)</strong>: 안나의 증언, 나사렛으로 돌아옴</li>
+<li><strong>컷 6 (41-52절)</strong>: 열두 살 예수, 성전에 머묾, "내 아버지 집"</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 2·4·5가 모두 "찬양·증언"이에요. 목자, 시므온, 안나가 차례로 입을 열어요. 증언이 세 번 겹쳐요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 세 증언을 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. "마리아는 이 모든 말을 마음에 새기어 생각하니라"가 두 번 나와요(19·51절). 마리아의 마음이 두 번 같은 자리에 서요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 왜 표적이 화려한 게 아니라 "강보에 싸여 구유에 뉘어 있는 아기"(12절)일까요. 가장 낮은 것이 표적이 돼서요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 24절의 "산비둘기 한 쌍이나 어린 집비둘기 둘"은 레위기 12장의 가난한 자가 드리는 제물이에요. 어린양을 드릴 형편이 못 되는 이의 예물입니다. 배경으로만 둡니다.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. "지극히 높은 곳"과 "구유"가 한 장에 같이 있어요. 천사들은 높은 데서 노래하고, 그 노래가 가리키는 곳은 가장 낮은 구유예요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 시므온이 빛을 노래한 직후 곧 "칼이 네 마음을 찌르리라"(35절) 합니다. 왜 축복 곁에 칼이 바로 붙을까요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 49절이 걸려요. 열두 살 예수가 "내가 내 아버지 집에 있어야 될 줄을 알지 못하셨나이까" 하는데, 부모는 "그 하신 말씀을 깨닫지 못하더라"(50절) 해요.</p>
+
+<p><strong>P11 나경아</strong>: 49절의 "내 아버지 집"은 직역하면 "내 아버지의 것들 안에"의 결이에요. 누가가 처음으로 예수의 입에 "아버지"를 둡니다. 어휘 위치만 남깁니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 가이사의 호적령에 요셉과 마리아가 베들레헴으로 올라가고, 거기서 아기가 나 강보에 싸여 구유에 뉘입니다. 여관에 있을 곳이 없었기 때문입니다.</p>
+
+<p><strong>P01 한나래</strong>: 들에서 양 치던 목자들에게 천사가 나타나 "구주가 나셨다" 하고, 하늘 군대가 "지극히 높은 곳에서는 영광, 땅에서는 평화"를 노래합니다. 목자들이 구유를 찾아와 본 것을 전합니다.</p>
+
+<p><strong>P04 최현국</strong>: 팔 일 만에 할례를 받고 예수라 이름하며, 정결예식을 위해 성전에 올라 가난한 자의 제물을 드립니다. 시므온이 아기를 안고 "이제는 종을 평안히 놓아 주시는도다" 노래하고, "칼이 네 마음을 찌르리라" 예고합니다.</p>
+
+<p><strong>P02 이진우</strong>: 늙은 선지자 안나도 나아와 감사하며, 구속을 바라는 모든 사람에게 이 아이를 말합니다. 일을 마치고 나사렛으로 돌아옵니다.</p>
+
+<p><strong>P11 나경아</strong>: 열두 살에 유월절로 올라갔다가 예수만 성전에 남아 선생들과 묻고 답합니다. 부모가 찾아 "어찌하여 우리에게 이렇게 하였느냐" 하자, "내 아버지 집에 있어야 될 줄을 알지 못하셨나이까" 합니다. 그리고 나사렛으로 내려가 순종하며 자라간다는 한 줄로 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 호적의 천하에서 구유로, 구유에서 성전의 노래와 칼로, 또 자라가는 소년으로 흐르는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "강보에 싸여 구유에"</p>
+<p><strong>P02 이진우</strong>: "지극히 높은 곳에서는 영광, 땅에서는 평화"</p>
+<p><strong>P04 최현국</strong>: "빛과 칼 — 시므온의 두 말"</p>
+<p><strong>P05 김미영</strong>: "마음에 새기어 생각하니라"</p>
+<p><strong>P07 오지혜</strong>: "내 아버지 집에 있어야 될 줄을"</p>
+<p><strong>P11 나경아</strong>: "<em>Soter · Doxa · Eirene</em> — 구주·영광·평화"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "구유의 강보에서 성전의 칼까지, 자라가는 한 소년으로"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 그 구유와 들과 성전을 천천히 걸으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P05 김미영</strong>: (조용히) 주님, 저는 가장 낮은 구유 곁에 서서 영광의 노래를 듣습니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: LUK-002</p>
+<p>book: 누가복음</p>
+<p>chapter: 2</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>누가복음 2장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대는 호적령의 천하(1-3절) → 베들레헴 구유(4-7절) → 들의 목자들(8절) → 예루살렘 성전(22·41절) → 나사렛(39·51절)으로 옮겨간다.</li>
+<li>시간 배경 = 율법의 절기. 팔 일 할례(21절), 정결예식(22절), 해마다 유월절(41절). 율법(<em>nomos</em>)의 결.</li>
+<li>소품 = 강보·구유(7·12·16절), 하늘 군대(13절), 산비둘기·집비둘기 한 쌍(24절, 가난한 자의 제물).</li>
+<li>"구주"(11절)는 <em>soter</em>, "그리스도"는 <em>Christos</em>.</li>
+<li>"지극히 높은 곳"의 <em>doxa</em>(영광)와 "땅"의 <em>eirene</em>(평화)가 위·아래로 갈림(14절).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>낮아짐(호적·여관·구유)과 영광(하늘 군대)이 같이 있다.</li>
+<li>강보·구유의 반복이 따뜻하면서도 낮은 표적을 만든다.</li>
+<li>성전의 두 노인(시므온·안나)의 오랜 기다림이 채워진다.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "가이사 아구스도가 영을 내려 천하로 다 호적하라" — 황제의 천하령으로 열림.</li>
+<li>52절: "예수는 지혜와 키가 자라가며… 더욱 사랑스러워 가시더라" — 한 소년의 자람으로 닫힘.</li>
+<li>천하에서 한 아이로, 강보에서 자람으로 좁혀진다.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 아구스도(1) / 요셉·마리아(4-5) / 아기 예수 / 목자들(8) / 천사·하늘 군대(13) / 시므온(25) / 안나(36) / 성전 선생들(46).</li>
+<li>두 노인의 기다림이 채워짐 — 시므온(26절), 안나(38절).</li>
+<li>사상 = 시므온의 노래(29-32절)와 칼의 예고(34-35절). 빛(<em>phos</em>, 32절)과 칼이 한 입에서.</li>
+<li>천사들의 노래 = <em>doxa</em>/<em>eirene</em>(14절). 위·아래로 갈림.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-7): 호적령, 베들레헴, 구유의 아기.</li>
+<li>컷 2 (8-20): 목자들, 하늘 군대의 노래, 구유를 찾아옴.</li>
+<li>컷 3 (21-24): 할례·작명, 성전의 정결예식.</li>
+<li>컷 4 (25-35): 시므온의 노래, 칼의 예고.</li>
+<li>컷 5 (36-40): 안나의 증언, 나사렛으로.</li>
+<li>컷 6 (41-52): 열두 살 예수, "내 아버지 집".</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>soter</em>(σωτήρ) — 구주. 11절 "구주가 나셨으니".</li>
+<li><em>Christos</em>(χριστός) — 그리스도·기름 부음 받은 자. 11·26절.</li>
+<li><em>doxa</em>(δόξα) — 영광. 14·32절.</li>
+<li><em>eirene</em>(εἰρήνη) — 평화·평강. 14·29절.</li>
+<li><em>phos</em>(φῶς) — 빛. 32절 "이방을 비추는 빛".</li>
+<li><em>nomos</em>(νόμος) — 율법. 22·23·24·27·39절 "주의 율법대로".</li>
+<li><em>rhema</em>(ῥῆμα) — 말씀·일. 15·17·19·29·51절.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>탄생(1-20) → 성전 봉헌(21-40) → 열두 살(41-52)의 세 묶음.</li>
+<li>세 번의 증언 — 목자(17절), 시므온(28절), 안나(38절).</li>
+<li>"마음에 새기어 생각하니라" 반복(19·51절)이 두 장면을 묶음.</li>
+<li>"율법대로"가 봉헌 단락에 거듭(22·23·24·27·39절).</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>24절 "산비둘기 한 쌍이나 집비둘기 둘"은 레위기 12장 가난한 자의 제물 — 배경으로만.</li>
+<li>"가이사 아구스도"·"구레뇨"(2절)의 호적은 시대 표지 — 무대 장치로만.</li>
+<li>열두 살은 율법 교육에 들어서는 나이의 결 — 배경으로만.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>눅 2:14 ↔ 눅 19:38 (영광·평화의 노래가 입성에서 되울림)</li>
+<li>눅 2:24 ↔ 레 12:8 (가난한 자의 제물)</li>
+<li>눅 2:32 ↔ 사 49:6 (이방의 빛)</li>
+<li>눅 2:34-35 ↔ 사 8:14 (걸림의 돌·표적)</li>
+<li>눅 2:49 ↔ 요 2:16 ("내 아버지 집"의 결)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>가이사의 호적령에 요셉과 마리아가 베들레헴으로 올라가고, 거기서 아기가 나 강보에 싸여 구유에 뉘인다. 들의 목자들에게 천사가 "구주가 나셨다" 전하고, 하늘 군대가 "지극히 높은 곳에서는 영광, 땅에서는 평화"를 노래한다. 목자들이 구유를 찾아와 전하고, 마리아는 이 말을 마음에 새긴다. 팔 일 만에 할례·작명하고 성전에 올라 가난한 자의 제물을 드릴 때, 시므온이 아기를 안고 "평안히 떠나게 하소서" 노래하며 "칼이 네 마음을 찌르리라" 예고하고, 안나도 나아와 증언한다. 일을 마치고 나사렛으로 돌아온다. 열두 살에 유월절로 올라갔다가 성전에 남아 선생들과 묻고 답하니, 부모가 찾아 묻자 "내 아버지 집에 있어야 될 줄을 알지 못하셨나이까" 하고, 다시 내려가 순종하며 자라간다는 한 줄로 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"강보에 싸여 구유에 — 영광과 칼"</strong></li>
+<li>초벌 부제: "구유의 강보에서 성전의 칼까지, 자라가는 한 소년으로"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (7개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (가난한 자의 제물·호적령·열두 살)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 6개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>구유의 낮음을 곧장 교훈으로 굳히지 않도록 → 강보·구유의 위치만 기록.</li>
+<li>시므온의 "칼"(35절)을 마리아론으로 끌지 않도록 어휘·위치만 보존.</li>
+<li>"내 아버지 집"(49절)의 기독론은 보류, 누가가 처음 둔 "아버지"라는 사실만 기록.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: LUK-002</p>
+<p>book: 누가복음</p>
+<p>chapter: 2</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>누가복음 2장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 왜 표적이 "강보에 싸여 구유에 뉘인 아기"(12절)인가?</h2>
+
+<ul>
+<li>가장 낮은 것이 표적이 된다.</li>
+<li>낮음이 표적인 까닭은 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q2. 빛의 노래 직후 왜 "칼이 네 마음을 찌르리라"(35절)가 붙는가?</h2>
+
+<ul>
+<li>축복 곁에 칼이 바로 놓인다.</li>
+<li>두 말의 병치만 기록, 관계는 보류.</li>
+</ul>
+
+<h2>Q3. "마음에 새기어 생각하니라"(19·51절)는 두 번 왜 반복되는가?</h2>
+
+<ul>
+<li>마리아의 마음이 같은 자리에 두 번 선다.</li>
+<li>반복의 까닭은 본문이 말하지 않음. 분포만 보존.</li>
+</ul>
+
+<h2>Q4. "지극히 높은 곳"과 "구유"는 왜 한 장에 함께인가?</h2>
+
+<ul>
+<li>높은 데의 노래가 가장 낮은 자리를 가리킨다.</li>
+<li>위·아래의 병치만 기록, 관계는 보류.</li>
+</ul>
+
+<h2>Q5. 부모는 왜 "그 하신 말씀을 깨닫지 못하더라"(50절)인가?</h2>
+
+<ul>
+<li>"내 아버지 집"의 말을 부모가 알지 못한다.</li>
+<li>"깨닫지 못함"의 까닭은 본문이 설명하지 않음. 위치만 보존.</li>
+</ul>
+
+<h2>Q6. 두 노인(시므온·안나)의 기다림은 왜 같이 놓이는가?</h2>
+
+<ul>
+<li>늙은 두 사람의 오랜 기다림이 나란히 채워진다.</li>
+<li>나란히 둠의 까닭은 묵상에서 다시.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">구유의 강보에서 성전의 칼까지.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body">
+            <p>---</p>
+<p>sim_id: LUK-002</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-31</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 누가복음 2장은 천하의 호적령이 한 구유로 좁혀지고, <em>가장 낮은 자리에 영광이 내려</em> 성전의 노래와 칼로 이어지는 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 황제의 호적령으로 열려 요셉과 마리아를 베들레헴 구유로 데려간다. 들의 목자들에게 하늘 군대가 "영광과 평화"를 노래하고, 그 노래가 가리키는 곳은 강보에 싸인 아기다. 성전에 올라 가난한 자의 제물을 드릴 때 시므온은 "평안히 떠나게 하소서" 노래하면서 곧 "칼"을 예고하고, 안나도 증언한다. 끝은 열두 살 소년이 "내 아버지 집"을 말하고 다시 순종하며 자라가는 한 줄이다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>호적의 천하(1-3) → 구유(4-7) → 들(8) → 성전(22·41) → 나사렛(39·51). 율법 절기의 결. 소품 = 강보·구유·가난한 자의 제물. <em>soter</em>·<em>Christos</em>.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>낮아짐과 영광이 같이. 강보·구유의 반복. 두 노인의 기다림이 채워짐.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 천하 호적(1절). 끝 — 한 소년의 자람(52절). 천하에서 한 아이로.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>아구스도 / 요셉·마리아 / 목자 / 시므온·안나. 시므온의 노래·칼의 예고. <em>doxa</em>/<em>eirene</em>(14), <em>phos</em>(32).</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 구유(1-7). 컷 2 목자·노래(8-20). 컷 3 할례·봉헌(21-24). 컷 4 시므온(25-35). 컷 5 안나(36-40). 컷 6 열두 살(41-52).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>"마음에 새기어"(19·51). 강보의 표적. 가난한 자의 제물(24). 빛 곁의 칼(35). "내 아버지 집"(49).</td></tr>
+<tr><td>7 동영상</td><td>호적의 천하 → 구유 → 목자의 노래 → 성전의 노래·칼 → 자라가는 소년으로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "강보에 싸여 구유에 — 영광과 칼". 부제 — "구유의 강보에서 성전의 칼까지, 자라가는 한 소년으로".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>구유와 들과 성전을 걸으며 낮은 자리의 영광을 본다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 낮음과 영광</strong>: 구유의 강보(7절)와 하늘 군대의 영광(13-14절)이 한 장에 있다. 가장 낮은 자리가 표적이 된다.</p>
+<p>2. <strong>결 2 — 빛과 칼</strong>: 시므온의 "이방을 비추는 빛"(32절)과 "칼이 네 마음을 찌르리라"(35절)가 한 입에서 나온다. 축복과 아픔이 나란하다.</p>
+<p>3. <strong>결 3 — 자라가는 소년</strong>: 강보의 아기(7절)가 열두 살 소년(42절)으로, "지혜와 키가 자라가며"(52절)로 이어진다. 본문은 탄생에서 자람으로 흐른다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>눅 2:14</strong>의 "영광·평화"가 <strong>눅 19:38</strong> 입성에서 되울린다.</li>
+<li>다른 권 — <strong>레 12:8</strong> (가난한 자의 제물), <strong>사 49:6</strong> (이방의 빛, 32절).</li>
+<li>정경 흐름 — 시므온·안나의 증언은 1장의 두 노래에 이어 누가복음 서두의 증언을 잇는다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 호적의 천하 가운데 한 사람이 구유 곁에 선다.</li>
+<li><strong>멈춤 1</strong>: 영광의 노래가 강보를 가리키는 자리에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: 시므온의 빛과 칼 사이에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: "내 아버지 집"이라는 소년의 말 앞에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *가장 낮은 자리에 영광이 내린다*는 결을 손에 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *구유 곁* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 호적령으로 베들레헴에 이른다</li>
+<li>[x] 아기가 강보에 싸여 구유에 뉘인다</li>
+<li>[x] 하늘 군대가 영광과 평화를 노래한다</li>
+<li>[x] 시므온이 "평안히 떠나게 하소서" 한다</li>
+<li>[x] 시므온이 칼을 예고한다</li>
+<li>[x] 안나가 증언한다</li>
+<li>[x] 열두 살 예수가 "내 아버지 집"을 말한다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>구유</em>.</p>
+          </div>
+        </section>
+
+    <div class="next-row">
+      <a href="/magazine/LUK/1/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">누가복음 1장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/LUK/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">누가복음 24장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/LUK/3/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">누가복음 3장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/LUK/2/',
+      title: '누가복음 2장',
+      excerpt: '구유의 강보에서 성전의 시므온까지, 가장 낮은 자리에 영광이 내린다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
