@@ -105,7 +105,7 @@ def score(seed: dict, *, keywords: list[str] | None = None) -> dict[str, Any]:
         tail = text.rstrip()
         # 물음표 또는 한국어 수사의문 종결(…했는가. / …일까. / …나요? 등) 인정
         open_ending = ("?" in tail[-60:]) or bool(
-            re.search(r"(는가|은가|ㄴ가|을까|ㄹ까|할까|일까|까요|나요|는지|던가)[.…\"'’”\)\s]*$", tail))
+            re.search(r"(는가|은가|인가|던가|런가|운가|ㄴ가|을까|ㄹ까|할까|일까|까요|나요|는지|을지|ㄹ지|까)[.…\"'’”\)\s]*$", tail))
         s["voice"] += 5 if open_ending else (failed.append("voice.open_ending") or 0)
         s["voice"] += 5 if coord else (failed.append("voice.coordinate") or 0)
 
