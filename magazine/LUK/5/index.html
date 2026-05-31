@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>누가복음 5장 — Observatory | 네다바웨이</title>
+<meta name="description" content="누가복음 5장을 9단계로 같이 관찰합니다. 깊은 데로 던진 그물, 나병환자의 깨끗함, 지붕을 뜯고 내린 중풍병자, 그리고 세관에 앉은 레위.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/LUK/5/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/LUK/">누가복음</a> · 5장</div>
+      <h1>누가복음 5장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">LUK-005 · 복음서 · 헬라어</div>
+      <p class="essence">빈 그물이 찢어지도록 채워지자 베드로가 무릎을 꿇고, 죄 사함이 중풍을 일으키며, 세관의 레위가 일어선다.</p>
+    </header>
+    
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: LUK-005</p>
+<p>book: 누가복음</p>
+<p>book_en: Luke</p>
+<p>chapter: 5</p>
+<p>bible_block: 복음서</p>
+<p>canon: 신약</p>
+<p>genre: 내러티브·담화</p>
+<p>language: 헬라어</p>
+<p>verse_count: 39</p>
+<p>observed_facts_count: 23</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 3</p>
+<p>greek_terms: [agra, metanoia, lepra, katharizo, aphiemi, telones, akoloutheo, neos, oinos, askos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-31</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>누가복음 5장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 누가복음 5장입니다. 부르심이 잇따르는 장이지요. 먼저 끝까지 낭독하고, 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 5:1~39, 약 5분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 채워지는 느낌이었어요. 빈 그물이 갑자기 찢어지도록 차고, 사람이 일어나고, 세관에 앉았던 이가 따라가요. 비었던 데가 자꾸 채워져요.</p>
+
+<p><strong>P01 한나래</strong>: 저는 "떠나소서"가 콕 박혔어요. 베드로가 무릎을 꿇고 "주여 나를 떠나소서"라고 해요. 채워진 자리에서 오히려 물러서려 해요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 물가에서 시작해요. 호숫가, 배, 깊은 데. 그러다 마을·집·세관으로 옮겨가요. 장면이 빠르게 바뀌어요.</p>
+
+<p><strong>P05 김미영</strong>: 손에 만져지는 게 많았어요. 그물, 배 두 척, 지붕을 뜯어 내린 침상이요. 특히 지붕 뜯는 장면이 생생했어요.</p>
+
+<p><strong>P02 이진우</strong>: 끝에 "새 포도주는 새 부대에"라는 비유가 붙는 게 인상적이었어요. 사건들 뒤에 갑자기 묵은 것과 새 것 이야기가 나와요.</p>
+
+<p><strong>P11 나경아</strong>: "죄"라는 말이 두 번 크게 울렸어요. 베드로의 "죄인"과, 중풍병자에게 "네 죄 사함을 받았느니라"요.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. 그 첫 느낌을 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P05 김미영</strong>: 1절에 "게네사렛 호숫가"가 나와요. 배 두 척이 있고(2절), 한 척은 시몬의 배예요. "깊은 데로 가서 그물을 내리라"(4절)니 호수 위로 무대가 옮겨가요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 옮겨가요. 호숫가·배·깊은 데(1-11절) → 어느 동네의 나병환자 자리(12절) → 사람들 가득한 집(17-26절) → 레위의 세관과 잔치(27-32절)예요.</p>
+
+<p><strong>P07 오지혜</strong>: 소품이에요. 그물(찢어짐, 6절), 두 배(가라앉게 됨, 7절), 지붕과 기와를 벗긴 침상(19절), 세관(27절)이요. 일하던 자리의 물건들이에요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 하나 두면, "고기를 잡으리라"의 그 잡힘(9절)이 헬라어 <em>agra</em>(잡은 것·어획)예요. 나병환자의 "깨끗하게 하실"(12절)은 <em>katharizo</em>(깨끗하게 하다)고요. 음역만 배경으로 둡니다.</p>
+
+<p><strong>P01 한나래</strong>: 시간 배경이 일상의 노동이에요. 밤새 수고했으나 잡지 못한 어부들(5절), 세관에 앉은 세리(27절). 갈릴리 호수의 생업이 깔려요.</p>
+
+<p><strong>P02 이진우</strong>: 17절에 "바리새인과 율법교사들이… 앉았는데"가 배경으로 들어와요. 이 장부터 지켜보는 눈이 자리를 잡아요. 무대 장치로만 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: <em>agra</em>·<em>katharizo</em>와 지켜보는 눈을 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계인지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "무리가 하나님의 말씀을 들으려고 밀려들어"로, 말씀을 들으려는 무리로 열려요. 39절은 "묵은 포도주를 마시고 새 것을 원하는 자가 없나니 이는 묵은 것이 좋다 함이니라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 말씀에 밀려드는 무리, 끝은 묵은 것을 고집하는 입맛이에요. 새 것을 받는 자리와 묵은 것을 고집하는 자리가 양끝에 있어요.</p>
+
+<p><strong>P01 한나래</strong>: 가운데 "모든 것을 버려두고 따르니라"(11절)와 레위가 "모든 것을 버리고 일어나 따르니라"(28절)가 두 번 나와요. 버리고 따름이 양쪽에 걸려요.</p>
+
+<p><strong>성령일 선교사</strong>: 말씀에 밀려듦에서 새·묵은 포도주로, 버림에서 따름으로 좁혀지는 폭을 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 예수, 시몬 베드로(8절), 야고보와 요한(10절), 나병환자(12절), 중풍병자와 그를 멘 사람들(18절), 바리새인·율법교사들(17·21절), 그리고 세리 레위(27절)예요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황이 부르심이에요. "이제 후로는 네가 사람을 취하리라"(10절), 또 "나를 따르라"(27절). 그물 가득함 뒤에, 또 세관 곁에서 부름이 와요.</p>
+
+<p><strong>P04 최현국</strong>: 후반 사상은 죄 사함이에요. "네 죄 사함을 받았느니라"(20절)에 서기관들이 "참람하도다"(21절) 하자, 예수께서 "중풍병자에게 일어나 가라" 하셔서 죄 사함과 일어남을 같이 보이세요.</p>
+
+<p><strong>P02 이진우</strong>: 레위의 잔치에서 "건강한 자에게는 의사가 쓸데없고 병든 자에게라야 쓸데 있나니… 죄인을 불러 회개시키러 왔노라"(31-32절)가 사상이에요. 부르심의 대상을 직접 말씀하세요.</p>
+
+<p><strong>P11 나경아</strong>: 20절 "죄 사함을 받았느니라"의 "사함"이 <em>aphiemi</em>(놓아주다·용서하다)예요. 27절 "나를 따르라"의 "따르라"는 <em>akoloutheo</em>고요. 어휘 위치만 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: 그 사함과 따름을 나란히 두고, 어느 하나로 좁히지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 여섯 컷으로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-7절)</strong>: 호숫가, 배에서 가르침, 깊은 데, 찢어지도록 잡힌 고기</li>
+<li><strong>컷 2 (8-11절)</strong>: 베드로의 "나를 떠나소서", "사람을 취하리라", 다 버려두고 따름</li>
+<li><strong>컷 3 (12-16절)</strong>: 나병환자, "깨끗함을 받으라", 제사장에게 보이라</li>
+<li><strong>컷 4 (17-26절)</strong>: 지붕을 뜯어 내린 중풍병자, 죄 사함, 일어나 감</li>
+<li><strong>컷 5 (27-32절)</strong>: 세관의 레위, 잔치, "죄인을 불러 회개시키러"</li>
+<li><strong>컷 6 (33-39절)</strong>: 금식 논쟁, 신랑 비유, 새 천·새 포도주</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 2와 컷 5가 같은 틀이에요. 부르심 → 다 버려두고/버리고 → 따름. 두 소명이 쌍을 이뤄요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 쌍 구조를 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 채워진 직후 베드로의 첫 말이 기쁨이 아니라 "나를 떠나소서 나는 죄인이로소이다"(8절)예요. 풍성함이 두려움을 일으켜요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 왜 나병환자를 고치신 뒤 "아무에게도 이르지 말고… 제사장에게 네 몸을 보이라"(14절) 하실까요. 알리지 말라 하시면서 제사장에게는 보이라 하세요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 14절 "모세가 명한 대로 예물을 드리라"는 레위기 14장의 나병 정결 예식이에요. 깨끗해진 자가 공동체로 돌아가는 절차예요. 배경으로만 둡니다.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 중풍병자 장면에서 "그들의 믿음을 보시고"(20절)예요. 멘 사람들의 믿음을 보세요. 환자 본인이 아니라 데려온 이들의 믿음이에요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 죄 사함과 고침 가운데 왜 "인자가 죄를 사하는 권세가 있는 줄을 너희로 알게 하려 하노라"(24절)라고 굳이 말씀하실까요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 36-39절이 걸려요. 새 옷·새 부대 이야기 뒤에 갑자기 "묵은 것이 좋다"(39절)로 닫혀요. 새 것을 말하다 묵은 입맛으로 끝나서요.</p>
+
+<p><strong>P11 나경아</strong>: 37-38절의 "새 포도주"(<em>neos oinos</em>)와 "새 부대"(<em>askos</em>)가 한 쌍이에요. 그리고 39절의 "묵은 것"이 곧바로 붙어요. 새와 묵음의 대비까지만 관찰로 남깁니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 게네사렛 호숫가에 무리가 밀려들자 예수께서 시몬의 배에 올라 가르치십니다. 마치신 뒤 "깊은 데로 가서 그물을 내리라" 하시니, 밤새 잡지 못했던 그물이 찢어지도록 차고 두 배가 가라앉게 됩니다.</p>
+
+<p><strong>P01 한나래</strong>: 베드로가 무릎을 꿇고 "나를 떠나소서 나는 죄인이로소이다" 하자, "무서워 말라 이제 후로는 네가 사람을 취하리라" 하십니다. 그들이 배를 버려두고 따릅니다.</p>
+
+<p><strong>P04 최현국</strong>: 나병환자가 엎드려 "원하시면 깨끗하게 하실 수 있나이다" 하니, 손을 내밀어 "내가 원하노니 깨끗함을 받으라" 하시고, 제사장에게 몸을 보이라 보내십니다.</p>
+
+<p><strong>P02 이진우</strong>: 사람들 가득한 집에서, 메고 온 이들이 지붕을 뜯어 중풍병자를 내립니다. 그들의 믿음을 보시고 "네 죄 사함을 받았느니라" 하시자 서기관들이 수군거리고, "일어나 네 침상을 가지고 가라" 하시니 그가 일어나 갑니다.</p>
+
+<p><strong>P11 나경아</strong>: 세관에 앉은 레위에게 "나를 따르라" 하시니 모든 것을 버리고 일어나 따르고, 자기 집 큰 잔치에 세리들을 부릅니다. 바리새인들이 수군거리자 "죄인을 불러 회개시키러 왔노라" 하시고, 금식 물음에는 신랑 비유와 새 천·새 포도주를 말씀하신다는 한 줄로 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 빈 그물이 찢어지도록 채워지는 자리에서, 깨끗함과 죄 사함을 지나, 세관의 일어섬과 새 포도주로 흐르는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "주여 나를 떠나소서 — 채워진 자리의 두려움"</p>
+<p><strong>P02 이진우</strong>: "깊은 데로 가서 그물을 내리라"</p>
+<p><strong>P04 최현국</strong>: "지붕을 뜯고 내린 믿음"</p>
+<p><strong>P05 김미영</strong>: "나를 따르라 — 세관에서 일어선 레위"</p>
+<p><strong>P07 오지혜</strong>: "죄인을 불러 회개시키러 왔노라"</p>
+<p><strong>P11 나경아</strong>: "<em>Agra · Aphiemi · Askos</em> — 잡힘·사함·새 부대"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "빈 그물에서 찢어지도록, 세관에서 일어섬으로"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 그 호숫가와 지붕 뜯린 집과 세관의 잔치를 천천히 걸으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P04 최현국</strong>: (조용히) 주님, 저는 "깊은 데로 가서 그물을 내리라"는 말씀 앞에 서 있습니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: LUK-005</p>
+<p>book: 누가복음</p>
+<p>chapter: 5</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>누가복음 5장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대는 게네사렛 호숫가·배·깊은 데(1-11절) → 어느 동네(12절) → 사람 가득한 집(17-26절) → 레위의 세관·잔치(27-32절)로 옮겨간다.</li>
+<li>시간 배경 = 일상의 노동. 밤새 수고한 어부(5절), 세관에 앉은 세리(27절).</li>
+<li>소품 = 찢어진 그물(6절), 가라앉는 두 배(7절), 지붕을 뜯어 내린 침상(19절), 세관(27절).</li>
+<li>"잡은 것"(9절)은 <em>agra</em>, "깨끗하게 하다"(12절)는 <em>katharizo</em>.</li>
+<li>17절 "바리새인·율법교사들이 앉았는데"로 지켜보는 눈이 자리를 잡음.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>비었던 데가 거듭 채워진다 — 그물·병자·세관.</li>
+<li>채워진 자리에서 베드로가 오히려 "떠나소서" 한다.</li>
+<li>"죄"가 두 번 크게 — 베드로의 "죄인", 중풍병자의 "죄 사함".</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "무리가 하나님의 말씀을 들으려고 밀려들어" — 말씀에 밀려드는 무리로 열림.</li>
+<li>39절: "묵은 것이 좋다 함이니라" — 묵은 입맛으로 닫힘.</li>
+<li>새 것을 받는 자리와 묵은 것을 고집하는 자리가 양끝. "버려두고 따름"이 11·28절에 두 번.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 예수 / 시몬 베드로(8) / 야고보·요한(10) / 나병환자(12) / 중풍병자·멘 사람들(18) / 바리새인·율법교사(17·21) / 레위(27).</li>
+<li>두 부르심 — "사람을 취하리라"(10절), "나를 따르라"(27절).</li>
+<li>죄 사함과 고침이 함께(20·24절). "인자가 죄를 사하는 권세".</li>
+<li>"죄인을 불러 회개시키러"(32절)로 부름의 대상을 직접 말함. <em>aphiemi</em>·<em>akoloutheo</em>.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-7): 호숫가·배·깊은 데, 찢어지도록 잡힘.</li>
+<li>컷 2 (8-11): "나를 떠나소서", "사람을 취하리라", 다 버려두고 따름.</li>
+<li>컷 3 (12-16): 나병환자, "깨끗함을 받으라", 제사장에게.</li>
+<li>컷 4 (17-26): 지붕을 뜯어 내린 중풍병자, 죄 사함, 일어남.</li>
+<li>컷 5 (27-32): 세관의 레위, 잔치, "죄인을 불러".</li>
+<li>컷 6 (33-39): 금식 논쟁, 신랑 비유, 새 천·새 포도주.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>agra</em>(ἄγρα) — 잡은 것·어획. 4·9절.</li>
+<li><em>metanoia</em>(μετάνοια) — 회개. 32절 "회개시키러".</li>
+<li><em>lepra</em>(λέπρα) — 나병. 12·13절.</li>
+<li><em>katharizo</em>(καθαρίζω) — 깨끗하게 하다. 12·13절.</li>
+<li><em>aphiemi</em>(ἀφίημι) — 놓아주다·용서하다. 20·23·24절 "죄 사함".</li>
+<li><em>telones</em>(τελώνης) — 세리. 27·29·30절.</li>
+<li><em>akoloutheo</em>(ἀκολουθέω) — 따르다. 11·27·28절.</li>
+<li><em>askos</em>(ἀσκός) — 가죽 부대. 37·38절 "새 부대".</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>호수의 소명(1-11) → 두 치유(12-26) → 세관의 소명·잔치(27-32) → 새·묵음 비유(33-39)의 묶음.</li>
+<li>두 소명의 같은 틀 — 부름 → 버림 → 따름(11·28절).</li>
+<li>"버려두고/버리고 따르니라"가 11·28절에 두 번.</li>
+<li>대립의 시선이 자리 잡음 — 서기관(21), 바리새인(30), 금식 물음(33).</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>14절 "모세가 명한 대로 예물을"은 레위기 14장 나병 정결 예식 — 배경으로만.</li>
+<li>지붕을 뜯어 내림(19절)은 당시 평평한 흙지붕의 구조 — 무대 장치로만.</li>
+<li>세리는 동족에게 미움받던 직 — 잔치의 "세리와 죄인"(30절) 배경으로만.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>눅 5:14 ↔ 레 14:1-32 (나병 정결 예식)</li>
+<li>눅 5:24 ↔ 단 7:13-14 (인자의 권세)</li>
+<li>눅 5:32 ↔ 눅 19:10 (잃은 자를 찾아 구원하러)</li>
+<li>눅 5:11 ↔ 눅 5:28 (모든 것을 버리고 따름)</li>
+<li>눅 5:34-35 ↔ 요 3:29 (신랑의 결)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>호숫가에 무리가 밀려들자 예수께서 시몬의 배에서 가르치시고, "깊은 데로 가서 그물을 내리라" 하시니 밤새 비었던 그물이 찢어지도록 차고 두 배가 가라앉게 된다. 베드로가 무릎 꿇어 "나를 떠나소서 나는 죄인이로소이다" 하자 "무서워 말라, 이제 후로 사람을 취하리라" 하시고, 그들이 다 버려두고 따른다. 나병환자가 "원하시면 깨끗하게 하실 수 있나이다" 하니 "깨끗함을 받으라" 하시고 제사장에게 보내신다. 사람 가득한 집에서 멘 이들이 지붕을 뜯어 중풍병자를 내리니, 그들의 믿음을 보시고 "네 죄 사함을 받았느니라" 하시며 "일어나 가라" 하셔서 그가 일어나 간다. 세관의 레위에게 "나를 따르라" 하시니 모든 것을 버리고 일어나 잔치를 열고, 수군거림에 "죄인을 불러 회개시키러 왔노라" 하시며, 금식 물음에 신랑 비유와 새 천·새 포도주를 말씀하신다는 한 줄로 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"깊은 데로 가서 그물을 내리라 — 채움과 따름"</strong></li>
+<li>초벌 부제: "빈 그물에서 찢어지도록, 세관에서 일어섬으로"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (8개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (나병 정결 예식·흙지붕·세리 배경)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 6개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>그물 가득함(6절)을 곧장 번영 교훈으로 굳히지 않도록 → "깊은 데"·"찢어짐"의 위치만 기록.</li>
+<li>죄 사함(20절)과 고침(24절)의 관계를 교의로 정식화하지 않고 본문 보고만 보존.</li>
+<li>새·묵음 비유(36-39절)를 곧장 적용으로 풀지 않고 대비 어휘만 기록.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: LUK-005</p>
+<p>book: 누가복음</p>
+<p>chapter: 5</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>누가복음 5장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 채워진 직후 베드로의 첫 말이 왜 "나를 떠나소서"(8절)인가?</h2>
+
+<ul>
+<li>풍성함이 기쁨이 아니라 두려움을 일으킨다.</li>
+<li>두려움의 까닭은 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q2. 왜 "아무에게도 이르지 말고" 하시면서 "제사장에게 보이라"(14절) 하시는가?</h2>
+
+<ul>
+<li>알리지 말라 하시며 절차는 밟게 하신다.</li>
+<li>두 명령의 병치만 기록, 관계는 보류.</li>
+</ul>
+
+<h2>Q3. "그들의 믿음을 보시고"(20절)에서 누구의 믿음인가?</h2>
+
+<ul>
+<li>환자 본인이 아니라 메고 온 이들의 믿음이다.</li>
+<li>주어의 결은 본문 보고만 보존.</li>
+</ul>
+
+<h2>Q4. 왜 "인자가 죄를 사하는 권세가 있는 줄을 알게 하려"(24절)라고 굳이 말씀하시는가?</h2>
+
+<ul>
+<li>고침으로 죄 사함의 권세를 보이신다.</li>
+<li>말씀하심의 까닭은 본문이 설명하지 않음. 위치만 보존.</li>
+</ul>
+
+<h2>Q5. 두 소명(베드로·레위)은 왜 "모든 것을 버리고 따름"으로 같은가?</h2>
+
+<ul>
+<li>11·28절에 같은 결이 두 번 놓인다.</li>
+<li>반복의 까닭은 묵상에서 다시.</li>
+</ul>
+
+<h2>Q6. 새 것을 말하다 왜 "묵은 것이 좋다"(39절)로 닫히는가?</h2>
+
+<ul>
+<li>새 포도주 이야기 뒤에 묵은 입맛이 붙는다.</li>
+<li>대비의 까닭은 관찰로는 보류.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">빈 그물에서 찢어지도록, 세관에서 일어섬으로.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body">
+            <p>---</p>
+<p>sim_id: LUK-005</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-31</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 누가복음 5장은 빈 그물이 찢어지도록 채워지자 베드로가 무릎을 꿇고, <em>죄 사함이 중풍을 일으키며</em>, 세관의 레위가 일어서는 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 밤새 비었던 그물이 깊은 데에서 찢어지도록 채워지는 장면으로 연다. 풍성함 앞에서 베드로는 "나를 떠나소서" 하지만, "사람을 취하리라"는 부름에 모든 것을 버려두고 따른다. 이어 나병환자가 깨끗해지고, 지붕을 뜯어 내린 중풍병자에게 죄 사함과 일어남이 함께 임한다. 세관의 레위가 일어나 잔치를 열고, "죄인을 불러 회개시키러 왔노라"는 말씀과 새 포도주 비유로 이어진다. 끝은 묵은 입맛을 고집하는 한 줄이다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>호숫가·배·깊은 데(1-11) → 집(17-26) → 세관(27-32). 일상의 노동. 찢어진 그물·뜯긴 지붕·세관. <em>agra</em>·<em>katharizo</em>.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>비었던 데가 거듭 채워짐. 채움 앞의 "떠나소서". "죄"가 두 번 크게.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 말씀에 밀려듦(1절). 끝 — 묵은 입맛(39절). "버려두고 따름"이 두 번.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>예수 / 베드로 / 나병환자 / 중풍병자 / 레위 / 바리새인. 두 부르심(10·27). 죄 사함과 고침. <em>aphiemi</em>·<em>akoloutheo</em>.</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 그물(1-7). 컷 2 소명(8-11). 컷 3 나병(12-16). 컷 4 중풍(17-26). 컷 5 레위(27-32). 컷 6 새·묵음(33-39).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>채움 앞의 두려움(8). 알리지 말라·제사장에게(14). 멘 이들의 믿음(20). 인자의 권세(24). 새·묵음 대비(37-39).</td></tr>
+<tr><td>7 동영상</td><td>찢어지도록 잡힘 → 소명 → 깨끗함·죄 사함 → 세관의 일어섬 → 새 포도주로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "깊은 데로 가서 그물을 내리라 — 채움과 따름". 부제 — "빈 그물에서 찢어지도록, 세관에서 일어섬으로".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>호숫가와 지붕 뜯린 집과 세관의 잔치를 걸으며 "깊은 데" 앞에 선다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 빈 데의 채움</strong>: 밤새 비었던 그물이 "깊은 데"에서 찢어지도록 찬다(5-7절). 빈 자리가 채워질 때 부름이 온다.</p>
+<p>2. <strong>결 2 — 죄 사함과 일어남</strong>: "네 죄 사함을 받았느니라"(20절)와 "일어나 가라"(24절)가 한 장면에서 함께 보인다. 보이지 않는 것과 보이는 것이 나란하다.</p>
+<p>3. <strong>결 3 — 두 번의 따름</strong>: 베드로(11절)와 레위(28절)가 같은 "모든 것을 버리고 따르니라"로 일어선다. 호수와 세관에서 같은 결이 반복된다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>눅 5:32</strong>의 "죄인을 불러"가 <strong>눅 19:10</strong> "잃은 자를 찾아 구원하러"로 이어진다.</li>
+<li>다른 권 — <strong>레 14:1-32</strong> (나병 정결 예식), <strong>단 7:13-14</strong> (인자의 권세).</li>
+<li>정경 흐름 — 베드로의 소명은 누가복음 사도들의 부름과 사도행전의 "사람을 취함"으로 이어지는 자리를 연다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 밤새 빈 그물 곁에 한 사람이 선다.</li>
+<li><strong>멈춤 1</strong>: 찢어지도록 채워진 자리의 "떠나소서" 앞에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: 지붕을 뜯고 내린 믿음 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: 세관에서 일어선 레위 곁에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *부름은 빈 자리가 채워질 때 일어섬으로 닿는다*는 결을 손에 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *"깊은 데" 곁* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 깊은 데의 그물이 찢어지도록 찬다</li>
+<li>[x] 베드로가 "나를 떠나소서" 한다</li>
+<li>[x] 나병환자가 깨끗해진다</li>
+<li>[x] 지붕을 뜯어 중풍병자를 내린다</li>
+<li>[x] 죄 사함과 일어남이 함께 임한다</li>
+<li>[x] 레위가 세관에서 일어나 따른다</li>
+<li>[x] 새 포도주는 새 부대에 담아야 한다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>깊은 데</em>.</p>
+          </div>
+        </section>
+
+    <div class="next-row">
+      <a href="/magazine/LUK/4/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">누가복음 4장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/LUK/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">누가복음 24장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/LUK/6/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">누가복음 6장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/LUK/5/',
+      title: '누가복음 5장',
+      excerpt: '깊은 데로 던진 그물이 찢어지도록 채워지자, 부르심이 시작된다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
