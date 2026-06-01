@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>데살로니가전서 5장 — Observatory | 네다바웨이</title>
+<meta name="description" content="데살로니가전서 5장을 9단계로 같이 관찰합니다. 주의 날(hemera kyriou)·도둑같이·빛의 아들(huioi photos)·깨어 정신 차리라(gregoromen)·항상 기뻐하라(chairete pantote)·범사에 헤아려 좋은 것을 취하라(dokimazete).">
+<link rel="canonical" href="https://www.nedabah.org/magazine/1TH/5/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/1TH/">데살로니가전서</a> · 5장</div>
+      <h1>데살로니가전서 5장 — Observatory | 네다바웨이</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">1TH-005 · 서신서 · 헬라어</div>
+      <p class="essence">주의 날(hemera kyriou)이 밤의 도둑같이 임하는 세계에서 — 빛의 아들(huioi photos)은 깨어 정신을 차린다(gregoromen). 항상 기뻐하라(chairete pantote)·쉬지 말고 기도하라·범사에 감사하라·성령을 소멸치 말라. 범사에 헤아려 좋은 것을 취하라(dokimazete) — 이 서신 전체의 destination이 완성된다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 서신 장르이므로 무대는 권면과 축원의 골격으로 본다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 1TH-005</p>
+<p>book: 데살로니가전서</p>
+<p>book_en: 1 Thessalonians</p>
+<p>chapter: 5</p>
+<p>bible_block: 서신서</p>
+<p>canon: 신약</p>
+<p>genre: 서신·권면·축원·종말론</p>
+<p>language: 헬라어</p>
+<p>verse_count: 28</p>
+<p>observed_facts_count: 27</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>greek_terms: [hemera_kyriou, nyx, kleptes, huioi_photos, gregoromen, nephomen, thorax, perikephalaia, chairete_pantote, adialeipton, eucharistia, sbennyte, dokimazete, agathos, hagiasmos, parousia, eirene]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-01</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>데살로니가전서 5장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 오늘은 데살로니가전서 5장입니다. 4장에서 강림(parousia) 장면 자체가 펼쳐졌다면, 5장은 그 강림이 언제 올지 모르는 상황에서 어떻게 살 것인가를 묻습니다. "주의 날"(hemera kyriou)이 밤의 도둑같이 임하는데 — 그 앞에서 빛의 아들들은 어떻게 깨어 있는가. 그리고 이 서신 전체의 destination 두 번째 절인 "범사에 헤아려 좋은 것을 취하라"(5:21)가 이 장에 있습니다. 낭독 후 잠시 머물겠습니다.</p>
+<p>(본문 낭독 5:1~28)</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>P01 한나래</strong>: 4장이 웅장한 강림 장면으로 끝났다면, 5장은 그것을 받아서 "그러면 지금 어떻게?"로 내려와요. 전반부(1-11절)는 종말론적 경계의 분위기인데, 후반부(12-28절)는 갑자기 공동체의 일상 권면으로 이어져요. 두 부분이 굉장히 다른 온도예요. 그런데 연결은 자연스러워요.</p>
+<p><strong>P07 오지혜</strong>: "도둑같이"(2절) — 이 이미지가 계속 머릿속에 남아요. 예상할 수 없다는 것. 그런데 16-18절 "항상 기뻐하라·쉬지 말고 기도하라·범사에 감사하라" 세 개가 연달아 나오는 게 특이해요. 짧은 명령문이 연속으로 쏟아지는 느낌이에요.</p>
+<p><strong>P04 최현국</strong>: 무대가 바뀌어요. 전반부는 밤과 낮, 어둠과 빛의 대조 무대예요. 후반부는 공동체 내부 무대예요 — 지도자를 알아주고, 서로 화목하고, 낙심한 자를 권면하고. 두 무대가 이어지는 구조예요.</p>
+<p><strong>P05 김미영</strong>: 소품들이에요. 도둑(kleptes, 2절), 갑작스러운 파멸(olethros, 3절), 아이 낳는 여자(3절), 어둠(skotos, 4절), 빛의 아들들(huioi photos, 5절), 가슴 갑옷(thorax, 8절), 구원의 투구(perikephalaia, 8절), 항상 기쁨(16절), 쉬지 않는 기도(17절), 범사 감사(18절), 성령(19절), 예언(20절), 좋은 것(agathos, 21절), 온전히 보전(23절).</p>
+<p><strong>P02 이진우</strong>: 구조적으로 세 단락이에요. 1-11절(주의 날·빛의 아들·깨어 있음), 12-22절(공동체 권면들), 23-28절(축원·인사·맹세). 그리고 1-11절은 4장과 이어지는 연속이에요 — 4장이 "무엇이 일어나는가"였다면 5장 전반부는 "우리가 어떤 자인가"예요.</p>
+<p><strong>P11 나경아</strong>: 헬라어 배경만요. 2절 hemera kyriou — "주의 날"은 구약 예언서에서 심판과 구원의 날로 자주 등장하는 표현이에요. 8절 thorax(흉갑)와 perikephalaia(투구) — 바울이 이사야 59:17의 이미지를 가져온 것으로 보여요. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 도둑같이 임하는 주의 날 앞에서 빛의 아들들의 깨어 있음 — 그리고 공동체의 일상으로 이어지는 구조예요. 무대로 들어가지요.</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>P05 김미영</strong>: 소품들이에요. 때와 시기(1절), 주의 날(hemera kyriou, 2절), 도둑(kleptes, 2절), 평안하다 안전하다(3절), 아이 낳는 여자의 해산(3절), 어둠(skotos, 4절), 빛(5절), 낮(5절), 빛의 아들(huioi photos, 5절), 잠(hupnos, 6절), 술(6절), 흉갑(thorax, 8절), 투구(perikephalaia, 8절), 믿음·사랑·소망(8절), 항상 기뻐하라(16절), 쉬지 말고 기도하라(17절), 범사에 감사(18절), 성령(19절), 예언(20절), 범사에 헤아려(dokimazete, 21절), 좋은 것(agathos, 21절), 악(22절), 평강의 하나님(23절).</p>
+<p><strong>P04 최현국</strong>: 무대예요. 전반부(1-11절)는 밤/낮·어둠/빛의 대조 공간이에요. 잠자는 자들과 깨어 있는 자들이 대조돼요. 후반부(12-28절)는 공동체의 일상 공간이에요 — 지도자·낙심한 자·약한 자·모든 사람에 대한 태도가 나열돼요. 두 공간이 한 장에 있어요.</p>
+<p><strong>P02 이진우</strong>: 반복 소재들이에요. 깨어 있음(gregoreo)이 6절·10절에 반복돼요. "서로"(allelon)가 11절·13절에 반복돼요. "항상"(pantote)이 16절에, "범사에"(en panti)가 18절에 — 제한 없음의 부사들이 이 단락의 특징이에요.</p>
+<p><strong>P11 나경아</strong>: 원어 배경요. 19절 sbennyte — "성령을 소멸하지 말라"에서 sbennymi(끄다·소멸하다)예요. 20절 propheteia(예언)을 멸시하지 말라와 연결돼요. 21절 dokimazete — "헤아리다·시험하다·분별하다"예요. 금속 정제 때 순도를 검사하는 이미지가 있는 어근이에요. 배경만요.</p>
+<p><strong>P07 오지혜</strong>: 반복 소재로 부르다·세우다·힘써 일하다가 12-13절에 묶여 있어요. 지도자를 알아주는 것과 화목하게 지내는 것이 한 묶음이에요.</p>
+<p><strong>P01 한나래</strong>: 1절 "때와 시기(chronos·kairos)에 대하여는 형제들아 너희에게 쓸 필요가 없음은" — 이 시작이 이미 4장과 이어지는 표시예요. 4장 강림 장면 다음에, 그 때는 알 필요 없다는 것으로 받아요.</p>
+<p><strong>성령일 선교사</strong>: 주의 날·도둑·빛의 아들들·깨어 있음·항상 기뻐하라·범사 감사·성령 소멸 금지·범사에 헤아림 — 이 장의 핵심 소재들이에요. 다음 단계로 가지요.</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>P02 이진우</strong>: 1절 "형제들아 때와 시기에 대하여는 너희에게 쓸 필요가 없음은 주의 날이 밤에 도둑같이 이를 줄을 너희 자신이 자세히 알기 때문이라"로 열려요. 28절 "우리 주 예수 그리스도의 은혜가 너희에게 있을지어다"로 닫혀요.</p>
+<p><strong>P04 최현국</strong>: 시작은 "때를 모름·도둑같이"의 경계예요. 끝은 은혜(charis)의 축원이에요. 경계의 선언으로 열려 은혜의 축원으로 닫히는 운동이에요.</p>
+<p><strong>P01 한나래</strong>: "주의 날이 도둑같이"로 열리고 "주 예수 그리스도의 은혜"로 닫혀요. 종말론적 긴장이 은혜로 해소되는 운동이에요.</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>P05 김미영</strong>: 인물 — 바울(기록자), 데살로니가 교회, 주(kyrios), 하나님, 지도자들(12절), 낙심한 자들(14절), 약한 자들(14절), 형제들. 상황 — 주의 날이 언제 올지 모르는 공동체. 지도자와 공동체의 관계 문제.</p>
+<p><strong>P07 오지혜</strong>: 사상의 핵이에요. 5절 "너희는 다 빛의 아들이요 낮의 아들이라" — 이것이 이 단락 전체의 정체성 선언이에요. 그 정체성이 6절부터 7절까지의 깨어 있음의 근거예요. "우리는 어둠이 아니기 때문에" 깨어 있다는 것이에요.</p>
+<p><strong>P04 최현국</strong>: 8절의 무장 이미지가 흥미로워요. 믿음·사랑의 흉갑(thorax)과 구원의 소망의 투구(perikephalaia) — 소극적 무기가 아니라 적극적 정체성 무장이에요. 어둠에 맞서 싸우는 것이 아니라 빛의 정체성을 입는 것이에요.</p>
+<p><strong>P11 나경아</strong>: 헬라어 배경요. 5절 huioi photos — "빛의 아들들"은 유대 문헌에서 의로운 자들의 공동체를 가리키는 표현이에요. 사해 문서에서도 비슷한 표현이 나와요. 배경 정보만요. 10절 gregoromen eite katheudomem — "깨어 있든지 자든지"에서 katheudomem(자다)이 4장 koimaomai(잠)과 다른 단어예요. 문맥이 달라요. 배경만요.</p>
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+<p><strong>P02 이진우</strong>: 상황이에요. 1-11절에서 공동체의 과제는 "언제인지 모름"에 대한 경계예요. 12-22절에서 공동체의 과제는 내부 관계와 영적 질서예요. 두 과제가 한 장에 함께 다뤄져요.</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>P04 최현국</strong>: 세 컷입니다.</p>
+<ul>
+<li><strong>컷 1 (1-11절)</strong>: 주의 날·도둑·밤과 낮 대조·빛의 아들 정체성·깨어 있음·서로 권면하라</li>
+<li><strong>컷 2 (12-22절)</strong>: 공동체 권면들 — 지도자 알아주기·화목·권면·경계·항상 기뻐하라·쉬지 말고 기도하라·범사에 감사·성령 소멸 금지·예언 멸시 금지·범사에 헤아려 좋은 것 취하기·악은 버리기</li>
+<li><strong>컷 3 (23-28절)</strong>: 하나님의 축원·온전히 보전·충실하신 하나님·기도 부탁·거룩한 입맞춤·은혜 축원</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 1과 컷 2의 연결이 이 장의 핵심 운동이에요. 종말론적 경계(컷 1)가 공동체의 일상 덕목(컷 2)으로 이어져요. "주의 날이 도둑같이 오기 때문에" → "그러므로 항상 기뻐하라·쉬지 말고 기도하라"로 연결이에요.</p>
+<p><strong>P01 한나래</strong>: 컷 2의 절정은 16-18절이에요. 세 개의 짧은 명령문이 연속으로 나와요. "항상 기뻐하라·쉬지 말고 기도하라·범사에 감사하라" — 그리고 18절이 "이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라"로 닫혀요. 이 세 개가 하나님의 뜻으로 정의되는 구조예요.</p>
+<p><strong>P07 오지혜</strong>: 컷 3의 23절이 이 장 전체의 닻이에요. "평강의 하나님이 친히 너희를 온전히 거룩하게 하시고(hagiasmos) 또 너희의 온 영과 혼과 몸이 우리 주 예수 그리스도의 강림(parousia)하실 때에 흠 없게 보전되기를 원하노라" — 거룩(hagiasmos)과 강림(parousia)이 한 절에 묶여요. 이 서신 전체의 두 주제가 축원에서 만나요.</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>P01 한나래</strong>: 발견이에요. 16-18절의 세 명령이 하나님의 뜻으로 정의된다는 것 — 항상 기뻐하라·쉬지 말고 기도하라·범사에 감사하라가 각각 독립된 덕목이 아니라 하나님의 뜻이라는 하나의 단위로 묶인다는 것이에요.</p>
+<p><strong>P07 오지혜</strong>: 의문이에요. 19절 "성령을 소멸하지 말라"와 20절 "예언을 멸시하지 말라"가 연결돼 있어요. 당시 데살로니가 공동체에서 성령의 역사, 특히 예언의 은사에 대한 억압이나 무시가 있었던 배경이 있는지 — 본문이 직접 설명하지 않아요. 미해결로요.</p>
+<p><strong>P11 나경아</strong>: 정보요. 21절 dokimazete — 금속의 순도를 검사하는 이미지가 있는 어근이에요. "범사에 헤아린다"는 것이 단순한 선택이 아니라 정제·분별의 과정이에요. 22절 "악은 어떤 모양이라도 버리라" — pasan idean poneros(모든 형태의 악)에서 idean이 형태·외양이에요. 배경만요.</p>
+<p><strong>P04 최현국</strong>: 발견이에요. 23절에서 "온 영(pneuma)과 혼(psyche)과 몸(soma)"이라는 삼분법이 나와요. 이것이 어떤 인간론적 의미를 갖는지는 본문이 설명하지 않아요. 관찰만 해요.</p>
+<p><strong>P02 이진우</strong>: 의문이에요. 10절 "깨어 있든지 자든지(katheudomem)"에서 katheudomem(자다)이 4장의 koimaomai와 다른 단어예요. 여기서 자는 것이 죽음을 가리키는지 단순히 잠을 가리키는지 — 두 해석 모두 가능해 보여요. 미해결로요.</p>
+<p><strong>P05 김미영</strong>: 발견이에요. 26절 "거룩한 입맞춤으로 모든 형제에게 문안하라" — 초기 교회의 예배 예식 이미지예요. 27절 "이 편지를 모든 형제에게 읽어 주기를 주께 부탁한다"는 것이 이 서신이 공동체에서 낭독되었음을 시사해요.</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>P05 김미영</strong>: 때와 시기를 쓸 필요가 없다고 합니다. 주의 날이 밤에 도둑같이 이를 것을 너희가 안다고 합니다. 평안하다 안전하다 하다가 갑작스러운 파멸이 임한다고 합니다.</p>
+<p><strong>P01 한나래</strong>: 이어서 너희는 어둠에 있지 않으니 그 날이 도둑같이 임하지 않는다고 합니다. 너희는 다 빛의 아들이요 낮의 아들이라고 합니다. 잠자지 말고 깨어 정신을 차리자고 합니다.</p>
+<p><strong>P04 최현국</strong>: 낮에 속한 자들이니 믿음·사랑의 흉갑과 구원의 소망의 투구를 입자고 합니다. 하나님이 우리를 노하심에 두지 않으셨고 구원 얻도록 정하셨다고 합니다. 깨어 있든지 자든지 주와 함께 살게 하려 하심이라고 합니다.</p>
+<p><strong>P02 이진우</strong>: 공동체 권면이 이어집니다 — 지도자를 알아주고, 낙심한 자를 권면하고, 약한 자를 붙들고, 모든 사람을 오래 참으라고 합니다. 항상 기뻐하라·쉬지 말고 기도하라·범사에 감사하라 — 이것이 하나님의 뜻이라고 합니다.</p>
+<p><strong>P07 오지혜</strong>: 성령을 소멸하지 말고, 예언을 멸시하지 말고, 범사에 헤아려 좋은 것을 취하고, 악은 어떤 모양이라도 버리라고 합니다. 평강의 하나님이 친히 온전히 거룩하게 하시기를, 강림하실 때 흠 없게 보전되기를 원한다는 축원으로 닫힙니다.</p>
+<p><strong>성령일 선교사</strong>: 도둑같이 임하는 주의 날 → 빛의 아들 정체성 → 무장과 깨어 있음 → 항상 기뻐하라·기도·감사 → 성령·예언·분별 → 거룩과 강림의 축원으로 하나의 동영상이 흘러요.</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "항상 기뻐하라 — 빛의 아들의 살아가는 방식"</p>
+<p><strong>P02 이진우</strong>: "도둑같이 임하는 날 앞에서 깨어 있는 공동체"</p>
+<p><strong>P04 최현국</strong>: "빛의 아들의 무장 — 흉갑과 투구"</p>
+<p><strong>P05 김미영</strong>: "범사에 헤아려 좋은 것을 취하라"</p>
+<p><strong>P07 오지혜</strong>: "주의 날이 도둑같이 — 그래서 항상 기뻐하라"</p>
+<p><strong>P11 나경아</strong>: "<em>Dokimazete</em> — 범사에 헤아려 좋은 것을 취하라"</p>
+<p><strong>성령일 선교사</strong>: 초벌로 둡니다. 부제 제안은: "주의 날의 긴장 위에서 빛의 아들들이 항상 기뻐하고, 쉬지 않고 기도하며, 범사를 헤아리고 좋은 것을 취한다"</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 23절 "평강의 하나님이 친히 너희를 온전히 거룩하게 하시고 우리 주 예수 그리스도의 강림하실 때에 흠 없게 보전되기를 원하노라" — 이 자리에 상상으로 들어가, 알게 된 것을 주께 아뢰어 봅시다.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P01 한나래</strong>: (조용히) 항상 기뻐하라 — 그것이 명령인데 왜 자연스럽게 느껴지는지, 거기서 머뭅니다.</p>
+<p>*— 각자 마음에만 둡니다.</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: <strong>이 본문은 어디서 어디로 움직이는지요? 수면 아래에서 무엇이 회복되고 있는지요? 긴장은 무엇인지요? 이 불이 타오르고 있는지요?</strong></p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p><strong>P02 이진우</strong>: 이 장은 <strong>종말론적 긴장(도둑같은 주의 날)에서 일상의 구체적 방식(항상 기뻐하라·기도·감사·분별)으로</strong> 내려오는 운동이에요. 4장의 강림 장면이 "무엇이 일어나는가"였다면, 5장은 "그 앞에서 우리는 어떻게 사는가"예요. 종말이 일상을 구성하는 운동이에요.</p>
+<p><strong>P11 나경아</strong>: dokimazete(헤아리다, 21절)의 이미지 아래에서 — 이 단어의 금속 정제 이미지는 삶의 모든 것을 통과시키는 분별의 과정이에요. 성령을 소멸하지 않고 예언을 멸시하지 않는 것, 범사에 헤아리는 것이 같은 방향의 운동이에요. 수면 아래의 본질은 분별 능력이에요. 배경 관찰로만요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래를 보면, 16-18절 "항상 기뻐하라·쉬지 말고 기도하라·범사에 감사하라" 아래에서 움직이는 것은 — 이것이 하나님의 뜻으로 정의된다는 것(18절)이에요. 기쁨·기도·감사가 의무가 아니라 하나님의 의중(thelemata theou)이라는 것이 수면 아래예요.</p>
+<p><strong>P01 한나래</strong>: 긴장이 있어요. 5절 "빛의 아들"이라는 정체성과 6절 "잠자지 말고 깨어 있으라"는 명령 사이의 긴장이에요. 정체성은 이미 주어졌는데 — 깨어 있으라는 명령이 있는 이유는, 정체성이 주어졌다고 해서 자동으로 깨어 있는 것이 아니라는 것이에요. 이 긴장이 이 단락의 밑에서 움직여요.</p>
+<p><strong>P04 최현국</strong>: 이 장의 운동 벡터는 <strong>도둑같은 주의 날에서 빛의 아들 정체성으로, 그리고 항상 기뻐하고 범사를 헤아리는 일상으로</strong> 이어져요. 5장은 1TH 전서의 두 번째 destination — "범사에 헤아려 좋은 것을 취하라"(5:21)의 장이에요. 4:16(강림 장면)이 소망이라면, 5:21(범사 분별)은 일상이에요. 두 destination이 1TH 전서를 완성해요.</p>
+<p><strong>P05 김미영</strong>: 성령을 소멸하지 말라(19절) — sbennyte(끄다)의 이미지 아래에서, 수면 아래의 본질은 불꽃이 꺼지지 않는 것이에요. 기쁨도·기도도·감사도·분별도 — 이 모든 것이 꺼지지 않는 불꽃으로 유지되는 운동이에요.</p>
+<p><strong>성령일 선교사</strong>: <strong>주의 날의 긴장 위에서 빛의 아들로 깨어 있고, 항상 기뻐하고 쉬지 않고 기도하며 범사를 헤아려 좋은 것을 취하는 운동</strong> — 그 한 줄을 손에 쥐고 데살로니가전서 전체를 닫습니다.</p>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계 관찰된 사실 (LOCKED v2.0 9단계 형식).</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 1TH-005</p>
+<p>book: 데살로니가전서</p>
+<p>chapter: 5</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>데살로니가전서 5장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote><p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p></blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>소품: 도둑(kleptes, 2절), 주의 날(hemera kyriou, 2절), 어둠(skotos, 4절), 빛의 아들(huioi photos, 5절), 흉갑(thorax, 8절), 투구(perikephalaia, 8절), 항상 기쁨(16절), 쉬지 않는 기도(17절), 성령(19절), 예언(20절), 분별(dokimazete, 21절), 좋은 것(agathos, 21절), 평강의 하나님(23절).</li>
+<li>greek_terms: [hemera_kyriou, kleptes, huioi_photos, gregoromen, nephomen, thorax, perikephalaia, chairete_pantote, adialeipton, eucharistia, sbennyte, dokimazete, hagiasmos, parousia, chronos, kairos].</li>
+<li>무대: 밤/낮 대조 공간(1-11절) + 공동체 일상 공간(12-22절) + 축원(23-28절).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>4장 강림 장면 다음에 "그러면 지금 어떻게?"로 내려오는 온도.</li>
+<li>16-18절 세 명령(기뻐하라·기도·감사)의 연속 선언이 특이하다.</li>
+<li>종말론적 긴장에서 공동체 일상 권면으로 이어지는 두 부분.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(1-2절): "주의 날이 밤에 도둑같이 이를 줄을 너희 자신이 자세히 알기 때문이라" — 종말론적 경계.</li>
+<li>끝(28절): "우리 주 예수 그리스도의 은혜가 너희에게 있을지어다" — 은혜 축원.</li>
+<li>경계의 선언으로 열려 은혜의 축원으로 닫히는 운동.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>인물: 바울, 데살로니가 교회, 주(kyrios), 하나님, 지도자들(12절), 낙심한 자들(14절), 약한 자들(14절).</li>
+<li>사상의 핵: 5절 빛의 아들 정체성이 6-8절 깨어 있음의 근거. 16-18절 기쁨·기도·감사가 하나님의 뜻(18절). 23절 hagiasmos와 parousia가 한 절에서 만남.</li>
+<li>dokimazete(21절): 금속 정제 이미지 — 분별의 과정.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1-11절): 주의 날·도둑·빛의 아들 정체성·깨어 있음·무장·서로 권면.</li>
+<li>컷 2 (12-22절): 공동체 권면들 — 지도자·낙심한 자·약한 자·항상 기뻐하라·기도·감사·성령·예언·분별·좋은 것·악.</li>
+<li>컷 3 (23-28절): 축원·온전히 보전·은혜.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+<ul>
+<li><em>hemera kyriou</em>(2절): 주의 날 — 구약 예언서의 심판·구원 날 표현.</li>
+<li><em>huioi photos</em>(5절): 빛의 아들들 — 의로운 공동체 정체성 표현. 유대 문헌 배경.</li>
+<li><em>gregoromen</em>(6절): 깨어 있자 — 1인칭 복수 권유형.</li>
+<li><em>thorax</em>(8절): 흉갑 — 이사야 59:17 이미지 배경.</li>
+<li><em>sbennyte</em>(19절): 소멸하지 말라 — 끄다·소멸하다. 불꽃 이미지.</li>
+<li><em>dokimazete</em>(21절): 헤아려라 — 금속 순도 검사 어근. 분별·정제 과정.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+<ul>
+<li>5절 정체성 선언(빛의 아들) → 6절 명령(깨어 있으라): 정체성이 명령의 근거.</li>
+<li>16-18절 세 명령 → 18절 "이것이 하나님의 뜻이니라": 명령들이 하나의 의지로 묶임.</li>
+<li>23절 hagiasmos(거룩) + parousia(강림): 전서 전체의 두 주제가 축원에서 만남.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보</h2>
+<ul>
+<li>hemera kyriou: 아모스·이사야·요엘의 "주의 날" 개념 배경.</li>
+<li>thorax·perikephalaia: 이사야 59:17의 갑옷 이미지. 에베소서 6:14-17과 비교 가능.</li>
+<li>26절 거룩한 입맞춤: 초기 교회 예배의 화목 의식.</li>
+<li>27절 낭독 요청: 이 서신이 공동 예배에서 읽혔음을 시사.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+<ul>
+<li>8절 믿음·사랑·소망의 무장 — 에베소서 6:10-17의 전신갑주와 비교 여지.</li>
+<li>16-18절 항상 기뻐하라 — 빌립보서 4:4 "주 안에서 항상 기뻐하라"와 연결.</li>
+<li>23절 삼분법(영·혼·몸) — 히브리서 4:12과 비교 여지 (관찰만).</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+<p>주의 날이 도둑같이 이를 줄을 이미 안다고 한다 → 평안하다 할 때 파멸이 임한다 → 너희는 어둠에 있지 않으니 그 날이 도둑같이 임하지 않는다 → 너희는 다 빛의 아들이라 → 잠자지 말고 깨어 정신을 차리자 → 낮에 속한 자로 믿음·사랑의 흉갑과 구원의 소망의 투구를 입자 → 하나님이 노하심이 아니라 구원으로 정하셨다 → 서로 권면하고 세우라 → 지도자를 알아주고 화목하라 → 낙심한 자를 권면하고 약한 자를 붙들라 → 항상 기뻐하라·쉬지 말고 기도하라·범사에 감사하라 — 이것이 하나님의 뜻이다 → 성령을 소멸하지 말고 예언을 멸시하지 말라 → 범사에 헤아려 좋은 것을 취하고 악은 버리라 → 평강의 하나님이 친히 너희를 거룩하게 하시고 강림 때 흠 없이 보전하시기를 원한다는 축원으로 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"주의 날의 긴장 위에서 — 항상 기뻐하고 범사를 헤아리라"</strong></li>
+<li>초벌 부제: "빛의 아들 정체성으로 깨어 있고, 기쁨·기도·감사·분별로 살며, 강림 때 흠 없이 보전되기를 축원하다"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 기록</li>
+<li>[x] 역사·문화·문학 사실 최소 1개</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 기록됨</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>해석·교리 단정 없이 본문 관찰만 보존.</li>
+<li>10절 katheudomem과 4장 koimaomai의 차이, 성령 소멸 배경, 삼분법(영·혼·몸)은 미해결로 보류.</li>
+<li>drift_flag: false 유지.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 기도.</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 1TH-005</p>
+<p>book: 데살로니가전서</p>
+<p>chapter: 5</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>데살로니가전서 5장 — 미해결 질문</h2>
+<blockquote><p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p></blockquote>
+
+<h2>Q1. 10절 katheudomem(자든지)이 죽음을 가리키는가, 단순한 잠인가 — 4장 koimaomai와 어떻게 다른가?</h2>
+<ul><li>본문이 직접 설명하지 않는다. 두 해석 가능 — 미해결.</li></ul>
+
+<h2>Q2. 19-20절 "성령을 소멸하지 말라·예언을 멸시하지 말라" — 데살로니가 공동체에서 예언의 은사가 억압되는 상황이 있었는가?</h2>
+<ul><li>본문이 배경을 설명하지 않는다. 관찰 단계에서 보존.</li></ul>
+
+<h2>Q3. 23절 "영과 혼과 몸"의 삼분법 — 이것이 인간론적 선언인가, 수사학적 전체 표현인가?</h2>
+<ul><li>본문이 설명하지 않는다. 미해결로 보류.</li></ul>
+
+<h2>Q4. 21절 dokimazete(헤아리다)의 대상이 "범사"이면서 20절 예언과 연결되는가?</h2>
+<ul><li>본문에서 21절이 20절과 이어지는지 독립적인지 — 문맥 분석이 필요. 미해결.</li></ul>
+
+<h2>Q5. 16-18절 세 명령이 하나님의 뜻(18절)으로 정의될 때 — 이것이 세 개 전체를 가리키는가, 감사만 가리키는가?</h2>
+<ul><li>헬라어 원문에서 "이것"(touto)의 지시 범위가 논쟁 가능. 미해결.</li></ul>
+
+<h2>Q6. 데살로니가전서 전체에서 5장이 어떤 위치인가 — 1:9-10의 강림 기다림이 5:21의 범사 분별로 어떻게 연결되는가?</h2>
+<ul><li>관찰 단계는 연결 구조를 확인하는 데 머문다. 묵상 단계로 이월.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">주의 날의 긴장 위에서 — 빛의 아들들이 항상 기뻐하고 범사를 헤아려 좋은 것을 취한다.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: 1TH-005</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-01</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 데살로니가전서 5장은 주의 날(hemera kyriou)이 밤의 도둑같이 임하는 세계에서 빛의 아들(huioi photos)로서 깨어 정신을 차리고(gregoromen), 항상 기뻐하고(chairete pantote) 쉬지 말고 기도하고 범사에 감사하며, 성령을 소멸하지 않고 범사를 헤아려 좋은 것을 취하며(dokimazete) 강림(parousia) 때 흠 없이 보전되기를 축원하는 — 데살로니가전서 전체의 destination을 완성하는 마지막 장이다.</p>
+<p><strong>한 문단</strong>: 5장 전반부(1-11절)는 종말론적 경계다. 주의 날이 언제인지 쓸 필요가 없는 것은 너희가 이미 알기 때문이다(1-2절). 평안하다 안전하다 할 때 파멸이 임하지만(3절), 너희는 어둠에 있지 않으니 그 날이 도둑같이 임하지 않는다(4절). 너희는 다 빛의 아들이요 낮의 아들이라(5절) — 이 정체성이 깨어 있음의 근거다. 믿음·사랑의 흉갑(thorax)과 구원의 소망의 투구(perikephalaia)를 입고(8절), 깨어 있든 자든 주와 함께 살게 하려 하심이다(10절). 후반부(12-22절)는 공동체의 일상 권면이다. 지도자를 알아주고 화목하게 지내며(12-13절), 낙심한 자를 권면하고 약한 자를 붙들라(14절). 항상 기뻐하라·쉬지 말고 기도하라·범사에 감사하라 — 이것이 하나님의 뜻이다(16-18절). 성령을 소멸하지 말고 예언을 멸시하지 말며(19-20절), 범사에 헤아려 좋은 것을 취하고 악은 버리라(21-22절). 축원(23-28절): 평강의 하나님이 너희를 온전히 거룩하게 하시고(hagiasmos) 강림 때 흠 없게 보전하시기를 원한다(23절). 데살로니가전서의 두 번째 destination — "범사에 헤아려 좋은 것을 취하라"(5:21)가 이 장에서 완성된다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>hemera kyriou(주의 날), kleptes(도둑), huioi photos(빛의 아들), thorax/perikephalaia(흉갑/투구), dokimazete(분별). 밤낮 대조+공동체 일상 이중 무대.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>4장 강림 다음 "그러면 지금 어떻게?"의 온도. 16-18절 세 명령의 연속. 종말론→일상 전환.</td></tr>
+<tr><td>3 시작과 끝</td><td>주의 날 도둑같이(1-2절) → 주 예수의 은혜(28절). 종말론적 경계→은혜의 축원.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>빛의 아들 정체성이 깨어 있음의 근거. 16-18절이 하나님의 뜻으로 정의됨. hagiasmos+parousia가 23절에서 만남.</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1(주의 날·빛의 아들·무장) / 컷 2(공동체 권면·기쁨·기도·감사·분별) / 컷 3(축원·은혜).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>huioi photos = 유대 문헌 배경. dokimazete = 금속 정제 이미지. thorax = 이사야 59:17 배경.</td></tr>
+<tr><td>7 동영상</td><td>도둑같은 주의 날→빛의 아들 선언→무장·깨어 있음→공동체 권면→기쁨·기도·감사→성령·예언·분별→거룩과 강림의 축원.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"주의 날의 긴장 위에서 항상 기뻐하고 범사를 헤아리라" / "빛의 아들로 깨어 있고 기쁨·기도·감사·분별로 살며 강림 때 흠 없이 보전되다"</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>23절 평강의 하나님의 축원 자리에 머물며 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — huioi photos(빛의 아들, 5절)</strong>: 5절 "너희는 다 빛의 아들이요 낮의 아들이라" — 이 정체성 선언이 6절부터 11절의 깨어 있음의 근거다. 깨어 있으라는 명령 이전에 빛의 아들이라는 정체성이 먼저다. 정체성이 행동의 근거인 구조다.</p>
+<p>2. <strong>결 2 — dokimazete(헤아려라, 21절)</strong>: "범사에 헤아려 좋은 것을 취하라" — 이 한 절이 데살로니가전서 전체의 두 번째 destination이다. 4:16의 강림 소망(무엇이 오는가)과 5:21의 범사 분별(어떻게 사는가)이 이 서신의 두 닻이다. dokimazete의 금속 정제 이미지 — 삶의 모든 것을 통과시키는 분별의 과정이다.</p>
+<p>3. <strong>결 3 — hagiasmos(거룩) + parousia(강림), 23절</strong>: "평강의 하나님이 친히 너희를 온전히 거룩하게 하시고(hagiasmos) 우리 주 예수 그리스도의 강림(parousia)하실 때에 흠 없게 보전되기를 원하노라" — 이 한 절이 데살로니가전서 전체의 두 주제(거룩과 강림)를 하나의 축원으로 묶는다. 인간의 힘쓰는 것이 아니라 "평강의 하나님이 친히" 하신다는 것이 마지막 무게다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>8절 무장 — 에베소서 6:10-17의 전신갑주와 비교 여지 (관찰만).</li>
+<li>16절 "항상 기뻐하라" — 빌립보서 4:4 "주 안에서 항상 기뻐하라"와 연결.</li>
+<li>hemera kyriou(주의 날) — 아모스 5:18-20, 요엘 2:1, 이사야 13:6의 배경.</li>
+<li>23절 삼분법 — 히브리서 4:12과 비교 여지 (관찰만, 미해결).</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 주의 날이 언제인지 모른다는 앞에 선다 — 도둑같은 긴장.</li>
+<li><strong>멈춤</strong>: 빛의 아들이라는 정체성 앞에 선다 — 이미 정해진 소속.</li>
+<li><strong>끝</strong>: 항상 기뻐하고 범사를 헤아리는 일상 — 평강의 하나님의 축원 아래 보전된다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 이 장의 핵심 선언(huioi photos·hemera kyriou·항상 기뻐하라·dokimazete·hagiasmos+parousia)이 나온다</li>
+<li>[x] 운동 벡터(종말론 긴장→빛의 아들 정체성→일상 분별)가 드러난다</li>
+<li>[x] 수면 아래의 본질(기쁨·기도·감사가 하나님의 뜻·평강의 하나님이 친히 보전하심)이 관찰된다</li>
+<li>[x] 실존적 부름으로 닫힌다</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 1TH 흐름 위 이 장의 위치</h3>
+<p>1TH spine 위에서 5장은 phase 5 — <strong>'주의 날·깨어 있으라·항상 기뻐하라'</strong> 국면이며, 이 장은 1TH 전서 전체의 마지막 국면이다. 1:9-10에서 선언된 "강림을 기다림"이 4:16에서 강림 장면으로 펼쳐졌다면, 5장은 그 강림이 언제 올지 모르는 상황에서 공동체가 어떻게 사는가를 묻는다. 구속사적으로 이 장은 우상에서 돌이킨 공동체(1장)가 어버이 같은 사도의 정(2장)과 디모데의 위로(3장)와 거룩·부활의 소망(4장)을 거쳐, 주의 날 앞에서 빛의 아들로 깨어 살아가는 최종 국면이다. 1TH spine의 "주의 강림의 소망으로 깨어 있게 하신다"가 이 장에서 완성된다. 두 번째 destination "범사에 헤아려 좋은 것을 취하라"(5:21)는 강림 소망의 실천적 닻이다.</p>
+
+<h3>H · 운동 벡터 — 1TH spine의 마지막 국면(도둑같이→빛의 아들→항상 기뻐하라→분별)</h3>
+<blockquote><p><strong>주의 날이 언제인지 모르는 긴장 위에서 빛의 아들 정체성으로 깨어 있고, 항상 기뻐하며 쉬지 않고 기도하고 범사에 감사하며 성령을 소멸하지 않고 범사를 헤아려 좋은 것을 취하는 운동 — 평강의 하나님이 친히 거룩하게 하시고 강림 때 흠 없이 보전하신다.</strong></p></blockquote>
+<p>이 장의 운동은 1TH 전서 전체를 닫는다. 1장의 epistrepho(돌이킴)에서 시작된 운동이 — 어버이 같은 사도의 정(2장), 디모데의 견고하게 함(3장), 거룩·사랑·강림 소망(4장)을 거쳐 — 빛의 아들로 깨어 살며 범사를 헤아리는 5장의 일상으로 도착한다. spine의 마지막 단어 "깨어 있게 하신다"가 여기서 완성된다.</p>
+
+<h3>I · 수면 아래 — 1TH 하나님의 의중과 심정</h3>
+<p>표면은 종말론적 경계와 공동체 권면이다. 그 아래에서 움직이는 것은 — 주의 날이 언제인지 모르는 공동체가 불안이 아닌 정체성(빛의 아들)으로 살도록 하시려는 하나님의 의중이다. 16-18절 "항상 기뻐하라·쉬지 말고 기도하라·범사에 감사하라 — 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라" — 기쁨과 기도와 감사가 명령이 아니라 하나님의 뜻(thelemata)으로 정의된다. 그 아래에서, 이것들이 의무가 아니라 하나님의 심정에서 나오는 초대라는 것이 수면 아래의 본질이다. 23절 "평강의 하나님이 친히(autos)" — "친히"라는 단어가 이 모든 것이 인간의 힘쓰는 것 이전에 하나님의 직접적 행하심이라는 것을 시사한다. 어버이 같은 정(2:7, 2:11)이 이 축원에서 최종적으로 표현된다.</p>
+
+<h3>J · 실존적 부름 — 빛의 아들로 살아가는 불씨</h3>
+<blockquote><p>이 본문이 묻는 것은 — 내가 빛의 아들이라는 정체성이 나의 깨어 있음의 근거인가. 항상 기뻐하라는 것이 명령으로 들리는가, 초대로 들리는가. 범사를 헤아려 좋은 것을 취하는 분별의 과정(dokimazete)이 내 일상에 있는가.</p></blockquote>
+<p>이것은 명령이 아니라 초대다. 주의 날이 도둑같이 임하는 세계에서 — 빛의 아들로 깨어 있고, 기뻐하며, 기도하고, 감사하며, 분별하는 것이 이 장이 향하는 운동이다. 불씨는 빛의 아들 정체성이고, 도화선은 그 정체성 위에서 살아지는 항상 기쁨·쉬지 않는 기도·범사 감사·성령의 불꽃·범사 분별이며, 핵은 평강의 하나님이 친히 거룩하게 하시고 강림 때 흠 없이 보전하신다는 확신이다.</p>
+<p>데살로니가전서 전체를 닫는 이 장의 마지막 말은 "우리 주 예수 그리스도의 은혜가 너희에게 있을지어다"(28절) — 전서 전체는 은혜(charis)로 닫힌다.</p>
+
+<p><strong>데살로니가전서 전체를 관통하는 한 줄</strong>: 우상에서 돌이킨 자들을 거룩과 형제 사랑으로 세우고, 강림의 소망과 빛의 아들 정체성으로 깨어 살게 하신다.</p>
+<p><strong>두 destination</strong>: 4:16 주의 강림(무엇이 오는가) + 5:21 범사에 헤아려 좋은 것을 취하라(어떻게 사는가) — 소망과 분별이 데살로니가전서의 두 닻이다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/1TH/4/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">데살로니가전서 4장</div>
+        <div class="nav-preview">거룩(hagiasmos)·형제 사랑(philadelphia)·자는 자(koimaomai)·강림(parousia)·항상 주와 함께.</div>
+      </a>
+      <a href="/magazine/1TH/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">데살로니가전서 차례로</div>
+        <div class="nav-preview">데살로니가전서의 다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/1TH/">
+        <div class="nav-kicker">↑ 권 차례로</div>
+        <div class="nav-title">데살로니가전서 완독</div>
+        <div class="nav-preview">데살로니가전서 1-5장 전체 관찰을 마쳤습니다. 권 차례로 돌아가실 수 있습니다.</div>
+      </a>
+    </div>
+
+<aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:1TH-005', JSON.stringify({
+      href: '/magazine/1TH/5/',
+      title: '데살로니가전서 5장',
+      excerpt: '주의 날(hemera kyriou)·빛의 아들(huioi photos)·항상 기뻐하라(chairete pantote)·범사에 헤아려 좋은 것을 취하라(dokimazete).'
+    }));
+  } catch(e) {}
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-01</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
