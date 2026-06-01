@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>고린도후서 12장 — Observatory | 네다바웨이</title>
+<meta name="description" content="고린도후서 12장을 9단계로 같이 관찰합니다. 셋째 하늘·가시(skolops)·내 은혜가 네게 족하다. 약한 데서 온전해지는 능력(dynamis)의 정점.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/2CO/12/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/2CO/">고린도후서</a> · 12장</div>
+      <h1>고린도후서 12장 — Observatory | 네다바웨이</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">2CO-012 · 서신서 · 헬라어</div>
+      <p class="essence">셋째 하늘(tritos ouranos)·가시(skolops)·내 은혜가 네게 족하다. 약한 데서 온전해지는 능력(dynamis) — 고린도후서 전체 여정의 정점.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 서신 장르이므로 무대는 논증과 고백의 골격으로 본다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 2CO-012</p>
+<p>book: 고린도후서</p>
+<p>book_en: 2 Corinthians</p>
+<p>chapter: 12</p>
+<p>bible_block: 서신서</p>
+<p>canon: 신약</p>
+<p>genre: 서신·변증·고백</p>
+<p>language: 헬라어</p>
+<p>verse_count: 21</p>
+<p>observed_facts_count: 26</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>greek_terms: [skolops, dynamis, astheneia, tritos_ouranos, arkei, aponemi, megas, kauchaomai, episkenos, parakletos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-01</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>고린도후서 12장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 오늘은 고린도후서 12장입니다. 10~12장 약함의 자랑·가시·은혜가 족하다 역설 국면의 정점이에요. 셋째 하늘, 가시(skolops), 그리고 "내 은혜가 네게 족하다 — 약한 데서 강함이 온전해진다"는 응답. 고린도후서 전체 여정이 이 한 절을 향해 흘러왔다고 해도 과언이 아닙니다. 낭독 후 잠시 머물겠습니다.</p>
+<p>(본문 낭독 12:1~21)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>P01 한나래</strong>: 9절 "내 은혜가 네게 족하도다 이는 내 능력이 약한 데서 온전하여짐이라"가 처음부터 마음을 잡아요. 이 한 절이 책 전체를 반향하는 것 같아요.</p>
+<p><strong>P07 오지혜</strong>: 2-4절 셋째 하늘 경험 묘사가 독특해요. "몸 안에 있었는지 몸 밖에 있었는지 나는 모르거니와" — 바울이 자신도 정확히 알지 못하는 경험을 묘사하는 것이 낯설어요.</p>
+<p><strong>P04 최현국</strong>: 7절의 가시(<em>skolops</em>) 이미지가 강해요. "사탄의 사자가 내 몸에서 떠나지 않도록" — 가시가 무엇인지 본문이 특정하지 않는 것도 인상적이에요.</p>
+<p><strong>P05 김미영</strong>: 10절 "내가 약할 그 때에 곧 강함이라"가 9절의 역설을 받아서 확장해요. 가시를 통과해서 그 역설 안에 안착하는 운동이에요.</p>
+<p><strong>P02 이진우</strong>: 15절 "내가 너희 영혼을 위하여 크게 기쁨으로 재물을 쓰며 또 내 자신을 내어 주리니"가 이 장의 구조 안에서 별도 국면이에요. 약함의 자랑에서 고린도를 향한 헌신으로 전환돼요.</p>
+<p><strong>P11 나경아</strong>: 7절 "가시"는 헬라어 <em>skolops</em>예요. 가시·기둥·말뚝의 뜻이에요. 9절 "족하다"는 헬라어 <em>arkei</em>—충분하다·만족스럽다의 뜻이에요. 9절 "능력"은 <em>dynamis</em>예요. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 셋째 하늘, 가시, 내 은혜가 족하다, 약한 데서 강함 — 네 결을 나란히 두고 무대로 들어가지요.</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>P05 김미영</strong>: 소품과 소재 — 셋째 하늘(<em>tritos ouranos</em>·2절), 낙원(<em>paradeisos</em>·4절), 가시(<em>skolops</em>·7절), 사탄의 사자(7절), 하나님의 응답(9절), 약함(<em>astheneia</em>·9절), 능력(<em>dynamis</em>·9절), 그리스도의 능력의 장막(<em>episkenos</em>·9절), 거짓 사도 비교(11절), 표적·이적·능력(12절).</p>
+<p><strong>P04 최현국</strong>: 무대 세 층 — 셋째 하늘 자랑(1-6절) / 가시와 하나님의 응답(7-10절) / 고린도를 향한 호소(11-21절).</p>
+<p><strong>P02 이진우</strong>: 7절의 가시가 이 장의 핵심 소재예요. "내가 교만하여지지 않게 하려 하심이라"는 이유가 본문 안에 있어요. 높은 계시와 낮게 만드는 가시가 한 쌍이에요.</p>
+<p><strong>P11 나경아</strong>: 4절 "말할 수 없는 말"이 나와요. 헬라어 <em>arreta rhemata</em>예요. 말로 표현할 수 없는 것을 들었다는 결이에요. 9장의 <em>anekdiegetos</em>(말할 수 없는 은사)와 같은 계열의 표현이에요. 배경만요.</p>
+<p><strong>P07 오지혜</strong>: "그리스도의 능력이 내게 머물게 하려 함이라"(9절)에서 <em>episkenos</em>가 '장막치다'는 뜻이에요. 그리스도의 능력이 장막처럼 덮는 이미지예요.</p>
+<p><strong>P01 한나래</strong>: 19-21절이 이 장의 끝부분이에요. 고린도를 향한 걱정 — 다시 가면 그들이 회개하지 않은 것을 볼까 봐 두렵다는 결이에요. 약함의 자랑 국면이 공동체 걱정으로 닫혀요.</p>
+<p><strong>성령일 선교사</strong>: <em>skolops</em>, <em>dynamis</em>, <em>arkei</em>를 소재로 두고 다음 단계로 가지요.</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>P02 이진우</strong>: 1절 "내가 부득불 자랑하노니 자랑이 유익이 없으나 내가 주의 환상과 계시를 말하리라"로 열려요. 21절 "다시 내 하나님이 너희 앞에서 나를 낮추실까 봐 두렵고 전에 죄를 지은 많은 사람들이 그 행한 바 더러움과 음란함과 방탕함을 회개하지 아니한 것 때문에 내가 슬퍼할까 걱정하노라"로 닫혀요.</p>
+<p><strong>P04 최현국</strong>: 시작은 주의 계시에 대한 자랑이에요. 끝은 공동체 회개에 대한 걱정이에요. 자랑에서 슬픔으로, 고상한 경험에서 지상의 현실로 닫히는 대조예요.</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>P05 김미영</strong>: 인물 — 바울, 고린도 교회, 그리스도, 사탄의 사자(7절).</p>
+<p><strong>P07 오지혜</strong>: 사상의 핵 — "이는 내 능력이 약한 데서 온전하여짐이라"(9절). 약함이 능력의 조건이 되는 역설이에요. 고린도후서 전체 spine('약한 질그릇을 통과해 하나님의 능력이 온전해진다')이 이 한 절에 압축돼 있어요.</p>
+<p><strong>P04 최현국</strong>: 7절 구조가 독특해요. "여러 계시의 크기로 말미암아 내가 교만하여지지 않게 하려 하심이라 내 육체에 가시 곧 사탄의 사자를 주셨으니" — 계시의 높이와 가시의 낮음이 한 문장 안에 있어요.</p>
+<p><strong>P11 나경아</strong>: 9절 "그러므로 도리어 크게 기뻐함으로 나의 여러 약한 것들에 대하여 자랑하리니" — 가시에 대한 세 번 구함(8절) 뒤에 나오는 역전이에요. 거절이 아니라 응답이 다른 방향으로 온 거예요. 단정은 미해결로 둡니다.</p>
+<p><strong>(긴 침묵)</strong> 🌿🌿</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>P04 최현국</strong>: 세 컷입니다.</p>
+<ul>
+<li><strong>컷 1 (1-6절)</strong>: 셋째 하늘 경험 — 말할 수 없는 것을 들음, 자랑의 한계</li>
+<li><strong>컷 2 (7-10절)</strong>: 가시(skolops) — 세 번 구함, 하나님의 응답, 약한 데서 강함의 역설 정점</li>
+<li><strong>컷 3 (11-21절)</strong>: 고린도를 향한 호소 — 사도직 변호, 공동체 걱정</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 2가 이 장의 심장이에요. 그리고 고린도후서 전체의 심장이기도 해요. 가시 — 세 번 구함 — 거절처럼 보이는 응답 — 역전 — 약한 데서 강함. 이 운동이 4:7("능력이 하나님께 있음을 알게 하려 함")의 완성이에요.</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>P01 한나래</strong>: 발견이에요. 9절 하나님의 응답이 바울이 원했던 방향(가시 제거)이 아니에요. 그러나 그것이 거절이 아니라 더 깊은 응답이에요. "내 은혜가 족하다" — 족함의 근거가 가시 제거가 아니라 은혜 자체예요.</p>
+<p><strong>P07 오지혜</strong>: 의문이에요. '가시'(<em>skolops</em>·7절)가 구체적으로 무엇인지 본문이 특정하지 않아요. 신체적 고통인지, 영적 공격인지, 박해인지 — 역사적으로 여러 해석이 있지만 본문이 명시하지 않아요.</p>
+<p><strong>P11 나경아</strong>: 정보로, 2절 "셋째 하늘"이 유대 묵시 문학의 다층 하늘 개념과 관련이 있어요. '낙원'(<em>paradeisos</em>·4절)이 같은 곳을 가리키는지 다른 곳인지 본문이 명시하지 않아요. 배경 정보만요.</p>
+<p><strong>P04 최현국</strong>: 발견이에요. 9절 "그리스도의 능력이 내게 머물게 하려 함이라"에서 <em>episkenos</em>가 '장막치다'예요. 출 40장의 성막 위에 하나님의 영광이 머무는 이미지와 연결될 수 있어요. 단정은 미해결로 둡니다.</p>
+<p><strong>P02 이진우</strong>: 의문이에요. 8절 "세 번 주께 간구하였더니" — 세 번이라는 숫자가 충분한 간구의 관용 표현인지, 정확히 세 번인지 본문이 설명하지 않아요.</p>
+<p><strong>P05 김미영</strong>: 10절 "내가 약할 그 때에 곧 강함이라"는 인과 구조가 아니에요. "약함 → 강함"이 아니라 "약할 그 때에 곧 강함" — 동시성이에요. 그 차이가 중요해 보이는데 본문이 더 긋지 않아요.</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>P05 김미영</strong>: 바울이 유익이 없는 자랑이지만 주의 계시를 말한다고 시작합니다. 셋째 하늘에 이끌려 갔다고, 몸 안에 있었는지 밖에 있었는지 자신도 모른다고 합니다. 말할 수 없는 말을 들었다고 합니다.</p>
+<p><strong>P01 한나래</strong>: 이어서 그 높은 계시로 교만해질까 봐 육체에 가시가 주어졌다고 합니다. 세 번 구했지만 "내 은혜가 네게 족하다 이는 내 능력이 약한 데서 온전하여짐이라"는 응답을 받았다고 합니다.</p>
+<p><strong>P04 최현국</strong>: 그 응답 앞에 도리어 크게 기뻐함으로 약한 것들에 대해 자랑한다고 합니다. 약할 그 때에 곧 강함이라고 선언합니다.</p>
+<p><strong>P02 이진우</strong>: 사도직 변호를 마치고, 고린도를 향한 걱정으로 닫습니다. 셋째 하늘 → 가시 → 내 은혜 족하다 → 약함의 자랑 → 고린도를 향한 슬픔으로 흐르는 동영상이에요.</p>
+<p><strong>성령일 선교사</strong>: 셋째 하늘에서 가시로, 가시에서 내 은혜가 족하다로, 내 은혜에서 약함의 자랑으로 — 이 한 흐름이 이 장이에요. 그리고 고린도후서 전체의 한 화살표예요.</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "내 은혜가 네게 족하다"</p>
+<p><strong>P02 이진우</strong>: "가시와 족함 — 약한 데서 온전해지는 능력"</p>
+<p><strong>P04 최현국</strong>: "셋째 하늘에서 가시까지"</p>
+<p><strong>P05 김미영</strong>: "약할 그 때에 곧 강함이라"</p>
+<p><strong>P07 오지혜</strong>: "거절처럼 보이는 응답 — 더 깊은 은혜"</p>
+<p><strong>P11 나경아</strong>: "<em>Skolops</em>와 <em>dynamis</em> — 가시가 능력의 자리가 되다"</p>
+<p><strong>성령일 선교사</strong>: 초벌로 둡니다. 부제 제안은: "가시(skolops)를 통과해 약한 데서 능력(dynamis)이 온전해지는 2CO의 정점"</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: "내 은혜가 네게 족하도다 이는 내 능력이 약한 데서 온전하여짐이라"는 그 한 응답 앞에 상상으로 서서, 알게 된 것을 주께 아뢰어 봅시다.</p>
+<p><strong>(긴 침묵 약 2분)</strong> 🌿🌿🌿</p>
+<p><strong>P05 김미영</strong>: (조용히) 주님, 내 가시가 무엇인지 압니다. 그 자리에서 족하다는 것이 어떤 뜻인지 묻고 있습니다.</p>
+<p><strong>P01 한나래</strong>: (조용히) 세 번 구했던 것들이 있습니다. 그 앞에 서 있습니다.</p>
+<p>*— 각자 마음에만 둡니다.</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: <strong>이 본문은 어디서 어디로 움직이는지요? 수면 아래에서 무엇이 회복되고 있는지요? 긴장은 무엇인지요? 이 불이 타오르고 있는지요? 그리고 — 고린도후서 전체가 이 장을 향해 흘러왔다면, 그 끝에서 무엇이 우리를 기다리는지요?</strong></p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 이 장은 <strong>셋째 하늘(최고 높음)에서 가시(최고 낮음)로, 그리고 약한 데서 강함으로</strong> 미는 운동이에요. 고린도후서 전체의 spine("깨어진 관계와 약한 질그릇을 통과해, 화목하게 하시는 하나님의 능력이 온전해진다")이 12:9에서 정점을 찍어요. 4:7의 "능력이 하나님께 있음을 알게 하려 함"이 여기서 완성돼요.</p>
+<p><strong>P11 나경아</strong>: 9절 "내 은혜가 네게 족하도다"(<em>arkei soi he charis mou</em>)에서 <em>arkei</em>는 현재 능동 직설법이에요. '지금 이 순간 족하다'는 현재 시제예요. 미래의 약속이 아니라 지금 족함이에요. 단정은 미해결로 둡니다.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 가시가 교만 방지 장치예요(7절). 그 아래에 하나님이 바울을 향해 하시는 것이 있어요 — 가장 높은 계시를 준 분이 가장 낮은 가시도 주신다는 것. 그리고 그 안에서 "내 은혜가 족하다"고 말씀하시는 것. 이것이 이 장 수면 아래의 하나님의 심정이에요.</p>
+<p><strong>P01 한나래</strong>: 긴장이 있어요. 세 번 구했는데 가시가 제거되지 않았어요. 그것이 거절처럼 보여요. 그런데 응답이 다른 방향으로 왔어요. "내 은혜가 족하다" — 이 긴장 안에서 방향 전환이 일어나요. <strong>구하던 것이 아닌 더 깊은 것을 받는 운동이에요.</strong></p>
+<p><strong>P04 최현국</strong>: "내 능력이 약한 데서 온전하여짐이라"에서 <em>teleitai</em>가 '온전해진다'는 현재 수동형이에요. 지금 완성되는 중이에요. 가시가 있는 그 현재 시간 안에서 능력이 온전해지는 진행이에요. 이것이 고린도후서 전체가 향해 온 목적지예요.</p>
+<p><strong>P05 김미영</strong>: 10절 "내가 약할 그 때에 곧 강함이라"가 고린도후서 전체의 destination 선언이에요. 1~11장이 흘러온 이 한 줄에 — 깨어진 관계와 약한 질그릇이 화목의 직분과 연보의 은혜와 고난 목록을 통과해 이 자리에 왔어요. <strong>약함이 약함으로 끝나지 않고, 약함이 강함의 자리임을 드러내는 — 이것이 고린도후서 전체의 향방이에요.</strong></p>
+<p><strong>성령일 선교사</strong>: <strong>약한 데서 온전해지는 능력(dynamis)</strong> — 고린도후서 전체가 이 한 절을 향해 흘러왔어요. 셋째 하늘에서 가시로, 가시에서 내 은혜가 족하다로, 내 은혜에서 약함의 강함으로 — 이 한 흐름을 손에 쥐고 오늘 관찰을 닫습니다.</p>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계 관찰된 사실 (LOCKED v2.0 9단계 형식).</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 2CO-012</p>
+<p>book: 고린도후서</p>
+<p>chapter: 12</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>고린도후서 12장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote><p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p></blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>소품과 소재: 셋째 하늘(<em>tritos ouranos</em>·2절), 낙원(<em>paradeisos</em>·4절), 가시(<em>skolops</em>·7절), 사탄의 사자(7절), 그리스도의 장막(<em>episkenos</em>·9절), 약함(<em>astheneia</em>·9절), 능력(<em>dynamis</em>·9절).</li>
+<li>greek_terms: [skolops, dynamis, astheneia, tritos_ouranos, arkei, aponemi, megas, kauchaomai, episkenos, parakletos].</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>raw transcript 2단계 참조 — 셋째 하늘의 신비, 가시의 무게, 내 은혜가 족하다의 역전.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작: "내가 부득불 자랑하노니 자랑이 유익이 없으나 내가 주의 환상과 계시를 말하리라"(1절).</li>
+<li>끝: "전에 죄를 지은 많은 사람들이 그 행한 바를 회개하지 아니한 것 때문에 내가 슬퍼할까 걱정하노라"(21절).</li>
+<li>높은 계시에서 시작해 지상 공동체의 슬픔으로 닫힌다.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>인물: 바울, 고린도 교회, 그리스도, 사탄의 사자(7절).</li>
+<li>사상의 핵: "내 능력이 약한 데서 온전하여짐이라"(9절). 고린도후서 전체 spine의 정점.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1-6절): 셋째 하늘 경험 — 말할 수 없는 것을 들음, 자랑의 한계.</li>
+<li>컷 2 (7-10절): 가시(skolops) — 세 번 구함, "내 은혜가 족하다" 응답, 약한 데서 강함의 역설 정점.</li>
+<li>컷 3 (11-21절): 고린도를 향한 호소 — 사도직 변호, 공동체 걱정.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+<ul>
+<li><em>skolops</em>(7절): 가시·기둥·말뚝. 육체에 박힌 것의 이미지.</li>
+<li><em>dynamis</em>(9절): 능력, 힘, 기적을 일으키는 힘. 고린도후서 전체의 핵심어.</li>
+<li><em>arkei</em>(9절): 족하다, 충분하다. 현재 능동 직설법 — 지금 이 순간 족함.</li>
+<li><em>episkenos</em>(9절): 장막치다, 덮다. 출 40장 성막 영광과 연결될 수 있음 (미해결).</li>
+<li><em>tritos ouranos</em>(2절): 셋째 하늘. 유대 묵시 문학의 다층 하늘 개념.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+<ul>
+<li>컷 2 (7-10절)가 이 장의 클라이맥스. 그리고 고린도후서 전체의 클라이맥스.</li>
+<li>7절: 교만 방지 + 가시 + 사탄의 사자 — 세 층이 한 절에 있음.</li>
+<li>8-9절: 세 번 구함(간청) → 하나님의 응답(역전) → 바울의 역전(자랑).</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보</h2>
+<ul>
+<li>가시의 정체: 신체적 질병, 시력 문제, 간질, 영적 공격, 사람에 의한 박해 등 여러 해석 — 본문이 특정하지 않음.</li>
+<li>셋째 하늘: 유대 묵시 전통에서 하늘의 층위 개념이 다양하게 나타남.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+<ul>
+<li>2CO 4:7 — "능력이 하나님께 있고 우리에게 있지 아니함을 알게 하려 함" — 12:9에서 완성.</li>
+<li>2CO 10:10 — 대면하면 약하다는 비판 — 12:9의 약함이 이에 응답.</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+<p>raw transcript 7단계 동영상 참조. 셋째 하늘 자랑 → 가시 → 세 번 구함 → "내 은혜 족하다" 응답 → 약함의 자랑 → 고린도를 향한 슬픔으로 흘러 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"내 은혜가 네게 족하다 — 약한 데서 온전해지는 능력"</strong></li>
+<li>초벌 부제: "가시(skolops)를 통과해 약한 데서 능력(dynamis)이 온전해지는 2CO의 정점"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 기록</li>
+<li>[x] 역사·문화·문학 사실 최소 1개</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 기록됨</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>해석·교리 단정 없이 본문 관찰만 보존.</li>
+<li>불확실한 구속사 연결은 미해결 질문으로 보류.</li>
+<li>drift_flag: false 유지.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 기도.</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 2CO-012</p>
+<p>book: 고린도후서</p>
+<p>chapter: 12</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>고린도후서 12장 — 미해결 질문</h2>
+<blockquote><p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p></blockquote>
+
+<h2>Q1. 가시(skolops·7절)는 구체적으로 무엇인가?</h2>
+<ul><li>본문이 더 긋지 않으므로 위치만 보존. 묵상 단계로 이월.</li></ul>
+
+<h2>Q2. '세 번 구했다'(8절)는 것이 문자적 세 번인가, 충분한 간구를 나타내는 관용 표현인가?</h2>
+<ul><li>본문 안에서 설명되지 않는다. 머문다.</li></ul>
+
+<h2>Q3. '셋째 하늘'과 '낙원'(2-4절)은 같은 곳인가 다른 곳인가?</h2>
+<ul><li>본문이 상세를 주지 않으므로 보류.</li></ul>
+
+<h2>Q4. '내 능력이 약한 데서 온전하여짐'(9절) — 이 온전함이 어떻게 가시와 연결되는가?</h2>
+<ul><li>본문이 특정하지 않는다. 관찰 단계에서 보존.</li></ul>
+
+<h2>Q5. <em>Episkenos</em>(9절 '머물게 하려 함') — 출 40장 성막 영광과의 연결은?</h2>
+<ul><li>본문이 해명하지 않는다. 그대로 둔다.</li></ul>
+
+<h2>Q6. '내 은혜가 네게 족하다'(9절) — 바울 개인에게만 하신 말씀인가, 독자에게도 적용되는가?</h2>
+<ul><li>본문 밖으로 나가지 않고 머문다.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">내 은혜가 네게 족하다 — 약한 데서 온전해지는 능력.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: 2CO-012</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-01</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 고린도후서 12장은 셋째 하늘(tritos ouranos)·가시(skolops)·내 은혜가 네게 족하다. 약한 데서 온전해지는 능력(dynamis) — 고린도후서 전체 여정의 정점.</p>
+<p><strong>한 문단</strong>: 가장 높은 계시(셋째 하늘)와 가장 낮은 가시(skolops)가 한 자리에 있다. 세 번 구했지만 가시는 제거되지 않았고 응답은 다른 방향으로 왔다 — "내 은혜가 네게 족하다." 그 응답 앞에서 약함이 자랑이 되고, 약할 그 때에 강함이 된다. 고린도후서 1장에서 시작된 약한 질그릇의 여정이 이 한 절(12:9)에서 정점을 찍는다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>skolops(가시), dynamis(능력), arkei(족하다), episkenos(장막치다), tritos ouranos(셋째 하늘).</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>9절이 책 전체를 반향. 셋째 하늘의 신비, 가시의 무게, 내 은혜 족하다의 역전.</td></tr>
+<tr><td>3 시작과 끝</td><td>주의 계시 자랑(1절) → 공동체 슬픔(21절). 최고 높음에서 지상 현실로.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>바울·고린도·그리스도·사탄의 사자. 핵: "내 능력이 약한 데서 온전하여짐이라"(9절).</td></tr>
+<tr><td>5 장면 컷</td><td>컷1 셋째 하늘(1-6절) / 컷2 가시와 응답(7-10절) / 컷3 고린도 호소(11-21절).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>가시의 정체 미해결. arkei 현재 시제 발견. episkenos 이미지 교차 참조.</td></tr>
+<tr><td>7 동영상</td><td>셋째 하늘 → 가시 → 세 번 구함 → 내 은혜 족하다 → 약함의 자랑 → 고린도 슬픔.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"내 은혜가 네게 족하다 — 약한 데서 온전해지는 능력" / "가시(skolops)를 통과해 약한 데서 능력(dynamis)이 온전해지는 2CO의 정점"</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>그 한 응답 앞에 서서 알게 된 것을 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1</strong>: 가장 높은 것(셋째 하늘)과 가장 낮은 것(가시)이 한 자리에 있다 — 높음과 낮음의 역설이 이 장의 첫 결이다.</p>
+<p>2. <strong>결 2</strong>: 운동 벡터 — 가시(제거 요청)에서 은혜(더 깊은 응답)로. 세 번 구함의 방향이 역전되는 운동이다. 약함이 강함의 통로가 된다.</p>
+<p>3. <strong>결 3</strong>: 수면 아래 — 가시가 교만 방지 장치다(7절). 하나님이 가장 높은 계시를 준 자를 가장 낮은 가시로 붙드신다. 그 안에서 "내 은혜가 족하다"고 말씀하신다 — 이것이 이 장의 하나님의 심정이다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>같은 권 안 — 2CO 4:7("능력이 하나님께 있음을 알게 하려 함")이 12:9에서 완성된다. 4:7의 선언이 12:9의 응답으로 확인된다.</li>
+<li>2CO 전체 spine — "깨어진 관계와 약한 질그릇을 통과해 화목하게 하시는 하나님의 능력이 온전해진다"의 정점이 12:9-10이다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 한 사람이 세 번 구하고도 제거되지 않은 자신의 가시 앞에 선다.</li>
+<li><strong>멈춤</strong>: "내 은혜가 네게 족하다 — 내 능력이 약한 데서 온전하여짐이라"는 그 한 응답 앞에 머문다.</li>
+<li><strong>끝</strong>: "약할 그 때에 곧 강함이라"는 한 선언을 손에 쥐고 일어선다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 이 장의 핵심 선언이 나온다</li>
+<li>[x] 운동 벡터가 드러난다</li>
+<li>[x] 수면 아래의 본질이 관찰된다</li>
+<li>[x] 실존적 부름으로 닫힌다</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>고린도후서 2CO 흐름의 정점이다. 1장에서 시작된 '모든 위로의 하나님'의 위로, 4장 질그릇의 보배, 5장 화목의 직분, 6-7장 경건한 근심, 8-9장 연보의 은혜, 10-11장 약함의 자랑 — 이 모든 흐름이 12:9의 "내 능력이 약한 데서 온전하여짐이라"를 향해 흘러왔다. 고린도후서의 destination('약한 그 때에 곧 강함이라·12:10')이 여기서 선언된다. 이 장이 2CO 흐름 전체의 향방(destination)이다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote><p><strong>셋째 하늘(tritos ouranos)의 최고 높음에서 가시(skolops)의 최고 낮음으로. 세 번 구함(간청)에서 내 은혜 족하다(역전 응답)로. 약함(astheneia)에서 약한 데서 온전해지는 능력(dynamis)으로. 약할 그 때에 곧 강함이라.</strong></p></blockquote>
+<p>이 장의 한 화살표: 가시를 통과해 능력이 약함 안에서 온전해지는 역설. raw transcript 10단계 운동·도약 참조. 고린도후서 전체 spine의 정점 확인.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 바울의 가시와 세 번의 구함이다. 가시가 제거되지 않았다는 응답처럼 보인다. 그러나 수면 아래에서 움직이는 본질은 이것이다: 하나님은 가장 높은 계시를 준 자를 가장 낮은 가시로 붙드신다. 교만하지 않도록(7절) — 그리고 그 안에서 "내 은혜가 네게 족하다"고 말씀하신다. 약한 자를 향한 '내 은혜가 네게 족하다'의 긍휼(2CO 심정의 핵)이 12:9에서 가장 직접적으로 말씀된다. 하나님의 능력이 사람이 아니라 하나님께 있음(4:7)이 약한 데서 온전해진다는 이 선언으로 완성된다. 화목하게 하는 직분을 약한 질그릇에게 맡기신 의중이 여기서 정점을 찍는다.</p>
+
+<h3>J · 실존적 부름 — 한 줄의 불씨</h3>
+<blockquote><p>내 가시가 무엇인지 알고 있다. 세 번 구했거나 그 이상 구했다. "내 은혜가 네게 족하다 — 내 능력이 약한 데서 온전하여짐이라"는 그 응답이 내 가시 앞에서 살아 있는가. 약할 그 때에 곧 강함이라는 이 역설이 내 안에서 시작되고 있는가.</p></blockquote>
+<p>이것은 명령이 아니라 초대다. 화목하게 하는 직분으로 보냄받은 자들이 자신의 가시를 통과해 약한 데서 온전해지는 능력 안에 서는 연쇄폭발의 불씨가 여기 있다. 고린도후서 전체가 이 불씨를 향해 흘러왔다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>dynamis</em> — 약한 데서 온전해지는 능력.</p>
+<p><strong>다음 장으로 미는 운동</strong>: 12장의 정점(약한 데서 강함)이 13장의 삼위 축도(주 예수 그리스도의 은혜·하나님의 사랑·성령의 교통)로 도착한다. 회복된 교제로의 마지막 도달이다.</p>
+      </div>
+    </section>
+
+    <div class="next-row"><a href="/magazine/2CO/11/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">고린도후서 11장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a><a href="/magazine/2CO/"><div class="nav-kicker">↑ 권 차례</div><div class="nav-title">고린도후서 차례로</div><div class="nav-preview">고린도후서의 다른 장을 골라 들어가실 수 있습니다.</div></a><a href="/magazine/2CO/13/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">고린도후서 13장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a></div>
+
+<aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/2CO/12/',
+      title: '고린도후서 12장',
+      excerpt: '셋째 하늘(tritos ouranos)·가시(skolops)·내 은혜가 네게 족하다. 약한 데서 온전해지는 능력(dynamis) — 고린도후서 전체 여정의 정점.'
+    }));
+  } catch(e) {}
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

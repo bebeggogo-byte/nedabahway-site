@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>고린도후서 5장 — Observatory | 네다바웨이</title>
+<meta name="description" content="고린도후서 5장을 9단계로 같이 관찰합니다. 새로운 피조물(kaine ktisis), 화목하게 하는 직분(katallage), 그리스도의 사신(presbeuo).">
+<link rel="canonical" href="https://www.nedabah.org/magazine/2CO/5/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/2CO/">고린도후서</a> · 5장</div>
+      <h1>고린도후서 5장 — Observatory | 네다바웨이</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">2CO-005 · 서신서 · 헬라어</div>
+      <p class="essence">새로운 피조물(kaine ktisis)의 탄생과 화목하게 하는 직분(katallage). 그리스도의 사신(presbeuo)으로 보냄받은 자리에서 '화목하라' 선언이 울린다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 서신 장르이므로 무대는 논증과 선언의 골격으로 본다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 2CO-005</p>
+<p>book: 고린도후서</p>
+<p>book_en: 2 Corinthians</p>
+<p>chapter: 5</p>
+<p>bible_block: 서신서</p>
+<p>canon: 신약</p>
+<p>genre: 서신·변증·선언</p>
+<p>language: 헬라어</p>
+<p>verse_count: 21</p>
+<p>observed_facts_count: 25</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>greek_terms: [kaine_ktisis, katallage, presbeuo, oikia, ekdemos, endemos, bema, skenos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-01</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>고린도후서 5장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 오늘은 고린도후서 5장입니다. 4장의 질그릇·보배·속사람의 이야기가 5장에서 어디로 이어지는지 봅니다. 장막 집이 무너지는 것, 하늘 처소를 사모하는 것, 새로운 피조물, 화목의 직분 — 이 장은 2코린토스 전체 흐름 가운데 '화목'이 선언되는 전환점입니다. 낭독 후 잠시 머물겠습니다.</p>
+<p>(본문 낭독 5:1~21)</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>P01 한나래</strong>: "만일 땅에 있는 우리의 장막 집이 무너지면"(1절)으로 열리는데 — 4장 끝의 '보이지 않는 영원한 것'에서 이어지는 분위기예요. 공기가 아직 무거워요, 그런데 동시에 어딘가로 향하는 그리움이 있어요.</p>
+<p><strong>P07 오지혜</strong>: "이를 위하여 우리를 지으신 이는 하나님이시니"(5절)가 마음에 걸렸어요. 만들어진 목적이 있다는 결이 포근해요. 그런데 6-8절의 "몸을 떠나 주와 함께 있는 것이 낫겠노라"는 결이 뭔가 복잡해요.</p>
+<p><strong>P04 최현국</strong>: 10절 심판대(bema) 앞에 선다는 선언이 갑자기 분위기를 바꿔요. 그 뒤로 17절 "새로운 피조물"(kaine ktisis), 18절 "화목하게 하는 직분"이 쏟아지는데 — 이 장은 두 개의 무게 중심이 있는 것 같아요.</p>
+<p><strong>P05 김미영</strong>: 21절 마지막이 강렬해요. "죄를 알지도 못하신 이를 우리를 대신하여 죄로 삼으신 것은..." — 이 장이 어떻게 이 선언으로 닫히는지 보고 싶어요.</p>
+<p><strong>P02 이진우</strong>: 전체적으로 이동의 분위기예요. 6절 endemos/ekdemos(거함/떠남)의 대조, 9절 "거하든지 떠나든지 주를 기쁘시게 하는 자가 되기 위해", 20절 "그리스도를 대신하여 사신이 되어" — 계속 위치가 바뀌는 이미지예요.</p>
+<p><strong>P11 나경아</strong>: 헬라어 배경만요. 1절 skenos(장막)는 임시 거처예요. 17절 kaine ktisis에서 kaine는 '질적으로 새로운'이란 뜻이고, ktisis는 '피조물·창조'예요. 20절 presbeuo는 '사신으로 일하다·대사로 섬기다'예요. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 이동·사모함·새 피조물·화목의 결들이 이 장 무대에 겹쳐 있네요. 무대로 들어가지요.</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>P05 김미영</strong>: 소품들이에요. 장막 집(skenos, 1절), 하늘에서 내려오는 집(oikia, 1절), 하늘 처소(oiketerion, 2절), 보증의 성령(5절), 심판대(bema, 10절), 화목의 직분(18절), 화목의 말씀(19절), 그리스도의 사신(presbeuo, 20절).</p>
+<p><strong>P04 최현국</strong>: 무대 두 층이에요. 첫째 층(1-10절): 장막 집과 하늘 처소 사이의 이동·사모함·심판대. 둘째 층(11-21절): 그리스도의 사랑이 강권하는 자리에서 화목의 직분과 사신의 선언.</p>
+<p><strong>P02 이진우</strong>: 소재 대조들이에요. 장막 집(임시) vs 하늘 집(영원), 보이는 것 vs 믿음으로 행함(7절), 몸 안에 거함 vs 주와 함께 있음(6-8절), 그리스도 안에서 사람을 보는 것 vs 육체를 따라 알던 것(16절).</p>
+<p><strong>P11 나경아</strong>: 배경 정보만요. 5절 "보증"은 헬라어 arrabon이에요. 첫 할부금·계약금 뉘앙스예요. 17절 kaine ktisis — 이 표현이 구약 이사야 43:19 "내가 새 일을 행하리라"의 흐름과 가까운지는 미해결로 두겠습니다.</p>
+<p><strong>P07 오지혜</strong>: 반복 소재예요. 1절 "우리가 알거니와"로 열리고, 6절 "우리가 항상 담대하여", 8절 "우리가 담대하여" — 담대함이 세 번 울려요. 두려움이 아니라 담대함이 기조예요.</p>
+<p><strong>P01 한나래</strong>: 20절 "하나님이 우리를 통하여 너희를 권면하시는 것같이 그리스도를 대신하여 간청하노니 너희는 하나님과 화목하라" — 이게 이 장의 정점 선언 같아요.</p>
+<p><strong>성령일 선교사</strong>: 소품과 소재를 확인했네요. 장막·하늘 집·심판대·화목의 직분·사신이 이 장의 핵심 소재예요. 다음으로 가지요.</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>P02 이진우</strong>: 1절 "만일 땅에 있는 우리의 장막 집이 무너지면 하나님께서 지으신 집 곧 손으로 지은 것이 아니요 하늘에 있는 영원한 집이 우리에게 있는 줄 아노라"로 열려요. 21절 "하나님이 죄를 알지도 못하신 이를 우리를 대신하여 죄로 삼으신 것은 우리로 하여금 그 안에서 하나님의 의가 되게 하려 하심이라"로 닫혀요.</p>
+<p><strong>P04 최현국</strong>: 시작은 하늘 처소를 향한 사모함이에요. 끝은 하나님의 의가 되게 하려는 그리스도의 대속이에요. 이 두 끝점 사이에 '화목'이 있어요.</p>
+<p><strong>P01 한나래</strong>: 1절의 "아노라"(확신)와 21절의 "하려 하심이라"(목적)가 장의 두 기둥 같아요.</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>P05 김미영</strong>: 인물 — 바울과 공동 저자들, 고린도 교회, 하나님, 그리스도.</p>
+<p><strong>P07 오지혜</strong>: 사상의 핵 — 17절 "그런즉 누구든지 그리스도 안에 있으면 새로운 피조물이라 이전 것은 지나갔으니 보라 새 것이 되었도다". 그리고 18절 "모든 것이 하나님께로서 났으며 그가 그리스도로 말미암아 우리를 자기와 화목하게 하시고 또 우리에게 화목하게 하는 직분을 주셨으니".</p>
+<p><strong>P04 최현국</strong>: 14절 "그리스도의 사랑이 우리를 강권하시는도다"가 이 장 전체 동력이에요. 강권하는 힘이 있어요.</p>
+<p><strong>P11 나경아</strong>: 14절 synecho — '강권하다·압박하다·붙들다'예요. 그리스도의 사랑이 그 힘으로 움직인다는 뉘앙스예요. 배경만요.</p>
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+<p><strong>P02 이진우</strong>: 상황이에요. 바울은 자신이 그리스도의 사신으로 세워진 자리에서, 고린도 교회를 향해 "하나님과 화목하라"고 촉구하고 있어요. 권면이 아니라 사신의 공식 선언이에요.</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>P04 최현국</strong>: 세 컷입니다.</p>
+<ul>
+<li><strong>컷 1 (1-10절)</strong>: 장막 집과 하늘 처소 — 사모함·담대함·심판대</li>
+<li><strong>컷 2 (11-16절)</strong>: 그리스도의 사랑이 강권함 — 육체를 따라 알지 않음·새로운 봄</li>
+<li><strong>컷 3 (17-21절)</strong>: 새로운 피조물 선언 — 화목의 직분·사신·21절 대속 선언</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 2-3의 경계가 이 장의 무게 중심이에요. "그리스도의 사랑이 강권함" → "새로운 피조물" → "화목의 직분"이 연속으로 흘러요.</p>
+<p><strong>P01 한나래</strong>: 컷 1과 컷 3이 묘하게 대응해요. 컷 1에서 심판대(bema) 앞에 서는 것, 컷 3에서 화목의 사신으로 서는 것 — 서는 자리가 달라져요.</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>P01 한나래</strong>: 발견이에요. 16절 "이제부터는 우리가 어떤 사람도 육체를 따라 알지 아니하노라 비록 우리가 그리스도도 육체를 따라 알았으나 이제는 그같이 알지 아니하노라" — 아는 방식이 바뀌었다는 선언이에요. 새로운 피조물이 되었다는 것과 아는 방식이 바뀌는 것이 연결되는 것 같아요.</p>
+<p><strong>P07 오지혜</strong>: 의문이에요. 2절 "하늘 처소(oiketerion)로 덧입기를 간절히 원한다"는 것이 정확히 어떤 상태를 가리키는지 본문이 더 설명하지 않아요.</p>
+<p><strong>P11 나경아</strong>: 정보로, 18-19절의 katallage(화목)는 '관계의 회복, 상태의 전환'이에요. 단순 용서보다 넓은 개념 같아요. 교차 참조로만 두겠습니다.</p>
+<p><strong>P04 최현국</strong>: 발견이에요. 19절 "하나님께서 그리스도 안에 계시사 세상을 자기와 화목하게 하시며 그들의 죄를 그들에게 돌리지 아니하시고" — 화목의 주체가 하나님이에요. 인간이 먼저 화목을 구하는 것이 아니에요.</p>
+<p><strong>P02 이진우</strong>: 의문이에요. 3-4절의 "벗기움이 아니요 덧입기"가 어떤 상태를 가리키는지, 헬라의 몸-영혼 이원론과 어떻게 다른지 본문이 설명하지 않아요.</p>
+<p><strong>P05 김미영</strong>: 발견이에요. 14-15절 구조가 눈에 들어요. "한 사람이 모든 사람을 대신하여 죽었으니 모든 사람이 죽은 것이라 그가 모든 사람을 대신하여 죽으심은 살아 있는 자들로 하여금..." — 대신(huper)의 논리가 연속으로 쌓여요.</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>P05 김미영</strong>: 땅의 장막 집이 무너져도 하늘 집이 있다는 확신으로 시작합니다. 벗기움이 아니라 덧입기를 원한다고 합니다. 보증의 성령이 주어졌기에 담대하다고 합니다.</p>
+<p><strong>P01 한나래</strong>: 이어서 심판대 앞에 서게 된다는 것을 알기에 주를 기쁘시게 하는 것이 목표라고 합니다. 그리스도의 사랑이 강권한다고 합니다. 한 사람이 모든 사람을 대신하여 죽었다고 합니다.</p>
+<p><strong>P04 최현국</strong>: 이제부터는 육체를 따라 알지 않는다고 선언합니다. 그리스도 안에 있는 자는 새로운 피조물이라 이전 것은 지나갔다고 합니다. 하나님이 화목의 직분을 주셨다고 합니다.</p>
+<p><strong>P02 이진우</strong>: 그리스도의 사신으로 "하나님과 화목하라"고 간청한다고 합니다. 죄를 알지도 못하신 이가 우리를 대신하여 죄가 되신 것은 우리로 하나님의 의가 되게 하려 함이라고 닫습니다.</p>
+<p><strong>성령일 선교사</strong>: 장막 집 → 하늘 처소 → 심판대 → 그리스도의 사랑 → 새 피조물 → 화목의 직분 → 사신의 선언으로 하나의 동영상이 흘러요.</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "새로운 피조물로 다시 서다"</p>
+<p><strong>P02 이진우</strong>: "화목하게 하는 직분"</p>
+<p><strong>P04 최현국</strong>: "그리스도의 사신으로 보냄받음"</p>
+<p><strong>P05 김미영</strong>: "장막 집이 무너지고 하늘 집이"</p>
+<p><strong>P07 오지혜</strong>: "그리스도의 사랑이 강권하시는도다"</p>
+<p><strong>P11 나경아</strong>: "<em>Kaine ktisis</em> — 새로운 피조물의 선언"</p>
+<p><strong>성령일 선교사</strong>: 초벌로 둡니다. 부제 제안은: "화목의 직분을 질그릇에게 맡기신 하나님의 화해 선언"</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 17절 "새로운 피조물"의 자리에 상상으로 들어가, 알게 된 것을 주께 아뢰어 봅시다.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P05 김미영</strong>: (조용히) 주님, 이전 것이 지나갔다는 것이 — 지금 내게도 가능한 것인지 머뭅니다.</p>
+<p>*— 각자 마음에만 둡니다.</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: <strong>이 본문은 어디서 어디로 움직이는지요? 수면 아래에서 무엇이 회복되고 있는지요? 긴장은 무엇인지요? 이 불이 타오르고 있는지요?</strong></p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p><strong>P02 이진우</strong>: 이 장은 <strong>장막 집의 무너짐(임시성·약함)에서 화목의 사신(파송·사명)으로</strong> 미는 운동이에요. 4장에서 질그릇이었던 자가 5장에서는 그 질그릇을 들고 '화목하라'고 선언하는 자신이 됩니다. 약함이 직분이 되는 운동이에요.</p>
+<p><strong>P11 나경아</strong>: katallage(화목)의 주체가 하나님이라는 것(18-19절) — 그 아래에서 움직이는 본질은 깨진 관계가 하나님 쪽에서 먼저 회복을 시작하신다는 거예요. 화목의 방향이 인간에서 하나님으로가 아니라 하나님에서 인간으로예요. 배경 관찰로만요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 새로운 피조물이라는 선언이 단순한 도덕 개선이 아니에요. kaine(질적으로 새로운)의 결에서, 이전 것이 지나가고 새 것이 된다는 것은 — 존재 범주의 이동이에요. 그 아래에서 관계가 회복되고 있어요.</p>
+<p><strong>P01 한나래</strong>: 긴장이 있어요. 6-8절 "몸 안에 거함 = 주와 떠나 있음"과 "몸을 떠남 = 주와 함께함"의 대조가 이미 새로운 피조물이지만 아직 이 몸 안에 있는 긴장이에요. 이미/아직의 긴장이에요.</p>
+<p><strong>P04 최현국</strong>: 14절 synecho(강권)의 힘이 이 장 전체를 미는 동력이에요. <strong>그리스도의 사랑이 강권하기 때문에 — 사신이 된다는 것이 의지가 아니라 이끌림이에요.</strong> 운동의 원천이 내 결단이 아니라 그 사랑이에요.</p>
+<p><strong>P05 김미영</strong>: 화목의 직분이 약한 질그릇에게 맡겨진다는 것 — 그 역설이 내 안에서 시작될 수 있는지 거기서 멈춰 섭니다.</p>
+<p><strong>성령일 선교사</strong>: <strong>화목의 주체는 하나님이시고, 화목의 직분은 질그릇에게 맡겨지며, 새로운 피조물은 그 자리에 서 있다</strong> — 그 한 줄을 손에 쥐고 오늘 관찰을 닫습니다.</p>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계 관찰된 사실 (LOCKED v2.0 9단계 형식).</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 2CO-005</p>
+<p>book: 고린도후서</p>
+<p>chapter: 5</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>고린도후서 5장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote><p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p></blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>소품: 장막 집(skenos, 1절), 하늘 집(oikia/oiketerion, 1-2절), 보증의 성령(arrabon, 5절), 심판대(bema, 10절), 화목의 직분(18절), 화목의 말씀(19절), 그리스도의 사신(presbeuo, 20절).</li>
+<li>greek_terms: [kaine_ktisis, katallage, presbeuo, oikia, ekdemos, endemos, bema, skenos, arrabon, synecho].</li>
+<li>무대 두 층: 1-10절(장막→하늘 처소·심판대), 11-21절(그리스도의 사랑 강권→화목의 직분·사신).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>4장의 영원한 것을 향함에서 이어지는 사모함의 공기. 담대함이 세 번 울림(6, 8절).</li>
+<li>이동·위치 이미지: 거함/떠남(endemos/ekdemos), 몸 안/주와 함께.</li>
+<li>20절 "하나님과 화목하라"가 이 장 최고조 선언.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(1절): "땅의 장막 집이 무너지면 하나님이 지으신 하늘의 영원한 집이 있는 줄 아노라" — 확신.</li>
+<li>끝(21절): "죄를 알지 못하신 이를 우리를 대신하여 죄로 삼으신 것은 우리로 하나님의 의가 되게 하려 함이라" — 목적.</li>
+<li>시작의 '확신(아노라)'과 끝의 '목적(하려 함)'이 장의 두 기둥.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>인물: 바울(공동 저자), 고린도 교회, 하나님, 그리스도.</li>
+<li>사상의 핵: 17절 kaine ktisis(새로운 피조물), 18절 katallage(화목), 20절 presbeuo(사신), 21절 대속.</li>
+<li>14절 synecho(강권): 그리스도의 사랑이 강권하는 힘이 이 장 전체 동력.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1-10절): 장막 집과 하늘 처소 — 사모함·담대함·심판대.</li>
+<li>컷 2 (11-16절): 그리스도의 사랑이 강권함 — 육체를 따라 알지 않음·새로운 봄.</li>
+<li>컷 3 (17-21절): 새로운 피조물 선언 — 화목의 직분·사신·21절 대속.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+<ul>
+<li><em>kaine ktisis</em>(17절): kaine = 질적으로 새로운, ktisis = 피조물·창조. 새로운 피조물.</li>
+<li><em>katallage</em>(18절): 화목·관계 회복. 화목의 직분.</li>
+<li><em>presbeuo</em>(20절): 사신으로 일하다·대사로 섬기다. 그리스도의 사신.</li>
+<li><em>skenos</em>(1절): 장막·임시 거처.</li>
+<li><em>arrabon</em>(5절): 보증·계약금·첫 할부금.</li>
+<li><em>synecho</em>(14절): 강권하다·압박하다·붙들다.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+<ul>
+<li>담대함의 세 반복(6, 8, 11절) — 근거가 각각 하늘 집(확신), 주와 함께(믿음), 복음 진실(양심).</li>
+<li>14-15절 huper(대신) 논리 연속 쌓기: 한 사람 → 모든 사람 대신 → 살아 있는 자들을 위해.</li>
+<li>17절 "이전 것 지나감 + 새 것 됨"의 두 선언이 나란히.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보</h2>
+<ul>
+<li>17절 kaine ktisis — 이사야 43:19 "내가 새 일을 행하리라"와의 연결 여부는 미해결로 보류.</li>
+<li>3-4절 "벗기움이 아니요 덧입기" — 헬라의 몸-영혼 이원론과의 거리는 미해결.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+<ul>
+<li>고린도후서 4:16-18 → 5:1 연속 흐름: 겉사람 낡아짐 → 장막 무너짐.</li>
+<li>19절 "죄를 돌리지 아니함" — 로마서 4:8의 흐름과 교차 참조 여지(미해결).</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+<p>장막 집의 무너짐 → 하늘 집을 입기 원함 → 담대함(보증의 성령) → 심판대 → 그리스도의 사랑이 강권 → 새로운 피조물 → 화목의 직분 → 사신의 선언 → 하나님의 의로 닫힘. 4장의 질그릇에서 5장의 사신으로 전환이 일어난다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"새로운 피조물과 화목의 직분"</strong></li>
+<li>초벌 부제: "화목의 직분을 질그릇에게 맡기신 하나님의 화해 선언"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 기록</li>
+<li>[x] 역사·문화·문학 사실 최소 1개</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 기록됨</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>해석·교리 단정 없이 본문 관찰만 보존.</li>
+<li>불확실한 구속사 연결(사 43:19, 벗기움 vs 이원론)은 미해결 질문으로 보류.</li>
+<li>drift_flag: false 유지.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 기도.</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 2CO-005</p>
+<p>book: 고린도후서</p>
+<p>chapter: 5</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>고린도후서 5장 — 미해결 질문</h2>
+<blockquote><p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p></blockquote>
+
+<h2>Q1. 2절 "하늘 처소(oiketerion)로 덧입기를 간절히 원한다"는 어떤 상태인가?</h2>
+<ul><li>본문이 더 설명하지 않는다. 위치만 보존.</li></ul>
+
+<h2>Q2. 3-4절 "벗기움이 아니요 덧입기"가 헬라의 몸-영혼 이원론과 어떻게 다른가?</h2>
+<ul><li>본문이 설명하지 않는다. 미해결로 보류.</li></ul>
+
+<h2>Q3. 17절 kaine ktisis(새로운 피조물)는 이사야의 새 창조 선언과 연결되는가?</h2>
+<ul><li>본문이 명시하지 않는다. 교차 참조 여지만 표시.</li></ul>
+
+<h2>Q4. 화목(katallage)의 주체가 하나님인 것(18-19절)이 인간의 회개와 어떤 관계인가?</h2>
+<ul><li>본문이 이 순서를 설명하지 않는다. 관찰 단계에서 보존.</li></ul>
+
+<h2>Q5. 19절 "죄를 그들에게 돌리지 아니하심"과 개인의 책임 사이 긴장은?</h2>
+<ul><li>본문 범위 밖이다. 그대로 둔다.</li></ul>
+
+<h2>Q6. 21절 "죄가 되신 것"이 어떤 방식인지 본문이 어디서 더 설명하는가?</h2>
+<ul><li>본문 안에서 답하지 않는다. 관찰 단계는 여기서 멈춘다.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">새로운 피조물과 화목의 직분 — 그리스도의 사신으로 보냄받음.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: 2CO-005</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-01</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 고린도후서 5장은 장막 집의 무너짐에서 하늘 처소 사모함으로, 그리스도의 사랑이 강권하는 자리에서 새로운 피조물과 화목의 직분이 선언되는 장이다.</p>
+<p><strong>한 문단</strong>: 4장의 질그릇·보배·낙심하지 않음이 5장에서 한 걸음 더 나아간다. 장막 집이 무너져도 하늘 집이 있다는 확신(1-10절)이, 그리스도의 사랑이 강권하는 자리에서(14절) 새로운 피조물의 선언(17절)과 화목하게 하는 직분(18절)으로 수렴한다. 20절에서 "하나님과 화목하라"는 사신의 선포로 절정에 이르고, 21절의 대속 선언으로 닫힌다. 이 장은 고린도후서 흐름 가운데 '화목의 직분을 받은 자리'의 도착점이다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>skenos(장막), oikia(하늘 집), bema(심판대), katallage(화목), presbeuo(사신)가 무대 소품.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>이동·사모함·담대함의 공기. 담대함이 세 번(6, 8절) 울림.</td></tr>
+<tr><td>3 시작과 끝</td><td>1절 확신의 '아노라' → 21절 목적의 '하려 함이라'로 닫힘.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>synecho(강권) — 그리스도의 사랑이 동력. katallage 주체가 하나님.</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1(1-10 장막→심판대) / 컷 2(11-16 강권→새 봄) / 컷 3(17-21 새 피조물→사신).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>화목 주체가 하나님임(19절) 발견. kaine ktisis 질적 전환. arrabon(보증).</td></tr>
+<tr><td>7 동영상</td><td>장막 무너짐 → 담대함 → 강권 → 새 피조물 → 화목 직분 → 사신 선언 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"새로운 피조물과 화목의 직분" / "화목의 직분을 질그릇에게 맡기신 화해 선언"</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>새로운 피조물의 자리에 머물며 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — kaine ktisis</strong>: 17절 "이전 것은 지나갔으니 보라 새 것이 되었도다"는 단순한 도덕 개선이 아니다. kaine(질적으로 새로운)의 결에서, 이것은 존재 범주의 이동이다. 4장의 질그릇이 이 장에서 '새로운 피조물'로 호명된다.</p>
+<p>2. <strong>결 2 — katallage 주체</strong>: 18-19절 화목의 주체가 하나님이다. "하나님이 그리스도로 말미암아 우리를 자기와 화목하게 하시고." 인간이 먼저 화목을 구하는 것이 아니라, 하나님이 먼저 화목을 이루시고 직분을 맡기신다. 이 순서가 이 장의 핵이다.</p>
+<p>3. <strong>결 3 — presbeuo</strong>: 20절 "그리스도를 대신하여 사신이 되어 — 하나님이 우리를 통하여 너희를 권면하시는 것같이." 약한 질그릇이 하나님의 화목 선언의 통로가 된다. 직분을 받은 자는 대사관이 아니라 대사의 몸이다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>고린도후서 4:16-18 → 5:1: 겉사람 낡아짐·영원한 것을 봄 → 장막 무너져도 하늘 집이 있다는 확신으로 이어짐.</li>
+<li>고린도후서 6:1 → 5:20-21: 사신의 선언 다음 장에서 "함께 일하는 자"로 권면이 이어짐.</li>
+<li>이사야 43:19 "새 일을 행하리라" — kaine ktisis와의 연결 여부는 미해결로 보류.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 장막 집이 무너지는 자리에 선다. 불안이 아니라 하늘 집을 향한 사모함이 열린다.</li>
+<li><strong>멈춤</strong>: 그리스도의 사랑이 강권하는 자리에서, 자신이 새로운 피조물임을 듣는다.</li>
+<li><strong>끝</strong>: 화목의 사신으로 보냄받는 자리에서, 한 단어를 손에 쥐고 일어선다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 이 장의 핵심 선언(새로운 피조물·화목의 직분·사신)이 나온다</li>
+<li>[x] 운동 벡터가 드러난다</li>
+<li>[x] 수면 아래의 본질(화목 주체 하나님·존재 범주 이동)이 관찰된다</li>
+<li>[x] 실존적 부름으로 닫힌다</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 2CO 흐름 위 어디인가</h3>
+<p>고린도후서의 spine은 "깨어진 관계와 약한 질그릇을 통과해, 화목하게 하시는 하나님의 능력이 온전해진다"이다. 5장은 이 흐름의 3~5 국면 — '새 언약 일꾼→질그릇의 보배→화목의 직분→새로운 피조물'의 도착점이다. 4장에서 질그릇이 보배를 담는 역설이 확인됐다면, 5장에서 그 질그릇이 화목의 직분을 받고 사신으로 파송된다. 약함이 직분이 된다는 역설이 이 장에서 완성된다.</p>
+
+<h3>H · 운동 벡터 — 2CO spine의 이 장 국면</h3>
+<blockquote><p><strong>장막 집의 임시성(약함)에서 화목의 사신(파송·직분)으로. 깨진 관계가 하나님 쪽에서 먼저 회복되고, 그 화목이 질그릇을 통해 선포된다.</strong></p></blockquote>
+<p>4장의 질그릇 → 5장의 사신 → 6장의 동역자로 운동이 전진한다. 이 장은 '약함이 능력이 되는' 운동의 한 전환점: 고난받는 자가 화목을 선포하는 자가 된다.</p>
+
+<h3>I · 수면 아래 — 화목의 의중과 심정</h3>
+<p>표면은 사도의 직분 변증이다. 그 아래에서 움직이는 것은 — 하나님이 화목을 먼저 시작하신다는 방향이다. 19절 "죄를 그들에게 돌리지 아니하시고"에서, 화목의 심정이 비친다. 상한 관계를 끝내 회복하시려는 오래 참으심이 katallage 안에 담겨 있다. 약한 질그릇에게 화목의 직분을 맡기시는 의중은 — 능력이 인간에게 있지 않고 하나님께 있음을 드러내려 하심이다(4:7과 연속). 심정으로는, 잃어버린 자녀를 향한 다정함과 관계 회복에의 열망이 katallage 선언 안에서 비쳐온다.</p>
+
+<h3>J · 실존적 부름 — 화목하게 하는 직분으로 보냄받는 불씨</h3>
+<blockquote><p>화목의 주체는 하나님이시고, 그 화목이 내 안에서 먼저 시작됐다 — 나는 지금 새로운 피조물인가, 그 자리에서 "화목하라"는 선언을 들고 서 있는 사신인가.</p></blockquote>
+<p>이것은 명령이 아니라 초대다. 그리스도의 사랑이 강권하는 자리에서 — 내가 들고 서 있는 화목의 말씀이 먼저 내 안에서 현실이 되는가를 묻는다. 이 불씨가 자아에서 교회로, 교회에서 세상 화목의 연쇄로 번지는 것이 이 장이 향하는 운동이다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: 화목(katallage)</p>
+<p><strong>다음 장으로 미는 운동</strong>: 화목의 사신이 된 자가 동역자로 부름받는 자리(6장)로 전진한다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/2CO/4/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">고린도후서 4장</div>
+        <div class="nav-preview">질그릇(ostrakinon)에 담긴 보배. 낙심하지 아니하노라.</div>
+      </a>
+      <a href="/magazine/2CO/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">고린도후서 차례로</div>
+        <div class="nav-preview">고린도후서의 다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/2CO/6/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">고린도후서 6장</div>
+        <div class="nav-preview">하나님의 동역자, 믿지 않는 자와 멍에를 같이 하지 말라.</div>
+      </a>
+    </div>
+
+<aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:2CO-005', JSON.stringify({
+      href: '/magazine/2CO/5/',
+      title: '고린도후서 5장',
+      excerpt: '새로운 피조물(kaine ktisis)과 화목의 직분(katallage). 그리스도의 사신(presbeuo)으로 보냄받음.'
+    }));
+  } catch(e) {}
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-01</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
