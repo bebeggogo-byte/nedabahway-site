@@ -11,7 +11,7 @@ from weasyprint import HTML
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, "magazine", "_pdf")
-DONE = 40000
+DONE = 30000
 EMOJI = {"1️⃣":"1","2️⃣":"2","3️⃣":"3","4️⃣":"4","5️⃣":"5","6️⃣":"6","7️⃣":"7","8️⃣":"8","9️⃣":"9","🌿":""}
 
 CSS = """

@@ -15,14 +15,19 @@ META={
  "MAT":("마태복음","Matthew","복음서","헬라어",28,"장"),"MRK":("마가복음","Mark","복음서","헬라어",16,"장"),
  "LUK":("누가복음","Luke","복음서","헬라어",24,"장"),"ACT":("사도행전","Acts","역사서(신약)","헬라어",28,"장"),
  "PSA":("시편","Psalms","시가서","히브리어",150,"편"),"REV":("요한계시록","Revelation","예언서(신약)","헬라어",22,"장"),
+ "ROM":("로마서","Romans","서신서","헬라어",16,"장"),"1CO":("고린도전서","1 Corinthians","서신서","헬라어",16,"장"),
+ "2CO":("고린도후서","2 Corinthians","서신서","헬라어",13,"장"),"GAL":("갈라디아서","Galatians","서신서","헬라어",6,"장"),
+ "EPH":("에베소서","Ephesians","서신서","헬라어",6,"장"),"PHP":("빌립보서","Philippians","서신서","헬라어",4,"장"),
+ "COL":("골로새서","Colossians","서신서","헬라어",4,"장"),
 }
 
 def essence(code,n):
     f=os.path.join(ROOT,"magazine",code,str(n),"index.html")
-    if os.path.exists(f) and os.path.getsize(f)>40000:
+    if os.path.exists(f) and os.path.getsize(f)>30000:
         t=open(f,encoding="utf-8").read()
-        m=re.search(r'<p class="essence">([^<]+)</p>',t)
-        if m: return m.group(1).strip()
+        # essence는 인라인 마크업(<em> 등)을 포함할 수 있으므로 비탐욕 매칭 후 태그 제거.
+        m=re.search(r'<p class="essence">(.*?)</p>',t,re.S)
+        if m: return re.sub(r'<[^>]+>','',m.group(1)).strip()
     return None
 
 def build(code):
