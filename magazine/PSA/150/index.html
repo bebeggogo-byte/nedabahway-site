@@ -3,271 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>시편 150장 — Observatory | 네다바웨이</title>
-<meta name="description" content="시편 150장을 9단계로 같이 관찰합니다. 시편 150장 — 본문이 자기 시간 안에서 풀리는 결.">
-<link rel="canonical" href="https://www.nedabah.org/magazine/PSA/150/">
-<link rel="stylesheet" href="/assets/v3.css">
-
-<link rel="stylesheet" href="/assets/nav-right.css">
-
-
-<link rel="stylesheet" href="/assets/deck-toggle.css">
-
-<link rel="stylesheet" href="/assets/back-to-top.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
-
-<link rel="stylesheet" href="/assets/mobile-v1.css">
-<style>
-  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
-  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
-  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
-  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
-  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
-  .toc-side ol { list-style: none; padding: 0; }
-  .toc-side .toc-9steps { counter-reset: step; }
-  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
-  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
-  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
-  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
-  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
-  .toc-side a { display: inline; color: inherit; transition: color .15s; }
-  .toc-side a:hover { color: var(--c-copper); }
-  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
-  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
-  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
-  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
-  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
-  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
-  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
-  .stage:first-of-type { border-top: 0; padding-top: 0; }
-  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
-  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
-  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
-  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
-  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
-  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
-  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
-  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
-  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
-  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
-  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
-  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
-  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
-  .stage--synthesis .stage__title { color: var(--c-ink); }
-  .synthesis-body p { line-height: 1.85; }
-  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
-  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
-  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
-
-  /* 시뮬레이션 보기 — details 토글 */
-  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
-  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
-  details.stage > summary {
-    list-style: none; cursor: pointer; padding: 18px 22px;
-    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-    transition: background .15s;
-    user-select: none;
-  }
-  details.stage > summary::-webkit-details-marker { display: none; }
-  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
-  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
-  .stage__title-inline {
-    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
-    font-weight: 700; color: var(--c-ink); text-wrap: balance;
-  }
-  .stage__toggle {
-    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
-    letter-spacing: 0.04em; flex-shrink: 0;
-  }
-  details.stage[open] .stage__toggle::after { content: ""; }
-  details.stage[open] .stage__toggle { color: var(--c-mute); }
-  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
-  details.stage[open] .stage__toggle > * { display: none; }
-  details.stage > summary > .stage__toggle { position: relative; }
-  details.stage[open] > summary > .stage__toggle { font-size: 0; }
-  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
-  .stage__inner { padding: 22px 26px 28px; }
-  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
-  details.stage:first-of-type { margin-top: 0; }
-</style>
-  <link rel="stylesheet" href="/assets/global-fonts.css">
-  <link rel="stylesheet" href="/assets/global-nav.css">
+<title>시편 150편 — Observatory | 네다바웨이</title>
+<meta name="description" content="시편 150편 SBM 관찰 시뮬레이션 — 모든 악기·호흡 있는 자마다: 시편 대미·송영">
+<link rel="canonical" href="/magazine/PSA/150/">
+<link rel="stylesheet" href="/assets/css/obs.css">
 </head>
 <body>
-
-<nav class="gnav" role="navigation" aria-label="주요 메뉴">
-  <div class="gnav__inner">
-    <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
-    <ul class="gnav__links" id="gnavLinks">
-      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
-      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
-      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
-      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
-      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
-      <li><a href="/about.html" class="gnav__link">소개</a></li>
-      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
-    </ul>
+<header class="obs-mast">
+  <nav class="crumb" aria-label="breadcrumb">
+    <a href="/magazine/">매거진</a> › <a href="/magazine/PSA/">시편</a> › 150편
+  </nav>
+  <h1>시편 150편 관찰 노트</h1>
+  <div class="badge-row">
+    <span class="badge">PSA-150 · 시가서 · 히브리어</span>
   </div>
-</nav>
+  <p class="essence">시편 전체의 대미 — 어디서, 왜, 어떻게, 누가 찬양할지를 단 6절에 담는다. 나팔·비파·수금·소고·현악·통소·제금·큰 제금, 모든 악기가 총동원되고, 마지막 한 줄 "호흡이 있는 자마다 여호와를 찬양할지어다"로 시편 전체를 마감한다. 이것이 시편의 마지막 선언이다.</p>
+</header>
 
+<main class="obs-body">
 
+<!-- ===== 1단계–9단계 상세 관찰 ===== -->
+<details id="s1" open>
+<summary>▶ 1–9단계 관찰 열기</summary>
+<div class="md-body">
 
+<p>---</p>
+<p>sim_id: PSA-150</p>
+<p>book: PSA</p>
+<p>chapter: 150</p>
+<p>genre: 시가서</p>
+<p>language: 히브리어</p>
+<p>method: SBM_depth_v2</p>
+<p>facilitator: 성령일_선교사</p>
+<p>personas: [P01, P02, P04, P05, P07, P11]</p>
+<p>hebrew_terms: [qodesh, raqia, gevurot, rob_gudlo, neshama, halleluhu]</p>
+<p>drift_flag: false</p>
+<p>---</p>
 
+<blockquote>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 신학적 해설·설교가 아니며, 발화 인물은 허구의 페르소나입니다.</blockquote>
 
+<h2>[1단계] 무대·배경·소품·소재</h2>
 
+<p><strong>성령일_선교사</strong>: 시편의 마지막 편, 150편을 본문 그대로 보겠습니다. 무대와 소품이 보이시는 대로 나눠 주세요.</p>
 
+<p><strong>P04 최현국</strong>: 무대가 세 가지로 제시됩니다. 1절 "그의 성소에서"(qodesh) — 하나님이 거하시는 신성한 공간. "그의 권능의 궁창에서"(raqia) — 우주적 공간. 그 두 공간이 찬양의 장소입니다. 그리고 소품 무대 — 8가지 악기가 등장합니다: 나팔, 비파, 수금, 소고, 현악, 통소, 큰 소리 나는 제금, 높은 소리 나는 제금.</p>
 
+<p><strong>P05 김미영</strong>: 소품이 음악 오케스트라입니다. 관악기(나팔·통소), 현악기(비파·수금·현악), 타악기(소고·제금 두 종). 고대 이스라엘 성전 음악의 총 목록이 이 시에 집결됩니다. 그리고 마지막 소품은 악기가 아닙니다 — "호흡."</p>
 
+<p><strong>P01 한나래</strong>: 소재는 단 두 개의 질문과 답입니다. 왜 찬양하는가 — "그의 능하신 행동·그의 지극히 위대하심"(2절). 어떻게 찬양하는가 — 모든 악기로, 모든 호흡으로.</p>
 
-<div class="obs-shell">
-  <aside class="toc-side">
-    <div class="toc-side__head">9단계 차례</div>
-    <ol class="toc-9steps">
-      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
-      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
-      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
-      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
-      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
-      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
-      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
-      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
-      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
-    </ol>
-    <ol class="toc-synthesis" start="10">
-      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
-    </ol>
-  </aside>
-  <main class="obs-main" style="min-width:0;">
-    <header class="obs-mast">
-      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/PSA/">시편</a> · 150장</div>
-      <h1>시편 150장</h1>
-      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">PSA-150 · 시가서 · 히브리어</div>
-      <p class="essence">시편 150장 — 본문이 자기 시간 안에서 풀리는 결.</p>
-    </header>
-    
-        <section class="stage" style="padding:60px 0;text-align:center;color:#9A9A9A;">
-          <p style="font-size:1.05rem;">시편 150장은 다음 발행 차례에 들어 있습니다.</p>
-          <p style="margin-top:8px;font-size:0.92rem;">한 장을 9단계로 푸는 곳에 후원으로 함께 닿아 주시면, 이 페이지가 더 빨리 열립니다.</p>
-          <a href="/magazine.html#support" style="display:inline-block;margin-top:14px;background:#1A1A1A;color:#FAFAF7;padding:10px 20px;border-radius:999px;font-weight:600;font-size:0.9rem;">후원으로 받치기 →</a>
-        </section>
-        
-    
-    <div class="next-row">
-      <a href="/magazine/PSA/">
-        <div class="nav-kicker">↑ 권 차례</div>
-        <div class="nav-title">시편 150장 차례로</div>
-        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
-      </a>
-      
-    </div>
-    
-    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
-  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
-  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
-  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
-  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
-    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
-    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
-  </div>
-  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
-</aside>
+<h2>[2단계] 첫 느낌·분위기</h2>
 
-  </main>
+<p><strong>성령일_선교사</strong>: 첫 느낌을 나눠 주세요.</p>
+
+<p><strong>P01 한나래</strong>: 클라이맥스입니다. 시편 1편의 "복 있는 사람"에서 시작해 150편의 "호흡이 있는 자마다"로 끝나는 — 시편 전체의 완벽한 마침표입니다. 한 개인의 복에서 모든 호흡 있는 자의 찬양으로.</p>
+
+<p><strong>P07 오지혜</strong>: 6절의 "호흡이 있는 자마다 여호와를 찬양할지어다"는 찬양의 최소 조건을 "호흡"으로 설정합니다. 특별한 자격이 없습니다 — 숨 쉬는 것이 찬양의 충분한 이유입니다.</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일_선교사</strong>: 시작과 끝의 호응을 보아 주세요.</p>
+
+<p><strong>P02 이진우</strong>: 시작(1절): "할렐루야 그의 성소에서 하나님을 찬양하며." 끝(6절): "호흡이 있는 자마다 여호와를 찬양할지어다 할렐루야." 성소(특정 장소)에서 시작해 모든 호흡(경계 없음)으로 끝납니다. 찬양의 범위가 성소에서 우주로 확장됩니다.</p>
+
+<p><strong>P04 최현국</strong>: 시편 전체의 관점에서: 시편 1편 시작 "복 있는 사람"과 시편 150편 끝 "할렐루야"의 대비 — 개인의 복에서 공동체의 찬양으로. 탄원으로 가득한 시편들을 거쳐 도달한 찬양의 정점입니다.</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일_선교사</strong>: 등장하는 인물과 사상을 나눠 주세요.</p>
+
+<p><strong>P04 최현국</strong>: 사실상 인물이 없습니다. 찬양 주체가 추상적 — "호흡이 있는 자마다." 하나님만 등장하시고 모든 피조물이 찬양의 주체입니다. 등장인물이 사라지고 찬양만 남습니다.</p>
+
+<p><strong>P02 이진우</strong>: 사상: 어디서(성소·궁창), 왜(능하신 행동·위대하심), 어떻게(8가지 악기), 누가(호흡이 있는 자마다)를 모두 담는 찬양의 요리문답입니다. 150편은 찬양의 완전한 신학입니다.</p>
+
+<p><strong>P07 오지혜</strong>: "능하신 행동"(gevurot, 2절)과 "지극히 위대하심"(rob_gudlo, 2절) — 하나님이 하신 일과 하나님이 어떤 분이신가, 즉 행위와 존재가 모두 찬양의 근거입니다.</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일_선교사</strong>: 장면을 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 컷 1 (1절): 할렐루야 — 어디서: 성소와 궁창. 컷 2 (2절): 왜: 능하신 행동과 위대하심. 컷 3 (3–5절): 어떻게: 8가지 악기 목록. 컷 4 (6절): 누가: 호흡이 있는 자마다. 마지막 할렐루야.</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>성령일_선교사</strong>: 의문이나 발견을 나눠 주세요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 카드입니다. 'qodesh'(קֹדֶשׁ)는 "성소·거룩한 곳"입니다. 'raqia'(רָקִיעַ)는 "궁창·창공"으로 창세기 1:6의 궁창과 같은 단어입니다. 'gevurot'(גְּבוּרוֹת)는 "능하신 행동들"입니다. 'neshama'(נְשָׁמָה)는 "호흡·숨결"로 창세기 2:7의 "생기"와 같은 어근입니다. 'halleluhu'(הַלְלוּהוּ)는 "그를 찬양하라"의 반복 명령입니다.</p>
+
+<p><strong>P02 이진우</strong>: 문학 구조: 150편은 시편 제5권의 마지막 대송영일 뿐 아니라 시편 전체의 대송영입니다. 시편 41·72·89·106편이 각 권의 마지막 송영이고, 150편이 전체를 닫습니다. 5권 구조의 완성입니다.</p>
+
+<p><strong>P07 오지혜</strong>: ANE 맥락: 고대 이스라엘 성전 예배에서 사용된 악기들의 목록이 고고학적 자료와 일치합니다. 특히 두 종류의 제금(tsiltselei shama vs tsiltselei terua — 소리의 차이)이 구분됩니다. 성전 예배의 구체적인 음악 현장이 본문에 담겨 있습니다.</p>
+
+<p><strong>P05 김미영</strong>: 6절 "호흡이 있는 자마다"의 neshama가 창세기 2:7 "생기"와 같은 어근이라는 것 — 하나님이 코에 불어넣으신 그 숨결이 이제 찬양으로 돌아갑니다. 창조의 순환이 완성됩니다.</p>
+
+<h2>[7단계] 동영상</h2>
+
+<p><strong>성령일_선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+
+<p><strong>P01 한나래</strong>: 1절: 카메라가 성소에서 시작해 하늘로 올라갑니다. 3–5절: 악기들이 하나씩 등장합니다 — 나팔 소리, 현악기 선율, 소고 리듬, 제금 울림. 소리가 점점 쌓입니다. 6절: 모든 소리가 하나로 합쳐지고 — "호흡이 있는 자마다." 마지막 할렐루야에서 암전. 시편이 끝납니다.</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일_선교사</strong>: 초벌 제목과 부제를 제안해 주세요.</p>
+
+<p><strong>P01 한나래</strong>: "호흡이 있는 자마다 — 시편의 마지막 한 문장."</p>
+<p><strong>P07 오지혜</strong>: "숨 쉬는 것으로 충분하다 — 찬양의 유일한 조건."</p>
+<p><strong>P04 최현국</strong>: "성소에서 우주로, 악기에서 호흡으로 — 찬양의 대미."</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일_선교사</strong>: 관찰 끝에 내면에 무엇이 떠오르시나요?</p>
+
+<p><strong>P01 한나래</strong>: "시편 1편부터 150편까지 — 탄원, 신뢰, 찬양의 여정이 이 한 줄로 끝납니다. 호흡이 있는 자마다. 나도 그 안에 있습니다."</p>
+<p><strong>P05 김미영</strong>: "창세기 2:7의 숨결이 150편의 찬양으로 돌아온다 — 창조에서 찬양으로의 원환(圓環)이 느껴집니다."</p>
+<p><strong>P11 나경아</strong>: "neshama — 호흡·생기. 그 숨이 찬양입니다. 지금 이 숨이."</p>
+
+</div>
+</details>
+
+<!-- ===== 10단계 운동·도약 ===== -->
+<details id="s2">
+<summary>▶ [10단계] 운동·도약 열기</summary>
+<div class="md-body">
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일_선교사</strong>: 그래서 이 본문은 어디서 어디로 움직이는지요?</p>
+
+<p><strong>P02 이진우</strong>: 성소(특정 장소)에서 → 모든 호흡(경계 없음)으로. 시편 1편의 개인에서 150편의 우주로.</p>
+
+<p><strong>성령일_선교사</strong>: 눈에 보이는 일 아래에서 무엇이 회복되고 있는지요?</p>
+
+<p><strong>P07 오지혜</strong>: 악기 소리와 호흡 아래에서 — 창조의 본래 목적인 피조물의 찬양이 회복됩니다.</p>
+
+<p><strong>성령일_선교사</strong>: 이 본문이 품은 긴장은 무엇인지요?</p>
+
+<p><strong>P04 최현국</strong>: 모든 탄원과 고통을 담은 시편들이 이 찬양으로 끝난다는 것 — 그 여정의 긴장이 마지막 할렐루야 안에 담깁니다.</p>
+
+<p><strong>성령일_선교사</strong>: 이 불이 우리 안에서도 타오르고 있는지요?</p>
+
+<p><strong>P01 한나래</strong>: 호흡이 있는 한 — 찬양의 불이 꺼지지 않습니다. 지금 이 숨이 찬양입니다.</p>
+
+</div>
+</details>
+
+<!-- ===== 심층 의문 ===== -->
+<details id="s8">
+<summary>▶ 심층 의문 열기</summary>
+<div class="md-body">
+
+<h2>심층 의문</h2>
+
+<p><strong>P11 나경아</strong>: neshama(창 2:7 생기)가 150편의 찬양 주체가 된다 — 창조의 첫 숨결이 찬양으로 완성되는 원환. 이것이 시편 전체가 향하는 신학적 방향입니다.</p>
+
+<p><strong>P02 이진우</strong>: 시편 1편의 "복 있는 사람"(개인·조건적)에서 150편의 "호흡이 있는 자마다"(보편·무조건적)로의 이동 — 시편의 신학적 확장이 이 대비에서 보입니다.</p>
+
+<p><strong>P07 오지혜</strong>: 시편에는 수많은 탄원시가 있습니다. 그 탄원들이 이 찬양으로 수렴된다는 것 — 탄원이 찬양을 향한 여정임을 보여줍니다. 150편은 도착점이자 시작점입니다.</p>
+
+</div>
+</details>
+
+<!-- ===== 합성 ===== -->
+<section class="stage stage--synthesis" id="synthesis">
+<h2>합성 (Synthesis v2)</h2>
+
+<div class="syn-block" id="syn-a">
+<h3>A. 골격</h3>
+<p>시편 150편은 시편 전체의 대송영이다. 단 6절 안에 찬양의 어디서(성소·궁창), 왜(능하신 행동·위대하심), 어떻게(8가지 악기), 누가(호흡이 있는 자마다)를 모두 담는다. 마지막 할렐루야로 시편 전체를 마감한다.</p>
 </div>
 
-<script>
-  // 1) Resume 쿠키
-  try {
-    localStorage.setItem('observatory:last', JSON.stringify({
-      href: '/magazine/PSA/150/',
-      title: '시편 150장',
-      excerpt: '시편 150장 — 본문이 자기 시간 안에서 풀리는 결.'
-    }));
-  } catch(e) {}
+<div class="syn-block" id="syn-b">
+<h3>B. 9단계 통합 표</h3>
+<table>
+<tr><th>단계</th><th>핵심 관찰</th></tr>
+<tr><td>무대</td><td>성소(qodesh)·궁창(raqia) 이중 공간; 8가지 악기 오케스트라</td></tr>
+<tr><td>첫 느낌</td><td>클라이맥스; 시편 전체의 완벽한 마침표</td></tr>
+<tr><td>시작·끝</td><td>성소→호흡; 시편 1편 복→150편 할렐루야 전체 호응</td></tr>
+<tr><td>인물·사상</td><td>인물이 사라지고 찬양만 남음; 찬양의 완전한 신학</td></tr>
+<tr><td>장면 컷</td><td>4컷: 어디서/왜/어떻게/누가</td></tr>
+<tr><td>의문·발견</td><td>neshama=창세기 생기; 시편 5권 대송영 구조</td></tr>
+<tr><td>동영상</td><td>성소→하늘→악기 층층이→호흡→암전 할렐루야</td></tr>
+<tr><td>초벌 제목</td><td>"호흡이 있는 자마다 — 시편의 마지막 한 문장"</td></tr>
+<tr><td>기도</td><td>지금 이 숨이 찬양; 탄원이 찬양으로 수렴</td></tr>
+</table>
+</div>
 
-  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
-  (function() {
-    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
-    function openAndScroll(targetId) {
-      var el = document.getElementById(targetId);
-      if (!el) return;
-      if (el.tagName === 'DETAILS') el.open = true;
-      // active 표시
-      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
-      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
-      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
-      // 스크롤 보정 (sticky nav 약 70px 감안)
-      setTimeout(function() {
-        var rect = el.getBoundingClientRect();
-        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
-      }, 30);
-    }
-    navLinks.forEach(function(a) {
-      a.addEventListener('click', function(e) {
-        e.preventDefault();
-        var t = this.getAttribute('data-target');
-        history.replaceState(null, '', '#' + t);
-        openAndScroll(t);
-      });
-    });
-    // 페이지 진입 시 해시가 있으면 동일 처리
-    if (location.hash) {
-      var initial = location.hash.replace('#', '');
-      if (document.getElementById(initial)) {
-        setTimeout(function() { openAndScroll(initial); }, 60);
-      }
-    }
-    // 스크롤 위치에 따른 active 갱신 (간이)
-    var stages = ['s1', 's2', 's8', 'synthesis']
-      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
-      .filter(Boolean);
-    function updateActive() {
-      var y = window.scrollY + 120;
-      var current = null;
-      for (var i = 0; i < stages.length; i++) {
-        if (stages[i].el.offsetTop <= y) current = stages[i].id;
-      }
-      if (current) {
-        navLinks.forEach(function(a) {
-          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
-        });
-      }
-    }
-    window.addEventListener('scroll', updateActive, { passive: true });
-    updateActive();
-  })();
-</script>
+<div class="syn-block" id="syn-c">
+<h3>C. 세 결</h3>
+<ol>
+<li>찬양의 유일한 조건은 호흡이다 — 자격이 아니라 존재가 충분하다.</li>
+<li>창조의 숨(neshama)이 찬양으로 돌아온다 — 창조의 목적이 완성된다.</li>
+<li>탄원으로 시작한 시편이 찬양으로 끝난다 — 이것이 시편의 운동이다.</li>
+</ol>
+</div>
 
+<div class="syn-block" id="syn-d">
+<h3>D. 다른 본문과의 다리</h3>
+<ul>
+<li>창세기 2:7 — neshama(생기·호흡)의 기원</li>
+<li>시편 1편 — 개인의 복에서 150편 모든 호흡의 찬양으로 시편 전체 호응</li>
+<li>요한계시록 5:13 — "모든 피조물"의 찬양 종말론적 성취</li>
+</ul>
+</div>
 
+<div class="syn-block" id="syn-e">
+<h3>E. 한 사람의 의식흐름</h3>
+<p>"나는 시편 1편의 복 있는 사람에서 시작해 여기까지 왔다. 탄원하고, 울고, 신뢰하고, 기다렸다. 그리고 지금 — 호흡이 있다. 그것으로 충분하다. 나팔을 불어라, 비파를 튕겨라, 소고를 쳐라. 아니, 그냥 숨을 쉬어라. 그것이 찬양이다. 할렐루야."</p>
+</div>
 
+<div class="syn-block" id="syn-f">
+<h3>F. 자족성 점검</h3>
+<p>찬양의 어디서·왜·어떻게·누가를 모두 담아 완전히 자족적이다. 창세기 2:7과 요한계시록 5:13과의 연결이 구속사적 시야를 열어준다.</p>
+</div>
 
+<div class="syn-block" id="syn-g">
+<h3>G. 구속사 좌표</h3>
+<p>창조의 첫 숨(창 2:7) → 시편의 탄원·신뢰·찬양 여정 → 150편의 대송영 → 새 창조의 완전한 찬양(계 5:13; 21:3–4). 150편은 구속사의 방향을 찬양으로 요약한다.</p>
+</div>
 
+<div class="syn-block" id="syn-h">
+<h3>H. 운동 벡터</h3>
+<p>성소에서 우주로. 탄원에서 찬양으로. 첫 숨에서 마지막 호흡으로. 시편 전체의 운동이 이 한 절에 압축된다: "호흡이 있는 자마다 여호와를 찬양할지어다."</p>
+</div>
 
+<div class="syn-block" id="syn-i">
+<h3>I. 수면 아래</h3>
+<p>수면 아래에는 찬양이 피조물의 본래 존재 방식이라는 창조 신학이 흐른다. 탄원도, 고통도, 기다림도 — 모두 이 찬양을 향한 여정이었다. 시편은 그 여정을 담는 책이고, 150편은 그 도착점이다.</p>
+</div>
 
-<footer class="foot foot--mini">
-  <style>
-    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
-    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
-    .foot--mini strong{color:#2a241c}
-    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
-    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
-    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
-    @media(max-width:680px){
-      .foot--mini .foot--mini__inner{justify-content:flex-start}
-      .foot--mini>div>span{display:block}
-    }
-  </style>
-  <div class="foot--mini__inner">
-    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong>137-82-94771</strong></span>
-    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
-  </div>
+<div class="syn-block" id="syn-j">
+<h3>J. 실존적 부름</h3>
+<p>지금 숨을 쉬고 있는가? 그렇다면 충분하다. neshama — 이 숨이 찬양이다. 시편 1편부터 150편까지의 여정이 오늘 내 삶에서 반복된다. 탄원하고, 신뢰하고, 찬양하라. 할렐루야.</p>
+</div>
+
+</section>
+
+<nav class="next-row" aria-label="장 이동">
+  <a class="btn-nav" href="/magazine/PSA/149/">← 149편</a>
+  <a class="btn-nav" href="/magazine/PSA/">권 차례</a>
+</nav>
+
+</main>
+
+<footer class="site-footer">
+  <p>© 네다 바흐와이 · SBM 관찰 시뮬레이션</p>
 </footer>
 
-
-<script src="/assets/back-to-top.js" defer></script>
-
-<script src="/assets/deck-toggle.js" defer></script>
+<script>
+(function(){
+  var key = 'observatory:last';
+  try { localStorage.setItem(key, JSON.stringify({book:'PSA',chapter:150,path:location.pathname})); } catch(e){}
+})();
+</script>
+<script src="/assets/js/sbm-share.js" defer></script>
+<script src="/assets/js/back-to-top.js" defer></script>
+<script src="/assets/js/deck-toggle.js" defer></script>
 </body>
 </html>
