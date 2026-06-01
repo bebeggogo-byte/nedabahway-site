@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>에베소서 2장 — Observatory | 네다바웨이</title>
+<meta name="description" content="에베소서 2장을 9단계로 같이 관찰합니다. 허물로 죽었던 우리를 함께 살리심(은혜로 구원)·중간에 막힌 담을 허심·한 새 사람(kainos anthropos).">
+<link rel="canonical" href="https://www.nedabah.org/magazine/EPH/2/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/EPH/">에베소서</a> · 2장</div>
+      <h1>에베소서 2장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">EPH-002 · 서신서 · 헬라어</div>
+      <p class="essence">허물로 죽었던 우리를 함께 살리심 — 은혜로 구원, 믿음으로. 중간에 막힌 담을 허시고 둘이 한 새 사람(kainos anthropos)으로. 에베소서 spine의 심장.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>에베소서 전체 흐름의 심장.</strong> 죽음에서 살림, 분리에서 하나로 — 두 운동이 한 장에 있다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: EPH-002</p>
+<p>book: 에베소서</p>
+<p>book_en: Ephesians</p>
+<p>chapter: 2</p>
+<p>bible_block: 서신서</p>
+<p>canon: 신약</p>
+<p>genre: 서신·선언·교리</p>
+<p>language: 헬라어</p>
+<p>verse_count: 22</p>
+<p>observed_facts_count: 27</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>greek_terms: [nekros, charis, pistis, kainos_anthropos, mesotoichon, eirene, xenos, oikeios, naos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-01</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>에베소서 2장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 오늘은 에베소서 2장입니다. 1장에서 만물 통일의 향방이 선포됐고, 2장은 그것이 어떻게 이루어지는지를 두 단락으로 보여줍니다. 첫 단락(1-10절)은 죽음에서 살림으로, 둘째 단락(11-22절)은 분리에서 하나로예요. 에베소서 spine — "그리스도 안에서 분리된 둘을 한 새 사람으로 지어"의 핵심이 이 장에 있습니다. 낭독 후 머물겠습니다.</p>
+
+<p>(본문 낭독 2:1~22, 약 4분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P01 한나래</strong>: 1절 "허물과 죄로 죽었던"에서 시작해서 5절 "함께 살리셨으니"로 넘어가는 전환이 극적이었어요. 죽음에서 살림으로 가는 간격이 너무 짧은데, 그래서 오히려 더 강하게 느껴졌어요.</p>
+
+<p><strong>P07 오지혜</strong>: 8-9절이 마음에 걸렸어요. "너희가 그 은혜를 인하여 믿음으로 말미암아 구원을 얻었나니 이것이 너희에게서 난 것이 아니요 하나님의 선물이라." 선물이라는 결이 포근하면서도 묵직해요.</p>
+
+<p><strong>P04 최현국</strong>: 11절부터 무대가 완전히 달라져요. 1-10절은 개인의 죽음과 살림이고, 11-22절은 유대인과 이방인의 분리와 하나됨이에요. 한 장 안에 두 개의 극이 있어요.</p>
+
+<p><strong>P02 이진우</strong>: 구조가 평행해요. 1-3절(죽음의 현실) → 4-7절("그러나 하나님이") → 8-10절(은혜 선언). 그리고 11-12절(이방인의 현실) → 13-18절("그러나 이제") → 19-22절(하나 됨 선언)이에요. "그러나"가 두 번 전환을 만들어요.</p>
+
+<p><strong>P05 김미영</strong>: 소품으로 "중간에 막힌 담"(14절)이 눈에 들어왔어요. 실제 성전에 이방인이 들어오지 못하게 막는 담이 있었다는데, 그 담이 소재로 등장해요.</p>
+
+<p><strong>P11 나경아</strong>: 헬라어 배경만요. 14절 "중간에 막힌 담"이 <em>mesotoichon</em>이에요 — 중간(meso) + 담(toichos)이에요. 15절 "한 새 사람"이 <em>kainos anthropos</em>예요 — kaine(질적으로 새로운) + 사람이에요. 배경으로만요.</p>
+
+<p><strong>성령일 선교사</strong>: 두 "그러나", 죽음에서 살림, 분리에서 하나, <em>mesotoichon</em>·<em>kainos anthropos</em>의 공기를 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대 소재를 짚어 보지요.</p>
+
+<p><strong>P04 최현국</strong>: 무대 두 층이에요. 첫째 층(1-10절): 죽음의 현실과 살림 — 공중 권세 잡은 자, 육체의 욕심, 은혜, 함께 살리심. 둘째 층(11-22절): 이방인의 외인 상태와 하나됨 — 무할례자, 중간 담, 새 사람, 성전.</p>
+
+<p><strong>P05 김미영</strong>: 소품들이에요. 허물과 죄(1절), 공중의 권세 잡은 자(2절), 진노의 자녀(3절), 하나님의 긍휼(4절), 함께 살리심(5절), 하늘에 앉히심(6절), 은혜(charis, 8절), 믿음(pistis, 8절), 선물(8절), 선한 일(10절), 중간에 막힌 담(mesotoichon, 14절), 한 새 사람(kainos anthropos, 15절), 성전(naos, 21절).</p>
+
+<p><strong>P07 오지혜</strong>: 반복 소재예요. "그 안에서"가 2장에도 있어요 — 10절 "우리는 그가 만드신 바라 그리스도 예수 안에서 선한 일을 위하여 지으심을 받은 자니"요. "그 안에서"가 1장에 이어서 계속 울려요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 배경이요. 4절 "긍휼"이 <em>eleos</em>예요. 5절 "함께 살리셨으니"가 <em>suzoopoieo</em>인데 su(함께) + zoopoieo(살리다)예요 — 그리스도와 함께 살린다는 뉘앙스예요. 14절 <em>eirene</em>는 평화·화목이에요 — "그는 우리의 화평이신지라"예요. 배경만요.</p>
+
+<p><strong>P02 이진우</strong>: 골격이에요. 1-3절(인류의 죽음 상태) → 4-7절(하나님이 함께 살리심) → 8-10절(은혜로 구원 선언) → 11-12절(이방인의 분리 상태) → 13-18절(그리스도 안에서 가까워짐·담 허심) → 19-22절(하나 됨·성전·거하심 선언).</p>
+
+<p><strong>P01 한나래</strong>: 22절 "너희도 성령 안에서 하나님이 거하실 처소가 되기 위하여 그리스도 예수 안에서 함께 지어져 가느니라"가 이 장의 마지막 선언이에요. 지어져 가는 현재 진행이에요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>mesotoichon</em>·<em>kainos anthropos</em>·<em>suzoopoieo</em>·<em>eirene</em>와 두 "그러나"의 전환을 배경 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절의 관계는 어떤지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "그는 허물과 죄로 죽었던 너희를 살리셨도다"로 열려요. 22절은 "너희도 성령 안에서 하나님이 거하실 처소가 되기 위하여 그리스도 예수 안에서 함께 지어져 가느니라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 죽음이에요. 끝은 하나님이 거하시는 처소로 지어져 가는 것이에요. 죽었던 것이 성전이 되는 궤적이에요.</p>
+
+<p><strong>P01 한나래</strong>: "죽었던"에서 "지어져 가느니라"로 — 완전한 과거에서 현재 진행으로 이어지는 게 흥미로워요. 완성이 아니라 진행 중이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 죽음에서 처소로 지어져 가는 궤적을 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물과 사상을 짚어 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 인물이에요. 바울, 에베소 성도(너희), 하나님, 그리스도, 성령. 그리고 11-12절에서 "무할례자(이방인)"와 "할례자(유대인)"가 등장해요. 교회 안에 두 집단이 있었어요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황이에요. 1-3절은 보편적 죽음의 현실이에요. "그때에 너희는 허물과 죄로 죽었고 … 우리도 다 전에는 … 진노의 자녀이었더니"예요. "너희"와 "우리" 모두를 포함해요. 11-12절은 이방인의 특수한 상황이에요. "그때에 너희는 육체로 이방인이요 … 이스라엘 나라 밖의 사람이라"예요.</p>
+
+<p><strong>P02 이진우</strong>: 사상의 핵이에요. 8-9절 "너희가 그 은혜를 인하여 믿음으로 말미암아 구원을 얻었나니 이것이 너희에게서 난 것이 아니요 하나님의 선물이라 행위에서 난 것이 아니니 이는 누구든지 자랑하지 못하게 함이라." 그리고 14-15절 "그는 우리의 화평이신지라 둘로 하나를 만드사 원수 된 것 곧 중간에 막힌 담을 자기 육체로 허시고 … 이 둘로 자기 안에서 한 새 사람을 지어."</p>
+
+<p><strong>P11 나경아</strong>: 15절 "원수 된 것"이 <em>echthran</em>(적대감·원수)이에요. 단순 분리가 아니라 적대적 관계였다는 결이에요. 18절 "이는 그로 말미암아 우리 둘이 한 성령 안에서 아버지께 나아감을 얻게 하려 하심이라"에서 "한 성령"이 둘의 하나됨의 근거예요. 배경만요.</p>
+
+<p><strong>P04 최현국</strong>: 19-22절의 건축 이미지가 나와요. "성도들과 동일한 시민이요 하나님의 권속이라 너희는 … 터 위에 세우심을 입은 자라 … 성전이 되어가고 … 함께 지어져 가느니라"예요. 건물이 지어지는 과정이에요.</p>
+
+<p><strong>P01 한나래</strong>: 6절 "함께 살리시고 그리스도 예수 안에서 함께 일으키사 그와 함께 하늘에 앉히시니"예요. "함께"가 세 번이에요 — 함께 살리시고, 함께 일으키사, 함께 앉히시니. 우리가 혼자가 아니라는 결이에요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>suzoopoieo</em>·<em>eirene</em>·<em>mesotoichon</em>·<em>kainos anthropos</em>·건축 이미지를 나란히 두겠습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 여섯 컷으로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-3절)</strong>: 죽음의 현실 — 허물·죄·공중 권세·진노의 자녀</li>
+<li><strong>컷 2 (4-7절)</strong>: "그러나 하나님이" — 긍휼·함께 살리심·함께 하늘에 앉히심</li>
+<li><strong>컷 3 (8-10절)</strong>: 은혜로 구원 선언 — 선물·행위 아님·선한 일 위해 지음받음</li>
+<li><strong>컷 4 (11-12절)</strong>: 이방인의 분리 현실 — 외인·약속·소망 없음·하나님 없음</li>
+<li><strong>컷 5 (13-18절)</strong>: "그러나 이제" — 가까워짐·담 허심·한 새 사람·화평</li>
+<li><strong>컷 6 (19-22절)</strong>: 하나됨 선언 — 동일한 시민·성전·처소로 지어져 가는 현재 진행</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 2와 컷 5가 각각 "그러나 하나님이"·"그러나 이제"로 전환을 만들어요. 두 극의 전환점이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 두 "그러나"의 전환을 컷 옆에 적어 두지요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 10절 "우리는 그가 만드신 바라" — 헬라어로 <em>poiema</em>예요. 시·작품이라는 뜻이라고요. 선한 일을 위해 지음받은 것이 예술 작품처럼 만들어진다는 결이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 14절 "중간에 막힌 담을 자기 육체로 허시고"에서 율법(15절)과 담이 어떤 관계인지 본문이 분명히 연결하지 않아요. 담이 율법인지, 성전의 실제 담인지 미해결이에요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로, 10절 <em>poiema</em>는 '만들어진 것·작품'이에요. 영어 poem(시)의 어원이기도 해요. 배경 정보만요. 그리고 19절 "하나님의 권속"이 <em>oikeios</em>예요 — 집·가정에서 온 단어예요. 배경만요.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 18절 "우리 둘이 한 성령 안에서 아버지께 나아감을 얻게 하려 하심이라"에서 성부·성자·성령이 다시 나타나요. 1장의 삼위 구조가 2장에서도 하나됨의 근거로 등장해요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 15절 "율법의 계명에 대한 법도를 폐하셨으니" — 율법이 '폐해졌다'는 것이 어떤 의미인지, 본문이 더 설명하지 않아요. 관찰만 보존해요.</p>
+
+<p><strong>P05 김미영</strong>: 발견이에요. 22절 "함께 지어져 가느니라"가 현재 진행형이에요. 완성이 아니에요. 교회가 아직 지어지는 중이라는 것이 눈에 들어왔어요.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 우리가 허물과 죄로 죽었을 때 공중 권세 잡은 자를 따르고 진노의 자녀였다는 것으로 시작해요. 그런데 하나님이 긍휼이 풍성하셔서 우리가 죄로 죽었을 때에 그리스도와 함께 살리셨다고 해요.</p>
+
+<p><strong>P01 한나래</strong>: 그리고 은혜로 구원받은 것이 우리에게서 난 것이 아니라 하나님의 선물이라 선언해요. 우리는 선한 일을 위해 지음받은 <em>poiema</em>(작품)라고 해요.</p>
+
+<p><strong>P04 최현국</strong>: 그러고 나서 시각이 이방인으로 이동해요. 전에는 약속의 언약들에 외인이었고 소망이 없었다고 해요. 그러나 이제 그리스도 안에서 가까워졌다고 해요.</p>
+
+<p><strong>P07 오지혜</strong>: 그리스도가 우리의 화평이사 둘로 하나를 만드셨다고 해요. 중간에 막힌 담을 자기 육체로 허시고 이 둘로 한 새 사람을 지어 평화를 이루셨다고 해요.</p>
+
+<p><strong>P02 이진우</strong>: 그래서 이방인이 더 이상 외인이 아니라 동일한 시민이고 하나님의 권속이라 해요. 그리스도가 모퉁잇돌이 되어 전체 건물이 맞춰지며 성전이 되어간다고 해요. 함께 지어져 가는 현재 진행으로 닫혀요.</p>
+
+<p><strong>성령일 선교사</strong>: 죽음 → "그러나 하나님이" → 함께 살림·은혜 구원 → 이방인의 분리 → "그러나 이제" → 담 허심·한 새 사람 → 함께 지어지는 성전으로 닫히는 동영상이 보입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>P01 한나래</strong>: "함께 살리심과 하나됨"</p>
+<p><strong>P02 이진우</strong>: "죽음에서 살림, 분리에서 하나 — 두 그러나"</p>
+<p><strong>P04 최현국</strong>: "중간에 막힌 담을 허시고 한 새 사람으로"</p>
+<p><strong>P05 김미영</strong>: "은혜로 구원·선물·poiema"</p>
+<p><strong>P07 오지혜</strong>: "함께 지어져 가는 처소"</p>
+<p><strong>P11 나경아</strong>: "<em>Kainos anthropos</em> — 한 새 사람의 선언"</p>
+<p><strong>성령일 선교사</strong>: 초벌로 둡니다. 부제 제안은: "에베소서 spine의 심장 — 죽음→살림·분리→한 새 사람"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 22절 "함께 지어져 가느니라"의 현재 진행 자리에 상상으로 들어가, 알게 된 것을 주께 아뢰어 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P05 김미영</strong>: (조용히) 죽었던 자리에서 지금 지어져 가고 있다는 것이 — 현재 내게 가 닿는지 머뭅니다.</p>
+
+<p>*— 각자 마음에만 둡니다.</p>
+
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일 선교사</strong>: <strong>이 본문은 어디서 어디로 움직이는지요? 수면 아래에서 무엇이 회복되고 있는지요? 긴장은 무엇인지요? 이 불이 타오르고 있는지요?</strong></p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p><strong>P02 이진우</strong>: 이 장은 <strong>죽음과 분리(1-3절·11-12절)에서 살림과 하나됨(4-7절·13-18절)으로</strong> 미는 두 평행 운동이에요. 에베소서 흐름의 phase 2~3 — '죽음→함께 살림·둘→하나(새 사람·비밀)' 국면의 정점이에요. spine "분리된 둘을 한 새 사람으로 지어"가 이 장에서 가시화돼요.</p>
+
+<p><strong>P11 나경아</strong>: <em>mesotoichon</em>(중간 담)이 "자기 육체로" 허셨다는 것(14절) — 수면 아래에서 움직이는 것은 단순한 사회적 화해가 아니에요. 분리의 근본 원인을 그리스도의 몸이 처리했다는 의중이 있어요. 원수됨(<em>echthran</em>)이 육체로 처리됐다는 것이 이 장의 심층이에요. 배경 관찰로만요.</p>
+
+<p><strong>P07 오지혜</strong>: 긴장이 있어요. 22절 "함께 지어져 가느니라"가 현재 진행이에요. 하나됨이 선언됐지만 아직 완성이 아니에요. 이미 하나가 됐지만 아직 지어지는 중인 이미/아직의 긴장이에요.</p>
+
+<p><strong>P01 한나래</strong>: 8절 "하나님의 선물이라"가 정서로 닿는 자리예요. 내가 아무것도 하지 않았는데 선물로 살아났다는 결 — 거기서 불씨가 켜지는 것 같아요. 은혜가 시작점이라는 결이에요.</p>
+
+<p><strong>P04 최현국</strong>: 에베소서 흐름 위에서 2장은 spine의 심장이에요. 1장이 만물 통일을 선포했다면, 2장은 그것이 어떻게 시작되는지를 보여줘요 — 죽음에서 살림으로, 분리에서 한 새 사람으로. 3장의 비밀 선포로 이어질 것을 예고해요.</p>
+
+<p><strong>P05 김미영</strong>: 담이 허셨다는 것, 그 담이 내 안에도 있다면 — 그 역설이 내 안에서 시작될 수 있는지 거기서 멈춰 섭니다.</p>
+
+<p><strong>성령일 선교사</strong>: <strong>죽었던 자리에서 함께 살리심, 분리의 담이 허셔서 한 새 사람으로 — 에베소서 spine의 심장이 이 장에 있다</strong> — 그 한 줄을 손에 쥐고 오늘 관찰을 닫습니다.</p>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계 관찰된 사실 (LOCKED v2.0 9단계 형식).</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: EPH-002</p>
+<p>book: 에베소서</p>
+<p>chapter: 2</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>에베소서 2장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote><p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p></blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>소품: 허물과 죄(1절), 공중 권세 잡은 자(2절), 긍휼(eleos, 4절), 함께 살리심(suzoopoieo, 5절), 은혜(charis, 8절), 믿음(pistis, 8절), 선물(8절), 선한 일(10절), poiema(작품·10절), 중간에 막힌 담(mesotoichon, 14절), 화평(eirene, 14절), 한 새 사람(kainos anthropos, 15절), 성전(naos, 21절), 처소(21-22절).</li>
+<li>greek_terms: [nekros, charis, pistis, kainos_anthropos, mesotoichon, eirene, suzoopoieo, poiema, echthran, naos, oikeios].</li>
+<li>무대 두 층: 1-10절(죽음→살림), 11-22절(분리→하나됨·성전).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>1절 "죽었던"에서 5절 "함께 살리셨으니"로의 극적 전환. 두 "그러나"(4절·13절)가 전환을 만듦.</li>
+<li>8-9절 은혜·믿음·선물 — 포근하면서 묵직한 결.</li>
+<li>22절 "함께 지어져 가느니라" — 현재 진행의 공기.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(1절): "허물과 죄로 죽었던 너희를 살리셨도다" — 죽음.</li>
+<li>끝(22절): "성령 안에서 하나님이 거하실 처소가 되기 위하여 … 함께 지어져 가느니라" — 현재 진행의 성전.</li>
+<li>죽음에서 하나님의 처소로 지어져 가는 궤적.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>인물: 바울, 에베소 성도(너희/우리), 하나님, 그리스도, 성령, 이방인·유대인.</li>
+<li>사상 핵 1(8-9절): 은혜로 믿음으로 구원 — 선물, 행위 아님.</li>
+<li>사상 핵 2(14-15절): 그리스도가 우리의 화평 — mesotoichon 허심, kainos anthropos.</li>
+<li>18절: 둘이 한 성령 안에서 아버지께 나아감 — 삼위의 근거.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1-3절): 죽음의 현실 — 허물·공중 권세·진노의 자녀.</li>
+<li>컷 2 (4-7절): "그러나 하나님이" — 긍휼·함께 살리심·하늘에 앉히심.</li>
+<li>컷 3 (8-10절): 은혜 구원 선언 — 선물·poiema·선한 일.</li>
+<li>컷 4 (11-12절): 이방인의 분리 현실 — 외인·소망 없음·하나님 없음.</li>
+<li>컷 5 (13-18절): "그러나 이제" — 가까워짐·담 허심·한 새 사람·화평.</li>
+<li>컷 6 (19-22절): 하나됨 선언 — 동일 시민·성전·처소로 지어져 감.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+<ul>
+<li><em>suzoopoieo</em>(5절): 함께(su) + 살리다(zoopoieo). 그리스도와 함께 살리심.</li>
+<li><em>charis</em>(8절): 은혜·호의·선물.</li>
+<li><em>pistis</em>(8절): 믿음·신뢰·충실.</li>
+<li><em>poiema</em>(10절): 만들어진 것·작품. 영어 poem의 어원.</li>
+<li><em>mesotoichon</em>(14절): 중간(meso) + 담(toichos). 중간 담.</li>
+<li><em>eirene</em>(14절): 평화·화목. "그는 우리의 화평이신지라".</li>
+<li><em>kainos anthropos</em>(15절): 질적으로 새로운(kainos) + 사람(anthropos). 한 새 사람.</li>
+<li><em>echthran</em>(16절): 적대감·원수됨.</li>
+<li><em>naos</em>(21절): 성전·내소(內所). 건물의 거룩한 부분.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+<ul>
+<li>두 평행 단락: 1-10절(개인의 죽음→살림) / 11-22절(집단의 분리→하나됨). 각각 "그러나"로 전환.</li>
+<li>"함께"(su-) 접두사 반복: 5절 suzoopoieo(함께 살리심), 6절 sunegeiren(함께 일으키심), 6절 sugkathisen(함께 앉히심). 공동성이 강조됨.</li>
+<li>19-22절 건축 이미지 연속: 터·모퉁잇돌·건물·성전·처소로 점층.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보</h2>
+<ul>
+<li>성전 구조에 이방인 정원과 이스라엘 뜰 사이에 실제 담(soreg)이 있었고 이방인 출입 금지 경고가 새겨져 있었다는 배경 자료. 14절 mesotoichon과의 연결 여부는 미해결.</li>
+<li>15절 "율법의 계명에 대한 법도를 폐하셨으니" — 이것이 율법 전체인지 특정 조항인지 본문이 명시하지 않음. 미해결.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+<ul>
+<li>에베소서 1:19-20 → 2:5-6: 1장의 능력이 그리스도를 살리심 → 2장에서 우리를 함께 살리심으로 전개됨.</li>
+<li>에베소서 3:6 → 2:14-18: 2장의 하나됨이 3장에서 이방인 포함의 비밀로 더 전개됨.</li>
+<li>갈라디아서 3:28 "유대인이나 헬라인이나 … 다 그리스도 예수 안에서 하나이니라" — 교차 참조 여지(미해결).</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+<p>죽음의 현실(1-3절) → "그러나 하나님이" 긍휼로 함께 살리심(4-7절) → 은혜로 구원·선물·poiema 선언(8-10절) → 이방인의 분리 현실(11-12절) → "그러나 이제" 가까워짐·담 허심·한 새 사람(13-18절) → 동일 시민·성전·처소로 지어져 가는 선언(19-22절). 두 "그러나"가 두 전환을 만들며 죽음과 분리를 살림과 하나됨으로 바꾼다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"죽음에서 살림, 분리에서 한 새 사람으로"</strong></li>
+<li>초벌 부제: "에베소서 spine의 심장 — 두 그러나가 만드는 두 전환"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 기록</li>
+<li>[x] 역사·문화·문학 사실 최소 1개</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 기록됨</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>해석·교리 단정 없이 본문 관찰만 보존.</li>
+<li>불확실한 연결(mesotoichon과 성전의 실제 담, 율법 폐하심의 범위)은 미해결로 보류.</li>
+<li>drift_flag: false 유지.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 기도.</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: EPH-002</p>
+<p>book: 에베소서</p>
+<p>chapter: 2</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>에베소서 2장 — 미해결 질문</h2>
+<blockquote><p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p></blockquote>
+
+<h2>Q1. 14절 중간에 막힌 담(mesotoichon)이 성전의 실제 담인가, 율법의 상징인가?</h2>
+<ul><li>본문이 두 방향을 열어 둔다. 위치만 보존.</li></ul>
+
+<h2>Q2. 15절 "율법의 계명에 대한 법도를 폐하셨으니" — 율법 전체인가, 특정 조항인가?</h2>
+<ul><li>본문이 명시하지 않는다. 미해결로 보류.</li></ul>
+
+<h2>Q3. 10절 poiema(작품)가 개인인가, 공동체인가 — "우리는"의 복수에 어떤 무게가 있는가?</h2>
+<ul><li>본문이 두 방향을 열어 둔다. 관찰 단계에서 보존.</li></ul>
+
+<h2>Q4. "함께"(su-) 접두사 연속(5-6절)은 그리스도와의 공동성인가, 성도 간의 공동성인가?</h2>
+<ul><li>본문에서 두 방향 모두 가능하다. 미해결.</li></ul>
+
+<h2>Q5. 22절 "함께 지어져 가느니라"의 현재 진행은 언제 완성되는가?</h2>
+<ul><li>본문 범위 밖이다. 그대로 둔다.</li></ul>
+
+<h2>Q6. 18절에서 삼위(그리스도·성령·아버지)의 역할 분담이 1장의 삼위 구조와 어떻게 연결되는가?</h2>
+<ul><li>교차 참조 여지만 표시. 관찰 단계는 여기서 멈춘다.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">죽음에서 살림, 분리에서 한 새 사람으로 — 에베소서 spine의 심장.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: EPH-002</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-01</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 에베소서 2장은 죽음의 현실과 이방인의 분리 상태를 두 "그러나"로 전환시켜, 함께 살리심과 한 새 사람(<em>kainos anthropos</em>)으로 하나됨을 선언하는 에베소서 spine의 심장이다.</p>
+<p><strong>한 문단</strong>: 1-3절의 죽음 묘사가 4절 "그러나 하나님이"로 전환되어 함께 살리심·은혜로 구원·<em>poiema</em> 선언으로 이어진다. 11-12절의 이방인 분리 묘사가 13절 "그러나 이제"로 전환되어 중간 담을 허심·한 새 사람·처소로 지어져 감으로 이어진다. 두 단락이 평행 구조를 이루며, 에베소서의 두 핵심 운동 — '죽음→살림'과 '분리→하나됨' — 이 이 장에서 동시에 선포된다. 이것이 1장의 만물 통일 선포를 구체화하고, 3장의 비밀 전개를 준비한다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>suzoopoieo(함께 살리심), charis(은혜), pistis(믿음), poiema(작품), mesotoichon(중간 담), eirene(화평), kainos anthropos(한 새 사람), naos(성전).</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>두 "그러나"의 극적 전환. 8절 "선물"의 포근함. 22절 현재 진행의 공기.</td></tr>
+<tr><td>3 시작과 끝</td><td>죽음(1절) → 하나님의 처소로 지어져 가는 현재 진행(22절).</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>은혜·믿음·선물(8-9절). mesotoichon 허심·kainos anthropos(14-15절). 삼위의 근거(18절).</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1(죽음) / 컷 2(함께 살림) / 컷 3(은혜 선언) / 컷 4(분리) / 컷 5(담 허심·새 사람) / 컷 6(성전).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>poiema(작품) 발견. mesotoichon의 배경 미해결. "함께" su- 접두사 반복.</td></tr>
+<tr><td>7 동영상</td><td>죽음 → 그러나 하나님이 → 은혜 구원 → 분리 → 그러나 이제 → 한 새 사람 → 성전.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"죽음에서 살림, 분리에서 한 새 사람으로" / "에베소서 spine의 심장"</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>함께 지어져 가는 현재 진행의 자리에 머물며 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — "그러나"의 전환</strong>: 4절 "그러나 하나님이"와 13절 "그러나 이제"가 이 장의 두 경첩이다. 죽음과 분리의 현실을 인정하되, 그것을 바꾸시는 분이 하나님이라는 전환이 두 번 일어난다. 이 "그러나"가 에베소서 2장의 심장이다.</p>
+<p>2. <strong>결 2 — kainos anthropos</strong>: 15절 한 새 사람(<em>kainos anthropos</em>)은 유대인도 이방인도 아닌 제3의 존재다. kaine(질적으로 새로운)의 결에서, 이것은 기존 두 집단의 단순 합산이 아니라 새 창조다. 1장의 anakephalaioomai가 2장에서 한 새 사람으로 가시화된다.</p>
+<p>3. <strong>결 3 — 현재 진행</strong>: 22절 "함께 지어져 가느니라"는 완성이 아니라 과정이다. 새 사람이 선언됐지만 성전은 아직 지어지는 중이다. 이미 하나됨이 선언됐지만 아직 완성이 아닌 긴장이 에베소서 4-6장의 실천 단락을 필요로 한다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>에베소서 1:19-20 → 2:5-6: 그리스도를 살리신 능력이 우리를 함께 살리심으로 전개됨.</li>
+<li>에베소서 3:3-6 → 2:14-18: 2장의 하나됨이 3장의 이방인 포함 비밀로 더 전개됨.</li>
+<li>에베소서 4:1 "그러므로 합당하게 행하라" → 2장의 하나됨 선언을 받아 실천으로 이어짐.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 죽었던 자리에서, 그 현실의 무게를 잠시 본다.</li>
+<li><strong>멈춤</strong>: "그러나 하나님이" — 그 전환의 자리에 선다. 선물로 주어진 것을 받는다.</li>
+<li><strong>끝</strong>: 함께 지어져 가는 현재 진행 위에 있다는 것을 알면서 한 걸음 더 나아간다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 이 장의 핵심 선언(함께 살리심·은혜 구원·한 새 사람·성전)이 나온다</li>
+<li>[x] 운동 벡터가 드러난다</li>
+<li>[x] 수면 아래의 본질(분리의 원인이 그리스도의 몸으로 처리됨)이 관찰된다</li>
+<li>[x] 실존적 부름으로 닫힌다</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 EPH 흐름 위 어디인가</h3>
+<p>에베소서의 spine은 "그리스도 안에서 분리된 둘을 한 새 사람으로 지어, 만물을 통일하는 충만한 몸(교회)을 세우신다"이다. 2장은 이 흐름의 phase 2~3 — '죽음→함께 살림·둘→하나(새 사람)' 국면이다. 구속사 호(arc)에서 보면, 아담 안에서 시작된 분리(타락)가 그리스도 안에서 재창조(kainos anthropos)로 역전되는 지점이다. 개인 차원(죽음→살림)과 공동체 차원(분리→하나됨)이 동시에 선포된다는 것이 에베소서 2장의 구속사적 고유성이다.</p>
+
+<h3>H · 운동 벡터 — EPH spine의 이 장 국면</h3>
+<blockquote><p><strong>죽음과 분리(1-3절·11-12절)에서 살림과 한 새 사람(4-7절·13-18절)으로 — 두 "그러나"가 만드는 두 전환이 이 장의 운동이다.</strong></p></blockquote>
+<p>1장의 만물 통일 선포가 2장에서 개인과 공동체 차원의 구체적 실현으로 전진한다. 3장의 비밀 선포(mysterion — 이방인 포함)로 이어질 논리적 전제를 이 장이 놓는다.</p>
+
+<h3>I · 수면 아래 — 하나됨의 의중과 심정</h3>
+<p>표면은 이방인과 유대인의 화해 선언이다. 그 아래에서 움직이는 것은 — 분리의 근본 원인인 원수됨(<em>echthran</em>)을 그리스도의 육체가 처리했다는 것이다. 단순한 사회적 화해가 아니라 원수됨 자체가 십자가에서 다뤄졌다는 의중이 14-16절에 있다. 하나님의 심정으로는 — "측량할 수 없는 그리스도의 풍성함"이 아직 드러나지 않은 것으로서, 죽었던 자를 "하나님의 권속"으로 부르시는 친밀함(<em>oikeios</em>)이 이 장의 온도다. 4절 "긍휼이 풍성하신 하나님이"에서 그 심정이 비쳐온다.</p>
+
+<h3>J · 실존적 부름 — 한 새 사람으로 부르는 불씨</h3>
+<blockquote><p>나는 지금 죽었던 자리에서 함께 살리심을 받은 자인가 — 그리고 분리의 담이 그리스도 안에서 이미 허셨다면, 내 안에 아직 남아 있는 담은 무엇인가.</p></blockquote>
+<p>이것은 명령이 아니라 초대다. 은혜로 받은 살림이 내 안에서 현실이 되는가, 그리고 한 새 사람으로의 부름이 교회 안의 분리를 보는 나를 어디로 향하게 하는가를 묻는다. 이 불씨가 자아에서 공동체로, 공동체에서 분리된 세상을 향해 번져가는 것이 에베소서 전체가 향하는 운동이다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: 한 새 사람(kainos anthropos)</p>
+<p><strong>다음 장으로 미는 운동</strong>: 한 새 사람의 선언이 3장에서 이방인 포함의 비밀(mysterion)로 더 깊이 전개된다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/EPH/1/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">에베소서 1장</div>
+        <div class="nav-preview">창세 전 예정·신령한 복·만물 통일(anakephalaioomai).</div>
+      </a>
+      <a href="/magazine/EPH/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">에베소서 차례로</div>
+        <div class="nav-preview">에베소서의 다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/EPH/3/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">에베소서 3장</div>
+        <div class="nav-preview">이방인을 향한 비밀(mysterion)·바울의 직분·속사람 강건·지식에 넘치는 사랑.</div>
+      </a>
+    </div>
+
+<aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:EPH-002', JSON.stringify({
+      href: '/magazine/EPH/2/',
+      title: '에베소서 2장',
+      excerpt: '허물로 죽었던 우리를 함께 살리심·은혜로 구원·중간에 막힌 담을 허심·한 새 사람(kainos anthropos).'
+    }));
+  } catch(e) {}
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-01</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
