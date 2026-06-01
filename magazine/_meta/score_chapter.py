@@ -32,8 +32,8 @@ def score(path):
     chk("canonical", 4, soup.select_one('link[rel="canonical"]'))
     ess = soup.select_one(".obs-mast .essence")
     chk("essence 고유", 4, ess and ess.get_text(strip=True) and not ess.get_text(strip=True).endswith(PLACEHOLDER_ESSENCE))
-    chk("sim_id 고유", 4, re.search(r'sim_id:\s*[A-Z]{3}-\d{3}', s))
-    chk("정경·원어 배지", 4, re.search(r'[A-Z]{3}-\d{3}\s*·\s*\S+\s*·\s*(히브리어|헬라어|아람어)', s))
+    chk("sim_id 고유", 4, re.search(r'sim_id:\s*[A-Z0-9]{3}-\d{3}', s))
+    chk("정경·원어 배지", 4, re.search(r'[A-Z0-9]{3}-\d{3}\s*·\s*\S+\s*·\s*(히브리어|헬라어|아람어)', s))
 
     # 시뮬레이션 20
     chk("진행자 성령일_선교사", 4, "성령일" in s)
