@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>사도행전 8장 — Observatory | 네다바웨이</title>
+<meta name="description" content="사도행전 8장을 9단계로 같이 관찰합니다. 흩어진 자들이 전하는 복음, 사마리아의 기쁨, 그리고 광야 길에서 읽히는 한 두루마리.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/ACT/8/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/ACT/">사도행전</a> · 8장</div>
+      <h1>사도행전 8장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">ACT-008 · 역사서(신약) · 헬라어</div>
+      <p class="essence">흩어진 자들이 도리어 복음을 전한다. 사마리아엔 큰 기쁨이, 시몬에겐 사려는 손이, 광야 길엔 읽히는 한 두루마리가 있다.</p>
+    </header>
+
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-008</p>
+<p>book: 사도행전</p>
+<p>book_en: Acts</p>
+<p>chapter: 8</p>
+<p>bible_block: 역사서(신약)</p>
+<p>canon: 신약</p>
+<p>genre: 내러티브</p>
+<p>language: 헬라어</p>
+<p>verse_count: 40</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 3</p>
+<p>greek_terms: [diaspeiro, euangelizo, chara, baptizo, pneuma, magos, dorea, eunouchos, ginosko, harpazo]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-31</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>사도행전 8장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 사도행전 8장입니다. 박해로 흩어진 자리에서 복음이 어떻게 움직이는지 보게 되는 장이지요. 먼저 끝까지 낭독하고 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 8:1~40, 약 5분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 시작은 무거워요. 1절에 스데반의 장사와 큰 박해가 나오는데, 그 다음 4절부터 갑자기 "흩어진 사람들이 두루 다니며 복음의 말씀을 전할새"로 공기가 바뀌었어요.</p>
+
+<p><strong>P01 한나래</strong>: 저는 8절의 "그 성에 큰 기쁨이 있더라"가 마음에 박혔어요. 박해 다음에 기쁨이라는 게 어긋난 듯하면서도 또렷했어요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 둘로 나뉘어요. 앞은 사마리아 성, 뒤는 가사로 내려가는 광야 길. 장면이 도시에서 길로 옮겨가요.</p>
+
+<p><strong>P05 김미영</strong>: "물"이 두 번 다 나와요. 사마리아에서 세례, 광야 길에서 "보라 물이 있으니"(36절). 물이 두 장면을 이어요.</p>
+
+<p><strong>P02 이진우</strong>: 인물이 짝으로 와요. 빌립과 시몬, 빌립과 내시. 빌립이 두 만남의 가운데에 서 있어요.</p>
+
+<p><strong>P11 나경아</strong>: "전하다"가 계속 울려요. 헬라어 <em>euangelizo</em>가 4·12·25·35·40절에 거듭 나옵니다. 배경으로만 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. 그 첫 느낌을 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P05 김미영</strong>: 1절은 예루살렘이에요. "예루살렘에 있는 교회에 큰 박해가 있어 사도 외에는 다 유대와 사마리아 모든 땅으로 흩어지니라." 그 다음 5절에 "빌립이 사마리아 성에 내려가"로 무대가 사마리아로 옮겨가요.</p>
+
+<p><strong>P04 최현국</strong>: 26절부터 무대가 또 바뀌어요. "일어나서 남쪽으로 향하여 예루살렘에서 가사로 내려가는 길까지 가라 하니 그 길은 광야라." 도시에서 광야 길로요.</p>
+
+<p><strong>P07 오지혜</strong>: 소품을 모아 보면 — 더러운 귀신, 중풍병자와 못 걷는 사람(7절), 마술(9절), 물과 세례, 사도의 안수(17절), 돈(18절), 병거와 두루마리(28절), 그리고 마지막 40절의 여러 성읍(아소도에서 가이사랴까지).</p>
+
+<p><strong>P11 나경아</strong>: 27절의 인물 배경을 자료로 두면, "에디오피아 사람 곧 에디오피아 여왕 간다게의 모든 국고를 맡은 큰 권세가 있는 내시"예요. "내시"는 헬라어 <em>eunouchos</em>이고, 본문은 그가 "예배하러 예루살렘에 왔다가" 돌아가는 길이라고 밝혀요(27-28절). 멀리서 온 사람이에요.</p>
+
+<p><strong>P01 한나래</strong>: 9절의 시몬도 배경이 길어요. "시몬이라 하는 사람이 전부터 그 성에서 마술을 행하여 사마리아 백성을 놀라게 하며 자칭 큰 자라 하니." 사람들이 "이 사람은 크다 일컫는 하나님의 능력이라"(10절) 했고요.</p>
+
+<p><strong>P02 이진우</strong>: 28절의 두루마리는 이사야예요. 32-33절에 "도수장으로 끌려가는 양과 털 깎는 자 앞에서 잠잠한 양 같이"가 인용돼요. 내시가 읽던 본문이 그대로 적혀 있어요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 하나 더 두면, 9절의 "마술"은 <em>mageia</em>, 시몬을 가리키는 "마술사"는 <em>magos</em>입니다. 그리고 39절 "주의 영이 빌립을 이끌어 간지라"의 "이끌어"는 <em>harpazo</em>로, '낚아채다·휙 데려가다'의 결입니다. 배경으로 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: <em>eunouchos</em>와 <em>harpazo</em>를 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계로 보이시는지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "그 날에 예루살렘에 있는 교회에 큰 박해가 있어… 흩어지니라"로, 흩어짐으로 열려요. 40절은 "빌립은 아소도에 나타나 여러 성을 지나 다니며 복음을 전하고 가이사랴에 이르니라"로 닫힙니다.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 강제로 흩어진 자리고, 끝은 그 흩어짐이 여러 성으로 복음을 퍼뜨린 자리예요. 흩어짐이 전파로 바뀌어요.</p>
+
+<p><strong>P01 한나래</strong>: 가운데 39절에서 내시가 "기쁘게 길을 가더라"가 있고, 그 다음에 빌립이 또 여러 성을 다녀요. 두 사람 다 길 위에 있는 채로 끝나요.</p>
+
+<p><strong>성령일 선교사</strong>: 흩어짐에서 전파로 옮겨가는 폭을 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 사울(1·3절), 빌립, 사마리아 무리, 마술사 시몬, 베드로와 요한(14절), 그리고 후반엔 주의 사자(26절), 에디오피아 내시예요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황이 묘하게 어긋나요. 시몬도 12-13절에서 "믿고 세례를 받고" 빌립을 따랐는데, 18-19절에서 "돈을 드려 이르되 이 권능을 내게도 주어"라고 해요. 믿었다 했는데 사려고 해요.</p>
+
+<p><strong>P04 최현국</strong>: 베드로의 답이 강해요. 20절 "네가 하나님의 선물을 돈 주고 살 줄로 생각하였으니 네 은과 네가 함께 망할지어다." 그리고 21절 "네 마음이 하나님 앞에서 바르지 못하니."</p>
+
+<p><strong>P11 나경아</strong>: "하나님의 선물"이 헬라어 <em>dorea</em>예요. 20절에 나옵니다. 그리고 그 선물의 대상인 "성령"은 <em>pneuma hagion</em>이고, 본문은 사마리아 사람들이 세례는 받았으나 "아직 한 사람에게도 성령 내리신 일이 없고"(16절)라며 안수 뒤 받았다(17절)고 보고해요. 시간 순서만 기록합니다.</p>
+
+<p><strong>P02 이진우</strong>: 후반 내시는 결이 달라요. 31절 "지도하는 사람이 없으니 어찌 깨달을 수 있느냐", 34절 "선지자가 누구를 가리켜 말한 것이냐", 36절 "내가 세례를 받음에 무슨 거리낌이 있느냐." 묻고, 듣고, 곧 받아들여요.</p>
+
+<p><strong>P11 나경아</strong>: "깨닫다"가 <em>ginosko</em>예요. 30절 "읽는 것을 깨닫느냐(<em>ginosko</em>)"와 31절의 대답이 짝을 이룹니다. 묻는 동사와 답하는 동사가 같은 어근이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 시몬의 어긋남과 내시의 깨달음을 같은 장 안에 나란히 두고, 해석은 서두르지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 다섯 컷 정도로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-4절)</strong>: 스데반의 장사, 큰 박해, 사울의 잔멸, 흩어진 자들이 복음을 전함</li>
+<li><strong>컷 2 (5-13절)</strong>: 빌립이 사마리아에서 전파, 표적, 큰 기쁨, 마술사 시몬도 믿고 세례</li>
+<li><strong>컷 3 (14-25절)</strong>: 베드로·요한이 내려옴, 안수와 성령, 시몬의 돈 제안과 베드로의 책망</li>
+<li><strong>컷 4 (26-35절)</strong>: 광야 길, 병거의 내시, 이사야를 읽음, 빌립이 올라 앉아 복음을 전함</li>
+<li><strong>컷 5 (36-40절)</strong>: 물·세례, 주의 영이 빌립을 이끌어 감, 내시는 기쁘게 가고 빌립은 여러 성으로</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 1이 발단, 컷 2-3이 사마리아, 컷 4-5가 광야 길이에요. 도시 한 묶음, 길 한 묶음으로도 묶여요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 두 묶음을 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 박해의 주체였던 사울이 1절과 3절에 두 번 나와요. "사울은 그가 죽임 당함을 마땅히 여기더라", "사울이 교회를 잔멸할새 각 집에 들어가… 옥에 넘기니라." 다음 장 회심 직전의 어둠으로 보여요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 왜 사마리아 사람들은 세례를 받았는데도 성령은 사도의 안수 뒤에야 받았을까요(15-17절). 시차가 본문에 또렷이 있어요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 26절과 29절에서 빌립을 움직이는 것이 두 번 다 위로부터예요. 26절은 "주의 사자", 29절은 "성령이 빌립더러 이르시되 이 수레로 가까이 나아가라." 본문이 인도의 출처를 직접 밝히는 대목이에요.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 빌립은 사마리아 성 "안"에서 전하다가, 광야 "길"로 보내져요. 무리에게서 한 사람에게로 무대가 좁아져요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 39절에서 빌립이 갑자기 사라져요. "물에서 올라올새 주의 영이 빌립을 이끌어 간지라 내시는 그를 다시 보지 못하고." 왜 이렇게 급히 거두어졌을까요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 35절이 걸려요. "빌립이 입을 열어 이 글에서 시작하여 예수를 가르쳐 복음을 전하니." 내시가 읽던 그 한 본문에서 시작했다는 게 눈에 들어왔어요.</p>
+
+<p><strong>P11 나경아</strong>: 35절의 "이 글에서 시작하여"는 그가 읽던 이사야 53장(32-33절 인용)을 가리켜요. 본문이 출발점을 명시한 대목이라 위치만 기록합니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 스데반을 묻고 난 자리에 큰 박해가 일어나, 사도 외에는 다 흩어집니다. 사울이 집집을 뒤져 옥에 넘기는 동안, 흩어진 이들은 도리어 두루 다니며 복음을 전합니다.</p>
+
+<p><strong>P01 한나래</strong>: 빌립이 사마리아 성에 내려가 그리스도를 전하니, 무리가 한마음으로 듣고 표적을 봅니다. 더러운 귀신이 나가고 못 걷던 이가 걸어, 그 성에 큰 기쁨이 있습니다. 마술사 시몬마저 믿고 세례를 받아 빌립을 따릅니다.</p>
+
+<p><strong>P04 최현국</strong>: 예루살렘의 사도들이 베드로와 요한을 보냅니다. 두 사람이 기도하고 안수하니 사마리아 사람들이 성령을 받습니다. 그때 시몬이 돈을 내밀며 그 권능을 사려 하자, 베드로가 "네 은과 네가 함께 망할지어다" 책망하고, 시몬은 "나를 위하여 기도하라" 청합니다.</p>
+
+<p><strong>P02 이진우</strong>: 무대가 광야 길로 바뀝니다. 주의 사자가 빌립을 남쪽 가사 길로 보내니, 거기 에디오피아 여왕의 국고를 맡은 내시가 병거에서 이사야를 읽고 있습니다. 성령이 "수레로 가까이 나아가라" 이르십니다.</p>
+
+<p><strong>P11 나경아</strong>: 빌립이 달려가 "읽는 것을 깨닫느냐" 묻자, 내시가 "지도하는 사람이 없으니 어찌 깨달으리이까" 하며 올라 앉기를 청합니다. 빌립이 그 이사야 본문에서 시작하여 예수를 전하고, 물 있는 곳에 이르러 내시가 세례를 받습니다. 물에서 올라올 때 주의 영이 빌립을 이끌어 가니, 내시는 그를 다시 보지 못한 채 기쁘게 길을 가고, 빌립은 아소도에서 가이사랴까지 여러 성을 전하며 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 흩어진 박해에서 시작해, 사마리아의 기쁨을 지나, 광야 길의 한 사람에게 이르고 다시 여러 성으로 퍼지는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "흩어진 자리에 큰 기쁨"</p>
+<p><strong>P02 이진우</strong>: "사려는 손과 묻는 입 — 시몬과 내시"</p>
+<p><strong>P04 최현국</strong>: "성에서 광야 길로"</p>
+<p><strong>P05 김미영</strong>: "보라 물이 있으니 — 광야의 세례"</p>
+<p><strong>P07 오지혜</strong>: "지도하는 사람이 없으니"</p>
+<p><strong>P11 나경아</strong>: "<em>Diaspeiro · Euangelizo · Chara</em> — 흩음·전함·기쁨"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "흩어짐이 전파가 되고, 묻는 한 사람이 길 위에서 기뻐하다"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 그 성과 광야 길을 천천히 걸으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 저는 흩어진 자리에서 도리어 입이 열리는 것을 봅니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-008</p>
+<p>book: 사도행전</p>
+<p>chapter: 8</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>사도행전 8장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대는 예루살렘(1·3절) → 사마리아 성(5절) → 가사로 내려가는 광야 길(26절) → 아소도~가이사랴(40절)로 옮겨간다.</li>
+<li>시간 배경 = 스데반의 장사와 "큰 박해"(1절). 흩어짐이 깔린다.</li>
+<li>소품 = 물·세례(12·36-38절), 사도의 안수(17절), 돈(18절), 병거와 두루마리(28절), 이사야 본문(32-33절).</li>
+<li>인물 배경 = 시몬은 전부터 마술을 행하던 자(9-11절), 내시는 간다게의 국고를 맡은 큰 권세자(<em>eunouchos</em>, 27절).</li>
+<li><em>euangelizo</em>(복음을 전하다)가 4·12·25·35·40절에 거듭 나온다.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>앞은 무거움(박해·잔멸)하고 곧 전환(흩어진 자들이 전함). 무거움→기쁨.</li>
+<li>"그 성에 큰 기쁨이 있더라"(8절) — 박해 다음의 기쁨.</li>
+<li>무대가 도시(사마리아)에서 길(광야)로 옮겨가며, 빌립이 두 만남의 가운데에 선다.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "큰 박해가 있어… 다 유대와 사마리아 모든 땅으로 흩어지니라" — 흩어짐으로 열림.</li>
+<li>40절: "빌립은 아소도에 나타나… 여러 성을 지나 다니며 복음을 전하고 가이사랴에 이르니라" — 전파로 닫힘.</li>
+<li>강제로 흩어진 자리가 여러 성으로 복음을 퍼뜨리는 자리로 바뀐다. 내시도 빌립도 길 위에 있는 채로 끝(39-40절).</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 사울(1·3) / 빌립 / 사마리아 무리 / 마술사 시몬 / 베드로·요한(14) / 주의 사자(26) / 에디오피아 내시(27).</li>
+<li>시몬의 어긋남 — 믿고 세례 받았으나(13) 권능을 돈으로 사려 함(18-19). 베드로의 책망(20-23).</li>
+<li>내시의 깨달음 — "지도하는 사람이 없으니"(31), "선지자가 누구를 가리킴이냐"(34), 곧 세례를 청함(36).</li>
+<li>"하나님의 선물" <em>dorea</em>(20절). 사마리아의 성령 받음은 안수 뒤(15-17절, 시차 기록).</li>
+<li>"깨닫다" <em>ginosko</em> — 30절(읽는 것을 깨닫느냐)과 31절 대답이 짝.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-4): 스데반 장사, 큰 박해, 사울의 잔멸, 흩어진 자들이 전함.</li>
+<li>컷 2 (5-13): 빌립의 사마리아 전파, 표적, 큰 기쁨, 시몬도 믿고 세례.</li>
+<li>컷 3 (14-25): 베드로·요한의 안수와 성령, 시몬의 돈 제안과 책망.</li>
+<li>컷 4 (26-35): 광야 길, 병거의 내시, 이사야 읽음, 빌립이 예수를 전함.</li>
+<li>컷 5 (36-40): 물·세례, 주의 영이 빌립을 이끌어 감, 내시는 기쁘게·빌립은 여러 성으로.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>diaspeiro</em>(διασπείρω) — 흩다·흩뿌리다. 1·4절 "흩어지니라".</li>
+<li><em>euangelizo</em>(εὐαγγελίζω) — 복음을 전하다. 4·12·25·35·40절 거듭.</li>
+<li><em>chara</em>(χαρά) — 기쁨. 8절 "큰 기쁨이 있더라".</li>
+<li><em>magos</em>(μάγος) / <em>mageia</em>(μαγεία) — 마술사 / 마술. 9·11절(시몬).</li>
+<li><em>dorea</em>(δωρεά) — 선물. 20절 "하나님의 선물을 돈 주고".</li>
+<li><em>eunouchos</em>(εὐνοῦχος) — 내시. 27·34·36·38·39절.</li>
+<li><em>ginosko</em>(γινώσκω) — 깨닫다·알다. 30절 "읽는 것을 깨닫느냐".</li>
+<li><em>harpazo</em>(ἁρπάζω) — 낚아채다·이끌어 가다. 39절 "주의 영이 빌립을 이끌어".</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>발단(1-4) → 사마리아(5-25) → 광야 길(26-40)의 세 묶음.</li>
+<li>두 인물의 대조 — 권능을 사려는 시몬(18-19) vs 본문을 묻는 내시(31·34).</li>
+<li>"전하다" <em>euangelizo</em> 후렴이 장 전체를 꿰며 시작(4)과 끝(40)을 잇는다.</li>
+<li>위로부터의 인도 두 번 — "주의 사자"(26), "성령이 이르시되"(29).</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>사마리아는 유대인과 오랜 거리가 있던 곳 — 박해로 흩어진 복음이 그 경계를 넘는 자리로 본문이 보고함.</li>
+<li>"내시"(<em>eunouchos</em>)는 외국 왕실의 고위 관리. 간다게는 에디오피아(쿠시) 여왕의 칭호(27절, 배경).</li>
+<li>32-33절은 이사야 53:7-8 인용 — 내시가 읽던 본문이 그대로 적힘.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>행 8:1 ↔ 행 7:58-60 (스데반의 장사 / 사울)</li>
+<li>행 8:3 ↔ 행 9:1-2 (사울의 잔멸 → 다음 장 회심)</li>
+<li>행 8:32-33 ↔ 사 53:7-8 (도수장의 양, 인용)</li>
+<li>행 8:14-17 ↔ 행 2:1-4 (성령 받음의 결)</li>
+<li>행 8:5 ↔ 행 1:8 ("사마리아…땅 끝까지"의 결)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>스데반의 장사 뒤 큰 박해가 일어나 사도 외에는 다 흩어진다. 사울이 집집을 뒤져 옥에 넘기는 동안, 흩어진 이들은 도리어 복음을 전한다. 빌립이 사마리아 성에 내려가 그리스도를 전하니 표적이 따르고 그 성에 큰 기쁨이 있어, 마술사 시몬마저 믿고 세례를 받는다. 예루살렘의 사도들이 보낸 베드로와 요한이 안수하니 성령이 임하고, 그 권능을 돈으로 사려는 시몬을 베드로가 책망한다. 무대가 광야 길로 바뀌어, 주의 사자가 빌립을 가사 길로 보낸다. 거기 에디오피아 내시가 병거에서 이사야를 읽다가 "지도하는 사람이 없으니 어찌 깨달으리이까" 한다. 빌립이 그 본문에서 예수를 전하고 물 있는 곳에서 세례를 베푼다. 물에서 올라올 때 주의 영이 빌립을 이끌어 가니, 내시는 기쁘게 길을 가고 빌립은 여러 성을 전하며 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"흩어진 자리에 큰 기쁨 — 사려는 손과 묻는 입"</strong></li>
+<li>초벌 부제: "흩어짐이 전파가 되고, 묻는 한 사람이 길 위에서 기뻐하다"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (8개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (사마리아·간다게·이사야 인용·문학 구조)</li>
+<li>[x] 미해결 질문 1개 이상 (open_questions 6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 5개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>사마리아의 성령 받음 시차(15-17)가 교리 도식으로 굳지 않도록 → 시간 순서만 기록.</li>
+<li>시몬의 "믿음"(13)과 "사려는 손"(18-19)의 긴장은 본문 보고로만 보존, 판단은 보류.</li>
+<li>"주의 영이 이끌어 감"(39, <em>harpazo</em>)은 어휘 위치만 기록.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-008</p>
+<p>book: 사도행전</p>
+<p>chapter: 8</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>사도행전 8장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 왜 사마리아의 성령은 안수 뒤에야 임했는가?</h2>
+
+<ul>
+<li>세례(12)와 성령 받음(17) 사이에 시차가 있음.</li>
+<li>시간 순서만 기록하고, 까닭은 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q2. 시몬의 "믿음"(13)과 "사려는 손"(18-19)은 어떻게 함께인가?</h2>
+
+<ul>
+<li>믿고 세례 받았다 한 자가 권능을 돈으로 사려 함.</li>
+<li>두 모습의 병치만 기록, 판단은 보류.</li>
+</ul>
+
+<h2>Q3. 왜 빌립은 성에서 광야 길로 보내졌는가?</h2>
+
+<ul>
+<li>무리가 기뻐하는 자리에서 한 사람에게로(26절).</li>
+<li>인도의 까닭은 본문이 설명하지 않음. 위치만 보존.</li>
+</ul>
+
+<h2>Q4. "지도하는 사람이 없으니"(31)의 무게는?</h2>
+
+<ul>
+<li>읽되 깨닫지 못하는 자리.</li>
+<li>묻는 결과 답하는 결의 만남만 기록.</li>
+</ul>
+
+<h2>Q5. 왜 빌립은 세례 직후 급히 이끌려 갔는가?</h2>
+
+<ul>
+<li>"내시는 그를 다시 보지 못하고"(39).</li>
+<li><em>harpazo</em>의 급함은 까닭 없이 위치만 보존.</li>
+</ul>
+
+<h2>Q6. 흩어진 박해가 어떻게 전파가 되는가?</h2>
+
+<ul>
+<li>강제된 흩어짐(1)과 자발적 전함(4)이 한 자리에.</li>
+<li>나란히 둠의 까닭은 묵상에서 다시.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">흩어진 자리에 큰 기쁨, 묻는 한 사람이 길 위에서 기뻐하다.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body">
+            <p>---</p>
+<p>sim_id: ACT-008</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-31</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 사도행전 8장은 박해로 흩어진 자리가 <em>도리어 복음이 흘러가는 길</em>이 되는 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 큰 박해로 사도 외에는 다 흩어지는 무거운 자리에서 시작한다. 그런데 흩어진 자들이 두루 다니며 전하니, 사마리아 성에 큰 기쁨이 임한다. 그 기쁨의 한가운데 권능을 돈으로 사려는 시몬이 있고, 광야 길 위엔 본문을 읽되 "지도하는 사람이 없으니"라 묻는 한 사람이 있다. 사려는 손과 묻는 입이 같은 장 안에 나란히 놓이고, 묻던 자는 세례를 받고 기쁘게 길을 간다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>예루살렘(1) → 사마리아 성(5) → 가사 광야 길(26) → 아소도~가이사랴(40). 소품 = 물·세례·안수·돈·병거·이사야 두루마리. <em>euangelizo</em>가 장을 꿴다.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>무거움(박해)에서 기쁨(8절)으로. 도시에서 길로. 빌립이 두 만남의 가운데.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 흩어짐(1절). 끝 — 여러 성의 전파(40절). 흩어짐이 전파로.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>사울 / 빌립 / 시몬 / 베드로·요한 / 내시. 시몬의 어긋남(18-19)과 내시의 깨달음(31)의 대조. <em>dorea</em>·<em>ginosko</em>.</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 박해·흩어짐(1-4). 컷 2 사마리아·기쁨(5-13). 컷 3 안수·시몬(14-25). 컷 4 광야·이사야(26-35). 컷 5 세례·이끌려 감(36-40).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>성령의 시차(15-17). 위로부터의 인도 두 번(26·29). 35절의 출발점. 39절의 급한 거두심(<em>harpazo</em>).</td></tr>
+<tr><td>7 동영상</td><td>박해·흩어짐 → 사마리아의 기쁨 → 시몬 책망 → 광야의 내시 → 세례·이끌려 감으로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "흩어진 자리에 큰 기쁨 — 사려는 손과 묻는 입". 부제 — "흩어짐이 전파가 되고, 묻는 한 사람이 길 위에서 기뻐하다".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>성과 광야 길을 걸으며 흩어진 자리에서 입이 열리는 것을 본다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 흩어짐에서 전파로</strong>: 강제로 흩어진 자들이(1절) 도리어 두루 다니며 전한다(4절). 막으려던 박해가 길을 낸다.</p>
+<p>2. <strong>결 2 — 사려는 손, 묻는 입</strong>: 시몬은 권능을 돈으로 사려 하고(18-19절), 내시는 본문 앞에서 "어찌 깨달으리이까" 묻는다(31절). 같은 장이 두 손을 나란히 둔다.</p>
+<p>3. <strong>결 3 — 길 위의 기쁨</strong>: 도시의 큰 기쁨(8절)이 광야 길 한 사람의 기쁨(39절)으로 이어진다. 무리에서 한 사람으로 좁혀지되 기쁨은 줄지 않는다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>행 7:58-60</strong> (스데반의 장사·사울), <strong>행 9:1-2</strong> (사울의 잔멸 → 다음 장 회심), <strong>행 1:8</strong> ("사마리아…땅 끝까지").</li>
+<li>다른 권 — <strong>사 53:7-8</strong> (도수장의 양, 32-33절 인용).</li>
+<li>정경 흐름 — 1:8의 "사마리아"가 여기서 처음 채워지고, 내시를 통해 "땅 끝"으로 향하는 결이 열린다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 박해로 흩어진 자리에 한 사람이 선다.</li>
+<li><strong>멈춤 1</strong>: 박해 다음에 임한 "큰 기쁨"(8절) 앞에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: 권능을 사려는 손(18절)이 책망받는 자리에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: "지도하는 사람이 없으니"(31절) 묻는 입 앞에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *막으려던 흩어짐이 길을 냈다*는 결을 손에 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *읽되 깨닫지 못하던 자리* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 박해로 흩어진 자들이 도리어 복음을 전한다</li>
+<li>[x] 사마리아 성에 큰 기쁨이 임한다</li>
+<li>[x] 시몬이 권능을 돈으로 사려다 책망받는다</li>
+<li>[x] 광야 길에서 내시가 이사야를 읽는다</li>
+<li>[x] "지도하는 사람이 없으니"가 묻는 자리가 된다</li>
+<li>[x] 내시가 세례를 받고 기쁘게 길을 간다</li>
+<li>[x] 빌립은 여러 성을 전하며 끝난다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>흩어짐의 길</em>.</p>
+          </div>
+        </section>
+
+
+    <div class="next-row">
+      <a href="/magazine/ACT/7/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">사도행전 7장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/ACT/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">사도행전 28장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/ACT/9/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">사도행전 9장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/ACT/8/',
+      title: '사도행전 8장',
+      excerpt: '흩어진 자들이 도리어 복음을 전한다. 사마리아엔 큰 기쁨이, 시몬에겐 사려는 손이, 광야 길엔 읽히는 한 두루마리가 있다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

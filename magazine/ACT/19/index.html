@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>사도행전 19장 — Observatory | 네다바웨이</title>
+<meta name="description" content="사도행전 19장을 9단계로 같이 관찰합니다. 에베소의 요한의 세례, 두란노 서원의 강론, 은장색 데메드리오의 소동.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/ACT/19/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/ACT/">사도행전</a> · 19장</div>
+      <h1>사도행전 19장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">ACT-019 · 역사서(신약) · 헬라어</div>
+      <p class="essence">두란노의 강론으로 말씀이 흥왕하고 마술책이 불태워진다. 그러자 은장색의 손에서 "크다 에베소 사람의 아데미여"라는 두 시간의 외침이 일어난다.</p>
+    </header>
+
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-019</p>
+<p>book: 사도행전</p>
+<p>book_en: Acts</p>
+<p>chapter: 19</p>
+<p>bible_block: 역사서(신약)</p>
+<p>canon: 신약</p>
+<p>genre: 내러티브·소동기</p>
+<p>language: 헬라어</p>
+<p>verse_count: 41</p>
+<p>observed_facts_count: 25</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 3</p>
+<p>greek_terms: [baptisma, scholē, dynamis, exorkistes, perierga, argyrokopos, naos, ekklesia, grammateus, synchysis]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-31</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>사도행전 19장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 사도행전 19장입니다. 한 도시에서 말씀이 흥왕하다가, 끝에 큰 소동이 극장을 가득 메웁니다. 먼저 끝까지 낭독하고 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 19:1~41, 약 6분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 앞은 자라나는 공기였어요. "주의 말씀이 힘이 있어 흥왕하여 세력을 얻으니라"(20절)요. 그런데 뒤로 가면 군중의 함성으로 시끄러워져요.</p>
+
+<p><strong>P01 한나래</strong>: 저는 23절의 "적지 않은 소동"이 분위기를 바꾸는 지점으로 느껴졌어요. 그 앞까지 잔잔하다가, 그 뒤로 도시 전체가 들썩여요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 회당(8절) → 두란노 서원(9절) → 작업장·시장 → 마지막에 극장(29절)으로 옮겨가요. 점점 큰 공간으로 번져가요.</p>
+
+<p><strong>P05 김미영</strong>: "손"이 자꾸 보였어요. 손수건과 앞치마(12절), 마술책을 불사르는 손(19절), 은으로 신상을 만드는 손(24절). 손의 일이 계속 나와요.</p>
+
+<p><strong>P02 이진우</strong>: 군중이 "두 시간 동안이나 외쳐"(34절) 같은 말을 반복해요. "크다 에베소 사람의 아데미여". 한 문장이 도시를 덮어요.</p>
+
+<p><strong>P11 나경아</strong>: "말씀"과 "여신"이 맞붙는 공기였어요. 말씀이 흥왕할수록(20절) 여신 장사가 위협받아요(27절). 두 세력이 대치해요.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. 흥왕에서 소동으로, 회당에서 극장으로 번져가는 그 공기를 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P05 김미영</strong>: 1절은 "바울이… 에베소에 와서"예요. 회당(8절)에서 시작해, 9절에서 "두란노 서원에서 날마다 강론하니라"로 옮겨가요. 강의실 같은 곳이에요.</p>
+
+<p><strong>P04 최현국</strong>: 본문이 시간을 박아줘요. 8절 "석 달 동안", 9-10절 "두 해 동안 강론하니 아시아에 사는 자는… 다 주의 말씀을 듣더라". 그리고 끝은 극장(29·31절)이에요. 온 도시가 극장으로 몰려가요.</p>
+
+<p><strong>P07 오지혜</strong>: 소품을 모으면 — 요한의 세례(3절), 손수건·앞치마(12절), 마술책("그 책 값을 계산한즉 은 오만"(19절)), 은으로 만든 아데미 신상 모형(24절)이에요. 소재가 세례 → 치유 → 마술책 소각 → 은 신상으로 옮겨가요.</p>
+
+<p><strong>P11 나경아</strong>: 원어를 무대 자료로 두면, 9절의 "서원"이 헬라어 <em>scholē</em>(강의·학교)입니다. 13절 "마술하는 어떤 유대인"이 <em>exorkistes</em>(축귀사) 결이고요. 19절 "마술책"이 <em>perierga</em>(쓸데없는 것·주술) 결입니다. 24절 "은장색"이 <em>argyrokopos</em>예요. 배경으로만 둡니다.</p>
+
+<p><strong>P02 이진우</strong>: 배경 제도가 깔려요. 24·27절에서 데메드리오가 "아데미의 은 신상 모형을 만들어 직공들에게 적지 않은 벌이를 하게 하던" 자라 박혀 있어요. 아데미 신전(<em>naos</em>)과 그 장사가 도시 경제의 배경이에요. 35절은 그 성을 "큰 아데미와… 신상의 전각지기"라 부릅니다.</p>
+
+<p><strong>P01 한나래</strong>: 끝의 무대 장치도 박혀요. 38-39절에서 서기장이 "재판 날도 있고 총독들도 있으니… 정식으로 민회에서 결정할지라" 합니다. 법정·민회라는 제도가 소동을 가라앉히는 장치로 등장해요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>scholē</em>·마술책·은 신상, 그리고 회당–서원–극장의 동선을 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계로 보이시는지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "아볼로가 고린도에 있을 때에 바울이 윗지방으로 다녀 에베소에 와서 어떤 제자들을 만나"로, 한 만남으로 조용히 열려요. 41절은 "이에 그 모임을 흩어지게 하니라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 열두어 사람과의 작은 만남이고, 끝은 흩어지는 큰 군중이에요. 작은 모임에서 큰 모임의 해산으로 옮겨가요.</p>
+
+<p><strong>P01 한나래</strong>: 가운데 20절 "말씀이 흥왕하여 세력을 얻으니라"가 분기점이에요. 그 뒤로 23절부터 소동이 와요. 흥왕과 소동이 한 장 안에서 이어져요. 모이게 한 말씀과 흩어진 모임이 끝에서 대비돼요.</p>
+
+<p><strong>성령일 선교사</strong>: 작은 만남에서 큰 모임의 해산으로, 흥왕과 소동이 이어지는 폭을 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 바울, 요한의 세례만 받은 열두어 제자(1·7절), 두란노의 청중, 스게와의 일곱 아들(14절), 마술하던 사람들(19절), 은장색 데메드리오(24절), 가이오와 아리스다고(29절), 알렉산더(33절), 서기장(35절)이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황이 셋으로 나와요. 세례의 보충(1-7절) / 말씀의 흥왕과 마술책 소각(8-20절) / 여신 장사의 소동(23-41절)이에요.</p>
+
+<p><strong>P04 최현국</strong>: 사상은 "이름"이에요. 5절 "주 예수의 이름으로 세례를 받으니", 13절 마술사들이 "바울이 전파하는 예수를 의지하여" 이름을 부르다 17절 "주 예수의 이름을 높이고", 그리고 끝의 군중은 "아데미여" 이름을 외쳐요(28·34절). 두 이름이 도시에서 부딪쳐요.</p>
+
+<p><strong>P11 나경아</strong>: 13절 "마술하는 자"의 시도가 16절에서 역전돼요. 악귀 들린 사람이 "예수도 내가 알고 바울도 내가 알거니와 너희는 누구냐"(15절) 하고 그들을 제압해요. "이름"을 빌리려다 도리어 눌립니다. 그리고 19절 "마술책"이 <em>perierga</em>, 27절 "위엄"이 <em>megaleiotes</em> 결입니다. 어휘 분포만 기록합니다.</p>
+
+<p><strong>P02 이진우</strong>: 데메드리오의 연설(25-27절)이 골격이에요. "이 영업으로 우리가 풍족한 생활을 하는 줄 알거니와… 바울이… 사람의 손으로 만든 것들은 신이 아니라 하니… 우리의 이 영업이 천하여질 위험이 있을 뿐 아니라 큰 여신 아데미의 신전도 무시당하게 되고". 돈과 신앙이 한 연설에 섞여요.</p>
+
+<p><strong>P11 나경아</strong>: 32절을 본문이 직접 평해요. "사람들이 외쳐 어떤 이는 이런 말을, 어떤 이는 저런 말을 하니 모인 무리가 분란하여 태반이나 어찌하여 모였는지 알지 못하더라". "분란"이 <em>synchysis</em>(뒤섞임) 결입니다. 본문이 군중의 무지를 그대로 보고해요.</p>
+
+<p><strong>성령일 선교사</strong>: 두 이름과 돈과 분란을 어휘 표시로만 두고, 관계는 서두르지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 여섯 컷 정도로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-7절)</strong>: 요한의 세례만 받은 제자들, 주 예수의 이름으로 다시 세례, 성령이 임함</li>
+<li><strong>컷 2 (8-12절)</strong>: 회당 석 달, 두란노 서원의 두 해 강론, 아시아가 다 들음, 손수건·앞치마의 치유</li>
+<li><strong>컷 3 (13-20절)</strong>: 스게와의 일곱 아들의 실패, 두려움이 임함, 마술책을 불사름, 말씀의 흥왕</li>
+<li><strong>컷 4 (21-22절)</strong>: 바울이 예루살렘·로마를 작정, 디모데·에라스도를 마게도냐로 보냄</li>
+<li><strong>컷 5 (23-34절)</strong>: 데메드리오의 선동, "크다 아데미여", 극장으로 몰림, 두 시간의 함성</li>
+<li><strong>컷 6 (35-41절)</strong>: 서기장의 진정, 법정·민회를 들어 무리를 흩음</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 1-4가 말씀의 흥왕, 컷 5-6이 소동과 진정이에요. 두 묶음으로도 묶여요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 묶음을 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 마술책 소각(19절)을 본문이 값으로 박아줘요. "그 책 값을 계산한즉 은 오만이나 되더라". 회개를 손에 잡히는 숫자로 보여줘요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 스게와의 아들들(13-16절)은 왜 실패했을까요. 같은 "예수의 이름"을 불렀는데 도리어 제압당해서요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 24·27·28·34·35절의 "아데미"는 에베소의 여신이고, 그 신전은 고대의 큰 신전 중 하나예요. 본문이 "온 아시아와 천하가 위하는"(27절) 여신이라 배경을 깔아줍니다. 그 장사 규모가 소동의 동력이에요. 배경으로만 둡니다.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 소동의 까닭을 본문이 데메드리오 입으로 직접 밝혀요. "이 영업으로 우리가 풍족한 생활을 하는 줄 알거니와"(25절). 신앙의 외피 아래 영업이 있음을 본문이 드러내요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 군중의 "태반이나 어찌하여 모였는지 알지 못하더라"(32절)인데, 왜 두 시간이나 외쳤을까요. 모르면서 함께 외치는 군중이 걸려요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 30-31절이 걸려요. 바울이 군중에게 들어가려 하나 제자들이 막고, 아시아 관리 친구들도 "극장에 들어가지 말라" 권해요. 들어가려는 바울과 막는 사람들의 대비요.</p>
+
+<p><strong>P11 나경아</strong>: 35절 서기장이 부른 "전각지기"가 <em>neokoros</em>(신전 수호자) 결입니다. 도시의 공식 호칭으로 본문이 인용하는 대목이에요. 본문이 도시의 자기 인식을 그대로 적습니다. 위치만 기록합니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 바울이 에베소에 와서 요한의 세례만 받은 제자들을 만납니다. 주 예수의 이름으로 다시 세례를 주니 성령이 임하고, 그들이 방언과 예언을 합니다.</p>
+
+<p><strong>P01 한나래</strong>: 바울이 회당에서 석 달을 강론하다가, 거스르는 자들 때문에 두란노 서원으로 옮겨 두 해 동안 날마다 가르치니, 아시아에 사는 자가 다 말씀을 듣습니다. 손수건과 앞치마로도 병이 떠납니다.</p>
+
+<p><strong>P04 최현국</strong>: 마술하던 스게와의 일곱 아들이 예수의 이름을 흉내 내다가, 악귀 들린 자에게 도리어 제압당해 도망칩니다. 두려움이 임하여 마술하던 많은 이가 책을 모아 불사르니, 그 값이 은 오만이나 됩니다. 주의 말씀이 힘있게 흥왕합니다.</p>
+
+<p><strong>P02 이진우</strong>: 바울이 예루살렘과 로마로 갈 것을 작정하고 두 사람을 마게도냐로 보냅니다. 그때 은장색 데메드리오가 직공들을 모아 "이 영업으로 우리가 풍족한데 바울이 손으로 만든 것은 신이 아니라 한다" 선동합니다.</p>
+
+<p><strong>P11 나경아</strong>: 사람들이 "크다 에베소 사람의 아데미여" 외치며 극장으로 몰려가, 가이오와 아리스다고를 붙잡습니다. 바울이 들어가려 하나 제자들과 관리 친구들이 막습니다. 군중은 태반이 까닭도 모른 채 두 시간이나 같은 말을 외칩니다. 서기장이 나서 "전각지기 된 성인 줄 누가 모르느냐, 고발할 일이 있으면 법정과 민회가 있다" 진정시켜 모임을 흩는 한 줄로 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 두란노의 강론으로 흥왕한 말씀과 불태워진 마술책에서, 은장색의 손이 일으킨 소동과 서기장의 진정까지 흐르는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "말씀이 힘이 있어 흥왕하여"</p>
+<p><strong>P02 이진우</strong>: "이 영업으로 우리가 풍족한 — 돈과 여신"</p>
+<p><strong>P04 최현국</strong>: "두란노의 두 해, 극장의 두 시간"</p>
+<p><strong>P05 김미영</strong>: "은 오만의 마술책이 타다"</p>
+<p><strong>P07 오지혜</strong>: "크다 에베소 사람의 아데미여"</p>
+<p><strong>P11 나경아</strong>: "<em>Scholē · Perierga · Naos</em> — 강론·마술책·신전"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "흥왕하는 말씀과 위협받는 장사, 두 이름의 부딪침"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 두란노의 강의실과 함성으로 가득한 극장 곁을 천천히 걸으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 저는 까닭도 모른 채 함께 외치던 군중 가운데 서 있습니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-019</p>
+<p>book: 사도행전</p>
+<p>chapter: 19</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>사도행전 19장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대는 에베소 회당(8) → 두란노 서원(<em>scholē</em>, 9) → 작업장·시장 → 극장(29)으로 번져간다.</li>
+<li>배경 = 아데미 신전(<em>naos</em>)과 은 신상 장사(24·27)가 도시 경제. "전각지기 성"(35).</li>
+<li>소품 = 요한의 세례(3), 손수건·앞치마(12), 마술책(은 오만, 19), 은 신상 모형(24).</li>
+<li>시간 = 회당 석 달(8)·서원 두 해(10).</li>
+<li>제도 — 법정·민회(38-39)가 진정의 장치.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>앞은 흥왕("말씀이 흥왕하여 세력을 얻으니라", 20) → 뒤는 소동(23).</li>
+<li>23절이 분위기 전환점. 회당에서 극장으로 공간이 커짐.</li>
+<li>"손"의 반복 — 손수건·앞치마(12)·마술책 태움(19)·은 신상(24).</li>
+<li>두 시간의 함성(34), 두 이름(예수·아데미)의 대치.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: 열두어 제자와의 작은 만남으로 조용히 열림.</li>
+<li>41절: "그 모임을 흩어지게 하니라" — 큰 군중의 해산으로 닫힘.</li>
+<li>작은 모임에서 큰 모임의 해산으로. 모이게 한 말씀(20)과 흩어진 모임(41)의 대비.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 바울 / 열두어 제자(7) / 스게와의 일곱 아들(14) / 데메드리오(24) / 가이오·아리스다고(29) / 알렉산더(33) / 서기장(35).</li>
+<li>세 상황 — 세례 보충(1-7) / 흥왕·마술책 소각(8-20) / 여신 장사의 소동(23-41).</li>
+<li>사상 = "이름". 예수의 이름(5·17)과 아데미의 이름(28·34)이 부딪침.</li>
+<li>데메드리오 연설(25-27) — 돈("풍족한 생활")과 신앙("신전 무시")이 섞임.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-7): 요한의 세례만 받은 제자들, 다시 세례, 성령 임함.</li>
+<li>컷 2 (8-12): 회당 석 달, 두란노 두 해, 아시아가 다 들음, 손수건의 치유.</li>
+<li>컷 3 (13-20): 스게와 아들들의 실패, 마술책 소각(은 오만), 말씀의 흥왕.</li>
+<li>컷 4 (21-22): 예루살렘·로마 작정, 두 사람을 마게도냐로.</li>
+<li>컷 5 (23-34): 데메드리오의 선동, "크다 아데미여", 극장, 두 시간의 함성.</li>
+<li>컷 6 (35-41): 서기장의 진정, 법정·민회, 모임 해산.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>scholē</em>(σχολή) — 강의실·학교. 9절 두란노 서원.</li>
+<li><em>perierga</em>(περίεργα) — 주술·쓸데없는 것. 19절 마술책.</li>
+<li><em>exorkistes</em>(ἐξορκιστής) — 축귀사. 13절 마술하던 유대인.</li>
+<li><em>argyrokopos</em>(ἀργυροκόπος) — 은장색. 24절 데메드리오.</li>
+<li><em>naos</em>(ναός) — 신전·전각. 24·27절 아데미 신전.</li>
+<li><em>ekklesia</em>(ἐκκλησία) — 모임·민회. 32·39·41절(이 장에선 군중·민회 결).</li>
+<li><em>grammateus</em>(γραμματεύς) — 서기·서기장. 35절.</li>
+<li><em>synchysis</em>(σύγχυσις) — 뒤섞임·분란. 29·32절.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>말씀의 흥왕(1-22) → 소동과 진정(23-41)의 두 묶음.</li>
+<li>두 이름의 대치 — 예수(5·17)와 아데미(28·34).</li>
+<li>역전 구조 — 이름을 빌리려던 마술사들이 도리어 제압당함(15-16).</li>
+<li>본문이 직접 평함 — 군중이 "어찌하여 모였는지 알지 못함"(32), 데메드리오의 "풍족한 생활"(25).</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>아데미 신전(<em>naos</em>)은 에베소의 거대 신전 — "온 아시아와 천하가 위하는"(27) 여신, "전각지기 성"(35) 배경.</li>
+<li>은 신상 모형 장사(24)가 도시 경제의 한 축 — 소동의 동력(본문 보고).</li>
+<li>법정·민회(38-39)는 로마 도시의 분쟁 처리 제도 — 서기장이 진정의 근거로 듦.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>행 19:1-7 ↔ 행 18:24-25 (요한의 세례·아볼로의 결)</li>
+<li>행 19:13-16 ↔ 막 9:38-39 (예수의 이름을 빌림)</li>
+<li>행 19:26 ↔ 행 17:24-25 ("손으로 만든 것은 신이 아니라")</li>
+<li>행 19:21 ↔ 행 23:11 (로마로 가려는 작정)</li>
+<li>행 19:23 ↔ 고전 15:32 (에베소의 환난 결)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>바울이 에베소에서 요한의 세례만 받은 제자들을 만나 주 예수의 이름으로 다시 세례를 주니 성령이 임한다. 회당 석 달 뒤 두란노 서원에서 두 해를 강론하니 아시아가 다 말씀을 듣고, 손수건·앞치마로도 병이 떠난다. 마술하던 스게와의 아들들이 예수의 이름을 흉내 내다 악귀에게 제압당하자, 두려움이 임하여 마술하던 이들이 은 오만 어치의 책을 불사르고 말씀이 흥왕한다. 바울이 예루살렘·로마를 작정할 때, 은장색 데메드리오가 "이 영업으로 풍족한데 바울이 손으로 만든 신은 신이 아니라 한다" 선동한다. 사람들이 "크다 아데미여" 외치며 극장으로 몰려 두 시간이나 함성을 지르는데, 태반은 까닭도 모른다. 서기장이 "고발할 일은 법정과 민회가 있다" 진정시켜 모임을 흩는 한 줄로 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"말씀이 힘이 있어 흥왕하여 — 두란노의 두 해, 극장의 두 시간"</strong></li>
+<li>초벌 부제: "흥왕하는 말씀과 위협받는 장사, 두 이름의 부딪침"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (8개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (아데미 신전·은 신상 장사·민회 제도·마술책)</li>
+<li>[x] 미해결 질문 1개 이상 (open_questions 6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 6개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>마술책 소각(19)을 회개 공식으로 일반화하지 않고 본문 값·사건만 기록.</li>
+<li>스게와 아들들의 실패(15-16)를 축귀 방법론으로 확장하지 않고 본문 역전만 보존.</li>
+<li>데메드리오 소동(23-41)을 박해 일반론으로 굳히지 않고 돈·여신의 본문 동기만 기록.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-019</p>
+<p>book: 사도행전</p>
+<p>chapter: 19</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>사도행전 19장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 마술책의 값을 본문은 왜 숫자(은 오만)로 박았는가?</h2>
+
+<ul>
+<li>19절이 회개를 손에 잡히는 값으로 보여줌.</li>
+<li>숫자의 까닭은 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q2. 스게와의 아들들은 왜 같은 이름을 부르고도 실패했는가?</h2>
+
+<ul>
+<li>"예수의 이름"을 빌리다 도리어 제압당함(15-16).</li>
+<li>빌림과 제압의 결은 보류.</li>
+</ul>
+
+<h2>Q3. 흥왕(20절)과 소동(23절)은 어떻게 이어지는가?</h2>
+
+<ul>
+<li>말씀이 흥왕할수록 여신 장사가 위협받음.</li>
+<li>흥왕과 소동의 인과는 본문이 단정하지 않음. 보존.</li>
+</ul>
+
+<h2>Q4. 군중은 왜 까닭도 모른 채(32절) 두 시간을 외쳤는가?</h2>
+
+<ul>
+<li>"어찌하여 모였는지 알지 못함"과 두 시간의 함성(34).</li>
+<li>무지와 외침의 결은 분포만 보존.</li>
+</ul>
+
+<h2>Q5. 바울은 왜 극장에 들어가려 했고 사람들은 왜 막았는가?</h2>
+
+<ul>
+<li>들어가려는 바울(30)과 막는 제자·관리(30-31).</li>
+<li>두 방향의 까닭은 보류.</li>
+</ul>
+
+<h2>Q6. 데메드리오의 연설에서 돈과 여신은 어떻게 섞였는가?</h2>
+
+<ul>
+<li>"풍족한 생활"(25)과 "신전 무시"(27)가 한 입에.</li>
+<li>두 동기의 섞임은 묵상에서 다시.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">말씀이 힘이 있어 흥왕하여 — 두란노의 두 해, 극장의 두 시간.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body">
+            <p>---</p>
+<p>sim_id: ACT-019</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-31</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 사도행전 19장은 두란노의 강론으로 <em>말씀이 흥왕</em>하고 마술책이 불태워지자, 위협받은 은장색의 손이 "크다 아데미여"라는 두 시간의 소동을 일으키는 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 요한의 세례만 받은 열두어 제자를 다시 세우며 조용히 열린다. 회당 석 달, 두란노 서원의 두 해 강론으로 아시아가 다 말씀을 듣고, 마술하던 스게와의 아들들이 도리어 제압당하자 사람들이 은 오만 어치의 마술책을 불사른다. 말씀이 흥왕할수록 아데미 여신의 은 신상 장사가 위협받고, 은장색 데메드리오의 선동이 도시를 극장으로 몰아간다. 까닭도 모른 채 두 시간을 외치던 군중은, 법정과 민회를 든 서기장의 진정으로 흩어진다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>회당(8) → 두란노 서원(<em>scholē</em>, 9) → 극장(29). 배경 = 아데미 신전(<em>naos</em>)·은 신상 장사. 소품 = 세례·손수건·마술책·은 신상.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>흥왕(20) → 소동(23). 회당에서 극장으로. "손"의 반복. 두 이름의 대치.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 열두어 제자(1). 끝 — 모임 해산(41). 작은 만남에서 큰 모임의 해산으로.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>바울 / 스게와 아들들 / 데메드리오 / 서기장. 세 상황 — 세례·흥왕·소동. 사상 = "이름"(예수·아데미).</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 세례(1-7). 컷 2 두란노(8-12). 컷 3 마술책 소각(13-20). 컷 4 작정(21-22). 컷 5 소동(23-34). 컷 6 진정(35-41).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>은 오만의 값(19). 아들들의 역전(15-16). 데메드리오의 "풍족"(25). 까닭 모를 함성(32).</td></tr>
+<tr><td>7 동영상</td><td>세례 → 두란노 강론 → 마술책 소각 → 작정 → 데메드리오의 소동 → 서기장의 진정으로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "말씀이 힘이 있어 흥왕하여 — 두란노의 두 해, 극장의 두 시간". 부제 — "흥왕하는 말씀과 위협받는 장사, 두 이름의 부딪침".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>두란노의 강의실과 함성의 극장 곁을 걸으며 까닭 모를 외침의 자리를 본다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 흥왕과 위협의 잇닿음</strong>: "말씀이 흥왕하여 세력을 얻으니라"(20절) 바로 뒤에 "그때쯤 적지 않은 소동이 있었으니"(23절)가 온다. 자라남과 부딪침이 잇닿는다.</p>
+<p>2. <strong>결 2 — 두 이름의 부딪침</strong>: 예수의 이름이 높아지고(17절) 마술책이 타는 자리에서, 군중은 "크다 아데미여"(28·34절)를 외친다. 한 도시에서 두 이름이 맞선다.</p>
+<p>3. <strong>결 3 — 돈과 여신의 섞임</strong>: 데메드리오는 "이 영업으로 풍족한 생활"(25절)과 "신전이 무시당함"(27절)을 한 입에 담는다. 본문은 신앙의 외피와 영업을 함께 드러낸다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>행 18:24-25</strong> (요한의 세례·아볼로, 1-7절과 닿음), <strong>행 17:24-25</strong> ("손으로 만든 것은 신이 아니라", 26절), <strong>행 23:11</strong> (로마로 가려는 작정, 21절).</li>
+<li>다른 권 — <strong>막 9:38-39</strong> (예수의 이름을 빌림), <strong>고전 15:32</strong> (에베소의 환난 결).</li>
+<li>정경 흐름 — 19장의 에베소는 바울 사역의 절정 가운데 하나로, 흥왕과 박해가 한 장에 겹쳐 20장 이후 작별의 결을 연다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 한 가지를 모르던 제자들 곁에 한 사람이 선다.</li>
+<li><strong>멈춤 1</strong>: 은 오만 어치의 마술책이 타는 자리에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: "말씀이 힘이 있어 흥왕하여" 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: 까닭도 모른 채 두 시간을 외치는 군중 가운데서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *흥왕하는 말씀은 손의 장사를 흔든다*는 결을 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *까닭 모를 외침의 자리* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 요한의 세례만 받은 제자들이 다시 세워진다</li>
+<li>[x] 두란노에서 두 해를 강론한다</li>
+<li>[x] 은 오만 어치의 마술책이 불탄다</li>
+<li>[x] 말씀이 힘있게 흥왕한다</li>
+<li>[x] 은장색 데메드리오가 소동을 일으킨다</li>
+<li>[x] "크다 아데미여"라는 두 시간의 함성이 인다</li>
+<li>[x] 서기장이 법정·민회를 들어 모임을 흩는다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>이름</em>.</p>
+          </div>
+        </section>
+
+
+    <div class="next-row">
+      <a href="/magazine/ACT/18/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">사도행전 18장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/ACT/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">사도행전 28장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/ACT/20/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">사도행전 20장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/ACT/19/',
+      title: '사도행전 19장',
+      excerpt: '두란노의 강론으로 말씀이 흥왕하고 마술책이 불태워진다. 그러자 은장색의 손에서 "크다 에베소 사람의 아데미여"라는 두 시간의 외침이 일어난다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+
+
+
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

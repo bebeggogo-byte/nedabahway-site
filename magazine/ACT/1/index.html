@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>사도행전 1장 — Observatory | 네다바웨이</title>
+<meta name="description" content="사도행전 1장을 9단계로 같이 관찰합니다. 들려 올라가심, "성령이 임하시면 권능을 받고", 그리고 제비 뽑힌 맛디아.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/ACT/1/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/ACT/">사도행전</a> · 1장</div>
+      <h1>사도행전 1장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">ACT-001 · 역사서(신약) · 헬라어</div>
+      <p class="essence">올려다보던 눈을 땅끝으로 돌리는 장. 들려 올라가신 자리에서 "오직 성령이 임하시면"이 약속으로 남고, 빈 자리는 다시 채워진다.</p>
+    </header>
+
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-001</p>
+<p>book: 사도행전</p>
+<p>book_en: Acts</p>
+<p>chapter: 1</p>
+<p>bible_block: 역사서(신약)</p>
+<p>canon: 신약</p>
+<p>genre: 내러티브</p>
+<p>language: 헬라어</p>
+<p>verse_count: 26</p>
+<p>observed_facts_count: 23</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>greek_terms: [martys, dynamis, parousia, pneuma, klēros, epangelia, analambanō, apostolos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-31</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>사도행전 1장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘부터 사도행전입니다. 1장을 끝까지 낭독하고, 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 1:1~26, 약 4분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 위를 올려다보는 느낌으로 시작했어요. 들려 올라가시고, 다들 하늘을 쳐다봐요. 그런데 천사가 "왜 서서 하늘을 보느냐" 하면서 시선을 내려놓게 해요.</p>
+
+<p><strong>P01 한나래</strong>: 저는 '기다림'의 공기였어요. "예루살렘을 떠나지 말고 기다리라"(4절)는 말이 처음에 또렷했어요. 무언가 하기 전에 멈춰 서 있는 분위기요.</p>
+
+<p><strong>P04 최현국</strong>: 앞은 승천 장면이고, 뒤는 다락방에 모여 한 사람을 뽑는 장면이에요. 큰 사건 → 모임 → 빈 자리 채움의 순서예요.</p>
+
+<p><strong>P05 김미영</strong>: "성령"이라는 단어가 처음과 끝에 다 걸려 있었어요. 시작은 "성령으로 명하시고"(2절), 약속은 "성령이 임하시면"(8절)이요.</p>
+
+<p><strong>P02 이진우</strong>: "권능을 받고 … 증인이 되리라"(8절)가 골격처럼 들렸습니다. 예루살렘 → 유대 → 사마리아 → 땅끝, 동심원이 또렷했어요.</p>
+
+<p><strong>P11 나경아</strong>: 저는 끝의 '제비뽑기'가 의외였어요. 기도한 다음에 제비를 뽑는다는 게요. 두 방식이 한 장면에 같이 있었어요.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. 그 첫 느낌을 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대는 어디인지요.</p>
+
+<p><strong>P05 김미영</strong>: 처음은 야외예요. 12절에 "감람원이라 하는 산"이 나오고, 거기서 "안식일에 가기 알맞은 길"만큼 예루살렘에 가깝다고 해요. 그다음은 실내, 13절의 "다락방"이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 시간은 부활 후 사십 일이 깔려 있어요. 3절에 "사십 일 동안 그들에게 보이시며 하나님 나라의 일을 말씀하시니라" 하고요. 그리고 8절·5절의 "몇 날이 못 되어"가 오순절을 앞에 둬요.</p>
+
+<p><strong>P04 최현국</strong>: 소품이라기보다 인물 명단이 소품처럼 박혀 있어요. 13절에 열한 사도의 이름이 다 나와요. 베드로·요한·야고보·안드레… 그리고 14절에 "여자들과 예수의 어머니 마리아와 예수의 아우들"이요.</p>
+
+<p><strong>P11 나경아</strong>: 16-20절은 다른 결의 소품이에요. 유다의 죽음과 "피밭"(아겔다마, 19절)이 나오고, 시편 두 구절(69편·109편)이 20절에 인용돼요. 그리고 마지막 소품은 "제비"(26절)예요.</p>
+
+<p><strong>P01 한나래</strong>: 무대가 위에서 아래로 옮겨가요. 9-11절은 하늘을 쳐다보는 야외, 13-26절은 모여 앉은 다락방. 올려다봄에서 둘러앉음으로요.</p>
+
+<p><strong>P02 이진우</strong>: 1-2절이 앞 책을 되짚어요. "데오빌로여 내가 먼저 쓴 글에는"이라며, 누가복음과 이어지는 매듭을 1절이 보여줘요. 두 책을 잇는 다리예요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 하나 두면, 8절의 "권능"은 헬라어 <em>dynamis</em>, "증인"은 <em>martys</em>입니다. <em>martys</em>는 후대에 '순교자'라는 뜻으로 자라난 단어예요. 그리고 11절의 "오시리라"와 관련해 본장 전체에 '올라가심/오심'의 결(<em>analambanō</em>, 들려 올려지다)이 깔립니다. 배경으로만 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: <em>dynamis</em>와 <em>martys</em>의 자리, 그리고 올려다봄에서 둘러앉음으로의 무대 이동을 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계로 보이시는지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "예수께서 행하시며 가르치시기를 시작하심부터"로, 예수의 행하심으로 열려요. 26절은 "제비 뽑아 맛디아를 얻으니 그가 열한 사도의 수에 들어가니라"로, 사람의 채움으로 닫힙니다.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 떠나가시는 한 분이고, 끝은 다시 채워지는 열둘이에요. 한 분이 올라가신 뒤, 빈 자리가 메워지며 공동체가 다시 온전해져요.</p>
+
+<p><strong>P01 한나래</strong>: 가운데 8절의 약속이 있고, 그 약속을 받은 무리가 끝에서 자기 자리를 정돈해요. 약속을 받고, 채비를 갖추는 흐름으로 끝이 닫혀요.</p>
+
+<p><strong>성령일 선교사</strong>: 떠나가심에서 채워짐으로, 약속에서 채비로 좁혀지는 폭을 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 예수, 사도들, "흰 옷 입은 두 사람"(10절, 천사), 여자들과 마리아와 예수의 아우들(14절), 베드로(15절), 그리고 후보 두 사람 — 바사바라 하는 요셉과 맛디아(23절)예요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황은 질문에서 시작해요. 6절에 사도들이 "주께서 이스라엘 나라를 회복하심이 이때니이까" 묻고, 예수께서 "때와 시기는 너희가 알 바 아니요"(7절) 하세요. 묻는 결과 답하시는 결이 살짝 어긋나요.</p>
+
+<p><strong>P04 최현국</strong>: 사상은 "증인"이에요. 8절 "오직 성령이 임하시면 너희가 권능을 받고 … 땅끝까지 이르러 내 증인이 되리라". 이 한 절이 책 전체의 설계도처럼 놓여요.</p>
+
+<p><strong>P11 나경아</strong>: "임하시면"은 헬라어로 성령이 '위에 임함(<em>eperchomai</em>)'의 결이고, "권능"은 <em>dynamis</em>예요. 그리고 4절의 "아버지께서 약속하신 것", 곧 <em>epangelia</em>(약속)가 8절의 성령과 묶입니다. 어휘 분포만 기록합니다.</p>
+
+<p><strong>P02 이진우</strong>: 베드로의 말(16-22절)이 길어요. 유다의 일을 시편으로 풀고("그의 직분을 타인이 취하게 하소서", 20절), 빈 자리를 채울 자격을 정해요 — "요한의 세례로부터 … 부활하심을 증언할 한 사람"(21-22절). 증인의 조건이 또렷해요.</p>
+
+<p><strong>P11 나경아</strong>: 24-25절에서 "뭇 사람의 마음을 아시는 주여"라 기도한 뒤 "제비 뽑아"(26절, <em>klēros</em>)로 정합니다. 기도와 제비가 한 장면에 같이 놓이는 것까지만 관찰로 남깁니다.</p>
+
+<p><strong>성령일 선교사</strong>: 증인의 조건과, 기도와 제비의 병치를 어휘 표시로만 두고, 해석은 서두르지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 다섯 컷 정도로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-5절)</strong>: 앞 책 되짚음, 사십 일 보이심, "예루살렘을 떠나지 말고 성령을 기다리라"</li>
+<li><strong>컷 2 (6-8절)</strong>: "이때니이까" 물음, "때는 알 바 아니다", "성령이 임하시면 … 땅끝까지 증인"</li>
+<li><strong>컷 3 (9-11절)</strong>: 들려 올라가심, 구름, 하늘을 쳐다봄, "왜 서서 하늘을 보느냐"</li>
+<li><strong>컷 4 (12-14절)</strong>: 감람산에서 돌아옴, 다락방, 열한 사도와 여자들·마리아, 한마음으로 기도에 힘씀</li>
+<li><strong>컷 5 (15-26절)</strong>: 베드로의 일어섬, 유다의 일과 시편, 자격 제시, 두 후보, 기도, 제비 → 맛디아</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 1-3이 승천 묶음, 컷 4-5가 다락방 묶음이에요. 둘로도 묶입니다.</p>
+
+<p><strong>성령일 선교사</strong>: 그 두 묶음을 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 11절에서 "이렇게 가심을 본 그대로 오시리라" 해요. 떠나가심과 오심이 같은 모양으로 묶여요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 왜 "여자들과 마리아"(14절)가 굳이 명시될까요. 열한 사도만이 아니라 더 넓은 무리가 함께 기다리는 게 적혀 있어서요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 19절의 "아겔다마"는 아람어로 "피밭"이라고 본문이 직접 풀어 줘요. 누가가 헬라어 독자를 위해 아람어 지명을 번역해 둔 드문 대목이에요. 배경으로만 둡니다.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 15절에 "모인 무리의 수가 약 백이십 명"이라고 숫자가 박혀 있어요. 다락방의 규모가 적혀요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 21-22절이 후보의 자격을 "요한의 세례로부터 승천하신 날까지" 함께한 사람으로 정하는데, 왜 그 기간이 기준일까요. 까닭은 본문이 더 말하지 않아요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 26절이 걸려요. 제비를 뽑았는데, 그 뒤로 사도행전에서 제비뽑기가 다시 나오지 않아요. 오순절(2장) 이후엔 성령이 직접 이끄셔서요. 위치만 기록할게요.</p>
+
+<p><strong>P11 나경아</strong>: 26절의 "제비"가 <em>klēros</em>인데, 이 단어는 '몫·기업'이라는 뜻도 있어요. 25절의 "이 직무"(<em>diakonia</em>)와 같이 놓이는 것까지만 관찰로 남기고, 관계는 보류합니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 예수께서 사십 일 동안 보이시며 하나님 나라를 말씀하시고, "예루살렘을 떠나지 말고 성령을 기다리라" 하십니다. 사도들이 "이스라엘을 회복하실 때가 이때입니까" 묻자, "때는 너희가 알 바 아니요, 성령이 임하시면 권능을 받고 땅끝까지 증인이 되리라" 하십니다.</p>
+
+<p><strong>P01 한나래</strong>: 말씀을 마치시자 그들이 보는데 올려져 가시고, 구름이 가려 보이지 않습니다. 다들 하늘을 쳐다보는데, 흰 옷 입은 두 사람이 "갈릴리 사람들아, 왜 서서 하늘을 보느냐, 본 그대로 오시리라" 합니다.</p>
+
+<p><strong>P04 최현국</strong>: 그들이 감람산에서 예루살렘으로 돌아와 다락방에 모입니다. 열한 사도와 여자들과 예수의 어머니와 아우들이 한마음으로 기도에 힘씁니다.</p>
+
+<p><strong>P02 이진우</strong>: 그 무렵 베드로가 백이십 명 가운데 일어나, 유다의 일을 시편으로 풀고 "그의 직분을 다른 이가 맡게 하라" 합니다. 그리고 요한의 세례부터 승천까지 함께한 자, 부활의 증인이 될 한 사람을 세우자고 합니다.</p>
+
+<p><strong>P11 나경아</strong>: 바사바 요셉과 맛디아 두 사람을 세우고, "뭇 사람의 마음을 아시는 주여, 주께서 택하신 자를 보이소서" 기도한 뒤 제비를 뽑으니 맛디아가 뽑혀 열한 사도의 수에 듭니다. 빈 자리가 채워지는 한 컷으로 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 들려 올라가신 자리에서 올려다보던 눈이, 약속을 받고 둘러앉아 빈 자리를 채우는 데까지 흐르는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "왜 서서 하늘을 보느냐"</p>
+<p><strong>P02 이진우</strong>: "땅끝까지 — 동심원으로 퍼지는 증인"</p>
+<p><strong>P04 최현국</strong>: "들려 올라가심, 둘러앉아 기다림"</p>
+<p><strong>P05 김미영</strong>: "성령으로 시작해 성령을 기다리며"</p>
+<p><strong>P07 오지혜</strong>: "빈 자리가 다시 채워지다"</p>
+<p><strong>P11 나경아</strong>: "<em>Dynamis · Martys · Epangelia</em> — 권능·증인·약속"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "올려다보던 눈을 땅끝으로, 그리고 채워지는 자리"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 그 산과 다락방을 천천히 걸으며 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 저는 하늘만 쳐다보며 서 있던 자리에서 시선을 거두어 주시기를 구합니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-001</p>
+<p>book: 사도행전</p>
+<p>chapter: 1</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>사도행전 1장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대는 감람산(12절) → 다락방(13절)으로 옮겨간다. 올려다봄(야외) → 둘러앉음(실내).</li>
+<li>시간 배경 = 부활 후 사십 일(3절), 오순절을 앞둔 "몇 날이 못 되어"(5절).</li>
+<li>인물 명단이 소품처럼 박힘 — 열한 사도(13절), 여자들·마리아·예수의 아우들(14절).</li>
+<li>"아겔다마=피밭"(19절), 시편 69·109편 인용(20절), 제비(26절).</li>
+<li>1-2절이 앞 책(누가복음)을 되짚으며 두 책을 잇는다.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>위를 올려다봄으로 열리고("하늘을 쳐다보거늘", 10절), 시선이 내려와 둘러앉음으로 닫힘.</li>
+<li>'기다림'의 공기 — "성령을 기다리라"(4절).</li>
+<li>승천(큰 사건) → 다락방 모임 → 빈 자리 채움의 순서.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "예수께서 행하시며 가르치시기를 시작하심부터" — 예수의 행하심으로 열림.</li>
+<li>26절: "제비 뽑아 맛디아를 얻으니 … 열한 사도의 수에 들어가니라" — 사람의 채움으로 닫힘.</li>
+<li>떠나가시는 한 분 → 다시 채워지는 열둘. 약속을 받고 채비를 갖추는 흐름.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 예수 / 사도들 / 흰 옷 입은 두 사람(10) / 여자들·마리아·아우들(14) / 베드로(15) / 요셉·맛디아(23).</li>
+<li>물음과 답의 어긋남 — "이스라엘 회복이 이때니이까"(6) ↔ "때는 알 바 아니다"(7).</li>
+<li>핵심 사상 = 증인 — "성령이 임하시면 권능을 받고 … 땅끝까지 증인"(8절). 책 전체의 설계도.</li>
+<li>증인의 자격 — 요한의 세례부터 승천까지 함께한 자, 부활의 증인(21-22절).</li>
+<li>기도와 제비가 한 장면에 — "마음을 아시는 주여"(24) → 제비(<em>klēros</em>, 26).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-5): 앞 책 되짚음, 사십 일 보이심, "성령을 기다리라".</li>
+<li>컷 2 (6-8): "이때니이까", "때는 알 바 아니다", "땅끝까지 증인".</li>
+<li>컷 3 (9-11): 들려 올라가심, 구름, "왜 서서 하늘을 보느냐".</li>
+<li>컷 4 (12-14): 다락방, 열한 사도·여자들·마리아, 한마음 기도.</li>
+<li>컷 5 (15-26): 베드로 일어섬, 유다의 일·시편, 자격, 두 후보, 기도, 제비 → 맛디아.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>dynamis</em>(δύναμις) — 권능. 8절 "권능을 받고".</li>
+<li><em>martys</em>(μάρτυς) — 증인. 8·22절. 후대에 '순교자'로 자라남(배경).</li>
+<li><em>epangelia</em>(ἐπαγγελία) — 약속. 4절 "아버지께서 약속하신 것".</li>
+<li><em>pneuma</em>(πνεῦμα) — 성령. 2·5·8·16절 거듭.</li>
+<li><em>analambanō</em>(ἀναλαμβάνω) — 들려 올려지다. 2·11·22절(승천).</li>
+<li><em>klēros</em>(κλῆρος) — 제비·몫·기업. 26절.</li>
+<li><em>apostolos</em>(ἀπόστολος) — 보냄받은 자, 사도. 2·26절.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>승천(1-11) → 다락방·기도(12-14) → 빈 자리 채움(15-26)의 세 묶음.</li>
+<li>8절의 동심원 — 예루살렘 → 유대 → 사마리아 → 땅끝. 책 전체의 지리적 설계도.</li>
+<li>"하늘을 보다/오시리라"(9-11)가 올라감·오심을 한 모양으로 묶음.</li>
+<li>베드로의 시편 인용(20절) — 시 69:25, 시 109:8.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>"아겔다마=피밭"(19절)은 아람어 지명을 누가가 헬라어 독자에게 풀어 준 대목 — 배경.</li>
+<li>"안식일에 가기 알맞은 길"(12절)은 안식일 보행 거리 관습(약 1km) — 배경.</li>
+<li>제비뽑기는 구약의 직무·기업 분배 방식(레위·여호수아) — 배경으로만.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>행 1:8 ↔ 행 2(오순절)·8(사마리아)·13(땅끝) — 동심원의 펼쳐짐.</li>
+<li>행 1:11 ↔ 눅 24:50-51 (승천 장면)</li>
+<li>행 1:20 ↔ 시 69:25 / 시 109:8 (유다의 직분)</li>
+<li>행 1:5 ↔ 행 11:16 (요한의 물세례 ↔ 성령세례)</li>
+<li>행 1:1 ↔ 눅 1:1-4 (데오빌로, 두 책의 연결)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>예수께서 사십 일 동안 보이시며 하나님 나라를 말씀하시고 "예루살렘을 떠나지 말고 성령을 기다리라" 하신다. "이스라엘을 회복하실 때가 이때입니까" 하는 물음에 "때는 너희가 알 바 아니요, 성령이 임하시면 권능을 받고 땅끝까지 증인이 되리라" 하신다. 말씀을 마치시자 올려져 가시고 구름이 가린다. 하늘을 쳐다보는 그들에게 흰 옷 입은 두 사람이 "왜 서서 하늘을 보느냐, 본 그대로 오시리라" 한다. 그들이 다락방에 모여 열한 사도와 여자들과 마리아와 한마음으로 기도한다. 베드로가 백이십 명 가운데 일어나 유다의 일을 시편으로 풀고, 부활의 증인이 될 한 사람을 세우자 한다. 요셉과 맛디아를 세워 기도한 뒤 제비를 뽑으니 맛디아가 뽑혀 열한 사도의 수에 든다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"성령이 임하시면 — 땅끝까지 증인, 채워지는 자리"</strong></li>
+<li>초벌 부제: "올려다보던 눈을 땅끝으로, 그리고 채워지는 자리"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (7개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (안식일 보행 거리·아겔다마·시편 인용·동심원 구조)</li>
+<li>[x] 미해결 질문 1개 이상 (open_questions 6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 5개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>8절의 "땅끝까지 증인"이 선교 구호로 굳지 않도록 → 동심원 지리 구조만 기록.</li>
+<li>제비뽑기(26절)를 의사결정법 교훈으로 일반화하지 않음 → 기도와 제비의 병치만 보존.</li>
+<li>"때는 알 바 아니다"(7절)의 종말 논의는 보류, 물음·답의 어긋남만 기록.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ACT-001</p>
+<p>book: 사도행전</p>
+<p>chapter: 1</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>사도행전 1장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 왜 "여자들과 마리아"(14절)가 명시되는가?</h2>
+
+<ul>
+<li>열한 사도만이 아니라 더 넓은 무리가 함께 기다린다고 적힌다.</li>
+<li>명시의 까닭은 답하지 않고 보존.</li>
+</ul>
+
+<h2>Q2. "때와 시기는 알 바 아니다"(7절)는 물음에 어떻게 답하는가?</h2>
+
+<ul>
+<li>회복의 '때'를 묻는데, '증인됨'으로 답이 옮겨간다.</li>
+<li>묻는 결과 답하시는 결의 어긋남만 기록.</li>
+</ul>
+
+<h2>Q3. 후보의 자격(21-22절)은 왜 그 기간으로 정해지는가?</h2>
+
+<ul>
+<li>"요한의 세례부터 승천까지"가 기준이 된다.</li>
+<li>기간 설정의 까닭은 본문이 더 말하지 않음. 위치만 보존.</li>
+</ul>
+
+<h2>Q4. 기도와 제비(24-26절)는 어떻게 함께인가?</h2>
+
+<ul>
+<li>마음을 아시는 주께 기도한 뒤 제비를 뽑는다.</li>
+<li>두 방식의 병치만 기록, 관계는 보류.</li>
+</ul>
+
+<h2>Q5. 제비뽑기는 왜 이후 다시 나오지 않는가?</h2>
+
+<ul>
+<li>2장 오순절 이후 성령이 직접 이끄신다.</li>
+<li>위치의 변화만 관찰로 남기고, 의미는 보류.</li>
+</ul>
+
+<h2>Q6. "본 그대로 오시리라"(11절)의 '그대로'는 무엇을 가리키는가?</h2>
+
+<ul>
+<li>올라가심과 오심이 같은 모양으로 묶인다.</li>
+<li>'그대로'의 내용은 답하지 않고 분포만 보존.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">올려다보던 눈을 땅끝으로 — 약속과 빈 자리.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body">
+            <p>---</p>
+<p>sim_id: ACT-001</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-31</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 사도행전 1장은 들려 올라가신 자리에서 <em>올려다보던 눈을 땅끝으로 돌리고, 빈 자리를 다시 채우는</em> 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 사십 일의 보이심으로 열리고, "성령이 임하시면 권능을 받고 땅끝까지 증인이 되리라"는 약속을 동심원처럼 펼쳐 둔다. 그 한 분이 구름에 가려 올라가시자 무리는 하늘을 쳐다보지만, "왜 서서 하늘을 보느냐"는 음성이 시선을 땅으로 내려놓는다. 그들은 다락방에 둘러앉아 기도하고, 베드로의 일어섬과 제비뽑기로 빈 자리가 다시 채워진다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>감람산(12) → 다락방(13). 사십 일(3), 오순절 앞둠(5). 인물 명단·아겔다마(19)·시편(20)·제비(26).</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>올려다봄 → 둘러앉음. '기다림'의 공기. 승천 → 모임 → 채움.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 예수의 행하심(1). 끝 — 맛디아의 채움(26). 떠나심 → 채워짐.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>예수 / 사도 / 두 사람(10) / 여자들·마리아 / 베드로 / 요셉·맛디아. 사상 = 증인(8). 기도와 제비.</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 기다리라(1-5). 컷 2 땅끝 증인(6-8). 컷 3 승천(9-11). 컷 4 다락방(12-14). 컷 5 맛디아(15-26).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>"본 그대로 오시리라"(11). 백이십 명(15). 아겔다마=피밭(19). <em>klēros</em>·제비의 위치.</td></tr>
+<tr><td>7 동영상</td><td>사십 일 → 약속 → 승천 → 다락방 기도 → 빈 자리 채움으로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "성령이 임하시면 — 땅끝까지 증인, 채워지는 자리". 부제 — "올려다보던 눈을 땅끝으로".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>산과 다락방을 걸으며 하늘만 쳐다보던 자리를 본다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 올려다봄에서 땅끝으로</strong>: 무리는 하늘을 쳐다보지만(10절), 천사의 음성과 8절의 약속이 시선을 땅끝의 증인됨으로 돌린다. 올려다봄과 나아감이 한 자리에 있다.</p>
+<p>2. <strong>결 2 — 약속과 권능</strong>: "아버지께서 약속하신 것"(4절, <em>epangelia</em>)과 "권능을 받고"(8절, <em>dynamis</em>)가 성령으로 묶인다. 기다림과 보냄이 한 약속 안에 있다.</p>
+<p>3. <strong>결 3 — 빈 자리의 채움</strong>: 떠나가심 뒤에 유다의 자리가 비고, 기도와 제비로 맛디아가 채운다. 본문은 떠남에서 채움으로 정돈된다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>행 2</strong>(오순절, 약속의 성취), <strong>행 8</strong>(사마리아), <strong>행 11:16</strong>(요한의 세례 ↔ 성령세례).</li>
+<li>다른 권 — <strong>눅 24:50-51</strong>(승천), <strong>시 69:25 / 109:8</strong>(유다의 직분, 20절 인용).</li>
+<li>정경 흐름 — 1:8의 동심원(예루살렘→유대·사마리아→땅끝)은 사도행전 전체의 목차로, 책의 진행을 미리 펼쳐 둔다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 사십 일의 가르침을 들으며 한 사람이 선다.</li>
+<li><strong>멈춤 1</strong>: "성령을 기다리라"는 말 앞에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: 구름이 가리고 하늘을 쳐다보는 자리에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: "왜 서서 하늘을 보느냐"는 음성 앞에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *기다림은 멈춤이 아니라 채비다*는 결을 손에 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *하늘을 쳐다보다 시선을 내려놓는 자리* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 예수께서 사십 일 보이시고 들려 올라가신다</li>
+<li>[x] "성령이 임하시면 권능을 받고 땅끝까지 증인이 되리라"</li>
+<li>[x] "왜 서서 하늘을 보느냐"가 시선을 내려놓는다</li>
+<li>[x] 다락방에 한마음으로 모여 기도한다</li>
+<li>[x] 베드로가 일어나 빈 자리를 말한다</li>
+<li>[x] 기도와 제비로 맛디아가 뽑힌다</li>
+<li>[x] 끝은 채워진 열둘이다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>성령의 약속</em>.</p>
+          </div>
+        </section>
+
+
+    <div class="next-row">
+      <a href="/magazine/ACT/"><div class="nav-kicker">↑ 권 차례</div><div class="nav-title">권 차례로</div><div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div></a>
+      <a href="/magazine/ACT/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">사도행전 28장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/ACT/2/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">사도행전 2장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/ACT/1/',
+      title: '사도행전 1장',
+      excerpt: '올려다보던 눈을 땅끝으로 돌리는 장. 들려 올라가신 자리에서 \"오직 성령이 임하시면\"이 약속으로 남고, 빈 자리는 다시 채워진다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+
+
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
