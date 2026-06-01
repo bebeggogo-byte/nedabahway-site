@@ -10,6 +10,9 @@ from bs4 import BeautifulSoup
 
 ACTIVE = ["P01","P02","P04","P05","P07","P11"]
 PLACEHOLDER_ESSENCE = "본문이 자기 시간 안에서 풀리는 결."
+# 깊이 바닥(depth floor): 구조만 갖춘 얄팍한 장이 100점을 통과하는 것을 막는다.
+# 실제 전(全)심층 장은 본문 30KB 이상(최소 시편도 38KB+), 얄팍본은 16KB 안팎.
+MIN_BYTES = 30000
 
 def score(path):
     s = open(path, encoding="utf-8").read()
@@ -58,11 +61,15 @@ def main():
         if not os.path.exists(path):
             print(f"✗ {path}: 파일 없음"); allpass=False; continue
         total, items = score(path)
-        status = "✅ PASS" if total==100 else "❌ FAIL"
-        if total!=100: allpass=False
+        sz = os.path.getsize(path)
+        thin = sz < MIN_BYTES
+        ok100 = (total==100 and not thin)
+        status = "✅ PASS" if ok100 else "❌ FAIL"
+        if not ok100: allpass=False
         ch = re.search(r'magazine/(\w+)/(\d+)/', path)
         tag = f"{ch.group(1)} {ch.group(2)}장" if ch else path
-        print(f"{status} {tag}: {total}/100")
+        note = f" (깊이 부족: {sz}B < {MIN_BYTES}B)" if thin else ""
+        print(f"{status} {tag}: {total}/100{note}")
         if total!=100:
             for label,pts,ok in items:
                 if not ok: print(f"    -{pts} {label}")
