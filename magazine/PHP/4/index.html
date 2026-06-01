@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>빌립보서 4장 — Observatory | 네다바웨이</title>
+<meta name="description" content="빌립보서 4장을 9단계로 같이 관찰합니다. 아무것도 염려 말라 — 감사로 아뢰라, 하나님의 평강(eirene), 어떤 형편에든지 자족(autarkes), 내게 능력 주시는 자.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/PHP/4/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/PHP/">빌립보서</a> · 4장</div>
+      <h1>빌립보서 4장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">PHP-004 · 서신서 · 헬라어</div>
+      <p class="essence">아무것도 염려 말라, 감사로 아뢰라 — 모든 지각에 뛰어난 하나님의 평강(<em>eirene</em>). 어떤 형편에든지 자족하기를 배웠노라(<em>autarkes</em>).</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>도착점의 무대.</strong> 빌립보서 전체 흐름(spine)의 마지막 국면 — 염려에서 평강으로, 궁핍에서 자족으로의 도착점이다. 감사·기쁨·평강·자족이 이 장의 소재다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: PHP-004</p>
+<p>book: 빌립보서</p>
+<p>book_en: Philippians</p>
+<p>chapter: 4</p>
+<p>bible_block: 서신서</p>
+<p>canon: 신약</p>
+<p>genre: 서신·권면·감사·마무리</p>
+<p>language: 헬라어</p>
+<p>verse_count: 23</p>
+<p>observed_facts_count: 26</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>greek_terms: [eirene, autarkes, euodia, syntyche, merimnate, chairete, logizesthe, koinonia, areskei, panta ischyo, plerophoria]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-01</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>빌립보서 4장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 빌립보서 4장이에요. 3장이 자랑을 배설물로 내려놓고 푯대를 향해 달리는 것이었다면, 4장은 그 달리기의 도착점 — 어떤 형편에서도 기쁨·평강·자족으로 사는 것이에요. 먼저 끝까지 낭독하고 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 4:1~23, 약 5분)</p>
+
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P01 한나래</strong>: 6절이 먼저 들어왔어요. "아무것도 염려하지 말고 오직 모든 일에 기도와 간구로 너희 구할 것을 감사함으로 하나님께 아뢰라." 그 다음 7절 "그리하면 모든 지각에 뛰어난 하나님의 평강이 … 너희 마음과 생각을 지키시리라"가요. 평강이 지킨다는 결이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 4절 "주 안에서 항상 기뻐하라 내가 다시 말하노니 기뻐하라"가 먼저였어요. "다시 말하노니"가 강조예요. 그리고 11절 "어떠한 형편에든지 자족하기를 배웠노라"에서 "배웠다"는 표현이 독특해요 — 저절로 된 것이 아니에요.</p>
+
+<p><strong>P04 최현국</strong>: 중간에 유오디아와 순두게 이름이 나와요(2절). 두 사람 사이를 화해시키라는 권면이에요. 그것과 기쁨·평강의 권면이 같은 장에 있는 것이 의외예요.</p>
+
+<p><strong>P02 이진우</strong>: 12-13절이 빌립보서 전체의 도착점 같아요. "비천에 처할 줄도 알고 풍부에 처할 줄도 아노니 모든 일 곧 배부름과 배고픔과 풍부와 궁핍에도 처할 줄 아는 일체의 비결을 배웠노라 내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라."</p>
+
+<p><strong>P05 김미영</strong>: 소품으로 "기쁨"(4절)·"관용"(5절)·"염려"(6절)·"기도·간구·감사"(6절)·"평강"(<em>eirene</em>, 7절)·"좋은 것들"(8절 목록)·"자족"(<em>autarkes</em>, 11절)·"능력 주시는 자"(13절)·"향기로운 제물"(18절)이에요.</p>
+
+<p><strong>P11 나경아</strong>: "염려"가 헬라어 <em>merimnate</em>예요 — 마음이 쪼개지다·분열되다는 뉘앙스가 있어요. 6절에 나와요. "평강"은 <em>eirene</em>(7절). "자족"은 <em>autarkes</em>(11절) — 자기 스스로 충분한·자급자족이에요. 그런데 13절 "내게 능력 주시는 자 안에서"와 연결돼요 — 자기 안의 힘이 아니에요.</p>
+
+<p><strong>성령일 선교사</strong>: 기쁨·<em>eirene</em>·<em>autarkes</em>·능력 주시는 자 — 이 공기를 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대와 소재를 짚어 보지요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 마무리 서신이에요. 빌립보 교회에 대한 마지막 권면과 감사, 결론이에요. 2절에 유오디아와 순두게라는 구체적 이름이 나와요. 개인 수준에서 화해 권면이 있고, 18절에 에바브로디도가 가져온 선물 이야기가 있어요.</p>
+
+<p><strong>P05 김미영</strong>: 소품이에요. "유오디아"(<em>Euodia</em>)·"순두게"(<em>Syntyche</em>)·"참된 멍에를 같이 멘 자"(3절)·"기도"·"간구"·"감사"(6절)·"평강"(<em>eirene</em>, 7절)·8절의 "참된 것·정직한 것·옳은 것·정결한 것·사랑할 만한 것·칭찬할 만한 것"·"자족"(<em>autarkes</em>, 11절)·"능력 주시는 자"(13절)·"향기로운 제물"(18절)이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 8절이 유독 눈에 띄어요. 참된 것·정직한 것·옳은 것·정결한 것·사랑할 만한 것·칭찬할 만한 것의 목록이에요. "무엇에든지 이것들을 생각하라(<em>logizesthe</em>)"고 해요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 배경이에요. 11절 <em>autarkes</em>(αὐτάρκης) — 헬라 철학(스토아)에서 자급자족·자기 충족의 덕목이에요. 그런데 13절에서 "내게 능력 주시는 자(<em>enischyonti</em>) 안에서"라고 연결돼요. 바울이 철학적 자족 개념을 그리스도 안의 자족으로 재정의하는 구조 — 배경만. 7절 <em>eirene</em>는 히브리 <em>shalom</em>의 헬라어 번역어 — 완전함·전인적 평화예요.</p>
+
+<p><strong>P02 이진우</strong>: 골격으로 보면 — 권면(1-3: 굳건히 서라·유오디아·순두게 화해) → 기쁨·관용·평강 권면(4-9절) → 자족과 능력 주시는 자(10-13절) → 선물에 대한 감사(14-20절) → 마무리 인사(21-23절)예요.</p>
+
+<p><strong>P01 한나래</strong>: 9절 "너희는 내게 배우고 받고 듣고 본 바를 행하라 그리하면 평강의 하나님이 너희와 함께 계시리라"가 권면의 결이에요. 평강이 따라온다는 것이에요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>merimnate</em>·<em>eirene</em>·<em>autarkes</em>·<em>logizesthe</em>와 염려에서 평강으로·궁핍에서 자족으로를 배경 자료로 남겨 두겠습니다.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절의 관계는 어떤지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절 시작 — "그러므로 나의 사랑하고 사모하는 형제들, 나의 기쁨이요 면류관이여 이와 같이 주 안에 서라 사랑하는 자들아." 23절 끝 — "주 예수 그리스도의 은혜가 너희 심령에 있을지어다."</p>
+
+<p><strong>P04 최현국</strong>: 시작은 "주 안에 서라"는 권면이고, 끝은 "주 예수 그리스도의 은혜가 심령에 있을지어다"라는 축원이에요. "주 안에 서라"에서 "주의 은혜가 함께하라"로 — 권면과 축원이 수미상관이에요.</p>
+
+<p><strong>P01 한나래</strong>: 1절 "나의 기쁨이요 면류관"이 너무 따뜻해요. 그 애정이 23절 은혜 축원까지 흐르는 것 같아요.</p>
+
+<p><strong>성령일 선교사</strong>: 주 안에 서라는 권면에서 은혜 축원으로 가는 폭을 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물과 사상을 살펴보지요.</p>
+
+<p><strong>P05 김미영</strong>: 인물 — 바울·빌립보 성도들·유오디아(<em>Euodia</em>)·순두게(<em>Syntyche</em>)·"참된 멍에를 같이 멘 자"(3절)·글레멘드(3절)·에바브로디도(언급)·하나님·그리스도 예수예요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황층이에요. 유오디아와 순두게 두 여성 사이의 갈등이 있어요(2절). 그 상황에서 기쁨·관용·평강 권면이 나오고, 바울 자신의 자족 이야기가 나오고, 빌립보 교회가 보내준 선물에 대한 감사로 이어져요.</p>
+
+<p><strong>P02 이진우</strong>: 사상 핵이에요. 11-13절 — "배웠다"(<em>emathon</em>)는 동사가 자족을 설명해요. 어떠한 형편에든지 자족하기를 배웠다 — 타고난 것이 아니라 배운 것이에요. 그리고 13절 "내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라"(빌 4:13)가 PHP 전체의 도착 선언이에요.</p>
+
+<p><strong>P11 나경아</strong>: 원어로, <em>autarkes</em>(11절)는 스토아 철학의 자족 덕목인데 바울이 그 개념을 사용하면서도 13절 "내게 능력 주시는 자(<em>enischyonti</em>) 안에서"로 출처를 재설정해요. 자신 안의 힘이 아니라 그리스도 안의 능력이에요 — 배경만. 7절 <em>eirene</em>는 "모든 지각에 뛰어난"(<em>hyperechousa panta noun</em>)이라는 표현과 함께 나와요.</p>
+
+<p><strong>P04 최현국</strong>: 17절 "선물을 구하는 것이 아니라 너희에게 더하여지는 열매를 구하노라"가 독특해요. 선물 자체보다 빌립보 교회의 유익(열매)을 바울이 원한다는 것이에요.</p>
+
+<p><strong>P01 한나래</strong>: 19절 "나의 하나님이 그리스도 예수 안에서 영광 가운데 그 풍성한 대로 너희 모든 쓸 것을 채우시리라"가 마무리 약속이에요. PHP 전체를 관통한 기쁨이 약속으로 닫혀요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>eirene</em>·<em>autarkes</em>·"내게 능력 주시는 자"를 나란히 두겠습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 다섯 컷으로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-3절)</strong>: 권면 — 주 안에 서라·유오디아·순두게 화해·"참된 멍에를 같이 멘 자"</li>
+<li><strong>컷 2 (4-9절)</strong>: 기쁨·평강 권면 — "항상 기뻐하라"·관용·<em>merimnate</em> 말고 기도·<em>eirene</em>·<em>logizesthe</em></li>
+<li><strong>컷 3 (10-13절)</strong>: 자족 선언 — 배웠노라·<em>autarkes</em>·"내게 능력 주시는 자"</li>
+<li><strong>컷 4 (14-20절)</strong>: 빌립보 선물에 대한 감사 — 향기로운 제물·"나의 하나님이 채우시리라"</li>
+<li><strong>컷 5 (21-23절)</strong>: 마무리 인사·은혜 축원</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 2(평강)와 컷 3(자족)이 이 장의 신학적 핵이에요. 염려 → 기도·감사 → 평강, 그리고 형편 → 배움 → <em>autarkes</em>·능력 주시는 자의 두 흐름이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 두 흐름을 컷 옆에 적어 두지요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 6절 구조 — "아무것도 염려하지 말고" + "오직 모든 일에 기도와 간구로 너희 구할 것을 감사함으로 하나님께 아뢰라." <em>merimnate</em>의 반대가 기도·간구·감사예요. 염려의 대안이 기도라는 것이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 7절 "모든 지각에 뛰어난 하나님의 평강"이 "지킨다"(<em>phroureō</em>)는 것 — 평강이 수동적으로 받는 것인지 능동적으로 지키는 것인지 방향이 흥미로워요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로, 11절 <em>autarkes</em>는 헬라 스토아 철학의 핵심 덕목이에요. 바울이 이 개념을 차용하면서도 13절에서 "내게 능력 주시는 자 안에서"(<em>en tō enischyonti me</em>)로 전혀 다른 출처에 연결해요 — 배경으로만. 이것이 스토아 자족과 바울의 자족의 차이예요.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 8절 목록 — 참된 것·정직한 것·옳은 것·정결한 것·사랑할 만한 것·칭찬할 만한 것 — 이 목록이 상당히 광범위해요. "무엇에든지 이것들을 생각하라"는 <em>logizesthe</em>의 내용이에요. 생각하라는 것이 관조 명령이에요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 3절 "참된 멍에를 같이 멘 자"가 누구인지 본문이 밝히지 않아요. 개인인지 집단인지 확정하기 어려워요.</p>
+
+<p><strong>P05 김미영</strong>: 18절 "향기로운 제물"이에요. 빌립보 교회가 보낸 선물을 바울이 "향기로운 냄새"·"하나님이 받으실 만한 제물"로 표현해요. 구약 제사 언어가 선물 감사에 쓰여요.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: "나의 사랑하고 사모하는 형제들아 … 주 안에 서라"(1절)로 시작해요. 유오디아와 순두게에게 주 안에서 같은 마음을 품으라 권면하고(2절), 글레멘드와 함께 복음에 힘쓴 이들을 기억한다(3절)고 해요.</p>
+
+<p><strong>P01 한나래</strong>: 4절부터 기쁨·관용·평강 권면이에요. "주 안에서 항상 기뻐하라 … 주께서 가까우시니라"(4-5절). 아무것도 염려(<em>merimnate</em>)하지 말고 기도와 간구로 감사함으로 아뢰라(6절). "그리하면 모든 지각에 뛰어난 하나님의 평강(<em>eirene</em>)이 너희 마음과 생각을 지키시리라"(7절)고 해요.</p>
+
+<p><strong>P04 최현국</strong>: 8-9절에서 참된 것들을 생각하라(<em>logizesthe</em>) 권면해요. 내게 배우고 받고 듣고 본 바를 행하라, 그리하면 평강의 하나님이 함께하신다고 해요(9절).</p>
+
+<p><strong>P07 오지혜</strong>: 10-13절이 자족 선언이에요. 어떠한 형편에든지 자족하기를 배웠다(<em>autarkes</em>)고 해요. 비천에 처할 줄도 알고 풍부에 처할 줄도 아는 일체의 비결을 배웠다(12절). "내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라"(13절)가 선언이에요.</p>
+
+<p><strong>P02 이진우</strong>: 마지막으로 빌립보 교회의 선물에 감사하며(14-18절), "나의 하나님이 그리스도 예수 안에서 그 풍성한 대로 너희 모든 쓸 것을 채우시리라"(19절)고 약속을 전하고, 은혜 축원(23절)으로 닫아요.</p>
+
+<p><strong>성령일 선교사</strong>: 권면·화해 → 기쁨·염려 말고 기도 → <em>eirene</em> → 자족과 능력 주시는 자 → 감사와 채우심 약속의 흐름이 보입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "아무것도 염려 말고 감사로 아뢰라 — 하나님의 평강이 지키시리라"</p>
+<p><strong>P02 이진우</strong>: "어떤 형편에든지 자족(<em>autarkes</em>)하기를 배웠노라"</p>
+<p><strong>P04 최현국</strong>: "내게 능력 주시는 자 안에서 모든 것 — 자족의 출처"</p>
+<p><strong>P05 김미영</strong>: "향기로운 제물 — 나의 하나님이 채우시리라"</p>
+<p><strong>P07 오지혜</strong>: "항상 기뻐하라 — <em>eirene</em>가 마음을 지키리"</p>
+<p><strong>P11 나경아</strong>: "<em>Autarkes</em> — 스스로가 아닌 그리스도 안에서"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다.</p>
+
+<p>부제 제안은: "염려에서 평강으로, 궁핍에서 자족으로 — 어떤 형편에서도 기쁨의 도착점"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: "어떠한 형편에든지 자족하기를 배웠노라"(11절) 앞에 상상으로 서 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P01 한나래</strong>: (조용히) 나는 지금 어떤 형편에 있는가 — 그 형편에서 자족을 배우고 있는가 묻게 됩니다.</p>
+<p>— 그 순간 떠오른 것을 각자 마음에만 둡니다.</p>
+
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. 빌립보서 spine은 "그리스도의 낮아지심을 본받아, 어떤 형편에서도 복음의 진보와 자족의 기쁨으로 나아간다"예요. 4장은 그 spine의 <strong>마지막 국면이자 destination — '염려 말라·자족·평강'</strong>이 도착하는 자리예요. PHP destination("어떠한 형편에든지 자족하기를 배웠노라"·4:11)이 이 장에서 완성돼요. 이제 묻겠습니다. <strong>이 본문은 어디서 어디로 움직이는지요? 수면 아래에서 비치는 하나님의 의중과 심정은 무엇인지요?</strong></p>
+
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+
+<p><strong>P02 이진우</strong>: 구조로 보면, 4장은 <strong>"염려(<em>merimnate</em>)의 현실(6절) → 기도·감사 → 평강(<em>eirene</em>, 7절) / 궁핍의 현실(10-12절) → 배움 → 자족(<em>autarkes</em>, 11절)"</strong>의 두 흐름이에요. PHP spine의 마지막 국면 — "어떤 형편에서도 기쁨·자족"의 도착점이에요. 1장 "매임 속의 복음 진보"에서 4장 "어떤 형편에서도 자족"까지가 PHP 전체의 운동이에요.</p>
+
+<p><strong>P11 나경아</strong>: 원어로, 11절 <em>autarkes</em>와 13절 <em>enischyonti</em>의 관계가 중요해요. 스토아 자족은 자기 안의 힘에서 나오지만, 바울의 <em>autarkes</em>는 "내게 능력 주시는 자 안에서"예요 — 출처가 다른 자족이에요. PHP destination의 핵 — 어떤 형편에서도 그리스도 안에서 자족할 수 있다는 것이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 6-7절 구조가 중요해요. 염려 → 기도 → 평강이에요. 7절 "모든 지각에 뛰어난 하나님의 평강이 … 너희 마음과 생각을 지키시리라" — "지킨다"(<em>phroureō</em>)가 군사 경비 용어예요. 평강이 능동적으로 마음을 지킨다는 것이에요. PHP 흐름이 비추는 하나님의 심정 — "어떤 형편에서도 자족과 평강으로 부르시는" 의중이 이 장에 집중돼 있어요.</p>
+
+<p><strong>P01 한나래</strong>: 긴장이에요. 11절 "배웠다"(<em>emathon</em>) — 타고난 것이 아니라 배운 것이에요. 즉 배우는 과정이 있어야 자족이 온다는 것 — <strong>자족은 결과가 아니라 과정·배움</strong>이라는 긴장이에요. PHP spine의 "낮아지심을 본받아"가 있어야 "어떤 형편에서도 자족"이 온다는 방향이에요.</p>
+
+<p><strong>P04 최현국</strong>: 운동 한 동영상으로 — 화해 권면(1-3절) → 기쁨·염려 말고 기도·평강(<em>eirene</em>, 4-9절) → 자족(<em>autarkes</em>)·능력 주시는 자(10-13절) → 감사·채우심 약속(14-20절) → 은혜 축원(21-23절)이에요. <strong>PHP spine의 도착점 — "어떤 형편에서도 그리스도 안에서 기쁨·자족·평강"으로 완성되는</strong> 장이에요.</p>
+
+<p><strong>P05 김미영</strong>: 이 불이 타오르느냐 물으시니 — "나는 지금 염려(<em>merimnate</em>) 속에 있는가 아니면 기도·감사 안에서 <em>eirene</em>가 마음을 지키고 있는가, 그리고 어떤 형편에서 <em>autarkes</em>를 배우고 있는가" — 그 자리에서 멈춰 섭니다.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>염려에서 평강으로, 궁핍에서 자족으로 — 어떤 형편에서도 그리스도 안에서 기쁨·자족·평강에 도달하는</strong> 4장이 빌립보서 전체 spine의 도착점임을 손에 쥐고 오늘 관찰을 닫습니다.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2단계 — 첫 느낌.</strong> <strong>3단계 — 시작과 끝.</strong> <strong>4단계 — 등장인물·사상.</strong> <strong>5단계 — 장면 컷.</strong> <strong>6단계 — 의문·발견·정보.</strong> <strong>7단계 — 동영상.</strong></p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: PHP-004</p>
+<p>book: 빌립보서</p>
+<p>chapter: 4</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>빌립보서 4장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>마무리 서신 무대. 유오디아·순두게 화해 권면과 바울의 자족 이야기가 공존.</li>
+<li>소재: <em>merimnate</em>(염려)·<em>eirene</em>(평강)·<em>autarkes</em>(자족)·<em>logizesthe</em>(생각하라)·능력 주시는 자·향기로운 제물.</li>
+<li>소품: 유오디아·순두게·기도·간구·감사·8절 목록·"배웠다"(<em>emathon</em>)·"채우시리라"(19절).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>4절 "다시 말하노니 기뻐하라"의 강조.</li>
+<li>6-7절의 염려 → 기도 → 평강 흐름.</li>
+<li>11-13절 "배웠다"·<em>autarkes</em>·능력 주시는 자의 자족 선언.</li>
+<li>따뜻한 마무리 분위기 — 감사와 은혜 축원.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "나의 사랑하고 사모하는 형제들 … 주 안에 서라"</li>
+<li>23절: "주 예수 그리스도의 은혜가 너희 심령에 있을지어다"</li>
+<li>주 안에 서라는 권면에서 주의 은혜 축원으로.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 바울·빌립보 성도·유오디아(<em>Euodia</em>)·순두게(<em>Syntyche</em>)·"참된 멍에를 같이 멘 자"·글레멘드(3절)·하나님·그리스도 예수.</li>
+<li>상황: 유오디아·순두게 갈등(2절) → 기쁨·평강 권면(4-9) → 바울의 자족 이야기(10-13) → 빌립보 선물 감사(14-20).</li>
+<li>사상 핵 — 6-7절(염려→기도→평강)·11-13절(<em>autarkes</em>·능력 주시는 자).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-3): 주 안에 서라·유오디아·순두게·글레멘드.</li>
+<li>컷 2 (4-9): 기쁨·관용·<em>merimnate</em> 말고 기도·<em>eirene</em>·<em>logizesthe</em>.</li>
+<li>컷 3 (10-13): 배웠노라·<em>autarkes</em>·"내게 능력 주시는 자".</li>
+<li>컷 4 (14-20): 빌립보 선물 감사·향기로운 제물·채우심 약속.</li>
+<li>컷 5 (21-23): 마무리 인사·은혜 축원.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>merimnate</em>(μεριμνᾶτε) — 염려하다·마음이 쪼개지다. 6절.</li>
+<li><em>eirene</em>(εἰρήνη) — 평강·샬롬. 7절 "모든 지각에 뛰어난 하나님의 평강".</li>
+<li><em>autarkes</em>(αὐτάρκης) — 자족하는·자기 스스로 충분한. 11절.</li>
+<li><em>logizesthe</em>(λογίζεσθε) — 생각하라·계산하라·숙고하라. 8절.</li>
+<li><em>phroureō</em>(φρουρέω) — 지키다·군사 경비하다. 7절 평강이 "지키시리라".</li>
+<li><em>emathon</em>(ἔμαθον) — 배웠다. 11절. 배움의 과거형.</li>
+<li><em>enischyonti</em> — 능력 주시는·강하게 하는. 13절.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>권면(1-3) → 기쁨·평강(4-9) → 자족(10-13) → 감사(14-20) → 마무리(21-23)의 5단 구조.</li>
+<li>6-7절 — 염려→기도→평강의 3단계 흐름.</li>
+<li>8절 — 목록 형식(참된 것 6개): 참된·정직한·옳은·정결한·사랑할 만한·칭찬할 만한.</li>
+<li>11-13절 — <em>autarkes</em>(11)·비결을 배웠다(12)·"내게 능력 주시는 자 안에서"(13)의 3단계.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li><em>autarkes</em>(11절)는 헬라 스토아 철학의 자족 덕목 — 바울이 그 용어를 차용하되 출처(그리스도)를 바꿈. 배경만.</li>
+<li>7절 <em>phroureō</em>(군사 경비 용어) — 빌립보가 로마 군사 도시였으므로 청중에게 생생한 이미지 — 배경만.</li>
+<li>3절 "참된 멍에를 같이 멘 자"(<em>gnēsie syzyge</em>)가 인물인지 집단인지 학자 논의 있음 — 관찰로는 불명확 보존.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>빌 4:6-7 ↔ 마 6:25-34 (염려하지 말라·하늘 아버지가 아신다)</li>
+<li>빌 4:11-12 ↔ 딤전 6:6-8 (자족이 큰 이익)</li>
+<li>빌 4:19 ↔ 빌 1:6 (채우심 약속 ↔ 착한 일의 완성)</li>
+<li>빌 4:7 <em>eirene</em> ↔ 빌 1:2 (은혜와 평강이 너희에게)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>"나의 사랑하고 사모하는 형제들아 … 주 안에 서라"(1절)로 시작한다. 유오디아와 순두게에게 주 안에서 같은 마음을 품으라 권면하고(2절), 글레멘드와 함께 복음에 힘쓴 이들을 기억한다(3절). 주 안에서 항상 기뻐하라, 다시 말하노니 기뻐하라(4절). 관용을 알게 하고(5절), 아무것도 염려(<em>merimnate</em>)하지 말고 기도와 간구로 감사함으로 아뢰라(6절). 그리하면 모든 지각에 뛰어난 하나님의 평강(<em>eirene</em>)이 마음과 생각을 지키신다(7절). 참된 것들을 생각하라(<em>logizesthe</em>, 8절). 바울에게 배우고 본 바를 행하라, 평강의 하나님이 함께하신다(9절). 바울이 자족 이야기를 한다 — 어떠한 형편에든지 자족하기를 배웠다(<em>autarkes</em>, 11절). 비천에 처할 줄도 알고 풍부에 처할 줄도 아는 비결을 배웠다(12절). 내게 능력 주시는 자 안에서 모든 것을 할 수 있다(13절). 빌립보 교회가 보내준 선물을 감사하며(14-18절), "나의 하나님이 그 풍성한 대로 너희 모든 쓸 것을 채우시리라"(19절)고 약속한다. 은혜 축원으로 닫는다(23절).</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+
+<ul>
+<li>초벌 제목: <strong>"어떤 형편에든지 자족(<em>autarkes</em>)하기를 배웠노라"</strong></li>
+<li>초벌 부제: "염려에서 평강(<em>eirene</em>)으로 — 내게 능력 주시는 자 안에서"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (7개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (스토아 <em>autarkes</em>·군사 <em>phroureō</em>·<em>syzyge</em> 불명확)</li>
+<li>[x] 미해결 질문 1개 이상 (6건 예정)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 5개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li><em>autarkes</em>를 스토아 덕목으로 단정하지 않도록 → 출처 차이(그리스도 안에서) 관찰로 보존.</li>
+<li>13절을 만능 능력 선언으로 확대하지 않도록 → "내게 능력 주시는 자 안에서"라는 맥락 유지.</li>
+<li>3절 "참된 멍에를 같이 멘 자"의 정체를 단정하지 않도록 → 불명확 보존.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 주께 아뢰기.</strong> 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: PHP-004</p>
+<p>book: 빌립보서</p>
+<p>chapter: 4</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>빌립보서 4장 — 미해결 질문</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 7절 "하나님의 평강이 마음을 지킨다(<em>phroureō</em>)"에서 평강이 능동적으로 지킨다는 것은 어떤 메커니즘인가?</h2>
+
+<ul>
+<li>평강이 주어가 되어 지키는 구조이지만 본문이 더 설명하지 않음.</li>
+<li>미해결로 보존.</li>
+</ul>
+
+<h2>Q2. 11절 "배웠다"(<em>emathon</em>)는 어떤 경험을 통해 배운 것인가?</h2>
+
+<ul>
+<li>고난·투옥·궁핍의 경험인지 바울이 명시하지 않음.</li>
+<li>묵상으로 이월.</li>
+</ul>
+
+<h2>Q3. 3절 "참된 멍에를 같이 멘 자"(<em>gnēsie syzyge</em>)는 구체적으로 누구인가?</h2>
+
+<ul>
+<li>인물인지 집단인지, 빌립보서 어디에도 명시되지 않음.</li>
+<li>관찰로는 보류.</li>
+</ul>
+
+<h2>Q4. 13절 "내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라"에서 "모든 것"의 범위는?</h2>
+
+<ul>
+<li>자족·형편 대처인지 더 넓은 범위인지 맥락이 한정하지 않음.</li>
+<li>미해결로 머문다.</li>
+</ul>
+
+<h2>Q5. 8절의 "참된 것·정직한 것·옳은 것·정결한 것·사랑할 만한 것·칭찬할 만한 것"이 구체적으로 무엇을 가리키는가?</h2>
+
+<ul>
+<li>일반 덕목인지 그리스도의 특성인지 본문이 명시하지 않음.</li>
+<li>묵상으로 이월.</li>
+</ul>
+
+<h2>Q6. 19절 "나의 하나님이 그 풍성한 대로 너희 모든 쓸 것을 채우시리라"는 약속의 범위와 조건은 무엇인가?</h2>
+
+<ul>
+<li>물질적인 것인지 전인격적인 것인지 본문이 한정하지 않음.</li>
+<li>관찰로는 사실(약속 선언)만 보존하고 범위는 미해결로.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">염려에서 평강으로, 궁핍에서 자족으로 — 어떤 형편에서도 그리스도 안의 기쁨·평강에 도달.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. PHP spine의 도착점 — 4장이 빌립보서 전체 흐름을 완성하는 결입니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: PHP-004</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-01</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 빌립보서 4장은 유오디아·순두게 화해 권면을 거쳐, 아무것도 염려(<em>merimnate</em>) 말고 기도·감사로 아뢰면 하나님의 평강(<em>eirene</em>)이 마음을 지키신다는 선언에 이르고, 어떠한 형편에든지 자족하기를 배웠노라(<em>autarkes</em>)는 고백과 "내게 능력 주시는 자 안에서 모든 것을 할 수 있다"는 선언으로 절정에 오르며, 채우심 약속과 은혜 축원으로 빌립보서를 닫는 장이다.</p>
+
+<p><strong>한 문단</strong>: 바울은 주 안에 서라는 권면(1절)으로 시작해 유오디아와 순두게의 화해를 구한다(2절). 항상 기뻐하라(4절), 아무것도 염려(<em>merimnate</em>) 말고 기도·간구·감사로 아뢰라(6절)고 하고, 그리하면 모든 지각에 뛰어난 하나님의 평강(<em>eirene</em>)이 마음과 생각을 지킨다(7절)고 한다. 참된 것들을 생각하고(<em>logizesthe</em>, 8절) 배운 것을 행하면 평강의 하나님이 함께하신다(9절). 어떠한 형편에든지 자족하기를 배웠다(<em>autarkes</em>, 11절) — 비천과 풍부·배부름과 배고픔·풍부와 궁핍 모두에 처하는 비결을 배웠다(12절). "내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라"(13절). 빌립보 선물을 향기로운 제물로 받았고(18절), 하나님이 모든 쓸 것을 채우시리라(19절) 약속하며 은혜 축원으로 닫는다(23절).</p>
+
+<h3>B · 9단계 통합 표</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>마무리 서신 무대. <em>merimnate</em>·<em>eirene</em>·<em>autarkes</em>·<em>logizesthe</em>·능력 주시는 자.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>"다시 말하노니 기뻐하라"의 강조. 염려→평강 흐름. "배웠다"의 독특함.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작: "주 안에 서라"(1절). 끝: "주의 은혜"(23절). 권면→축원.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>바울·유오디아·순두게·빌립보 성도. 사상 핵 — 6-7절(평강)·11-13절(자족·능력).</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 화해(1-3). 컷 2 기쁨·평강(4-9). 컷 3 자족(10-13). 컷 4 감사(14-20). 컷 5 마무리(21-23).</td></tr>
+<tr><td>6 의문·발견·정보</td><td><em>phroureō</em> 군사 용어. 스토아 <em>autarkes</em>·출처 차이. 8절 목록.</td></tr>
+<tr><td>7 동영상</td><td>화해→기쁨·평강·<em>logizesthe</em>→자족·능력 주시는 자→감사·채우심→은혜 축원.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목: "자족하기를 배웠노라". 부제: "염려에서 평강, 궁핍에서 자족".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>어떤 형편에서 자족을 배우고 있는가 묻게 됨. 답 없이 머뭄.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 염려의 대안</strong>: 6절 "<em>merimnate</em> 말고" + "기도·간구·감사로 아뢰라" → 7절 "<em>eirene</em>가 지키시리라". 염려의 반대가 기도·감사이고, 그 결과가 평강이다. 이 3단계 구조가 이 장의 핵이다.</p>
+<p>2. <strong>결 2 — 배움으로서의 자족</strong>: 11절 "배웠다"(<em>emathon</em>)가 중요하다. 자족은 타고난 것이 아니라 경험 안에서 배운 것이다. 12절의 "비결을 배웠다"가 그 내용을 보여준다.</p>
+<p>3. <strong>결 3 — 자족의 출처</strong>: 11절 <em>autarkes</em>와 13절 "내게 능력 주시는 자" 사이의 긴장. 스토아 자족(자기 안)이 아니라 그리스도 안의 자족이다 — 출처가 다른 자족이다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>빌 4:6-7 ↔ 빌 1:4</strong> (기도·감사 ↔ "너희를 위해 기도할 때마다 기쁨"), <strong>빌 4:19 ↔ 빌 1:6</strong> (채우심 ↔ 착한 일의 완성).</li>
+<li>다른 권 — <strong>마 6:25-34</strong> (염려하지 말라·하늘 아버지가 아신다), <strong>딤전 6:6</strong> (자족이 큰 이익).</li>
+<li>빌립보서 흐름 — 4장이 PHP 전체 spine의 도착점이다. 1장(매임 속 복음 진보) → 2장(케노시스) → 3장(배설물·푯대) → 4장(평강·자족)이 수렴한다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 한 사람이 "아무것도 염려하지 말고"(6절)라는 초대를 받는다.</li>
+<li><strong>멈춤 1</strong>: "하나님의 평강이 마음과 생각을 지키시리라"(7절) 앞에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: "어떠한 형편에든지 자족하기를 배웠노라"(11절) 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: "내게 능력 주시는 자 안에서 모든 것"(13절) 앞에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 "나의 하나님이 너희 모든 쓸 것을 채우시리라"(19절)는 약속을 손에 쥐고 일어난다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<ul>
+<li>[x] "아무것도 염려 말고 기도·감사로 아뢰라"(6절)</li>
+<li>[x] "모든 지각에 뛰어난 하나님의 평강(<em>eirene</em>)이 마음을 지키시리라"(7절)</li>
+<li>[x] "어떠한 형편에든지 자족(<em>autarkes</em>)하기를 배웠노라"(11절)</li>
+<li>[x] "내게 능력 주시는 자 안에서 모든 것을 할 수 있느니라"(13절)</li>
+<li>[x] "나의 하나님이 풍성한 대로 너희 모든 쓸 것을 채우시리라"(19절)</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+
+<p>빌립보서의 spine은 <strong>"그리스도의 낮아지심을 본받아, 어떤 형편에서도 복음의 진보와 자족의 기쁨으로 나아간다"</strong>이다. 4장은 그 spine의 <strong>마지막 국면이자 destination — "어떤 형편에든지 자족·평강"</strong>이 실현되는 도착점이다. PHP 전체 흐름(1 매임 중 복음 진보 → 2 케노시스·높아짐 → 3 배설물·푯대 → 4 염려 말라·자족·평강)이 4장에서 수렴한다. 구속사 호(arc)에서, 이 장은 갇힌 자(바울)가 어떤 형편에서도 자족·기쁨을 살아낸 실증이며, "그리스도 안에서 모든 것이 가능하다"는 선언이 사도적 삶의 실례로 나타나는 자리다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+
+<blockquote>
+<p><strong>염려(merimnate, 6절) → 기도·감사 → 평강(eirene, 7절) / 형편의 변화(10-12절) → 배움 → 자족(autarkes, 11절) → 능력 주시는 자(13절).</strong></p>
+</blockquote>
+
+<p>한 화살표로 좁히면, 4장은 <em>염려에서 평강으로, 궁핍에서 자족으로</em> 미는 운동이다. PHP spine의 도착점 국면 — "어떤 형편에서도" 기쁨·자족·평강이 가능한 것이 "내게 능력 주시는 자 안에서"라는 출처 선언 위에 완성된다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+
+<p>표면의 가시적 사건은 바울의 권면과 감사 편지다. 그러나 그 아래에서 움직이는 본질은 <strong>하나님이 어떤 형편에서도 기쁨·평강·자족으로 부르시는 의중</strong>이다. 11절 "배웠다"(<em>emathon</em>)라는 동사는 그 의중이 삶의 경험 안에서 서서히 새겨지는 방식을 드러낸다 — 갑자기 주어지는 것이 아니라 형편을 통과하며 배우는 것이다. PHP 흐름이 비추는 하나님의 심정 — "예수 그리스도의 심장으로 사모하노라"(1:8)가 4장에서는 "내가 너희 모든 쓸 것을 채우시리라"(19절)는 약속으로 온도를 낮추며 완성된다.</p>
+
+<h3>J · 실존적 부름 — 한 줄의 불씨</h3>
+
+<blockquote>
+<p>나는 지금 어떤 형편에 있는가 — 그 형편 안에서 자족(<em>autarkes</em>)을 배우고 있는가, 그리고 그 자족이 나 안에서 나오는가 "내게 능력 주시는 자"에게서 나오는가.</p>
+</blockquote>
+
+<p>이것은 가르침이 아니라 초대다. 4장은 독자를 "어떠한 형편"(11절)의 자리에 세우고, 그 형편이 자족·기쁨·평강을 배우는 학교가 될 수 있는가를 묻게 한다. PHP 흐름에서 이 불씨는 빌립보서 전체의 도착점이다 — "그리스도의 낮아지심을 본받아(2장), 자랑을 배설물로 내려놓고(3장), 어떤 형편에서도 자족·평강으로 살아가는"(4장) 것이 PHP spine이 가리키는 destination이다.</p>
+
+<p><strong>빌립보서 전체를 가져갈 한 단어</strong>: <em>autarkes</em>(자족) — 그리스도 안에서 배우는 자족.</p>
+<p><strong>PHP 전체 흐름의 완성</strong>: 매임(1장) → 낮아지심(2장) → 배설물·푯대(3장) → 자족·평강(4장) — 그리스도의 낮아지심을 본받아, 어떤 형편에서도 복음의 진보와 자족의 기쁨으로 나아가는 운동이 완성된다.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/PHP/3/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">빌립보서 3장</div><div class="nav-preview">자랑을 배설물(skybala)로 — 푯대(skopos)를 향하여, 하늘의 시민권.</div></a>
+      <a href="/magazine/PHP/"><div class="nav-kicker">↑ 권 차례</div><div class="nav-title">빌립보서 차례로</div><div class="nav-preview">빌립보서의 다른 장을 골라 들어가실 수 있습니다.</div></a>
+    </div>
+
+<aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/PHP/4/',
+      title: '빌립보서 4장',
+      excerpt: '어떤 형편에든지 자족(autarkes)하기를 배웠노라 — 염려에서 평강(eirene)으로.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){.foot--mini .foot--mini__inner{justify-content:flex-start}.foot--mini>div>span{display:block}}
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-01</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
