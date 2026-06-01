@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>로마서 7장 — Observatory | 네다바웨이</title>
+<meta name="description" content="로마서 7장을 9단계로 같이 관찰합니다. 율법과 죄의 관계, 원하는 선은 행하지 못하는 갈등, 그리고 "오호라 나는 곤고한 사람".">
+<link rel="canonical" href="https://www.nedabah.org/magazine/ROM/7/">
+<link rel="stylesheet" href="/assets/v3.css">
+
+<link rel="stylesheet" href="/assets/nav-right.css">
+
+
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+
+  /* 시뮬레이션 보기 — details 토글 */
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/ROM/">로마서</a> · 7장</div>
+      <h1>로마서 7장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">ROM-007 · 서신서 · 헬라어</div>
+      <p class="essence">남편 비유로 율법에서 놓임을 그린 데서 시작해, 율법은 거룩하나 죄가 틈탄다는 분석이 못이 되고, "오호라 나는 곤고한 사람"의 탄식으로 내려간다.</p>
+    </header>        
+        <details class="stage stage--collapsed" id="s1">
+          <summary>
+            <span class="stage__num">단계 1</span>
+            <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 (지리·시대·실내/실외) · 어떤 물건이 등장하는가 (소품) · 어떤 배경 요소가 깔려 있는가 (문화·제도·계절·시간대) · 어떤 소재·재료가 쓰이는가. 이 단계에서 원어·역사·배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ROM-007</p>
+<p>book: 로마서</p>
+<p>book_en: Romans</p>
+<p>chapter: 7</p>
+<p>bible_block: 서신서</p>
+<p>canon: 신약</p>
+<p>genre: 서신·논증</p>
+<p>language: 헬라어</p>
+<p>verse_count: 25</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 3</p>
+<p>greek_terms: [nomos, hamartia, entole, epithymia, sarx, talaiporos, rhyomai, esoanthropos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-05-31</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>로마서 7장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 로마서 7장입니다. 앞 장의 "법 아래 있지 아니하다"를 이어, 율법과 죄를 길게 풀어가는 글이지요. 먼저 끝까지 낭독하고, 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 7:1~25, 약 4분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P07 오지혜</strong>: 앞은 법조문처럼 차분해요. 결혼 비유(1-3절)가 또박또박 나와요. 그런데 14절부터 갑자기 격해져요. "원하는 바를 행하지 아니하고"가 숨가쁘게 반복돼요.</p>
+
+<p><strong>P01 한나래</strong>: 저도요. 24절 "오호라 나는 곤고한 사람이로다"에서 마음이 멈췄어요. 갑자기 탄식이 터져 나와서요.</p>
+
+<p><strong>P04 최현국</strong>: 1-6절은 비유의 무대, 7-13절은 율법과 죄의 분석, 14-25절은 내면의 싸움이에요. 세 무대가 이어져요.</p>
+
+<p><strong>P05 김미영</strong>: "율법"이라는 단어가 끝없이 들렸어요. 한 절에 두세 번 나오는 데도 있어요. "법"이 메아리처럼 울려요.</p>
+
+<p><strong>P02 이진우</strong>: 24-25절이 못처럼 들렸어요. "곤고한 사람… 누가 나를 건져내랴… 우리 주로 말미암아 하나님께 감사하리로다." 탄식과 감사가 붙어 있어요.</p>
+
+<p><strong>P11 나경아</strong>: "나"라는 일인칭이 14절부터 폭발해요. "내가… 나를… 내 속에." 갑자기 일인칭 독백으로 바뀌어요.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. 차분한 법조문과 터지는 탄식, 그 낙차를 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 어떤 무대인지요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 셋이에요. 1-6절은 결혼 비유의 무대, 7-13절은 "탐내지 말라"는 계명을 두고 죄를 해부하는 무대, 14-25절은 한 사람의 내면 독백의 무대예요.</p>
+
+<p><strong>P05 김미영</strong>: 소품으로 "남편"(2-3절)이 보여요. 살아 있는 동안 매이고 죽으면 놓이는 그림이요. 그리고 "탐내지 말라"(7절)는 계명이 소품처럼 인용돼요.</p>
+
+<p><strong>P07 오지혜</strong>: 소재가 짝으로 나와요. 율법/죄, 속사람/지체, 마음의 법/죄의 법. 늘 둘이 맞서요.</p>
+
+<p><strong>P01 한나래</strong>: 9절의 "전에 율법을 깨닫지 못했을 때에는 내가 살았더니"가 마음에 닿았어요. 한 사람의 옛 기억이 배경에 깔려 있어요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 하나 두면, "율법"은 헬라어 <em>nomos</em>(이 장에 거듭), "죄"는 <em>hamartia</em>, "계명"은 <em>entole</em>(7절 이하)예요. "탐심"은 <em>epithymia</em>(7-8절)입니다. 배경으로 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: <em>nomos</em>와 <em>hamartia</em>, <em>entole</em>를 무대 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절은 어떤 관계로 보이시는지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "법이 사람이 살 동안만 그를 주관하는 줄"로 차분히 열려요. 25절은 "내 마음으로는 하나님의 법을, 육신으로는 죄의 법을 섬기노라"로 갈라진 채 닫혀요. 법으로 열고 두 법의 분열로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 율법의 주관 기간, 끝은 두 법 사이에 선 한 사람이에요. 객관적 진술로 열어 주관적 탄식으로 마쳐요.</p>
+
+<p><strong>P01 한나래</strong>: 가운데 24절이 못으로 박혀 있어요. "오호라 나는 곤고한 사람이로다." 그 한 줄이 골짜기예요.</p>
+
+<p><strong>성령일 선교사</strong>: 차분히 열려 탄식으로 닫히는 그 폭을 그대로 남겨 둡시다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 누가 말하고 누가 등장하는지요.</p>
+
+<p><strong>P05 김미영</strong>: 말하는 이는 바울인데, 14절부터 "나"라는 일인칭이 전면에 나와요. 그리고 "죄"가 거의 인격처럼 움직여요 — "죄가 기회를 타서", "죄가 나를 속이고".</p>
+
+<p><strong>P07 오지혜</strong>: 상황은 갈등이에요. "원하는 선은 행하지 아니하고 도리어 원하지 아니하는 악을 행하는도다"(19절). 의지와 행동이 어긋나요.</p>
+
+<p><strong>P04 최현국</strong>: 사상은 "두 법"이에요. 22-23절 — "속사람으로는 하나님의 법을 즐거워하되… 내 지체 속에서 다른 법을 보는도다." 마음의 법과 죄의 법이 한 사람 안에서 싸워요.</p>
+
+<p><strong>P11 나경아</strong>: "육신"은 <em>sarx</em>(14·18·25절), "속사람"은 <em>eso anthropos</em>(22절)예요. 두 단어가 한 사람의 두 측면으로 대비돼요. 어휘 대비까지만 둡니다.</p>
+
+<p><strong>P02 이진우</strong>: 그 "두 법"이 구조예요. 21·23·25절에 "법"이 여러 결로 갈려요 — 하나님의 법, 죄의 법, 마음의 법, 한 법. 같은 단어가 갈라지며 단을 끌어요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 "법"의 갈라짐을 어휘 표시로만 두고, 교리는 서두르지 않습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 네 컷 정도로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-6절)</strong>: 결혼 비유 — 살아 있는 동안 매임, 죽으면 놓임</li>
+<li><strong>컷 2 (7-12절)</strong>: 율법은 거룩하나 죄가 계명으로 틈탐</li>
+<li><strong>컷 3 (13-20절)</strong>: 원하는 선은 못 하고 원치 않는 악을 행함</li>
+<li><strong>컷 4 (21-25절)</strong>: 두 법의 싸움, "오호라 나는 곤고한 사람"</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 1-2가 분석, 컷 3-4가 독백이에요. 두 묶음으로도 묶입니다.</p>
+
+<p><strong>성령일 선교사</strong>: 그 두 묶음을 컷 옆에 적어 두지요. 7단계 재료입니다.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 7절과 13절이 같은 꼴이에요. "율법이 죄냐 그럴 수 없느니라"(7), "선한 것이 내게 사망이 되었느냐 그럴 수 없느니라"(13). 두 번 같은 부정으로 단을 열어요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 왜 "원하는 바를 행하지 아니하고"(15·19절)가 두 번 반복될까요. 같은 말을 거듭하는 그 까닭이 궁금했어요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로 보태면, 8절 "탐심"은 <em>epithymia</em>예요. 7절 "탐내지 말라"는 십계명의 한 계명(출 20:17 / 신 5:21) 인용이고요. 그리고 24절 "곤고한"은 <em>talaiporos</em>, "건져내랴"는 <em>rhyomai</em>입니다. 뜻은 보류하고 음역만 둡니다.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 시제가 바뀌어요. 7-13절은 과거형("내가 죽었도다")인데 14-25절은 현재형("내가 행하는도다")으로 넘어가요. 시제가 단을 갈라요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 25절이 감사("하나님께 감사하리로다")로 솟았다가 곧 "그런즉 내가… 죄의 법을 섬기노라"로 다시 내려가요. 감사 뒤에 분열이 다시 오는 순서가 묘해요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 18절이 걸려요. "내 속 곧 내 육신에 선한 것이 거하지 아니하는 줄을 아노니." "거하다"라는 단어가 죄와 선에 번갈아 쓰이는 게 눈에 들어왔어요.</p>
+
+<p><strong>P11 나경아</strong>: 17·18·20절 "거하다"는 <em>oikeo</em>("집에 살다")예요. 죄가 "거하고"(17·20) 선이 "거하지 않는"(18) 대비까지만 관찰로 남기고, 관계는 보류합니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 한 사람이 법조문처럼 차분히 엽니다. "법은 사람이 살 동안만 주관한다. 남편이 죽으면 아내는 그 법에서 놓인다." 비유로 시작합니다.</p>
+
+<p><strong>P01 한나래</strong>: 그리고 질문을 던집니다. "율법이 죄냐? 그럴 수 없다." 오히려 율법으로 죄를 알았고, 죄가 계명을 틈타 일어났다고 합니다.</p>
+
+<p><strong>P02 이진우</strong>: 톤이 갑자기 일인칭 독백으로 바뀝니다. "내가 행하는 것을 내가 알지 못하노니, 원하는 선은 행하지 아니하고 원치 않는 악을 행하는도다." 같은 탄식이 거듭됩니다.</p>
+
+<p><strong>P04 최현국</strong>: 한 사람 안에서 두 법이 싸웁니다. "속사람으로는 하나님의 법을 즐거워하되, 지체 속 다른 법이 나를 사로잡는다."</p>
+
+<p><strong>P11 나경아</strong>: 마침내 탄식이 터집니다. "오호라 나는 곤고한 사람이로다! 이 사망의 몸에서 누가 나를 건져내랴?" 곧이어 "우리 주로 말미암아 하나님께 감사하리로다"가 솟고, 다시 두 법으로 갈린 채 동영상이 닫힙니다.</p>
+
+<p><strong>성령일 선교사</strong>: 차분한 비유에서 시작해, 율법과 죄의 해부를 지나, "곤고한 사람"의 탄식으로 내려가는 한 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "오호라 나는 곤고한 사람이로다"</p>
+<p><strong>P02 이진우</strong>: "원하는 선은 행하지 아니하고 — 어긋난 의지"</p>
+<p><strong>P04 최현국</strong>: "한 사람 안의 두 법"</p>
+<p><strong>P05 김미영</strong>: "율법은 거룩하나, 죄가 틈타"</p>
+<p><strong>P07 오지혜</strong>: "누가 나를 건져내랴"</p>
+<p><strong>P11 나경아</strong>: "<em>Nomos · Hamartia · Talaiporos</em> — 율법·죄·곤고"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "거룩한 율법 앞에서, 곤고한 사람의 탄식까지"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, "곤고한 사람"이라는 탄식의 자리에 서서 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 저는 "누가 나를 건져내랴"는 그 물음 앞에 서 있습니다.</p>
+<p>*— 그 순간 떠</p></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s2">
+          <summary>
+            <span class="stage__num">단계 2~7</span>
+            <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기 기록하기.</strong> 분석 전에 먼저 첫 감을 잡는다. <strong>3단계 — 시작과 끝.</strong> 첫 절·마지막 절, 시작과 끝의 관계, 완결된 단위인가. <strong>4단계 — 등장인물·사물·상황·사상.</strong> 누가 말하고 듣고 침묵하는가, 각자의 상황과 본문이 보여주는 생각·태도. <strong>5단계 — 장면 컷 분절.</strong> 이후 7단계 동영상의 재료가 된다. <strong>6단계 — 의문·발견·정보.</strong> 원어·배경·교차 참조. <strong>7단계 — 동영상.</strong> 컷을 이어 흐르는 장면으로. "이 장을 머릿속에서 동영상으로 재생할 수 있는가?"</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ROM-007</p>
+<p>book: 로마서</p>
+<p>chapter: 7</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>로마서 7장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드(`_관찰_9단계_가이드.md`, SBM 원문 기반) 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대가 셋 — 결혼 비유(1-6), 율법·죄 해부(7-13), 내면 독백(14-25).</li>
+<li>소품 = "남편"(2-3절), "탐내지 말라" 계명(7절).</li>
+<li>짝 소재 — 율법/죄, 속사람/지체, 마음의 법/죄의 법.</li>
+<li><em>nomos</em>(율법)가 한 장에 거듭, 메아리처럼 울림.</li>
+<li>9절 "전에 율법을 깨닫지 못했을 때" — 옛 기억이 배경.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>1-6절 법조문처럼 차분, 14절부터 격해짐("원하는 바를 행하지 아니하고").</li>
+<li>24절 "곤고한 사람"에서 탄식이 터짐.</li>
+<li>"나"라는 일인칭이 14절부터 폭발.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "법이 사람이 살 동안만 주관" — 객관적 진술로 열림.</li>
+<li>25절: "마음으로는 하나님의 법을, 육신으로는 죄의 법을 섬기노라" — 분열로 닫힘.</li>
+<li>24절 "곤고한 사람"이 가운데 골짜기로 박힘.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 바울("나", 14절~) / "죄"가 인격처럼 움직임("기회를 타서").</li>
+<li>상황 = 갈등(19절) — 원하는 선과 행하는 악의 어긋남.</li>
+<li>사상 = "두 법"(22-23) — 하나님의 법과 죄의 법의 싸움.</li>
+<li>대구 = "육신"(<em>sarx</em>) ↔ "속사람"(<em>eso anthropos</em>), 18·22절.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-6): 결혼 비유 — 매임과 놓임.</li>
+<li>컷 2 (7-12): 율법은 거룩하나 죄가 계명으로 틈탐.</li>
+<li>컷 3 (13-20): 원하는 선 못 함, 원치 않는 악 행함.</li>
+<li>컷 4 (21-25): 두 법의 싸움, "곤고한 사람".</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>nomos</em>(νόμος) — 율법·법. 장 전체에 거듭.</li>
+<li><em>hamartia</em>(ἁμαρτία) — 죄. 7-25절, 인격처럼 묘사.</li>
+<li><em>entole</em>(ἐντολή) — 계명. 7-13절.</li>
+<li><em>epithymia</em>(ἐπιθυμία) — 탐심·욕망. 7-8절.</li>
+<li><em>sarx</em>(σάρξ) — 육신. 14·18·25절.</li>
+<li><em>eso anthropos</em>(ὁ ἔσω ἄνθρωπος) — 속사람. 22절.</li>
+<li><em>talaiporos</em>(ταλαίπωρος) — 곤고한·비참한. 24절.</li>
+<li><em>rhyomai</em>(ῥύομαι) — 건져내다·구원하다. 24절.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>비유(1-6) → 해부(7-13) → 독백(14-25)의 세 묶음.</li>
+<li>같은 꼴의 반문 2회 — "그럴 수 없느니라"(7·13).</li>
+<li>"원하는 바를 행하지 아니하고" 후렴(15·19).</li>
+<li>시제 전환 — 과거형(7-13) → 현재형(14-25).</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>7절 "탐내지 말라"는 십계명의 마지막 계명(출 20:17 / 신 5:21) 인용(배경).</li>
+<li>1-3절 결혼 법은 1세기 유대 혼인 관습을 전제한 비유 무대(배경으로만).</li>
+<li>"육신"(<em>sarx</em>)과 "속사람"(<em>eso anthropos</em>)은 6장의 옛 사람 논의를 이어받음(배경).</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>롬 7:7 ↔ 출 20:17 / 신 5:21 (탐내지 말라)</li>
+<li>롬 7:6 ↔ 롬 6:14 (법 아래가 아니라)</li>
+<li>롬 7:24 ↔ 롬 8:2 (죄와 사망의 법에서 해방)</li>
+<li>롬 7:18 ↔ 갈 5:17 (육체와 성령의 싸움)</li>
+<li>롬 7:1 ↔ 롬 6:7 (죽으면 놓임)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>한 사람이 법조문처럼 차분히 연다. "법은 사람이 살 동안만 주관한다. 남편이 죽으면 아내는 그 법에서 놓인다." 그리고 묻는다 — "율법이 죄냐? 그럴 수 없다." 오히려 율법으로 죄를 알았고, 죄가 계명을 틈타 일어났다고 한다. 톤이 갑자기 일인칭 독백으로 바뀐다. "원하는 선은 행하지 아니하고 원치 않는 악을 행하는도다." 같은 탄식이 거듭되고, 한 사람 안에서 두 법이 싸운다. 마침내 탄식이 터진다 — "오호라 나는 곤고한 사람이로다! 누가 나를 건져내랴?" 곧이어 "우리 주로 말미암아 하나님께 감사하리로다"가 솟고, 다시 두 법으로 갈린 채 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기 (묵상에서 재조정 가능)</h2>
+
+<ul>
+<li>초벌 제목: <strong>"오호라 나는 곤고한 사람이로다 — 한 사람 안의 두 법"</strong></li>
+<li>초벌 부제: "거룩한 율법 앞에서, 곤고한 사람의 탄식까지"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (8개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (십계명 인용·혼인 관습·시제 전환)</li>
+<li>[x] 미해결 질문 1개 이상 (open_questions 6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨 (분석 이전 수행)</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 4개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>"곤고한 사람"이 신자/불신자 논쟁으로 굳지 않도록 → <em>talaiporos</em> 위치만 기록.</li>
+<li>"두 법"이 율법 무용론으로 번지지 않도록 → <em>nomos</em> 갈라짐의 어휘 분포로만 보존.</li>
+<li>"원하는 선은 행하지 못함"을 인간론 단정으로 확대하지 않고 후렴 위치만 기록.</li>
+</ul></div>
+          </div>
+        </details>
+
+        <details class="stage stage--collapsed" id="s8">
+          <summary>
+            <span class="stage__num">단계 8~9</span>
+            <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+            <span class="stage__toggle">시뮬레이션 보기 →</span>
+          </summary>
+          <div class="stage__inner">
+            <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> 제목 — 이 장의 핵심을 한 줄로. 부제 — 보조하는 한 줄. "초벌"이므로 묵상 단계에서 수정될 수 있음. <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 7단계 동영상 안에 상상으로 들어가 걷고, 알게 된 것을 주께 아뢰며, 떠오름에 귀 기울인다. 답을 구하지 않고 머문다.</p>
+            <div class="md-body"><p>---</p>
+<p>sim_id: ROM-007</p>
+<p>book: 로마서</p>
+<p>chapter: 7</p>
+<p>date: 2026-05-31</p>
+<p>---</p>
+
+<h2>로마서 7장 — 미해결 질문 (6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. "나"(14-25)는 누구의 자리인가?</h2>
+
+<ul>
+<li>일인칭이 14절부터 전면에 나옴 — 보편의 나인지 특정 시점의 나인지.</li>
+<li>화자의 자리는 본문이 못 박지 않음. 위치만 보존.</li>
+</ul>
+
+<h2>Q2. 시제 전환(과거→현재)은 무엇을 가르는가?</h2>
+
+<ul>
+<li>7-13절 과거형, 14-25절 현재형으로 넘어감.</li>
+<li>시제의 까닭은 답하지 않고 구조만 기록.</li>
+</ul>
+
+<h2>Q3. 왜 "그럴 수 없느니라"(7·13)가 두 번인가?</h2>
+
+<ul>
+<li>율법이 죄냐, 선한 것이 사망이 되었느냐 — 두 부정으로 단을 엶.</li>
+<li>두 번 반복의 까닭은 보류.</li>
+</ul>
+
+<h2>Q4. "죄가 거하고… 선이 거하지 않는다"(17-18)는 어떻게 한 몸에 있는가?</h2>
+
+<ul>
+<li>같은 "거하다"(<em>oikeo</em>)가 죄와 선에 번갈아 쓰임.</li>
+<li>한 사람 안의 두 거주만 기록, 관계는 보류.</li>
+</ul>
+
+<h2>Q5. 25절의 감사와 다시 오는 분열은 어떤 순서인가?</h2>
+
+<ul>
+<li>"하나님께 감사" 뒤에 "죄의 법을 섬기노라"가 다시 옴.</li>
+<li>감사 뒤 분열의 순서는 묵상으로 이월.</li>
+</ul>
+
+<h2>Q6. "누가 나를 건져내랴"(24)는 물음인가 부르짖음인가?</h2>
+
+<ul>
+<li><em>rhyomai</em>("건져내다")가 외침처럼 터짐.</li>
+<li>물음과 부르짖음의 경계만 기록, 답은 보류.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+          </div>
+        </details>
+
+        <section class="stage stage--synthesis" id="synthesis">
+          <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+          <h2 class="stage__title">오호라 나는 곤고한 사람이로다, 누가 나를 건져내랴.</h2>
+          <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+          <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: ROM-007</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-05-31</p>
+<p>words_target: 600~900</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 로마서 7장은 <em>결혼 비유로 율법에서 놓임</em>을 그린 뒤, 율법은 거룩하나 죄가 계명을 틈탄다는 해부를 못으로 박고, "오호라 나는 곤고한 사람이로다"의 탄식으로 내려가는 장이다.</p>
+
+<p><strong>한 문단</strong>: 본문은 법조문처럼 차분히 연다. "법은 사람이 살 동안만 주관한다. 남편이 죽으면 아내는 그 법에서 놓인다." 그리고 묻는다 — "율법이 죄냐? 그럴 수 없다." 오히려 율법으로 죄를 알았고, 죄가 계명을 틈타 일어났다고 한다. 톤이 갑자기 일인칭 독백으로 바뀐다. "원하는 선은 행하지 아니하고 원치 않는 악을 행하는도다"(19절). 같은 탄식이 거듭되고, 한 사람 안에서 두 법이 싸운다 — 속사람의 하나님의 법과 지체의 죄의 법. 마침내 탄식이 터진다 — "오호라 나는 곤고한 사람이로다! 누가 나를 건져내랴?"(24절). 곧이어 "우리 주로 말미암아 하나님께 감사하리로다"가 솟고, 다시 두 법으로 갈린 채 닫힌다. 거룩한 율법과 곤고한 나가 한 장 안에 나란히 놓인다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>세 무대 — 결혼 비유(1-6)·율법 해부(7-13)·내면 독백(14-25). <em>nomos</em>가 메아리.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>차분한 법조문 뒤 터지는 탄식. 24절 골짜기. 일인칭 폭발.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작 — 율법의 주관(1). 끝 — 두 법의 분열(25). 24절이 가운데 골짜기.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>"나" / 인격처럼 움직이는 "죄". 갈등(19). 사상 = 두 법(22-23).</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 결혼 비유(1-6). 컷 2 율법·죄(7-12). 컷 3 어긋난 의지(13-20). 컷 4 두 법·곤고(21-25).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>반문 2회(7·13). "원하는 바" 후렴. 시제 전환. <em>oikeo</em> 거함의 대비.</td></tr>
+<tr><td>7 동영상</td><td>비유 → 율법이 죄냐 → 죄가 틈탐 → 어긋난 의지 → 두 법의 싸움 → 곤고한 탄식으로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목 — "오호라 나는 곤고한 사람이로다 — 한 사람 안의 두 법". 부제 — "거룩한 율법 앞에서, 곤고한 사람의 탄식까지".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>"누가 나를 건져내랴"는 물음 앞에 서서 본다. 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 율법을 변호하는 부정</strong>: "율법이 죄냐 그럴 수 없느니라"(7절). 율법을 죄와 떼어 놓는 부정이 단을 연다.</p>
+<p>2. <strong>결 2 — 어긋난 의지의 후렴</strong>: "원하는 선은 행하지 아니하고"(15·19절)가 거듭된다. 의지와 행동의 어긋남이 후렴으로 박힌다.</p>
+<p>3. <strong>결 3 — 탄식과 감사의 인접</strong>: "곤고한 사람이로다"(24절) 바로 뒤에 "감사하리로다"(25절)가 붙는다. 골짜기와 솟음이 한 호흡에 놓인다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>롬 6:14</strong> (법 아래가 아니라), <strong>롬 8:2</strong> (죄와 사망의 법에서 해방), <strong>롬 6:7</strong> (죽으면 놓임).</li>
+<li>다른 권 — <strong>출 20:17 / 신 5:21</strong> (탐내지 말라), <strong>갈 5:17</strong> (육체와 성령의 싸움).</li>
+<li>정경 흐름 — 7장의 탄식 "누가 나를 건져내랴"는 8장 "정죄함이 없나니"가 곧바로 받아 풀어 간다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 한 사람이 결혼 비유의 차분한 법조문 앞에 선다.</li>
+<li><strong>멈춤 1</strong>: "율법이 죄냐"는 부정 앞에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: "원하는 선은 행하지 못한다"는 어긋남 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: "두 법" 사이에 사로잡힌 자리에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 *거룩한 율법과 곤고한 나가 한 장에 있다*는 결을 손에 쥔다.</li>
+<li><strong>기도</strong>: 본문은 기도자를 *누가 나를 건져내랴는 물음 앞* 에 둔다. 가르침 없이 곳만 안내한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<p>외부 자료 없이 이 장만으로 닿을 수 있는 결:</p>
+
+<ul>
+<li>[x] 법은 사람이 살 동안만 주관한다</li>
+<li>[x] 율법은 죄가 아니라 죄를 드러낸다</li>
+<li>[x] 죄가 계명을 틈타 일어난다</li>
+<li>[x] 원하는 선은 못 하고 원치 않는 악을 행한다</li>
+<li>[x] 한 사람 안에서 두 법이 싸운다</li>
+<li>[x] "곤고한 사람이로다"는 탄식이 터진다</li>
+<li>[x] 탄식 뒤에 감사가 솟는다</li>
+</ul>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>누가 나를 건져내랴</em>.</p></div>
+        </section>
+
+    
+    <div class="next-row">
+      <a href="/magazine/ROM/6/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">로마서 6장</div><div class="nav-preview">앞 장의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/ROM/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">로마서 16장 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/ROM/8/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">로마서 8장</div><div class="nav-preview">이어서 같은 골격으로 관찰합니다.</div></a>
+    </div>
+    
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  // 1) Resume 쿠키
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/ROM/7/',
+      title: '로마서 7장',
+      excerpt: '남편 비유로 율법에서 놓임을 그린 데서 시작해, 율법과 죄의 분석이 못이 되고, \"오호라 나는 곤고한 사람\"의 탄식으로 내려간다.'
+    }));
+  } catch(e) {}
+
+  // 2) 사이드바 클릭 → 해당 details 자동 펼침 + 부드러운 스크롤
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      // active 표시
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      // 스크롤 보정 (sticky nav 약 70px 감안)
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    // 페이지 진입 시 해시가 있으면 동일 처리
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    // 스크롤 위치에 따른 active 갱신 (간이)
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+
+
+
+
+
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+
+
+<script src="/assets/back-to-top.js" defer></script>
+
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
