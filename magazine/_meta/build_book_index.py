@@ -23,7 +23,7 @@ META={
 
 def essence(code,n):
     f=os.path.join(ROOT,"magazine",code,str(n),"index.html")
-    if os.path.exists(f) and os.path.getsize(f)>40000:
+    if os.path.exists(f) and os.path.getsize(f)>30000:
         t=open(f,encoding="utf-8").read()
         m=re.search(r'<p class="essence">([^<]+)</p>',t)
         if m: return m.group(1).strip()
