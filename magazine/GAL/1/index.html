@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>갈라디아서 1장 — Observatory | 네다바웨이</title>
+<meta name="description" content="갈라디아서 1장을 9단계로 같이 관찰합니다. 다른 복음은 없다 — 바울의 복음은 사람에게서 온 것이 아니라 예수 그리스도의 계시로 받은 것이다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/GAL/1/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/GAL/">갈라디아서</a> · 1장</div>
+      <h1>갈라디아서 1장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">GAL-001 · 서신서 · 헬라어</div>
+      <p class="essence">다른 복음은 없다 — 바울의 복음은 사람에게서 온 것이 아니라 예수 그리스도의 계시로 받은 것이며, 이것이 갈라디아서 격정의 첫 선언이다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>서신 장르의 무대를 배경·논증 골격으로 본다.</strong> 발신자·수신자·상황·반복 어절·원어 소재를 논증의 첫 포문으로 본다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: GAL-001</p>
+<p>book: 갈라디아서</p>
+<p>book_en: Galatians</p>
+<p>chapter: 1</p>
+<p>bible_block: 서신서</p>
+<p>canon: 신약</p>
+<p>genre: 변증·서신</p>
+<p>language: 헬라어</p>
+<p>verse_count: 24</p>
+<p>observed_facts_count: 23</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>greek_terms: [euangelion, anathema, apokalupto, Ioudaismos, paradosis, apostellos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-01</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>갈라디아서 1장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 갈라디아서 1장입니다. 바울이 이 편지를 쓸 때, 손이 떨렸을 것 같다는 생각을 하며 먼저 끝까지 낭독하고, 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 1:1~24, 약 4분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P01 한나래</strong>: 차갑고 날카로워요. 첫 인사부터 긴장이 느껴졌어요. 다른 편지들처럼 "감사한다"는 말이 없고, 바로 "다른 복음을 전하면 저주를 받을지어다"(8-9절)로 가요.</p>
+
+<p><strong>P07 오지혜</strong>: "저주"(anathema)가 두 번 나와요(8, 9절). 같은 말을 반복하는 데서 얼마나 다급한지가 느껴졌어요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 두 공간이에요. 앞은 갈라디아 교회라는 현재 상황, 뒤는 바울의 과거 — 유대주의 안에서의 삶(13-14절)과 계시(15-16절)예요. 현재와 과거가 나란히 서요.</p>
+
+<p><strong>P02 이진우</strong>: 논증 구조가 날카로워요. "내 복음은 사람의 뜻을 따라 된 것이 아니요"(11절)가 중심이고, 그것을 뒷받침하기 위해 자신의 삶 전체를 내놓아요.</p>
+
+<p><strong>P05 김미영</strong>: 소품으로는 "아라비아", "다메섹", "예루살렘"이 지명으로 등장해요. 먼 지명들이 바울의 이동 경로처럼 깔려요.</p>
+
+<p><strong>P11 나경아</strong>: "복음"이 헬라어로 <em>euangelion</em>인데, 이 단어가 1장에서 여러 번 반복돼요. 장의 소재 자체가 <em>euangelion</em>의 기원이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 날카롭고 다급한 공기를 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대 소재를 짚어 보지요.</p>
+
+<p><strong>P04 최현국</strong>: 서신 형식의 무대예요. 발신자는 "바울"과 "함께 있는 모든 형제들"(1-2절), 수신자는 "갈라디아 여러 교회"(2절)예요. 인사가 짧고 바로 본론으로 들어가요.</p>
+
+<p><strong>P05 김미영</strong>: 소품으로는 "십자가", "다른 복음", "저주"가 핵심 소재예요. 그리고 지명 — "아라비아", "다메섹", "예루살렘", "수리아 길리기아"(17·21절)가 등장해요.</p>
+
+<p><strong>P07 오지혜</strong>: "유대주의"(<em>Ioudaismos</em>, 13-14절)가 배경 소재예요. 바울이 그 안에 있었다 함으로, 자신이 그 출신임을 인정하면서도 떠나온 결을 보여요.</p>
+
+<p><strong>P11 나경아</strong>: 원어로 두면, 8-9절 "저주"가 <em>anathema</em>예요. 헌물로 드려진다는 뉘앙스인데, 여기서는 하나님께 심판으로 내맡겨진다는 결이에요. 음역만 배경으로요. 그리고 16절 "계시로 나타내셨다"가 <em>apokalupto</em> — 베일을 벗기다·드러내다예요.</p>
+
+<p><strong>P02 이진우</strong>: 논증의 골격이 보여요. 1-5절(인사·은혜·평강) → 6-10절(다른 복음에 대한 경고) → 11-17절(복음의 기원이 계시임) → 18-24절(예루살렘 방문의 시간표)예요.</p>
+
+<p><strong>P01 한나래</strong>: 14절에 "내 동족 중 여러 연갑자보다 유대교를 지나치게 믿어 내 조상의 유전에 더욱 열심이었다"가 있어요. "조상의 유전"이 소재로 짚혀요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>euangelion</em>·<em>anathema</em>·<em>apokalupto</em>와 무대 골격을 배경 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절의 관계는 어떤지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "사람들에게서 난 것도 아니요 사람으로 말미암은 것도 아니요 오직 예수 그리스도와 그를 죽은 자 가운데서 살리신 하나님 아버지로 말미암아 사도 된 바울이"로 시작해요. 24절은 "그들이 나로 말미암아 하나님께 영광을 돌리니라"로 닫혀요. 시작은 바울의 사도직의 기원, 끝은 그 결실로서의 하나님 영광이에요.</p>
+
+<p><strong>P04 최현국</strong>: 시작이 "사람들에게서 아니요"라면, 끝이 "하나님께 영광"이에요. 인간 기원의 부정에서 하나님 영광의 긍정으로 가요.</p>
+
+<p><strong>P01 한나래</strong>: 중간의 저주 선언(8-9절)을 지나 끝에서 "영광"이 나오는 게 인상적이었어요. 그 사이에 바울의 삶 전체가 논증으로 놓여요.</p>
+
+<p><strong>성령일 선교사</strong>: 인간 기원 부정에서 하나님 영광으로 가는 폭을 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물은 누구인지요.</p>
+
+<p><strong>P05 김미영</strong>: 바울, 갈라디아 교회들, 교회를 흔드는 어떤 사람들(7절 "어떤 사람들이 너희를 요란하게 하여"), 야고보, 베드로(게바), 야고보의 형제 주의 형제가 등장해요(18-19절).</p>
+
+<p><strong>P07 오지혜</strong>: 상황 세 층이 보여요. 현재 — 갈라디아 교회가 "다른 복음"으로 이동 중(6절). 과거 — 바울이 유대주의 안에서 교회를 박해함(13절). 전환점 — 바울이 계시로 복음을 받음(15-16절)이에요.</p>
+
+<p><strong>P02 이진우</strong>: 사상의 핵심은 11-12절이에요. "내가 전한 복음은 사람의 뜻을 따라 된 것이 아니라. 이는 내가 사람에게서 받은 것도 아니요 배운 것도 아니요 오직 예수 그리스도의 계시로 말미암은 것이라." 복음의 기원이 논증의 척추예요.</p>
+
+<p><strong>P04 최현국</strong>: 15-16절이 전환점이에요. "그러나 내 어머니의 태로부터 나를 택정하시고 은혜로 부르신 이가 그의 아들을 이방에 전하기 위하여 그를 내 속에 나타내시기를 기뻐하셨을 때에." <em>apokalupto</em>가 여기에 있어요.</p>
+
+<p><strong>P11 나경아</strong>: 13절 "유대교"가 <em>Ioudaismos</em>예요. 14절의 "조상의 유전"은 <em>paradosis</em> — 전달된 것·전통이에요. 바울이 그 <em>paradosis</em> 안에서 "지나치게"(hyperbolically) 열심이었다고 해요. 두 원어만 배경으로요.</p>
+
+<p><strong>P01 한나래</strong>: 6절 "이렇게 속히 떠나 다른 복음을 따르느냐"의 "속히"가 마음에 걸렸어요. 그들이 쉽게 흔들렸다는 결이에요.</p>
+
+<p><strong>성령일 선교사</strong>: "속히 떠나"와 <em>apokalupto</em>·<em>paradosis</em>를 나란히 두고, 어느 하나로 좁히지 않겠습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 네 컷으로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-5절)</strong>: 인사 — "사람들에게서 아니요, 예수 그리스도와 하나님 아버지로 말미암아" 사도 바울</li>
+<li><strong>컷 2 (6-10절)</strong>: 경고 — "다른 복음을 전하면 저주를 받을지어다" (두 번)</li>
+<li><strong>컷 3 (11-17절)</strong>: 기원 — "내 복음은 계시로 받은 것"·바울의 삶 전체</li>
+<li><strong>컷 4 (18-24절)</strong>: 시간표 — 예루살렘 방문·유대 교회들의 반응</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 2가 경고이고 컷 3이 그 경고의 근거예요. 저주 선언 → 복음의 기원 변증의 흐름이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 경고와 변증의 흐름을 컷 옆에 적어 두지요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 바울은 감사 인사 없이 바로 경고로 들어가요. 다른 서신의 감사 문단이 없다는 게 이 장의 긴장을 드러내요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. "다른 복음"이 정확히 무엇인지 1장은 말하지 않아요. 7절 "그리스도의 복음을 변하게 하려는 것"이라는 말만 있고, 내용은 3장 이후에 나와요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로, 1절 "사도"는 헬라어 <em>apostellos</em> — 보냄을 받은 자예요. 바울은 사람이 아닌 하나님께서 보내셨다고 바로 첫 절에서 주장해요. 음역만 배경으로요.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 17-18절에서 바울은 계시를 받은 뒤 "예루살렘에 올라가지 않고 아라비아로 갔다"고 해요. 계시 직후의 첫 행동이 사람에게 묻지 않는 것이에요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 왜 <em>anathema</em>를 두 번(8-9절) 반복하는지 — 강조인지, 청중이 이해 못 할까 봐 반복하는지, 본문은 답하지 않아요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 23절이 걸려요. "다만 우리를 박해하던 자가 전에 멸하려던 그 믿음을 지금 전한다." 바울이 그들에게는 소식으로만 알려졌고, 직접 만나지 않은 교회들이 하나님께 영광을 돌린다는 결이요.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 바울은 첫 줄부터 자신의 사도직이 "사람들에게서 난 것이 아니라 예수 그리스도와 하나님 아버지로 말미암은 것"이라 선언해요.</p>
+
+<p><strong>P01 한나래</strong>: 그러고는 감사 없이 바로 "이렇게 속히 다른 복음을 따르느냐"며 놀라움으로 들어가요. "다른 복음을 전하면 저주를 받을지어다"를 두 번 반복해요.</p>
+
+<p><strong>P04 최현국</strong>: 그다음 "내 복음은 사람의 뜻을 따라 된 것이 아니라, 예수 그리스도의 계시로 말미암은 것"이라 하고, 자기 삶 전체를 증거로 내놓아요. 유대주의 안에서 지나치게 열심이었다가, 계시를 받은 뒤 사람과 상의하지 않고 아라비아로 갔다고 해요.</p>
+
+<p><strong>P02 이진우</strong>: 3년 뒤 예루살렘에 올라가 게바(베드로)를 방문하고, 주의 형제 야고보를 보았다 하고요. 그 뒤 수리아와 길리기아로 가서, 유대 교회들이 소식만 들었는데 하나님께 영광을 돌렸다는 결말이에요.</p>
+
+<p><strong>P11 나경아</strong>: 전체 동영상이 "사람에게서 아니요, 계시로"라는 한 줄을 증명하는 바울의 삶 전체예요. 그 선언에서 시작해, 그 증거로 닫혀요.</p>
+
+<p><strong>성령일 선교사</strong>: 선언에서 시작해 증거로 닫히는 동영상이 보입니다. 여기까지가 오늘 장입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "다른 복음은 없다"</p>
+<p><strong>P02 이진우</strong>: "사람에게서 아니요 — 계시로"</p>
+<p><strong>P04 최현국</strong>: "저주와 영광 사이 — 바울의 복음"</p>
+<p><strong>P05 김미영</strong>: "이렇게 속히 떠나느냐"</p>
+<p><strong>P07 오지혜</strong>: "아나테마 두 번 — 흔들리는 갈라디아"</p>
+<p><strong>P11 나경아</strong>: "<em>Euangelion</em> — 계시의 기원"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다. 어느 하나로 좁히지 않겠습니다.</p>
+
+<p>부제 제안은: "사람의 복음에서 그리스도의 계시로 — 갈라디아 격정의 첫 포문"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 방금 본 동영상 안으로 상상으로 들어가, 바울이 감사 인사도 없이 바로 "이렇게 속히 떠나느냐"를 쓰던 그 긴장 앞에 서 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P05 김미영</strong>: (조용히) 주님, 저는 "속히 떠나는" 마음 앞에 섭니다.</p>
+<p>*— 그 순간 떠오른 것을 각자 마음에만 둡니다.</p>
+
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. 갈라디아서의 흐름은 <strong>율법의 종됨에서 믿음으로 아들 삼고 성령으로 자유롭게 행하게 하시는 운동</strong>입니다. 1장은 그 운동의 첫 국면이에요. 이제 묻겠습니다. <strong>그래서 이 본문은 어디서 어디로 움직이는지요? 눈에 보이는 일 아래에서 무엇이 회복되고 있는지요? 이 본문이 품은 긴장은 무엇인지요?</strong></p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p><strong>P02 이진우</strong>: 구조로 보면, 1장은 <strong>'사람에게서 난 복음'(가짜 출처)에서 '그리스도의 계시로 받은 복음'(참 출처)으로</strong> 미는 화살표예요. 갈라디아 교회가 "속히" 이동하는 방향을 막으면서, 복음의 기원을 바로 세우는 첫 국면이에요. GAL 흐름에서 보면 이 장은 "다른 복음(율법주의)에 흔들리는 상황"을 정면에 놓는 자리예요.</p>
+
+<p><strong>P11 나경아</strong>: 원어로 단서를 하나 두면, <em>apokalupto</em>(계시·드러냄)가 15-16절의 전환점이에요. 유대주의(<em>Ioudaismos</em>)의 <em>paradosis</em>(전통)에서 그리스도의 <em>apokalupto</em>(계시)로 — 전통에서 계시로 이동하는 게 이 장의 핵심 운동이에요. 그 아래에 율법의 전통에서 벗어나 은혜의 계시로 사도직이 세워지는 결이 깔려요.</p>
+
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 이 장은 <strong>'복음의 권위를 어디서 받는가'</strong>에 대한 근본 질문이에요. 다른 복음을 따르는 것은 단순히 교리 실수가 아니라, 복음 자체의 기원을 사람에게 두는 것이에요. 그 아래에 종됨과 자유의 첫 대결이 깔려요 — 사람에게 매인 종인가, 그리스도의 계시로 자유로운 사도인가.</p>
+
+<p><strong>P01 한나래</strong>: 긴장이 만져졌어요. 9절이 8절을 그대로 반복하는 것 — <strong>"내가 전에 말한 것 같이 이제 다시 말한다"</strong>예요. 이미 말했는데 또 말하는 그 긴장 — 바울이 이미 경고했음에도 교회가 흔들린다는 결이에요.</p>
+
+<p><strong>P04 최현국</strong>: 운동 한 동영상으로 보면, 갈라디아 교회의 이탈(흔들림) → 저주 선언(복음 수호) → 복음의 계시 기원(변증) → 하나님께 영광(결실)이에요. <strong>이탈에서 기원으로, 종됨의 상황에서 계시의 자유로</strong>의 첫 운동이에요.</p>
+
+<p><strong>P05 김미영</strong>: 이 불이 타오르느냐 물으시니 — "다른 복음을 속히 따르는" 것이 얼마나 쉬운가가 만져졌어요. 그리고 그 앞에서 바울이 왜 <em>anathema</em>를 두 번이나 쓰는지도요. <strong>계시로 받은 복음이 내 안에서 어디서 왔는가</strong>를 묻게 되는 자리예요. 거기서 멈춰 섭니다.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>사람의 전통에서 그리스도의 계시로, 흔들리는 교회에서 복음의 기원으로</strong> — 1장이 GAL 흐름의 첫 국면(다른 복음 vs 바울의 복음)을 여는 운동을 손에 쥐고 오늘 관찰을 닫습니다.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2단계 — 첫 느낌, 분위기.</strong> <strong>3단계 — 시작과 끝.</strong> <strong>4단계 — 등장인물·사상.</strong> <strong>5단계 — 장면 컷.</strong> <strong>6단계 — 의문·발견·정보.</strong> <strong>7단계 — 동영상.</strong></p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: GAL-001</p>
+<p>book: 갈라디아서</p>
+<p>chapter: 1</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>갈라디아서 1장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>서신 형식 — 발신자(바울·형제들) / 수신자(갈라디아 여러 교회) / 감사 문단 없음.</li>
+<li>소재: "다른 복음"·"저주"(<em>anathema</em>)·"계시"(<em>apokalupto</em>)·"유대주의"(<em>Ioudaismos</em>).</li>
+<li>지명: 아라비아·다메섹·예루살렘·수리아·길리기아.</li>
+<li>바울의 시간표: 계시→아라비아→다메섹→3년 후 예루살렘(베드로·야고보)→수리아·길리기아.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>감사 인사 없이 바로 경고로 들어가는 날카로운 긴장.</li>
+<li><em>anathema</em>(저주)가 두 번(8·9절) 반복 — 다급함.</li>
+<li>"이렇게 속히 떠나느냐"(6절)의 놀라움과 안타까움.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "사람들에게서 난 것도 아니요… 예수 그리스도와 하나님 아버지로 말미암아 사도 된 바울"</li>
+<li>24절: "그들이 나로 말미암아 하나님께 영광을 돌리니라"</li>
+<li>인간 기원의 부정에서 하나님 영광의 긍정으로.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 바울·형제들·갈라디아 교회들·어떤 사람들(7절)·게바(베드로)·야고보.</li>
+<li>상황: 교회가 다른 복음으로 이동 중(6절) / 바울의 유대주의 과거(13-14절) / 계시 전환(15-16절).</li>
+<li>사상의 핵 — "복음은 사람의 뜻이 아니라 예수 그리스도의 계시"(11-12절).</li>
+<li>"조상의 유전"(<em>paradosis</em>)에 열심이었다가 계시로 전환됨(14-16절).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-5): 인사 — "사람에게서 아니요, 그리스도로 말미암아" 사도 바울.</li>
+<li>컷 2 (6-10): 경고 — "다른 복음을 전하면 <em>anathema</em>" 두 번.</li>
+<li>컷 3 (11-17): 기원 — "계시로 받은 복음"·아라비아로 감.</li>
+<li>컷 4 (18-24): 시간표 — 예루살렘 방문·유대 교회들이 하나님께 영광.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>euangelion</em>(εὐαγγέλιον) — 복음·좋은 소식. 장 전체를 떠받치는 소재.</li>
+<li><em>anathema</em>(ἀνάθεμα) — 저주·하나님께 심판으로 내맡겨짐. 8·9절.</li>
+<li><em>apokalupto</em>(ἀποκαλύπτω) — 계시·드러냄·베일 벗김. 16절.</li>
+<li><em>Ioudaismos</em>(Ἰουδαϊσμός) — 유대주의·유대교. 13·14절.</li>
+<li><em>paradosis</em>(παράδοσις) — 전통·전달된 것. 14절 "조상의 유전".</li>
+<li><em>apostellos</em>(ἀπόστολος) — 사도·보냄받은 자. 1절.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>인사(1-5) → 경고(6-10) → 복음 기원 변증(11-17) → 시간표 증거(18-24).</li>
+<li><em>anathema</em> 두 번 반복(8-9절) — 강조 반복.</li>
+<li>사도직의 기원(1절)과 복음의 기원(11-12절)이 평행 구조.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>"갈라디아"는 소아시아 지역. 바울의 1차 선교 여행 때 설립한 교회들로 추정 — 배경으로만.</li>
+<li>아라비아 체류(17절)는 구체적 목적이 언급되지 않음 — 배경으로만.</li>
+<li>서신의 감사 문단 부재는 바울 서신 중 이례적 — 위치로만.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>갈 1:8-9 ↔ 갈 5:2-4 (다른 복음의 내용이 후반에 드러남)</li>
+<li>갈 1:13-14 ↔ 빌 3:4-6 (바울의 유대주의 배경)</li>
+<li>갈 1:16 ↔ 고전 15:8-9 (계시·이방 사도직)</li>
+<li>갈 1:1 ↔ 롬 1:1 (사도직의 기원 비교)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>바울은 첫 줄부터 자신의 사도직이 "사람에게서 아니라 예수 그리스도와 하나님 아버지로 말미암았다"고 선언한다. 감사 없이 바로 "이렇게 속히 다른 복음을 따르느냐"며 갈라디아 교회를 향해 돌아선다. "다른 복음을 전하면 저주를 받을지어다"를 두 번 반복한다. 그다음 "내 복음은 사람의 뜻이 아니라 예수 그리스도의 계시로 말미암은 것"이라 하고, 자기 삶 전체를 증거로 내놓는다 — 유대주의 안에서 교회를 박해하고 "조상의 유전"에 열심이었지만, 계시를 받은 뒤 사람과 상의하지 않고 아라비아로 갔다. 3년 뒤 예루살렘에 올라가 게바와 야고보를 만났고, 그 뒤 유대 교회들이 소식만 들었는데 "우리를 박해하던 자가 전에 멸하려던 믿음을 지금 전한다"며 하나님께 영광을 돌렸다고 닫는다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+
+<ul>
+<li>초벌 제목: <strong>"다른 복음은 없다 — 계시로 받은 <em>euangelion</em>"</strong></li>
+<li>초벌 부제: "사람의 전통에서 그리스도의 계시로 — 갈라디아 격정의 첫 포문"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (6개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (감사 부재·아라비아·서신 구조)</li>
+<li>[x] 미해결 질문 1개 이상 (6건 예정)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 4개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>"다른 복음"의 구체적 내용을 1장에서 단정하지 않도록 → 3장 이후 내용을 끌어오지 않음.</li>
+<li><em>anathema</em> 반복의 이유를 해석하지 않도록 → 사실(두 번 반복)만 보존.</li>
+<li>아라비아 체류의 목적을 추가하지 않도록 → 본문이 말하지 않는 것은 미해결로.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 주께 아뢰기.</strong> 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: GAL-001</p>
+<p>book: 갈라디아서</p>
+<p>chapter: 1</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>갈라디아서 1장 — 미해결 질문</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. "다른 복음"이 정확히 무엇인가(7절)?</h2>
+
+<ul>
+<li>"그리스도의 복음을 변하게 하려는 것"이라는 말만 있고 내용은 명시되지 않음.</li>
+<li>3장 이후의 내용을 1장에서 당기지 않고 보존.</li>
+</ul>
+
+<h2>Q2. 바울이 아라비아로 간 이유는 무엇인가(17절)?</h2>
+
+<ul>
+<li>계시 직후 사람과 상의하지 않고 아라비아로 갔다고만 함.</li>
+<li>그 목적은 본문이 말하지 않으므로 미해결로.</li>
+</ul>
+
+<h2>Q3. <em>anathema</em>를 두 번 반복하는 이유는 무엇인가(8-9절)?</h2>
+
+<ul>
+<li>강조인지, 다른 목적인지 본문은 답하지 않음.</li>
+<li>사실(두 번 반복)만 보존.</li>
+</ul>
+
+<h2>Q4. "사도직"의 기원이 왜 첫 절에 나오는가(1절)?</h2>
+
+<ul>
+<li>논증의 방향과 관계있는 듯하나, 본문이 직접 연결하지 않음.</li>
+<li>묵상으로 이월.</li>
+</ul>
+
+<h2>Q5. 바울이 예루살렘에서 베드로와 야고보만 만난 것은 의도적인가(18-19절)?</h2>
+
+<ul>
+<li>"다른 사도들을 보지 못하였다"고 명시함.</li>
+<li>그 의미는 관찰로는 보류.</li>
+</ul>
+
+<h2>Q6. "다른 복음을 속히 따르는" 갈라디아 교회의 상황은 어떻게 생겨났는가(6절)?</h2>
+
+<ul>
+<li>7절에 "어떤 사람들"이 요란하게 한다고만 함.</li>
+<li>그 배경은 답하지 않고 머문다.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">다른 복음은 없다 — 계시에서 시작된 복음의 첫 포문.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 갈라디아서 흐름의 첫 국면으로 이 장이 서는 자리를 통합한 결입니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: GAL-001</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-01</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 갈라디아서 1장은 "다른 복음은 없다"는 선언으로 포문을 열고, 바울의 복음이 사람에게서 온 것이 아니라 예수 그리스도의 계시로 받은 것임을 자기 삶 전체로 증명하는 장이다.</p>
+
+<p><strong>한 문단</strong>: 바울은 감사 인사도 없이 바로 "이렇게 속히 다른 복음을 따르느냐"며 갈라디아 교회를 향해 돌아선다. "다른 복음을 전하면 저주(<em>anathema</em>)를 받을지어다"를 두 번 반복한다. 그 근거로 "내 복음은 사람의 뜻이 아니라 예수 그리스도의 계시(<em>apokalupto</em>)로 말미암은 것"을 선언하고, 유대주의(<em>Ioudaismos</em>) 안에서 열심이었다가 계시로 전환된 자신의 삶 전체를 증거로 내놓는다. 그 결말은 유대 교회들이 바울로 말미암아 하나님께 영광을 돌리는 것이다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>서신 형식·감사 부재. 소재: <em>euangelion</em>·<em>anathema</em>·<em>apokalupto</em>. 지명: 아라비아·다메섹·예루살렘.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>날카롭고 다급함. <em>anathema</em> 두 번. "속히 떠나느냐"의 안타까움.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작: "사람에게서 아니요"(1). 끝: "하나님께 영광"(24). 부정에서 긍정으로.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>바울·교회·"어떤 사람들"·게바·야고보. 사상 핵 — 복음의 기원은 계시(11-12).</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 인사(1-5). 컷 2 경고(6-10). 컷 3 기원(11-17). 컷 4 시간표(18-24).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>감사 부재의 의미. "다른 복음" 미공개. <em>anathema</em> 반복. 아라비아 이유 미공개.</td></tr>
+<tr><td>7 동영상</td><td>선언→경고→기원 변증→하나님 영광으로 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목: "다른 복음은 없다 — 계시로 받은 <em>euangelion</em>". 부제: "사람의 전통에서 계시로".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>"속히 떠나는" 긴장 앞에 서며 주께 드림. 답을 구하지 않고 머묾.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 감사 없는 경고</strong>: 다른 서신의 감사 문단이 없고 바로 경고로 들어간다. 그 긴장이 이 편지 전체의 온도를 만든다.</p>
+<p>2. <strong>결 2 — <em>anathema</em> 두 번</strong>: "내가 전에 말한 것 같이 이제 다시 말한다"(9절). 한 번도 아니고 두 번 — 이 선언의 무게를 반복이 짊어진다.</p>
+<p>3. <strong>결 3 — 삶이 증거</strong>: 17-18절에서 계시 이후 "사람과 상의하지 않고" 아라비아로 간 것이 논증의 일부다. 삶의 방향이 복음의 기원을 증명한다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>갈 1:8-9 ↔ 갈 5:2-4</strong> (저주 경고 ↔ 할례와 율법의 의무), <strong>갈 1:1 ↔ 갈 2:20</strong> (사도직 기원 ↔ 십자가의 전환점).</li>
+<li>다른 권 — <strong>빌 3:4-6</strong> (유대주의 배경), <strong>고전 15:8-9</strong> (이방 사도직·계시).</li>
+<li>갈라디아서 흐름 — 1~2장이 "다른 복음 vs 바울의 복음(그리스도와 함께 십자가에)"의 첫 국면을 연다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 한 사람이 "속히 떠나는" 갈라디아 교회의 자리에 앉는다.</li>
+<li><strong>멈춤 1</strong>: <em>anathema</em>가 두 번 반복되는 자리에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: "계시로 받은 복음"이라는 선언 곁에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: 아라비아로 가는 바울의 혼자됨 앞에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 일어나며 "하나님께 영광"이라는 마지막 줄을 손에 쥔다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<ul>
+<li>[x] 바울의 복음은 사람에게서 온 것이 아니라 예수 그리스도의 계시로 받음</li>
+<li>[x] 다른 복음을 전하면 저주(<em>anathema</em>)를 받음 — 두 번 선언</li>
+<li>[x] 바울은 유대주의 안에서 교회를 박해했고 "조상의 유전"에 열심이었음</li>
+<li>[x] 계시 이후 사람과 상의하지 않고 아라비아로 감</li>
+<li>[x] 유대 교회들이 바울로 말미암아 하나님께 영광을 돌림</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+
+<p>갈라디아서의 운동은 <strong>"율법의 종됨에서 건져, 믿음으로 아들 삼고 성령으로 자유롭게 행하게 하신다"</strong>는 척추를 따른다. 1장은 그 운동의 가장 첫 국면 — <strong>"다른 복음(율법주의) vs 바울의 복음(그리스도와 함께 십자가에)"의 대결이 시작되는 자리</strong>다. 구속사의 호(arc)에서 보면, 율법 시대(시내산·<em>paradosis</em>)에서 복음 시대(그리스도의 계시)로 가는 전환이 바울의 삶 안에서 미시적으로 반복된다 — 유대주의 열심에서 계시의 전환으로. 교회가 "다른 복음을 속히 따르는" 것은 그 전환을 역행하는 것이고, 바울의 포문은 그 역행을 막는 첫 방어선이다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+
+<blockquote>
+<p><strong>사람의 전통(<em>paradosis</em>)→그리스도의 계시(<em>apokalupto</em>) / 갈라디아 교회의 이탈(6절)→복음의 기원 재확인(11-12절) / 인간 기원 부정(1절)→하나님 영광(24절).</strong></p>
+</blockquote>
+
+<p>한 화살표로 좁히면, 1장은 <em>사람에게서 난 것에서 그리스도의 계시로 — 흔들리는 교회에서 복음의 기원으로</em> 미는 첫 국면이다. GAL 흐름의 spine(율법의 종됨→믿음·아들→성령의 자유)에서 보면, 이 장은 그 종됨과의 대결이 시작되는 포문이다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+
+<p>표면의 가시적 사건은 바울의 서신 쓰기와 자기 변증이다. 그러나 그 아래에서 움직이는 본질은 <strong>복음의 기원이 사람의 전통이냐 하나님의 계시냐는 근본 물음</strong>이다. 갈라디아 교회가 "다른 복음을 속히 따르는" 것은 단순한 교리 실수가 아니다 — 그것은 복음의 뿌리를 사람의 권위에 두는 것이고, 그 결과는 종됨이다. 바울이 <em>anathema</em>를 두 번 선언하는 것은 이 종됨의 위험에 대한 가장 날카로운 경보다. 수면 아래에서, 이 장은 하나님이 율법의 전통을 통해서가 아니라 그리스도의 계시로 사람을 부르신다는 것 — 그 부름의 기원을 지키려는 하나님의 의중이 바울을 통해 격정으로 터져 나오는 자리다.</p>
+
+<h3>J · 실존적 부름 — 한 줄의 불씨</h3>
+
+<blockquote>
+<p>내가 따르는 복음은 어디서 왔는가 — 사람의 전통에서인가, 그리스도의 계시에서인가.</p>
+</blockquote>
+
+<p>이것은 가르침이 아니라 초대다. 1장은 독자를 "속히 떠나는" 갈라디아 교회의 자리에 세우고, 그 자리에서 "내 복음은 사람에게서인가 계시에서인가"를 묻게 한다. 가르침으로 닫지 않고, 바울의 삶 — 아라비아의 혼자됨, 3년의 시간, 사람과 상의하지 않음 — 이 운동 안에 독자를 세운다. GAL 흐름에서 이 불씨는, 율법의 종됨으로 향하는 모든 이탈 앞에서 "복음의 기원이 그리스도임"을 붙드는 운동으로 번져간다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>apokalupto</em>(계시).</p>
+<p><strong>다음 장으로 미는 운동</strong>: 계시로 세워진 복음의 기원이, 안디옥 충돌과 "그리스도와 함께 십자가에"의 전환점(2:20)으로 나아간다.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/GAL/"><div class="nav-kicker">↑ 권 차례</div><div class="nav-title">갈라디아서 차례로</div><div class="nav-preview">갈라디아서의 다른 장을 골라 들어가실 수 있습니다.</div></a>
+      <a href="/magazine/GAL/2/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">갈라디아서 2장</div><div class="nav-preview">안디옥 충돌과 "그리스도와 함께 십자가에 못 박혔나니"(2:20).</div></a>
+    </div>
+
+<aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/GAL/1/',
+      title: '갈라디아서 1장',
+      excerpt: '다른 복음은 없다. 바울의 복음은 사람에게서가 아니라 예수 그리스도의 계시로 받은 것이다.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){.foot--mini .foot--mini__inner{justify-content:flex-start}.foot--mini>div>span{display:block}}
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-01</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
