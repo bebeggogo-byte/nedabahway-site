@@ -25,8 +25,9 @@ def essence(code,n):
     f=os.path.join(ROOT,"magazine",code,str(n),"index.html")
     if os.path.exists(f) and os.path.getsize(f)>30000:
         t=open(f,encoding="utf-8").read()
-        m=re.search(r'<p class="essence">([^<]+)</p>',t)
-        if m: return m.group(1).strip()
+        # essence는 인라인 마크업(<em> 등)을 포함할 수 있으므로 비탐욕 매칭 후 태그 제거.
+        m=re.search(r'<p class="essence">(.*?)</p>',t,re.S)
+        if m: return re.sub(r'<[^>]+>','',m.group(1)).strip()
     return None
 
 def build(code):
