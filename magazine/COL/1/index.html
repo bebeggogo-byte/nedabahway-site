@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>골로새서 1장 — Observatory | 네다바웨이</title>
+<meta name="description" content="골로새서 1장을 9단계로 같이 관찰합니다. 그리스도 찬가 — 보이지 않는 하나님의 형상(eikon), 만물보다 먼저 나신 이, 교회의 머리(kephale), 십자가의 피로 화목(apokatallasso).">
+<link rel="canonical" href="https://www.nedabah.org/magazine/COL/1/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·정보</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/COL/">골로새서</a> · 1장</div>
+      <h1>골로새서 1장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">COL-001 · 서신서 · 헬라어</div>
+      <p class="essence">그리스도 찬가의 심장 — 보이지 않는 하나님의 형상(<em>eikon</em>), 만물보다 먼저 나시고 만물이 그 안에 함께 섰으며, 교회의 머리(<em>kephale</em>)로 십자가의 피로 만물을 화목(<em>apokatallasso</em>)케 하신다. 바울의 힘을 다한 수고가 그 복음의 일꾼 됨을 비춘다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>서신 장르 — 그리스도론의 정점.</strong> 그리스도 찬가(1:15-20)는 골로새서 전체의 신학적 심장이다. 바울과 에바브라의 수고, 어둠에서 아들의 나라로의 이동, 복음의 우주적 선포가 이 장의 소재다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: COL-001</p>
+<p>book: 골로새서</p>
+<p>book_en: Colossians</p>
+<p>chapter: 1</p>
+<p>bible_block: 서신서</p>
+<p>canon: 신약</p>
+<p>genre: 서신·찬가·논증</p>
+<p>language: 헬라어</p>
+<p>verse_count: 29</p>
+<p>observed_facts_count: 26</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>greek_terms: [eikon, prototokos, pleroma, kephale, apokatallasso, mysterion, parousia]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-01</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>골로새서 1장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘부터 골로새서를 시작합니다. 1장은 서신의 인사와 감사로 열리지만, 15절부터 그리스도 찬가가 펼쳐져요. 이 찬가가 골로새서 전체의 심장이라고 할 수 있습니다. 먼저 1절부터 29절까지 끝까지 낭독하고 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 1:1~29, 약 6분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기가 느껴지셨는지요.</p>
+
+<p><strong>P01 한나래</strong>: 15~20절에서 공기가 달라졌어요. "그는 보이지 아니하시는 하나님의 형상이시요 모든 피조물보다 먼저 나신 이시니" — 뭔가 선언이 쏟아지는 느낌이에요. 말이 쌓이는 느낌이요.</p>
+
+<p><strong>P07 오지혜</strong>: 13절 "그가 우리를 흑암의 권세에서 건져내사 그의 사랑의 아들의 나라로 옮기셨으니"가 가슴에 남았어요. 건져냄과 옮겨짐 — 장소가 바뀌는 이미지예요.</p>
+
+<p><strong>P04 최현국</strong>: 29절이 특이했어요. "이를 위하여 나도 내 속에서 능력으로 역사하시는 이의 역사를 따라 힘을 다하여 수고하노라." 바울이 힘을 다한다고 해요.</p>
+
+<p><strong>P02 이진우</strong>: 장 전체가 두 부분이에요. 인사·감사·기도(1-14)와 그리스도 찬가·복음의 일꾼(15-29)으로요. 분위기가 확연히 달라요.</p>
+
+<p><strong>P05 김미영</strong>: 소품으로 "어둠"·"아들의 나라"·"피"·"머리"가 보였어요. 그리고 "충만"이 계속 느껴졌어요.</p>
+
+<p><strong>P11 나경아</strong>: 15절의 "형상"이 헬라어 <em>eikon</em>이에요 — 보이지 않는 것의 가시적 표현이라는 뉘앙스예요. 18절 "머리"가 <em>kephale</em>이고요. 둘 다 이 찬가의 핵심 원어예요.</p>
+
+<p><strong>성령일 선교사</strong>: 선언이 쏟아지는 찬가, 건져냄과 옮겨짐, 힘을 다한 수고 — 그 공기를 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장의 무대와 소재를 짚어 보지요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 두 층이에요. 앞부분(1-14)은 서신 장르 — 바울의 인사와 기도의 무대예요. 뒷부분(15-29)은 찬가와 바울의 사도 선언 무대로 바뀌어요.</p>
+
+<p><strong>P05 김미영</strong>: 소품이에요. "흑암"(13절)·"아들의 나라"(13절)·"십자가의 피"(20절)·"몸"(18절, 22절)·"신비"(<em>mysterion</em>, 26-27절)·"그 안에"(16-17절 반복)가 보여요.</p>
+
+<p><strong>P07 오지혜</strong>: "만물"이 계속 나와요. 16절 "만물이 그에게서 창조되되 … 만물이 다 그로 말미암고 그를 위하여 창조되었고", 17절 "그가 만물보다 먼저 계시고 만물이 그 안에 함께 섰느니라". 소재로 "만물"이 세 번 이상 반복돼요.</p>
+
+<p><strong>P11 나경아</strong>: 원어로 몇 가지요. 15절 "형상"이 <em>eikon</em>, 15절 "먼저 나신 이"가 <em>prototokos</em>예요 — 먼저 태어난, 우선권을 가진 이라는 뉘앙스예요. 19절 "충만"이 <em>pleroma</em>예요. 20절 "화목하게 하다"가 <em>apokatallasso</em> — 완전한 화목·원상 회복이에요. 18절 <em>kephale</em>은 머리이고요.</p>
+
+<p><strong>P02 이진우</strong>: 구조 소재예요. 1-2절 인사, 3-8절 감사, 9-14절 기도, 15-20절 그리스도 찬가, 21-23절 화목의 적용, 24-29절 바울의 사도직이에요.</p>
+
+<p><strong>P01 한나래</strong>: "에바브라"(7절)가 소재로 등장해요. 그가 골로새 교회에 복음을 전한 자로 소개돼요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>eikon</em>·<em>prototokos</em>·<em>pleroma</em>·<em>kephale</em>·<em>apokatallasso</em>와 소품들을 배경 자료로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 1절과 29절의 관계는 어떤지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "하나님의 뜻으로 말미암아 그리스도 예수의 사도 된 바울과 형제 디모데는"으로 시작해요. 29절은 "이를 위하여 나도 내 속에서 능력으로 역사하시는 이의 역사를 따라 힘을 다하여 수고하노라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 사도의 신분 선언(1절)에서 그 사도직의 수고 선언(29절)으로 가는 폭이에요. 시작은 누구인가이고, 끝은 무엇을 하는가예요.</p>
+
+<p><strong>P01 한나래</strong>: 29절의 "힘을 다하여 수고하노라" — 이 힘이 자신 안에서 역사하시는 이에게서 나온다고 해요. 능력의 출처가 명시돼 있어요.</p>
+
+<p><strong>P07 오지혜</strong>: 그러고 보면 인사로 시작해 수고로 닫히는데, 그 사이에 그리스도 찬가가 있어요. 찬가가 수고의 근거 같아요.</p>
+
+<p><strong>성령일 선교사</strong>: 사도 됨의 선언에서 힘을 다한 수고로 — 그 사이에 찬가가 있다는 관찰을 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물과 사상의 핵은 무엇인지요.</p>
+
+<p><strong>P05 김미영</strong>: 인물이에요. 바울·디모데·골로새 교회·에바브라·하나님·그리스도·성령이에요. 에바브라가 7절에서 소개되고 8절에서 "성령 안에서 너희 사랑"을 바울에게 알렸다고 해요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황 층이에요. 기도(9-14절) — 바울이 골로새 교인들을 위해 기도해요. 주제는 하나님의 뜻을 아는 것, 모든 선한 일에 열매 맺는 것, 하나님을 아는 것에서 자라는 것이에요.</p>
+
+<p><strong>P02 이진우</strong>: 사상 핵은 15-20절이에요. 이 찬가가 그리스도에 대해 두 가지를 선언해요. 첫째, 창조에서의 으뜸(15-17절) — 모든 피조물보다 먼저 나신 이, 만물이 그 안에 창조되고 그를 위해 창조됨. 둘째, 교회와 부활에서의 으뜸(18-20절) — 교회의 머리(<em>kephale</em>), 죽은 자 가운데서 먼저 나신 이, 십자가의 피로 만물을 화목케 하심.</p>
+
+<p><strong>P11 나경아</strong>: 16절에서 "왕권들이나 주권들이나 통치자들이나 권세들"이 그분에 의해 창조됐다고 해요 — <em>thronoi</em>, <em>kyriotetes</em>, <em>archai</em>, <em>exousiai</em>예요. 그 구체적 내용은 배경으로만이에요.</p>
+
+<p><strong>P04 최현국</strong>: 24절에서 바울이 "그리스도의 고난의 남은 것을 그의 몸 된 교회를 위하여 내 육체에 채운다"고 해요. 그리스도의 몸과 바울의 수고가 연결되는 자리예요.</p>
+
+<p><strong>P01 한나래</strong>: 26-27절의 신비(<em>mysterion</em>)가 흥미로워요. "만세와 만대로부터 감추어졌던 것인데 이제는 그의 성도들에게 나타났고 … 이 비밀은 너희 안에 계신 그리스도시니 곧 영광의 소망이니라."</p>
+
+<p><strong>성령일 선교사</strong>: <em>mysterion</em>·그리스도의 몸·바울의 수고를 나란히 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장을 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 다섯 컷으로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-2절)</strong>: 인사 — 바울·디모데·골로새 성도들에게</li>
+<li><strong>컷 2 (3-14절)</strong>: 감사·기도 — 에바브라·믿음·사랑·소망·어둠에서 아들의 나라로</li>
+<li><strong>컷 3 (15-20절)</strong>: 그리스도 찬가 — <em>eikon</em>·<em>prototokos</em>·<em>pleroma</em>·<em>kephale</em>·<em>apokatallasso</em></li>
+<li><strong>컷 4 (21-23절)</strong>: 화목의 적용 — 골로새 교인들에게 직접 적용</li>
+<li><strong>컷 5 (24-29절)</strong>: 바울의 사도직 — <em>mysterion</em>·힘을 다한 수고</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 3이 이 장의 심장이에요. 찬가가 컷 2의 기도의 근거가 되고, 컷 4의 적용을 가능케 해요.</p>
+
+<p><strong>P01 한나래</strong>: 컷 5의 "힘을 다한 수고"는 컷 3의 찬가에서 나온다는 느낌이에요. 그리스도가 만물의 으뜸이시기 때문에 바울이 수고한다는 구조요.</p>
+
+<p><strong>성령일 선교사</strong>: 찬가가 기도의 근거이자 수고의 동력이라는 관찰을 컷 옆에 적어 두지요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 13절 "흑암의 권세에서 건져내사 그의 사랑의 아들의 나라로 옮기셨으니"에서 "옮기다"가 과거 완료 같아요 — 이미 일어난 일로 표현돼요. 미래가 아니라 이미 이동된 사실이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 24절 "그리스도의 고난의 남은 것을 내 육체에 채운다"는 것이 무엇인지 — 그리스도의 고난이 부족하다는 뜻인지, 아니면 다른 결인지 본문이 더 설명하지 않아요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로요. 15절 <em>prototokos</em>(먼저 나신 이)는 유대 문화에서 장자권·우선권과 연결돼요. 18절에도 같은 단어가 반복돼요 — "죽은 자들 가운데서 먼저 나신 이"로요. 창조와 부활 두 곳에서 같은 단어가 쓰여요. 배경 자료로만요.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 16절에서 "왕권들이나 주권들이나 통치자들이나 권세들"이 그 안에 창조됐다는 게 눈에 띄어요. 보이는 것과 보이지 않는 것이 모두 포함돼요. 그 범위가 우주적이에요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 19절 "아버지께서는 모든 충만으로 예수 안에 거하게 하시고"에서 <em>pleroma</em>(충만)가 무엇인지 — 신성의 충만인지, 다른 결인지 이 장 자체가 더 설명하지 않아요.</p>
+
+<p><strong>P05 김미영</strong>: 저는 9절의 기도가 걸려요. "너희로 하여금 모든 신령한 지혜와 총명에 하나님의 뜻을 아는 것으로 채우게 하시고" — 채워짐이 기도의 목적이에요. <em>pleroma</em>와 연결되는 것 같은데, 그 관계는 미해결로 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 바울이 사도로 소개되며 골로새 성도들에게 인사해요. 에바브라가 전한 복음으로 이들이 믿음과 사랑과 소망을 갖게 됐다고 감사해요.</p>
+
+<p><strong>P01 한나래</strong>: 기도로 넘어가요. 하나님의 뜻을 아는 것으로 채워지길, 모든 선한 일에 열매 맺기를, 하나님을 아는 것에서 자라기를 빌어요. 13절 — 하나님이 우리를 흑암의 권세에서 건져내사 사랑의 아들의 나라로 이미 옮기셨다고 선언해요.</p>
+
+<p><strong>P04 최현국</strong>: 그리고 찬가가 터져요. 그리스도 — 보이지 않는 하나님의 <em>eikon</em>, 모든 피조물보다 먼저 나신 <em>prototokos</em>. 만물이 그 안에 창조되고, 그를 위해 창조됐어요. 만물이 그 안에 함께 서 있어요.</p>
+
+<p><strong>P02 이진우</strong>: 계속해서 교회의 <em>kephale</em>(머리)이시고, 죽은 자들 가운데서 먼저 나신 이시며, 아버지의 모든 <em>pleroma</em>가 그 안에 거하게 하신다고 해요. 그리고 십자가의 피로 <em>apokatallasso</em> — 만물이 그로 화목케 됐다고요.</p>
+
+<p><strong>P07 오지혜</strong>: 화목이 골로새 교인들에게 직접 적용돼요 — 전에는 악한 행실로 마음에 원수가 됐으나 이제는 흠 없이 거룩하게 세우신다고요. 바울이 그 복음을 위해 일꾼이 됐다고 해요.</p>
+
+<p><strong>P11 나경아</strong>: 마지막으로 신비(<em>mysterion</em>) — 만세와 만대로부터 감추어졌다가 이제 나타난 것, 곧 "너희 안에 계신 그리스도, 영광의 소망"이에요. 바울이 이 신비를 위해 힘을 다하여 수고한다고 닫혀요.</p>
+
+<p><strong>성령일 선교사</strong>: 인사·감사·기도 → 그리스도 찬가(<em>eikon</em>·<em>prototokos</em>·<em>kephale</em>·<em>apokatallasso</em>) → 화목의 적용 → 신비와 수고로 닫히는 동영상이 보입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "보이지 않는 하나님의 형상 — 만물의 으뜸이신 그리스도"</p>
+<p><strong>P02 이진우</strong>: "만물보다 먼저, 만물 안에 — 그리스도 찬가의 두 축"</p>
+<p><strong>P04 최현국</strong>: "흑암에서 아들의 나라로 — 건져냄과 옮겨짐"</p>
+<p><strong>P05 김미영</strong>: "십자가의 피로 화목 — <em>apokatallasso</em>의 우주적 폭"</p>
+<p><strong>P07 오지혜</strong>: "힘을 다한 수고 — 신비의 일꾼 바울"</p>
+<p><strong>P11 나경아</strong>: "<em>Eikon</em>·<em>prototokos</em>·<em>kephale</em> — 골로새서 1장 원어 세 기둥"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다.</p>
+
+<p>부제 제안은: "그리스도 찬가 — 만물보다 먼저 나시고 만물을 화목케 하신 머리의 선언"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 15절 "보이지 아니하시는 하나님의 형상" 앞에 상상으로 서 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P01 한나래</strong>: (조용히) 주님, "만물이 그 안에 함께 섰느니라"(17절) 앞에 섭니다.</p>
+<p>*— 그 순간 떠오른 것을 각자 마음에만 둡니다.</p>
+
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. 골로새서의 spine은 <strong>"헛된 철학·규례를 넘어, 만물의 으뜸·충만이신 그리스도 안에 뿌리내려 위의 것을 찾게 하신다"</strong>입니다. 1장은 그 spine의 첫 번째 국면 — <strong>그리스도 찬가(으뜸·머리·화목)</strong>가 선포되는 자리예요. 이 장이 어디서 어디로 움직이는지, 수면 아래에서 비치는 하나님의 의중과 심정은 무엇인지 물겠습니다.</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p><strong>P02 이진우</strong>: 구조로 보면, 1장은 <strong>바울의 인사·감사·기도(1-14절)에서 그리스도 찬가(15-20절)로, 그리고 그 찬가의 적용과 수고(21-29절)로</strong> 미는 운동이에요. COL spine의 첫 국면으로서, 1장이 하는 일은 "그리스도가 누구인가"를 우주적 폭으로 선언하는 것이에요 — 헛된 철학이 넘볼 수 없는 그리스도의 으뜸 됨을 먼저 쌓는 것이에요.</p>
+
+<p><strong>P11 나경아</strong>: <em>prototokos</em>가 15절과 18절 두 곳에 쓰인다는 것이 중요해요. 창조에서 먼저 나신 이, 부활에서 먼저 나신 이 — 두 영역을 다 덮어요. COL의 의중은 이 두 <em>prototokos</em> 선언으로 시작돼요. <em>apokatallasso</em>의 대상이 "땅에 있는 것들이나 하늘에 있는 것들"(20절) — 우주적 범위예요.</p>
+
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 하나님의 심정이 가장 뚜렷이 보이는 자리가 29절이에요. "힘을 다하여 수고하노라" — COL의 심정(1:29)이에요. 보지 못한 자들을 위해 힘을 다하는 애씀. 그 아래에 골로새 교인들에게 그리스도의 충만을 알려야 한다는 간절함이 흘러요.</p>
+
+<p><strong>P01 한나래</strong>: 긴장이 있어요. 13절 "이미 옮겨졌다"는 과거 완료의 현실과, 그러나 여전히 "채워지길" 기도하는(9절) 현재 사이예요. 이미 아들의 나라로 옮겨졌지만 — 아직 그 충만을 다 알지 못한다는 긴장이에요.</p>
+
+<p><strong>P04 최현국</strong>: 운동 한 문장으로 보면, 1장은 <strong>흑암에서 아들의 나라로의 이동(13절)과 그리스도 찬가(15-20절)를 통해, 그분이 만물의 으뜸이심을 선언하며 2장의 '철학에 속지 말라'로 나아가는 준비</strong>예요.</p>
+
+<p><strong>P05 김미영</strong>: 이 불이 타오르느냐 물으시니 — "너희 안에 계신 그리스도, 영광의 소망"(27절)이 불씨예요. <strong>그 신비가 내 안에 계신지, 그 충만을 내가 알고 있는지</strong> — 그 자리에서 멈춰 섭니다.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>그리스도 찬가가 COL spine의 심장</strong>이자, 헛된 철학이 넘볼 수 없는 그리스도의 우주적 으뜸 됨을 먼저 세우는 자리 — 그 안에 비치는 하나님의 의중과 심정을 손에 쥐고 오늘 관찰을 닫습니다.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2단계 — 첫 느낌.</strong> <strong>3단계 — 시작과 끝.</strong> <strong>4단계 — 등장인물·사상.</strong> <strong>5단계 — 장면 컷.</strong> <strong>6단계 — 의문·발견·정보.</strong> <strong>7단계 — 동영상.</strong></p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: COL-001</p>
+<p>book: 골로새서</p>
+<p>chapter: 1</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>골로새서 1장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>장르: 서신·감사·기도·찬가·사도 선언.</li>
+<li>무대 두 층: 서신(1-14절) / 찬가와 사도직(15-29절).</li>
+<li>소품: 흑암(13절)·아들의 나라(13절)·십자가의 피(20절)·몸(18절·22절)·신비(<em>mysterion</em>, 26-27절).</li>
+<li>반복 소재: "그 안에"(16-17절 반복)·"만물"(16-17절 세 번 이상).</li>
+<li>인물: 바울·디모데·골로새 성도·에바브라·하나님·그리스도·성령.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>15-20절 찬가에서 선언이 연속으로 쏟아지는 느낌 — 무게감이 달라짐.</li>
+<li>13절 "건져내사 옮기셨으니" — 이미 완료된 이동의 이미지.</li>
+<li>29절 "힘을 다하여 수고하노라" — 수고가 강조된 결말.</li>
+<li>전반부(기도)와 후반부(찬가·수고)의 분위기 전환.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "하나님의 뜻으로 말미암아 그리스도 예수의 사도 된 바울"</li>
+<li>29절: "힘을 다하여 수고하노라"</li>
+<li>사도의 신분 선언에서 사도직의 수고 선언으로.</li>
+<li>그 사이에 그리스도 찬가가 수고의 근거로 놓임.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 바울·디모데·골로새 성도·에바브라·하나님·그리스도·성령.</li>
+<li>상황: 기도(9-14) → 그리스도 찬가(15-20) → 화목 적용(21-23) → 사도직·신비(24-29).</li>
+<li>사상 핵 — <em>eikon</em>(형상)·<em>prototokos</em>(먼저 나신 이)·<em>kephale</em>(머리)·<em>apokatallasso</em>(화목)·<em>mysterion</em>(신비, 27절).</li>
+<li>두 <em>prototokos</em>: 창조(15절)·부활(18절) — 두 영역의 우선권.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-2절): 인사 — 바울·디모데·골로새 성도.</li>
+<li>컷 2 (3-14절): 감사·기도 — 에바브라·채워지길·흑암→아들의 나라.</li>
+<li>컷 3 (15-20절): 그리스도 찬가 — <em>eikon</em>·<em>prototokos</em>·<em>pleroma</em>·<em>kephale</em>·<em>apokatallasso</em>.</li>
+<li>컷 4 (21-23절): 화목의 적용 — 골로새 교인들의 화목.</li>
+<li>컷 5 (24-29절): 바울의 사도직 — <em>mysterion</em>·힘을 다한 수고.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>eikon</em>(εἰκών) — 형상·보이지 않는 것의 가시적 표현. 15절.</li>
+<li><em>prototokos</em>(πρωτότοκος) — 먼저 나신 이·장자권·우선권. 15절·18절.</li>
+<li><em>pleroma</em>(πλήρωμα) — 충만. 19절.</li>
+<li><em>kephale</em>(κεφαλή) — 머리. 18절.</li>
+<li><em>apokatallasso</em>(ἀποκαταλλάσσω) — 완전히 화목케 하다·원상 회복. 20절·22절.</li>
+<li><em>mysterion</em>(μυστήριον) — 신비·비밀. 26절·27절.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>인사(1-2) → 감사(3-8) → 기도(9-14) → 찬가(15-20) → 적용(21-23) → 사도직(24-29).</li>
+<li>찬가(15-20)가 구조의 중심이며 A-B 형식: 창조 단락(15-17) / 교회·부활 단락(18-20).</li>
+<li><em>prototokos</em>가 15절(창조)·18절(부활)에 반복 — 수미상응.</li>
+<li>"그 안에"(en auto) — 16절 두 번·17절·19절 반복.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>16절의 "왕권·주권·통치자·권세"(<em>thronoi</em>, <em>kyriotetes</em>, <em>archai</em>, <em>exousiai</em>) — 유대 묵시 문학과 헬레니즘 우주론 배경으로만.</li>
+<li><em>apokatallasso</em>는 <em>katallasso</em>(화목)의 강화형 — 배경으로만.</li>
+<li>에바브라는 골로새 교회 창설자로 소개(7절) — 배경으로만.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>골 1:15 ↔ 고후 4:4 (<em>eikon</em> 병행)</li>
+<li>골 1:15-20 ↔ 요 1:1-14 (창조에서의 그리스도 선언)</li>
+<li>골 1:20 ↔ 엡 2:16 (<em>apokatallasso</em> 병행)</li>
+<li>골 1:27 ↔ 골 2:2 (<em>mysterion</em> — 신비·확신)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>바울이 사도로서 골로새 성도들에게 인사하며, 에바브라가 전한 복음으로 믿음과 사랑과 소망을 갖게 됐다고 감사한다. 기도로 넘어가 하나님의 뜻을 아는 것으로 채워지길, 모든 선한 일에 열매 맺기를, 하나님을 아는 것에서 자라기를 빈다. 13절 — 하나님이 우리를 흑암의 권세에서 건져내사 사랑의 아들의 나라로 이미 옮기셨다. 그리스도 찬가가 터진다 — 그는 보이지 않는 하나님의 <em>eikon</em>, 모든 피조물보다 먼저 나신 <em>prototokos</em>이며, 만물이 그 안에 창조됐고 그를 위해 창조됐으며 만물이 그 안에 함께 서 있다. 교회의 <em>kephale</em>이고 죽은 자들 가운데서 먼저 나신 이이며, 아버지의 <em>pleroma</em>가 그 안에 거하게 하셨다. 십자가의 피로 <em>apokatallasso</em> — 만물이 그로 화목케 됐다. 화목이 골로새 교인들에게 직접 적용된다 — 전에는 마음에 원수였으나 이제는 흠 없이 거룩하게 세우신다. 바울은 이 복음의 일꾼이 됐으며, 만세와 만대로부터 감추어졌던 신비(<em>mysterion</em>) — 곧 "너희 안에 계신 그리스도, 영광의 소망"이 나타났다. 이 신비를 위해 힘을 다하여 수고한다고 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+
+<ul>
+<li>초벌 제목: <strong>"그리스도 찬가 — 보이지 않는 하나님의 형상, 만물의 으뜸"</strong></li>
+<li>초벌 부제: "흑암에서 아들의 나라로, 십자가의 피로 만물을 화목케 하시는 머리"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (6개 기록: eikon·prototokos·pleroma·kephale·apokatallasso·mysterion)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (왕권·주권·통치자·권세 배경, 에바브라 소개)</li>
+<li>[x] 미해결 질문 1개 이상 (6건 예정)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 5개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li><em>pleroma</em>의 구체적 내용을 단정하지 않도록 → "충만"이라는 뉘앙스만 보존.</li>
+<li>24절 "그리스도의 고난의 남은 것"을 신학적으로 확정하지 않도록 → 미해결 질문으로.</li>
+<li>16절 "왕권·주권·통치자·권세"의 정체를 단정하지 않도록 → 배경 자료로만.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 주께 아뢰기.</strong> 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: COL-001</p>
+<p>book: 골로새서</p>
+<p>chapter: 1</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>골로새서 1장 — 미해결 질문</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 15절 <em>prototokos</em>(먼저 나신 이)는 창조 전에 나셨다는 것인가, 창조에서의 우선권을 말하는 것인가?</h2>
+
+<ul>
+<li>"모든 피조물보다 먼저 나신 이"라는 표현의 정확한 결이 본문 자체로 확정되지 않음.</li>
+<li>미해결로 보존.</li>
+</ul>
+
+<h2>Q2. 19절 <em>pleroma</em>(충만)는 무엇의 충만인가?</h2>
+
+<ul>
+<li>"모든 충만으로 예수 안에 거하게 하시고"에서 충만의 내용이 이 절에서 더 설명되지 않음.</li>
+<li>2:9와의 관계는 묵상으로 이월.</li>
+</ul>
+
+<h2>Q3. 24절 "그리스도의 고난의 남은 것을 내 육체에 채운다"는 무엇인가?</h2>
+
+<ul>
+<li>그리스도의 고난이 부족하다는 것인지, 아니면 전혀 다른 결인지 본문이 설명하지 않음.</li>
+<li>관찰로는 보류.</li>
+</ul>
+
+<h2>Q4. 16절의 "왕권들이나 주권들이나 통치자들이나 권세들"은 무엇인가?</h2>
+
+<ul>
+<li>천사적 존재인지 정치적 권세인지 본문이 확정하지 않음.</li>
+<li>배경 자료만 두고 미해결로 머문다.</li>
+</ul>
+
+<h2>Q5. "흑암의 권세에서 건져내사 … 옮기셨으니"(13절)는 언제 일어난 일인가?</h2>
+
+<ul>
+<li>이미 완료된 사건으로 표현되는데, 그 시점이 명시되지 않음.</li>
+<li>묵상으로 이월.</li>
+</ul>
+
+<h2>Q6. "에바브라"(7절)는 어떻게 골로새에 복음을 전하게 됐는가?</h2>
+
+<ul>
+<li>본문이 에바브라의 배경을 더 설명하지 않음.</li>
+<li>관찰로는 "신실한 일꾼"이라는 사실만 보존하고 미해결로.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">그리스도 찬가 — 만물의 으뜸, 교회의 머리, 십자가의 피로 화목케 하심.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. COL 흐름 1국면 — 그리스도 찬가(으뜸·머리·화목)가 선포되는 자리. 헛된 철학이 넘볼 수 없는 그리스도의 우주적 으뜸 됨을 먼저 세우는 장입니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: COL-001</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-01</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 골로새서 1장은 감사와 기도로 열어 그리스도 찬가(15-20절)에서 그분이 보이지 않는 하나님의 <em>eikon</em>이자 만물보다 먼저 나신 이이며 교회의 <em>kephale</em>로 십자가의 피로 만물을 <em>apokatallasso</em> 화목케 하셨음을 선언하고, 그 화목이 골로새 교인들에게 적용되며, 바울이 그 신비(<em>mysterion</em>)의 일꾼으로 힘을 다해 수고함을 선언하며 닫히는 장이다.</p>
+
+<p><strong>한 문단</strong>: 바울이 사도로서 골로새 성도들에게 인사하며 에바브라가 전한 복음의 열매에 감사한다. 기도에서 하나님의 뜻을 아는 것으로 채워지길, 모든 선한 일에 열매 맺기를 빈다. 13절 — 하나님이 우리를 흑암의 권세에서 건져내사 사랑의 아들의 나라로 이미 옮기셨다. 그리스도 찬가가 터진다 — 그는 보이지 않는 하나님의 <em>eikon</em>이며 <em>prototokos</em>(먼저 나신 이)로 만물이 그 안에 창조됐고 그 안에 함께 서 있다. 교회의 <em>kephale</em>이고 아버지의 <em>pleroma</em>가 그 안에 거하며 십자가의 피로 <em>apokatallasso</em> — 만물이 화목케 됐다. 이 화목이 골로새 교인들에게 직접 적용된다. 바울은 신비(<em>mysterion</em>) — "너희 안에 계신 그리스도, 영광의 소망"을 위해 힘을 다하여 수고한다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>장르: 서신·찬가. 소품: 흑암·아들의 나라·피·몸·신비. "그 안에"·"만물" 반복.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>15-20절 찬가의 선언 쏟아짐. 13절 이미 완료된 이동. 29절 힘을 다한 수고.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작: 사도 바울의 인사(1절). 끝: 힘을 다한 수고(29절). 찬가가 수고의 근거.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>인물: 바울·에바브라·골로새 성도·하나님·그리스도. 사상 핵: eikon·prototokos·kephale·apokatallasso·mysterion.</td></tr>
+<tr><td>5 장면 컷</td><td>컷1 인사(1-2), 컷2 감사·기도(3-14), 컷3 찬가(15-20), 컷4 화목 적용(21-23), 컷5 사도직(24-29).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>13절 과거 완료 이동. 두 prototokos(창조·부활). 24절 고난 남은 것 미해결. pleroma 미확정.</td></tr>
+<tr><td>7 동영상</td><td>인사·감사·기도→흑암→아들의 나라→찬가(eikon·prototokos·kephale·apokatallasso)→적용→mysterion·수고.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목: "그리스도 찬가 — 보이지 않는 하나님의 형상". 부제: "흑암에서 아들의 나라로, 만물을 화목케 하시는 머리".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>"만물이 그 안에 함께 섰느니라"(17절) 앞에 섬. 답을 구하지 않고 드림.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 두 <em>prototokos</em></strong>: 15절(모든 피조물보다 먼저 나신 이)과 18절(죽은 자들 가운데서 먼저 나신 이) — 같은 단어가 창조와 부활 두 영역을 덮는다. 그리스도의 으뜸 됨이 우주 전체를 관통하는 선언이다.</p>
+<p>2. <strong>결 2 — "그 안에" 반복</strong>: 16절 두 번, 17절, 19절 — "en auto"(그 안에)의 반복이 찬가의 박자를 만든다. 만물의 창조, 만물의 유지, 충만의 거하심이 모두 "그 안에"로 묶인다.</p>
+<p>3. <strong>결 3 — 신비(<em>mysterion</em>)의 공개</strong>: 26-27절 — 만세와 만대로부터 감추어졌던 것이 이제 나타났다. 그 내용이 "너희 안에 계신 그리스도, 영광의 소망"이다. 우주적 선언이 개인의 안으로 수렴된다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>골 1:19 ↔ 골 2:9</strong> (<em>pleroma</em>·충만의 심화), <strong>골 1:27 ↔ 골 2:2</strong> (<em>mysterion</em>·신비·확신의 연결).</li>
+<li>다른 권 — <strong>요 1:1-14</strong> (창조 중재자로서의 그리스도), <strong>엡 1:22-23</strong> (교회의 머리·몸의 충만).</li>
+<li>골로새서 흐름 — 1장의 찬가가 2장("철학에 속지 말라"·"신성의 충만이 그 안에")의 신학적 토대를 세운다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 한 사람이 골로새 성도처럼 에바브라로부터 복음을 들은 자리에 앉는다.</li>
+<li><strong>멈춤 1</strong>: "흑암의 권세에서 건져내사 아들의 나라로 옮기셨으니"(13절) — 이미 완료된 이동 앞에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: 찬가(15-20절) — 그분이 만물보다 먼저, 만물 안에, 교회의 머리, 십자가의 피로 화목케 하시는 분이라는 선언 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: "너희 안에 계신 그리스도, 영광의 소망"(27절) — 우주적 신비가 내 안에 수렴되는 자리에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 "힘을 다하여 수고하노라"는 바울의 수고 앞에 자신의 자리를 묻는다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<ul>
+<li>[x] 그리스도가 보이지 않는 하나님의 <em>eikon</em>이자 <em>prototokos</em>로 창조와 교회·부활 두 영역의 으뜸이심</li>
+<li>[x] 만물이 그 안에 창조되고 그를 위해 창조되었으며 그 안에 함께 서 있음</li>
+<li>[x] 교회의 머리(<em>kephale</em>)이자 <em>pleroma</em>가 거하시는 분으로 십자가의 피로 만물을 화목(<em>apokatallasso</em>)케 하심</li>
+<li>[x] 화목이 골로새 교인들에게 직접 적용됨 — 흠 없이 거룩하게 세우심</li>
+<li>[x] 신비(<em>mysterion</em>) — "너희 안에 계신 그리스도" — 가 나타났으며 바울이 이를 위해 힘을 다해 수고함</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+
+<p>골로새서의 spine은 <strong>"헛된 철학·규례를 넘어, 만물의 으뜸·충만이신 그리스도 안에 뿌리내려 위의 것을 찾게 하신다"</strong>이다. 1장은 그 spine의 첫 번째 국면 — <strong>그리스도 찬가(으뜸·머리·화목)</strong>가 선포되는 자리다. 이 찬가는 COL 전체의 신학적 기초를 놓는다. 즉, 어떤 철학이나 규례도 "넘볼 수 없는" 그리스도의 우주적 으뜸 됨을 1장에서 먼저 세운다. 2장의 "그 안에 신성의 충만이 육체로 거하심"과 3장의 "위의 것을 찾으라"는 모두 1장의 찬가가 세운 그리스도론 위에서만 가능한 요청이다. 구속사 호에서 보면, 이 찬가는 요한복음 1장의 로고스 선언과 함께 창조-성육신-화목의 구속사 전체를 한 인격 안에 압축한다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+
+<blockquote>
+<p><strong>흑암의 권세(13절) → 사랑의 아들의 나라(13절) / 만물보다 먼저·만물 안에(<em>prototokos</em>·창조) → 교회의 머리·죽은 자 가운데 먼저(<em>kephale</em>·부활) / 그리스도에 대한 무지·거리감 → <em>mysterion</em>·너희 안에 계신 그리스도.</strong></p>
+</blockquote>
+
+<p>한 화살표로 좁히면, 1장은 <em>그리스도가 만물의 으뜸이심을 우주적 폭으로 선언하며, 그 선언이 골로새 교인 개인 안에 수렴되는 신비로 완성되는</em> 운동이다. COL 흐름에서 이 장은 2장의 "철학에 속지 말라"와 3장의 "위의 것을 찾으라"가 근거로 삼는 토대다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+
+<p>표면의 가시적 사건은 바울의 기도와 서신의 감사, 그리고 신학적 찬가다. 그러나 그 아래에서 움직이는 본질은 <strong>하나님이 보이지 않는 자신의 형상이며 만물의 으뜸이신 그리스도 안에 신성의 모든 충만을 두시고, 그분으로 만물을 화목케 하여 어떤 철학·규례도 넘보지 못할 머리 아래 교회를 세우시려는 의중</strong>이다. 그 심정은 29절 "힘을 다하여 수고하노라"에 가장 선명하게 비친다 — COL의 심정(1:29)인 "보지 못한 자들을 위해 힘을 다한 애씀"이, 그리스도의 충만이 골로새 교인들에게 알려져야 한다는 간절함(2:2의 "확신에 이르기를 바라는")으로 흐른다. 수면 아래에서, 이 장은 만물을 그리스도 안에 충만케 하시려는 하나님의 우주적 의중이 한 교회를 위한 기도와 수고로 좁혀지는 장이다.</p>
+
+<h3>J · 실존적 부름 — 한 줄의 불씨</h3>
+
+<blockquote>
+<p>만물보다 먼저 나시고 만물을 화목케 하신 그분이 "너희 안에 계신 그리스도"(27절)로 내 안에 수렴되어 있는가 — 이 신비(<em>mysterion</em>)가 나의 수고의 근거인가.</p>
+</blockquote>
+
+<p>이것은 가르침이 아니라 초대다. 1장은 독자를 우주적 찬가(15-20절)와 개인적 신비(27절) 사이에 세우고, 그 신비가 내 안에서 살아 있는지를 묻게 한다. COL 흐름에서 이 불씨는, 2장의 "철학과 헛된 속임수에 속지 말라"는 경고의 근거가 된다 — 그리스도 안에 신성의 충만이 있다는 것을 알면, 그 무엇도 그분을 대체할 수 없다는 것이 자명해진다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>pleroma</em>(충만).</p>
+<p><strong>다음 장으로 미는 운동</strong>: 1장이 선언한 <em>pleroma</em>가 "신성의 모든 충만이 육체로 거하심"(2:9)으로 심화되며, 그 충만 안에서 철학·규례가 힘을 잃는다는 2장으로.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/COL/"><div class="nav-kicker">↑ 권 차례</div><div class="nav-title">골로새서 차례로</div><div class="nav-preview">골로새서의 다른 장을 골라 들어가실 수 있습니다.</div></a>
+      <a href="/magazine/COL/2/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">골로새서 2장</div><div class="nav-preview">신성의 충만(pleroma) — 철학과 헛된 속임수에 속지 말라. 그림자와 실체(soma).</div></a>
+    </div>
+
+<aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/COL/1/',
+      title: '골로새서 1장',
+      excerpt: '그리스도 찬가 — 보이지 않는 하나님의 형상(eikon), 만물의 으뜸(prototokos), 교회의 머리(kephale), 십자가의 피로 화목(apokatallasso).'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){.foot--mini .foot--mini__inner{justify-content:flex-start}.foot--mini>div>span{display:block}}
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-01</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

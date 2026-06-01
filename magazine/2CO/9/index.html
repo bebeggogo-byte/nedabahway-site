@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>고린도후서 9장 — Observatory | 네다바웨이</title>
+<meta name="description" content="고린도후서 9장을 9단계로 같이 관찰합니다. 즐겨 내는 자(hilaros)를 사랑하시는 하나님, 심는 대로 거둠, 말할 수 없는 은사.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/2CO/9/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/2CO/">고린도후서</a> · 9장</div>
+      <h1>고린도후서 9장 — Observatory | 네다바웨이</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">2CO-009 · 서신서 · 헬라어</div>
+      <p class="essence">즐겨 내는 자(hilaros)를 사랑하시는 하나님. 심는 대로 거두는 원리, 말할 수 없는 은사(anekdiegetos dorea) — 연보의 은혜가 감사(eucharistia)로 도달한다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 서신 장르이므로 무대는 권면·농업 비유·감사 선언의 골격으로 본다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 2CO-009</p>
+<p>book: 고린도후서</p>
+<p>book_en: 2 Corinthians</p>
+<p>chapter: 9</p>
+<p>bible_block: 서신서</p>
+<p>canon: 신약</p>
+<p>genre: 서신·권면·농업 비유</p>
+<p>language: 헬라어</p>
+<p>verse_count: 15</p>
+<p>observed_facts_count: 22</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>greek_terms: [hilaros, eucharistia, anekdiegetos, speiro, dikaiosyne, haplotetos]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-01</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>고린도후서 9장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 오늘은 고린도후서 9장입니다. 8장의 연보의 은혜가 9장에서 완성됩니다. 심는 대로 거두는 농업 비유, "즐겨 내는 자를 사랑하시는 하나님", 그리고 이 장의 마지막 "말할 수 없는 은사"로 닫히는 것이 이 장입니다. 낭독 후 잠시 머물겠습니다.</p>
+<p>(본문 낭독 9:1~15)</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>P01 한나래</strong>: 7절 "하나님은 즐겨 내는 자를 사랑하시느니라"가 마음에 콕 박혀요. 즐겁다는 것이 분위기를 밝게 해요. 억지나 인색함의 반대가 즐거움이라는 게 인상 깊어요.</p>
+<p><strong>P07 오지혜</strong>: 6절 "심는 대로 거두리라"가 농사 이미지를 가져와요. 넉넉히 심는 자가 넉넉히 거두리라는 것이요. 8장의 균등 원리와 이어지는 분위기예요.</p>
+<p><strong>P04 최현국</strong>: 8절이 풍성함의 선언이에요. "하나님이 능히 모든 은혜를 너희에게 넘치게 하시나니 이는 너희로 모든 일에 항상 모든 것이 넉넉하여 모든 선한 일을 넘치게 하게 하려 하심이라" — '모든·항상·넉넉·넘치게'가 줄지어요.</p>
+<p><strong>P05 김미영</strong>: 15절 마지막 "말할 수 없는 하나님의 은사로 말미암아 하나님께 감사하노라"가 갑자기 장 전체를 감싸는 느낌이에요. 연보 권면이 감사로 닫혀요.</p>
+<p><strong>P02 이진우</strong>: 1-5절이 구체적이에요. 아가야의 열심이 마게도냐를 격동시켰다는 이야기, 형제들을 보내는 실행 계획. 그런데 6절부터 농업 비유로 전환돼요.</p>
+<p><strong>P11 나경아</strong>: 헬라어 배경만요. 7절 hilaros는 '기쁜·즐거운'이에요. 영어 'hilarious'의 어근이에요. 15절 anekdiegetos는 '말로 표현할 수 없는·형언하기 어려운'이에요. dorea는 '선물·은사'예요. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 즐거움·풍성함·감사의 삼박자가 이 장의 분위기예요.</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>P05 김미영</strong>: 소품들이에요. 씨(speiro, 6절), 넉넉함(8절), 의로움(dikaiosyne, 9-10절), 하나님의 감사(eucharistia, 11-12절), 말할 수 없는 은사(anekdiegetos dorea, 15절), 아가야(2절), 마게도냐(4절).</p>
+<p><strong>P04 최현국</strong>: 무대 두 층이에요. 1-5절(실행 계획·아가야 열심·형제 파송), 6-15절(농업 비유·즐겨 내는 자·넘치게 하심·감사).</p>
+<p><strong>P02 이진우</strong>: 9절 시편 112:9 인용이에요. "그가 흩어 가난한 자들에게 주었으니 그의 의가 영원토록 있느니라" — 연보 행위와 dikaiosyne(의로움)이 연결돼요.</p>
+<p><strong>P11 나경아</strong>: 10절 이사야 55:10 배경이에요. "씨 뿌리는 자에게 씨와 먹을 양식을 주시는 이"가 이사야의 메아리예요. 배경만요.</p>
+<p><strong>P07 오지혜</strong>: 13절 "이 봉사의 증거로 그들이 하나님께 영광을 돌리고" — 연보가 하나님께 영광 돌리는 통로가 돼요. 방향이 있는 나눔이에요.</p>
+<p><strong>P01 한나래</strong>: 14절 "또 그들이 너희를 위하여 간구하며 하나님이 너희에게 주신 지극한 은혜로 말미암아 너희를 사모하느니라" — 연보가 관계를 낳아요. 나눔이 사랑을 만들어요.</p>
+<p><strong>성령일 선교사</strong>: 소품과 소재를 확인했네요. 씨·의로움·감사·말할 수 없는 은사가 이 장의 핵심 소재예요.</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>P02 이진우</strong>: 1절 "성도를 섬기는 일에 대하여 내가 너희에게 쓸 필요가 없나니"로 열려요. 15절 "말할 수 없는 하나님의 은사로 말미암아 하나님께 감사하노라"로 닫혀요.</p>
+<p><strong>P04 최현국</strong>: 시작은 "쓸 필요가 없다"는 역설적 도입이고, 끝은 하나님께 드리는 감사예요. 실행 계획 → 신학 → 감사로 이동해요.</p>
+<p><strong>P01 한나래</strong>: 15절 "말할 수 없는 은사"가 무엇인지 본문이 명시하지 않아요. 연보 전체를 마치며 감사로 닫히는 것이 이 장을 8장과 함께 연보의 두 부분으로 만들어요.</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>P05 김미영</strong>: 인물 — 바울, 고린도 교회, 마게도냐 형제들, 예루살렘 성도들, 하나님.</p>
+<p><strong>P07 오지혜</strong>: 사상의 핵 — 7절 hilaros(즐겨 내는 자), 6절 심는 대로 거둠의 원리, 15절 anekdiegetos dorea(말할 수 없는 은사).</p>
+<p><strong>P04 최현국</strong>: 8절의 구조가 이 장의 신학 선언이에요. 하나님이 넘치게 하시는 것은 — 모든 선한 일을 넘치게 하게 하려 하심이에요. 공급이 더 많은 선을 위한 것이에요.</p>
+<p><strong>P11 나경아</strong>: 11절 haplotetos(순전함·단순함)예요. 8장 2절과 같은 단어예요. 연보의 순전함이 감사를 낳는다는 결이에요. 배경만요.</p>
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+<p><strong>P02 이진우</strong>: 상황이에요. 바울이 고린도 교회의 연보 준비를 격려하고, 2절에서 "아가야가 지난해부터 준비하였다"는 자랑이 마게도냐를 격동시켰다고 해요. 실행과 자랑이 연결돼요.</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>P04 최현국</strong>: 두 컷입니다.</p>
+<ul>
+<li><strong>컷 1 (1-5절)</strong>: 실행 계획 — 아가야의 열심·형제 파송·인색함이 아닌 은혜</li>
+<li><strong>컷 2 (6-15절)</strong>: 연보의 신학 — 심는 대로 거둠·즐겨 내는 자·하나님의 넘치게 하심·감사·말할 수 없는 은사</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 2가 이 장의 심장이에요. 6-10절 농업 비유, 11-14절 감사의 연쇄, 15절 말할 수 없는 은사로 닫혀요.</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>P01 한나래</strong>: 발견이에요. 11-14절 감사의 연쇄가 이 장의 결론이에요. 연보 → 감사 → 하나님께 영광 → 기도 → 사모함의 고리가 돌아요. 연보가 단방향이 아니라 관계 고리를 만들어요.</p>
+<p><strong>P07 오지혜</strong>: 의문이에요. 15절 "말할 수 없는 하나님의 은사"가 이 문맥에서 정확히 무엇인지 본문이 특정하지 않아요.</p>
+<p><strong>P11 나경아</strong>: 정보로, 9절 시편 112:9 인용에서 "의가 영원히 있다"는 것과 연보 행위가 연결돼요. 배경만요.</p>
+<p><strong>P04 최현국</strong>: 발견이에요. 8절 "모든·항상·모든 것이 넉넉하여·모든 선"의 사중 반복이 이 절의 풍성함 선언을 강조해요. 문학 장치예요.</p>
+<p><strong>P02 이진우</strong>: 의문이에요. 6절 "심는 대로 거두리라"가 연보에만 적용되는 것인지 더 넓은 원리인지 본문이 경계를 긋지 않아요.</p>
+<p><strong>P05 김미영</strong>: 발견이에요. 7절 hilaros — 즐겨 내는 자를 "하나님이 사랑하신다"는 선언이에요. 연보의 방식이 하나님의 사랑을 받는 방식과 연결돼요.</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>P05 김미영</strong>: 성도를 섬기는 일에 쓸 필요가 없다고 하며 아가야의 준비를 자랑했다고 합니다. 마게도냐 형제들이 준비 안 된 것을 보게 될까봐 형제들을 먼저 보낸다고 합니다.</p>
+<p><strong>P01 한나래</strong>: 적게 심는 자는 적게 거두고 넉넉히 심는 자는 넉넉히 거둔다고 합니다. 각자 그 마음에 정한 대로 하되 인색함이나 억지로 하지 말라고 합니다. 즐겨 내는 자를 하나님이 사랑하신다고 합니다.</p>
+<p><strong>P04 최현국</strong>: 하나님이 모든 은혜를 넘치게 하신다고 합니다. 이것이 모든 선한 일을 넘치게 하게 하려 함이라고 합니다. 시편 112:9를 인용하며 의가 영원하다고 합니다.</p>
+<p><strong>P02 이진우</strong>: 순전한 마음으로 나눔이 하나님께 감사를 드리게 한다고 합니다. 봉사의 증거로 하나님께 영광 돌린다고 합니다. 그들이 너희를 위해 간구하고 사모한다고 합니다. 말할 수 없는 은사로 하나님께 감사한다고 닫습니다.</p>
+<p><strong>성령일 선교사</strong>: 준비·파송 → 심는 원리 → 즐겨 내는 자 → 하나님의 넘치게 하심 → 감사 연쇄 → 말할 수 없는 은사로 닫히는 흐름이에요.</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "즐겨 내는 자"</p>
+<p><strong>P02 이진우</strong>: "심는 대로 거두는 원리"</p>
+<p><strong>P04 최현국</strong>: "모든 것에 넘치게 하시는 하나님"</p>
+<p><strong>P05 김미영</strong>: "말할 수 없는 은사로 감사하노라"</p>
+<p><strong>P07 오지혜</strong>: "연보가 만드는 감사의 고리"</p>
+<p><strong>P11 나경아</strong>: "<em>Hilaros</em> — 즐거운 나눔의 신학"</p>
+<p><strong>성령일 선교사</strong>: 초벌로 둡니다. 부제 제안은: "즐겨 내는 자를 사랑하시는 하나님 — 연보의 은혜가 감사로 완성되는 자리"</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 15절 "말할 수 없는 은사"의 자리에 상상으로 들어가, 알게 된 것을 주께 아뢰어 봅시다.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P05 김미영</strong>: (조용히) 주님, 내가 즐겨 내는 자인지 — 그 질문 앞에 잠시 서 봅니다.</p>
+<p>*— 각자 마음에만 둡니다.</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: <strong>이 본문은 어디서 어디로 움직이는지요? 수면 아래에서 무엇이 회복되고 있는지요?</strong></p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p><strong>P02 이진우</strong>: 이 장은 <strong>연보 실행 계획(준비)에서 감사(eucharistia)로</strong> 미는 운동이에요. 8-9장의 연보 두 장이 8장은 신학 근거(그리스도의 가난), 9장은 태도(즐겨 내는 자)와 결말(감사·말할 수 없는 은사)로 완성돼요.</p>
+<p><strong>P11 나경아</strong>: 9절 dikaiosyne(의로움)이 연보와 연결되는 것이 이 장 수면 아래 흐르는 결이에요. 시편 112:9 인용에서, 가난한 자에게 나눔이 의로움이라는 구약의 결이 보여요. 배경만요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 15절 "말할 수 없는 은사"가 이 장 전체를 감싸요. 연보의 최종 방향이 하나님의 은사에 대한 감사예요. 나눔이 출발점이 아니라 받음(은사)이 출발점이라는 결이에요.</p>
+<p><strong>P01 한나래</strong>: 긴장이 있어요. 7절 "억지로 하지 말라"와 "즐겨 내는 자를 사랑하신다" — 자발성과 사랑받음의 연결이에요. 즐거움 없이 억지로 하면 그것도 나눔인데 그 경계가 어디인지 거기서 머뭅니다.</p>
+<p><strong>P04 최현국</strong>: 8절 "모든 선한 일을 넘치게 하게 하려 하심"이 이 장의 방향이에요. <strong>하나님의 공급은 더 많은 나눔을 위한 것이에요. 풍성함이 목적지가 아니라 더 많은 선을 위한 통로예요.</strong></p>
+<p><strong>P05 김미영</strong>: 즐거움으로 나누는 것이 내 안에서 살아 있는지 — 그 감사가 먼저인지 거기서 멈춰 섭니다.</p>
+<p><strong>성령일 선교사</strong>: <strong>연보의 출발점이 하나님의 말할 수 없는 은사에 대한 감사다</strong> — 그 한 줄을 손에 쥐고 오늘 관찰을 닫습니다.</p>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계 관찰된 사실 (LOCKED v2.0 9단계 형식).</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 2CO-009</p>
+<p>book: 고린도후서</p>
+<p>chapter: 9</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>고린도후서 9장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote><p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p></blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>소품: 씨(speiro, 6절), 의(dikaiosyne, 9-10절), 감사(eucharistia, 11-12절), anekdiegetos dorea(말할 수 없는 은사, 15절), 아가야(2절), 마게도냐(4절).</li>
+<li>greek_terms: [hilaros, eucharistia, anekdiegetos, speiro, dikaiosyne, haplotetos].</li>
+<li>무대 두 층: 1-5절(실행·파송), 6-15절(농업 비유·즐겨 내는 자·감사).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>즐거움·풍성함·감사의 삼박자.</li>
+<li>7절 hilaros(즐거운) → 8절 사중 '모든·항상·넉넉·넘치게' 반복.</li>
+<li>15절 말할 수 없는 은사로 닫힘.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(1절): "성도 섬기는 일에 쓸 필요가 없다" — 역설적 도입.</li>
+<li>끝(15절): "말할 수 없는 은사로 하나님께 감사" — 감사 선언.</li>
+<li>실행 계획 → 신학 → 감사의 이동.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>인물: 바울, 고린도 교회, 마게도냐 형제들, 예루살렘 성도들, 하나님.</li>
+<li>사상: hilaros(7절), 심는 대로 거둠(6절), anekdiegetos dorea(15절), dikaiosyne와 연보의 연결(9절).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1-5절): 실행 계획 — 아가야의 열심·형제 파송·인색함 아닌 은혜.</li>
+<li>컷 2 (6-15절): 연보의 신학 — 심는 대로 거둠·즐겨 내는 자·하나님의 넘치게 하심·감사·말할 수 없는 은사.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+<ul>
+<li><em>hilaros</em>(7절): 기쁜·즐거운. 'hilarious'의 어근.</li>
+<li><em>anekdiegetos</em>(15절): 말로 표현할 수 없는·형언하기 어려운.</li>
+<li><em>eucharistia</em>(11-12절): 감사. 성찬(eucharist)의 어근.</li>
+<li><em>speiro</em>(6절): 씨를 심다·뿌리다.</li>
+<li><em>dikaiosyne</em>(9-10절): 의로움·정의.</li>
+<li><em>haplotetos</em>(11절): 순전함·단순함. 8:2와 같은 단어.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+<ul>
+<li>8절 사중 '모든(pan)·항상(pantote)·모든 것(panta)·모든(pan)' 반복 강조.</li>
+<li>11-14절 감사의 연쇄: 나눔→감사(eucharistia)→하나님께 영광→기도→사모함.</li>
+<li>9절 시편 112:9 인용, 10절 이사야 55:10 배경.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보</h2>
+<ul>
+<li>9절: 시편 112:9 "흩어 가난한 자에게 주었으니 의가 영원히 있다" 인용.</li>
+<li>10절: 이사야 55:10 "씨 뿌리는 자에게 씨와 먹을 양식을 주시는 이" 배경.</li>
+<li>15절 "말할 수 없는 은사" — 본문이 특정하지 않음. 미해결.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+<ul>
+<li>9절 dikaiosyne ↔ 고린도후서 5:21 "우리로 하나님의 의가 되게 하려 하심".</li>
+<li>11-14절 감사의 고리 ↔ 7장 위로의 고리(하나님→티투스→고린도→바울).</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+<p>실행 계획(1-5절) → 심는 원리(6절) → 즐겨 내는 자(7절) → 하나님의 넘치게 하심(8-10절) → 감사의 연쇄(11-14절) → 말할 수 없는 은사로 감사(15절). 8-9장 연보 두 장이 그리스도의 가난(8장)과 말할 수 없는 은사(9장)의 두 감사로 완성된다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"즐겨 내는 자와 말할 수 없는 은사"</strong></li>
+<li>초벌 부제: "즐겨 내는 자를 사랑하시는 하나님, 연보의 은혜가 감사로 완성되는 자리"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 기록</li>
+<li>[x] 역사·문화·문학 사실 최소 1개</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 기록됨</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>해석·교리 단정 없이 본문 관찰만 보존.</li>
+<li>"말할 수 없는 은사"의 특정, "심는 대로 거둠"의 범위는 미해결로 보류.</li>
+<li>drift_flag: false 유지.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 기도.</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 2CO-009</p>
+<p>book: 고린도후서</p>
+<p>chapter: 9</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>고린도후서 9장 — 미해결 질문</h2>
+<blockquote><p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p></blockquote>
+
+<h2>Q1. 15절 "말할 수 없는 하나님의 은사"가 이 문맥에서 무엇을 가리키는가?</h2>
+<ul><li>본문이 특정하지 않는다. 미해결.</li></ul>
+
+<h2>Q2. "심는 대로 거두리라"(6절)가 연보에만 적용되는가?</h2>
+<ul><li>본문이 경계를 긋지 않는다. 보존.</li></ul>
+
+<h2>Q3. "억지로 말고 즐겨 내라"(7절) — 즐거움이 없을 때 나눔의 가치는?</h2>
+<ul><li>본문이 이 경계를 설명하지 않는다. 미해결.</li></ul>
+
+<h2>Q4. dikaiosyne(의로움)이 연보와 어떻게 연결되는가?</h2>
+<ul><li>시편 112:9 인용이 있으나 더 설명하지 않는다. 보존.</li></ul>
+
+<h2>Q5. 8절 "모든 선한 일을 넘치게 하게 하려 하심"에서 선한 일의 범위는?</h2>
+<ul><li>본문이 특정하지 않는다. 관찰 단계에서 보존.</li></ul>
+
+<h2>Q6. 감사의 연쇄(11-14절)가 어디서 멈추는가?</h2>
+<ul><li>본문이 경계를 명시하지 않는다. 관찰 단계는 여기서 멈춘다.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">즐겨 내는 자와 말할 수 없는 은사 — 연보의 은혜가 감사로 완성된다.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: 2CO-009</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-01</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 고린도후서 9장은 즐겨 내는 자(hilaros)를 사랑하시는 하나님, 심는 대로 거두는 원리, 그리고 말할 수 없는 은사(anekdiegetos dorea)에 대한 감사로 8-9장 연보 두 장의 흐름을 완성하는 장이다.</p>
+<p><strong>한 문단</strong>: 8장이 연보의 신학 근거(그리스도의 가난)와 원리(균등)를 제시했다면, 9장은 연보의 태도(즐겨 내는 자)와 결말(감사·말할 수 없는 은사)로 완성한다. 농업 비유(6절), hilaros(7절), 하나님의 넘치게 하심(8절), 시편 112:9 인용(9절)이 연보의 신학을 쌓고, 11-14절 감사의 연쇄가 연보가 관계를 낳는다는 것을 보여준다. 15절 anekdiegetos dorea로 닫힘으로써, 연보가 하나님의 말할 수 없는 은사에 대한 응답임을 암시한다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>hilaros(즐겨 내는 자), anekdiegetos dorea, eucharistia, speiro(씨 심음), dikaiosyne.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>즐거움·풍성함·감사의 삼박자. 8절 사중 반복.</td></tr>
+<tr><td>3 시작과 끝</td><td>1절 역설적 도입 → 15절 말할 수 없는 은사 감사.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>7절 hilaros + 하나님의 사랑. 8절 선한 일 위한 공급. dikaiosyne와 연보.</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1(1-5 실행·파송) / 컷 2(6-15 농업 비유·즐겨 내는 자·감사).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>11-14절 감사 고리 발견. 시 112:9·사 55:10 인용. "말할 수 없는 은사" 미해결.</td></tr>
+<tr><td>7 동영상</td><td>준비→심는 원리→즐겨 내는 자→하나님 넘치게→감사 연쇄→말할 수 없는 은사.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"즐겨 내는 자와 말할 수 없는 은사" / "감사로 완성되는 연보의 은혜"</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>말할 수 없는 은사의 자리에 머물며 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — hilaros</strong>: "즐겨 내는 자를 하나님이 사랑하신다"(7절)는 연보의 방식이 하나님의 사랑을 받는 방식과 연결된다는 것이다. 억지나 인색함이 아닌 즐거움이 나눔의 결이다. 이것이 이 장의 정서 기조다.</p>
+<p>2. <strong>결 2 — 감사의 연쇄</strong>: 11-14절에서 나눔→감사→하나님께 영광→기도→사모함의 고리가 돌아간다. 연보가 일방향 물질 이전이 아니라 관계 고리를 만들어낸다. 7장의 위로의 고리(하나님→티투스→고린도→바울)와 같은 패턴이다.</p>
+<p>3. <strong>결 3 — anekdiegetos dorea</strong>: 15절 "말할 수 없는 은사"로 이 장이 닫힌다. 연보 두 장 전체가 이 선언으로 귀결된다. 나눔의 출발점이 말할 수 없는 은사를 받은 감사라는 것이다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>8장 → 9장: 그리스도의 가난(8:9) → 말할 수 없는 은사(9:15)의 두 감사 호응.</li>
+<li>9절 dikaiosyne ↔ 5:21 하나님의 의의 연결 여지.</li>
+<li>11-14절 감사 고리 ↔ 7장 위로의 고리 패턴.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 심는 원리 앞에 선다. 넉넉히 심는 것이 무엇인지 본다.</li>
+<li><strong>멈춤</strong>: 즐겨 내는 자를 사랑하시는 하나님 앞에서 멈춘다.</li>
+<li><strong>끝</strong>: 말할 수 없는 은사에 대한 감사로 한 단어를 손에 쥔다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 이 장의 핵심 선언(hilaros·심는 원리·감사 연쇄·anekdiegetos dorea)이 나온다</li>
+<li>[x] 운동 벡터가 드러난다</li>
+<li>[x] 수면 아래의 본질(감사의 고리·은사로 응답)이 관찰된다</li>
+<li>[x] 실존적 부름으로 닫힌다</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 2CO 흐름 위 어디인가</h3>
+<p>고린도후서 spine에서 8-9장은 '회복된 사랑이 연보의 은혜로 흘러넘침' 국면이다. 9장은 그 국면의 완성점이다. 5장 화목의 직분 → 6-7장 동역·회개 → 8-9장 연보의 은혜로 흘러넘침의 흐름이 9장 15절 감사 선언으로 마무리된다. 이후 10-12장의 약함의 자랑·가시·은혜가 족하다의 능력 역설로 전진한다.</p>
+
+<h3>H · 운동 벡터 — 2CO spine의 이 장 국면</h3>
+<blockquote><p><strong>연보 실행(준비)에서 감사(eucharistia)로. 말할 수 없는 은사가 나눔의 출발점이고, 나눔이 감사의 고리를 만들어 하나님께 돌아간다.</strong></p></blockquote>
+<p>8장 연보의 신학 → 9장 즐겨 내는 자·감사로 완성 → 10장 약함의 자랑으로 전진. 9장은 '회복된 사랑이 연보로 흘러넘침' 국면의 도착점이다.</p>
+
+<h3>I · 수면 아래 — 연보의 의중과 심정</h3>
+<p>표면은 연보 격려다. 수면 아래에서 흐르는 것은 — 하나님의 넘치게 하심이 더 많은 선을 위한 것이라는 방향이다(8절). 풍성함이 목적지가 아니라 통로다. 하나님의 의중은 — 말할 수 없는 은사를 받은 자들이 그 은사에서 흘러나오는 감사로 나누도록 하시려는 것이다. 심정으로는, 즐겨 내는 자를 사랑하신다는 선언에서 — 기쁨으로 나누는 자녀를 향한 하나님의 다정함이 비쳐온다.</p>
+
+<h3>J · 실존적 부름 — 감사로 나누는 불씨</h3>
+<blockquote><p>내가 말할 수 없는 은사를 받은 자임을 알고 있는가 — 즐겨 내는 자가 된다는 것이 그 감사에서 흘러나오는가, 나의 나눔이 감사의 연쇄를 만들어 내고 있는가.</p></blockquote>
+<p>이것은 명령이 아니라 초대다. 히라로스의 즐거움 — 그것이 내 안에서 살아 있는가를 묻는다. 이 불씨가 자아에서 공동체로, 공동체에서 세상을 향한 나눔의 연쇄로 번진다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: 감사(eucharistia)</p>
+<p><strong>다음 장으로 미는 운동</strong>: 감사로 완성된 연보 국면이 10장에서 영적 무기와 약함의 자랑으로 전환된다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/2CO/8/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">고린도후서 8장</div>
+        <div class="nav-preview">연보의 은혜(charis). 그리스도의 가난이 근거.</div>
+      </a>
+      <a href="/magazine/2CO/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">고린도후서 차례로</div>
+        <div class="nav-preview">고린도후서의 다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/2CO/10/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">고린도후서 10장</div>
+        <div class="nav-preview">영적 무기, 자랑의 한계, 주 안에서 자랑하라.</div>
+      </a>
+    </div>
+
+<aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:2CO-009', JSON.stringify({
+      href: '/magazine/2CO/9/',
+      title: '고린도후서 9장',
+      excerpt: '즐겨 내는 자(hilaros)를 사랑하시는 하나님. 말할 수 없는 은사(anekdiegetos dorea).'
+    }));
+  } catch(e) {}
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-01</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

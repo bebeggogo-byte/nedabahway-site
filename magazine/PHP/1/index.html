@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>빌립보서 1장 — Observatory | 네다바웨이</title>
+<meta name="description" content="빌립보서 1장을 9단계로 같이 관찰합니다. 매임 속에서도 복음의 진보 — 살든지 죽든지 그리스도, 사무친 심장의 애정과 합당한 생활.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/PHP/1/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/PHP/">빌립보서</a> · 1장</div>
+      <h1>빌립보서 1장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">PHP-001 · 서신서 · 헬라어</div>
+      <p class="essence">매임(desmos)이 오히려 복음의 진보가 됨 — 살든지 죽든지 내게 그리스도니, <em>to zen Christos</em>. 예수 그리스도의 심장(splanchna)으로 사모하노라.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>서신 장르의 옥중 무대.</strong> 매임·감사·기도·복음의 진보·살든지 죽든지 그리스도 — 감옥에서 쓴 기쁨의 편지가 무대다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: PHP-001</p>
+<p>book: 빌립보서</p>
+<p>book_en: Philippians</p>
+<p>chapter: 1</p>
+<p>bible_block: 서신서</p>
+<p>canon: 신약</p>
+<p>genre: 서신·감사·기도·변증</p>
+<p>language: 헬라어</p>
+<p>verse_count: 30</p>
+<p>observed_facts_count: 26</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>greek_terms: [desmos, euangelion, koinonia, splanchna, axios, to zen Christos, to apothanein kerdos, episkopoi, diakonoi]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-01</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>빌립보서 1장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 빌립보서 1장입니다. 바울이 감옥에서 쓴 편지예요. 먼저 1절부터 30절까지 낭독하고 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 1:1~30, 약 5분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기였는지요.</p>
+
+<p><strong>P01 한나래</strong>: 3절 "너희를 생각할 때마다 나의 하나님께 감사하며"가 먼저 들어왔어요. 갇혀 있으면서 감사한다는 것이 이상했어요. 분위기가 밝아요.</p>
+
+<p><strong>P07 오지혜</strong>: 8절이 마음에 걸렸어요. "내가 예수 그리스도의 심장(<em>splanchna</em>)으로 너희 무리를 사모하노라." 그 사모함이 진하게 들렸어요.</p>
+
+<p><strong>P04 최현국</strong>: 12절부터 분위기가 바뀌어요. "내 당한 일이 도리어 복음의 진보가 된 줄"이라고 하면서, 매임(갇힘)이 다른 문으로 들어가요.</p>
+
+<p><strong>P02 이진우</strong>: 21절 "이는 내게 사는 것이 그리스도니 죽는 것도 유익함이라"가 구조의 중심처럼 느껴졌어요. 살든지 죽든지 한 방향이에요.</p>
+
+<p><strong>P05 김미영</strong>: 소품으로 "매임"·"감옥"·"친위대"·"감사"가 나란히 있어요. 갇혀 있으면서 감사하고, 매임이 오히려 퍼져간다는 역설이에요.</p>
+
+<p><strong>P11 나경아</strong>: "복음"이 헬라어 <em>euangelion</em>인데 이 장에서 반복돼요. 5절·7절·12절·16절·27절이에요. "매임"은 <em>desmos</em> — 사슬·묶임이에요. 1절 "감독들"(<em>episkopoi</em>)과 "집사들"(<em>diakonoi</em>)도 나와요.</p>
+
+<p><strong>성령일 선교사</strong>: 매임 속의 감사, 복음의 진보, 살든지 죽든지 그리스도 — 이 공기를 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 무대와 소재를 짚어 보지요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 감옥이에요. 바울이 갇혀 있는 로마 혹은 가이사랴 감옥 — 편지 형식으로 빌립보 교회에 써요. 1절에 빌립보 성의 "감독들과 집사들"이 언급돼요.</p>
+
+<p><strong>P05 김미영</strong>: 소품이에요. "매임"(<em>desmos</em>, 7·13·14·17절)·"복음"(<em>euangelion</em>, 5·7·12·16·27절)·"기쁨"(4·18·25절)·"친위대"(13절)·"은혜"(7절)·"기도"(4·9절)·"열매"(22절)예요.</p>
+
+<p><strong>P07 오지혜</strong>: 8절 <em>splanchna</em>가 소재로 강렬해요. 내장·창자·심장이라는 뜻인데 "예수 그리스도의 심장으로 사모한다"예요. 가장 깊은 감정의 자리에서 나오는 사모함이에요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 배경으로, 5절 <em>koinonia</em>는 "교제·참여·공유"예요. "복음에서 너희와 함께한 참여"(<em>koinonia</em>)라고 해요. 1절 <em>episkopoi</em>(감독들)·<em>diakonoi</em>(집사들)은 초기 교회 직분의 두 이름이에요.</p>
+
+<p><strong>P02 이진우</strong>: 골격으로 보면 — 인사·감사·기도(1-11절) → 매임 속 복음의 진보(12-18절) → 살든지 죽든지 그리스도(19-26절) → 합당한 생활을 권면(27-30절)이에요.</p>
+
+<p><strong>P01 한나래</strong>: 27절 "오직 너희는 그리스도의 복음에 합당하게 생활하라"가 1장의 마지막 전환이에요. "함께 서서"·"마음을 같이하여"가 반복돼요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>desmos</em>·<em>euangelion</em>·<em>splanchna</em>·<em>koinonia</em>와 매임 속의 기쁨을 배경 자료로 남겨 두겠습니다.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 첫 절과 마지막 절의 관계는 어떤지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절 시작 — "그리스도 예수의 종 바울과 디모데는 그리스도 예수 안에서 빌립보에 사는 모든 성도와 감독들과 집사들에게 편지하노니." 30절 끝 — "너희에게도 그와 같은 싸움이 있으니 너희가 내 안에서 본 바요 이제 내게 있다 함을 들은 그것이라."</p>
+
+<p><strong>P04 최현국</strong>: 시작은 공동체 인사고, 끝은 싸움의 공유예요. 바울이 겪는 싸움을 빌립보 교회도 겪는다 — 그 연대(連帶)가 끝에 와요.</p>
+
+<p><strong>P01 한나래</strong>: "그리스도 예수의 종"(1절)으로 시작해 "싸움을 같이한다"(30절)로 닫히는 것 — 종됨과 싸움이 같은 방향을 가리켜요.</p>
+
+<p><strong>성령일 선교사</strong>: 공동체 인사에서 연대(連帶)의 싸움으로 가는 폭을 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물과 사상을 살펴보지요.</p>
+
+<p><strong>P05 김미영</strong>: 인물 — 바울·디모데·빌립보 성도들·감독들과 집사들·하나님·그리스도 예수·에바브로디도(언급 없음, 2장에)·친위대(13절)·온 관정 안의 사람들(13절)이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황층이에요. 바울이 갇혀 있고(7절·13절), 어떤 이들은 다툼으로 어떤 이들은 선의로 그리스도를 전한다(15-17절). 바울은 어느 쪽으로든 그리스도가 전파되니 기뻐한다(18절).</p>
+
+<p><strong>P02 이진우</strong>: 사상 핵이에요. 21절 "이는 내게 사는 것이 그리스도니 죽는 것도 유익함이라" — 헬라어 <em>to zen Christos</em>·<em>to apothanein kerdos</em>예요. 바울의 실존 원리가 한 절에 담겨 있어요.</p>
+
+<p><strong>P11 나경아</strong>: 원어로, <em>to zen Christos</em>는 "사는 것이 그리스도"예요 — 부정사 구문으로 실존 선언이에요. <em>to apothanein kerdos</em>는 "죽는 것이 유익"이에요. 둘 다 헬라어 부정사 절로 실존의 두 면을 비춰요. 배경만이에요.</p>
+
+<p><strong>P04 최현국</strong>: 27절 <em>axios</em>가 "합당하게·걸맞게"예요. "복음에 합당하게 생활하라"에서 나오는 단어예요.</p>
+
+<p><strong>P01 한나래</strong>: 6절 "너희 안에서 착한 일을 시작하신 이가 그리스도 예수의 날까지 이루실 줄을 우리가 확신하노라"가 감사의 근거예요. 완성을 약속하시는 분이 계시다는 것이에요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>to zen Christos</em>·<em>desmos</em>·<em>splanchna</em>를 나란히 두겠습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 네 컷으로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-11절)</strong>: 인사·감사·기도 — "너희를 생각할 때마다 감사"·착한 일의 완성·<em>splanchna</em>·사랑이 넘치는 기도</li>
+<li><strong>컷 2 (12-18절)</strong>: 매임 속 복음의 진보 — 친위대·다툼으로도 선의로도 전파·기뻐함</li>
+<li><strong>컷 3 (19-26절)</strong>: 살든지 죽든지 그리스도 — <em>to zen Christos</em>·떠나 그리스도와 함께 있음·너희를 위해 머물기로</li>
+<li><strong>컷 4 (27-30절)</strong>: 합당한 생활 권면 — 복음에 합당하게·한 마음·두려워 않는 것·함께 싸움</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 2가 이 장의 역설 핵이에요. 매임이 복음의 진보가 됐다 — 갇힘이 퍼짐을 낳았어요.</p>
+
+<p><strong>성령일 선교사</strong>: 역설의 컷을 옆에 적어 두지요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 18절 — "외식으로 하든지 참으로 하든지 전파되기만 하면 기뻐하고 또한 기뻐하리라." 전파 방식보다 전파 사실을 기뻐한다는 것이에요. 그 기쁨의 결이 독특해요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 15-17절 "어떤 이들은 다툼으로·시기로" 그리스도를 전파한다는데 — 동기의 문제인지 내용의 문제인지 본문이 명확히 하지 않아요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로, 13절 "온 친위대"(<em>praitōrion</em>)가 로마의 군사 친위대예요. 이 단어가 나오는 것이 바울의 위치(로마 혹은 가이사랴)를 시사하지만 본문이 확정하지 않아요 — 배경으로만.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 9절 기도가 세 층이에요. "사랑이 지식과 모든 총명으로 풍성하게 되고 → 지극히 선한 것을 분별하며 → 그리스도의 날에 흠이 없이 서는 것." 기도 안에 구조가 있어요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 22절 "살고 있는 것이 육신 안에 있으면 열매 맺는 일이 내게 이것이니" — 이 "이것"이 가리키는 것이 문맥 안에서 분명하지 않아요.</p>
+
+<p><strong>P05 김미영</strong>: 6절 "착한 일을 시작하신 이가 이루실 줄을 확신한다"는 표현이요. 시작과 완성이 모두 그분이라는 것이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 바울이 감옥에서 빌립보 교회에 편지를 써요. 1절에서 그리스도 예수의 종으로 인사하고, 3절부터 너희를 생각할 때마다 감사한다고 해요. 6절에서 착한 일을 시작하신 이가 이루실 줄 확신한다고 하고, 8절에서 예수 그리스도의 심장(<em>splanchna</em>)으로 사모한다고 해요.</p>
+
+<p><strong>P01 한나래</strong>: 그 다음 12절부터 자신의 매임(<em>desmos</em>)이 도리어 복음의 진보가 됐다고 해요. 친위대 전체와 모든 사람에게 그리스도가 알려졌다고요. 외식으로 하든 참으로 하든 전파되니 기뻐한다(18절)고 해요.</p>
+
+<p><strong>P04 최현국</strong>: 그러고 나서 19절부터 살든지 죽든지의 실존으로 들어가요. "사는 것이 그리스도요 죽는 것이 유익"(<em>to zen Christos·to apothanein kerdos</em>, 21절)이라고 해요. 떠나 그리스도와 함께 있고 싶지만 너희를 위해 머물기로 했다(24절)고 해요.</p>
+
+<p><strong>P07 오지혜</strong>: 마지막 27절부터 합당한 생활을 권면해요. 복음에 합당하게 생활하라, 한 마음·한 뜻으로 서서, 대적하는 자들을 두려워 않는 것이 멸망의 증거가 되고 너희에게는 구원의 증거라고 해요(28절). 바울과 같은 싸움이 너희에게도 있다(30절)고 닫아요.</p>
+
+<p><strong>P02 이진우</strong>: 전체 동영상 — 매임 속 감사·기도 → 매임이 오히려 복음의 진보 → 살든지 죽든지 그리스도 → 복음에 합당한 생활·연대. 흐름이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 매임이 진보가 되고, 살든지 죽든지 그리스도요, 합당하게 살라는 흐름이 보입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "심장(<em>splanchna</em>)으로 사모하며 — 매임 속의 기쁨"</p>
+<p><strong>P02 이진우</strong>: "사는 것이 그리스도(<em>to zen Christos</em>) — 죽는 것도 유익"</p>
+<p><strong>P04 최현국</strong>: "매임이 복음의 진보가 됨 — 친위대 안으로"</p>
+<p><strong>P05 김미영</strong>: "착한 일을 이루실 줄을 확신하며"</p>
+<p><strong>P07 오지혜</strong>: "어떤 방식이든 전파되니 기뻐하리라"</p>
+<p><strong>P11 나경아</strong>: "<em>Euangelion</em> — 매임을 통해 퍼지는 기쁜 소식"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다.</p>
+
+<p>부제 제안은: "감옥에서 복음이 진보되고, 살든지 죽든지 그리스도가 드러나는 것을 기뻐하는 바울"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: "살든지 죽든지 내게 그리스도"(21절) 앞에 상상으로 서 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P01 한나래</strong>: (조용히) 내 매임이 복음의 진보가 될 수 있다는 것 — 그 자리에서 잠시 머물게 됩니다.</p>
+<p>— 그 순간 떠오른 것을 각자 마음에만 둡니다.</p>
+
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. 빌립보서의 spine은 <strong>"그리스도의 낮아지심을 본받아, 어떤 형편에서도 복음의 진보와 자족의 기쁨으로 나아간다"</strong>예요. 1장은 그 spine의 <strong>첫 국면 — '매임 속에도 복음의 진보, 살든 죽든 그리스도'</strong>입니다. 이제 묻겠습니다. <strong>이 본문은 어디서 어디로 움직이는지요? 수면 아래에서 비치는 하나님의 의중과 심정은 무엇인지요?</strong></p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p><strong>P02 이진우</strong>: 구조로 보면, 1장은 <strong>'매임의 현실(12절)에서 매임이 오히려 복음의 진보(12-14절)로'</strong> 미는 운동이에요. 갇힘이 퍼짐을 낳는 역설이에요. PHP spine에서 이 장은 "어떤 형편에서도 복음의 진보로"의 첫 번째 실례 — 가장 나쁜 형편(감옥)이 가장 큰 진보(친위대 전체가 앎)를 낳는 역설이에요.</p>
+
+<p><strong>P11 나경아</strong>: <em>desmos</em>(매임)라는 단어가 7·13·14·17절에 반복돼요. 그런데 그 매임이 <em>euangelion</em>(복음)의 진보와 짝지어져요. 원어 배경으로만 보면, 바울이 갇힘을 부정하지 않으면서도 그것을 복음 확장의 통로로 관찰하는 구조예요. PHP 1장의 의중 — "갇힌 자를 통해서도 일하시는 하나님"이 이 구조 안에 있어요.</p>
+
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 8절 <em>splanchna</em> — "예수 그리스도의 심장으로 사모한다"가 하나님의 심정을 가장 직접으로 비춰요. PHP 흐름이 비추는 "예수 그리스도의 심장으로 사모하노라"(1:8)의 온도 — 매임 속에서도 저들을 향한 사무친 애정이에요. 그 심정이 1장 전체를 감싸고 있어요.</p>
+
+<p><strong>P01 한나래</strong>: 긴장이에요. 21절 <em>to zen Christos·to apothanein kerdos</em> — 사는 것이 그리스도요 죽는 것이 유익이라는 것. <strong>삶과 죽음이 모두 그리스도 쪽으로 수렴하는 긴장</strong>이에요. 이미/아직이 아니라, 삶/죽음이 모두 기쁨이 되는 역설이에요.</p>
+
+<p><strong>P04 최현국</strong>: 운동 한 동영상으로 — 매임(현실) → 복음의 진보(역설) → <em>to zen Christos</em>(실존의 방향) → 합당한 생활의 권면으로 가는 운동이에요. <strong>PHP spine의 첫 국면 — 가장 나쁜 형편이 복음의 진보와 기쁨의 원천이 되는</strong> 방향이에요.</p>
+
+<p><strong>P05 김미영</strong>: 이 불이 타오르느냐 물으시니 — "사는 것이 그리스도"가 내 안에서 실제인가요. <strong>나는 어떤 매임 속에 있는가, 그 매임이 복음의 진보가 되고 있는가</strong> — 그 자리에서 멈춰 섭니다.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>매임이 오히려 복음의 진보가 되고, 살든 죽든 그리스도가 중심이 되는</strong> — 1장이 PHP 전체 흐름의 첫 국면이자, "어떤 형편에서도 복음의 진보와 기쁨"의 실례를 가장 생생하게 보여주는 자리임을 손에 쥐고 오늘 관찰을 닫습니다.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2단계 — 첫 느낌.</strong> <strong>3단계 — 시작과 끝.</strong> <strong>4단계 — 등장인물·사상.</strong> <strong>5단계 — 장면 컷.</strong> <strong>6단계 — 의문·발견·정보.</strong> <strong>7단계 — 동영상.</strong></p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: PHP-001</p>
+<p>book: 빌립보서</p>
+<p>chapter: 1</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>빌립보서 1장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대: 바울의 감옥(매임·친위대). 빌립보 성의 성도들·감독들·집사들에게 쓰는 서신.</li>
+<li>소재: <em>desmos</em>(매임)·<em>euangelion</em>(복음)·<em>splanchna</em>(심장)·<em>koinonia</em>(교제)·<em>to zen Christos</em>·<em>to apothanein kerdos</em>.</li>
+<li>소품: 친위대(13절)·기쁨(4·18·25절)·착한 일의 완성(6절)·합당한 생활(27절).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>갇혀 있으면서 감사한다는 이상한 밝음.</li>
+<li>8절 <em>splanchna</em>의 사무친 애정.</li>
+<li>12절부터 매임이 진보로 역전되는 공기.</li>
+<li>21절의 살든지 죽든지 한 방향 선언.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "그리스도 예수의 종 바울과 디모데 … 감독들과 집사들에게 편지하노니"</li>
+<li>30절: "너희에게도 그와 같은 싸움이 있으니 … 내게 있다 함을 들은 그것이라"</li>
+<li>공동체 인사에서 싸움의 연대(連帶)로.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 바울·디모데·빌립보 성도·감독들·집사들·하나님·그리스도 예수·친위대.</li>
+<li>상황: 바울 갇힘(7·13절) → 어떤 이는 다툼으로 어떤 이는 선의로 전파(15-17절) → 살든지 죽든지(19-26절) → 합당한 생활 권면(27-30절).</li>
+<li>사상 핵 — <em>to zen Christos</em>(21절)·<em>splanchna</em>(8절)·6절의 착한 일의 완성.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-11): 인사·감사·기도 — <em>splanchna</em>·<em>koinonia</em>·착한 일의 완성.</li>
+<li>컷 2 (12-18): 매임 속 복음의 진보 — 친위대·어떤 방식이든 기뻐함.</li>
+<li>컷 3 (19-26): 살든지 죽든지 — <em>to zen Christos</em>·<em>to apothanein kerdos</em>.</li>
+<li>컷 4 (27-30): 합당한 생활·연대 — 한 마음·함께 싸움.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>desmos</em>(δεσμός) — 매임·사슬·묶임. 7·13·14·17절.</li>
+<li><em>euangelion</em>(εὐαγγέλιον) — 복음·기쁜 소식. 5·7·12·16·27절.</li>
+<li><em>splanchna</em>(σπλάγχνα) — 심장·내장·깊은 감정의 자리. 8절.</li>
+<li><em>koinonia</em>(κοινωνία) — 교제·참여·공유. 5절.</li>
+<li><em>to zen Christos</em>(τὸ ζῆν Χριστός) — 사는 것이 그리스도. 21절.</li>
+<li><em>to apothanein kerdos</em>(τὸ ἀποθανεῖν κέρδος) — 죽는 것이 유익. 21절.</li>
+<li><em>axios</em>(ἀξίως) — 합당하게·걸맞게. 27절.</li>
+<li><em>episkopoi</em>(ἐπίσκοποι) — 감독들. 1절.</li>
+<li><em>diakonoi</em>(διάκονοι) — 집사들. 1절.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>인사·감사·기도(1-11) → 매임의 역설(12-18) → 실존 선언(19-26) → 권면(27-30)의 4단 구조.</li>
+<li>21절 <em>to zen Christos·to apothanein kerdos</em> — 대구(對句) 형식으로 실존의 두 면을 비춤.</li>
+<li><em>euangelion</em>이 5·7·12·16·27절에 반복 — 1장의 통일 주제어.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>13절 <em>praitōrion</em>(친위대) — 로마 황제의 친위 군대. 바울의 위치를 시사하나 본문이 확정 않음.</li>
+<li><em>episkopoi</em>·<em>diakonoi</em>는 초기 교회의 두 직분. 빌립보 서신 1:1이 이 두 직분을 가장 이른 형태로 명시한 서신 중 하나 — 배경으로만.</li>
+<li>빌립보는 로마 식민지 도시 — 2장의 "하늘의 시민권"(<em>politeuma</em>)과 연결될 소재 — 관찰로만.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>빌 1:21 ↔ 골 3:4 (그리스도가 삶의 중심)</li>
+<li>빌 1:6 ↔ 빌 2:13 (시작하신 이가 이루심 / 하나님이 역사하심)</li>
+<li>빌 1:27 ↔ 빌 2:2 (한 마음·같은 뜻으로)</li>
+<li>빌 1:8 <em>splanchna</em> ↔ 빌 2:1 (그리스도 안에 위로·<em>splanchna</em>)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>바울이 감옥에서 빌립보 교회에 편지를 쓴다. 그리스도 예수의 종으로 인사하고(1절), 너희를 생각할 때마다 하나님께 감사한다(3절). 착한 일을 시작하신 이가 완성하실 것을 확신하며(6절), 예수 그리스도의 심장(<em>splanchna</em>)으로 사모한다(8절). 사랑이 넘치기를 기도한다(9절). 그 다음 자신의 매임(<em>desmos</em>)이 오히려 복음의 진보가 됐다고 한다(12절). 친위대 전체가 알고(13절), 어떤 이는 다툼으로 어떤 이는 선의로 전파하지만 그리스도가 전파되니 기뻐한다(18절). 19-26절에서 살든지 죽든지의 실존으로 들어간다 — 사는 것이 그리스도요(<em>to zen Christos</em>) 죽는 것도 유익이다(<em>to apothanein kerdos</em>, 21절). 떠나 그리스도와 함께 있고 싶지만 너희를 위해 머물기로 했다(24절). 마지막으로 복음에 합당하게(<em>axios</em>) 생활하라 권면하고(27절), 두려워 않는 것이 구원의 증거임을 말하며(28절), 바울과 같은 싸움이 너희에게도 있다는 연대로 닫는다(30절).</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+
+<ul>
+<li>초벌 제목: <strong>"매임이 복음의 진보가 됨 — 살든지 죽든지 그리스도"</strong></li>
+<li>초벌 부제: "예수 그리스도의 심장으로 사모하며, 어떤 형편에도 기쁨"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (9개 기록)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (<em>praitōrion</em>·<em>episkopoi</em>·<em>diakonoi</em> 배경)</li>
+<li>[x] 미해결 질문 1개 이상 (6건 예정)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 4개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li><em>splanchna</em>의 신학적 의미를 단정하지 않도록 → "심장·내장" 뉘앙스로만 기록.</li>
+<li>21절을 삶의 원리로 확대적용하지 않도록 → 바울의 실존 선언 관찰로만.</li>
+<li>15-17절의 동기 구분을 판단하지 않도록 → 사실(다툼으로/선의로) 보존.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 주께 아뢰기.</strong> 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: PHP-001</p>
+<p>book: 빌립보서</p>
+<p>chapter: 1</p>
+<p>date: 2026-06-01</p>
+<p>---</p>
+
+<h2>빌립보서 1장 — 미해결 질문</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 15-17절에서 "다툼으로" 그리스도를 전파하는 이들은 누구이며, 그 동기의 본질은 무엇인가?</h2>
+
+<ul>
+<li>시기·다툼이라는 동기가 내용의 문제인지 태도의 문제인지 본문이 명확히 하지 않음.</li>
+<li>미해결로 보존.</li>
+</ul>
+
+<h2>Q2. 22절 "살고 있는 것이 육신 안에 있으면 열매 맺는 일이 내게 이것이니"에서 "이것"은 무엇인가?</h2>
+
+<ul>
+<li>문맥에서 특정 사역을 가리키는 것 같지만 본문이 명시하지 않음.</li>
+<li>묵상으로 이월.</li>
+</ul>
+
+<h2>Q3. 13절 "친위대"(<em>praitōrion</em>)는 어디를 가리키는가 — 로마인가 가이사랴인가?</h2>
+
+<ul>
+<li>원어 자체는 둘 다 가능 — 본문이 확정하지 않음.</li>
+<li>관찰로는 보류.</li>
+</ul>
+
+<h2>Q4. 6절 "착한 일을 시작하신 이"가 구체적으로 무슨 일을 가리키는가?</h2>
+
+<ul>
+<li>구원 전체인지 빌립보 교회의 특정 사역인지 본문이 한정하지 않음.</li>
+<li>미해결로 머문다.</li>
+</ul>
+
+<h2>Q5. 9절 기도의 세 층(사랑→지식→총명→분별→흠 없음)은 논리적 순서인가 강조 순서인가?</h2>
+
+<ul>
+<li>본문의 헬라어 구조가 어느 방향의 의도인지 관찰로는 확정 불가.</li>
+<li>묵상으로 이월.</li>
+</ul>
+
+<h2>Q6. 27절 "오직 그리스도의 복음에 합당하게 생활하라"에서 <em>axios</em>가 의미하는 구체적 기준은 무엇인가?</h2>
+
+<ul>
+<li>합당함의 내용을 본문이 더 설명하지 않고 2장으로 이어짐.</li>
+<li>관찰로는 사실(명령형 권면)만 보존하고 내용은 미해결로.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">매임이 복음의 진보가 됨 — 살든지 죽든지 그리스도의 자리.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. PHP 1장 — 빌립보서 전체 흐름의 첫 국면을 통합한 결입니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: PHP-001</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-01</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 빌립보서 1장은 감옥에서 쓴 감사·기도로 시작해, 매임(<em>desmos</em>)이 오히려 복음의 진보가 됐다는 역설을 거쳐, 살든지 죽든지 그리스도(<em>to zen Christos</em>)라는 실존 선언에 도달하고, 복음에 합당한 생활과 연대의 싸움으로 닫히는 장이다.</p>
+
+<p><strong>한 문단</strong>: 바울은 갇혀 있으면서도(7·13절) 빌립보 교회를 생각할 때마다 감사한다(3절). 착한 일을 시작하신 이가 이루실 것을 확신하며(6절), 예수 그리스도의 심장(<em>splanchna</em>)으로 사모한다(8절). 자신의 매임이 도리어 복음의 진보가 됐고(12절) 친위대 전체에 그리스도가 알려졌다(13절). 어떤 방식으로든 그리스도가 전파되니 기뻐한다(18절). 그 위에서 살든지 죽든지 그리스도 — 사는 것이 그리스도요 죽는 것도 유익이라는 실존의 방향을 선언하고(21절), 복음에 합당하게 생활하라는 권면과 함께 싸움의 연대로 닫는다(27-30절).</p>
+
+<h3>B · 9단계 통합 표</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>감옥 무대. <em>desmos</em>·<em>euangelion</em>·<em>splanchna</em>·<em>koinonia</em>·<em>to zen Christos</em>.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>갇혀 있으면서 밝음. <em>splanchna</em>의 애정. 12절의 역전. 21절의 실존 선언.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작: 그리스도 예수의 종(1절). 끝: 싸움의 연대(30절). 종됨과 연대.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>바울·디모데·빌립보 성도·감독들·집사들·친위대. 사상 핵 — <em>to zen Christos</em>·6절 완성.</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1 감사·기도(1-11). 컷 2 매임의 역설(12-18). 컷 3 살든지 죽든지(19-26). 컷 4 합당한 생활(27-30).</td></tr>
+<tr><td>6 의문·발견·정보</td><td><em>praitōrion</em> 배경. 9절 기도의 3층. 18절의 기쁨의 결.</td></tr>
+<tr><td>7 동영상</td><td>매임→복음의 진보→<em>to zen Christos</em>·실존 선언→합당한 생활·연대.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목: "매임이 복음의 진보가 됨". 부제: "살든지 죽든지 그리스도".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>내 매임이 복음의 진보가 될 수 있다는 것. 답 없이 머뭄.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 역설의 구조</strong>: 12-14절 — <em>desmos</em>(매임)가 <em>euangelion</em>(복음)의 <em>prokopē</em>(진보)와 직결된다. 갇힘이 퍼짐을 낳는 것이 이 장의 핵심 역설이다.</p>
+<p>2. <strong>결 2 — 실존의 대구</strong>: 21절 <em>to zen Christos·to apothanein kerdos</em> — 삶과 죽음 모두 같은 방향을 향하는 것이다. 삶도 그리스도, 죽음도 그리스도 쪽이다.</p>
+<p>3. <strong>결 3 — 심장의 온도</strong>: 8절 <em>splanchna</em> — "예수 그리스도의 심장으로 사모한다." 논증이 아니라 심장에서 나오는 사모함이다. PHP 전체의 온도를 이 한 절이 설정한다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>빌 1:6 ↔ 빌 2:13</strong> (시작하신 이가 이루심 / 하나님이 역사하심), <strong>빌 1:27 ↔ 빌 2:2</strong> (한 마음·같은 뜻).</li>
+<li>다른 권 — <strong>골 3:4</strong> (그리스도가 삶의 중심), <strong>고후 4:8-11</strong> (매임 중에도 낙담 않음).</li>
+<li>빌립보서 흐름 — 1장이 "어떤 형편에서도 복음의 진보"의 첫 실례를 세우고, 2장의 케노시스 찬가(낮아지심→높아지심)의 토대를 놓는다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 한 사람이 감옥에서 쓰인 편지를 받는다.</li>
+<li><strong>멈춤 1</strong>: "예수 그리스도의 심장으로 사모한다"(8절) 앞에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: "매임이 오히려 복음의 진보가 됐다"(12절) 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: "사는 것이 그리스도요 죽는 것도 유익"(21절) 앞에서 멈춘다.</li>
+<li><strong>끝</strong>: 한 사람이 "복음에 합당하게 생활하라"는 권면을 손에 쥐고 일어난다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<ul>
+<li>[x] 매임(<em>desmos</em>)이 복음의 진보가 됨 — 친위대에 그리스도가 알려짐(12-13절)</li>
+<li>[x] 예수 그리스도의 심장(<em>splanchna</em>)으로 사모함(8절)</li>
+<li>[x] 살든지 죽든지 그리스도 — <em>to zen Christos</em>·<em>to apothanein kerdos</em>(21절)</li>
+<li>[x] 복음에 합당하게(<em>axios</em>) 생활하라는 권면(27절)</li>
+<li>[x] 공동체의 연대 — 같은 싸움(30절)</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+
+<p>빌립보서의 spine은 <strong>"그리스도의 낮아지심을 본받아, 어떤 형편에서도 복음의 진보와 자족의 기쁨으로 나아간다"</strong>이다. 1장은 그 spine의 <strong>첫 국면 — '매임 중의 복음 진보·살든 죽든 그리스도'</strong>가 전개되는 자리다. 빌립보서 전체 흐름(1 매임 중의 복음 진보·살든 죽든 그리스도 → 2 낮아지심·높아지심·빛으로 → 3 배설물·푯대 → 4 염려 말라·자족·평강)에서 1장은 시작점이다. 동시에 구속사 호(arc)에서, 이 장은 갇힌 사도를 통해 복음이 황제의 친위대까지 퍼지는 운동 — 사도행전의 연장선 위에 있다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+
+<blockquote>
+<p><strong>매임의 현실(desmos, 7·12절) → 복음의 진보(euangelion, 12절) / 어떤 형편에서도 → 기쁨과 그리스도가 드러남 / 살든지 죽든지 → 그리스도 쪽으로 수렴.</strong></p>
+</blockquote>
+
+<p>한 화살표로 좁히면, 1장은 <em>매임(가장 나쁜 형편)에서 복음의 진보(가장 큰 확장)로</em> 미는 운동이다. PHP spine의 첫 국면 — "어떤 형편에서도"의 실증으로서, 1장은 가장 나쁜 형편에서 복음이 퍼지는 역설을 보여주며 2장의 낮아지심 찬가(케노시스)로 이어진다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+
+<p>표면의 가시적 사건은 감옥에서 쓰인 편지와 매임의 현실이다. 그러나 그 아래에서 움직이는 본질은 <strong>하나님이 매임을 통해서도 복음을 진보시키시는 의중</strong>이다. 8절 <em>splanchna</em> — "예수 그리스도의 심장으로 사모한다"는 표현은 PHP 전체가 비추는 하나님의 심정('예수 그리스도의 심장으로 너희를 사모하노라')을 직접 드러낸다. 수면 아래에서, 갇힌 바울 안에서도 일하시는 하나님의 의중 — 친위대가 복음을 듣는 것, 갇힌 자의 사모함이 교회를 향한 그리스도의 심장과 일치하는 것 — 이것이 1장의 수면 아래 본질이다.</p>
+
+<h3>J · 실존적 부름 — 한 줄의 불씨</h3>
+
+<blockquote>
+<p>내가 처한 매임이 복음의 진보가 되고 있는가 — 살든지 죽든지 내게 그리스도가 드러나는가.</p>
+</blockquote>
+
+<p>이것은 가르침이 아니라 초대다. 1장은 독자를 "매임 속의 기쁨"과 "<em>to zen Christos</em>"의 21절 사이에 세우고, 내가 어떤 형편에 있든 그 형편이 복음의 진보가 될 수 있는가를 묻게 한다. PHP 흐름에서 이 불씨는, 2장의 "그리스도 예수의 마음을 품으라"(2:5)는 케노시스 국면으로 번져간다 — 낮아지심을 본받는 것이 어떤 형편에서도 기쁨이 되는 방향이다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>to zen Christos</em>(사는 것이 그리스도).</p>
+<p><strong>다음 장으로 미는 운동</strong>: "사는 것이 그리스도"라면, 그 그리스도의 마음(케노시스)이 어떤 것인지 — 2장의 낮아지심 찬가로.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/PHP/"><div class="nav-kicker">↑ 권 차례</div><div class="nav-title">빌립보서 차례로</div><div class="nav-preview">빌립보서의 다른 장을 골라 들어가실 수 있습니다.</div></a>
+      <a href="/magazine/PHP/2/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">빌립보서 2장</div><div class="nav-preview">케노시스 찬가 — 그리스도의 마음(낮아지심→높아지심), 빛으로 나타나라.</div></a>
+    </div>
+
+<aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/PHP/1/',
+      title: '빌립보서 1장',
+      excerpt: '매임이 복음의 진보가 됨 — 살든지 죽든지 그리스도(to zen Christos).'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){.foot--mini .foot--mini__inner{justify-content:flex-start}.foot--mini>div>span{display:block}}
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-01</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
