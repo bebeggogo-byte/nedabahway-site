@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>디도서 3장 — Observatory | 네다바웨이</title>
+<meta name="description" content="디도서 3장을 9단계로 같이 관찰합니다. 중생의 씻음(palingenesia)과 성령의 새롭게 함, 선한 일에 힘쓰라. 구원의 은혜가 실천 공동체로 완성되는 국면.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/TIT/3/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s4" data-target="s4">인물·사물·상황·사상</a></li>
+      <li><a href="#s5" data-target="s5">장면 컷</a></li>
+      <li><a href="#s6" data-target="s6">의문·발견·정보</a></li>
+      <li><a href="#s7" data-target="s7">동영상</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s9" data-target="s9">기도·내면 떠오름</a></li>
+    </ol>
+    <ol class="toc-synthesis">
+      <li><a href="#synthesis">통합 종합</a></li>
+    </ol>
+  </aside>
+
+  <main>
+    <header class="obs-mast">
+      <p class="crumb"><a href="/magazine/">Magazine</a> › <a href="/magazine/TIT/">디도서</a> › 3장</p>
+      <h1>디도서 3장 — Observatory</h1>
+      <p class="essence">중생의 씻음(palingenesia)과 성령의 새롭게 함으로 의롭다 하심을 받은 자가 선한 일에 힘쓴다. TIT destination(3:14)이 완성되는 국면 — 복음이 공동체를 열매 맺는 나무로 세운다.</p>
+    </header>
+
+    <!-- s1: 무대·배경·소품·소재 -->
+    <details class="stage" id="s1" open>
+      <summary>
+        <span class="stage__num">1단계</span>
+        <span class="stage__title-inline">무대·배경·소품·소재</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <div style="font-size:0.82rem;color:var(--c-mute);border:1px solid var(--c-line);border-radius:8px;padding:14px 18px;margin-bottom:18px;line-height:1.8;">
+<pre style="margin:0;font-family:inherit;white-space:pre-wrap;">sim_id: TIT-003
+badge: "TIT-003 · 서신서 · 헬라어"
+book: 디도서
+chapter: 3
+canonical: https://www.nedabah.org/magazine/TIT/3/
+essence: "중생의 씻음(palingenesia)과 성령의 새롭게 함으로 의롭다 하심을 받은 자가 선한 일에 힘쓴다."
+greek_terms: [palingenesia, anakainosis, loutron, ekcheo, dikaiosyne, hairetikos, erga_kala]
+drift_flag: false
+</pre>
+          </div>
+          <p><strong>무대:</strong> 그레데 섬 교회의 외부 관계와 내부 삶. 3장은 디도서의 마지막 장으로, 1장(기초)·2장(교육) 위에 공동체의 사회적 덕목(1~2절), 구원의 복음 신학(3~7절), 선한 일 강조(8절), 분열자 경고(9~11절), 개인 지시(12~15절)로 마무리된다.</p>
+          <p><strong>핵심 소품·소재:</strong></p>
+          <ul>
+            <li>3:1~2 — 권세에 순복, 순종, 모든 선한 일 준비, 비방하지 않음, 다투지 않음, 관용, 온유</li>
+            <li>3:3 — 우리도 전에는 어리석고 순종하지 않고 미혹되고 정욕과 쾌락의 종이었음</li>
+            <li>3:4~7 — 구원자 하나님의 자비(chrestotes·philanthropia)·구원·중생의 씻음(loutron palingenesias)·성령의 새롭게 함(anakainosis)·예수를 통한 부으심(ekcheo)·은혜로 의롭다 하심·영생의 상속자</li>
+            <li>3:8 — "선한 일에 힘쓰라(proistasthai kalon ergon)" — destination 3:14와 대응</li>
+            <li>3:9~11 — 어리석은 변론·족보·다툼·율법 논쟁 금함. 분열을 일으키는 자(hairetikos) 한두 번 훈계 후 멀리하라</li>
+            <li>3:12~14 — 아데마·두기고 파송, 율법교사 세나 돕기, 선한 일에 힘쓰라(14절) — destination 재확인</li>
+          </ul>
+          <p><strong>핵심 구절:</strong> 3:4~7과 3:14. 전자는 구원 신학의 응축이고, 후자는 서신 전체의 destination이다.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s2: 첫 느낌·분위기 + 시작과 끝 LOCKED -->
+    <details class="stage" id="s2">
+      <summary>
+        <span class="stage__num">2·3단계</span>
+        <span class="stage__title-inline">첫 느낌·분위기 / 시작과 끝 <small style="font-size:0.75rem;color:var(--c-copper);font-weight:700;">🔒 LOCKED v2.0</small></span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p style="font-size:0.82rem;color:var(--c-mute);margin-bottom:14px;">이 단계는 관찰 결과가 고정되어 있습니다. 이하 항목은 LOCKED 상태입니다.</p>
+
+          <p><strong>1️⃣ 첫 느낌·전체 분위기</strong></p>
+          <p>3장은 2장보다 더 넓어지는 느낌이다. 2장이 교회 내부(연령·신분별)를 향했다면, 3장은 바깥(권세·세상 사람들)으로 시작한다. 그러나 가장 깊은 곳은 3~7절의 구원 신학이다 — 갑자기 깊은 우물이 나타나는 것 같다. 나머지 모든 권면이 이 우물에서 올라오는 물이다.</p>
+
+          <p><strong>2️⃣ 시작 (3:1~2)</strong></p>
+          <p>"통치자들과 권세 잡은 자들에게 복종하며 순종하며 모든 선한 일 행하기를 준비하며." — 외향적 덕목으로 시작한다. 온유와 관용이 강조된다. 이것은 2장의 바른 교훈이 교회 밖으로 흘러나오는 첫 장면이다.</p>
+
+          <p><strong>3️⃣ 끝 (3:14~15)</strong></p>
+          <p>"우리 사람들도 열매 없는 자가 되지 아니하도록 필요한 것을 위하여 선한 일에 힘쓰기를 배우게 하라." — '선한 일에 힘쓰기를 배우라'가 서신의 마지막 실천 명령이다. 1절(선한 일 준비)과 14절(선한 일에 힘쓰기)이 수미쌍관을 이룬다. 그리고 15절 인사로 닫는다.</p>
+
+          <p><strong>4️⃣ 구조 요약</strong></p>
+          <ul>
+            <li>3:1~2 — 사회적 덕목: 권세·세상을 향한 자세</li>
+            <li>3:3 — 과거 회상: 우리도 전에는 어리석었음</li>
+            <li>3:4~7 — 구원 신학: chrestotes·philanthropia·loutron·anakainosis·ekcheo·dikaiosyne·klēronomos</li>
+            <li>3:8 — 실천 명령: 선한 일에 힘쓰라</li>
+            <li>3:9~11 — 경고: 어리석은 변론·hairetikos를 피하라</li>
+            <li>3:12~15 — 마무리 지시와 인사</li>
+          </ul>
+
+          <p><strong>5️⃣ 반복·대조 패턴</strong></p>
+          <p>"선한 일에 힘쓰라(kalon ergon proistasthai)"가 3:1(준비), 3:8(힘쓰라), 3:14(배우게 하라) 3회 반복된다 — TIT destination의 핵심 언어다. 3절("우리도 전에는")과 4~7절("하나님의 자비로 구원하사")의 대조는 이 서신 전체의 before-after 구조다. hairetikos(분열자)는 공동체 위협 요소로 경고로 등장하며 2장의 sophron(절제) 공동체와 대조된다.</p>
+
+          <p><strong>6️⃣ 미해결 지점 (드리프트 관찰 포함)</strong></p>
+          <p>loutron palingenesias — 중생의 씻음이 세례를 직접 가리키는가? palingenesia는 마 19:27의 "세상이 새롭게 되는 것"과 같은 단어인데 여기서는 개인 구원에 쓰인다. anakainosis와 palingenesia의 차이는? 3:5의 "우리의 행한 의로운 행위로 말미암지 아니하고" — 이것이 행함 자체를 부정하는가, 아니면 구원의 근거를 부정하는 것인가? 이 질문들은 열려있다.</p>
+
+          <hr style="border:0;border-top:1px dashed var(--c-line);margin:18px 0;">
+          <p style="font-size:0.82rem;color:var(--c-mute);"><strong>품질 자가감사 6/6:</strong> ① 분량 충분 ✓ ② 근거 절·원어 포함 ✓ ③ 반복·패턴 명시 ✓ ④ 열린 질문 보류 ✓ ⑤ 단언 없음 ✓ ⑥ drift_flag false 확인 ✓</p>
+          <p style="font-size:0.82rem;color:var(--c-mute);"><strong>9단계 자가감사:</strong> s1 무대·소재 ✓ / s2 첫느낌·분위기 ✓ / s3 시작·끝 ✓ / s4~s9 이하 단계 진행 예정</p>
+          <p style="font-size:0.82rem;color:var(--c-mute);"><strong>드리프트 관찰:</strong> 신학적 해석 단언 없음. loutron palingenesias를 세례로 단정하지 않음. 본문 언어 그대로 관찰.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s4: 인물·사물·상황·사상 -->
+    <details class="stage" id="s4">
+      <summary>
+        <span class="stage__num">4단계</span>
+        <span class="stage__title-inline">인물·사물·상황·사상</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p><strong>인물·등장자</strong></p>
+          <ul>
+            <li><strong>디도</strong> — 수신자. 12절에서 아데마나 두기고가 오면 서둘러 오라는 개인 지시를 받음.</li>
+            <li><strong>율법교사 세나·아볼로</strong> — 12절에서 여행 중 돕도록 지시받음. 실제 이름 언급.</li>
+            <li><strong>hairetikos (αἱρετικός, 분열자)</strong> — 9~11절. 어리석은 변론을 일으키는 자. 두 번 훈계 후 멀리하라.</li>
+            <li><strong>우리 (hēmeis)</strong> — 3절에서 "우리도 전에는" — 작성자 바울과 수신자 디도·그레데 교인 모두 포함한 복수.</li>
+          </ul>
+          <p><strong>핵심 사상 — 3:4~7</strong></p>
+          <ul>
+            <li><strong>chrestotes (χρηστότης)</strong> — 하나님의 자비·선하심. 4절.</li>
+            <li><strong>philanthropia (φιλανθρωπία)</strong> — 인간 사랑. 4절. 나타남 — epiphane와 연결.</li>
+            <li><strong>loutron palingenesias (λουτρὸν παλιγγενεσίας)</strong> — 중생의 씻음. 5절. palingenesia = 새로 남·재생.</li>
+            <li><strong>anakainosis (ἀνακαίνωσις)</strong> — 새롭게 함. 5절. 성령의 새롭게 함. anakainosis와 palingenesia — 두 단어가 동의어인가 구별되는가?</li>
+            <li><strong>ekcheo (ἐκχέω)</strong> — 부어주심. 6절. "우리 구주 예수 그리스도로 말미암아 우리에게 풍성히 부어주심." 오순절 성령 강림 언어(행 2:17)와 연결.</li>
+            <li><strong>dikaiosyne (δικαιοσύνη)</strong> — 의. 5절("우리 행한 의로운 행위로 말미암지 않고") + 7절("의롭다 하심을 받아").</li>
+            <li><strong>erga_kala (ἔργα καλά)</strong> — 선한 일. 1절·8절·14절. TIT destination의 실천 언어.</li>
+          </ul>
+          <p><strong>사상 구조:</strong> 3절(우리의 과거 상태) → 4~7절(하나님이 행하신 것) → 8절(그러므로 선한 일에 힘쓰라). 구원이 선한 일의 근거이고, 선한 일은 구원의 증거다. 구원이 행함을 낳지만 행함이 구원을 만들지 않는다.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s5: 장면 컷 -->
+    <details class="stage" id="s5">
+      <summary>
+        <span class="stage__num">5단계</span>
+        <span class="stage__title-inline">장면 컷</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p><strong>장면 #1 — 과거 회상 (3:3)</strong></p>
+          <p>"우리도 전에는 어리석고 순종하지 아니하며 미혹되어 정욕과 쾌락의 종이 되었으며 악독과 투기로 지내며 가증스러운 자요 피차 미워한 자라." — 이 과거 회상이 권면의 윤리적 우월감을 차단한다. '우리도 그랬다'는 고백이 먼저 온다. 1~2절의 사회적 덕목 권면 뒤에 이것이 오는 것은 의미심장하다.</p>
+
+          <p><strong>장면 #2 — 중생의 씻음과 새롭게 함 (3:5)</strong></p>
+          <p>"오직 그의 긍휼하심을 따라 중생의 씻음과 성령의 새롭게 하심으로 하셨나니." — loutron palingenesias와 anakainosis pneumatos hagiou. 물 이미지(씻음)와 새롭게 함 이미지가 겹친다. 인간의 의가 아닌 하나님의 긍휼(eleos)이 근거다.</p>
+
+          <p><strong>장면 #3 — 풍성히 부어주심 (3:6)</strong></p>
+          <p>"성령을 우리 구주 예수 그리스도로 말미암아 우리에게 풍성히 부어주셨으니." — ekcheo(붓다). 모자람 없이 넘치게 주신다는 이미지. "풍성히(plousios)"가 부어주심의 양을 수식한다.</p>
+
+          <p><strong>장면 #4 — 선한 일에 힘쓰기를 배우라 (3:14)</strong></p>
+          <p>"우리 사람들도 열매 없는 자가 되지 아니하도록 필요한 것을 위하여 선한 일에 힘쓰기를 배우게 하라." — 나무 이미지. 선한 일에 힘쓰는 것이 열매 맺는 삶이다. "배우게 하라(manthanetōsan)" — 교육적 언어. 2장의 paideuo와 같은 교육 모티프가 3장 끝까지 이어진다.</p>
+
+          <p><strong>장면 #5 — hairetikos를 경고함 (3:10~11)</strong></p>
+          <p>"이단에 속한 사람을 한두 번 훈계한 후에 멀리하라. 이러한 사람은 네가 아는 바와 같이 부패하여 스스로 정죄한 자로서 죄를 짓느니라." — 단호하지만 과정이 있다. 한두 번 훈계(단수에서 복수로)가 먼저 오고, 그 다음 관계 단절. 공동체를 지키는 방식이 즉각적 배제가 아니라 훈계 이후 단계적 대응이다.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s6: 의문·발견·정보 -->
+    <details class="stage" id="s6">
+      <summary>
+        <span class="stage__num">6단계</span>
+        <span class="stage__title-inline">의문·발견·정보</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p><strong>의문 1 — loutron palingenesias는 세례를 가리키는가?</strong></p>
+          <p>palingenesia는 마 19:28에서 "세상이 새롭게 되는 것"으로도 쓰인다. 여기서는 개인 구원의 언어로 쓰인다. loutron(씻음·목욕)이 물 의례(세례)를 연상시키지만, 본문은 그것을 명시하지 않는다. 이 질문은 열려있다.</p>
+
+          <p><strong>의문 2 — anakainosis와 palingenesia는 같은가, 다른가?</strong></p>
+          <p>두 단어가 5절에서 함께 쓰인다. palingenesia(다시 남·재생)와 anakainosis(새롭게 함·갱신). 순서는 중생→새롭게 함인가, 아니면 같은 사건의 두 측면인가? 롬 12:2의 anakainosis와 어떻게 연결되는가?</p>
+
+          <p><strong>발견 1 — "우리도 전에는"(3절)의 수사적 기능</strong></p>
+          <p>1~2절에서 "모든 사람에게 온유를 나타내라"고 권면한 뒤, 3절에서 "우리도 전에는 그랬다"가 온다. 이 순서가 온유의 신학적 근거가 된다 — 우리가 온유해야 하는 이유는 우리도 그 자리에 있었기 때문이다. 도덕 우월감을 구조적으로 차단하는 배치다.</p>
+
+          <p><strong>발견 2 — TIT destination(3:14)과 3:8의 대응</strong></p>
+          <p>3:8 "선한 일에 힘쓰라"와 3:14 "선한 일에 힘쓰기를 배우게 하라"가 대응한다. 8절은 원칙적 명령이고 14절은 구체적·교육적 명령이다. manthanetōsan(배우게 하라) — 2장의 paideuo와 같은 교육 모티프. TIT 전체의 destination이 3:14의 학습 공동체 이미지로 닫힌다.</p>
+
+          <p><strong>정보 — hairetikos의 의미</strong></p>
+          <p>hairetikos(αἱρετικός)는 신약에서 여기서만 나타난다(hapax legomenon). 어원은 haireomai(선택하다) — 자신의 의견을 선택·고집하는 자. 후대 교회 용어 "이단"(heresy)의 어원이 되었지만, 여기서는 교리 오류보다 분열 행위에 초점이 맞추어져 있다. "스스로 정죄한 자"(autokatakritos, 11절)도 신약 유일 용례다.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s7: 동영상 -->
+    <details class="stage" id="s7">
+      <summary>
+        <span class="stage__num">7단계</span>
+        <span class="stage__title-inline">동영상 — 움직이는 장면으로 보기</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p>카메라가 교회 밖 거리에서 시작한다. 교회 구성원들이 권세 잡은 자들 앞에서 순복하고, 이웃에게 온유하다. 분위기는 차분하고 성숙하다.</p>
+          <p>갑자기 화면이 과거로 전환된다. 3절 — 어리석음·순종 없음·정욕의 종·피차 미워함. 어두운 색조. 내레이션: "우리도 전에는 이랬다."</p>
+          <p>다시 전환 — 빛이 온다. 4절: "하나님의 자비(chrestotes)와 사람 사랑하심(philanthropia)이 나타났도다." 물이 쏟아지는 이미지 — loutron palingenesias. 불꽃이 새롭게 타오르는 이미지 — anakainosis pneumatos. 그리고 비가 내리듯 ekcheo — 풍성히 부어주심. 세 이미지가 겹쳐 흐른다.</p>
+          <p>화면이 다시 현재로 돌아온다. 나무 한 그루가 열매를 맺고 있다. 3:14 — "열매 없는 자가 되지 않도록 선한 일에 힘쓰기를 배우라." 마지막 인사. 은혜가 너희 모두와 함께.</p>
+          <p>영상의 흐름: <em>밖을 향한 삶(1~2절) → 과거 기억(3절) → 은혜가 온 사건(4~7절) → 현재 실천(8~14절) → 인사(15절).</em></p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s8: 초벌 제목·부제 + Q1~Q6 -->
+    <details class="stage" id="s8">
+      <summary>
+        <span class="stage__num">8단계</span>
+        <span class="stage__title-inline">초벌 제목·부제 / 미해결 질문 Q1~Q6</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p><strong>초벌 제목 후보</strong></p>
+          <ul>
+            <li>중생의 씻음 — palingenesia와 anakainosis</li>
+            <li>우리도 전에는 — 3절의 수사학</li>
+            <li>선한 일에 힘쓰기를 배우라 — TIT destination</li>
+            <li>풍성히 부어주심 — ekcheo plousios</li>
+          </ul>
+
+          <p style="margin-top:18px;"><strong>미해결 질문 Q1~Q6</strong></p>
+          <blockquote>이 질문들은 시뮬레이션용 가상 대화 중 미해결 상태로 남겨진 열린 질문입니다.</blockquote>
+
+          <p><strong>Q1</strong> — loutron palingenesias(중생의 씻음)가 세례를 직접 가리키는가? 아니면 구원 사건 전체의 은유인가? 이 해석에 따라 5절 전체의 의미가 달라진다.</p>
+
+          <p><strong>Q2</strong> — palingenesia와 anakainosis는 같은 사건의 두 측면인가, 아니면 순차적인 두 단계인가? 5절의 "~으로(dia)"가 두 명사를 어떻게 묶고 있는가?</p>
+
+          <p><strong>Q3</strong> — 3절의 "우리도 전에는"이 1~2절 권면의 근거인가? 온유와 관용의 신학적 뿌리가 우리 자신의 과거 상태에 대한 기억인가?</p>
+
+          <p><strong>Q4</strong> — hairetikos(분열자)가 교리 오류자인가, 분열 행위자인가? 신약 유일 용례이기 때문에 문맥이 결정적인데, 9~11절 문맥에서 어떤 행동이 hairetikos를 정의하는가?</p>
+
+          <p><strong>Q5</strong> — "의롭다 하심을 받아 영생의 상속자가 되게 하려 함이라"(7절). 이것이 현재 경험인가 미래 약속인가? "되게 하려"(hina genōmetha)의 시제가 어떤 뉘앙스를 가지는가?</p>
+
+          <p><strong>Q6</strong> — 3:14의 destination이 서신 전체를 닫는 방식 — "선한 일에 힘쓰기를 배우게 하라." TIT의 spine("복음을 빛나게 하는 공동체")이 이 한 문장으로 완성되는가? 또는 3:14는 실천적 요약인가 신학적 결론인가?</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s9: 기도·내면 떠오름 -->
+    <details class="stage" id="s9">
+      <summary>
+        <span class="stage__num">9단계</span>
+        <span class="stage__title-inline">기도·내면 떠오름</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p>3절이 먼저 떠오른다 — "우리도 전에는." 이것은 고백이자 자유다. 온유와 관용이 도덕적 노력이 아니라 기억에서 나온다면, 내가 그 기억을 지금 어떻게 붙들고 있는가 묻게 된다.</p>
+          <p>loutron palingenesias — 중생의 씻음. 어떤 씻음이 일어났는가. 내가 경험한 것인가, 아니면 알고는 있지만 느끼지 못하는 신학 언어인가.</p>
+          <p>3:14가 마지막에 남는다 — "열매 없는 자가 되지 않도록 선한 일에 힘쓰기를 배우라." 배움이 강조된다. 선한 일이 자연스럽게 흘러나오는 것이 아니라 배워야 하는 것이라면, 나는 지금 어디서 배우고 있는가.</p>
+          <p>기도: 풍성히 부어주신 성령이 지금도 새롭게 하고 계심을 믿게 하소서. 우리도 전에는 그랬다는 기억이 관용과 온유의 뿌리가 되게 하소서. 열매 있는 삶을 배우게 하소서.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- SBM 시뮬레이션 전체 대화록 -->
+    <section id="sim-transcript" style="margin:44px 0;padding-top:28px;border-top:1px solid var(--c-line);">
+      <h2 style="font-family:var(--ff-serif);font-size:1.35rem;font-weight:700;margin-bottom:6px;">SBM 관찰 시뮬레이션 전체 대화록</h2>
+      <p style="font-size:0.88rem;color:var(--c-mute);margin-bottom:22px;">TIT-003 · 서신서 · 헬라어 | 진행: 성령일 선교사 | 참여: P01 한나래, P02 이진우, P04 최현국, P05 김미영, P07 오지혜, P11 나경아</p>
+      <blockquote>이 시뮬레이션은 시뮬레이션용 가상 대화입니다. 실제 인물·사건과 무관하며, SBM 9단계 관찰 방법론을 예시하기 위해 생성된 텍스트입니다.</blockquote>
+
+      <div class="md-body">
+
+        <p><strong>— 1단계: 무대·배경·소품·소재 —</strong></p>
+
+        <p><strong>성령일</strong>: 디도서 3장을 읽었습니다. 무대와 소품부터 — 어떤 공간이 보이나요?</p>
+
+        <p><strong>P04 최현국</strong>: 장이 열리는 공간이 교회 밖이에요. 1~2절이 권세·통치자·세상 사람들이에요. 2장이 교회 안을 다뤘다면 3장은 밖으로 나간다는 느낌이요. 그러다가 갑자기 3절에서 과거로 들어가고, 4~7절에서 깊은 신학으로 내려가요.</p>
+
+        <p><strong>P05 김미영</strong>: 소품이 있어요. 3절의 "정욕과 쾌락" — 물질적 삶의 이미지. 5절의 "씻음(loutron)" — 물. 6절의 "부어주심(ekcheo)" — 비나 물을 쏟는 이미지. 3장은 물의 장이에요.</p>
+
+        <p><strong>P02 이진우</strong>: 구조를 보면 — 1~2절(사회 덕목), 3절(과거 회상), 4~7절(구원 신학), 8절(실천 명령), 9~11절(경고), 12~15절(마무리). 크게 세 부분이에요 — 삶(1~2), 구원(3~7), 실천(8~14).</p>
+
+        <p><strong>성령일</strong>: 핵심 소재는요?</p>
+
+        <p><strong>P11 나경아</strong>: 5절의 두 단어요 — palingenesia(παλιγγενεσία)와 anakainosis(ἀνακαίνωσις). 중생의 씻음과 성령의 새롭게 함. palingenesia는 마 19:28에도 나오는 단어인데 거기서는 우주적 갱신이에요. 여기서는 개인 구원에 쓰였어요.</p>
+
+        <p><strong>P07 오지혜</strong>: "선한 일"이 반복돼요 — 1절(준비), 8절(힘쓰라), 14절(배우게 하라). TIT 전체의 도착점이 선한 일인 것 같아요.</p>
+
+        <p><strong>— 2단계: 첫 느낌·분위기 —</strong></p>
+
+        <p><strong>성령일</strong>: 3장 전체의 분위기가 어때요?</p>
+
+        <p><strong>P01 한나래</strong>: 2장보다 넓어요. 교회 밖까지 나가는 느낌. 그런데 가장 깊은 곳은 3~7절이에요 — 갑자기 우물이 나타나는 것 같아요. 나머지 모든 권면이 이 우물에서 올라오는 것 같고요.</p>
+
+        <p><strong>P02 이진우</strong>: 3절이 충격이에요. 1~2절에서 온유하라고 권면하더니 — "우리도 전에는 어리석었다." 이게 권면의 근거가 되는 구조예요. 도덕 우월감을 허무는 배치죠.</p>
+
+        <p><strong>P07 오지혜</strong>: 마지막 14절이 서신을 닫는 방식이 인상적이에요 — "선한 일에 힘쓰기를 배우라." 끝까지 배움이에요. 완성이 아니라 과정으로 닫히는 서신이에요.</p>
+
+        <p><strong>— 3단계: 시작과 끝 —</strong></p>
+
+        <p><strong>성령일</strong>: 시작(1~2절)과 끝(14~15절)을 비교해보면요?</p>
+
+        <p><strong>P02 이진우</strong>: 1절 — 선한 일을 행하기 위해 준비하라. 14절 — 선한 일에 힘쓰기를 배우게 하라. "준비"에서 "배움"으로 — 수동적 준비에서 능동적 학습으로 전환되는 것 같아요.</p>
+
+        <p><strong>P04 최현국</strong>: 수미쌍관이요. 시작과 끝 모두 "선한 일"이에요. 3장 전체가 선한 일의 신학(3~7절)과 선한 일의 실천(1절·8절·14절) 사이에 있어요.</p>
+
+        <p><strong>— 4단계: 인물·사물·상황·사상 —</strong></p>
+
+        <p><strong>성령일</strong>: 핵심 인물과 사상을 정리해볼까요?</p>
+
+        <p><strong>P11 나경아</strong>: 사상 면에서 4~7절이 핵심이에요. chrestotes(χρηστότης, 자비) + philanthropia(φιλανθρωπία, 인간 사랑) — 하나님 편의 두 속성이 구원의 동기예요. loutron palingenesias — 씻음·중생. anakainosis pneumatos hagiou — 성령의 새롭게 함. ekcheo plousios — 풍성히 부어주심. 그 결과 dikaioō(의롭다 하심) + klēronomos(상속자). 구원 서사가 한 단락에 다 들어있어요.</p>
+
+        <p><strong>P07 오지혜</strong>: hairetikos가 10절에 나오는데 신약 유일 용례예요. 분열을 일으키는 자 — 어원이 haireomai(선택하다)이고요. 자신의 견해를 고집해 공동체를 쪼개는 자.</p>
+
+        <p><strong>P05 김미영</strong>: "우리도 전에는" — 3절. 이게 인물이라기보다 집단 기억이에요. 바울과 디도와 그레데 교인 모두의 과거. 이 기억이 온유·관용의 실천적 근거가 돼요.</p>
+
+        <p><strong>— 5단계: 장면 컷 —</strong></p>
+
+        <p><strong>성령일</strong>: 가장 생생한 장면이 있다면요?</p>
+
+        <p><strong>P04 최현국</strong>: 중생의 씻음 장면(5절)이요. loutron — 물. palingenesia — 다시 남. 두 이미지가 겹치는 장면이에요.</p>
+
+        <p><strong>P05 김미영</strong>: 풍성히 부어주심(6절) — ekcheo plousios. 붓는다, 넘치게. 성령이 양동이로 퍼붓는 이미지예요.</p>
+
+        <p><strong>P01 한나래</strong>: 나무 이미지(14절) — "열매 없는 자가 되지 않도록." 선한 일이 열매고, 우리는 열매 맺는 나무예요.</p>
+
+        <p><strong>P07 오지혜</strong>: 3절 과거 장면이요. "어리석고 순종하지 않고 미혹되어" — 구체적이고 낮은 묘사예요. "우리도" — 이게 현재 권면자의 과거이기도 하다는 것.</p>
+
+        <p><strong>— 6단계: 의문·발견·정보 —</strong></p>
+
+        <p><strong>성령일</strong>: 의문이나 새로운 발견이 있었나요?</p>
+
+        <p><strong>P11 나경아</strong>: loutron palingenesias — 씻음이 세례를 직접 가리키는가 하는 질문이에요. loutron이 목욕·씻음인데, 세례 의례와 연결하는 해석과 구원 사건 자체의 은유로 보는 해석이 나뉘어요. 본문은 명시하지 않아요.</p>
+
+        <p><strong>P02 이진우</strong>: 구조적 발견이에요 — 3절("우리도 전에는")이 1~2절 권면의 근거로 기능해요. 온유를 명령하고, 그 근거로 우리의 과거를 제시하는 것. 이것이 도덕 규범이 아닌 기억 기반 윤리예요.</p>
+
+        <p><strong>P07 오지혜</strong>: hairetikos가 신약 유일 용례이고, autokatakritos(스스로 정죄한 자, 11절)도 신약 유일 용례예요. 3장이 희귀 어휘를 집중적으로 사용하는 게 흥미로워요.</p>
+
+        <p><strong>P01 한나래</strong>: "선한 일에 힘쓰기를 배우게 하라"(14절) — manthanetōsan(배우게 하라). 2장의 paideuo(교육)와 같은 교육 모티프가 3장 끝까지 이어진다는 발견이에요.</p>
+
+        <p><strong>— 7단계: 동영상 —</strong></p>
+
+        <p><strong>성령일</strong>: 3장 전체를 동영상으로 재생하면요?</p>
+
+        <p><strong>P04 최현국</strong>: 교회 밖 거리에서 시작해요 — 온유하고 준비된 공동체(1~2절). 화면이 어두워지며 과거로 — 어리석음·미혹·정욕(3절). 다시 빛 — 자비와 사랑이 나타남(4절). 물·불·비가 겹치는 이미지 — loutron·anakainosis·ekcheo(5~6절). 의롭다 하심·상속자(7절). 현재로 돌아와 나무 이미지 — 열매(14절). 인사로 닫힘.</p>
+
+        <p><strong>— 8단계: 초벌 제목·부제 —</strong></p>
+
+        <p><strong>성령일</strong>: 초벌 제목을 지어보면요?</p>
+
+        <p><strong>P11 나경아</strong>: "중생의 씻음과 새롭게 함 — palingenesia와 anakainosis."</p>
+        <p><strong>P01 한나래</strong>: "우리도 전에는 — 기억이 만드는 온유."</p>
+        <p><strong>P04 최현국</strong>: "선한 일에 힘쓰기를 배우라 — TIT destination."</p>
+        <p><strong>P02 이진우</strong>: "풍성히 부어주심 — ekcheo plousios와 영생 상속."</p>
+
+        <p><strong>— 9단계: 기도·내면 떠오름 —</strong></p>
+
+        <p><strong>성령일</strong>: 내면에서 떠오르는 것, 기도가 있다면 나눠주세요.</p>
+
+        <p><strong>P01 한나래</strong>: 3절이에요. "우리도 전에는." 이 기억이 온유의 뿌리가 된다는 것 — 내가 그 자리에 있었다는 기억이 지금 내가 관용할 수 있는 힘이 돼요.</p>
+
+        <p><strong>P05 김미영</strong>: loutron — 씻음이요. 내가 씻겼다는 것을 얼마나 실제로 느끼며 살고 있는가 싶어요. 신학 언어인데, 그게 실제로 내 일상에 어떻게 연결되는지.</p>
+
+        <p><strong>P07 오지혜</strong>: "선한 일에 힘쓰기를 배우라" — manthanetōsan. 배움이에요. 자연스럽게 되는 게 아니라 배워야 한다는 것. 나는 어디서 배우고 있는가 하는 질문이 남아요.</p>
+
+        <p><strong>P02 이진우</strong>: hairetikos 경고(9~11절)요. 분열을 일으키는 자를 처리하는 방식이 한두 번 훈계 후 멀리하라는 것 — 과정이 있어요. 즉각 배제가 아니라 훈계의 단계가 먼저예요.</p>
+
+        <p><strong>P04 최현국</strong>: 영생의 상속자(7절)요. 상속자가 된다는 것 — 지금은 미래를 기다리는 상속자로 살고 있다는 정체성이에요. TIT의 마지막 정착지가 이 정체성인 것 같아요.</p>
+
+        <p><strong>P11 나경아</strong>: ekcheo plousios(풍성히 부어주심)요. plousios — 풍성히. 부어주심이 부족하지 않다는 것. 내가 성령의 일하심을 제한하고 있는 건 아닌가 싶어요.</p>
+
+        <p><strong>성령일</strong>: 오늘 관찰 잘 하셨습니다. TIT 3장은 디도서의 마지막 국면 — 중생의 씻음과 새롭게 함으로 의롭다 하심을 받은 자가 선한 일에 힘쓰기를 배우는 공동체의 이야기입니다. destination 3:14가 서신을 배움의 언어로 닫는다는 것이 오늘 가장 깊은 관찰이었습니다.</p>
+
+        <p><strong>— [10단계] 운동·도약 — TIT 3장의 운동 벡터 —</strong></p>
+
+        <p><strong>성령일</strong>: TIT의 spine은 "구원의 은혜로 경건을 교육하사, 바른 교훈과 선한 행실로 복음을 빛나게 하는 공동체를 세우신다"입니다. 3장이 이 spine에서 어떤 운동을 하는지 살펴보겠습니다.</p>
+
+        <p><strong>P02 이진우</strong>: TIT의 phases가 "2 연령·신분별 바른 교훈·은혜의 교육 / 3 중생의 씻음·선한 일에 힘쓰라"잖아요. 3장은 phase 3 — 구원의 은혜가 실천 공동체로 완성되는 국면이에요. 1장(기초) → 2장(교육·charis paideuo) → 3장(palingenesia·erga kala)의 완성이에요.</p>
+
+        <p><strong>P11 나경아</strong>: TIT destination이 2:10·3:14예요. 2:10이 2장에서 첫 정박지였다면, 3:14가 최종 도착지예요. "선한 일에 힘쓰기를 배우게 하라" — 서신이 열매 맺는 학습 공동체 이미지로 완전히 닫혀요.</p>
+
+        <p><strong>P01 한나래</strong>: TIT heart가 "갓 세워진 섬 교회를 은혜로 길러내심"이잖아요. 3장의 manthanetōsan(배우게 하라, 14절) — 여전히 배움·양육의 언어예요. 교회가 완성된 게 아니라 여전히 길러지고 있는 공동체예요.</p>
+
+        <p><strong>P04 최현국</strong>: 운동 벡터를 정리하면 — 밖을 향한 온유(1~2절) → 과거 기억(3절) → 구원 사건(4~7절) → 선한 일 실천(8절) → 분열자 경고(9~11절) → destination 도달(14절). 구원이 먼저이고 실천이 따라오는 벡터예요. before(3절) → after(4~7절) → therefore(8·14절).</p>
+
+        <p><strong>P07 오지혜</strong>: TIT 전권 흐름을 정리하면 — 1장 episkopos·책망 → 2장 charis·paideuo → 3장 palingenesia·erga kala. spine의 "경건을 교육하사"가 2장에서 시작해 3장에서 "선한 일에 힘쓰기를 배우라"로 완성돼요. 교육이 열매 맺는 공동체로 완성되는 거예요.</p>
+
+        <p><strong>성령일</strong>: 정확합니다. 3장은 TIT의 마지막 운동 — 구원의 은혜(4~7절)가 선한 일 실천(1절·8절·14절)으로 흘러내리는 국면입니다. destination 3:14가 이 운동의 종착점이고, 거기서 서신이 닫힙니다. 오늘 디도서 3장 시뮬레이션을 마칩니다.</p>
+      </div>
+    </section>
+
+    <!-- synthesis -->
+    <section class="stage--synthesis" id="synthesis">
+      <div class="stage__num">통합 종합</div>
+      <h2 class="stage__title">10가지 종합 관찰</h2>
+      <div class="synthesis-body">
+
+        <p><strong>A — 본문 핵심 요약</strong></p>
+        <p>디도서 3장은 TIT의 마지막 국면이다. 권세에 순복하고 모든 사람에게 온유하라는 사회적 권면(1~2절)으로 시작하여, 우리 자신의 과거(3절)와 하나님의 구원 행위(4~7절)를 대조한 뒤, 선한 일에 힘쓰라는 실천 명령(8·14절)으로 닫힌다. 중생의 씻음(palingenesia)·성령의 새롭게 함(anakainosis)·풍성한 부어주심(ekcheo)·의롭다 하심·영생 상속이 4~7절에 응축된 구원 신학이다. TIT destination 3:14("선한 일에 힘쓰기를 배우게 하라")가 서신 전체를 닫는다.</p>
+
+        <p><strong>B — 언어·문체 특징</strong></p>
+        <p>erga kala(선한 일)가 1절·8절·14절 3회 반복되며 3장 전체를 관통하는 실천 키워드다. hairetikos(10절)·autokatakritos(11절) — 두 단어 모두 신약 유일 용례(hapax legomenon). 3절의 "우리도(kai hēmeis)" — 권면자 자신을 포함한 1인칭 복수. γάρ(3절, '왜냐하면') — 4~7절이 3절의 이유가 아니라 새 단락의 전환. 대신 3절 자체가 1~2절 권면의 역설적 근거("우리도 그랬으니 온유하라")가 된다.</p>
+
+        <p><strong>C — 구조·흐름 파악</strong></p>
+        <p>3:1~2(사회 덕목) → 3:3(과거 기억) → 3:4~7(구원 신학) → 3:8(실천 명령) → 3:9~11(분열자 경고) → 3:12~15(마무리 지시·인사). 전체 구조는 before(3절) → grace event(4~7절) → therefore(8·14절)의 복음 논리다. 1~2절은 이 논리의 외부 표현이고, 9~11절은 이 논리를 위협하는 자에 대한 경고다.</p>
+
+        <p><strong>D — 핵심 인물·사물 분석</strong></p>
+        <p>디도(12~15절 개인 지시 수신자), hairetikos(분열자, 9~11절 경고 대상), "우리(3절 과거의 집단 자아)". 사물로는 loutron(씻음의 물), ekcheo(부어주심의 비·물), 나무와 열매(14절 은유). 인격적으로 그려지는 것은 하나님의 chrestotes와 philanthropia — 구원의 동기가 하나님의 속성으로 명시된다.</p>
+
+        <p><strong>E — 반복 패턴·대조 구조</strong></p>
+        <p>erga kala 3회 반복(1·8·14절) — 선한 일이 장 전체의 실천 기둥. "우리도 전에는(3절)" vs "하나님의 자비로(4~7절)" — before-after 대조. 3절의 부정 목록(어리석음·순종 없음·정욕 등) vs 4~7절의 긍정 목록(자비·씻음·새롭게 함·의롭다 하심). 준비(1절)·힘쓰라(8절)·배우라(14절) — 선한 일의 3단계 동사 발전.</p>
+
+        <p><strong>F — 미해결 열린 질문 정리</strong></p>
+        <p>loutron palingenesias가 세례 의례를 가리키는가 구원 사건의 은유인가? palingenesia와 anakainosis의 관계(동의어/순차)? 3절이 1~2절의 근거인가 새 단락의 시작인가? hairetikos의 정확한 정의(교리 오류 vs 분열 행위)? 7절 "영생의 상속자가 되게 하려"의 시제적 뉘앙스(현재 상태 vs 미래 약속)? 3:14가 신학적 결론인가 실천적 요약인가?</p>
+
+        <p><strong>G — 구속사 좌표 (TIT 흐름 3장)</strong></p>
+        <p>TIT spine("구원의 은혜로 경건을 교육하사, 바른 교훈과 선한 행실로 복음을 빛나게 하는 공동체를 세우신다")의 완성 국면이다. 1장(기초·episkopos)→2장(교육·charis paideuo)→3장(완성·palingenesia erga kala)의 3막 흐름에서 3장은 3막이다. TIT destination이 2:10(복음의 빛)과 3:14(선한 일을 배우는 공동체) 두 정박지를 가지는데, 3:14가 최종 도착지다. TIT heart("갓 세워진 섬 교회를 은혜로 길러내심")가 manthanetōsan(배우게 하라)로 완성된다 — 여전히 배우고 자라는 공동체.</p>
+
+        <p><strong>H — 운동 벡터 (TIT 3장 phase 3 운동)</strong></p>
+        <p>3장의 운동: 밖을 향한 온유(1~2절) → 과거 기억 정직히 받음(3절) → 구원 사건 확인(4~7절) → 따라서 선한 일(8절) → 분열 위협 대응(9~11절) → destination 도달(14절). 벡터의 방향: 안(구원 신학)에서 밖(사회적 실천)으로, 과거(우리도 전에는)에서 미래(영생 상속·열매 맺음)으로. TIT 전권 운동 완결: 1장 책망(기초) → 2장 paideuo(교육) → 3장 erga kala(열매).</p>
+
+        <p><strong>I — 수면 아래 본질</strong></p>
+        <p>3장 수면 아래의 본질은 구원이 윤리의 근거라는 역설이다. 3:5 — "우리의 행한 의로운 행위로 말미암지 아니하고 오직 그의 긍휼하심을 따라." 그런데 그 구원이 선한 일(erga kala)을 낳는다(8절·14절). 구원이 행함을 낳지만, 행함이 구원을 만들지 않는다. 이 긴장이 3장 전체를 움직인다. TIT heart인 "은혜로 길러내심"이 3장에서 palingenesia·anakainosis·ekcheo라는 세 풍성한 이미지로 드러난다.</p>
+
+        <p><strong>J — 실존적 부름</strong></p>
+        <p>내가 배우고 있는가? manthanetōsan — 선한 일은 자연스럽게 흘러나오는 것이 아니라 배워야 한다. 나의 "우리도 전에는"(3절)을 기억하고 있는가? 그 기억이 현재의 온유와 관용의 뿌리가 되는가? ekcheo plousios — 풍성히 부어주셨다면, 지금 내가 성령의 새롭게 함에 응하는 삶을 살고 있는가? 열매 없는 나무가 되지 않도록 — 나는 어떤 선한 일을 배우는 자리에 있는가?</p>
+
+      </div>
+    </section>
+
+    <!-- next-row -->
+    <nav class="next-row" aria-label="인접 장 이동">
+      <a href="/magazine/TIT/2/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">디도서 2장</div>
+        <div class="nav-preview">은혜(charis)가 모든 사람에게 나타나 경건을 교육(paideuo)함. 연령·신분별 바른 교훈의 국면.</div>
+      </a>
+      <a href="/magazine/PHM/1/">
+        <div class="nav-kicker">다음 권 →</div>
+        <div class="nav-title">빌레몬서 1장</div>
+        <div class="nav-preview">복음이 주인과 종을 형제로 바꾸어 강요 아닌 자발적 사랑으로 화목하게 한다.</div>
+      </a>
+    </nav>
+  </main>
+</div>
+
+<footer style="text-align:center;padding:48px 24px 64px;font-size:0.84rem;color:var(--c-mute);border-top:1px solid var(--c-line);margin-top:80px;">
+  <p>© 2025 네다바웨이 | SBM Observatory — 디도서 3장</p>
+  <p style="margin-top:8px;"><a href="/sbm.html" style="color:inherit;border-bottom:1px solid currentColor;">SBM 소개</a> · <a href="/magazine/TIT/" style="color:inherit;border-bottom:1px solid currentColor;">디도서 전체 보기</a></p>
+</footer>
+
+<script>
+(function(){
+  var details = document.querySelectorAll('details.stage');
+  details.forEach(function(d){
+    var id = d.id;
+    if(!id) return;
+    var stored = localStorage.getItem('sbm-tit3-'+id);
+    if(stored === 'open') d.open = true;
+    if(stored === 'closed') d.open = false;
+    d.addEventListener('toggle', function(){
+      localStorage.setItem('sbm-tit3-'+id, d.open ? 'open' : 'closed');
+    });
+  });
+})();
+</script>
+<script defer src="/assets/back-to-top.js"></script>
+<script defer src="/assets/toc-spy.js"></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

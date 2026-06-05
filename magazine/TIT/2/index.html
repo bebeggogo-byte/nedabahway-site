@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>디도서 2장 — Observatory | 네다바웨이</title>
+<meta name="description" content="디도서 2장을 9단계로 같이 관찰합니다. 연령·신분별 바른 교훈, 은혜(charis)가 모든 사람에게 나타나 경건을 교육(paideuo)함. 구원의 은혜가 삶을 빚는 국면.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/TIT/2/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s4" data-target="s4">인물·사물·상황·사상</a></li>
+      <li><a href="#s5" data-target="s5">장면 컷</a></li>
+      <li><a href="#s6" data-target="s6">의문·발견·정보</a></li>
+      <li><a href="#s7" data-target="s7">동영상</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s9" data-target="s9">기도·내면 떠오름</a></li>
+    </ol>
+    <ol class="toc-synthesis">
+      <li><a href="#synthesis">통합 종합</a></li>
+    </ol>
+  </aside>
+
+  <main>
+    <header class="obs-mast">
+      <p class="crumb"><a href="/magazine/">Magazine</a> › <a href="/magazine/TIT/">디도서</a> › 2장</p>
+      <h1>디도서 2장 — Observatory</h1>
+      <p class="essence">은혜(charis)가 모든 사람에게 나타나 경건을 교육(paideuo)한다. 늙은 남자부터 종에 이르기까지 연령과 신분별 바른 교훈이 흘러내리고, 복스러운 소망이 삶을 정박시킨다.</p>
+    </header>
+
+    <!-- s1: 무대·배경·소품·소재 -->
+    <details class="stage" id="s1" open>
+      <summary>
+        <span class="stage__num">1단계</span>
+        <span class="stage__title-inline">무대·배경·소품·소재</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <div style="font-size:0.82rem;color:var(--c-mute);border:1px solid var(--c-line);border-radius:8px;padding:14px 18px;margin-bottom:18px;line-height:1.8;">
+<pre style="margin:0;font-family:inherit;white-space:pre-wrap;">sim_id: TIT-002
+badge: "TIT-002 · 서신서 · 헬라어"
+book: 디도서
+chapter: 2
+canonical: https://www.nedabah.org/magazine/TIT/2/
+essence: "은혜(charis)가 모든 사람에게 나타나 경건을 교육(paideuo)한다."
+greek_terms: [charis, paideuo, epiphaneia, laos_periousios, sophron, zelotes, hagnos]
+drift_flag: false
+</pre>
+          </div>
+          <p><strong>무대:</strong> 그레데 섬 신생 교회. 디도는 바울이 세운 공동체를 돌보는 현장 목회자다. 1장에서 장로·감독 자격과 거짓 교사 책망이 기초를 놓았다면, 2장은 그 기초 위에서 실제 교회 구성원 각각에게 흘러내리는 바른 교훈을 그린다.</p>
+          <p><strong>구성원 목록 (소품·소재):</strong></p>
+          <ul>
+            <li>늙은 남자들 (πρεσβύτης, 2:2) — 절제·경건·인내·믿음·사랑</li>
+            <li>늙은 여자들 (πρεσβῦτις, 2:3) — 거룩한 행실, 비방·술 금함, 선한 것 가르침</li>
+            <li>젊은 여자들 (2:4~5) — 남편·자녀 사랑, sophron, hagnos, 집안 일</li>
+            <li>젊은 남자들 (2:6~8) — sophron, 모든 일에 선한 행실 본보기, 바른 교훈</li>
+            <li>종들 (2:9~10) — 주인에게 순종, 복음을 빛나게 함</li>
+          </ul>
+          <p><strong>핵심 소재 — 11~14절:</strong> 이 모든 권면의 신학적 근거가 여기 응축된다. 구원하는 하나님의 은혜 charis가 모든 사람에게 나타나 경건을 파이데우오(paideuo·교육)함. 복스러운 소망과 epiphaneia, 자기 백성(laos periousios), zelotes kalon ergon.</p>
+          <p><strong>마무리 소품 — 15절:</strong> 디도를 향한 명령 — 말하고 권면하고 책망하되 업신여김을 받지 말라.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s2: 첫 느낌·분위기 + 시작과 끝 LOCKED -->
+    <details class="stage" id="s2">
+      <summary>
+        <span class="stage__num">2·3단계</span>
+        <span class="stage__title-inline">첫 느낌·분위기 / 시작과 끝 <small style="font-size:0.75rem;color:var(--c-copper);font-weight:700;">🔒 LOCKED v2.0</small></span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p style="font-size:0.82rem;color:var(--c-mute);margin-bottom:14px;">이 단계는 관찰 결과가 고정되어 있습니다. 이하 항목은 LOCKED 상태입니다.</p>
+
+          <p><strong>1️⃣ 첫 느낌·전체 분위기</strong></p>
+          <p>장 전체가 위에서 아래로 흘러내리는 느낌이다. 하나님의 은혜가 먼저 나타나고(11절), 그 은혜가 공동체 각 계층으로 스며들어 삶을 빚는다. 명령어가 많지만 강압적이지 않다 — 은혜가 교육자(paideuo)이기 때문이다. 교육이라는 단어가 주는 따뜻하고 지속적인 뉘앙스가 인상적이다.</p>
+
+          <p><strong>2️⃣ 시작 (2:1)</strong></p>
+          <p>"오직 너는 바른 교훈에 합당한 것을 말하라(σὺ δὲ λάλει ἃ πρέπει τῇ ὑγιαινούσῃ διδασκαλίᾳ)." — su de(오직 너는) 전환어로 시작한다. 1장의 거짓 교사들과 날카롭게 대비된다. '말하라'는 단순 명령이 전체 2장 권면의 문을 연다.</p>
+
+          <p><strong>3️⃣ 끝 (2:15)</strong></p>
+          <p>"너는 이것을 말하고 권면하며 모든 권위로 책망하여 누구에게서든지 업신여김을 받지 말라." — 시작(말하라)과 끝(말하고 권면하며 책망하라)이 호응한다. 디도의 사역 정체성을 재확인하며 닫는다.</p>
+
+          <p><strong>4️⃣ 구조 요약</strong></p>
+          <ul>
+            <li>2:1 — 서두: 바른 교훈에 합당한 것을 말하라</li>
+            <li>2:2~10 — 연령·신분별 권면 (늙은 남자·늙은 여자·젊은 여자·젊은 남자·종)</li>
+            <li>2:11~14 — 신학적 근거: 구원의 은혜·경건 교육·복스러운 소망·자기 백성</li>
+            <li>2:15 — 결론: 디도의 사역 권위</li>
+          </ul>
+
+          <p><strong>5️⃣ 반복·대조 패턴</strong></p>
+          <p>sophron(절제·분별있는)이 2:2, 2:4, 2:5, 2:6, 2:12에 반복된다 — 5회. 장 전체를 꿰뚫는 경건 덕목이다. 또한 '말하라(lalei)'가 1절과 15절에 수미쌍관을 이룬다. 1~10절(인간 편 지시)과 11~14절(하나님 편 근거)의 대조가 이 장의 신학적 논리를 구성한다.</p>
+
+          <p><strong>6️⃣ 미해결 지점 (드리프트 관찰 포함)</strong></p>
+          <p>paideuo(교육하다)가 은혜의 주어로 쓰인 것 — 은혜가 어떻게 '교육'하는가? 이것이 단순한 도덕 권면과 다른 이유는 무엇인가? laos periousios(자기 백성·특별한 백성)는 출 19:5 LXX를 인용한 것인가? 복스러운 소망(2:13)의 epiphaneia는 재림인가, 초림인가, 양자인가? 이 질문들은 아직 열려있다.</p>
+
+          <hr style="border:0;border-top:1px dashed var(--c-line);margin:18px 0;">
+          <p style="font-size:0.82rem;color:var(--c-mute);"><strong>품질 자가감사 6/6:</strong> ① 분량 충분 ✓ ② 근거 절·원어 포함 ✓ ③ 반복·패턴 명시 ✓ ④ 열린 질문 보류 ✓ ⑤ 단언 없음 ✓ ⑥ drift_flag false 확인 ✓</p>
+          <p style="font-size:0.82rem;color:var(--c-mute);"><strong>9단계 자가감사:</strong> s1 무대·소재 ✓ / s2 첫느낌·분위기 ✓ / s3 시작·끝 ✓ / s4~s9 이하 단계 진행 예정</p>
+          <p style="font-size:0.82rem;color:var(--c-mute);"><strong>드리프트 관찰:</strong> 신학적 해석 단언 없음. "은혜가 교육한다"는 본문 언어를 그대로 사용. 교리 체계 투영 없음.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s4: 인물·사물·상황·사상 -->
+    <details class="stage" id="s4">
+      <summary>
+        <span class="stage__num">4단계</span>
+        <span class="stage__title-inline">인물·사물·상황·사상</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p><strong>인물 목록</strong></p>
+          <ul>
+            <li><strong>디도</strong> — 수신자. 바울의 사역 파트너. 1절과 15절이 디도를 직접 향한 명령이다.</li>
+            <li><strong>늙은 남자들 (πρεσβύτης)</strong> — 절제·경건·신중·믿음·사랑·인내. 공동체 연장자의 본보기 역할.</li>
+            <li><strong>늙은 여자들 (πρεσβῦτις)</strong> — 거룩한 행실, 술 탐하지 않음, 젊은 여자들 가르침. 공동체 안 세대 전수자.</li>
+            <li><strong>젊은 여자들</strong> — 남편·자녀 사랑, sophron, hagnos, 집안일, 남편에게 순종 — 이렇게 하여 하나님의 말씀이 비방을 받지 않게 함(5절).</li>
+            <li><strong>젊은 남자들</strong> — 모든 일에 sophron. 디도가 선한 일의 본이 됨(7절).</li>
+            <li><strong>종들 (δοῦλος)</strong> — 주인에게 순종, 말대답·도적질 금함, 충성으로 하나님의 교훈을 빛나게 함(10절).</li>
+          </ul>
+          <p><strong>핵심 사상 — 11~14절</strong></p>
+          <ul>
+            <li><strong>charis (χάρις)</strong> — 구원하는 하나님의 은혜. 모든 사람에게(πᾶσιν ἀνθρώποις) 나타남. paideuo의 주체.</li>
+            <li><strong>paideuo (παιδεύω)</strong> — 훈육·교육. 은혜가 경건치 않음과 세상 정욕을 버리도록 가르침(12절).</li>
+            <li><strong>복스러운 소망 (μακαρία ἐλπίς)</strong> — 위 3가지 삶(절제·의롭게·경건하게) 사는 동안 기다리는 것(13절).</li>
+            <li><strong>epiphaneia (ἐπιφάνεια)</strong> — 나타남. 11절(초림적 나타남)과 13절(재림적 나타남) 두 번 등장. 하나님·구주 예수 그리스도의 영광의 epiphaneia.</li>
+            <li><strong>laos periousios (λαὸς περιούσιος)</strong> — 자기 백성. 특별한 소유. 예수께서 우리를 속량하사 깨끗하게 하시고 zelotes kalon ergon(선한 일에 열심 있는 자기 백성)으로 삼으심(14절).</li>
+          </ul>
+          <p><strong>사상 구조:</strong> 바른 교훈(1~10절)의 근거는 하나님의 charis(11~14절)이다. 이 장은 윤리 먼저가 아니라 은혜 먼저다 — 다만 은혜가 먼저 나타났다는 사실이 11절에 설명형식으로 뒤에 놓인 것이다.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s5: 장면 컷 -->
+    <details class="stage" id="s5">
+      <summary>
+        <span class="stage__num">5단계</span>
+        <span class="stage__title-inline">장면 컷</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p><strong>장면 #1 — 늙은 여자가 젊은 여자를 가르침 (2:3~5)</strong></p>
+          <p>늙은 여자가 젊은 여자에게 남편과 자녀를 사랑하도록(philandros, philoteknos) 가르치는 장면. 세대 전수의 이미지. 강의실이 아니라 삶 속에서 이루어지는 교육이다. 목적절이 강렬하다 — "하나님의 말씀이 비방을 받지 않게 하려 함이라."</p>
+
+          <p><strong>장면 #2 — 디도가 선한 일의 본이 됨 (2:7~8)</strong></p>
+          <p>젊은 남자들에게 sophron을 권면하는 장면. 그런데 디도 자신이 선한 일의 본(τύπος)이 되어야 한다. 권면자의 삶이 권면의 내용이다. "바른 교훈이 책잡힐 데가 없게"(8절) — 적대자들의 입을 막는 것이 목표다.</p>
+
+          <p><strong>장면 #3 — 종이 주인에게 충성함으로 복음을 빛냄 (2:9~10)</strong></p>
+          <p>종들의 순종이 단순한 복종이 아니다 — "우리 구주 하나님의 교훈을 빛나게 하려 함이라"(10절). 가장 낮은 자리에서 복음의 아름다움이 드러나는 장면. 사회적 구조 안에서 복음이 작동하는 방식이다.</p>
+
+          <p><strong>장면 #4 — 은혜가 나타나 교육함 (2:11~12)</strong></p>
+          <p>은혜(charis)가 인격을 가진 것처럼 모든 사람에게 나타나 경건치 않음을 버리도록 가르친다(paideuo). 추상적 개념이 아니라 살아서 역사하는 실재처럼 그려진다. "이 세상에서 절제하며 의롭게 경건하게 살고" — 세 부사어가 삶의 3방향을 조각한다.</p>
+
+          <p><strong>장면 #5 — 복스러운 소망을 기다림 (2:13)</strong></p>
+          <p>위 삶을 사는 동안 기다리는 자세의 장면. 기다림(prosdechomenoi)이 현재분사 — 지금도 기다리는 중이다. 복스러운 소망이 현재의 삶을 붙들고 있다.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s6: 의문·발견·정보 -->
+    <details class="stage" id="s6">
+      <summary>
+        <span class="stage__num">6단계</span>
+        <span class="stage__title-inline">의문·발견·정보</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p><strong>의문 1 — sophron이 왜 이렇게 많이 반복되는가?</strong></p>
+          <p>2:2(늙은 남자), 2:4(젊은 여자 사이로), 2:5(젊은 여자), 2:6(젊은 남자), 2:12(은혜의 교육 결과)에서 총 5회 등장한다. sophron은 단순히 절제가 아니라 그레데 문화와 관련된 특정 덕목일 수 있다 — 그레데인들의 방종(1:12)과 대조되는 공동체적 특성으로 강조된 것일 수 있다.</p>
+
+          <p><strong>의문 2 — paideuo는 어떻게 은혜의 동사가 되는가?</strong></p>
+          <p>paideuo는 본래 어린이를 훈련·교육하는 단어다(히 12:6~7에서 하나님의 징계도 이 단어). 여기서 은혜(charis)가 주어로 쓰여 교육한다 — 은혜가 인격적 교육자처럼 그려진다. 이것이 단순한 도덕 훈련과 다른 복음적 교육의 특성을 드러낸다.</p>
+
+          <p><strong>발견 1 — '하나님의 교훈을 빛나게'와 '하나님의 말씀이 비방받지 않게'의 대응</strong></p>
+          <p>5절(젊은 여자들 → 말씀 비방 없게)과 10절(종들 → 교훈 빛나게)이 대응한다. 공동체 내 가장 취약한 계층(젊은 여자, 종)의 삶이 복음의 명예와 직결된다는 구조다.</p>
+
+          <p><strong>발견 2 — laos periousios의 구약 배경</strong></p>
+          <p>출 19:5(LXX: λαὸς περιούσιος)에서 온 것으로 보인다 — 시내산 언약에서 이스라엘이 받은 '특별한 소유 백성' 호칭이 이제 새 언약 공동체에 적용된다. 14절의 laos periousios는 속량(lutroo)·정결(katharidzo)·열심(zelotes)의 세 동작과 연결된다.</p>
+
+          <p><strong>정보 — epiphaneia의 이중 용례</strong></p>
+          <p>11절에서는 구원하는 은혜가 "나타남(epiphaneia)" — 초림적 나타남. 13절에서는 복스러운 소망으로 기다리는 "나타남" — 재림적 나타남. 같은 단어가 두 역사적 사건을 잇는 렌즈다. 이미 나타남(11절)이 아직 나타나지 않은 소망(13절)을 기다리게 한다.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s7: 동영상 -->
+    <details class="stage" id="s7">
+      <summary>
+        <span class="stage__num">7단계</span>
+        <span class="stage__title-inline">동영상 — 움직이는 장면으로 보기</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p>2장 전체를 한 편의 짧은 영상으로 연속 재생한다.</p>
+          <p>카메라는 그레데 섬의 어느 교회 마당에서 시작한다. 늙은 남자들이 절제 있는 얼굴로 앉아 있다. 늙은 여자들이 지나가며 젊은 여자들 곁에 앉아 낮은 목소리로 이야기한다. 젊은 남자들이 디도의 행동을 눈으로 따라간다.</p>
+          <p>카메라가 집 안으로 들어간다. 종 하나가 주인의 일을 묵묵히 한다. 말대답도 없고 불평도 없다. 그 장면 위에 내레이션처럼 10절이 흐른다 — "우리 구주 하나님의 교훈을 빛나게 하려 함이라."</p>
+          <p>화면이 전환된다. 빛의 이미지 — 은혜가 나타난다(epiphaneia, 11절). 교육의 이미지 — 은혜가 경건치 않음과 세상 정욕을 내려놓도록 가르친다. 삶의 3방향이 글자로 나타났다가 사라진다: 절제·의롭게·경건하게.</p>
+          <p>마지막 장면 — 기다리는 자세. 현재분사 prosdechomenoi(기다리는 중인)가 정지 화면으로 고정된다. 복스러운 소망. epiphaneia(재림적 나타남). 그리고 디도를 향한 마지막 명령이 화면 밖에서 들린다 — "말하고 권면하며 책망하되 업신여김을 받지 말라."</p>
+          <p>영상 전체의 흐름: <em>위에서 아래로(은혜→삶), 안에서 밖으로(교회→세상), 지금에서 소망으로(현재→파루시아).</em></p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s8: 초벌 제목·부제 + Q1~Q6 -->
+    <details class="stage" id="s8">
+      <summary>
+        <span class="stage__num">8단계</span>
+        <span class="stage__title-inline">초벌 제목·부제 / 미해결 질문 Q1~Q6</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p><strong>초벌 제목 후보</strong></p>
+          <ul>
+            <li>은혜가 교육한다 — paideuo</li>
+            <li>모든 사람에게 나타난 charis</li>
+            <li>바른 교훈의 신학적 뿌리 — 11~14절</li>
+            <li>연령·신분을 관통하는 sophron</li>
+          </ul>
+
+          <p style="margin-top:18px;"><strong>미해결 질문 Q1~Q6</strong></p>
+          <blockquote>이 질문들은 시뮬레이션용 가상 대화 중 미해결 상태로 남겨진 열린 질문입니다.</blockquote>
+
+          <p><strong>Q1</strong> — paideuo(교육하다)가 은혜의 동사로 쓰인 것이 이 장에서 가장 독특한 관찰이다. 은혜가 어떻게 교육하는가? 단순히 은혜를 '알게 됨'으로 삶이 바뀌는가, 아니면 은혜 자체가 능동적으로 작동하는 무언가인가?</p>
+
+          <p><strong>Q2</strong> — sophron이 5회 반복된다. 그레데 공동체의 특수한 상황(거짓 교사들의 방종적 가르침, 1:12의 크레테인 평판)과 이 반복이 어떻게 연결되는가?</p>
+
+          <p><strong>Q3</strong> — laos periousios(자기 백성)는 출 19:5의 인용인가? 만약 그렇다면 이 서신이 새 언약 공동체를 이스라엘 언약의 성취로 보는 시각을 얼마나 명시적으로 가지고 있는가?</p>
+
+          <p><strong>Q4</strong> — epiphaneia가 11절(초림)과 13절(재림)에 동일하게 쓰였다. 이 두 epiphaneia 사이에서 사는 것이 2:12의 삶("절제하며 의롭게 경건하게")인가?</p>
+
+          <p><strong>Q5</strong> — 종들의 순종(9~10절)이 "하나님의 교훈을 빛나게" 하는 것과 연결된다. 이것이 사회적 구조(노예제)를 긍정하는 것인가, 아니면 그 구조 안에서 복음의 빛을 내는 다른 논리인가?</p>
+
+          <p><strong>Q6</strong> — 15절에서 디도의 권위가 다시 강조된다("업신여김을 받지 말라"). 이것이 2장 권면 전체의 수신자가 교회 구성원이 아니라 디도임을 의미하는가 — 즉 이 장은 목회자 디도에게 주어진 목회 지침서인가?</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s9: 기도·내면 떠오름 -->
+    <details class="stage" id="s9">
+      <summary>
+        <span class="stage__num">9단계</span>
+        <span class="stage__title-inline">기도·내면 떠오름</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p>이 장을 읽고 내면에서 가장 먼저 떠오르는 것은 은혜가 교육한다는 사실이다. 삶의 변화를 의지력이나 훈련으로 만들어내려 애쓰는 자리에서, "이미 나타난 은혜가 가르치고 있다"는 말이 어떤 안도처럼 들린다.</p>
+          <p>동시에 두려움이 있다 — 5절의 "하나님의 말씀이 비방받지 않게"와 10절의 "교훈을 빛나게". 내 삶의 자리가, 가장 평범한 일상의 관계가, 복음의 명예와 연결된다는 무게.</p>
+          <p>기도: 이미 나타난 은혜가 지금도 교육하고 있음을 믿게 하소서. 복스러운 소망이 오늘의 절제와 의로움과 경건을 붙들게 하소서. 내 자리가 어디든, 교훈이 거기서 빛나게 하소서.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- SBM 시뮬레이션 전체 대화록 -->
+    <section id="sim-transcript" style="margin:44px 0;padding-top:28px;border-top:1px solid var(--c-line);">
+      <h2 style="font-family:var(--ff-serif);font-size:1.35rem;font-weight:700;margin-bottom:6px;">SBM 관찰 시뮬레이션 전체 대화록</h2>
+      <p style="font-size:0.88rem;color:var(--c-mute);margin-bottom:22px;">TIT-002 · 서신서 · 헬라어 | 진행: 성령일 선교사 | 참여: P01 한나래, P02 이진우, P04 최현국, P05 김미영, P07 오지혜, P11 나경아</p>
+      <blockquote>이 시뮬레이션은 시뮬레이션용 가상 대화입니다. 실제 인물·사건과 무관하며, SBM 9단계 관찰 방법론을 예시하기 위해 생성된 텍스트입니다.</blockquote>
+
+      <div class="md-body">
+
+        <p><strong>— 1단계: 무대·배경·소품·소재 —</strong></p>
+
+        <p><strong>성령일</strong>: 디도서 2장 읽었습니다. 먼저 무대부터 — 어떤 공간, 어떤 사람들이 보이나요?</p>
+
+        <p><strong>P04 최현국</strong>: 그레데 섬이요. 1장에서 교회가 막 세워진 곳. 2장은 그 교회 안으로 카메라가 들어가는 느낌이에요. 교회 마당이나 가정집이 배경인 것 같습니다. 늙은 남자, 늙은 여자, 젊은 여자, 젊은 남자, 종 — 한 장에 다섯 그룹이 등장해요.</p>
+
+        <p><strong>P05 김미영</strong>: 소품들이 눈에 띄어요. 술(3절의 금함), 집안일(5절), 주인의 일(9절). 평범한 일상의 물질들이요. 이 장은 거창한 예배 현장이 아니라 생활 현장이에요.</p>
+
+        <p><strong>P02 이진우</strong>: 구조적으로 1~10절과 11~14절이 다릅니다. 1~10절은 구체적 지시들이고, 11~14절은 그 지시들의 신학적 이유예요. 이유가 나중에 오는 패턴 — 바울 서신에서 종종 보이는 구조죠.</p>
+
+        <p><strong>성령일</strong>: 핵심 소재가 있다면요?</p>
+
+        <p><strong>P11 나경아</strong>: charis(χάρις)와 paideuo(παιδεύω)가 함께 나오는 11~12절이요. 은혜가 교육한다 — paideuo는 아이를 키우는 단어인데 은혜의 동사가 됐어요. 원문에서 주어가 charis이고 paideuo가 동사입니다.</p>
+
+        <p><strong>P07 오지혜</strong>: sophron이 계속 나와요. 2절에서 시작해서 12절까지. 반복이 이 장의 핵심 덕목을 알려주는 것 같아요.</p>
+
+        <p><strong>성령일</strong>: 좋습니다. 무대가 그려졌네요. 2단계로 넘어가죠.</p>
+
+        <p><strong>— 2단계: 첫 느낌·분위기 —</strong></p>
+
+        <p><strong>성령일</strong>: 이 장 전체에서 느껴지는 분위기나 첫 느낌이 있나요?</p>
+
+        <p><strong>P01 한나래</strong>: 따뜻하고 질서 있어요. 위에서 아래로 흘러내리는 느낌이요. 갑자기 압박하는 게 아니라 — 늙은 분들이 먼저 본을 보이고, 그게 젊은이들에게 흘러가고, 종들에게까지. 강이 흐르는 것 같아요.</p>
+
+        <p><strong>P02 이진우</strong>: 명령어가 많은데 강압적이지 않은 게 흥미로워요. 이유가 명령과 함께 붙어있기 때문인 것 같아요 — "하나님의 말씀이 비방받지 않게"(5절), "교훈을 빛나게"(10절). 목적이 보이면 명령이 달리 느껴지죠.</p>
+
+        <p><strong>P05 김미영</strong>: 은혜가 나타난다는 11절이 갑자기 분위기를 바꿔요. 1~10절의 도덕 지침 같던 느낌이 11절에서 신학적 따뜻함으로 바뀝니다. 아, 이게 왜 가능한지 이제 나오는구나 싶은 느낌.</p>
+
+        <p><strong>P07 오지혜</strong>: "복스러운 소망"(13절)이 마음에 걸려요. 이 모든 권면을 기다리는 자세와 연결하는 것 — 지금 이렇게 사는 건 기다리는 삶이라는 뉘앙스요.</p>
+
+        <p><strong>— 3단계: 시작과 끝 —</strong></p>
+
+        <p><strong>성령일</strong>: 시작(1절)과 끝(15절)에 무엇이 있나요?</p>
+
+        <p><strong>P02 이진우</strong>: 1절 — "오직 너는 바른 교훈에 합당한 것을 말하라." su de — '오직 너는'으로 시작해요. 1장에서 거짓 교사들이 나왔는데 2장은 디도를 향한 대조로 시작합니다. 15절 끝 — "말하고 권면하며 책망하라… 업신여김을 받지 말라." 시작과 끝 모두 디도에게 말하는 프레임이에요.</p>
+
+        <p><strong>P01 한나래</strong>: '말하라(lalei)'가 처음에 하나 오고, 끝에서 '말하고 권면하며 책망하라'로 확장되네요. 단순한 말에서 복합적 사역으로 열리는 구조요.</p>
+
+        <p><strong>P04 최현국</strong>: 그러면 2~14절 전체는 '무엇을 말해야 하는가'에 대한 내용이고, 15절은 '어떻게 말해야 하는가'로 닫는 거네요. 1절과 15절이 액자 틀이고 2~14절이 그 안에 담긴 내용.</p>
+
+        <p><strong>— 4단계: 인물·사물·상황·사상 —</strong></p>
+
+        <p><strong>성령일</strong>: 등장인물과 핵심 사상을 정리해볼까요?</p>
+
+        <p><strong>P04 최현국</strong>: 인물이 계층별로 배치됩니다. 늙은 남자·늙은 여자·젊은 여자·젊은 남자·종. 그리고 디도가 프레임을 담당하고 있어요.</p>
+
+        <p><strong>P11 나경아</strong>: 사상 면에서 핵심은 11~14절이에요. charis — χάρις. paideuo — παιδεύω. 은혜가 교육한다. epiphaneia — ἐπιφάνεια가 두 번 나와요. 11절은 "구원하는 은혜가 나타났다(epiphane)" — 과거 시제, 이미 일어난 사건. 13절은 "영광스러운 나타남(epiphaneia)을 기다린다" — 미래 소망. 같은 어근이 과거와 미래를 잇고 있어요.</p>
+
+        <p><strong>P07 오지혜</strong>: laos periousios — 자기 백성이요. 속량·정결·열심 세 동작이 연결돼 있어요. zelotes kalon ergon — 선한 일에 열심 있는 자기 백성. 이것이 2장 전체 권면의 신학적 목표 같아요.</p>
+
+        <p><strong>P02 이진우</strong>: sophron(σώφρων)을 정리하면 — 늙은 남자(2절), 젊은 여자를 가르치는 늙은 여자(4절), 젊은 여자(5절), 젊은 남자(6절), 은혜의 교육 결과(12절). 5번이에요. 이 장 전체의 공통 덕목 키워드입니다.</p>
+
+        <p><strong>— 5단계: 장면 컷 —</strong></p>
+
+        <p><strong>성령일</strong>: 이 장에서 가장 생생한 장면은 무엇인가요?</p>
+
+        <p><strong>P05 김미영</strong>: 늙은 여자가 젊은 여자에게 가르치는 장면이요(3~5절). 교실이 아니라 삶의 현장에서 이루어지는 가르침이에요. 남편 사랑하는 법, 자녀 사랑하는 법을 가르친다는 것 — 이게 선한 것(kalos)을 가르치는 것과 연결돼요.</p>
+
+        <p><strong>P04 최현국</strong>: 종이 주인의 일을 묵묵히 하는 장면(9~10절)이요. "말대답하지 않고 도적질하지 않고" — 부정적으로 묘사되는 행동의 반대가 충성이고, 그 충성이 "교훈을 빛나게" 한다. 가장 낮은 자리에서 복음이 드러나는 장면이에요.</p>
+
+        <p><strong>P01 한나래</strong>: 은혜가 나타나서 교육하는 장면(11~12절)이요. 추상적인 개념인데 영상처럼 그려집니다 — 빛이 오고, 그 빛이 가르친다. 경건치 않음을 버리도록.</p>
+
+        <p><strong>P07 오지혜</strong>: "복스러운 소망을 기다리며"(13절) — 현재분사예요. 기다리는 자세가 현재 진행형이라는 게 인상적이에요. 지금 이 순간에도 기다리고 있는 중.</p>
+
+        <p><strong>— 6단계: 의문·발견·정보 —</strong></p>
+
+        <p><strong>성령일</strong>: 의문이나 발견이 생긴 게 있나요?</p>
+
+        <p><strong>P11 나경아</strong>: laos periousios — 출 19:5 LXX를 보면 "εἴσεσθέ μοι λαὸς περιούσιος"(나의 특별한 소유 백성이 되리라)가 나와요. 그레데 교회가 이스라엘 언약의 성취로 묘사되고 있는 건지, 그 질문이 생겨요.</p>
+
+        <p><strong>P02 이진우</strong>: 구조적 발견이에요 — 1~10절의 권면이 신학 근거 없이 도덕 지침으로만 읽힐 수 있는데, 11절 "γάρ(왜냐하면)"가 연결어로 와서 1~10절의 근거를 뒤에서 제공해요. 바울이 먼저 명령하고 나중에 이유를 밝히는 논증 방식입니다.</p>
+
+        <p><strong>P05 김미영</strong>: "하나님의 말씀이 비방받지 않게"(5절)와 "교훈을 빛나게"(10절)가 대응해요. 비방 없음과 빛남은 반대 방향에서 같은 것을 말하고 있어요.</p>
+
+        <p><strong>P01 한나래</strong>: 13절 "복스러운 소망" — 이 소망이 단순히 미래 사건이 아니라 현재 삶의 방향을 결정한다는 게 느껴져요. 소망이 현재를 조각하는 방식이요.</p>
+
+        <p><strong>P07 오지혜</strong>: zelotes kalon ergon(선한 일에 열심 있는)이요. zelotes는 열심당을 연상시키는 단어인데, 여기서는 선한 일에 대한 열심으로 전환됐어요. 열심의 대상이 바뀐 거죠.</p>
+
+        <p><strong>— 7단계: 동영상 —</strong></p>
+
+        <p><strong>성령일</strong>: 이 장을 동영상으로 쭉 재생한다면 어떤 흐름인가요?</p>
+
+        <p><strong>P04 최현국</strong>: 1절 — 디도에게 명령이 주어진다. 카메라가 교회 안으로 들어간다. 늙은 남자부터 시작해서 아래로 내려간다. 각 그룹에게 해당하는 권면이 자막처럼 흐른다. 종의 장면에서 "교훈을 빛나게"가 클로즈업된다.</p>
+
+        <p><strong>P01 한나래</strong>: 11절에서 장면이 전환돼요. 빛이 나타나는 이미지 — charis가 왔다. 그 빛이 가르친다. 세 삶의 방향(절제·의롭게·경건하게)이 화면에 나타난다.</p>
+
+        <p><strong>P07 오지혜</strong>: 마지막은 기다리는 자세의 정지 화면이에요. prosdechomenoi — 기다리고 있는 중. 소망이 현재를 붙들고 있다.</p>
+
+        <p><strong>— 8단계: 초벌 제목·부제 —</strong></p>
+
+        <p><strong>성령일</strong>: 초벌 제목을 지어볼까요?</p>
+
+        <p><strong>P02 이진우</strong>: "은혜가 교육한다" — paideuo의 주어가 charis라는 게 이 장의 핵심이니까요.</p>
+
+        <p><strong>P01 한나래</strong>: "모든 사람에게 나타난 charis" — πᾶσιν ἀνθρώποις(모든 사람에게)가 포용적이에요.</p>
+
+        <p><strong>P04 최현국</strong>: "연령·신분을 관통하는 sophron" — 이 장 전체의 실타래가 sophron이니까.</p>
+
+        <p><strong>P11 나경아</strong>: "두 epiphaneia 사이에서" — 11절과 13절 사이의 삶이 이 장의 내용이에요.</p>
+
+        <p><strong>성령일</strong>: 미해결 질문들을 정리해두고 9단계로 넘어가죠.</p>
+
+        <p><strong>— 9단계: 기도·내면 떠오름 —</strong></p>
+
+        <p><strong>성령일</strong>: 이 장을 관찰한 후 내면에서 떠오르는 것, 기도가 있다면 나눠주세요.</p>
+
+        <p><strong>P01 한나래</strong>: 은혜가 이미 나타났다는 것 — 그 은혜가 지금도 가르치고 있다는 게 안도가 돼요. 내가 의지력으로 sophron해지는 게 아니라 은혜가 교육하고 있다는 것.</p>
+
+        <p><strong>P05 김미영</strong>: 가장 평범한 자리 — 집안일, 종의 일상 — 이 "교훈을 빛나게" 한다는 게요. 내 평범한 자리가 복음의 명예와 연결된다는 무게가 느껴져요.</p>
+
+        <p><strong>P07 오지혜</strong>: 복스러운 소망이에요. 기다리는 자세가 현재형이라는 것. 소망이 미래의 일이 아니라 지금 나를 붙들고 있다는 것.</p>
+
+        <p><strong>P02 이진우</strong>: laos periousios — 자기 백성이라는 정체성이요. 속량받아 정결하게 되어 선한 일에 열심 있는 자기 백성. 이게 내 정체성이라면 삶이 달리 보이겠다는 생각.</p>
+
+        <p><strong>P04 최현국</strong>: 디도가 업신여김을 받지 말라는 마지막 명령이 마음에 걸려요. 권면자도 권위가 필요하고, 그 권위는 삶에서 나온다는 것.</p>
+
+        <p><strong>P11 나경아</strong>: epiphaneia — 나타남이에요. 이미 나타남(11절)과 아직 나타나지 않음(13절) 사이에서 살고 있다는 것. 그 사이에서 paideuo(교육)가 일어난다는 게 신기해요.</p>
+
+        <p><strong>성령일</strong>: 오늘 관찰 잘 하셨습니다. charis가 paideuo한다 — 이 장이 도덕 지침이 아니라 복음 기반 교육론임을 확인했습니다. 미해결 질문들은 Q1~Q6로 기록해두겠습니다.</p>
+
+        <p><strong>— [10단계] 운동·도약 — TIT 2장의 운동 벡터 —</strong></p>
+
+        <p><strong>성령일</strong>: 마지막으로 이 장이 디도서 전체 spine 안에서 어떤 운동을 하는지 살펴보겠습니다. TIT의 spine은 "구원의 은혜로 경건을 교육하사, 바른 교훈과 선한 행실로 복음을 빛나게 하는 공동체를 세우신다"입니다.</p>
+
+        <p><strong>P02 이진우</strong>: 1장이 기초를 놓았다면 — 장로 자격, 거짓 교사 책망 — 2장은 그 위에 실제 공동체 교육이 흘러내리는 국면이에요. spine의 "경건을 교육하사"가 2장에서 charis-paideuo로 육화됩니다.</p>
+
+        <p><strong>P11 나경아</strong>: TIT의 destination이 2:10·3:14라고 되어있어요. 2:10 — 종들이 교훈을 빛나게. 3:14 — 선한 일에 힘쓰라. 2장이 destination의 첫 정박지인 셈이에요.</p>
+
+        <p><strong>P01 한나래</strong>: heart가 "갓 세워진 섬 교회를 은혜로 길러내심"이잖아요. 2장 전체가 paideuo(교육·양육)의 언어로 가득한 것이 그 심정과 정확히 맞아요. 은혜가 교육자가 되어 공동체를 기른다.</p>
+
+        <p><strong>P04 최현국</strong>: phases가 "2 연령·신분별 바른 교훈·은혜의 교육"이에요. 2장이 phase 2의 핵심이고, 11~14절이 그 신학적 엔진입니다. 1장 기초 → 2장 교육 → 3장 실천(중생의 씻음·선한 일)으로 이어지는 운동이요.</p>
+
+        <p><strong>P07 오지혜</strong>: 운동 벡터를 정리하면 — 은혜가 나타남(11절, 이미) → 은혜가 교육함(12절, 진행 중) → 소망 가운데 기다림(13절) → 자기 백성이 됨(14절) → 빛나는 삶(10절, 15절). 과거-현재-미래를 관통하는 운동이에요.</p>
+
+        <p><strong>성령일</strong>: 정확합니다. 2장은 TIT spine의 "경건을 교육하사"가 실제 공동체 각 계층에 내려오는 국면입니다. charis-paideuo-epiphaneia-laos periousios — 이 네 단어가 2장 운동의 기둥입니다. 오늘 시뮬레이션 마칩니다.</p>
+      </div>
+    </section>
+
+    <!-- synthesis -->
+    <section class="stage--synthesis" id="synthesis">
+      <div class="stage__num">통합 종합</div>
+      <h2 class="stage__title">10가지 종합 관찰</h2>
+      <div class="synthesis-body">
+
+        <p><strong>A — 본문 핵심 요약</strong></p>
+        <p>디도서 2장은 그레데 섬 신생 교회의 연령·신분별 바른 교훈을 기록하고, 그 교훈의 신학적 근거를 11~14절에 응축한다. 구원하는 하나님의 은혜(charis)가 모든 사람에게 나타나 경건치 않음을 버리고 절제·의롭게·경건하게 살도록 교육(paideuo)한다. 이 모든 삶은 복스러운 소망(epiphaneia)을 기다리며, 예수께서 속량하신 자기 백성(laos periousios)의 정체성 안에서 선한 일에 열심을 낸다.</p>
+
+        <p><strong>B — 언어·문체 특징</strong></p>
+        <p>sophron(절제·분별)이 5회 반복된다(2:2·4·5·6·12). 명령어가 많지만 각 권면마다 목적절("하나님의 말씀이 비방받지 않게", "교훈을 빛나게")이 붙어 이유가 함께 흐른다. su de(오직 너는)로 시작(1절)하여 같은 구조로 닫는(7절 su de autos) 대조 패턴. lalei(말하라)가 1절과 15절에서 수미쌍관. γάρ(왜냐하면, 11절)가 1~10절 권면의 신학적 근거를 연결하는 경첩 역할을 한다.</p>
+
+        <p><strong>C — 구조·흐름 파악</strong></p>
+        <p>1절(서두: 디도를 향한 명령) → 2~10절(연령·신분별 권면 5그룹) → 11~14절(신학적 근거: charis·paideuo·epiphaneia·laos periousios) → 15절(결론: 디도의 사역 권위 재확인). 전반부(1~10)가 인간의 삶 방향이라면, 후반부(11~14)는 하나님의 은혜 행위다. 이 두 부분이 γάρ로 연결되어 윤리-신학의 긴장을 해소한다.</p>
+
+        <p><strong>D — 핵심 인물·사물 분석</strong></p>
+        <p>늙은 여자가 젊은 여자에게 가르치는 것이 세대 전수 이미지다. 종들의 순종이 복음의 아름다움을 드러낸다(10절). 디도는 선한 일의 본(typos, 7절)이 되어야 한다. charis는 이 장에서 인격적 교육자처럼 그려진다 — paideuo의 주어이기 때문이다. laos periousios는 구약 출 19:5의 언약 언어를 새 언약 공동체에 적용한다.</p>
+
+        <p><strong>E — 반복 패턴·대조 구조</strong></p>
+        <p>sophron 5회 반복은 그레데 문화(1:12, 방종적 평판)와 대비되는 공동체 덕목을 강조한다. "비방받지 않게"(5절)와 "빛나게"(10절)는 부정-긍정 대응이다. epiphaneia가 11절(과거 나타남)과 13절(미래 나타남)에 이중 등장하며 두 역사적 사건을 잇는다. su de(1절)는 1장의 거짓 교사들과 대조된다.</p>
+
+        <p><strong>F — 미해결 열린 질문 정리</strong></p>
+        <p>paideuo가 은혜의 동사로 쓰인 신학적 의미는? laos periousios의 출 19:5 인용 여부와 새 언약 공동체 적용 범위? epiphaneia 두 용례의 관계(초림/재림 이분법인가 연속성인가)? sophron 5회 반복이 그레데 문화 특수성을 반영하는가? 종들의 순종이 사회 구조를 긍정하는가 아니면 구조 안에서 복음의 다른 논리인가? 이 장이 목회자 디도를 위한 지침서인가, 공동체 전체를 위한 교육 자료인가?</p>
+
+        <p><strong>G — 구속사 좌표 (TIT 흐름 2장)</strong></p>
+        <p>디도서의 spine은 "구원의 은혜로 경건을 교육하사, 바른 교훈과 선한 행실로 복음을 빛나게 하는 공동체를 세우신다"이다. 2장은 이 spine의 "경건을 교육하사"가 실제 공동체 각 계층에 내려오는 phase 2 국면이다. 1장이 교회 기초(장로 자격·거짓 교사 책망)를 놓았다면, 2장은 그 기초 위에 charis-paideuo라는 은혜의 교육이 흘러내린다. TIT의 destination(2:10·3:14)의 첫 정박지가 2:10 — "교훈을 빛나게 하려 함이라"이다. 2장이 destination의 문을 처음 여는 국면이다.</p>
+
+        <p><strong>H — 운동 벡터 (TIT 2장 phase 2 운동)</strong></p>
+        <p>2장의 운동: charis 나타남(11절, 이미 일어난 사건) → charis paideuo(12절, 진행 중인 교육) → sophron 공동체 각 계층으로 흘러내림(2~10절) → laos periousios 정체성 확인(14절) → epiphaneia 소망 가운데 기다림(13절). 이 운동은 위에서 아래로(은혜→삶), 안에서 밖으로(공동체 정체성→복음의 빛), 과거에서 미래로(이미 나타남→복스러운 소망)의 3방향 벡터다. TIT 전체 흐름에서 2장은 1장(기초) → 2장(교육·destination 문) → 3장(실천·선한 일)의 가운데 교량 국면이다.</p>
+
+        <p><strong>I — 수면 아래 본질</strong></p>
+        <p>이 장의 수면 아래에는 은혜가 도덕의 기반이라는 역설이 있다. 1~10절의 수많은 명령들이 복음 없이 읽히면 종교적 행동 강령이 된다. 그러나 11절의 γάρ(왜냐하면)가 모든 것을 뒤집는다 — 명령보다 은혜가 먼저이고, 명령이 가능한 것은 은혜가 이미 나타났기 때문이다. TIT heart인 "갓 세워진 섬 교회를 은혜로 길러내심"이 2장 전체에서 paideuo라는 단어 하나에 집약된다. 하나님은 명령으로 다스리기 전에 은혜로 가르치는 분이다.</p>
+
+        <p><strong>J — 실존적 부름</strong></p>
+        <p>두 epiphaneia 사이에서 나는 어떻게 살고 있는가? 이미 나타난 은혜(11절)가 지금도 나를 paideuo(교육)하고 있다면, 내가 의지력으로 만들려는 변화가 아니라 은혜의 교육에 반응하는 삶이 무엇인지 묻는다. 가장 평범한 자리 — 집안일, 반복되는 관계, 직장의 종 같은 위치 — 에서 "교훈이 빛나게"되는 것을 믿는가? laos periousios — 나는 속량된 자기 백성의 정체성으로 살고 있는가, 아니면 여전히 zelotes의 대상을 종교적 노력으로 채우고 있는가?</p>
+
+      </div>
+    </section>
+
+    <!-- next-row -->
+    <nav class="next-row" aria-label="인접 장 이동">
+      <a href="/magazine/TIT/1/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">디도서 1장</div>
+        <div class="nav-preview">장로·감독의 자격, 그레데인의 악평, 거짓 교사 책망. 바른 교훈의 기초를 놓는 국면.</div>
+      </a>
+      <a href="/magazine/TIT/3/">
+        <div class="nav-kicker">다음 장 →</div>
+        <div class="nav-title">디도서 3장</div>
+        <div class="nav-preview">중생의 씻음(palingenesia), 선한 일에 힘쓰라. 구원의 은혜가 실천으로 이어지는 국면.</div>
+      </a>
+    </nav>
+  </main>
+</div>
+
+<footer style="text-align:center;padding:48px 24px 64px;font-size:0.84rem;color:var(--c-mute);border-top:1px solid var(--c-line);margin-top:80px;">
+  <p>© 2025 네다바웨이 | SBM Observatory — 디도서 2장</p>
+  <p style="margin-top:8px;"><a href="/sbm.html" style="color:inherit;border-bottom:1px solid currentColor;">SBM 소개</a> · <a href="/magazine/TIT/" style="color:inherit;border-bottom:1px solid currentColor;">디도서 전체 보기</a></p>
+</footer>
+
+<script>
+(function(){
+  var details = document.querySelectorAll('details.stage');
+  details.forEach(function(d){
+    var id = d.id;
+    if(!id) return;
+    var stored = localStorage.getItem('sbm-tit2-'+id);
+    if(stored === 'open') d.open = true;
+    if(stored === 'closed') d.open = false;
+    d.addEventListener('toggle', function(){
+      localStorage.setItem('sbm-tit2-'+id, d.open ? 'open' : 'closed');
+    });
+  });
+})();
+</script>
+<script defer src="/assets/back-to-top.js"></script>
+<script defer src="/assets/toc-spy.js"></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
