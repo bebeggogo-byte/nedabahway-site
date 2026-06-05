@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>요한일서 1장 — Observatory | 네다바웨이</title>
+<meta name="description" content="요한일서 1장을 9단계로 같이 관찰합니다. 생명의 말씀(logos tes zoes), 빛(phos), 교제(koinonia), 죄의 자백(homologeo).">
+<link rel="canonical" href="https://www.nedabah.org/magazine/1JN/1/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/1JN/">요한일서</a> · 1장</div>
+      <h1>요한일서 1장 — Observatory | 네다바웨이</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">1JN-001 · 서신서 · 헬라어</div>
+      <p class="essence">태초부터 있는 생명의 말씀(logos tes zoes)을 증언하는 자리. 하나님은 빛(phos)이시라는 선언이 울리고, 빛 가운데 행할 때 서로 교제(koinonia)가 열리며, 죄를 자백할 때 사함의 약속이 새롭게 시작된다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 서신 장르이므로 무대는 선언과 초대의 골격으로 본다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 1JN-001</p>
+<p>book: 요한일서</p>
+<p>book_en: 1 John</p>
+<p>chapter: 1</p>
+<p>bible_block: 서신서</p>
+<p>canon: 신약</p>
+<p>genre: 서신·선언·권면</p>
+<p>language: 헬라어</p>
+<p>verse_count: 10</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>greek_terms: [logos_tes_zoes, phos, koinonia, homologeo, hamartia, hilasmos, zoe_aionios, skotia, aletheia, katharizei]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-05</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>요한일서 1장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 오늘은 요한일서 1장입니다. 이 편지는 "태초부터 있는 것"으로 열립니다. 들은 바, 본 바, 만진 바 — 감각 동사들이 첫 두 절에 쏟아져요. 그런 다음 "하나님은 빛이시라"는 선언이 3절을 건너뛰듯 5절에 나타나고, 빛과 어둠, 교제와 거짓, 죄와 자백이 이 짧은 10절 안에서 한 흐름을 이룹니다. 낭독 후 잠시 머물겠습니다.</p>
+<p>(본문 낭독 1:1~10)</p>
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>P01 한나래</strong>: "태초부터 있는 것"(1절)으로 열릴 때 공기가 아주 오래된 것들의 느낌이에요. 그리고 동시에 "우리가 보았고 들었는 바를 너희에게 전함"(3절)에서 — 오래된 것이 지금 나에게 건네지는 감각이 있어요. 거리감이 있다가 갑자기 가까워지는 분위기요.</p>
+<p><strong>P07 오지혜</strong>: "하나님은 빛이시라 그에게는 어둠이 조금도 없으시니라"(5절) — 이 문장이 너무 단호해요. 여지가 없이 선언하는 결이에요. 그리고 그 다음 절들이 "만일 우리가 어둠 속에서 행하면서 빛 가운데 있다 하면 거짓말을 하는 것이요"라고 이어지는데 — 선언 다음에 거울을 세우는 느낌이에요.</p>
+<p><strong>P04 최현국</strong>: 이 장은 선언과 조건문의 교대로 이뤄져 있어요. "하나님은 빛이시라"(선언) → "만일 우리가 빛 가운데 행하면"(조건) → "만일 우리가 죄 없다 하면"(조건). 무대가 반복적으로 열리고 닫혀요.</p>
+<p><strong>P05 김미영</strong>: 소품으로 보면 빛과 어둠이 계속 배경에 깔려요. 그런데 추상적 개념처럼 느껴지다가 7절 "그 아들 예수의 피가 우리를 모든 죄에서 깨끗하게 하실 것이요"에서 갑자기 구체적이 돼요. 피가 나와서요.</p>
+<p><strong>P02 이진우</strong>: 구조적으로 1-4절이 프롤로그예요. 증언자의 자격 선언이에요. 5-10절이 본론인데 "빛 → 교제 → 죄 자백 → 사함"의 한 논리선이에요.</p>
+<p><strong>P11 나경아</strong>: 헬라어 배경만요. 1절 "태초부터"는 ap arches예요. 요한복음 1:1의 en arche(태초에)와 다른 전치사인데, 요한일서 ap arches는 '그 시작 이후 쭉'의 뉘앙스예요. 그리고 koinonia(3절)는 '공동의 참여·나눔'이에요. 단순한 교제보다 훨씬 깊은 결이에요. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 오래된 것이 지금 건네지는 결, 선언과 거울, 빛과 피의 공기가 이 장에 있네요. 무대로 들어가지요.</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>P05 김미영</strong>: 소품들이에요. 생명의 말씀(logos tes zoes, 1절), 영원한 생명(zoe aionios, 2절), 빛(phos, 5절), 어둠(skotia, 5절), 피(haima, 7절), 죄(hamartia, 8-10절), 죄의 자백(homologeo, 9절), 사함(aphiemi, 9절), 깨끗하게 함(katharizei, 7,9절).</p>
+<p><strong>P04 최현국</strong>: 무대 두 층이에요. 첫째 층(1-4절): 증언자의 자격 — 태초부터 있는 것을 들었고 보았고 손으로 만졌다. 둘째 층(5-10절): 빛이신 하나님 선언 + 빛 가운데 행함·죄 자백의 초대.</p>
+<p><strong>P02 이진우</strong>: 소재 대조들이에요. 빛 vs 어둠(5-6절), 교제 vs 거짓(6-7절), 죄 없다는 자기기만 vs 죄를 자백함(8-9절), 의로우심 vs 불의함(9절).</p>
+<p><strong>P11 나경아</strong>: 배경 정보만요. 1절의 감각 동사 연속 — akekoo(들었다), heorakes(보았다), etheasametha(자세히 보았다), epselaphesen(손으로 만졌다) — 이 넷이 다 완료형 또는 단과거예요. 이미 일어난 확실한 사건이라는 문법적 강조예요. 2절 "영원한 생명이 나타난 바 됐으니" — phaneroo(나타나다)는 요한 문헌에서 성육신을 가리키는 표준 동사예요.</p>
+<p><strong>P07 오지혜</strong>: 반복 소재예요. 3절 "우리가 본 것을 너희에게도 전함은 너희로 우리와 사귐이 있게 하려 함이니" — 전함·교제가 이 장의 목적어예요. 그리고 5절 "우리가 그에게서 듣고 너희에게 전하는 소식이 이것이니" — 전함(angelia)이 또 나와요. '전함'의 목적이 '교제'로 수렴해요.</p>
+<p><strong>P01 한나래</strong>: 4절 "너희 기쁨이 충만하게 하려 함이니" — 이 편지 전체가 기쁨을 향한다는 선언이에요. 마지막 소재는 기쁨(chara)이에요.</p>
+<p><strong>성령일 선교사</strong>: 소품과 소재를 확인했네요. 생명의 말씀·빛·교제·피·죄 자백·사함이 이 장의 핵심 소재예요. 다음으로 가지요.</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>P02 이진우</strong>: 1절 "태초부터 있는 것이요 우리가 들은 바요 눈으로 본 바요 자세히 보고 우리의 손으로 만진 바라"로 열려요. 10절 "만일 우리가 범죄하지 아니하였다 하면 하나님을 거짓말하는 이로 만드는 것이니 또한 그의 말씀이 우리 속에 있지 아니하니라"로 닫혀요.</p>
+<p><strong>P04 최현국</strong>: 시작은 증언의 확실성이에요 — 들었고 보았고 만졌다. 끝은 자기기만의 경고예요 — 죄가 없다 하면 하나님을 거짓말하는 이로 만든다. 이 두 극 사이에 '빛 가운데 교제'가 있어요.</p>
+<p><strong>P01 한나래</strong>: 시작의 '확실한 감각 증언'과 끝의 '자기기만 경고'가 묘하게 대응해요. 확실하게 증언한 것을 부정할 때 어떤 일이 생기는지를 끝에서 보여주는 것 같아요.</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>P05 김미영</strong>: 인물 — 요한(과 그 공동체), 수신자 교회, 하나님, 예수 그리스도.</p>
+<p><strong>P07 오지혜</strong>: 사상의 핵 — 5절 "하나님은 빛이시라 그에게는 어둠이 조금도 없으시니라". 그리고 7절 "그가 빛 가운데 계신 것 같이 우리도 빛 가운데 행하면 우리가 서로 사귐이 있고 그 아들 예수의 피가 우리를 모든 죄에서 깨끗하게 하실 것이요". 빛 → 교제 → 피 → 깨끗함의 연결이에요.</p>
+<p><strong>P04 최현국</strong>: 9절이 이 장의 중심 약속이에요. "만일 우리가 우리 죄를 자백하면 그는 미쁘시고 의로우사 우리 죄를 사하시며 우리를 모든 불의에서 깨끗하게 하실 것이요." 조건(자백)과 약속(사함+깨끗함)의 구조예요.</p>
+<p><strong>P11 나경아</strong>: 9절 homologeo — '같은 말을 하다'예요. 하나님이 죄라고 부르는 것을 나도 죄라고 부르는 것이에요. 단순한 고백 감정이 아니라 언어적 동의의 결이에요. 배경만요.</p>
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+<p><strong>P02 이진우</strong>: 상황이에요. 요한 공동체가 수신자에게 편지를 씁니다. 이 편지를 쓰는 이유가 4절에 있어요 — "우리가 이것을 씀은 너희 기쁨이 충만하게 하려 함이니라". 교훈이 아니라 기쁨이 목적이에요.</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>P04 최현국</strong>: 세 컷입니다.</p>
+<ul>
+<li><strong>컷 1 (1-4절)</strong>: 태초부터 있는 생명의 말씀 — 감각 증언·영생 나타남·교제의 선언·기쁨</li>
+<li><strong>컷 2 (5-7절)</strong>: 하나님은 빛이시라 — 선언·어둠 속 행함의 거짓·빛 가운데 행하면 교제와 피 사함</li>
+<li><strong>컷 3 (8-10절)</strong>: 죄를 인정하라 — 죄 없다는 자기기만·자백하면 사함·범죄 안 했다는 자기기만 경고</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 1이 왜 관찰하는지의 이유(기쁨·교제)를 주고, 컷 2-3이 그 교제가 가능한 길(빛 가운데 행함·죄 자백)을 열어요.</p>
+<p><strong>P01 한나래</strong>: 컷 1과 컷 2의 연결이 흥미해요. "너희와 우리의 사귐"(3절) → "빛 가운데 행하면 우리가 서로 사귐"(7절) — koinonia가 두 번 나오는데, 3절은 수직적(하나님 아버지·아들과의 사귐), 7절은 수평적(서로)이에요.</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>P01 한나래</strong>: 발견이에요. 3절 "우리의 사귐은 아버지와 그의 아들 예수 그리스도와 더불어 누림이라" — 교제의 내용이 '아버지와 아들과 함께함'이에요. 수평적 교제의 근거가 수직적 교제예요.</p>
+<p><strong>P07 오지혜</strong>: 의문이에요. 5절 "하나님은 빛이시라"는 선언이 어디서 나오는 건지 본문이 "우리가 그에게서 듣고 너희에게 전하는 소식"이라고만 해요. 이 '들은 것'이 어느 상황인지 본문이 설명하지 않아요.</p>
+<p><strong>P11 나경아</strong>: 정보로, 7절 katharizei(깨끗하게 하다) — 현재 시제예요. 일회적 사건이 아니라 계속 진행 중인 정화를 가리키는 것 같아요. 배경 관찰로만 두겠습니다.</p>
+<p><strong>P04 최현국</strong>: 발견이에요. 6절-10절에 "만일 우리가 ~하면"이 세 번 반복돼요. 각각 거짓이 드러나는 조건이에요. 이 세 조건이 빛의 현실을 반사하는 거울처럼 놓여 있어요.</p>
+<p><strong>P02 이진우</strong>: 의문이에요. 1-2절의 "생명의 말씀"(logos tes zoes)이 요한복음 1:1의 로고스와 같은 분을 가리키는지 본문이 명시하지 않아요. 문학적 연결인지 신학적 동일성인지 관찰 단계에서는 보류해요.</p>
+<p><strong>P05 김미영</strong>: 발견이에요. 7절 "그 아들 예수의 피가 우리를 모든 죄에서 깨끗하게 하실 것이요" — 피(haima)가 빛과 교제 사이에 놓여 있어요. 교제의 근거가 피예요. 빛 가운데 행함 → 서로 사귐 → 피가 깨끗하게 함이 한 문장이에요.</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>P05 김미영</strong>: 태초부터 있는 것을 보고 들고 만졌다고 시작합니다. 영원한 생명이 나타났다고 합니다. 이것을 전하는 것은 너희와 사귀기 위함이고, 우리의 사귐은 아버지와 아들과의 사귐이라고 합니다.</p>
+<p><strong>P01 한나래</strong>: 이어서 하나님은 빛이시라는 소식을 전한다고 합니다. 어둠에 행하면서 빛에 있다 하면 거짓이라고 합니다. 빛 가운데 행하면 서로 사귐이 있고 피가 깨끗하게 한다고 합니다.</p>
+<p><strong>P04 최현국</strong>: 만일 죄 없다 하면 자기를 속이는 것이라고 합니다. 그러나 죄를 자백하면 하나님이 미쁘시고 의로우사 사하시고 깨끗하게 하신다고 합니다. 범죄하지 않았다 하면 하나님을 거짓말하는 이로 만드는 것이라는 경고로 닫힙니다.</p>
+<p><strong>P02 이진우</strong>: 전체 흐름은 — 확실한 증언 → 하나님은 빛이심 → 빛 가운데 교제 가능 → 죄 자백이 그 교제의 문 → 사함과 깨끗함의 약속이에요.</p>
+<p><strong>성령일 선교사</strong>: 태초 증언 → 빛 선언 → 교제 초대 → 자백의 문 → 사함 약속으로 하나의 동영상이 흘러요.</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "태초부터 있는 생명이 우리에게 왔다"</p>
+<p><strong>P02 이진우</strong>: "빛 가운데 행하면 서로 사귐이 있고"</p>
+<p><strong>P04 최현국</strong>: "증언과 초대 — 요한일서의 첫 장"</p>
+<p><strong>P05 김미영</strong>: "하나님은 빛이시라, 그 빛 안에 교제가 있다"</p>
+<p><strong>P07 오지혜</strong>: "죄를 자백하면 사하시고 깨끗하게 하심"</p>
+<p><strong>P11 나경아</strong>: "<em>Koinonia</em> — 아버지와 아들과 함께하는 참된 사귐"</p>
+<p><strong>성령일 선교사</strong>: 초벌로 둡니다. 부제 제안은: "빛이신 하나님 앞에서 교제가 열리고, 자백이 그 교제의 문이 된다"</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 9절 "미쁘시고 의로우사 우리 죄를 사하시며"의 자리에 상상으로 들어가, 알게 된 것을 주께 아뢰어 봅시다.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 사함이 의로우심에서 온다는 것이 — 공짜 용서가 아니라는 결이에요. 그 의로우심이 무엇인지 아직은 머뭅니다.</p>
+<p>*— 각자 마음에만 둡니다.</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: <strong>이 본문은 어디서 어디로 움직이는지요? 수면 아래에서 무엇이 회복되고 있는지요? 긴장은 무엇인지요? 이 불이 타오르고 있는지요?</strong></p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p><strong>P02 이진우</strong>: 1장은 <strong>태초부터 있는 생명의 증언(확실성)에서 빛 가운데의 참된 교제(koinonia)로</strong> 미는 운동이에요. 요한일서 전체 흐름의 1국면 — '빛 안의 교제·죄의 고백'이 여기서 시작돼요. 교제가 가능한 근거를 이 장이 세우는 것이에요.</p>
+<p><strong>P11 나경아</strong>: 수면 아래로 보면 — homologeo(자백)의 어근이 '같은 말을 하다'예요. 자백이 단순한 감정이 아니라 하나님과 같은 언어로 서는 것이에요. 그 아래에서 움직이는 것은 — 관계의 단절이 아니라 회복의 문이 열리고 있다는 거예요. 배경 관찰로만요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, '교제'(koinonia)가 단순한 친밀함이 아니에요. 아버지와 아들과 함께하는 교제(3절)가 서로 사귐(7절)의 근거예요. 수직이 수평을 가능하게 하는 구조예요. 그 아래에서 하나님이 자녀와 함께하시려는 의지가 비쳐요.</p>
+<p><strong>P01 한나래</strong>: 긴장이 있어요. 7절의 "빛 가운데 행하면"은 이미 빛이 왔다는 사실과, 아직 어둠에 행할 수 있는 나의 실재 사이의 긴장이에요. 이미/아직의 긴장이에요. 빛이 왔는데 어둠이 여전히 선택지예요.</p>
+<p><strong>P04 최현국</strong>: 이 장의 동력은 1-2절의 확실한 감각 증언이에요. <strong>본 것·들은 것·만진 것이라는 확실성이 '하나님은 빛이시라'는 선언을 가능하게 해요.</strong> 추상적 원리가 아니라 확인된 증언에서 교제의 초대가 나오는 운동이에요.</p>
+<p><strong>P05 김미영</strong>: 요한일서 흐름의 시작으로서, 이 장은 '빛 안의 교제'가 어떻게 가능한지의 토대를 놓아요. 아들 안에 나타난 하나님의 사랑이 자녀를 참 교제로 부르는 흐름의 첫 국면이에요.</p>
+<p><strong>성령일 선교사</strong>: <strong>태초부터 있는 생명이 나타났고, 그 증언이 교제로 부르고, 빛 가운데 행할 때 그 교제가 열리며, 죄 자백이 그 문이다</strong> — 그 한 줄을 손에 쥐고 오늘 관찰을 닫습니다.</p>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계 관찰된 사실 (LOCKED v2.0 9단계 형식).</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 1JN-001</p>
+<p>book: 요한일서</p>
+<p>chapter: 1</p>
+<p>date: 2026-06-05</p>
+<p>---</p>
+
+<h2>요한일서 1장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote><p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p></blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>소품: 생명의 말씀(logos tes zoes, 1절), 영원한 생명(zoe aionios, 2절), 빛(phos, 5절), 어둠(skotia, 5-6절), 피(haima, 7절), 죄(hamartia, 8-10절), 자백(homologeo, 9절), 사함(aphiemi, 9절), 깨끗하게 함(katharizei, 7,9절).</li>
+<li>greek_terms: [logos_tes_zoes, phos, koinonia, homologeo, hamartia, zoe_aionios, skotia, katharizei, haima, aphiemi].</li>
+<li>무대 두 층: 1-4절(증언자의 자격 선언·영생 나타남·교제 초대·기쁨), 5-10절(빛 선언·빛과 어둠 대조·죄 자백의 초대·사함 약속).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>오래된 것이 지금 건네지는 이중 감각 — ap arches(태초부터)의 거리와 "너희에게 전함"의 근접함.</li>
+<li>5절 "하나님은 빛이시라 그에게는 어둠이 조금도 없으시니라" — 여지 없는 단호한 선언 공기.</li>
+<li>선언 다음에 거울(조건문 세 번)이 세워지는 구조적 공기.</li>
+<li>4절 "기쁨이 충만하게 하려 함" — 전체 목적이 기쁨임이 선언됨.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(1절): "태초부터 있는 것이요 우리가 들은 바요 눈으로 본 바요 자세히 보고 우리의 손으로 만진 바라" — 네 개의 감각 완료 동사로 확실성 선언.</li>
+<li>끝(10절): "만일 우리가 범죄하지 아니하였다 하면 하나님을 거짓말하는 이로 만드는 것이니 또한 그의 말씀이 우리 속에 있지 아니하니라" — 자기기만 경고로 닫힘.</li>
+<li>시작의 '확실성(감각 증언)'과 끝의 '자기기만 경고'가 두 기둥.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>인물: 요한(공동체), 수신자 교회, 하나님(아버지), 예수 그리스도(아들).</li>
+<li>사상의 핵: 5절 "하나님은 빛이시라"(phos estin ho theos), 7절 빛 가운데 행하면 교제와 피 사함, 9절 자백하면 사하시고 깨끗하게 하심.</li>
+<li>편지 목적(4절): 기쁨이 충만하게 하려 함.</li>
+<li>3절 koinonia — 수직(아버지·아들과의 사귐)이 수평(서로 사귐)의 근거.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1-4절): 태초부터 있는 생명의 말씀 — 감각 증언·영생 나타남·교제 초대·기쁨 목적.</li>
+<li>컷 2 (5-7절): 하나님은 빛이시라 — 빛 선언·어둠 속 행함의 거짓·빛 가운데 행하면 교제와 피 사함.</li>
+<li>컷 3 (8-10절): 죄를 인정하라 — 죄 없다는 자기기만·자백하면 사함과 깨끗함·범죄 부인의 경고.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+<ul>
+<li><em>logos tes zoes</em>(1절): 생명의 말씀. logos = 말씀·이성, zoe = 생명. 요한복음 1:1과의 관계는 미해결.</li>
+<li><em>koinonia</em>(3,6,7절): 공동의 참여·나눔·사귐. 단순 친교가 아닌 깊은 연합의 결.</li>
+<li><em>homologeo</em>(9절): 자백하다. 어근은 '같은 말을 하다' — 하나님과 같은 언어로 죄를 부르는 것.</li>
+<li><em>phos</em>(5,7절): 빛. "하나님은 빛이시라" — 어둠이 조금도 없으심.</li>
+<li><em>katharizei</em>(7,9절): 깨끗하게 하다. 현재 시제 — 계속 진행 중인 정화의 뉘앙스.</li>
+<li><em>zoe aionios</em>(2절): 영원한 생명. 이 편지 전체 목적어의 예고.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+<ul>
+<li>1-4절 프롤로그: 증언 자격(감각 동사 4개) → 영생 나타남 → 교제 선언 → 기쁨 목적.</li>
+<li>5-10절 세 조건문 구조: "만일 우리가 ~하면" × 3회 (6절/8절/10절) — 각각 거짓이 드러나는 거울.</li>
+<li>koinonia의 이중 등장: 3절(수직 — 아버지·아들과), 7절(수평 — 서로) — 수직이 수평의 근거.</li>
+<li>7절 한 문장 안에서 빛 → 교제 → 피 → 깨끗함이 연속으로 연결.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보</h2>
+<ul>
+<li>ap arches(태초부터) — 전치사 ap이 '그 시작 이후 쭉'의 지속성 뉘앙스. 요한복음 1:1 en arche와 다른 강조.</li>
+<li>1절 감각 동사 네 개가 모두 완료형 또는 단과거 — 이미 확정된 과거 사건의 확실성 강조.</li>
+<li>phaneroo(2절, 나타나다) — 요한 문헌에서 성육신 가리키는 표준 동사. 배경 정보로만.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+<ul>
+<li>요한복음 1:1 "태초에 말씀이 계시니라" — 요한일서 1:1 ap arches와 연결 여부 미해결.</li>
+<li>요한일서 4:8 "하나님은 사랑이시라" — 1장 "하나님은 빛이시라"와 같은 서술 구조. 권 전체 흐름.</li>
+<li>시편 36:9 "주께는 생명의 원천이 있사오며 주의 빛 안에서 우리가 빛을 보리이다" — 교차 여지, 미해결.</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+<p>태초부터 있는 생명의 말씀을 들었고 보았고 만졌다는 확실한 증언 → 영원한 생명이 나타났다는 선언 → 이것을 전하는 이유는 교제를 위함 → 하나님은 빛이심, 어둠에 행하면서 빛에 있다 함은 거짓 → 빛 가운데 행하면 교제가 열리고 피가 깨끗하게 함 → 죄 없다는 자기기만 경고 → 죄를 자백하면 사하시고 깨끗하게 하심 → 범죄 부인은 하나님을 거짓말하는 이로 만드는 것. 전체 흐름은 확실한 증언이 교제를 초대하고, 빛과 자백이 그 교제의 조건이다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"빛 가운데 서로 사귐 — 생명의 말씀과 교제의 초대"</strong></li>
+<li>초벌 부제: "빛이신 하나님 앞에서 교제가 열리고, 자백이 그 교제의 문이 된다"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 기록</li>
+<li>[x] 역사·문화·문학 사실 최소 1개</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 기록됨</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>해석·교리 단정 없이 본문 관찰만 보존.</li>
+<li>불확실한 구속사 연결(요한복음 1:1과의 관계, 시편 36:9 교차)은 미해결 질문으로 보류.</li>
+<li>drift_flag: false 유지.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 기도.</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: 1JN-001</p>
+<p>book: 요한일서</p>
+<p>chapter: 1</p>
+<p>date: 2026-06-05</p>
+<p>---</p>
+
+<h2>요한일서 1장 — 미해결 질문</h2>
+<blockquote><p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p></blockquote>
+
+<h2>Q1. 1절 "생명의 말씀"(logos tes zoes)이 요한복음 1:1의 로고스와 동일한 분을 가리키는가?</h2>
+<ul><li>본문이 명시하지 않는다. 문학적 연결만 표시하고 보류.</li></ul>
+
+<h2>Q2. 5절 "우리가 그에게서 들은" 것이 어느 상황에서 들은 것인가?</h2>
+<ul><li>본문이 설명하지 않는다. 위치만 보존.</li></ul>
+
+<h2>Q3. 7절 katharizei(깨끗하게 하다)의 현재 시제가 가리키는 정화의 성격은 무엇인가?</h2>
+<ul><li>일회적인가, 계속적인가 — 본문이 더 설명하지 않는다. 미해결.</li></ul>
+
+<h2>Q4. 9절 "미쁘시고 의로우사 사하심"에서 의로우심이 사함과 어떻게 연결되는가?</h2>
+<ul><li>의로우심이 사함의 근거인 이유를 본문이 설명하지 않는다. 관찰 단계에서 보류.</li></ul>
+
+<h2>Q5. koinonia(사귐)가 수직(아버지·아들)과 수평(서로) 두 방향을 가리키는데, 이 둘의 관계는?</h2>
+<ul><li>본문 안에서 수직이 수평의 근거임은 보이나, 더 깊은 연결은 미해결.</li></ul>
+
+<h2>Q6. 10절 "하나님을 거짓말하는 이로 만든다"는 표현이 가리키는 신학적 무게는?</h2>
+<ul><li>본문 범위 안에서 관찰만 보존. 그대로 둔다.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">빛 가운데 서로 사귐 — 생명의 말씀과 교제의 초대.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: 1JN-001</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-05</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 요한일서 1장은 태초부터 있는 생명의 말씀에 대한 확실한 감각 증언으로 열려, 하나님은 빛이심을 선언하고, 빛 가운데 행하면 교제(koinonia)가 열리며 죄를 자백할 때 사함이 주어진다고 초대하는 장이다.</p>
+<p><strong>한 문단</strong>: 1-4절 프롤로그에서 증언 자격이 확인된다 — 들었고 보았고 만졌다. 이 전함의 목적은 교제이고, 그 교제의 목적은 기쁨이다. 5-7절에서 하나님은 빛이심이 선언되고, 빛 가운데 행할 때 교제가 가능하며 피가 죄에서 깨끗하게 한다고 이어진다. 8-10절에서는 죄 없다는 자기기만을 경고하고, 자백하면 사하시고 깨끗하게 하신다는 약속으로 절정에 이른다. 이 장은 요한일서 전체 흐름의 제1국면 — '빛 안의 교제·죄의 고백'의 토대를 놓는 장이다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>logos tes zoes(생명의 말씀), phos(빛), koinonia(사귐), haima(피), homologeo(자백), katharizei(깨끗함)가 무대 소품.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>오래된 것이 지금 건네지는 이중 감각. 단호한 빛 선언 후 거울(조건문) 공기.</td></tr>
+<tr><td>3 시작과 끝</td><td>1절 감각 증언의 확실성 → 10절 자기기만 경고로 닫힘.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>빛이신 하나님·교제·자백·사함. 편지 목적: 기쁨 충만(4절).</td></tr>
+<tr><td>5 장면 컷</td><td>컷 1(1-4 증언·교제) / 컷 2(5-7 빛 선언·교제 가능) / 컷 3(8-10 자백·사함).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>koinonia의 수직·수평 이중 구조 발견. katharizei 현재 시제. homologeo 어근 '같은 말'.</td></tr>
+<tr><td>7 동영상</td><td>확실한 증언 → 빛 선언 → 교제 초대 → 자백의 문 → 사함 약속 흐름.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"빛 가운데 서로 사귐" / "빛이신 하나님 앞에서 교제가 열리고, 자백이 그 문이 된다"</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>사함이 의로우심에서 온다는 자리에 머물며 답을 구하지 않고 드린다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — koinonia의 이중 구조</strong>: 3절의 사귐은 아버지와 아들과의 사귐이고, 7절의 사귐은 서로의 사귐이다. 두 koinonia는 같은 단어이되 방향이 다르다. 수직 교제가 수평 교제를 가능하게 한다는 구조가 이 장에 이미 들어 있다.</p>
+<p>2. <strong>결 2 — homologeo의 뉘앙스</strong>: 자백(9절)의 헬라어 어근은 '같은 말을 하다'이다. 하나님이 죄라고 부르는 것을 나도 죄라고 부르는 것 — 감정적 뉘우침이 아니라 언어적 동의가 자백의 뉘앙스다. 이 동의가 사함의 조건으로 놓인다.</p>
+<p>3. <strong>결 3 — 기쁨의 목적</strong>: 4절 "이것을 씀은 너희 기쁨이 충만하게 하려 함이니라" — 이 편지의 목적이 교훈이 아니라 기쁨이다. 빛의 선언, 교제의 초대, 자백의 길이 모두 기쁨을 향한다. 요한일서 전체의 목적론적 방향이 이 절에 미리 놓인다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>요한일서 4:8 "하나님은 사랑이시라" — 1장 "하나님은 빛이시라"와 동일 서술 구조. 1장이 4장의 사랑 선언을 향해 나아가는 흐름의 시작.</li>
+<li>요한일서 5:13 "영생이 있음을 알게 하려 함" — 1장의 영원한 생명(2절) 선언이 5장의 확신으로 수렴하는 궤적.</li>
+<li>요한복음 1:1 "태초에 말씀이 계시니라" — 1장 1절 ap arches와의 연결 여부는 미해결로 보류.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 태초부터 있는 것이 나에게 건네진다는 감각으로 들어간다.</li>
+<li><strong>멈춤</strong>: "하나님은 빛이시라"는 선언 앞에서 — 내가 어둠에 행하면서 빛에 있다고 하는지를 본다.</li>
+<li><strong>끝</strong>: 자백이 교제의 문이라는 자리에서, 한 단어를 손에 쥐고 일어선다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 이 장의 핵심 선언(빛·교제·자백·사함)이 나온다</li>
+<li>[x] 운동 벡터가 드러난다</li>
+<li>[x] 수면 아래의 본질(수직 koinonia가 수평의 근거·homologeo 언어적 동의)이 관찰된다</li>
+<li>[x] 실존적 부름으로 닫힌다</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 1JN 흐름 위 이 장의 위치</h3>
+<p>요한일서의 spine은 "아들 안에 나타난 하나님의 사랑이 우리를 자녀 삼아, 서로 사랑하는 참 교제와 영생의 확신에 이르게 한다"이다. 1장은 이 흐름의 제1국면 — '빛 안의 교제·죄의 고백'이다. 전체 spine의 전제가 되는 토대를 놓는 자리다. 아들 안에 나타난 하나님의 사랑이 자녀를 영생의 확신으로 인도하는 여정이 시작되려면, 먼저 그 빛과의 관계가 어떤 것인지 — 교제가 무엇이고 그 교제로 들어가는 문이 무엇인지가 확립되어야 한다. 1장은 그 기초를 감각 증언의 확실성 위에서 세운다. 5장의 destination "영생이 있음을 알게 하려 함"을 향한 첫 발자국이 여기에 있다.</p>
+
+<h3>H · 운동 벡터 — 1JN spine의 1장 국면</h3>
+<blockquote><p><strong>태초부터 있는 생명의 확실한 증언에서, 빛 가운데의 참된 교제(koinonia)로. 어둠→빛의 운동이 이 장에서 선포되고, 자백이 그 전환의 문이 된다.</strong></p></blockquote>
+<p>요한일서의 흐름이 '빛 안의 교제(1장) → 새 계명·서로 사랑(2장) → 하나님의 자녀(3장) → 하나님은 사랑(4장) → 영생의 확신(5장)'으로 움직인다면, 1장은 그 운동의 출발점에서 교제의 조건을 세운다. 빛 가운데 행함과 죄 자백이 그 참 교제(koinonia)의 문임을 이 장이 선언한다. 어둠에서 빛으로의 운동이 여기서 처음 불려진다.</p>
+
+<h3>I · 수면 아래 — 하나님의 의중·심정</h3>
+<p>표면은 빛과 어둠의 대조 선언이다. 그 아래에서 움직이는 것은 — 하나님이 교제를 먼저 원하신다는 방향이다. 3절 "우리의 사귐은 아버지와 그의 아들 예수 그리스도와 더불어 누림"에서, 교제의 주도권이 하나님께 있음이 비친다. 편지를 쓰는 이유가 기쁨이라는 것(4절) — 수면 아래에서 하나님의 심정은 자녀가 기쁨 가운데 교제하기를 원하시는 갈망이다. 자백에 사함을 약속하신다는 것(9절)에서, 관계 회복을 먼저 제공하시는 부모의 마음이 비쳐온다. 3:1의 '아버지께서 어떠한 사랑을 베푸사' 경탄이 이 장의 토대 위에 서 있다.</p>
+
+<h3>J · 실존적 부름 — 빛 가운데 교제로 들어가는 불씨</h3>
+<blockquote><p>하나님은 빛이시고, 그 빛 안에서 교제(koinonia)가 열린다 — 나는 지금 빛 가운데 행하고 있는가, 자백이 교제의 문임을 알고 그 문 앞에 서 있는가.</p></blockquote>
+<p>이것은 명령이 아니라 초대다. 태초부터 있는 생명이 나에게 건네졌다는 확실한 증언에서 시작해 — 빛 가운데 행함이 내 안에서 시작되는가를 묻는다. 자백이 교제의 문이라는 것이 내 안에서 현실이 되는가. 이 불씨가 자아에서 서로 사랑하는 교제로, 그 교제에서 세상을 향한 증언으로 번지는 것이 요한일서가 향하는 운동의 첫 점화다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: 교제(koinonia)</p>
+<p><strong>다음 장으로 미는 운동</strong>: 빛 안에서 교제가 시작된 자가 새 계명 — 서로 사랑하라는 운동으로 나아가는 2장으로 전진한다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/1JN/">
+        <div class="nav-kicker">← 권 차례</div>
+        <div class="nav-title">요한일서 차례로</div>
+        <div class="nav-preview">요한일서의 다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/1JN/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">요한일서 차례로</div>
+        <div class="nav-preview">요한일서의 다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/1JN/2/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">요한일서 2장</div>
+        <div class="nav-preview">대언자(parakletos), 새 계명(서로 사랑), 세상을 사랑 말라, 기름 부음(chrisma).</div>
+      </a>
+    </div>
+
+<aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:1JN-001', JSON.stringify({
+      href: '/magazine/1JN/1/',
+      title: '요한일서 1장',
+      excerpt: '생명의 말씀(logos tes zoes)과 빛(phos). 빛 가운데 행하면 교제(koinonia)가 열리고, 죄를 자백하면 사함이 주어진다.'
+    }));
+  } catch(e) {}
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-05</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
