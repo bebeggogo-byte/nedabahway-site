@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>야고보서 3장 — Observatory | 네다바웨이</title>
+<meta name="description" content="야고보서 3장을 9단계로 같이 관찰합니다. 혀(glossa)의 길들임, 작은 키(gubernetes), 위로부터 난 지혜(sophia anothen, 3:17)의 특성들.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/JAS/3/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·정보</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/JAS/">야고보서</a> · 3장</div>
+      <h1>야고보서 3장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">JAS-003 · 서신서 · 헬라어</div>
+      <p class="essence">길들일 수 없는 혀(<em>glossa</em>) — 말(<em>hippos</em>)의 재갈, 배(<em>ploion</em>)의 키(<em>pedalion</em>), 불(<em>pyr</em>)의 비유로 혀의 위력이 펼쳐진다. 위로부터 난 지혜(<em>sophia anothen</em>, 3:17)의 일곱 특성이 혀의 길들임의 목적지다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>지혜 장르 — 혀와 위로부터의 지혜.</strong> 야고보서 3장은 혀의 위력을 비유로 펼친 뒤(1-12절) 두 지혜(세상적 지혜 vs 위로부터 난 지혜)를 대조한다(13-18절). 행함의 가장 작고 어려운 영역 — 혀 — 를 다루는 JAS 흐름의 세 번째 국면이다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JAS-003</p>
+<p>book: 야고보서</p>
+<p>book_en: James</p>
+<p>chapter: 3</p>
+<p>bible_block: 서신서</p>
+<p>canon: 신약</p>
+<p>genre: 서신·지혜·비유</p>
+<p>language: 헬라어</p>
+<p>verse_count: 18</p>
+<p>observed_facts_count: 22</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>greek_terms: [glossa, sophia, anothen, eirenike, damazo, pege, pikros]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-05</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>야고보서 3장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 반갑습니다. 오늘은 야고보서 3장을 관찰합니다. 3장은 두 부분이에요 — 혀의 위력과 그것을 길들이기 어렵다는 것(1-12절), 그리고 세상적 지혜와 위로부터 난 지혜의 대조(13-18절)입니다. 먼저 1절부터 18절까지 낭독하고 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 3:1~18, 약 4분)</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기가 느껴지셨는지요.</p>
+
+<p><strong>P01 한나래</strong>: 비유가 쏟아졌어요. 재갈·키·불·숲·짐승·샘·무화과나무·포도나무 — 한 장이 이렇게 이미지가 많은 게 이번 야고보서에서 처음 같아요. 뭔가 화가 펼쳐 놓는 그림 같아요.</p>
+
+<p><strong>P07 오지혜</strong>: 8절이 멈춰요. "혀는 능히 길들일 사람이 없나니 쉬지 아니하는 악이요 죽이는 독이 가득한 것이라" — 혀에 대한 가장 강한 선언이에요. 길들일 수 없다고 해요.</p>
+
+<p><strong>P04 최현국</strong>: 17절이 전환점이에요. "오직 위로부터 난 지혜는 첫째 성결하고 다음에 화평하고 관용하고 양순하며 긍휼과 선한 열매가 가득하고 편견과 거짓이 없나니" — 일곱 특성의 목록이에요. 앞의 혀 논지와 대조돼요.</p>
+
+<p><strong>P02 이진우</strong>: 구조가 분명해요. 1-12절은 혀의 위력과 모순을 비유로 쌓고, 13-18절은 두 지혜(위로부터 vs 세상적)를 대조해요. 두 단락이 나란히 놓여요.</p>
+
+<p><strong>P05 김미영</strong>: 소품들이에요. 재갈(<em>chalinos</em>), 배의 키(<em>pedalion</em>), 불(<em>pyr</em>), 숲(<em>hyle</em>), 샘(<em>pege</em>), 무화과나무, 포도나무, 올리브나무 — 이렇게 구체적인 자연 소품들이에요.</p>
+
+<p><strong>P11 나경아</strong>: 6절의 "불의의 세계"가 헬라어 <em>kosmos tes adikias</em>예요 — 불의의 세계, 우주, 질서 전체라는 뉘앙스예요. 혀가 "불의의 세계"라고 표현되는데 그 의미가 강렬해요. 배경 자료로만요.</p>
+
+<p><strong>성령일 선교사</strong>: 비유의 풍부함, 길들일 수 없는 혀, 17절의 전환 — 그 공기를 그대로 두고 무대로 들어가지요.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장의 무대와 소재를 짚어 보지요.</p>
+
+<p><strong>P04 최현국</strong>: 장르가 지혜 비유예요. 말의 재갈·배의 키·불·숲·짐승·뱀·독 — 이 비유들이 전부 혀의 위력과 위험을 그리는 소재예요. 야고보서 안에서 가장 많은 비유가 한 장에 모인 것 같아요.</p>
+
+<p><strong>P05 김미영</strong>: 소품 목록이에요. 재갈(<em>chalinos</em>, 3절)·배의 키(<em>pedalion</em>, 4절)·불(<em>pyr</em>, 5-6절)·숲(<em>hyle</em>, 5절)·짐승·새·뱀·바다 생물(7절)·샘(<em>pege</em>, 11절)·무화과나무·포도나무·올리브(12절). 자연과 항해에서 온 소품들이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 반복 소재가 있어요. "작은"(<em>mikros</em>)이 반복돼요 — 5절 "혀는 작은 지체로되 큰 것을 자랑하나니 보라 얼마나 작은 불이 얼마나 많은 나무를 태우는가." "작은 것이 큰 것을 움직인다"는 논지가 반복 소재예요.</p>
+
+<p><strong>P11 나경아</strong>: 17절의 "위로부터"가 헬라어 <em>anothen</em>이에요. 야고보서 1:17의 "위로부터 내려오는 선물"과 같은 단어예요. 그리고 17절 "화평"이 <em>eirenike</em> — 평화로운·화평을 이루는이에요. 배경 자료로만요.</p>
+
+<p><strong>P02 이진우</strong>: 구조 소재예요. 1-2절: 스승 경고·온전한 사람 정의. 3-8절: 혀의 비유 연속. 9-12절: 혀의 모순(찬송과 저주). 13-18절: 두 지혜의 대조.</p>
+
+<p><strong>P01 한나래</strong>: 수신자 소재예요. 1절 "내 형제들아 너희는 선생이 많이 되지 말라" — 선생(가르치는 자)에 대한 경고로 시작해요. 가르치는 자들에게 더 엄한 심판이 있다고 해요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>glossa</em>·<em>anothen</em>·<em>eirenike</em>·<em>damazo</em>와 소품들을 배경 자료로 남겨 두지요.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 1절과 18절의 관계는 어떤지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "내 형제들아 너희는 선생이 많이 되지 말라 우리가 더 큰 심판을 받을 줄 알고"로 시작해요. 18절은 "화평하게 하는 자들은 화평으로 심어 의의 열매를 거두느니라"로 닫혀요.</p>
+
+<p><strong>P04 최현국</strong>: 시작은 선생의 엄한 심판 경고예요. 끝은 화평하게 하는 자들이 의의 열매를 거둔다는 선언이에요. 혀의 위험에서 위로부터의 지혜로 넘어가는 폭이에요.</p>
+
+<p><strong>P01 한나래</strong>: 시작의 "심판"과 끝의 "의의 열매"가 대조돼요. 혀를 잘못 쓰는 자의 심판과 화평하게 하는 자의 열매 — 두 방향이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 18절 "화평으로 심어 의의 열매를 거두느니라" — 씨앗(심음)과 열매(거둠)의 이미지예요. 자연 소품이 결론으로 이어져요.</p>
+
+<p><strong>성령일 선교사</strong>: 선생의 심판 경고에서 화평하게 하는 자의 의의 열매로 — 그 폭을 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 등장인물과 사상의 핵은 무엇인지요.</p>
+
+<p><strong>P05 김미영</strong>: 인물이에요. 야고보(저자)·형제들(수신자)·선생들·온전한 사람(2절)·화평하게 하는 자들(18절)이에요. 인물이 적은 대신 소품·비유가 많은 장이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황이에요. 선생이 많아지는 상황(1절)·혀를 길들이지 못하는 상황(8절)·같은 입에서 찬송과 저주가 나오는 상황(9-10절)·쓰고 단 물이 한 샘에서 나오는 상황(11절)이에요.</p>
+
+<p><strong>P02 이진우</strong>: 사상 핵은 두 개예요. 첫째, 혀는 작지만 몸 전체를 태울 수 있는 불이며 능히 길들일 사람이 없다는 것(5-8절). 둘째, 위로부터 난 지혜(<em>sophia anothen</em>)는 세상적·육신적·마귀적 지혜와 다르며 일곱 특성을 가진다는 것(17절).</p>
+
+<p><strong>P11 나경아</strong>: 15절의 "땅 위의 것이요 정욕의 것이요 마귀의 것"에서 "마귀의 것"이 <em>daimoniodes</em>예요 — 마귀적인 이라는 뜻이에요. 그리고 14절 "거짓말하지 말라"에서 "거짓말하다"가 <em>pseudomai</em>예요. 배경 자료로만요.</p>
+
+<p><strong>P04 최현국</strong>: 17절이 사상 핵이에요. "위로부터 난 지혜는 첫째 성결하고(<em>hagne</em>) 다음에 화평하고(<em>eirenike</em>) 관용하고(<em>epieikes</em>) 양순하며(<em>eupeithes</em>) 긍휼과 선한 열매가 가득하고 편견과 거짓이 없나니(<em>adiakritos, anypokritos</em>)" — 일곱 특성이에요. 첫째가 성결이고 그 다음에 관계적 특성들이 이어져요.</p>
+
+<p><strong>P01 한나래</strong>: 9-10절의 모순이에요. "이것으로 우리가 주 아버지를 찬송하고 또 이것으로 하나님의 형상대로 지음을 받은 사람을 저주하나니 한 입에서 찬송과 저주가 나오는도다 내 형제들아 이것이 마땅하지 아니하니라" — 같은 혀에서 찬송과 저주가 나온다는 모순이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 길들일 수 없는 혀, <em>sophia anothen</em>의 일곱 특성, 찬송과 저주의 모순을 나란히 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장을 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 다섯 컷으로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-2절)</strong>: 선생 경고 — 더 큰 심판·온전한 사람은 말에 실수가 없는 자</li>
+<li><strong>컷 2 (3-5절)</strong>: 재갈과 키 비유 — 작은 것이 큰 것을 통제함·작은 불이 큰 숲을 태움</li>
+<li><strong>컷 3 (6-12절)</strong>: 혀의 위력과 모순 — 불의의 세계·길들일 수 없는 악·찬송과 저주·샘과 나무 비유</li>
+<li><strong>컷 4 (13-16절)</strong>: 세상적 지혜의 정체 — 쓴 시기·다툼·자랑·땅의 것·정욕의 것·마귀의 것</li>
+<li><strong>컷 5 (17-18절)</strong>: 위로부터 난 지혜 — 성결·화평·관용·양순·긍휼·편견 없음·거짓 없음·의의 열매</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 2와 컷 5가 이 장의 두 기둥이에요. 작은 것(혀, 키, 불)이 큰 것을 움직인다는 논지(컷 2)와 위로부터 난 지혜의 일곱 특성(컷 5)이요. 혀의 위험과 지혜의 목표가 대조되는 구조예요.</p>
+
+<p><strong>P01 한나래</strong>: 컷 3(혀의 모순)과 컷 5(위로부터의 지혜)가 대답 관계예요. 찬송과 저주가 함께 나오는 혀의 문제(컷 3)에 대한 응답이 위로부터 난 지혜(컷 5)예요.</p>
+
+<p><strong>성령일 선교사</strong>: 혀의 문제(컷 3)와 지혜의 응답(컷 5)이 대답 관계라는 관찰을 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 2절 "우리가 다 많이 실수하느니라"에서 "우리"가 야고보 자신을 포함해요. 야고보가 자신도 실수하는 자로 포함해서 쓰고 있어요. 선생에 대한 경고가 자기도 포함한 경고예요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 7절 "여러 종류의 짐승과 새와 벌레와 바다의 생물은 다 사람이 길들이나니" — 이것들은 다 길들여지지만 혀는 "능히 길들일 사람이 없다"고 해요(8절). 왜 혀만 길들여지지 않는 것인지 본문이 더 설명하지 않아요.</p>
+
+<p><strong>P11 나경아</strong>: 정보로요. 17절의 일곱 특성을 원어로 짚으면요. <em>hagne</em>(성결)·<em>eirenike</em>(화평)·<em>epieikes</em>(관용)·<em>eupeithes</em>(양순)·긍휼과 선한 열매·<em>adiakritos</em>(편견 없음·흔들리지 않음)·<em>anypokritos</em>(거짓 없음·위선 없음)예요. <em>anypokritos</em>는 배우·위선자(<em>hypokrites</em>)가 아닌이라는 뜻이에요. 배경 자료로만요.</p>
+
+<p><strong>P04 최현국</strong>: 발견이에요. 13절 "너희 중에 지혜롭고 총명한 자가 누구냐 그는 선행으로 말미암아 지혜의 온유함으로 그 행함을 보일지니라" — 지혜가 "행함"으로 보인다고 해요. 2장의 "행함"과 연결돼요.</p>
+
+<p><strong>P02 이진우</strong>: 의문이에요. 6절 "혀는 곧 불이요 불의의 세계라 혀는 우리 지체 중에서 온 몸을 더럽히고 삶의 수레바퀴를 불사르나니" — "삶의 수레바퀴"(<em>trokhon tes geneseos</em>)가 무엇인지 본문이 더 설명하지 않아요. 순환·존재의 바퀴라는 뉘앙스인데 확정되지 않아요.</p>
+
+<p><strong>P05 김미영</strong>: 11-12절 비유가 걸려요. "샘이 한 구멍으로 어찌 쓴 물과 단 물을 내랴 내 형제들아 무화과나무가 올리브 열매를, 포도나무가 무화과를 맺겠느냐 이와 같이 짠 물이 단 물을 내지 못하느니라" — 자연의 법칙으로 혀의 모순을 지적하는데, 그 비유가 "그러므로 혀를 길들여야 한다"는 방향인지 "그러므로 불가능하다"는 방향인지 본문 자체로 확정되지 않아요.</p>
+
+<p><strong>성령일 선교사</strong>: 답을 구하지 않고 그대로 둡니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 이제 컷을 이어 동영상으로 돌려 보지요.</p>
+
+<p><strong>P05 김미영</strong>: 야고보가 형제들에게 선생이 많이 되지 말라고 시작해요 — 선생들은 더 큰 심판을 받기 때문이라고요. 우리가 다 많이 실수하며, 말에 실수가 없으면 온전한 사람이라고 해요.</p>
+
+<p><strong>P01 한나래</strong>: 비유가 이어져요. 말에 재갈을 먹여 온 몸을 다스리듯, 큰 배가 작은 키로 방향을 잡듯 — 혀도 작은 지체지만 큰 것을 자랑한다고 해요. 작은 불이 큰 숲을 태우듯 혀도 불이라고요.</p>
+
+<p><strong>P04 최현국</strong>: 혀는 불의의 세계(<em>kosmos tes adikias</em>)이며 온 몸을 더럽히고 삶의 수레바퀴를 불사른다고 해요. 여러 짐승은 다 길들여지지만 혀는 길들일 사람이 없고, 쉬지 않는 악이요 죽이는 독이 가득하다고 해요(8절).</p>
+
+<p><strong>P02 이진우</strong>: 모순이 나와요. 같은 혀로 주 아버지를 찬송하고 하나님의 형상대로 지음받은 사람을 저주한다고요. 쓴 물과 단 물이 같은 샘에서 나올 수 없듯이, 한 입에서 찬송과 저주가 나오는 것은 마땅하지 않다고 해요.</p>
+
+<p><strong>P07 오지혜</strong>: 논증이 전환해요. 지혜롭고 총명한 자는 선행으로 지혜의 온유함으로 행함을 보이라고 해요. 쓴 시기와 다툼이 있으면 그것은 위로부터 내려온 것이 아니라 세상적이고 정욕적이고 마귀적이라고 해요.</p>
+
+<p><strong>P11 나경아</strong>: 그리고 위로부터 난 지혜(<em>sophia anothen</em>)가 선언돼요. 첫째 성결(<em>hagne</em>)하고, 화평(<em>eirenike</em>)하고, 관용(<em>epieikes</em>)하고, 양순(<em>eupeithes</em>)하며, 긍휼과 선한 열매가 가득하고, 편견 없고(<em>adiakritos</em>), 거짓 없다(<em>anypokritos</em>)고 해요. 화평하게 하는 자들은 화평으로 심어 의의 열매를 거둔다고 닫혀요(18절).</p>
+
+<p><strong>성령일 선교사</strong>: 선생 경고→재갈·키 비유→혀의 불(<em>pyr</em>)·길들일 수 없음(<em>damazo</em>)→찬송과 저주의 모순→세상적 지혜→<em>sophia anothen</em>의 일곱 특성→의의 열매로 흐르는 동영상이 보입니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 떠오른 초벌 제목을 한 줄씩 나눠 주시지요.</p>
+
+<p><strong>P01 한나래</strong>: "길들일 수 없는 혀, 길들여야 할 지혜"</p>
+<p><strong>P02 이진우</strong>: "작은 키가 큰 배를 돌리듯 — 혀의 위력과 지혜의 관계"</p>
+<p><strong>P04 최현국</strong>: "위로부터 난 지혜의 일곱 특성 — 3:17의 목록"</p>
+<p><strong>P05 김미영</strong>: "찬송과 저주 — 한 입에서 나오는 모순"</p>
+<p><strong>P07 오지혜</strong>: "화평으로 심어 의의 열매를 거두느니라 — 18절의 결론"</p>
+<p><strong>P11 나경아</strong>: "<em>Glossa</em>·<em>sophia anothen</em>·<em>eirenike</em> — 야고보서 3장 원어 세 축"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 그대로 둡니다.</p>
+
+<p>부제 제안은: "작은 혀(<em>glossa</em>)의 위력과 길들임의 어려움, 위로부터 난 지혜(<em>sophia anothen</em>)의 일곱 특성"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 17절 "위로부터 난 지혜는 첫째 성결하고" 앞에 상상으로 서 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P01 한나래</strong>: (조용히) "쉬지 아니하는 악이요 죽이는 독"(8절) 앞에 섭니다.</p>
+<p>*— 그 순간 떠오른 것을 각자 마음에만 둡니다.</p>
+
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. 야고보서의 spine은 <strong>"시험을 통과한 믿음이 행함으로 열매 맺어, 듣는 자가 아니라 행하는 자의 온전함에 이르게 하신다"</strong>입니다. 3장은 그 spine의 세 번째 국면 — <strong>혀의 길들임과 위로부터의 지혜</strong>예요. 2장이 "행함으로 믿음이 온전케 됨"을 선언했다면, 3장은 행함의 가장 작고 가장 어려운 자리인 혀를 다뤄요. 이 장이 어디서 어디로 움직이는지, 수면 아래에서 비치는 하나님의 의중과 심정은 무엇인지 물겠습니다.</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p><strong>P02 이진우</strong>: 구조로 보면, 3장은 <strong>길들일 수 없는 혀의 현실(8절)에서 위로부터 난 지혜의 일곱 특성(17절)으로</strong> 미는 운동이에요. JAS spine에서 이 장이 하는 일은 "행함 중에서 가장 작고 가장 어려운 것 — 혀 — 을 다루면서, 그것이 위로부터의 지혜 없이는 불가능하다는 것을 드러내는" 것이에요.</p>
+
+<p><strong>P11 나경아</strong>: <em>glossa</em>와 <em>sophia anothen</em>이 이 장의 두 닻이에요. 8절 "혀는 능히 길들일 사람이 없다"(<em>damazo</em>)는 인간의 불가능 선언이고, 17절은 위로부터 난 지혜의 특성 목록이에요. 그 사이의 긴장이 이 장을 움직여요.</p>
+
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 하나님의 심정이 가장 뚜렷이 비치는 자리가 9-10절이에요. "하나님의 형상대로 지음을 받은 사람을 저주하나니" — 사람이 하나님의 형상(<em>homoiosis theou</em>)이라는 선언이 저주의 근거가 된다는 역설이에요. 하나님이 자신의 형상으로 만드신 사람을 그 입으로 저주하는 것이 마땅하지 않다는 심정이에요.</p>
+
+<p><strong>P01 한나래</strong>: 긴장이 있어요. 8절 "길들일 사람이 없다"는 현실과, 그럼에도 17-18절이 위로부터 난 지혜의 특성을 제시한다는 것 사이요. 인간의 불가능과 위로부터의 가능성의 긴장이에요.</p>
+
+<p><strong>P04 최현국</strong>: 운동 한 문장으로 보면, 3장은 <strong>행함의 가장 작고 어려운 자리인 혀의 불가능 앞에서, 그 해결이 위로부터 난 지혜에 있음을 드러내며 4장의 욕심과 다툼의 원인 논지로 나아가는</strong> 운동이에요.</p>
+
+<p><strong>P05 김미영</strong>: 이 불이 타오르느냐 물으시니 — 18절 "화평하게 하는 자들은 화평으로 심어 의의 열매를 거둔다"가 불씨예요. <strong>내가 혀로 찬송과 저주를 함께 내는 모순 안에 있는가, 아니면 위로부터 난 지혜(<em>sophia anothen</em>)로 화평을 심는 자인가</strong> — 그 자리에서 멈춰 섭니다.</p>
+
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>길들일 수 없는 혀의 현실과 위로부터 난 지혜의 목적지</strong> — 그 안에 비치는 하나님의 의중과 심정을 손에 쥐고 오늘 관찰을 닫습니다.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2단계 — 첫 느낌.</strong> <strong>3단계 — 시작과 끝.</strong> <strong>4단계 — 등장인물·사상.</strong> <strong>5단계 — 장면 컷.</strong> <strong>6단계 — 의문·발견·정보.</strong> <strong>7단계 — 동영상.</strong></p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JAS-003</p>
+<p>book: 야고보서</p>
+<p>chapter: 3</p>
+<p>date: 2026-06-05</p>
+<p>---</p>
+
+<h2>야고보서 3장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>장르: 서신·지혜·비유 — 혀 논증(1-12절) + 두 지혜 대조(13-18절).</li>
+<li>소품: 재갈(<em>chalinos</em>)·배의 키(<em>pedalion</em>)·불(<em>pyr</em>)·숲(<em>hyle</em>)·짐승·새·샘(<em>pege</em>)·무화과나무·포도나무.</li>
+<li>반복 소재: "작은"(<em>mikros</em>) — 5절. "길들임"(<em>damazo</em>) — 7·8절. "지혜"(<em>sophia</em>) — 13·15·17절.</li>
+<li>인물: 야고보·형제들·선생들·온전한 사람·화평하게 하는 자들.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>비유의 풍부함 — 재갈·키·불·숲·짐승·샘·나무가 한 장에 모임.</li>
+<li>8절 "길들일 사람이 없다"는 강한 불가능 선언.</li>
+<li>17절 전환 — 위로부터 난 지혜의 일곱 특성 목록.</li>
+<li>선생 경고(1절)로 시작해 의의 열매(18절)로 닫힘.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>1절: "내 형제들아 너희는 선생이 많이 되지 말라 우리가 더 큰 심판을 받을 줄 알고"</li>
+<li>18절: "화평하게 하는 자들은 화평으로 심어 의의 열매를 거두느니라"</li>
+<li>선생의 심판 경고 → 화평하게 하는 자의 의의 열매 — 혀의 위험에서 위로부터의 지혜로.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>인물: 야고보·형제들·선생들·온전한 사람(2절)·화평하게 하는 자들(18절).</li>
+<li>상황: 선생 많아짐(1절)·혀 길들임 불가능(8절)·찬송과 저주 함께 나옴(9-10절)·쓴 물과 단 물(11절).</li>
+<li>사상 핵 둘 — ① 혀는 작지만 몸 전체를 태울 수 있는 불이며 능히 길들일 사람이 없음(5-8절). ② 위로부터 난 지혜(<em>sophia anothen</em>)의 일곱 특성(17절).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-2절): 선생 경고 — 더 큰 심판·온전한 사람.</li>
+<li>컷 2 (3-5절): 재갈·키·불 비유 — 작은 것이 큰 것을 통제함.</li>
+<li>컷 3 (6-12절): 혀의 위력과 모순 — <em>kosmos tes adikias</em>·길들임 불가능·찬송과 저주·샘과 나무.</li>
+<li>컷 4 (13-16절): 세상적 지혜 — 쓴 시기·다툼·<em>daimoniodes</em>.</li>
+<li>컷 5 (17-18절): 위로부터 난 지혜 — <em>hagne</em>·<em>eirenike</em>·<em>epieikes</em>·<em>eupeithes</em>·<em>adiakritos</em>·<em>anypokritos</em>·의의 열매.</li>
+</ul>
+
+<h2>6️⃣ — (1) 원어 카드</h2>
+
+<ul>
+<li><em>glossa</em>(γλῶσσα) — 혀. 5·6·8절.</li>
+<li><em>damazo</em>(δαμάζω) — 길들이다. 7·8절.</li>
+<li><em>pyr</em>(πῦρ) — 불. 5·6절.</li>
+<li><em>sophia</em>(σοφία) — 지혜. 13·15·17절.</li>
+<li><em>anothen</em>(ἄνωθεν) — 위로부터. 17절.</li>
+<li><em>eirenike</em>(εἰρηνική) — 화평·평화로운. 17절.</li>
+<li><em>anypokritos</em>(ἀνυπόκριτος) — 위선 없는·거짓 없는. 17절.</li>
+</ul>
+
+<h2>6️⃣ — (2) 문학 구조</h2>
+
+<ul>
+<li>혀 논증(1-12절) → 두 지혜 대조(13-18절)의 이중 구조.</li>
+<li>비유 연속(3-12절): 재갈·키·불·짐승·샘·나무 — 한 논지를 여섯 비유로 쌓음.</li>
+<li>8절·11-12절이 혀 단락의 결론 역할.</li>
+<li>17절 일곱 특성이 두 지혜 단락의 핵심.</li>
+<li>"작은"(<em>mikros</em>)이 재갈·키·불의 비유를 연결하는 반복 장치.</li>
+</ul>
+
+<h2>6️⃣ — (3) 배경 정보 (배경 자료, 해석 아님)</h2>
+
+<ul>
+<li>6절 "삶의 수레바퀴"(<em>trokhon tes geneseos</em>) — 그 의미가 본문에서 더 설명되지 않음. 배경 자료로만.</li>
+<li>9절 "하나님의 형상"(<em>homoiosis theou</em>) — 창 1:26·27과의 연결. 배경 자료로만.</li>
+<li><em>daimoniodes</em>(마귀적인, 15절) — 세상적 지혜의 출처에 대한 표현. 배경 자료로만.</li>
+</ul>
+
+<h2>6️⃣ — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>약 3:5-6 ↔ 잠 16:27 (혀의 불과 악한 자의 말)</li>
+<li>약 3:9 ↔ 창 1:26-27 (하나님의 형상으로 지음받은 사람)</li>
+<li>약 3:17 ↔ 약 1:17 (<em>anothen</em> — 위로부터의 선물과 지혜)</li>
+<li>약 3:18 ↔ 마 5:9 (화평하게 하는 자·평화를 이루는 자)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>야고보가 형제들에게 선생이 많이 되지 말라고 시작한다 — 우리가 더 큰 심판을 받기 때문이라고. 우리가 다 많이 실수하며 말에 실수가 없으면 온전한 사람이라고 한다(2절). 말에 재갈을 먹여 온 몸을 다스리듯, 큰 배가 작은 키(<em>pedalion</em>)로 방향을 잡듯 — 혀(<em>glossa</em>)는 작지만 큰 것을 자랑한다. 작은 불(<em>pyr</em>)이 큰 숲을 태우듯 혀도 불이며 불의의 세계(<em>kosmos tes adikias</em>)요 삶의 수레바퀴를 불사른다(6절). 여러 짐승은 다 길들여지지만(<em>damazo</em>) 혀는 능히 길들일 사람이 없고, 쉬지 않는 악이요 죽이는 독이 가득하다(8절). 같은 혀로 주 아버지를 찬송하고 하나님의 형상으로 지음받은 사람을 저주한다 — 한 입에서 찬송과 저주가 나오는 것은 마땅하지 않다(9-10절). 샘이 쓴 물과 단 물을 함께 낼 수 없듯, 무화과나무가 올리브 열매를 맺을 수 없듯이(11-12절). 논증이 전환한다 — 지혜롭고 총명한 자는 선행으로 지혜의 온유함으로 행함을 보이라고 한다(13절). 쓴 시기와 다툼은 세상적이고 정욕적이고 마귀적(<em>daimoniodes</em>)이다(15-16절). 위로부터 난 지혜(<em>sophia anothen</em>)는 첫째 성결하고 화평하고 관용하고 양순하며 긍휼과 선한 열매가 가득하고 편견 없고 거짓 없다(17절). 화평하게 하는 자들은 화평으로 심어 의의 열매를 거둔다고 닫힌다(18절).</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+
+<ul>
+<li>초벌 제목: <strong>"길들일 수 없는 혀(<em>glossa</em>) — 위로부터 난 지혜(<em>sophia anothen</em>)의 일곱 특성"</strong></li>
+<li>초벌 부제: "재갈·키·불의 비유로 혀의 위력을 드러내고, 화평하게 하는 자들이 의의 열매를 거둔다"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (7개 기록: glossa·damazo·pyr·sophia·anothen·eirenike·anypokritos)</li>
+<li>[x] 역사·문화·문학 사실 최소 1개 (하나님의 형상 배경, 삶의 수레바퀴 배경)</li>
+<li>[x] 미해결 질문 1개 이상 (6건 예정)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 5개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>"삶의 수레바퀴"(<em>trokhon tes geneseos</em>)를 윤회·순환 개념으로 확장하지 않도록 → 배경 자료로만.</li>
+<li>17절 일곱 특성을 성령의 열매와 동일시하지 않도록 → 본문이 말하는 범위만.</li>
+<li>8절 "길들일 수 없다"는 것을 절대적 불가능으로 교리화하지 않도록 → 관찰 사실로만 보존.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 주께 아뢰기.</strong> 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JAS-003</p>
+<p>book: 야고보서</p>
+<p>chapter: 3</p>
+<p>date: 2026-06-05</p>
+<p>---</p>
+
+<h2>야고보서 3장 — 미해결 질문</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 1절 "더 큰 심판"이란 어떤 심판인가?</h2>
+
+<ul>
+<li>선생들에게 더 큰 심판이 있다고 하는데, 그 구체적 내용이 이 절에서 더 설명되지 않음.</li>
+<li>미해결로 보존.</li>
+</ul>
+
+<h2>Q2. 6절 "삶의 수레바퀴"(<em>trokhon tes geneseos</em>)는 무엇인가?</h2>
+
+<ul>
+<li>혀가 삶의 수레바퀴를 불사른다고 하는데 그 의미가 이 절 자체로 확정되지 않음.</li>
+<li>묵상으로 이월.</li>
+</ul>
+
+<h2>Q3. 8절 "능히 길들일 사람이 없다"는 것은 절대적 불가능인가?</h2>
+
+<ul>
+<li>사람은 길들일 수 없지만 위로부터의 지혜와의 관계가 이 절에서 더 설명되지 않음.</li>
+<li>관찰로는 보류.</li>
+</ul>
+
+<h2>Q4. 17절 위로부터 난 지혜의 "첫째 성결"은 어떤 성결인가?</h2>
+
+<ul>
+<li>일곱 특성 중 성결(<em>hagne</em>)이 첫째로 나오는데, 그 성결의 구체적 내용이 이 절에서 더 설명되지 않음.</li>
+<li>배경 자료만 두고 미해결로 머문다.</li>
+</ul>
+
+<h2>Q5. 11-12절의 샘과 나무 비유는 혀의 모순이 "불가능하다"는 것인가, "마땅하지 않다"는 것인가?</h2>
+
+<ul>
+<li>자연의 법칙과 혀의 모순을 연결하는 논지의 방향이 본문 자체로 확정되지 않음.</li>
+<li>묵상으로 이월.</li>
+</ul>
+
+<h2>Q6. 13절 "지혜의 온유함으로 그 행함을 보이라"에서 지혜와 온유함의 관계는?</h2>
+
+<ul>
+<li>지혜가 온유함과 어떻게 연결되는지 이 절에서 더 설명되지 않음.</li>
+<li>관찰로는 "지혜의 온유함으로 행함을 보인다"는 사실만 보존하고 미해결로.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">길들일 수 없는 혀 — 위로부터 난 지혜로 화평을 심어 의의 열매를 거둔다.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. JAS 흐름 3국면 — 혀의 길들임과 위로부터의 지혜가 펼쳐지는 자리. 행함의 가장 작고 어려운 영역이 다뤄집니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: JAS-003</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-05</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 야고보서 3장은 선생 경고(1절)로 열어 재갈·키·불·짐승·샘·나무의 비유로 혀(<em>glossa</em>)가 작지만 몸 전체를 태울 수 있는 길들일 수 없는 악(<em>damazo</em> 불가, 8절)이며 같은 입에서 찬송과 저주가 나오는 모순을 드러낸 후, 세상적·마귀적 지혜와 대조하여 위로부터 난 지혜(<em>sophia anothen</em>)의 일곱 특성(17절)을 제시하고, 화평하게 하는 자들이 화평으로 심어 의의 열매를 거둔다(18절)는 선언으로 닫히는 장이다.</p>
+
+<p><strong>한 문단</strong>: 야고보가 선생들에게 더 큰 심판을 경고하며 시작한다. 말에 실수가 없으면 온전한 사람이라고 한다. 재갈·배의 키·불·숲의 비유로 혀의 작지만 큰 위력을 그린다. 혀는 불의의 세계이며 온 몸을 더럽히고 삶의 수레바퀴를 불사르며 여러 짐승은 길들여지지만 혀는 능히 길들일 사람이 없다(8절). 같은 입에서 찬송과 저주가 나오는 것은 마땅하지 않다. 샘이 쓴 물과 단 물을 함께 낼 수 없듯이(11절). 논증이 전환한다 — 쓴 시기와 다툼은 세상적·마귀적 지혜다. 위로부터 난 지혜(<em>sophia anothen</em>)는 성결·화평·관용·양순·긍휼·편견 없음·거짓 없음의 일곱 특성을 가진다(17절). 화평하게 하는 자들은 화평으로 심어 의의 열매를 거둔다(18절).</p>
+
+<h3>B · 9단계 통합 표</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>장르: 지혜·비유. 소품: 재갈·키·불·숲·짐승·샘·나무. glossa·sophia·anothen 반복.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>비유 풍부함. 8절 길들임 불가능 선언. 17절 일곱 특성 전환.</td></tr>
+<tr><td>3 시작과 끝</td><td>시작: 선생 경고·심판. 끝: 화평하게 하는 자·의의 열매. 위험→목적지.</td></tr>
+<tr><td>4 등장인물·상황·사상</td><td>사상 핵: 혀의 불가능(8절)·sophia anothen 일곱 특성(17절)·찬송과 저주 모순(9-10절).</td></tr>
+<tr><td>5 장면 컷</td><td>컷1 선생 경고(1-2), 컷2 재갈·키·불(3-5), 컷3 혀의 위력·모순(6-12), 컷4 세상적 지혜(13-16), 컷5 sophia anothen(17-18).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>야고보 자신 포함한 "우리". 하나님의 형상 저주 역설. 삶의 수레바퀴 미확정. 일곱 특성 원어.</td></tr>
+<tr><td>7 동영상</td><td>선생 경고→재갈·키·불 비유→혀의 불가능→찬송과 저주 모순→세상적 지혜→sophia anothen 일곱 특성→의의 열매.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>제목: "길들일 수 없는 혀 — 위로부터 난 지혜". 부제: "일곱 특성과 화평으로 심는 의의 열매".</td></tr>
+<tr><td>9 동영상 안 걷기·기도</td><td>"쉬지 아니하는 악이요 죽이는 독"(8절) 앞에 섬. 답을 구하지 않고 드림.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 작은 것의 역설</strong>: 재갈(작은 것이 말을 다스림)·키(작은 것이 큰 배를 돌림)·불(작은 불이 큰 숲을 태움)·혀(작은 지체가 온 몸을 더럽힘) — 이 비유들은 모두 "작은 것이 큰 것을 움직인다"는 논지를 공유한다. 혀의 위력이 크기가 아니라 위치에 있다는 것이다.</p>
+<p>2. <strong>결 2 — 찬송과 저주의 모순</strong>: 9절 "하나님의 형상대로 지음받은 사람을 저주한다"는 것이 혀의 모순의 신학적 핵이다. 같은 입으로 하나님을 찬송하고 하나님의 형상을 저주하는 것 — 이 역설이 단순한 윤리 권면이 아니라 인간의 정체성 문제임을 가리킨다.</p>
+<p>3. <strong>결 3 — <em>sophia anothen</em>의 첫째 특성</strong>: 17절 일곱 특성에서 "첫째 성결하고(<em>hagne</em>)"가 나온다. 화평·관용·양순이 먼저가 아니라 성결이 첫째다. 위로부터 난 지혜의 관계적 특성들이 성결을 토대로 한다는 순서가 관찰된다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>약 3:17 ↔ 약 1:17</strong> (<em>anothen</em> — 위로부터의 선물과 지혜의 연결).</li>
+<li>다른 권 — <strong>창 1:26-27</strong> (하나님의 형상으로 지음받은 사람, 9절 배경), <strong>잠 16:27</strong> (혀의 불).</li>
+<li>야고보서 흐름 — 3장의 혀 논지가 4장의 "다툼과 싸움이 어디서 나는가"(4:1) 질문으로 이어진다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 한 사람이 선생의 자리 혹은 가르치는 자리에 있는 자신을 발견한다.</li>
+<li><strong>멈춤 1</strong>: 8절 "쉬지 아니하는 악이요 죽이는 독이 가득한" 혀 — 자신의 혀가 무엇을 하고 있는지를 본다.</li>
+<li><strong>멈춤 2</strong>: 9-10절 — 같은 혀로 찬송하고 저주한다는 것 앞에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: 17절 — 위로부터 난 지혜의 일곱 특성 앞에서 자신의 지혜가 어떤 것인지를 묻는다.</li>
+<li><strong>끝</strong>: 18절 — 화평으로 심어 의의 열매를 거둔다는 초대 앞에 자신을 세운다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<ul>
+<li>[x] 혀의 작지만 큰 위력 — 재갈·키·불의 비유(3-5절)</li>
+<li>[x] 혀는 능히 길들일 사람이 없다는 선언(8절)</li>
+<li>[x] 찬송과 저주의 모순 — 하나님의 형상을 저주함(9-10절)</li>
+<li>[x] 위로부터 난 지혜(<em>sophia anothen</em>)의 일곱 특성(17절)</li>
+<li>[x] 화평하게 하는 자들이 화평으로 심어 의의 열매를 거둠(18절)</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+
+<p>야고보서의 spine은 <strong>"시험을 통과한 믿음이 행함으로 열매 맺어, 듣는 자가 아니라 행하는 자의 온전함에 이르게 하신다"</strong>이며, 그 intent(의중)은 "위로부터 난 지혜(3:17)로 혀와 욕심과 다툼을 다스려 믿음과 삶이 하나 된 백성을 빚으신다"이다. 3장은 그 spine의 <strong>세 번째 국면 — 혀의 길들임과 위로부터의 지혜</strong>가 펼쳐지는 자리다. 1장이 심어진 말씀을 행하는 자로 부르고 2장이 행함으로 믿음이 온전케 된다고 선언했다면, 3장은 행함의 가장 작고 어려운 자리 — 혀 — 를 다루면서, 그 혀를 길들이는 것이 인간의 힘으로 불가능하며 위로부터 난 지혜가 필요하다는 것을 드러낸다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+
+<blockquote>
+<p><strong>길들일 수 없는 혀(8절) → 위로부터 난 지혜(<em>sophia anothen</em>, 17절) / 찬송과 저주의 모순(9-10절) → 화평으로 심는 의의 열매(18절) / 세상적·마귀적 지혜(15-16절) → 성결·화평의 지혜(17절).</strong></p>
+</blockquote>
+
+<p>한 화살표로 좁히면, 3장은 <em>행함의 가장 어려운 자리(혀)의 불가능을 드러내며, 위로부터 난 지혜라는 새로운 원천이 필요함을 가리키고 화평하게 하는 자의 의의 열매로 방향을 제시하는</em> 운동이다. JAS 흐름에서 이 장은 4장의 "다툼이 어디서 나는가"(4:1)라는 질문의 준비이기도 하다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+
+<p>표면의 가시적 권면은 혀를 조심하라는 것이다. 그러나 그 아래에서 움직이는 본질은 <strong>믿음과 삶이 하나 된 백성을 빚으시려는 하나님의 의중이 행함의 가장 작고 깊은 자리인 혀에까지 미친다</strong>는 것이다. 그 심정은 9절에 가장 선명하게 비친다 — "하나님의 형상대로 지음을 받은 사람을 저주하나니." 하나님이 자신의 형상을 사람 안에 새기셨는데, 그 사람을 같은 혀로 저주하는 것은 하나님의 형상을 향해 쏘는 것이라는 역설이다. 수면 아래에서, 이 장은 위로부터 난 지혜로만 해결되는 혀의 문제를 통해, 믿음이 삶으로 육화되는 과정이 인간의 의지만으로 불가능하며 위로부터의 선물을 필요로 한다는 JAS의 깊은 의중이 비친다.</p>
+
+<h3>J · 실존적 부름 — 한 줄의 불씨</h3>
+
+<blockquote>
+<p>혀는 "능히 길들일 사람이 없다"(8절) — 그러나 위로부터 난 지혜(<em>sophia anothen</em>)는 성결을 첫째로 하여 화평으로 심어 의의 열매를 거두는 방향을 열어 놓는다(17-18절). 내 혀가 찬송과 저주를 함께 내는 자리인가, 아니면 위로부터 난 지혜를 간구하는 자리인가.</p>
+</blockquote>
+
+<p>이것은 가르침이 아니라 초대다. 3장은 독자를 8절의 불가능 앞에 세우면서도 17-18절의 가능성 앞에도 세운다. 혀를 길들이는 것은 위로부터 난 지혜를 구하는 것과 맞닿아 있다 — 1장의 "지혜를 구하라"(1:5)가 여기서 다시 울린다. JAS 흐름에서 이 불씨는, 4장의 "다툼이 정욕에서 나온다"는 진단과 "하나님을 가까이하라"는 초대로 이어진다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>sophia anothen</em>(위로부터 난 지혜).</p>
+<p><strong>다음 장으로 미는 운동</strong>: 3장이 열어 놓은 "위로부터의 지혜 vs 세상적 지혜"의 대조가 4장에서 "세상과 벗됨이 하나님과 원수"(4:4)와 "하나님을 가까이하라"(4:8)로 심화된다.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/JAS/2/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">야고보서 2장</div><div class="nav-preview">행함 없는 믿음은 죽은 것(nekra) — 가난한 자를 택하신 공의, JAS spine의 심장.</div></a>
+      <a href="/magazine/JAS/4/"><div class="nav-kicker">→ 다음 장</div><div class="nav-title">야고보서 4장</div><div class="nav-preview">다툼의 원인 — 세상과 벗됨이 하나님과 원수됨. 하나님을 가까이하라.</div></a>
+    </div>
+
+<aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:JAS-003:last', JSON.stringify({
+      href: '/magazine/JAS/3/',
+      title: '야고보서 3장',
+      excerpt: '길들일 수 없는 혀(glossa) — 위로부터 난 지혜(sophia anothen)의 일곱 특성과 화평으로 심어 의의 열매를 거둠.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){.foot--mini .foot--mini__inner{justify-content:flex-start}.foot--mini>div>span{display:block}}
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-05</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
