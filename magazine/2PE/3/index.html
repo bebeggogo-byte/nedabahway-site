@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>베드로후서 3장 — Observatory | 네다바웨이</title>
+<meta name="description" content="베드로후서 3장을 9단계로 같이 관찰합니다. 마지막 날의 조롱하는 자들, 주께는 하루가 천 년, 오래 참으심(makrothymia)으로 한 사람도 멸망치 않기를 바라심, 주의 날이 도둑같이, 새 하늘과 새 땅, 은혜와 지식에서 자라가라.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/2PE/3/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">인물·사물·상황·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·정보</a></li>
+      <li><a href="#s2" data-target="s2">동영상</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">기도·내면 떠오름</a></li>
+    </ol>
+    <ol class="toc-synthesis">
+      <li><a href="#synthesis">통합 종합</a></li>
+    </ol>
+  </aside>
+
+  <main>
+    <header class="obs-mast">
+      <p class="crumb"><a href="/magazine/">Magazine</a> › <a href="/magazine/2PE/">베드로후서</a> › 3장</p>
+      <h1>베드로후서 3장 — Observatory</h1>
+      <p class="badge" style="font-size:0.8rem;color:var(--c-mute);margin-top:6px;">2PE-003 · 서신서 · 헬라어</p>
+      <p class="essence">한 사람도 멸망치 않기를 바라시는 오래 참으심(makrothymia)으로 강림이 지연되고, 주의 날이 도둑같이 오며, 새 하늘과 새 땅이 약속된다. 권면의 마지막은 "은혜와 지식에서 자라가라" — 2PE 전체의 destination이다.</p>
+    </header>
+
+    <details class="stage" id="s1" open>
+      <summary>
+        <span class="stage__num">1단계</span>
+        <span class="stage__title-inline">무대·배경·소품·소재 — 관찰 시뮬레이션 raw transcript</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <div style="font-size:0.82rem;color:var(--c-mute);border:1px solid var(--c-line);border-radius:8px;padding:14px 18px;margin-bottom:18px;line-height:1.8;">
+<pre style="margin:0;font-family:inherit;white-space:pre-wrap;">sim_id: 2PE-003
+badge: "2PE-003 · 서신서 · 헬라어"
+book: 베드로후서
+book_en: 2 Peter
+chapter: 3
+verse_count: 18
+bible_block: 서신서
+canon: 신약
+genre: 서신
+language: 헬라어
+greek_terms: [makrothymia, kainous_ouranous_kain_gen, kleptou, stoicheia, lyomai, katakaio, auxanete, charis_gnosis, parousia, empaiktes]
+literary_devices: [시간_역설, 원소_해체, 새_창조_약속, 수미상관]
+repeated_words: [오래 참으심, 주의 날, 새 하늘 새 땅, 자라가라]
+cross_refs: [시편90:4, 마24:43, 계21:1, 벧후1:5-7]
+facilitator: 성령일_선교사
+participants: [P01, P02, P04, P05, P07, P11]
+observed_facts_count: 23
+silence_moments: 4
+quality_passed: true
+drift_flag: false
+track: deep
+date: 2026-06-05</pre>
+          </div>
+
+          <blockquote>이 시뮬레이션은 시뮬레이션용 가상 대화입니다. 실제 인물·사건과 무관하며, SBM 9단계 관찰 방법론을 예시하기 위해 생성된 텍스트입니다.</blockquote>
+
+          <p><strong>— 1단계: 무대·배경·소품·소재 —</strong></p>
+
+          <p><strong>성령일</strong>: 베드로후서 3장을 함께 읽었습니다. 마지막 장이에요. 무대가 어떻게 보이시나요?</p>
+
+          <p><strong>P04 최현국</strong>: 무대가 시간의 규모가 달라요. 1~2절 — 과거(선지자들의 말)와 현재를 연결해요. 3~7절 — 마지막 날(eschatai hēmerai)이라는 미래 프레임이 등장해요. 8~10절 — 주님의 시간관(천 년이 하루 같음)과 주의 날 이미지. 11~14절 — 새 하늘과 새 땅 소망. 이 장은 과거·현재·미래·영원이 교차하는 시간의 스펙트럼이에요.</p>
+
+          <p><strong>P05 김미영</strong>: 소품들이 1·2장과 다시 달라져요. 불 소품 — 7절 "불사르기 위하여 보호하신 것", 10절 "큰 소리로 떠나가고 원소들이 불에 녹아지고", 12절 "불에 타서 풀어질 것". 그리고 새 소품 — 13절 "새 하늘과 새 땅(kainous ouranous kai kainen gen)." 불이 파괴하고 새것이 열리는 소품 교체예요.</p>
+
+          <p><strong>P02 이진우</strong>: 구조가 잡혀요. 1~7절: 조롱하는 자들 등장과 창조·홍수·불 심판 대조. 8~10절: 하나님의 시간관 + 오래 참으심 설명 + 주의 날 경고. 11~16절: 거룩한 삶으로의 부름 + 새 하늘 새 땅 소망 + 바울 서신 언급. 17~18절: 결론 — 조심하고 자라가라. 2PE 전체의 마무리예요.</p>
+
+          <p><strong>P07 오지혜</strong>: 9절이 마음에 남아요. "주께서는 어떤 이들이 더디다고 생각하는 것같이 더디지 아니하시고 오직 너희를 대하여 오래 참으사 아무도 멸망하지 아니하고 다 회개하기에 이르기를 원하시느니라." 한 사람도 멸망치 않기를 바라신다 — 이것이 2PE heart예요. 오래 참으심의 이유가 여기 있어요.</p>
+
+          <p><strong>성령일</strong>: 핵심 원어가 있을까요?</p>
+
+          <p><strong>P11 나경아</strong>: 두 단어요. makrothymia(μακροθυμία, 9절) — 오래 참으심. makros(긴)와 thymos(열정·분노·마음)의 합성어예요. 길게 참는 마음 — 보통 "오래 참음"으로 번역돼요. 9절에서 하나님이 오래 참으시는 이유가 "아무도 멸망하지 않기를 원하셔서"예요. 그리고 kainous ouranous kai kainen gen(καινοὺς οὐρανοὺς καὶ καινὴν γῆν, 13절) — 새 하늘과 새 땅. kainos는 neos(새로운 것)와 구별되어 "새로운 성질의"라는 뉘앙스가 있어요.</p>
+
+          <p><strong>P01 한나래</strong>: 3장 전체의 분위기가 2PE의 마무리예요. 2장의 어두운 경고를 지나 여기서 열리는 새 하늘과 새 땅 — 그 전환이 감동적이에요.</p>
+
+          <p><strong>— 2단계: 첫 느낌·분위기 —</strong></p>
+
+          <p><strong>성령일</strong>: 3장 전체의 분위기는요?</p>
+
+          <p><strong>P01 한나래</strong>: 웅장해요. 원소들이 녹아지고 하늘이 큰 소리로 떠나가고 — 우주적 규모예요. 그런데 그 거대한 끝 뒤에 "새 하늘과 새 땅"이 있어요. 파괴가 목적이 아니라 갱신이 목적이에요.</p>
+
+          <p><strong>P02 이진우</strong>: 8절의 역설이 인상 깊어요. "주께는 하루가 천 년 같고 천 년이 하루 같다." 시편 90:4의 인용이에요. 하나님의 시간이 인간의 시간과 다르다는 것 — 이것이 "더디다"는 조롱(3~4절)에 대한 답이에요.</p>
+
+          <p><strong>P07 오지혜</strong>: 10절 — "주의 날이 도둑 같이 오리니." 예측 불가능한 도착. 그런데 14절에서 "흠이 없고 점이 없이 평화로운 가운데서 나타나기를 힘쓰라"고 해요. 예측 불가능하기 때문에 항상 준비해야 한다는 것이에요.</p>
+
+          <p><strong>— 3단계: 시작과 끝 —</strong></p>
+
+          <p><strong>성령일</strong>: 1절과 18절을 비교해볼까요?</p>
+
+          <p><strong>P02 이진우</strong>: 시작 — "사랑하는 자들아 내가 이제 이 둘째 편지를 너희에게 쓰노니 이 두 편지로 너희의 진실한 마음을 일깨워 생각하게 하여." 끝 — "오직 우리 주 곧 구주 예수 그리스도의 은혜와 그를 아는 지식에서 자라가라. 영광이 이제와 영원한 날까지 그에게 있을지어다. 아멘." 시작은 "일깨워 생각하게 하려고"이고 끝은 "자라가라." 목적(일깨움)이 마지막에 결과(자라감)로 닫혀요.</p>
+
+          <p><strong>P04 최현국</strong>: 1절의 "진실한 마음을 일깨워"가 2PE 전체 편지의 목적 선언이에요. 베드로가 1장에서도 12절에 "생각하게" 했고, 여기서도 같은 단어로 시작해요. 전체 서신의 목적이 "생각하게 함"이에요. 그리고 마지막 18절 — 2PE의 destination이 선명하게 닫혀요: 은혜와 지식에서 자라가라.</p>
+
+          <p><strong>— 4단계: 인물·사물·상황·사상 —</strong></p>
+
+          <p><strong>성령일</strong>: 인물과 사상을 정리해볼까요?</p>
+
+          <p><strong>P04 최현국</strong>: 인물들이요. 조롱하는 자들(empaiktes, 3절) — "주의 강림의 약속이 어디 있느냐 조상들이 잔 이후로 만물이 처음 창조 때와 같이 그냥 있다"고 조롱. 이 조롱이 2장의 거짓 선생들과 연결돼요. 그리고 바울(15~16절) — 베드로가 바울의 서신을 언급해요. "그 중에 어떤 것이 알기 어렵다"고 인정하는 것도 흥미로워요.</p>
+
+          <p><strong>P11 나경아</strong>: 핵심 사상 단어들이에요. parousia(παρουσία, 4·12절) — 강림, 도착. 4절 "그의 강림의 약속이 어디 있느냐"에서 조롱의 대상이고, 12절 "하나님의 날이 임하기를 바라보고"에서 소망의 대상이에요. stoicheia(στοιχεῖα, 10·12절) — 원소들. 우주를 구성하는 기본 요소들이 녹아진다는 것이에요. lyomai(λύσομαι, 10·11·12절) — 녹아지다, 풀어지다. 불로 해체되는 이미지가 3번 반복돼요.</p>
+
+          <p><strong>P07 오지혜</strong>: 가장 중요한 사상이 9절이에요. "아무도 멸망하지 아니하고 다 회개하기에 이르기를 원하시느니라." 하나님의 오래 참으심의 이유가 "다 회개하기에 이르기를 원하셔서"예요. 강림이 지연되는 것이 게으름이 아니라 사랑이에요.</p>
+
+          <p><strong>P05 김미영</strong>: 소재 대조가 선명해요. 파괴 소재 — 불, 원소들의 용해, 큰 소리, 땅의 모든 행적. 새 창조 소재 — 새 하늘, 새 땅, 의가 거하는 곳(13절). 파괴와 새 창조가 한 장 안에 공존해요.</p>
+
+          <p><strong>— 5단계: 장면 컷 —</strong></p>
+
+          <p><strong>성령일</strong>: 가장 선명한 장면이 있다면요?</p>
+
+          <p><strong>P04 최현국</strong>: 9절 — "아무도 멸망하지 않기를 원하신다." 이게 문장이지만 장면이에요. 하나님이 기다리시는 이유가 보여요 — 문 앞에서 기다리시는 분의 이미지.</p>
+
+          <p><strong>P01 한나래</strong>: 10절 — "주의 날이 도둑 같이 오리니 그날에는 하늘이 큰 소리로 떠나가고 원소들이 불에 녹아지고 땅과 그 중에 있는 모든 행적이 드러나리로다." 우주적 스케일의 장면이에요. 큰 소리, 불, 녹아짐 — 촉각·청각·시각 모두 동원돼요.</p>
+
+          <p><strong>P11 나경아</strong>: 13절 — "새 하늘과 새 땅(kainous ouranous kai kainen gen)." 이 짧은 문장이 2PE 전체의 소망의 도착점이에요. 모든 불과 파괴 뒤에 "의가 거하는 곳"이 있다는 것이에요.</p>
+
+          <p><strong>P02 이진우</strong>: 8절 — "주께는 하루가 천 년 같고 천 년이 하루 같다." 시간의 역설이에요. 인간의 시간 계산이 하나님의 시간에 적용되지 않는다는 것이에요. 이것이 3~4절 조롱에 대한 가장 직접적인 답이에요.</p>
+
+          <p><strong>P05 김미영</strong>: 12절 — "하나님의 날이 임하기를 바라보고 간절히 사모하라." 바라보고(prosdokan) 사모하라(speudontas). 기다리는 것이 수동적이 아니라 적극적 바람이에요. 간절히 사모한다는 것이 능동적이에요.</p>
+
+          <p><strong>P07 오지혜</strong>: 18절 — "은혜와 지식에서 자라가라(auxanete en chariti kai gnosei)." 이 마지막 문장이 1장의 덕목 사다리, 2장의 경고, 3장의 소망 전체를 한 문장으로 수렴해요. 자라가라 — 이것이 2PE 전체의 마지막 말이에요.</p>
+
+          <p><strong>— 6단계: 의문·발견·정보 —</strong></p>
+
+          <p><strong>성령일</strong>: 의문이나 발견이 있었나요?</p>
+
+          <p><strong>P02 이진우</strong>: 구조적 발견 — 3장이 1장을 수미상관으로 닫아요. 1장 2절 "지식으로 말미암아 은혜와 평강이 더해질지어다" → 3장 18절 "은혜와 지식에서 자라가라." 은혜와 지식이 서신 전체를 감싸요. 시작과 끝이 같은 단어 쌍으로 닫히는 것이 의도적이에요.</p>
+
+          <p><strong>P11 나경아</strong>: stoicheia(원소들) 단어가 흥미로워요. 헬라 세계관에서 세상은 네 원소(불·물·흙·공기)로 이루어진다고 봤어요. 그 원소들이 녹아진다(lyomai)는 것은 그 세계관의 기반 자체가 해체된다는 함의가 있어요. 독자들에게 매우 강렬한 이미지였을 것이에요.</p>
+
+          <p><strong>P01 한나래</strong>: 바울 언급(15~16절)이 의외예요. 다른 사도의 편지를 직접 인용하면서 "그 중에 알기 어려운 것이 있다"고 인정해요. 이것이 신약 정경 형성의 관점에서 흥미로운 관찰이에요 — 편지들이 교회에서 함께 읽히고 있었던 것이에요.</p>
+
+          <p><strong>P07 오지혜</strong>: 11~14절의 논리가 흥미로워요. "이 모든 것이 이렇게 풀어지리니 너희가 어떠한 사람이 되어야 마땅하냐." 우주적 해체가 윤리적 삶의 동기로 연결돼요. 종말론이 삶의 방식을 결정한다는 논리예요.</p>
+
+          <p><strong>P05 김미영</strong>: 새 하늘과 새 땅에 "의(dikaiosyne)가 거한다"(13절)는 표현이 인상 깊어요. 새 창조의 특성이 의로움이에요. 현재 세상에 의가 완전히 없다는 것이 아니라, 새 창조에서 의가 완전히 거하게 된다는 것이에요.</p>
+
+          <p><strong>P04 최현국</strong>: 16절 — "우리의 사랑하는 형제 바울이 그 받은 지혜대로 너희에게 이런 것을 썼고." 베드로가 바울을 "사랑하는 형제"라고 불러요. 1세기 교회 안에서 두 사도의 관계가 여기서 직접 관찰돼요 (갈라디아서 2장의 충돌 이후에도). 그리고 바울 서신이 이미 "성경"(graphai, 16절)에 준하는 위치를 갖고 있다는 것도 관찰해볼 수 있어요.</p>
+
+          <p><strong>— 7단계: 동영상 —</strong></p>
+
+          <p><strong>성령일</strong>: 3장을 동영상으로 재생하면요?</p>
+
+          <p><strong>P04 최현국</strong>: 1~2절 — 베드로가 편지를 쓰며 과거 선지자들의 말을 떠올리는 장면. 3~7절 — 조롱하는 자들의 목소리가 들려요. "강림이 어디 있느냐." 그러나 화면이 홍수와 불을 동시에 보여줘요 — 과거의 심판이 다시 올 심판의 예표예요.</p>
+
+          <p><strong>P01 한나래</strong>: 8절 — 카메라가 시간을 가로질러요. 하루가 천 년으로, 천 년이 하루로. 인간의 시계가 흐릿하게 처리돼요. 하나님의 시간 안에서 인간의 시간이 상대화되는 장면이에요.</p>
+
+          <p><strong>P07 오지혜</strong>: 9절이 동영상의 감정적 중심이에요 — 하나님이 문 앞에서 기다리시는 이미지. 아무도 멸망하지 않기를 원하시는 분이 기다리고 계신 장면. 이 장면에서 일시 정지예요.</p>
+
+          <p><strong>P02 이진우</strong>: 10~12절 — 우주적 해체 장면. 큰 소리, 불, 원소들이 녹아지는 영상. 광대한 스케일의 장면. 그런데 13절에서 — 그 모든 것이 지나간 뒤에 새 하늘과 새 땅이 열려요. 씨앗처럼 작게 제시되는 새 창조.</p>
+
+          <p><strong>P05 김미영</strong>: 마지막 18절 — "은혜와 지식에서 자라가라. 영광이 이제와 영원한 날까지 그에게 있을지어다. 아멘." 베드로가 편지를 접으며 마지막으로 이 말을 쓰는 장면. 죽음이 임박한 손이 마지막으로 쓰는 것이 "자라가라"예요.</p>
+
+          <p><strong>— 8단계: 초벌 제목·부제 —</strong></p>
+
+          <p><strong>성령일</strong>: 초벌 제목을 지어볼까요?</p>
+
+          <p><strong>P01 한나래</strong>: "아무도 멸망하지 않기를 원하시는 오래 참으심 — makrothymia의 이유."</p>
+          <p><strong>P02 이진우</strong>: "하루가 천 년, 천 년이 하루 — 하나님의 시간관."</p>
+          <p><strong>P04 최현국</strong>: "원소들의 해체와 새 하늘 새 땅 — 파괴에서 새 창조로."</p>
+          <p><strong>P11 나경아</strong>: "은혜와 지식에서 자라가라 — 2PE destination의 닫힘."</p>
+          <p><strong>P05 김미영</strong>: "주의 날이 도둑 같이 — 소망과 준비 사이."</p>
+          <p><strong>P07 오지혜</strong>: "오래 참으심의 문 앞 — 한 사람도 빠짐없기를 바라시는 하나님."</p>
+
+          <p><strong>성령일</strong>: Q1~Q6 기록하고 9단계로 가겠습니다.</p>
+
+          <p><strong>— 9단계: 기도·내면 떠오름 —</strong></p>
+
+          <p><strong>성령일</strong>: 내면에서 떠오르는 것이 있으신가요?</p>
+
+          <p><strong>P01 한나래</strong>: 9절 — "아무도 멸망하지 않기를 원하신다." 이 마음이 오래 참으심의 이유예요. 강림이 지연되는 것이 무관심이 아니라 기다리심이에요. 내가 기다리고 있는 누군가를 위해 하나님도 기다리고 계신다는 것이에요.</p>
+
+          <p><strong>P02 이진우</strong>: 18절 "은혜와 지식에서 자라가라" — 1장에서 시작한 덕목 사다리가 3장에서 이 한 문장으로 수렴해요. 성장이 목적지예요. 종말론이 삶의 방식을 결정한다는 11~14절의 논리 — 주의 날을 알기 때문에 오늘을 어떻게 사는가.</p>
+
+          <p><strong>P04 최현국</strong>: 1~2절 "일깨워 생각하게 함" — 베드로의 편지 전체 목적이 "생각하게 함"이에요. 내가 이 편지를 읽고 생각이 일깨워졌는가. 그것이 베드로의 유언이 원하는 효과예요.</p>
+
+          <p><strong>P05 김미영</strong>: 새 하늘과 새 땅(13절) — "의가 거하는 곳." 현재 세상이 의를 완전히 담지 못한다는 것을 느끼는 모든 순간에, 이 소망이 닻이 돼요. 이미 있는 새 창조의 약속이 지금을 견디게 해요.</p>
+
+          <p><strong>P07 오지혜</strong>: makrothymia — 길게 참는 마음. 내 삶에서 오래 참아야 할 것들이 있는데, 하나님이 한 사람을 위해 오래 참으신다는 것을 알 때 그 참음의 이유가 달라져요.</p>
+
+          <p><strong>P11 나경아</strong>: auxanete en chariti kai gnosei(18절) — "은혜와 지식에서 자라가라." 1장 2절 "은혜와 평강이 더해질지어다"로 시작해서 3장 18절 "은혜와 지식에서 자라가라"로 닫혀요. 은혜가 처음이고 끝이에요. 그 안에서 자라가는 것이 2PE 전체의 운동이에요.</p>
+
+          <p><strong>성령일</strong>: 베드로후서 3장, 그리고 베드로후서 전체를 잘 관찰하셨습니다. 2PE spine — "신성한 성품에 참여케 하는 약속과 오래 참으심으로, 거짓을 분별하고 참 지식으로 자라 새 창조를 소망하게 하신다" — 의 세 국면이 세 장에서 완성됐어요. 1장(기초·성장·예언) → 2장(경고·분별·건짐) → 3장(오래 참으심·새 창조·자라가라). Destination이 3:18 — 은혜와 지식에서 자라가라. Heart가 3:9 — 한 사람도 멸망치 않기를 바라시는 오래 참으심. 이것이 2PE의 온 흐름이에요.</p>
+
+          <p><strong>— [10단계] 운동·도약 —</strong></p>
+
+          <p><strong>성령일</strong>: 2PE 3장은 spine의 세 번째 국면 — "주의 날·오래 참으심·새 하늘 새 땅·자라가라"입니다. 2PE 전체 흐름의 도착점이에요. 이 장이 어떤 운동을 하는지요?</p>
+
+          <p><strong>P02 이진우</strong>: 2PE 전체의 운동 벡터가 3장에서 완성돼요. 1장 신성한 성품 참여(받음) → 2장 거짓 선생 경고(분별) → 3장 오래 참으심과 새 창조(소망). 그리고 18절 "자라가라"로 닫혀요. A→B 운동: 받음에서 자람으로, 자람에서 새 창조 소망으로. 2PE spine의 "참 지식으로 자라 새 창조를 소망"이 3장에서 실현돼요.</p>
+
+          <p><strong>P11 나경아</strong>: 수면 아래를 보면 — 3장의 조롱(3~4절)과 오래 참으심(9절) 사이의 긴장이에요. 조롱하는 자들이 "강림이 어디 있느냐"고 묻지만, 수면 아래에서 하나님은 한 사람도 빠짐없이 회개하기를 원하시며 기다리신다는 것이에요. 기다리심이 지연이 아니라 사랑의 표현이에요. 이것이 2PE heart의 최종 선언이에요.</p>
+
+          <p><strong>P01 한나래</strong>: 실존적 부름 — "은혜와 지식에서 자라가라"가 2PE 전체의 마지막 부름이에요. 이 불씨가 나 안에서 타오르는가. 1장의 덕목 사다리부터 3장의 새 창조 소망까지 — 이 여정에 내가 있는가.</p>
+
+          <p><strong>P07 오지혜</strong>: 긴장이에요 — "주의 날이 도둑 같이 온다"(예측 불가)와 "간절히 사모하라"(적극적 기대). 준비하되 기대하는 이 긴장. 이미(새 창조의 약속)/아직(도둑 같이 올 날)의 긴장이 이 장 전체를 감싸요.</p>
+
+          <p><strong>P05 김미영</strong>: 2PE 3장이 2PE의 destination을 선언해요 — 3:18 "은혜와 지식에서 자라가라"와 3:13 "새 하늘과 새 땅". 받음(1장) → 분별(2장) → 자람과 소망(3장). 이 여정이 3장의 마지막 두 절에서 수렴돼요.</p>
+
+          <p><strong>P04 최현국</strong>: 2PE 전체 흐름의 3단계 완성 — 1장: 신성한 성품에 참여한 자들, 더하라, 변화산과 예언이 기초. 2장: 그 기초를 위협하는 거짓 선생들을 분별하라, 하나님은 의인을 건지신다. 3장: 오래 참으심으로 기다리시는 하나님, 새 하늘과 새 땅의 소망, 은혜와 지식에서 자라가라. 시작(신성한 성품 참여)에서 끝(은혜와 지식에서 자라감)까지 한 운동선이에요.</p>
+
+          <p><strong>성령일</strong>: 잘 정리해 주셨습니다. 2PE 3장은 권 전체의 목적지(destination)가 선명하게 드러나는 장이에요. 한 사람도 멸망치 않기를 바라시는 오래 참으심(heart) 위에서, 은혜와 지식에서 자라가라(destination)는 마지막 부름이 울려요. 베드로의 마지막 유언이 이 한 문장으로 닫혀요.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s2: LOCKED -->
+    <details class="stage" id="s2">
+      <summary>
+        <span class="stage__num">2~7단계</span>
+        <span class="stage__title-inline">관찰된 사실 <small style="font-size:0.75rem;color:var(--c-copper);font-weight:700;">🔒 LOCKED v2.0</small></span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p style="font-size:0.82rem;color:var(--c-mute);margin-bottom:14px;">이 단계는 관찰 결과가 고정되어 있습니다.</p>
+
+          <p><strong>1️⃣ 첫 느낌·전체 분위기</strong></p>
+          <p>베드로후서 3장은 2PE의 마무리 장으로 우주적 스케일과 개인적 부름이 공존한다. 조롱(3~4절), 시간 역설(8절), 오래 참으심(9절), 우주 해체(10~12절), 새 창조(13절), 자라가라(18절) — 장의 템포가 빠르게 전환되면서 마지막에 "자라가라"는 조용한 명령으로 닫힌다. 2PE 전체 흐름의 세 번째 국면이 완성된다.</p>
+
+          <p><strong>2️⃣ 시작과 끝</strong></p>
+          <p>시작(1~2절): "진실한 마음을 일깨워 생각하게 하려 함." 끝(18절): "은혜와 지식에서 자라가라. 영광이 이제와 영원한 날까지 그에게 있을지어다. 아멘." 시작은 일깨움(목적)이고 끝은 자라가라(결과). 2PE 전체가 1장 2절 "은혜와 평강"에서 시작해 3장 18절 "은혜와 지식에서 자라가라"로 닫히는 은혜 수미상관 구조다.</p>
+
+          <p><strong>3️⃣ 핵심 구조</strong></p>
+          <ul>
+            <li>1~2절 — 편지 목적: 일깨워 생각하게 함</li>
+            <li>3~7절 — 조롱하는 자들(empaiktes)의 주장과 창조·홍수·불 심판 대비</li>
+            <li>8~10절 — 하나님의 시간관(하루=천 년) + 오래 참으심(makrothymia) + 주의 날 경고</li>
+            <li>11~14절 — 거룩한 삶의 부름 + 새 하늘과 새 땅 소망(13절) + 흠 없음</li>
+            <li>15~16절 — 바울 서신 언급 + 성경(graphai)의 위치</li>
+            <li>17~18절 — 결론: 조심하라 + 은혜와 지식에서 자라가라</li>
+          </ul>
+
+          <p><strong>4️⃣ 등장인물·소재·사상</strong></p>
+          <ul>
+            <li>조롱하는 자들(empaiktes, 3절) — "강림의 약속이 어디 있느냐"</li>
+            <li>바울 — "사랑하는 형제"(15절), 그 서신이 알기 어려운 것도 있음(16절)</li>
+            <li>소품: 원소들(stoicheia), 큰 소리(rhoizedon), 불(불사름·녹아짐), 새 하늘(kainos ouranos), 새 땅(kainos ge), 도둑(kleptou)</li>
+            <li>makrothymia(9절) — 오래 참으심의 이유: "아무도 멸망치 않기를 원하심"</li>
+            <li>kainous ouranous kai kainen gen(13절) — 새 하늘과 새 땅, 의가 거하는 곳</li>
+          </ul>
+
+          <p><strong>5️⃣ 장면 컷</strong></p>
+          <ul>
+            <li>컷 A — 조롱하는 자들(3~4절): "강림이 어디 있느냐"</li>
+            <li>컷 B — 홍수와 불의 역사(5~7절): 과거 심판이 미래 심판의 예표</li>
+            <li>컷 C — 시간 역설(8절): 하루=천 년, 천 년=하루</li>
+            <li>컷 D — 오래 참으심의 이유(9절): 아무도 멸망치 않기를 원하심</li>
+            <li>컷 E — 주의 날(10절): 도둑 같이, 큰 소리, 원소들 불에 녹아짐</li>
+            <li>컷 F — 새 하늘과 새 땅(13절): 의가 거하는 곳</li>
+            <li>컷 G — 자라가라(18절): 은혜와 지식에서 자라감, 영광, 아멘</li>
+          </ul>
+
+          <p><strong>6️⃣ 의문·발견·정보</strong></p>
+          <ul>
+            <li>stoicheia(원소들, 10·12절) — 헬라 철학의 세계 구성 요소 개념. 그 원소들이 녹아진다는 것이 세계관 전체의 해체 이미지.</li>
+            <li>8절 시간 역설 — 시편 90:4 인용. 하나님의 시간이 인간의 시간에 환원되지 않는다는 신학적 관찰.</li>
+            <li>바울 서신(15~16절) — 베드로가 바울을 "형제"로 부르고 그 서신을 성경(graphai)에 준하는 것으로 취급하는 것이 정경 형성 역사에서 중요한 관찰이다(해석은 열려있음).</li>
+            <li>kainos vs neos — 13절의 kainos가 단순히 새로운 것이 아닌 새로운 성질의 것이라는 언어 구분(배경 정보, 해석 아님).</li>
+            <li>열린 질문: 원소들 녹아짐(10~12절)이 문자적 우주 해체인가, 비유적 표현인가? 새 하늘 새 땅이 이 창조의 갱신인가, 새로운 창조인가?</li>
+          </ul>
+
+          <p><strong>7️⃣ 동영상</strong></p>
+          <p>과거 회상(1~2절) → 조롱 목소리(3~4절) → 과거 심판 플래시백(5~7절) → 시간이 늘어지고 압축되는 이미지(8절) → 문 앞에서 기다리시는 분(9절, 감정 정점) → 우주 해체 장면(10~12절, 스케일 최대) → 새 하늘 새 땅이 열리는 장면(13절, 씨앗 이미지) → 베드로의 손이 "자라가라"를 쓰는 마지막 장면(18절). 운동: 경고 → 오래 참으심 → 새 창조 → 자라가라.</p>
+
+          <hr style="border:0;border-top:1px dashed var(--c-line);margin:18px 0;">
+          <p style="font-size:0.82rem;color:var(--c-mute);"><strong>품질 자가감사 6/6:</strong> ① 분량 충분 ✓ ② 근거 절·원어 포함 ✓ ③ 반복·패턴 명시 ✓ ④ 열린 질문 보류 ✓ ⑤ 단언 없음 ✓ ⑥ drift_flag false 확인 ✓</p>
+          <p style="font-size:0.82rem;color:var(--c-mute);"><strong>9단계 자가감사:</strong> s1 무대·소재 ✓ / s2 첫느낌 ✓ / s3 시작·끝 ✓ / s4 인물·사상 ✓ / s5 컷 ✓ / s6 원어·정보 ✓ / s7 동영상 ✓ / s8~s9 이하</p>
+          <p style="font-size:0.82rem;color:var(--c-mute);"><strong>드리프트 관찰:</strong> 원소들 해체의 문자성 여부 단정 없음. 새 하늘 새 땅의 갱신/새 창조 여부 열어둠. 바울 서신 정경성 진술은 관찰로 한정.</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- s8 -->
+    <details class="stage" id="s8">
+      <summary>
+        <span class="stage__num">8~9단계</span>
+        <span class="stage__title-inline">초벌 제목 / 미해결 질문 Q1~Q6</span>
+        <span class="stage__toggle"><span>펼치기 ↓</span></span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+          <p><strong>초벌 제목 후보</strong></p>
+          <ul>
+            <li>아무도 멸망치 않기를 바라시는 오래 참으심 — makrothymia의 이유</li>
+            <li>하루가 천 년 — 하나님의 시간관과 강림의 지연</li>
+            <li>원소들의 해체와 새 하늘 새 땅 — 파괴에서 의의 거처로</li>
+            <li>은혜와 지식에서 자라가라 — 2PE destination의 완성</li>
+            <li>주의 날이 도둑 같이 — 예측 불가한 도착과 지금의 삶</li>
+          </ul>
+
+          <p style="margin-top:18px;"><strong>미해결 질문 Q1~Q6</strong></p>
+          <blockquote>이 질문들은 시뮬레이션용 가상 대화 중 미해결 상태로 남겨진 열린 질문입니다.</blockquote>
+
+          <p><strong>Q1</strong> — 10~12절의 원소들(stoicheia) 녹아짐이 문자적 우주 해체를 묘사하는가, 아니면 비유적·과장법적 표현인가? 본문이 한정하지 않는다.</p>
+
+          <p><strong>Q2</strong> — 13절의 새 하늘과 새 땅이 현 창조의 갱신(renewal)인가, 완전히 새로운 창조(new creation)인가? 10~12절의 해체 묘사가 어느 쪽을 지지하는가?</p>
+
+          <p><strong>Q3</strong> — 8절 "하루가 천 년 같고 천 년이 하루 같다"는 것이 하나님의 영원성에 대한 선언인가, 강림 지연에 대한 구체적 설명인가?</p>
+
+          <p><strong>Q4</strong> — 바울 서신이 "성경"(graphai, 16절)과 같은 위치에 놓이는 것이 1세기 말 정경 인식의 증거인가? 베드로가 이 표현을 의도적으로 썼는가?</p>
+
+          <p><strong>Q5</strong> — makrothymia(9절)의 "오래 참으심"이 주로 교회를 향한 것인가, 세상 전체를 향한 것인가? "너희를 대하여"(pros hymas)가 특정 수신자를 가리키는가?</p>
+
+          <p><strong>Q6</strong> — 3장 3~4절의 조롱하는 자들(empaiktes)이 2장의 거짓 선생들(pseudodidaskaloi)과 같은 자들인가, 다른 그룹인가? 3:4의 "강림이 어디 있느냐"가 2:1~3의 멸망의 이단과 어떻게 연결되는가?</p>
+        </div>
+      </div>
+    </details>
+
+    <!-- synthesis -->
+    <section class="stage--synthesis" id="synthesis">
+      <div class="stage__num">통합 종합</div>
+      <h2 class="stage__title">10가지 종합 관찰 — 베드로후서 3장</h2>
+      <div class="synthesis-body">
+
+        <p><strong>A — 본문 핵심 요약</strong></p>
+        <p>베드로후서 3장은 2PE의 마무리 장이다. 구성: 1~2절(일깨움 목적) → 3~7절(조롱하는 자들 + 창조/홍수/불 심판 대비) → 8~10절(하나님의 시간관 + 오래 참으심 + 주의 날) → 11~14절(거룩한 삶 부름 + 새 하늘 새 땅) → 15~16절(바울 서신 언급) → 17~18절(결론: 조심·자라가라). 2PE heart — 9절 "아무도 멸망치 않기를 원하시는 오래 참으심." 2PE destination — 18절 "은혜와 지식에서 자라가라"와 13절 "새 하늘과 새 땅." 세 장이 하나의 운동선으로 완성된다.</p>
+
+        <p><strong>B — 언어·문체 특징</strong></p>
+        <p>makrothymia(오래 참으심, 9절). kainous ouranous kai kainen gen(새 하늘과 새 땅, 13절). stoicheia(원소들, 10·12절) — 3회. lyomai(녹아지다, 10·11·12절) — 3회. empaiktes(조롱하는 자들, 3절). kleptou(도둑, 10절). auxanete(자라가라, 18절). 1장 2절 chariti kai eirene(은혜와 평강) → 3장 18절 chariti kai gnosei(은혜와 지식) — 서신 전체 수미상관. rhoizedon(큰 소리, 10절) — 의성어에 가까운 단어. 스케일과 긴박함이 언어로 전달된다.</p>
+
+        <p><strong>C — 구조·흐름 파악</strong></p>
+        <p>1~2절(일깨움 선언) → 3~7절(조롱 + 역사 대비) → 8~10절(하나님 시간관 + 오래 참으심 + 경고) → 11~14절(삶의 방식 + 새 창조 소망) → 15~16절(바울 서신) → 17~18절(결론). 조롱에 대한 답(8~9절)이 장의 중심이며, 새 창조(13절)가 소망의 도착점이고, 자라가라(18절)가 최종 부름이다. 2PE 세 장의 운동선: 기초(1장) → 경고(2장) → 소망·부름(3장)이 완성된다.</p>
+
+        <p><strong>D — 핵심 인물·소재 분석</strong></p>
+        <p>조롱하는 자들(empaiktes) — "강림이 어디 있느냐"고 묻는 자들. 바울 — "사랑하는 형제", 그 서신이 성경과 같은 위치. 소품: stoicheia(원소들, 해체 이미지), 도둑(kleptou, 예측 불가 이미지), 새 하늘·새 땅(소망 이미지), makrothymia(오래 참으심, 심정 표현). 2장의 어둠 소품(tartaros, 흑암)에서 3장의 불·새 창조 소품으로의 전환이 2PE의 운동을 소재로도 보여준다.</p>
+
+        <p><strong>E — 반복 패턴·대조 구조</strong></p>
+        <p>lyomai 3회(10·11·12절) — 원소들의 해체가 3중으로 강조됨. stoicheia 2회(10·12절). 조롱(3~4절) vs 오래 참으심(9절) 대조. 주의 날의 예측 불가(10절, 도둑) vs 간절한 기대(12절, 사모함). 현재 하늘·땅의 해체(10~12절) vs 새 하늘·새 땅(13절). 은혜와 평강(1:2) vs 은혜와 지식(3:18) — 서신 수미상관. 이 모든 대조가 3장의 운동을 구조화한다.</p>
+
+        <p><strong>F — 미해결 열린 질문 정리</strong></p>
+        <p>원소들 해체의 문자성. 새 하늘 새 땅의 갱신 vs 새 창조. 8절 시간 역설의 의미. 바울 서신의 정경 위치(의도적 선언인가?). makrothymia의 대상 범위. 3장 조롱자들과 2장 거짓 선생들의 관계. 모두 열려있다.</p>
+
+        <p><strong>G — 구속사 좌표 (2PE 흐름 위 이 장의 위치)</strong></p>
+        <p>2PE spine의 세 번째 국면이 여기서 완성된다 — "주의 날·오래 참으심·새 하늘 새 땅·자라가라." 2PE dest(3:18 은혜와 지식에서 자라가라, 3:13 새 하늘 새 땅)가 모두 3장에 있다. 2PE heart(3:9 한 사람도 멸망치 않기를 바라시는 오래 참으심)도 3장에 있다. 구속사 호 안에서 2PE 3장은 서신 전체의 목적지와 심정이 드러나는 국면이다. 신약 서신서 중에서 이 장은 오래 참으심이 강림 지연의 이유임을 가장 명시적으로 선언하는 본문 중 하나다.</p>
+
+        <p><strong>H — 운동 벡터 (2PE 전체 운동의 완성)</strong></p>
+        <p>2PE 3장의 운동: 조롱(문제 제기) → 하나님의 시간관(기준 제시) → 오래 참으심(이유 선언) → 주의 날 경고(긴박함) → 새 하늘 새 땅(소망) → 자라가라(부름). 2PE 전체 운동 벡터: 신성한 성품 참여(1장 받음) → 거짓 선생 분별(2장) → 새 창조 소망 안에서 자라가라(3장). 이 운동이 "신성한 성품에 참여케 하는 약속과 오래 참으심으로, 거짓을 분별하고 참 지식으로 자라 새 창조를 소망하게 하신다"는 spine으로 수렴된다.</p>
+
+        <p><strong>I — 수면 아래 본질 (2PE 3장의 하나님 의중·심정)</strong></p>
+        <p>3장의 수면 아래: 강림의 지연이 무관심이 아니라 "아무도 멸망치 않기를 원하시는" 사랑의 오래 참으심이라는 것이다. 수면 위: 조롱하는 자들의 질문("강림이 어디 있느냐")과 우주 해체의 경고. 수면 아래: 하나님이 문 앞에서 한 사람을 기다리시는 심정. 2PE heart("한 사람도 멸망치 않기를 바라시는 오래 참으심")가 3:9에서 가장 명확하게 드러난다. 이것이 2PE 전체의 하나님 심정이다 — 신성한 성품에 참여케 하려 하시고(1장), 거짓으로부터 보호하려 하시고(2장), 새 창조까지 기다리시는(3장) 한 의중이 흐른다.</p>
+
+        <p><strong>J — 실존적 부름 (2PE 전체 운동의 불씨)</strong></p>
+        <p>"은혜와 지식에서 자라가라" — 이 마지막 부름이 2PE 전체를 받아 나에게 던지는 질문이다. 1장의 덕목 사다리에서 나는 어디에 있는가? 2장의 경고가 내 안에서 분별력을 깨우는가? 3장의 새 하늘 새 땅이 내 소망의 닻인가? makrothymia — 한 사람을 위해 오래 참으시는 하나님의 마음이 내 마음에도 있는가? 그 오래 참으심 안에서 나도 한 사람을 기다리고 있는가? 이것이 2PE의 불씨다 — 신성한 성품에 참여한 자로서, 은혜와 지식에서 자라가는 운동에 내가 있는가.</p>
+
+        <p style="margin-top:24px;"><strong>통합 표 — 2PE 3장 핵심 관찰</strong></p>
+        <table>
+          <thead>
+            <tr><th>항목</th><th>내용</th><th>근거 절</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>조롱의 내용</td><td>"만물이 처음 창조 때와 같이 있다" — 강림 부정</td><td>4절</td></tr>
+            <tr><td>하나님 시간관</td><td>하루 = 천 년, 천 년 = 하루 (시편 90:4)</td><td>8절</td></tr>
+            <tr><td>2PE heart</td><td>아무도 멸망치 않기를 원하시는 orae 참으심(makrothymia)</td><td>9절</td></tr>
+            <tr><td>주의 날</td><td>도둑 같이, 원소들(stoicheia) 불에 녹아짐, 큰 소리(rhoizedon)</td><td>10절</td></tr>
+            <tr><td>2PE dest 1</td><td>새 하늘과 새 땅(kainous ouranous kai kainen gen), 의가 거함</td><td>13절</td></tr>
+            <tr><td>2PE dest 2</td><td>은혜와 지식에서 자라가라(auxanete en chariti kai gnosei)</td><td>18절</td></tr>
+          </tbody>
+        </table>
+
+        <p style="margin-top:16px;"><em>2PE 전체 운동: 신성한 성품에 참여케 하는 약속(1장) → 거짓 선생의 정체와 심판(2장) → 오래 참으심과 새 창조, 자라가라(3장). Spine이 완성되었다.</em></p>
+      </div>
+    </section>
+
+    <nav class="next-row" aria-label="인접 장 이동">
+      <a href="/magazine/2PE/2/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">베드로후서 2장</div>
+        <div class="nav-preview">거짓 선생들의 정체와 심판 선례 — tartaros·노아·소돔·발람.</div>
+      </a>
+      <a href="/magazine/2PE/">
+        <div class="nav-kicker">베드로후서 차례 →</div>
+        <div class="nav-title">베드로후서 전체 목록</div>
+        <div class="nav-preview">베드로후서 1~3장 전체 목록으로 돌아가기.</div>
+      </a>
+    </nav>
+  </main>
+</div>
+
+<footer style="text-align:center;padding:48px 24px 64px;font-size:0.84rem;color:var(--c-mute);border-top:1px solid var(--c-line);margin-top:80px;">
+  <p>© 2025 네다바웨이 | SBM Observatory — 베드로후서 3장</p>
+  <p style="margin-top:8px;"><a href="/sbm.html" style="color:inherit;border-bottom:1px solid currentColor;">SBM 소개</a> · <a href="/magazine/2PE/" style="color:inherit;border-bottom:1px solid currentColor;">베드로후서 전체 보기</a></p>
+</footer>
+
+<script>
+(function(){
+  var details = document.querySelectorAll('details.stage');
+  details.forEach(function(d){
+    var id = d.id;
+    if(!id) return;
+    var stored = localStorage.getItem('sbm-2pe3-'+id);
+    if(stored === 'open') d.open = true;
+    if(stored === 'closed') d.open = false;
+    d.addEventListener('toggle', function(){
+      localStorage.setItem('sbm-2pe3-'+id, d.open ? 'open' : 'closed');
+    });
+  });
+})();
+</script>
+<script defer src="/assets/back-to-top.js"></script>
+<script defer src="/assets/toc-spy.js"></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
