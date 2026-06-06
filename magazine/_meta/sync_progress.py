@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """SBM 진행 통계 동기화 — magazine/ 완성 장을 스캔해 sbm-progress.json을 갱신한다.
-완성 기준: magazine/{CODE}/{N}/index.html 크기 > 40KB (placeholder 15.6KB와 구분).
+완성 기준: magazine/{CODE}/{N}/index.html 크기 > 30KB (score_chapter 깊이 바닥과 일치, placeholder 15.6KB와 구분).
 사용: python3 magazine/_meta/sync_progress.py [--write]
 """
 import json, os, glob, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PROG = os.path.join(ROOT, "sbm-progress.json")
-DONE_BYTES = 40000
+DONE_BYTES = 30000
 
 def count_done(code):
     base = os.path.join(ROOT, "magazine", code)
