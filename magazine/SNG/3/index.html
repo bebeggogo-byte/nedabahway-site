@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>아가 3장 — Observatory | 네다바웨이</title>
+<meta name="description" content="아가 3장을 9단계로 같이 관찰합니다. 밤에 침상에서 신랑을 찾아 나서고, 솔로몬의 화려한 가마가 등장한다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/SNG/3/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/SNG/">시가서</a> · <a href="/magazine/SNG/">아가</a> · 3장</div>
+      <h1>아가 3장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">SNG-003 · 시가서 · 히브리어</div>
+      <p class="essence">"내가 밤에 침상에서 내 마음이 사랑하는 자를 찾았구나" — 밤의 찾음과 도성 방랑 끝에 만남이 있고, 솔로몬의 화려한 가마 행렬이 등장한다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 어떤 물건이 등장하는가. 아가 3장은 밤의 찾음(1~5절)과 솔로몬의 가마 행렬(6~11절)이라는 두 장면으로 뚜렷하게 나뉜다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: SNG-003</p>
+<p>book: 아가</p>
+<p>book_en: Song of Songs</p>
+<p>chapter: 3</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 시·사랑 노래</p>
+<p>language: 히브리어</p>
+<p>verse_count: 11</p>
+<p>observed_facts_count: 22</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [mishkavi, shebahavah_nafshi, chuzot, rechov, shomrim, appiryon, atzei_levanon, levonah, ahavah]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["3:9 appiryon(가마)을 70인역은 'φορεῖον'(들것·가마)으로 옮김 — 어원이 불확실한 단어", "3:10 '중간에 깔린 것은 사랑'을 70인역은 'λιθόστρωτον'(돌로 포장된)으로 달리 옮김"]</p>
+<p>ane_refs: ["고대 근동 왕의 행렬(가마·마차·군사 호위)은 왕권 과시의 정형 장면(배경)", "레바논 목재(atzei levanon)는 왕실 건축 최고급 자재(배경)"]</p>
+<p>rabbinic_refs: ["탈무드 일부에서 가마 장면을 시나이 언약과 연결하는 해석 전통(배경, 적용 아님)"]</p>
+<p>literary_devices: [night_search, refrain, royal_procession, sensory_imagery, repetition]</p>
+<p>repeated_words: ["내 마음이 사랑하는 자(she'ahavah nafshi)", "찾다(baqash)", "보았느냐(re'item)", "솔로몬(Shlomo)"]</p>
+<p>cross_refs: ["아 5:2~8 (다시 찾아 헤맴 — 5장의 유사 장면)", "아 8:6~7 (사랑은 죽음같이 강하고)", "아 2:7 (깨우지 말라 반복구)", "왕상 10:1~ (솔로몬의 영광)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-06</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>아가 3장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 아가 3장입니다. 밤의 찾음과 솔로몬의 행렬이 한 장에 있어요. 낭독하고 머물겠습니다.</p>
+<p>(본문 낭독 3:1~11, 약 70초)</p>
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기가 느껴지셨는지요.</p>
+<p><strong>P01 한나래</strong>: 긴박함이요. 1절 "찾았으나 찾지 못하였다"가 두 번 나와요. 그 반복이 불안하면서도 갈망이 강렬한 느낌.</p>
+<p><strong>P04 최현국</strong>: 두 장면이 완전히 달라요. 앞(1~5절)은 밤, 혼자, 찾아 헤맴. 뒤(6~11절)는 낮, 행렬, 화려한 가마와 군사들. 분위기가 180도 바뀌어요.</p>
+<p><strong>P05 김미영</strong>: 가마 소품이 압도적이에요. 레바논 목재(atzei levanon), 은(keseph), 금(zahav), 자색 치장물(argaman), 예루살렘 딸들의 사랑. 왕의 권위와 부가 한 곳에 모여요.</p>
+<p><strong>P02 이진우</strong>: 구조 발견이요. 1~4절은 찾는 행위가 반복돼요. 찾다 → 못 찾다 → 나가서 찾다 → 경비원 만나다 → 찾았다. 그리고 5절에 반복구 "깨우지 말라"가 다시 나와요.</p>
+<p><strong>P07 오지혜</strong>: 4절 "붙잡고 그를 놓지 아니하여 내 어머니의 집으로, 나를 낳은 이의 방으로 이끌었다"가 강렬해요. 찾은 뒤 붙잡고 놓지 않는다는 것.</p>
+<p><strong>P11 나경아</strong>: 1절 "내 마음이 사랑하는 자"가 <em>she'ahavah nafshi</em>인데, <em>nafshi</em>는 '나의 영혼·목숨'이에요. "내 영혼이 사랑하는 자"가 더 직역이에요. 배경으로만요.</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품을 보지요.</p>
+<p><strong>P04 최현국</strong>: 무대 두 공간이에요. ① 밤의 침상·도성 거리와 광장(mishkavi — 내 침상, chuzot — 거리들, rechov — 광장, 1~4절) ② 솔로몬의 행렬 — 광야에서 올라오는 가마(appiryon) 행렬(6~11절).</p>
+<p><strong>P05 김미영</strong>: 후반 소품이 압도적이에요. 레바논 목재 가마(atzei levanon), 은 기둥(amudav keseph), 금 받침(refidato zahav), 자색 방석(merkavo argaman), 사랑으로 깔린 것(ahahavah), 솔로몬의 면류관(atarah). 왕실 예식의 품목들.</p>
+<p><strong>P11 나경아</strong>: 9절 <em>appiryon</em>이 아가에만 나오는 단어예요. 어원이 불확실해서 이집트어, 인도-유럽어 등에서 차용됐다는 설이 있는데, 학자들 사이에 갈려요. '가마·들것·교자'로 번역돼요. 배경으로만요.</p>
+<p><strong>P07 오지혜</strong>: 6절 "몰약과 유향의 향기"가 광야에서 올라오는 행렬을 묘사해요. 향이 먼저 오는 장면.</p>
+<p><strong>성령일 선교사</strong>: 밤의 거리와 왕의 행렬 — 두 무대를 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>P02 이진우</strong>: 1절 "내가 밤에 침상에서 내 마음이 사랑하는 자를 찾았구나 찾아도 찾지 못하였노라"로 열리고, 11절 "시온의 딸들아 솔로몬 왕이 혼인날·마음이 기쁜 날에 쓴 면류관을 보라"로 닫혀요.</p>
+<p><strong>P01 한나래</strong>: 시작은 어둠·찾지 못함의 불안이고, 끝은 기쁨의 날·면류관의 화려함이에요. 어둠에서 기쁨의 빛으로 이동해요.</p>
+<p><strong>P04 최현국</strong>: 혼자 밤거리를 헤매는 신부에서, 화려한 군사 호위 속 왕의 행렬로 끝나요. 규모가 완전히 달라요.</p>
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>P07 오지혜</strong>: 전반(1~5절)의 인물은 신부와 도성 경비원들(shomrim)이에요. 경비원들에게 물어도 신랑을 찾지 못하다가, 그들을 지나치고 나서야 만나요.</p>
+<p><strong>P02 이진우</strong>: 후반(6~11절)은 솔로몬(Shlomo)과 그 행렬이에요. 이스라엘의 용사 60명이 칼을 차고 가마를 호위해요. 신랑이 갑자기 솔로몬으로 묘사되는지, 별개의 장면인지 본문이 밝히지 않아요.</p>
+<p><strong>P11 나경아</strong>: 4절 "내 어머니의 집"과 "나를 낳은 이의 방"이 병치돼요. '집'과 '방'이 둘 다 신부의 어머니 공간이에요. 신부가 신랑을 어머니 집으로 이끄는 구조. 배경으로요.</p>
+<p><strong>P01 한나래</strong>: 사상으로 보면, 4절 "붙잡고 놓지 않는다"가 이 장의 핵심 동작이에요. 찾음은 만남으로, 만남은 붙잡음으로 이어져요.</p>
+<p><strong>성령일 선교사</strong>: 찾음·만남·붙잡음의 연속, 후반의 화려한 왕 행렬을 그대로 두지요.</p>
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>P04 최현국</strong>: 세 컷입니다.</p>
+<ul>
+<li><strong>컷 1 (1-4절)</strong>: 밤의 찾음 — 침상·거리·광장 헤맴, 경비원에게 물음, 찾아 붙잡음·어머니 집으로.</li>
+<li><strong>컷 2 (5절)</strong>: 반복구 충고 — "사랑하는 이가 원하기 전에 깨우지 말라"(2장에서도 나온 충고).</li>
+<li><strong>컷 3 (6-11절)</strong>: 솔로몬의 가마 행렬 — 광야에서 올라오는 향기 기둥, 레바논 목재 가마, 호위 군사, 면류관.</li>
+</ul>
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>P02 이진우</strong>: 발견이에요. 3절 "경비원들이 나를 만나매"에서 신부가 경비원에게 "내 마음이 사랑하는 자를 보았느냐"고 묻고, 4절에서 그들을 떠나자마자 찾았다고 해요. 경비원들의 응답이 없는데 찾음이 일어나요. 경비원이 도움이 됐는지, 신부 스스로 찾은 것인지 본문이 명확하지 않아요.</p>
+<p><strong>P11 나경아</strong>: 앞에서 말한 appiryon(9절)의 어원 문제 외에, 10절 "중간에 깔린 것은 예루살렘 딸들의 사랑이라"는 번역 자체가 본문 전달에 어려움이 있어요. 히브리어 원문이 갈린다고 학자들이 지적해요. 배경으로만요.</p>
+<p><strong>P05 김미영</strong>: 의문이에요. 6절 "광야에서 연기 기둥 같이 올라오는 것"은 누구의 행렬인지 처음엔 모호해요. 연기 기둥이 향기름·유향에서 나오는 것임이 뒤에서야 밝혀져요.</p>
+<p><strong>P07 오지혜</strong>: 발견. 5절의 "깨우지 말라" 충고가 2장 7절에서도 나왔어요. 두 번째 등장이에요. 반복이 패턴처럼 느껴져요.</p>
+<p><strong>성령일 선교사</strong>: appiryon의 열린 어원, 경비원 장면의 모호함, "깨우지 말라" 반복을 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>P04 최현국</strong>: 밤. 신부가 침상에서 일어나요. "내 마음이 사랑하는 자를 찾았으나 찾지 못하였노라." 도성 거리와 광장을 헤매요. 경비원들에게 묻지만 응답이 없어요. 그들을 지나치자마자 — 만났어요. 붙잡고 놓지 않아요. 어머니 집으로 이끌어요. 그리고 다시 충고 — "깨우지 말라." 장면이 바뀌어요. 광야에서 연기 기둥이 올라와요. 향기로운 냄새. 솔로몬의 가마가 나타나요. 레바논 목재로 만들었고, 은 기둥·금 받침·자색 치장물. 60명의 용사가 칼을 차고 호위해요. 시온의 딸들에게 외쳐요 — "솔로몬 왕이 면류관을 쓰고 오는 날을 보라."</p>
+<p><strong>성령일 선교사</strong>: 밤의 찾음과 만남·붙잡음, 그리고 왕의 화려한 행렬이 한 장 안에 있어요. 여기까지입니다.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "찾았으나 찾지 못하였노라 — 밤의 갈망"</p>
+<p><strong>P02 이진우</strong>: "붙잡고 놓지 아니하여"</p>
+<p><strong>P04 최현국</strong>: "밤의 거리에서 왕의 행렬까지"</p>
+<p><strong>P05 김미영</strong>: "연기 기둥과 레바논 목재 가마"</p>
+<p><strong>P07 오지혜</strong>: "찾아 붙잡은 자의 밤"</p>
+<p><strong>P11 나경아</strong>: "<em>She'ahavah nafshi</em> — 내 영혼이 사랑하는 자를 찾아"</p>
+<p>부제 제안: "밤의 갈망이 붙잡음으로 이어지고, 왕의 행렬이 기쁨의 날을 선포한다"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: "찾아 붙잡고 놓지 않는" 자리로 들어가, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 밤에 찾아 헤매는 그 자리에서, 지나치고 나서야 만나는 그 순간을 생각해요.</p>
+<p><strong>(침묵)</strong> 🌿</p>
+<p><strong>성령일 선교사</strong>: 그 자리를 그대로 두지요. 찾음이 붙잡음으로 완성되는 자리입니다.</p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 이 본문은 어디서 어디로 움직이는지요?</p>
+<p><strong>P02 이진우</strong>: 찾지 못하는 불안에서 붙잡는 만남으로, 그리고 화려한 왕의 기쁨의 날로. 찾음·만남·기쁨의 세 이동이에요.</p>
+<p><strong>성령일 선교사</strong>: 눈에 보이는 밤 장면과 왕 행렬 아래에서 무엇이 드러나는지요?</p>
+<p><strong>P01 한나래</strong>: 찾다가 못 찾는 것이 이 갈망이 얼마나 강한지를 보여 주는 것 같아요. 찾지 못함이 갈망의 깊이의 반영인 것 같아요. 본문이 그 이상을 설명하지 않지만요.</p>
+<p><strong>성령일 선교사</strong>: 이 본문이 품은 긴장은 무엇인지요?</p>
+<p><strong>P11 나경아</strong>: 밤의 찾음(1~4절)과 왕의 화려한 행렬(6~11절)이 한 장에 있어요. 찾음의 취약함과 왕의 권위가 같은 자리에 있는 긴장이에요.</p>
+<p><strong>성령일 선교사</strong>: 그 긴장을 그대로 두지요. 찾고 부르는 갈망의 세 번째 국면입니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2단계~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: SNG-003</p>
+<p>book: 아가</p>
+<p>chapter: 3</p>
+<p>date: 2026-06-06</p>
+<p>---</p>
+
+<h2>아가 3장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대 두 공간 — ① 밤의 침상·도성 거리·광장(1~4절) ② 솔로몬의 가마 행렬 — 광야에서 도성으로(6~11절).</li>
+<li>소품: 레바논 목재 가마(appiryon)·은 기둥·금 받침·자색 치장물·면류관(atarah)·몰약·유향.</li>
+<li>고대 근동 왕의 행렬은 왕권 과시의 정형 장면(배경). 레바논 목재는 왕실 최고급 자재(배경).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>긴박한 밤의 찾음. "찾았으나 찾지 못하였노라"(1절)의 반복이 불안과 갈망을 동시에 만듦.</li>
+<li>후반부의 화려함 — 60명 호위 군사·향기 기둥·왕실 소품.</li>
+<li>두 장면의 분위기 대비: 밤의 취약함 ↔ 낮의 왕 행렬 화려함.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>1절: "내가 밤에 침상에서 내 마음이 사랑하는 자를 찾았구나" — 찾지 못함의 불안.</li>
+<li>11절: "솔로몬 왕이 혼인날 마음이 기쁜 날에 쓴 면류관을 보라" — 기쁨의 날 선포.</li>
+<li>불안한 찾음 → 기쁨의 면류관 선포. 어둠에서 빛으로.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>전반: 신부('나') / 도성 경비원들(shomrim) / 만난 뒤 붙잡힌 신랑.</li>
+<li>후반: 솔로몬(Shlomo) / 이스라엘 용사 60명 / 시온의 딸들(관중으로 불림).</li>
+<li>핵심 동작: 찾다 → 못 찾다 → 나가 찾다 → 만나다 → 붙잡다 → 놓지 않다(4절).</li>
+<li>반복구 "깨우지 말라"(5절)가 2장 7절에 이어 두 번째 등장.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1-4절): 밤의 찾음·만남·붙잡음 — 침상·거리·광장·경비원·어머니 집.</li>
+<li>컷 2 (5절): 반복구 충고 — "깨우지 말라"(2장 7절 재등장).</li>
+<li>컷 3 (6-11절): 왕의 가마 행렬 — 광야 연기 기둥·향기·레바논 목재·호위·면류관.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>mishkavi</em>(מִשְׁכָּבִי) — 나의 침상. 1절.</li>
+<li><em>she'ahavah nafshi</em>(שֶׁאָהֲבָה נַפְשִׁי) — 내 영혼이 사랑하는 자. nafshi = 영혼·목숨. 1절.</li>
+<li><em>shomrim</em>(שֹׁמְרִים) — 경비원들·파수꾼들. 3절.</li>
+<li><em>appiryon</em>(אַפִּרְיוֹן) — 가마. 아가에만 나오는 어원 불확실 단어. 9절.</li>
+<li><em>atzei levanon</em>(עֲצֵי הַלְּבָנוֹן) — 레바논 목재. 9절.</li>
+<li><em>atarah</em>(עֲטָרָה) — 면류관·왕관. 11절.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>밤의 찾음(1~4절) — 동작의 연쇄: 찾다·못 찾다·나가다·찾다·만나다·붙잡다.</li>
+<li>"깨우지 말라" 반복구가 2:7과 3:5에서 구조적 경계를 이룸.</li>
+<li>두 장면의 대비: 취약·어둠·홀로 ↔ 화려·밝음·군사 호위.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>왕의 가마 행렬(appiryon + 호위 군사)은 고대 근동 왕권 과시의 정형 장면(배경).</li>
+<li>레바논 목재는 솔로몬 성전과 왕궁 건축에 사용된 최고급 자재(배경).</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>아 3 ↔ 아 5:2~8 (다시 찾아 헤맴 — 유사 구조의 심화)</li>
+<li>아 3 ↔ 아 2:7 (깨우지 말라 — 반복구의 첫 등장)</li>
+<li>아 3 ↔ 왕상 10:1~ (솔로몬의 영광 — 배경)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>밤. 신부가 침상에서 일어나 사랑하는 자를 찾는다. 거리와 광장을 헤매지만 찾지 못한다. 경비원들에게 묻는다. 그들을 지나치자마자 찾았다 — 붙잡고 놓지 않는다. 어머니 집으로 이끈다. 그리고 충고 — "사랑이 원하기 전에 깨우지 말라." 장면 전환. 광야에서 향기 기둥이 올라온다. 솔로몬의 가마. 레바논 목재, 은 기둥, 금 받침, 자색 방석. 이스라엘 용사 60명이 칼을 차고 호위한다. 시온의 딸들에게 외친다 — "솔로몬 왕이 면류관을 쓰고 오는 기쁨의 날을 보라."</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"밤의 찾음 — 붙잡고 놓지 아니하여"</strong></li>
+<li>초벌 부제: "밤의 취약한 갈망이 붙잡음으로 완성되고, 왕의 기쁨의 날이 선포된다"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (6개: mishkavi·she'ahavah_nafshi·shomrim·appiryon·atzei_levanon·atarah)</li>
+<li>[x] 역사·문학 사실 최소 1개 (찾음의 연쇄 동작·반복구·두 장면 대비)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>밤의 찾음과 왕 행렬을 알레고리로 단정하지 않고 관찰로 보존.</li>
+<li>appiryon 어원과 10절 번역 문제를 열린 질문으로 둠.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong> 묵상에서 재조정 가능. <strong>9단계 기도</strong> 답을 구하지 않고 머문다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: SNG-003</p>
+<p>book: 아가</p>
+<p>chapter: 3</p>
+<p>date: 2026-06-06</p>
+<p>---</p>
+
+<h2>아가 3장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 경비원들(shomrim)의 역할은 무엇인가 — 도움이 됐는가, 지나치고 나서야 만났는가?</h2>
+<ul><li>3~4절에서 경비원들의 응답이 없이 "그들을 지나치자마자"만 나온다. 본문이 설명하지 않음. 보존.</li></ul>
+
+<h2>Q2. appiryon(9절)의 어원과 정확한 의미는?</h2>
+<ul><li>아가에만 등장하는 단어. 어원이 이집트어·인도-유럽어 등에서 갈린다. 확정 불가. 보존.</li></ul>
+
+<h2>Q3. 3장의 솔로몬 가마 행렬(6~11절)은 신랑과 같은 인물인가, 별개의 장면인가?</h2>
+<ul><li>본문이 연결 지점을 명시하지 않음. 보존.</li></ul>
+
+<h2>Q4. "내 어머니의 집"(4절)으로 신랑을 이끄는 것의 의미는?</h2>
+<ul><li>어머니 집·방이 왜 신랑을 이끄는 목적지인지 본문이 설명하지 않음. 보존.</li></ul>
+
+<h2>Q5. "깨우지 말라" 반복구(2:7; 3:5)가 두 번 등장하는 이유는?</h2>
+<ul><li>구조적 반복인지 내용적 강조인지 본문이 밝히지 않음. 보존.</li></ul>
+
+<h2>Q6. 10절 "중간에 깔린 것은 사랑"이라는 번역의 히브리어 원문 의미는?</h2>
+<ul><li>번역이 갈리는 난해한 구절. 확정하지 않고 보존.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">밤의 찾음과 왕의 행렬 — 취약한 갈망이 붙잡음으로, 기쁨의 날이 선포된다.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: SNG-003</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-06</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 편의 골격</h3>
+<p><strong>한 문장</strong>: 아가 3장은 밤에 침상에서 사랑하는 자를 찾아 헤매다 붙잡고 어머니 집으로 이끄는 갈망의 장면과, 솔로몬의 화려한 가마 행렬이 기쁨의 날을 선포하는 장면이 한 장 안에 놓인 노래다.</p>
+<p><strong>한 문단</strong>: 신부가 밤에 침상에서 일어나 도성 거리와 광장을 헤맨다. "내 영혼이 사랑하는 자를 찾았으나 찾지 못하였노라." 경비원들을 지나쳐 만나자마자 붙잡고 놓지 않는다. 그리고 충고 — "깨우지 말라." 장면이 바뀐다. 광야에서 향기로운 연기 기둥이 올라온다. 솔로몬의 레바논 목재 가마, 은 기둥과 금 받침, 60명의 호위 군사. 시온의 딸들에게 선포한다 — "솔로몬 왕이 기쁜 날에 쓴 면류관을 보라." 밤의 취약한 찾음이 왕의 기쁨의 날로 이동한다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>밤의 거리·광장(전반) / 가마 행렬·레바논 목재·면류관(후반). 두 무대의 대비.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>밤의 긴박함·불안. 후반 화려함. 취약함 ↔ 왕의 권위 대비.</td></tr>
+<tr><td>3 시작과 끝</td><td>"찾았으나 찾지 못하였노라"(1절) → "기쁨의 날 면류관을 보라"(11절). 불안 → 기쁨.</td></tr>
+<tr><td>4 등장인물·사상</td><td>신부·경비원·신랑(전반) / 솔로몬·호위 군사·시온의 딸들(후반). 찾음→붙잡음의 핵심 동작.</td></tr>
+<tr><td>5 장면 컷</td><td>컷1 밤 찾음·붙잡음 / 컷2 반복구 / 컷3 왕의 가마 행렬.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>찾음의 연쇄 동작. appiryon 어원 열린 질문. 두 장면 연결 불명확.</td></tr>
+<tr><td>7 동영상</td><td>밤 헤맴 → 붙잡음·어머니 집 → 반복구 → 광야 향기 기둥 → 왕의 가마·면류관.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"밤의 찾음 — 붙잡고 놓지 아니하여" / "밤의 취약한 갈망이 붙잡음으로 완성되고 왕의 기쁨이 선포된다".</td></tr>
+<tr><td>9 기도·내면</td><td>찾아 붙잡는 자리로 들어가 "지나치고 나서야 만나는 순간"을 아뢴다. 답 없이 머문다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 찾음의 연쇄</strong>: "찾다·못 찾다·나가다·만나다·붙잡다·놓지 않다"가 연속 동작으로 이어진다. 찾음이 단 한 번에 되지 않고, 헤매다가 지나치고 나서 만나는 구조.</p>
+<p>2. <strong>결 2 — 두 장면의 대비</strong>: 밤의 취약함(혼자·어둠·불안)과 낮의 화려함(60명 호위·레바논 목재·면류관)이 한 장에 공존한다.</p>
+<p>3. <strong>결 3 — "깨우지 말라" 반복구</strong>: 2:7에서 이어 3:5에서 두 번째 등장. 이 반복구가 구조적 경계처럼 서로 다른 장면을 감싼다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>같은 권 안 — <strong>아 5:2~8</strong> (다시 찾아 헤맴 — 5장에서 유사 장면이 더 심화됨). <strong>아 2:7</strong> (반복구의 첫 등장).</li>
+<li>다른 권 — <strong>왕상 10:1~</strong> (솔로몬의 영광 — 배경). <strong>시 63편</strong> (주를 찾음·영혼이 목말라 함).</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: "찾았으나 찾지 못하였노라"의 불안에서 멈춘다.</li>
+<li><strong>멈춤 1</strong>: "붙잡고 놓지 아니하여" — 찾음이 완성되는 자리.</li>
+<li><strong>멈춤 2</strong>: 광야에서 올라오는 향기 기둥 — 장면 전환의 경이감.</li>
+<li><strong>끝</strong>: "기쁨의 날 면류관" — 불안이 기쁨으로 이동한 결.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] "찾았으나 찾지 못하였노라" — 반복된 찾지 못함이 갈망의 강도를 보여 준다</li>
+<li>[x] 경비원들을 지나치자마자 만나는 구조</li>
+<li>[x] "붙잡고 놓지 아니하여" — 만남이 붙잡음으로 완성된다</li>
+<li>[x] "깨우지 말라" 반복구가 두 번째 등장한다</li>
+<li>[x] 왕의 화려한 행렬이 후반에 등장한다</li>
+<li>[x] "기쁨의 날 면류관" — 불안에서 기쁨으로 닫힌다</li>
+</ul>
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>찾음(baqash)</em>.</p>
+
+<h3>G · 구속사 좌표</h3>
+<p>아가 3장은 SNG 흐름의 <strong>첫 국면(1~3장 — 서로를 찾고 부름)의 마지막 장</strong>이다. 찾고 부르는 갈망이 밤의 도성 헤맴이라는 가장 강렬한 형태로 나타나고, 붙잡음으로 완성된다. 동시에 왕의 기쁨의 날 행렬이 선포되며 다음 국면(4~7장: 칭송과 갈망·잃음과 다시 찾음)으로 이어지는 전환점 역할을 한다. 찾고 부르는 갈망이 이 장에서 붙잡음과 기쁨으로 한 번 완성되는 자리다.</p>
+
+<h3>H · 운동 벡터</h3>
+<p>찾지 못하는 불안(밤·헤맴) → 붙잡음으로 완성된 만남 → 왕의 기쁨의 날 선포. 찾음이 만남으로, 만남이 기쁨으로 이동하는 세 화살표.</p>
+
+<h3>I · 수면 아래</h3>
+<p>표면: 밤에 신랑을 찾아 헤매다 붙잡는 신부, 화려한 왕의 가마 행렬. 수면 아래에서 관찰되는 것: 찾지 못함이 갈망의 깊이를 드러내는 구조 — 쉽게 찾아지지 않는 것이 관계의 희박함이 아니라 갈망의 강도임을 이 장이 본문의 한에서 보여 준다. 또한 취약한 밤의 찾음과 화려한 왕의 행렬이 한 장에 공존하는 것: 찾음의 취약함이 왕의 권위와 기쁨으로 향한다는 관찰. 단정이 아닌 관찰로 보존.</p>
+
+<h3>J · 실존적 부름</h3>
+<p>밤에 혼자 도성을 헤매며 "찾았으나 찾지 못하였노라"고 말하는 그 자리 — 이 갈망이 지금 내 안에 있는가? 찾지 못함이 갈망의 깊이를 드러내는 것이라면, 그 찾음이 지금 내 안에서 일어나고 있는가. 본문이 가르치는 것이 아니라, 밤의 갈망 자리로 초대하는 부름이다.</p>
+<p><strong>다음 장으로 미는 운동</strong>: 찾고 부르는 갈망의 국면이 마무리된다 — 4장에서 신랑이 신부를 칭송하는 새 국면이 시작된다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/SNG/2/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">아가 2장</div>
+        <div class="nav-preview">사론의 수선화, 봄의 부름, 상호 소속.</div>
+      </a>
+      <a href="/magazine/SNG/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">아가 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/SNG/4/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">아가 4장</div>
+        <div class="nav-preview">신부의 아름다움 칭송, 잠근 동산, 샘.</div>
+      </a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last:sng3', JSON.stringify({
+      href: '/magazine/SNG/3/',
+      title: '아가 3장',
+      excerpt: '"내가 밤에 침상에서 내 마음이 사랑하는 자를 찾았구나" — 밤의 찾음, 붙잡음, 왕의 가마 행렬.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-06</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

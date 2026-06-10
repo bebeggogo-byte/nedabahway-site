@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>아가 2장 — Observatory | 네다바웨이</title>
+<meta name="description" content="아가 2장을 9단계로 같이 관찰합니다. 사론의 수선화, 골짜기의 백합, 사랑의 깃발, 작은 여우, 봄의 부름.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/SNG/2/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/SNG/">시가서</a> · <a href="/magazine/SNG/">아가</a> · 2장</div>
+      <h1>아가 2장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">SNG-002 · 시가서 · 히브리어</div>
+      <p class="essence">"나는 사론의 수선화요 골짜기의 백합화로다" — 봄의 부름이 들려오고, 작은 여우를 경계하며, 신랑이 "일어나 함께 가자"고 부른다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 어떤 물건이 등장하는가 · 어떤 배경 요소가 깔려 있는가 · 어떤 소재가 쓰이는가. 아가 2장은 꽃과 봄의 이미지가 가득하며 화자(신부/신랑)가 교차한다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: SNG-002</p>
+<p>book: 아가</p>
+<p>book_en: Song of Songs</p>
+<p>chapter: 2</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 시·사랑 노래</p>
+<p>language: 히브리어</p>
+<p>verse_count: 17</p>
+<p>observed_facts_count: 25</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [chavatzelet_hasharon, shoshanah, dod, ra'yah, ahavah, daglo, tapuchim, shalav, shu'alim, keramim, dodi_li]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["2:1 '사론의 수선화'(chavatzelet)를 70인역은 'ἄνθος τοῦ πεδίου'(들의 꽃)로 넓게 옮김", "2:12 '비둘기 소리가 들리는도다'를 70인역은 직역"]</p>
+<p>ane_refs: ["사론 평야는 이스라엘 해안 평야로 꽃이 풍성하게 피는 지역(배경)", "고대 근동 사랑시에서 꽃·사과나무 이미지가 연인 묘사에 사용(배경)"]</p>
+<p>rabbinic_refs: ["랍비 전통에서 이스라엘을 백합화에 비유하는 해석 전통(배경, 해석 아님)"]</p>
+<p>literary_devices: [metaphor, nature_imagery, refrain, dialogue, spring_invitation]</p>
+<p>repeated_words: ["사랑(dod·ahavah)", "일어나(kumi)", "함께(lach)", "겨울(setav)", "비둘기(yonah)"]</p>
+<p>cross_refs: ["아 1:2 (dod 갈망의 시작)", "아 3:1 (침상에서 찾음)", "아 8:6~7 (사랑은 죽음같이 강하고)", "호 2:14~15 (광야에서 다시 부름)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-06</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>아가 2장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 아가 2장입니다. 봄의 이미지가 가득한 장이에요. 낭독하고 충분히 머물겠습니다.</p>
+<p>(본문 낭독 2:1~17, 약 90초)</p>
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기가 느껴지셨는지요.</p>
+<p><strong>P01 한나래</strong>: 봄이 와요. "겨울이 지나고 비가 그쳐 가고 꽃이 피고 새가 노래하는 때가 왔다"(11~12절) — 이게 얼마나 생생하게 들려요. 계절이 바뀌는 소리.</p>
+<p><strong>P07 오지혜</strong>: 반복구가 두 번 나와요. "예루살렘 딸들아 내가 사랑하는 이가 원하기 전에 깨우지 말라"(7절)고 충고하고, 마지막에도 비슷한 결로 돌아오는 것 같아요(17절).</p>
+<p><strong>P04 최현국</strong>: 무대가 자꾸 바뀌어요. 연회장(잔치 집), 사과나무 아래, 봄의 들, 포도원 — 한 자리가 아니라 여러 공간이에요.</p>
+<p><strong>P05 김미영</strong>: 소품이 자연물이에요. 수선화(chavatzelet), 백합화(shoshanah), 사과(tapuch), 포도원, 작은 여우(shu'alim), 비둘기(yonah) — 전부 자연에서 온 것들.</p>
+<p><strong>P02 이진우</strong>: 구조를 보면 신부의 말이 많고, 그 안에 신랑의 말이 짧게 들어오는 형태예요. 신랑의 직접 말은 10~14절이고, 나머지는 신부의 목소리예요.</p>
+<p><strong>P11 나경아</strong>: 4절 "그가 나를 사랑의 집(잔치의 집·bet haYayin)으로 이끌었다"에서 <em>daglo</em>가 "깃발"인데, "그의 깃발이 내 위에 있으니 사랑이로다"(4절)는 군사 이미지와 사랑 이미지가 겹쳐요. 배경으로만요.</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품을 함께 보지요.</p>
+<p><strong>P04 최현국</strong>: 무대 네 공간이에요. ① 연회장·잔치 집(4절, bet haYayin — 포도주의 집) ② 신부가 기대 있는 사과나무 아래(3절) ③ 봄의 들·산(8~12절, 신랑이 다가오는 들) ④ 포도원(15절, 작은 여우 경계의 장소).</p>
+<p><strong>P05 김미영</strong>: 소품이 풍성해요. 수선화(사론의 chavatzelet), 백합화(shoshanah), 포도주(yayin), 사과(tapuchim), 깃발(degel), 건포도(ashishot), 작은 여우들(shu'alim), 비둘기(yonah), 바위 틈(nikrey hassela). 전부 자연·먹을거리·동물.</p>
+<p><strong>P11 나경아</strong>: 1절 "사론의 수선화"에서 <em>chavatzelet hasharon</em>이에요. chavatzelet의 정확한 꽃이 무엇인지 학자들 사이에 갈림이 있어요 — 수선화, 크로커스, 튤립 등이 제안됩니다. 확정하지 않고 둡니다. "백합화"(<em>shoshanah</em>)는 연꽃·백합 계열로 분석돼요.</p>
+<p><strong>P07 오지혜</strong>: 8절 "산을 뛰어넘고 작은 산을 빨리 넘어오는도다"에서 신랑이 달려오는 장면이 뚜렷해요. 노루와 어린 사슴으로 비유되는 움직임.</p>
+<p><strong>성령일 선교사</strong>: 네 공간과 자연 소품들, 신랑이 산을 넘어오는 장면을 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>P02 이진우</strong>: 1절은 "나는 사론의 수선화요 골짜기의 백합화로다"고, 17절은 "내 사랑하는 자야 날이 저물고 그림자가 사라지기 전에 돌아와 산들에서 노루나 어린 사슴 같을지어다"예요. 꽃의 자기 선언으로 열고, 신랑에게 돌아오기를 청하며 닫혀요.</p>
+<p><strong>P01 한나래</strong>: 시작은 "나는 ~이로다"라는 존재 선언이고, 끝은 "돌아와"라는 청원이에요. 자기 소개에서 기다림으로 이동하는 것 같아요.</p>
+<p><strong>P04 최현국</strong>: 봄의 부름(10~14절)이 한가운데 있고, 그 앞뒤로 신부의 기다림이 있어요. 부름을 중심에 두고 앞뒤가 감싸는 구조.</p>
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>P07 오지혜</strong>: 화자가 셋이에요. 신부의 목소리가 가장 많고(1~7절, 15~17절), 그 안에 신랑의 직접 말(10~14절)이 들어오고, 7절에 예루살렘 딸들이 언급돼요.</p>
+<p><strong>P02 이진우</strong>: 5~6절이 특이해요. "건포도로 나를 도와주고 사과로 나를 시원하게 하라 내가 사랑으로 병이 났다"고 해요. 사랑으로 병이 났다는 표현. 그리고 6절 "그 왼팔이 내 머리 아래에 있고 그 오른팔로 나를 안았다"는 포옹의 묘사.</p>
+<p><strong>P11 나경아</strong>: 16절 <em>dodi li va'ani lo</em> — "나의 사랑하는 자는 내게 속하고 나는 그에게 속하였다"는 상호 소속 선언이에요. 히브리어로 아주 간결하고 대칭적이에요. 배경으로만요.</p>
+<p><strong>P01 한나래</strong>: 사상으로 보면, 봄의 부름 "일어나라 내 어여쁜 자야 함께 가자"(10절)가 이 장 전체의 초대예요. 신랑이 오고 불러요. 신부는 기다리다가 청원하며 닫아요.</p>
+<p><strong>성령일 선교사</strong>: 상호 소속 선언(dodi li)과 봄의 부름을 그대로 두지요.</p>
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>P04 최현국</strong>: 네 컷입니다.</p>
+<ul>
+<li><strong>컷 1 (1-7절)</strong>: 신부의 자기 선언·사랑의 병 — 수선화·백합, 사과나무, 깃발, 사랑으로 병남, 예루살렘 딸들 충고.</li>
+<li><strong>컷 2 (8-10절)</strong>: 신랑이 달려오는 장면 — 산을 뛰어넘고, 창 너머 바라보고, 부름("일어나라").</li>
+<li><strong>컷 3 (11-14절)</strong>: 봄의 부름 — 겨울 지남·꽃 핌·새 노래·무화과·포도 향기·비둘기 소리, "내 아름다운 자야 나오라".</li>
+<li><strong>컷 4 (15-17절)</strong>: 작은 여우 경계·상호 소속·청원 — 포도원의 여우, dodi li, 날이 저물면 돌아오라.</li>
+</ul>
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>P02 이진우</strong>: 발견이에요. 봄의 목록이 매우 구체적이에요. "겨울이 지나고"(11절), "꽃이 피고"(12절), "무화과가 익어가고"(13절), "포도 향이 나고"(13절) — 계절이 바뀌는 것을 소리와 냄새와 색으로 층층이 쌓아요.</p>
+<p><strong>P11 나경아</strong>: 7절 "노루와 들사슴을 두고 맹세하는" 충고가 특이해요. 왜 예루살렘 딸들에게 이런 충고를 하는지, 노루와 들사슴으로 맹세하는 것의 배경이 본문에 설명이 없어요. 배경 자료만으로요.</p>
+<p><strong>P05 김미영</strong>: 의문이에요. 15절 "작은 여우를 잡으라"에서 여우가 포도원을 망치는 소재인데, 이 경고가 연인 사이의 방해 요소를 가리키는지, 실제 농업 경고인지 본문이 설명하지 않아요.</p>
+<p><strong>P07 오지혜</strong>: 발견. 16절 "나의 사랑하는 자는 내게 속하고 나는 그에게 속하였다"는 상호 소속이 대칭으로 선언돼요. 한 쪽이 다른 쪽에 속하는 게 아니라, 양방향으로 동등하게.</p>
+<p><strong>성령일 선교사</strong>: 봄의 층층이 쌓이는 목록, 상호 소속의 대칭, 작은 여우의 열린 질문을 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>P04 최현국</strong>: 신부가 먼저 자신을 꽃으로 선언해요. "나는 사론의 수선화요 골짜기의 백합화로다." 사과나무 아래서 쉬며, 사랑으로 병이 나고, 예루살렘 딸들에게 "깨우지 말라"고 충고해요. 그때 신랑이 달려와요. 산을 뛰어넘고, 창 너머로 바라보며 부르는 소리 — "일어나라 내 어여쁜 자야 함께 가자." 봄의 목록이 쏟아져요. 겨울이 지나고, 꽃이 피고, 새가 노래하고, 무화과가 익어가고, 포도 향기가 나요. 신부는 바위 틈에 있어요. "내 비둘기여 나오라." 그리고 두 사람은 포도원 안 작은 여우를 경계하고, "나의 사랑하는 자는 내게 속하고 나는 그에게 속하였다"고 선언해요. 날이 저물며 신부는 신랑에게 청원해요 — "돌아와."</p>
+<p><strong>성령일 선교사</strong>: 갈망과 기다림 사이에 봄의 부름이 중앙에 놓이고, 상호 소속의 선언으로 가운데 닿았다가, 다시 기다림으로 닫히는 흐름. 여기까지가 오늘의 동영상입니다.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "일어나라 내 어여쁜 자야"</p>
+<p><strong>P02 이진우</strong>: "봄의 부름 — 겨울이 지나고"</p>
+<p><strong>P04 최현국</strong>: "사론의 꽃에서 포도원의 경계까지"</p>
+<p><strong>P05 김미영</strong>: "사랑으로 병이 난 자리"</p>
+<p><strong>P07 오지혜</strong>: "나는 그에게, 그는 내게"</p>
+<p><strong>P11 나경아</strong>: "<em>Dodi li</em> — 나의 사랑하는 자는 내게 속하고"</p>
+<p>부제 제안: "겨울 지나 봄의 부름이 들릴 때, 상호 소속의 선언이 기다림 안에 피어난다"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: "겨울이 지나고 봄의 부름이 들리는 자리"로 들어가, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) "일어나라 함께 가자"는 부름이 지금 들리고 있는지요.</p>
+<p><strong>(침묵)</strong> 🌿</p>
+<p><strong>성령일 선교사</strong>: 봄의 부름과 기다림을 그대로 두지요. 답을 구하지 않고 머문다.</p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 이 본문은 어디서 어디로 움직이는지요?</p>
+<p><strong>P02 이진우</strong>: 겨울의 기다림에서 봄의 부름으로, 그리고 다시 저물 녘의 기다림으로 돌아오는 것 같아요. 이 장은 부름을 중심에 두고 기다림이 앞뒤를 감싸요.</p>
+<p><strong>성령일 선교사</strong>: 눈에 보이는 봄의 소재들 아래에서 무엇이 드러나는지요?</p>
+<p><strong>P11 나경아</strong>: dodi li — "그는 내게 속하고 나는 그에게 속한다"는 상호 소속이 봄의 소재들 가운데 선언돼요. 소재가 아니라 관계가 선언되는 자리가 이 장의 핵심일 수 있어요. 단정은 아니고요.</p>
+<p><strong>성령일 선교사</strong>: 이 본문이 품은 긴장은 무엇인지요?</p>
+<p><strong>P01 한나래</strong>: 부름이 들렸는데 신부는 끝에서 "돌아와"라고 청원해요. 이미 부름을 들었지만 아직 완전히 응한 것 같지 않은, 이미/아직의 긴장이 있어요.</p>
+<p><strong>성령일 선교사</strong>: 그 긴장을 그대로 두지요. 찾고 부르는 갈망의 두 번째 국면입니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2단계 첫 느낌</strong> 분석 전에 첫 감을 잡는다. <strong>3단계 시작과 끝</strong>. <strong>4단계 등장인물·사상</strong>. <strong>5단계 장면 컷</strong>. <strong>6단계 의문·발견·정보</strong>. <strong>7단계 동영상</strong>.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: SNG-002</p>
+<p>book: 아가</p>
+<p>chapter: 2</p>
+<p>date: 2026-06-06</p>
+<p>---</p>
+
+<h2>아가 2장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대 네 공간 — ① 연회장(bet haYayin, 포도주의 집, 4절) ② 사과나무 아래(3절) ③ 봄의 들·산(8~13절) ④ 포도원(15절).</li>
+<li>소품: 수선화(chavatzelet)·백합화(shoshanah)·사과(tapuchim)·깃발(degel)·건포도(ashishot)·작은 여우(shu'alim)·비둘기(yonah)·바위 틈.</li>
+<li>사론 평야 — 이스라엘 해안 꽃밭 지역(배경).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>봄이 오는 생생한 계절 전환. 겨울·비·꽃·새 소리가 층층이 쌓임.</li>
+<li>반복구 "깨우지 말라"(7절)가 충고처럼 박힘.</li>
+<li>신랑이 산을 뛰어넘어 달려오는 역동적 장면.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>1절: "나는 사론의 수선화요 골짜기의 백합화로다" — 꽃으로 자기 선언.</li>
+<li>17절: "날이 저물고 그림자가 사라지기 전에 돌아와" — 신랑에게 청원으로 닫힘.</li>
+<li>꽃의 존재 선언 → 신랑에게 돌아오기를 청하는 기다림으로.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>화자: 신부('나')가 주로 말함 / 신랑의 직접 말(10~14절) / 예루살렘 딸들(7절에 언급).</li>
+<li>신부: 사랑으로 병이 남(5절), 포옹을 묘사(6절), "깨우지 말라" 충고(7절).</li>
+<li>신랑: 산을 뛰어넘어 달려오며 "일어나라 내 어여쁜 자야 함께 가자"(10절) 부름.</li>
+<li>16절 상호 소속 선언: <em>dodi li va'ani lo</em> — "나의 사랑하는 자는 내게, 나는 그에게"(대칭·양방향).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1-7절): 신부의 자기 선언·사랑의 병 — 꽃, 사과나무, 깃발, 사랑으로 병남, 딸들 충고.</li>
+<li>컷 2 (8-10절): 신랑의 달려옴·부름 — 산을 넘어, 창 너머, "일어나라".</li>
+<li>컷 3 (11-14절): 봄의 부름 목록 — 겨울 지남·꽃·새·무화과·포도·비둘기, "나오라".</li>
+<li>컷 4 (15-17절): 작은 여우 경계·상호 소속·청원 — 여우·dodi li·날이 저물면 돌아오라.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>chavatzelet hasharon</em>(חֲבַצֶּלֶת הַשָּׁרוֹן) — 사론의 꽃. 정확한 꽃 종류가 학자들 사이에 갈림(수선화·크로커스·튤립). 1절.</li>
+<li><em>shoshanah</em>(שׁוֹשַׁנָּה) — 백합화·연꽃 계열. 1절.</li>
+<li><em>dod</em>(דּוֹד) — 사랑하는 자(신랑 호칭). 3절~.</li>
+<li><em>degel</em>(דֶּגֶל) — 깃발. 4절 "그의 깃발이 내 위에 사랑이로다".</li>
+<li><em>shu'alim</em>(שׁוּעָלִים) — 여우들. 15절.</li>
+<li><em>dodi li va'ani lo</em>(דּוֹדִי לִי וַאֲנִי לוֹ) — 나의 사랑하는 자는 내게 속하고 나는 그에게. 16절.</li>
+<li><em>yonah</em>(יוֹנָה) — 비둘기. 14절 "나의 비둘기".</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>봄의 부름(11~14절)이 중앙에 위치. 앞뒤로 신부의 기다림이 감쌈.</li>
+<li>"깨우지 말라" 충고(7절)가 반복구 역할 — 구조적 경계.</li>
+<li>상호 소속 선언(16절)이 대칭·양방향 구조.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>고대 근동 사랑시(이집트)에서 꽃·사과나무 이미지가 연인 묘사에 등장(배경).</li>
+<li>깃발(degel)이 군사 이미지인데 사랑과 연결됨 — 고대 시 수사(배경).</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>아 2 ↔ 아 3:1 (침상에서 찾음 — 다음 장)</li>
+<li>아 2 ↔ 아 8:6~7 (사랑은 죽음같이 강하고 — 전권 목적지)</li>
+<li>아 2 ↔ 호 2:14~15 (광야에서 다시 부르시는 이미지)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>신부가 자신을 꽃으로 선언한다. 사과나무 아래서 쉬며 사랑으로 병이 난다. 예루살렘 딸들에게 "깨우지 말라"고 충고한다. 그때 신랑이 달려온다 — 산을 뛰어넘고, 창 너머로 바라보며 부른다. "일어나라 내 어여쁜 자야 함께 가자." 봄의 목록이 쏟아진다. 겨울이 지나고, 꽃이 피고, 새가 노래하고, 무화과가 익어가고, 포도 향기가 난다. "내 비둘기여 나오라." 두 사람이 포도원의 작은 여우를 경계하고, "나의 사랑하는 자는 내게 속하고 나는 그에게 속하였다"고 선언한다. 날이 저물며 신부는 청원한다 — "돌아와."</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"봄의 부름 — 겨울이 지나고"</strong></li>
+<li>초벌 부제: "달려오는 신랑의 부름 속에 상호 소속이 선언되고, 다시 기다림으로 닫힌다"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (7개: chavatzelet·shoshanah·dod·degel·shu'alim·dodi_li·yonah)</li>
+<li>[x] 역사·문학 사실 최소 1개 (봄의 층층 목록·상호 소속 대칭·중앙 구조)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>봄의 부름을 하나님의 갱신 초대로 단정하지 않고 본문 관찰로만 보존.</li>
+<li>작은 여우의 의미를 한 방향으로 확정하지 않고 열린 질문으로 둠.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong> 묵상에서 재조정 가능. <strong>9단계 동영상 안 걷기·기도</strong> 관찰의 마무리는 기도다. 답을 구하지 않고 머문다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: SNG-002</p>
+<p>book: 아가</p>
+<p>chapter: 2</p>
+<p>date: 2026-06-06</p>
+<p>---</p>
+
+<h2>아가 2장 — 미해결 질문 (LOCKED 6단계 "의문점" + 9단계 "답을 구하지 않고 머문다")</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. "사론의 수선화"(chavatzelet)가 정확히 어떤 꽃인가?</h2>
+<ul><li>학자들 사이에 갈림(수선화·크로커스·튤립). 확정 불가. 보존.</li></ul>
+
+<h2>Q2. "예루살렘 딸들아 노루와 들사슴을 두고 맹세하는" 충고의 배경은 무엇인가?</h2>
+<ul><li>맹세의 형식과 이유가 본문에 설명 없음. 보존.</li></ul>
+
+<h2>Q3. "작은 여우들이 포도원을 망친다"(15절) — 여우가 구체적으로 무엇을 가리키는가?</h2>
+<ul><li>연인 관계의 방해 요소인지, 실제 농업 경고인지 본문이 밝히지 않음. 보존.</li></ul>
+
+<h2>Q4. 4절 "그의 깃발이 내 위에 있으니 사랑이로다" — 깃발(degel)이 사랑의 은유로 쓰인 의미는?</h2>
+<ul><li>군사 이미지와 사랑 이미지의 결합이 관찰되나, 의미를 확정하지 않음. 보존.</li></ul>
+
+<h2>Q5. 봄의 부름 "일어나라 함께 가자"에 신부가 응했는가?</h2>
+<ul><li>신부의 응답이 17절 "돌아와"로만 나타남. 응하지 않았는지, 다른 방식으로 응했는지 본문이 밝히지 않음. 보존.</li></ul>
+
+<h2>Q6. "날이 저물고 그림자가 사라지기 전에"(17절) — 저물 녘의 시간 지시가 무슨 긴장을 만드는가?</h2>
+<ul><li>시간 압박이 어떤 의미인지 본문이 설명하지 않음. 보존.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">봄의 부름 가운데 — dodi li, 상호 소속의 선언이 기다림 안에 피어난다.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: SNG-002</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-06</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 편의 골격</h3>
+<p><strong>한 문장</strong>: 아가 2장은 꽃의 자기 선언으로 열려, 사랑으로 병이 난 신부 앞에 신랑이 산을 뛰어넘어 달려와 "일어나라 함께 가자"고 봄을 부르고, "나의 사랑하는 자는 내게 속하고 나는 그에게 속하였다"는 상호 소속 선언 후, 저물 녘 "돌아와"의 기다림으로 닫히는 사랑 노래다.</p>
+<p><strong>한 문단</strong>: "나는 사론의 수선화요 골짜기의 백합화로다"로 신부가 자신을 꽃으로 선언한다. 사과나무 아래에서 쉬며 사랑으로 병이 난 신부는 예루살렘 딸들에게 "깨우지 말라"고 충고한다. 그때 신랑이 달려온다. 산을 뛰어넘고 창 너머로 바라보며 봄을 선포한다 — 겨울이 지나고, 꽃이 피고, 새가 노래하고, "일어나라 내 어여쁜 자야 함께 가자." 두 사람이 포도원의 작은 여우를 경계하고, "나의 사랑하는 자는 내게 속하고 나는 그에게 속하였다"고 선언한다. 저물 녘, 신부는 "돌아와"라고 청원하며 닫힌다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>연회장·사과나무·봄의 들·포도원 네 공간. 수선화·백합화·여우·비둘기 자연 소품.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>봄의 생생한 계절 전환. 신랑이 산을 뛰어넘어 달려오는 역동.</td></tr>
+<tr><td>3 시작과 끝</td><td>꽃의 자기 선언(1절) → "돌아와"의 청원(17절). 존재 선언에서 기다림으로.</td></tr>
+<tr><td>4 등장인물·사상</td><td>신부(사랑으로 병남)·신랑(봄을 부름)·딸들. 상호 소속 선언(dodi li).</td></tr>
+<tr><td>5 장면 컷</td><td>컷1 신부 선언·병 / 컷2 신랑 달려옴·부름 / 컷3 봄의 목록 / 컷4 여우·소속·청원.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>봄 목록의 층층 구조. 상호 소속의 대칭. 깃발 이미지·여우 의미 열린 질문.</td></tr>
+<tr><td>7 동영상</td><td>갈망·기다림 → 봄의 부름(중앙) → 소속 선언 → 저물 녘 청원.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"봄의 부름 — 겨울이 지나고" / "달려오는 신랑의 부름 속에 상호 소속이 선언되고 다시 기다림으로 닫힌다".</td></tr>
+<tr><td>9 기도·내면</td><td>"일어나라 함께 가자"는 부름이 지금 들리고 있는지 아뢴다. 답을 구하지 않고 머문다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 봄의 층층 목록</strong>: 신랑이 봄을 선포할 때 겨울·비·꽃·새·무화과·포도를 층층이 쌓아 계절 전환을 소리·냄새·색으로 선포한다. 하나씩 열거하는 방식이 특이하다.</p>
+<p>2. <strong>결 2 — 상호 소속의 대칭</strong>: dodi li va'ani lo — "그는 내게, 나는 그에게." 한 쪽만이 아닌 양방향이 동등하게 선언된다.</p>
+<p>3. <strong>결 3 — 부름과 기다림의 구조</strong>: 봄의 부름이 중앙에 놓이고, 앞뒤로 신부의 기다림이 감싼다. 부름을 들었지만 저물 녘 "돌아와"로 닫히는 이미/아직의 긴장.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>같은 권 안 — <strong>아 3:1</strong> (침상에서 찾음 — 다음 장의 심화). <strong>아 8:6~7</strong> (전권 목적지).</li>
+<li>다른 권 — <strong>호 2:14~15</strong> (광야에서 다시 부르시는 이미지). <strong>시 42편</strong> (목마름·기다림).</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: "나는 사론의 수선화"라는 꽃의 선언에서 멈춘다.</li>
+<li><strong>멈춤 1</strong>: 봄의 목록이 쏟아지는 자리 — 겨울이 지나고 새가 노래하는 구체성.</li>
+<li><strong>멈춤 2</strong>: "나의 사랑하는 자는 내게 속하고 나는 그에게" — 상호 소속의 선언.</li>
+<li><strong>끝</strong>: "돌아와"의 청원이 기다림을 관찰의 자리에 둔다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] "나는 사론의 수선화"로 꽃의 선언이 열린다</li>
+<li>[x] 신랑이 산을 넘어 달려오며 봄을 선포한다</li>
+<li>[x] 봄의 목록이 층층이 쌓인다</li>
+<li>[x] dodi li va'ani lo — 상호 소속이 대칭으로 선언된다</li>
+<li>[x] 작은 여우가 포도원의 경계로 등장한다</li>
+<li>[x] "돌아와"의 청원으로 기다림이 닫힌다</li>
+</ul>
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>부름(kumi)</em>.</p>
+
+<h3>G · 구속사 좌표</h3>
+<p>아가 2장은 SNG 흐름의 <strong>첫 국면(1~3장 — 서로를 찾고 부름)</strong> 안에서, 갈망이 봄의 부름으로 구체화되는 자리다. 신랑이 먼저 달려와 "일어나라 함께 가자"고 부르는 이 구조는 찾고 부르는 갈망의 운동이 일방향이 아닌 쌍방향임을 보여 준다. 상호 소속(dodi li)은 언약적 사랑의 결이 어떤 방향으로 드러나는지 이 장이 본문의 한에서 보여 주는 지점이다. 단정이 아닌 관찰로 보존.</p>
+
+<h3>H · 운동 벡터</h3>
+<p>갈망·기다림(신부의 자기 선언·병) → 신랑의 봄 부름(중앙의 달려옴·"함께 가자") → 상호 소속 선언(dodi li) → 저물 녘 다시 기다림("돌아와"). 부름이 중앙에 오고, 앞뒤로 기다림이 감싸는 원호(arc).</p>
+
+<h3>I · 수면 아래</h3>
+<p>표면: 봄의 꽃과 자연 이미지 속에 신랑이 달려와 신부를 부르는 사랑 노래. 수면 아래에서 관찰되는 것: 부름이 들렸지만 완전히 응하지 않은 자리에서도 상호 소속이 선언된다(dodi li). 응함 이전에 소속이 있다는 구조 — 이 장이 드러내는 한에서의 결. 언약적 사랑의 방향이 '신부가 준비되면'이 아닌 '신랑이 먼저 달려와 부름'으로 나타나는 관찰. 단정이 아니라 관찰로 보존.</p>
+
+<h3>J · 실존적 부름</h3>
+<p>"일어나라 내 어여쁜 자야 함께 가자" — 이 봄의 부름이 지금 들리고 있는가? 겨울이 지났다는 선포가 지금 내 안에서 계절 전환으로 울리는가. 응함 이전에 소속이 있다는 이 구조가 내 갈망의 자리에 어떻게 닿는지 — 본문이 가르치는 것이 아니라, 그 자리로 초대하는 부름이다.</p>
+<p><strong>다음 장으로 미는 운동</strong>: 봄의 부름을 들었지만 "돌아와"로 닫힌 이 기다림은 3장에서 밤에 침상에서 찾아 나서는 갈망으로 이어진다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/SNG/1/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">아가 1장</div>
+        <div class="nav-preview">입맞춤을 구하는 첫 갈망, 검으나 아름다운 신부.</div>
+      </a>
+      <a href="/magazine/SNG/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">아가 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/SNG/3/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">아가 3장</div>
+        <div class="nav-preview">밤에 침상에서 찾음, 솔로몬의 가마.</div>
+      </a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last:sng2', JSON.stringify({
+      href: '/magazine/SNG/2/',
+      title: '아가 2장',
+      excerpt: '"나는 사론의 수선화요 골짜기의 백합화로다" — 봄의 부름이 들려오고, 상호 소속이 선언된다.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-06</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
