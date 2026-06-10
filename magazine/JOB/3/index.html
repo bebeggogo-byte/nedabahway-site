@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>욥기 3장 — Observatory | 네다바웨이</title>
+<meta name="description" content="욥기 3장을 9단계로 같이 관찰합니다. 칠 일의 침묵이 깨지고 산문이 시로 바뀌는 첫 장 — 욥은 하나님을 저주하지 않고 자기 '날'을 저주하며(qalal), '빛이 있으라'가 '그 날은 어둠이 되었더라면'으로 뒤집히고, 세 번의 '어찌하여(lammah)'가 응답 없이 쌓이며, 1장의 울타리가 가둠으로 되돌아오는 욥기 둘째 국면의 개막.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/JOB/3/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/JOB/">시가서</a> · 욥기 · 3장</div>
+      <h1>욥기 3장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">JOB-003 · 시가서 · 히브리어</div>
+      <p class="essence">칠 일 밤낮의 침묵(2:13)이 깨지고 산문이 시로 바뀌는 첫 장 — 욥은 사탄이 예고한 대로 하나님을 저주하지 않고 자기 '날(yom)'을 저주하며(qalal), 창세기의 "빛이 있으라"가 "그 날은 어둠(choshek)이 되었더라면"으로 뒤집히고, 세 번의 "어찌하여(lammah)"가 응답 없이 쌓이며, 1:10의 울타리가 3:23에서 가둠(sakhakh)으로 되돌아와 "평온도 안일도 휴식도 없고 불안(rogez)뿐"(3:26)으로 닫히는 — 욥기 둘째 국면(논쟁·항변)의 개막.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOB-003</p>
+<p>book: 욥기</p>
+<p>book_en: Job</p>
+<p>chapter: 3</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 시(탄식)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 26</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>hebrew_terms: [qalal, yom, lailah, choshek, tsalmavet, leviathan, lammah, geber, sakhakh, rogez, nuach, shaqat]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["LXX는 3:8의 leviathan을 to mega kētos(큰 바다 짐승)로 옮겨 고유명 대신 일반 명사를 택함 — 배경", "LXX 3:23은 '하나님이 그를 둘러 가두셨다'의 뉘앙스를 sunekleisen(가두다)으로 명시화 — MT의 wayyasek보다 폐쇄성이 강함, 배경"]</p>
+<p>ane_refs: ["우가릿 신화의 Lotan(ltn) — 바다 혼돈 괴물 전승이 leviathan 어휘의 배경", "메소포타미아 Ludlul bēl nēmeqi(의로운 고난자의 시) · 수메르 '사람과 그의 신' — 까닭 모를 고난의 탄식 장르가 ANE에 존재 — 배경", "날을 저주하는 전문 주술가 집단이 ANE에 있었다는 견해 — 3:8의 배경 후보, 확정 아님"]</p>
+<p>rabbinic_refs: ["후대 랍비 전통은 욥의 생일 저주를 신성모독으로 보지 않고 고통의 언어로 읽는 흐름이 우세 — 배경"]</p>
+<p>literary_devices: [prose_to_poetry_shift, creation_reversal, threefold_lammah, day_night_split_curse, sheol_rest_panorama, fence_wordplay_with_1_10, inclusio_silence_to_turmoil]</p>
+<p>repeated_words: ["어찌하여(lammah)", "그 날(yom)·그 밤(lailah)", "어둠(choshek)·사망의 그늘(tsalmavet)", "거기서는(sham)", "쉼(nuach·shaqat)"]</p>
+<p>cross_refs: ["창 1:3 (yehi or — 3:4 yehi choshek의 역전 대상)", "욥 1:10 (울타리 — 3:23 sakhakh의 울림)", "렘 20:14-18 (예레미야의 생일 저주 병행)", "욥 38:2-21 (날·빛·바다를 물으시는 폭풍 응답 — 3장 어휘의 회귀)", "욥 1:5 (늘 두려워 번제를 드리던 욥 — 3:25와의 연결 후보)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-11</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>욥기 3장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 욥기 3장입니다. 스물여섯 절이지요. 1~2장의 산문 액자가 끝나고 시가 시작되는 첫 장입니다. 2장 13절에서 세 친구가 칠 일 밤낮을 아무 말 없이 욥과 함께 땅에 앉아 있었지요. 그 침묵 다음에 욥이 입을 엽니다. 본문을 낭독하고 긴 침묵을 두겠습니다.</p>
+<p>(본문 낭독 3:1~26, 약 3분)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대 전환이 먼저 보여요. 1~2장은 우스 땅과 천상 회의를 오가는 산문 무대였는데, 3장은 바깥 풍경이 거의 사라져요. 물리적 무대는 잿더미 위(2:8), 세 친구가 둘러앉은 침묵의 끝이지만, 시가 시작되면 무대가 시간 그 자체로 바뀝니다 — "내가 난 그 날(yom)"과 "사내아이를 배었다 하던 그 밤(lailah)"(3:3). 존재하지 않게 되기를 바라는 과거의 한 날이 무대예요.</p>
+<p><strong>P05 김미영</strong>: 소품이 빛과 어둠의 도구들이에요. 어둠(choshek), 사망의 그늘(tsalmavet, 3:5), 구름, 흑암, 낮을 덮는 것들(3:5-6), 새벽 별들(3:9), 그리고 "아침의 눈꺼풀"(3:9) — 새벽 빛을 눈꺼풀로 부르는 표현이 감각적이에요. 후반부엔 무덤의 가구들이 나와요 — 왕들이 자기를 위해 지은 폐허(3:14), 금을 가지고 은으로 집을 채운 고관들(3:15), 갇힌 자들이 듣지 않게 된 감독자의 호통(3:18). 그리고 24절 — 음식보다 먼저 오는 탄식, 물처럼 쏟아지는 신음. 식탁 소품이 통째로 탄식으로 바뀌어 있어요.</p>
+<p><strong>P01 한나래</strong>: 소재가 이상하게 비켜나 있어요. 사탄이 두 번이나 예고했잖아요 — "주를 향하여 욕하지 않겠나이까"(1:11, 2:5). 그런데 욥이 입을 열어 저주한(qalal) 대상은 하나님이 아니라 자기 생일이에요(3:1). 저주가 터졌는데 표적이 다른 곳이에요. 그게 이 장의 첫 소재 같아요.</p>
+<p><strong>P07 오지혜</strong>: 반복구의 무게를요. "어찌하여(lammah)"가 11절, 12절, 20절에 쌓여요. 답을 요구하는 심문이라기보다 신음에 가까운 물음이에요. 그리고 "거기서는(sham)"이 17절과 19절에 반복돼요 — 무덤을 가리키며 '거기서는 악한 자가 소요를 그치고, 거기서는 작은 자와 큰 자가 함께 있다'고요. 여기가 아닌 '거기'를 자꾸 가리켜요.</p>
+<p><strong>P11 나경아</strong>: 어휘를요. 1절 <em>qalal</em>(קלל) — 저주하다·가볍게 여기다. 1:11과 2:5에서 사탄이 쓴 동사는 완곡어법의 <em>barak</em>(본래 '축복하다')인데, 3:1의 동사는 직접적인 qalal이에요. 욥이 실제로 저주한 대상이 하나님이 아니라 자기 날이라는 것이 동사 선택에서도 드러나요. 3절 <em>yom</em>(יוֹם) — 날. 4절 <em>choshek</em>(חֹשֶׁךְ) — 어둠. 11절 <em>lammah</em>(לָמָּה) — 어찌하여. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 시간 자체가 무대가 된 것, 빛을 지우는 소품들과 무덤의 가구들, 저주의 표적이 하나님이 아니라 자기 날이라는 것, lammah와 sham의 반복. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기가 느껴지셨는지요.</p>
+<p><strong>P01 한나래</strong>: 칠 일 동안 눌려 있던 것이 터지는 공기예요. 그런데 터져 나온 말이 욕설이 아니라 정교한 시예요. 행이 가지런하고 병행법이 살아 있어요. 무너진 사람의 말이 형식을 갖추고 있다는 것이 오히려 더 아프게 들렸어요. 그리고 1~2장의 "주신 이도 여호와시요"(1:21) 하던 목소리와 같은 사람인가 싶을 만큼 어조가 달라요.</p>
+<p><strong>P07 오지혜</strong>: 어둠의 어휘가 겹겹이 쌓이는 게 느껴져요. 어둠, 사망의 그늘, 구름, 흑암, 캄캄한 밤 — 4절부터 9절까지 빛을 지우는 단어가 계속 포개져요. 그런데 13~19절로 가면 공기가 잠깐 바뀌어요. 무덤 묘사인데 무섭지 않고 고요해요. "내가 잤을 것이니 그랬더라면 평안히 쉬었을 것을"(3:13) — 죽음이 안식처럼 그려져요. 그 대비가 마음에 남았어요.</p>
+<p><strong>P04 최현국</strong>: 장르가 바뀌는 감각이요. 2장까지는 내레이터가 끌고 가는 산문이었는데, 3장부터 행이 짧아지고 리듬이 생겨요. 카메라가 사건 바깥에서 욥의 내면으로 들어와요. 욥기 전체에서 처음으로 욥의 속이 길게 열리는 장면이에요.</p>
+<p><strong>P02 이진우</strong>: 구조의 직감으로는 세 단락이에요. 저주(1~10절), 첫 물음(11~19절), 둘째 물음(20~26절). 그리고 저주 단락 안에서도 날(3~5절)과 밤(6~10절)이 나뉘어 따로 저주를 받아요. 무질서한 폭발이 아니라 설계된 탄식이에요.</p>
+<p><strong>P05 김미영</strong>: 24절의 감각이 생생해요. "나는 음식 앞에서도 탄식이 나며 내가 앓는 소리는 물이 쏟아지는 것 같구나." 밥상 앞에서 우는 사람의 장면이에요. 탄식이 추상이 아니라 식사·신음·물소리 같은 일상 감각으로 그려져요.</p>
+<p><strong>P11 나경아</strong>: 분위기로 하나 더요. 3:4의 "그 날은 어둠이 되었더라면"이 히브리어로 <em>yehi choshek</em>(יְהִי חֹשֶׁךְ)인데, 창세기 1:3 "빛이 있으라" <em>yehi or</em>(יְהִי אוֹר)와 같은 형태의 명령형이에요. 창조의 첫 발화를 뒤집은 꼴이라는 점만 배경으로 두고요.</p>
+<p><strong>성령일 선교사</strong>: 터짐과 형식의 공존, 어둠 어휘의 겹침과 무덤의 고요, 산문에서 시로의 전환, 설계된 탄식, yehi choshek의 형태. 그대로 받습니다.</p>
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>성령일 선교사</strong>: 시작과 끝을 함께 보겠습니다.</p>
+<p><strong>P02 이진우</strong>: 시작 3:1 — "그 후에 욥이 입을 열어 자기의 생일을 저주하니라." 산문의 마지막 도입이고, 3절부터 시가 흐르죠. 끝 3:26 — "나에게는 평온도 없고 안일도 없고 휴식도 없고 불안만이 있구나." 시작은 과거의 한 날을 지우려 하고, 끝은 현재의 불안(rogez)에 도착해요. 과거를 아무리 저주해도 현재가 바뀌지 않은 채로 장이 닫혀요.</p>
+<p><strong>P01 한나래</strong>: 더 크게 보면 침묵에서 시작해 불안으로 끝나요. 2:13의 칠 일 침묵이 이 장의 진짜 시작점이고, 26절의 rogez가 끝이에요. 입을 열었는데 평안이 오지 않았어요. 말이 터졌는데 짐은 그대로예요.</p>
+<p><strong>P04 최현국</strong>: 1절 "입을 열어"와 2절 "욥이 입을 열어 이르되"가 이중으로 문을 여는 장치 같아요. 닫혀 있던 입이 열리는 데 두 절이 쓰여요. 그리고 26절이 끝나도 막이 내리지 않아요 — 4:1에서 엘리바스가 곧바로 받아요. 이 장의 끝은 종결이 아니라 다음 발화의 문턱이에요.</p>
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>성령일 선교사</strong>: 등장하는 인물과 사상을 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 발화자는 욥 한 명이에요. 세 친구는 무대에 있지만 끝까지 침묵해요. 그런데 하나님이 등장하시는 방식이 눈에 띄어요 — "위에서 하나님이 그 날을 찾지 마시고"(3:4), "고난당하는 자에게 빛을 주심은 어찌 됨인가"(3:20), "하나님에게 둘러싸여 길이 아득한 사람"(3:23). 전부 3인칭이에요. 욥은 아직 하나님께 말하지 않고, 하나님에 관해 말해요. 부르짖음이 아직 기도가 되지 않은 상태예요.</p>
+<p><strong>P02 이진우</strong>: 사상으로는 13~19절의 무덤 평등이 또렷해요. 왕들과 모사들(3:14), 금 가진 고관들(3:15), 낙태되어 땅에 묻힌 아이(3:16), 악한 자와 피곤한 자(3:17), 갇힌 자들(3:18), 작은 자와 큰 자, 종과 상전(3:19) — 지상의 위계가 무덤에서 전부 평평해져요. 종이 상전에게서 놓이는 곳으로 무덤이 그려져요.</p>
+<p><strong>P07 오지혜</strong>: 20절이 사상의 축 같아요. "어찌하여 고난당하는 자에게 빛을 주셨으며 마음이 아픈 자에게 생명을 주셨는고." 빛과 생명이 — 보통은 선물의 언어인데 — 여기서는 짐의 언어로 뒤집혀 있어요. 죽기를 바라도 오지 않는 죽음을 감추인 보배 찾듯 구한다(3:21)는 데까지 가요. 가치의 축이 통째로 뒤집힌 상태예요.</p>
+<p><strong>P05 김미영</strong>: 사물 등장인물로 리워야단(leviathan, 3:8)이요. "날을 저주하는 자들 곧 리워야단을 깨우기에 익숙한 자들이 그 밤을 저주하였더라면." 욥이 자기 저주만으로 모자라 저주의 전문가들까지 부르는 장면이에요. 바다 괴물을 깨울 만한 이들이 동원되기를 바랄 만큼 그 밤이 지워지길 원해요.</p>
+<p><strong>P11 나경아</strong>: 어휘 둘만요. 23절의 '사람'이 <em>geber</em>(גֶּבֶר)인데, 일반적인 adam이 아니라 장정·힘 있는 사내라는 어감의 단어예요. 길이 아득해진 이가 연약자가 아니라 geber라는 대조가 본문에 있어요. 그리고 같은 절의 "둘러싸다"가 <em>sakhakh</em>(שׂכך/סכך) 계열인데, 1:10에서 사탄이 "주께서 그와 그의 집을 울타리로 두르셨다"고 할 때와 울리는 어휘예요. 거기서는 보호의 둘레였는데 여기서는 길을 막는 둘레로 들려요. 배경 자료로만 두고, 의도 여부는 미해결로요.</p>
+<p><strong>성령일 선교사</strong>: 3인칭의 하나님, 무덤의 평등, 빛과 생명의 역전, 리워야단의 소환, geber와 sakhakh의 울림. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>성령일 선교사</strong>: 장면을 컷으로 나눠 보시지요.</p>
+<p><strong>P04 최현국</strong>: 네 컷으로 보입니다.</p>
+<ul>
+<li><strong>컷 1 (1~10절)</strong>: 날과 밤을 향한 저주 — "내가 난 날이 멸망하였더라면". 날(3~5절)에는 어둠을, 밤(6~10절)에는 캄캄함과 불임과 새벽 별의 꺼짐을 명한다. 리워야단을 깨우는 자들까지 호출.</li>
+<li><strong>컷 2 (11~19절)</strong>: 첫 lammah — "어찌하여 내가 태에서 죽어 나오지 아니하였던가"(11절). 이어지는 무덤 안식 파노라마 — 왕·모사·고관·낙태된 아이·갇힌 자·종이 나란히 쉬는 곳.</li>
+<li><strong>컷 3 (20~23절)</strong>: 둘째 lammah — "어찌하여 고난당하는 자에게 빛을 주셨는가". 죽음을 보배처럼 찾는 이들, 그리고 길이 아득하고 하나님에게 둘러싸인 geber.</li>
+<li><strong>컷 4 (24~26절)</strong>: 현재의 신음 — 음식보다 앞서는 탄식, 물처럼 쏟아지는 앓는 소리, "내가 두려워하는 그것이 내게 임하고"(25절), 평온·안일·휴식 없음, rogez(26절).</li>
+</ul>
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>성령일 선교사</strong>: 의문이나 발견을 나눠 주세요.</p>
+<p><strong>P02 이진우</strong>: 문학 구조 발견이에요. 3장은 창조 기사를 거꾸로 트는 짜임을 보여요. 창세기 1장이 "빛이 있으라"로 시작해 날들을 세워 가는데, 욥기 3장은 "그 날은 어둠이 되었더라면"(yehi choshek)으로 한 날을 허물어요. 빛을 부르는 대신 어둠을 부르고, 별을 켜는 대신 새벽 별이 꺼지기를(3:9) 바라요. 창조의 어휘 목록이 반대 방향으로 재생되는 반(反)창조 시라는 관찰이에요.</p>
+<p><strong>P11 나경아</strong>: 원어 카드를요. 1절 <em>qalal</em>(קלל) — 저주하다(사탄의 barak 완곡어법과 다른 직접 동사). 3절 <em>yom</em>(יוֹם) — 날 / <em>lailah</em>(לַיְלָה) — 밤. 4절 <em>choshek</em>(חֹשֶׁךְ) — 어둠. 5절 <em>tsalmavet</em>(צַלְמָוֶת) — 사망의 그늘. 8절 <em>leviathan</em>(לִוְיָתָן) — 리워야단(LXX는 to mega kētos로 옮김). 11·12·20절 <em>lammah</em>(לָמָּה) — 어찌하여. 13절 <em>nuach</em>(נוּחַ) — 쉬다 / <em>shaqat</em>(שָׁקַט) — 평온하다. 23절 <em>geber</em>(גֶּבֶר) — 장정 / <em>sakhakh</em>(שׂכך) — 둘러싸다·덮다(1:10 울타리 어휘와 울림). 26절 <em>rogez</em>(רֹגֶז) — 불안·소요·진동. 배경만요.</p>
+<p><strong>P07 오지혜</strong>: 발견이에요. 무덤 단락(13~19절)이 쉼의 어휘로 가득해요 — 잤을 것이고(shakab), 평안히 쉬었을 것이고(nuach·shaqat), 거기서는 곤비한 자가 쉼을 얻어요. 죽음의 영역이 공포가 아니라 안식의 언어로 칠해져 있어요. 그만큼 욥의 현재가 무겁다는 뜻으로 들렸고, 그 무게가 26절의 rogez에서 확인돼요 — 쉼의 어휘 세 개(평온·안일·휴식)가 전부 부정되고 불안만 남아요.</p>
+<p><strong>P05 김미영</strong>: 의문이에요. 3:8 "날을 저주하는 자들, 리워야단을 깨우기에 익숙한 자들"이 누구인지요. 고대 근동의 직업 주술가를 가리키는지, 시적 과장인지 본문만으로는 정할 수 없어요. 미해결로 두겠어요.</p>
+<p><strong>P04 최현국</strong>: ANE 배경이에요. 우가릿 신화의 Lotan(ltn)이 머리 여럿 달린 바다 괴물로 나오는데 leviathan 어휘의 전승 배경으로 거론돼요. 그리고 까닭 모를 고난을 탄식하는 장르 자체가 고대 근동에 있어요 — 메소포타미아의 Ludlul bēl nēmeqi, 수메르의 '사람과 그의 신'. 욥기 3장이 그 장르 안에서도 생일 저주라는 극단까지 간다는 점이 특징이고요. 배경으로만요.</p>
+<p><strong>P01 한나래</strong>: 발견이요. 25절 "내가 두려워하는 그것이 내게 임하고 내가 무서워하는 그것이 내 몸에 미쳤구나" — 1:5의 욥이 떠올라요. 자녀들의 잔치가 끝날 때마다 "혹시 내 아들들이 마음으로 하나님을 욕되게 하였을까" 하여 번제를 드리던 사람이요. 평온하던 시절에도 이미 두려움이 있었다는 고백처럼 들려요. 연결 자체는 본문이 명시하지 않으니 추정으로만 두고요.</p>
+<p><strong>성령일 선교사</strong>: 반창조의 짜임, 원어 카드, 무덤 단락의 쉼 어휘와 26절의 전면 부정, 리워야단 전문가의 정체는 미해결, ANE 탄식 장르, 1:5와 3:25의 연결 후보. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P04 최현국</strong>: 화면이 잿더미에서 시작합니다 — 칠 일째, 아무도 말하지 않는 정지 화면. 욥의 입이 열립니다. 화면이 과거로 거슬러 올라가요 — 한 날이 달력에서 뜯겨 나가기를 바라는 상상. 그 날 위로 어둠이 내리고, 구름이 덮고, 사망의 그늘이 삼킵니다. 그 밤의 새벽 별들이 하나씩 꺼지고, 아침의 눈꺼풀은 끝내 열리지 않아요. 어디선가 저주의 전문가들이 리워야단을 깨우려 주문을 욉니다. 장면 전환 — 고요한 지하. 왕들과 모사들, 은금을 쌓던 고관들, 사슬 풀린 갇힌 자들, 상전에게서 놓인 종이 나란히 누워 쉽니다. 호통 소리가 들리지 않는 곳. 다시 지상 — 길이 보이지 않는 한 geber가 서 있고, 사방이 둘러져 있습니다. 마지막 프레임 — 밥상 앞에서 물 쏟아지듯 우는 사람, 그리고 자막처럼 26절이 올라옵니다: 평온도, 안일도, 휴식도 없고 — rogez. 화면은 끝나지 않은 채 멈춥니다. 누군가 숨을 고르는 소리 — 4장의 엘리바스가 입을 열기 직전입니다.</p>
+<p><strong>성령일 선교사</strong>: 침묵에서 터진 말이 과거의 날을 어둠으로 칠하고, 무덤의 고요를 지나, 둘러싸인 현재의 불안에서 멈추는 흐름입니다.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "입은 열렸는데 평안은 오지 않았다 — 침묵 다음의 첫 말"</p>
+<p><strong>P02 이진우</strong>: "빛이 있으라의 역전 — 한 날을 허무는 반창조의 시"</p>
+<p><strong>P04 최현국</strong>: "산문이 끝나고 시가 터지다 — 잿더미 위의 개막"</p>
+<p><strong>P05 김미영</strong>: "리워야단을 깨우는 자들 — 어둠을 부르는 소품들의 목록"</p>
+<p><strong>P07 오지혜</strong>: "무덤이 안식처럼 보일 때 — 세 번의 lammah"</p>
+<p><strong>P11 나경아</strong>: "<em>qalal · choshek · rogez</em> — 저주·어둠·불안"</p>
+<p>부제 제안: "칠 일의 침묵이 깨지고 산문이 시로 바뀌는 첫 장 — 하나님이 아니라 자기 날을 저주하고(qalal), 세 번의 어찌하여(lammah)가 응답 없이 쌓이며, 울타리(1:10)가 가둠(3:23)으로 되돌아와 불안(rogez)으로 닫히는 욥기 둘째 국면의 문"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 응답 없는 어찌하여가 세 번 울리는 이 장 안으로 들어가, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 욥의 lammah가 응답 없이 끝나는 이 장을 그대로 듣습니다. 빛이 짐이 되고 무덤이 쉼으로 보이는 사람의 말을, 고치려 하지 않고 듣습니다. 그가 주님을 저주하지 않았다는 것과, 아직 주님께 말을 걸지 못했다는 것 — 둘 다 여기 있습니다. 머뭅니다.</p>
+<p>*— 그 순간 떠오른 것을 각자 마음에만 둡니다.</p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>그래서 이 본문은 어디서 어디로 움직이는지요? 눈에 보이는 일 아래에서 무엇이 회복되고 있는지요? 이 본문이 품은 긴장은 무엇인지요? 이 불이 우리 안에서도 타오르고 있는지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 <strong>침묵에서 발화로, 산문에서 시로</strong> 움직이는 장이에요. 욥기 전체의 국면으로는 천상 회의·재난의 첫 국면(1~2장)이 닫히고 논쟁·항변의 둘째 국면(3~31장)이 여기서 열려요. "내가 주께 대하여 귀로 듣기만 하였사오나 이제는 눈으로 주를 뵈옵나이다"(42:5)라는 도착점까지 가는 긴 길의 첫걸음이, 찬양이 아니라 탄식이라는 사실이 이 장의 위치예요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. <em>sakhakh</em> — 1:10에서 사탄이 가리킨 보호의 울타리가 3:23에서 길을 막는 둘레로 들려요. <strong>같은 손이 두른 둘레를 욥이 지금은 벽으로 경험한다</strong>는 어휘상의 역전이에요. 그리고 3장이 어둠에 명령하는 어휘들(날·빛·바다·별)이 38장에서 하나님이 욥에게 물으시는 어휘로 되돌아와요. 해석 확정은 미해결로 두고, 어휘의 회귀만 기록해요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 표면은 생일 저주와 죽음 소원이에요. 그런데 그 아래에서 <strong>사탄의 예고가 빗나가 있어요</strong> — "주를 향하여 욕하리라" 했는데, 터져 나온 저주의 표적은 자기 날이에요. 가장 어두운 말 속에서도 어떤 선이 지켜지고 있어요. 그리고 그 선 안쪽에서, 아직 3인칭으로만 언급되는 하나님이 언젠가 2인칭으로 불리게 될 거리감이 남아 있어요.</p>
+<p><strong>P01 한나래</strong>: 긴장이요. 욥은 저주했지만(qalal) 하나님을 저주하지는 않았어요. 탄식은 터졌지만 신앙의 줄은 끊어지지 않았어요. <strong>저주와 경외 사이의 좁은 능선 위에 선 탄식</strong> — 그 아슬아슬함이 이 장의 긴장이에요. 무너진 말이 시의 형식을 입고 있다는 것도 같은 긴장의 다른 얼굴 같아요.</p>
+<p><strong>P04 최현국</strong>: 운동을 한 화면으로 보면, 어둠을 부르는 목소리가 결국 폭풍 속의 음성과 마주 서게 되는 먼 예고편이에요. 3장에서 욥이 날과 빛과 별에게 꺼지라고 명하는데, 38장에서는 하나님이 그 날과 빛과 바다와 별에 대해 욥에게 물으세요. 3장의 어휘 목록이 38장의 질문 목록과 겹쳐요. 닫히는 운동이 아니라 마주침을 향해 열리는 운동이에요.</p>
+<p><strong>P05 김미영</strong>: 이 불이 우리 안에서 타오르느냐 물으시니 — 저는 탄식이 검열되지 않는다는 사실이 불씨 같아요. 26절의 rogez로 끝나는 장이 그대로 정경 안에 있어요. 음식 앞에서 우는 사람의 말이 잘리지 않고 스물여섯 절 전부 기록되어 있어요. 거기서 멈춰 섭니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>침묵이 깨지고 산문이 시로 바뀌며 둘째 국면이 열리고, 저주의 표적이 하나님을 비켜 가며, 울타리가 가둠으로 경험되는 가운데 3장의 어휘들이 38장의 폭풍 질문으로 되돌아올 길이 열리는</strong> — 그 운동을 손에 쥐고 다음 장으로 갑니다. 들음에서 봄으로 가는 여정의 첫 마디가 탄식이라는 것을 기억하면서요.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOB-003</p>
+<p>book: 욥기</p>
+<p>chapter: 3</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>욥기 3장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>물리적 무대: 잿더미 위(2:8), 칠 일 밤낮의 침묵 끝(2:13). 시가 시작되면 무대가 "그 날(yom)·그 밤(lailah)"이라는 시간 자체로 이동.</li>
+<li>소품(빛을 지우는 것들): 어둠(choshek), 사망의 그늘(tsalmavet), 구름, 흑암, 꺼지는 새벽 별, 열리지 않는 "아침의 눈꺼풀"(3:9).</li>
+<li>소품(무덤의 가구들): 왕들의 폐허(3:14), 고관들의 은금(3:15), 갇힌 자의 풀린 사슬과 사라진 호통(3:18).</li>
+<li>소품(현재): 음식보다 앞서는 탄식, 물처럼 쏟아지는 신음(3:24).</li>
+<li>소재: 저주(qalal)의 표적이 하나님이 아니라 자기 생일이라는 비켜남(3:1 ↔ 1:11, 2:5).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>칠 일의 침묵이 터지는 공기 — 그런데 터진 말이 욕설이 아니라 병행법을 갖춘 시.</li>
+<li>4~9절 어둠 어휘의 겹침 vs 13~19절 무덤 단락의 고요한 안식 — 대비.</li>
+<li>산문에서 시로 — 욥기 안에서 처음으로 욥의 내면이 길게 열리는 전환.</li>
+<li>yehi choshek(3:4)이 창 1:3 yehi or와 같은 형태의 명령형이라는 형식 관찰.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>3:1 — "그 후에 욥이 입을 열어 자기의 생일을 저주하니라"(산문 도입, 3절부터 운문).</li>
+<li>3:26 — "나에게는 평온도 없고 안일도 없고 휴식도 없고 불안만이 있구나"(rogez).</li>
+<li>과거의 한 날을 지우려는 시작 → 바뀌지 않은 현재의 불안으로 끝. 침묵(2:13)에서 rogez(3:26)로.</li>
+<li>26절은 종결이 아니라 4:1 엘리바스 발화의 문턱.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>발화자는 욥 단독. 세 친구는 현장에 있으나 침묵 유지.</li>
+<li>하나님은 3인칭으로만 등장(3:4, 20, 23) — 욥은 하나님께 말하지 않고 하나님에 관해 말함.</li>
+<li>사상 1: 무덤의 평등(13~19절) — 왕·모사·고관·낙태된 아이·갇힌 자·종·작은 자와 큰 자가 같은 곳에서 쉼.</li>
+<li>사상 2: 빛과 생명의 역전(20~22절) — 선물의 언어가 짐의 언어로, 죽음을 보배처럼 찾음.</li>
+<li>사물: 리워야단(3:8) — 날을 저주하는 자들이 깨우는 바다 괴물. 저주 전문가의 소환 희망.</li>
+<li>23절의 '사람'은 geber(장정) — 길 잃은 이가 연약자가 아니라는 어휘상 대조.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1~10절): 날과 밤을 향한 저주 — 날에는 어둠을, 밤에는 캄캄함·불임·별의 꺼짐을. 리워야단을 깨우는 자들 호출.</li>
+<li>컷 2 (11~19절): 첫 lammah(11절) — 무덤 안식 파노라마.</li>
+<li>컷 3 (20~23절): 둘째 lammah(20절) — 죽음을 찾는 이들, 둘러싸인(sakhakh) geber.</li>
+<li>컷 4 (24~26절): 현재의 신음 — 두려움의 도착(25절), 평온·안일·휴식의 전면 부정, rogez(26절).</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>qalal</em>(קלל) — 저주하다. 3:1. 사탄의 완곡어법 barak(1:11, 2:5)과 다른 직접 동사.</li>
+<li><em>yom</em>(יוֹם) — 날. 3:3. / <em>lailah</em>(לַיְלָה) — 밤. 3:3.</li>
+<li><em>choshek</em>(חֹשֶׁךְ) — 어둠. 3:4. yehi choshek은 창 1:3 yehi or와 동형 명령형.</li>
+<li><em>tsalmavet</em>(צַלְמָוֶת) — 사망의 그늘. 3:5.</li>
+<li><em>leviathan</em>(לִוְיָתָן) — 리워야단. 3:8. LXX는 to mega kētos(큰 바다 짐승)로 번역.</li>
+<li><em>lammah</em>(לָמָּה) — 어찌하여. 3:11, 12, 20.</li>
+<li><em>nuach</em>(נוּחַ) — 쉬다. 3:13. / <em>shaqat</em>(שָׁקַט) — 평온하다. 3:13, 26.</li>
+<li><em>geber</em>(גֶּבֶר) — 장정·사내. 3:23. / <em>sakhakh</em>(שׂכך) — 둘러싸다·덮다. 3:23. 1:10 울타리 어휘와 울림.</li>
+<li><em>rogez</em>(רֹגֶז) — 불안·소요. 3:26.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>산문(1~2장) → 운문(3장~) 전환의 첫 장. 3:1~2는 산문 도입, 3절부터 병행법의 시.</li>
+<li>3단락 구성: 저주(1~10) / 첫 lammah와 무덤 파노라마(11~19) / 둘째 lammah와 현재의 신음(20~26).</li>
+<li>저주 단락 내부의 날(3~5)·밤(6~10) 분할 — 창조 기사의 낮·밤 구분과 맞물리는 반(反)창조 짜임.</li>
+<li>쉼 어휘(nuach·shaqat)가 무덤 단락을 채우고, 26절에서 평온·안일·휴식이 전부 부정되며 rogez만 남는 대조.</li>
+<li>"거기서는(sham)" 반복(17, 19절) — 여기 아닌 '거기'를 가리키는 지시의 반복.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>우가릿 신화의 Lotan(ltn) — 바다 혼돈 괴물 전승이 leviathan 어휘의 배경 — 배경.</li>
+<li>메소포타미아 Ludlul bēl nēmeqi, 수메르 '사람과 그의 신' — 까닭 모를 고난의 탄식 장르가 ANE에 존재 — 배경.</li>
+<li>3:8의 "날을 저주하는 자들"이 직업 주술가 집단인지 시적 표현인지 — 배경 후보, 미해결.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>욥 3:4 ↔ 창 1:3 (yehi choshek ↔ yehi or — 창조 발화의 역전 형태)</li>
+<li>욥 3:23 ↔ 욥 1:10 (sakhakh — 울타리에서 가둠으로)</li>
+<li>욥 3:3-10 ↔ 렘 20:14-18 (예레미야의 생일 저주 병행)</li>
+<li>욥 3장 ↔ 욥 38장 (날·빛·바다·별 어휘가 폭풍 질문으로 회귀)</li>
+<li>욥 3:25 ↔ 욥 1:5 (늘 두려워 번제를 드리던 욥 — 연결 후보, 본문 미명시)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>잿더미 위, 칠 일째의 정지 화면에서 욥의 입이 열린다. 화면이 과거의 한 날로 거슬러 오르고, 그 위로 어둠과 구름과 사망의 그늘이 내린다. 밤의 새벽 별들이 꺼지고 아침의 눈꺼풀은 열리지 않는다. 저주의 전문가들이 리워야단을 깨우려 한다. 전환 — 고요한 지하, 왕과 모사와 고관과 갇힌 자와 종이 나란히 쉰다. 다시 지상 — 길이 보이지 않는 geber, 사방의 둘레. 마지막 프레임 — 밥상 앞에서 물 쏟아지듯 우는 사람, 26절의 자막: 평온도 안일도 휴식도 없고, rogez. 화면이 멈추고 엘리바스가 숨을 고른다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"입은 열렸는데 평안은 오지 않았다 — 한 날을 허무는 반창조의 탄식"</strong></li>
+<li>초벌 부제: "칠 일의 침묵이 깨지고 산문이 시로 바뀌는 첫 장 — 저주의 표적이 하나님을 비켜 자기 날에 닿고, 세 번의 lammah가 응답 없이 쌓이며, 울타리(1:10)가 가둠(3:23)으로 되돌아와 rogez로 닫히는 둘째 국면의 문"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (12개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (산문→운문 전환 + 반창조 짜임 + ANE 탄식 장르 + sakhakh 울림)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>sakhakh(3:23)와 1:10 울타리의 울림을 저자 의도로 확정하지 않고 어휘 관찰로만 둠.</li>
+<li>3:25를 1:5와 연결하는 읽기를 추정으로 표시하고 본문 미명시를 명기함.</li>
+<li>욥의 탄식을 '믿음 부족'이나 '연단의 과정' 같은 교리 틀로 평가하지 않고 본문의 말로만 둠.</li>
+<li>무덤 단락(13~19절)을 내세 교리로 체계화하지 않고 욥의 발화로만 기록함.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOB-003</p>
+<p>book: 욥기</p>
+<p>chapter: 3</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>욥기 3장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 3:8 "날을 저주하는 자들, 리워야단을 깨우기에 익숙한 자들"은 누구인가?</h2>
+<ul><li>ANE의 직업 주술가 집단인지, 시적 과장인지 본문만으로 확정할 수 없다. 보존.</li></ul>
+
+<h2>Q2. 3:4의 yehi choshek은 창세기 1:3 yehi or를 의도적으로 뒤집은 것인가?</h2>
+<ul><li>동형 명령형이라는 형식은 관찰되나 저자의 인용 의도는 확정하기 어렵다. 보존.</li></ul>
+
+<h2>Q3. 3:23의 sakhakh(둘러싸다)는 1:10의 울타리 어휘를 받는 언어유희인가?</h2>
+<ul><li>보호의 둘레가 가둠의 둘레로 들리는 울림은 관찰되나, 동일 어근 운용의 의도성은 미해결이다. 보존.</li></ul>
+
+<h2>Q4. 3:25 "내가 두려워하는 그것"은 재난 이전부터의 두려움인가, 재난 이후의 두려움인가?</h2>
+<ul><li>1:5의 습관적 번제와 연결하면 이전부터로 읽히지만 본문이 시점을 명시하지 않는다. 보존.</li></ul>
+
+<h2>Q5. 욥은 왜 하나님을 2인칭으로 부르지 않고 3인칭으로만 말하는가?</h2>
+<ul><li>의도된 거리인지 탄식 장르의 관습인지 — 이후 장들(7:7 이하 등)의 2인칭 전환과 대조해야 할 미해결 지점. 보존.</li></ul>
+
+<h2>Q6. 무덤 안식 묘사(13~19절)는 당시의 스올 이해를 반영하는가, 욥의 수사인가?</h2>
+<ul><li>죽음 이후에 관한 교리 진술인지 절망의 언어인지 본문이 가르지 않는다. 보존.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">칠 일의 침묵이 깨지고 산문이 시로 바뀌며, 저주의 표적이 하나님을 비켜 자기 날에 닿고, 울타리가 가둠으로 되돌아오는 — 욥기 둘째 국면을 여는 반창조의 탄식.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: JOB-003</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-11</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 욥기 3장은 칠 일 밤낮의 침묵(2:13)이 깨지고 산문이 운문으로 바뀌는 첫 장으로, 욥이 사탄의 예고와 달리 하나님이 아니라 자기 '날'을 저주하며(qalal), 창조의 "빛이 있으라"를 "그 날은 어둠이 되었더라면"(yehi choshek)으로 뒤집고, 세 번의 lammah(11, 12, 20절)를 응답 없이 쌓으며, 1:10의 울타리를 3:23의 가둠(sakhakh)으로 경험한 끝에 "평온도 안일도 휴식도 없고 불안(rogez)뿐"(3:26)으로 닫히는 — 논쟁·항변 국면의 개막이다.</p>
+<p><strong>한 문단</strong>: 잿더미 위, 칠 일째의 정지 화면에서 욥의 입이 열린다. 터져 나온 말은 욕설이 아니라 병행법을 갖춘 시다 — 과거의 한 날 위로 어둠과 구름과 사망의 그늘이 내리고, 새벽 별이 꺼지고, 리워야단을 깨우는 자들이 호출된다. "어찌하여 내가 태에서 죽어 나오지 아니하였던가"(3:11). 화면이 고요한 지하로 바뀌어 왕과 고관과 갇힌 자와 종이 나란히 쉬는 곳을 비춘다. "어찌하여 고난당하는 자에게 빛을 주셨는가"(3:20). 길이 보이지 않는 geber가 사방의 둘레 안에 서 있다. 마지막 프레임 — 밥상 앞에서 물 쏟아지듯 우는 사람, 그리고 26절: 평온도, 안일도, 휴식도 없고 — rogez. 막은 내리지 않고, 엘리바스가 숨을 고른다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>잿더미와 침묵의 끝 → 무대가 '그 날·그 밤'이라는 시간으로 이동. 빛을 지우는 소품들과 무덤의 가구들. 저주의 표적이 비켜남.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>터짐과 형식의 공존 — 무너진 말이 시의 꼴을 갖춤. 어둠 어휘의 겹침 vs 무덤 단락의 고요.</td></tr>
+<tr><td>3 시작과 끝</td><td>"입을 열어 생일을 저주"(1절) → "불안만이 있구나"(26절). 침묵에서 rogez로. 끝이 4장의 문턱.</td></tr>
+<tr><td>4 등장인물·사상</td><td>욥 단독 발화, 하나님은 3인칭. 무덤의 평등(13~19). 빛·생명의 역전(20~22). 리워야단 소환. geber와 sakhakh.</td></tr>
+<tr><td>5 장면 컷</td><td>저주(1~10)/첫 lammah·무덤 파노라마(11~19)/둘째 lammah·둘러싸인 geber(20~23)/현재의 신음(24~26) 4컷.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>반창조 짜임(yehi choshek↔yehi or). 원어 12개. 쉼 어휘의 전면 부정. 리워야단 전문가 정체 미해결. ANE 탄식 장르.</td></tr>
+<tr><td>7 동영상</td><td>잿더미→과거의 날 지우기→지하의 안식→둘러싸인 현재→rogez에서 정지.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"입은 열렸는데 평안은 오지 않았다 — 한 날을 허무는 반창조의 탄식"</td></tr>
+<tr><td>9 기도·내면</td><td>응답 없는 lammah를 고치지 않고 듣는다. 저주하지 않았다는 것과 아직 말 걸지 못한다는 것 사이에 머문다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 비켜난 저주</strong>: 사탄은 두 번 "주를 향하여 욕하리라"(1:11, 2:5) 예고했으나, 욥의 qalal은 자기 생일에 닿는다(3:1). 가장 어두운 발화 속에서 표적이 하나님을 비켜 간다는 사실이 이 장의 뼈대다. 탄식의 극단과 경외의 마지노선이 한 본문 안에 공존한다.</p>
+<p>2. <strong>결 2 — 반창조의 문법</strong>: "그 날은 어둠이 되었더라면"(yehi choshek)은 창조의 첫 발화(yehi or)와 같은 형태다. 날과 밤을 갈라 저주하는 구성(3~5절/6~10절)도 창조 기사의 낮·밤 구분을 거꾸로 탄다. 욥은 세계를 허무는 것이 아니라 자기 존재가 들어선 그 하루를 창조 이전으로 되돌리려 한다.</p>
+<p>3. <strong>결 3 — 울타리에서 가둠으로</strong>: 1:10에서 사탄이 가리킨 보호의 둘레가 3:23에서 길을 막는 둘레(sakhakh)로 들린다. 같은 손이 두른 둘레를 욥은 이제 벽으로 경험한다. 이 어휘의 역전이, 같은 하나님 아래에서 신뢰와 탄식이 갈라지는 욥기 둘째 국면의 입구를 표시한다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>창 1:3 — yehi or ↔ yehi choshek(3:4). 창조 발화의 역전 형태.</li>
+<li>욥 1:10 — 울타리 어휘가 3:23의 가둠으로 되돌아옴.</li>
+<li>렘 20:14-18 — 예레미야의 생일 저주. 정경 안의 가장 가까운 병행.</li>
+<li>욥 38장 — 3장이 어둠에게 명령한 날·빛·바다·별의 목록이 폭풍 속 질문 목록으로 회귀.</li>
+<li>욥 1:5 — 늘 두려워 번제를 드리던 욥과 3:25 "내가 두려워하는 그것" — 연결 후보(본문 미명시).</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 칠 일의 침묵 끝에서 듣는다 — 터져 나온 첫 마디가 저주라는 것에 멈칫한다.</li>
+<li><strong>멈춤 1</strong>: 3:1에서 멈춘다 — 저주의 표적이 하나님이 아니다. 안도인지 더 깊은 아픔인지 가리기 어렵다.</li>
+<li><strong>멈춤 2</strong>: 13~19절에서 멈춘다 — 무덤이 안식처럼 보이는 사람의 현재는 얼마나 무거운가.</li>
+<li><strong>멈춤 3</strong>: 3:23에서 멈춘다 — 두르심이 가둠으로 느껴지는 날이 내게도 있었다.</li>
+<li><strong>끝</strong>: 26절의 rogez에서 멈춘다 — 답이 오기 전의 불안을 본문이 잘라내지 않는다. 나도 잘라내지 않기로 한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 산문→운문 전환의 첫 장 기록</li>
+<li>[x] qalal의 표적 비켜남(1:11·2:5 ↔ 3:1) 관찰</li>
+<li>[x] 반창조 짜임(yehi choshek ↔ yehi or)</li>
+<li>[x] 세 번의 lammah와 무덤 안식 파노라마</li>
+<li>[x] sakhakh 역전(1:10 ↔ 3:23)과 rogez 종결</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>욥기의 spine은 '고난의 까닭을 다 풀지 않으시되, 창조의 주권으로 친히 임재하사 의인을 들음에서 봄으로 데려가신다'이며, destination은 "내가 주께 대하여 귀로 듣기만 하였사오나 이제는 눈으로 주를 뵈옵나이다"(42:5)다. 권의 국면은 다섯이다 — 천상 회의·재난(1~2장), 인과응보 논쟁·욥의 항변(3~31장), 엘리후(32~37장), 폭풍 속 여호와의 응답(38~41장), 봄·회개·회복(42장). 3장은 둘째 국면의 개막이다. 첫 국면이 "주신 이도 여호와시요 거두신 이도 여호와시오니"(1:21)라는 들음의 신앙으로 닫혔다면, 3장은 그 들음의 언어가 더 버티지 못하고 갈라지는 출발점이다. 구속사의 호에서 보면, 42:5의 '봄'까지 가는 길이 찬양이나 결심이 아니라 생일 저주라는 가장 낮은 골짜기에서 출발한다는 것 — 그 출발의 위치가 이 장의 좌표다. 침묵 속의 신실하심이라는 권의 심장은 여기서 아직 보이지 않으며, 보이지 않는 채로 욥의 탄식 스물여섯 절이 정경 안에 온전히 보존되어 있다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>칠 일의 침묵에서 발화로 / 산문에서 시로 / "주신 이도 여호와시요"(1:21)의 들음에서, 응답 없는 lammah의 골짜기로 — 그리고 그 골짜기를 지나야 도달할 42:5의 봄을 향해.</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 3장은 아래로 내려가는 운동이다. 그러나 닫히는 하강이 아니다 — 3장이 어둠에게 명령한 날·빛·바다·별의 어휘들은 38장에서 하나님이 욥에게 물으시는 어휘로 되돌아온다. 욥이 지우려 한 창조의 목록이 욥을 만나러 오시는 하나님의 질문 목록이 된다. 탄식의 언어가 버려지지 않고 응답의 자재로 회수되는 먼 운동이 여기서 시작된다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 생일 저주와 죽음 소원이다. 그러나 수면 아래에서 두 가지가 움직인다. 첫째, 사탄의 예고가 빗나가 있다 — "주를 향하여 욕하리라" 했으나 욥의 저주는 자기 날에 닿았다. 천상 회의에서 걸린 내기의 축이, 가장 어두운 발화의 순간에도 무너지지 않은 채 지나간다. 둘째, 하나님은 침묵하시되 끊지 않으신다. 스물여섯 절의 탄식이 검열 없이 이어지고, 그 전부가 정경 안에 보존된다. 까닭을 풀어 주지 않으시는 침묵과, 탄식을 멈추게 하지 않으시는 허용 — 그 둘이 겹쳐 있는 폭이 이 장의 수면 아래다. 욥이 하나님을 3인칭으로만 말하는 거리, 그 거리마저 끊어 내지 않으시고 38장의 폭풍까지 데려가시는 — 끝내 친히 응답하시며 갑절로 회복하시는 신실하심이, 아직 아무 표지 없이, 탄식하는 사람 곁의 침묵으로 있다.</p>
+
+<h3>J · 실존적 부름 — 한 마디의 불씨</h3>
+<blockquote>
+<p>탄식해도 되는가 — 3장은 그 물음에 스물여섯 절의 지면으로 답한다. 무덤이 안식처럼 보이는 날의 말까지 정경은 잘라내지 않았다. rogez로 끝나는 장이 성경 안에 있다.</p>
+</blockquote>
+<p>이것은 가르침이 아니라 초대다. 본문은 독자에게 욥처럼 저주하라고 권하지 않고, 욥의 탄식을 듣던 침묵의 곁으로 초대한다. 답이 오기 전의 불안을 서둘러 봉합하지 않는 것, 어찌하여가 응답 없이 끝나는 날을 그대로 살아내는 것 — 그 지점에 함께 서 보라는 부름이다. 들음의 신앙이 갈라지는 골짜기가 봄의 신앙으로 가는 길 위에 있다는 것을, 3장은 아직 말하지 않는다. 말하지 않은 채로, 다만 탄식하는 사람의 말이 끝까지 들리게 둔다.</p>
+
+<p><strong>이 장에서 가져갈 한 단어</strong>: <em>lammah(어찌하여)</em>.</p>
+<p><strong>다음 장으로 미는 운동</strong>: 욥의 탄식이 응답 없이 허공에 머무는 그 정적을 견디지 못하고, 칠 일을 침묵하던 엘리바스가 입을 연다(4:1) — 인과응보의 논리가 위로의 옷을 입고 들어서는 논쟁의 막이 오른다.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/JOB/2/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">욥기 2장</div><div class="nav-preview">천상 회의 2차와 칠 일의 침묵 — 이 장의 탄식이 터지기 직전의 결을 다시 봅니다.</div></a>
+      <a href="/magazine/JOB/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">욥기 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/JOB/4/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">욥기 4장</div><div class="nav-preview">엘리바스의 1차 변론 개시 — 인과응보 논쟁이 본격적으로 열립니다.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:job3', JSON.stringify({
+      href: '/magazine/JOB/3/',
+      title: '욥기 3장',
+      excerpt: '칠 일의 침묵이 깨지고 산문이 시로 바뀌는 첫 장 — 욥은 하나님이 아니라 자기 날을 저주하고(qalal), 세 번의 어찌하여(lammah)가 응답 없이 쌓이며, 울타리가 가둠(sakhakh)으로 되돌아와 불안(rogez)으로 닫히는 욥기 둘째 국면의 개막.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build JOB-003 · 2026-06-11</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>

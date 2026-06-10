@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>욥기 6장 — Observatory | 네다바웨이</title>
+<meta name="description" content="욥기 6장을 9단계로 같이 관찰합니다. 욥의 첫 대답 전반부 — 괴로움을 저울에 달면 바다의 모래보다 무겁다는 계량의 언어, 전능자의 화살이 내 안에 있다는 고백, 마른 와디(nachal)처럼 변한 친구들을 향한 실망, '내게 가르쳐서 허물을 깨닫게 하라 그리하면 잠잠하리라'는 정당한 책망의 요청까지.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/JOB/6/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/JOB/">시가서</a> · 욥기 · 6장</div>
+      <h1>욥기 6장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">JOB-006 · 시가서 · 히브리어</div>
+      <p class="essence">욥의 첫 대답 전반부 — 괴로움(kaas)을 저울에 달면 바다의 모래보다 무겁다는 계량의 언어로 입을 열고, 전능자의 화살이 내 안에 있다고 고백하며, 마른 와디(nachal)처럼 변한 친구들에게 "낙심한 자는 친구로부터 동정(chesed)을 받느니라"를 호소하고, "내게 가르쳐서(yarah) 허물을 깨닫게 하라 그리하면 잠잠하리라"로 정당한 책망의 조건을 내놓은 뒤 "내 미각이 어찌 속임을 분간하지 못하랴"(30절)로 닫히는 — 친구를 향한 실망과 하나님을 향한 직고가 갈라지기 시작하는 항변.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOB-006</p>
+<p>book: 욥기</p>
+<p>book_en: Job</p>
+<p>chapter: 6</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 시(항변)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 30</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>hebrew_terms: [kaas, chets, chamah, Shaddai, anaq_pere, tapel, chesed, nachal, bagad, yarah, nimretsu, yatom, taam]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["LXX 욥기는 전체적으로 MT보다 약 1/6 짧으며 6장에서도 일부 행이 축약됨 — 배경", "6:6 '닭의 알 흰자위'(rir challamut)의 뜻이 고대부터 불확실해 LXX는 '빈 말(rhema kena)'로 풀어 옮김 — 배경"]</p>
+<p>ane_refs: ["근동의 와디(wadi, 계절천) — 겨울 우기에는 급류, 여름 건기에는 바닥까지 마르는 사막 개울. 6:15~17의 직유 배경", "데마(Tema) — 북서 아라비아의 오아시스 교역 도시, 스바(Sheba) — 남아라비아의 향료 교역로 거점. 대상(隊商)들이 와디의 물을 기대하고 경로를 잡던 관행 — 배경", "저울(6:2) — 근동 상거래·재판 문맥에서 무게로 공정을 가리는 도구 — 배경"]</p>
+<p>rabbinic_refs: ["후대 랍비 전통은 6:14의 chesed를 친구 사이의 의무 규범으로 읽는 논의를 남김 — 배경"]</p>
+<p>literary_devices: [weighing_metaphor, rhetorical_question_chain, wadi_extended_simile, food_taste_inclusio, double_addressee_split, legal_petition_tone]</p>
+<p>repeated_words: ["어찌·누가(수사 의문 연쇄)", "괴로움", "친구·형제", "기력", "구원하라(22~23절 반복)"]</p>
+<p>cross_refs: ["렘 15:18 (속이는 시내 akzab — 마른 와디 심상의 후대 메아리)", "시 38:2 (주의 화살이 나를 누르나이다)", "애 3:12-13 (화살통의 화살들이 내 허리에 들어왔도다)", "욥 2:11-13 (친구들의 첫 7일 침묵)", "시 55:12-14 (친구의 배신이 더 아프다)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-11</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>욥기 6장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 욥기 6장입니다. 서른 절이지요. 엘리바스의 첫 변론(4~5장)이 끝나고, 잿더미 위의 욥이 처음으로 입을 엽니다. 6장과 7장이 한 묶음의 첫 대답인데, 오늘은 그 전반부입니다. 3장의 탄식이 허공을 향했다면, 이제는 듣는 사람이 생겼습니다. 본문을 낭독하고 긴 침묵을 두겠습니다.</p>
+<p>(본문 낭독 6:1~30, 약 3분)</p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대는 2장 끝의 잿더미 그대로인데, 욥의 말 안에서 가상의 공간이 둘 열려요. 하나는 2절의 법정 혹은 시장 — 저울이 놓인 공간이에요. "나의 괴로움을 달아 보며 나의 파멸을 저울에 함께 올려놓을 수 있다면." 자기 고통을 계량대에 올려 달라고 요청하는 무대예요. 다른 하나는 15절부터의 사막 — 와디(마른 개울 바닥)와 대상(隊商)의 길이에요. 잿더미에 앉은 사람이 말로 법정과 광야를 차례로 세워요.</p>
+<p><strong>P05 김미영</strong>: 소품이 유난히 물질적이에요. 저울(2절), 바다의 모래(3절), 화살과 독(4절), 풀과 꼴(5절), 소금 없는 싱거운 음식과 알 흰자위(6절), 돌과 놋쇠(12절), 얼음과 눈 녹은 물이 흐르다 말라 버리는 개울(15~17절), 그리고 27절의 제비. 고통을 말하는데 추상어가 아니라 부엌과 광야와 장터의 물건들로 말해요. 특히 6절 — 맛없는 음식 앞에서 입이 거부하는 감각이 생생해요.</p>
+<p><strong>P01 한나래</strong>: 소재로 보면 이 장은 '무게'로 시작해요. 달아 보라, 저울에 올려 보라, 바다의 모래보다 무겁다 — 자기 말이 경솔하게(3절) 들리는 이유를 무게로 설명해요. 말이 거친 게 아니라 실린 것이 무겁다는 거예요. 그 첫 소재가 장 전체의 변호처럼 들렸어요.</p>
+<p><strong>P07 오지혜</strong>: 저는 14절이 마음에 남았어요. "낙심한 자가 비록 전능자를 경외하기를 저버릴지라도 그의 친구로부터 동정을 받느니라." 친구라는 소재가 여기서 처음 정면으로 등장해요. 그리고 곧바로 형제들 = 개울(15절)이라는 직유로 이어져요. 기대한 것은 동정(chesed)인데 도착한 것은 마른 개울 바닥이에요.</p>
+<p><strong>P11 나경아</strong>: 어휘를요. 2절 <em>kaas</em>(כַּעַשׂ) — 괴로움·분통. 4절 <em>chets</em>(חֵץ) — 화살. "전능자(Shaddai)의 화살이 내 안에 있으매"의 그 화살이에요. 같은 절의 <em>chamah</em>(חֵמָה) — 독, 본래 열기·격노의 어감이 있는 단어예요. 14절 <em>chesed</em>(חֶסֶד) — 동정·신실한 사랑. 15절 <em>nachal</em>(נַחַל) — 개울, 근동의 계절천 와디. 같은 절의 동사 <em>bagad</em>(בָּגַד) — 속이다·배신하다, "내 형제들은 개울과 같이 변덕스럽고"의 동사예요. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 저울의 법정과 와디의 광야라는 두 가상 무대, 부엌·장터·사막의 물질적 소품들, 무게라는 첫 소재, chesed와 nachal의 대비. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기였는지요.</p>
+<p><strong>P01 한나래</strong>: 4~5장의 엘리바스가 정돈된 강의실 공기였다면, 6장은 상처에서 바로 나오는 숨소리예요. 그런데 마구 쏟는 말이 아니에요. 저울에 달아 보라는 첫마디부터 자기 말의 무게를 검증해 달라는 요청이에요. 아픈데 논리적이고, 논리적인데 아파요. 그 이중의 공기가 계속 가요.</p>
+<p><strong>P07 오지혜</strong>: 저는 8~10절에서 공기가 서늘해졌어요. "나의 간구를 누가 들어줄 것이며 나의 소원을 하나님이 허락하시랴 이는 곧 나를 멸하시기를 기뻐하사 하나님이 그의 손을 들어 나를 끊어 버리실 것이라." 죽음을 소원으로 말하는데, 바로 다음 10절에서 "그러할지라도 내가 오히려 위로를 받고 — 내가 거룩하신 이의 말씀을 거역하지 아니하였음이라"가 와요. 끊어 달라는 사람이 거역하지 않았다는 것을 위로로 붙들어요. 그 공존이 이 장에서 가장 떨리는 부분이었어요.</p>
+<p><strong>P04 최현국</strong>: 분위기의 전환점이 14절이에요. 2~13절은 하나님 쪽을 보고 말하고, 14절부터는 몸을 돌려 친구들을 봐요. 무대 위 배우가 시선의 방향을 바꾸는 게 보여요. 전반은 신음이고 후반은 항의예요.</p>
+<p><strong>P02 이진우</strong>: 수사 의문문의 밀도가 높아요. 들나귀가 풀이 있으면 울겠느냐(5절), 싱거운 것이 소금 없이 먹히겠느냐(6절), 내가 무슨 기력이 있기에 기다리겠느냐(11절), 나의 살이 어찌 놋쇠겠느냐(12절), 내가 언제 무엇을 달라 하더냐(22절), 내 미각이 어찌 속임을 분간하지 못하랴(30절). 질문의 연쇄가 장 전체의 골격이에요. 답을 요구하는 게 아니라 자명함을 들이미는 질문들이에요.</p>
+<p><strong>P05 김미영</strong>: 19~20절의 장면이 감각적으로 아렸어요. "데마의 떼들이 그것을 바라보고 스바의 행인들도 그것을 사모하다가 거기 와서는 바라던 것을 부끄러워하고 낙심하느니라." 사막을 건너온 대상이 물을 기대하고 와디에 도착했는데 바닥이 말라 있는 장면 — 갈증의 절정에서 만나는 빈 바닥이에요. 욥이 친구들에게서 겪은 일을 이 그림 하나로 보여줘요.</p>
+<p><strong>P11 나경아</strong>: 분위기로 하나 더요. 25절 "옳은 말이 어찌 그리 고통스러운고"의 동사 <em>nimretsu</em>(נִמְרְצוּ)는 '아프게 파고들다·강하다'는 어근이에요. 옳은 말 자체가 찌른다는 감각이 단어에 들어 있어요. 배경 자료로만요.</p>
+<p><strong>성령일 선교사</strong>: 아픈데 논리적인 이중의 공기, 8~10절의 떨리는 공존, 14절의 시선 전환, 수사 의문 연쇄, 와디에 도착한 대상의 낙심. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>성령일 선교사</strong>: 시작과 끝을 함께 보겠습니다.</p>
+<p><strong>P02 이진우</strong>: 시작(2~3절): "나의 괴로움을 달아 보며 나의 파멸을 저울에 함께 올려놓을 수 있다면 바다의 모래보다도 무거울 것이라 그러므로 나의 말이 경솔하였구나." 끝(30절): "내 혀에 어찌 불의한 것이 있으랴 내 미각이 어찌 속임을 분간하지 못하랴." 시작도 끝도 자기 말의 정당성 검증이에요. 처음엔 저울이라는 외부 도구로, 마지막엔 미각이라는 내부 감각으로. 측정의 언어가 장의 양 끝을 감싸요.</p>
+<p><strong>P05 김미영</strong>: 끝의 '미각(taam)'이 6~7절과 호응하는 게 보여요. 앞에서는 싱거운 음식이 맛없어 입이 거부한다고 했고, 마지막에서는 내 미각이 속임을 분간한다고 해요. 혀로 시작한 음식의 심상이 혀의 분별력으로 닫혀요. 입맛이라는 일상 감각이 진실 분별의 비유까지 올라가요.</p>
+<p><strong>P01 한나래</strong>: '경솔하였구나'(3절)와 '불의한 것이 있으랴'(30절)의 거리도 눈에 들어와요. 시작에서는 자기 말이 거칠었음을 인정하면서 그 이유를 댔고, 끝에서는 그 말이 거칠어도 거짓은 아니라고 해요. 거친 말과 거짓말을 구별해 달라는 요청이 장 전체의 테두리예요.</p>
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>성령일 선교사</strong>: 등장하는 인물과 사상을 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 말하는 사람은 욥 하나인데, 청자가 둘로 갈라져요. 2~13절의 청자는 사실상 하늘 쪽이에요 — 전능자(Shaddai), 거룩하신 이, 그의 손. 14절부터는 친구들 — 너희, 내 형제들. 그리고 무대 밖 인물로 데마의 떼들과 스바의 행인들, 27절의 고아가 잠깐 지나가요. 고아는 친구들의 행태를 고발하는 비유 속 인물이에요: "너희는 고아를 제비 뽑으며 너희 친구를 팔아 넘기는구나."</p>
+<p><strong>P02 이진우</strong>: 사상의 골자는 14절이에요. "낙심한 자가 비록 전능자를 경외하기를 저버릴지라도 그의 친구로부터 동정을 받느니라." 신앙의 상태와 무관하게 친구의 chesed는 마땅하다는 명제예요. 엘리바스가 4~5장에서 '네 경건을 점검하라'는 인과의 틀을 내놓았다면, 욥은 '점검 이전에 동정이 먼저다'라는 다른 차원의 요구를 내놓아요. 논쟁의 틀 자체가 어긋나기 시작하는 지점이에요.</p>
+<p><strong>P07 오지혜</strong>: 22~23절이 묘하게 시려요. "내가 언제 너희에게 무엇을 달라고 말했더냐 — 너희 재물로 예물을 달라고 하더냐 — 원수의 손에서 나를 구원하라 하더냐." 욥이 친구들에게 요구한 적이 없다는 거예요. 돈도, 구출도 바란 적이 없어요. 바란 것은 단 하나 — 동정인데, 가장 값싼 그것이 오지 않았어요.</p>
+<p><strong>P05 김미영</strong>: 사물 인물로는 들나귀와 소(5절)가 있어요. "들나귀가 풀이 있으면 어찌 울겠으며 소가 꼴이 있으면 어찌 울겠느냐." 짐승도 까닭 없이 울지 않는다 — 내 신음에는 까닭이 있다는 논증이에요. 부엌의 음식(6절)과 광야의 짐승이 나란히 욥의 증인으로 소환돼요.</p>
+<p><strong>P11 나경아</strong>: 사상 어휘 하나만요. 24절 "내게 가르쳐서"의 동사가 <em>yarah</em>(יָרָה)인데, 토라(torah)와 같은 어근이에요. 가리켜 보이다·지시하다의 어감이고요. 욥이 요구하는 것은 비난이 아니라 구체적 적시예요 — 내 허물이 무엇인지 가리켜 보이라, 그러면 잠잠하겠다. 배경만요.</p>
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>성령일 선교사</strong>: 장면을 컷으로 나눠 보시지요.</p>
+<p><strong>P04 최현국</strong>: 네 컷입니다. 시선의 방향과 심상의 묶음을 따라가요.</p>
+<ul>
+<li><strong>컷 1 (1~7절)</strong>: 저울 위의 괴로움 — 바다 모래보다 무거운 파멸, 내 안에 있는 전능자의 화살, 까닭 있는 신음(들나귀·소), 소금 없는 음식 앞에서 거부하는 입.</li>
+<li><strong>컷 2 (8~13절)</strong>: 끊어 주시기를 — 죽음을 구하는 소원, 그 안에서 붙드는 위로(거룩하신 이의 말씀을 거역하지 않았다), 돌도 놋쇠도 아닌 기력의 바닥.</li>
+<li><strong>컷 3 (14~23절)</strong>: 마른 와디 — 동정 대신 도착한 변덕, 얼음 녹은 물처럼 사라진 형제들, 데마·스바 대상의 낙심, "이제 너희는 아무것도 아니로구나", 나는 아무것도 요구하지 않았다.</li>
+<li><strong>컷 4 (24~30절)</strong>: 가리켜 보이라 — 허물을 깨닫게 하면 잠잠하겠다, 옳은 말은 아프지만 너희 책망은 무엇을 겨누느냐, 고아를 제비 뽑는 자들아, 내 미각이 속임을 분간한다.</li>
+</ul>
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>성령일 선교사</strong>: 의문이나 발견을 나눠 주세요.</p>
+<p><strong>P02 이진우</strong>: 구조 발견이에요. 욥의 첫 대답(6~7장)은 6장에서 친구들을, 7장에서 하나님을 향해요. 그런데 6장 안에서도 이미 2~13절(하늘 쪽)과 14~30절(친구 쪽)의 양분이 있어요. 항변이 처음부터 두 방향으로 갈라져 있고, 친구를 향한 말은 실망으로, 하늘을 향한 말은 직고로 각각 자라가요. 이후 3~31장 논쟁 전체의 이중 구도가 이 한 장에 축소판으로 들어 있어요.</p>
+<p><strong>P11 나경아</strong>: 원어 카드를요. 2절 <em>kaas</em>(כַּעַשׂ) — 괴로움·분통. 4절 <em>chets</em>(חֵץ) — 화살, <em>chamah</em>(חֵמָה) — 독(본래 열기·격노), <em>Shaddai</em>(שַׁדַּי) — 전능자. 5절 <em>pere</em>(פֶּרֶא) — 들나귀, 동사 <em>nahaq</em> — 울다. 6절 <em>tapel</em>(תָּפֵל) — 싱거운 것·맛없는 것. 14절 <em>chesed</em>(חֶסֶד) — 동정·신실. 15절 <em>nachal</em>(נַחַל) — 개울·와디, <em>bagad</em>(בָּגַד) — 배신하다. 24절 <em>yarah</em>(יָרָה) — 가르치다·가리키다(토라와 같은 어근). 25절 <em>nimretsu</em>(נִמְרְצוּ) — 아프게 파고들다. 27절 <em>yatom</em>(יָתוֹם) — 고아. 30절 <em>taam</em>(טַעַם) — 미각·분별. 배경만요.</p>
+<p><strong>P05 김미영</strong>: 의문이에요. 6절 '닭의 알 흰자위'로 번역된 <em>rir challamut</em>가 무엇인지 — 알 흰자위인지 어떤 식물의 즙인지 고대 역본들부터 갈려요. LXX는 아예 '빈 말'로 풀었고요. 무엇을 가리키든 '맛없는 것'이라는 기능은 분명하지만, 그 맛없는 것이 욥의 고난 자체인지 엘리바스의 말인지도 확정이 어려워요. 미해결로 두겠어요.</p>
+<p><strong>P04 최현국</strong>: ANE 배경이에요. 와디는 근동의 계절천이에요. 우기에는 얼음과 눈 녹은 물까지 받아 검게 흐르다가(16절), 건기가 오면 그 길에서 아주 없어져요(17절). 데마는 북서 아라비아의 오아시스 교역 도시, 스바는 남아라비아 향료 길의 거점이고, 대상들은 와디의 물을 계산하고 사막 경로를 잡았어요. 물이 가장 필요한 계절에 와디는 말라 있다 — 이 직유가 당시 청중에게는 설명이 필요 없는 그림이었을 거예요. 배경으로만요.</p>
+<p><strong>P07 오지혜</strong>: 발견이에요. 10절의 위로가 이상하리만큼 작아요. 회복도, 답도, 친구도 아니고 — "내가 거룩하신 이의 말씀을 거역하지 아니하였음이라." 잃은 것투성이인 사람이 마지막으로 쥔 것이 자기 충실의 기록 하나예요. 죽음을 구하면서도 그 하나는 놓지 않아요. 죽고 싶다는 말과 거역하지 않았다는 말이 한 호흡 안에 있어요.</p>
+<p><strong>P01 한나래</strong>: 저는 21절에서 멈췄어요. "이제 너희는 아무것도 아니로구나 너희가 두려운 일을 본즉 겁내는구나." 친구들이 욥을 도울 수 없는 이유를 욥이 짚는데 — 두려움이에요. 욥의 재앙을 보고, 자기에게도 닥칠까 겁이 나서 거리를 두는 거예요. 위로가 멈추는 원인이 무정함이 아니라 공포라는 관찰이 본문 안에 있어요.</p>
+<p><strong>성령일 선교사</strong>: 두 방향 항변의 축소판 구조, 원어 카드, rir challamut의 미해결, 와디와 대상의 배경, 가장 작은 위로, 두려움이라는 원인. 그대로 두지요. 6절의 지시 대상은 미해결로 둡니다.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P04 최현국</strong>: 잿더미 위에서 욥이 고개를 듭니다. 첫 화면은 상상의 저울 — 한쪽 접시에 괴로움과 파멸이 올라가고, 화면 가득 바다의 모래가 쏟아집니다. 접시가 끝없이 내려갑니다. 컷이 바뀌면 욥의 몸 — 그 안에 화살이 있고, 독이 영에 스밉니다. 들나귀가 풀밭에서 조용히 풀을 뜯고, 식탁 위 싱거운 음식 앞에서 입이 돌아섭니다. 다음 장면, 욥이 하늘을 봅니다 — "끊어 버리실 것이라." 그러나 입술은 한 가지를 쥐고 있습니다: 거역하지 않았다. 화면이 광야로 넓어집니다. 겨울 와디가 검게 불어 흐르다가, 해가 높아지자 바닥을 드러냅니다. 지평선에서 데마와 스바의 대상이 다가옵니다. 낙타가 무릎을 꿇고, 사람들이 마른 바닥을 내려다봅니다. 정적. 카메라가 친구들의 얼굴로 돌아옵니다 — 겁에 질린 눈. 욥의 음성: "내게 가르쳐서 나의 허물된 것을 깨닫게 하라 그리하면 내가 잠잠하리라." 마지막 화면은 욥의 입 — "내 미각이 어찌 속임을 분간하지 못하랴." 장이 닫히고, 다음 장에서 욥은 하늘을 향해 돌아섭니다.</p>
+<p><strong>성령일 선교사</strong>: 저울에서 화살로, 마른 와디의 빈 바닥에서 겁먹은 친구들의 얼굴로, 그리고 가리켜 보이라는 요청으로 닫히는 흐름입니다.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "거친 말과 거짓말은 다르다 — 경솔과 불의 사이의 항변"</p>
+<p><strong>P02 이진우</strong>: "점검 이전에 동정이 먼저다 — 14절이 뒤집는 논쟁의 틀"</p>
+<p><strong>P04 최현국</strong>: "마른 와디에 도착한 대상 — 기대가 낙심으로 변하는 그림 하나"</p>
+<p><strong>P05 김미영</strong>: "소금 없는 음식과 미각의 분별 — 혀로 열고 혀로 닫는 장"</p>
+<p><strong>P07 오지혜</strong>: "끊어 달라는 사람이 쥔 가장 작은 위로 — 거역하지 않았다"</p>
+<p><strong>P11 나경아</strong>: "<em>kaas · chesed · nachal</em> — 괴로움·동정·마른 개울"</p>
+<p>부제 제안: "바다 모래보다 무거운 괴로움을 저울에 올려 달라는 요청으로 시작해, 마른 와디처럼 변한 친구들에게 동정(chesed)을 묻고, 허물을 가리켜 보이면 잠잠하겠다는 조건을 내놓으며 미각의 분별로 닫히는 — 욥의 첫 대답 전반부"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 잿더미에서 처음 입을 연 이 사람 곁으로 들어가, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 끊어 달라고 말하는 사람이 거역하지 않았다는 것 하나를 쥐고 있습니다. 그 말을 평가하지 않고, 마른 와디 곁에 같이 앉아만 있겠습니다.</p>
+<p>*— 그 순간 떠오른 것을 각자 마음에만 둡니다.</p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>그래서 이 본문은 어디서 어디로 움직이는지요? 눈에 보이는 일 아래에서 무엇이 회복되고 있는지요? 이 본문이 품은 긴장은 무엇인지요? 이 불이 우리 안에서도 타오르고 있는지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 이 장은 <strong>엘리바스의 인과 도식(고난 = 죄의 결과)에서, 도식으로 잴 수 없는 무게의 직고로</strong> 움직여요. 욥기 전체의 흐름(1~2장 천상 회의 → 3~31장 논쟁 → 38장 폭풍 응답 → 42장 봄과 회복)에서 6장은 논쟁 국면의 첫 응수이고, 욥의 말이 친구를 경유하지 않고 하나님께 직접 가야 한다는 방향이 여기서 처음 드러나요. 7장에서 욥이 하늘로 완전히 돌아서는 것이 그 다음 걸음이에요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. <em>yarah</em>(가르치다·가리키다, 24절)가 토라와 같은 어근이라는 것 — <strong>욥이 구하는 것은 정죄가 아니라 가리킴</strong>이에요. 무엇이 잘못인지 가리켜 보이면 잠잠하겠다는 요청은, 폭풍 가운데서 친히 말씀하시는 38장의 응답과 멀리서 마주 보고 있어요. 해석은 미해결로 두고요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 표면은 친구들을 향한 실망과 항의예요. 그런데 그 아래에서는 <strong>까닭을 모른 채로도 거역하지 않은 충실 하나가 살아서 버티고 있어요</strong>(10절). 1장에서 사탄이 물은 것 — "욥이 어찌 까닭 없이 하나님을 경외하리이까" — 에 대한 응답이 욥도 모르는 사이 이 잿더미에서 진행 중이에요. 들리는 것은 신음인데, 그 밑에서 신뢰의 바닥이 깨지지 않고 있어요.</p>
+<p><strong>P01 한나래</strong>: 긴장이에요. 죽기를 구하는 소원(8~9절)과 거역하지 않았다는 위로(10절)가 한 사람 안에 같이 있어요. <strong>절망의 언어와 충실의 사실이 모순 없이 공존하는</strong> — 그 긴장을 본문이 풀지 않고 그대로 들고 가요. 거친 말을 한다고 신뢰가 끊긴 것이 아니라는 것을, 이 장이 몸으로 보여줘요.</p>
+<p><strong>P04 최현국</strong>: 운동을 한 장면으로 줄이면, 마른 와디 앞에 선 사람이 몸을 돌리는 동작이에요. 친구라는 개울에서 물을 길으려던 사람이 바닥을 확인하고, 다른 곳을 향해 얼굴을 드는 — 6장은 그 회전의 시작이에요. 다음 장에서 그 얼굴이 하늘을 정면으로 봐요.</p>
+<p><strong>P05 김미영</strong>: 이 불이 우리 안에서 타오르느냐 물으시니 — 저는 14절이 불씨 같아요. 상대의 신앙 상태를 점검하기 전에 동정이 먼저라는 것. 그리고 마른 와디가 되지 않는 것. 물이 가장 필요한 계절에 곁이 말라 버리지 않는 것. 거기서 멈춰 섭니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>인과 도식으로 잴 수 없는 무게가 저울을 요구하고, 마른 와디 앞에서 몸을 돌린 사람이 하나님께 직접 말하기 시작하며, 까닭 모르는 고난 속에서도 거역하지 않은 충실이 수면 아래에서 버티는</strong> — 그 운동을 손에 쥐고 7장으로 넘어갑니다.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOB-006</p>
+<p>book: 욥기</p>
+<p>chapter: 6</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>욥기 6장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>실제 무대: 2장 끝의 잿더미. 욥의 말 안에서 가상 무대 둘 — 저울이 놓인 계량의 공간(2절), 와디와 대상의 길이 있는 광야(15~20절).</li>
+<li>소품: 저울(2절), 바다의 모래(3절), 화살·독(4절), 풀·꼴(5절), 소금 없는 음식·알 흰자위(6절), 돌·놋쇠(12절), 얼음·눈 녹은 물(16절), 제비(27절).</li>
+<li>소재: 무게(달아 보라, 바다 모래보다 무겁다) — 거친 말의 까닭을 무게로 변호.</li>
+<li>14절에서 '친구'가 정면 소재로 등장 — 기대한 chesed와 도착한 마른 개울의 대비.</li>
+<li>핵심 어휘: kaas(괴로움), chets(화살), chesed(동정), nachal(개울·와디), yarah(가르치다), taam(미각).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>상처에서 바로 나오는 숨인데 논리적 — 아픈데 검증을 요청하는 이중의 공기.</li>
+<li>8~10절: 끊어 달라는 소원과 거역하지 않았다는 위로의 공존이 가장 떨리는 부분.</li>
+<li>14절에서 시선 전환 — 전반(2~13절)은 하늘 쪽 신음, 후반(14~30절)은 친구 쪽 항의.</li>
+<li>수사 의문문 연쇄가 골격(5·6·11·12·22·30절) — 자명함을 들이미는 질문들.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>2~3절: "나의 괴로움을 달아 보며 나의 파멸을 저울에 함께 올려놓을 수 있다면 바다의 모래보다도 무거울 것이라 그러므로 나의 말이 경솔하였구나."</li>
+<li>30절: "내 혀에 어찌 불의한 것이 있으랴 내 미각이 어찌 속임을 분간하지 못하랴."</li>
+<li>저울(외부 도구)로 열고 미각(내부 감각)으로 닫음 — 양 끝 모두 자기 말의 정당성 검증.</li>
+<li>'경솔'(3절)과 '불의 없음'(30절) — 거친 말과 거짓말을 구별해 달라는 테두리.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>화자는 욥 하나, 청자는 둘 — 2~13절은 하늘 쪽(Shaddai·거룩하신 이), 14절부터 친구들(너희·내 형제들).</li>
+<li>주변 인물: 데마의 떼들, 스바의 행인들(19~20절), 고아(27절, 친구들 고발의 비유).</li>
+<li>사상의 골자(14절): 신앙 상태와 무관하게 낙심한 자에게 친구의 chesed는 마땅하다 — 인과 점검 이전에 동정이 먼저.</li>
+<li>22~23절: 욥이 친구들에게 요구한 것은 재물도 구출도 아니었다 — 바란 것은 동정 하나.</li>
+<li>5절 들나귀·소: 짐승도 까닭 없이 울지 않는다 — 신음의 까닭 있음을 논증.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1~7절): 저울 위의 괴로움 — 모래보다 무거운 파멸, 내 안의 화살, 까닭 있는 신음, 거부하는 입.</li>
+<li>컷 2 (8~13절): 끊어 주시기를 — 죽음의 소원과 가장 작은 위로(거역하지 않았다), 기력의 바닥.</li>
+<li>컷 3 (14~23절): 마른 와디 — 변덕스러운 형제들, 데마·스바 대상의 낙심, "너희는 아무것도 아니로구나".</li>
+<li>컷 4 (24~30절): 가리켜 보이라 — 허물을 깨닫게 하면 잠잠하겠다, 옳은 말의 아픔, 미각의 분별.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>kaas</em>(כַּעַשׂ) — 괴로움·분통. 2절. / <em>chets</em>(חֵץ) — 화살. 4절.</li>
+<li><em>chamah</em>(חֵמָה) — 독(본래 열기·격노의 어감). 4절. / <em>Shaddai</em>(שַׁדַּי) — 전능자. 4·14절.</li>
+<li><em>pere</em>(פֶּרֶא) — 들나귀. 5절. / <em>tapel</em>(תָּפֵל) — 싱거운 것. 6절.</li>
+<li><em>chesed</em>(חֶסֶד) — 동정·신실한 사랑. 14절. / <em>nachal</em>(נַחַל) — 개울·와디. 15절.</li>
+<li><em>bagad</em>(בָּגַד) — 속이다·배신하다. 15절. / <em>yarah</em>(יָרָה) — 가르치다·가리키다(토라와 동일 어근). 24절.</li>
+<li><em>nimretsu</em>(נִמְרְצוּ) — 아프게 파고들다(옳은 말의 고통). 25절. / <em>yatom</em>(יָתוֹם) — 고아. 27절. / <em>taam</em>(טַעַם) — 미각·분별. 30절.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>첫 대답(6~7장)의 양분: 6장은 친구 쪽, 7장은 하나님 쪽 — 그런데 6장 안에도 2~13절(하늘)/14~30절(친구)의 축소판 양분이 있음.</li>
+<li>혀의 인클루지오: 싱거운 음식을 거부하는 입(6~7절) ↔ 속임을 분간하는 미각(30절).</li>
+<li>와디 확장 직유(15~20절): 우기의 검은 급류 → 건기의 증발 → 대상의 도착과 낙심 — 단계적 전개.</li>
+<li>수사 의문문 연쇄가 장 전체의 골격(5·6·11·12·13·22·23·25·26·30절).</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>와디(계절천): 우기에 급류, 건기에 바닥까지 마름 — 근동 사막 지형의 상식. 배경.</li>
+<li>데마(북서 아라비아 오아시스 교역 도시)·스바(남아라비아 향료 길 거점) — 대상이 와디의 물을 계산해 경로를 잡던 관행. 배경.</li>
+<li>저울(2절) — 근동 상거래·재판에서 공정을 가리는 도구. 배경.</li>
+<li>6절 rir challamut — 고대 역본부터 의미가 갈림(LXX는 '빈 말'로 의역). 배경, 세부 미해결.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>욥 6 ↔ 렘 15:18 (속이는 시내 — 마른 와디 심상의 후대 메아리)</li>
+<li>욥 6 ↔ 시 38:2 (주의 화살이 나를 누르나이다)</li>
+<li>욥 6 ↔ 애 3:12-13 (화살통의 화살들이 내 허리에 들어왔도다)</li>
+<li>욥 6 ↔ 욥 2:11-13 (친구들의 첫 7일 침묵 — 그때는 곁에 있었다)</li>
+<li>욥 6 ↔ 시 55:12-14 (원수 아닌 친구의 일이라 더 아프다)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>잿더미 위에서 욥이 고개를 든다. 상상의 저울에 괴로움과 파멸이 올라가고 바다의 모래가 쏟아진다. 욥의 몸 안에 화살이 있고 독이 영에 스민다. 들나귀는 풀밭에서 조용하고, 식탁의 싱거운 음식 앞에서 입이 돌아선다. 욥이 하늘을 본다 — 끊어 주시기를. 그러나 한 가지를 쥐고 있다: 거역하지 않았다. 화면이 광야로 넓어진다. 겨울 와디가 검게 흐르다 여름 해 아래 바닥을 드러내고, 데마와 스바의 대상이 도착해 마른 바닥을 내려다본다. 카메라가 겁에 질린 친구들의 얼굴로 돌아온다. 욥의 음성 — 내게 가르쳐서 허물을 깨닫게 하라, 그리하면 잠잠하리라. 마지막 화면, 욥의 입: 내 미각이 어찌 속임을 분간하지 못하랴. 다음 장에서 욥은 하늘을 향해 돌아선다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"마른 와디 앞에서 몸을 돌리다 — 욥의 첫 대답 전반부"</strong></li>
+<li>초벌 부제: "바다 모래보다 무거운 괴로움을 저울에 올려 달라는 요청으로 시작해, 친구들에게 동정(chesed)을 묻고, 허물을 가리켜 보이면 잠잠하겠다는 조건을 내놓으며 미각의 분별로 닫히는 항변"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (13개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (와디·대상 배경 + 혀의 인클루지오 + 두 방향 양분 구조)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>10절의 '거역하지 않았다'를 1장 사탄의 질문과 연결하되, 욥의 의인 됨에 대한 교리 단정으로 확장하지 않고 본문 사실의 병치로만 둠.</li>
+<li>6:4의 화살을 하나님의 징벌론으로 해석하지 않고, 욥 자신의 표현으로 관찰만 함.</li>
+<li>14절 chesed 명제를 일반 윤리 교훈으로 단정하지 않고 욥의 발화로 보존.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOB-006</p>
+<p>book: 욥기</p>
+<p>chapter: 6</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>욥기 6장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 6절의 '싱거운 것'과 '알 흰자위'가 가리키는 것은 욥의 고난 자체인가, 엘리바스의 말인가?</h2>
+<ul><li>rir challamut의 의미 자체가 고대 역본부터 갈리고(LXX는 '빈 말'), 비유의 지시 대상도 본문이 명시하지 않는다. 보존.</li></ul>
+
+<h2>Q2. 죽음을 구하는 소원(8~9절)과 '거역하지 아니하였음이라'는 위로(10절)는 어떻게 한 입에서 공존하는가?</h2>
+<ul><li>본문은 둘을 나란히 두기만 하고 화해시키지 않는다. 보존.</li></ul>
+
+<h2>Q3. 14절의 구문 — '경외하기를 저버릴지라도 동정을 받느니라'인가, '동정을 거두는 자는 경외를 저버린 자'인가?</h2>
+<ul><li>히브리어 구문이 압축적이어서 번역들이 갈린다. 어느 쪽이든 chesed의 마땅함은 남지만, 강조점이 다르다. 보존.</li></ul>
+
+<h2>Q4. 와디 직유(15~17절)는 친구들의 어떤 행동을 가리키는가?</h2>
+<ul><li>이 시점까지 친구들은 7일 침묵(2:13)과 엘리바스의 한 차례 변론뿐이다. 무엇이 '말라 버림'이었는지 본문이 특정하지 않는다. 보존.</li></ul>
+
+<h2>Q5. 27절 '고아를 제비 뽑으며 친구를 팔아 넘기는구나'는 실제 행위 고발인가 극단의 수사인가?</h2>
+<ul><li>친구들이 실제로 그런 일을 했다는 서술은 없다. 항변의 수사적 강도인지 관행 고발인지 확정이 어렵다. 보존.</li></ul>
+
+<h2>Q6. 30절의 '미각'은 무엇을 분간하는가 — 말의 진위인가, 재앙의 의미인가?</h2>
+<ul><li>taam이 6절의 음식 맛과 호응하면서 분별의 비유로 올라가는데, 분별 대상이 열려 있다. 보존.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">바다 모래보다 무거운 괴로움을 저울에 올려 달라는 요청으로 열고, 마른 와디 앞에서 몸을 돌려 미각의 분별로 닫히는 — 친구를 향한 실망과 하나님을 향한 직고가 갈라지기 시작하는 욥의 첫 대답 전반부.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: JOB-006</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-11</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 욥기 6장은 엘리바스의 첫 변론에 대한 욥의 첫 응수로, 괴로움(kaas)을 저울에 달면 바다의 모래보다 무겁다는 계량의 언어로 거친 말의 까닭을 변호하고(2~7절), 죽음을 구하는 소원 곁에 거역하지 않았다는 가장 작은 위로를 두며(8~13절), 동정(chesed) 대신 마른 와디(nachal)를 만난 실망을 데마·스바 대상의 그림으로 보여주고(14~23절), 허물을 가리켜 보이면(yarah) 잠잠하겠다는 조건과 미각(taam)의 분별로 닫히는(24~30절) 항변이다.</p>
+<p><strong>한 문단</strong>: 잿더미 위에서 욥이 처음으로 입을 연다. 내 괴로움을 저울에 올려 보라 — 바다의 모래보다 무거울 것이다, 그래서 내 말이 거칠었다. 전능자의 화살이 내 안에 있다. 들나귀도 풀이 있으면 울지 않는다. 차라리 끊어 주시기를 — 그래도 나는 거룩하신 이의 말씀을 거역하지 않았다, 그것이 위로다. 낙심한 자는 친구로부터 동정을 받아야 마땅한데, 내 형제들은 마른 와디 같다. 데마와 스바의 대상이 물을 바라고 왔다가 빈 바닥 앞에서 낙심하듯, 너희도 아무것도 아니로구나. 내가 너희에게 무엇을 달라 했더냐. 내게 가르쳐서 허물을 깨닫게 하라, 그리하면 잠잠하리라. 옳은 말은 아프다 — 그런데 너희 책망은 무엇을 겨누느냐. 내 미각이 어찌 속임을 분간하지 못하랴.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>잿더미 + 가상 무대 둘(저울의 계량 공간, 와디의 광야). 부엌·장터·사막의 물질적 소품들.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>아픈데 논리적인 이중의 공기. 8~10절의 공존. 14절의 시선 전환. 수사 의문 연쇄.</td></tr>
+<tr><td>3 시작과 끝</td><td>저울(2절)로 열고 미각(30절)으로 닫음 — 양 끝 모두 자기 말의 정당성 검증.</td></tr>
+<tr><td>4 등장인물·사상</td><td>화자 하나, 청자 둘(하늘/친구). 14절: 점검 이전에 동정이 먼저라는 명제.</td></tr>
+<tr><td>5 장면 컷</td><td>저울(1~7)/끊어 주시기를(8~13)/마른 와디(14~23)/가리켜 보이라(24~30) 4컷.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>두 방향 항변의 축소판 구조. yarah-토라 어근. 와디·대상 배경. rir challamut 미해결.</td></tr>
+<tr><td>7 동영상</td><td>저울→화살→빈 와디 바닥→겁먹은 얼굴들→가리켜 보이라→미각의 분별.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"마른 와디 앞에서 몸을 돌리다 — 욥의 첫 대답 전반부"</td></tr>
+<tr><td>9 기도·내면</td><td>끊어 달라는 사람이 쥔 것 하나를 평가하지 않고, 곁에 앉아 있는다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 무게의 변호</strong>: '경솔하였구나'(3절)는 사과가 아니라 설명이다. 말이 거친 이유는 실린 무게가 바다 모래보다 무겁기 때문이며, 장의 끝(30절)은 거친 말과 거짓말이 다르다는 분별 요청으로 그 변호를 완성한다.</p>
+<p>2. <strong>결 2 — chesed와 nachal의 대비</strong>: 기대한 것은 동정이고 도착한 것은 마른 개울이다. 물이 가장 필요한 건기에 와디가 마르듯, 위로가 가장 필요한 때에 친구들이 말랐다 — 그 원인을 본문은 두려움(21절)으로 짚는다.</p>
+<p>3. <strong>결 3 — 가장 작은 위로</strong>: 회복도 답도 아닌 '거역하지 않았다'(10절) 하나가 죽음을 구하는 소원 곁에서 버틴다. 절망의 언어와 충실의 사실이 한 사람 안에 공존한다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>렘 15:18 — 속이는 시내: 마른 와디 심상이 예언자의 탄식에서 메아리친다.</li>
+<li>시 38:2 / 애 3:12-13 — 화살의 심상: 고난을 화살로 말하는 시가 전통.</li>
+<li>욥 2:11-13 — 7일의 침묵: 그때는 곁에 있던 친구들이 입을 열자 멀어졌다.</li>
+<li>시 55:12-14 — 원수가 아니라 친구의 일이라 더 아프다.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 저울에서 시작한다 — 내 말이 거칠었다면, 실린 것을 먼저 달아 보라.</li>
+<li><strong>멈춤 1</strong>: 10절에서 멈춘다 — 끊어 달라는 사람이 쥔 위로가 이렇게 작다.</li>
+<li><strong>멈춤 2</strong>: 마른 와디 바닥 앞에서 멈춘다 — 대상의 낙심이 남의 일 같지 않다.</li>
+<li><strong>끝</strong>: "내게 가르쳐서 깨닫게 하라"(24절)에서 멈춘다 — 정죄가 아니라 가리킴을 구한다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 저울-미각의 검증 테두리(2·30절)</li>
+<li>[x] 두 방향 항변의 양분(2~13/14~30절)</li>
+<li>[x] chesed-nachal 대비(14~15절)</li>
+<li>[x] 와디 확장 직유의 단계적 전개(15~20절)</li>
+<li>[x] 가장 작은 위로의 공존(8~10절)</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>욥기의 spine은 '고난의 까닭을 다 풀지 않으시되, 창조의 주권으로 친히 임재하사 의인을 들음에서 봄으로 데려가신다'이며, destination은 42:5 — "내가 주께 대하여 귀로 듣기만 하였사오나 이제는 눈으로 주를 뵈옵나이다"이다. 책의 흐름(1~2장 천상 회의·재난 → 3~31장 인과응보 논쟁·욥의 항변 → 32~37장 엘리후 → 38~41장 폭풍 속 응답 → 42장 봄·회개·회복)에서 6장은 논쟁 국면의 첫 응수다. 엘리바스가 내놓은 인과 도식 — 고난은 죄의 결과이고 징계는 복이다 — 앞에서, 욥은 그 도식으로 잴 수 없는 무게를 저울에 올려 달라고 요청한다. 아직 '들음'의 영역이다. 욥이 가진 하나님 지식도, 친구들의 신학도 모두 귀로 들은 것이고, 그 들은 것과 겪는 것 사이의 간극에서 항변이 태어난다. 6장의 위치는 분명하다 — 친구라는 경유지가 마른 와디로 판명되는 순간, 욥의 말은 하나님께 직접 가는 길밖에 남지 않게 되고, 그 직고의 길 끝에서 폭풍 가운데 친히 응답하시는 38장과 '봄'의 42장이 기다린다. 까닭을 풀어 주는 대신 임재로 답하시는 책 전체의 방향에서, 6장은 사람의 위로가 마르는 바로 그 바닥에서 출발점이 된다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>엘리바스의 인과 도식에서 도식으로 잴 수 없는 무게의 직고로 / 친구에게 기대한 동정(chesed)에서 마른 와디의 빈 바닥을 지나 하나님을 향한 직접 호소로 / 정죄의 책망에서 허물을 가리켜 보이는(yarah) 정당한 가리킴의 요청으로.</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 6장은 위로의 경유지가 무너지는 운동이다. 친구라는 개울에서 물을 길으려던 사람이 바닥을 확인하고 몸을 돌리는 회전 — 그 회전이 7장에서 하늘을 정면으로 보는 직고로 이어지고, 책 전체에서는 38장의 폭풍 응답을 향해 멀리 뻗어 간다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 친구들을 향한 실망과 항의, 죽음을 구하는 거친 소원이다. 그러나 수면 아래에서는 1장에서 사탄이 던진 질문 — "욥이 어찌 까닭 없이 하나님을 경외하리이까" — 에 대한 응답이 욥 자신도 모르는 채 진행되고 있다. 모든 것을 잃고 끊어 달라고 말하는 사람이 단 하나 놓지 않은 것이 '거룩하신 이의 말씀을 거역하지 아니하였다'(10절)는 사실이다. 보상이 사라진 뒤에도 끊어지지 않는 충실 — 그것이 잿더미 밑바닥에서 버티고 있다. 그리고 그 충실을 하나님은 침묵 속에서 지켜보고 계신다. 까닭을 곧장 풀어 주지 않으시는 침묵은 방치가 아니라, 까닭 없이도 신실한 종을 신뢰하시는 방식이다. 욥의 거친 항변까지 끊지 않으시고 들으시는 그 들으심이, 수면 아래에서 움직이는 하나님의 심정이다. 친구들은 두려워서 말랐지만(21절), 두려움 없이 욥의 무게를 끝까지 받으시는 분이 계시다는 것 — 그것이 이 장의 보이지 않는 바닥이다.</p>
+
+<h3>J · 실존적 부름 — 불씨 하나</h3>
+<blockquote>
+<p>곁의 누군가가 거친 말을 쏟을 때, 그 말을 저울에 달아 보았는가 — 실린 무게를 달기 전에 말의 거칢부터 책망하지 않았는가. 그리고 물이 가장 필요한 건기에, 나는 흐르는 개울이었는가 마른 와디였는가.</p>
+</blockquote>
+<p>이것은 가르침이 아니라 초대다. 본문은 독자를 두 위치로 초대한다. 하나는 욥의 곁 — 낙심한 사람의 신앙 상태를 점검하기 전에 동정이 먼저라는 14절의 요청 앞에 서는 것. 다른 하나는 욥의 안 — 까닭을 모른 채 거친 말을 쏟으면서도 '거역하지 않았다' 하나를 쥐고 버티는 그 내면을 곁눈으로 들여다보며, 절망의 언어와 충실의 사실이 공존할 수 있음을 보는 것. 옳은 말은 아프다(25절). 그러나 아픈 말이 다 옳은 것은 아니다 — 무엇을 겨누는지 모르는 책망은 고아를 제비 뽑는 일에 가깝다. 본문은 답을 주지 않고, 마른 와디 앞에 독자를 잠시 세워 둔다.</p>
+
+<p><strong>이 장에서 가져갈 한 단어</strong>: <em>chesed(동정) — 그리고 그 반대편의 마른 와디(nachal)</em>.</p>
+<p><strong>다음 장으로 미는 운동</strong>: 친구라는 경유지가 마른 바닥으로 판명된 지금, 욥의 말은 갈 곳이 하나 남았다 — 7장에서 욥은 하늘을 정면으로 향해 "내가 내 입을 금하지 아니하고" 인생이 고역임을 직고하기 시작한다.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/JOB/5/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">욥기 5장</div><div class="nav-preview">엘리바스 변론 후반 — 징계받는 자의 복.</div></a>
+      <a href="/magazine/JOB/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">욥기 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/JOB/7/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">욥기 7장</div><div class="nav-preview">욥의 첫 대답 후반 — 인생은 고역이라.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:job6', JSON.stringify({
+      href: '/magazine/JOB/6/',
+      title: '욥기 6장',
+      excerpt: '마른 와디 앞에서 몸을 돌리다 — 욥의 첫 대답 전반부. 바다 모래보다 무거운 괴로움, 동정(chesed) 대신 만난 마른 개울, 허물을 가리켜 보이면 잠잠하겠다는 조건.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-11</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>

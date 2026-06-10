@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>욥기 4장 — Observatory | 네다바웨이</title>
+<meta name="description" content="욥기 4장을 9단계로 같이 관찰합니다. 칠일 침묵을 깨는 데만 사람 엘리바스의 첫 변론 — '죄 없이 망한 자가 누구인가'(naqi)로 인과응보 도식이 처음 정식화되고, 밤의 환상 속 조용한 소리(demamah)가 '사람이 어찌 하나님보다 의롭겠느냐'를 묻는다. 독자는 1~2장의 천상 회의를 알지만 엘리바스는 모른다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/JOB/4/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/JOB/">시가서</a> · 욥기 · 4장</div>
+      <h1>욥기 4장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">JOB-004 · 시가서 · 히브리어</div>
+      <p class="essence">칠일의 침묵을 깨고 처음 입을 연 데만 사람 엘리바스가 "죄 없이(naqi) 망한 자가 누구인가"(4:7)로 인과응보 도식을 욥기에서 처음 정식화하고, 밤의 환상 속 조용한 소리(demamah)로 "사람이 어찌 하나님보다 의롭겠느냐"(4:17)를 묻는데 — 독자는 1~2장의 천상 회의를 알고 엘리바스는 모른다는 정보의 간격이 이 변론 전체를 흔들고 있는 장.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOB-004</p>
+<p>book: 욥기</p>
+<p>book_en: Job</p>
+<p>chapter: 4</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 시(변론)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 21</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>hebrew_terms: [musar, naqi, charash_aven, ruach, demamah, tardemah, tsadaq, bate_chomer, aryeh, shachal, kephir, layish, labi, teman]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["LXX는 4:21을 '그들이 지혜를 얻지 못한 채 죽었다'로 옮겨 MT '명철도 없이 죽느니라'와 시제 뉘앙스가 다름 — 배경", "4:6 MT '네 경외함이 네 자랑이 아니냐'를 LXX는 의문문 구조를 풀어 평서로 다듬음 — 배경"]</p>
+<p>ane_refs: ["데만은 에돔의 지혜 전통으로 알려진 지역 — 렘 49:7 '데만에 다시는 지혜가 없느냐' — 배경", "꿈·밤의 환상을 신적 통로로 보는 관념은 고대 근동 전반에 널리 퍼져 있었음 — 배경", "사자를 권세자·강자의 은유로 쓰는 용법이 메소포타미아 문헌에도 등장 — 배경"]</p>
+<p>rabbinic_refs: ["후대 전승은 엘리바스를 에서의 후손 계보(창 36:11 엘리바스의 아들 데만)와 연결해 읽음 — 배경"]</p>
+<p>literary_devices: [rhetorical_question_chain, lion_imagery_five_terms, night_vision_report, a_fortiori_argument, sowing_reaping_proverb, generalization_from_individual]</p>
+<p>repeated_words: ["누구인가·어디 있는가·어찌(의문사 연쇄)", "찬양이 아닌 질문 — 보라(7절)·내가 보건대(8절)", "망하다·끊어지다·깨어지다(소멸 동사군)"]</p>
+<p>cross_refs: ["왕상 19:12 (demamah — 세미한 소리, 동일 어휘)", "창 2:21·15:12 (tardemah — 깊은 잠)", "욥 1:1·1:8 (욥의 온전함 tam — 독자만 아는 정보)", "욥 42:7 (여호와께서 엘리바스의 말을 책망하심)", "렘 49:7 (데만의 지혜 전통)", "갈 6:7 (심는 대로 거둠 — 표현의 후대 반향)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-11</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>욥기 4장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 욥기 4장입니다. 스물한 절이지요. 2장 끝에서 세 친구가 칠일 밤낮을 욥 곁에 말없이 앉아 있었고, 3장에서 욥이 생일을 저주하는 탄식을 쏟았습니다. 이제 처음으로 친구의 입이 열립니다. 데만 사람 엘리바스의 첫 변론 전반부입니다. 본문을 낭독하고 긴 침묵을 두겠습니다.</p>
+<p>(본문 낭독 4:1~21, 약 2분 30초)</p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대는 2장에서 이어지는 잿더미 그대로예요. 바뀐 건 공간이 아니라 음향입니다. 칠일 동안 침묵하던 무대에서 처음으로 친구의 목소리가 울려요. 그런데 12절부터 무대가 갑자기 이동합니다 — 엘리바스의 회상 속 밤 장면으로요. 깊은 잠, 지나가는 영, 곤두서는 털, 멈춰 선 형상. 변론 한가운데에 환상 보고라는 또 하나의 무대가 들어와 있어요.</p>
+<p><strong>P05 김미영</strong>: 소품이 둘로 나뉘어요. 낮의 소품과 밤의 소품. 낮 쪽엔 농기구가 깔려 있어요 — 밭을 갈고(charash), 씨를 뿌리고, 그대로 거두는 8절의 농사 도구들. 그리고 10~11절의 사자들 — 부르짖음, 이빨, 흩어지는 새끼들. 밤 쪽엔 침상, 깊은 잠, 스쳐 가는 바람기, 곤두선 털, 알아볼 수 없는 형상. 19절부터는 흙 집(bate chomer), 티끌 터, 좀(나방), 21절의 장막 줄까지 — 무너지기 쉬운 건축 재료들이 줄지어 나와요.</p>
+<p><strong>P01 한나래</strong>: 소재로는 2절의 첫 문장이 마음에 걸렸어요. "누가 네게 말하면 네가 싫증을 내겠느냐 누가 참고 말하지 아니하겠느냐." 말을 꺼내도 되는지 허락을 구하는 듯한, 조심스러운 진입이에요. 그런데 그 조심스러움 안에 이미 '나는 참을 수 없다'는 결심이 들어 있어요.</p>
+<p><strong>P07 오지혜</strong>: 3~4절에 욥의 과거가 목록으로 나와요 — 많은 사람을 교훈하였고(musar), 손이 늘어진 자를 강하게 하였고, 넘어지는 자를 말로 붙들어 주었고, 무릎이 약한 자를 굳세게 하였고. 네 가지 동작 전부 일으켜 세우는 동작이에요. 욥이 어떤 사람이었는지를 친구의 입이 증언해 주는 소재예요. 그리고 5절에서 그 목록이 뒤집혀요 — "이제 이 일이 네게 닥치니 네가 답답해하고."</p>
+<p><strong>P11 나경아</strong>: 어휘를요. 1절 <em>테만(Teman)</em>(תֵּימָן) — 에돔 지역, 지혜 전통으로 알려진 곳이에요(렘 49:7). 3절 <em>musar</em>(מוּסָר) 계열 동사 — 교훈하다·훈계하다. 7절 <em>naqi</em>(נָקִי) — 죄 없는·결백한. 8절 <em>charash aven</em>(חָרַשׁ אָוֶן) — 악을 밭 갈다. 15절 <em>ruach</em>(רוּחַ) — 영·바람·숨, 세 뜻이 다 가능한 단어예요. 16절 <em>demamah</em>(דְּמָמָה) — 조용함·세미한 소리. 열왕기상 19:12 엘리야가 들은 '세미한 소리'와 같은 단어입니다. 배경만요.</p>
+<p><strong>P02 이진우</strong>: 소재 하나 더요. 의문문이 비정상적으로 많아요. 2절 "싫증을 내겠느냐", 6절 "네 자랑이 아니냐", 7절 "누구인가·어디 있는가", 17절 "어찌 의롭겠느냐·어찌 깨끗하겠느냐", 21절 "끊어지지 않겠느냐". 스물한 절 변론의 뼈대가 거의 질문으로 짜여 있어요. 단정 대신 질문으로 미는 수사예요.</p>
+<p><strong>성령일 선교사</strong>: 잿더미 무대에 처음 울리는 목소리, 낮의 농기구와 밤의 환상이라는 두 소품군, 일으켜 세우던 욥의 과거 목록, 의문문의 연쇄. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기였는지요.</p>
+<p><strong>P01 한나래</strong>: 정중한데 서늘해요. 시작은 위로하러 온 사람의 어조인데, 7절 "생각하여 보라 죄 없이 망한 자가 누구인가"에서 공기가 식어요. 위로의 말과 정죄의 그림자가 한 입에서 같이 나오는 느낌이에요. 따뜻하게 시작한 손이 어느새 욥을 가리키고 있어요.</p>
+<p><strong>P07 오지혜</strong>: 저는 3~4절이 제일 아렸어요. 욥을 칭찬하는 대목인데, 칭찬이 칭찬으로 끝나지 않고 5절의 "그런데 너는 지금"으로 넘어가는 디딤돌이 돼요. 과거의 선행이 현재를 추궁하는 재료로 쓰이는 공기 — 듣는 욥에게 어땠을지 마음이 머물렀어요.</p>
+<p><strong>P04 최현국</strong>: 12절에서 장르가 확 바뀌는 느낌이에요. 여기까지는 변론, 격언, 농사 속담의 낮 장르였는데, 12절부터 한밤의 괴담처럼 톤이 깔려요. "어떤 말씀이 내게 가만히 이르고" — 화면이 어두워지고, 숨소리가 들리고, 털이 곤두서는 장면. 변론 한가운데 공포 영화의 한 장면이 삽입돼 있어요.</p>
+<p><strong>P02 이진우</strong>: 분위기를 구조로 말하면, 일반론의 공기예요. 엘리바스는 욥의 이름을 부르며 시작하지만 17절 이후로는 '사람'(enosh) 일반, '흙 집에 사는 자들' 전체로 시야를 넓혀요. 개인의 통증 앞에서 보편 명제로 후퇴하는 말하기 — 그 거리감이 이 장의 온도를 낮춰요.</p>
+<p><strong>P05 김미영</strong>: 감각으로는 15절이요. "그 영이 내 앞으로 지나매 내 몸에 털이 주뼛하였느니라." 피부의 감각이 그대로 적혀 있어요. 그리고 16절 — 형상은 알아볼 수 없고, 정지해 있고, 조용함(demamah) 뒤에 목소리. 시각이 차단되고 청각만 남는 묘사가 생생해요.</p>
+<p><strong>P11 나경아</strong>: 공기 하나 더요. 16절 <em>demamah</em>는 굉음이 아니라 거의 들리지 않는 고요예요. 천둥 속 계시가 아니라 침묵에 가까운 소리로 신탁이 와요. 같은 단어가 열왕기상 19:12에서 바람·지진·불 다음의 '세미한 소리'로 나오는 건 배경 사실로만 두고요.</p>
+<p><strong>성령일 선교사</strong>: 정중함과 서늘함의 동거, 칭찬이 추궁의 디딤돌이 되는 아픔, 낮의 변론과 밤의 환상이라는 장르 전환, 개인에서 보편으로 물러나는 거리감. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>성령일 선교사</strong>: 시작과 끝을 함께 보겠습니다.</p>
+<p><strong>P02 이진우</strong>: 1~2절 시작: "데만 사람 엘리바스가 대답하여 이르되 누가 네게 말하면 네가 싫증을 내겠느냐." 21절 끝: "장막 줄이 그들에게서 뽑히지 아니하겠느냐 그들은 지혜가 없이 죽느니라." 허락을 구하는 조심스러운 질문으로 열고, 인간 전체에 대한 사망 선고로 닫혀요. 한 사람을 향해 시작한 말이 모든 사람의 죽음으로 끝나는 확대 구조예요.</p>
+<p><strong>P04 최현국</strong>: 시작의 청자는 '너'(욥)인데 끝의 대상은 '그들'(흙 집에 사는 자들)이에요. 2인칭에서 3인칭 복수로, 잿더미의 한 사람에게서 티끌 위의 인류로 카메라가 빠져요. 위로하러 와서 줌아웃으로 끝나는 변론이에요.</p>
+<p><strong>P01 한나래</strong>: 낙차가 커요. 말문을 열 땐 "참고 말하지 아니하겠느냐"라며 말의 무게를 아는 사람처럼 굴었는데, 마지막 문장은 "지혜가 없이 죽느니라"예요. 칠일을 침묵하던 입이 처음 연 변론의 끝 단어가 '죽음'이라는 사실이 오래 남았어요.</p>
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>성령일 선교사</strong>: 등장하는 인물과 사상을 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 인물 — 말하는 엘리바스, 침묵으로 듣는 욥. 그리고 환상 속 존재들: 지나가는 영(ruach), 알아볼 수 없는 형상, 조용한 소리의 목소리. 18절엔 하나님의 종들과 천사들(말라킴)이 언급되고, 19절부터는 '흙 집에 사는 자들'이라는 무명의 군상이 나와요. 은유의 무대엔 사자 일가족도 있고요.</p>
+<p><strong>P02 이진우</strong>: 사상이 7~8절에 정식화돼요. 7절 "죄 없이(naqi) 망한 자가 누구인가 정직한 자의 끊어짐이 어디 있는가" — 없다는 답을 전제한 수사 질문이고, 8절 "내가 보건대 악을 밭 갈고 독을 뿌리는 자는 그대로 거두나니" — 행위와 결과가 농사처럼 맞물린다는 격언이에요. 의로우면 망하지 않고, 망했다면 뿌린 것이 있다 — 욥기 3~31장 논쟁 전체가 이 도식을 두고 돌게 되는데, 그 도식이 여기서 처음 문장이 돼요.</p>
+<p><strong>P07 오지혜</strong>: 8절 첫머리가 "내가 보건대"예요. 엘리바스의 근거가 자기 관찰 경험이에요. 그리고 12절부터는 자기만 들은 환상이 근거가 되고요. 경험과 사적 계시 — 이 두 권위로 욥의 사정을 읽으려 해요. 그런데 독자는 1~2장에서 이미 보았잖아요. 하나님이 욥을 "온전하고 정직하여 하나님을 경외하며 악에서 떠난 자"(1:8)라 부르신 천상 회의를요. 엘리바스의 도식엔 그 정보가 없어요.</p>
+<p><strong>P11 나경아</strong>: 17절 어휘를요. "사람이 어찌 하나님보다 의롭겠느냐(<em>tsadaq</em>, צָדַק)" — 전치사 <em>min</em>(מִן)이 붙어서 '하나님보다 더'(비교)로도 '하나님 앞에서'(기준)로도 읽힐 수 있는 문장이에요. 어느 쪽이냐에 따라 신탁의 결이 달라지는데, 본문만으로는 확정이 어려워요. 미해결로 두고 싶어요.</p>
+<p><strong>P05 김미영</strong>: 사물 쪽 사상이요. 19절 "흙 집(bate chomer)에 살며 티끌로 터를 삼은 자" — 사람의 몸을 흙으로 지은 집으로 부르는 그림이에요. 좀(나방) 앞에서도 부서지고, 20절 "아침과 저녁 사이에 부서지며", 21절 장막 줄이 뽑히듯 걷혀요. 인간의 연약함이 건축 자재의 연약함으로 그려져요.</p>
+<p><strong>P01 한나래</strong>: 상황 하나만요. 욥은 이 스물한 절 동안 한마디도 하지 않아요. 3장에서 그렇게 쏟아 내던 사람이 친구의 첫 변론 내내 침묵의 청자로 앉아 있어요. 말하는 자와 듣는 자의 배치 자체가 이 장의 상황이에요.</p>
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>성령일 선교사</strong>: 장면을 컷으로 나눠 보시지요.</p>
+<p><strong>P04 최현국</strong>: 네 컷입니다. 변론의 논리 단락을 따라가요.</p>
+<ul>
+<li><strong>컷 1 (1~6절)</strong>: 조심스러운 서두 — 말문을 여는 허락 구함, 욥의 과거 회상(일으켜 세우던 네 동작), 5절의 반전("이제 네게 닥치니"), 6절의 양날 질문("네 경외함이 네 자랑이 아니냐").</li>
+<li><strong>컷 2 (7~11절)</strong>: 인과응보 격언 — "죄 없이 망한 자가 누구인가", 밭 갈고 거두는 농사 비유, 사자 다섯 단어의 몰락(부르짖음이 꺾이고 이빨이 부서지고 새끼들이 흩어짐).</li>
+<li><strong>컷 3 (12~16절)</strong>: 밤의 환상 — 가만히 이르는 말씀, 깊은 잠(tardemah), 두려움과 떨림, 지나가는 영, 곤두서는 털, 멈춰 선 형상, 조용함(demamah) 뒤의 목소리.</li>
+<li><strong>컷 4 (17~21절)</strong>: 환상의 신탁과 논증 — "사람이 어찌 하나님보다 의롭겠느냐", 천사도 믿지 않으시거든 하물며 흙 집 인간이랴, 아침과 저녁 사이의 소멸, 지혜 없이 맞는 죽음.</li>
+</ul>
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>성령일 선교사</strong>: 의문이나 발견을 나눠 주세요.</p>
+<p><strong>P05 김미영</strong>: 발견이에요. 10~11절 사자가 다섯 가지 다른 단어로 나와요 — <em>aryeh</em>(사자), <em>shachal</em>(부르짖는 사자), <em>kephir</em>(젊은 사자), <em>layish</em>(노련한 사자), <em>labi</em>(암사자). 두 절 안에 사자 어휘가 다섯 개라니, 히브리어 사자 어휘를 거의 총동원한 셈이에요. 가장 강한 짐승의 일가가 통째로 무너지는 그림으로 '강자도 예외 없다'를 그려요.</p>
+<p><strong>P02 이진우</strong>: 구조 발견이에요. 18~19절이 '하물며 논증'(a fortiori)이에요. "하나님은 그의 종이라도 그대로 믿지 아니하시며 그의 천사라도 미련하다 하시나니 하물며 흙 집에 살며 티끌로 터를 삼은 자이랴." 위에서 아래로 내려오는 비교 — 천사조차 그러하다면 사람은 더더욱. 17절 신탁을 떠받치는 논리 골격이에요.</p>
+<p><strong>P11 나경아</strong>: 원어 카드를요. 3절 <em>musar</em>(מוּסָר) — 교훈·훈계. 7절 <em>naqi</em>(נָקִי) — 죄 없는. 8절 <em>charash aven</em>(חָרַשׁ אָוֶן) — 악을 밭 갈다. 13절 <em>tardemah</em>(תַּרְדֵּמָה) — 깊은 잠. 창세기 2:21 아담의 깊은 잠, 15:12 아브람의 깊은 잠과 같은 단어예요. 15절 <em>ruach</em>(רוּחַ) — 영·바람·숨. 16절 <em>demamah</em>(דְּמָמָה) — 조용함(왕상 19:12 동일). 17절 <em>tsadaq</em>(צָדַק) — 의롭다. 19절 <em>bate chomer</em>(בָּתֵּי־חֹמֶר) — 흙 집들. 10~11절 사자 5종 — <em>aryeh·shachal·kephir·layish·labi</em>. 배경만요.</p>
+<p><strong>P07 오지혜</strong>: 의문이에요. 17절 신탁의 문장 자체는 틀린 말이 아니어 보여요 — 사람이 창조주 앞에서 깨끗하다 할 수 없다는 건요. 그런데 그 문장이 지금 잿더미의 욥을 향해 발화되는 순간, 무엇을 하게 되는 걸까요. 참인 명제가 위로의 좌표를 벗어나 정죄의 도구가 될 수 있는가 — 답하지 않고 들고 있을게요.</p>
+<p><strong>P04 최현국</strong>: ANE 배경이에요. 데만은 에돔의 지혜 전통으로 이름난 지역이고(렘 49:7 "데만에 다시는 지혜가 없느냐"), 꿈과 밤의 환상을 신적 통로로 여기는 관념은 고대 근동에 널리 퍼져 있었어요. 엘리바스는 당대 기준으로 가장 권위 있는 두 출처 — 지혜 전통과 환상 — 를 다 갖춘 화자예요. 배경으로만요.</p>
+<p><strong>P01 한나래</strong>: 발견이요. 12절 "어떤 말씀이 내게 가만히 이르고"의 '가만히'(도둑처럼 슬며시)가 마음에 남아요. 시내산의 천둥 같은 공적 계시가 아니라, 한 사람만 들은 사적인 속삭임이에요. 엘리바스 변론의 가장 큰 권위가 가장 검증 불가능한 출처에서 와요.</p>
+<p><strong>P02 이진우</strong>: 의문 하나 더요. 6절 "네 경외함이 네 자랑(확신)이 아니냐 네 온전한 길이 네 소망이 아니냐" — 격려로도 빈정거림으로도 읽혀요. '네 경외가 진짜라면 지금 무너질 리 없잖으냐'는 압박일 수도, '네 경외를 붙들라'는 권면일 수도. 본문은 어조를 표기해 주지 않아요. 미해결로 두지요.</p>
+<p><strong>성령일 선교사</strong>: 사자 다섯 어휘, 하물며 논증, 검증 불가능한 속삭임의 권위, 참 명제와 빗나간 겨눔의 간격, 6절의 이중 어조. 그대로 두지요. 답이 필요한 것은 미해결 목록으로 보냅니다.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P04 최현국</strong>: 잿더미. 칠일째의 정적. 카메라가 세 친구의 굳은 얼굴을 천천히 훑다가 엘리바스의 입술에서 멈춥니다. 입술이 떨리며 열려요 — "누가 네게 말하면 네가 싫증을 내겠느냐." 화면이 밝은 회상으로 전환됩니다. 욥이 늘어진 손을 잡아 일으키고, 넘어지는 사람을 말로 붙들고, 떨리는 무릎을 굳세게 하는 장면들. 컷이 바뀌면 다시 잿더미의 욥 — "이제 네게 닥치니." 들판이 보입니다. 누군가 밭을 갈고 씨를 뿌리고, 같은 밭에서 같은 것을 거둡니다. 사자의 포효가 울리다가 뚝 끊기고, 이빨이 부서지고, 새끼들이 어둠으로 흩어집니다. 화면이 완전히 어두워져요. 밤. 깊은 잠에 눌린 사람들. 침상의 엘리바스 위로 무언가 지나갑니다 — 얼굴의 바람기, 곤두서는 털. 형상 하나가 멈춰 서는데 윤곽이 잡히지 않아요. 정적. 그리고 거의 들리지 않는 소리: "사람이 어찌 하나님보다 의롭겠느냐." 새벽빛 속에 흙으로 지은 집들이 보이고, 아침과 저녁 사이에 그 벽이 부서지고, 장막 줄이 뽑히고, 천막이 소리 없이 주저앉습니다. 암전.</p>
+<p><strong>성령일 선교사</strong>: 침묵이 깨지는 입술에서, 회상과 격언과 사자의 몰락을 지나, 한밤의 속삭임과 무너지는 흙 집들로 닫히는 흐름입니다.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "위로하러 온 입에서 나온 첫 문장 — 정중함과 서늘함 사이"</p>
+<p><strong>P02 이진우</strong>: "죄 없이 망한 자가 누구인가 — 인과응보 도식의 첫 정식화"</p>
+<p><strong>P04 최현국</strong>: "낮의 격언, 밤의 환상 — 한 변론에 담긴 두 무대"</p>
+<p><strong>P05 김미영</strong>: "밭 갈고 거두는 자와 흙 집에 사는 자 — 농기구와 건축 자재의 신학"</p>
+<p><strong>P07 오지혜</strong>: "참인 문장이 잿더미를 겨눌 때 — 4장 17절의 행방"</p>
+<p><strong>P11 나경아</strong>: "<em>naqi · ruach · demamah</em> — 죄 없음, 지나가는 영, 조용한 소리"</p>
+<p>부제 제안: "칠일 침묵을 깬 엘리바스의 첫 변론 전반부 — 욥의 과거 회상에서 인과응보 격언과 사자의 몰락을 지나, 밤의 환상이 전한 '사람이 어찌 하나님보다 의롭겠느냐'까지. 독자만 1~2장의 천상 회의를 알고 있다."</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 친구의 첫 변론을 침묵으로 듣고 있는 욥 곁에 같이 앉아, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 저도 누군가의 잿더미 앞에서 엘리바스의 첫 문장을 꺼낸 적이 있습니다. 맞는 말을 골라 들고 갔는데, 그 말이 어디를 겨누는지는 살피지 못했습니다. 오늘은 묻지 않고 곁에 앉아만 있겠습니다.</p>
+<p>*— 그 순간 떠오른 것을 각자 마음에만 둡니다.</p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>그래서 이 본문은 어디서 어디로 움직이는지요? 눈에 보이는 일 아래에서 무엇이 회복되고 있는지요? 이 본문이 품은 긴장은 무엇인지요? 이 불이 우리 안에서도 타오르고 있는지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 이 장은 <strong>침묵에서 변론으로, 욥의 탄식(3장)에서 친구들의 도식(4장)으로</strong> 넘어가는 관문이에요. 욥기의 둘째 국면 — 3~31장 인과응보 논쟁 — 이 여기서 개시돼요. 욥기 전체의 spine이 '고난의 까닭을 다 풀지 않으시되 친히 임재하사 들음에서 봄으로 데려가신다'라면, 4장은 그 여정이 통과해야 할 첫 우회로의 입구예요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. 16절 <em>demamah</em> — 조용한 소리로 온 이 신탁과, 욥기 끝의 폭풍(38:1 세아라) 속 음성이 책의 양쪽에 놓여 있어요. <strong>속삭임의 신탁에서 폭풍의 응답으로</strong> — 계시의 두 방식이 책의 앞뒤에 배치된 사실만 관찰로 두고, 해석은 미해결로 두고요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 표면은 친구의 권면과 격언이에요. 그런데 아래에서는 <strong>독자만 아는 정보의 간격</strong>이 움직여요. 우리는 1~2장에서 하나님이 욥을 '까닭 없이'(2:3) 시험당한 온전한 자로 부르신 걸 들었는데, 엘리바스의 도식엔 그 천상 장면이 없어요. 도식이 정교할수록 그 간격이 더 크게 보여요.</p>
+<p><strong>P01 한나래</strong>: 긴장이에요. 17절 문장은 참으로 들리는데, 듣는 욥에겐 비수가 돼요. <strong>옳은 명제와 빗나간 겨눔 사이의 긴장</strong>이요. 그리고 책의 끝에서 여호와께서 엘리바스에게 "너희가 나를 가리켜 말한 것이 욥의 말 같이 옳지 못함이니라"(42:7) 하시는 게 교차 참조로 걸려 있어요. 그 거리가 이 장을 읽는 내내 떨리는 줄처럼 당겨져 있어요.</p>
+<p><strong>P04 최현국</strong>: 운동을 한 장면으로 보면, 일으켜 세우던 손(3~4절의 욥)이 이제 주저앉아 있고, 곁에 온 친구의 말이 그 사람을 다시 세우는 대신 도식 안으로 눕히려 해요. <strong>위로의 방문이 변론의 법정으로 바뀌는 방향 전환</strong> — 그게 이 장이 트는 길이에요.</p>
+<p><strong>P05 김미영</strong>: 이 불이 우리 안에서 타오르느냐 물으시니 — 저는 "내가 보건대"(8절)가 걸려요. 내 경험의 표본으로 남의 고난을 읽어 내는 버릇이요. 그 도식이 닿지 못하는 사정이 있다는 걸 1~2장을 본 독자로서는 알면서도, 제 일상에서는 자꾸 엘리바스 쪽에 서 있더라고요. 거기서 멈춰 섭니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>침묵이 변론으로 깨지고, 인과응보 도식이 처음 문장이 되며, 독자만 아는 천상 회의와 엘리바스의 격언 사이에 간격이 벌어지고, 속삭임의 신탁이 책 끝의 폭풍 응답을 멀리서 마주 보는</strong> — 그 운동을 손에 쥐고 5장, 엘리바스 변론의 후반부로 건너갑니다.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOB-004</p>
+<p>book: 욥기</p>
+<p>chapter: 4</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>욥기 4장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대 1: 2장에서 이어지는 잿더미 — 공간은 그대로, 칠일의 침묵이 처음 깨지는 음향 변화.</li>
+<li>무대 2: 12~16절 엘리바스의 회상 속 밤 — 침상, 깊은 잠, 지나가는 영, 멈춰 선 형상.</li>
+<li>낮의 소품: 농기구(밭 갈다·뿌리다·거두다, 8절), 사자 일가(10~11절).</li>
+<li>밤의 소품: 곤두선 털(15절), 알아볼 수 없는 형상(16절), 조용함(demamah) 뒤의 목소리.</li>
+<li>소멸의 소품: 흙 집(bate chomer)·티끌 터·좀(19절), 장막 줄(21절).</li>
+<li>소재: 의문문 연쇄(2·6·7·17·21절), 욥의 과거 네 동작(3~4절 — 교훈·강하게·붙듦·굳세게).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>정중함과 서늘함의 동거 — 허락을 구하는 서두(2절)에서 정죄의 그림자(7절)로.</li>
+<li>칭찬(3~4절)이 추궁(5절)의 디딤돌로 쓰이는 아픔.</li>
+<li>12절부터 장르 전환 — 낮의 변론에서 한밤의 환상 보고로, 공포에 가까운 질감.</li>
+<li>17절 이후 개인('너')에서 보편('사람'·'그들')으로 물러나는 거리감.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>1~2절: "데만 사람 엘리바스가 대답하여 이르되 누가 네게 말하면 네가 싫증을 내겠느냐."</li>
+<li>21절: "장막 줄이 그들에게서 뽑히지 아니하겠느냐 그들은 지혜가 없이 죽느니라."</li>
+<li>허락을 구하는 질문 → 인류 전체의 사망 선고. 2인칭 '너' → 3인칭 복수 '그들'의 확대.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>인물: 엘리바스(데만 — 에돔 지혜 전통), 침묵의 청자 욥, 환상 속 영(ruach)과 형상, 종들·천사들(18절), 흙 집에 사는 무명의 군상(19절).</li>
+<li>사상 1: 인과응보 도식의 첫 정식화 — "죄 없이 망한 자가 누구인가"(7절) + "밭 갈고 뿌린 대로 거둔다"(8절).</li>
+<li>사상 2: 인간의 보편적 불완전 — "사람이 어찌 하나님보다 의롭겠느냐"(17절) + 하물며 논증(18~19절).</li>
+<li>상황: 엘리바스의 권위 출처는 경험("내가 보건대")과 사적 환상 — 독자만 아는 1~2장 천상 회의 정보가 그에게 없음.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1~6절): 조심스러운 서두 — 욥의 과거 회상과 5절의 반전, 6절의 양날 질문.</li>
+<li>컷 2 (7~11절): 인과응보 격언 — naqi 질문, 농사 비유, 사자 다섯 어휘의 몰락.</li>
+<li>컷 3 (12~16절): 밤의 환상 — 가만히 이르는 말씀, 깊은 잠, 떨림, 지나가는 영, demamah.</li>
+<li>컷 4 (17~21절): 신탁과 논증 — tsadaq 질문, 하물며 논증, 흙 집의 소멸, 지혜 없는 죽음.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>Teman</em>(תֵּימָן) — 데만, 에돔의 지혜 전통 지역. 1절. / <em>musar</em>(מוּסָר) 계열 — 교훈하다. 3절.</li>
+<li><em>naqi</em>(נָקִי) — 죄 없는·결백한. 7절. / <em>charash aven</em>(חָרַשׁ אָוֶן) — 악을 밭 갈다. 8절.</li>
+<li><em>aryeh·shachal·kephir·layish·labi</em> — 사자 어휘 5종. 10~11절.</li>
+<li><em>tardemah</em>(תַּרְדֵּמָה) — 깊은 잠(창 2:21·15:12 동일). 13절. / <em>ruach</em>(רוּחַ) — 영·바람·숨. 15절.</li>
+<li><em>demamah</em>(דְּמָמָה) — 조용함·세미한 소리(왕상 19:12 동일). 16절.</li>
+<li><em>tsadaq</em>(צָדַק) — 의롭다(전치사 min의 이중 가독). 17절. / <em>bate chomer</em>(בָּתֵּי־חֹמֶר) — 흙 집들. 19절.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>의문문 연쇄가 변론의 골격 — 2·6·7·17·21절, 단정 대신 질문으로 미는 수사.</li>
+<li>사자 어휘 5종 집적(10~11절) — 강자의 몰락을 한 가족의 해체로 그림.</li>
+<li>하물며 논증(a fortiori, 18~19절) — 천사 → 흙 집 인간의 하향 비교.</li>
+<li>환상 보고의 삽입(12~16절) — 변론 장르 안에 계시 체험 내러티브가 들어온 격자 구조.</li>
+<li>일반화 수사 — 욥 개인(2인칭)에서 인간 보편(3인칭 복수)으로 시야 확대.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>데만 — 에돔의 지혜 전통으로 이름난 지역(렘 49:7) — 배경.</li>
+<li>꿈·밤의 환상을 신적 통로로 보는 관념은 고대 근동 전반에 일반적 — 배경.</li>
+<li>사자를 권세자·강자의 은유로 쓰는 용법이 메소포타미아 문헌에도 등장 — 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>욥 4:16 ↔ 왕상 19:12 (demamah — 세미한 소리, 동일 어휘)</li>
+<li>욥 4:13 ↔ 창 2:21·15:12 (tardemah — 깊은 잠)</li>
+<li>욥 4:7 ↔ 욥 1:1·1:8·2:3 (욥의 온전함과 '까닭 없이' — 독자만 아는 정보)</li>
+<li>욥 4장 ↔ 욥 42:7 (여호와께서 엘리바스의 말을 옳지 못하다 하심)</li>
+<li>욥 4:1 ↔ 렘 49:7 (데만의 지혜 전통)</li>
+<li>욥 4:8 ↔ 갈 6:7 (심는 대로 거둠 — 표현의 후대 반향)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>잿더미의 칠일째 정적. 엘리바스의 입술이 떨리며 열린다 — "누가 네게 말하면 네가 싫증을 내겠느냐." 회상: 욥이 늘어진 손을 일으키고 떨리는 무릎을 굳세게 하던 장면들. 다시 잿더미 — "이제 네게 닥치니." 들판에서 밭 갈고 뿌린 자가 같은 것을 거둔다. 사자의 포효가 끊기고 새끼들이 흩어진다. 밤. 깊은 잠. 무언가 얼굴 앞을 지나가고 털이 곤두선다. 멈춰 선 형상, 윤곽 없음. 조용함 — 그리고 거의 들리지 않는 소리: "사람이 어찌 하나님보다 의롭겠느냐." 새벽과 저녁 사이에 흙 집들이 부서지고 장막 줄이 뽑힌다. 암전.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"죄 없이 망한 자가 누구인가 — 인과응보 도식의 첫 정식화"</strong></li>
+<li>초벌 부제: "칠일 침묵을 깬 엘리바스의 첫 변론 전반부 — 욥의 과거 회상에서 농사 격언과 사자의 몰락을 지나, 밤의 환상이 전한 '사람이 어찌 하나님보다 의롭겠느냐'까지. 독자만 1~2장의 천상 회의를 알고 있다."</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (14개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (사자 5어휘 집적 + 하물며 논증 + 데만 지혜 전통 + 환상 보고 격자 구조)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>4:7~8의 인과응보 격언을 '거짓 교리'로 단정하지 않고, 욥기 안에서 처음 문장이 된 도식이라는 사실 관찰로만 둠. 42:7의 책망은 교차 참조 노드로만 기록.</li>
+<li>4:12~16 환상의 출처(신적 계시인가 엘리바스의 수사인가)를 판정하지 않고 미해결 질문으로 보존.</li>
+<li>demamah와 왕상 19:12의 어휘 일치를 신학 체계로 확장하지 않고 배경 사실로만 둠.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOB-004</p>
+<p>book: 욥기</p>
+<p>chapter: 4</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>욥기 4장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 4:12~16의 밤의 환상은 신적 계시인가, 엘리바스의 권위를 세우는 수사 장치인가?</h2>
+<ul><li>본문은 환상의 출처를 명시하지 않고, 책 끝(42:7)의 책망은 변론 전체를 향한다. 환상 자체의 진위는 본문이 판정해 주지 않는다. 보존.</li></ul>
+
+<h2>Q2. 4:15의 ruach는 '영'인가 '바람'인가?</h2>
+<ul><li>같은 단어가 영·바람·숨을 모두 가리킬 수 있다. 얼굴 앞을 지나간 것이 인격적 존재인지 공기의 움직임인지 문맥만으로 확정이 어렵다. 보존.</li></ul>
+
+<h2>Q3. 4:17의 전치사 min은 '하나님보다 더'(비교)인가 '하나님 앞에서'(기준)인가?</h2>
+<ul><li>"사람이 어찌 하나님보다 의롭겠느냐"와 "사람이 어찌 하나님 앞에서 의롭다 하겠느냐"는 결이 다른 문장이 된다. 두 가독이 모두 살아 있다. 보존.</li></ul>
+
+<h2>Q4. 4:6 "네 경외함이 네 자랑이 아니냐"는 격려인가 빈정거림인가?</h2>
+<ul><li>본문은 어조를 표기하지 않는다. 권면으로도 압박으로도 읽힌다. 5장 이후 변론의 전개와 같이 읽어야 할 질문. 보존.</li></ul>
+
+<h2>Q5. 10~11절의 사자 다섯 어휘는 악인 일반의 은유인가, 욥을 겨눈 암시인가?</h2>
+<ul><li>강자의 몰락이라는 그림은 분명하지만, 그 화살이 욥의 처지를 가리키는지는 본문이 명시하지 않는다. 보존.</li></ul>
+
+<h2>Q6. 4:18 "그의 천사들에게는 미련함을 돌리시나니"의 '미련함'(tohola)은 무엇을 뜻하는가?</h2>
+<ul><li>이 단어는 구약에서 여기에만 나오는 드문 어휘로, 뜻의 폭(허물·오류·미련함)이 넓다. 확정하지 않는다. 보존.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">칠일의 침묵을 깬 첫 변론에서 인과응보 도식이 처음 문장이 되고, 밤의 환상이 전한 참 명제가 잿더미의 한 사람을 겨누는 — 독자만 천상 회의를 아는 간격의 장.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: JOB-004</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-11</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 욥기 4장은 칠일의 침묵을 깨고 처음 입을 연 데만 사람 엘리바스의 첫 변론 전반부로, 욥의 과거(일으켜 세우던 손)를 회상하는 정중한 서두에서 "죄 없이(naqi) 망한 자가 누구인가"(7절)와 "밭 갈고 뿌린 대로 거둔다"(8절)로 인과응보 도식을 욥기에서 처음 정식화하고, 사자 다섯 어휘의 몰락을 지나, 밤의 환상 속 조용한 소리(demamah)가 전한 "사람이 어찌 하나님보다 의롭겠느냐"(17절)와 흙 집(bate chomer) 인간의 소멸로 닫히는 변론이다 — 독자는 1~2장의 천상 회의를 알고 엘리바스는 모른다.</p>
+<p><strong>한 문단</strong>: 잿더미의 칠일째 정적이 깨진다. "누가 네게 말하면 네가 싫증을 내겠느냐." 엘리바스는 욥이 다른 이들을 일으켜 세우던 시절을 회상하고, 곧이어 "이제 네게 닥치니"로 방향을 돌린다. 죄 없이 망한 자가 누구인가 — 밭 갈고 뿌린 자는 그대로 거둔다. 사자의 포효가 끊기고 새끼들이 흩어진다. 화면이 어두워진다. 깊은 잠, 얼굴 앞을 지나가는 영, 곤두서는 털, 멈춰 선 형상. 조용함 뒤에 거의 들리지 않는 소리가 묻는다: "사람이 어찌 하나님보다 의롭겠느냐." 천사도 믿지 않으시거든 하물며 흙 집에 사는 자이랴. 아침과 저녁 사이에 그들은 부서지고, 장막 줄이 뽑히고, 지혜가 없이 죽는다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>잿더미 무대에 처음 울리는 목소리. 낮의 농기구·사자, 밤의 침상·형상, 소멸의 흙 집·장막 줄.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>정중함과 서늘함의 동거. 칭찬이 추궁의 디딤돌로. 12절부터 장르가 환상 보고로 전환.</td></tr>
+<tr><td>3 시작과 끝</td><td>허락을 구하는 질문(1~2절) → 인류 전체의 사망 선고(21절). '너'에서 '그들'로 확대.</td></tr>
+<tr><td>4 등장인물·사상</td><td>말하는 엘리바스, 침묵의 욥. 인과응보 도식의 첫 정식화 + 인간의 보편적 불완전.</td></tr>
+<tr><td>5 장면 컷</td><td>서두(1~6)/격언(7~11)/환상(12~16)/신탁·논증(17~21) 4컷.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>사자 5어휘, 하물며 논증, demamah-왕상 19:12, min의 이중 가독, 6절 어조 미해결.</td></tr>
+<tr><td>7 동영상</td><td>떨리는 입술→회상→들판→사자의 몰락→밤의 형상→속삭임→무너지는 흙 집→암전.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"죄 없이 망한 자가 누구인가 — 인과응보 도식의 첫 정식화"</td></tr>
+<tr><td>9 기도·내면</td><td>맞는 말을 골라 들고 갔던 내 잿더미 방문들을 내려놓고, 곁에 앉는 침묵으로.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 정중함과 칼날의 이중 어조</strong>: 허락을 구하며 시작한 입(2절)이 욥의 과거를 칭찬하고(3~4절), 그 칭찬을 그대로 뒤집어 현재를 추궁한다(5절). 6절 "네 경외함이 네 자랑이 아니냐"는 격려와 빈정거림 사이에서 진동한다. 변론의 표면은 예의이고 속은 도식이다.</p>
+<p>2. <strong>결 2 — 경험과 속삭임이라는 두 권위</strong>: 엘리바스의 근거는 "내가 보건대"(8절)라는 자기 관찰과, 자기만 들은 밤의 환상(12~16절)이다. 가장 큰 주장이 가장 검증 불가능한 출처에 기대 있다. 데만의 지혜 전통(렘 49:7)이라는 배경까지 더하면, 당대 기준으로 흠잡을 데 없는 화자가 독자만 아는 정보 하나가 없어서 빗나가는 광경이 된다.</p>
+<p>3. <strong>결 3 — 참 명제와 빗나간 겨눔의 간격</strong>: 17절 "사람이 어찌 하나님보다 의롭겠느냐"는 그 문장만 떼어 보면 틀렸다고 하기 어렵다. 그런데 그 문장이 '까닭 없이'(2:3) 고난당하는 욥을 향해 발화되는 순간, 위로의 좌표를 벗어난다. 책의 끝에서 여호와는 엘리바스의 말을 옳지 못하다 하신다(42:7). 명제의 참과 발화의 옳음이 같지 않다는 간격이 이 장 전체에 걸쳐 있다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>왕상 19:12 — demamah(세미한 소리)의 동일 어휘. 속삭임으로 오는 계시의 또 한 장면.</li>
+<li>창 2:21·15:12 — tardemah(깊은 잠). 아담과 아브람에게 임한 그 잠과 같은 단어.</li>
+<li>욥 1:1·1:8·2:3 — 욥의 온전함(tam)과 '까닭 없이'. 엘리바스가 모르는 독자의 정보.</li>
+<li>욥 42:7 — 여호와께서 엘리바스의 말을 옳지 못하다 하심. 이 변론의 책 끝 좌표.</li>
+<li>렘 49:7 — 데만의 지혜 전통. 화자의 배경.</li>
+<li>갈 6:7 — 심는 대로 거두리라. 8절 격언의 후대 반향(교차 참조로만).</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 2절에서 시작한다 — 칠일을 참은 입이 열린다. 나라면 무슨 문장으로 열었을까.</li>
+<li><strong>멈춤 1</strong>: 5절에서 멈춘다 — 남을 일으키던 사람이 자기 차례에 주저앉는다는 지적. 아프지만 사실이다.</li>
+<li><strong>멈춤 2</strong>: 7절에서 멈춘다 — "죄 없이 망한 자가 누구인가." 1~2장을 본 나는 안다. 여기, 한 사람 있다.</li>
+<li><strong>멈춤 3</strong>: 16절에서 멈춘다 — 조용함 뒤의 소리. 큰 음성이 아니라 거의 들리지 않는 물음.</li>
+<li><strong>끝</strong>: 21절에서 멈춘다 — "지혜가 없이 죽느니라." 위로하러 온 입의 마지막 단어가 죽음이다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 의문문 연쇄의 변론 골격(2·6·7·17·21절)</li>
+<li>[x] 인과응보 도식의 첫 정식화(7~8절)</li>
+<li>[x] 사자 5어휘 집적(10~11절)</li>
+<li>[x] 밤의 환상 보고와 demamah 신탁(12~17절)</li>
+<li>[x] 하물며 논증과 흙 집의 소멸(18~21절)</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>욥기의 spine은 '고난의 까닭을 다 풀지 않으시되, 창조의 주권으로 친히 임재하사 의인을 들음에서 봄으로 데려가신다'이고, destination은 42:5 "내가 주께 대하여 귀로 듣기만 하였사오나 이제는 눈으로 주를 뵈옵나이다"이다. 책의 국면으로 보면 1~2장 천상 회의·재난, 3~31장 인과응보 논쟁과 욥의 항변, 32~37장 엘리후, 38~41장 폭풍 속 여호와의 응답, 42장 봄·회개·회복인데, 4장은 둘째 국면의 개시 지점 — 친구들의 인과응보 논리가 처음 문장으로 정식화되는 좌표다. 욥이 통과해야 할 긴 논쟁의 출발선이고, 동시에 독자가 1~2장에서 받은 정보(까닭 없이 시험당한 온전한 자)와 친구들의 도식 사이 간격이 처음 벌어지는 지점이기도 하다. 엘리바스의 신학은 '들음'의 신학이다 — 전통으로 들은 것, 환상으로 들은 것, 경험에서 들은 것. 그 들음이 아무리 정교해도, 책은 그것으로 충분하지 않다는 길을 38장의 폭풍과 42:5의 '봄'까지 끌고 간다. 4장의 demamah(속삭임)와 38:1의 폭풍이 책의 양쪽에서 마주 보는 배치도 그 호 위에 놓여 있다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>칠일의 침묵에서 첫 변론으로 / 욥의 탄식(3장)에서 친구들의 도식(4장)으로 / 위로의 방문에서 변론의 법정으로 / 곁에 앉음에서 겨눔으로.</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 4장은 욥기를 탄식의 독백에서 논쟁의 대화로 밀어 넣는다. 그리고 그 첫 발화가 인과응보 도식이기 때문에, 이후 31장까지 이어질 모든 변론과 항변이 이 장이 깔아 둔 궤도 위를 달리게 된다. 들음에서 봄으로 가는 책 전체의 여정에서 보면, 4장은 그 길이 통과해야 할 첫 우회로의 입구다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 친구의 권면, 격언, 환상 보고다. 그러나 수면 아래에서는 독자만 아는 정보의 간격이 움직인다. 1~2장에서 하나님은 욥을 "나의 종"이라 부르시고 "까닭 없이"(2:3) 시험당한 온전한 자로 인정하셨다. 그 천상 장면을 엘리바스는 보지 못했다. 그래서 그의 도식 — 망했다면 뿌린 것이 있다 — 은 정교할수록 더 크게 빗나간다. 빙산의 위는 지혜 전통과 환상 체험으로 무장한 권위 있는 변론이지만, 아래는 까닭 없이 고난당하는 종을 끝내 신뢰하시는 하나님의 침묵 속 신실하심이다. 하나님은 이 장에서 한마디도 하지 않으시지만, 독자는 안다 — 이 침묵은 부재가 아니라, 욥을 두고 거신 신뢰가 아직 진행 중이라는 표시라는 것을. 친구들의 말이 길어질수록 그 신뢰의 무게가 수면 아래에서 더 분명해진다.</p>
+
+<h3>J · 실존적 부름 — 한 점의 불씨</h3>
+<blockquote>
+<p>누군가의 잿더미 앞에서 내 입이 여는 첫 문장은 무엇인가. 맞는 말을 골라 들고 가면서, 그 말이 어디를 겨누는지는 살피지 못한 적이 없는가. "내가 보건대"라는 내 경험의 표본으로 남의 고난을 읽고 있지 않은가.</p>
+</blockquote>
+<p>이것은 가르침이 아니라 초대다. 본문은 독자를 엘리바스의 자세 곁으로 데려가 거울처럼 세운다. 칠일을 같이 침묵한 사람도, 입을 여는 순간 도식 쪽으로 미끄러질 수 있다. 17절처럼 참으로 들리는 문장조차 발화의 방향이 어긋나면 비수가 된다는 것 — 4장은 그 가능성을 판결하지 않고 보여 주기만 한다. 그리고 독자에게 묻는다. 너의 위로는 어느 쪽인가. 곁에 앉는 쪽인가, 설명하는 쪽인가.</p>
+
+<p><strong>이 장에서 가져갈 한 단어</strong>: <em>naqi(죄 없는)</em> — 엘리바스가 '없다'고 전제한 그 사람이, 바로 앞에 앉아 있다.</p>
+<p><strong>다음 장으로 미는 운동</strong>: 도식을 깐 엘리바스는 5장에서 "나라면 하나님께 구하겠노라"는 권면과 징계의 복 선언으로 변론 후반부를 이어 간다 — 처방이 시작되는 것이다, 진단이 빗나간 채로.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/JOB/3/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">욥기 3장</div><div class="nav-preview">생일을 저주하는 욥의 탄식 — 침묵이 깨지기 직전의 독백.</div></a>
+      <a href="/magazine/JOB/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">욥기 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/JOB/5/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">욥기 5장</div><div class="nav-preview">엘리바스 1차 변론 후반 — "나라면 하나님께 구하겠노라"의 처방.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:job4', JSON.stringify({
+      href: '/magazine/JOB/4/',
+      title: '욥기 4장',
+      excerpt: '죄 없이 망한 자가 누구인가 — 칠일 침묵을 깬 엘리바스의 첫 변론. 인과응보 도식의 첫 정식화와 밤의 환상 속 조용한 소리(demamah). 독자만 1~2장의 천상 회의를 안다.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-11</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>
