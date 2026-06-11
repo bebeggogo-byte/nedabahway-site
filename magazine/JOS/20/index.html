@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>여호수아 20장 — Observatory | 네다바웨이</title>
+<meta name="description" content="여호수아 20장을 9단계로 같이 관찰합니다. '내가 모세를 통하여 너희에게 말한 도피성들(are hammiqlat)을 너희를 위해 정하여'(20:2)로 열리는 명령-실행 사슬의 마지막 고리, '부지중에 실수로(bishgagah bivli-daat) 사람을 죽인 자'(20:3)를 위한 의도와 결과의 구분, 성문 어귀의 진술과 장로의 수용과 회중의 재판(20:4-6), 요단 양편에 세 곳씩 놓인 여섯 성(20:7-8), 그리고 거류민(ger)까지 품는 총칙(20:9)까지 — 칼의 책 한가운데 세워지는 보호의 법.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/JOS/20/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/JOS/">역사서</a> · 여호수아 · 20장</div>
+      <h1>여호수아 20장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">JOS-020 · 역사서 · 히브리어</div>
+      <p class="essence">"내가 모세를 통하여 너희에게 말한 도피성들(are hammiqlat)을 너희를 위해 정하여 부지중에 실수로(bishgagah bivli-daat) 사람을 죽인 자가 그리로 도망하게 하라"(20:2-3)는 명령 아래 요단 양편에 세 곳씩 여섯 성이 서고, 성문 어귀의 진술과 장로의 수용과 회중의 재판과 대제사장의 죽음이 한 사람의 길을 지키며 — 거류민(ger)까지 품는 총칙(20:9)으로 닫히는, 칼의 책 한가운데 세워지는 받은 땅의 첫 제도, 보호의 법.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOS-020</p>
+<p>book: 여호수아</p>
+<p>book_en: Joshua</p>
+<p>chapter: 20</p>
+<p>bible_block: 역사서</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브(법 제정)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 9</p>
+<p>observed_facts_count: 25</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>hebrew_terms: [are_hammiqlat, miqlat, qalat, nus, bishgagah, bivli_daat, goel_haddam, gaal, rotseach, ratsach, petach_shaar, ziqne_hair, beoznehem, maqom, edah, mishpat, kohen_gadol, vayyaqdishu, natnu, are_hammuadah, ger]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["LXX 주요 사본(바티칸 사본 계열)은 20:4-6의 절차 단락 대부분을 결락한 채 민 35장의 핵심 어구에 가까운 짧은 본문을 보존 — 도피성 법의 전승 층위를 보여 주는 대표적 본문비평 사례, 배경", "miqlat를 LXX는 φυγαδευτήριον(퓌가듀테리온 — 도망자의 처소)으로 옮김. 어근 φεύγω(도망하다)에서 파생된 조어 — 번역이 이 제도를 '도망'의 공간으로 읽은 흔적, 배경", "9절의 고유 표현 are hammuadah(지정된 성읍들)를 LXX는 일반 명사구로 평탄화 — 형태 관찰, 배경"]</p>
+<p>ane_refs: ["피의 보복(blood vengeance) — 친족이 살해된 자의 피값을 직접 갚는 부족 사회의 관습. 고대 근동과 지중해 세계에 넓게 깔린 자력 구제의 질서로, goel haddam이라는 직책 자체가 이 관습을 전제함. 20장의 배경", "제단 비호권 — 신전이나 제단을 붙잡은 자를 해치지 못하는 성소 망명(asylum) 관습. 출 21:13-14의 '한 곳'과 제단 조항, 왕상 1:50의 제단 뿔 장면이 같은 결. 단일 성소가 아니라 여섯 성읍으로 비호 공간을 넓힌 점이 20장의 형태적 특징, 배경", "히타이트 법은 분노로 친 경우와 '손만 잘못한'(우발) 경우를 구분해 배상을 달리함 — 의도 구분의 근동적 선례. 다만 민 35:31이 고의 살인자의 속전(贖錢)을 금지한 것은 함무라비 법전 등 배상 중심 체계와 결이 다른 지점, 배경", "성문 어귀 — 근동 도시에서 재판·계약·증언이 이루어지던 공적 공간(룻 4:1, 신 21:19). 20:4의 진술 무대가 사적 은신이 아니라 공적 절차임을 보여 주는 배경"]</p>
+<p>rabbinic_refs: ["미쉬나 마코트 2장은 도피성으로 가는 길을 닦고 '미클라트, 미클라트'라 쓴 푯말을 세워 도망자가 길을 잃지 않게 했다고 전함 — 본문 확정 아님, 후대 전통 배경", "탈무드 마코트 11a는 대제사장의 어머니들이 도피성의 도망자들에게 음식과 옷을 보냈다는 전승을 전함(아들의 죽음을 비는 기도가 나오지 않도록) — 6절 조항이 낳은 후대 상상력의 기록, 배경"]</p>
+<p>literary_devices: [command_fulfillment_chain_exod21_num35_deut19, four_part_legal_form, inclusio_bishgagah_v3_v9, goel_haddam_triple_v3_v5_v9, six_city_chiastic_geography, qadash_natan_verb_pair_v7_v8, double_terminus_trial_or_priest_death, ger_inclusion_clause, purpose_clause_ending]</p>
+<p>repeated_words: ["도망하다(nus — 3·4·6·9절, 네 번)", "성읍(ir — 2·4·5·6·7·8·9절, 한 장을 받치는 명사)", "부지중에(bishgagah — 3·9절, 머리와 꼬리)", "피의 보복자(goel haddam — 3·5·9절, 세 번)", "살인자(rotseach — 3·5·6절)", "회중 앞에 서다(6·9절)", "거주하다(yashav — 4·6절)"]</p>
+<p>cross_refs: ["출 21:12-14 (내가 너를 위하여 한 곳을 정하리니 — 도피 제도의 첫 씨앗, 제단 조항)", "민 35:9-34 (도피성 여섯, 회중의 재판, 대제사장의 죽음, 속전 금지 — 20장이 실행하는 원명령)", "신 4:41-43 (모세가 요단 동편의 베셀·라못·골란 세 성을 이미 구별함 — 7-8절의 전사)", "신 19:1-13 (세 성읍과 길 닦기, 땅이 넓어지면 세 성을 더하라 — 절차와 확장 조항)", "수 21:13, 21, 27, 32, 36, 38 (여섯 성 전부가 레위 성읍으로 재등장 — 다음 장과의 연결)", "민 35:31 (고의 살인자의 속전 금지 — 생명의 값을 돈으로 환산하지 않는 조항, 배경)", "룻 4:1-12 (성문의 재판과 goel — 같은 어근의 다른 얼굴, 배경)", "수 21:45 (선한 말씀이 하나도 남음이 없이 다 응하였더라 — 이 보호의 법도 들어가는 권의 도착점)", "왕상 1:50-53 (제단 뿔을 붙잡은 아도니야 — 비호 관습의 후대 장면, 배경)", "히 6:18 (피난처를 찾은 우리 — LXX 어휘 계보, 배경)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-11</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>여호수아 20장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 여호수아 20장입니다. 아홉 절이지요. 열아홉 장에 걸친 분배가 일단락되고, 받은 땅 위에 첫 제도가 세워지는 장입니다. 출애굽기 21장에서 씨앗으로 떨어지고 민수기 35장과 신명기 19장에서 자라난 도피성의 명령이 여기서 마지막으로 실행됩니다. 부지중에 사람을 죽인 자를 위한 여섯 성이지요. 오늘도 해석을 미루고, 본문이 보여 주는 것만 따라가 봅시다. 낭독하고 침묵을 두겠습니다.</p>
+<p>(본문 낭독 20:1~9, 약 2분)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대가 둘이에요. 하나는 지도 — 7절과 8절이 산지와 평지와 바산을 가로지르며 여섯 점을 찍어요. 납달리 산지의 게데스, 에브라임 산지의 세겜, 유다 산지의 헤브론이 요단 서편에 북에서 남으로 내려오고, 동편에서는 르우벤의 베셀, 갓의 라못, 므낫세의 골란이 남에서 북으로 올라가요. 다른 하나는 성문이에요 — 4절이 클로즈업하는 단 하나의 장소, 성읍에 들어가는 문 어귀. 한 장 전체가 넓은 지도와 좁은 문 사이를 오가는 무대예요. 그리고 눈에 띄는 부재가 있어요 — 전투가 없어요. 정복의 권인데 이 장에는 칼이 한 자루도 등장하지 않아요.</p>
+<p><strong>P05 김미영</strong>: 소품 목록이요. 가장 먼저 잡힌 건 문이에요. "그 성읍에 들어가는 문 어귀에 서서"(4절) — 도망자가 멈추는 첫 지점이 닫힌 벽이 아니라 열리는 문이에요. 그다음은 귀 — "그 성읍의 장로들의 귀에 자기의 사건을 말할 것이요"(4절). 입이 아니라 귀가 소품으로 명시돼요. 듣는 기관이 법의 도구가 되는 장면이요. 그리고 "한 곳을 주어"(4절) — 거주할 곳, 살림의 지점이 법문 안에 들어 있어요. 5절에는 손이 나와요 — "그 살인자를 그의 손에 내주지 말지니." 쫓는 자의 손과, 내주지 않는 장로들의 결정이 마주 보고요. 6절에는 집이 있어요 — "자기가 도망하여 나온 그 성읍의 자기 집으로 돌아갈지니라." 도망으로 시작한 법이 귀향으로 끝나요.</p>
+<p><strong>P07 오지혜</strong>: 소재를 늘어놓아 볼게요 — 죽음, 실수, 도망, 길, 문, 어귀, 귀, 진술, 수용, 거주, 추격, 손, 미움 없음, 재판, 회중, 대제사장, 죽음, 귀향, 집, 산지, 평지, 광야, 거류민. 늘어놓고 보니 두 무더기로 갈려요. 한쪽은 쫓고 쫓기는 것들 — 죽음, 도망, 추격, 손. 다른 쪽은 받아 주는 것들 — 문, 귀, 한 곳, 거주, 집. 한 장이 그 두 무더기 사이에 절차라는 다리를 놓아요. 그리고 죽음이라는 단어가 양 끝에 다른 얼굴로 서 있어요 — 장을 여는 죽음은 일어난 사고이고, 장을 닫는 "죽지 아니하게"(9절)는 막아야 할 일이에요.</p>
+<p><strong>P02 이진우</strong>: 형식 소재를 짚을게요. 2절의 "내가 모세를 통하여 너희에게 말한" — 이 장이 새 법의 제정이 아니라 이미 발화된 명령의 실행이라는 표지가 첫 문장에 걸려 있어요. 출 21:13의 "내가 너를 위하여 한 곳을 정하리니"에서 씨앗으로 떨어진 것이 민 35장에서 여섯 성의 설계가 되고 신 19장에서 길 닦기의 절차가 됐다가, 여기서 지명 여섯 개로 확정돼요. 명령-실행 사슬의 마지막 고리예요. 그리고 법문의 골격이 네 단이에요 — 명령(1~3), 절차(4~6), 목록(7~8), 총칙(9). 원리에서 절차로, 절차에서 지리로, 지리에서 적용 범위로 좁혀졌다가 넓어지는 구성이요.</p>
+<p><strong>P01 한나래</strong>: 저는 3절의 "도망하게 하라"에서 멈췄어요. 보호가 명령형으로 발화돼요. 도망쳐도 된다는 허용이 아니라, 도망하게 하라는 명령이에요. 피할 곳을 만드는 일이 선택 사항이 아니라 받은 땅의 의무로 떨어지는 — 그 어조가 이 장의 첫인상을 정했어요.</p>
+<p><strong>P11 나경아</strong>: 어휘 몇 개만요. <em>miqlat</em>(מִקְלָט) — 도피처. 어근 <em>qalat</em>는 '거두어들이다·받아들이다'의 결이에요. 도피성(are hammiqlat)을 직역하면 '받아들임의 성읍들'에 가까워요. <em>nus</em>(נוּס) — 도망하다. 3·4·6·9절에 네 번 나오는 이 장의 중심 동사고요. <em>bishgagah</em>(בִּשְׁגָגָה) — 부지중에. 어근 shagag는 '길을 잃다·잘못 들다'의 그림이에요. 레위기의 속죄 제사 규정(레 4장)에서 '그릇 범하다'로 옮겨지는 바로 그 단어예요. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 지도와 문이라는 두 무대, 귀와 손과 집이라는 소품, 쫓는 것들과 받아 주는 것들 사이에 놓이는 절차, 명령형으로 발화되는 보호까지. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기였는지요.</p>
+<p><strong>P01 한나래</strong>: 숨이 느려지는 느낌이었어요. 여호수아를 여기까지 읽어 오는 동안 행군과 함락과 분배의 속도가 계속 이어졌는데, 20장에 들어서니 갑자기 한 사람의 보폭이 돼요. 도끼질하다 이웃을 잃은 사람, 그 한 사람이 달리는 길을 위해 권 전체가 잠시 멈춰 서는 — 큰 책이 작은 사람에게 허리를 굽히는 공기였어요.</p>
+<p><strong>P07 오지혜</strong>: "본래 미워함이 없이"(5절)가 오래 남았어요. 법문 한가운데 마음의 상태가 들어와 있어요. 행위만 세는 법이라면 죽음이라는 결과 앞에서 끝났을 텐데, 이 법은 미움이 있었는지를 물어요. 그리고 그 물음이 도망자를 살려요. 결과는 같아도 마음이 다르면 길이 달라진다는 — 그 구분이 법문의 언어로 적혀 있다는 사실이 뜻밖의 위로처럼 들렸어요.</p>
+<p><strong>P04 최현국</strong>: 낙차의 공기예요. 19장까지는 측량의 언어였어요 — 경계가 어디서 돌아 어디로 내려가고. 20장은 동선의 언어예요 — 한 사람이 어디로 달려가 어디에 서고 누구에게 말하는지. 지적도에서 추격전으로 장르가 바뀌는데, 그 추격전이 폭력으로 끝나지 않고 문 앞에서 멈춰요. 무대 위에서 가장 긴장된 순간이 칼이 아니라 문지방이에요.</p>
+<p><strong>P02 이진우</strong>: 어조로는 미래형 절차문의 밀도가 높아요. 서서, 말할 것이요, 받아들여, 주어, 거주하게 하고, 내주지 말지니, 거주하다가, 돌아갈지니라. 아직 일어나지 않은 사건을 위한 동사들이 한 줄로 깔려 있어요. 누군가 실수로 사람을 죽이는 날이 오기 전에, 그날의 동선이 먼저 적혀 있는 — 사고보다 보호가 앞서 준비되는 시제예요.</p>
+<p><strong>P05 김미영</strong>: 감각으로는 어귀요. 성문 어귀에 선 사람을 상상하면 숨이 차요. 등 뒤 어딘가에 보복자가 있고, 앞에는 낯선 성읍이 있어요. 그런데 그 어귀에서 요구되는 일이 무기를 버리는 것도 무릎을 꿇는 것도 아니고, 자기 사건을 말하는 거예요. 그리고 받는 쪽의 동작은 듣는 거고요. 도망의 끝이 진술과 경청이라는 게 — 이 법의 체온 같았어요.</p>
+<p><strong>P11 나경아</strong>: 분위기로 하나만요. 1~6절은 여호와의 발화이고 7~9절은 백성의 실행 보고예요. 말씀이 절반, 그 말씀대로 된 일이 절반 — 발화와 실행이 한 장 안에서 짝을 이뤄요. 구조 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 큰 책이 한 사람에게 허리를 굽히는 공기, 마음의 상태를 묻는 법문, 문지방에서 멈추는 추격전, 사고보다 앞서 준비되는 보호의 시제, 진술과 경청이라는 도망의 끝. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>성령일 선교사</strong>: 시작과 끝을 함께 보겠습니다.</p>
+<p><strong>P02 이진우</strong>: 1절 시작: "여호와께서 여호수아에게 말씀하여 이르시되." 9절 끝: "누구든지 부지중에 살인한 자가 그리로 도망하여 그가 회중 앞에 설 때까지 피의 보복자의 손에 죽지 아니하게 하기 위함이라." 명령의 도입으로 열려서 목적절로 닫혀요. 한 장 전체가 '~하기 위함이라'라는 하나의 목적을 향해 정렬되는 구성이에요. 그리고 그 목적이 부정문이에요 — 죽지 아니하게. 무엇을 이루기 위해서가 아니라 무엇을 막기 위해 세워지는 제도라는 게 마지막 문장의 형태로 확정돼요.</p>
+<p><strong>P01 한나래</strong>: 머리와 꼬리에 같은 말이 놓여 있어요. 3절의 "부지중에 실수로 사람을 죽인 자"와 9절의 "부지중에 살인한 자" — bishgagah가 장의 양 끝을 감싸요. 그런데 꼬리 쪽이 한 뼘 넓어져 있어요. 3절은 이스라엘 자손을 향한 말이었는데, 9절은 "이스라엘 모든 자손과 그들 중에 거류하는 거류민"이에요. 같은 보호가 마지막 절에서 경계 바깥의 사람에게까지 열리며 닫혀요.</p>
+<p><strong>P04 최현국</strong>: 무대로 보면 시작은 보이지 않는 음성이에요 — 여호와의 발화만 있고 장면 묘사가 없어요. 끝은 펼쳐진 지도 위의 총칙이에요 — 여섯 점이 찍힌 땅 전체가 화면에 들어오고, 그 위로 '누구든지'라는 자막이 흘러요. 한 음성에서 한 지도로, 명령에서 적용 범위로 넓어지며 닫히는 구도요.</p>
+<p><strong>P07 오지혜</strong>: 저는 양 끝의 '손'을 겹쳐 보고 싶어요. 3절에서 도피성은 "피의 보복자를 피할 곳"으로 선언되고, 9절에서 그 목적이 "피의 보복자의 손에 죽지 아니하게"로 구체화돼요. 추상적인 보복자가 마지막에는 손이라는 신체로 좁혀져요. 법이 막아서는 대상이 사람 자체가 아니라 그 사람의 손 — 행동의 마지막 마디라는 게, 이 법의 정밀함 같았어요.</p>
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>성령일 선교사</strong>: 등장하는 인물과 사상을 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 인물 목록부터요. 여호와 — 1~6절의 발화자. 여호수아 — 받는 자. 모세 — 또 호명돼요(2절). 1장에서처럼 죽은 사람의 말이 현재의 일을 규정해요. 부지중에 죽인 자(rotseach) — 이 장의 주인공인데 이름도 얼굴도 없어요. 아직 일어나지 않은 사고의 가상 인물이지요. 피의 보복자(goel haddam) — 그를 쫓는 자. 성읍의 장로들 — 문 어귀에서 듣고 결정하는 자들. 회중(edah) — 재판의 주체. 대제사장 — 직접 등장하지 않으면서 그의 죽음이 시간표가 되는 인물. 그리고 거류민(ger) — 마지막 절에서 합류하는 출연진이에요.</p>
+<p><strong>P07 오지혜</strong>: 사상의 중심은 구분이라고 느꼈어요. "부지중에 실수로"(3절), "본래 미워함이 없이"(5절) — 의도와 결과를 가르는 선이 법문에 두 번 그어져요. 죽음이라는 결과는 같아요. 그런데 미워해서 죽인 것과 모르고 죽인 것을 같은 죄로 셈하지 않겠다는 — 행위 너머의 마음까지 들여다보는 법이에요. 그리고 그 구분이 사변이 아니라 성읍과 길과 절차라는 물리적 장치로 세워져요. 생각의 구분이 돌과 흙의 제도가 되는 거요.</p>
+<p><strong>P02 이진우</strong>: 상황의 뼈대는 절차예요. 도망(3절) — 성문 어귀의 진술(4절) — 장로의 수용과 거처 제공(4절) — 추격자에게 불인도(5절) — 회중 앞의 재판(6절) — 대제사장의 죽음까지 거주(6절) — 귀향(6절). 일곱 마디의 동선이 한 사람의 미래를 미리 그려 놓아요. 주목할 건 이 절차가 보복 관습 자체를 폐지하지 않는다는 점이에요. goel haddam이라는 직책은 그대로 인정돼요 — 다만 그의 손이 닿기 전에 문과 장로와 재판이 끼어들어요. 관습을 부정하는 대신 절차로 멈춰 세우는 설계예요.</p>
+<p><strong>P05 김미영</strong>: 사물로는 '한 곳(maqom)'이요. 4절 — "한 곳을 주어 자기들 중에 거주하게 하고." 받아 주는 일이 선언으로 끝나지 않고 살 곳의 제공으로 이어져요. 도망자에게 필요한 게 무죄 판결만이 아니라 오늘 밤 누울 곳이라는 걸 법이 알고 있어요. 그리고 "자기들 중에"가 따뜻했어요 — 격리 수용이 아니라 성읍 사람들 가운데로 들이는 거주예요.</p>
+<p><strong>P01 한나래</strong>: 6절의 시간이요. "회중 앞에 서서 재판을 받기까지 또는 그 당시 대제사장이 죽기까지." 한 사람의 거주 기간이 자기 형량이 아니라 다른 사람의 수명에 묶여 있어요. 자기가 어찌할 수 없는 시간을 사는 거예요. 보호받고 있는데 갇혀 있고, 살아 있는데 집에 못 가는 — 그 어중간한 시간의 질감이 이 장의 가장 깊은 그늘 같았어요.</p>
+<p><strong>P11 나경아</strong>: 사상 쪽 어휘 둘만요. <em>rotseach</em>(רֹצֵחַ) — '살인자'로 옮겨지는데, 십계명의 "살인하지 말라(lo tirtsach)"와 같은 어근 ratsach예요. 본문은 부지중에 죽인 자에게도 이 무거운 단어를 그대로 붙여요 — 결과의 무게를 깎아 주지 않으면서 보호하는 언어 선택이에요. 그리고 <em>goel</em>(גֹּאֵל) — 어근 gaal은 '무르다·되찾다'예요. 룻기에서 기업 무를 자, 이사야에서 구속자로 옮겨지는 바로 그 단어가 여기서는 피의 보복자에게 붙어요. 잃은 것을 되찾는 친족의 책무라는 한 어근이 보복과 구원 양쪽으로 갈라지는 — 형태 관찰로만 둡니다.</p>
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>성령일 선교사</strong>: 장면을 컷으로 나눠 보시지요.</p>
+<p><strong>P04 최현국</strong>: 네 컷입니다. 명령 — 절차 — 여섯 성 — 총칙으로 끊었어요.</p>
+<ul>
+<li><strong>컷 1 (1~3절)</strong>: 여호와의 명령. 모세를 통해 말한 도피성들을 정하라 — 부지중에 실수로 죽인 자가 도망할 곳, 피의 보복자를 피할 곳. 원리의 선포.</li>
+<li><strong>컷 2 (4~6절)</strong>: 절차의 동선. 성문 어귀의 진술 → 장로의 귀 → 수용과 거처 → 추격자에게 불인도("본래 미워함이 없이") → 회중의 재판 → 대제사장의 죽음 → 귀향. 한 사람의 미래가 일곱 마디로 미리 그려짐.</li>
+<li><strong>컷 3 (7~8절)</strong>: 실행 — 여섯 점이 찍히는 지도. 서편: 게데스(납달리 산지) · 세겜(에브라임 산지) · 헤브론(유다 산지), 북에서 남으로. 동편: 베셀(르우벤, 평지 광야) · 길르앗 라못(갓) · 바산 골란(므낫세), 남에서 북으로.</li>
+<li><strong>컷 4 (9절)</strong>: 총칙. 이스라엘 모든 자손과 거류민까지 — 누구든지, 회중 앞에 설 때까지, 죽지 아니하게.</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 3 내부에 대칭이 있어요. 서편 세 성은 북→남으로 내려오고 동편 세 성은 남→북으로 올라가요 — 목록 자체가 땅을 한 바퀴 도는 교차 구도예요. 그리고 동사가 갈려요. 7절의 서편 성들에는 <em>vayyaqdishu</em> — '거룩하게 구별하였고'가 붙고, 8절의 동편 성들에는 <em>natnu</em> — '주었으니·택하였으니'가 붙어요. 동편 세 성은 신 4:41-43에서 모세가 이미 구별해 둔 곳들이라 동사의 결이 다른 걸로 보여요 — 새로 거룩하게 세운 셋과, 이미 세워진 것을 확정한 셋. 형태 관찰이에요.</p>
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>성령일 선교사</strong>: 의문이나 발견을 나눠 주세요.</p>
+<p><strong>P11 나경아</strong>: 원어 카드를요. 2절 <em>are hammiqlat</em>(עָרֵי הַמִּקְלָט) — 도피성들. miqlat의 어근 qalat는 '거두어들이다·받아들이다' — 직역하면 받아들임의 성읍들이에요. 3절 <em>bishgagah</em>(בִּשְׁגָגָה) — 부지중에. 어근 shagag, 길을 잘못 든 자의 그림. 레 4장의 속죄 제사 어휘와 같아요. 3절 <em>bivli daat</em>(בִּבְלִי־דַעַת) — 알지 못하고. daat(지식)의 부재 — 의도 없음을 확정하는 두 번째 한정어예요. 3절 <em>goel haddam</em>(גֹּאֵל הַדָּם) — 피의 보복자. gaal 어근의 양면은 아까 말씀드렸고요. 3절 <em>nus</em>(נוּס) — 도망하다, 네 번 반복되는 중심 동사. 4절 <em>petach hashaar</em>(פֶּתַח הַשַּׁעַר) — 성문 어귀. petach는 '열림'에서 온 명사예요 — 도망의 끝이 '열린 곳'이라는 형태. 4절 <em>beoznehem</em>(בְּאָזְנֵיהֶם) — 그들의 귀에. 4절 <em>maqom</em>(מָקוֹם) — 한 곳, 거처. 6절 <em>edah</em>(עֵדָה) — 회중. 재판의 주체가 개인이 아니라 공동체예요. 6절 <em>kohen gadol</em>(כֹּהֵן גָּדוֹל) — 대제사장. 7절 <em>vayyaqdishu</em>(וַיַּקְדִּשׁוּ) — 거룩하게 구별하였고. qadash가 성읍 지정에 쓰이는 드문 용례예요 — 도피성 지정이 행정이 아니라 성별(聖別)의 동사로 적혔어요. 9절 <em>are hammuadah</em>(עָרֵי הַמּוּעָדָה) — 선정된 성읍들. 구약에서 여기 단 한 번 나오는 표현이에요. 9절 <em>ger</em>(גֵּר) — 거류민. 배경만요.</p>
+<p><strong>P02 이진우</strong>: 발견 — 명령의 사슬이에요. 출 21:13 "내가 너를 위하여 한 곳을 정하리니"(시내산, 씨앗) → 민 35:9-34(여섯 성의 설계, 회중 재판, 대제사장 조항) → 신 4:41-43(모세가 동편 세 성을 미리 구별) → 신 19:1-13(길 닦기와 확장 조항) → 수 20장(지명 여섯 개로 확정). 사십 년에 걸친 한 명령이 다섯 본문을 지나 여기서 완결돼요. 2절의 "내가 모세를 통하여 너희에게 말한"이 그 사슬 전체를 한 어구로 소환하고요. 그리고 이 실행이 21:45의 "선한 말씀이 하나도 남음이 없이 다 응하였더라" 바로 앞에 놓여 있어요 — 다 응한 말씀의 목록 안에 정복만이 아니라 이 보호의 법이 들어 있는 배열이에요.</p>
+<p><strong>P07 오지혜</strong>: 발견 — goel haddam의 대우예요. 본문은 보복자를 한 번도 악인으로 부르지 않아요. 그는 고발당하지 않고, 처벌받지 않고, 그의 직책은 그대로 남아요. 다만 그의 손이 닿기 전에 문이 서고, 장로가 듣고, 재판이 보장돼요. 보복의 관습을 정면으로 부정하면 또 다른 싸움이 됐을 텐데, 이 법은 관습을 인정한 채 그 위에 절차를 한 겹 얹어요. 멈춰 세우되 모욕하지 않는 — 그 절제가 발견이었어요.</p>
+<p><strong>P01 한나래</strong>: 의문이에요. 6절 — 살인자의 귀향 시점이 "그 당시 대제사장이 죽기까지"예요. 왜 재판관도 왕도 아닌 대제사장의 죽음이 한 사람의 사면 기점이 되는지, 본문은 한 마디도 설명하지 않아요. 그의 죽음이 무엇을 끝내는지 — 미해결로 두고 싶어요.</p>
+<p><strong>P05 김미영</strong>: 의문 하나 더요. 여섯 성의 이름을 다음 장에 겹쳐 보면 전부 레위 지파의 성읍이에요 — 게데스도 세겜도 헤브론도 베셀도 라못도 골란도 21장의 레위 성읍 목록에 다시 나와요. 그런데 20장은 그 사실을 말하지 않아요. 도망자를 받는 성읍들이 하필 제사장과 레위인의 성읍이라는 배열이 무엇을 뜻하는지, 본문이 침묵하니 저도 비워 둘게요.</p>
+<p><strong>P04 최현국</strong>: ANE 배경이에요. 피의 보복은 고대 부족 사회의 자력 구제 질서예요 — 살해된 자의 피값을 친족이 직접 갚는 관습이고, goel haddam이라는 직책 자체가 그걸 전제해요. 비호 관습도 넓게 깔려 있어요 — 신전이나 제단을 붙잡은 자를 해치지 못하는 성소 망명이요. 출 21:13-14의 제단 조항과 왕상 1:50의 제단 뿔 장면이 같은 결이에요. 다만 제단 하나가 아니라 성읍 여섯으로 비호 공간을 넓힌 게 이 제도의 형태적 특징이고요. 히타이트 법은 분노로 친 경우와 '손만 잘못한' 우발의 경우를 구분해 배상을 달리했어요 — 의도 구분의 근동적 선례예요. 그런데 함무라비 계열이 살인을 배상금으로 닫을 수 있게 한 것과 달리 민 35:31은 고의 살인자의 속전을 금지해요 — 생명의 값을 돈으로 환산하지 않는 지점이 달라요. 그리고 성문 어귀 — 근동 도시에서 재판과 계약이 이루어지던 공적 공간이에요(룻 4:1). 4절의 진술이 사적 은신이 아니라 공개 절차라는 배경이고요. 전부 배경으로만요.</p>
+<p><strong>P11 나경아</strong>: LXX 관찰 둘만요. 헬라어 역본의 주요 사본 계열은 20:4-6의 절차 단락 대부분을 결락하고 민 35장의 핵심 어구에 가까운 짧은 본문을 보존해요 — 도피성 법이 전승되어 온 층위를 보여 주는 대표적 본문비평 사례인데, 어느 본문이 먼저인지는 판단하지 않고 배경으로만 둡니다. 그리고 miqlat를 LXX는 φυγαδευτήριον — '도망자의 처소'로 옮겼어요. 어근 qalat의 '받아들임'이 번역에서 '도망'의 어휘로 바뀐 흔적이에요. 형태 관찰만요.</p>
+<p><strong>성령일 선교사</strong>: 사십 년 사슬의 완결, 모욕 없이 멈춰 세우는 절차, 대제사장의 죽음이라는 미해결, 레위 성읍이라는 침묵의 배열, 보복 관습과 속전 금지의 배경, 번역의 흔적. 그대로 두지요. 답이 급하지 않습니다.</p>
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P04 최현국</strong>: 음성으로 열립니다 — 내가 모세를 통하여 너희에게 말한 도피성들을 너희를 위해 정하여. 화면에 지도가 펼쳐지고 여섯 점이 차례로 찍힙니다 — 갈릴리의 게데스, 산지의 세겜, 헤브론, 강 건너 광야의 베셀, 길르앗 라못, 바산 골란. 장면이 바뀝니다. 어느 들판, 도끼날이 자루에서 빠져 날아가고, 한 사람이 쓰러집니다. 죽인 자의 얼굴이 하얗게 질립니다 — 미움이 없었습니다, 그러나 사람이 죽었습니다. 그가 달립니다. 흙먼지, 가쁜 숨, 등 뒤 어딘가에서 출발하는 또 한 사람 — 피의 보복자. 길이 갈라질 때마다 화면이 흔들립니다. 멀리 성벽이 보입니다. 그가 성문 어귀에 멈춰 섭니다 — 무릎에 손을 짚고, 숨을 고르고, 장로들이 모여듭니다. 그가 자기의 사건을 말합니다. 카메라가 듣는 귀들을 천천히 훑습니다. 문이 열리고, 누군가 그를 성읍 안으로 이끕니다 — 한 곳이 주어집니다. 며칠 뒤 보복자가 같은 문 앞에 도착합니다. 장로들이 문 앞에 섭니다 — 내주지 않습니다, 본래 미워함이 없이 죽였음이라. 보복자의 손이 천천히 내려갑니다. 세월이 흐릅니다 — 도망자가 남의 성읍에서 물을 긷고, 절기를 지내고, 늙어 갑니다. 어느 날 종소리 같은 부고가 성읍을 지납니다 — 대제사장이 죽었습니다. 도망자가 짐을 쌉니다. 카메라가 그의 걸음을 따라갑니다 — 왔던 길을 거꾸로, 자기 성읍, 자기 집의 문 앞까지. 마지막 화면, 지도 위 여섯 점이 다시 밝아지고 자막이 흐릅니다 — 이스라엘 모든 자손과 그들 중에 거류하는 거류민을 위해, 누구든지, 죽지 아니하게 하기 위함이라. 암전.</p>
+<p><strong>성령일 선교사</strong>: 여섯 점이 찍히는 지도에서 열려, 들판의 사고와 추격과 성문 어귀의 진술을 지나, 내려가는 보복자의 손과 한 사람의 긴 거주와 귀향으로, 그리고 거류민까지 비추는 총칙으로 닫히는 흐름입니다.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "도망하게 하라 — 명령형으로 발화되는 보호"</p>
+<p><strong>P02 이진우</strong>: "사십 년의 사슬 — 출 21장에서 수 20장까지, 명령이 지명이 되기까지"</p>
+<p><strong>P04 최현국</strong>: "문지방에서 멈추는 추격 — 칼의 책 한가운데의 아홉 절"</p>
+<p><strong>P05 김미영</strong>: "장로들의 귀 — 도망의 끝에 놓인 경청"</p>
+<p><strong>P07 오지혜</strong>: "본래 미워함이 없이 — 마음을 묻는 법"</p>
+<p><strong>P11 나경아</strong>: "<em>miqlat · bishgagah</em> — 받아들임의 성읍, 길 잃은 자의 법"</p>
+<p>부제 제안: "내가 모세를 통하여 말한 도피성들(are hammiqlat)이 요단 양편 세 곳씩 여섯 점으로 확정되고, 부지중에(bishgagah) 죽인 자를 위해 성문 어귀의 진술·장로의 수용·회중의 재판·대제사장의 죽음이라는 절차가 피의 보복자(goel haddam)의 손을 멈춰 세우며 — 거류민(ger)까지 품는 총칙으로 닫히는, 받은 땅의 첫 제도"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 성문 어귀에 숨을 고르며 선 한 사람 곁으로 들어가, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 오늘 문 어귀에 선 사람과 그의 말을 듣는 귀들을 보았습니다. 사고가 일어나기도 전에 피할 곳이 먼저 정해져 있었다는 것을 보았습니다. 본래 미워함이 없이 — 마음을 물어 주시는 법을 보았습니다. 묻지 않고, 그 열린 문 곁에 머물겠습니다.</p>
+<p>*— 그 순간 떠오른 것을 각자 마음에만 둡니다.</p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>그래서 이 본문은 어디서 어디로 움직이는지요? 눈에 보이는 일 아래에서 무엇이 회복되고 있는지요? 이 본문이 품은 긴장은 무엇인지요? 이 불이 우리 안에서 타오르고 있는지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 20장은 <strong>칼에서 문으로, 정복의 어휘에서 보호의 어휘로</strong> 움직여요. 권의 흐름에서 보면 13~21장의 분배 국면이 막바지인데, 땅의 분배(13~19장)가 끝나자마자 첫 번째로 세워지는 제도가 군대도 성벽도 아니고 실수한 사람의 피난처예요. 그리고 이 장은 21:45 — "선한 말씀이 하나도 남음이 없이 다 응하였더라" — 를 향해 가는 마지막 실행 가운데 하나예요. 다 응한 선한 말씀 안에 약자를 위한 이 법이 들어 있다는 것 — 그게 이 장이 권 전체에 보태는 한 칸이에요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. <em>goel</em> — 이 한 어근이 본문 안에서는 피의 보복자이고, 룻기에서는 기업 무를 자이고, 이사야에서는 "너의 구속자(goalek)"예요. 잃은 것을 되찾는 친족의 책무라는 한 뿌리에서 보복과 구원이 갈라져 나와요. 그리고 <em>miqlat</em>의 어근 qalat — 받아들이다. 도피성 제도의 이름 자체가 '도망'이 아니라 '받아들임'의 단어로 지어져 있어요. 형태 관찰로만 두고요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 표면은 형사 절차법이에요 — 관할, 요건, 심급, 기한. 그런데 그 아래에서 움직이는 건 보복의 사슬을 끊는 일이에요. 피가 피를 부르고 그 피가 또 피를 부르는 자력 구제의 회로가, 문 하나와 귀 하나와 재판 하나로 끊겨요. 그리고 그 절단이 보복자를 정죄하는 방식이 아니라 도망자를 받아들이는 방식으로 일어나요. <strong>누군가를 악인으로 만들지 않으면서 죽음의 순환을 멈추는</strong> — 그게 수면 아래의 운동 같아요.</p>
+<p><strong>P01 한나래</strong>: 긴장이에요. 도피성은 피난처인데 동시에 유배지예요. 살인자는 살아요 — 그런데 자기 집에 못 가요. 보호받고 있는데 갇혀 있고, 무죄에 가까운데 대가를 치르고 있어요. 본문은 그 어중간함을 풀어 주지 않아요. 생명은 지켜지지만 죽음의 무게도 사라지지 않는 — <strong>살리는 법과 가벼워지지 않는 죽음 사이의 긴장</strong>을 그대로 쥐고 있는 장이에요.</p>
+<p><strong>P05 김미영</strong>: 이 불이 우리 안에서 타오르느냐 물으시니 — 저는 4절의 귀가 불씨 같아요. 도망쳐 온 사람에게 가장 먼저 주어지는 게 판결이 아니라 자기 사건을 말할 기회이고, 받는 쪽의 첫 동작이 듣는 거예요. 제 곁의 숨 가쁜 사람에게 제가 문이 된 적이 있는지, 귀가 된 적이 있는지 — 질문인 채로 쥐고 갑니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>칼에서 문으로, 보복의 회로에서 절차의 보호로, 이스라엘 자손에서 거류민까지 — 받은 땅의 첫 제도가 실수한 사람의 피난처로 세워지는</strong> 그 운동을 손에 쥐고 다음 장으로 갑니다. 레위 지파가 자기 몫을 청하러 나아오고, 마흔여덟 성읍이 온 지파 가운데 흩어집니다 — 그리고 권의 결산 문장이 기다리고 있습니다.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOS-020</p>
+<p>book: 여호수아</p>
+<p>chapter: 20</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>여호수아 20장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>이중 무대: 여섯 점이 찍히는 지도(7~8절 — 산지·평지·바산을 가로지르는 광역)와 성문 어귀(4절 — 한 사람이 멈춰 서는 클로즈업). 넓은 지리와 좁은 문 사이를 오가는 구성.</li>
+<li>무대의 부재: 전투 없음 — 정복의 권 한가운데서 칼이 한 자루도 등장하지 않는 장.</li>
+<li>소품: 문(4절 — 도망의 끝이 벽이 아니라 열리는 곳), 귀(4절 — 장로들의 귀, 듣는 기관이 법의 도구), 한 곳(maqom — 거주 제공), 손(5절 — 보복자의 손과 불인도 결정), 집(6절 — 귀향의 종점).</li>
+<li>소재의 두 무더기: 쫓고 쫓기는 것들(죽음·도망·추격·손) 對 받아 주는 것들(문·귀·거처·거주·집) — 그 사이에 절차라는 다리.</li>
+<li>형식 소재: "내가 모세를 통하여 너희에게 말한"(2절) — 새 제정이 아니라 기존 명령의 실행이라는 표지. 네 단의 법문(명령 1~3 / 절차 4~6 / 목록 7~8 / 총칙 9).</li>
+<li>"도망하게 하라"(3절) — 보호가 허용이 아니라 명령형으로 발화됨.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>속도의 낙차 — 행군·함락·측량의 권이 한 사람의 보폭으로 느려짐. 큰 책이 작은 사람에게 허리를 굽히는 공기.</li>
+<li>"본래 미워함이 없이"(5절) — 법문 한가운데 들어온 마음의 상태. 결과만 세지 않고 의도를 묻는 법.</li>
+<li>19장까지의 측량 언어에서 20장의 동선 언어로 — 지적도에서 추격전으로, 그러나 그 추격이 문지방에서 멈춤.</li>
+<li>미래형 절차문의 밀도(서서·말할 것이요·받아들여·내주지 말지니·돌아갈지니라) — 사고가 일어나기 전에 그날의 동선이 먼저 적히는 시제. 보호가 사고보다 앞서 준비됨.</li>
+<li>성문 어귀의 감각 — 가쁜 숨, 등 뒤의 추격, 앞의 열린 문. 도망의 끝이 진술과 경청이라는 체온.</li>
+<li>발화 구조: 1~6절 여호와의 발화 / 7~9절 백성의 실행 — 말씀 절반, 실행 절반의 짝 — 배경.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>1절: "여호와께서 여호수아에게 말씀하여 이르시되."</li>
+<li>9절: "누구든지 부지중에 살인한 자가 그리로 도망하여 그가 회중 앞에 설 때까지 피의 보복자의 손에 죽지 아니하게 하기 위함이라."</li>
+<li>명령의 도입으로 열려 목적절로 닫힘 — 한 장 전체가 '~하기 위함이라'를 향해 정렬됨. 그 목적이 부정문("죽지 아니하게") — 이루기 위해서가 아니라 막기 위해 서는 제도.</li>
+<li>인클루지오: 3절 "부지중에 실수로 사람을 죽인 자" ↔ 9절 "부지중에 살인한 자" — bishgagah가 양 끝을 감쌈. 꼬리에서 적용 범위가 거류민까지 넓어짐.</li>
+<li>3절의 추상("피의 보복자를 피할 곳")이 9절에서 신체("피의 보복자의 손에")로 좁혀짐 — 법이 막는 대상이 사람이 아니라 그 손.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>인물: 여호와(1~6절 발화자), 여호수아, 모세(2절 — 죽은 이의 말이 현재를 규정, 1장과 같은 결), 부지중에 죽인 자(rotseach — 이름도 얼굴도 없는 가상의 주인공), 피의 보복자(goel haddam), 성읍의 장로들, 회중(edah — 재판의 주체), 대제사장(등장하지 않으면서 시간표가 되는 인물), 거류민(ger — 9절의 합류).</li>
+<li>중심 사상: 구분 — "부지중에 실수로"(3절)와 "본래 미워함이 없이"(5절), 의도와 결과를 가르는 선이 두 번 그어짐. 그 구분이 사변이 아니라 성읍·길·절차라는 물리적 장치로 세워짐.</li>
+<li>절차의 뼈대: 도망 → 성문 진술 → 수용·거처 → 불인도 → 회중 재판 → 대제사장 죽기까지 거주 → 귀향. 일곱 마디의 동선.</li>
+<li>관습의 대우: goel haddam은 폐지도 정죄도 되지 않음 — 직책은 인정한 채 절차가 그 손을 멈춰 세움. 부정 대신 한 겹의 절차.</li>
+<li>'한 곳(maqom)'의 제공(4절) — 받아 줌이 선언이 아니라 살 곳으로 구체화. "자기들 중에" — 격리가 아니라 공동체 안의 거주.</li>
+<li>6절의 시간 — 거주 기한이 자기 형량이 아니라 대제사장의 수명에 묶임. 보호이면서 유배인 어중간한 시간.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1~3절): 여호와의 명령 — 모세를 통해 말한 도피성들을 정하라, 부지중에 죽인 자의 피할 곳.</li>
+<li>컷 2 (4~6절): 절차 — 성문 어귀의 진술, 장로의 귀, 수용과 거처, 불인도("본래 미워함이 없이"), 회중의 재판, 대제사장의 죽음, 귀향.</li>
+<li>컷 3 (7~8절): 여섯 점의 지도 — 서편 북→남(게데스·세겜·헤브론), 동편 남→북(베셀·길르앗 라못·바산 골란) — 목록이 땅을 한 바퀴 도는 교차 대칭.</li>
+<li>컷 4 (9절): 총칙 — 이스라엘 모든 자손과 거류민, 누구든지, 회중 앞에 설 때까지, 죽지 아니하게.</li>
+<li>컷 3의 동사 쌍: 서편 vayyaqdishu(거룩하게 구별하였고) 對 동편 natnu(주었으니) — 신 4:41-43에서 모세가 이미 구별한 동편 셋과 새로 성별된 서편 셋의 결 차이. 형태 관찰.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>are hammiqlat</em>(עָרֵי הַמִּקְלָט) — 도피성들(2절). miqlat의 어근 qalat = '거두어들이다·받아들이다' — 직역에 가깝게는 '받아들임의 성읍들'.</li>
+<li><em>nus</em>(נוּס) — 도망하다. 3·4·6·9절 네 번 — 이 장의 중심 동사.</li>
+<li><em>bishgagah</em>(בִּשְׁגָגָה) — 부지중에(3·9절). 어근 shagag = 길을 잃다·잘못 들다. 레 4장의 속죄 제사 어휘와 동일.</li>
+<li><em>bivli daat</em>(בִּבְלִי־דַעַת) — 알지 못하고(3절). daat(지식)의 부재 — 의도 없음의 이중 한정.</li>
+<li><em>goel haddam</em>(גֹּאֵל הַדָּם) — 피의 보복자(3·5·9절). 어근 gaal = 무르다·되찾다 — 룻기의 기업 무를 자, 이사야의 구속자와 같은 단어 가족. 형태 관찰만.</li>
+<li><em>rotseach</em>(רֹצֵחַ) — 살인자(3·5·6절). 십계명 "살인하지 말라(lo tirtsach)"의 어근 ratsach — 부지중에 죽인 자에게도 같은 무게의 단어가 붙음.</li>
+<li><em>petach hashaar</em>(פֶּתַח הַשַּׁעַר) — 성문 어귀(4절). petach는 '열림'에서 온 명사. / <em>beoznehem</em> — 그들의 귀에(4절). / <em>maqom</em> — 한 곳·거처(4절).</li>
+<li><em>edah</em>(עֵדָה) — 회중(6·9절). 재판의 주체가 공동체. / <em>kohen gadol</em>(כֹּהֵן גָּדוֹל) — 대제사장(6절).</li>
+<li><em>vayyaqdishu</em>(וַיַּקְדִּשׁוּ) — 거룩하게 구별하였고(7절). qadash가 성읍 지정에 쓰이는 드문 용례 — 행정이 아니라 성별의 동사.</li>
+<li><em>are hammuadah</em>(עָרֵי הַמּוּעָדָה) — 선정된 성읍들(9절). 구약 단 한 번의 표현. / <em>ger</em>(גֵּר) — 거류민(9절).</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>네 단의 법문: 명령(1~3) — 절차(4~6) — 목록(7~8) — 총칙(9). 원리→절차→지리→적용 범위의 흐름.</li>
+<li>명령-실행 사슬: 출 21:13(씨앗) → 민 35:9-34(설계) → 신 4:41-43(동편 셋 선행 구별) → 신 19:1-13(길 닦기·확장 조항) → 수 20장(지명 확정). 사십 년에 걸친 한 명령의 완결.</li>
+<li>인클루지오: bishgagah(3·9절)가 장을 감싸고, goel haddam이 3·5·9절 세 번 — 법의 수신자와 차단 대상이 고르게 분포.</li>
+<li>지리 대칭: 서편 북→남 / 동편 남→북 — 목록 자체가 교차 구도. 요단 양편 3+3 — 어느 지파 땅에서도 닿을 수 있는 공평한 배치.</li>
+<li>이중 종결 조항(6절): 회중 재판까지 / 대제사장 죽기까지 — 한 사람의 시간이 두 개의 외부 사건에 묶임.</li>
+<li>동사 쌍: vayyaqdishu(7절) 對 natnu(8절) — 새로 성별된 셋과 확정된 셋.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>피의 보복 — 살해된 자의 피값을 친족이 직접 갚는 부족 사회의 자력 구제 질서. goel haddam이라는 직책이 이 관습을 전제. 배경.</li>
+<li>성소 망명(asylum) — 신전·제단을 붙잡은 자를 해치지 못하는 관습. 출 21:13-14의 제단 조항, 왕상 1:50의 제단 뿔과 같은 결. 제단 하나가 아니라 성읍 여섯으로 비호 공간을 넓힌 점이 이 제도의 형태적 특징. 배경.</li>
+<li>히타이트 법의 의도 구분 — 분노로 친 경우와 '손만 잘못한' 우발을 가르는 근동적 선례. 다만 민 35:31의 속전 금지는 배상 중심 체계(함무라비 등)와 결이 다름. 배경.</li>
+<li>성문 어귀 — 근동 도시의 재판·계약·증언 공간(룻 4:1, 신 21:19). 4절의 진술이 사적 은신이 아니라 공적 절차라는 배경.</li>
+<li>LXX: 20:4-6 절차 단락이 주요 사본 계열에서 대부분 결락 — 도피성 법의 전승 층위를 보여 주는 본문비평 사례. miqlat → φυγαδευτήριον(도망자의 처소). 배경.</li>
+<li>랍비 전통: 미쉬나 마코트 2장 — 도피 길의 정비와 '미클라트' 푯말. 탈무드 마코트 11a — 대제사장 어머니들이 도망자들에게 음식을 보냈다는 전승. 본문 확정 아님, 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>수 20:2 ↔ 출 21:12-14 (내가 너를 위하여 한 곳을 정하리니 — 도피 제도의 첫 씨앗)</li>
+<li>수 20장 ↔ 민 35:9-34 (여섯 성·회중 재판·대제사장 조항·속전 금지 — 원명령)</li>
+<li>수 20:8 ↔ 신 4:41-43 (모세가 이미 구별한 베셀·라못·골란)</li>
+<li>수 20장 ↔ 신 19:1-13 (길 닦기와 '땅이 넓어지면 세 성을 더하라'는 확장 조항)</li>
+<li>수 20:7-8 ↔ 수 21:13, 21, 27, 32, 36, 38 (여섯 성 전부 레위 성읍으로 재등장 — 다음 장과의 연결)</li>
+<li>수 20:3 goel ↔ 룻 4:1-12 (성문의 재판과 기업 무를 자 — 같은 어근의 다른 얼굴, 배경)</li>
+<li>수 20장 ↔ 수 21:45 (다 응한 선한 말씀 — 이 보호의 법이 들어가는 도착점)</li>
+<li>수 20:9 ↔ 히 6:18 (피난처를 찾은 우리 — LXX 어휘 계보, 배경)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>음성으로 열린다 — 내가 모세를 통하여 말한 도피성들을 정하여. 지도 위에 여섯 점이 찍힌다 — 게데스, 세겜, 헤브론, 베셀, 라못, 골란. 장면이 바뀐다. 들판에서 도끼날이 자루를 벗어나고 한 사람이 쓰러진다. 미움은 없었다 — 그러나 사람이 죽었다. 죽인 자가 달린다. 흙먼지와 가쁜 숨, 등 뒤 어딘가의 보복자. 성벽이 보이고, 그가 성문 어귀에 멈춰 선다. 장로들이 모이고, 그가 자기의 사건을 말한다. 카메라가 듣는 귀들을 훑는다. 문이 열린다 — 한 곳이 주어진다. 며칠 뒤 보복자가 같은 문에 닿는다. 장로들이 막아선다 — 내주지 않는다, 본래 미워함이 없이 죽였음이라. 들렸던 손이 내려간다. 세월이 흐른다 — 남의 성읍에서 물을 긷는 나날. 어느 날 부고가 지나간다 — 대제사장이 죽었다. 도망자가 왔던 길을 거꾸로 걷는다, 자기 성읍 자기 집까지. 마지막 화면, 여섯 점이 다시 밝아진다 — 이스라엘 모든 자손과 거류민을 위해, 누구든지, 죽지 아니하게. 암전.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"문지방에서 멈추는 추격 — 받은 땅의 첫 제도"</strong></li>
+<li>초벌 부제: "모세를 통해 말씀하신 도피성들(are hammiqlat)이 요단 양편 세 곳씩 확정되고, 부지중에(bishgagah) 죽인 자를 위해 성문 어귀의 진술과 장로의 수용과 회중의 재판이 피의 보복자(goel haddam)의 손을 멈춰 세우며 — 거류민(ger)까지 품는 총칙으로 닫히는 보호의 법"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (21개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (네 단의 법문 + 사십 년 명령-실행 사슬 + 지리 교차 대칭 + ANE 보복·비호 관습 배경)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>도피성을 그리스도의 모형으로 읽는 후대 예표론으로 끌고 가지 않고, miqlat의 어근(받아들임)과 제도의 형태라는 관찰에 머묾. 히 6:18은 LXX 어휘 계보의 배경으로만 기록.</li>
+<li>대제사장의 죽음(6절)을 대속 교리의 증거로 단정하지 않고, 본문이 설명하지 않는 사면 기점이라는 사실 그대로 미해결 질문으로 보존.</li>
+<li>goel haddam의 관습을 야만으로 비판하거나 정당한 응보로 옹호하는 어느 쪽 평가도 하지 않고, 본문이 그 직책을 인정한 채 절차로 멈춰 세운다는 형태 관찰로만 둠.</li>
+<li>"도피성 = 교회"식의 적용 설교로 일반화하지 않고, 문·귀·거처라는 본문의 소품과 절차의 사실에 머묾.</li>
+<li>9절의 거류민 조항을 현대 이민·난민 정책 논쟁의 근거로 일반화하지 않고, 라합(2장)·기브온(9장)에 이어 경계 바깥의 사람이 또 한 번 품에 들어오는 권 내부의 결로만 기록.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOS-020</p>
+<p>book: 여호수아</p>
+<p>chapter: 20</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>여호수아 20장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 대제사장의 죽음(20:6) — 왜 그의 죽음이 한 사람의 귀향 기점인가?</h2>
+<ul><li>재판관도 왕도 아닌 대제사장의 죽음이 사면의 시계가 된다. 그의 죽음이 한 시대를 닫는 것인지, 흘려진 피의 값을 어떤 방식으로 거두는 것인지, 본문은 한 마디도 설명하지 않는다. 해석의 갈래를 열어 둔 채 보존.</li></ul>
+
+<h2>Q2. rotseach — 같은 단어가 고의 살인자와 부지중에 죽인 자 모두에게 붙는 까닭은?</h2>
+<ul><li>십계명의 어근(ratsach)이 실수로 죽인 자에게도 그대로 쓰인다. 언어는 구분하지 않는데 법은 구분한다 — 죽음의 무게를 깎지 않으면서 사람을 살리는 이 어휘 운용의 간격을 닫지 않는다. 보존.</li></ul>
+
+<h2>Q3. goel — 한 어근에서 보복자와 구속자가 갈라져 나오는 그림은 무엇을 비추는가?</h2>
+<ul><li>gaal은 잃은 것을 되찾는 친족의 책무다. 같은 뿌리가 본문에서는 피를 갚는 자로, 룻기에서는 기업을 무르는 자로, 이사야에서는 구속자로 나타난다. 본문은 goel haddam을 평가하지 않는다 — 그 양면성을 형태 사실로만 쥐고 이월. 보존.</li></ul>
+
+<h2>Q4. 도피성은 보호인가 유배인가 — 살되 집에 못 가는 시간의 뜻은?</h2>
+<ul><li>도망자는 생명을 지키지만 자기 성읍과 집을 잃는다. 무죄에 가까운데 대가가 있고, 보호받는데 갇혀 있다. 살리는 법과 가벼워지지 않는 죽음 사이의 이 긴장을 본문은 풀어 주지 않는다. 보존.</li></ul>
+
+<h2>Q5. 왜 제단이 아니라 성읍인가 — 비호의 공간이 넓어진 이유는?</h2>
+<ul><li>출 21장의 '한 곳'과 제단에서 수 20장의 여섯 성읍으로 — 붙잡는 뿔에서 거주하는 공동체로 비호의 형태가 바뀐다. 그 확장의 이유를 본문은 말하지 않는다. 형태 변화의 사실만 기록하고 보존.</li></ul>
+
+<h2>Q6. 9절의 거류민(ger) — 경계 바깥의 사람이 이 법에 포함되는 근거는 무엇인가?</h2>
+<ul><li>라합과 기브온에 이어 또 한 번, 이스라엘 아닌 사람이 이스라엘의 보호 안으로 들어온다. 본문은 포함의 이유를 설명하지 않고 '누구든지'라는 한 단어로 문을 연다. 그 열림의 폭이 어디까지인지 — 권 전체를 읽으며 열어 둔다. 보존.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">"부지중에 실수로 사람을 죽인 자가 그리로 도망하게 하라"는 명령 아래 요단 양편 세 곳씩 여섯 성이 서고, 성문 어귀의 진술과 장로의 귀와 회중의 재판이 피의 보복자의 손을 멈춰 세우며 — 거류민까지 품는 총칙으로 닫히는, 칼의 책 한가운데 세워지는 보호의 법.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: JOS-020</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-11</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 여호수아 20장은 "내가 모세를 통하여 너희에게 말한 도피성들(are hammiqlat)을 너희를 위해 정하여 부지중에 실수로(bishgagah bivli-daat) 사람을 죽인 자가 그리로 도망하게 하라"(20:2-3)는 명령으로 출애굽기 21장 이래 사십 년의 사슬을 완결하고, 성문 어귀의 진술 — 장로의 수용 — 추격자에게 불인도("본래 미워함이 없이", 20:5) — 회중의 재판 — 대제사장의 죽음까지의 거주 — 귀향(20:4-6)이라는 절차로 피의 보복자(goel haddam)의 손을 멈춰 세운 뒤, 요단 서편의 게데스·세겜·헤브론과 동편의 베셀·길르앗 라못·바산 골란(20:7-8)을 확정하고, "이스라엘 모든 자손과 그들 중에 거류하는 거류민(ger)을 위해 ... 죽지 아니하게 하기 위함이라"(20:9)는 총칙으로 닫히는, 받은 땅 위에 세워지는 첫 제도다.</p>
+<p><strong>한 문단</strong>: 열아홉 장에 걸친 분배가 일단락되자 음성이 내려온다 — 내가 모세를 통하여 말한 도피성들을 정하여. 지도 위에 여섯 점이 찍힌다, 강 이쪽에 셋 저쪽에 셋. 그리고 법이 한 사람의 미래를 미리 그린다. 어느 들판에서 도끼날이 자루를 벗어나고 사람이 쓰러질 것이다 — 미움은 없었으나 죽음은 일어났다. 죽인 자가 달릴 것이고, 등 뒤에서 피의 보복자가 출발할 것이다. 그 추격은 성문 어귀에서 멈춘다. 도망자는 문 앞에 서서 자기의 사건을 말하고, 장로들의 귀가 듣고, 성읍이 그를 받아들여 살 곳을 준다. 보복자가 따라와도 그들은 내주지 않는다 — 본래 미워함이 없이 죽였음이라. 그는 회중 앞에 서서 재판을 받고, 대제사장이 죽기까지 남의 성읍에서 살다가, 그 후에야 자기 집으로 돌아간다. 사고가 일어나기도 전에 피할 길이 먼저 닦여 있는 법 — 그리고 마지막 절이 그 문을 한 뼘 더 연다. 이스라엘 모든 자손과 그들 중에 거류하는 거류민을 위해, 누구든지, 죽지 아니하게.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>여섯 점의 지도와 성문 어귀라는 이중 무대. 문·귀·거처·손·집의 소품. 정복의 권에서 칼이 등장하지 않는 장.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>큰 책이 한 사람에게 허리를 굽히는 공기. "본래 미워함이 없이" — 마음을 묻는 법문. 사고보다 앞서 준비되는 보호의 시제.</td></tr>
+<tr><td>3 시작과 끝</td><td>명령의 도입으로 열려 목적절("죽지 아니하게 하기 위함이라")로 닫힘. bishgagah의 인클루지오(3·9절), 꼬리에서 거류민까지 넓어짐.</td></tr>
+<tr><td>4 등장인물·사상</td><td>이름 없는 도망자가 주인공. 중심 사상은 의도와 결과의 구분 — 그 구분이 성읍과 절차라는 물리적 장치로 세워짐. goel은 폐지가 아니라 정지.</td></tr>
+<tr><td>5 장면 컷</td><td>명령(1~3)/절차(4~6)/여섯 성(7~8)/총칙(9) 4컷. 서편 북→남·동편 남→북의 교차 지리. vayyaqdishu 對 natnu의 동사 쌍.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>출 21장→민 35장→신 19장→수 20장의 사십 년 사슬. qalat(받아들임)이라는 어근. rotseach의 무게. LXX 4-6절 결락이라는 본문비평 배경.</td></tr>
+<tr><td>7 동영상</td><td>여섯 점의 지도 → 들판의 사고 → 추격 → 성문 어귀의 진술 → 내려가는 손 → 긴 거주 → 부고와 귀향 → 거류민까지의 총칙.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"문지방에서 멈추는 추격 — 받은 땅의 첫 제도"</td></tr>
+<tr><td>9 기도·내면</td><td>사고가 나기 전에 먼저 정해진 피할 곳, 마음을 물어 주는 법 — 그 열린 문 곁에 머문다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 사십 년 사슬의 마지막 고리</strong>: 2절의 "내가 모세를 통하여 너희에게 말한"은 이 장이 새 법의 제정이 아니라 오래된 명령의 실행임을 첫 문장에서 밝힌다. 출 21:13에서 "내가 너를 위하여 한 곳을 정하리니"로 떨어진 씨앗이 민 35장에서 여섯 성의 설계가 되고, 신 4장에서 동편 세 성의 선행 구별이 되고, 신 19장에서 길 닦기의 절차가 됐다가, 여기서 게데스·세겜·헤브론·베셀·라못·골란이라는 지명 여섯 개로 확정된다. 말씀이 지명이 되기까지 사십 년 — 그리고 이 완결이 21:45의 "선한 말씀이 하나도 남음이 없이 다 응하였더라" 바로 앞에 놓인다. 다 응한 말씀의 목록에 정복만이 아니라 실수한 사람을 위한 법이 들어 있다.</p>
+<p>2. <strong>결 2 — 절차가 만드는 보호, 멈춰 세우되 모욕하지 않는</strong>: 본문은 피의 보복 관습을 폐지하지 않는다. goel haddam은 정죄당하지 않고 그 직책도 부정되지 않는다. 다만 그의 손이 닿기 전에 문이 서고(4절), 귀가 듣고(4절), 장로가 결정하고(5절), 회중이 재판한다(6절). 자력 구제의 회로 위에 절차가 한 겹 얹히면서, 피가 피를 부르는 순환이 누구를 악인으로 만들지도 않으면서 끊긴다. 도망의 끝이 처벌도 면죄도 아닌 진술과 경청이라는 사실 — 성문 어귀(petach, '열림'에서 온 말)가 이 법의 얼굴이다.</p>
+<p>3. <strong>결 3 — bishgagah, 마음을 묻는 법</strong>: "부지중에 실수로"(3절)와 "본래 미워함이 없이"(5절) — 의도와 결과를 가르는 선이 법문에 두 번 그어진다. 죽음이라는 결과는 같아도 미움의 유무가 길을 가른다. 그러면서도 본문은 부지중에 죽인 자를 rotseach — 십계명과 같은 어근의 살인자 — 로 계속 부른다. 죽음의 무게를 깎지 않으면서 사람을 살리는 언어. 그가 보호받되 자기 집에 못 가는 6절의 어중간한 시간도 같은 결이다 — 생명은 지켜지고, 죽음은 가벼워지지 않는다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>출 21:12-14 — "내가 너를 위하여 한 곳을 정하리니" — 도피 제도의 첫 씨앗, 제단 조항.</li>
+<li>민 35:9-34 — 여섯 성의 설계, 회중의 재판, 대제사장 조항, 속전 금지 — 20장이 실행하는 원명령.</li>
+<li>신 4:41-43 — 모세가 요단 동편의 베셀·라못·골란을 미리 구별함 — 8절 natnu의 전사.</li>
+<li>신 19:1-13 — 길 닦기와 "땅이 넓어지면 세 성을 더하라" — 절차와 확장 조항.</li>
+<li>수 21장 — 여섯 성 전부 레위 성읍으로 재등장 — 도망자를 받는 곳이 제사장 지파의 성읍이라는 다음 장의 연결.</li>
+<li>룻 4:1-12 — 성문의 재판과 goel — 같은 어근의 다른 얼굴, 배경.</li>
+<li>수 21:45 · 24:15 — 다 응한 선한 말씀과 섬김의 선택 — 이 보호의 법이 들어가는 권의 도착점.</li>
+<li>히 6:18 — "피난처를 찾은 우리" — LXX 어휘 계보, 배경.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 20:2의 "내가 모세를 통하여 말한"에서 시작한다 — 오래전에 들었던 말이 오늘의 지명이 되는 시간을 듣는다.</li>
+<li><strong>멈춤 1</strong>: 20:4에서 멈춘다 — 성문 어귀의 진술과 장로들의 귀. 숨 가쁜 사람의 말을 끝까지 듣는 일이 법의 첫 동작이라는 것.</li>
+<li><strong>멈춤 2</strong>: 20:5에서 멈춘다 — "본래 미워함이 없이." 결과만 세지 않고 마음을 물어 주는 법 앞에서, 내가 결과만으로 셈해 온 사람이 있는지 본다.</li>
+<li><strong>끝</strong>: 20:9에서 멈춘다 — "거류하는 거류민을 위해 ... 누구든지." 보호의 문이 경계 바깥까지 열리는 마지막 절을 쥐고, 내 문이 어디까지 열려 있는지 본다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 명령(1~3)·절차(4~6)·목록(7~8)·총칙(9)의 네 단 완결</li>
+<li>[x] bishgagah 인클루지오(3·9절)와 goel haddam 삼중 분포(3·5·9절)</li>
+<li>[x] 일곱 마디 절차(도망→진술→수용→불인도→재판→거주→귀향)의 동선</li>
+<li>[x] 여섯 성의 교차 지리(서편 북→남 / 동편 남→북)와 동사 쌍(vayyaqdishu/natnu)</li>
+<li>[x] 3절의 수신 범위(이스라엘 자손)가 9절(거류민까지)로 넓어지는 호응</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>여호수아의 spine은 '말씀하신 약속을 땅으로 이루사, 그 성취 위에서 백성이 여호와 섬김을 스스로 택하게 하신다'이며, destination은 "여호와께서 이스라엘 족속에게 말씀하신 선한 말씀이 하나도 남음이 없이 다 응하였더라"(21:45)에서 "나와 내 집은 여호와를 섬기겠노라"(24:15)로 이어진다(book-telos). 권의 흐름은 도하와 준비(1~5장), 정복(6~12장), 분배(13~21장), 정착과 언약의 선택(22~24장)으로 움직이는데, 20장은 분배 국면의 막바지 — 땅의 나눔이 일단락된 직후, 받은 땅 위에 세워지는 첫 제도가 군사 시설이 아니라 실수한 사람의 피난처라는 지점이다. 구속사의 호에서 보면, 시내산에서 씨앗으로 떨어진 한 조항(출 21:13)이 광야 사십 년을 건너 약속의 땅에서 여섯 지명으로 응하는 현장이고, 1장의 완료형(natatti)이 향하던 21:45의 결산에 이 보호의 법이 한 줄로 들어간다. 약속을 이루시는 신실이 성벽의 함락만이 아니라 약자의 문을 내는 일로도 응한다는 것 — 칼의 책이 그 한가운데서 피난처의 책이기도 하다는 것이, 이 장이 권의 호 안에서 차지하는 좌표다. 그리고 거류민까지 품는 9절은 라합(2장)과 기브온(9장)을 지나온 권의 또 한 번의 열림으로, 약속의 땅이 보복의 땅이 되지 않도록 정착의 첫 설계에 새겨진 결이다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>칼에서 문으로(정복의 어휘에서 보호의 어휘로) / 자력 구제의 회로에서 절차의 보호로(goel의 손에서 장로의 귀로) / 이스라엘 자손에서 거류민까지(20:3에서 20:9로) — 받은 땅의 첫 제도가 실수한 사람의 피난처로 세워지는 운동.</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 20장은 '약속의 땅이 보복의 땅이 되지 않도록 미리 길을 닦는' 운동이다. 사고가 일어나기 전에 피할 곳이 먼저 정해지고(미래형 절차문의 시제), 추격이 시작되기 전에 그 추격이 멈출 문이 먼저 선다. 명령(1~3절)이 실행(7~9절)으로 번역되는 한 장 안에서, 출 21장 이래 사십 년의 사슬이 완결되고, 그 완결은 21장의 레위 성읍 분배와 "하나도 남음이 없이 다 응하였더라"(21:45)로 곧장 이어진다. 20장의 벡터는 전권을 '말씀이 지명이 되고, 지명이 보호가 되는' 방향으로 미는 마지막 구간의 힘이다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 형사 절차법이다 — 관할 성읍, 성립 요건, 심급, 거주 기한. 그러나 수면 아래에서는 다른 것이 움직인다. 첫째, 순환의 절단이다. 피가 피를 부르고 그 피가 또 피를 부르는 자력 구제의 회로가, 문 하나와 귀 하나와 재판 하나로 끊긴다. 그 절단이 보복자를 정죄하는 방식이 아니라 도망자를 받아들이는 방식으로 일어난다 — 누구를 악인으로 만들지 않으면서 죽음의 연쇄를 멈추는 설계가 법문 아래 깔려 있다. 둘째, 마음의 자격이다. "본래 미워함이 없이" — 고대의 법문이 행위 너머의 의도를 들여다본다. 결과가 같아도 미움의 유무가 길을 가른다는 이 구분은, 사람을 결과로만 셈하지 않는 시선이 제도의 형태로 굳은 것이다. 셋째, 받아들임의 어근이다. 이 제도의 이름 miqlat 자체가 '도망'이 아니라 '거두어들임(qalat)'의 단어로 지어져 있다. 도망자의 시점에서는 도피의 성이지만, 성읍의 시점에서는 받아들임의 성이다 — 같은 문이 양쪽에서 다른 이름으로 불리는 셈이고, 본문이 택한 공식 명칭은 받는 쪽의 동사다. 본문은 거기까지만 보여 주고 멈춘다.</p>
+
+<h3>J · 실존적 부름 — 불씨</h3>
+<blockquote>
+<p>나는 누구의 성문 어귀가 되어 본 적이 있는가 — 숨 가쁘게 도착한 사람의 사건을 끝까지 들어 본 적이 있는가. 그리고 내가 달려가 설 수 있는 문은, 사고가 나기 전에 이미 정해져 있는가.</p>
+</blockquote>
+<p>이것은 가르침이 아니라 초대다. 본문은 독자에게 관용을 강요하지 않는다. 다만 들판의 사고와 가쁜 숨과 등 뒤의 추격을 보여 주고, 그 도망의 끝에 닫힌 벽이 아니라 열린 문과 듣는 귀가 있었음을 보여 준다. 보호가 선언이 아니라 절차였다는 사실 — 문 어귀, 진술, 수용, 거처, 불인도, 재판이라는 구체적 마디들 — 그 구체성이 독자가 들어설 입구가 된다. 그리고 마지막 절이 그 문을 거류민에게까지 연다. 누구든지 — 경계 안의 사람만이 아니라 경계에 걸쳐 사는 사람까지. 결과만으로 셈해지지 않는 법, 사고보다 먼저 닦여 있는 길, 받아들임의 어근으로 지어진 이름 — 그 사이 어딘가에서 자기 문의 폭을 되묻게 되는 것, 그것이 이 장이 독자를 부르는 불씨다.</p>
+
+<p><strong>다음 장으로 미는 운동 한 줄</strong>: 도망자를 받을 여섯 성이 섰고 그 여섯이 전부 레위의 성읍이라는 사실은 아직 말해지지 않았다 — 레위 지파가 자기 몫을 청하러 나아오고(21:1), 마흔여덟 성읍이 온 지파 가운데 흩어지며, 권의 결산 문장 — "선한 말씀이 하나도 남음이 없이 다 응하였더라"(21:45) — 이 기다리고 있다.</p>
+<p><strong>이 장에서 가져갈 한 단어</strong>: <em>miqlat — 받아들임의 성</em>.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/JOS/19/"><div class="nav-kicker">← 이전</div><div class="nav-title">여호수아 19장</div><div class="nav-preview">여섯 지파의 몫 — 시므온에서 단까지, 그리고 여호수아 자신의 성읍 딤낫 세라.</div></a>
+      <a href="/magazine/JOS/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">여호수아 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/JOS/21/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">여호수아 21장</div><div class="nav-preview">레위의 마흔여덟 성읍과 다 응한 말씀 — 하나도 남음이 없이.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:jos20', JSON.stringify({
+      href: '/magazine/JOS/20/',
+      title: '여호수아 20장',
+      excerpt: '문지방에서 멈추는 추격 — 받은 땅의 첫 제도. 모세를 통해 말씀하신 도피성들(are hammiqlat)이 요단 양편 세 곳씩 확정되고(20:7-8), 부지중에(bishgagah) 죽인 자를 위해 성문 어귀의 진술·장로의 수용·회중의 재판이 피의 보복자(goel haddam)의 손을 멈춰 세우며 — 거류민(ger)까지 품는 총칙(20:9)으로 닫히는 보호의 법.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-11</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>
