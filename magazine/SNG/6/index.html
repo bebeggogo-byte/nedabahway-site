@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>아가 6장 — Observatory | 네다바웨이</title>
+<meta name="description" content="아가 6장을 9단계로 같이 관찰합니다. '네 사랑하는 자가 어디로 갔는가 우리가 너와 함께 찾으리라'(6:1)는 딸들의 둘째 질문, 그의 거처를 이미 알고 답하는 신부(6:2), '나는 내 사랑하는 자에게 속하였고(ani ledodi vedodi li)'(6:3)의 어순 역전, 왕비 육십·후궁 팔십·무수한 시녀 가운데 '하나뿐(achat hi)'(6:9)의 유일성, 구약 최난해 절로 꼽히는 6:12, 그리고 '돌아오고 돌아오라 술람미 여자야'(6:13)까지 — 잃음의 밤이 끝나는 방식을 보여 주는 재회의 장.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/SNG/6/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/SNG/">시가서</a> · 아가 · 6장</div>
+      <h1>아가 6장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">SNG-006 · 시가서 · 히브리어</div>
+      <p class="essence">"네 사랑하는 자가 어디로 갔는가 우리가 너와 함께 찾으리라"(6:1)는 딸들의 둘째 질문에 신부가 그의 거처를 이미 알고 답하고(6:2), "나는 내 사랑하는 자에게 속하였고 내 사랑하는 자는 나에게 속하였으며(ani ledodi vedodi li)"(6:3)로 소속 선언의 어순이 뒤집히며, 왕비 육십·후궁 팔십·무수한 시녀 가운데 "하나뿐(achat hi)"(6:9)의 유일성이 세워지는 — 잃음의 밤이 끝나는 방식을 보여 주는 재회의 장.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: SNG-006</p>
+<p>book: 아가</p>
+<p>book_en: Song of Songs</p>
+<p>chapter: 6</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 시(재회·찬가)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 13</p>
+<p>observed_facts_count: 26</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>hebrew_terms: [anah_halakh, dodi, gan, shoshannim, ani_ledodi_vedodi_li, Tirtsah, ayummah_kannidgalot, hirhivuni, achat_hi, yonati, tammati, barah, shachar, kallevanah, kachammah, egoz, markevot_ammi_nadiv, Shulammit, shuvi, chazah, mecholat, Machanayim]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["6:4의 디르사(Tirtsah)를 LXX는 ὡς εὐδοκία(기쁨처럼)로 옮김 — 고유명사가 아니라 어근 ratsah(기뻐하다)의 보통명사로 읽은 흔적. 번역 폭의 증거, 배경", "6:12를 LXX는 '내 영혼이 나를 아미나답(Αμιναδαβ)의 병거로 삼았다'로 옮김 — ammi-nadiv를 인명으로 읽은 갈래. 난해절의 가장 오래된 증인 중 하나, 배경", "6:13의 술람미(Shulammit)를 LXX는 ἡ Σουλαμῖτις로 음역하고, 마하나임 춤은 χοροὶ τῶν παρεμβολῶν(진영들의 춤)으로 풀어 옮김 — 지명 대신 보통명사 독법, 배경"]</p>
+<p>ane_refs: ["디르사 — 북왕국 초기의 수도(여로보암부터 오므리가 사마리아를 건설하기 전까지, 왕상 14:17; 16:23-24). 어근이 '기뻐하다(ratsah)'와 닿아 아름다움의 도시로 불림 — 배경", "wasf — 신부·신랑의 몸을 머리부터 차례로 칭송하는 근동 혼인시 장르. 4:1-7, 5:10-16에 이어 6:5b-7이 셋째 변주 — 장르 배경", "근동 왕실의 후궁 명부 — 왕의 위세를 후궁의 수로 과시하는 관행. 6:8의 육십·팔십·무수는 그 관행의 어휘를 쓰되 방향을 뒤집는 셈법 — 배경", "degel(깃발·군기) — 민수기 2장의 진영 배치 어휘. 6:4·10의 '깃발을 세운 군대'는 행군 진영의 군사 그림 — 배경", "마하나임 — 요단 동편의 지명. 야곱이 하나님의 군대를 만나 '두 진영'이라 이름 붙인 곳(창 32:2), 후에 이스보셋의 거점(삼하 2:8)과 다윗의 피난처(삼하 17:24) — 배경"]</p>
+<p>rabbinic_refs: ["후대 유대 전통은 아가를 유월절에 낭독했고, 미쉬나 야다임 3:5에는 '모든 성문서가 거룩하지만 아가는 거룩 중의 거룩'이라는 아키바의 말이 기록됨 — 본문 확정 아님, 배경"]</p>
+<p>literary_devices: [daughters_second_question_6_1, garden_answer_reversal_6_2, mutual_belonging_inversion_2_16_to_6_3, double_city_simile_6_4, gaze_aversion_6_5a, wasf_reprise_abridged_6_5b_7, numerical_crescendo_vs_one_6_8_9, barah_echo_6_9_to_6_10, mi_zot_refrain_3_6_6_10_8_5, celestial_simile_ladder_6_10, crux_interpretum_6_12, fourfold_return_imperative_6_13, hapax_shulammit]</p>
+<p>repeated_words: ["사랑하는 자(dodi — 1·2·3절에 다섯 번)", "돌아오라(shuvi — 13절에 네 번)", "깃발을 세운 군대 같이(ayummah kannidgalot — 4·10절)", "백합화(shoshannim — 2·3절)", "하나(achat — 9절에 두 번)", "맑다·순전하다(barah — 9·10절)", "동산(gan — 2절에 두 번 + 11절의 호두 동산)", "보다(chazah — 13절에 두 번)"]</p>
+<p>cross_refs: ["아 2:16 (내 사랑하는 자는 내게 속하였고 나는 그에게 속하였도다 — 6:3과 어순이 뒤집힌 첫 선언)", "아 7:10 (나는 내 사랑하는 자에게 속하였도다 그가 나를 사모하는구나 — 셋째 변주, 다음 장)", "아 5:9 (네 사랑하는 자가 남의 사랑하는 자보다 나은 것이 무엇인가 — 딸들의 첫 질문)", "아 4:1-3 (찬가의 원본 — 6:5b-7이 축약 변주)", "아 4:16-5:1 (동산 어휘의 출처 — '내 동산'과 '그의 동산')", "아 3:6 · 8:5 (이는 누구인가 — mi-zot 세 번 시리즈)", "아 8:6-7 (죽음같이 강한 사랑의 인장 — 권의 행선지)", "창 32:2 (마하나임 — 야곱이 하나님의 군대를 만난 두 진영)", "왕상 14:17 · 16:23-24 (디르사 — 북왕국 초기 수도)", "왕상 11:3 (후궁 칠백·삼백 — 6:8의 육십·팔십과 다른 수, 배경)", "출 15:20 (미리암의 춤 mecholah — 6:13 춤 어휘)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-11</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>아가 6장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 아가 6장입니다. 열세 절이지요. 5장은 어두웠습니다 — 문을 열었으나 그가 없었고, 파수꾼에게 맞았고, 딸들에게 "그가 남보다 나은 것이 무엇인가"라는 질문을 받았습니다. 신부는 머리부터 발끝까지 그를 노래하는 것으로 답했고요. 6장은 그 찬가 바로 다음입니다. 딸들이 다시 묻고, 신부가 답하고, 신랑의 찬가가 이어지고, 호두 동산과 수레라는 수수께끼를 지나, "돌아오고 돌아오라"는 부름으로 닫힙니다. 오늘도 해석을 미루고, 본문이 보여 주는 것만 따라가 봅시다. 낭독하고 침묵을 두겠습니다.</p>
+<p>(본문 낭독 6:1~13, 약 2분 30초)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대가 네 번 바뀌어요. 1~3절은 위치가 지워진 대화의 무대 — 딸들과 신부가 마주 서 있는데 배경 묘사가 없어요. 5장의 밤거리·성벽·파수꾼이 전부 사라졌어요. 4~10절은 찬가의 무대인데, 직유의 재료가 무대를 만들어요 — 디르사, 예루살렘, 깃발을 세운 군대, 길르앗 산 기슭, 그리고 아침 하늘과 달과 해까지. 11~12절은 호두 동산 — 골짜기, 포도나무 순, 석류 꽃. 13절은 춤의 무대 — 마하나임의 춤을 구경하듯 모여드는 시선들. 어두운 데가 한 군데도 없어요. 5장이 밤의 장이었다면 6장은 처음부터 끝까지 빛 속에서 진행돼요.</p>
+<p><strong>P05 김미영</strong>: 소품 목록이요. 가장 앞에 백합화 — 2절과 3절에 연달아 나와요. 그리고 향기로운 꽃밭, 정확히는 향단이래요. 양 떼도 두 번. 찬가 쪽으로 가면 4장에서 본 소품들이 다시 보여요 — 길르앗 기슭의 염소 떼, 목욕하고 나오는 암양 떼, 너울 속 석류 한 쪽. 8~9절엔 왕실의 명부가 소품처럼 펼쳐져요 — 왕비 육십, 후궁 팔십, 셀 수 없는 시녀. 11절엔 호두가 나오는데, 호두는 성경 전체에서 여기 딱 한 번이래요. 그리고 12절의 수레, 13절의 춤. 만져지는 것들이 전부 풍성해요 — 5장의 몰약 묻은 문빗장과는 완전히 다른 손맛이에요.</p>
+<p><strong>P07 오지혜</strong>: 소재를 늘어놓아 볼게요 — 질문, 동산, 꽃밭, 양 떼, 백합화, 소속, 디르사, 예루살렘, 깃발, 군대, 눈, 머리털, 염소 떼, 이, 암양 떼, 뺨, 석류, 왕비, 후궁, 시녀, 비둘기, 외딸, 어머니, 칭찬, 아침 빛, 달, 해, 골짜기, 포도나무, 호두 동산, 마음, 수레, 술람미, 마하나임, 춤. 늘어놓고 보니 두 무더기예요. 한쪽은 위엄의 직유 — 도시·군대·깃발·천체. 다른 한쪽은 목가의 직유 — 동산·꽃·양 떼·과일. 같은 한 사람을 두고 군대 같다고 했다가 백합화 사이에 있다고 해요. 위엄과 부드러움이 한 인물 위에 겹쳐요.</p>
+<p><strong>P02 이진우</strong>: 형식 소재를 짚을게요. 6장에는 질문이 두 번 있어요. 1절 — "네 사랑하는 자가 어디로 갔는가." 10절 — "아침 빛 같이 뚜렷하고 달 같이 아름답고 해 같이 맑고 깃발을 세운 군대 같이 당당한 여자가 누구인가." 앞의 질문은 그를 찾고, 뒤의 질문은 그녀를 우러러요. 한 장 안에서 질문의 방향이 신랑에게서 신부에게로 옮겨 가요. 그리고 13절이 명령으로 닫혀요 — 돌아오라가 네 번. 질문 두 개와 사중 명령이 이 장의 뼈대예요.</p>
+<p><strong>P01 한나래</strong>: 저는 1절 첫 호칭에서 멈췄어요. "여자들 가운데에서 어여쁜 자야" — 이건 5:9에서 딸들이 쓴 호칭 그대로예요. 같은 입, 같은 호칭인데 문장의 속이 달라요. 5:9는 "그가 남보다 나은 것이 무엇인가"라는 따져 묻는 말이었는데, 6:1은 "우리가 너와 함께 찾으리라"예요. 호칭은 그대로 두고 마음만 바뀐 거예요. 그 사이에 있었던 건 신부의 찬가 하나뿐이고요.</p>
+<p><strong>P11 나경아</strong>: 어휘 몇 개만요. <em>anah halakh</em>(אָנָה הָלַךְ) — 어디로 갔는가. 1절에서 같은 물음이 '갔는가'와 '돌아갔는가(panah)'로 두 번 변주돼요. <em>gan</em>(גַּן) — 동산. 4:16~5:1의 "내 동산", "그의 동산"이라는 어휘가 6:2의 "자기 동산"으로 이어져요. <em>shoshannim</em>(שׁוֹשַׁנִּים) — 백합화. 2:16의 "백합화 가운데에서 양 떼를 먹이는" 그 어휘 그대로고요. <em>Tirtsah</em>(תִּרְצָה) — 디르사. 어근 ratsah(기뻐하다·받아들이다)와 닿아 있어서 LXX는 아예 '기쁨처럼'이라는 보통명사로 옮겼어요. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 어둠이 걷힌 네 개의 무대, 다시 돌아온 4장의 소품들, 위엄과 목가가 겹치는 직유, 질문 둘과 사중 명령의 뼈대, 호칭은 같은데 속이 바뀐 딸들. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기였는지요.</p>
+<p><strong>P01 한나래</strong>: 아침 공기였어요. 5장을 읽고 바로 넘어왔는데, 한 절도 지나기 전에 밤이 끝나 있어요. 찾는 말투부터 달라요 — 5장의 "내가 찾아도 만나지 못하였고"라는 헐떡임이 아니라, "함께 찾으리라"는 동행의 말이에요. 그리고 2절에서 신부가 답하는 순간 숨이 탁 놓였어요. 그가 어디 있는지 알고 있었구나. 잃어버린 줄 알았는데, 모르는 게 아니었구나. 안도가 이 장의 첫 공기예요.</p>
+<p><strong>P07 오지혜</strong>: 저는 9절의 "하나뿐"이 제일 오래 남았어요. 육십, 팔십, 무수 — 숫자가 계단처럼 올라가다가 갑자기 '하나'에서 멈춰요. 그 많은 수를 다 세워 놓고 한 사람을 가리키는 문장이에요. 읽는데 소란하던 방이 조용해지는 느낌이었어요. 수가 클수록 '하나'가 무거워져요.</p>
+<p><strong>P05 김미영</strong>: 감각으로는 2절이요. 향기로운 꽃밭 — 향단의 냄새, 백합화의 흰빛, 양 떼의 움직임. 5장의 감각이 몰약 묻은 손과 차가운 문빗장, 그리고 맞은 상처였는데, 6장의 첫 감각은 향기예요. 같은 권 안에서 촉각의 장에서 후각의 장으로 넘어온 기분이에요.</p>
+<p><strong>P02 이진우</strong>: 어조의 온도로는, 6장에 다급함이 없어요. 5장의 신부는 일어나 두루 다니며 찾고 부르고 맞았는데, 6장의 신부는 한 문장으로 조용히 답해요. "내 사랑하는 자가 자기 동산으로 내려가." 동사도 차분해요. 그리고 3절의 선언은 거의 법문 같아요 — 나는 그에게, 그는 나에게. 흔들린 다음의 문장이 흔들리기 전의 문장보다 단단해요.</p>
+<p><strong>P04 최현국</strong>: 5절 첫머리에서 한 번 멈칫했어요. "네 눈이 나를 놀라게 하니 돌이켜 나를 보지 말라" — 찬가의 한가운데서 시선을 피하는 말이 나와요. 칭송하러 입을 연 사람이 먼저 압도당해요. 무대 연출로 보면, 조명을 받아야 할 사람이 조명을 쏘는 쪽을 눈부시게 만드는 역전이에요.</p>
+<p><strong>P11 나경아</strong>: 분위기로 하나만요. 6장에서 신부의 발화는 2~3절뿐이에요. 4절부터 10절까지는 신랑과 여자들의 목소리고, 11~12절은 화자가 누구인지 갈리고, 13절은 '우리'가 말해요. 5장이 신부의 독무대였다면 6장은 신부가 듣는 장이에요 — 자기를 두고 오가는 칭송을 듣는 위치. 배경 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 안도의 아침 공기, 수가 클수록 무거워지는 하나, 촉각에서 후각으로, 흔들린 뒤에 더 단단해진 선언, 찬가 한가운데의 시선 회피, 듣는 위치에 선 신부. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>성령일 선교사</strong>: 시작과 끝을 함께 보겠습니다.</p>
+<p><strong>P02 이진우</strong>: 1절 시작: "여자들 가운데에서 어여쁜 자야 네 사랑하는 자가 어디로 갔는가 — 우리가 너와 함께 찾으리라." 13절 끝: "돌아오고 돌아오라 술람미 여자야 — 너희가 어찌하여 마하나임에서 춤추는 것을 보는 것처럼 술람미 여자를 보려느냐." 질문으로 열리고 질문으로 닫혀요. 그런데 여는 질문은 '그가 어디 있는가'이고 닫는 질문은 '너희가 어찌하여 그녀를 보려 하는가'예요. 찾는 대상이 신랑에서 신부로 이동했어요. 장의 머리에서는 그가 사라진 사람이었는데, 장의 꼬리에서는 그녀가 모두의 시선을 모으는 사람이 돼요.</p>
+<p><strong>P01 한나래</strong>: 동사의 결로 보면, 시작은 "찾으리라"이고 끝은 "돌아오라"예요. 찾는 건 잃은 사람에게 하는 동작이고, 돌아오라는 건 떠난 사람에게 하는 부름이에요. 1절에서는 그를 잃었다고 생각했는데 13절에서는 그녀를 놓칠까 봐 네 번이나 불러요. 잃음의 어휘가 장 안에서 부름의 어휘로 바뀌어요.</p>
+<p><strong>P04 최현국</strong>: 무대로 보면 시작은 빈 데를 향한 물음이고 — 그가 없는 곳에서 그를 묻는 — 끝은 가득 찬 시선이에요. 모두가 한 사람을 보려고 모여드는. 부재로 열어서 주목으로 닫는 구성이에요. 그리고 그 한가운데 8~10절이 놓여요 — 무수한 사람들 속에서 단 한 사람이 호명되는 대목. 부재에서 주목으로 가는 길의 한복판에 '하나뿐'이 있어요.</p>
+<p><strong>P07 오지혜</strong>: 5:9와 6:1을 겹쳐 보고 싶어요. 같은 딸들의 입에서 나온 두 질문이에요. "그가 남보다 나은 것이 무엇인가"(5:9)가 신부의 찬가를 통과하고 나면 "어디로 갔는가, 우리가 함께 찾으리라"(6:1)가 돼요. 비교하던 질문이 동행하는 질문으로 바뀐 거예요. 사이에 놓인 건 논증이 아니라 한 사람의 사랑 고백뿐이고요. 6장의 시작 자체가 5장의 결과예요.</p>
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>성령일 선교사</strong>: 등장하는 인물과 사상을 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 인물 목록부터요. 신부 — 1절의 수신자, 2~3절의 화자, 13절에서 처음으로 '술람미'라는 호칭을 받는 사람. 신랑 — 4~10절의 화자, 자기 동산의 목자. 예루살렘 딸들 — 1절의 '우리', 함께 찾겠다는 동행자들. 왕비 육십과 후궁 팔십과 무수한 시녀 — 언급으로만 등장하는 배경 인물들. 어머니 — 9절, 외딸을 낳아 귀중히 여기는 이. 그리고 여자들과 왕비와 후궁들 — 그녀를 복되다 하고 칭찬하는 목소리들. 13절의 '우리'도 있고요. 이 장에는 적대자가 없어요. 5장의 파수꾼 같은 인물이 사라지고, 모든 등장인물이 신부를 찾거나 기리거나 부르는 쪽이에요.</p>
+<p><strong>P07 오지혜</strong>: 사상의 중심은 3절이라고 느꼈어요. "나는 내 사랑하는 자에게 속하였고 내 사랑하는 자는 나에게 속하였으며." 2:16에서는 "내 사랑하는 자는 내게 속하였고 나는 그에게"였어요 — 그가 먼저, 내가 나중. 6:3은 내가 먼저, 그가 나중이에요. 같은 선언인데 어순이 뒤집혔어요. 잃음의 밤을 한 번 지나고 나온 선언이 자기를 먼저 내놓는 순서로 바뀐 거예요. 단정은 안 할게요 — 다만 어순이 바뀌었다는 사실 자체는 본문에 적혀 있어요.</p>
+<p><strong>P02 이진우</strong>: 2절의 정보 구조가 흥미로워요. 5장 내내 신부는 그를 찾아 헤맸어요. 그런데 6:2에서 그녀는 그가 어디 있는지 정확히 말해요 — 자기 동산, 향기로운 꽃밭, 백합화 가운데. 잃었던 사람이 거처를 아는 사람으로 나와요. 그렇다면 5장의 잃음은 위치를 모르는 잃음이 아니었던 거예요. 그리고 그 동산 어휘는 4:16~5:1에서 온 거예요 — "내 동산", "그의 동산". 그가 내려간 곳이 낯선 데가 아니라 이미 그들의 언어 안에 있던 곳이라는 관찰까지만 하고 멈출게요.</p>
+<p><strong>P05 김미영</strong>: 사물로는 백합화요. 2:16에서 그는 "백합화 가운데에서 양 떼를 먹이는" 이였고, 6:2~3에서 같은 그림이 두 번 반복돼요. 잃었다가 다시 찾은 다음에 확인되는 게 새로운 모습이 아니라 원래 알던 모습 그대로라는 점이 마음에 남아요. 재회가 변화가 아니라 회복이에요.</p>
+<p><strong>P01 한나래</strong>: 9절에서 멈췄어요. "그는 그의 어머니의 외딸이요 그 낳은 자가 귀중하게 여기는 자로구나." 찬가의 절정에서 갑자기 어머니가 나와요. 왕비와 후궁의 명부 곁에 어머니의 마음이 놓여요. 궁정의 셈법과 모성의 셈법 — 한쪽은 육십·팔십으로 세고, 다른 쪽은 처음부터 하나로 세요. 그리고 여자들과 왕비들의 칭찬이 그 어머니의 셈을 뒤따라요. 가장 큰 무리가 가장 작은 수를 인정하는 장면이에요.</p>
+<p><strong>P11 나경아</strong>: 사상 쪽 어휘 둘만요. 9절의 <em>achat hi</em>(אַחַת הִיא) — '하나뿐인 그녀'. 한 절 안에 achat이 두 번 와요 — "하나뿐이로구나", "어머니의 외딸(하나)이요". 그리고 <em>barah</em>(בָּרָה) — 9절에서 "낳은 자가 귀중하게 여기는 자", 순전하다·택함받았다는 결의 단어인데, 바로 다음 10절의 "해 같이 맑고"가 같은 단어예요. 어머니의 단어를 여자들이 받아서 해에게로 들어 올려요. 9절과 10절이 한 단어로 이어져 있어요. 배경 관찰로만요.</p>
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>성령일 선교사</strong>: 장면을 컷으로 나눠 보시지요.</p>
+<p><strong>P04 최현국</strong>: 다섯 컷입니다. 질문 — 대답과 선언 — 찬가 — 호두 동산 — 부름으로 끊었어요.</p>
+<ul>
+<li><strong>컷 1 (1절)</strong>: 딸들의 둘째 질문. "네 사랑하는 자가 어디로 갔는가 — 우리가 너와 함께 찾으리라." 비교의 질문(5:9)이 동행의 제안으로 바뀜.</li>
+<li><strong>컷 2 (2~3절)</strong>: 신부의 대답과 선언. 그의 거처 — 자기 동산, 향기로운 꽃밭, 백합화 가운데. 그리고 "나는 내 사랑하는 자에게 속하였고 내 사랑하는 자는 나에게(ani ledodi vedodi li)."</li>
+<li><strong>컷 3 (4~10절)</strong>: 신랑의 찬가. 디르사·예루살렘·군기의 직유(4절), 시선 회피(5a절), 4장 찬가의 축약 변주 — 머리털·이·뺨(5b~7절), 육십·팔십·무수 對 하나뿐(8~9절), 천체의 질문 — 아침 빛·달·해·군기(10절).</li>
+<li><strong>컷 4 (11~12절)</strong>: 호두 동산. 골짜기의 푸른 초목, 포도나무 순, 석류 꽃 — 그리고 부지중에 이른 수레(6:12, 난해절).</li>
+<li><strong>컷 5 (13절)</strong>: 사중의 부름. "돌아오고 돌아오라 술람미 여자야 돌아오고 돌아오라" — 그리고 마하나임 춤의 질문.</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 3 내부에 사다리가 있어요. 4절이 땅의 위엄으로 열어요 — 도시 둘(디르사·예루살렘)과 군대. 5b~7절이 목가로 내려와요 — 염소 떼, 암양 떼, 석류. 8~9절이 궁정의 수로 올라가고, 10절이 하늘로 치솟아요 — 아침 빛, 달, 해. 땅의 도시에서 하늘의 천체까지 직유가 상승해요. 그리고 4절과 10절이 같은 구절로 묶여요 — "깃발을 세운 군대 같이 당당하구나(ayummah kannidgalot)." 찬가 전체가 이 군사 직유의 괄호 안에 들어 있어요. 부드러운 사랑 노래의 틀이 군기라는 게 6장의 역설이에요.</p>
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>성령일 선교사</strong>: 의문이나 발견을 나눠 주세요.</p>
+<p><strong>P11 나경아</strong>: 원어 카드를요. 1절 <em>anah halakh dodekh</em> — 네 사랑하는 자가 어디로 갔는가. 둘째 물음은 동사가 panah(돌이키다)로 바뀌어 '어디로 돌아갔는가'가 돼요. 3절 <em>ani ledodi vedodi li</em>(אֲנִי לְדוֹדִי וְדוֹדִי לִי) — 나는 내 사랑하는 자에게, 내 사랑하는 자는 나에게. 2:16은 dodi li va'ani lo — 순서가 반대예요. 4절 <em>Tirtsah</em> — 어근 ratsah(기뻐하다). LXX는 εὐδοκία(기쁨)로 옮겨 고유명사로 읽지 않았어요. <em>ayummah kannidgalot</em>(אֲיֻמָּה כַּנִּדְגָּלוֹת) — ayom은 '두려움을 일으키는·위엄 있는', nidgalot은 degel(깃발) 어근의 분사 — '기치를 든 무리들 같이'. 5절 <em>hirhivuni</em>(הִרְהִיבֻנִי) — '나를 압도하다·동요시키다'. 4:9의 "네 눈으로 내 마음을 빼앗았구나"와 호응하는 동사예요. 9절 <em>achat hi yonati tammati</em> — 하나뿐인 그녀, 내 비둘기, 내 완전한 자. <em>barah</em> — 9절(귀중히 여김받는·순전한)과 10절(해 같이 맑은)에 연달아. 10절 — 아침 빛은 <em>shachar</em>, 달은 <em>levanah</em>('흰 것'), 해는 <em>chammah</em>('뜨거운 것'). 일반어 yareach·shemesh 대신 시적 별칭을 쓴 절이에요 — 이 짝은 이사야 24:23, 30:26에도 나와요. 11절 <em>egoz</em>(אֱגוֹז) — 호두. 구약 전체에서 여기 한 번뿐이에요. 12절 <em>markevot ammi-nadiv</em> — '내 귀한 백성의 수레'(개역) / '암미나딥의 병거'(KJV·LXX 계열) / '귀한 자의 병거 곁에'(현대역 일부). 13절 <em>Shulammit</em>(שׁוּלַמִּית) — 구약에서 여기에만 나오는 호칭. <em>shuvi</em> — 돌아오라, 네 번. <em>chazah</em> — 응시하다, 두 번. <em>mecholat hammachanayim</em> — 마하나임의 춤, 또는 '두 진영의 춤'. 배경만요.</p>
+<p><strong>P02 이진우</strong>: 발견 — 소속 선언의 세 변주예요. 2:16 "그는 내게, 나는 그에게" → 6:3 "나는 그에게, 그는 내게" → 7:10 "나는 그에게 속하였도다, 그가 나를 사모하는구나." 첫 선언은 그를 먼저 세우고, 둘째 선언은 나를 먼저 내놓고, 셋째 선언은 소유 어휘의 뒷부분이 아예 사라져요. 권 전체에 걸쳐 한 문장이 자라나는 중이고, 6:3은 그 한가운데 변곡이에요. 그리고 수의 발견 하나 — 8절의 육십·팔십은 '예순이요 여든이요 그 위는 셀 수 없다'는 점층인데, 왕상 11:3의 칠백·삼백과 비교하면 오히려 작은 수예요. 어느 왕의 명부를 그리든, 본문이 하려는 산수는 명부의 크기 자랑이 아니라 그 전부를 '하나'와 맞세우는 대비라는 게 구조에서 드러나요.</p>
+<p><strong>P07 오지혜</strong>: 발견 — 찬가의 변주 비교예요. 4:1~3은 눈(비둘기), 머리털(염소 떼), 이(암양 떼), 입술(홍색 실), 뺨(석류)을 차례로 노래했어요. 6:5b~7은 머리털, 이, 뺨만 남기고 눈과 입술이 빠져요. 눈은 5a절에서 "나를 놀라게 하니 보지 말라"로 바뀌었고요 — 4장에서 가장 먼저 칭송하던 눈이 6장에서는 감당 못 할 것이 됐어요. 반복인데 축약이고, 축약인데 한 항목은 격상이에요. 같은 노래를 다시 부르면서 달라진 데가 어디인지가 이 변주의 알맹이 같아요.</p>
+<p><strong>P01 한나래</strong>: 의문이에요. 12절 — "부지중에 내 마음이 나를 내 귀한 백성의 수레 가운데에 이르게 하였구나." 솔직히 읽고 또 읽어도 무슨 일이 일어난 건지 모르겠어요. 호두 동산에 내려갔는데 어느새 수레 가운데라니요. 화자가 신랑인지 신부인지도 갈리고, ammi-nadiv가 '내 귀한 백성'인지 사람 이름인지도 갈린대요. 이 절은 풀리지 않는 채로 두고 싶어요 — 다만 '부지중에(lo yadati — 나도 알지 못하는 사이에)'라는 말만은 선명해요. 본인도 모르게 옮겨졌다는 것.</p>
+<p><strong>P05 김미영</strong>: 의문 하나 더요. 13절 — "너희가 어찌하여 마하나임에서 춤추는 것을 보는 것처럼 술람미 여자를 보려느냐." 이 문장이 보라는 권유인지, 왜 그렇게 보려 하느냐는 가벼운 항의인지 갈려요. 5절에서 신랑이 "나를 보지 말라" 했는데 13절에서 무리는 "우리가 너를 보게 하라" 해요. 시선을 피하는 쪽과 모으는 쪽이 한 장 안에 같이 있어요. 보존하고 싶어요.</p>
+<p><strong>P04 최현국</strong>: ANE 배경이에요. 디르사는 북왕국 초기의 수도예요 — 여로보암 때부터(왕상 14:17) 오므리가 6년 다스리다 사마리아를 건설하기 전까지(왕상 16:23-24). 예루살렘과 디르사를 나란히 둔 직유는 남북 두 수도의 병치인데, 이걸로 책의 연대를 정하는 논쟁은 본문 밖의 일이니 배경으로만 둘게요. 신체 찬가는 근동 혼인시의 wasf 장르와 결이 닿고 — 4:1~7, 5:10~16에 이어 셋째예요 — 후궁의 수로 왕의 위세를 말하는 관행도 근동 궁정의 어법이에요. 마하나임은 요단 동편의 지명으로, 야곱이 하나님의 군대를 만나 '두 진영'이라 이름 붙인 곳이고(창 32:2), 뒤에는 이스보셋의 거점(삼하 2:8)과 다윗의 피난처(삼하 17:24)로 나와요. 전부 배경으로만요.</p>
+<p><strong>성령일 선교사</strong>: 자라나는 세 변주, 하나와 맞세우는 산수, 축약이면서 격상인 찬가, 풀리지 않는 12절, 피하는 시선과 모으는 시선, 두 수도와 두 진영의 배경. 그대로 두지요. 답이 급하지 않습니다.</p>
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P04 최현국</strong>: 아침입니다. 밤거리의 어둠이 걷히고, 딸들이 신부를 둘러쌉니다 — 여자들 가운데에서 어여쁜 자야, 네 사랑하는 자가 어디로 갔는가. 따지던 목소리들이 아닙니다. 우리가 너와 함께 찾으리라. 신부가 고개를 들고, 화면이 그녀의 입가로 다가갑니다 — 내 사랑하는 자가 자기 동산으로 내려가. 향단의 향이 화면에 번지고, 흰 백합 사이로 양 떼가 움직입니다. 그녀가 조용히 말합니다 — 나는 내 사랑하는 자에게 속하였고, 내 사랑하는 자는 나에게. 장면이 바뀌고 그가 그녀를 봅니다. 디르사처럼, 예루살렘처럼 — 두 도시의 성벽이 겹쳐 보이다가 깃발을 든 행렬이 지나갑니다. 그가 눈을 가립니다 — 네 눈이 나를 놀라게 하니, 돌이켜 나를 보지 말라. 길르앗 기슭으로 염소 떼가 흘러내리고, 씻고 올라오는 암양 떼가 줄을 잇고, 너울 너머 석류 한 쪽이 붉습니다. 궁정의 문이 열리고 명부가 펼쳐집니다 — 왕비가 육십, 후궁이 팔십, 시녀는 셀 수 없고. 명부 위로 한 손가락이 한 사람을 가리킵니다 — 내 비둘기, 내 완전한 자는 하나뿐. 한 어머니의 얼굴이 스치고, 왕비들과 후궁들이 일어나 그녀를 기립니다. 하늘이 열리며 목소리들이 묻습니다 — 아침 빛 같이 뚜렷하고 달 같이 아름답고 해 같이 맑고 깃발을 세운 군대 같이 당당한 여자가 누구인가. 화면이 골짜기로 내려갑니다. 호두 동산, 포도나무의 새순, 막 벌어진 석류 꽃 — 그리고 한순간, 어찌 된 일인지 모르게, 수레들 한가운데입니다. 부지중에. 화면이 흔들리고, 무리의 외침이 겹칩니다 — 돌아오고 돌아오라, 술람미 여자야, 돌아오고 돌아오라, 우리가 너를 보게 하라. 마하나임의 춤처럼 빙글 도는 치맛자락 위에서, 정지.</p>
+<p><strong>성령일 선교사</strong>: 동행의 질문으로 열려, 동산과 찬가와 명부를 지나, 알 수 없는 수레와 사중의 부름으로 닫히는 흐름입니다.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "알고 있었다 — 잃음이 무지가 아니었던 밤의 끝"</p>
+<p><strong>P02 이진우</strong>: "어순이 뒤집힌 선언 — ani ledodi vedodi li"</p>
+<p><strong>P04 최현국</strong>: "두 도시와 군기 — 위엄의 직유로 그려진 한 사람"</p>
+<p><strong>P05 김미영</strong>: "백합화 가운데 — 다시 확인된 원래의 그림"</p>
+<p><strong>P07 오지혜</strong>: "육십과 팔십과 무수, 그리고 하나 — 유일성의 산수"</p>
+<p><strong>P11 나경아</strong>: "<em>achat hi · barah · Shulammit</em> — 하나뿐·맑음·한 번뿐인 이름"</p>
+<p>부제 제안: "딸들의 둘째 질문(6:1)이 동행 제안으로 바뀌고, 신부가 그의 거처를 이미 알며(6:2), 소속 선언의 어순이 뒤집히고(6:3), 육십·팔십·무수 가운데 '하나뿐(achat hi)'이 세워진 뒤(6:9), 풀리지 않는 수레(6:12)를 지나 '돌아오라' 네 번의 부름(6:13)으로 닫히는 재회의 장"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 육십과 팔십과 셀 수 없는 무리 곁에서 '하나뿐'이라 불린 한 사람 곁으로 들어가, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P05 김미영</strong>: (조용히) 주님, 오늘 한 사람이 잃은 줄 알았던 이의 거처를 이미 알고 있는 것을 보았습니다. 백합화 가운데 — 처음 알던 그 그림 그대로였습니다. achat hi — 하나뿐. 셀 수 없는 수 가운데에서 하나를 하나라 부르는 그 목소리 곁에 머뭅니다. 더는 묻지 않겠습니다.</p>
+<p>*— 그 순간 떠오른 것을 각자 마음에만 둡니다.</p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>그래서 이 본문은 어디서 어디로 움직이는지요? 눈에 보이는 일 아래에서 무엇이 회복되고 있는지요? 이 본문이 품은 긴장은 무엇인지요? 이 불이 우리 안에서도 타오르고 있는지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 6장은 <strong>찾음에서 앎으로, 앎에서 불림으로</strong> 움직여요. 1절의 '어디로 갔는가'가 2절에서 곧바로 답을 만나고 — 찾기도 전에 이미 알고 있었다는 답을요 — 3절의 선언을 지나 13절에서는 그녀가 불리는 사람이 돼요. 권 전체의 흐름에서 보면 1~3장이 서로를 찾고 부르는 국면, 4~7장이 칭송과 갈망, 잃음과 다시 찾음의 국면, 8장이 죽음같이 강한 사랑의 인장이에요. 6장은 그 가운데 국면의 전환점 — 5장의 잃음이 끝나는 방식을 보여 주는 장이에요. 그리고 그 방식이 수색의 성공이 아니라 앎의 확인이라는 것, 그게 이 장의 구조가 내놓는 가장 큰 관찰이에요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. <em>achat hi</em> — 하나뿐인 그녀. 육십과 팔십과 무수라는 셈을 다 세워 놓고 본문은 단수 하나로 결산해요. 이 유일성의 어휘가 8:6의 인장(chotam)으로 가는 길을 미리 열어요 — 도장은 본래 하나의 손에만 속하는 물건이니까요. 그리고 <em>Shulammit</em> — 권 전체에서 단 한 번, 여기서만 불리는 호칭이에요. 솔로몬(Shlomo)의 여성형으로 읽는 갈래, 술람·수넴이라는 지명으로 읽는 갈래, shalom(평화·온전함)의 결로 읽는 갈래가 있는데 어느 쪽도 확정되지 않아요. <strong>하나뿐이라 불린 사람이 한 번뿐인 이름을 받는다</strong>는 형태의 호응까지만 관찰하고, 해석은 미해결로 두고요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 표면은 한 쌍의 재회담이에요. 그런데 1절이 다른 물길을 내요 — 딸들이 움직였어요. 5:9에서 "그가 남보다 나은 게 뭔가" 묻던 이들이, 신부의 찬가를 듣고 나서 "우리가 너와 함께 찾으리라"로 바뀌어요. <strong>한 사람의 사랑 증언이 곁에 선 무리를 찾는 무리로 바꿔 놓는</strong> — 설득도 논증도 아닌 고백 하나가 공동체를 움직이는 흐름이 수면 아래에서 흘러요. 본문은 그 변화를 설명하지 않고 다만 두 질문을 나란히 둬요.</p>
+<p><strong>P01 한나래</strong>: 긴장이에요. 5절의 "돌이켜 나를 보지 말라"와 13절의 "우리가 너를 보게 하라" — 한 장 안에서 시선을 피하는 목소리와 시선을 청하는 목소리가 마주 서 있어요. 사랑받는 사람의 눈은 사랑하는 이를 압도하고, 그 사람의 모습은 무리의 눈을 끌어모아요. <strong>감당 못 할 것과 보고 싶은 것이 같은 한 사람</strong>이라는 긴장 — 본문은 이걸 풀지 않고 양쪽 다 살려 둬요.</p>
+<p><strong>P04 최현국</strong>: 운동을 한 화면으로 보면, <strong>흩어진 시선이 한 사람에게로 모이는</strong> 운동이에요. 1절에서는 모두가 사라진 그를 두리번거리는데, 13절에서는 모두가 돌아오는 그녀를 봐요. 그리고 그 모임의 한복판에 8~9절의 산수가 놓여요 — 무수에서 하나로 좁혀지는. 다음 장은 그 모인 시선 아래에서 셋째 찬가로 이어져요 — 이번에는 발에서부터 위로 올라가는.</p>
+<p><strong>P05 김미영</strong>: 이 불이 우리 안에서 타오르느냐 물으시니 — 저는 2절이 불씨 같아요. 잃었다고 울던 사람이 사실은 그의 거처를 알고 있었다는 것. 잃음의 한복판에서도 앎이 끊기지 않았다는 것. 제 손에 있는 잃음들도 그런 종류인지 — 정말 모르는 것인지, 아는데 잃었다고 느끼는 것인지 — 질문인 채로 쥐고 갑니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>비교하던 딸들이 동행을 청하고, 잃음이 앎으로 끝나며, 소속 선언의 어순이 뒤집히고, 무수한 수 가운데 하나뿐이 세워지는</strong> — 그 운동을 손에 쥐고 다음 장으로 갑니다. 돌아오라는 부름 뒤에, 춤추는 술람미를 향한 셋째 찬가가 시작됩니다.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: SNG-006</p>
+<p>book: 아가</p>
+<p>chapter: 6</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>아가 6장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대 넷: 위치가 지워진 대화의 무대(1~3절) → 직유가 만드는 찬가의 무대 — 디르사·예루살렘·군기·길르앗·천체(4~10절) → 호두 동산 — 골짜기·포도나무 순·석류 꽃(11~12절) → 춤의 무대 — 마하나임(13절).</li>
+<li>5장의 무대 장치(밤거리·성벽·파수꾼)가 전부 사라짐. 어둠 어휘 0 — 처음부터 끝까지 빛 속에서 진행.</li>
+<li>소품: 백합화(2·3절), 향기로운 꽃밭(향단), 양 떼(두 번), 염소 떼·암양 떼·석류(찬가), 왕실 명부(육십·팔십·무수), 호두(구약 1회), 수레, 춤.</li>
+<li>직유의 재료 두 갈래: 위엄 — 도시·군대·깃발·아침 빛·달·해 / 목가 — 동산·꽃·양 떼·과일. 같은 한 사람 위에 겹침.</li>
+<li>형식의 뼈대: 질문 둘(1절 — 그는 어디에 / 10절 — 그녀는 누구인가)과 사중 명령(13절 — 돌아오라 네 번).</li>
+<li>5:9와 6:1의 호칭 동일("여자들 가운데에서 어여쁜 자야") — 호칭은 그대로, 질문의 속만 비교에서 동행으로 바뀜.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>아침의 공기 — 5장의 밤이 한 절도 지나기 전에 끝나 있음. "함께 찾으리라"는 동행의 말투.</li>
+<li>2절에서 놓이는 숨 — 그가 어디 있는지 신부가 알고 있었다는 안도.</li>
+<li>9절 "하나뿐" — 육십·팔십·무수의 계단이 갑자기 단수에서 멈추는 무게. 수가 클수록 하나가 무거워짐.</li>
+<li>감각의 전환: 5장의 촉각(몰약 묻은 손·문빗장·상처)에서 6장의 후각·시각(향단·백합·천체)으로.</li>
+<li>다급함 없음 — 신부의 대답은 한 문장의 차분함. 흔들린 다음의 선언(6:3)이 흔들리기 전(2:16)보다 단단한 결.</li>
+<li>5a절의 멈칫 — 칭송하러 입을 연 사람이 먼저 압도당하는 역전("네 눈이 나를 놀라게 하니").</li>
+<li>발화 분포: 신부의 말은 2~3절뿐. 6장은 신부가 듣는 장 — 자기를 두고 오가는 칭송을 듣는 위치(배경).</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>1절: "여자들 가운데에서 어여쁜 자야 네 사랑하는 자가 어디로 갔는가 — 우리가 너와 함께 찾으리라."</li>
+<li>13절: "돌아오고 돌아오라 술람미 여자야 — 너희가 어찌하여 마하나임에서 춤추는 것을 보는 것처럼 술람미 여자를 보려느냐."</li>
+<li>질문으로 열고 질문으로 닫힘. 여는 질문은 '그가 어디에', 닫는 질문은 '어찌하여 그녀를 보려는가' — 찾는 대상이 신랑에서 신부로 이동.</li>
+<li>동사의 이동: "찾으리라"(잃은 이에게)에서 "돌아오라"(떠난 이에게)로 — 잃음의 어휘가 부름의 어휘로.</li>
+<li>부재로 열어 주목으로 닫는 구성. 그 길의 한복판에 8~9절의 '하나뿐'이 놓임.</li>
+<li>5:9(비교의 질문) → 6:1(동행의 질문): 사이에 놓인 것은 5:10-16의 찬가 하나 — 6장의 시작 자체가 5장의 결과.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>인물: 신부(1절 수신자, 2~3절 화자, 13절의 술람미), 신랑(4~10절 화자, 자기 동산의 목자), 예루살렘 딸들(1절 '우리' — 동행 제안자), 왕비 육십·후궁 팔십·무수한 시녀(언급으로만), 어머니(9절 — 외딸을 귀중히 여기는 이), 여자들·왕비·후궁들(칭찬하는 목소리), 13절의 '우리'. 적대자 없음 — 5장의 파수꾼 같은 인물이 사라짐.</li>
+<li>중심 사상: 상호 소속 — ani ledodi vedodi li(6:3). 2:16("그는 내게, 나는 그에게")과 어순이 뒤집힘 — 내가 먼저, 그가 나중.</li>
+<li>6:2의 정보 구조: 5장 내내 찾던 신부가 그의 거처(자기 동산·향기로운 꽃밭·백합화 가운데)를 정확히 말함 — 잃음이 위치를 모르는 잃음이 아니었음.</li>
+<li>동산 어휘의 연속: 4:16~5:1의 "내 동산"·"그의 동산"이 6:2의 "자기 동산"으로 이어짐 — 그가 내려간 곳이 이미 그들의 언어 안에 있던 곳.</li>
+<li>백합화의 회복: 2:16의 "백합화 가운데에서 양 떼를 먹이는" 그림이 6:2~3에 두 번 반복 — 재회가 확인하는 것은 새 모습이 아니라 원래 알던 모습.</li>
+<li>9절의 두 셈법: 궁정의 셈(육십·팔십·무수) 곁에 어머니의 셈(처음부터 하나) — 그리고 가장 큰 무리가 가장 작은 수를 칭찬함.</li>
+<li>barah의 이어달리기: 9절(낳은 자가 귀중히 여기는·순전한)의 단어를 10절(해 같이 맑은)이 받음 — 어머니의 단어가 천체 직유로 격상.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1절): 딸들의 둘째 질문 — "어디로 갔는가, 우리가 너와 함께 찾으리라." 비교(5:9)에서 동행으로.</li>
+<li>컷 2 (2~3절): 신부의 대답과 선언 — 그의 거처(자기 동산·꽃밭·백합화)와 ani ledodi vedodi li.</li>
+<li>컷 3 (4~10절): 신랑의 찬가 — 도시·군기(4), 시선 회피(5a), 축약 변주 — 머리털·이·뺨(5b~7), 수의 대비(8~9), 천체의 질문(10).</li>
+<li>컷 4 (11~12절): 호두 동산 — 골짜기의 초목·포도 순·석류 꽃, 그리고 부지중의 수레(난해절).</li>
+<li>컷 5 (13절): 사중의 부름 — "돌아오고 돌아오라 술람미 여자야" + 마하나임 춤의 질문.</li>
+<li>컷 3 내부의 상승 사다리: 땅의 도시(4) → 목가(5b~7) → 궁정의 수(8~9) → 하늘의 천체(10). 4절과 10절이 ayummah kannidgalot으로 수미 — 찬가 전체가 군사 직유의 괄호 안.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>anah halakh</em>(אָנָה הָלַךְ) — 어디로 갔는가(6:1). 둘째 물음은 동사가 panah(돌이키다)로 변주 — "어디로 돌아갔는가".</li>
+<li><em>ani ledodi vedodi li</em>(אֲנִי לְדוֹדִי וְדוֹדִי לִי) — 나는 내 사랑하는 자에게, 내 사랑하는 자는 나에게(6:3). 2:16은 dodi li va'ani lo — 순서가 반대.</li>
+<li><em>Tirtsah</em>(תִּרְצָה) — 디르사(6:4). 어근 ratsah(기뻐하다·받아들이다). LXX는 ὡς εὐδοκία(기쁨처럼) — 고유명사로 읽지 않은 갈래.</li>
+<li><em>ayummah kannidgalot</em>(אֲיֻמָּה כַּנִּדְגָּלוֹת) — 깃발을 세운 군대 같이 당당하다(6:4·10). ayom은 위엄·두려움을 일으킴, nidgalot은 degel(깃발) 어근 — 민수기 2장의 진영 어휘와 같은 뿌리.</li>
+<li><em>hirhivuni</em>(הִרְהִיבֻנִי) — 나를 압도하다·동요시키다(6:5). 4:9 "네 눈으로 내 마음을 빼앗았구나"와 호응.</li>
+<li><em>achat hi</em>(אַחַת הִיא) — 하나뿐인 그녀(6:9). 한 절에 achat 두 번 — "하나뿐이로구나" + "어머니의 외딸(하나)".</li>
+<li><em>barah</em>(בָּרָה) — 순전하다·택함받다. 9절(낳은 자가 귀중히 여기는 자)과 10절(해 같이 맑고)에 연달아 — 두 절을 잇는 어휘 고리.</li>
+<li>6:10의 천체 별칭 — 아침 빛 <em>shachar</em> / 달 <em>levanah</em>('흰 것') / 해 <em>chammah</em>('뜨거운 것'). 일반어 yareach·shemesh 대신 시적 명칭. 같은 짝이 사 24:23, 30:26에 등장.</li>
+<li><em>egoz</em>(אֱגוֹז) — 호두(6:11). 구약 전체에서 이 절에만 나오는 단어.</li>
+<li><em>markevot ammi-nadiv</em>(מַרְכְּבוֹת עַמִּי־נָדִיב) — 6:12. '내 귀한 백성의 수레'(개역) / '암미나딥의 병거'(KJV·LXX) / '귀한 자의 병거'(현대역 일부) — 번역 갈래 자체가 난해의 기록.</li>
+<li><em>Shulammit</em>(שׁוּלַמִּית) — 술람미(6:13). 구약에서 여기에만 나오는 호칭. 솔로몬의 여성형 / 술람·수넴 지명 / shalom의 결 — 세 갈래.</li>
+<li><em>shuvi</em>(שׁוּבִי) — 돌아오라, 13절에 네 번. <em>chazah</em>(חָזָה) — 응시하다, 두 번. <em>mecholat hammachanayim</em>(מְחֹלַת הַמַּחֲנָיִם) — 마하나임의 춤 또는 '두 진영의 춤'.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>질문(1) + 대답·선언(2~3) + 찬가(4~10) + 동산 장면(11~12) + 사중 부름(13) — 다섯 단의 재회 구조.</li>
+<li>소속 선언의 세 변주: 2:16(그가 먼저) → 6:3(내가 먼저) → 7:10(소유 어휘 일부가 사모로 대체) — 권 전체에 걸쳐 한 문장이 자라남. 6:3은 그 변곡.</li>
+<li>수의 점층과 단수의 절정: 육십 → 팔십 → 무수 → <strong>하나</strong>. 명부의 어법을 쓰되 산수의 방향을 뒤집음. 왕상 11:3(칠백·삼백)과 다른 수 — 배경.</li>
+<li>mi-zot(이는 누구인가) 시리즈: 3:6(연기 기둥처럼) · 6:10(천체처럼) · 8:5(사랑하는 자를 의지하고) — 권을 가로지르는 세 번의 같은 질문, 6:10은 그 둘째.</li>
+<li>wasf 변주 비교: 4:1~3(눈·머리털·이·입술·뺨) 對 6:5b~7(머리털·이·뺨) — 눈은 5a절의 "보지 말라"로 격상되고 입술은 생략. 반복이되 축약, 축약이되 한 항목은 격상.</li>
+<li>4절과 10절의 ayummah kannidgalot 수미 — 찬가가 같은 군사 직유로 열리고 닫힘.</li>
+<li>13절의 사중 명령(shuvi 네 번)과 이중 응시(chazah 두 번) — 부름과 시선의 밀도가 권 안에서 가장 높은 절 중 하나.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>디르사 — 북왕국 초기 수도(여로보암~오므리, 왕상 14:17; 16:23-24 — 오므리가 6년 뒤 사마리아 건설). 예루살렘과의 병치는 남북 두 수도의 짝 — 연대 논쟁은 본문 밖, 배경.</li>
+<li>wasf — 신체를 차례로 칭송하는 근동 혼인시 장르. 4:1~7, 5:10~16에 이어 6:5b~7이 셋째 변주 — 배경.</li>
+<li>근동 왕실의 후궁 명부 — 후궁의 수로 왕의 위세를 과시하는 관행. 6:8은 그 어법을 빌려 '하나'를 세우는 데 씀 — 배경.</li>
+<li>마하나임 — 요단 동편 지명. 창 32:2(야곱 — 하나님의 군대, '두 진영'), 삼하 2:8(이스보셋의 거점), 삼하 17:24(다윗의 피난처) — 배경.</li>
+<li>LXX: Tirtsah → εὐδοκία(기쁨), 6:12 → 아미나답의 병거(인명 독법), Shulammit → Σουλαμῖτις 음역, 마하나임 춤 → χοροὶ τῶν παρεμβολῶν(진영들의 춤) — 번역 폭의 증거, 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>아 6:3 ↔ 아 2:16 ↔ 아 7:10 (소속 선언의 세 변주 — 어순의 여정)</li>
+<li>아 6:1 ↔ 아 5:9 (딸들의 두 질문 — 비교에서 동행으로)</li>
+<li>아 6:5b-7 ↔ 아 4:1-3 (찬가의 원본과 축약 변주)</li>
+<li>아 6:2 ↔ 아 4:16-5:1 (동산 어휘의 연속 — '내 동산'과 '그의 동산')</li>
+<li>아 6:10 ↔ 아 3:6 · 8:5 (mi-zot — 이는 누구인가 세 번)</li>
+<li>아 6:9 ↔ 아 8:6-7 (하나뿐의 유일성 ↔ 인장 — 권의 행선지)</li>
+<li>아 6:13 ↔ 창 32:2 (마하나임 — 두 진영, 배경)</li>
+<li>아 6:4 ↔ 왕상 14:17 · 16:23-24 (디르사 — 북왕국 수도, 배경)</li>
+<li>아 6:13 ↔ 출 15:20 (mecholah — 미리암의 춤 어휘, 배경)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>아침이다. 딸들이 신부를 둘러싸고 묻는다 — 네 사랑하는 자가 어디로 갔는가, 우리가 너와 함께 찾으리라. 따지던 목소리가 동행의 목소리로 바뀌어 있다. 신부가 답한다 — 내 사랑하는 자가 자기 동산으로 내려가. 향단의 향이 번지고 흰 백합 사이로 양 떼가 움직인다. 나는 내 사랑하는 자에게 속하였고 내 사랑하는 자는 나에게. 장면이 바뀌어 그가 그녀를 본다 — 디르사 같이, 예루살렘 같이, 깃발 든 행렬 같이. 그가 눈을 가린다 — 네 눈이 나를 놀라게 하니 보지 말라. 염소 떼가 기슭을 흘러내리고 암양 떼가 줄을 잇고 너울 너머 석류가 붉다. 궁정의 명부가 펼쳐진다 — 육십, 팔십, 셀 수 없음. 그 위로 손가락 하나가 한 사람을 가리킨다 — 내 비둘기, 내 완전한 자는 하나뿐. 어머니의 얼굴이 스치고 왕비들이 일어나 그녀를 기린다. 하늘이 묻는다 — 아침 빛 같고 달 같고 해 같고 군대 같은 여자가 누구인가. 골짜기로 내려간다 — 호두 동산, 포도 순, 석류 꽃. 그리고 한순간, 알 수 없는 사이에, 수레들 한가운데. 무리가 외친다 — 돌아오고 돌아오라, 술람미 여자야. 빙글 도는 춤 위에서, 정지.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"하나뿐 — 잃음이 앎으로 끝나는 장"</strong></li>
+<li>초벌 부제: "딸들의 둘째 질문(6:1)이 동행 제안으로 바뀌고, 신부가 그의 거처를 이미 알며(6:2), 소속 선언의 어순이 뒤집히고(6:3 ani ledodi vedodi li), 육십·팔십·무수 가운데 '하나뿐(achat hi)'이 세워진 뒤(6:9), 풀리지 않는 수레(6:12)를 지나 '돌아오라' 네 번의 부름(6:13)으로 닫히는 재회의 장"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (22개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (다섯 단 재회 구조 + 소속 선언 세 변주 + 수의 점층 대비 + 디르사·마하나임 배경)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>6:3의 상호 소속을 언약 신학의 교리 진술로 단정하지 않고, 2:16↔6:3↔7:10의 어순 변화라는 본문 형태의 관찰로만 둠.</li>
+<li>6:2의 동산을 알레고리(교회·성전 등)로 풀지 않고, 4:16~5:1 어휘 연속의 관찰로 보존.</li>
+<li>6:12를 어느 한 번역으로 봉합하지 않고, '내 귀한 백성의 수레 / 암미나딥의 병거 / 귀한 자의 병거'의 갈래를 미해결로 이월.</li>
+<li>술람미를 특정 인물(수넴 여인 아비삭 등)로 확정하지 않고, 세 어원 갈래만 제시.</li>
+<li>6:9의 '하나뿐'을 결혼 규범의 명제로 일반화하지 않고, 수의 대비가 만드는 유일성의 시학으로 관찰.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: SNG-006</p>
+<p>book: 아가</p>
+<p>chapter: 6</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>아가 6장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 6:12 — "부지중에 내 마음이 나를 내 귀한 백성의 수레 가운데에" : 무슨 일이 일어난 것인가?</h2>
+<ul><li>구약에서 가장 난해한 절로 꼽히는 본문. 화자가 신랑인지 신부인지, ammi-nadiv가 '내 귀한 백성'인지 인명(암미나딥)인지 '귀한 자'인지, 수레가 영광의 병거인지 끌려감의 그림인지 — 어느 갈래도 확정되지 않는다. 선명한 것은 '부지중에(lo yadati)'뿐 — 본인도 모르게 옮겨졌다는 것. 갈래 전부를 미해결로 보존.</li></ul>
+
+<h2>Q2. Shulammit(6:13) — 한 번뿐인 이 호칭은 이름인가 별칭인가?</h2>
+<ul><li>솔로몬(Shlomo)의 여성형 독법, 술람·수넴 지명 독법, shalom(평화·온전함)의 결 독법이 갈린다. 권 전체에서 그녀가 호칭을 받는 유일한 지점이 왜 여기인지 — 하나뿐이라 불린 직후라는 위치까지만 관찰하고 보존.</li></ul>
+
+<h2>Q3. 6:2 — 신부는 언제부터 그의 거처를 알고 있었는가?</h2>
+<ul><li>5장 내내 찾아 헤매던 사람이 6:2에서 거처를 정확히 말한다. 5장의 잃음과 6:2의 앎 사이에 무엇이 있었는지 본문은 비워 둔다 — 5:10~16의 찬가를 부르는 동안 떠올린 것인지, 처음부터 알았던 것인지. 비워진 채로 보존.</li></ul>
+
+<h2>Q4. 마하나임 춤(6:13) — 지명인가 '두 진영의 춤'인가, 그리고 묻는 '너희'는 누구인가?</h2>
+<ul><li>Machanayim은 창 32:2의 지명이면서 '두 진영'이라는 보통명사 그림을 품는다. LXX는 '진영들의 춤'으로 풀었다. 그리고 13절 후반의 질문이 보라는 권유인지 가벼운 항의인지, 묻는 입이 신랑인지 무리인지 — 갈래 보존.</li></ul>
+
+<h2>Q5. 2:16 → 6:3 → 7:10 — 소속 선언의 어순은 왜 움직이는가?</h2>
+<ul><li>그가 먼저였다가, 내가 먼저가 되고, 끝내 "그가 나를 사모하는구나"로 변한다. 잃음의 밤(5장)을 통과한 직후의 변화라는 위치 관찰까지만 두고, '성숙'이라는 이름 붙이기는 서두르지 않는다. 보존.</li></ul>
+
+<h2>Q6. "돌이켜 나를 보지 말라"(6:5) — 찬가 한가운데의 시선 회피는 무엇인가?</h2>
+<ul><li>4:9에서는 같은 눈이 "내 마음을 빼앗았"고, 6:5에서는 "나를 놀라게" 한다. 칭송하는 자가 칭송받는 자에게 압도되는 역전 — 그리고 13절에서는 무리가 "우리가 너를 보게 하라"고 청한다. 피하는 시선과 모으는 시선이 한 장에 같이 있는 이유는 닫지 않는다. 보존.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">"어디로 갔는가"라는 딸들의 동행 질문에 신부가 그의 거처를 이미 알고 답하고, 소속 선언의 어순이 뒤집히며, 육십·팔십·무수 가운데 "하나뿐"이 세워지는 — 잃음의 밤이 앎의 확인으로 끝나는 재회의 장.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: SNG-006</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-11</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 아가 6장은 "네 사랑하는 자가 어디로 갔는가 — 우리가 너와 함께 찾으리라"(6:1)는 딸들의 둘째 질문에 신부가 그의 거처를 이미 알고 답한 뒤(6:2 — 자기 동산, 백합화 가운데), "나는 내 사랑하는 자에게 속하였고 내 사랑하는 자는 나에게 속하였으며(ani ledodi vedodi li)"(6:3)로 2:16의 어순을 뒤집고, 디르사·예루살렘·군기·천체의 직유로 상승하는 신랑의 찬가(6:4-10) 한복판에서 왕비 육십·후궁 팔십·무수한 시녀와 맞세워진 "하나뿐(achat hi)"(6:9)이 세워지며, 구약 최난해 절로 꼽히는 수레(6:12)를 지나 "돌아오고 돌아오라 술람미 여자야"(6:13)라는 사중의 부름으로 닫히는 — 잃음의 밤이 끝나는 방식을 보여 주는 재회의 장이다.</p>
+<p><strong>한 문단</strong>: 아침이다. 5장의 밤거리와 파수꾼이 사라진 화면에서 딸들이 신부를 둘러싸고 묻는다 — 어디로 갔는가, 우리가 너와 함께 찾으리라. 따지던 목소리(5:9)가 동행의 목소리로 바뀌어 있다. 신부가 조용히 답한다 — 내 사랑하는 자가 자기 동산으로 내려가, 백합화 가운데에. 잃은 줄 알았던 사람이 거처를 알고 있었다. 나는 그에게 속하였고 그는 나에게 — 어순이 바뀐 선언이 흔들림 뒤의 단단함으로 놓인다. 그가 그녀를 본다 — 디르사 같이, 예루살렘 같이, 깃발 든 군대 같이 — 그러다 눈을 가린다, 네 눈이 나를 놀라게 하니. 염소 떼와 암양 떼와 석류의 변주가 지나가고, 궁정의 명부가 펼쳐진다 — 육십, 팔십, 셀 수 없음. 그 모든 수 위로 한 손가락이 한 사람을 가리킨다 — 내 비둘기, 내 완전한 자는 하나뿐. 어머니가 귀중히 여기던 그 사람을 왕비와 후궁들이 일어나 기리고, 하늘의 직유가 묻는다 — 아침 빛 같고 달 같고 해 같은 여자가 누구인가. 호두 동산의 골짜기에서 알 수 없는 수레로 옮겨지는 한 절(6:12)을 지나, 무리가 외친다 — 돌아오고 돌아오라, 술람미 여자야. 빙글 도는 춤 위에서 6장이 닫힌다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>어둠 어휘 0의 네 무대(대화—찬가—호두 동산—춤). 백합화·향단·명부·호두(구약 1회). 위엄과 목가의 직유가 한 사람 위에 겹침.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>안도의 아침 공기. 수가 클수록 무거워지는 '하나'. 촉각(5장)에서 후각·시각으로. 흔들린 뒤에 더 단단해진 선언.</td></tr>
+<tr><td>3 시작과 끝</td><td>질문으로 열고 질문으로 닫힘 — '그가 어디에'에서 '어찌하여 그녀를 보려는가'로. 찾음의 어휘가 부름의 어휘로. 부재에서 주목으로.</td></tr>
+<tr><td>4 등장인물·사상</td><td>적대자 없는 장. 중심 사상은 상호 소속(6:3 — 2:16의 어순 역전). 6:2의 앎 — 잃음이 무지가 아니었음. 궁정의 셈과 어머니의 셈.</td></tr>
+<tr><td>5 장면 컷</td><td>질문(1)/대답·선언(2~3)/찬가(4~10)/호두 동산(11~12)/부름(13)의 5컷. 찬가 내부는 도시→목가→수→천체의 상승, 4·10절 군사 직유 수미.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>소속 선언 세 변주(2:16→6:3→7:10). barah의 9→10절 이어달리기. wasf 축약 변주(눈·입술의 거취). 6:12 난해절. 디르사·마하나임 배경.</td></tr>
+<tr><td>7 동영상</td><td>동행의 질문 → 동산의 대답 → 상승하는 찬가와 '하나뿐' → 알 수 없는 수레 → 사중의 부름, 춤 위에서 정지.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"하나뿐 — 잃음이 앎으로 끝나는 장"</td></tr>
+<tr><td>9 기도·내면</td><td>잃은 줄 알았던 이의 거처를 알고 있던 사람을 본다. 하나를 하나라 부르는 목소리 곁에 머문다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 어순의 역전, 자라나는 선언</strong>: "나는 내 사랑하는 자에게 속하였고 내 사랑하는 자는 나에게"(6:3). 2:16에서는 그가 먼저였고 내가 나중이었다. 잃음의 밤(5장)을 한 번 통과한 선언은 자기를 먼저 내놓는 순서로 다시 발화되고, 7:10에 이르면 뒷부분이 "그가 나를 사모하는구나"로 바뀐다. 같은 문장이 권을 가로지르며 세 번 자라난다 — 본문은 그 변화에 이름을 붙이지 않고 다만 어순을 기록해 둔다. 기록된 어순 자체가 잃음 이후의 사랑이 어디에 서 있는지 보여 주는 좌표다.</p>
+<p>2. <strong>결 2 — 유일성의 산수</strong>: 육십, 팔십, 셀 수 없음 — 그리고 하나(6:8-9). 근동 궁정이 위세를 말하던 명부의 어법을 본문은 거꾸로 쓴다. 수를 쌓는 이유가 수의 자랑이 아니라 그 전부와 맞세워질 단수 하나를 세우기 위해서다. achat hi — 하나뿐인 그녀. 어머니에게 외딸(하나)이었던 사람이 왕비와 후궁의 입에서도 복된 자로 불리고, 9절의 barah(순전한)가 10절의 barah(해 같이 맑은)로 이어지며 어머니의 단어가 천체의 직유로 들어 올려진다. 무수가 하나를 인정하는 산수 — 이 유일성이 8장의 인장(8:6)으로 가는 길을 미리 연다.</p>
+<p>3. <strong>결 3 — 질문의 여정, 증언이 움직인 공동체</strong>: 5:9의 "그가 남보다 나은 것이 무엇인가"와 6:1의 "우리가 너와 함께 찾으리라" 사이에는 논증이 없다. 놓인 것은 신부의 찬가(5:10-16) 하나다. 비교하던 딸들이 동행을 청하는 무리로 바뀌고, 6:10에서는 그 무리의 입이 "이 여자가 누구인가"라는 우러름의 질문을 발화한다. mi-zot 시리즈(3:6·6:10·8:5)의 둘째 — 한 사람의 사랑 증언이 곁의 무리를 움직이는 흐름이, 설명 없이 두 질문의 병치만으로 기록되어 있다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>아 2:16 · 7:10 — 소속 선언의 첫 변주와 셋째 변주 — 6:3이 그 변곡.</li>
+<li>아 5:9 — 딸들의 첫 질문 — 6:1과 나란히 두면 찬가 하나가 무엇을 바꿨는지 드러남.</li>
+<li>아 4:1-3 — 찬가의 원본 — 6:5b-7의 축약 변주와 대조.</li>
+<li>아 4:16-5:1 — "내 동산"·"그의 동산" — 6:2의 동산 어휘가 잇는 출처.</li>
+<li>아 8:6-7 — 죽음같이 강한 사랑의 인장 — '하나뿐'(6:9)의 유일성이 향하는 행선지.</li>
+<li>창 32:2 — 마하나임, 야곱이 하나님의 군대를 만난 두 진영 — 6:13의 춤 배경.</li>
+<li>왕상 14:17 · 16:23-24 — 디르사, 북왕국 초기 수도 — 6:4 직유의 배경.</li>
+<li>출 15:20 — 미리암의 mecholah — 6:13 춤 어휘의 계보, 배경.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 6:1에서 시작한다 — 따지던 입이 "함께 찾으리라"로 바뀌는 것을 듣는다. 무엇이 이들을 바꿨는지 한 장 앞을 돌아본다.</li>
+<li><strong>멈춤 1</strong>: 6:2에서 멈춘다 — 잃은 줄 알았던 사람이 거처를 말한다. 내 잃음들 가운데 사실은 알고 있는 것이 얼마나 되는지 센다.</li>
+<li><strong>멈춤 2</strong>: 6:3에서 멈춘다 — ani ledodi. 내 소속 선언은 어느 어순인지, 흔들림이 그 어순을 바꾼 적이 있는지 묻는다.</li>
+<li><strong>끝</strong>: 6:9와 6:13 사이에서 멈춘다 — 하나뿐이라 불린 사람이 한 번뿐인 이름으로 불린다. 돌아오라 네 번 — 부름받는 쪽에 서 본다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 질문(1)·대답과 선언(2~3)·찬가(4~10)·호두 동산(11~12)·부름(13)의 다섯 단 완결</li>
+<li>[x] 5:9 → 6:1 질문 연쇄와 2:16 → 6:3 어순 역전의 권내 호응</li>
+<li>[x] 육십·팔십·무수 對 하나의 수 대비와 barah 9→10절 고리</li>
+<li>[x] 4·10절 ayummah kannidgalot 수미와 mi-zot 시리즈 위치</li>
+<li>[x] 6:12 난해절과 술람미 호칭의 미해결 보존</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>아가의 spine은 '찾고 부르는 갈망을 통해, 죽음같이 강하고 끌 수 없는 사랑의 인장을 드러내신다'이며, destination은 "너는 나를 도장 같이 마음에 품고 — 사랑은 죽음 같이 강하고 — 많은 물도 이 사랑을 끄지 못하겠고"(8:6-7)이다(book-telos). 권의 흐름은 서로를 찾고 부르는 국면(1~3장), 칭송과 갈망·잃음과 다시 찾음의 국면(4~7장), 사랑의 인장(8장)으로 움직이는데, 6장은 둘째 국면의 전환점 — 5장의 잃음이 끝나는 방식을 보여 주는 재회의 장이다. 그 방식이 주목할 만하다. 잃음은 수색의 성공으로 끝나지 않고 앎의 확인으로 끝난다 — 그가 어디 있는지 신부는 이미 알고 있었다(6:2). 그리고 그 앎 위에서 소속 선언의 어순이 뒤집힌다(6:3) — 그가 먼저였던 문장이 내가 먼저인 문장으로. 구속사의 호에서 보면, 무수한 수 가운데 '하나뿐'(6:9)을 세우는 이 장의 산수는 8장의 인장이 요구하는 유일성의 전주다 — 도장은 하나의 손에만 속하고, 많은 물로도 끌 수 없는 사랑은 여럿으로 나뉘지 않는다. 6장이 육십과 팔십과 무수를 다 세워 놓고 하나에서 멈추는 이유가, 두 장 뒤의 인장에서 무게를 갖는다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>비교하던 질문(5:9)에서 동행하는 질문(6:1)으로 / 찾음에서 앎으로(6:2), 앎에서 뒤집힌 선언으로(6:3) / 무수한 수에서 하나로(6:8-9) / 잃었던 사람에서 모두가 돌아오라 부르는 사람으로(6:13).</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 6장은 '잃음의 밤이 어떻게 끝나는가'를 보여 주는 운동이다. 끝나는 방식은 극적인 재발견이 아니라 조용한 확인이다 — 그는 줄곧 자기 동산에, 백합화 가운데에, 처음 알던 그 모습 그대로 있었다(6:2-3 ↔ 2:16). 재회가 회복인 이유다. 그리고 이 운동은 멈추지 않는다. 13절의 사중 부름이 그녀를 무대의 한가운데로 끌어오고, 7장의 셋째 찬가가 춤추는 그녀의 발에서부터 다시 시작되며, 선언의 셋째 변주(7:10)와 인장의 청원(8:6)으로 이어진다. 6장의 벡터는 권 전체를 '갈망의 왕복에서 유일한 소속의 확정으로' 끌고 가는 운동의 가운데 구간이다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 한 쌍의 재회담이다 — 묻고, 답하고, 칭송하고, 부른다. 그러나 수면 아래에서는 세 가지가 움직인다. 첫째, 증언의 힘이다. 딸들을 바꾼 것은 논증이 아니라 5장 끝의 사랑 고백 하나였다 — 비교하던 무리가 "함께 찾으리라"는 무리로 바뀌고, 끝내 "이 여자가 누구인가"라는 우러름의 입이 된다. 사랑의 말이 곁의 사람들을 움직이는 경로가 이 장의 보이지 않는 동력이다. 둘째, 잃음의 정체다. 5장의 잃음은 위치를 모르는 잃음이 아니었다 — 6:2가 그것을 드러낸다. 잃었다고 느끼는 동안에도 앎은 끊기지 않았고, 그 앎이 확인되는 순간 선언은 전보다 단단한 어순으로 돌아온다. 셋째, 시선의 역설이다. 사랑받는 자의 눈은 사랑하는 이를 압도하고(6:5), 같은 사람의 모습은 무리의 시선을 모은다(6:13). 감당 못 할 것과 보고 싶은 것이 같은 한 사람 — 본문은 이 역설을 풀지 않은 채, 보지 말라는 목소리와 보게 하라는 목소리를 한 장 안에 같이 살려 둔다.</p>
+
+<h3>J · 실존적 부름 — 불씨</h3>
+<blockquote>
+<p>나는 잃었다고 느끼는 동안에도 그가 어디 있는지 아는가. 내 소속 선언은 어느 어순으로 발화되는가 — 그가 먼저인가, 내가 먼저인가. 그리고 셀 수 없는 수 가운데에서 나를 '하나뿐'이라 부르는 목소리를 나는 들어 본 적이 있는가.</p>
+</blockquote>
+<p>이것은 가르침이 아니라 초대다. 본문은 재회의 공식을 제시하지 않는다. 다만 잃음의 밤을 지나온 한 사람이 그의 거처를 이미 알고 있었다는 것을 보여 주고, 흔들림 뒤의 선언이 자기를 먼저 내놓는 순서로 바뀌어 있는 것을 들려주고, 육십과 팔십과 무수를 다 세운 다음 하나에서 멈추는 산수를 펼쳐 놓는다. 잃음이 끝나는 길이 수색의 성공이 아니라 앎의 확인이라면, 독자는 자기 잃음의 한복판에서도 끊기지 않은 앎을 더듬어 볼 수 있다 — 그 더듬음이 이 장이 독자를 부르는 불씨다.</p>
+
+<p><strong>다음 장으로 미는 운동 한 줄</strong>: 돌아오라는 사중의 부름에 응답한 술람미의 춤 위로 셋째 찬가가 열린다 — "귀한 자의 딸아 신을 신은 네 발이 어찌 그리 아름다운가"(7:1), 이번에는 발에서부터 위로 올라가는 노래다.</p>
+<p><strong>이 장에서 가져갈 한 단어</strong>: <em>achat hi — 하나뿐인 그녀</em>.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/SNG/5/"><div class="nav-kicker">← 이전</div><div class="nav-title">아가 5장</div><div class="nav-preview">둘째 밤 — 문을 열었으나 그가 없고, 딸들의 질문에 찬가로 답한 장.</div></a>
+      <a href="/magazine/SNG/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">아가 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/SNG/7/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">아가 7장</div><div class="nav-preview">신을 신은 네 발이 어찌 그리 — 춤추는 술람미를 향한 셋째 찬가.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:sng6', JSON.stringify({
+      href: '/magazine/SNG/6/',
+      title: '아가 6장',
+      excerpt: '하나뿐 — 잃음이 앎으로 끝나는 장. 딸들의 둘째 질문(6:1)이 동행 제안으로 바뀌고, 신부가 그의 거처를 이미 알며(6:2), 소속 선언의 어순이 뒤집히고(6:3 ani ledodi vedodi li), 육십·팔십·무수 가운데 "하나뿐(achat hi)"(6:9)이 세워진 뒤, 풀리지 않는 수레(6:12)를 지나 "돌아오라" 네 번의 부름(6:13)으로 닫히는 재회의 장.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-11</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>
