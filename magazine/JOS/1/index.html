@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>여호수아 1장 — Observatory | 네다바웨이</title>
+<meta name="description" content="여호수아 1장을 9단계로 같이 관찰합니다. '여호와의 종 모세가 죽은 후에'(1:1)라는 부고로 열리는 권의 개막, '내 종 모세가 죽었으니 이제 너는 일어나 이 요단을 건너라'(1:2)의 죽음 뒤에 이어지는 명령, '너희 발바닥으로 밟는 곳은 모두 내가 너희에게 주었노니'(1:3)의 완료형 수여, 네 번의 '강하고 담대하라(chazaq veemats)'와 그 화자의 변화(여호와 3회→백성 1회), 정복 서사의 중심에 놓인 율법책 묵상(1:8 — 시 1:2와 같은 hagah)까지 — 위임과 격려로 세워지는 여호수아 전권의 입구.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/JOS/1/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/JOS/">역사서</a> · 여호수아 · 1장</div>
+      <h1>여호수아 1장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">JOS-001 · 역사서 · 히브리어</div>
+      <p class="essence">"내 종 모세가 죽었으니 이제 너는 일어나 이 요단을 건너라"(1:2)라는 부고 뒤의 명령과 "너희 발바닥으로 밟는 곳은 모두 내가 너희에게 주었노니"(1:3)라는 완료형의 수여 아래, "강하고 담대하라(chazaq veemats)"가 여호와의 입에서 세 번, 백성의 입에서 한 번 울리며 — 죽음 뒤에도 끊기지 않는 동행("내가 너를 떠나지 아니하며 버리지 아니하리니", 1:5)이 권 전체의 받침으로 놓이는 여호수아의 개막.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOS-001</p>
+<p>book: 여호수아</p>
+<p>book_en: Joshua</p>
+<p>chapter: 1</p>
+<p>bible_block: 역사서</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브(위임)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 18</p>
+<p>observed_facts_count: 26</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>hebrew_terms: [chazaq_veemats, hagah, sefer_hattorah, kaf_regel, immekha, avdi_Mosheh, eved_YHWH, meshareth, tatsliach, taskil, avar, Yarden, lo_arpekha, velo_eezvekha, yamin_usmol, yomam_valayla, natatti, veattah, rak, tsedah, gibbore_hachayil, shoterim]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["LXX는 여호수아의 이름을 Ἰησοῦς(이에수스)로 음역 — 헬라어 신약이 '예수'를 적는 표기와 같은 철자. 형태 관찰, 배경", "1:8의 hagah를 LXX는 μελετάω(멜레타오 — 익히다·되뇌다)로 옮김. 시 1:2 LXX의 동사와 동일 — 두 본문의 연결이 번역 전통에도 보존된 증거, 배경", "1:7에서 MT의 '그 율법을 다(kekhol hattorah)'에 해당하는 어구를 짧게 읽는 LXX 사본 전승이 있음 — 본문비평 배경, 해석 아님"]</p>
+<p>ane_refs: ["고대 근동의 출정 신탁 — 전쟁을 앞둔 왕에게 신이 '두려워 말라'를 선포하는 격려 양식(앗수르 신탁 문서 등), 1:9의 형식 배경", "발로 땅을 밟아 두루 다니는 행위 — 근동의 토지 양도·소유 확인 관습(상징적 답행), 창 13:17의 '종과 횡으로 두루 다녀 보라'와 같은 결, 1:3의 배경", "광야에서 유브라데까지의 경계 서술(1:4) — 근동 조약 문서의 영토 조항이 쓰는 경계 목록 형식과 닮음, 배경", "왕위·지휘권 계승 문서의 충성 서약 — 새 통치자에게 '선왕에게 하듯 순종하겠다'고 응답하는 양식, 1:16-18의 형식 배경"]</p>
+<p>rabbinic_refs: ["후대 유대 전통(탈무드 메나호트 99b)은 수 1:8의 '주야로 묵상'을 두고 토라 학습의 범위와 의무를 논의함 — 본문 확정 아님, 배경"]</p>
+<p>literary_devices: [death_notice_opening, commissioning_formula_deut31_continuity, perfect_tense_land_grant_natatti, threefold_chazaq_veemats_ladder, speaker_shift_fourth_encouragement, merism_yamin_usmol, merism_yomam_valayla, land_boundary_list, mosheh_repetition_chain, conditional_prosperity_clause, oath_response_structure]</p>
+<p>repeated_words: ["모세 — 1장에 열 번 넘게 호명(1·2·3·5·7·13·14·15·17절), 죽은 이가 가장 자주 불림", "강하고 담대하라(chazaq veemats — 6·7·9·18절, 네 번)", "건너다(avar — 2·11·14절)", "땅(erets — 2·3·4·6·11·13·14·15절)", "함께(im — 5·9·17절)", "형통(7·8절)", "명령하다(tsavah — 7·9·10·16·18절)", "율법(torah — 7·8절)"]</p>
+<p>cross_refs: ["신 31:7-8, 23 (강하고 담대하라 — 모세가 같은 말로 여호수아를 세움, 위임의 연속)", "신 34:5 (여호와의 종 모세가 죽어 — 1:1 부고의 전사)", "출 24:13; 33:11 (모세의 수종자 여호수아 — meshareth 칭호의 내력)", "시 1:2-3 (주야로 묵상하는도다 — 1:8과 같은 동사 hagah, 형통하는 나무)", "창 15:18 (유브라데까지의 약속 경계 — 1:4의 지도가 닿는 옛 말씀)", "민 32장 (르우벤·갓·므낫세 반 지파의 요단 동편 기업 — 1:12-15의 전사)", "수 21:45 (말씀이 하나도 남음이 없이 다 응하였더라 — 권의 도착점)", "수 24:15 (나와 내 집은 여호와를 섬기겠노라 — 권이 닫히는 선택)", "수 24:29 (여호와의 종 눈의 아들 여호수아 — 1:1의 칭호 간격이 닫히는 끝, 배경)", "히 13:5 (내가 결코 너희를 버리지 아니하고 — 1:5의 인용 계보, 배경)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-11</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>여호수아 1장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 여호수아 1장입니다. 열여덟 절이지요. 오경을 지나 역사서의 첫 권으로 들어왔습니다. "여호와의 종 모세가 죽은 후에"라는 부고로 열리고, 요단을 건너라는 명령이 떨어지고, "강하고 담대하라"가 네 번 울리고, 백성의 서약으로 닫히는 장입니다. 오늘도 해석을 미루고, 본문이 보여 주는 것만 따라가 봅시다. 낭독하고 침묵을 두겠습니다.</p>
+<p>(본문 낭독 1:1~18, 약 3분)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대를 강 하나가 둘로 가르고 있어요. 이쪽 기슭에는 진을 친 백성이 있고, 건너편에는 아직 밟지 않은 땅이 있어요. 1장 전체가 그 강을 건너기 전, 이쪽 기슭에서 일어나는 일이에요. 그런데 이 무대에서 제일 크게 느껴지는 건 어떤 사물이 아니라 부재예요 — 모세가 없어요. 첫 문장이 그 빈 곳을 먼저 보여 줘요. "여호와의 종 모세가 죽은 후에." 무대 위에 의자 하나가 비워진 채로 막이 오르는 셈이지요. 그리고 4절에서 말씀이 지도를 펼쳐요 — 광야와 레바논에서 큰 강 유브라데까지, 헷 족속의 온 땅과 해 지는 쪽 대해까지. 눈앞의 무대는 강가 진영 하나인데, 말로 그려지는 무대는 보이는 지평선보다 훨씬 넓어요.</p>
+<p><strong>P05 김미영</strong>: 소품 목록이요. 가장 먼저 잡힌 건 발바닥이에요. "너희 발바닥으로 밟는 곳은 모두"(3절) — 신발도 아니고 발도 아니고 발바닥(kaf regel)이에요. 땅에 닿는 몸의 가장 낮은 면이요. 그다음은 책 — "이 율법책을 네 입에서 떠나지 말게 하며"(8절). 그런데 이 책의 거처가 특이해요. 서가나 손이 아니라 입이에요. 그리고 강물 — 명령은 떨어졌는데 요단은 아직 흐르고 있어요. 11절에는 양식(tsedah)이 나와요. 사흘 치 먹을 것을 싸는 살림의 소품이요. 14절에는 무기 — "무장하고 건너가서." 정복의 장인데 소품 순서가 묘해요. 칼보다 책이 먼저 나와요.</p>
+<p><strong>P07 오지혜</strong>: 소재를 늘어놓아 볼게요 — 죽음, 명령, 강, 땅, 경계, 발바닥, 동행, 강함, 담대함, 율법책, 입, 묵상, 주야, 형통, 길, 양식, 사흘, 기업, 안식, 형제, 용사, 서약, 죽임. 늘어놓고 보니 두 무더기로 갈려요. 한쪽은 주시는 것들 — 땅, 동행, 형통, 안식. 다른 쪽은 행하라는 것들 — 일어남, 건넘, 지킴, 묵상, 도움. 약속과 명령이 갈마들면서 한 장을 짜요. 그리고 "강하고 담대하라"가 그 두 무더기 사이를 네 번 오가요.</p>
+<p><strong>P02 이진우</strong>: 형식 소재를 짚을게요. 2절의 "죽었으니 이제(veattah)" — 부고와 명령이 한 호흡 안에 붙어 있어요. 죽음 보고 다음에 애도의 단락이 오는 게 아니라 '이제'라는 접속이 바로 와요. 그리고 3절의 동사가 완료형이에요. natatti — "내가 주었노니." 아직 한 발도 디디지 않은 땅인데 수여가 이미 끝난 시제로 발화돼요. 명령은 미래를 향해 가는데 약속은 완료로 놓여 있는 — 이 시제의 어긋남이 1장의 형식 골격이에요.</p>
+<p><strong>P01 한나래</strong>: 저는 1절의 칭호 두 개에서 멈췄어요. 모세는 "여호와의 종(eved YHWH)"이고, 여호수아는 "모세의 수종자(meshareth Mosheh)"예요. 죽은 이는 칭호가 완성되어 있고, 산 이는 아직 다른 사람 이름에 기대어 불려요. 자기 칭호가 없는 사람이 권 전체의 주인공으로 세워지는 첫 장면이에요.</p>
+<p><strong>P11 나경아</strong>: 어휘 몇 개만요. <em>chazaq</em>(חָזַק) — 굳세다·단단히 잡다. <em>amats</em>(אָמַץ) — 담대하다·용기를 내다. 둘이 명령형 쌍으로 묶여 "강하고 담대하라(chazaq veemats)"가 돼요. 신 31장에서 모세가 여호수아에게 쓴 표현 그대로예요. <em>hagah</em>(הָגָה) — '묵상하다'로 옮겨지지만 어근의 그림은 낮은 소리로 읊조리는 것, 사자가 으르렁거리는 소리(사 31:4)에도 쓰이는 단어예요. 소리 없는 명상이 아니라 입이 움직이는 되뇜이에요. 8절에서 책이 입에 놓이는 이유와 닿아 있는 형태예요. <em>kaf regel</em>(כַּף רֶגֶל) — 발바닥. <em>immekha</em>(עִמְּךָ) — 너와 함께. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 의자 하나가 비워진 무대, 발바닥과 입에 놓인 책이라는 소품, 약속과 명령이 갈마드는 소재, 완료형과 '이제'의 형식, 칭호 두 개의 간격까지. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기였는지요.</p>
+<p><strong>P01 한나래</strong>: "죽었으니 이제"에서 숨이 한 번 멎었어요. 신명기 끝에서 백성이 삼십 일을 애곡했다는 기록(신 34:8)을 알고 있는데도, 1장의 문장 자체는 죽음에서 명령으로 직행해요. 슬픔을 건너뛰는 냉정함이 아니라, 끊긴 줄을 곧바로 다시 잇는 손길처럼 들렸어요. 죽음이 마침표가 아니라 쉼표로 처리되는 문장이요.</p>
+<p><strong>P07 오지혜</strong>: "강하고 담대하라"가 거듭될 때마다 곁에 놓이는 것이 달라요. 6절에서는 사명과 — 이 백성에게 땅을 차지하게 하리라. 7절에서는 율법과 — 다 지켜 행하고 치우치지 말라. 9절에서는 동행과 — 네 하나님 여호와가 너와 함께 하느니라. 같은 말이 세 번 오는데 매번 다른 받침 위에 놓여요. 그리고 18절에서 백성이 그 말을 새 지도자에게 돌려드려요 — "오직 강하고 담대하소서." 받은 격려가 메아리로 돌아오는 마지막이 오래 남았어요.</p>
+<p><strong>P04 최현국</strong>: 출정 전야의 공기예요. 진영, 사흘의 기한, 무장 명령. 긴장이 깔려 있는데 — 이상하게 1장에는 전투가 없어요. 무기는 언급되는데 칼날이 한 번도 부딪히지 않아요. 정복의 권을 여는 장에서 가장 길게 다뤄지는 소재가 책과 입과 되뇜이에요. 개전의 북소리 대신 읊조림이 깔리는 개막이요.</p>
+<p><strong>P02 이진우</strong>: 어조로는 명령문의 밀도가 높아요. 일어나라, 건너라, 강하고 담대하라, 지켜 행하라, 치우치지 말라, 떠나지 말게 하라, 묵상하라, 두려워하지 말라, 놀라지 말라. 그런데 그 명령들 사이마다 약속이 괴어 있어요 — 주었노니, 함께 있으리라, 떠나지 아니하며, 형통하리라. 명령이 약속 위에 얹히는 배열이에요. 어느 명령도 맨바닥에 서 있지 않아요.</p>
+<p><strong>P05 김미영</strong>: 감각으로는 발바닥이요. 땅을 주신다는 약속이 왕홀이나 깃발 같은 높은 상징이 아니라 몸에서 가장 낮은 면으로 표현돼요. 밟는 만큼 — 걸음이라는 가장 평범한 동작이 약속의 통로가 되는 감각이었어요. 그리고 11절의 양식이요. 거대한 약속의 말씀 바로 곁에서 사흘 치 먹을 것을 싸라는 살림의 지시가 나와요. 하늘의 발화가 부엌의 일로 번역되는 순간이 따뜻했어요.</p>
+<p><strong>P11 나경아</strong>: 분위기로 하나만요. 1~9절은 여호와의 발화, 10~11절은 여호수아의 발화, 12~15절도 여호수아, 16~18절은 백성의 발화예요. 한 장 안에서 말의 주인이 위에서 아래로 내려왔다가, 마지막에 아래에서 위로 되올라가요. 발화 구조 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 마침표 대신 쉼표로 처리되는 죽음, 받침이 매번 달라지는 세 번의 격려와 돌아오는 네 번째, 칼날 없는 출정 전야, 약속 위에 얹히는 명령들, 발바닥과 양식의 감각, 말의 주인이 오르내리는 구조. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>성령일 선교사</strong>: 시작과 끝을 함께 보겠습니다.</p>
+<p><strong>P02 이진우</strong>: 1절 시작: "여호와의 종 모세가 죽은 후에 여호와께서 모세의 수종자 눈의 아들 여호수아에게 말씀하여 이르시되." 18절 끝: "누구든지 당신의 명령을 거역하며 당신의 말씀을 순종하지 아니하는 자는 죽임을 당하리니 오직 강하고 담대하소서." 죽음으로 열리고, 죽임의 경고와 격려로 닫혀요. 그런데 여는 죽음과 닫는 죽임의 결이 달라요 — 앞의 것은 한 시대가 끝나는 부고이고, 뒤의 것은 새 질서가 서는 서약의 무게예요. 그리고 발화자의 액자가 있어요. 여호와의 말씀으로 열리고 백성의 말로 닫혀요.</p>
+<p><strong>P01 한나래</strong>: 어미가 달라요. 1절은 "~이르시되"라는 발화의 도입이고, 18절은 "~담대하소서"라는 간청의 종결이에요. 명령으로 시작한 장이 격려의 청원으로 끝나요. 그리고 그 마지막 말이 처음 여호와께서 쓰신 바로 그 단어 쌍이에요. 위에서 내려온 말이 한 장을 다 돌고 나서 사람의 입을 통해 같은 사람에게 되돌아와요.</p>
+<p><strong>P04 최현국</strong>: 무대로 보면 시작은 보이지 않는 음성이에요 — 하늘의 발화만 있고 장면 묘사가 없어요. 끝은 진영의 회중이에요 — 얼굴들이 보이고 함성 같은 서약이 들려요. 음성에서 군중으로, 독백에서 응답으로 무대가 넓어지며 닫혀요.</p>
+<p><strong>P07 오지혜</strong>: 17절을 시작 곁에 겹쳐 보고 싶어요. 백성이 "당신의 하나님 여호와께서 모세와 함께 계시던 것 같이 당신과 함께 계시기를 원하나이다"라고 빌어요. 5절에서 여호와께서 하신 약속 — "내가 모세와 함께 있었던 것 같이 너와 함께 있을 것임이라" — 과 같은 비교 구문이에요. 하나님의 약속과 백성의 기원이 같은 문형으로 마주 봐요. 한 장의 머리와 꼬리가 같은 소원을 쥐고 있어요.</p>
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>성령일 선교사</strong>: 등장하는 인물과 사상을 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 인물 목록부터요. 여호와 — 1~9절의 발화자. 여호수아 — 받는 자였다가 10절부터 명령하는 자로 바뀌어요. 모세 — 죽었는데 1장에서 가장 자주 불리는 이름이에요. 열 번이 넘어요. 부재하는 사람이 출연진 가운데 제일 많이 호명되는 구도요. 백성의 관리들(shoterim, 10절), 르우벤·갓·므낫세 반 지파(12절), 그리고 '너희의 형제'(14~15절) — 요단 서편에서 기업을 받을 다른 지파들이요. 마지막으로 백성 전체가 16절부터 한목소리로 말해요.</p>
+<p><strong>P07 오지혜</strong>: 사상의 중심은 동행이라고 느꼈어요. 5절 — "내가 모세와 함께 있었던 것 같이 너와 함께 있을 것임이라 내가 너를 떠나지 아니하며 버리지 아니하리니." 새 지도자의 자격이나 능력이 한 번도 언급되지 않아요. 위임의 근거가 사람의 됨됨이가 아니라 함께하심의 연속이에요. 9절의 "두려워하지 말라"도 근거가 같아요 — "네가 어디로 가든지 네 하나님 여호와가 너와 함께 하느니라." 17절에서 백성이 비는 것도 결국 그 하나예요.</p>
+<p><strong>P02 이진우</strong>: 상황의 뼈대는 위임 양식이에요. 죽음 통지(1~2a) — 임무 부여(2b 일어나 건너라) — 땅의 약속과 경계(3~4) — 동행과 불패의 약속(5) — 세 겹의 격려(6·7~8·9) — 첫 실행(10~11) — 동맹 확인(12~15) — 서약(16~18). 그런데 이 양식이 처음이 아니에요. 신명기 31장에서 모세가 이미 같은 말 — "강하고 담대하라 ... 여호와께서 너와 함께 하사 너를 떠나지 아니하시며 버리지 아니하시리라"(신 31:7-8) — 로 여호수아를 세웠고, 여호와께서도 직접 같은 위임을 말씀하셨어요(신 31:23). 1장은 그 위임이 모세의 죽음 이후 여호와의 직접 발화로 갱신되는 구도예요. 사람이 한 위임을 하나님이 다시 말씀하시는 — 연속의 이중 확인이요.</p>
+<p><strong>P01 한나래</strong>: 2절의 호칭에서 멈췄어요. "내 종 모세가 죽었으니(avdi Mosheh met)." 부고 안에서도 '내 종'이라는 소유격이 붙어요. 죽음 보고에조차 애착이 묻어 있는 호칭이요. 그리고 그 칭호가 7절에서 한 번 더 — "나의 종 모세가 네게 명령한 그 율법." 모세는 떠났는데 모세의 율법은 현재형으로 남아 명령의 내용이 돼요. 사람은 가고 말은 남는 — 그 간격이 1장의 속살 같았어요.</p>
+<p><strong>P05 김미영</strong>: 사물로는 율법책이요. "이 율법책을 네 입에서 떠나지 말게 하며"(8절) — 떠나지 말아야 할 것이 두 가지인 게 보였어요. 5절에서는 여호와께서 여호수아를 떠나지 않으시겠다 하시고, 8절에서는 책이 입을 떠나지 말아야 해요. 동행의 약속과 책의 상주가 같은 '떠나지 않음'의 그림으로 나란해요. 그리고 12~15절의 '안식'이요. 요단 동편 지파들은 이미 기업을 받았는데, 형제들이 안식을 얻기까지 먼저 무장하고 건너가야 해요. 내 몫이 끝나도 형제의 몫이 남아 있으면 아직 끝이 아니라는 셈법이 거기 있어요.</p>
+<p><strong>P11 나경아</strong>: 사상 쪽 어휘 둘만요. 7절의 <em>taskil</em>(תַּשְׂכִּיל) — '형통하다'로 옮겨지는데 어근 sakhal은 '지혜롭게 행하다·통찰 있게 처신하다'의 결이에요. 8절의 <em>tatsliach</em>(תַּצְלִיחַ) — 어근 tsalach, '길이 트이다·이루어지다'의 결이고요. 두 동사가 모두 '길(derekh)'과 묶여요 — "어디로 가든지 형통하리니"(7절), "네 길이 평탄하게 될 것이며 네가 형통하리라"(8절). 형통이 재물이나 승전의 단어가 아니라 길의 단어로 나와요. 배경 관찰로만요.</p>
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>성령일 선교사</strong>: 장면을 컷으로 나눠 보시지요.</p>
+<p><strong>P04 최현국</strong>: 네 컷입니다. 여호와의 위임 — 여호수아의 첫 명령 — 동편 지파들에게 — 백성의 서약으로 끊었어요.</p>
+<ul>
+<li><strong>컷 1 (1~9절)</strong>: 여호와의 위임 발화. 부고와 명령(1~2), 발바닥의 완료형 수여와 경계의 지도(3~4), 동행과 불패의 약속(5), 그리고 세 겹의 "강하고 담대하라"(6·7~8·9) — 사명, 율법, 동행이 차례로 받침이 됨.</li>
+<li><strong>컷 2 (10~11절)</strong>: 여호수아의 첫 명령. 관리들이 진중에 두루 다니며 — 양식을 준비하라, 사흘 안에 이 요단을 건널 것임이니라. 하늘의 발화가 행정의 언어로 번역되는 컷.</li>
+<li><strong>컷 3 (12~15절)</strong>: 르우벤·갓·므낫세 반 지파에게. 이미 기업을 받은 자들이 형제들이 얻기까지 무장하고 앞서 건너가 도우라 — 안식의 연대.</li>
+<li><strong>컷 4 (16~18절)</strong>: 백성의 응답. 다 행하리이다, 어디든 가리이다, 모세에게 순종한 것 같이 — 그리고 네 번째 "오직 강하고 담대하소서."</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 1 내부에 사다리가 있어요. 6절의 격려는 사명에 매여 있고(땅을 차지하게 하리라), 7~8절의 격려는 율법에 매여 있고(다 지켜 행하라 — 그런데 여기만 강화형이에요, "강하고 크게 담대하여"), 9절의 격려는 동행에 매여 있어요(여호와가 너와 함께 하느니라). 하라는 것에서 지키라는 것으로, 지키라는 것에서 계시는 분으로 — 근거가 한 단씩 깊어지는 삼단이에요. 그리고 9절이 수사 의문으로 시작해요 — "내가 네게 명령한 것이 아니냐." 세 번째 격려는 새 명령이 아니라 이미 한 말의 확인으로 놓여요.</p>
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>성령일 선교사</strong>: 의문이나 발견을 나눠 주세요.</p>
+<p><strong>P11 나경아</strong>: 원어 카드를요. 1절 <em>eved YHWH</em>(עֶבֶד יְהוָה) — 여호와의 종. 신 34:5의 부고에서 모세에게 붙은 칭호 그대로예요. 1절 <em>meshareth</em>(מְשָׁרֵת) — 수종자·곁에서 섬기는 자. 출 24:13과 33:11에서 여호수아에게 줄곧 붙던 칭호예요. 2절 <em>veattah</em>(וְעַתָּה) — 그리고 이제. 부고와 명령을 잇는 경첩이요. 3절 <em>natatti</em>(נְתַתִּיו) — 내가 주었다, 완료형. 3절 <em>kaf regel</em>(כַּף רֶגֶל) — 발바닥. 5절 <em>lo arpekha velo eezvekha</em>(לֹא אַרְפְּךָ וְלֹא אֶעֶזְבֶךָּ) — 늦추지 아니하며 버리지 아니하리라. rafah(놓다·늦추다)와 azav(버리다·떠나다)의 이중 부정이에요. 6절 <em>chazaq veemats</em>(חֲזַק וֶאֱמָץ) — 강하고 담대하라, 명령형 쌍. 7절에는 <em>meod</em>(מְאֹד — 크게·심히)가 더해져 강화형이 돼요. 7절 <em>yamin usmol</em>(יָמִין וּשְׂמֹאול) — 우로나 좌로나, 전체를 두 끝으로 말하는 메리즘. 8절 <em>sefer hattorah</em>(סֵפֶר הַתּוֹרָה) — 율법책. 8절 <em>hagah</em>(הָגָה) — 읊조리다·되뇌다. 시 1:2의 동사와 같아요 — 형태 관찰만 둡니다. 8절 <em>yomam valayla</em>(יוֹמָם וָלַיְלָה) — 주야로, 역시 메리즘. 11절 <em>tsedah</em>(צֵדָה) — 양식·노자. 14절 <em>gibbore hachayil</em>(גִּבּוֹרֵי הַחַיִל) — 용사들. 배경만요.</p>
+<p><strong>P02 이진우</strong>: 발견 — 시제의 간격이에요. 3절은 완료형이에요. "발바닥으로 밟는 곳은 모두 내가 너희에게 주었노니(natatti)." 그런데 백성은 아직 강 이쪽에 있고, 한 뼘도 밟지 않았어요. 수여는 끝난 시제로, 점유는 아직 오지 않은 시간으로 — 이미 주어진 것과 아직 밟지 않은 것 사이의 간격이 1장의 시간 구조예요. 명령("건너라")은 그 간격을 건너는 다리고요. 그리고 6절이 그 간격을 맹세까지 끌어올려요 — "내가 그들의 조상에게 맹세하여 그들에게 주리라 한 땅." 이 수여의 시점이 사실은 조상들의 시대까지 거슬러 올라가요.</p>
+<p><strong>P07 오지혜</strong>: 발견 — "강하고 담대하라"의 분포예요. 여호와께서 세 번(6·7·9절), 백성이 한 번(18절). 그리고 세기가 달라요 — 7절만 "크게(meod)"가 붙은 강화형인데, 가장 센 격려가 전투 장면이 아니라 율법 준수에 묶여 있어요. 정복의 권에서 최대치의 용기가 요구되는 지점이 칼이 아니라 책이라는 배열 — 이게 1장이 보여 주는 가장 뜻밖의 사실 같아요.</p>
+<p><strong>P01 한나래</strong>: 의문이에요. 8절 — "이 율법책을 네 입에서 떠나지 말게 하며 주야로 그것을 묵상하여(hagita)." 시편 1편 2절의 의인이 하는 일과 동사까지 같아요. 전쟁 서사의 개막에 시가서의 언어가 놓여 있는 셈이에요. 왜 정복의 첫 장이 전략이나 병력이 아니라 읊조림을 중심에 두는지 — 본문은 이유를 설명하지 않아요. 미해결로 두고 싶어요.</p>
+<p><strong>P05 김미영</strong>: 의문 하나 더요. 3절은 "발바닥으로 밟는 곳은 모두"라고 하시는데, 4절은 경계를 미리 그어 두세요 — 광야에서 유브라데까지, 대해까지. 밟는 만큼인지 정해진 만큼인지, 두 절이 어떤 관계인지 1장 안에서는 닫히지 않아요. 비워 둔 채로 보존하고 싶어요.</p>
+<p><strong>P04 최현국</strong>: ANE 배경이에요. 전쟁을 앞둔 왕에게 신이 "두려워 말라"를 선포하는 출정 신탁이 고대 근동에 넓게 깔려 있어요 — 앗수르의 신탁 문서들이 대표적이고, 9절의 형식 배경이에요. 발로 땅을 밟아 두루 다니는 행위가 토지 양도와 소유 확인의 관습이었다는 자료도 있어요 — 창 13:17에서 아브람에게 "종과 횡으로 두루 다녀 보라" 하신 것과 같은 결이에요. 4절의 경계 목록은 근동 조약 문서의 영토 조항 형식과 닮았고요. 그리고 16~18절의 서약은 새 통치자에게 선왕에게 하듯 순종을 맹세하는 계승 서약 양식과 형식을 공유해요. 전부 배경으로만요.</p>
+<p><strong>P11 나경아</strong>: LXX 관찰 둘만요. 헬라어 역본은 여호수아의 이름을 Ἰησοῦς(이에수스)로 적어요 — 신약이 '예수'를 적는 표기와 같은 철자예요. 형태 관찰로만 둡니다. 그리고 8절의 hagah를 LXX는 μελετάω로 옮겼는데, 시 1:2 LXX의 동사와 동일해요. 두 본문의 연결이 번역 전통에도 보존된 증거예요. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 완료형과 미답 사이의 간격, 네 번의 격려와 한 번의 강화형이 놓인 의외의 위치, 정복 개막의 중심에 놓인 읊조림, 발바닥과 경계의 미해결, 출정 신탁과 답행 관습의 배경, 번역 전통의 흔적. 그대로 두지요. 답이 급하지 않습니다.</p>
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P04 최현국</strong>: 강가의 진영, 이른 빛. 카메라가 천막들 사이를 지나는데 한 천막 앞이 비어 있습니다 — 지팡이를 짚고 서 있던 사람이 더는 없습니다. 자막 — 여호와의 종 모세가 죽은 후에. 화면이 고요한데 음성이 들립니다. 내 종 모세가 죽었으니 이제 너는 일어나, 이 요단을 건너라. 한 사람의 얼굴이 잡힙니다 — 사십 년을 곁에서 섬기던 수종자의 얼굴. 음성이 지도를 펼칩니다. 광야와 레바논, 큰 강 유브라데, 헷 족속의 온 땅, 해 지는 쪽 대해 — 지평선이 말로 넓어집니다. 카메라가 아래로 내려와 맨발의 발바닥을 클로즈업합니다 — 밟는 곳은 모두 내가 너희에게 주었노니. 음성이 가까워집니다 — 내가 모세와 함께 있었던 것 같이 너와 함께 있을 것임이라, 떠나지 아니하며 버리지 아니하리니. 강하고 담대하라 — 한 번. 오직 강하고 크게 담대하여, 화면에 두루마리가 펼쳐지고 입술이 움직입니다, 주야로 그것을 읊조려 — 두 번. 내가 네게 명령한 것이 아니냐, 강하고 담대하라 — 세 번. 장면이 바뀝니다. 관리들이 진중을 누비며 외칩니다 — 양식을 준비하라, 사흘 안에 이 요단을 건너리라. 천막마다 손들이 움직이고 자루가 묶입니다. 동편 기슭의 용사들이 무장을 점검합니다 — 형제들이 얻기까지. 마지막 컷, 회중이 한목소리로 응답합니다 — 명령하신 것은 다 행하겠고, 보내시는 곳에는 가리이다, 오직 당신의 하나님 여호와께서 모세와 함께 계시던 것 같이 당신과 함께 계시기를. 그리고 네 번째 — 오직 강하고 담대하소서. 카메라가 마지막으로 강을 비춥니다. 요단은 아직 흐르고 있습니다. 암전.</p>
+<p><strong>성령일 선교사</strong>: 비어 있는 천막 앞에서 열려, 발바닥과 두루마리와 사흘의 분주함을 지나, 백성의 입에서 울리는 네 번째 격려와 아직 흐르는 강물로 닫히는 흐름입니다.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "죽었으니 이제 — 부고에서 명령으로 건너가는 한 호흡"</p>
+<p><strong>P02 이진우</strong>: "완료형의 땅 — natatti, 아직 밟지 않은 수여"</p>
+<p><strong>P04 최현국</strong>: "칼보다 먼저 놓인 책 — 강을 앞에 둔 진영의 개막"</p>
+<p><strong>P05 김미영</strong>: "발바닥과 두루마리 — 가장 낮은 면에 닿는 약속"</p>
+<p><strong>P07 오지혜</strong>: "네 번의 강하고 담대하라 — 마지막은 백성의 입에서"</p>
+<p><strong>P11 나경아</strong>: "<em>chazaq veemats · hagah</em> — 굳셈과 읊조림"</p>
+<p>부제 제안: "여호와의 종 모세의 부고 위에서 '죽었으니 이제'라는 경첩으로 위임이 갱신되고, 발바닥의 완료형 수여(natatti)와 동행의 약속('떠나지 아니하며 버리지 아니하리니') 위에 '강하고 담대하라'가 여호와의 입에서 세 번, 백성의 입에서 한 번 울리는 — 율법책 읊조림(hagah)을 정복의 중심에 두는 여호수아 전권의 개막"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 사십 년 섬기던 이를 잃고 강 앞에 선 한 사람 곁으로 들어가, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P05 김미영</strong>: (조용히) 주님, 오늘 비어 있는 천막 앞과 아직 흐르는 강을 보았습니다. 그리고 그 사이에 놓인 말씀을 보았습니다 — 내가 너를 떠나지 아니하며 버리지 아니하리니. 제 발바닥이 오늘 닿는 곳을 생각합니다. 묻지 않고, 그 동행의 약속 곁에 머물겠습니다.</p>
+<p>*— 그 순간 떠오른 것을 각자 마음에만 둡니다.</p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>그래서 이 본문은 어디서 어디로 움직이는지요? 눈에 보이는 일 아래에서 무엇이 회복되고 있는지요? 이 본문이 품은 긴장은 무엇인지요? 이 불이 우리 안에서도 타오르고 있는지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 1장은 <strong>부고에서 위임으로, 위임에서 첫 실행으로</strong> 움직여요. 죽음 통지(1절)가 명령(2절)으로, 하늘의 발화(1~9절)가 사흘의 행정(10~11절)으로, 행정이 연대의 확인(12~15절)과 서약(16~18절)으로 번역돼요. 권 전체의 흐름에서 보면 1~5장이 도하와 준비의 국면이고, 6~12장이 정복, 13~21장이 분배, 22~24장이 정착과 언약의 선택이에요. 그리고 권의 도착점이 두 문장으로 찍혀 있어요 — "여호와께서 이스라엘 족속에게 말씀하신 선한 말씀이 하나도 남음이 없이 다 응하였더라"(21:45), "나와 내 집은 여호와를 섬기겠노라"(24:15). 1장의 완료형(natatti)은 21:45의 그 문장을 향해 발행된 첫 어음이에요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. 1:1에서 여호수아는 <em>meshareth</em> — 모세의 수종자예요. 그런데 권의 마지막 장에서 그의 부고가 이렇게 적혀요 — "여호와의 종(eved YHWH) 눈의 아들 여호수아가 죽으니"(24:29). 1장에서 모세에게만 붙어 있던 칭호가 권이 닫힐 때 여호수아에게 옮겨와 있어요. <strong>1:1의 칭호 간격이 권 전체를 지나며 닫히는</strong> — 그 거리가 여호수아서라는 책의 길이예요. 형태 관찰로만 두고요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 표면은 군사 출정의 명령서 같아요 — 건너라, 무장하라, 사흘 안에. 그런데 그 아래에서 흐르는 건 끊기지 않음이에요. 지도자가 죽었는데 약속이 안 죽었어요. "내가 모세와 함께 있었던 것 같이 너와 함께" — 동행이 사람의 교체를 건너가요. 그리고 그 동행의 말이 마지막에 백성의 입에까지 옮겨가요(17절의 기원, 18절의 격려). <strong>위에서 주어진 신실이 공동체의 언어가 되어 되울리는</strong> — 그게 수면 아래의 운동 같아요.</p>
+<p><strong>P01 한나래</strong>: 긴장이에요. 3절은 완료형이에요 — 주었노니. 그런데 강은 아직 흐르고, 땅은 아직 한 뼘도 밟히지 않았고, 5절의 "능히 대적할 자가 없으리니"라는 약속 앞에는 일곱 족속의 성읍들이 그대로 서 있어요. <strong>이미 주어진 것과 아직 밟지 않은 것 — 1장은 그 사이에 진을 친 장이에요.</strong> 본문은 그 긴장을 풀어 주지 않고, 다만 그 간격 위에 "강하고 담대하라"를 네 번 놓아요.</p>
+<p><strong>P04 최현국</strong>: 운동을 한 화면으로 보면, <strong>비어 있는 천막 앞에서 강가의 출발선으로</strong> 옮겨가는 운동이에요. 1장이 끝나도 강은 흐르고 있어요 — 도하는 3장에서야 일어나요. 그 사이에 2장이 끼어 있는데, 정탐꾼 두 사람이 여리고로 들어가서 뜻밖의 인물을 만나요. 정복 서사의 다음 장면이 적진의 성벽 위, 한 여인의 집에서 열려요.</p>
+<p><strong>P05 김미영</strong>: 이 불이 우리 안에서 타오르느냐 물으시니 — 저는 8절이 불씨 같아요. 입에서 떠나지 않는 책, 주야의 읊조림. 거대한 강을 앞에 두고 주어진 과제가 거창한 일이 아니라 입술을 움직이는 작은 동작이라는 것 — 제 하루의 가장 작은 동작이 무엇과 잇닿아 있는지, 질문인 채로 쥐고 갑니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>부고에서 명령으로, 완료형의 수여에서 아직 밟지 않은 강가로, 여호와의 세 번에서 백성의 한 번으로 — 동행의 약속이 사람의 교체를 건너 공동체의 언어가 되는</strong> 그 운동을 손에 쥐고 다음 장으로 갑니다. 정탐꾼 두 사람이 여리고의 성벽 위 한 집으로 들어갑니다.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOS-001</p>
+<p>book: 여호수아</p>
+<p>chapter: 1</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>여호수아 1장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대: 요단 강이 화면을 둘로 가름 — 이쪽 기슭의 진영과 건너편의 미답지. 1장 전체가 도하 이전, 이쪽 기슭의 사건.</li>
+<li>무대의 부재: 모세 — 첫 문장이 빈 곳을 먼저 보여 줌("여호와의 종 모세가 죽은 후에"). 의자 하나가 비워진 채 막이 오름.</li>
+<li>말로 펼쳐지는 지도(4절): 광야와 레바논 — 큰 강 유브라데 — 헷 족속의 온 땅 — 해 지는 쪽 대해. 눈앞 무대보다 훨씬 넓은 영토가 발화로 그려짐.</li>
+<li>소품: 발바닥(kaf regel, 3절 — 몸의 가장 낮은 면), 율법책(8절 — 거처가 서가가 아니라 입), 강물(아직 흐름), 양식(tsedah, 11절 — 사흘 치 살림), 무기(14절). 칼보다 책이 먼저 나오는 소품 순서.</li>
+<li>소재의 두 무더기: 주시는 것들(땅·동행·형통·안식) 對 행하라는 것들(일어남·건넘·지킴·묵상·도움) — 약속과 명령의 갈마듦.</li>
+<li>형식 소재: "죽었으니 이제(veattah)" — 부고와 명령이 한 호흡. natatti(3절) — 밟기 전에 완료형으로 발화된 수여.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>"죽었으니 이제" — 죽음이 마침표가 아니라 쉼표로 처리됨. 끊긴 줄을 곧바로 다시 잇는 손길의 감각.</li>
+<li>"강하고 담대하라"의 받침이 매번 다름: 6절 사명 — 7절 율법 — 9절 동행. 그리고 18절에서 백성이 같은 말을 새 지도자에게 되돌림.</li>
+<li>출정 전야의 긴장 — 그런데 1장에 전투 없음. 무기는 언급되나 칼날이 부딪히지 않고, 가장 길게 다뤄지는 소재가 책·입·되뇜.</li>
+<li>명령문의 밀도(일어나라·건너라·지켜 행하라·치우치지 말라·두려워하지 말라...) — 그러나 명령마다 약속이 받치고 있음(주었노니·함께 있으리라·형통하리라). 맨바닥에 선 명령이 없음.</li>
+<li>발바닥의 촉감 — 약속이 가장 낮은 신체 면으로 표현됨. 양식 준비(11절) — 하늘의 발화가 부엌의 일로 번역되는 순간.</li>
+<li>발화 구조: 여호와(1~9) → 여호수아(10~15) → 백성(16~18). 말의 주인이 내려왔다가 마지막에 되올라감 — 배경.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>1절: "여호와의 종 모세가 죽은 후에 여호와께서 모세의 수종자 눈의 아들 여호수아에게 말씀하여 이르시되."</li>
+<li>18절: "누구든지 당신의 명령을 거역하며 ... 죽임을 당하리니 오직 강하고 담대하소서."</li>
+<li>죽음(부고)으로 열리고 죽임(서약의 무게)과 격려로 닫힘 — 같은 죽음의 어휘가 다른 결로 수미에 놓임.</li>
+<li>발화의 액자: 여호와의 말씀으로 열려 백성의 말로 닫힘. 명령의 도입("이르시되")에서 간청의 종결("담대하소서")로.</li>
+<li>5절 약속("내가 모세와 함께 있었던 것 같이 너와 함께")과 17절 기원("모세와 함께 계시던 것 같이 당신과 함께")이 같은 비교 구문 — 머리와 꼬리가 같은 소원을 쥠.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>인물: 여호와(1~9절 발화자), 여호수아(받는 자 → 10절부터 명령하는 자), 모세(죽었는데 열 번 넘게 호명 — 부재자가 가장 자주 불림), 관리들(shoterim, 10절), 르우벤·갓·므낫세 반 지파, '너희의 형제'(14~15절), 백성 전체(16~18절 한목소리).</li>
+<li>중심 사상: 동행 — 위임의 근거가 사람의 자격이 아니라 함께하심의 연속(5절). "두려워하지 말라"(9절)의 근거도, 백성의 기원(17절)도 같은 하나.</li>
+<li>위임 양식의 뼈대: 죽음 통지 — 임무 — 땅과 경계 — 동행 약속 — 세 겹 격려 — 첫 실행 — 동맹 확인 — 서약. 신 31:7-8, 23의 위임이 여호와의 직접 발화로 갱신되는 이중 확인.</li>
+<li>호칭의 결: "내 종 모세(avdi Mosheh)" — 부고에도 소유격의 애착(2절). 7절에서 모세의 율법이 현재형 명령의 내용으로 남음 — 사람은 가고 말은 남는 간격.</li>
+<li>'떠나지 않음' 두 겹: 여호와가 여호수아를(5절), 책이 입을(8절) — 동행의 약속과 책의 상주가 같은 그림.</li>
+<li>안식의 셈법(12~15절): 이미 기업을 받은 지파들이 형제들이 얻기까지 먼저 건너가 도움 — 내 몫이 끝나도 형제의 몫이 남았으면 끝이 아님.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1~9절): 여호와의 위임 — 부고·명령(1~2), 발바닥의 완료형 수여와 경계(3~4), 동행·불패(5), 세 겹의 "강하고 담대하라"(6·7~8·9).</li>
+<li>컷 2 (10~11절): 여호수아의 첫 명령 — 양식을 준비하라, 사흘 안에 이 요단을 건너리라. 하늘의 발화가 행정의 언어로.</li>
+<li>컷 3 (12~15절): 동편 지파들에게 — 무장하고 형제보다 앞서 건너가 그들이 안식을 얻기까지 도우라.</li>
+<li>컷 4 (16~18절): 백성의 서약 — 다 행하리이다 · 어디든 가리이다 · 모세에게 순종한 것 같이 — 그리고 네 번째 격려.</li>
+<li>컷 1 내부의 삼단 사다리: 사명(6) → 율법(7~8, 유일한 강화형 "크게") → 동행(9). 9절은 수사 의문("내가 네게 명령한 것이 아니냐")으로 — 새 명령이 아니라 확인.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>eved YHWH</em>(עֶבֶד יְהוָה) — 여호와의 종. 신 34:5에서 모세의 부고에 붙은 칭호. 수 24:29에서 여호수아의 부고에 같은 칭호 — 권 전체에 걸친 간격, 형태 관찰만.</li>
+<li><em>meshareth</em>(מְשָׁרֵת) — 수종자. 출 24:13; 33:11부터 여호수아에게 붙던 칭호. 1:1의 출발 좌표.</li>
+<li><em>veattah</em>(וְעַתָּה) — 그리고 이제. 부고와 명령을 잇는 경첩(2절).</li>
+<li><em>natatti</em>(נְתַתִּיו) — 내가 주었다. 완료형 수여(3절) — 점유 이전에 종결된 시제.</li>
+<li><em>kaf regel</em>(כַּף רֶגֶל) — 발바닥(3절). / <em>lo arpekha velo eezvekha</em> — 늦추지 아니하며 버리지 아니하리라(5절). rafah + azav의 이중 부정.</li>
+<li><em>chazaq veemats</em>(חֲזַק וֶאֱמָץ) — 강하고 담대하라. 명령형 쌍, 6·7·9·18절 네 번. 7절만 meod(크게) 강화형.</li>
+<li><em>yamin usmol</em> — 우로나 좌로나(7절) / <em>yomam valayla</em> — 주야로(8절). 전체를 두 끝으로 감싸는 메리즘 한 쌍.</li>
+<li><em>sefer hattorah</em>(סֵפֶר הַתּוֹרָה) — 율법책(8절). / <em>hagah</em>(הָגָה) — 읊조리다·되뇌다. 낮은 소리의 동작(사 31:4의 사자 소리에도 쓰임). 시 1:2와 동일 동사 — 형태 관찰만.</li>
+<li><em>taskil</em>(תַּשְׂכִּיל, 7절) — 지혜롭게 행하다·형통하다 / <em>tatsliach</em>(תַּצְלִיחַ, 8절) — 길이 트이다·이루어지다. 두 동사 모두 '길'과 묶임.</li>
+<li><em>tsedah</em>(צֵדָה) — 양식·노자(11절). / <em>gibbore hachayil</em> — 용사들(14절). / <em>shoterim</em> — 관리들(10절).</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>부고(1) + 위임 발화(2~9) + 첫 실행(10~11) + 동맹 확인(12~15) + 서약(16~18) — 다섯 단의 개막 구조.</li>
+<li>격려의 삼단 사다리: 사명(6) — 율법(7~8) — 동행(9). 근거가 한 단씩 깊어지고, 유일한 강화형(meod)이 전투가 아니라 율법 준수에 붙음.</li>
+<li>"강하고 담대하라" 4회의 화자 분포: 여호와 3회 → 백성 1회. 위에서 내려온 말이 공동체의 입으로 되울리는 이동.</li>
+<li>시제의 간격: 완료형 수여(natatti, 3절) 對 아직 흐르는 강·미답의 땅. 명령("건너라")이 그 간격을 잇는 다리.</li>
+<li>모세 호명 사슬: 죽은 이가 1장에서 가장 자주 불림(열 번 이상) — 연속성의 문체적 장치.</li>
+<li>5절 ↔ 17절: "모세와 함께 ~ 같이 너와(당신과) 함께"의 같은 비교 구문이 약속과 기원으로 마주 봄.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>출정 신탁 — 전쟁 앞둔 왕에게 신이 "두려워 말라"를 선포하는 격려 양식(앗수르 신탁 문서 등). 1:9의 형식 배경.</li>
+<li>답행(踏行) 관습 — 발로 땅을 밟아 두루 다니는 토지 양도·소유 확인. 창 13:17과 같은 결. 1:3의 배경.</li>
+<li>경계 목록(1:4) — 근동 조약 문서의 영토 조항 형식과 유사. 배경.</li>
+<li>계승 서약 — 새 통치자에게 선왕에게 하듯 순종을 맹세하는 양식. 1:16-18의 형식 배경.</li>
+<li>LXX: 여호수아 → Ἰησοῦς(신약의 '예수'와 같은 철자), hagah → μελετάω(시 1:2 LXX와 동일 동사), 1:7의 사본 전승 차이 — 번역·본문비평 배경.</li>
+<li>랍비 전통: 탈무드 메나호트 99b가 수 1:8의 '주야 묵상'을 두고 토라 학습 의무를 논의 — 본문 확정 아님, 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>수 1:6-9 ↔ 신 31:7-8, 23 (강하고 담대하라 — 모세의 위임이 여호와의 직접 발화로 갱신)</li>
+<li>수 1:1 ↔ 신 34:5 (여호와의 종 모세가 죽어 — 부고의 전사)</li>
+<li>수 1:1 ↔ 출 24:13; 33:11 (모세의 수종자 — meshareth 칭호의 내력)</li>
+<li>수 1:8 ↔ 시 1:2-3 (주야로 묵상 hagah — 같은 동사, 길의 형통)</li>
+<li>수 1:4 ↔ 창 15:18 (유브라데까지 — 조상에게 맹세된 경계)</li>
+<li>수 1:12-15 ↔ 민 32장 (요단 동편 기업과 '형제보다 앞서 건너가라'는 조건)</li>
+<li>수 1:3(natatti) ↔ 수 21:45 (하나도 남음이 없이 다 응하였더라 — 완료형이 닿는 도착점)</li>
+<li>수 1:5 ↔ 히 13:5 (내가 결코 너희를 버리지 아니하고 — 인용 계보, 배경)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>강가의 진영, 이른 빛. 한 천막 앞이 비어 있다 — 지팡이를 짚고 서 있던 사람이 더는 없다. 자막 — 여호와의 종 모세가 죽은 후에. 고요 속에 음성이 들린다. 내 종 모세가 죽었으니 이제 너는 일어나, 이 요단을 건너라. 사십 년을 곁에서 섬기던 수종자의 얼굴이 잡힌다. 음성이 지도를 펼친다 — 광야와 레바논, 큰 강 유브라데, 헷 족속의 온 땅, 해 지는 쪽 대해. 카메라가 내려와 맨발의 발바닥을 비춘다 — 밟는 곳은 모두 내가 너희에게 주었노니. 음성이 가까워진다 — 모세와 함께 있었던 것 같이 너와 함께 있으리라, 떠나지 아니하며 버리지 아니하리니. 강하고 담대하라 — 한 번. 두루마리가 펼쳐지고 입술이 움직인다, 주야로 읊조려 — 두 번. 내가 네게 명령한 것이 아니냐 — 세 번. 관리들이 진중을 누빈다 — 양식을 준비하라, 사흘 안에 건너리라. 자루가 묶이고, 동편의 용사들이 무장을 점검한다 — 형제들이 얻기까지. 회중이 한목소리로 응답한다 — 다 행하겠고, 어디든 가리이다, 모세와 함께 계시던 것 같이 당신과 함께 계시기를 — 오직 강하고 담대하소서, 네 번째. 마지막 화면, 요단은 아직 흐르고 있다. 암전.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"죽었으니 이제 — 네 번의 강하고 담대하라"</strong></li>
+<li>초벌 부제: "여호와의 종 모세의 부고 위에서 위임이 갱신되고, 발바닥의 완료형 수여(natatti)와 동행의 약속 위에 '강하고 담대하라'가 여호와의 입에서 세 번, 백성의 입에서 한 번 울리는 — 율법책 읊조림(hagah)을 정복의 중심에 두는 여호수아 전권의 개막"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (22개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (다섯 단 개막 구조 + 격려의 삼단 사다리 + 신 31장 위임 연속 + ANE 출정 신탁·답행 배경)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>1:8(주야 묵상과 형통)을 '말씀 읽으면 성공한다'는 번영의 공식으로 일반화하지 않고, 정복 서사의 중심에 책이 놓인 배열의 관찰과 시 1편과의 동사 일치(hagah)라는 형태 관찰로만 둠.</li>
+<li>1:5("능히 대적할 자가 없으리니")를 무조건적 승리 보장의 교리로 단정하지 않고, 권 안에서 이 약속이 어떻게 펼쳐지는지(7장의 아이 성 사건 포함)를 열린 질문으로 이월.</li>
+<li>LXX의 Ἰησοῦς 표기를 기독론적 예표론으로 끌고 가지 않고, 음역 철자의 형태 관찰로만 보존.</li>
+<li>1:18의 처형 조항을 권위주의 통치의 정당화나 비판 어느 쪽으로도 일반화하지 않고, 계승 서약 양식의 형식 관찰로 둠.</li>
+<li>'강하고 담대하라' 4회를 리더십 원리 강의로 바꾸지 않고, 화자 분포(여호와 3회 → 백성 1회)와 받침의 변화(사명·율법·동행)라는 본문 사실로만 기록.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOS-001</p>
+<p>book: 여호수아</p>
+<p>chapter: 1</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>여호수아 1장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 발바닥의 약속(1:3)과 그어진 경계(1:4) — 밟는 만큼인가, 정해진 만큼인가?</h2>
+<ul><li>"발바닥으로 밟는 곳은 모두"라는 열린 표현과 광야에서 유브라데·대해까지의 닫힌 경계가 나란히 놓인다. 두 절의 관계 — 걸음이 약속을 채워 가는 것인지, 약속이 걸음을 기다리는 것인지 — 는 1장 안에서 닫히지 않는다. 보존.</li></ul>
+
+<h2>Q2. 정복의 개막에 놓인 hagah(1:8) — 왜 전략이 아니라 읊조림인가?</h2>
+<ul><li>전쟁 서사의 첫 장에서 가장 길게 다뤄지는 과제가 병력도 전술도 아닌 책의 되뇜이다. 시 1:2와 같은 동사라는 형태 사실만 기록하고, 정복의 권이 책을 중심에 두는 이 배열의 이유는 미해결로 둔다. 보존.</li></ul>
+
+<h2>Q3. "강하고 담대하라" — 명령으로 사람이 강해질 수 있는가, 이 말은 명령인가 약속의 다른 형태인가?</h2>
+<ul><li>네 번의 chazaq veemats가 매번 다른 받침(사명·율법·동행) 위에 놓이고, 마지막 한 번은 백성의 입에서 나온다. 격려가 명령형으로 발화되는 이 문법의 무게 — 요구인지 수여인지 — 를 닫지 않는다. 보존.</li></ul>
+
+<h2>Q4. "네 평생에 너를 능히 대적할 자가 없으리니"(1:5) — 이 약속의 폭은 어디까지인가?</h2>
+<ul><li>권 안에는 아이 성의 패배(7장)도 기록되어 있다. 불패의 약속과 패배의 기록이 한 권 안에 같이 있는 구도를 어느 쪽으로도 누르지 않고, 두 본문의 대면 자체를 보존.</li></ul>
+
+<h2>Q5. eved YHWH와 meshareth(1:1) — 칭호의 간격은 무엇으로 닫히는가?</h2>
+<ul><li>1장에서 '여호와의 종'은 죽은 모세의 칭호이고 여호수아는 '모세의 수종자'다. 24:29의 부고에서 같은 칭호가 여호수아에게 붙는다는 형태 사실만 기록한다. 그 사이에 무엇이 있었는지는 권 전체를 읽으며 열어 둔다. 보존.</li></ul>
+
+<h2>Q6. "범사에 모세에게 순종한 것 같이"(1:17) — 이 서약의 자기 기억은 정확한가?</h2>
+<ul><li>광야 사십 년의 기록에는 불순종의 장면들이 길게 남아 있다. 백성의 서약이 미화된 기억인지, 새 출발의 다짐이 과거를 새로 쓰는 것인지, 본문은 평가하지 않는다. 서약의 문장과 광야의 기록을 나란히 둔 채 이월. 보존.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">"내 종 모세가 죽었으니 이제 너는 일어나 이 요단을 건너라"는 부고 뒤의 명령과 발바닥의 완료형 수여 위에, "강하고 담대하라"가 여호와의 입에서 세 번, 백성의 입에서 한 번 울리는 — 동행의 신실이 사람의 교체를 건너가는 여호수아의 개막.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: JOS-001</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-11</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 여호수아 1장은 "여호와의 종 모세가 죽은 후에"(1:1)라는 부고 위에서 "내 종 모세가 죽었으니 이제 너는 일어나 이 요단을 건너라"(1:2)는 명령으로 위임을 갱신하고, "너희 발바닥으로 밟는 곳은 모두 내가 너희에게 주었노니"(1:3)라는 완료형의 수여와 "내가 모세와 함께 있었던 것 같이 너와 함께 있을 것임이라 내가 너를 떠나지 아니하며 버리지 아니하리니"(1:5)라는 동행의 약속 위에 "강하고 담대하라(chazaq veemats)"를 세 겹(사명 1:6 · 율법 1:7-8 · 동행 1:9)으로 쌓은 뒤, 여호수아의 첫 명령(사흘, 1:10-11)과 동편 지파의 연대 확인(1:12-15)을 지나 백성의 서약 — "오직 강하고 담대하소서"(1:18), 네 번째 — 로 닫히는, 여호수아 전권의 개막이다.</p>
+<p><strong>한 문단</strong>: 강가의 진영에서 한 천막 앞이 비어 있다. 여호와의 종 모세가 죽은 후에 — 권이 부고로 열린다. 그런데 그 부고가 마침표가 아니라 경첩이다. 죽었으니 이제, 일어나 건너라. 음성이 지도를 펼친다 — 광야와 레바논에서 유브라데와 대해까지. 카메라가 내려와 발바닥을 비춘다 — 밟는 곳은 모두 주었노니, 아직 한 뼘도 밟지 않았는데 수여는 완료형이다. 그 간격 위에 격려가 쌓인다. 강하고 담대하라 — 땅을 차지하게 하리라. 오직 강하고 크게 담대하여 — 율법을 다 지켜 행하라, 책을 입에서 떠나지 말게 하며 주야로 읊조리라. 내가 네게 명령한 것이 아니냐 — 어디로 가든지 여호와가 너와 함께 하느니라. 수종자였던 사람이 처음으로 명령한다 — 양식을 준비하라, 사흘 안에 건너리라. 동편의 용사들이 형제들을 위해 무장하고, 회중이 응답한다 — 다 행하겠고 어디든 가리이다, 모세와 함께 계시던 것 같이 당신과 함께 계시기를. 그리고 백성의 입에서 네 번째가 울린다 — 오직 강하고 담대하소서. 요단은 아직 흐르고 있다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>강이 가르는 무대, 비어 있는 천막(모세의 부재), 발바닥·율법책·양식이라는 소품 — 칼보다 책이 먼저 놓이는 순서.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>"죽었으니 이제" — 쉼표로 처리되는 죽음. 받침이 매번 달라지는 격려. 칼날 없는 출정 전야, 약속 위에 얹히는 명령들.</td></tr>
+<tr><td>3 시작과 끝</td><td>부고로 열려 서약과 격려로 닫힘. 여호와의 발화 → 백성의 발화 액자. 5절의 약속과 17절의 기원이 같은 비교 구문.</td></tr>
+<tr><td>4 등장인물·사상</td><td>죽은 모세가 가장 자주 호명됨(열 번 이상). 중심 사상은 동행 — 위임의 근거가 자격이 아니라 함께하심의 연속.</td></tr>
+<tr><td>5 장면 컷</td><td>위임(1~9)/첫 명령(10~11)/동편 지파(12~15)/서약(16~18) 4컷. 컷 1 내부는 사명→율법→동행의 삼단 사다리.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>natatti 완료형과 미답의 간격. 4회 격려의 화자 분포(여호와 3 → 백성 1). 유일한 강화형(meod)이 율법 준수에 묶임. hagah = 시 1:2의 동사.</td></tr>
+<tr><td>7 동영상</td><td>비어 있는 천막 → 음성의 지도 → 발바닥 클로즈업 → 두루마리와 입술 → 사흘의 분주함 → 네 번째 격려 → 아직 흐르는 강.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"죽었으니 이제 — 네 번의 강하고 담대하라"</td></tr>
+<tr><td>9 기도·내면</td><td>비어 있는 천막과 아직 흐르는 강 사이에 놓인 약속 — 떠나지 아니하며 버리지 아니하리니 — 곁에 머문다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — veattah, 죽음을 건너가는 경첩</strong>: "내 종 모세가 죽었으니 이제." 부고와 명령 사이에 애도의 단락이 없는 것이 아니라(신 34:8의 삼십 일 애곡이 이미 있었다), 1장의 문장 자체가 죽음을 마침표로 쓰지 않는다. 사람은 죽고 위임은 살아 있다 — 7절에서 죽은 모세의 율법이 현재형 명령의 내용으로 남는 것도 같은 결이다. 죽은 이가 1장에서 가장 자주 불리는 이름이라는 사실은 단절이 아니라 연속의 문체다. 끊긴 듯 보이는 곳에서 줄이 다시 이어진다.</p>
+<p>2. <strong>결 2 — chazaq veemats 네 번, 화자가 옮겨가는 격려</strong>: 같은 명령형 쌍이 네 번 울리는데 받침이 매번 다르다 — 사명(6절), 율법(7~8절), 동행(9절). 근거가 한 단씩 깊어지는 사다리이고, 유일한 강화형("크게", meod)은 전투가 아니라 책의 준수에 붙는다. 그리고 마지막 한 번은 백성의 입에서 나온다(18절). 위에서 내려온 격려가 공동체의 언어가 되어 새 지도자에게 되울리는 — 한 장 안에서 말이 한 바퀴 도는 구조다.</p>
+<p>3. <strong>결 3 — natatti, 완료형과 미답 사이</strong>: "밟는 곳은 모두 내가 너희에게 주었노니" — 수여는 끝난 시제인데 점유는 시작도 안 됐다. 강은 흐르고, 성읍들은 서 있고, 백성은 이쪽 기슭에 있다. 1장은 그 간격에 진을 친 장이다. 명령("건너라")은 그 간격을 잇는 다리이고, 권의 도착점("말씀이 하나도 남음이 없이 다 응하였더라", 21:45)은 그 완료형이 땅 위에서 확인되는 결산이다. 1장의 시제는 21장을 향해 발행된 첫 어음이다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>신 31:7-8, 23 — 모세가 같은 말("강하고 담대하라 ... 떠나지 아니하시며")로 여호수아를 세움 — 1장은 그 위임의 갱신.</li>
+<li>신 34:5 — "여호와의 종 모세가 죽어" — 1:1 부고의 전사이자 칭호의 출처.</li>
+<li>출 24:13; 33:11 — 모세의 수종자 여호수아 — meshareth 칭호의 사십 년 내력.</li>
+<li>시 1:2-3 — "주야로 묵상하는도다" — 1:8과 같은 동사 hagah, 길의 형통이라는 같은 어휘 짝.</li>
+<li>창 15:18 — 유브라데까지의 언약 경계 — 1:4의 지도가 닿는 옛 말씀.</li>
+<li>민 32장 — 요단 동편 기업의 조건("형제보다 앞서 건너가라") — 1:12-15의 전사.</li>
+<li>수 21:45 · 24:15 — 다 응한 말씀과 섬김의 선택 — 1장의 완료형과 위임이 향하는 권의 도착점.</li>
+<li>히 13:5 — "내가 결코 너희를 버리지 아니하고" — 1:5의 인용 계보, 배경.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 1:2의 "죽었으니 이제"에서 시작한다 — 내 삶에서 끝났다고 생각한 것 다음에 오는 '이제'가 있는지 듣는다.</li>
+<li><strong>멈춤 1</strong>: 1:3에서 멈춘다 — natatti, 완료형. 이미 주어진 것과 아직 밟지 않은 것의 간격이 내게도 있는지 본다.</li>
+<li><strong>멈춤 2</strong>: 1:8에서 멈춘다 — 입에서 떠나지 않는 책, 주야의 읊조림. 거대한 과제 앞에서 주어진 가장 작은 동작.</li>
+<li><strong>끝</strong>: 1:5과 1:18 사이에서 멈춘다 — 위에서 주어진 "강하고 담대하라"가 공동체의 입으로 되울리기까지. 격려를 받는 일과 격려를 돌려드리는 일을 같이 쥔다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 부고(1)·위임(2~9)·첫 실행(10~11)·동맹 확인(12~15)·서약(16~18)의 다섯 단 완결</li>
+<li>[x] "강하고 담대하라" 4회의 분포와 화자 이동(여호와 3 → 백성 1)</li>
+<li>[x] 격려의 삼단 사다리(사명·율법·동행)와 유일한 강화형의 위치</li>
+<li>[x] natatti 완료형과 미답의 강 사이의 시제 구조</li>
+<li>[x] 5절 약속과 17절 기원의 동일 비교 구문 호응</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>여호수아의 spine은 '말씀하신 약속을 땅으로 이루사, 그 성취 위에서 백성이 여호와 섬김을 스스로 택하게 하신다'이며, destination은 "여호와께서 이스라엘 족속에게 말씀하신 선한 말씀이 하나도 남음이 없이 다 응하였더라"(21:45)에서 "나와 내 집은 여호와를 섬기겠노라"(24:15)로 이어진다(book-telos). 권의 흐름은 도하와 준비(1~5장), 정복(6~12장), 분배(13~21장), 정착과 언약의 선택(22~24장)으로 움직이는데, 1장은 첫 국면의 개막 — 두려움 앞의 사람에게 동행의 약속과 말씀 묵상이 먼저 주어지는 입구다. 구속사의 호에서 보면, 아브라함에게 말로 주어졌던 땅(창 15:18 — 유브라데까지)이 여기서 발바닥의 차원으로 내려온다. 말씀으로 존재하던 약속이 걸음의 약속이 되는 경계선이 요단이고, 1장은 그 강 앞에서 약속의 시제를 완료형(natatti)으로 미리 찍어 두는 장이다. 그리고 권의 heart — 모세의 죽음 뒤에도 끊기지 않는 동행의 신실, "내가 너를 떠나지 아니하며 버리지 아니하리니" — 가 바로 이 장의 5절에서 선언된다. 사람의 교체가 약속의 단절이 아니라는 사실이 정복보다 먼저 확정되는 것이다. 헛디딜 수 없는 받침이 먼저 놓이고, 그 위에서야 건너라는 명령이 떨어진다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>부고(1:1)에서 명령(1:2)으로 / 완료형의 수여(1:3 natatti)에서 아직 밟지 않은 강가로 / 여호와의 세 번(1:6·7·9)에서 백성의 한 번(1:18)으로 — 동행의 약속이 사람의 교체를 건너 공동체의 언어가 되는 운동.</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 1장은 '죽음 이후에도 살아 있는 위임'을 발행하고 그 위임을 받은 사람을 출발선에 세우는 운동이다. 하늘의 발화(1~9절)가 사흘의 행정(10~11절)으로, 행정이 연대의 확인(12~15절)과 서약(16~18절)으로 번역되며 말이 위에서 아래로 내려왔다가 마지막에 되올라간다. 그러나 1장이 끝나도 강은 흐르고 있다 — 도하는 3장에서, 첫 성의 함락은 6장에서야 온다. 1장의 벡터는 전권을 '완료형으로 찍힌 약속에서 하나도 남음이 없는 성취(21:45)로, 성취에서 스스로 택하는 섬김(24:15)으로' 끌고 가는 긴 운동의 첫 구간이다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 군사 출정의 명령서다 — 일어나라, 건너라, 무장하라, 사흘 안에. 그러나 수면 아래에서는 다른 것이 움직인다. 첫째, 연속이다. 지도자가 죽었는데 약속이 죽지 않았다. "내가 모세와 함께 있었던 것 같이 너와 함께" — 동행이 사람의 교체를 건너간다. 1장에서 죽은 모세가 가장 자주 불리는 이름이라는 사실은, 이 권이 단절의 기록이 아니라 이어짐의 기록임을 문체로 보여 준다. 둘째, 책의 중심성이다. 정복의 권을 여는 장에서 최대치의 격려("크게 담대하여")가 전투가 아니라 율법 준수에 붙고, 승리의 어휘(형통)가 칼이 아니라 입의 읊조림과 묶인다. 이 권이 말하려는 정복이 군사사(軍事史)와 결이 다르다는 신호가 입구에 걸려 있는 셈이다. 셋째, 격려의 순환이다. "강하고 담대하라"는 위에서 일방적으로 떨어지는 말로 끝나지 않고, 한 장 안에서 백성의 입으로 옮겨가 새 지도자에게 되울린다. 받은 말이 공동체를 통과하며 메아리가 되는 — 위로가 사유물이 아니라 공유물이 되는 구조가 1장 바닥에 깔려 있다. 본문은 거기까지만 보여 주고 멈춘다.</p>
+
+<h3>J · 실존적 부름 — 불씨</h3>
+<blockquote>
+<p>나는 어떤 부고 앞에 서 있는가 — 끝났다고 생각한 것 다음에 오는 '이제'를 들은 적이 있는가. 그리고 내 발바닥이 오늘 닿는 곳은, 이미 주어진 것과 아직 밟지 않은 것 사이 어디쯤인가.</p>
+</blockquote>
+<p>이것은 가르침이 아니라 초대다. 본문은 독자에게 용기를 강요하지 않는다. 다만 비어 있는 천막을 보여 주고, 그 곁에서 끊기지 않은 음성을 들려주고, 발바닥과 두루마리와 사흘 치 양식이라는 작은 것들을 보여 준다. 거대한 강 앞에서 주어진 과제가 거창한 결단이 아니라 입술을 움직이는 되뇜(hagah)이라는 사실 — 그 작음이 오히려 독자가 들어설 문이 된다. 그리고 격려는 혼자 쥐라고 주신 것이 아니었다. 받은 "강하고 담대하라"를 누군가에게 돌려드리는 백성의 마지막 발화가, 위로가 순환하는 공동체의 그림을 남긴다. 죽음 뒤에도 이어지는 동행, 완료형으로 미리 찍힌 약속, 그 사이에서 내딛는 걸음 — 그 간격이 독자를 부르는 불씨다.</p>
+
+<p><strong>다음 장으로 미는 운동 한 줄</strong>: 명령은 떨어졌고 강은 아직 흐른다 — 여호수아가 싯딤에서 두 사람을 은밀히 정탐꾼으로 보내고(2:1), 정복 서사의 다음 장면은 뜻밖에도 여리고 성벽 위 한 여인의 집과 붉은 줄에서 열린다.</p>
+<p><strong>이 장에서 가져갈 한 단어</strong>: <em>immekha — 너와 함께</em>.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/JOS/"><div class="nav-kicker">← 이전</div><div class="nav-title">여호수아 차례로</div><div class="nav-preview">1장이므로 권 차례에서 흐름을 봅니다.</div></a>
+      <a href="/magazine/JOS/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">여호수아 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/JOS/2/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">여호수아 2장</div><div class="nav-preview">라합과 붉은 줄 — 여리고로 들어간 두 정탐꾼과 성벽 위 한 여인의 고백.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:jos1', JSON.stringify({
+      href: '/magazine/JOS/1/',
+      title: '여호수아 1장',
+      excerpt: '죽었으니 이제 — 네 번의 강하고 담대하라. 여호와의 종 모세의 부고 위에서 위임이 갱신되고(1:2), 발바닥의 완료형 수여(natatti, 1:3)와 동행의 약속("떠나지 아니하며 버리지 아니하리니", 1:5) 위에 "강하고 담대하라(chazaq veemats)"가 여호와의 입에서 세 번, 백성의 입에서 한 번 울리는 — 율법책 읊조림(hagah, 1:8)을 정복의 중심에 두는 여호수아 전권의 개막.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-11</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>

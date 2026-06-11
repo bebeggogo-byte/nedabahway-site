@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>여호수아 5장 — Observatory | 네다바웨이</title>
+<meta name="description" content="여호수아 5장을 9단계로 같이 관찰합니다. 요단 서쪽 왕들의 마음이 녹은(namas) 최적의 공격 시점에(5:1) 진군 대신 부싯돌 칼(charvot tsurim)과 할례가 명령되고(5:2-8), 애굽의 수치(cherpat Mitsrayim)가 굴러간 길갈(Gilgal)에서(5:9) 가나안 첫 유월절이 지켜지며(5:10), 만나가 그치고 땅의 소산이 시작되고(5:11-12), 칼을 빼어 든 여호와의 군대 대장이 '너는 우리를 위하느냐'는 물음에 '아니라(lo)'로 답하는(5:13-15) — 정복 전의 정지.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/JOS/5/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/JOS/">역사서</a> · 여호수아 · 5장</div>
+      <h1>여호수아 5장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">JOS-005 · 역사서 · 히브리어</div>
+      <p class="essence">요단 서쪽 왕들의 마음이 녹아(namas) 정신을 잃은 최적의 공격 시점에(5:1) 진군 대신 부싯돌 칼(charvot tsurim)과 할례가 명령되고(5:2-8), 애굽의 수치(cherpat Mitsrayim)가 굴러간 길갈(Gilgal)에서 가나안 첫 유월절이 지켜지며(5:9-10), 사십 년의 만나가 그치고 땅의 소산이 시작되는 경계 위에서(5:11-12), 칼을 빼어 든 여호와의 군대 대장이 "너는 우리를 위하느냐"는 물음에 "아니라(lo)"로 답하는(5:13-15) — 정복 전의 정지.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOS-005</p>
+<p>book: 여호수아</p>
+<p>book_en: Joshua</p>
+<p>chapter: 5</p>
+<p>bible_block: 역사서</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브(성별·신현)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 15</p>
+<p>observed_facts_count: 25</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>hebrew_terms: [namas, ruach, mul, shenit, charvot_tsurim, Givat_haaraloth, cherpat_Mitsrayim, Gilgal, galal, Pesach, matsot, qali, avur_haarets, man, ish, cherev_shlufah, sar_tseva_YHWH, lo, attah_vati, hishtachavah, shal_naalkha, qodesh]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["LXX 수 5:2는 부싯돌 칼을 μαχαίρας πετρίνας ἐκ πέτρας ἀκροτόμου(날카로운 바위에서 낸 돌칼)로 옮기고, LXX 수 24:30a(MT에 없는 플러스)는 그 돌칼들이 여호수아의 무덤에 함께 묻혔다고 덧붙임 — 번역·전승 현상, 배경", "5:14의 sar tseva YHWH를 LXX는 ἀρχιστράτηγος δυνάμεως κυρίου(주의 군대 총사령관)로 옮김 — 배경", "5:14 첫 대답의 MT는 לֹא(lo — 아니라)인데, 일부 히브리어 사본과 역본 전통은 לוֹ(lo — 그에게)로 읽어 '그에게 이르되'로 새김 — 자음은 같고 모음 전통이 갈리는 지점, 번역 폭의 증거, 배경", "Gilgal을 LXX는 Γαλγαλα로 음역하고 9절의 어원 설명(galal — 굴리다)은 ἀφεῖλον(제거하다)으로 풀어 옮김 — 언어유희가 번역에서 평탄화되는 현상, 배경"]</p>
+<p>ane_refs: ["이집트 사카라의 안크마호르 무덤 부조(제6왕조) — 부싯돌 칼로 행하는 할례 시술 장면. 고대 이집트·서셈 문화권에 할례 관습이 있었음을 보여 주는 도상 자료 — 배경", "금속기 시대에도 제의 영역에서는 석기(부싯돌)를 보존하는 의례적 보수성 — 출 4:25의 십보라도 부싯돌(tsor)을 사용함 — 배경", "고대 근동 왕실 문헌의 신적 전사(divine warrior) 모티프 — 신이 왕의 군대 앞서 진군한다는 정형구. 수 5장의 군대 대장은 '누구 편이냐'는 질문 자체를 받지 않는다는 점에서 이 정형구와 결이 다름 — 대조 배경", "여리고 평지의 아빕월(니산월) — 보리 추수가 시작되는 절기. 유월절 직후 '그 땅의 소산'을 먹는 일이 농사력과 맞물리는 시점 — 배경"]</p>
+<p>rabbinic_refs: ["후대 유대 전승은 여호와의 군대 대장을 천사장 미가엘과 동일시하곤 했음(메길라 3a 등) — 본문 확정 아님, 후대 해석사 배경"]</p>
+<p>literary_devices: [panorama_to_camp_zoom_5_1, narrative_pause_before_battle, narrator_explanation_block_5_4_7, etiology_wordplay_Gilgal_galal_5_9, liturgical_date_chain_4_19_to_5_12, food_transition_inclusio_avur_haarets_5_11_12, hapax_avur_haarets, manna_closure_echo_Exod_16_35, theophany_type_scene_Exod_3_parallel, question_refusal_lo_5_14, command_obedience_closure_5_15]</p>
+<p>repeated_words: ["할례를 행하다(mul — 2·3·4·5·7·8절 집중)", "그 땅의 소산(avur haarets — 11·12절, 구약 전체에서 이 두 절에만)", "만나(man — 12절 한 절에 세 번)", "오늘(hayyom — 9절 '오늘 굴러가게 하였다' + '오늘까지')", "여호와께서 여호수아에게 이르시되(2·9절 — 장 안의 두 신탁 틀)", "마음이 녹다(namas levav — 5:1, 라합의 보고 2:11과 같은 표현)"]</p>
+<p>cross_refs: ["출 3:5 (네 발에서 신을 벗으라 네가 선 곳은 거룩한 땅이니라 — 떨기나무 신현과의 평행)", "출 4:24-26 (십보라가 부싯돌을 가져다가 아들에게 할례를 행함 — 부싯돌 할례의 선례)", "출 12:1-13 (유월절 규례 — 첫 유월절, 애굽에서)", "출 16:35 (이스라엘이 사람 사는 땅에 이르기까지 사십 년 동안 만나를 먹었으니 곧 가나안 땅 접경에 이르기까지 — 만나 종료의 예고)", "창 17:9-14 (할례 — 언약의 표징)", "창 34:24-25 (셋째 날 아직 아파할 때에 — 할례 직후의 무방비를 보여 주는 어두운 거울)", "민 14:29-35 (광야 사십 년 — 출애굽 세대의 죽음 선고)", "신 2:14-16 (전쟁에 나갈 만한 자들이 다 죽기까지 — 세대 교체의 기록)", "수 2:11 (우리가 듣자 곧 마음이 녹았고 — 라합의 보고가 5:1에서 왕들에게 실현됨)", "수 4:19 (첫째 달 십일에 백성이 요단에서 올라와 길갈에 진 치매 — 날짜 사슬의 출발)", "수 6:2 (여호와께서 여호수아에게 이르시되 보라 내가 여리고를 네 손에 넘겨 주었으니 — 5:13-15 장면의 이어짐)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-11</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>여호수아 5장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 여호수아 5장입니다. 열다섯 절이지요. 요단을 건너고 열두 돌을 세운 다음입니다. 적들의 마음이 녹았다는 보고로 열리는데, 그다음에 오는 명령이 진군이 아닙니다. 부싯돌 칼, 할례, 유월절, 만나의 마지막 아침, 그리고 칼을 빼어 든 한 사람 — 여리고 코앞에서 장 전체가 멈춰 서 있습니다. 오늘도 해석을 미루고, 본문이 보여 주는 것만 따라가 봅시다. 낭독하고 침묵을 두겠습니다.</p>
+<p>(본문 낭독 5:1~15, 약 3분)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대의 폭이 1절과 2절 사이에서 급격히 줄어요. 1절은 항공 촬영입니다 — 요단 서쪽의 아모리 왕들 전부, 해변의 가나안 왕들 전부. 가나안 전역이 한 절에 들어와요. 그런데 2절부터는 카메라가 길갈 진영 안으로 내려와서 장이 끝날 때까지 거의 안 나갑니다. 진영 안의 처소들(8절), 진영 곁의 한 언덕, 여리고 평지의 식탁, 그리고 마지막에 여리고 가까운 들 한 구획(13절). 가나안 전체에서 한 사람이 선 땅 한 뼘까지 좁혀지는 무대예요. 그리고 묘한 게, 1절에서 떨고 있는 왕들은 그 뒤로 무대에 다시 안 나와요. 적이 사라진 무대에서 장이 진행됩니다.</p>
+<p><strong>P05 김미영</strong>: 소품 목록이요. 가장 먼저 부싯돌 칼 — charvot tsurim. 청동과 철이 있는 시대에 돌로 만든 칼이에요. 일부러 옛 도구를 꺼내 든 듯한 소품이에요. 그다음 몸의 소품 — 베인 살, 낫기를 기다리는 몸들, 진중 각 처소(8절). 진영 전체가 회복실이 된 그림이에요. 식탁의 소품들이 줄지어 나와요 — 유월절 양(본문엔 절기 이름만), 무교병(matsot), 볶은 곡식(qali), 그 땅의 소산, 그리고 사십 년 내려오던 만나가 그치는 아침. 마지막 소품 둘이 강렬해요 — 빼어 든 칼(13절)과 벗는 신(15절). 무기와 신발, 장의 끝이 이 둘로 닫혀요.</p>
+<p><strong>P07 오지혜</strong>: 소재를 늘어놓아 볼게요 — 왕들, 녹은 마음, 부싯돌, 칼, 할례, 광야 사십 년, 죽은 세대, 새로 난 세대, 젖과 꿀, 처소, 낫기를 기다림, 수치, 굴러감, 길갈, 유월절, 저녁, 무교병, 볶은 곡식, 소산, 만나, 한 사람, 빼어 든 칼, 군대 대장, 얼굴, 땅, 신, 거룩. 늘어놓고 보니 전쟁의 소재가 거의 없어요. 칼이 두 번 나오는데 하나는 적을 베는 칼이 아니라 언약의 칼이고, 다른 하나는 이스라엘을 향해서도 적을 향해서도 휘둘러지지 않는 칼이에요. 전쟁 직전 장의 소재가 몸·식탁·발이라는 게 이 장의 결이에요.</p>
+<p><strong>P02 이진우</strong>: 형식 소재를 짚을게요. 이 장에는 신탁 틀이 두 번 와요 — "그 때에 여호와께서 여호수아에게 이르시되"(2절), "여호와께서 여호수아에게 이르시되"(9절). 두 신탁이 할례 단락의 머리와 꼬리를 감싸요. 그리고 4~7절은 내레이터가 끼어드는 설명 블록이에요 — "여호수아가 할례를 시행한 까닭은 이것이니". 이야기가 멈추고 사십 년의 회고가 들어와요. 11~12절에는 "그 땅의 소산"이 두 번 반복되며 만나 단락을 여닫고요. 형식만 봐도 이 장은 사건의 연쇄가 아니라 단락들의 제의적 배열이에요.</p>
+<p><strong>P01 한나래</strong>: 저는 1절의 동사 둘에서 멈췄어요. "마음이 녹았고(namas)" — 그리고 "정신을 잃었더라"인데, 직역 결로는 "그들 안에 더 이상 호흡(ruach)이 없었다"래요. 2장에서 라합이 "우리가 듣자 곧 마음이 녹았고"라고 보고했던 그 문장이, 이제 왕들 전부에게 일어난 사실로 확인돼요. 정탐꾼이 들고 온 한 여인의 증언이 장의 첫 절에서 국제 뉴스가 되는 거예요.</p>
+<p><strong>P11 나경아</strong>: 어휘 몇 개만요. <em>charvot tsurim</em>(חַרְבוֹת צֻרִים) — 직역하면 '바위의 칼들'. tsor는 부싯돌·차돌이에요. 출애굽기 4:25에서 십보라가 아들에게 할례를 행할 때 쓴 것도 같은 tsor고요. <em>Gilgal</em>(גִּלְגָּל)과 <em>galal</em>(גָּלַל — 굴리다) — 9절은 "굴러가게 하였다(galloti)"와 지명 길갈을 소리로 엮는 어원 설명이에요. <em>avur haarets</em>(עֲבוּר הָאָרֶץ — 그 땅의 소산) — 이 단어 avur는 구약 전체에서 이 장 11·12절에만 나와요. 만나가 그치는 바로 그 경계에만 쓰인 단어예요. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 가나안 전역에서 한 뼘 땅으로 좁혀지는 무대, 돌칼과 회복실과 식탁의 소품, 전쟁 없는 전쟁 전야의 소재, 두 신탁이 감싸는 제의적 배열, 라합의 문장이 실현되는 첫 절까지. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기였는지요.</p>
+<p><strong>P01 한나래</strong>: 이상하게 조용한 장이었어요. 1절을 읽을 때는 이제 나팔이 울리고 진군이 시작되겠구나 했는데, 2절에서 숨이 한 번 꺾여요. "부싯돌로 칼을 만들어" — 전쟁의 칼이 아니라 언약의 칼이에요. 그 뒤로 장 전체가 숨을 죽이고 있어요. 적의 성이 보이는 거리에서 진영 전체가 누워 낫기를 기다리는 장면(8절)은, 읽는 제가 다 조마조마했어요. 그런데 본문은 전혀 조마조마해하지 않아요. 그 태연함이 이 장의 공기예요.</p>
+<p><strong>P04 최현국</strong>: 속도로는, 1절이 제일 빠르고 그다음부터 계속 느려져요. 1절은 가나안 전체의 동시 상황을 한 절에 욱여넣는데, 2절부터는 만들고, 행하고, 머물고, 기다리고, 지키고, 먹고 — 동사들이 다 느린 동사예요. 정복 기사 한복판에서 서사의 박자가 절기력의 박자로 바뀌어요. 급할수록 느려지는 연출이에요.</p>
+<p><strong>P05 김미영</strong>: 감각으로는 11절이요. 무교병과 볶은 곡식 — 사십 년 만에 처음 씹는 땅의 곡식이에요. 만나만 먹고 자란 세대가 볶은 보리알을 입에 넣는 첫 순간의 소리와 냄새가 들리는 듯했어요. 그리고 다음 날 아침, 늘 내려오던 만나가 안 내려와요(12절). 식탁이 바뀌는 이틀이 이렇게 조용히, 한 절씩으로 기록돼요.</p>
+<p><strong>P07 오지혜</strong>: 9절의 "오늘"이 오래 남았어요. "내가 오늘 애굽의 수치를 너희에게서 굴러가게 하였다." 사십 년 묵은 무엇인가가 '오늘'이라는 한 단어 안에서 치워져요. 그리고 그 오늘이 지명이 되어 "오늘까지" 남아요. 하루가 이름이 되어 머무는 느낌 — 무겁던 것이 굴러 나가는 가벼움과, 그 가벼움을 영구히 기록하는 단단함이 한 절에 같이 있어요.</p>
+<p><strong>P02 이진우</strong>: 어조로는, 13~15절에서 공기가 한 번 더 바뀌어요. 그전까지는 내레이터의 보고와 절기의 묘사인데, 13절부터 갑자기 일인칭 시점의 긴장이 들어와요 — "눈을 들어 본즉 한 사람이 칼을 빼어 손에 들고 마주 서 있는지라." 짧은 문답이 오가고, 마지막은 명령과 순종 한 줄로 끝나요. 절기의 장이 신현의 장으로 닫히는 전환이에요.</p>
+<p><strong>P11 나경아</strong>: 분위기로 하나만요. 14절의 "아니라(lo)"는 한 음절이에요. 여호수아의 질문은 길고 양자택일인데, 대답은 가장 짧은 부정사 하나로 그 양자택일 전체를 내려놓아요. 음절 수의 대비 자체가 이 장면의 공기를 만들어요. 배경 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 태연한 무방비, 급할수록 느려지는 박자, 사십 년 만의 첫 곡식과 멈춘 만나, 하루가 지명이 되는 오늘, 절기에서 신현으로 바뀌는 공기, 한 음절의 대답. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>성령일 선교사</strong>: 시작과 끝을 함께 보겠습니다.</p>
+<p><strong>P02 이진우</strong>: 1절 시작: 요단 서쪽 모든 왕들이 듣고 "마음이 녹았고 정신을 잃었더라." 15절 끝: "여호수아가 그대로 행하니라." 시작은 적들의 와해이고 끝은 여호수아의 순종이에요. 그런데 둘을 겹쳐 보면 평행이 보여요 — 장의 첫머리에서 가나안의 왕들이 무장 해제되고, 장의 끝에서 이스라엘의 사령관이 신을 벗어요. 양쪽 다 '벗는' 장이에요. 한쪽은 공포로, 한쪽은 거룩 앞에서. 정복 이야기의 문턱에서 양 진영의 우두머리가 모두 낮아진 채 6장이 열려요.</p>
+<p><strong>P01 한나래</strong>: 어미로는, 1절이 "잃었더라"라는 상태 보고로 열리고 15절이 "행하니라"라는 동작 완료로 닫혀요. 그리고 장 전체에서 여호수아가 입을 여는 건 13~14절의 두 문장뿐이에요 — "너는 우리를 위하느냐 우리의 적들을 위하느냐", "내 주여 종에게 무슨 말씀을 하려 하시나이까". 첫 질문은 거절당하고, 두 번째 질문의 답은 작전이 아니라 "신을 벗으라"예요. 묻는 사람의 질문 둘이 다 예상 밖의 답을 받으며 장이 닫혀요.</p>
+<p><strong>P04 최현국</strong>: 무대로 보면 시작은 가나안 전역의 항공 샷이고 끝은 한 사람의 맨발이 닿은 땅 한 뼘이에요. 그 사이에서 무대는 계속 좁아지기만 했어요. 전역 — 진영 — 처소 — 식탁 — 그리고 "네가 선 곳". 정복할 땅 전체를 보여 주고 시작한 장이, 정작 거룩하다고 선언되는 첫 땅은 성벽 안이 아니라 여호수아의 발밑이라는 데서 끝나요.</p>
+<p><strong>P07 오지혜</strong>: 듣는 것으로 열리고 행하는 것으로 닫혀요. 1절은 왕들이 "듣고" 무너지는 절이고, 15절은 여호수아가 듣고 "그대로 행하"는 절이에요. 같은 들음이 한쪽에서는 와해가 되고 한쪽에서는 순종이 돼요.</p>
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>성령일 선교사</strong>: 등장하는 인물과 사상을 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 인물 목록부터요. 아모리·가나안의 왕들 — 1절에서만 등장하고 퇴장해요. 여호와 — 2절과 9절에서 말씀하시는 분으로. 여호수아 — 명령을 받고 시행하는 사람. 백성 — 둘로 갈려요. 애굽에서 나온 세대(다 죽었다고 4~6절이 두 번 확인해요)와 광야에서 난 세대(할례를 받지 못한 채 자란 이들). 그리고 13절의 "한 사람(ish)" — 칼을 빼어 들고 마주 선, 스스로를 여호와의 군대 대장이라 밝히는 분. 이 장의 등장 구도에서 눈에 띄는 건, 죽은 세대가 거의 인물처럼 다뤄진다는 거예요. 4~7절의 회고 블록 절반이 그들의 이야기예요.</p>
+<p><strong>P07 오지혜</strong>: 사상의 중심은 순서라고 느꼈어요. 군사 논리로는 1절 다음에 곧장 6장이 와야 해요 — 적들이 마비됐으니까요. 그런데 본문은 그 사이에 세 가지를 끼워 넣어요. 몸의 회복(할례), 기억의 회복(유월절 — 출애굽 이후 민수기 9장 시내 광야 이래 처음 기록되는 유월절이에요), 식탁의 전환(만나에서 소산으로). 정복보다 먼저 회복되어야 하는 것들의 목록이 이 장의 뼈대예요. 본문이 그 이유를 설교하지는 않아요. 그냥 그 순서로 배열할 뿐이에요.</p>
+<p><strong>P02 이진우</strong>: 상황의 뼈대로 4~7절 설명 블록을 볼게요. 구조가 꼼꼼해요 — 할례를 다시 행한 까닭(4절 머리), 나온 자들은 다 할례를 받았으나(5절 전반), 광야에서 난 자들은 받지 못하였음(5절 후반), 사십 년의 이유 — 여호와의 음성을 청종하지 않아 그 세대가 진멸되기까지(6절), 그들을 대신하게 하신 아들들에게 여호수아가 할례를 행하였더라(7절). '받았으나/받지 못하였고', '맹세하신 땅/보지 못하게 하리라' — 대조쌍이 차곡차곡 쌓여요. 그리고 6절 한가운데에 "젖과 꿀이 흐르는 땅"이라는 약속 어구가 진멸 선고와 같은 절 안에 들어 있어요. 약속과 심판이 한 문장에 동거하는 회고예요.</p>
+<p><strong>P01 한나래</strong>: 저는 8절에서 멈췄어요. "백성이 진중 각 처소에 머물며 낫기를 기다릴 때에." 적의 성이 보이는 곳에서 전군이 스스로 무력해지는 선택이에요. 창세기 34장에서 세겜 사람들이 할례 사흘째 아직 아파할 때 습격당해 몰살되는 이야기를 우리가 이미 읽었잖아요. 본문을 읽는 사람은 그 위험을 알아요. 그런데 5장은 그 시간에 아무 일도 일어나지 않았다는 사실조차 따로 말하지 않아요. 그냥 다음 절에서 수치가 굴러가고 유월절이 와요. 무방비의 시간이 통째로 보호 아래 지나갔다는 것을, 본문은 침묵으로만 보여 줘요.</p>
+<p><strong>P05 김미영</strong>: 사물로는 만나요. 12절 한 절에 만나가 세 번 나와요 — "만나가 그쳤으니", "다시는 만나를 얻지 못하였고". 사십 년 동안 매일 아침 거기 있던 것이 그치는 날의 기록치고는 담담해요. 장례식도 송별사도 없이, 식탁의 다음 줄로 넘어가요 — "그 해에 가나안 땅의 소출을 먹었더라." 사십 년의 동행이 이렇게 퇴장하는구나 싶었어요. 출애굽기 16:35가 "가나안 땅 접경에 이르기까지 만나를 먹었으니"라고 미리 적어 둔 그 문장이, 여기서 닫히는 거고요.</p>
+<p><strong>P11 나경아</strong>: 사상 쪽 어휘 둘만요. 9절의 <em>cherpah</em>(חֶרְפָּה) — 수치·치욕·조롱거리. '애굽의 수치'가 정확히 무엇을 가리키는지 본문은 풀어 주지 않아요. 종살이의 신분인지, 애굽인들의 조롱(민 14:13-16에서 모세가 "애굽인들이 듣고 말하리이다"라고 한 그 입길)인지, 무할례의 상태 자체인지 — 소유격 하나에 번역과 주석이 갈려요. 그리고 14절의 <em>hishtachavah</em>(הִשְׁתַּחֲוָה) — 얼굴을 땅에 대고 엎드림. 여호수아가 사람에게라면 과한 동작을 하는데, 군대 대장은 그것을 제지하지 않아요. 그 비제지가 이 장면의 정체에 대한 단서로 자주 읽히지만, 본문 자체는 설명 없이 지나가요. 배경 관찰로만요.</p>
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>성령일 선교사</strong>: 장면을 컷으로 나눠 보시지요.</p>
+<p><strong>P04 최현국</strong>: 다섯 컷입니다. 적들의 마비 — 할례와 길갈 — 유월절 — 만나의 종료 — 군대 대장으로 끊었어요.</p>
+<ul>
+<li><strong>컷 1 (1절)</strong>: 항공 샷. 요단 서쪽 아모리 왕들과 해변 가나안 왕들이 도하 소식을 듣고 마음이 녹아(namas) 정신을 잃음. 적이 마비된 최적의 시점.</li>
+<li><strong>컷 2 (2~9절)</strong>: 부싯돌 칼과 할례. 신탁(2절) — 시행(3절, 할례 언덕 Givat haaraloth) — 사십 년 회고 블록(4~7절) — 낫기를 기다리는 진영(8절) — 수치의 굴러감과 길갈 명명(9절).</li>
+<li><strong>컷 3 (10절)</strong>: 가나안 첫 유월절. 그 달 십사일 저녁, 여리고 평지에서.</li>
+<li><strong>컷 4 (11~12절)</strong>: 식탁의 교대. 유월절 이튿날 그 땅의 소산 — 무교병과 볶은 곡식. 그다음 날 만나가 그침. 그 해 가나안 소출.</li>
+<li><strong>컷 5 (13~15절)</strong>: 칼을 빼어 든 한 사람. "우리를 위하느냐 적들을 위하느냐" — "아니라(lo), 나는 여호와의 군대 대장으로 지금 왔느니라" — 엎드림 — "신을 벗으라 네가 선 곳은 거룩하니라" — 그대로 행함.</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 2~4를 가로지르는 날짜 사슬이 있어요. 4:19에서 백성이 요단에서 올라온 날이 첫째 달 십일 — 유월절 어린 양을 준비하는 날이에요(출 12:3). 십사일 저녁 유월절(10절), 그 이튿날인 십오일에 소산을 먹고(11절), 그다음 날인 십육일에 만나가 그쳐요(12절). 도하의 날짜부터 만나의 마지막 아침까지가 절기력 위에 정확히 놓여 있어요. 전쟁 일정이 아니라 절기 일정이 이 장의 시간표예요. 그리고 11~12절의 이틀 — 소산을 먼저 먹고, 그다음에 만나가 그쳐요. 새 공급이 시작된 다음에야 옛 공급이 멈추는 하루의 겹침이 있어요.</p>
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>성령일 선교사</strong>: 의문이나 발견을 나눠 주세요.</p>
+<p><strong>P11 나경아</strong>: 원어 카드를요. 1절 <em>namas</em>(נָמַס) — 녹다. 밀랍이나 만나가 햇볕에 녹는 그림의 동사로, 2:11 라합의 보고와 같은 어근이에요. 1절의 '정신' — <em>ruach</em>(רוּחַ), 호흡·바람·기개. "그들 안에 더 이상 ruach가 없었다." 2절 <em>mul</em>(מוּל) — 할례를 행하다, <em>shenit</em>(שֵׁנִית) — 두 번째로·다시. 2절 <em>charvot tsurim</em>(חַרְבוֹת צֻרִים) — 바위의 칼들, 부싯돌 칼. LXX는 μαχαίρας πετρίνας. 3절 <em>Givat haaraloth</em>(גִּבְעַת הָעֲרָלוֹת) — '포피들의 언덕'이라는 지명. 9절 <em>cherpat Mitsrayim</em>(חֶרְפַּת מִצְרַיִם) — 애굽의 수치, <em>galal</em>(גָּלַל) — 굴리다, <em>Gilgal</em>(גִּלְגָּל) — 9절이 galloti(내가 굴러가게 하였다)와 소리로 엮는 지명. 10절 <em>Pesach</em>(פֶּסַח) — 유월절. 11절 <em>matsot</em>(מַצּוֹת) — 무교병, <em>qali</em>(קָלִי) — 볶은 곡식, <em>avur haarets</em>(עֲבוּר הָאָרֶץ) — 그 땅의 소산. avur는 구약에서 이 장 11·12절에만 나오는 단어예요. 12절 <em>man</em>(מָן) — 만나. 13절 <em>ish</em>(אִישׁ) — 한 사람, <em>cherev shlufah</em>(חֶרֶב שְׁלוּפָה) — 빼어 든 칼. 민수기 22:23의 발람 길목에 선 여호와의 사자도 같은 표현이에요. 14절 <em>sar tseva YHWH</em>(שַׂר־צְבָא־יְהוָה) — 여호와의 군대 대장, <em>lo</em>(לֹא) — 아니라, <em>attah vati</em>(עַתָּה בָאתִי) — 지금 왔느니라. 15절 <em>shal naalkha</em>(שַׁל־נַעַלְךָ) — 네 신을 벗으라. 출애굽기 3:5는 복수형(네 신들을), 여기는 단수형이에요 — 형태 관찰로만 둡니다. <em>qodesh</em>(קֹדֶשׁ) — 거룩. 배경만요.</p>
+<p><strong>P02 이진우</strong>: 발견 — 13~15절과 출애굽기 3장의 평행이에요. 떨기나무에서 모세가 들은 문장 — "네 발에서 신을 벗으라 네가 선 곳은 거룩한 땅이니라" — 가 거의 그대로 여호수아에게 와요. 출애굽의 위임 장면이 가나안 입성의 문턱에서 재현되는 구도예요. 모세의 후계자라는 여호수아의 위치가 1장에서 말로 선언됐다면("내가 모세와 함께 있었던 것 같이 너와 함께 있을 것이라", 1:5), 여기서는 장면으로 확인돼요. 다만 차이도 있어요 — 모세에게는 소명과 긴 대화가 이어지는데, 여호수아에게는 신을 벗으라는 명령에서 장이 끊겨요. 작전 지시(6:2 이하)는 장 경계 너머로 미뤄져 있어요.</p>
+<p><strong>P07 오지혜</strong>: 발견 — 14절의 "아니라(lo)"요. 여호수아의 질문은 둘 중 하나를 고르라는 질문이에요 — 우리 편이냐, 적의 편이냐. 그런데 대답은 둘 다 아니에요. 질문의 틀 자체가 반려돼요. 군대 대장은 여호수아의 편에 서러 온 게 아니라 자기 군대의 지휘권을 가지고 온 분이에요. 편들어 달라고 물었는데 주인이 도착한 상황 — 본문은 이걸 설명하지 않고, 여호수아의 즉각적인 엎드림으로만 보여 줘요.</p>
+<p><strong>P01 한나래</strong>: 의문이에요. 2절의 "다시(shenit) 할례를 행하라" — 그런데 4~7절의 설명을 따라가면 광야 세대는 애초에 할례를 받은 적이 없어요. 받은 적 없는 이들에게 '다시'라니요. 개인이 아니라 백성 차원의 '다시'인지 — 애굽에서 받았던 백성의 관습이 광야에서 끊겼다가 재개된다는 결인지 — 본문이 직접 풀지 않아요. 미해결로 두고 싶어요.</p>
+<p><strong>P05 김미영</strong>: 의문 하나 더요. 길갈에서 굴러간 "애굽의 수치"가 정확히 무엇인지요. 백성은 애굽을 떠난 지 사십 년이에요. 그런데 그 수치는 사십 년 동안 그들에게 붙어 있다가 여기서야 굴러가요. 종살이의 기억인지, 광야에서 다 죽으리라던 조롱인지, 무할례 상태인지 — 그리고 왜 그것이 요단 동쪽이 아니라 가나안 땅 안에서야 치워지는지. 보존하고 싶어요.</p>
+<p><strong>P04 최현국</strong>: ANE 배경이에요. 할례 자체는 이스라엘만의 관습이 아니었어요. 이집트 사카라의 안크마호르 무덤 부조(제6왕조)에는 부싯돌 칼로 행하는 할례 시술 장면이 새겨져 있고, 서셈 문화권에도 널리 퍼져 있었어요. 금속기 시대에 굳이 부싯돌을 쓰는 것은 제의 영역의 의례적 보수성으로 설명되곤 해요 — 출애굽기 4:25의 십보라도 tsor를 썼고요. 그리고 13절 이하의 장면은 고대 근동 왕실 문헌의 신적 전사 모티프를 떠올리게 해요 — 신이 왕의 군대 앞서 싸운다는 정형구요. 다만 결정적인 차이가 있어요. 근동의 정형구에서 신은 왕의 편에 서는데, 여기서는 '누구 편이냐'는 질문 자체가 "아니라"로 반려돼요. 장르의 기대를 세워 놓고 비트는 장면이에요. 전부 배경으로만요.</p>
+<p><strong>성령일 선교사</strong>: 출애굽기 3장의 재현과 끊긴 소명 대화, 반려되는 양자택일, 받은 적 없는 세대의 '다시', 사십 년 붙어 있다 굴러간 수치, 부싯돌의 의례적 보수성과 비틀린 신적 전사 모티프. 그대로 두지요. 답이 급하지 않습니다.</p>
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P04 최현국</strong>: 높은 데서 시작합니다. 가나안 전역 — 산지의 아모리 왕궁들, 해변의 가나안 성읍들. 전령들이 도착하고, 강이 말랐다는 소식이 퍼지고, 왕들의 얼굴에서 핏기가 빠집니다. 녹는 밀랍처럼 마음이 흘러내리고, 호흡이 멎은 듯한 정적. 지금이라면 성문을 밀기만 해도 열릴 것 같은 순간 — 카메라가 갑자기 아래로, 길갈 진영으로 떨어집니다. 진군 나팔 대신 돌 깨는 소리. 부싯돌이 다듬어져 칼이 되고, 언덕 하나가 할례의 장소가 됩니다. 화면 위로 사십 년이 회고로 흐릅니다 — 애굽에서 나온 행렬, 광야에 누운 무덤들, 그 곁에서 자라난 아이들. 진영은 회복실이 됩니다. 적의 성이 지평선에 보이는데, 전군이 누워 낫기를 기다립니다. 아무도 오지 않습니다. 음성이 내립니다 — 내가 오늘 애굽의 수치를 너희에게서 굴러가게 하였다. 무거운 돌덩이 하나가 비탈을 굴러 떨어지는 그림 위로 지명이 새겨집니다 — 길갈. 저녁이 오고, 십사일의 달 아래 여리고 평지에서 유월절 상이 차려집니다. 이튿날 아침, 무교병과 볶은 곡식 — 사십 년 만의 첫 땅의 맛. 그리고 그다음 아침, 들판이 비어 있습니다. 만나가 내리지 않았습니다. 아무도 울지 않고, 식탁은 이미 새 곡식으로 차려져 있습니다. 카메라가 여리고 쪽으로 걷는 한 사람을 따라갑니다. 여호수아가 눈을 들자, 칼을 빼어 든 사람이 마주 서 있습니다. 너는 우리를 위하느냐, 우리의 적들을 위하느냐. 한 박자의 침묵 — 아니라. 나는 여호와의 군대 대장으로 지금 왔느니라. 여호수아의 얼굴이 땅에 닿습니다. 네 발에서 신을 벗으라, 네가 선 곳은 거룩하니라. 끈이 풀리고, 맨발이 흙에 닿고 — 화면은 그 발과 땅에서 멈춥니다. 성벽은 아직 화면 밖입니다.</p>
+<p><strong>성령일 선교사</strong>: 녹아내리는 왕들로 열려, 돌칼과 회복실과 두 번의 아침 식탁을 지나, 맨발이 닿은 거룩한 땅에서 멈추는 흐름입니다.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "태연한 무방비 — 낫기를 기다리는 진영"</p>
+<p><strong>P02 이진우</strong>: "절기력의 시간표 — 십일·십사일·십오일·십육일의 사슬"</p>
+<p><strong>P04 최현국</strong>: "가장 유리한 순간의 정지 — 진군 대신 부싯돌 칼"</p>
+<p><strong>P05 김미영</strong>: "만나의 마지막 아침 — 식탁이 교대하는 이틀"</p>
+<p><strong>P07 오지혜</strong>: "굴러간 수치 — 오늘이 이름이 된 곳, 길갈"</p>
+<p><strong>P11 나경아</strong>: "<em>lo · Gilgal · qodesh</em> — 아니라·굴러감·거룩"</p>
+<p>부제 제안: "적들의 마음이 녹은 최적의 공격 시점에 진군 대신 할례·유월절·만나의 종료가 배열되고, 수치가 굴러간 길갈에서 몸과 기억과 식탁이 회복된 뒤, '누구 편이냐'는 질문이 '아니라(lo)' 한 마디로 반려되며 맨발의 사령관 위에 6장이 열리는 — 정복 전의 정지"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 낫기를 기다리며 진중에 누워 있던 한 사람 곁으로 들어가, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 오늘 성문이 열려 있는데 멈춰 선 진영을 보았습니다. 가장 빠른 길 대신 베임과 기다림과 저녁 식탁이 먼저 놓이는 것을 보았습니다. 굴러갔다고 하신 수치가 무엇인지 다 알지 못한 채로, 굴러갔다는 말씀 곁에만 머뭅니다. 더는 묻지 않겠습니다.</p>
+<p>*— 그 순간 떠오른 것을 각자 마음에만 둡니다.</p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>그래서 이 본문은 어디서 어디로 움직이는지요? 눈에 보이는 일 아래에서 무엇이 회복되고 있는지요? 이 본문이 품은 긴장은 무엇인지요? 이 불이 우리 안에서도 타오르고 있는지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 5장은 <strong>도하의 성취에서 정복의 개시 사이에 놓인 매듭</strong>이에요. 여호수아의 spine은 '말씀하신 약속을 땅으로 이루사, 그 성취 위에서 백성이 여호와 섬김을 스스로 택하게 하신다'이고, 권의 흐름은 도하·준비(1~5장) — 정복(6~12장) — 분배(13~21장) — 정착과 언약(22~24장)으로 움직여요. 5장은 첫 국면의 마지막 장이에요. 강은 이미 건넜고 성은 아직 안 무너졌는데, 그 사이에서 본문은 군사 행동이 아니라 언약 백성의 재구성을 배치해요. 21:45의 "말씀하신 선한 말씀이 하나도 남음이 없이 다 응하였더라"를 향해 가는 긴 길에서, 응함의 첫 조건이 성벽의 붕괴가 아니라 백성의 회복이라는 순서 — 그게 이 장이 권 전체에 거는 구조예요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. <em>galal</em> — 굴리다. 수치가 '제거되었다'가 아니라 '굴러갔다'예요. 돌이 굴러 내려가듯, 붙어 있던 것이 떨어져 나가는 운동의 그림이고, 그 운동이 지명 Gilgal로 굳어서 "오늘까지" 남아요. 그리고 <em>qodesh</em> — 가나안 땅에서 처음으로 '거룩하다'고 선언되는 곳이 성소도 성벽 안도 아니고 여호수아가 선 들판이라는 것. <strong>거룩이 장소를 따라가는 게 아니라, 오신 분을 따라 도착한다</strong>는 관찰이에요. 해석은 미해결로 두고요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 표면은 군사적 손실의 연속이에요 — 전군 무력화, 절기로 며칠 소모, 자동 보급(만나)의 중단. 그런데 그 손실의 배열이 가리키는 게 있어요. 할례는 몸에 새기는 언약의 표징이고, 유월절은 건짐의 기억을 먹는 식탁이고, 땅의 소산은 약속이 입에 들어오는 첫 맛이에요. <strong>싸우러 가기 전에 '누구의 백성인가'가 먼저 복원되는</strong> 순서. 만나에서 소산으로의 전환도 같은 결이에요 — 공급이 끊긴 게 아니라 공급의 통로가 기적의 아침에서 약속의 땅 자체로 옮겨 가요. 본문은 거기까지만 보여 주고 멈춰요.</p>
+<p><strong>P01 한나래</strong>: 긴장이에요. 여호수아는 전쟁을 앞둔 사령관답게 물어요 — 우리 편이냐, 적의 편이냐. 그런데 "아니라(lo)"가 와요. <strong>하나님을 자기 진영의 전력으로 셈하려는 물음과, 주인으로 오시는 분 사이의 긴장</strong> — 이 장이 여는 가장 큰 긴장이라고 느꼈어요. 그리고 본문은 그 긴장을 풀어 주지 않아요. 여호수아가 엎드리고 신을 벗는 동작만 남기고, 어느 편이냐는 질문은 끝내 답을 받지 못한 채 6장으로 넘어가요.</p>
+<p><strong>P04 최현국</strong>: 운동을 한 화면으로 보면, <strong>가나안 전역에서 한 사람의 맨발로 줌인되는</strong> 운동이에요. 정복할 땅 전체를 1절에 펼쳐 놓고, 장의 끝에서는 발밑 한 뼘만 비춰요. 그리고 그 한 뼘이 거룩하다고 선언된 다음에야 여리고가 와요. 6장의 성벽 붕괴는 이 정지의 연장선 위에 있어요 — 칼을 빼어 든 분이 "지금 왔느니라" 하신 그 도착이, 다음 장에서 "보라 내가 여리고를 네 손에 넘겨 주었으니"(6:2)로 이어지니까요. 5장은 멈춤이 아니라 도착의 장이에요.</p>
+<p><strong>P05 김미영</strong>: 이 불이 우리 안에서 타오르느냐 물으시니 — 저는 신을 벗는 동작이 불씨 같아요. 칼을 든 분 앞에서 무기를 묻지 않고 신을 벗는 것. 전략을 받기 전에 먼저 맨발이 되는 것. 가장 바쁘고 가장 유리한 때에 멈춰 서는 일이 손해가 아닐 수 있다는 가능성을, 질문인 채로 쥐고 갑니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>적들이 마비된 최적의 시점에서 언약 백성의 몸·기억·식탁이 먼저 회복되고, '누구 편이냐'의 물음이 '누가 주인이냐'로 뒤집히며, 맨발의 사령관 위로 정복 국면이 열리는</strong> — 그 운동을 손에 쥐고 다음 장으로 갑니다. 닫힌 여리고 성 앞에서, 이레 동안의 돎이 시작됩니다.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOS-005</p>
+<p>book: 여호수아</p>
+<p>chapter: 5</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>여호수아 5장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대의 줌: 가나안 전역 항공 샷(1절 — 아모리·가나안 모든 왕들) → 길갈 진영 내부(2~12절) → 여리고 가까운 들의 한 구획, 여호수아가 선 땅 한 뼘(13~15절).</li>
+<li>1절에서 떨던 왕들은 그 뒤 무대에 다시 나오지 않음 — 적이 사라진 무대에서 장이 진행됨.</li>
+<li>소품(제의): 부싯돌 칼(charvot tsurim — 금속기 시대의 돌칼), 할례 언덕(Givat haaraloth), 유월절 상, 무교병(matsot), 볶은 곡식(qali).</li>
+<li>소품(몸): 베인 살, 낫기를 기다리는 몸들, 진중 각 처소(8절) — 진영 전체가 회복실.</li>
+<li>소품(경계): 그치는 만나, 첫 땅의 소산(avur haarets), 빼어 든 칼(13절), 벗는 신(15절).</li>
+<li>소재의 결: 전쟁 직전 장인데 소재가 몸·식탁·발에 몰려 있음. 칼 둘 다 적을 베지 않는 칼(언약의 칼·지휘권의 칼).</li>
+<li>형식 소재: 두 신탁 틀(2·9절)이 할례 단락을 감싸고, 4~7절은 내레이터의 설명 블록, 11~12절은 "그 땅의 소산"의 반복이 여닫음.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>나팔 대신 돌 깨는 소리 — 2절에서 기대가 꺾이고 장 전체가 숨을 죽임. 본문의 태연함이 공기의 핵심.</li>
+<li>속도: 1절(가나안 전체 동시 상황)이 가장 빠르고, 이후 만들고·행하고·머물고·기다리고·지키고·먹는 느린 동사들 — 급할수록 느려지는 박자.</li>
+<li>11절의 감각: 사십 년 만에 처음 씹는 땅의 곡식. 12절 아침의 빈 들판 — 만나가 내리지 않음.</li>
+<li>9절의 "오늘": 사십 년 묵은 수치가 '오늘' 안에서 치워지고, 그 하루가 지명이 되어 "오늘까지" 남음.</li>
+<li>13절부터 공기 전환: 보고·절기 묘사에서 일인칭 긴장의 신현 장면으로.</li>
+<li>14절 "아니라(lo)" — 긴 양자택일 질문에 가장 짧은 한 음절의 대답. 음절 대비가 장면의 공기를 만듦 — 배경.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>1절: 요단 서쪽 모든 왕들이 듣고 "마음이 녹았고(namas) … 정신을 잃었더라(루아흐가 더 이상 없었더라)."</li>
+<li>15절: "여호수아가 그대로 행하니라."</li>
+<li>적들의 와해로 열려 사령관의 순종으로 닫힘. 양 진영의 우두머리가 모두 낮아진 채 6장이 열림 — 한쪽은 공포로, 한쪽은 거룩 앞에서.</li>
+<li>들음의 평행: 1절은 왕들이 듣고 무너지는 절, 15절은 여호수아가 듣고 그대로 행하는 절.</li>
+<li>여호수아의 발화는 13~14절 두 문장뿐 — 첫 질문(누구 편이냐)은 반려되고, 두 번째 질문(무슨 말씀)의 답은 작전이 아니라 "신을 벗으라".</li>
+<li>공간 수렴: 정복할 땅 전체로 시작해, 거룩하다고 선언되는 첫 땅 — 여호수아의 발밑 — 에서 끝남.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>인물: 아모리·가나안 왕들(1절에서만), 여호와(2·9절의 두 신탁), 여호수아, 출애굽 세대(다 죽었음을 4~6절이 두 번 확인 — 인물처럼 다뤄지는 죽은 세대), 광야에서 난 무할례 세대, 한 사람(ish) — 여호와의 군대 대장(13~15절).</li>
+<li>중심 사상은 순서: 군사 논리로는 1절 다음 6장이어야 하나, 그 사이에 몸의 회복(할례) — 기억의 회복(유월절, 민 9장 이래 처음 기록) — 식탁의 전환(만나→소산)이 배열됨. 본문은 이유를 설교하지 않고 순서로만 보여 줌.</li>
+<li>4~7절 설명 블록의 대조쌍: 받았으나/받지 못하였고, 맹세하신 땅/보지 못하게 하리라. 6절 한가운데 "젖과 꿀이 흐르는 땅"이 진멸 선고와 같은 문장에 동거.</li>
+<li>8절의 무방비: 적의 성이 보이는 곳에서 전군이 스스로 무력해짐. 창 34장(할례 사흘째의 세겜 습격)을 아는 독자의 긴장 — 본문은 그 시간의 무사함을 침묵으로만 전함.</li>
+<li>만나의 퇴장: 12절 한 절에 세 번 언급되고, 송별 없이 식탁의 다음 줄로 넘어감. 출 16:35("가나안 땅 접경에 이르기까지")의 예고가 여기서 닫힘.</li>
+<li>cherpat Mitsrayim의 미확정: 종살이 신분인지, 애굽인의 조롱(민 14:13-16)인지, 무할례 상태인지 — 소유격 하나에 번역·주석이 갈림. / hishtachavah(엎드림)를 군대 대장이 제지하지 않음 — 비제지의 관찰.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1절): 항공 샷 — 도하 소식에 마음이 녹는(namas) 가나안의 왕들. 적이 마비된 최적의 시점.</li>
+<li>컷 2 (2~9절): 부싯돌 칼과 할례 — 신탁(2) · 시행(3) · 사십 년 회고(4~7) · 낫기를 기다리는 진영(8) · 수치의 굴러감과 길갈 명명(9).</li>
+<li>컷 3 (10절): 가나안 첫 유월절 — 그 달 십사일 저녁, 여리고 평지.</li>
+<li>컷 4 (11~12절): 식탁의 교대 — 소산(무교병·볶은 곡식)을 먼저 먹고, 그다음 날 만나가 그침.</li>
+<li>컷 5 (13~15절): 칼을 빼어 든 한 사람 — 양자택일 질문 · "아니라(lo)" · 엎드림 · "신을 벗으라" · 그대로 행함.</li>
+<li>날짜 사슬: 첫째 달 십일 도하·길갈 도착(4:19 — 유월절 양 준비일, 출 12:3) → 십사일 저녁 유월절(10절) → 십오일 소산(11절) → 십육일 만나 종료(12절). 전쟁 일정이 아니라 절기 일정이 시간표.</li>
+<li>11~12절의 하루 겹침: 새 공급(소산)이 시작된 다음에야 옛 공급(만나)이 멈춤.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>namas</em>(נָמַס) — 녹다. 밀랍·만나가 햇볕에 녹는 그림. 수 2:11 라합의 보고와 같은 어근 — 정탐 보고가 5:1에서 사실로 확인됨. / 1절의 '정신' = <em>ruach</em>(רוּחַ) — 호흡·바람·기개.</li>
+<li><em>mul</em>(מוּל) — 할례를 행하다. <em>shenit</em>(שֵׁנִית) — 두 번째로·다시. 받은 적 없는 세대에 붙는 '다시'의 미해결.</li>
+<li><em>charvot tsurim</em>(חַרְבוֹת צֻרִים) — 바위의 칼들·부싯돌 칼. LXX μαχαίρας πετρίνας. 출 4:25 십보라의 tsor와 연속. LXX 24:30a는 이 칼들이 여호수아의 무덤에 묻혔다고 덧붙임(MT에 없는 플러스) — 배경.</li>
+<li><em>Givat haaraloth</em>(גִּבְעַת הָעֲרָלוֹת) — '포피들의 언덕'(3절의 지명).</li>
+<li><em>cherpat Mitsrayim</em>(חֶרְפַּת מִצְרַיִם) — 애굽의 수치. / <em>galal</em>(גָּלַל) — 굴리다. 9절의 galloti(굴러가게 하였다)와 <em>Gilgal</em>(גִּלְגָּל)의 언어유희. LXX는 어원 설명을 ἀφεῖλον(제거하다)으로 평탄화 — 배경.</li>
+<li><em>Pesach</em>(פֶּסַח) — 유월절(10절). <em>matsot</em>(מַצּוֹת) — 무교병. <em>qali</em>(קָלִי) — 볶은 곡식.</li>
+<li><em>avur haarets</em>(עֲבוּר הָאָרֶץ) — 그 땅의 소산. avur는 구약 전체에서 수 5:11·12에만 나오는 단어 — 만나가 그치는 경계에만 쓰임.</li>
+<li><em>man</em>(מָן) — 만나. 12절 한 절에 세 번. / <em>cherev shlufah</em>(חֶרֶב שְׁלוּפָה) — 빼어 든 칼. 민 22:23(발람의 길목)과 같은 표현.</li>
+<li><em>sar tseva YHWH</em>(שַׂר־צְבָא־יְהוָה) — 여호와의 군대 대장. LXX ἀρχιστράτηγος δυνάμεως κυρίου. / <em>lo</em>(לֹא) — 아니라. MT는 לֹא(아니라), 일부 사본·역본 전통은 לוֹ(그에게)로 읽음 — 자음 동형의 모음 전통 차이, 배경. / <em>attah vati</em>(עַתָּה בָאתִי) — 지금 왔느니라.</li>
+<li><em>shal naalkha</em>(שַׁל־נַעַלְךָ) — 네 신을 벗으라. 출 3:5는 복수형, 수 5:15는 단수형 — 형태 관찰만. / <em>qodesh</em>(קֹדֶשׁ) — 거룩. / <em>hishtachavah</em>(הִשְׁתַּחֲוָה) — 얼굴을 땅에 대고 엎드림.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>전체 구도: 적의 마비(1) + 할례 단락(2~9, 두 신탁이 감쌈) + 유월절(10) + 식탁 전환(11~12) + 신현(13~15) — 정지의 배치.</li>
+<li>4~7절 내레이터 설명 블록: 까닭 제시 — 대조쌍의 축적(받았으나/받지 못하였고) — 약속 어구("젖과 꿀")와 진멸 선고의 동거.</li>
+<li>9절의 어원 설명(etiology): galloti ↔ Gilgal의 소리 연결, "오늘까지"의 정형구.</li>
+<li>날짜 사슬(4:19→5:10→5:11→5:12)이 절기력 위에 정확히 놓임 — 도하 자체가 유월절 양 준비일.</li>
+<li>13~15절은 출 3:5의 신현 정형 장면(type-scene) 재현 — 신을 벗으라·거룩한 곳. 다만 모세의 긴 소명 대화와 달리 여기서는 명령-순종에서 장이 끊기고 작전(6:2)은 장 경계 너머로 미뤄짐.</li>
+<li>14절의 질문 반려: 양자택일("우리/적들")이 lo 한 마디로 틀째 내려짐 — 근동 신적 전사 정형구의 비틀림.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>이집트 사카라 안크마호르 무덤 부조(제6왕조) — 부싯돌 칼 할례 시술 장면. 할례가 이집트·서셈 문화권의 관습이기도 했음을 보여 주는 도상 — 배경.</li>
+<li>금속기 시대 제의 영역의 석기 보존(의례적 보수성) — 출 4:25의 tsor와 연속 — 배경.</li>
+<li>고대 근동 왕실 문헌의 신적 전사(divine warrior) 모티프 — 신이 왕의 군대 앞서 싸운다는 정형구. 수 5:13-15는 '누구 편이냐'는 질문 자체를 반려한다는 점에서 결이 다름 — 대조 배경.</li>
+<li>여리고 평지의 아빕월(니산월) 보리 추수기 — 유월절 직후 '그 땅의 소산'이 식탁에 오를 수 있는 농사력 — 배경.</li>
+<li>후대 유대 전승의 군대 대장=미가엘 동일시(메길라 3a 등) — 본문 확정 아님, 해석사 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>수 5:15 ↔ 출 3:5 (신을 벗으라·네가 선 곳은 거룩하니라 — 모세와 여호수아, 신을 벗는 두 위임)</li>
+<li>수 5:2-3 ↔ 출 4:24-26 (부싯돌 할례의 선례 — 십보라의 tsor)</li>
+<li>수 5:10 ↔ 출 12:1-13 (유월절 규례 — 애굽의 첫 유월절과 가나안의 첫 유월절)</li>
+<li>수 5:12 ↔ 출 16:35 (가나안 땅 접경에 이르기까지 만나를 먹었으니 — 예고와 닫힘)</li>
+<li>수 5:2-8 ↔ 창 17:9-14 (할례 — 언약의 표징)</li>
+<li>수 5:8 ↔ 창 34:24-25 (할례 직후의 무방비 — 어두운 거울)</li>
+<li>수 5:4-7 ↔ 민 14:29-35 · 신 2:14-16 (광야 사십 년 — 세대 교체의 선고와 기록)</li>
+<li>수 5:1 ↔ 수 2:11 (마음이 녹았고 — 라합의 보고가 왕들의 현실로)</li>
+<li>수 5:13-15 ↔ 수 6:2 (군대 대장의 도착 — 여리고 인도 신탁으로 이어짐)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>높은 데서 가나안 전역이 보인다 — 산지의 왕궁들, 해변의 성읍들. 강이 말랐다는 소식이 퍼지고 왕들의 마음이 밀랍처럼 녹는다. 성문이 열릴 것 같은 순간, 카메라가 길갈 진영으로 떨어진다. 나팔 대신 돌 깨는 소리 — 부싯돌이 칼이 되고, 언덕이 할례의 장소가 된다. 사십 년이 회고로 흐른다 — 광야의 무덤들, 그 곁에서 자란 아이들. 진영은 회복실이 되고, 적의 성이 보이는 들판에서 전군이 누워 낫기를 기다린다. 아무도 오지 않는다. 음성이 내린다 — 내가 오늘 애굽의 수치를 너희에게서 굴러가게 하였다. 길갈이라는 이름이 새겨진다. 십사일 저녁, 여리고 평지의 유월절 상. 이튿날 아침 무교병과 볶은 곡식 — 사십 년 만의 첫 땅의 맛. 그다음 아침, 들판이 비어 있다 — 만나가 내리지 않았다. 식탁은 이미 새 곡식으로 차려져 있다. 여호수아가 눈을 들자 칼을 빼어 든 사람이 마주 서 있다. 너는 우리를 위하느냐, 적들을 위하느냐. 아니라 — 나는 여호와의 군대 대장으로 지금 왔느니라. 얼굴이 땅에 닿고, 신 끈이 풀리고, 맨발이 흙에 닿는다. 네가 선 곳은 거룩하니라. 성벽은 아직 화면 밖이다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"가장 유리한 순간의 정지 — 부싯돌 칼과 맨발"</strong></li>
+<li>초벌 부제: "적들의 마음이 녹은 최적의 공격 시점에 진군 대신 할례·유월절·만나의 종료가 배열되고, 수치가 굴러간 길갈에서 몸과 기억과 식탁이 회복된 뒤, '누구 편이냐'는 질문이 '아니라(lo)' 한 마디로 반려되며 맨발의 사령관 위에 6장이 열리는 — 정복 전의 정지"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (22개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (날짜 사슬 + 4~7절 설명 블록 + Gilgal 어원 설명 + 출 3장 type-scene + ANE 부싯돌·신적 전사 배경)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>13~15절의 군대 대장을 특정 기독론 명제(성육신 전 그리스도 등)로 단정하지 않고, 출 3장 평행·비제지(엎드림을 막지 않음)·6:2로의 이어짐이라는 본문 내 관찰과 후대 해석사(미가엘 전승)의 배경 표기로만 둠.</li>
+<li>"아니라(lo)"를 '하나님은 중립이시다' 같은 교훈 명제로 일반화하지 않고, 양자택일 질문이 반려되는 대화 구조의 관찰로 보존.</li>
+<li>만나의 종료를 '기적의 시대가 끝나고 자립의 시대가 온다'는 적용 교훈으로 끌고 가지 않고, 출 16:35의 예고가 닫히는 경계와 공급 통로의 전환이라는 관찰로만 둠.</li>
+<li>할례·유월절의 배치를 '예배가 사역보다 우선한다'는 설교 명제로 봉합하지 않고, 군사 논리와 어긋나는 본문의 배열 순서 자체의 관찰로 보존.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOS-005</p>
+<p>book: 여호수아</p>
+<p>chapter: 5</p>
+<p>date: 2026-06-11</p>
+<p>---</p>
+
+<h2>여호수아 5장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 왜 하필 지금인가(5:2) — 적이 마비된 최적의 공격 시점에 전군을 무력화하는 명령은 무엇을 보여 주는가?</h2>
+<ul><li>본문은 계보적 이유(4~7절 — 광야 세대의 무할례)는 설명하지만, 시점의 이유 — 왜 요단 동쪽이 아니라 적의 성이 보이는 가나안 땅 안에서인가 — 는 말하지 않는다. 침묵째 보존.</li></ul>
+
+<h2>Q2. cherpat Mitsrayim(5:9) — '애굽의 수치'는 정확히 무엇인가?</h2>
+<ul><li>종살이의 신분인지, "애굽인들이 듣고 말하리이다"(민 14:13-16)의 조롱인지, 무할례 상태 자체인지 — 소유격 하나에 번역과 주석이 갈린다. 그리고 그것이 왜 사십 년을 따라다니다가 가나안 땅 안에서야 굴러가는지도 함께 열려 있다. 보존.</li></ul>
+
+<h2>Q3. shenit — '다시' 할례를 행하라(5:2)는 받은 적 없는 세대에게 무슨 뜻인가?</h2>
+<ul><li>개인 차원으로는 첫 할례인데 백성 차원으로는 재개. 애굽에서의 관습(5절 — 나온 자들은 다 받았으나)이 광야에서 끊겼다가 잇기는 것인지, '두 번째'의 기준점이 무엇인지 본문이 직접 풀지 않는다. 보존.</li></ul>
+
+<h2>Q4. lo(5:14) — '아니라'는 무엇을 부정하는가, 그리고 어디까지 부정하는가?</h2>
+<ul><li>'우리를 위하느냐'만 부정하는지, 양자택일의 틀 전체를 내려놓는 것인지. MT의 לֹא(아니라)와 일부 전통의 לוֹ(그에게)라는 읽기 차이도 함께 이월. 질문이 끝내 답을 받지 못한 채 6장으로 넘어가는 구조째 보존.</li></ul>
+
+<h2>Q5. 여호와의 군대 대장(5:13-15) — 이 분과 여호와의 경계는 어디인가?</h2>
+<ul><li>14절에서는 여호와의 군대 '대장'으로 자신을 밝히는데, 장면이 이어지는 6:2에서는 "여호와께서 여호수아에게 이르시되"로 화자가 표기된다. 엎드림을 제지하지 않는 비제지, 출 3장과 같은 거룩 선언 — 단서들은 쌓이지만 본문은 경계를 긋지 않는다. 미해결로 보존.</li></ul>
+
+<h2>Q6. 만나는 왜 '그 땅의 소산을 먹은 다음 날' 그치는가(5:12)?</h2>
+<ul><li>새 공급이 시작된 뒤에야 옛 공급이 멈추는 하루의 겹침. 이 겹침이 공급 방식 전환의 질서를 보여 주는 것인지, 단순한 날짜 기록인지 — 그리고 사십 년의 동행이 송별 없이 퇴장하는 담담함이 무엇을 머금는지. 보존.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">적들의 마음이 녹은 최적의 공격 시점에 진군 대신 할례·유월절·만나의 종료가 배열되고, 수치가 굴러간 길갈에서 "누구 편이냐"가 "아니라(lo)"로 반려되는 — 정복 전의 정지.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: JOS-005</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-11</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 여호수아 5장은 요단 서쪽 모든 왕들의 마음이 녹아(namas) 정신을 잃은(5:1) 최적의 공격 시점에 "부싯돌로 칼을 만들어 다시 할례를 행하라"(5:2)는 전력의 논리를 거스르는 명령을 놓고, 광야 사십 년의 회고(5:4-7)와 낫기를 기다리는 무방비의 진영(5:8)을 지나 "내가 오늘 애굽의 수치(cherpat Mitsrayim)를 너희에게서 굴러가게 하였다"는 길갈(Gilgal — 굴러감)의 명명(5:9)에 이르고, 가나안 첫 유월절(5:10)과 만나의 종료·땅의 소산의 시작(5:11-12)으로 식탁을 바꾼 뒤, 칼을 빼어 든 여호와의 군대 대장이 "너는 우리를 위하느냐"는 물음을 "아니라(lo)"로 반려하며 "네 발에서 신을 벗으라 네가 선 곳은 거룩하니라"(5:13-15)로 닫히는 — 정복 직전의 정지이자 도착의 장이다.</p>
+<p><strong>한 문단</strong>: 높은 데서 가나안 전역이 보인다. 강이 말랐다는 소식에 왕들의 마음이 밀랍처럼 녹고, 성문이 열릴 것 같은 바로 그 순간 — 카메라가 길갈 진영으로 떨어진다. 나팔 대신 돌 깨는 소리. 부싯돌이 칼이 되고, 언덕 하나가 할례의 장소가 되고, 사십 년의 회고가 흐른다 — 광야의 무덤들과 그 곁에서 자란 아이들. 적의 성이 보이는 들판에서 전군이 누워 낫기를 기다리는데, 아무도 오지 않는다. 음성이 내린다 — 내가 오늘 애굽의 수치를 너희에게서 굴러가게 하였다. 하루가 이름이 되어 길갈로 남는다. 십사일 저녁의 유월절 상, 이튿날의 무교병과 볶은 곡식 — 사십 년 만의 첫 땅의 맛 — 그리고 그다음 아침의 빈 들판. 만나가 내리지 않았고, 식탁은 이미 새 곡식으로 차려져 있다. 여호수아가 눈을 들자 칼을 빼어 든 사람이 마주 서 있다. 너는 우리를 위하느냐, 적들을 위하느냐. 아니라 — 나는 여호와의 군대 대장으로 지금 왔느니라. 얼굴이 땅에 닿고 신 끈이 풀린다. 네가 선 곳은 거룩하니라 — 맨발이 흙에 닿으며 장이 닫히고, 성벽은 아직 화면 밖이다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>가나안 전역 항공 샷에서 한 사람의 발밑 한 뼘으로 줌인. 부싯돌 칼·회복실 진영·두 번의 아침 식탁. 전쟁 직전 장의 소재가 몸·식탁·발.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>나팔 대신 돌 깨는 소리 — 본문의 태연한 무방비. 급할수록 느려지는 박자. "오늘"이 지명이 되는 9절.</td></tr>
+<tr><td>3 시작과 끝</td><td>적들의 와해(1절)로 열려 사령관의 순종(15절)으로 닫힘 — 양 진영 우두머리가 모두 낮아진 문턱. 들음의 평행(듣고 무너짐/듣고 행함).</td></tr>
+<tr><td>4 등장인물·사상</td><td>1절에서만 등장하는 왕들, 두 신탁의 여호와, 인물처럼 다뤄지는 죽은 세대, 군대 대장. 중심 사상은 순서 — 정복보다 먼저 배열되는 몸·기억·식탁의 회복.</td></tr>
+<tr><td>5 장면 컷</td><td>마비(1)/할례·길갈(2~9)/유월절(10)/식탁 교대(11~12)/군대 대장(13~15)의 5컷. 십일—십사일—십오일—십육일의 절기력 시간표.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>avur haarets(구약에서 이 장에만)의 경계어. 출 3:5 type-scene 재현(복수형/단수형 차이). lo의 질문 반려 — 신적 전사 정형구의 비틀림. 사카라 부조와 부싯돌의 의례적 보수성.</td></tr>
+<tr><td>7 동영상</td><td>녹는 왕들 → 돌칼과 회복실 → 굴러가는 수치 → 두 번의 아침 식탁 → 빼어 든 칼과 맨발, 성벽은 화면 밖.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"가장 유리한 순간의 정지 — 부싯돌 칼과 맨발"</td></tr>
+<tr><td>9 기도·내면</td><td>성문이 열려 있는데 멈춰 선 진영을 본다. 굴러갔다는 말씀 곁에만 머문다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 정지의 배치, 정복보다 먼저 오는 것들</strong>: 군사 논리로는 1절 다음에 곧장 여리고가 와야 한다. 적들은 마비됐고 호흡조차 잃었다. 그런데 본문은 그 틈에 세 가지를 끼워 넣는다 — 몸에 새기는 언약의 표징(할례), 건짐의 기억을 먹는 식탁(유월절), 약속이 입에 들어오는 첫 맛(땅의 소산). 시간표도 전쟁 일정이 아니라 절기력이다 — 도하한 십일은 유월절 양 준비일이고(4:19, 출 12:3), 십사일 저녁·십오일·십육일이 차례로 이어진다. 본문은 이 순서의 이유를 설교하지 않는다. 다만 '누구의 백성인가'가 복원되는 단락들을 성벽 앞에 배열해 둘 뿐이다.</p>
+<p>2. <strong>결 2 — 굴러간 수치, 하루가 이름이 된 곳</strong>: 9절은 galloti(내가 굴러가게 하였다)와 Gilgal을 소리로 엮는다. 수치는 '지워진' 것이 아니라 '굴러간' 것이다 — 돌덩이가 비탈을 내려가듯 붙어 있던 것이 떨어져 나가는 운동의 그림이고, 그 운동이 일어난 '오늘'이 지명이 되어 "오늘까지" 남는다. 사십 년을 따라다닌 애굽의 수치가 정확히 무엇인지 본문은 풀지 않지만(Q2), 그것이 요단 동쪽이 아니라 약속의 땅 안에서, 베임과 기다림의 시간을 지나서야 치워진다는 배치는 또렷하다. 길갈은 이후 정복 국면 내내 이스라엘이 돌아오는 진영이 된다 — 수치가 굴러간 곳이 출정과 귀환의 기점이 되는 셈이다.</p>
+<p>3. <strong>결 3 — lo, 반려되는 질문과 벗는 신</strong>: 여호수아의 물음은 사령관다운 물음이다 — 우리 편이냐, 적의 편이냐. 대답은 한 음절이다 — 아니라(lo). 양자택일의 틀 자체가 내려지고, "나는 여호와의 군대 대장으로 지금 왔느니라"가 그 빈 곳에 들어선다. 근동의 신적 전사 정형구라면 신이 왕의 편에 서겠다고 답할 대목에서, 이 장면은 편이 아니라 지휘권을 말한다. 그리고 이어지는 명령은 작전이 아니라 출애굽기 3:5의 재현이다 — 신을 벗으라, 네가 선 곳은 거룩하니라. 모세의 떨기나무가 여호수아의 들판에서 되울리며, 가나안에서 처음 거룩하다고 선언되는 땅이 성벽 안이 아니라 한 사람의 맨발 밑이 된다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>출 3:5 — 신을 벗으라, 네가 선 곳은 거룩한 땅이니라 — 모세와 여호수아, 신을 벗는 두 위임.</li>
+<li>출 4:24-26 — 십보라의 부싯돌(tsor) 할례 — 돌칼 할례의 선례.</li>
+<li>출 12:1-13 — 애굽의 첫 유월절 — 가나안의 첫 유월절(5:10)과 마주 봄.</li>
+<li>출 16:35 — 가나안 땅 접경에 이르기까지 만나를 먹었으니 — 5:12에서 닫히는 예고.</li>
+<li>창 17:9-14 — 언약의 표징인 할례 — 5:2-8의 배경.</li>
+<li>창 34:24-25 — 할례 사흘째의 세겜 습격 — 8절의 무방비를 비추는 어두운 거울.</li>
+<li>민 14:29-35 · 신 2:14-16 — 광야 사십 년의 선고와 기록 — 4~7절 회고의 출처.</li>
+<li>수 2:11 — 우리가 듣자 곧 마음이 녹았고 — 라합의 보고가 5:1에서 왕들의 현실로.</li>
+<li>수 6:2 — 보라 내가 여리고를 네 손에 넘겨 주었으니 — 군대 대장 장면의 이어짐.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 5:1에서 시작한다 — 적이 마비된 보고를 읽으며 나도 모르게 진군을 기대한다. 2절에서 그 기대가 꺾이는 것을 몸으로 느낀다.</li>
+<li><strong>멈춤 1</strong>: 5:8에서 멈춘다 — 낫기를 기다리는 진영. 가장 유리한 때에 스스로 무력해지는 선택 앞에서, 내 일정표의 논리가 흔들린다.</li>
+<li><strong>멈춤 2</strong>: 5:12에서 멈춘다 — 만나의 마지막 아침. 사십 년의 동행이 송별 없이 퇴장하고 식탁이 바뀐다. 공급이 끊긴 것인지 통로가 옮겨 간 것인지를 곱씹는다.</li>
+<li><strong>끝</strong>: 5:14의 "아니라" 앞에서 멈춘다 — 내 편이 되어 달라는 물음과, 주인으로 오시는 분 사이. 여호수아처럼 다음 질문을 바꿔 본다 — 무슨 말씀을 하려 하시나이까.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 마비(1)·할례와 길갈(2~9)·유월절(10)·식탁 교대(11~12)·신현(13~15)의 다섯 단 완결</li>
+<li>[x] 두 신탁 틀(2·9절)과 4~7절 설명 블록의 구조 확인</li>
+<li>[x] 날짜 사슬(4:19→5:10→5:11→5:12)의 절기력 정합</li>
+<li>[x] galloti↔Gilgal 어원 설명과 "오늘까지" 정형구</li>
+<li>[x] 출 3:5 평행과 lo의 질문 반려 — 6:2로의 이어짐 확인</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>여호수아의 spine은 '말씀하신 약속을 땅으로 이루사, 그 성취 위에서 백성이 여호와 섬김을 스스로 택하게 하신다'이며, destination은 "말씀하신 선한 말씀이 하나도 남음이 없이 다 응하였더라"(21:45)에서 "나와 내 집은 여호와를 섬기겠노라"(24:15)로 이어지는 두 봉우리다(book-telos). 권의 흐름은 도하·준비(1~5장) — 정복(6~12장) — 분배(13~21장) — 정착과 언약(22~24장)으로 움직이는데, 5장은 첫 국면의 매듭이자 권 전체의 전환점이다. 구속사의 호에서 보면 이 장은 세 개의 실이 한 곳에서 묶이는 결절이다 — 창세기 17장의 할례 언약이 새 세대의 몸에 다시 새겨지고, 출애굽기 12장의 유월절이 약속의 땅에서 처음 지켜지고, 출애굽기 16:35의 만나 예고가 정확히 그 접경에서 닫힌다. 애굽에서 나온 운동(출애굽)이 가나안에 들어가는 운동(입성)으로 넘겨지는 이음매에서, 본문은 정복의 무용담이 아니라 언약의 갱신을 기록한다. 그리고 그 이음매의 끝에 출애굽기 3장이 재현된다 — 모세가 맨발로 받았던 위임이 여호수아의 맨발 위에 다시 놓이며, 약속을 땅으로 이루시는 분이 사람의 세대가 바뀌어도 같은 분이심이 장면으로 확인된다. 6장의 여리고는 이 정지 다음에야 온다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>적들의 마비(5:1)에서 백성의 회복(5:2-12)으로 / 광야의 만나에서 땅의 소산으로(5:11-12) / '누구 편이냐'(5:13)에서 '누가 주인이냐'(5:14-15)로.</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 5장은 정복의 주도권이 이스라엘의 전력에서 여호와의 도착으로 옮겨지는 운동이다. 가장 유리한 공격 시점이 통째로 제의의 시간에 양보되고, 자동으로 내리던 공급이 약속의 땅 자체로 통로를 옮기고, 사령관의 양자택일이 한 음절로 반려된다. 세 운동이 같은 방향을 가리킨다 — 이 전쟁의 변수는 적의 상태가 아니라 백성의 정체와 주인의 임재라는 것. 1절이 보여 준 군사적 호기는 끝내 사용되지 않은 채 장이 닫히지만, 그 '버려진 호기' 위에서 6장의 여리고가 열린다 — 사람의 전술이 아니라 이레 동안의 돎과 나팔로. 5장의 벡터는 권 전체를 '약속을 이루시는 분의 신실'이라는 축으로 정렬하는 첫 회전이다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 군사적 손실의 연속이다 — 전군이 베임으로 무력해지고, 절기로 날들이 지나가고, 사십 년의 자동 보급이 끊긴다. 그러나 수면 아래에서는 다른 회복이 진행된다. 첫째, 몸의 회복이다. 광야에서 난 세대는 언약의 표징 없이 자란 세대였다 — 약속의 땅을 밟고도 아직 언약 백성의 몸이 아니었던 이들이, 성벽보다 먼저 자기 살에 표징을 받는다. 둘째, 기억의 회복이다. 유월절은 건짐의 밤을 먹는 식탁인데, 그 식탁이 광야가 아니라 여리고 평지에 차려진다 — 적진 한복판에서 출애굽의 기억이 현재형이 된다. 셋째, 식탁의 전환이다. 만나가 그치는 것은 공급의 중단이 아니라 통로의 이동이다 — 새 곡식이 먼저 식탁에 오르고, 그다음 날에야 옛 공급이 멈추는 하루의 겹침이 그 질서를 보여 준다. 그리고 이 모든 회복의 밑에 무방비의 시간이 깔려 있다. 적의 성이 보이는 들판에서 낫기를 기다리는 진영을 아무도 치지 않았다는 사실을, 본문은 한 마디도 자랑하지 않고 침묵으로 통과시킨다 — 그 침묵이, 이 정지가 무모함이 아니라 보호 아래의 순종이었음을 가장 조용하게 증언한다.</p>
+
+<h3>J · 실존적 부름 — 불씨</h3>
+<blockquote>
+<p>나는 가장 유리한 때에 멈춰 설 수 있는가. 그리고 나의 기도는 "내 편이 되어 주십시오"인가, "무슨 말씀을 하려 하시나이까"인가.</p>
+</blockquote>
+<p>이것은 가르침이 아니라 초대다. 본문은 정지의 효용을 설교하지 않는다. 다만 성문이 열릴 것 같은 순간에 돌칼을 다듬는 진영을 보여 주고, 송별 없이 그치는 만나와 새로 차려진 식탁을 보여 주고, 양자택일이 반려된 뒤 신 끈을 푸는 사령관의 손을 보여 준다. 여호수아의 두 질문 사이에 이 장의 불씨가 있다 — 첫 질문(우리를 위하느냐)은 하나님을 내 전선의 전력으로 셈하는 물음이었고, 반려된 뒤의 두 번째 질문(무슨 말씀을 하려 하시나이까)은 종이 주인에게 드리는 물음이었다. 질문이 바뀌자 명령이 왔고, 명령은 작전이 아니라 맨발이었다. 독자는 자기 여리고 앞에서 같은 갈림에 선다 — 편들어 달라고 청할 것인가, 신을 벗을 것인가. 본문은 어느 쪽도 강요하지 않은 채, 그대로 행한 한 사람의 맨발만 남겨 둔다.</p>
+
+<p><strong>다음 장으로 미는 운동 한 줄</strong>: 신을 벗은 사령관에게 비로소 작전이 내린다 — "보라 내가 여리고를 네 손에 넘겨 주었으니"(6:2), 칼이 아니라 이레 동안의 돎과 나팔로 성벽이 무너지는 장이 열린다.</p>
+<p><strong>이 장에서 가져갈 한 단어</strong>: <em>lo — 아니라, 양자택일을 내려놓게 하는 한 음절</em>.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/JOS/4/"><div class="nav-kicker">← 이전</div><div class="nav-title">여호수아 4장</div><div class="nav-preview">열두 돌의 기념 — 요단에서 가져온 돌들이 길갈에 세워지고, "이 돌들은 무슨 뜻이냐"는 후일의 질문을 위해 놓이는 장.</div></a>
+      <a href="/magazine/JOS/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">여호수아 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/JOS/6/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">여호수아 6장</div><div class="nav-preview">여리고 — 무너지는 성벽. 이레 동안의 돎과 나팔, 외침 한 번에 무너지는 성.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:jos5', JSON.stringify({
+      href: '/magazine/JOS/5/',
+      title: '여호수아 5장',
+      excerpt: '가장 유리한 순간의 정지 — 부싯돌 칼과 맨발. 적들의 마음이 녹은(namas, 5:1) 최적의 공격 시점에 진군 대신 할례·유월절·만나의 종료가 배열되고, 수치가 굴러간 길갈(Gilgal, 5:9)에서 "누구 편이냐"는 물음이 "아니라(lo)"로 반려되며(5:14) 맨발의 사령관 위에 여리고가 열리는 정복 전의 정지.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-11</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>
