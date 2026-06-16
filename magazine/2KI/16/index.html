@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>열왕기하 16장 — Observatory | 네다바웨이</title>
+<meta name="description" content="열왕기하 16장을 9단계로 같이 관찰합니다. '아하스가 앗수르 왕 디글랏빌레셀에게 사신을 보내어 이르되 나는 왕의 신복이요 왕의 아들이라'(16:7) — 하나님 대신 앗수르 왕을 아버지로 부른 아하스, 자식을 불 가운데로 지나가게 하는 우상숭배, 다메섹 제단을 본떠 성전 제단을 교체하는 20절의 전개.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/2KI/16/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·정보</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/2KI/">역사서</a> · 열왕기하 · 16장</div>
+      <h1>열왕기하 16장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">2KI-016 · 역사서 · 히브리어</div>
+      <p class="essence">"아하스가 앗수르 왕 디글랏빌레셀에게 사신을 보내어 이르되 나는 왕의 신복이요 왕의 아들이라 이제 나를 치는 아람 왕과 이스라엘 왕의 손에서 나를 구원하소서 하고"(16:7) — 하나님 대신 앗수르 왕을 아버지로 부른 왕이 성전 은금을 예물로 바치고, 다메섹에서 본 제단을 본떠 성전을 바꾸는 20절.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 2KI-016</p>
+<p>book: 열왕기하</p>
+<p>book_en: 2 Kings</p>
+<p>chapter: 16</p>
+<p>bible_block: 역사서</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브(왕정 연대기)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 20</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [eved, ben, mizbeach, damut, tavnit, ha-gesher_ha-elyonah, mizbah_ha-nechoshet, olah, minchah, nesekh, kohelet_ha-shabbat, musak, bayit_YHWH]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["16:6에서 MT는 '에돔 사람들이 엘랏에 돌아와 거기 거하였다'고 읽는데, LXX는 '아람 사람들(Edomites → Arameans)'로 읽어 혼동이 생김 — 히브리어 자음 r(resh)와 d(dalet)의 유사에서 비롯된 사본 전승 차이, 본문비평 배경", "16:10에서 MT는 제단의 '모형과 식양(damut ve-tavnit)'을 우리야 제사장에게 보냈다고 읽는데, LXX는 '형태(homoiosis)'로 단일화하여 두 단어를 하나로 처리함 — 번역 기술 배경"]</p>
+<p>ane_refs: ["시리아-에브라임 전쟁(BC 734~732) — 아람 왕 르신과 이스라엘 왕 베가가 아하스를 압박하여 반앗수르 동맹에 가담하게 하려 한 사건. 아하스가 이를 거부하고 앗수르에 도움을 청한 것이 이 장의 배경", "아시리아 봉신 관계 — '나는 왕의 신복이요 왕의 아들이라'(16:7)는 고대 근동의 봉신 서약 언어. 아카디아어 외교문서에서 하급 왕이 상급 왕에게 쓰던 표준 자기 호칭", "다메섹 함락(BC 732) — 디글랏빌레셀이 다메섹을 점령하고 르신을 죽임. 아하스가 다메섹에서 제단을 본 것(16:10)은 이 정복 직후의 방문", "몰록 제의(바알에게 자녀를 불 가운데로 지나가게 함) — 가나안·페니키아 종교에서 자녀를 신에게 불로 바치는 관행, 신 18:10에서 금지된 행위. 16:3에서 아하스가 이를 행했다고 기술됨"]</p>
+<p>rabbinic_refs: ["후대 유대 전통은 16:7의 '나는 왕의 아들이라'는 표현을 다윗 언약(삼하 7:14 '나는 그에게 아버지가 되고 그는 나에게 아들이 되리라')의 전복으로 읽음 — 언약적 배경, 본문 확정 아님", "이사야서의 아하스 관련 본문(사 7:1-17)이 이 장과 동시대를 배경으로 하며, '임마누엘' 신호를 거부한 아하스 이야기로 연결됨 — 예언적 배경"]</p>
+<p>literary_devices: [son_servant_formula_irony, altar_substitution_sequence, eved_ben_adoption_reversal, damut_tavnit_copying_pattern, silver_gold_displacement, YHWH_altar_marginalization, temple_desecration_escalation, ra_be_einei_YHWH_verdict]</p>
+<p>repeated_words: ["제단(mizbeach — 16:10·11·12·13·14·15·16·17, 9번 등장하며 장 전체를 관통하는 핵심 소품)", "모형·식양(damut·tavnit — 16:10, 보고 본뜨는 행위의 이중 어휘)", "여호와의 눈에 악(ra be-einei YHWH — 16:2, 아하스 평가 공식)", "보내다(shalach — 16:7·8·10·11, 아하스의 외교·지시 행위 동사)", "우리야 제사장(Uriyah — 16:10·11·15·16, 제단 관련 실행자)"]</p>
+<p>cross_refs: ["삼하 7:14 — '나는 그에게 아버지가 되고 그는 내게 아들이 되리라' — 16:7 '왕의 아들이라' 자기 선언의 대조", "신 12:31; 18:10 — 자녀를 불 가운데로 지나게 하는 행위 금지 — 16:3의 배경 율법", "사 7:1-17 — 아하스와 임마누엘 신호 — 16장과 동시대 예언적 배경", "왕하 15장 — 베가와 앗수르 — 16장 시리아-에브라임 전쟁의 직전 문맥", "왕하 17장 — 북왕국 멸망 — 16장이 예고하는 다음 단계", "대하 28장 — 아하스 병행 기사 — 역대기의 상세 기술과 비교", "사 8:5-8 — 완만히 흐르는 실로아 물 vs 앗수르 강 — 앗수르 의존 선택의 예언적 대응"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-16</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>열왕기하 16장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 열왕기하 16장입니다. 스무 절이에요. 15장 끝에서 이름만 나오던 아하스가 이 장에서 전면에 등장해요. 유다 왕 아하스가 자식을 불 가운데로 지나가게 하고, 아람과 이스라엘의 압박을 받아 앗수르에 도움을 청하고, 앗수르 왕의 이름을 빌어 은금을 예물로 보내요. 다메섹에서 본 제단의 모형을 예루살렘 성전에 세우고, 여호와의 본래 제단을 옆으로 밀어 두는 것으로 장이 닫혀요. 낭독하고 침묵을 두겠습니다.</p>
+<p>(본문 낭독 16:1~20, 약 4분)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대가 세 곳을 이동해요. 첫 번째는 예루살렘 — 아하스가 유다 왕이 되고(1절), 아람과 이스라엘의 군대가 예루살렘을 포위하는 곳(5절). 두 번째는 다메섹 — 아하스가 앗수르 왕 디글랏빌레셀을 영접하러 가서 제단을 보는 곳(10절). 세 번째는 다시 예루살렘의 성전 — 다메섹에서 본 제단을 본떠 새로 세우고, 본래 여호와의 놋 제단을 밀어 두는 곳(11~18절). 무대가 예루살렘 → 다메섹 → 예루살렘 성전으로 이동하는데, 이동의 결과가 제단의 교체예요. 다메섹에서 시작된 것이 예루살렘 성전 안으로 들어오는 구조예요.</p>
+<p><strong>P05 김미영</strong>: 소품 목록이요. 가장 많이 등장하는 소품은 제단이에요(mizbeach) — 10절부터 17절까지 제단이 9번 나와요. 다메섹에서 본 제단, 우리야가 만든 제단, 왕이 봉헌한 제단, 새 제단, 놋 제단, 밀려난 놋 제단. 제단이 하나가 아니라 계속 이동하고 교체돼요. 그 다음 소품은 성전 은금이에요(8절) — 왕궁과 성전의 은금을 모아 앗수르 왕에게 예물로 보내요. 성전 것이 왕궁 것과 함께 외세로 흘러가요. 또 하나는 왕의 해시계(쪽문 덮개, 18절)와 바깥 섬돌 — 성전 구조물들이 앗수르 왕 때문에 옮겨지거나 변형돼요. 소품 전체가 성전에서 멀어지는 방향으로 움직여요.</p>
+<p><strong>P07 오지혜</strong>: 소재를 늘어놓을게요 — 자식을 불 가운데로 지나가게 함, 산당, 성전 은금, 신복, 아들, 아람 왕, 이스라엘 왕, 에돔, 엘랏, 앗수르, 다메섹, 제단, 모형, 식양, 우리야, 번제, 소제, 전제, 화목제, 놋 제단, 점 치기, 해시계 덮개, 안식일 섬돌. 늘어놓고 보니 앞부분은 사람과 전쟁의 소재, 뒷부분은 제의와 성전 기물의 소재예요. 장 전반부(1~9절)는 왕의 정치, 후반부(10~20절)는 왕의 제의 변경이에요.</p>
+<p><strong>P02 이진우</strong>: 형식 소재를 짚을게요. 7절의 한 문장이 이 장의 축이에요 — "나는 왕의 신복이요 왕의 아들이라." 두 호칭이 한 문장 안에 있어요. 신복(eved, 종)과 아들(ben). 이 두 단어를 주목한 이유가 있어요 — 고대 근동의 봉신 외교 언어에서 하급 왕이 상급 왕에게 쓰는 표준 자기 호칭이에요. 그리고 성경 안에서 '아버지-아들' 관계는 다윗 언약(삼하 7:14 '나는 그에게 아버지가 되고 그는 내게 아들이 되리라')에서 여호와와 왕 사이의 언약 언어예요. 아하스가 그 언약의 언어를 앗수르 왕에게 쓰는 게, 형식으로만 봐도 어긋남이에요. 본문 관찰로만요.</p>
+<p><strong>P01 한나래</strong>: 저는 10~11절에서 멈췄어요. 아하스가 다메섹에서 제단을 보고(vayar), 제사장 우리야에게 제단의 모형과 식양을 보내요(shalach). 우리야 제사장이 그 지시대로 만들어요 — "아하스 왕이 다메섹에서 돌아오기 전에." 왕이 돌아오기 전에 완성해 두는 속도가 눈에 들어왔어요. 보자마자 지시하고, 제사장이 왕이 오기 전에 만들어 두는 이 빠른 순서에서 무언가 멈칫했어요.</p>
+<p><strong>P11 나경아</strong>: 어휘 몇 개만요. <em>eved</em>(עֶבֶד) — 종·신복(7절). <em>ben</em>(בֵּן) — 아들(7절). <em>mizbeach</em>(מִזְבֵּחַ) — 제단(10~17절, 9회). <em>damut</em>(דְּמוּת) — 모형·형상(10절), <em>tavnit</em>(תַּבְנִית) — 식양·설계도(10절). 두 어휘가 나란히 쓰인 것은 제단을 시각적으로 그리고 건축적으로 복제했다는 뜻이에요. 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 예루살렘→다메섹→예루살렘 성전의 무대 이동, 제단이 교체되는 소품의 방향, eved·ben 두 호칭이 한 문장 안에, damut·tavnit의 이중 복제 어휘, 보자마자 완성해 두는 속도까지. 그대로 두지요.</p>
+<p>---</p>
+</div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 2KI-016</p>
+<p>book: 열왕기하</p>
+<p>chapter: 16</p>
+<p>date: 2026-06-16</p>
+<p>---</p>
+
+<h2>열왕기하 16장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>[2단계] 첫 느낌, 분위기 기록하기</h2>
+<p><strong>성령일 선교사</strong>: 본문을 들으면서 어떤 공기가 느껴지셨는지요.</p>
+<p><strong>P01 한나래</strong>: 불안하고 빠른 공기였어요. 아하스가 장을 열자마자 자식을 불 가운데로 지나가게 하고(3절), 곧바로 포위를 당하고(5절), 앗수르에 도움을 청하고(7절), 다메섹으로 가서 제단을 보고(10절), 제사장에게 지시하고(11절), 성전을 바꿔요(15~18절). 스무 절 안에 왕 한 사람이 이 많은 일을 해요. 그런데 모든 행동이 밖을 향해 있어요 — 앗수르를 향하고, 다메섹을 향하고. 여호와를 향하는 동사가 없어요.</p>
+<p><strong>P07 오지혜</strong>: 7절이 오래 남았어요 — "나는 왕의 신복이요 왕의 아들이라." 이 말이 앗수르 왕에게 하는 말이에요. 그 뒤에 "나를 구원하소서"가 따라와요. 구원을 구하는 말인데, 방향이 하나님이 아니라 앗수르 왕이에요. 그 방향의 어긋남이 첫 느낌에서 가장 오래 남았어요.</p>
+<p><strong>P04 최현국</strong>: 장 전체의 흐름이 대체(substitution)의 공기예요. 자식을 불 가운데로 → 이방 신을 향함. 앗수르에게 예물 → 여호와의 성전 것을 내어 줌. 다메섹 제단으로 → 여호와의 놋 제단을 밀어 냄. 매 국면마다 무언가가 교체돼요. 장 전체가 대체의 연쇄예요.</p>
+<p><strong>P02 이진우</strong>: 평가 문장이 장 앞에 와요 — "그의 열조 다윗과 같지 아니하고"(2절). 아하스를 평가하는 기준이 다윗이에요. 그리고 "이스라엘 여러 왕의 길로 행하였더라"(3절)가 이어져요. 남쪽 유다 왕이 북왕국 왕들의 길을 걸어요 — 그 자체가 이 장의 압축이에요.</p>
+<p><strong>P05 김미영</strong>: 제단이 계속 움직이는 게 눈에 걸렸어요. 새 제단이 들어오고(11절), 왕이 첫 번제를 드리고(12절), 기존 놋 제단은 "내가 그것으로 점 치겠노라"(15절)며 옆으로 밀려요. 원래 있던 것이 새것으로 가려지지 않고, 그냥 옆으로 이동해요. 제거가 아니라 밀침이에요. 그 '밀침'이 더 이상한 공기를 만들어요.</p>
+<p><strong>P11 나경아</strong>: 분위기로 하나만요. 16:7의 히브리어 원문은 "ani avdekha ve-vinekha"예요 — "나는 당신의 종이고 당신의 아들이에요." 고대 근동 봉신 서약의 표준 언어예요. 그런데 이 언어는 이스라엘에서 여호와 앞에 서는 왕의 언어이기도 해요. 그 언어를 인간 왕에게 쓰는 위치가 이 장의 분위기를 만들어요. 배경 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 여호와를 향하는 동사의 부재, 구원 요청의 방향, 대체의 연쇄, 다윗과 북왕국 왕들 기준의 평가, 밀림의 공기, 봉신 언어의 방향까지. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[3단계] 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<p><strong>성령일 선교사</strong>: 시작과 끝을 함께 보겠습니다.</p>
+<p><strong>P02 이진우</strong>: 1절 시작: "이스라엘 왕 베가 십칠년에 유다 왕 요담의 아들 아하스가 왕이 되니." 20절 끝: "아하스가 그의 조상들과 함께 자매 다윗 성에 조상들과 함께 장사되고 그의 아들 히스기야가 대신하여 왕이 되니라." 아하스의 등극으로 열려 아하스의 사망과 히스기야의 등장으로 닫혀요. 그리고 열리는 말이 '왕이 되니'이고 닫히는 말도 '왕이 되니라'예요 — 같은 공식이 수미쌍관처럼 장을 감싸요. 그런데 그 사이에서 일어난 일들이 이 수미 공식과 대조돼요. 형식은 안정적인데 내용은 격렬해요.</p>
+<p><strong>P01 한나래</strong>: 시작과 끝의 방향이 달라요. 시작은 아하스가 왕이 되는 것(등극), 끝은 아하스가 죽고 히스기야가 뒤를 잇는 것(교체)이에요. 그리고 히스기야는 열왕기하에서 18장부터 아하스와 반대 방향으로 행하는 왕으로 등장해요 — 이 장의 끝이 다음 흐름의 반전을 예고하는 방식이에요.</p>
+<p><strong>P04 최현국</strong>: 무대로 보면 시작은 예루살렘 왕궁(아하스 등극), 끝은 예루살렘 성전 기물 변경 완료 후 왕의 죽음이에요. 장이 성전 바깥에서 시작하여 성전 안에서 닫혀요. 정치(1~9절)가 제의 변경(10~19절)으로 이어지고, 왕의 죽음(20절)으로 막이 내려요.</p>
+<p>---</p>
+
+<h2>[4단계] 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<p><strong>성령일 선교사</strong>: 등장하는 인물과 사상을 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 인물 목록이에요. 아하스 — 유다 왕, 이 장의 중심 행위자. 행동이 많은 왕이에요. 르신 — 아람 왕, 이스라엘 왕 베가와 함께 예루살렘을 포위함. 베가 — 이스라엘 왕, 15장에서 이미 등장했고 여기서도 아람과 연합하여 유다를 압박함. 디글랏빌레셀 — 앗수르 왕, 아하스의 구조 요청에 응해 다메섹을 침. 우리야 제사장 — 아하스의 지시로 제단을 만들고, 왕의 명령대로 제의를 집행하는 실행자. 무대 뒤의 여호와 — 이 장에서 발화하지 않음. 왕의 판결 공식(2~3절) 안에서만 언급되는 분.</p>
+<p><strong>P01 한나래</strong>: 사상의 중심은 7절이에요. "나는 왕의 신복이요 왕의 아들이라 이제 나를 구원하소서." 구원 요청이에요. 왕이 구원을 구하는데, 그 대상이 앗수르 왕이에요. '아들'이라는 호칭을 앗수르 왕에게 쓰는 것과, 성경에서 그 호칭이 여호와-왕 관계에 쓰이는 것의 어긋남을 본문은 설명하지 않아요. 그냥 두어요.</p>
+<p><strong>P07 오지혜</strong>: 우리야 제사장이 흥미로운 인물이에요. 아하스가 다메섹에서 제단의 모형과 식양을 보내자(10절), 우리야는 왕이 돌아오기 전에 이미 만들어 놔요(11절). 그리고 왕이 명령하는 대로 집행해요(15~16절). 우리야는 이 장에서 거부하거나 이의를 제기하지 않아요. 그 침묵이 뭘 말하는지 본문은 적지 않아요.</p>
+<p><strong>P02 이진우</strong>: 상황의 뼈대예요. 아하스가 처한 압박 — 아람과 이스라엘이 연합하여 예루살렘을 포위하고 에돔이 엘랏을 탈환하는 이중 위협(5~6절). 아하스의 선택 — 앗수르에 도움을 청하고 성전 은금을 예물로 보냄(7~8절). 앗수르의 응답 — 다메섹을 쳐서 르신을 죽임(9절). 그 결과 아하스가 다메섹에 가서 제단을 보고 복사해요(10절). 외세에 도움을 청하는 선택이 성전 제의의 변경으로 이어지는 인과 사슬이에요. 본문은 그 인과를 설명하지 않고 사건 순서로만 적어요.</p>
+<p><strong>P05 김미영</strong>: 사물로는 여호와의 놋 제단이에요(14절). 새 제단이 들어오면서 놋 제단은 "북쪽"으로 옮겨져요. 그리고 왕이 "내가 그것으로 점 치겠노라"(15절)고 해요. '점 치다'는 번역어인데, 원어로는 '구하다·묻다(lehiqir)' 계열이에요. 원래 번제와 소제에 쓰이던 제단이 이제 왕의 '문의' 용도로 용도 변경되는 거예요. 제단이 기능을 잃어가는 소품이에요.</p>
+<p><strong>P11 나경아</strong>: 어휘 둘만요. <em>damut</em>(דְּמוּת) — 모형·형상(10절). 창 1:26의 '하나님의 형상(tselem ve-damut)'에서 같은 어근이 쓰여요 — 거기서는 창조의 언어, 여기서는 이방 제단 복제의 언어예요. <em>tavnit</em>(תַּבְנִית) — 식양·설계도(10절). 출 25:9에서 성막의 식양(tavnit)을 여호와께서 모세에게 보여 주실 때 같은 어휘가 쓰여요 — 거기서는 여호와에게서 내려오는 것, 여기서는 이방에서 복사해 오는 것이에요. 형태 관찰로만요.</p>
+<p>---</p>
+
+<h2>[5단계] 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<p><strong>성령일 선교사</strong>: 장면을 컷으로 나눠 보시지요.</p>
+<p><strong>P04 최현국</strong>: 세 컷입니다.</p>
+<ul>
+<li><strong>컷 1 (1~9절)</strong>: 아하스의 왕위와 외적 위기. 등극·평가·우상숭배(1~4절)·아람·이스라엘 연합 포위(5~6절)·앗수르에 구원 요청·성전 은금 예물(7~8절)·앗수르의 다메섹 점령·르신 죽임(9절).</li>
+<li><strong>컷 2 (10~18절)</strong>: 제단 교체. 다메섹에서 제단 목격·모형 전달(10절)·우리야의 제단 제작(11절)·아하스의 봉헌(12~13절)·놋 제단 북쪽으로 이동(14절)·왕의 제의 명령(15~16절)·성전 기물 변경(17~18절).</li>
+<li><strong>컷 3 (19~20절)</strong>: 아하스의 죽음과 히스기야 등극 예고. 행적 참조(19절)·장례·히스기야 등장(20절).</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 1에서 구조가 보여요. 압박(5~6절) → 선택(7~8절) → 결과(9절)의 삼 단계예요. 아람·이스라엘의 포위가 압박이고, 앗수르 의존이 선택이고, 앗수르가 다메섹을 점령하는 것이 결과예요. 그런데 그 결과 때문에 아하스가 다메섹에 가서 제단을 보는 컷 2가 열려요. 선택이 낳은 결과가 제의 변경을 낳는 연쇄예요. 본문은 그 연쇄를 인과로 쓰지 않고 사건 나열로 쓰지요.</p>
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>성령일 선교사</strong>: 의문이나 발견을 나눠 주세요.</p>
+<p><strong>P11 나경아</strong>: 원어 카드요. <em>eved</em>(עֶבֶד) — 종·신복(7절). <em>ben</em>(בֵּן) — 아들(7절). 고대 근동 봉신 서약의 표준 자기 호칭. <em>mizbeach</em>(מִזְבֵּחַ) — 제단(10~17절, 9회). <em>damut</em>(דְּמוּת) — 모형·형상(10절), 창 1:26 같은 어근. <em>tavnit</em>(תַּבְנִית) — 식양·설계도(10절), 출 25:9 같은 어근. <em>mizbah ha-nechoshet</em>(מִזְבַּח הַנְּחֹשֶׁת) — 놋 제단(14~15절), 원래 여호와 앞에 있던 제단. <em>shalach</em>(שָׁלַח) — 보내다(7·8·10·11절). 배경만요.</p>
+<p><strong>P02 이진우</strong>: 발견 — damut와 tavnit의 이중 어휘예요(10절). "제단의 모형(damut)과 식양(tavnit)"이라고 두 단어를 함께 써요. damut는 시각적 외양이고 tavnit는 설계 구조예요. 눈에 보이는 것도 복사하고, 만드는 방법도 복사한 거예요. 그런데 P11이 지적했듯 damut는 창 1:26에서 "하나님의 형상"에, tavnit는 출 25:9에서 여호와께서 모세에게 주신 성막 식양에 쓰인 어휘예요. 그 두 어휘가 이방 제단을 복제하는 문맥에 쓰인 것이 형태 관찰이에요.</p>
+<p><strong>P07 오지혜</strong>: 발견 하나 더요. 15절에서 아하스가 우리야에게 명령해요 — "아침 번제와 저녁 소제와 왕의 번제와 그의 소제와 이 땅의 모든 백성의 번제와 그들의 소제와 전제는 이 큰 제단 위에 드리라." 새 제단에서 드려야 할 제의 목록이에요. 그런데 목록이 길고 구체적이에요 — 아침·저녁, 왕·백성, 번제·소제·전제. 아하스가 제의를 없애는 게 아니에요. 제의의 내용은 유지하면서 제단을 교체해요. 무엇을 드리는가가 아니라 어디에 드리는가를 바꿔요. 그 차이가 질문이에요.</p>
+<p><strong>P01 한나래</strong>: 의문이에요. 우리야 제사장이 이의를 제기하지 않아요. 왕이 이방 제단의 모형을 보내자마자 만들어 놓고, 왕의 명령대로 드리고(15~16절), 기물을 옮기고(17~18절). 본문이 우리야의 마음에 대해 아무것도 적지 않아요. 우리야의 침묵을 본문이 어떻게 두는지가 미해결이에요.</p>
+<p><strong>P05 김미영</strong>: 의문 하나 더요. 18절이에요 — "여호와의 전에 세운 안식일 섬돌과 왕이 밖으로 통하는 시설을 앗수르 왕을 위하여 여호와의 전에서 제거했다." '앗수르 왕을 위하여'라는 구절이 눈에 걸려요. 성전 구조물을 바꾸는 이유가 앗수르 왕이에요. 그게 무슨 이유였는지 — 앗수르 왕의 방문 때문인지, 조공의 표시인지 — 본문은 이유를 적지 않아요.</p>
+<p><strong>P04 최현국</strong>: ANE 배경이에요. '나는 왕의 신복이요 왕의 아들이라'(7절)는 고대 근동 외교문서에서 확인되는 봉신 서약 언어예요. 아카디아어 외교문서에서 하급 왕이 상급 왕에게 'ardaka u mārka anāku'(나는 당신의 종이고 당신의 아들입니다)라는 표현을 써요. 아하스의 이 발화가 아시리아 봉신 관계 진입 선언이에요. 또한 다메섹 함락은 BC 732년경으로 추정되며, 아하스가 다메섹을 방문한 것은 정복 후 봉신으로서 주군에게 인사하러 간 방문이에요. 배경만요.</p>
+<p><strong>P11 나경아</strong>: LXX 관찰 하나요. 16:6에서 MT는 '에돔 사람들'로 읽는데, LXX는 '아람 사람들'로 읽어요. 히브리어 자음 r(resh)와 d(dalet)의 형태가 유사하여 생긴 사본 전승 차이예요. 에돔과 아람이 맥락상 다른 세력이기 때문에 이 갈림이 역사 독해에 영향을 줘요. 본문비평 배경으로만요.</p>
+<p><strong>성령일 선교사</strong>: 봉신 언어의 방향, damut·tavnit의 어근 충돌, 아하스의 제의 변경 방식(무엇이 아닌 어디), 우리야의 침묵, 18절의 '앗수르 왕을 위하여', LXX의 에돔·아람 갈림까지. 그대로 두지요. 답이 급하지 않습니다.</p>
+
+<h2>[7단계] 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P04 최현국</strong>: 예루살렘 왕궁. 아하스가 왕이 됩니다 — 열여섯 살, 열여섯 해를 치리할 왕. 자막 — 여호와의 눈에 악. 자식을 불 가운데로 지나가게 합니다. 산당과 언덕에서 제사합니다. 아람 왕 르신과 이스라엘 왕 베가가 예루살렘으로 올라와 에워쌉니다 — 이기지는 못합니다. 에돔이 엘랏을 빼앗아 갑니다. 아하스가 사신을 앗수르로 보냅니다. 편지가 나가요 — 나는 왕의 신복이요 왕의 아들이라, 나를 구원하소서. 성전과 왕궁의 은금을 담아 앗수르 왕에게 예물로 보냅니다. 앗수르 왕이 다메섹을 쳐서 르신을 죽입니다. 아하스가 다메섹으로 갑니다. 제단 하나가 보입니다. 아하스가 멈춰 봅니다. 그리고 제단의 모형과 식양을 예루살렘으로 보냅니다 — 우리야 제사장에게. 아하스가 예루살렘에 돌아오기 전에 이미 완성되어 있습니다. 아하스가 새 제단 위에서 번제를 드립니다. 놋 제단이 북쪽으로 밀려납니다. 성전 기물들이 옮겨지고 바뀝니다. 안식일 섬돌이 사라집니다 — 앗수르 왕을 위하여. 아하스가 죽습니다. 히스기야가 왕이 됩니다. 페이드아웃.</p>
+<p><strong>성령일 선교사</strong>: 편지 하나가 앗수르로 가고, 은금이 따라가고, 다메섹에서 제단이 복사되어 돌아오고, 여호와의 제단이 밀려나는 흐름이 됩니다.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>1️⃣~7️⃣ 관찰 사실 정리</h2>
+<ul>
+<li>무대: 예루살렘(왕궁·성전) → 다메섹 → 예루살렘 성전 순으로 이동. 다메섹에서 시작된 것이 예루살렘 성전 안으로 들어오는 구조.</li>
+<li>소품: 제단(mizbeach, 10~17절 9회), 성전·왕궁 은금(8절, 예물), 다메섹 제단의 모형·식양(10절), 밀려난 놋 제단(14절), 안식일 섬돌·시설(18절).</li>
+<li>핵심 발화 7절: "나는 왕의 신복이요 왕의 아들이라 나를 구원하소서" — 봉신 언어를 앗수르 왕에게 사용.</li>
+<li>평가(2~3절): "다윗과 같지 아니하고" + "이스라엘 여러 왕의 길로 행하였더라" — 남쪽 왕이 북왕국 기준으로 평가됨.</li>
+<li>대체 연쇄: 자식 불 가운데→이방 신. 성전 은금→앗수르 예물. 다메섹 제단→여호와 제단 교체. 안식일 섬돌→앗수르 왕 편의 변경.</li>
+<li>우리야 제사장의 무발언 집행(10~18절): 아하스의 지시를 이의 없이 이행.</li>
+<li>제의 변경의 방식(15절): 제의 내용(번제·소제·전제)은 유지, 제단(어디)만 교체.</li>
+<li>여호와의 놋 제단 처우(15절): 점 치기(문의) 용도로 기능 변경 후 밀림.</li>
+<li>수미쌍관: '왕이 되니'(1절) ↔ '왕이 되니라'(20절) — 등극 공식이 장을 감쌈, 히스기야로 열린 전환.</li>
+</ul>
+
+<h2>원어 카드</h2>
+<ul>
+<li><em>eved</em>(עֶבֶד) — 종·신복(7절). 봉신 서약 언어.</li>
+<li><em>ben</em>(בֵּן) — 아들(7절). 다윗 언약(삼하 7:14) 언어를 앗수르 왕에게 전용.</li>
+<li><em>mizbeach</em>(מִזְבֵּחַ) — 제단(10~17절, 9회). 이 장의 핵심 소품.</li>
+<li><em>damut</em>(דְּמוּת) — 모형·형상(10절). 창 1:26 같은 어근.</li>
+<li><em>tavnit</em>(תַּבְנִית) — 식양·설계도(10절). 출 25:9 같은 어근.</li>
+<li><em>mizbah ha-nechoshet</em>(מִזְבַּח הַנְּחֹשֶׁת) — 놋 제단(14~15절). 이동 전 원위치 제단.</li>
+<li><em>shalach</em>(שָׁלַח) — 보내다(7·8·10·11절). 아하스의 행위 동사.</li>
+</ul>
+
+<h2>문학 구조</h2>
+<ul>
+<li>수미쌍관: '왕이 되니'(1절)와 '왕이 되니라'(20절)가 장을 감쌈.</li>
+<li>3컷 구성: 외적 위기와 앗수르 의존(1~9절) / 제단 교체 연쇄(10~18절) / 왕의 죽음과 히스기야 전환 예고(19~20절).</li>
+<li>대체 패턴: 매 국면마다 원래 있던 것이 이방 것으로 교체되거나 밀려나는 반복 구조.</li>
+<li>damut·tavnit 어근 충돌: 창조와 성막 식양의 언어가 이방 제단 복제에 사용되는 대조.</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (eved·ben·mizbeach·damut·tavnit·mizbah_ha-nechoshet·shalach 7개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (수미쌍관·대체 패턴·damut/tavnit 어근 충돌·ANE 봉신 언어)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>7절의 봉신 언어를 '하나님을 배신한 불신앙'의 교리로 단정하지 않고, 다윗 언약 언어를 앗수르 왕에게 사용한 발화 방향의 사실로만 보존.</li>
+<li>damut·tavnit의 어근 충돌을 '이방 숭배의 죄'로 교훈화하지 않고, 두 어휘가 창조·성막 식양 문맥과 이방 복제 문맥에 함께 쓰인 형태 관찰로만 둠.</li>
+<li>우리야의 침묵을 배도자 공범으로 단정하지 않고, 발화가 없는 실행자라는 본문 사실로만 보존.</li>
+<li>drift_flag: false</li>
+</ul>
+</div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 2KI-016</p>
+<p>book: 열왕기하</p>
+<p>chapter: 16</p>
+<p>date: 2026-06-16</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>성령일 선교사</strong>: 이 장에 초벌 제목을 달아 보시겠어요?</p>
+<p><strong>P01 한나래</strong>: "나를 구원하소서 — 방향이 바뀐 호소"</p>
+<p><strong>P02 이진우</strong>: "나는 왕의 아들이라 — 봉신 언어가 앗수르 왕을 향한 날"</p>
+<p><strong>P04 최현국</strong>: "다메섹에서 온 제단 — 대체의 연쇄"</p>
+<p><strong>P05 김미영</strong>: "밀려난 놋 제단 — 성전 은금이 나가고, 이방 제단이 들어오고"</p>
+<p><strong>P07 오지혜</strong>: "eved·ben — '신복이요 아들이라' 한 문장이 놓인 방향"</p>
+<p><strong>P11 나경아</strong>: "<em>damut · tavnit</em> — 창조와 성막의 언어로 이방 제단을 복제한 왕"</p>
+<p>부제 제안: "'나는 왕의 신복이요 왕의 아들이라'(16:7)는 봉신 언어를 앗수르 왕에게 발화하고 성전 은금을 예물로 보낸 아하스가 — 다메섹에서 제단의 모형(damut)과 식양(tavnit)을 복사해 와 여호와의 놋 제단을 밀어 내는 대체 연쇄로 닫히는, 열왕기하 16장"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 편지를 들고 앗수르로 향하는 사신 옆으로, 다메섹에서 제단을 바라보는 아하스 곁으로, 그리고 북쪽으로 밀려난 놋 제단 옆으로 천천히 걸어가 봅시다. 오늘 관찰로 알게 된 것을 설명하지 말고 그냥 들고 주께 아뢰어 봅시다.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 오늘 한 왕이 '나는 왕의 아들이라'고 말하는 것을 들었습니다. 그 말이 당신께가 아니라 다른 곳을 향하고 있었어요. 그 방향의 어긋남을 오늘은 설명하지 않고 그냥 쥐고 있겠습니다. 그리고 북쪽으로 밀려난 놋 제단을 생각하겠습니다 — 제거된 게 아니라 옆으로 밀린 그 제단을요.</p>
+<p><em>— 그 순간 떠오른 것을 각자 마음에만 둡니다.</em></p>
+<p>---</p>
+<p>시뮬 종료. 관찰 9단계 전부 수행.</p>
+</div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">"나는 왕의 신복이요 왕의 아들이라"(16:7) — 봉신 언어를 앗수르 왕에게 발화하고, 다메섹 제단의 모형(damut)과 식양(tavnit)을 복사해 와 여호와의 놋 제단을 북쪽으로 밀어 내는 대체 연쇄, 열왕기하 16장.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 구속사 좌표·운동 벡터·수면 아래·ANE 맥락·문학 구조의 심층 블록을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: 2KI-016</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-16</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 열왕기하 16장은 "다윗과 같지 아니하고 이스라엘 여러 왕의 길로 행한"(16:2~3) 아하스가 아람·이스라엘의 포위 앞에서 "나는 왕의 신복이요 왕의 아들이라"(16:7)는 봉신 언어를 앗수르 왕에게 발화하고 성전 은금을 예물로 보낸 뒤 — 다메섹에서 본 제단의 모형(damut)과 식양(tavnit)을 복사해 와 여호와의 놋 제단을 북쪽으로 밀어 내고 성전 기물을 변경하는 대체 연쇄로 닫히는, 히스기야 등장 직전의 경첩이다.</p>
+<p><strong>한 문단</strong>: 아하스가 열여섯 살에 유다 왕이 된다. 본문이 즉시 평가한다 — 다윗과 같지 않고, 북왕국 왕들의 길로 걸었다. 자식을 불 가운데로 지나가게 하고 산당에서 제사한다. 아람 왕 르신과 이스라엘 왕 베가가 예루살렘을 포위하고 에돔이 엘랏을 빼앗는다. 아하스가 앗수르 왕에게 사신을 보낸다 — 나는 왕의 신복이요 왕의 아들이라, 나를 구원하소서. 성전과 왕궁의 은금을 예물로 보낸다. 앗수르가 다메섹을 쳐서 르신을 죽인다. 아하스가 다메섹에 가서 제단을 보고, 모형과 식양을 예루살렘의 우리야 제사장에게 보낸다. 아하스가 돌아오기 전에 제단이 완성된다. 아하스가 새 제단 위에서 번제를 드린다. 놋 제단이 북쪽으로 밀려난다. 성전 기물들이 앗수르 왕을 위해 옮겨진다. 아하스가 죽고 히스기야가 뒤를 잇는다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>예루살렘→다메섹→예루살렘 성전 이동. 제단(9회)·은금·놋 제단·안식일 섬돌 소품. eved·ben·damut·tavnit 어휘. 대체의 연쇄 소재.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>여호와를 향하는 동사의 부재. 구원 요청의 방향 어긋남. 대체 연쇄의 공기. 밀려남의 이상함.</td></tr>
+<tr><td>3 시작과 끝</td><td>아하스 등극(1절)→히스기야 예고(20절). 수미쌍관 '왕이 되니'. 예루살렘 바깥→성전 안 이동.</td></tr>
+<tr><td>4 등장인물·사상</td><td>아하스·르신·베가·디글랏빌레셀·우리야. 7절 봉신 언어의 방향. 여호와 발화 없음. 우리야의 무발언 집행.</td></tr>
+<tr><td>5 장면 컷</td><td>3컷(외적 위기/제단 교체/히스기야 전환). 압박→선택→결과의 컷 1 내부 구조.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>eved·ben·damut·tavnit 원어. 봉신 언어 방향. 어근 충돌. 제의 내용 유지·제단 교체 방식. 우리야 침묵. 18절 '앗수르 왕을 위하여'.</td></tr>
+<tr><td>7 동영상</td><td>편지→은금→다메섹 제단 복사→놋 제단 밀림→기물 변경→히스기야 등장.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"나는 왕의 아들이라 — 봉신 언어가 앗수르 왕을 향한 날"</td></tr>
+<tr><td>9 기도·내면</td><td>방향이 바뀐 호소와 북쪽으로 밀린 놋 제단을 설명 없이 손에 쥐고 머문다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 방향이 바뀐 호소</strong>: 7절은 성경에서 드문 장면이다. 왕이 구원을 구한다 — 그런데 그 방향이 여호와가 아니라 앗수르 왕이다. "나를 구원하소서"라는 호소가 인간 왕에게 향한다. 본문은 그 방향 전환을 설명하지 않는다. eved(종)와 ben(아들)이라는 두 호칭이 고대 근동 봉신 서약 언어라는 배경을 두면, 아하스는 여기서 아시리아 왕국의 속국 선언을 하고 있다. 성경 안에서 그 두 호칭이 여호와-왕 관계에 쓰이는 언어라는 점과 나란히 두면 — 본문은 설명 없이 독자를 그 어긋남 앞에 세운다.</p>
+<p>2. <strong>결 2 — 대체(代替)의 연쇄</strong>: 16장 전체가 하나의 대체 패턴을 반복한다. 자식이 불 가운데로 지나가고(3절), 성전 은금이 앗수르로 빠져나가고(8절), 다메섹 제단이 여호와 제단의 자리에 들어서고(11~12절), 놋 제단이 북쪽으로 밀려나고(14절), 성전 기물이 앗수르 왕을 위해 옮겨진다(17~18절). 제거가 아니라 대체다 — 원래 있던 것이 없어지지 않고 옆으로 밀려나거나 용도가 바뀐다. 그 '밀림'이 이 장의 문학적 온도다.</p>
+<p>3. <strong>결 3 — 어근의 반향</strong>: damut와 tavnit가 이방 제단을 복사하는 10절에 함께 쓰인다. 두 어근은 성경 안에서 무게를 가진 어휘다 — damut는 창 1:26 "하나님의 형상"에, tavnit는 출 25:9 "여호와께서 모세에게 주신 성막 식양"에 쓰인다. 창조의 언어와 성막 설계의 언어가 이방 제단의 복제에 쓰이는 이 어근의 반향을 본문은 주석 없이 배치해 둔다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>삼하 7:14 — "나는 그에게 아버지가 되고 그는 내게 아들이 되리라" — 16:7 '왕의 아들' 선언의 언약적 대조.</li>
+<li>신 12:31; 18:10 — 자녀를 불 가운데로 지나게 하는 행위 금지 — 16:3의 율법 배경.</li>
+<li>사 7:1-17 — 아하스와 임마누엘 신호 — 16장과 동시대 예언적 배경.</li>
+<li>사 8:5-8 — 실로아 물 vs 앗수르 강 — 앗수르 의존 선택의 예언적 대응.</li>
+<li>왕하 15장 — 베가와 앗수르 — 16장 시리아-에브라임 전쟁의 직전 맥락.</li>
+<li>왕하 17장 — 북왕국 멸망 — 16장이 예고하는 다음 단계.</li>
+<li>대하 28장 — 아하스 병행 기사 — 역대기의 상세 기술.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>멈춤 1</strong>: 7절 — "나는 왕의 아들이라." 그 말이 향하는 방향을 본다.</li>
+<li><strong>멈춤 2</strong>: 10절 — 다메섹에서 제단을 보고 멈추는 아하스. 무엇이 그를 멈추게 했는지 본문은 적지 않는다.</li>
+<li><strong>멈춤 3</strong>: 14절 — 놋 제단이 북쪽으로 밀려난다. 제거가 아니라 밀림. 그 제단이 어디 있는지를 생각한다.</li>
+<li><strong>멈춤 4</strong>: 18절 — "앗수르 왕을 위하여." 성전 구조물이 바뀌는 이유가 이 네 글자다. 그 무게를 들고 있는다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 3컷 구조(외적 위기/제단 교체/히스기야 전환) 완결</li>
+<li>[x] 7절 봉신 언어(eved·ben)의 방향과 언약적 배경 기록</li>
+<li>[x] damut·tavnit 어근 충돌 위치(창 1:26·출 25:9) 기록</li>
+<li>[x] 대체 연쇄의 5개 국면 분포 확인</li>
+<li>[x] 우리야의 무발언 집행 위치(10~18절) 기록</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>열왕기하의 spine은 "오래 참으신 경고 끝에 말씀대로 심판하시되, 포로의 끝에서도 다윗 집의 불씨를 보존하신다"이며, destination은 25:27~30 여호야긴의 석방이다. 16장은 9~16장 국면(예후의 숙청 이후 남북 부침) 끝, 17장 북왕국 멸망 직전에 놓인다. 이 장에서 남쪽 유다도 처음으로 외세 앗수르에 봉신 의존을 선언하고, 성전 제의가 이방 모형으로 교체된다. 다윗 언약의 언어(ben, 아들)가 앗수르 왕에게 전용되는 16:7은 다윗 집의 불씨를 보존하시는 권의 흐름에서 가장 극적인 아이러니 지점 가운데 하나다. 15장의 북왕국 연쇄 암살이 외부에서 가해지는 압박이었다면, 16장은 남쪽 왕 자신이 내부에서 제의와 언약 언어를 대체하는 국면이다. 히스기야가 20절에서 예고되는 것은, 이 바닥에서 권이 다시 위를 향해 반전을 준비한다는 신호다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>여호와를 향했던 호소(16:2 이전의 기준)에서 앗수르 왕을 향한 봉신 선언(16:7)으로 / 여호와의 놋 제단(본래 위치)에서 북쪽으로 밀린 제단(16:14)으로 / 아하스의 대체 연쇄(16:3~18)에서 히스기야의 반전 예고(16:20)로 — 남쪽 유다가 다윗 언약의 언어를 외세에 건네고 성전 제의를 이방 모형으로 교체하는 하강, 그리고 그 끝에서 히스기야로 열리는 전환.</strong></p>
+</blockquote>
+<p>16장의 벡터는 하강이다. 그러나 그 하강의 끝에 히스기야가 놓인다. 권의 흐름에서 17장이 북왕국 멸망이라면, 18~19장은 히스기야의 앗수르 위기 극복과 신뢰다. 16장은 그 반전의 직전 바닥이다.</p>
+
+<h3>I · ANE 맥락 — 고대 근동 배경</h3>
+<p>'나는 왕의 신복이요 왕의 아들이라'(16:7)는 아카디아어 봉신 서약 문서에서 확인되는 표준 언어다. 하급 왕이 상급 왕에게 자신을 'ardu u mār'(종이자 아들)로 부르는 것은 외교적 복종 선언이다. 아하스의 이 발화는 유다가 아시리아의 봉신국(vas-sal state)임을 공식 선언한 것으로 읽힌다. 다메섹 함락(BC 732년경) 이후 아하스가 다메섹을 방문한 것은 새로운 주군 디글랏빌레셀에게 충성을 표하는 봉신 방문이다. 다메섹 제단을 복사해 온 것이 종교적 동화인지 정치적 복속의 표시인지는 본문이 명시하지 않는다. 아하스 시대의 앗수르 기록에도 유다에서의 조공 수취가 언급된다.</p>
+
+<h3>J · 문학 구조</h3>
+<p>16장의 문학 구조는 대체 반복(substitution loop)이다. 장 전반부(1~9절)는 왕의 정치적 결정, 후반부(10~18절)는 그 결정의 제의적 귀결이다. 두 부분은 하나의 원인-결과 사슬로 연결된다 — 앗수르 의존 선택이 다메섹 방문을 낳고, 다메섹 방문이 제단 복사를 낳고, 제단 복사가 놋 제단의 밀려남을 낳는다. 각 단계에서 원래 있던 것이 옆으로 이동하거나 용도를 잃는다. 수미쌍관('왕이 되니' 1절·20절)은 형식적 안정을 제공하지만, 그 형식 안의 내용은 매 국면마다 무언가를 대체한다. 마지막 히스기야의 등장(20절)은 이 대체 연쇄의 끝에서 새로운 방향이 열리는 문학적 전환점이다.</p>
+
+<div class="next-row">
+  <a href="/magazine/2KI/15/"><div class="nav-kicker">← 이전</div><div class="nav-title">열왕기하 15장</div><div class="nav-preview">별궁과 망대 — 남쪽은 나병으로, 북쪽은 칼로. 두 왕국의 다른 쇠락이 38절 안에서 교차한다.</div></a>
+  <a href="/magazine/2KI/">
+    <div class="nav-kicker">↑ 권 차례</div>
+    <div class="nav-title">열왕기하 차례로</div>
+    <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+  </a>
+  <a href="/magazine/2KI/17/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">열왕기하 17장(북왕국 멸망)</div><div class="nav-preview">이스라엘이 앗수르에 사로잡혀 가니 — 북왕국 멸망과 사마리아 식민화, 열왕기하의 구조적 전환점.</div></a>
+</div>
+
+      </div>
+    </section>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:2ki16', JSON.stringify({
+      href: '/magazine/2KI/16/',
+      title: '열왕기하 16장',
+      excerpt: '나는 왕의 아들이라 — 봉신 언어가 앗수르 왕을 향한 날. 아하스가 성전 은금을 예물로 보내고 다메섹 제단의 모형(damut)과 식양(tavnit)을 복사해 와 여호와의 놋 제단을 북쪽으로 밀어 내는 대체 연쇄, 열왕기하 16장.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2ki016 · 2026-06-16</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>
