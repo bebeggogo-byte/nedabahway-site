@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>역대상 9장 — Observatory | 네다바웨이</title>
+<meta name="description" content="역대상 9장을 9단계로 같이 관찰합니다. 1~9장의 긴 이름 행렬이 9:1의 '바벨론으로 사로잡혀 갔더라'와 9:2의 '돌아와서 처음으로 거주한 자들'로 닫히며, 과거의 계보가 '지금 여기' 예루살렘 귀환 공동체로 이어집니다. 제사장·레위인·문지기·노래하는 자의 직무 명단을 지나, 끝에서 사울 계보를 다시 적어 10장 다윗 내러티브의 입구를 엽니다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/1CH/9/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/1CH/">역사서</a> · 역대상 · 9장</div>
+      <h1>역대상 9장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">1CH-009 · 역사서 · 히브리어</div>
+      <p class="essence">긴 이름의 행렬이 마침내 "지금 여기"에 닿는다 — "유다가 범죄함으로 말미암아 바벨론으로 사로잡혀 갔더라"(9:1)와 "돌아와서 처음으로 거주한 자들"(9:2)이 과거의 계보와 귀환 공동체를 한 매듭으로 잇고, 제사장·레위인·문지기·노래하는 자의 직무 명단을 지나 사울 계보를 다시 적어 다윗 이야기의 문을 연다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 1CH-009</p>
+<p>book: 역대상</p>
+<p>book_en: 1 Chronicles</p>
+<p>chapter: 9</p>
+<p>bible_block: 역사서</p>
+<p>canon: 구약</p>
+<p>genre: 계보(족보) + 귀환 공동체 거주 명단</p>
+<p>language: 히브리어</p>
+<p>verse_count: 44</p>
+<p>observed_facts_count: 26</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [golah, galah, maal, Netinim, shoer, melakah, mishmeret, Yerushalaim, Levi, pekuddah, gibborei_chayil]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["9:1 MT '온 이스라엘이 계보대로 계수되어'의 동사 형태와 LXX 표현이 미세하게 갈림 — 능동·수동 음영 차이, 사본 전승 배경", "9:2 '느디님'(Netinim)을 LXX는 '나티나이오이' 음역으로 옮김 — 봉사자 계층 명칭의 음역 처리 관찰", "여러 인명 음역(예 9:8 이브느야)에서 MT와 LXX 자음 전승이 부분적으로 갈림 — 형태 관찰"]</p>
+<p>ane_refs: ["고대 근동 성전·왕실 행정 명부 — 직무별 인원과 책임을 이름과 함께 등재하는 행정 문서 형식. 역대기 저자가 이 명부 장르를 귀환 공동체의 예배 조직 재건에 사용한 배경", "성전 문지기(gatekeeper) 제도 — 고대 근동 신전의 출입 통제·보물 관리 직책. 9:17~27의 문지기 명단이 이 행정 직제와 닿는 배경", "포로 귀환과 거주지 재배치 — 페르시아 제국의 귀환 정책 아래 예루살렘과 주변 성읍에 백성을 재배치하는 역사적 배경. 9:2~3의 거주 명단이 이 맥락에 놓임"]</p>
+<p>rabbinic_refs: ["후대 유대 전통은 역대기 1~9장 계보를 에스라-느헤미야 시대 공동체 재건의 문헌적 기초로 읽음 — 독법 배경, 본문 확정 아님", "미드라시 전통은 성전 직무의 '주야로'(9:33) 봉사를 끊임없는 예배의 표상으로 읽음 — 독법 배경"]</p>
+<p>literary_devices: [genealogy_closing_bracket, present_tense_anchor, exile_and_return_inclusio, office_roster_structure, sual_genealogy_repetition_as_hinge, name_to_now_pivot]</p>
+<p>repeated_words: ["거주하다(yashav) — 누가 어디에 사는가를 반복하는 명단 동사, 예루살렘·성읍 거주를 표시", "직무·직임(melakah·mishmeret) — 제사장·레위인·문지기의 책무를 가리키는 반복 단위", "문지기(shoer) — 9:17~27 구간의 핵심 반복어, 동서남북 사방 배치", "사로잡혀 가다(galah) — 9:1의 포로를 명시하는 동사, 장 전체의 시간 좌표를 과거-귀환으로 가른다"]</p>
+<p>cross_refs: ["느 11장 (예루살렘 거주자 명단 — 역대상 9:2~17과 가장 가까운 병행 본문)", "스 2장 / 느 7장 (포로 귀환자 명부 — 느디님·문지기·노래하는 자 계층의 출처)", "역대상 8장 (사울의 베냐민 계보 — 9:35~44가 다시 적는 계보의 직전 진술)", "역대상 10장 (사울의 죽음 — 9:35~44 사울 계보가 곧장 잇는 다음 내러티브)", "역대상 23~26장 (다윗이 조직한 레위인·문지기·노래하는 자의 반열 — 9장 직무 명단의 제도적 배경)", "왕하 25장 (유다의 바벨론 포로 — 9:1이 명시하는 사로잡힘의 역사적 사건)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-16</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>역대상 9장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 역대상 9장입니다. 마흔네 절입니다. 1장부터 여기까지 여덟 장이 이름의 행렬이었어요. 그 긴 행렬이 9장에서 처음으로 시간을 바꿉니다 — 1절이 "바벨론으로 사로잡혀 갔더라"고 적고, 2절이 "돌아와서 처음으로 거주한 자들"이라고 적어요. 과거의 이름들이 갑자기 '지금 여기'의 귀환 공동체로 닿는 거예요. 제사장·레위인·문지기·노래하는 자의 명단이 이어지고, 끝에서는 사울의 계보를 다시 적습니다. 오늘은 그 닫힘과 이음의 무대를 같이 보겠습니다. 낭독하고 침묵을 두겠습니다.</p>
+<p>(본문 낭독 9:1~44, 약 5분)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대가 처음으로 한 도시에 닿아요. 1~8장은 공간 없는 이름의 띠였는데, 9장은 예루살렘이라는 구체적 처소를 무대로 세워요. 2~3절에서 누가 어디에 사는지를 적기 시작하거든요 — 예루살렘에 유다·베냐민·에브라임·므낫세 자손이 거주하고, 제사장과 레위인과 느디님이 거주해요. 그리고 17절부터는 성전의 문이 무대 장치로 등장해요. 문지기들이 동서남북 사방에 배치되고, 곳간과 기명이 소품으로 나와요. 이름의 행렬이 마침내 한 도시, 한 성전 안으로 들어선 무대예요.</p>
+<p><strong>P02 이진우</strong>: 구조의 경첩이 1~2절에 있어요. 1절이 "온 이스라엘이 그 계보대로 계수되어"로 1~8장 전체를 한 번 닫고, 곧바로 "유다가 범죄함으로 말미암아 바벨론으로 사로잡혀 갔더라"로 시간을 과거에 못 박지 않고 가리켜요. 그리고 2절이 "돌아와서 처음으로 거주한 자들"로 시간을 귀환 이후로 옮겨요. 한 절 안에서 과거의 계보 전체와 현재의 공동체가 맞닿는 거예요. 그 다음은 거주자 명단(2~9절)·제사장 명단(10~13절)·레위인 명단(14~16절)·문지기 명단(17~27절)·직무 분담(28~32절)·노래하는 자(33절)로 직무별 블록이 차례로 쌓여요.</p>
+<p><strong>P05 김미영</strong>: 소품으로 성전 살림이 보여요. 28절부터 손에 잡히는 물건들이 나와요 — 섬기는 데 쓰는 기명을 세어서 들이고 내고, 성소의 기구와 고운 가루와 포도주와 기름과 유향과 향품을 맡은 사람들이 있어요. 33절엔 노래하는 자들이 골방에 거주하며 주야로 직무에 골몰한다고 해요. 35~44절은 다시 사람 이름으로 돌아가는데, 기브온에 거주한 여이엘과 그 자손 — 사울의 조상 계보가 소품 없이 이름만으로 다시 적혀요. 살림의 디테일이 가득한 명단이다가 끝에서 다시 순수한 계보로 돌아가요.</p>
+<p><strong>P07 오지혜</strong>: 소재가 따뜻하게 깔려요. 직무를 적는 명단인데 그 안에 "처음으로 거주한 자"(2절)·"맡은 자"·"의지하는 자"(26절 신실히 맡김) 같은 표현이 반복돼요. 사로잡혀 갔던 사람들이 돌아와 다시 제 처소에 산다는 사실이 명단의 바탕에 깔려 있어요. 33절의 "주야로 직무에 골몰함"도요 — 끊이지 않는 봉사라는 게 명단 끝에 놓이니까 명단 전체가 회복된 예배의 그림처럼 읽혀요.</p>
+<p><strong>P01 한나래</strong>: 1절과 2절 사이의 공기가 마음에 남아요. 1절 끝의 "사로잡혀 갔더라"는 무겁고 어두워요. 그런데 2절 첫머리 "돌아와서"가 그 어둠을 곧장 뒤집어요. 한 호흡 안에서 포로와 귀환이 붙어 있어요. 슬픔에서 거주로 넘어가는 그 짧은 전환이 이 장의 첫 공기였어요.</p>
+<p><strong>P11 나경아</strong>: 어휘 몇 개요. <em>galah</em>(גָּלָה) — '사로잡혀 가다·드러나다'. 명사 <em>golah</em>(גּוֹלָה)는 '포로 공동체'예요. 1절의 시간 좌표를 가르는 동사예요. <em>maal</em>(מַעַל) — '범죄·신실치 못함'. 1절 "유다가 범죄함으로"의 그 단어예요. 언약 배신을 가리키는 묵직한 어휘죠. <em>Netinim</em>(נְתִינִים) — '느디님, 주어진 자들', 성전 봉사자 계층. <em>shoer</em>(שׁוֹעֵר) — '문지기'. 17절 이하의 핵심 단어예요. 배경 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 예루살렘과 성전 문이라는 처소가 처음 무대로 서고, 1~2절이 계보 전체를 닫으며 포로와 귀환을 한 호흡에 잇는 경첩이고, 성전 살림의 소품과 직무 명단이 쌓이다 끝에서 사울 계보로 돌아가고요. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 처음 읽었을 때 어떤 공기였는지요.</p>
+<p><strong>P01 한나래</strong>: 안도였어요. 여덟 장 내내 흘러온 이름들이 마침내 어딘가에 도착한 느낌. 2절의 "돌아와서 처음으로 거주한"이라는 말에서 긴 여정이 끝난 것 같은 숨이 놓였어요.</p>
+<p><strong>P07 오지혜</strong>: 회복의 온기였어요. 사로잡혔던 사람들이 다시 자기 성읍과 성전 곁에 사는 그림이 명단 전체에 흐르거든요. 직무를 적는 차가운 문서일 수 있는데, 그 바탕에 "돌아왔다"는 사실이 깔리니까 따뜻하게 읽혔어요.</p>
+<p><strong>P04 최현국</strong>: 정돈된 분위기예요. 흩어졌던 공동체가 다시 직무별로 자기 처소를 찾는 질서가 보여요. 제사장은 제사장 명단에, 문지기는 사방 문에, 노래하는 자는 골방에 — 각자가 제 결로 돌아가는 정돈의 공기였어요.</p>
+<p><strong>P02 이진우</strong>: 닫힘과 다시 엶이 겹친 느낌이에요. 1절이 1~8장을 닫고, 35절부터 사울 계보가 다시 시작되거든요. 끝났는데 다시 문이 열리는 이중의 공기예요.</p>
+<p><strong>P05 김미영</strong>: 살아 있는 명단이라는 느낌이에요. 곳간을 맡고 기명을 세고 가루와 기름을 맡은 손들이 구체적으로 보여요. 추상적 계보가 아니라 매일의 노동이 적힌 장부 같았어요.</p>
+<p><strong>P11 나경아</strong>: 번역 층위에서요 — 9:2~17이 느헤미야 11장과 거의 같은 명단을 공유해요. 두 본문의 인명 음역이 부분적으로 갈려요. 같은 공동체를 두 책이 각자의 손으로 적은 흔적이에요. 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 도착의 안도, 회복의 온기, 정돈된 질서, 닫힘과 다시 엶의 겹침, 살아 있는 장부의 감각, 느헤미야와 공유된 명단의 음영까지. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 1CH-009</p>
+<p>book: 역대상</p>
+<p>chapter: 9</p>
+<p>date: 2026-06-16</p>
+<p>---</p>
+
+<h2>역대상 9장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대: 처음으로 한 도시(예루살렘)와 성전 문이 구체적 처소로 등장. 1~8장의 공간 없는 이름 행렬과 달리 거주지·성전 살림이 무대 장치가 됨.</li>
+<li>경첩 1~2절: 1절 "온 이스라엘이 계보대로 계수되어"가 1~8장을 닫고, "유다가 범죄함으로 바벨론으로 사로잡혀 갔더라"(galah)로 포로를 명시. 2절 "돌아와서 처음으로 거주한 자들"로 귀환 후 현재로 시간 이동.</li>
+<li>직무별 블록: 거주자(2~9절)→제사장(10~13절)→레위인(14~16절)→문지기(17~27절)→직무 분담·기명·향품(28~32절)→노래하는 자(33절)→계보 요약(34절)→사울 계보(35~44절).</li>
+<li>소품: 섬기는 기명, 성소 기구, 고운 가루·포도주·기름·유향·향품(29~30절), 곳간(26절). 성전의 일상 살림이 손에 잡히게 등재됨.</li>
+<li>어휘: <em>golah/galah</em>(גָּלָה) 포로·사로잡혀 감 / <em>maal</em>(מַעַל) 범죄·신실치 못함 / <em>Netinim</em>(נְתִינִים) 느디님 봉사자 / <em>shoer</em>(שׁוֹעֵר) 문지기.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>도착의 안도 — 여덟 장의 이름 행렬이 마침내 "돌아와서 거주한"(2절) 현재에 닿음.</li>
+<li>회복의 온기 — 사로잡혔던 자들이 다시 성읍과 성전 곁에 사는 그림이 명단의 바탕에 깔림. 권의 heart가 가장 선명한 장.</li>
+<li>정돈된 질서 — 흩어졌던 공동체가 제사장·문지기·노래하는 자로 직무별 처소를 다시 찾음.</li>
+<li>닫힘과 다시 엶의 겹침 — 1절이 계보를 닫고, 35절부터 사울 계보가 다시 열려 10장으로 이어짐.</li>
+<li>살아 있는 장부의 감각 — 기명을 세고 가루·기름·향품을 맡는 구체적 노동이 등재됨.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(9:1): "온 이스라엘이 그 계보대로 계수되어…유다가 범죄함으로 말미암아 바벨론으로 사로잡혀 갔더라" — 계보 블록 전체를 닫으며 포로를 명시.</li>
+<li>끝(9:44): "아셀이 여섯 아들이 있으니…" — 사울의 조상 계보(여이엘 가문) 마지막 이름으로 닫힘.</li>
+<li>시작과 끝의 비대칭: 포로·귀환의 현재(1~2절)로 열려, 왕정 이전 사울의 조상 계보(35~44절)로 닫힘. 끝의 계보가 10장 사울의 죽음 내러티브로 직접 이어짐.</li>
+<li>완결 여부: 9장은 1~8장 계보 블록을 닫는 동시에 10장 다윗 내러티브의 입구. 35~44절 사울 계보가 그 경첩.</li>
+<li>이음 구조: 과거(계보)→현재(귀환 거주·직무)→다시 과거(사울 계보)로 시간이 접혔다 펴짐.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>거주자(2~9절): 예루살렘에 유다·베냐민·에브라임·므낫세 자손과 제사장·레위인·느디님이 거주. 누가 어디에 사는가의 명단.</li>
+<li>제사장(10~13절): 여다야·여호야립·야긴 등. "하나님의 성전 직무에 힘쓰는 능한 자"(13절, gibborei chayil) — 직무 수행 능력의 평가어 삽입.</li>
+<li>레위인(14~16절)·문지기(17~27절): 살룸이 우두머리(17절), 동서남북 사방 문에 배치(24절). 곳간과 성전 출입을 맡고 신실히 위탁받음(26절).</li>
+<li>직무 분담(28~32절): 기명을 세어 들이고 냄, 성소 기구·고운 가루·포도주·기름·유향·향품·진설병을 맡은 자들. 안식일마다 준비하는 직책.</li>
+<li>노래하는 자(33절): "그들은 골방에 거주하면서 주야로 직무에 골몰하므로 다른 일은 하지 아니하였더라"(melakah). 끊임없는 봉사의 표상.</li>
+<li>사울 계보(35~44절): 기브온에 거주한 여이엘과 그 자손 — 넬·기스·사울·요나단으로 이어지는 계보. 8장에서 적은 베냐민 계보를 다시 진술해 10장 입구를 엶.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li><strong>컷 1 (1~2절)</strong>: 경첩 — 계보 전체가 닫히고("사로잡혀 갔더라"), 곧장 "돌아와서 처음으로 거주한 자들"로 현재가 열림.</li>
+<li><strong>컷 2 (3~9절)</strong>: 예루살렘 거주자 — 유다·베냐민·에브라임·므낫세 자손이 도시에 거함.</li>
+<li><strong>컷 3 (10~16절)</strong>: 제사장과 레위인 — 성전 직무에 힘쓰는 능한 자들과 레위 가문의 거주.</li>
+<li><strong>컷 4 (17~27절)</strong>: 문지기 — 살룸을 우두머리로 사방 문에 배치, 곳간과 출입을 신실히 맡음.</li>
+<li><strong>컷 5 (28~33절)</strong>: 성전 살림과 노래 — 기명·향품·진설병을 맡은 손들, 골방에서 주야로 골몰하는 노래하는 자.</li>
+<li><strong>컷 6 (34~44절)</strong>: 사울 계보 — 족장 요약(34절) 뒤, 기브온 여이엘에서 사울·요나단까지의 계보로 장이 닫히며 10장으로 이어짐.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>galah</em>(גָּלָה) — '사로잡혀 가다'. 명사 <em>golah</em>(גּוֹלָה)는 포로 공동체. 9:1의 시간 좌표를 과거-포로와 귀환-현재로 가르는 동사. 배경.</li>
+<li><em>maal</em>(מַעַל) — '범죄·신실치 못함'. 9:1 "유다가 범죄함으로." 언약 배신을 가리키는 어휘. 포로의 원인을 한 단어로 압축.</li>
+<li><em>Netinim</em>(נְתִינִים) — '느디님, 주어진 자들'. 성전 봉사 하급직 계층. 9:2 귀환 거주자 목록에 포함. 스 2장·느 7장과 공유되는 계층어.</li>
+<li><em>shoer</em>(שׁוֹעֵר) — '문지기'. 9:17~27의 핵심 반복어. 성전 출입·곳간 통제 직책. 동서남북 사방 배치.</li>
+<li><em>melakah</em>(מְלָאכָה) — '일·직무'. 9:33 "주야로 직무에 골몰하므로." 노래하는 자의 전담 봉사를 가리킴.</li>
+<li><em>mishmeret</em>(מִשְׁמֶרֶת) — '직임·지킴·당번'. 문지기·레위인의 책무를 가리키는 단어. '지킨다'는 어근에서 옴.</li>
+<li><em>pekuddah</em>(פְּקֻדָּה) — '직책·감독·맡김'. 직무가 위탁·등재되는 행정 어휘. 관찰로만.</li>
+<li><em>gibborei chayil</em>(גִּבּוֹרֵי חַיִל) — '능한 용사·유력한 자'. 9:13 제사장을 "성전 직무에 힘쓰는 능한 자"로 평가. 명단 속 드문 평가어.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>계보의 닫는 괄호(closing bracket): 9장은 1~8장 이름 블록을 한 번에 닫는 마감 장. 1:1 아담으로 열린 행렬이 9:1의 포로·귀환으로 봉인됨.</li>
+<li>현재 시점의 정박(present anchor): 1~8장이 과거의 이름들이라면, 9:2 "돌아와서 처음으로 거주한 자들"은 본문의 시선을 귀환 공동체의 '지금'으로 끌어옴. 계보가 누구의 것인지를 명시.</li>
+<li>포로-귀환의 수미상관(inclusio): 1절(사로잡힘)과 2절(돌아옴)이 한 호흡에 붙어 어둠→회복의 운동을 압축. 권의 heart가 가장 선명히 드러나는 지점.</li>
+<li>직무 명부 구조(office roster): 거주자→제사장→레위인→문지기→살림→노래로 예배 조직을 직무별로 등재. 행정 명부 장르.</li>
+<li>사울 계보의 경첩 반복(hinge): 35~44절이 8장 베냐민 계보를 다시 적음. 계보 블록을 닫는 동시에 10장 사울의 죽음 내러티브로 넘기는 이중 기능.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>성전·왕실 행정 명부 — 고대 근동에서 직무별 인원과 책임을 이름과 함께 등재하는 문서 형식. 역대기 저자가 이 장르를 귀환 공동체 예배 조직 재건에 활용한 배경.</li>
+<li>성전 문지기 제도 — 신전 출입 통제·보물 관리 직책. 9:17~27 사방 배치가 이 직제와 닿음. 배경.</li>
+<li>포로 귀환과 거주지 재배치 — 페르시아 귀환 정책 아래 예루살렘과 성읍에 백성을 재배치하는 역사. 9:2~3 거주 명단이 이 맥락에 놓임. 배경.</li>
+<li>다윗의 직무 반열 — 23~26장에서 다윗이 조직한 레위인·문지기·노래하는 자의 반열이 9장 직무 명단의 제도적 배경. 귀환 공동체가 그 제도를 다시 세움.</li>
+<li>회복의 heart 배경 — 역대기가 포로 귀환 공동체를 위해 기록됐다는 배경. 9장은 "돌아온 자들이 다시 직무를 맡았다"를 명시하며 권 전체의 회복 주제를 명단으로 표현. 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>역대상 9:2~17 ↔ 느 11장 (예루살렘 거주자 명단 — 가장 가까운 병행 본문)</li>
+<li>역대상 9:2 ↔ 스 2장 / 느 7장 (귀환자·느디님·문지기 명부 — 계층 출처)</li>
+<li>역대상 9:1 ↔ 왕하 25장 (유다의 바벨론 포로 — 사로잡힘의 역사적 사건)</li>
+<li>역대상 9:35~44 ↔ 역대상 8:29~38 (사울 베냐민 계보 — 직전 진술의 반복)</li>
+<li>역대상 9:35~44 ↔ 역대상 10장 (사울의 죽음 — 계보가 곧장 잇는 내러티브)</li>
+<li>역대상 9:17~33 ↔ 역대상 23~26장 (다윗이 조직한 레위인·문지기·노래하는 자 반열 — 제도적 배경)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>카메라가 켜지면 여덟 장의 이름이 마지막 한 줄로 모인다 — "온 이스라엘이 계보대로 계수되어." 화면이 한 번 닫힌다. 그리고 어두워진다 — "유다가 범죄함으로 바벨론으로 사로잡혀 갔더라." 다음 컷에서 빛이 들어온다 — "돌아와서 처음으로 거주한 자들." 카메라가 예루살렘 거리로 내려간다. 유다·베냐민·에브라임·므낫세 자손이 집마다 거한다. 성전으로 들어선다. 제사장들이 직무에 힘쓰는 능한 자로 등장하고, 레위인들이 가문별로 거한다. 성전 문 넷이 동서남북으로 보인다 — 문지기들이 사방에 선다. 살룸이 우두머리다. 곳간 문이 열리고, 기명이 하나씩 세어져 들고 난다. 가루와 포도주와 기름과 유향과 향품을 맡은 손들이 분주하다. 안식일마다 진설병이 준비된다. 카메라가 골방으로 이동한다 — 노래하는 자들이 거기 거하며 주야로 직무에 골몰한다, 다른 일은 하지 않는다. 그리고 화면이 다시 옛 이름으로 돌아간다 — 기브온에 거주한 여이엘, 넬, 기스, 사울, 요나단. 사울의 계보가 다시 적힌다. 장이 닫히는 순간, 그 이름이 다음 화면(10장)의 첫 인물이 된다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"돌아와서 처음으로 거주한 자들 — 이름이 지금 여기에 닿다"</strong></li>
+<li>초벌 부제: "1장 아담으로 열린 긴 이름의 행렬이 9:1의 '바벨론으로 사로잡혀 갔더라'와 9:2의 '돌아왔다'로 봉인되며 귀환 공동체의 현재에 닿고, 제사장·문지기·노래하는 자의 직무가 다시 세워지며, 끝에서 사울 계보를 다시 적어 다윗 이야기의 문을 여는 — 회복의 온기가 가장 선명한 역대상의 마감 계보"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (golah/galah·maal·Netinim·shoer·melakah·mishmeret·pekuddah·gibborei chayil 등 8개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (계보 닫는 괄호+현재 정박+포로-귀환 수미상관+직무 명부 구조+사울 계보 경첩 기록)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>9:1의 "범죄함으로 사로잡혀 갔더라"를 "죄의 결과로서의 심판"이라는 신학 선언으로 닫지 않고, 포로를 명시하는 시간 좌표이자 maal(신실치 못함)의 형태 관찰로만 둠.</li>
+<li>9:2 "돌아와서 처음으로 거주한"을 "하나님의 회복 약속의 성취"라는 교리로 끌고 가지 않고, 계보의 시선이 귀환 공동체의 현재로 이동하는 서술 구조 관찰로만 둠.</li>
+<li>9:33 "주야로 직무에 골몰함"을 "끊임없는 예배의 본"이라는 적용 교훈으로 닫지 않고, 노래하는 자의 전담 봉사(melakah)를 가리키는 명단 사실로만 기록.</li>
+<li>9:35~44 사울 계보 반복을 "버림받을 왕가의 예고"라는 해석으로 닫지 않고, 8장 계보의 재진술이자 10장 입구를 여는 경첩 기능으로만 둠.</li>
+<li>회복의 온기를 "하나님의 신실하심의 증거"로 교훈화하지 않고, 돌아온 자들이 다시 직무를 맡았다는 명단의 정황과 권 heart의 표면화라는 관찰로만 보존.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 1CH-009</p>
+<p>book: 역대상</p>
+<p>chapter: 9</p>
+<p>date: 2026-06-16</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P02 이진우</strong>: 화면이 한 번 닫혔다가 다시 열리는 영상이에요. 첫 프레임에 여덟 장의 이름이 한 줄로 모여요 — "계보대로 계수되어." 그리고 어둠으로 전환돼요 — "사로잡혀 갔더라." 곧장 빛이 들어와요 — "돌아와서 처음으로 거주한." 카메라가 예루살렘 거리로 내려가고, 집마다 사람이 거해요. 성전으로 들어가면 제사장·레위인이 가문별로 서 있고, 문 넷이 사방으로 열려 문지기가 배치돼요. 곳간이 열리고 기명이 세어지고, 가루·기름·향품을 맡은 손이 분주해요. 골방으로 카메라가 옮겨가면 노래하는 자들이 주야로 골몰해요. 마지막에 화면이 옛 이름으로 되감겨요 — 기브온 여이엘, 넬, 기스, 사울, 요나단. 그 사울이 다음 영상의 첫 인물이 돼요.</p>
+<p><strong>성령일 선교사</strong>: 닫혔다가 다시 열리고, 어둠에서 거주로 넘어가고, 직무로 채워졌다가 끝에서 사울로 되감기는 흐름이군요.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "돌아와서 처음으로 거주한 자들 — 긴 이름이 지금 여기에 닿다"</p>
+<p><strong>P02 이진우</strong>: "닫히고 다시 열리는 한 장 — 포로의 봉인과 사울 계보의 경첩 사이"</p>
+<p><strong>P04 최현국</strong>: "흩어졌다 다시 제 처소로 — 제사장·문지기·노래하는 자의 회복된 직무"</p>
+<p><strong>P05 김미영</strong>: "기명을 세고 향품을 맡는 손들 — 돌아온 자들의 매일이 적힌 장부"</p>
+<p><strong>P07 오지혜</strong>: "주야로 골몰함 — 돌아온 공동체의 끊이지 않는 봉사"</p>
+<p><strong>P11 나경아</strong>: "<em>galah · maal</em> 뒤의 <em>shoer · melakah</em> — 사로잡힘에서 직무로 옮겨간 두 단어의 길"</p>
+<p>부제 공동 제안: "1장 아담으로 열린 이름의 행렬이 9:1의 포로(galah)와 9:2의 귀환으로 봉인되며 예루살렘 거주 공동체의 현재에 닿고, 제사장(10~13절)·레위인(14~16절)·문지기(17~27절)·성전 살림(28~32절)·노래하는 자(33절)의 직무가 다시 세워지며, 사울 계보(35~44절)를 다시 적어 다윗 이야기의 입구를 여는 — 회복의 온기가 가장 선명한 마감 계보"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 돌아온 자들의 명단 안으로 들어가 봅시다. 사로잡혀 갔다가 다시 제 처소에 거하며 직무를 맡은 사람들의 이름 곁에, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고, 머무는 것으로 충분합니다.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 오늘 명단을 읽으면서 — 이 사람들이 사로잡혀 갔다가 돌아온 사람들이라는 게 마음에 들어왔습니다. 곳간을 맡고, 문을 지키고, 골방에서 주야로 노래한 사람들 — 화려한 이야기가 아니라 매일의 직무를 맡은 손들이에요. 돌아온 처소에서 다시 제 일을 잡았다는 것, 그 조용한 회복 앞에 머뭅니다. 제가 흩어졌다 돌아온 어떤 처소가 있는지, 그것을 여쭙지는 않겠습니다. 다만 이 이름들이 다시 직무를 맡았다는 사실의 무게를 들고 있습니다.</p>
+<p><em>— 각자 떠오르는 것을 마음에만 둡니다.</em></p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>이 명단이 어디서 어디로 움직이는지요? 직무들의 나열 아래에서 무엇이 회복되고 있는지요? 이 장이 귀환 공동체에게 건네는 것이 무엇인지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 이 장은 <strong>과거에서 현재로, 흩어짐에서 거주로</strong> 움직여요. 1~8장의 이름들이 9:1에서 닫히고, 9:2에서 시선이 귀환 공동체의 '지금'으로 옮겨와요. 그리고 직무가 차례로 채워지면서 흩어졌던 공동체가 다시 거주하는 질서로 정돈돼요. 역대상의 spine — "아담부터 다시 쓴 계보와 다윗·성전의 유산으로 귀환 공동체를 언약 백성으로 다시 세우신다" — 의 첫 단(족보 블록)이 여기서 닫히는 매듭이에요.</p>
+<p><strong>P04 최현국</strong>: 권의 흐름에서 보면 1~9장이 족보, 10~21장이 다윗, 22~29장이 성전이에요. 29:14이 도착점 — "모든 것이 주께로 말미암았사오니 우리가 주의 손에서 받은 것으로 주께 드렸을 뿐이니이다." 9장은 그 첫 단을 닫는 동시에 둘째 단(다윗)의 문을 여는 경첩이에요. 35~44절 사울 계보가 곧장 10장 사울의 죽음으로 이어지거든요. 계보의 끝이 곧 내러티브의 입구예요. 닫으면서 여는 이중의 매듭이에요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래를 보면 — 이 장의 온기가 직무 명단 자체에서 와요. 사로잡혀 갔던 사람들이 돌아와 다시 문을 지키고 곳간을 맡고 노래해요. 거창한 회복의 선언이 아니라 매일의 직무로 회복이 표현돼요. "돌아왔다"는 한 마디 뒤에 이어지는 긴 직무 목록이, 회복이 추상이 아니라 일상의 일로 채워진다는 것을 보여주는 것처럼 읽혀요. 단정은 아니에요 — 그렇게 읽힌다는 것이고, 질문으로 다음 장에 가져가고 싶어요.</p>
+<p><strong>P01 한나래</strong>: 긴장이에요. 9장이 회복의 온기로 가득한데, 끝이 사울 계보예요. 그리고 10장은 그 사울의 죽음이에요. 회복의 명단 끝에 실패한 첫 왕의 이름이 놓이는 이 배열이 마음에 걸려요. 돌아온 공동체에게 새 직무를 보여준 직후에, 옛 왕의 끝을 다시 꺼내는 것 — 확신은 아니에요. 그냥 닫힘과 다시 엶 사이의 그 묘한 긴장 앞에서 드는 물음이에요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. 9:1의 <em>maal</em>(מַעַל, 신실치 못함) — 포로의 원인을 한 단어로 적어요. 그런데 그 단어 바로 뒤에 9:2의 "돌아와서 거주한"이 와요. 배신(maal)과 귀환이 한 호흡에 붙어 있는 것이, 이 공동체의 정체성을 어떻게 짜는지 — 형태 관찰로만 두고요. 그리고 9:33의 <em>melakah</em>(직무)와 1절의 <em>galah</em>(사로잡혀 감) — 사로잡힘에서 직무로 옮겨간 그 길이 무엇을 남기는지, 질문으로 보존합니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>과거의 긴 계보가 9:1~2에서 닫히며 '돌아와서 거주한' 현재에 닿고, 직무들이 회복의 온기로 다시 세워지며, 사울 계보의 재진술이 다윗 내러티브의 입구를 연다</strong>는 것을 손에 쥐고 다음 장으로 갑니다. 그 사울이 길보아에서 어떻게 끝나는지가 다음 화면이에요.</p>
+<p>---</p>
+
+<h2>역대상 9장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 9:1 — 계보 블록 전체를 "범죄함으로 사로잡혀 갔더라"로 닫는 선택을 본문은 무엇으로 두는가?</h2>
+<ul><li>1~8장의 긴 이름 행렬 끝에 포로(galah)와 그 원인(maal)을 한 절로 적는다. 이 닫음이 단순 연대 표시인지 정체성 진술인지 — 본문은 설명하지 않는다. 형태 관찰로만 보존.</li></ul>
+
+<h2>Q2. 9:2 — "돌아와서 처음으로 거주한 자들"이 계보 전체의 시선을 현재로 옮기는 기능은 무엇을 드러내는가?</h2>
+<ul><li>과거의 이름들이 갑자기 귀환 공동체의 '지금'에 닿는다. 이 시점 이동이 계보를 누구의 것으로 만드는지 — 본문 안에서 닫지 않고 보존.</li></ul>
+
+<h2>Q3. 9:13 — 제사장을 "성전 직무에 힘쓰는 능한 자"(gibborei chayil)로 평가하는 표현은 명단에서 왜 드문가?</h2>
+<ul><li>대부분 이름과 직무만 적히는 명단에 직무 수행 능력의 평가어가 삽입된다. 이 평가가 어디에 붙고 어디에 안 붙는지의 패턴을 해석으로 닫지 않고 보존.</li></ul>
+
+<h2>Q4. 9:33 — 노래하는 자가 "주야로 직무에 골몰하므로 다른 일은 하지 아니하였더라"는 전담 봉사는 무엇을 가리키는가?</h2>
+<ul><li>melakah(직무)를 끊임없이 수행하는 직책이 명단 끝에 놓인다. 이 끊이지 않는 봉사의 기능을 교훈으로 닫지 않고 명단 사실로 보존.</li></ul>
+
+<h2>Q5. 9:35~44 — 8장 사울 계보를 다시 적는 반복은 어떤 기능을 하는가?</h2>
+<ul><li>거의 동일한 베냐민·사울 계보가 8장과 9장에 두 번 적힌다. 이 재진술이 단순 반복인지 10장 입구를 여는 경첩인지 — 단정하지 않고 보존.</li></ul>
+
+<h2>Q6. 9:1~44 — 회복의 명단(2~33절) 끝에 사울 계보(35~44절)를 두어 10장 사울의 죽음으로 잇는 배열은 무엇인가?</h2>
+<ul><li>돌아온 공동체의 직무 회복 뒤에 옛 왕의 계보가 놓이고, 그 왕의 끝이 곧 10장이다. 닫힘과 다시 엶이 겹치는 이 배열의 의도를 질문으로 이월.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">"돌아와서 처음으로 거주한 자들"(9:2) — 1장 아담으로 열린 긴 이름의 행렬이 9:1의 포로와 9:2의 귀환으로 닫히며 '지금 여기'에 닿고, 직무가 다시 세워지며 사울 계보로 10장의 문을 연다.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: 1CH-009</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-16</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 역대상 9장은 1~8장의 이름 행렬을 "온 이스라엘이 계보대로 계수되어…바벨론으로 사로잡혀 갔더라"(9:1)로 닫고, "돌아와서 처음으로 거주한 자들"(9:2)로 시선을 귀환 공동체의 현재로 옮긴 뒤, 예루살렘 거주자(3~9절)·제사장(10~13절)·레위인(14~16절)·문지기(17~27절)·성전 살림(28~32절)·노래하는 자(33절)의 직무를 차례로 등재하고, 끝에서 기브온 여이엘의 사울 계보(35~44절)를 다시 적어 다윗 내러티브의 입구를 여는 — 회복의 온기가 가장 선명한 역대상 족보 블록의 마감 장이다.</p>
+<p><strong>한 문단</strong>: 여덟 장의 이름이 한 줄로 모인다 — "계보대로 계수되어." 그리고 어두워진다 — "사로잡혀 갔더라." 곧장 빛이 든다 — "돌아와서 처음으로 거주한." 한 호흡 안에서 포로와 귀환이 붙어 있다. 카메라가 예루살렘으로 내려가면 사람들이 집마다 거하고, 성전 안에서 제사장·레위인이 가문별로 선다. 문 넷이 사방으로 열려 문지기가 배치되고, 곳간이 열려 기명이 세어진다. 가루·기름·향품을 맡은 손이 분주하고, 골방에서 노래하는 자들이 주야로 골몰한다. 직무가 하나씩 다시 세워진다. 그리고 화면이 옛 이름으로 되감긴다 — 여이엘, 넬, 기스, 사울, 요나단. 사울의 계보가 다시 적힌다. 장이 닫히는 순간 그 이름이 다음 장의 첫 인물이 된다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>처음으로 예루살렘·성전 문이 처소로 등장. 1~2절이 계보를 닫으며 포로·귀환을 한 호흡에 잇는 경첩. 성전 살림 소품과 직무 명단이 쌓임.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>도착의 안도. 회복의 온기. 정돈된 질서. 닫힘과 다시 엶의 겹침. 살아 있는 장부의 감각.</td></tr>
+<tr><td>3 시작과 끝</td><td>포로·귀환(1~2절)으로 열려 사울 조상 계보(44절)로 닫힘. 끝의 계보가 10장으로 직접 이어지는 미완결.</td></tr>
+<tr><td>4 등장인물·사상</td><td>거주자·제사장(능한 자, gibborei chayil)·레위인·문지기(사방 배치)·살림 담당·노래하는 자(주야 골몰)·사울 계보.</td></tr>
+<tr><td>5 장면 컷</td><td>경첩(컷1)·예루살렘 거주(컷2)·제사장·레위인(컷3)·문지기(컷4)·살림·노래(컷5)·사울 계보(컷6) 6컷.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>golah/galah·maal·Netinim·shoer·melakah·mishmeret·pekuddah·gibborei chayil 원어. 계보 닫는 괄호·현재 정박·포로-귀환 수미상관·직무 명부·사울 경첩 구조. 느 11장·스 2장 교차 참조.</td></tr>
+<tr><td>7 동영상</td><td>닫힘 → 어둠(포로) → 빛(귀환) → 직무로 채워짐 → 사울 계보로 되감김.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"돌아와서 처음으로 거주한 자들 — 이름이 지금 여기에 닿다"</td></tr>
+<tr><td>9 기도·내면</td><td>돌아온 자들이 다시 직무를 맡았다는 조용한 회복 — 그 사실의 무게를 들고 머뭄.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 긴 이름이 마침내 현재에 닿는다</strong>: 1장의 아담부터 8장의 베냐민까지, 여덟 장이 과거의 이름이었다. 9:2의 "돌아와서 처음으로 거주한 자들"이 그 모든 이름의 시선을 귀환 공동체의 '지금'으로 끌어온다. 계보가 박물관의 명패가 아니라 살아 있는 공동체의 호적이 되는 지점이다 — 단정이 아니라, 시점이 이동하는 본문 구조에 대한 관찰.</p>
+<p>2. <strong>결 2 — 회복이 일상의 직무로 채워진다</strong>: 9장은 "하나님이 회복하셨다"고 선언하지 않는다. 대신 누가 문을 지키고, 누가 곳간을 맡고, 누가 기명을 세고, 누가 주야로 노래하는지를 적는다. 돌아온 자들의 회복이 거창한 사건이 아니라 매일의 직무 목록으로 표현된다. 그 구체성이 권 heart(회복의 따뜻함)를 명단 자체에 스미게 한다.</p>
+<p>3. <strong>결 3 — 닫으면서 여는 경첩</strong>: 9:1이 계보 블록을 닫고, 9:35~44가 사울 계보를 다시 적어 10장의 문을 연다. 같은 장이 마감이면서 입구다. 본문은 이 이중 기능을 설명하지 않지만, 회복의 명단 끝에 옛 왕의 계보를 두어 다윗 이야기로 넘기는 그 배열이 독자에게 질문을 남긴다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>역대상 9:2~17 ↔ 느 11장 (예루살렘 거주자 명단 — 가장 가까운 병행 본문)</li>
+<li>역대상 9:2 ↔ 스 2장 / 느 7장 (귀환자·느디님·문지기 명부 — 계층 출처)</li>
+<li>역대상 9:1 ↔ 왕하 25장 (유다의 바벨론 포로 — 사로잡힘의 역사적 사건)</li>
+<li>역대상 9:35~44 ↔ 역대상 8:29~38 (사울 베냐민 계보 — 직전 진술의 반복)</li>
+<li>역대상 9:35~44 ↔ 역대상 10장 (사울의 죽음 — 계보가 곧장 잇는 내러티브)</li>
+<li>역대상 9:17~33 ↔ 역대상 23~26장 (다윗이 조직한 직무 반열 — 제도적 배경)</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 9:1에서 멈춘다 — 긴 계보가 "사로잡혀 갔더라"로 닫히는 무게 앞에 선다.</li>
+<li><strong>전환</strong>: 9:2에서 숨을 놓는다 — "돌아와서 처음으로 거주한"이 어둠을 곧장 거주로 뒤집는다.</li>
+<li><strong>머묾</strong>: 9:33에서 머문다 — 골방에서 주야로 골몰하는 노래하는 자의 끊이지 않는 봉사를 든다.</li>
+<li><strong>끝</strong>: 9:44에서 멈춘다 — 장이 사울 계보로 닫히고, 그 이름이 10장의 첫 인물이 된다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 경첩·예루살렘 거주·제사장·문지기·살림·사울 계보의 6컷 완결</li>
+<li>[x] golah/galah·maal·Netinim·shoer·melakah·gibborei chayil 원어 어휘 분포</li>
+<li>[x] 계보 닫는 괄호와 현재 정박·포로-귀환 수미상관의 문학 구조 기록</li>
+<li>[x] 직무 명부 구조(거주자→제사장→문지기→노래)의 등재 순서 관찰</li>
+<li>[x] 사울 계보 재진술(35~44절)의 경첩 기능 기록</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>역대상의 spine은 "아담부터 다시 쓴 계보와 다윗·성전의 유산으로, 귀환 공동체를 예배하는 언약 백성으로 다시 세우신다"이며, destination은 "모든 것이 주께로 말미암았사오니 우리가 주의 손에서 받은 것으로 주께 드렸을 뿐이니이다"(29:14)다. 역대상 전체의 phases — 1~9장(족보), 10~21장(다윗의 통치), 22~29장(성전 준비와 봉헌) — 중에서, 9장은 그 첫 단(족보 블록)을 닫는 마감 장이다. 1:1 아담으로 열린 긴 이름의 행렬이 여기서 9:1의 포로(galah)와 9:2의 귀환으로 봉인되며, 과거의 이름들이 마침내 '돌아와서 처음으로 거주한' 공동체의 현재에 닿는다. 권의 heart — 실패한 역사의 후손을 족보로 다시 셈하여 당신의 백성으로 불러 주시는 회복의 따뜻함 — 이 9장에서 가장 선명히 드러난다. 사로잡혀 갔던 자들이 돌아와 다시 문을 지키고 곳간을 맡고 주야로 노래하는 직무 명단 자체가 그 온기의 형태다. 그리고 35~44절의 사울 계보가 둘째 단(다윗)의 문을 열며, 구속사의 호는 10장 사울의 죽음을 지나 다윗과 성전, 29:14의 드림으로 향한다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>과거(1~8장 계보)에서 현재(9:2 돌아와 거주)로 / 흩어짐(포로)에서 거주·직무(예루살렘·성전 봉사)로 / 마감(계보 닫음)에서 입구(사울 계보로 다윗 내러티브 엶)로 — 긴 이름의 행렬이 회복된 공동체의 일상에 닿았다가 다시 다음 이야기로 넘어간다.</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 9장은 여덟 장의 과거 계보를 귀환 공동체의 '지금'으로 정박시키면서 독자에게 "이 이름들이 돌아와 다시 직무를 맡았다"는 회복의 현재를 건네는 운동이다. 그 운동은 35~44절에서 사울 계보로 방향을 틀어 10장의 문을 열고, 다윗의 통치(10~21장)와 성전 준비(22~29장)를 지나 29:14의 드림으로 향한다. 9장의 벡터는 족보 블록을 닫는 마지막 매듭이자, 다윗 이야기로 넘기는 첫 경첩이다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 직무 명단이다 — 누가 어디에 살고, 누가 무엇을 맡는지. 그러나 수면 아래에서는 다른 것이 움직인다. 첫째, 정체성의 정박이다. 1~8장의 긴 계보가 9:2에서 귀환 공동체의 현재에 닿으면서, "이 이름들이 곧 우리다"라는 호적이 된다. 포로에서 돌아온 사람들에게 가장 필요한 것은 자신들이 끊어지지 않은 이야기의 현재 장이라는 확인이었을 것이다 — 본문은 그것을 선언이 아니라 거주 명단으로 쓴다. 둘째, 회복의 일상화다. 회복이 기적적 사건이 아니라 문을 지키고 곳간을 맡고 주야로 노래하는 매일의 직무로 채워진다. 33절의 "다른 일은 하지 아니하였더라"는 전담 봉사가 회복된 예배의 구체적 결을 보여준다. 셋째, 닫힘과 다시 엶의 긴장이다. 회복의 명단 끝에 사울 계보가 놓이고, 그 사울은 10장에서 죽는다. 회복의 온기와 옛 왕의 끝이 한 장 안에 겹치는 이 배열은 단정이 아닌 관찰로 보존된다.</p>
+
+<h3>J · 실존적 부름 — 불씨</h3>
+<blockquote>
+<p>나는 어디서 흩어졌다 어디로 돌아왔는가 — 돌아온 처소에서 다시 맡은 일상의 직무는 무엇인가. 그리고 그 매일의 직무가 회복의 형태라는 것을 나는 알아보는가.</p>
+</blockquote>
+<p>이것은 가르침이 아니라 초대다. 역대상 9장은 독자에게 "회복을 기대하라"고 하지 않는다. 다만 사로잡혀 갔던 사람들이 돌아와 문을 지키고 곳간을 맡고 주야로 노래하는 명단을 보여 주고, 그 평범한 직무들이 회복의 실제 모습임을 보여 준다. 포로에서 돌아온 공동체가 이 명단을 읽었을 때 — "우리가 돌아와 다시 제 일을 맡았다, 이 일상이 곧 회복이다" — 라는 감각이 무엇이었을지를 들고 머무는 것, 그것이 이 장의 불씨다. 나는 어떤 흩어짐에서 돌아왔고, 돌아온 처소에서 다시 맡은 매일의 직무를 회복으로 알아보는가 — 그 물음이 역대상의 족보 블록을 닫는 마지막 장이 독자에게 건네는 가장 조용한 초대다.</p>
+
+<p><strong>다음 장으로 미는 운동 한 줄</strong>: 사울 계보가 다시 적혔다 — 그 사울이 길보아 전장에서 어떻게 끝나는지(블레셋과의 싸움, 세 아들의 죽음, 사울의 자결)가 다음 화면으로 열리며, 실패한 첫 왕의 끝이 다윗 즉위 내러티브의 입구가 된다(10장).</p>
+<p><strong>이 장에서 가져갈 한 단어</strong>: <em>golah — 돌아온 포로 공동체, 그리고 그 귀환</em>.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/1CH/8/"><div class="nav-kicker">← 이전</div><div class="nav-title">역대상 8장</div><div class="nav-preview">베냐민과 사울의 계보 — 9장이 다시 적는 사울 조상 명단의 직전 진술.</div></a>
+      <a href="/magazine/1CH/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">역대상 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/1CH/10/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">역대상 10장</div><div class="nav-preview">사울의 죽음 — 길보아에서 끝나는 첫 왕의 마지막, 다윗 즉위 내러티브의 입구.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:1ch9', JSON.stringify({
+      href: '/magazine/1CH/9/',
+      title: '역대상 9장',
+      excerpt: '돌아와서 처음으로 거주한 자들 — 이름이 지금 여기에 닿다. 1장 아담으로 열린 긴 이름의 행렬이 9:1의 포로와 9:2의 귀환으로 닫히며 예루살렘 거주 공동체의 현재에 닿고, 제사장·레위인·문지기·노래하는 자의 직무가 다시 세워지며, 사울 계보를 다시 적어 10장 다윗 내러티브의 입구를 여는 회복의 온기가 가장 선명한 마감 계보.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2026-06-16</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>
