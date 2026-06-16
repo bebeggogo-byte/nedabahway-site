@@ -13,7 +13,7 @@ if [ ! -d "$AGENT_BLOG" ]; then
 fi
 
 echo "→ 설치 대상: $AGENT_BLOG"
-for f in rubric_scorer.py categorize.py plan_runner.py daily3.py plan_500.json naver_categories.json run_daily3.sh; do
+for f in rubric_scorer.py categorize.py plan_runner.py daily3.py naver_publisher.py plan_500.json naver_categories.json run_daily3.sh; do
   cp "$HERE/$f" "$AGENT_BLOG/$f"
   echo "  복사: $f"
 done

@@ -17,6 +17,7 @@ Usage (launchd points here):
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import sys
 from datetime import datetime
@@ -129,6 +130,21 @@ def run(target: int = DEFAULT_TARGET, *, dry_run: bool = False) -> dict:
         except Exception as e:  # non-stop: log and continue
             _log(f"slot 예외: {e}")
             continue
+    # optional: auto-publish to Naver (browser automation, no LLM cost).
+    # enable with NAVER_AUTOPUBLISH=1; requires one-time `naver_publisher --login`.
+    if os.environ.get("NAVER_AUTOPUBLISH") == "1" and results and not dry_run:
+        try:
+            from . import naver_publisher  # type: ignore
+            for it in results:
+                folder, slug = it.get("folder"), it.get("slug")
+                if not folder or not slug:
+                    continue
+                post_dir = TRAY_ROOT / folder / slug
+                if post_dir.exists():
+                    naver_publisher.publish_post(post_dir)
+        except Exception as e:
+            _log(f"naver auto-publish skipped: {e}")
+
     summary = {"ok": True, "published_now": len(results), "today_total": published_today(),
                "target": target, "items": results}
     _log(f"done: {json.dumps(summary, ensure_ascii=False)}")
