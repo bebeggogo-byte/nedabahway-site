@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>열왕기하 21장 — Observatory | 네다바웨이</title>
+<meta name="description" content="열왕기하 21장을 9단계로 같이 관찰합니다. '내가 예루살렘을 사마리아를 잰 줄과 아합의 집을 다림 보던 추로 잴 것이며 또 사람이 그릇을 씻어 엎음 같이 예루살렘을 씻어 버릴지라'(21:13) — 므낫세의 55년 극단적 우상숭배, 성전에 제단·아들 불사름·무죄한 피, 멸망 확정의 선고, 그리고 아몬의 짧은 악정으로 닫히는 장.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/2KI/21/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 안 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/2KI/">역사서</a> · 열왕기하 · 21장</div>
+      <h1>열왕기하 21장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">2KI-021 · 역사서 · 히브리어</div>
+      <p class="essence">같은 측량줄로 사마리아를 쟀듯 예루살렘을 잰다 — 그릇을 씻어 엎는 손짓의 단호함. 55년을 통치한 므낫세의 극단적 우상숭배(21:3-9)가 선지자들을 통한 멸망 선고(21:10-15)로 이어지고, 무죄한 피로 가득 찬 예루살렘(21:16)을 지나 아몬의 짧은 악정(21:19-26)으로 닫히는 장.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 2KI-021</p>
+<p>book: 열왕기하</p>
+<p>book_en: 2 Kings</p>
+<p>chapter: 21</p>
+<p>bible_block: 역사서</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브(왕조 연대기)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 26</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [qav, mishqolet, damim, bamot, asherah, hinnom, ov, yidoni, chozeh]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["21:3 MT '바알을 위하여 제단을 쌓았다'는 LXX에서 복수형 표현으로 읽히며 우상의 다수성을 강조", "21:16 MT '무죄한 피'(dam naqi)를 LXX는 haima athoon으로 옮겨 동일 강조 유지"]</p>
+<p>ane_refs: ["몰록 불사름 — 헬레니즘 이전 가나안·페니키아 문화권에서 아이를 불에 드리는 의식의 고대 근동 배경(힌놈 골짜기 21:6)", "아세라 목상 — 가나안 풍요·모성의 여신, 목재 기둥 형태의 조각이 성전 안에 세워진 점(21:7)", "점술·신접자·박수 — 메소포타미아·이집트 왕실에서 국가 의사결정 보조로 쓰인 점복 관행(21:6)", "므낫세의 55년 통치 — 유다 왕 중 최장기 재위, 성경 자체가 길이를 명시(21:1)"]</p>
+<p>rabbinic_refs: ["탈무드 산헤드린 103b는 므낫세를 후세를 가질 수 없는 왕 중 하나로 열거하며 그 죄를 극단적으로 다룸", "역대하 33:12-13에서 므낫세가 포로 상태에서 회개하고 돌아오는 전통이 있으나 열왕기하 21장은 이 회개를 기록하지 않음 — 두 권의 다른 강조 관찰"]</p>
+<p>literary_devices: [qav_mishqolet_measuring_metaphor, vessel_wiped_inverted_simile, manasseh_ahab_comparison, inclusio_evil_father_son, prophetic_announcement_structure]</p>
+<p>repeated_words: ["악을 행하다(하라아 베에이네이 YHWH) — 3절·2절·9절·15절·16절·20절·22절에 거듭 등장", "여호와 앞에서 쫓아내신 이방 민족 — 2·3·9절 반복", "높은 곳(bamot) — 3절에 히스기야가 헐었으나 므낫세가 다시 지음"]</p>
+<p>cross_refs: ["왕하 17:13-14 (여호와께서 모든 선지자를 통하여 경고하셨으나 — 경고 모티프의 원형)", "왕하 18-20장 (히스기야의 개혁 — 므낫세가 원상복귀한 배경)", "왕하 23:26-27 (므낫세 죄로 인한 심판이 요시야 이후에도 취소되지 않음)", "왕하 24:3-4 (므낫세의 죄가 명시적으로 포로의 원인으로 귀결됨)", "미 6:16 (오므리의 율례·아합의 행위 — 같은 구조적 비교)", "렘 15:4 (므낫세로 인해 유다가 여러 나라에 흩어짐)", "대하 33:1-20 (므낫세의 회개와 귀환 — 열왕기하에 없는 전통)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-16</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>열왕기하 21장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 열왕기하 21장입니다. 스물여섯 절이지요. 20장 히스기야의 마지막 장면을 지나서 아들 므낫세의 왕위 계승으로 들어옵니다. 히스기야가 54년을 개혁한 뒤 열두 살 난 아들이 왕이 되어 55년을 통치하는데, 본문은 그 55년을 극단적 우상숭배의 기록으로 채웁니다. 13절에서 측량줄과 다림추와 그릇을 씻어 엎는 세 이미지가 멸망 선고로 들어오고, 26절까지는 아들 아몬의 짧은 악정으로 닫힙니다. 오늘도 본문이 보여 주는 것만 따라가 봅시다. 낭독하겠습니다.</p>
+<p>(본문 낭독 21:1~26, 약 4분)</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대는 예루살렘, 그 중심은 성전이에요. 1절에서 므낫세가 열두 살에 즉위하고, 무대가 곧바로 성전 안으로 들어가요 — 3절에서 바알 제단을 다시 쌓고, 7절에서 아세라 목상을 성전 안에 세워요. 히스기야가 헐었던 것들이 하나씩 다시 들어서는 무대예요. 그리고 6절에서 무대가 한 번 더 나뉩니다 — 힌놈 골짜기가 등장해요. 아들을 불 가운데 지나가게 하는 장소예요. 성전 안과 성전 밖 힌놈 골짜기 — 두 무대가 교차해요. 마지막에 18절에서 므낫세가 자기 궁전의 동산, 웃사의 동산에 묻히고, 19절부터 아들 아몬이 왕이 되어 다시 예루살렘이 무대가 됩니다.</p>
+<p><strong>P05 김미영</strong>: 소품을 목록으로 잡아 볼게요. 3절에 바알 제단과 아세라 목상이 있고, 4절과 5절에 여호와의 전 두 마당에 세운 하늘의 만상을 위한 제단들이 있어요. 6절에는 불 — 아들을 지나가게 한 불. 7절에는 성전 안의 아세라 목상 — 8절에서 이 성전이 이스라엘에게 영영히 내 이름을 두리라고 하신 그 집이라고 본문이 밝혀요. 그리고 16절에서 피가 소품으로 들어와요 — 무죄한 피, 예루살렘의 이 끝에서 저 끝까지를 가득 채울 만큼. 소품들의 앞쪽은 제단과 목상과 불이고, 뒤쪽은 피예요. 쌓음에서 피로 기우는 소품의 흐름이 있어요.</p>
+<p><strong>P07 오지혜</strong>: 소재를 나열하면 — 바알, 아세라, 만상, 힌놈, 불, 점술, 신접, 박수, 측량줄, 다림추, 그릇, 피, 동산, 아몬. 앞줄은 숭배의 소재고, 중간에 선지자들이 들어오고(10절), 뒤에 심판의 도구(측량줄·추·그릇)가 왔다가, 마지막에 피와 동산과 아몬으로 닫혀요. 소재가 쌓이다가 선고로 꺾이는 지점이 10~15절이에요.</p>
+<p><strong>P02 이진우</strong>: 구조 소재를 짚을게요. 이 장은 2절에서 "므낫세가 여호와 보시기에 악을 행하되"로 열어요 — 같은 구문이 20절에서 "아몬도 여호와 보시기에 악을 행하되"로 되풀이돼요. 아버지의 개막 문구와 아들의 개막 문구가 같아요. 그리고 1절의 므낫세 즉위와 17절의 므낫세 묘지 기사 사이가 한 단위, 19절의 아몬 즉위와 26절의 아몬 묘지 기사 사이가 또 한 단위예요. 즉위-행적-묘지의 왕조 연대기 패턴이 두 번 들어있어요. 단, 으낫세 단위가 더 길고 무거워요.</p>
+<p><strong>P01 한나래</strong>: 저는 3절과 7절의 반복에 멈췄어요. 3절에서 므낫세가 "그의 아버지 히스기야가 헐어 버린 산당을 다시 세우며"라고 해요. 헐어 버렸다는 단어와 다시 세웠다는 단어가 같은 문장 안에서 대립해요. 그리고 7절에서 성전에 아세라 목상을 세웠다고 하면서 본문이 괄호처럼 끼워요 — "여호와께서 다윗과 솔로몬에게 이르시기를 내가 이스라엘 모든 지파 중에서 택한 성 예루살렘과 이 성전에 내 이름을 영영히 두리라." 세움과 약속이 같은 절 안에서 충돌해요.</p>
+<p><strong>P11 나경아</strong>: 원어 몇 개요. <em>qav</em>(קָו) — 측량줄, 13절. <em>mishqolet</em>(מִשְׁקֶלֶת) — 다림추·추, 13절. <em>damim</em>(דָּמִים) — 피(복수형), 16절 — 단수가 아닌 복수로 쓰인 '피들'이에요. 히브리어 복수 damim은 유혈·살해를 강조하는 데 자주 쓰는 형태예요. <em>bamot</em>(בָּמוֹת) — 산당·높은 곳, 3절. <em>asherah</em>(אֲשֵׁרָה) — 아세라 목상, 3·7절. 배경 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 성전 안과 힌놈 골짜기의 두 무대, 제단·목상·불·피의 소품 흐름, 즉위-행적-묘지 패턴의 두 번 반복, 헐어 버린 것과 다시 세운 것의 충돌, 이름을 두신 성전과 우상을 세운 성전의 충돌. 그대로 두지요.</p>
+<p><strong>(침묵 약 20초)</strong> 🌿</p>
+<p>---</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 2KI-021</p>
+<p>book: 열왕기하</p>
+<p>chapter: 21</p>
+<p>date: 2026-06-16</p>
+<p>---</p>
+
+<h2>열왕기하 21장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대: 예루살렘, 성전 안(제단·목상 배치, 4~7절), 힌놈 골짜기(아들 불 지나가게 함, 6절), 웃사의 동산(므낫세 묘지, 18절) — 성전·골짜기·동산 세 공간.</li>
+<li>무대의 충돌: 이름을 두신 성전(8절 인용)에 아세라 목상이 세워짐(7절) — 약속과 침범이 같은 공간.</li>
+<li>소품: 바알 제단(3절), 아세라 목상(3·7절), 하늘 만상 제단들(두 마당, 4~5절), 불(힌놈, 6절), 신접자·박수의 점술 도구(6절), 측량줄 qav(13절), 다림추 mishqolet(13절), 씻어 엎는 그릇(13절), 무죄한 피 damim(16절).</li>
+<li>소품의 기울기: 앞쪽은 숭배·제의 소품(제단·목상·불), 뒤쪽은 심판의 도구(줄·추·그릇)와 결과(피).</li>
+<li>형식 소재: 즉위-행적-묘지 왕조 연대기 패턴이 므낫세(1~18절)와 아몬(19~26절)에 각각 적용 — 아몬 단위가 압축됨.</li>
+<li>반복 어휘: "악을 행하다(하라아 베에이네이 YHWH)" — 므낫세(2·9절)와 아몬(20절) 모두에 적용. "여호와 앞에서 쫓아내신 이방 민족" — 2·3·9절 반복.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기였는지요.</p>
+<p><strong>P01 한나래</strong>: 무거웠어요. 특히 6절에서 아들을 불 가운데 지나가게 하는 장면은 묘사 자체가 짧은데 공기가 무거워졌어요. 본문이 길게 설명하지 않아요. 그냥 "그의 아들을 불 가운데로 지나가게 하며"라고 적어요. 그 짧음이 오히려 더 가라앉는 느낌이었어요. 그리고 11~15절의 선지자 신탁이 들어오면서 공기가 달라졌어요 — 무거운 열거가 선고의 단호함으로 바뀌는 지점이었어요.</p>
+<p><strong>P07 오지혜</strong>: 11~12절에서 처음으로 선지자들의 목소리가 들어오는데, 그 앞까지는 묘사만 있었어요. 므낫세가 무엇을 했다, 또 무엇을 했다. 그런데 12절에서 갑자기 무게중심이 바뀌어요 — "여호와 이르시되 내가 예루살렘에 재앙을 내리리니 듣는 자는 두 귀가 울리리라." 열거에서 선고로 전환되는 그 절이 이 장의 경첩이었어요.</p>
+<p><strong>P04 최현국</strong>: 명암으로 보면 이 장은 거의 전부 어두운데, 단 한 번 밝은 구절이 7~8절이에요 — 이름을 두신다는 약속의 인용이에요. 그 약속이 어둠 한가운데 끼워져서 더 선명하게 대비돼요. 약속이 빛처럼 삽입되는데, 그 빛이 결국 배경으로 밀리고 어둠이 장을 가득 채우는 구조예요.</p>
+<p><strong>P02 이진우</strong>: 어조로는 2~9절이 행위 열거, 10~15절이 신탁 선포, 16절이 결과 보고, 17~18절이 마무리 기사, 19~26절이 아몬의 짧은 반복이에요. 열거 → 선포 → 결과의 속도가 점점 줄어드는데, 아몬 단위가 특히 압축돼요. 2절에서 26절까지 므낫세가 훨씬 더 길고 무거운데, 아몬은 8절 분량이에요. 무게를 균등하게 나누지 않고 아버지 쪽에 집중해요.</p>
+<p><strong>P05 김미영</strong>: 감각으로는 16절의 피가 가장 오래 남았어요. "무죄한 피를 심히 많이 흘려 예루살렘 이 끝에서 저 끝까지 가득하게 하였더라." 피가 도시 전체를 채울 만큼이라는 묘사 — 양을 숫자로 적지 않고 공간으로 적어요. 이 끝에서 저 끝까지. 그 공간의 이미지가 무거웠어요.</p>
+<p><strong>P11 나경아</strong>: 분위기 쪽으로 하나만요. 13절의 세 이미지가 연속으로 들어오는 방식이에요 — 측량줄, 다림추, 씻어 엎는 그릇. 세 개의 비유가 한 절 안에 쌓이는 속도가 빠르고 단호해요. 한 이미지로 충분히 선고할 수 있는데 세 개를 쓴다는 게, 그 단호함을 배로 누르는 느낌이에요. 형태 관찰로만요.</p>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<p><strong>성령일 선교사</strong>: 시작과 끝을 함께 보겠습니다.</p>
+<p><strong>P02 이진우</strong>: 1~2절 시작: "므낫세가 왕이 될 때에 나이가 열두 살이라 예루살렘에서 오십오 년을 다스리니라… 므낫세가 여호와 보시기에 악을 행하되 여호와께서 이스라엘 자손 앞에서 쫓아내신 이방의 가증한 일을 따라서." 25~26절 끝: "아몬의 나머지 행적과 그가 행한 일들은 유다 왕 역대지략에 기록되지 아니하였느냐 그를 웃사의 동산에서 그의 묘실에 장사하고 그의 아들 요시야가 대신하여 왕이 되니라." 열두 살의 즉위로 열려 요시야의 즉위로 닫혀요. 55년의 므낫세, 2년의 아몬 — 57년을 지나 다음 왕이 열려요.</p>
+<p><strong>P01 한나래</strong>: 시작의 단어와 끝의 단어를 대비해 볼게요. 시작에는 므낫세가 "열두 살"로 등장하고, 끝에는 요시야가 "대신하여 왕이 되니라"로 닫혀요. 어린 왕의 시작과 다음 왕의 시작으로 프레임이 짜여 있어요. 므낫세와 아몬 두 왕의 이야기가 그 사이에 들어가 있지요. 2절의 "악을 행하되"와 20절의 "악을 행하되"가 수미상관처럼 묶여요 — 아버지와 아들이 같은 문장으로 열리는 거예요.</p>
+<p><strong>P04 최현국</strong>: 무대로 보면 시작은 즉위(예루살렘)로 열고 끝은 매장(웃사의 동산)과 계승(요시야 즉위)으로 닫혀요. 두 왕이 다 동산에 묻혀요 — 므낫세는 18절에서 웃사의 동산에, 아몬은 26절에서 웃사의 동산에. 같은 묘지가 두 번 반복돼요. 악정이 같은 땅에 묻히는 모양이에요.</p>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<p><strong>성령일 선교사</strong>: 등장하는 인물과 사상을 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 인물 목록이요. 므낫세 — 히스기야의 아들, 12살 즉위, 55년 재위, 아버지가 헐어 버린 것들을 다시 세운 왕, 16절에서 무죄한 피를 가득 채운 왕. 아몬 — 므낫세의 아들, 22세 즉위, 2년 재위, 아버지의 길을 그대로 걸은 왕, 신하들에게 반란당해 죽은 왕(23절). 선지자들 — 10~15절에서 집합 명사로만 등장해요, 이름이 없어요. 여호와의 종 선지자들이 경고를 전하지만 본문은 누가 누구에게 말했는지 특정하지 않아요. 그리고 가나안 족속 — 2절과 9절에서 이스라엘보다 더 악하게 행했다고 비교 기준으로 등장해요. 므낫세의 왕실 신하들 — 23절에서 아몬을 치고 24절에서 신하들을 치는 이름 없는 집단이에요.</p>
+<p><strong>P07 오지혜</strong>: 인물 구조를 봐요. 이 장에서 여호와는 직접 말씀하시지 않아요 — 선지자들을 통해서만 들려요(10절 "여호와의 종 선지자들을 통하여 이르시기를"). 직접 발화 없이 중재자를 통한 선포예요. 그리고 므낫세의 가장 긴 피해자는 16절에서 "무죄한 피"로만 등장해요 — 이름도 없고 숫자도 없어요. 공간 표현("이 끝에서 저 끝까지")만 있어요. 피해를 입은 사람들이 피로만 남아 있어요.</p>
+<p><strong>P01 한나래</strong>: 사상 쪽으로요. 9절에 한 문장이 있어요 — "므낫세가 유혹하여 그들이 여호와께서 이스라엘 자손 앞에서 멸하신 이방 민족보다 더 악하게 행하게 하였더라." 비교 기준이 가나안 족속이에요. 그런데 이방 민족보다 더 악하게 행했다는 표현이 강해요. 기준이 자기 조상의 율법이 아니라 쫓아내신 이방 민족이에요. 그 비교의 선택 자체가 무엇을 말하는지 본문이 닫지는 않지만, 기준이 낮아진 게 아니라 더 낮아진 거라는 구조가 보여요.</p>
+<p><strong>P02 이진우</strong>: 사상의 구조적 핵심은 13절의 세 비유예요. "내가 예루살렘을 사마리아를 잰 줄로 재고 아합의 집을 다림보던 추로 달리리니." 사마리아와 아합 — 북왕국 이스라엘 멸망의 기준이에요. 그것과 똑같은 기준으로 예루살렘을 잰다는 거예요. 북왕국에 적용된 심판의 측량이 이제 남왕국에도 적용돼요. 같은 도구, 같은 행위. 그리고 "그릇을 씻어 엎음 같이" — 씻어서 뒤집어 놓는 동작. 깨끗이 비워내는 이미지예요. 형태 관찰로만 두고요.</p>
+<p><strong>P05 김미영</strong>: 사물로는 아세라 목상이에요. 7절에서 성전 안에 세워지는데, 본문이 괄호처럼 끼워 설명해요 — 솔로몬이 지은 이 집, 이스라엘 모든 지파 중에서 내가 택한 예루살렘, 여기에 내 이름을 영영히 두리라 하신 그 집이라고요. 이름을 두신 집에 다른 이름의 것이 세워진 상황을 본문이 길게 설명하지 않고 병치해요. 설명 없이 놓아두는 방식이 더 무거워요.</p>
+<p><strong>P11 나경아</strong>: 원어 보충이요. 6절 <em>ov</em>(אוֹב) — 신접자, 죽은 자의 혼과 교통한다고 여기는 점술사예요. <em>yidoni</em>(יִדְּעֹנִי) — 박수, 강령술사 계열이에요. 10절 <em>chozeh</em>(חֹזֶה)가 관련 어근이고 여기서는 "여호와의 종 선지자"라는 의미로 선지자 집합을 가리켜요. 배경만요.</p>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<p><strong>성령일 선교사</strong>: 장면을 컷으로 나눠 보시지요.</p>
+<p><strong>P04 최현국</strong>: 다섯 컷입니다.</p>
+<ul>
+<li><strong>컷 1 (1~2절)</strong>: 므낫세 즉위. 열두 살, 55년 재위, 악을 행하되.</li>
+<li><strong>컷 2 (3~9절)</strong>: 므낫세의 우상숭배 목록. 산당 재건(3), 바알·아세라(3), 만상 제단(4~5), 불·점술·신접·박수(6), 성전 안 아세라(7~8), 이방 민족보다 더 악하게(9).</li>
+<li><strong>컷 3 (10~15절)</strong>: 선지자들을 통한 심판 신탁. 두 귀가 울릴 재앙(12), 사마리아의 줄·아합의 추·그릇 엎음(13), 이집트에서부터의 죄(15).</li>
+<li><strong>컷 4 (16~18절)</strong>: 므낫세의 마지막. 무죄한 피가 예루살렘을 가득 채움(16), 왕의 묘실 기사(17~18).</li>
+<li><strong>컷 5 (19~26절)</strong>: 아몬의 짧은 악정. 22세 즉위 2년 재위(19~20), 아버지의 길(21~22), 신하들의 반란과 죽음(23~24), 아몬을 웃사의 동산에 장사, 요시야 즉위(25~26).</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 2와 3 사이에 경첩이 있어요. 컷 2는 므낫세가 주어로 무엇을 했는지 열거예요 — 동사가 계속 "세우고·만들고·지나가게 하고·행하고·두고·미혹하여"예요. 그런데 컷 3에서 주어가 바뀌어요 — "여호와께서… 말씀하시니라(10절)." 주어 교체가 장의 전환점이에요. 므낫세의 행위 열거가 여호와의 발화로 끊기는 지점이 경첩이에요.</p>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<p><strong>P11 나경아</strong>: 원어 카드를 정리해요.</p>
+<ul>
+<li><em>bamot</em>(בָּמוֹת) — 산당·높은 곳(3절). 히스기야가 헐었으나(왕하 18:4) 므낫세가 다시 세움 — 헐다와 세우다의 반복 관찰.</li>
+<li><em>asherah</em>(אֲשֵׁרָה) — 아세라 목상(3·7절). 가나안 여신 아세라와 연관된 나무 기둥 형태의 조각물. 성전 안에 세워짐(7절).</li>
+<li><em>qav</em>(קָו) — 측량줄(13절). 건설·토지 측량에 쓰이는 도구. 여기서는 심판의 기준으로 전용됨 — 같은 도구, 다른 용도.</li>
+<li><em>mishqolet</em>(מִשְׁקֶלֶת) — 다림추(13절). 수직을 확인하는 도구. 왕하 21:13에서 사마리아에 쓴 것과 같은 추를 예루살렘에 사용하는 비유.</li>
+<li><em>damim</em>(דָּמִים) — 피(복수형, 16절). 히브리어 dam(피)의 복수. 유혈·살해를 강조할 때 복수형을 씀.</li>
+<li><em>ov</em>(אוֹב) — 신접자(6절). 죽은 자와 교통한다는 영매술사 계열. 레위기 19:31에서 금지된 항목.</li>
+<li><em>yidoni</em>(יִדְּעֹנִי) — 박수·강령술사(6절). 신명기 18:11에서 금지된 행위 목록에 포함됨.</li>
+<li><em>hinnom</em>(הִנֹּם) — 힌놈(6절). 예루살렘 남서쪽 골짜기. 불 제의와 연관된 지명 — 후에 게헤나(gehenna)와 연결되는 장소.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>측량 삼중 비유(13절): qav(줄)·mishqolet(추)·그릇 엎음 — 세 이미지가 한 절 안에서 심판의 확실성을 쌓는다.</li>
+<li>아합·사마리아 비교: 북왕국 멸망의 기준(아합·오므리·사마리아)을 남왕국 심판의 기준으로 전용 — 전례 참조 구조.</li>
+<li>아버지-아들 평행(inclusio): 2절 "므낫세가 악을 행하되" — 20절 "아몬도 악을 행하되" — 동일 문구 반복으로 두 왕을 묶음.</li>
+<li>선지자 신탁 구조(10~15절): "여호와께서 … 이르시되(10절) → 재앙 선언(12절) → 비유(13절) → 이유(14~15절)" — 예언서 신탁 양식.</li>
+<li>히스기야-므낫세 역전: 히스기야가 헐어 버린 것을 므낫세가 다시 세움 — 개혁의 역전 구조.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>힌놈 골짜기 불 제의 — 아이를 불에 지나가게 하는 의식은 몰록 숭배와 연결되며, 고대 근동 가나안·페니키아 문화권에 기록됨. 신명기 18:10에서 명시적으로 금지.</li>
+<li>아세라 — 우가릿 문서에서 최고신 엘의 배우자로 등장하는 여신. 목재 기둥 형태의 조각물로 높은 곳·성소에 설치됨.</li>
+<li>ov와 yidoni — 메소포타미아·이집트 왕실에서 공식 점복사가 국가 의사결정에 관여한 배경. 이스라엘 율법(레위기·신명기)은 명시적으로 금지.</li>
+<li>므낫세 55년 통치 — 유다 왕 중 최장기. 역대하 33:11-17에서 앗수르 포로 후 회개하고 돌아오는 기사가 있으나 열왕기하 21장은 이를 기록하지 않음 — 두 권의 강조 차이.</li>
+<li>랍비 전통 — 탈무드 산헤드린 103b는 므낫세를 내세를 얻지 못하는 왕으로 분류. 그러나 열왕기하 본문 자체는 이 판단을 내리지 않음.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>왕하 21:13 ↔ 왕하 17:13-14 ("여호와께서 모든 선지자를 통하여 경고하셨으나" — 경고 모티프의 원형)</li>
+<li>왕하 21:3 ↔ 왕하 18:4 (히스기야가 헐어 버린 산당 — 므낫세가 다시 세움)</li>
+<li>왕하 21:13 ↔ 미 6:16 (오므리의 율례·아합의 행위 — 같은 비교 구조)</li>
+<li>왕하 21:16 ↔ 렘 15:4 (므낫세로 인해 유다가 여러 나라에 흩어짐 — 예레미야의 반향)</li>
+<li>왕하 21:10-15 ↔ 왕하 23:26-27 (요시야의 개혁에도 므낫세의 죄로 인한 심판은 취소되지 않음)</li>
+<li>왕하 21:1-18 ↔ 대하 33:1-20 (역대하의 므낫세 회개 전통 — 열왕기하에 없음)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P04 최현국</strong>: 열두 살 소년이 왕위에 앉아요. 자막 — 55년. 화면이 성전으로 들어가요. 아버지가 헐어 버린 것들이 다시 세워져요 — 산당, 바알 제단, 아세라 목상. 두 마당에 하늘 만상의 제단들이 줄지어 세워져요. 화면이 힌놈 골짜기로 옮겨가요. 불. 아이가 그 사이를 지나가요. 화면이 예루살렘 거리로 옮겨가요. 죽은 자와 교통하는 자들이 왕궁을 오가요. 화면이 다시 성전 안으로 들어가요 — 아세라 목상이 세워진 안마당. 자막 — 이 집에 내 이름을 두리라 하셨더니. 그 자막 위에 목상이 서 있어요. 선지자들이 거리에서 입을 열어요 — 두 귀가 울릴 재앙. 줄과 추와 그릇 엎는 손짓이 화면에 겹쳐져요. 화면이 예루살렘 전체를 조감해요 — 피. 이 끝에서 저 끝까지. 므낫세의 장례. 웃사의 동산. 화면이 넘어가요 — 아몬. 2년. 아버지의 길. 신하들의 칼. 또 다른 장례. 같은 동산. 자막 — 요시야가 대신하여 왕이 되니라. 페이드아웃.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<p><strong>P01 한나래</strong>: "같은 줄로 재다 — 55년의 므낫세와 단호한 측량"</p>
+<p><strong>P02 이진우</strong>: "사마리아를 잰 줄로 예루살렘을 재다 — 경고의 반복과 심판의 전가"</p>
+<p><strong>P04 최현국</strong>: "헐어 버린 것을 다시 세우다 — 개혁의 역전과 확정된 선고"</p>
+<p><strong>P05 김미영</strong>: "그릇을 씻어 엎음 같이 — 피가 이 끝에서 저 끝까지"</p>
+<p><strong>P07 오지혜</strong>: "이름을 두신 집에 목상이 서다 — 약속과 침범의 병치"</p>
+<p><strong>P11 나경아</strong>: "<em>qav · mishqolet</em> — 북왕국의 측량이 남왕국에 전용되다"</p>
+<p>부제 제안: "55년을 통치한 므낫세(21:1)가 성전 안에 아세라 목상을 세우고(21:7) 힌놈에서 아들을 불에 지나가게 하며(21:6) 무죄한 피로 예루살렘을 가득 채울 때(21:16), '사마리아를 잰 줄과 아합의 집을 다림보던 추'(21:13)로 이제 예루살렘을 잰다는 선고가 들어오고 — 아몬의 2년 악정(21:19-26)이 그 뒤를 잇는다"</p>
+<p>---</p>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (qav·mishqolet·damim·bamot·asherah·ov·yidoni·hinnom 등 8종 이상 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (측량 삼중 비유·아합-사마리아 전례 비교·아버지-아들 평행 구조·ANE 힌놈·아세라·점술 배경)</li>
+<li>[x] 미해결 질문 1개 이상 (6건, s8 섹션)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>21:6 아들 불사름을 "타락·범죄"의 도덕 교훈으로 닫지 않고, 힌놈 골짜기라는 장소와 행위 묘사 자체만 관찰로 둠. ANE 배경만 추가.</li>
+<li>21:13 측량 이미지를 심판의 교훈으로 끌고 가지 않고, qav·mishqolet 원어와 북왕국 전례 비교의 형태 관찰로만 보존.</li>
+<li>21:16 무죄한 피를 애도·정죄로 끝내지 않고, 공간 표현("이 끝에서 저 끝까지")과 damim 복수형 관찰로만 기록.</li>
+<li>역대하 33장 므낗세 회개 전통과의 비교는 두 권의 강조 차이 관찰로만 두고 어느 쪽이 옳은지 결론 유보.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 2KI-021</p>
+<p>book: 열왕기하</p>
+<p>chapter: 21</p>
+<p>date: 2026-06-16</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 선지자들이 거리에서 입을 열어 "두 귀가 울릴 재앙"을 선포하던 그 시간 속으로, 그리고 이름을 두신 집에 목상이 서 있던 그 공간 곁으로 들어가, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 오늘 이름을 두신 집에 다른 것이 세워지는 것을 보았습니다. 본문은 그 충돌을 길게 설명하지 않고 그냥 병치했어요. 저도 이름이 있어야 할 곳에 다른 것이 자리를 잡고 있는 게 없는지 — 그것을 들고 잠시 머물겠습니다. 무죄한 피들을 기억해 주세요. 이름이 없이 피로만 남은 사람들을.</p>
+<p><em>— 그 순간 떠오른 것을 각자 마음에만 둡니다.</em></p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>그래서 이 본문은 어디서 어디로 움직이는지요? 눈에 보이는 일 아래에서 무엇이 움직이고 있는지요? 이 본문이 품은 긴장은 무엇인지요?</strong></p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 이 장은 <strong>개혁에서 역전으로, 경고에서 확정으로</strong> 움직여요. 18~20장 히스기야의 개혁 다음에 21장이 오는데, 같은 것들이 다시 돌아와요. 헐어 버린 것들이 다시 세워져요. 그리고 권의 큰 흐름에서 보면 21장의 멸망 선고(12~15절)는 23:26-27에서 요시야의 개혁에도 취소되지 않는 것으로 확정돼요. 이 장이 권의 방향을 한쪽으로 잠그는 경첩 역할을 해요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. 13절의 qav와 mishqolet — 이 도구들은 건설에 쓰는 거예요. 집을 바로 세우려고 쓰는 줄과 추인데, 여기서는 심판의 기준으로 쓰여요. <strong>세우는 도구가 허무는 기준으로 전용되는</strong> 그 전도(轉倒)가 이 장의 수면 아래를 움직이는 것 같아요. 형태 관찰로만요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 16절의 무죄한 피가 오래 남아요. 55년의 통치가 제단과 목상과 점술과 불로 요약되는데, 그 마지막에 피가 있어요 — 이름도 없고 숫자도 없이 공간으로만 적힌 피들. <strong>쌓인 것들의 끝에 남은 것이 이름 없는 피</strong>라는 점이 수면 아래의 무게예요.</p>
+<p><strong>P01 한나래</strong>: 긴장이에요. 7~8절의 약속이 어둠 한가운데 끼워져 있어요. 이름을 두신다는 약속과 목상이 세워진 현실이 같은 공간 안에 있어요. <strong>약속이 현실에 지워지지 않고 남아 있다는 것, 그런데 현실도 지워지지 않고 병치된다는 것</strong> — 그 사이의 긴장을 본문이 설명하지 않고 그냥 둬요.</p>
+<p><strong>P04 최현국</strong>: 운동을 한 화면으로 보면, <strong>개혁의 결과가 단 한 세대 만에 원점으로 돌아가는 속도</strong>예요. 히스기야가 평생을 들인 것이 아들 한 명에 의해 뒤집혀요. 그리고 그 결과가 권의 끝까지 취소되지 않아요(23:26). 이 장은 권의 하강 가속도에서 가장 무거운 컷이에요.</p>
+<p><strong>P05 김미영</strong>: 이 불이 우리 안에서 타오르느냐 물으시니 — 저는 9절이 그래요. "이방 민족보다 더 악하게 행하게 하였더라." 기준이 자기 율법이 아니라 쫓겨난 이방 민족이 됐을 때, 비교 대상이 이미 그 아래로 내려가 있어요. 내 기준이 어디서 비교되고 있는지 — 질문인 채로 쥐고 갑니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>헐어 버린 것이 다시 세워지는 속도, 이름을 두신 집에 다른 것이 들어선 병치, 세우는 도구가 심판의 기준으로 전용되는 전도, 그리고 이름도 없이 피로만 남은 사람들</strong> — 그것을 손에 쥐고 22장으로 갑니다. 잊혀졌던 두루마리 한 권이 나타납니다.</p>
+<p>---</p>
+
+<h2>열왕기하 21장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 21:7 — 이름을 두신 집에 아세라 목상이 세워졌을 때 본문은 왜 설명 없이 병치하는가?</h2>
+<ul><li>본문은 솔로몬의 성전에 대한 약속을 길게 인용(7~8절)하고 바로 이어 므낫세가 그 안에 아세라 목상을 세웠다고 적는다. 약속과 침범을 해설 없이 나란히 둔다. 그 병치의 의도를 본문은 닫지 않는다.</li></ul>
+
+<h2>Q2. 21:13 — 측량줄·다림추·그릇 세 이미지가 한 절에 연속으로 들어오는 이유는 무엇인가?</h2>
+<ul><li>하나의 비유로 충분히 심판을 선언할 수 있는데 세 이미지를 쌓는다. 그 중첩이 무엇을 더하는지 — 확실성인지 무게인지 형식인지 — 본문은 설명하지 않는다. 미해결로 두고 이월.</li></ul>
+
+<h2>Q3. 21:15 — "이집트에서 나온 날부터 오늘까지" 범위의 의미는 무엇인가?</h2>
+<ul><li>선고의 이유를 "조상들의 날부터 오늘까지" 범위로 설정한다. 므낫세 한 사람의 죄인지, 누적된 역사의 죄인지 — 본문이 그 구분을 닫지 않는다.</li></ul>
+
+<h2>Q4. 21:16 — 무죄한 피를 본문이 이름 없이 공간 표현으로만 적은 이유는 무엇인가?</h2>
+<ul><li>"이 끝에서 저 끝까지"라는 공간 묘사만 있고, 누가 왜 어떻게 죽었는지 적지 않는다. 이름도 숫자도 없이 피만 있다. 그 침묵을 본문이 의도한 것인지 관찰로는 닫을 수 없다.</li></ul>
+
+<h2>Q5. 21:23-24 — 아몬을 죽인 신하들이 곧 다른 신하들에게 죽임을 당하는 반란의 역반란을 본문은 왜 짧게 적는가?</h2>
+<ul><li>반란(23절)과 역반란(24절)이 두 절 안에 압축된다. 배경도 이유도 적지 않는다. 그 압축이 무엇을 말하는지 — 본문은 닫지 않는다.</li></ul>
+
+<h2>Q6. 21:10-15와 대하 33:12-13 — 열왕기하의 심판 선고와 역대하의 회개·귀환이 같은 므낫세를 다르게 그리는 이유는 무엇인가?</h2>
+<ul><li>열왕기하 21장은 므낫세의 회개를 기록하지 않는다. 역대하 33장은 포로 후 회개와 귀환을 기록한다. 두 권이 같은 왕을 다르게 조명한다 — 어느 쪽이 더 완전한지 관찰로는 결론 낼 수 없다. 이월.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">"내가 예루살렘을 사마리아를 잰 줄과 아합의 집을 다림 보던 추로 잴 것이며 또 사람이 그릇을 씻어 엎음 같이 예루살렘을 씻어 버릴지라"(21:13) — 같은 측량줄로 재는 단호함.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: 2KI-021</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-16</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 열왕기하 21장은 유다 왕 중 최장기(55년)를 통치한 므낫세가 "여호와 보시기에 악을 행하되"(21:2) 성전 안에 아세라 목상을 세우고(21:7) 힌놈 골짜기에서 아들을 불에 지나가게 하며(21:6) 무죄한 피로 예루살렘을 가득 채웠을 때(21:16), "사마리아를 잰 줄과 아합의 집을 다림보던 추"(21:13)로 이제 예루살렘을 잰다는 선고가 들어오고 — 아몬의 2년 악정(21:19-26)이 그 뒤를 잇는 장이다.</p>
+<p><strong>한 문단</strong>: 열두 살의 므낫세가 왕위에 앉는다. 자막 — 55년. 아버지 히스기야가 헐어 버린 산당이 다시 세워지고, 성전 두 마당에 하늘 만상의 제단들이 줄지어 들어서며, 아세라 목상이 성전 안에 놓인다. 힌놈 골짜기에서 불이 피워진다. 신접자와 박수가 왕궁을 오간다. 선지자들이 거리에 나서 "두 귀가 울릴 재앙"을 선포한다 — 사마리아를 잰 줄로 예루살렘을 재고, 아합의 집에 쓴 추로 예루살렘을 달리며, 그릇을 씻어 엎듯 씻어 버리겠다고. 55년이 지나 므낫세가 웃사의 동산에 묻힌다. 아들 아몬이 왕이 된다. 22세, 2년. 아버지의 길. 신하들의 반란. 아몬도 웃사의 동산에 묻힌다. 요시야가 대신하여 왕이 된다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>성전·힌놈·웃사의 동산 세 공간. 제단·목상·불·점술 도구(쌓임)와 측량줄·추·그릇(선고) 및 피(결과)의 소품 흐름.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>열거(2~9절)가 선포로 꺾이는 경첩(10절). 약속의 빛이 어둠 속에 끼워짐(7~8절). 무죄한 피의 공간 이미지(16절).</td></tr>
+<tr><td>3 시작과 끝</td><td>열두 살 즉위(1절)로 열려 요시야 즉위(26절)로 닫힘. 두 왕이 같은 동산에 묻힘. "악을 행하되" 수미상관.</td></tr>
+<tr><td>4 등장인물·사상</td><td>므낫세(주도자), 이름 없는 선지자들(경고), 이름 없는 피해자들(피), 아몬(반복자). 여호와는 중재자를 통해서만 발화.</td></tr>
+<tr><td>5 장면 컷</td><td>즉위(1~2)/우상숭배 목록(3~9)/심판 신탁(10~15)/므낫세 마무리(16~18)/아몬 단위(19~26).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>qav·mishqolet·damim 원어. 세우는 도구가 심판 기준으로 전용(13절). 아버지-아들 평행 문구. 히스기야-므낫세 역전.</td></tr>
+<tr><td>7 동영상</td><td>쌓임의 열거 → 주어 교체(10절 여호와) → 측량 삼중 선고 → 피 가득 → 장례 두 번 → 요시야.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"같은 줄로 재다 — 55년의 므낫세와 단호한 측량"</td></tr>
+<tr><td>9 기도·내면</td><td>이름을 두신 집에 다른 것이 들어선 병치. 이름 없이 피로만 남은 사람들.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 헐어 버린 것이 다시 세워지는 속도</strong>: 히스기야가 54년을 들여 헐어 버린 것들이 아들 므낫세의 첫 행위로 돌아온다(3절). 개혁은 제도이기 전에 사람의 방향인데, 방향이 바뀐 사람 한 명이 세대를 넘는다는 것을 본문은 기록의 형태로 보여 준다. "헐어 버린"과 "다시 세우며"가 한 절 안에서 충돌하는 언어의 밀도가 그 속도를 담는다.</p>
+<p>2. <strong>결 2 — 세우는 도구가 허무는 기준으로</strong>: 측량줄(qav)과 다림추(mishqolet)는 건축 도구다. 바르게 세우려는 목적으로 만들어진 것들이 13절에서 심판의 기준으로 전용된다. 북왕국 사마리아와 아합의 집에 이미 사용된 그 도구가 이제 남왕국을 향해 들어온다. 같은 도구, 같은 행위, 다른 대상 — 전례가 선고의 논리가 된다.</p>
+<p>3. <strong>결 3 — 이름 없이 피로만 남은 사람들</strong>: 16절은 무죄한 피가 "예루살렘 이 끝에서 저 끝까지 가득"하다고 적는다. 이름도 없고 숫자도 없다. 55년의 통치를 기록하는 왕조 연대기가 피해자를 공간으로만 기록한다. 그 공간의 침묵이 이 장의 가장 무거운 관찰이다. 애도와 정죄로 닫지 않고, 그 피들을 피들이라 부르는 본문의 복수형(damim)을 그대로 두는 것이 관찰의 자리다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>왕하 17:13-14 — 여호와께서 모든 선지자를 통하여 경고하셨으나 — 경고 모티프의 원형.</li>
+<li>왕하 18:4 — 히스기야가 헐어 버린 것들 — 므낫세가 역전한 출발점.</li>
+<li>왕하 23:26-27 — 요시야의 개혁에도 므낫세의 죄로 인한 심판은 취소되지 않음.</li>
+<li>왕하 24:3-4 — 므낫세의 죄가 명시적으로 바벨론 포로의 원인으로 귀결됨.</li>
+<li>렘 15:4 — 므낫세로 인해 유다가 여러 나라에 흩어짐.</li>
+<li>대하 33:1-20 — 므낫세의 회개와 귀환 — 열왕기하에 없는 전통, 두 권의 강조 차이.</li>
+<li>미 6:16 — 오므리의 율례·아합의 행위 — 동일 비교 구조.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 3절 — 헐어 버린 것을 다시 세우는 장면. 이미 헐었던 것이 다시 들어서는 그 가능성을 듣는다.</li>
+<li><strong>멈춤 1</strong>: 7~8절 — 이름을 두신 집에 목상이 서 있는 병치. 약속이 지워지지 않고, 현실도 지워지지 않는 그 사이에 선다.</li>
+<li><strong>멈춤 2</strong>: 13절 — 세우는 도구가 측량의 기준으로. 기준이 어디서 오는지를 묻는다.</li>
+<li><strong>끝</strong>: 16절 — 이름 없이 피로만 남은 사람들. 기록되지 않은 이름들을 들고 머문다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 즉위(1~2)/우상숭배 목록(3~9)/심판 신탁(10~15)/마무리(16~18)/아몬(19~26) 다섯 컷 완결</li>
+<li>[x] qav·mishqolet·damim 원어 관찰과 문학 구조(측량 삼중 비유·아버지-아들 평행) 기록</li>
+<li>[x] ANE 배경(힌놈·아세라·점술 금지) 사실 기록</li>
+<li>[x] 히스기야-므낫세 역전 구조와 사마리아-예루살렘 전례 비교 관찰</li>
+<li>[x] 미해결 질문 6건 보존</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>열왕기하의 spine은 "오래 참으신 경고 끝에 말씀대로 심판하시되, 포로의 끝에서도 다윗 집의 불씨를 보존하신다"이며, destination은 25:27~30 여호야긴의 석방이다. 권의 heart는 "여호와께서 모든 선지자를 통하여 경고하셨으나"(17:13~14)이다. 21장은 18~23장 히스기야·므낫세·요시야 개혁의 구간에서 하강의 중심에 놓인다. 히스기야가 18~20장에서 개혁의 봉우리를 이루었다면, 21장은 그 봉우리에서 급하강하는 단면이다. 12~15절의 심판 신탁은 권의 나머지를 향해 문을 잠그는 기능을 한다 — 23:26에서 요시야의 개혁에도 불구하고 심판이 취소되지 않는다고 확인될 때 그 잠금의 출처가 21장이다. 구속사의 호에서 보면, 므낫세의 55년은 경고가 실행으로 넘어가는 분기점이며, 그 선고가 권의 끝까지 유효하게 작동한다. 그러나 권은 25:27~30에서 여호야긴의 석방으로 닫힌다 — 심판이 완성이 아니라 포로 안에서도 불씨가 남아 있다는 방향으로.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>개혁의 역전(3절)에서 확정된 선고(13절)로 / 헐어 버린 것을 다시 세움에서 씻어 엎음으로 / 경고의 반복에서 시한의 봉인으로 — 55년의 무게가 권의 방향을 잠그는 운동.</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 21장은 히스기야 개혁의 유산이 한 세대 안에 역전될 때 오래 참으셨던 경고가 실행 선고로 전환되는 분기점이다. "사마리아를 잰 줄"(13절)이 이제 예루살렘을 향해 들어오는 이 전용이 권의 방향을 한쪽으로 확정한다. 그리고 그 확정이 23:26에서 다시 확인되고 24~25장에서 실행된다. 21장의 벡터는 그 긴 호의 경첩 역할을 한다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 왕 한 명의 극단적 우상숭배와 심판 선고다. 그러나 수면 아래에서는 세 가지가 움직인다. 첫째, 제도가 아닌 방향의 취약성이다. 히스기야의 개혁은 제도를 헌 것들을 제거하는 형태였는데, 그 제도가 다음 왕 한 명의 방향 전환으로 원점이 된다. 개혁의 제도적 유산이 사람의 방향에 얼마나 종속되어 있는지를 한 세대가 보여 준다. 둘째, 약속의 지속성이다. 7~8절에서 이름을 두신다는 약속이 목상 설치 기사 안에 끼워진다. 본문은 그 약속을 취소하지 않는다. 어둠 속에서도 약속은 기록의 형태로 남아 있다. 셋째, 기억되지 않는 피해다. 16절의 피들은 이름이 없다. 55년의 통치 기록 안에 그들의 이름이 들어가지 않는다. 왕조 연대기의 형식이 피해자를 공간으로 압축하는데, 그 압축 자체가 수면 아래의 무게다.</p>
+
+<h3>J · 실존적 부름 — 불씨</h3>
+<blockquote>
+<p>헐어 버린 것이 다시 세워지는 일 — 개혁의 방향이 한 세대를 넘지 못할 때 무엇이 남는가. 이름을 두신 곳에 다른 것이 들어선 병치를 — 설명 없이 그냥 두는 본문 곁에서 같은 병치를 찾아본다.</p>
+</blockquote>
+<p>이것은 가르침이 아니라 초대다. 본문은 므낫세를 악인으로 단정하는 대신 그가 한 일들을 목록으로 적는다. 선지자들이 경고를 전하고, 그 경고가 선고로 바뀌고, 그 선고가 피로 가득 찬 도시로 이어지는 흐름을 따라가게 한다. 55년의 긴 시간 동안 헐어 버린 것들이 다시 세워졌다 — 그 속도가 어떤 것인지, 그리고 이름을 두신 집이 다른 것이 들어선 채로 남아 있는 그 병치가 어떤 것인지. 세우는 도구가 심판의 기준이 되었을 때, 독자가 자기 측량 기준이 어디서 왔는지 묻게 되는 것 — 그 거리가 이 장이 독자를 부르는 방식이다.</p>
+
+<p><strong>다음 장으로 미는 운동 한 줄</strong>: 잠겨 있던 문 앞에서 잊혀진 두루마리 한 권이 나타난다 — 성전 수리 중에 발견된 율법책을 듣고 왕이 옷을 찢는다(22:11).</p>
+<p><strong>이 장에서 가져갈 한 단어</strong>: <em>qav — 측량줄</em>.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/2KI/20/"><div class="nav-kicker">← 이전</div><div class="nav-title">열왕기하 20장</div><div class="nav-preview">히스기야의 마지막 — 회복과 방문, 그리고 바벨론 예고.</div></a>
+      <a href="/magazine/2KI/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">열왕기하 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/2KI/22/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">열왕기하 22장</div><div class="nav-preview">요시야와 율법책 — 성전 수리 중 발견된 두루마리, 왕이 옷을 찢다.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:2ki21', JSON.stringify({
+      href: '/magazine/2KI/21/',
+      title: '열왕기하 21장',
+      excerpt: '같은 측량줄로 재다 — 55년의 므낫세와 단호한 심판 선고. 헐어 버린 것이 다시 세워지고(21:3), 이름을 두신 집에 목상이 들어서며(21:7), 그릇을 씻어 엎음 같이 씻어 버리겠다는 선고(21:13)와 무죄한 피가 예루살렘을 가득 채우는(21:16) 장.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2026-06-16</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>

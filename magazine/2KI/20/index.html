@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>열왕기하 20장 — Observatory | 네다바웨이</title>
+<meta name="description" content="열왕기하 20장을 9단계로 같이 관찰합니다. '내가 네 기도를 들었고 네 눈물을 보았노라 내가 너를 낫게 하리니'(20:5) — 죽으리라는 선고를 받은 히스기야의 통곡, 해 그림자가 십 도 물러나는 증표, 그리고 바벨론 사자에게 보물 창고를 다 보여 주는 왕의 자랑이 이사야의 경고(20:17)로 닫히는 — '네 눈물을 보았노라'가 권의 heart인 장.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/2KI/20/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/2KI/">역사서</a> · 열왕기하 · 20장</div>
+      <h1>열왕기하 20장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">2KI-020 · 역사서 · 히브리어</div>
+      <p class="essence">"내가 네 기도를 들었고 네 눈물을 보았노라 내가 너를 낫게 하리니"(20:5) — 응답의 근거가 공로가 아니라 눈물이었다. 그러나 그 회복 끝에 바벨론 사자에게 보물 창고를 다 열어 보인 왕의 자랑이 이사야의 경고로 닫히는, 들으심과 자랑이 한 장 안에 공존하는 히스기야의 마지막 국면.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 2KI-020</p>
+<p>book: 열왕기하</p>
+<p>book_en: 2 Kings</p>
+<p>chapter: 20</p>
+<p>bible_block: 역사서</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브(서사)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 21</p>
+<p>observed_facts_count: 26</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [shama, dimah, maala, raphah, tsalah, baka, chazaq, paga, halak, galah, otzar, shalach, shalom, emet]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["20:4에서 MT는 '이사야가 성읍 중간에 이르기 전에'로 읽는데, LXX와 일부 사본은 '안뜰(하차르)에 이르기 전에'로 읽어 이사야의 이동 경로가 약간 다름 — 형태 관찰", "20:11의 '해시계(maala)' 관련 표현이 MT와 LXX 간에 계단·도수 표현의 뉘앙스 차이가 있음 — 본문비평 배경으로만 둠"]</p>
+<p>ane_refs: ["바빌로니아 외교 관계 — 므로닥발라단(마르둑아팔이딘)은 앗수르에 대항하여 연대를 모색하던 바빌로니아 왕으로, 역사적으로 기원전 721-710년, 703년 두 차례 바빌로니아를 통치했음. 19절 배경", "해시계(gnomon, 마알라) — 고대 근동에서 그림자의 위치로 시간을 측정하는 도구. 아하스의 해시계(maala Ahaz, 11절)는 아하스 왕 시대에 설치된 것으로 추정됨. 9-11절 배경", "무화과 반죽 치료 — 고대 근동 의술에서 무화과 덩이(debelah)는 종기 치료에 쓰이는 의약품으로 기록됨. 7절 배경", "바빌론 포로 예고 — 이사야의 경고(17-18절)는 기원전 597/587년에 실현될 바빌론 포로를 예고하는 것으로 읽힘 — 역사적 배경, 관찰 단계에서 해석 유보"]</p>
+<p>rabbinic_refs: ["랍비 전통은 히스기야의 눈물 기도(20:2-3)를 '벽을 향하여'라는 표현과 연결하여, 기도가 다른 것에 방해받지 않는 집중의 형태로 읽음 — 독법 배경", "탈무드(베라코트 10b)는 20:1-6의 히스기야 기도를 죽음 앞에서의 회개·간청의 모범 사례로 기록함 — 독법 배경, 본문 확정 아님"]</p>
+<p>literary_devices: [wall_prayer_isolation, tear_as_divine_motive, sundial_reversal_sign, pride_after_healing, Babylon_foreshadow, shalom_emet_coda, three_day_promise, hezekiah_self_reference_prayer]</p>
+<p>repeated_words: ["듣다(shama — 20:5 '기도를 들었고')", "눈물(dimah — 20:5 '눈물을 보았노라')", "낫다(raphah — 20:5 '낫게 하리니', 20:8 '나을 표적이 무엇이니이까')", "보이다·보다(raah — 20:5 '보았노라', 20:13 '보이지 아니한 것이 없었나이다')", "돌아가다(shuv — 20:5 '성전에 올라가리라', 20:10 '아하스의 해시계')", "바빌론(Bavel — 20:12 므로닥발라단, 20:14 '바빌론에서 온', 20:17 '바빌론으로 옮겨가리라', 20:18)"]</p>
+<p>cross_refs: ["왕하 19장 ↔ 왕하 20:1 (이 사건들이 같은 시대 히스기야 국면 — '그 때에'로 연결)", "사 38-39장 (열왕기하 20장의 병행 본문 — 거의 동일, 사 38장에는 히스기야의 감사 시편이 추가됨)", "왕하 25:27-30 (여호야긴 석방 — 권의 destination, 다윗 집 불씨)", "20:17-18 ↔ 왕하 24-25장 (바빌론 포로의 실현 — 이사야 경고의 성취)", "시 116편 (사망의 줄이 나를 얽고 — 병과 회복의 감사 시편, 배경)", "욥기 2:7-8 (종기를 통한 고통 — 무화과 치료 소재의 배경)", "사 38:9-20 (히스기야의 글 — 이사야서에 추가된 병상 감사 시편)", "왕하 18:2 (히스기야 29세 즉위 — 연대 배경, 20:6의 15년 연장)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-16</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>열왕기하 20장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 열왕기하 20장입니다. 스물한 절이에요. 19장에서 산헤립의 패퇴와 죽음을 보았고, 20장은 그 시대에 히스기야가 병들어 죽을 것이라는 선고를 받는 장면으로 시작해요. 그리고 벽을 향해 통곡하며 기도하는 왕, "네 눈물을 보았노라"는 응답, 해 그림자가 십 도 물러나는 증표, 그리고 바빌론 사자들에게 보물을 다 보여 준 왕과 이사야의 경고로 닫힙니다. 짧은 장이지만 권의 heart가 담긴 장이에요. 낭독합니다.</p>
+<p>(본문 낭독 20:1~21, 약 4분)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대가 두 공간인데, 둘 다 왕의 공간이에요. 1막은 히스기야의 병상 — 이사야가 찾아오고, 왕이 벽을 향해 기도하는 방이에요(1-7절). 2막은 같은 공간이거나 인접한 공간 — 응답이 오고 무화과 반죽이 종기에 붙여지고, 아하스의 해시계가 보이는 바깥이 들어와요(8-11절). 3막은 보물 창고예요 — 바빌론 사자들에게 모든 것을 보여 주는 공간(13절). 그리고 마지막 장면은 이사야가 히스기야에게 다시 오는 장면(14-19절)과 히스기야의 마지막 기록(20-21절)이에요. 병상에서 보물 창고로, 그리고 다시 이사야 앞으로 — 공간이 히스기야의 내면 상태를 따라가는 것 같아요.</p>
+<p><strong>P05 김미영</strong>: 소품이요. 첫 번째는 벽이에요 — 2절 "히스기야가 낯을 벽으로 향하고 기도하여." 벽을 향한다는 것, 다른 쪽으로 돌아서는 동작이 소품처럼 남아요. 두 번째는 무화과 덩이예요(7절) — "무화과 반죽을 가져다가 종기에 붙이라 하라." 치유의 약으로 쓰이는 일상 재료가 소품이에요. 세 번째는 아하스의 해시계(9-11절) — 그림자가 앞으로 나아가는지 뒤로 물러가는지를 묻고, 십 도 물러가는 증표가 와요. 네 번째는 보물 창고 안의 모든 것이에요(13절) — "은금·향품·보배로운 기름·무기고의 모든 것"을 다 보여 줘요. 숨긴 것이 없었어요. 이 '다 보여 줌'이 이 장의 전환점 소품이에요.</p>
+<p><strong>P07 오지혜</strong>: 소재를 나열해 볼게요 — 병, 죽음 선고, 벽, 눈물, 기도, 무화과, 해시계, 그림자, 십 도, 편지, 예물, 보물 창고, 은·금·향품·기름, 이사야의 질문, 히스기야의 대답, 바빌론, 예루살렘 포로. 앞은 병과 눈물과 회복의 소재고, 뒤는 자랑과 경고와 포로 예고의 소재예요. 한 장 안에 회복의 결과물로 자랑이 따라오는 구조예요.</p>
+<p><strong>P02 이진우</strong>: 구조 소재를 짚을게요. 이 장에 '보이다·보다(raah)'가 두 번 중요하게 쓰여요. 5절 — "네 눈물을 보았노라(raiti)." 13절 — "히스기야가 보이지 아니한 것이 없었다(lo-hayah devar asher lo-herem Chizkiyahu)." 하나님이 눈물을 '보심'과, 히스기야가 보물을 '보임'이 같은 동사권에서 대비되는 것 같아요. 보심을 받은 자가, 자신의 것을 보임으로 바뀌어요.</p>
+<p><strong>P01 한나래</strong>: 저는 2절에서 멈췄어요. "히스기야가 낯을 벽으로 향하고 기도하여." 벽을 향하는 동작이요. 죽을 것이라는 선고를 들은 다음 먼저 몸을 돌려요. 누구에게 하소연하거나 이사야에게 항변하지 않아요 — 그냥 벽을 향해요. 그 동작이 오래 남았어요.</p>
+<p><strong>P11 나경아</strong>: 원어 몇 개요. <em>dimah</em>(דִּמְעָה) — 눈물(5절). 단수 형태예요. '눈물을 보았노라' — 흘린 눈물 전체를 한 단어로 가리켜요. <em>maala</em>(מַעֲלָה) — 계단·도수·해시계의 눈금(9·10·11절). 그림자가 오르내리는 도수를 가리키는 어휘예요. <em>shama</em>(שָׁמַע) — 듣다(5절, "기도를 들었고"). <em>raphah</em>(רָפָא) — 낫다, 치유하다(5·7절). 배경만요.</p>
+<p><strong>성령일 선교사</strong>: 병상과 해시계와 보물 창고라는 무대, 벽과 무화과와 십 도와 모든 보물이라는 소품들, raah(보다)의 두 용법, 벽을 향하는 동작, dimah·maala·shama·raphah 어근. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 2KI-020</p>
+<p>book: 열왕기하</p>
+<p>chapter: 20</p>
+<p>date: 2026-06-16</p>
+<p>---</p>
+
+<h2>열왕기하 20장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기였는지요.</p>
+<p><strong>P01 한나래</strong>: 1절 첫 문장이 이미 무거워요 — "그 때에 히스기야가 병들어 죽게 되매." 19장에서 산헤립이 패퇴하고 바로 다음 장에 왕이 죽을 것이라는 선고가 와요. 큰 승리 다음에 바로 죽음이 서 있어요. 그런데 이 장의 공기가 19장의 무거움과 달라요 — 19장은 외부 위협의 긴장이었고, 20장은 훨씬 더 개인적인 무게예요. 왕의 몸 하나, 벽 하나, 눈물 하나. 크기가 줄어든 것 같아요. 그리고 5절의 응답에서 공기가 한 번 풀려요.</p>
+<p><strong>P07 오지혜</strong>: 전환이 세 번 있었어요. 1절의 죽음 선고가 첫 번째 전환이고, 5-6절의 응답 선언이 두 번째 전환이고, 13절의 보물 공개가 세 번째 전환이에요. 전환마다 방향이 달라요 — 첫 번째는 아래로, 두 번째는 위로, 세 번째는 다시 불안한 쪽으로.</p>
+<p><strong>P04 최현국</strong>: 명암으로 보면 V자 형태예요. 1절의 죽음 선고로 바닥을 치고, 5-6절의 회복 응답으로 올라오고, 그런데 17-18절의 이사야 경고로 다시 그림자가 드리워요. 완전한 상승이 아니에요. 회복이 오지만, 그 회복의 끝에 또 다른 무게가 와요.</p>
+<p><strong>P02 이진우</strong>: 구조적으로 이 장은 두 이야기가 붙어 있어요. 1-11절은 히스기야의 병과 회복 이야기, 12-21절은 바빌론 사자와 이사야의 경고 이야기예요. 두 이야기가 한 장 안에 놓여 있어요. 연결 고리는 히스기야예요 — 회복된 왕이 그 회복의 자리에서 자랑하는 구조예요.</p>
+<p><strong>P05 김미영</strong>: 감각으로는 눈물이에요. 5절 — "네 눈물을 보았노라(raiti et dimatekhah)." 기도를 들으셨다는 것도 있는데, 눈물을 '보셨다'는 표현이 달라요. 소리가 아니라 흘린 물 — 그것을 보셨다는 거예요. 히스기야가 흘린 눈물이 하나님의 시야 안에 있었어요. 그 감각이 진했어요.</p>
+<p><strong>P11 나경아</strong>: 분위기로 하나만요. 19절 히스기야의 반응이 특이해요 — "이사야가 전한 여호와의 말씀이 선하니이다." 포로 경고를 듣고 "선합니다"라고 해요. 그러고는 "이미 내 생전에는 평안과 진실이 있을 것이니이다(shalom ve-emet yihyeh viyamay)" 해요. <em>shalom</em>(שָׁלוֹם)과 <em>emet</em>(אֱמֶת) — 평안과 진실·진리. 이 두 단어로 장이 닫혀요. 그 반응의 공기가 무거운지 가벼운지 본문은 판단하지 않아요.</p>
+<p><strong>성령일 선교사</strong>: 크기가 줄어든 개인의 무게, 세 번의 전환, V자 명암, 두 이야기의 이음새, 눈물을 보셨다는 감각, 그리고 "선합니다"라는 반응과 shalom·emet의 닫힘. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대: 히스기야의 병상 방 → 해시계가 보이는 바깥 → 보물 창고(13절) → 이사야와의 대화 공간.</li>
+<li>소품: 벽(2절, 낯을 향하는 대상) / 무화과 덩이(7절, 종기 치료) / 아하스의 해시계(9-11절, 십 도 물러남) / 보물 창고의 모든 것(13절, 은·금·향품·기름·무기고) / 편지와 예물(12절, 므로닥발라단이 보냄).</li>
+<li>소재의 기울기: 병·죽음·눈물·기도·회복(1-11절) → 예물·방문·자랑·경고·포로 예고(12-19절) → 히스기야 행전 요약(20-21절).</li>
+<li><em>dimah</em>(דִּמְעָה) — 눈물(5절). <em>maala</em>(מַעֲלָה) — 계단·도수·해시계 눈금(9-11절). <em>shama</em>(שָׁמַע) — 듣다(5절). <em>raphah</em>(רָפָא) — 낫다(5·7절). <em>shalom</em>(שָׁלוֹם) + <em>emet</em>(אֱמֶת) — 평안과 진실(19절).</li>
+<li>ANE 배경: 므로닥발라단(마르둑아팔이딘)은 앗수르에 대항한 바빌로니아 왕. 무화과 반죽은 고대 근동 의술 재료. 해시계(gnomon)는 그림자로 시간을 측정하는 도구.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>큰 국제 사건(19장) 다음에 한 왕의 몸 하나로 무대가 줄어드는 전환 — 크기의 대비.</li>
+<li>세 번의 전환: 죽음 선고(1절) → 회복 응답(5-6절) → 보물 자랑과 경고(13-18절). V자 명암.</li>
+<li>5절의 핵심 — "네 눈물을 보았노라." 소리가 아니라 흘린 눈물을 '보심'. 감각의 층위.</li>
+<li>두 이야기의 이음새(1-11절 병과 회복 / 12-21절 바빌론 사자와 경고) — 회복된 왕이 자랑하는 구조.</li>
+<li>19절의 반응 — "선합니다. 내 생전에는 shalom ve-emet이 있을 것입니다." 본문은 이 반응을 평가하지 않는다.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<p><strong>P02 이진우</strong>: 1절 시작: "그 때에 히스기야가 병들어 죽게 되매 아모스의 아들 선지자 이사야가 그에게 이르러 이르되 여호와의 말씀이 너는 집을 처리하라 네가 죽고 살지 못하리라 하셨나이다." 21절 끝: "히스기야가 그의 조상들과 함께 자고 그의 아들 므낫세가 대신하여 왕이 되니라." 죽을 것이라는 선고로 열려서, 조상들과 함께 자고 아들이 왕이 되는 기록으로 닫혀요. 그 사이에 회복과 자랑과 경고가 다 들어 있어요.</p>
+<p><strong>P01 한나래</strong>: 시작과 끝이 둘 다 죽음이에요. 1절의 "죽고 살지 못하리라"와 21절의 "조상들과 함께 자고." 그런데 그 사이에 15년이 연장됩니다(6절). 죽음 선고 — 15년 — 죽음. 이 장의 시간이 중간에 한 번 연장됐어요.</p>
+<p><strong>P04 최현국</strong>: 이 장은 완결이면서 동시에 열림이에요. 히스기야의 이야기가 닫히고, 21절에서 므낫세가 왕이 된다고 적혀요. 므낫세는 21장에서 가장 어두운 왕으로 묘사되는 인물이에요. 히스기야의 닫힘이 므낫세의 열림으로 이어지는 경첩이에요.</p>
+<ul>
+<li>1절 시작: "죽고 살지 못하리라"는 선고.</li>
+<li>21절 끝: 조상들과 함께 자고 므낫세가 왕이 됨.</li>
+<li>시작과 끝 모두 죽음 — 중간에 15년 연장(6절).</li>
+<li>21절에서 므낫세가 언급됨 — 21장 므낫세 서사의 경첩.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<p><strong>P04 최현국</strong>: 인물 목록이에요. 히스기야 — 병든 유다 왕, 이 장의 중심 인물. 두 가지 얼굴 — 눈물로 기도하는 왕(1-3절)과 보물을 자랑하는 왕(13절). 이사야 — 죽음 선고를 전하고(1절), 다시 회복 응답을 전하고(5-6절), 마지막으로 포로 경고를 전하는(17-18절) 선지자. 므로닥발라단 — 편지와 예물을 보낸 바빌론 왕(12절). 바빌론 사자들 — 히스기야가 모든 것을 보여 주는 방문자들(13절). 여호와 — 발화는 이사야를 통해 오지만, 죽음 선고(1절)·회복 응답(5-6절)·포로 경고(17-18절)의 행위자.</p>
+<p><strong>P07 오지혜</strong>: 사상의 중심은 5절이에요. "너는 돌아가서 내 백성의 주권자 히스기야에게 이르기를 네 조상 다윗의 하나님 여호와의 말씀이 내가 네 기도를 들었고 네 눈물을 보았노라 내가 너를 낫게 하리니 네가 사흘째 되는 날에 여호와의 전에 올라가리라." 여기서 '응답의 근거'가 공로가 아닌 것이 보여요 — 기도와 눈물. 앞서 3절에서 히스기야가 "내가 진실과 전심으로 주 앞에 행하고 선하게 행한 것을 기억하소서" 하고 자기 행적을 아뢰었는데, 하나님의 응답은 그 행적이 아니라 기도와 눈물을 근거로 삼아요. 둘이 맞물리는 것인지, 응답의 근거가 어느 쪽인지 본문은 닫지 않아요.</p>
+<p><strong>P02 이진우</strong>: 히스기야의 두 기도를 보면 달라요. 3절에서의 기도는 자신의 충성을 아뢰는 기도 — "기억하소서." 그리고 8절에서 히스기야가 묻는 것은 표적이에요 — "내가 나을 표적이 무엇이니이까." 치유를 받겠다는 확신이 없는 질문이에요. 선고를 받은 직후와 응답을 들은 직후의 두 발화가 다른 상태를 보여 줘요.</p>
+<p><strong>P05 김미영</strong>: 13절의 사상을 짚을게요. "히스기야가 그의 말을 듣고 그의 보물 창고 곧 은금과 향품과 보배로운 기름과 그의 무기고와 그의 창고에 있는 모든 것을 다 보여 주었고 그의 온 나라에서 보이지 아니한 것이 없었더라." '다 보여 줌', '온 나라에서 보이지 않은 것이 없음' — 이 과잉 공개가 본문에서 유일하게 행위에 대한 암묵적 문제를 품고 있어요. 이사야가 곧 묻는 이유가 이 행위 때문이에요. 본문은 왜 다 보여 줬는지 설명하지 않아요.</p>
+<p><strong>P11 나경아</strong>: 어휘 둘만요. 5절 <em>nagid</em>(נָגִיד) — '내 백성의 주권자', 왕을 부르는 또 다른 호칭이에요. '내 백성의'라는 수식이 붙은 점이 독특해요. 그리고 19절 <em>shalom ve-emet</em>(שָׁלוֹם וֶאֱמֶת) — '평안과 진실'. 히스기야가 이사야의 경고를 듣고 내뱉는 마지막 두 단어예요. 이 두 단어의 무게를 관찰에서는 닫지 않아요. 배경만요.</p>
+<ul>
+<li>히스기야의 두 얼굴: 눈물 기도의 왕(1-3절) vs 보물을 다 보이는 왕(13절).</li>
+<li>이사야의 세 발화: 죽음 선고(1절) / 회복 응답(5-6절) / 포로 경고(17-18절).</li>
+<li>5절 응답의 근거: 기도(shama) + 눈물(dimah raiti). 3절의 자기 행적 아룀과의 관계를 본문은 닫지 않음.</li>
+<li>13절의 '다 보여 줌' — 동기 없이 기록된 과잉 공개. 이사야의 질문을 불러오는 계기.</li>
+<li>19절의 결말 발화: "선합니다. 내 생전에 shalom ve-emet이 있으면." 본문이 이 반응을 평가하지 않음.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<p><strong>P04 최현국</strong>: 네 컷이에요.</p>
+<ul>
+<li><strong>컷 1 (1~7절)</strong>: 병과 기도 — 이사야가 죽음 선고 전달(1절), 히스기야가 벽을 향해 통곡하며 기도(2-3절), 이사야가 성읍 중간도 못 나가서 응답 받아 돌아옴(4-6절), 무화과 반죽을 종기에 붙이라는 지시(7절).</li>
+<li><strong>컷 2 (8~11절)</strong>: 표적 — 히스기야가 낫는 표적을 묻고(8절), 이사야가 해시계 그림자가 전진할지 후진할지 선택하게 하고(9-10절), 이사야가 기도하자 그림자가 십 도 물러남(11절).</li>
+<li><strong>컷 3 (12~15절)</strong>: 바빌론 사자와 자랑 — 므로닥발라단이 병문안 편지와 예물을 보냄(12절), 히스기야가 모든 보물을 보여 줌(13절), 이사야가 방문자와 보여 준 것을 물음(14-15절).</li>
+<li><strong>컷 4 (16~21절)</strong>: 경고와 결말 — 이사야의 포로 예고 신탁(16-18절), 히스기야의 반응 "선합니다"(19절), 히스기야 행전 요약과 죽음 기록(20-21절), 므낫세의 즉위.</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 1의 내부 구조가 흥미로워요. 이사야가 선고를 전하고 나갔다가 성읍 중간에도 못 이르러 다시 오는 장면(4절)이에요. 선고를 전한 선지자가 돌아오는 속도가 굉장히 빨라요. 그 빠른 전환이 '들으심의 속도'를 보여 주는 것 같아요. 기도하고, 눈물 흘리고, 선지자가 미처 나가기도 전에 응답이 와요. 그 압축된 시간이 이 장의 소리예요.</p>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>dimah</em>(דִּמְעָה) — 눈물(5절). 단수형. "네 눈물을 보았노라(raiti et dimatekhah)" — 흘린 눈물 전체를 한 단어로 가리킴.</li>
+<li><em>shama</em>(שָׁמַע) — 듣다(5절, "기도를 들었고"). 19장의 shama 전환 구조와 연결됨.</li>
+<li><em>raphah</em>(רָפָא) — 낫다·치유하다(5절 "낫게 하리니", 7절 "낫게 하리라"). 이 장의 반복 동사.</li>
+<li><em>maala</em>(מַעֲלָה) — 계단·도수·해시계의 눈금(9·10·11절). 아하스의 해시계에 새겨진 그림자 도수.</li>
+<li><em>nagid</em>(נָגִיד) — 주권자·영도자(5절, "내 백성의 주권자"). 왕을 부르는 또 다른 호칭.</li>
+<li><em>shalom</em>(שָׁלוֹם) + <em>emet</em>(אֱמֶת) — 평안과 진실(19절). 히스기야의 마지막 두 단어.</li>
+<li><em>galah</em>(גָּלָה) — 드러내다·유배하다(17절, "바빌론으로 옮겨가리라"). 이 어근이 포로를 가리킬 때 씀.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>두 이야기의 결합: 병과 회복(1-11절) + 바빌론 사자와 경고(12-21절) — 연결 고리는 히스기야의 회복이 자랑으로 이어지는 흐름.</li>
+<li>raah(보다)의 이중 사용: 5절 "눈물을 보았노라" ↔ 13절 "보이지 아니한 것이 없었다" — 하나님이 보심 / 히스기야가 보임의 대비.</li>
+<li>이사야의 세 방문(1절 선고 / 4절 응답 / 14절 질문) — 한 선지자가 같은 왕에게 세 다른 국면으로 오는 구조.</li>
+<li>선고-기도-응답의 압축: 이사야가 선고하고 아직 성읍 중간도 못 나갔을 때 응답이 옴(4절) — 들으심의 속도.</li>
+<li>3절 자기 행적 아룀 ↔ 5절 기도와 눈물 근거 — 기도자의 호소와 하나님의 응답 근거가 같은지 다른지 본문이 닫지 않음.</li>
+<li>19절의 shalom ve-emet — 경고 뒤에 오는 평안의 선언. 자기 생전에 한정한 평안. 본문이 이 반응에 논평 없음.</li>
+<li>LXX 관찰: 20:4 MT '성읍 중간(tikkun ha-ir)' vs LXX '안뜰(tés aulis)' — 이사야 이동 경로의 사본 차이. 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>므로닥발라단(마르둑아팔이딘) — 기원전 721-710년, 703년 두 차례 바빌로니아를 통치한 왕. 앗수르에 대항해 연대를 모색했음. 12절 배경.</li>
+<li>해시계(maala Ahaz) — 아하스 왕 시대에 설치된 것으로 추정. 그림자의 도수(maala)로 시간을 측정. 9-11절 배경.</li>
+<li>무화과 덩이(debelah) — 고대 근동 의술에서 종기·피부 질환 치료에 쓰이는 재료. 7절 배경.</li>
+<li>이사야 38-39장 — 열왕기하 20장과 거의 동일한 병행 본문. 사 38장에는 히스기야의 감사 시편(마스길)이 추가됨. 배경.</li>
+<li>탈무드 베라코트 10b — 히스기야의 눈물 기도를 죽음 앞에서의 간청 모범으로 기록. 독법 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>왕하 19장 ↔ 왕하 20:1 — "그 때에"로 연결되는 히스기야 시대의 연속 서사.</li>
+<li>사 38-39장 ↔ 왕하 20장 — 거의 동일한 병행 본문. 사 38:9-20에 히스기야의 감사 시편 추가.</li>
+<li>왕하 20:17-18 ↔ 왕하 24-25장 — 이사야 경고의 바빌론 포로 실현.</li>
+<li>왕하 25:27-30 — 권의 destination, 여호야긴 석방, 다윗 집 불씨.</li>
+<li>시 116편 — 사망의 줄이 나를 얽고 — 병과 회복의 감사 배경 시편.</li>
+<li>왕하 18:2 ↔ 20:6 — 히스기야 29세 즉위 + 15년 연장 = 연대 계산의 배경.</li>
+<li>왕하 21장 — 므낫세의 즉위(20:21의 경첩). 히스기야 회복으로 태어난 므낫세가 가장 어두운 왕으로 기록됨.</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p><strong>P04 최현국</strong>: 왕의 방. 이사야가 들어와 말한다 — 죽고 살지 못하리라, 집을 처리하라. 이사야가 나간다. 히스기야가 낯을 벽으로 향한다. 눈물이 흐른다. 기도가 시작된다 — 여호와여, 내가 진실과 전심으로 행한 것을 기억하소서. 이사야가 성읍 중간도 못 이르러 말씀이 임한다. 이사야가 돌아와 전한다 — 네 기도를 들었고 네 눈물을 보았노라, 내가 너를 낫게 하리니, 사흘 만에 성전에 오르리라, 십오 년을 더 살리라, 앗수르 왕에서 이 성을 건지리라. 그리고 묻는다 — 낫는 표적이 무엇이냐. 이사야가 해시계 그림자가 앞으로 나갈지 뒤로 물러갈지 선택하게 한다. 히스기야가 고른다 — 뒤로 물러가는 것이 쉽지 않으니 물러가게 하소서. 이사야가 기도한다. 그림자가 십 도 물러간다. 시간이 흐른다. 바빌론 왕 므로닥발라단이 편지와 예물을 보낸다. 히스기야가 사자들을 맞이한다. 보물 창고를 연다. 은·금·향품·기름·무기고 — 모든 것을 보여 준다. 보이지 않은 것이 없다. 이사야가 온다. 묻는다 — 그들이 무어라 하더냐, 무엇을 보았느냐. 히스기야가 대답한다 — 다 보았습니다, 아무것도 남기지 않았습니다. 이사야가 말한다 — 들으라, 이 모든 것이 바빌론으로 가리라, 네 아들들도 잡혀가 시관이 되리라. 히스기야가 답한다 — 선합니다, 내 생전에 평안과 진실이 있겠지요. 히스기야의 나머지 행적과 죽음이 기록되고, 므낫세가 왕이 된다.</p>
+<p><strong>성령일 선교사</strong>: 선고 — 벽을 향한 눈물 — 들으심 — 해시계의 십 도 — 보물 창고 — 경고 — 결말로 이어지는 흐름이에요.</p>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (dimah·shama·raphah·maala·nagid·shalom·emet·galah 8개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (raah 이중 사용 + 이사야 세 방문 구조 + 들으심의 속도(4절) + ANE 므로닥발라단·해시계·무화과 배경)</li>
+<li>[x] 미해결 질문 1개 이상 (6건 — s8 섹션)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>20:5의 "눈물을 보았노라"를 '하나님은 항상 눈물을 보신다'는 일반 원리로 단정하지 않고, 5절 한 문장에서 dimah(눈물)를 raah(보다)로 연결한 표현 사실로만 둠.</li>
+<li>3절의 자기 행적 아룀과 5절의 눈물·기도 응답의 관계를 '조건-응답 공식'으로 닫지 않고, 두 표현이 한 국면 안에 공존하는 사실로만 보존.</li>
+<li>13절의 보물 자랑을 '교만의 결과'로 단정하지 않고, 동기 없이 기록된 행위 사실과 이사야의 질문을 불러오는 계기로만 둠.</li>
+<li>19절의 히스기야 반응을 '이기적 반응' 또는 '성숙한 수용'으로 어느 쪽으로도 닫지 않고, shalom ve-emet라는 두 단어와 "내 생전에"라는 범위 한정을 사실로만 보존.</li>
+<li>해시계 그림자 십 도 물러남을 자연 현상 또는 기적의 증명으로 단정하지 않고, 이사야가 기도했고 그림자가 물러갔다는 서사 사실로만 보존.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 2KI-020</p>
+<p>book: 열왕기하</p>
+<p>chapter: 20</p>
+<p>date: 2026-06-16</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>성령일 선교사</strong>: 이 장에 초벌 제목을 붙여 보신다면요.</p>
+<p><strong>P01 한나래</strong>: "벽을 향하고 — 죽음 선고 앞에서 몸이 먼저 한 동작"</p>
+<p><strong>P02 이진우</strong>: "선고에서 선고로 — 죽음과 회복과 경고가 한 장 안에"</p>
+<p><strong>P04 최현국</strong>: "눈물을 보셨다 — 권의 heart 20:5"</p>
+<p><strong>P05 김미영</strong>: "보물 창고 — 낫게 하신 뒤에 다 열어 보인 것"</p>
+<p><strong>P07 오지혜</strong>: "들으심과 보임 — 하나님이 눈물을 보신 장면, 히스기야가 보물을 보인 장면"</p>
+<p><strong>P11 나경아</strong>: "<em>dimah · shama · shalom emet</em> — 눈물·들으심·평안·진실이 한 장에 든 히스기야의 마지막"</p>
+<p>부제 제안: "'죽고 살지 못하리라'는 선고(20:1)에 벽을 향해 통곡하는 왕의 눈물을 '보았노라'(20:5)는 들으심이 오고, 해 그림자가 십 도 물러나는 증표(20:11) 뒤에 바빌론 사자에게 보물 창고를 다 열어 보이는 왕(20:13)을 이사야의 경고(20:17-18)가 닫는 — 권의 heart가 담긴 히스기야의 마지막 장."</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 히스기야가 낯을 벽으로 향하고 눈물을 흘리던 그 장면으로 들어가 봅시다. 관찰로 알게 된 것을 주께 아뢰어 보시고, 답을 구하지 마시고 머물러 보세요.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P01 한나래</strong>: (조용히) 주님, 오늘 이 장에서 눈물이 보였습니다. 흘렸다는 것도 아니고, 통곡했다는 것도 아니고 — 보셨다는 말이 남아요. 제가 알지 못한 채 흘린 눈물을 보고 계셨다면 — 어떤 눈물인지 오늘 잠깐 봅니다. 그리고 그 눈물 다음에 회복한 왕이 보물 창고를 다 열어 보인 것을 같이 봐요. 들으심이 자랑으로 이어지는 그 거리가 얼마나 짧은지도요.</p>
+<p><em>— 그 순간 떠오른 것을 각자 마음에만 둡니다.</em></p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 마쳤습니다. <strong>이 본문은 어디서 어디로 움직이는지요? 눈에 보이는 일 아래에서 무엇이 일어나고 있는지요? 이 본문이 품은 긴장은 무엇인지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 이 장은 <strong>들으심이 자랑으로 바뀌는 거리</strong>를 보여 줘요. 5절에서 눈물을 보셨다는 들으심이 오고, 13절에서 바빌론 사자에게 모든 것을 보여 줘요. 그 사이에 설명이 없어요. 들으심을 받은 왕이 어떻게 그 들으심을 보물 자랑으로 쓰게 됐는지 본문은 설명하지 않아요. 그 설명 없는 거리가 이 장이 미는 긴장 같아요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. 5절 — <em>raiti et dimatekhah</em> — "네 눈물을 내가 보았노라." 이 권의 heart예요. 앗수르의 조롱(18-19장)도 히스기야의 병(20장)도 결국 한 단어로 응답돼요 — '보았노라'. <strong>하나님이 히스기야를 본 것이 무엇이냐가 이 권의 중심에 있어요</strong> — 눈물이에요. 큰 승리도 아니고, 신앙의 완전함도 아니고, 흘린 눈물. 배경 관찰로만요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래를 보면 이 장은 <strong>회복의 역설</strong>을 품고 있어요. 죽음 선고를 받고 통곡하던 왕이 회복을 받은 뒤에 가장 위험한 실수를 해요 — 모든 것을 보여 주는 것. 약할 때는 눈물로 들어갔는데, 강해진 뒤에는 문을 다 열어요. 취약함이 눈물을 만들고 눈물이 들으심을 불렀는데, 회복이 그 취약함을 지우는 구조예요.</p>
+<p><strong>P01 한나래</strong>: 긴장이에요. 19절 — "선합니다. 내 생전에 평안과 진실이 있겠지요." 이 말을 듣고 자녀들이 바빌론으로 끌려갈 것이라는 경고를 들었는데 — '내 생전에'라는 범위 안에서 선하다고 해요. 본문은 그 반응이 자기중심적인지, 아니면 하나님의 말씀을 받아들이는 수용인지 판단을 안 해요. <strong>그 모호함이 이 장의 마지막 긴장이에요.</strong></p>
+<p><strong>P04 최현국</strong>: 운동의 방향을 보면 이 장은 권의 흐름에서 히스기야 시대를 닫고 므낫세 시대를 여는 경첩이에요. 그리고 17-18절 이사야의 경고는 24-25장의 바빌론 포로로 이어져요. 히스기야가 보여 준 보물이 결국 바빌론으로 가고, 히스기야의 아들들이 바빌론 시관이 돼요. <strong>20장의 자랑이 25장의 포로를 예고하는 씨앗이에요</strong> — 본문은 그것을 이사야의 입으로만 말하고 히스기야의 반응에서 멈춰요.</p>
+<p><strong>P05 김미영</strong>: 이 불이 우리 안에 타오르느냐 하시니 — 저는 4절의 속도가 불씨 같아요. 이사야가 선고를 전하고 나갔다가 아직 성읍 중간도 못 나갔는데 응답이 와서 다시 들어와요. 그 빠른 속도 안에 들으심의 깊이가 있어요. 기도가 선고보다 빠르게 응답되는 시간 — 그 속도를 보고, 내가 흘리는 눈물이 어디에 있는지를 봅니다.</p>
+<p><strong>성령일 선교사</strong>: 들으심이 자랑으로 바뀌는 설명 없는 거리, 눈물이라는 권의 heart, 취약함이 지워지는 역설, '내 생전에'라는 범위 안의 모호한 수용, 20장의 자랑이 25장 포로로 이어지는 긴 예고, 선고보다 빠른 들으심의 속도. 다음 장 므낫세로 가지고 갑시다.</p>
+<p>---</p>
+
+<h2>열왕기하 20장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 20:5 — "네 눈물을 보았노라"가 응답의 근거로 등장하는 것을 본문은 어떻게 두는가?</h2>
+<ul><li>3절에서 히스기야는 자신의 충성을 "기억하소서" 하고 아뢰었다. 그런데 5절의 응답은 기도와 눈물을 근거로 한다. 둘이 맞물리는 것인지, 응답의 주요 근거가 어느 쪽인지 본문은 닫지 않는다. 이월.</li></ul>
+
+<h2>Q2. 20:4 — 이사야가 성읍 중간도 못 나가서 응답이 왔다는 것을 본문은 왜 기록하는가?</h2>
+<ul><li>선고를 전하고 나간 선지자가 미처 나가기도 전에 응답이 임한다. 이 속도가 이 서사 안에서 무엇을 말하는지 본문은 설명하지 않는다. 들으심의 즉각성인지 다른 무엇인지 관찰에서는 닫지 않는다. 보존.</li></ul>
+
+<h2>Q3. 20:13 — 히스기야가 바빌론 사자들에게 모든 것을 보여 준 동기를 본문은 왜 적지 않는가?</h2>
+<ul><li>"보이지 아니한 것이 없었더라"는 결과만 기록되고 왜 다 보여 줬는지는 없다. 이사야의 질문이 이어지는 것으로 보아 이 행위가 문제적임은 암시되지만, 본문은 동기를 닫지 않는다. 이월.</li></ul>
+
+<h2>Q4. 20:19 — 히스기야의 "선합니다. 내 생전에 평안과 진실이 있겠지요"라는 반응을 본문은 어떻게 두는가?</h2>
+<ul><li>포로 경고를 들은 뒤의 반응이다. "선합니다"가 수용인지 체념인지, "내 생전에"가 자기중심적 한정인지 현실 인정인지 본문은 판단하지 않는다. shalom ve-emet라는 두 단어가 닫는다. 보존.</li></ul>
+
+<h2>Q5. 20:5~6의 두 약속(치유 + 15년 + 앗수르에서 구원)과 20:17-18의 경고(바빌론 포로)는 어떻게 같은 인물에게 주어지는가?</h2>
+<ul><li>한 왕에게 회복과 경고가 함께 온다. 회복은 기도와 눈물 때문이고, 경고는 자랑 때문으로 읽힐 수 있다. 그러나 본문은 이 두 신탁의 원인-결과 관계를 명시하지 않는다. 관찰 단계에서는 닫지 않는다. 이월.</li></ul>
+
+<h2>Q6. 20:20-21 — 히스기야의 기록이 "못 파고 수도"(연못과 수도관)로 마무리되는 것을 본문은 왜 강조하는가?</h2>
+<ul><li>"히스기야가 실로아 연못을 파고 수도를 만들어 성안으로 물을 들인" 것이 행전 요약에 포함된다. 물이 들어오는 수로가 히스기야 시대의 대표 행적으로 기록되는 이유를 본문은 설명하지 않는다. 보존.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+
+<p><strong>시뮬 종료. 관찰 9단계 전부 수행.</strong></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">"내가 네 기도를 들었고 네 눈물을 보았노라"(20:5) — 권의 heart가 담긴 히스기야의 마지막 국면: 들으심과 자랑이 한 장 안에 공존한다.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표(G) — 권의 heart 직접 정박 포함 — 과 운동 벡터·수면 아래·교차 참조·ANE 맥락·문학 구조(A~J블록)를 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: 2KI-020</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-16</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 열왕기하 20장은 "죽고 살지 못하리라"는 선고(20:1)에 벽을 향해 눈물로 기도한 히스기야에게 "네 눈물을 보았노라"(20:5)는 들으심이 오고, 해 그림자가 십 도 물러나는 증표(20:11)와 함께 15년 연장이 주어지지만, 그 회복 뒤에 바빌론 사자에게 보물 창고를 다 보여 준 왕(20:13)이 이사야의 포로 경고(20:17-18)를 받고 "선합니다, 내 생전에 shalom ve-emet이 있겠지요"(20:19)로 답하며, 아들 므낫세에게 왕좌를 물려주고 닫히는 — 권의 heart 20:5가 담긴 히스기야의 마지막 장이다.</p>
+<p><strong>한 문단</strong>: 히스기야가 병들어 죽게 됐다. 이사야가 와서 전한다 — 집을 처리하라, 죽고 살지 못하리라. 이사야가 나간다. 히스기야가 낯을 벽으로 향하고 눈물을 흘리며 기도한다 — 내가 진실과 전심으로 행한 것을 기억하소서. 이사야가 성읍 중간도 못 나갔을 때 응답이 임한다. 돌아와 전한다 — 네 기도를 들었고 네 눈물을 보았노라, 사흘 만에 성전에 오르리라, 십오 년을 더 살리라. 무화과 반죽을 종기에 붙이라 한다. 히스기야가 낫는 표적을 묻는다. 해시계 그림자가 십 도 물러간다. 바빌론 왕 므로닥발라단이 편지와 예물을 보낸다. 히스기야가 사자들에게 보물 창고 전부를 보여 준다. 이사야가 와서 묻는다 — 무엇을 보였느냐. 히스기야가 대답한다 — 아무것도 남기지 않았습니다. 이사야가 전한다 — 이 모든 것이 바빌론으로 가리라, 네 아들들도 잡혀가 시관이 되리라. 히스기야가 답한다 — 선합니다, 내 생전에 평안과 진실이 있겠지요. 히스기야가 조상들과 함께 자고, 므낫세가 왕이 된다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>병상 → 해시계 바깥 → 보물 창고. 벽·무화과·해시계·보물 창고·편지 소품. dimah·maala·shama·raphah·shalom·emet 어근.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>큰 국제 사건 다음 개인 무대로의 축소. 세 번의 전환(선고→회복→경고). V자 명암. 4절 들으심의 속도.</td></tr>
+<tr><td>3 시작과 끝</td><td>죽음 선고(1절) → 조상들과 함께 자고 므낫세 즉위(21절). 중간에 15년 연장. 므낫세 서사의 경첩.</td></tr>
+<tr><td>4 등장인물·사상</td><td>히스기야의 두 얼굴: 눈물 기도 vs 보물 자랑. 이사야의 세 발화(선고·응답·경고). 5절 응답 근거: 기도+눈물.</td></tr>
+<tr><td>5 장면 컷</td><td>병과 기도(1-7) / 표적(8-11) / 바빌론 사자와 자랑(12-15) / 경고와 결말(16-21). 4컷.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>raah 이중 사용(5절 보심 ↔ 13절 보임). 들우심의 속도(4절). dimah·maala·nagid·galah. ANE 므로닥발라단·해시계·무화과.</td></tr>
+<tr><td>7 동영상</td><td>선고 → 벽을 향한 눈물 → 들우심 → 해시계 십 도 → 보물 공개 → 경고 → 므낫세 즉위.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"눈물을 보셨다 — 권의 heart 20:5"</td></tr>
+<tr><td>9 기도·내면</td><td>눈물을 보셨다는 말, 들우심이 자랑으로 이어지는 거리 — 내가 어떤 눈물을 흘리고 있는지.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 눈물을 보셨다</strong>: 5절의 응답 언어는 이중으로 온다 — "기도를 들었고(shama)" + "눈물을 보았노라(raiti et dimatekhah)." 귀가 기도를 받았고, 눈이 눈물을 받았다. 왕이 흘린 눈물이 하나님의 시야 안에 들어와 있었다. 이것이 권의 heart다 — 히스기야의 눈물이 응답의 근거로 명시된 유일한 지점. 열왕기하 전체에서 인물의 눈물이 이렇게 직접 들림의 근거로 이름 붙여지는 것은 이 장이 처음이자 마지막이다.</p>
+<p>2. <strong>결 2 — 들으심이 자랑으로 바뀌는 거리</strong>: 5절에서 눈물이 들렸고, 13절에서 히스기야가 모든 것을 보여 준다. 그 사이에 설명이 없다. 병에서 회복한 왕이 바빌론에서 온 방문자들에게 왜 모든 것을 다 열었는지 본문은 적지 않는다. 그 침묵이 이 장의 두 번째 결이다 — 들우심을 받은 자리에서 자랑이 자란다. 본문은 그것을 평가하지 않고 이사야의 질문으로만 이어간다.</p>
+<p>3. <strong>결 3 — 내 생전에</strong>: 19절의 히스기야 반응을 본문은 닫지 않는다. "선합니다. 내 생전에 shalom ve-emet이 있겠지요." 이 말이 수용인지, 체념인지, 자기중심적 한정인지 — 본문이 판단하지 않는다. 두 단어 shalom ve-emet으로 닫히는 이 장이 독자를 관찰자로 세운다. 히스기야가 무슨 마음이었는지 추측하지 않고, "선합니다"라는 말과 "내 생전에"라는 범위 안에 머문다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>왕하 19장 ↔ 20:1 — "그 때에"로 연결되는 히스기야 시대 연속 서사.</li>
+<li>사 38-39장 — 열왕기하 20장의 병행 본문. 사 38:9-20에 히스기야의 감사 시편 추가.</li>
+<li>왕하 20:17-18 ↔ 왕하 24-25장 — 이사야 경고의 바빌론 포로 실현.</li>
+<li>왕하 25:27-30 — 권의 destination, 여호야긴 석방, 다윗 집 불씨.</li>
+<li>왕하 21장 — 므낫세 즉위(20:21의 경첩). 히스기야 회복으로 연장된 15년에 태어난 므낫세.</li>
+<li>시 116편 — 사망의 줄에서의 구원 감사. 병과 회복의 정서 배경.</li>
+<li>왕하 18:2 ↔ 20:6 — 히스기야 즉위 나이와 15년 연장의 연대 계산 배경.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 1절 — 죽고 살지 못하리라. 집을 처리하라. 선고 앞에서 몸이 먼저 한 동작을 본다.</li>
+<li><strong>멈춤 1</strong>: 2절에서 멈춘다 — 낯을 벽으로 향하는 동작. 어디를 향하고 있는지를 본다.</li>
+<li><strong>멈춤 2</strong>: 5절에서 멈춘다 — "눈물을 보았노라." 내가 흘리는 눈물이 어디에 있는지를 본다.</li>
+<li><strong>끝</strong>: 19절에서 멈춘다 — "선합니다. 내 생전에." 경고를 듣고 이 말을 내뱉은 히스기야 곁에 잠시 앉는다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 병과 기도(1-7) / 표적(8-11) / 바빌론 사자(12-15) / 경고와 결말(16-21) 4컷 완결</li>
+<li>[x] raah 이중 사용(5절 보심 ↔ 13절 보임)</li>
+<li>[x] 들으심의 속도(4절 이사야 성읍 중간도 못 나감)</li>
+<li>[x] shalom ve-emet(19절)와 므낫세 경첩(21절)</li>
+<li>[x] 권의 heart(20:5) 직접 정박 완료</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가 (권의 heart 직접 정박)</h3>
+<p>열왕기하의 spine은 "오래 참으신 경고 끝에 말씀대로 심판하시되, 포로의 끝에서도 다윗 집의 불씨를 보존하신다"이며, destination은 25:27-30의 여호야긴 석방 — 다윗 집의 불씨다. 그리고 이 권의 heart는 20:5 — "내가 네 기도를 들었고 네 눈물을 보았노라"이다. 20장은 그 heart가 직접 실현되는 장이다. 앗수르의 조롱(18-19장)이 외부 위협이었다면, 20장은 한 왕의 몸 하나, 벽 하나, 눈물 하나라는 가장 개인적인 국면에서 들으심이 작동하는 장이다. 구속사의 호에서 보면, 19장에서 앗수르를 꺾은 하나님이 같은 왕의 눈물 앞에서 '보았노라'고 답하시는 이 장면이 권 전체의 들으심의 논리를 가장 집약적으로 드러낸다. 그러나 20장은 여기서 멈추지 않는다 — 그 회복의 왕이 17-18절에서 바빌론 포로를 예고받는다. 회복과 경고가 한 장 안에 있다. 이 경고는 24-25장에서 실현되며, 그 포로의 끝에서 25:27-30의 여호야긴 석방 — 다윗 집 불씨 — 이 온다. 20장의 눈물이 들린 자리에서 경고가 심어지고, 그 경고가 포로가 되고, 포로의 끝에서 불씨가 남는다 — 권의 heart(20:5)에서 destination(25:27-30)으로 이어지는 긴 호의 핵심 매듭이 여기 있다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>죽음 선고(20:1)에서 들으심(20:5)으로 / 들우심에서 자랑(20:13)으로 / 자랑에서 경고(20:17)로 / 히스기야에서 므낫세(20:21)로 — V자를 그리다가 다시 하강을 예고하는 운동.</strong></p>
+</blockquote>
+<p>이 장의 화살표는 단순한 상승이 아니다. 죽음 선고 → 눈물 기도 → 들우심 → 회복 → 자랑 → 경고 → 므낫세 예고로 이어지는 V자 다음 다시 하강의 예고다. 히스기야가 보여 준 보물이 17절에서 "바빌론으로 가리라"는 말로 돌아온다. 19장에서 산헤립을 꺾은 권이 20장에서 같은 왕의 눈물을 들으시고 회복하시지만, 그 회복의 끝에서 바빌론 포로를 예고한다. 들우심이 경고보다 먼저 왔지만, 경고도 함께 온다. 권은 들우심의 하나님과 경고하시는 하나님이 같은 분임을 한 장 안에서 보여 준다.</p>
+
+<h3>I · ANE 맥락 — 역사 배경</h3>
+<p>므로닥발라단(마르둑아팔이딘 2세)은 기원전 721-710년과 703년 두 차례 바빌로니아를 지배한 갈데아 왕으로, 앗수르에 대항해 주변 국가들과 연대를 모색했다. 히스기야의 병문안이 외교적 연대 타진이었을 가능성이 역사적으로 논의되지만, 그 해석은 관찰 단계 밖이다. 무화과 덩이(debelah)는 고대 근동 의술에서 종기·피부 질환 치료에 실제로 쓰인 재료다. 아하스의 해시계(maala Ahaz)는 유다 왕 아하스 시대에 설치된 것으로 추정되며, 히스기야가 수도 공사로 만든 실로아 연못과 수도관(20절)은 고고학적으로 발굴된 히스기야 터널과 연관된다 — 이 역사 배경은 관찰 단계의 사실로만 둔다. 이사야의 바빌론 포로 경고(17-18절)는 기원전 597/587년에 실현되는 사건을 예고하는 것으로 읽힌다 — 해석적 연결은 묵상 단계로 이월.</p>
+
+<h3>J · 문학 구조 — 이 장의 짜임</h3>
+<p>두 이야기(병과 회복 1-11절 / 바빌론 사자와 경고 12-21절)가 히스기야라는 인물로 이어진 복합 구조다. raah(보다)의 이중 사용이 이 두 이야기를 연결하는 문학 장치다 — 5절 하나님이 눈물을 '보심' / 13절 히스기야가 보물을 '보임'. 이사야의 세 발화(선고 1절 / 응답 4-6절 / 경고 17-18절)는 한 선지자가 같은 왕에게 세 다른 방향으로 오는 구조다. 들우심의 속도(4절)는 서사 시간의 압축으로 들우심의 즉각성을 표현한다. 19절의 shalom ve-emet는 장의 마지막 어휘이며, 히스기야의 반응에 논평 없이 닫힌다. 21절의 므낫세 언급은 21장 므낫세 서사의 경첩이다 — 히스기야로 닫히고 므낫세로 열린다.</p>
+
+    <div class="next-row">
+      <a href="/magazine/2KI/19/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">열왕기하 19장</div><div class="nav-preview">산헤립의 패퇴 — 편지를 여호와 앞에 펴 놓고, 그 밤 천사가 185,000명을 치는 장.</div></a>
+      <a href="/magazine/2KI/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">열왕기하 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/2KI/21/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">열왕기하 21장</div><div class="nav-preview">므낫세 — 히스기야의 아들, 유다에서 가장 어두운 왕의 등장.</div></a>
+    </div>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:2ki20', JSON.stringify({
+      href: '/magazine/2KI/20/',
+      title: '열왕기하 20장',
+      excerpt: '눈물을 보셨다 — 권의 heart 20:5. 죽음 선고에 벽을 향해 통곡하는 왕의 눈물을 보았노라는 들으심이 오고(20:5), 해 그림자가 십 도 물러나는 증표(20:11) 뒤에 바빌론 사자에게 보물 창고를 다 열어 보이는 왕을 이사야의 경고(20:17-18)가 닫는 히스기야의 마지막 장.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2ki020 · 2026-06-16</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>

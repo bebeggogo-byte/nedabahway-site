@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>열왕기하 25장 — Observatory | 네다바웨이</title>
+<meta name="description" content="열왕기하 25장을 9단계로 같이 관찰합니다. '시드기야가 바벨론 왕의 명령을 어기고 그를 배반한지라'(25:1) — 예루살렘이 포위되고 기근이 극에 달하며 성벽이 무너지고 시드기야가 두 눈 멀린 채 끌려가고 성전이 불타고 놋기둥이 깨어지고 그달리야가 암살되는 가운데 — '유다의 왕 여호야긴이 사로잡혀 간 지 삼십칠 년 곧 바벨론의 왕 에윌므로닥이 즉위한 원년 십이월 그 달 이십칠일에 유다의 왕 여호야긴을 옥에서 내어놓아 그 머리를 들게 하고'(25:27) — 성전이 소각되고 왕이 눈먼 채 끌려간 책의 끝에서, 옥에 갇혔던 한 왕의 머리가 들리는 — 꺼지지 않은 불씨.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/2KI/25/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/2KI/">역사서</a> · 열왕기하 · 25장</div>
+      <h1>열왕기하 25장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">2KI-025 · 역사서 · 히브리어</div>
+      <p class="essence">성전이 불타고 왕이 눈먼 채 끌려간 책의 끝에서 — "여호야긴을 옥에서 내어놓아 그 머리를 들게 하고"(25:27), 삼십칠 년 포로 끝에 들리는 한 왕의 머리가 꺼지지 않은 불씨로 열왕기하를 닫는다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 2KI-025</p>
+<p>book: 열왕기하</p>
+<p>book_en: 2 Kings</p>
+<p>chapter: 25</p>
+<p>bible_block: 역사서</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브(역사 서사)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 30</p>
+<p>observed_facts_count: 27</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>hebrew_terms: [saraph, nasa, arukhah, tsavah, shakhal, chorbah, nabi_nabi, galuth, mizbach, ammud, yam, nechoshet, gedolim, va_yissa, ra_ot, beshenat, shnat, chodesh, yom]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["25:27에서 MT는 '십이월 이십칠일'로 읽는데 LXX(3Kgdm 25:27)는 '십이월 이십오일'로 달리 읽음 — 날짜 수치의 사본 전승 갈림, 형태 관찰로만 둠", "25:30의 arukhah(정해진 양식)를 LXX는 apomoira로 옮기며, '매일 정해진 분량'의 뉘앙스를 보존함 — 번역 선택 관찰"]</p>
+<p>ane_refs: ["바벨론의 포위 전술 — 성벽을 둘러 토성을 쌓고 식량 공급을 차단하는 siege warfare, 25:1-4의 배경", "왕의 두 눈을 제거하는 형벌 — 정복된 왕이 다시는 반란을 꾀하지 못하도록 시력을 빼앗는 근동의 관행, 25:7의 배경", "성전·궁전 소각과 성벽 파괴 — 점령한 도시의 저항 능력을 완전히 제거하는 바벨론의 표준 절차, 25:9-10의 배경", "청동기둥과 놋바다 운반 — 전리품이자 금속 자원으로서 사원의 금속 구조물을 녹이거나 바벨론으로 운반하는 관행, 25:13-17의 배경", "식탁 동행(table fellowship) — 정복된 왕을 왕의 식탁에 앉히는 것은 종속적 보호와 예우를 동시에 뜻하는 고대 근동의 의례, 25:29의 배경"]</p>
+<p>rabbinic_refs: ["후대 유대 전통은 성전 소각일(25:8-9)을 아브월 9일(Tisha BeAv)로 확정하여 국가적 금식일로 지켜 옴 — 전례 배경, 본문 확정 아님", "25:27-30의 여호야긴 석방을 메시아 소망의 불씨·다윗 집 보존의 증표로 읽는 독법이 후대 랍비 전통에 있음 — 독법 배경"]</p>
+<p>literary_devices: [date_frame_inclusio, blinding_before_exile_irony, temple_inventory_listing, remnant_motif, head_lifting_reversal, arukhah_daily_portion_closure, gedaliah_interlude_pivot, exile_accumulation_pattern]</p>
+<p>repeated_words: ["불사르다·소각하다(saraph — 25:9에 성전·왕궁·예루살렘 집들, 불의 반복이 파괴의 철저함을 쌓음)", "끌어가다·포로로 잡아가다(galah/galuth — 25:11·21·26, 인구 이동의 반복 기록)", "머리를 들다(nasa rosh — 25:27, 소망의 단독 동사로 강조됨)", "정해진 양식·일용할 양식(arukhah — 25:30, 마지막 단어 군에 등장)", "왕(melek — 25:2·5·6·8·20·22·24·27·28, 바벨론 왕과 유다 왕 교차 등장)", "바벨론 왕(melek bavel — 25:1·6·8·11·20·22·24, 심판의 주체로 거듭 기록)"]</p>
+<p>cross_refs: ["왕하 24장 (여호야긴의 첫 포로·시드기야 즉위 — 25장 바로 앞 배경)", "렘 39장; 52장 (예루살렘 함락의 병행 기록 — 예레미야가 같은 사건을 다른 층위로 기록)", "렘 52:31-34 (여호야긴 석방 — 열왕기하 25:27-30의 거의 동일한 결말 단락)", "왕상 8장 (솔로몬 성전 봉헌 기도 — 25:9에서 소각되는 성전의 기원)", "왕상 7:15-22 (야긴과 보아스 두 기둥 — 25:17에서 깨어지는 놋기둥의 기원)", "왕하 8:19 (여호와께서 다윗을 위하여 등불을 다윗에게 주리라 — 25:27-30의 불씨의 신학 배경)", "신 28:36·64-65 (포로 경고 — '여호와께서 너와 네 세운 왕을 끌어가리라' 율법의 성취)", "렘 29:10 (칠십 년 포로 예언 — 25장의 포로가 향하는 예레미야의 말씀)", "에스겔 24:21 (성전이 더럽혀질 것이라는 예언 — 25:9 소각의 예언 배경)", "스 1:1-4 (고레스 칙령 — 25장 포로의 귀환을 향한 다음 운동)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-16</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>열왕기하 25장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 열왕기하 25장입니다. 서른 절이에요. 이 권의 마지막 장입니다. 열왕기하는 이스라엘과 유다 왕들의 이야기를 오래 끌고 왔는데, 그 긴 흐름이 오늘 장 하나에서 닫혀요. 예루살렘 포위와 기근, 성벽 무너짐, 시드기야가 두 눈이 멀린 채 바벨론으로 끌려가고, 성전이 불타고, 놋기둥이 깨어지고, 그달리야가 총독으로 세워졌다가 암살되고, 마지막 네 절에서 삼십칠 년 전 잡혀갔던 여호야긴이 옥에서 나와 왕의 식탁에서 먹는 것으로 닫혀요. 오늘도 해석이나 적용은 다음 자리로 미루고 본문이 보여 주는 것을 따라가 봅시다. 낭독하고 침묵을 두겠습니다.</p>
+<p>(본문 낭독 25:1~30, 약 6분)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대가 세 공간을 순서대로 통과해요. 1막은 예루살렘 성벽 안이에요 — 성이 포위되고 기근이 극에 달하는 밀폐된 공간이에요. 2절에 "성이 에워싸임으로 인하여 성 중에 기근이 심하여"라고 하는데, 성벽이 무너지는 5절까지 그 닫힌 공간 안에 있어요. 2막은 예루살렘 성 안의 여러 층위예요 — 성전, 왕궁, 집들이 차례로 불타고(9절), 성벽이 헐리고(10절), 청동 기둥과 놋바다와 받침 수레가 낱낱이 부서져요(13~17절). 성 안의 고가품들이 하나씩 목록으로 기록되는 무대예요. 3막은 리블라와 바벨론이에요 — 시드기야가 리블라에서 아들들이 죽는 것을 보고 두 눈이 뽑혀 바벨론으로 끌려가요(7절). 그리고 마지막 4막은 미스바예요 — 그달리야가 총독으로 세워지고(23절) 암살되는(25절) 짧은 간주 장면이에요. 그리고 4막 후에 쪽지처럼 붙은 다섯 절 — 바벨론의 옥, 여호야긴이 나오는 곳이에요. 공간이 예루살렘 안으로 좁혀졌다가 바벨론으로 끌려나가다가 다시 바벨론의 옥 안에서 작게 닫혀요.</p>
+<p><strong>P05 김미영</strong>: 소품 목록을 들고 싶어요. 제일 먼저 눈에 들어온 건 토성이에요(1절) — 바벨론 군대가 예루살렘을 둘러 쌓은 흙의 성이에요. 그 다음은 시드기야의 두 눈이에요(7절) — 아들들이 죽는 마지막 장면을 보게 한 뒤에 뽑아버려요. 마지막으로 본 것이 아들들의 죽음인 두 눈. 그 다음은 청동 기둥과 놋바다와 받침 수레예요(13~17절) — 본문이 무게까지 적어요, "놋의 무게를 달 수 없었더라"(16절). 그리고 제사장들과 서기관들이에요(18~21절) — 이름 있는 사람들이 차례로 끌려가 처형되는 명단. 그리고 마지막 소품이 정해진 양식이에요(30절) — 여호야긴이 매일 왕에게서 받아 먹는 arukhah, 정해진 분량. 소품이 흙의 토성에서 시작해 매일의 밥상으로 끝나요.</p>
+<p><strong>P07 오지혜</strong>: 소재를 늘어놓을게요 — 토성, 기근, 성벽, 칼, 두 눈, 포박, 청동 기둥, 놋바다, 받침, 불, 재, 제사장들, 포로들, 총독, 단도, 바벨론, 옥, 삼십칠 년, 식탁, 매일의 양식. 앞쪽은 파괴와 이동의 어휘예요 — 포위, 기근, 무너짐, 소각, 끌려감. 그런데 마지막 네 절에서 소재의 결이 확 바뀌어요 — 옥에서 나옴, 친절히 말함, 머리를 들게 함, 왕의 식탁, 매일의 양식. 파괴의 목록이 기르심의 목록으로 끝나요.</p>
+<p><strong>P02 이진우</strong>: 형식 소재를 짚을게요. 이 장은 날짜 기록으로 열리고 날짜 기록으로 닫혀요. 1절 — "시드기야 왕 제구 년 열째 달 열째 날"이 포위의 시작이고, 27절 — "여호야긴이 사로잡혀 간 지 삼십칠 년 곧 바벨론의 왕 에윌므로닥이 즉위한 원년 십이월 그 달 이십칠일에"가 석방의 날짜예요. 본문이 시간의 두 끝을 날짜로 못박아 둬요. 그리고 목록의 형식이 눈에 띄어요 — 13절부터 17절까지 청동 기둥, 놋바다, 받침 수레, 냄비, 부삽, 불집게, 그릇들이 차례로 목록화돼요. 성전 기물이 낱낱이 기록되는 게 부고처럼 읽혀요.</p>
+<p><strong>P01 한나래</strong>: 저는 7절에서 멈췄어요. "시드기야의 아들들을 그의 눈앞에서 죽이고 시드기야의 두 눈을 뽑은 후 그를 쇠사슬로 결박하여 바벨론으로 끌어갔더라." 마지막으로 본 것이 아들들의 죽음인 두 눈 — 그 눈을 뽑아버려요. 그러면 그 장면이 마지막 기억으로 어둠 속에 남는 거잖아요. 소품이 아니라 한 사람이 가진 마지막 빛이 꺼지는 장면이에요. 그리고 반대쪽 끝에 27절이 있어요 — "그 머리를 들게 하고." 눈이 꺼진 왕과 머리가 들린 왕이 한 장 안에 있어요.</p>
+<p><strong>P11 나경아</strong>: 어휘 몇 개만요. <em>saraph</em>(שָׂרַף) — '불사르다·소각하다', 9절에 성전·왕궁·예루살렘 집들 앞에 반복돼요. <em>nasa rosh</em>(נָשָׂא רֹאשׁ) — '머리를 들다', 27절. nasa는 들어올리다, rosh는 머리예요. '머리를 들게 하다'는 히브리어에서 지위 회복이나 은혜로운 주목의 관용 표현이에요. <em>arukhah</em>(אֲרֻחָה) — '정해진 양식·일용할 분량', 30절 마지막 구에 등장해요. 배경으로만요.</p>
+<p><strong>성령일 선교사</strong>: 예루살렘 안으로 좁혀졌다가 바벨론의 옥으로 끝나는 무대, 토성에서 매일의 양식으로 끝나는 소품, 파괴 목록에서 기르심 목록으로 끝나는 소재, 날짜로 열리고 날짜로 닫히는 형식, 눈이 꺼지는 왕과 머리가 들리는 왕. 그대로 두지요.</p>
+<p>---</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 2KI-025</p>
+<p>book: 열왕기하</p>
+<p>chapter: 25</p>
+<p>date: 2026-06-16</p>
+<p>---</p>
+
+<h2>열왕기하 25장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대: 예루살렘 성 안(포위·기근·무너짐) → 리블라(처형) → 예루살렘 성 안(소각·철거·목록) → 미스바(총독·암살) → 바벨론의 옥(석방). 공간이 좁혀졌다가 다시 한 옥으로 수렴.</li>
+<li>소품: 토성(1절), 기근(3절), 끊어진 성벽(4절), 시드기야의 두 눈(7절, 마지막 본 것이 아들들의 죽음), 청동 기둥·놋바다·받침 수레(13~17절), 제사장·서기관 명단(18~21절), 단도(25절), 삼십칠 년 포로의 옥(27절), 매일의 양식 arukhah(30절).</li>
+<li>소품의 곡선: 흙으로 쌓은 토성에서 열려 매일 받는 밥상으로 닫힘 — 파괴의 목록이 기르심의 목록으로 끝남.</li>
+<li>소재의 기울기: 앞쪽은 파괴·이동의 어휘(포위, 기근, 소각, 끌려감), 마지막 네 절은 은혜·기르심의 어휘(옥에서 나옴, 친절히 말함, 머리를 들게 함, 왕의 식탁, 매일의 양식).</li>
+<li>형식 소재: 날짜로 열리고(1절, 제9년 10월 10일) 날짜로 닫히는(27절, 37년 후 12월 27일) 시간 액자. 성전 기물 낱낱의 목록(13~17절)이 부고처럼 기록됨.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>무겁고 닫힌 공기 — 포위된 성 안의 기근, 도망치다 잡힌 왕, 두 눈이 뽑히는 장면, 성전 소각. 숨을 쉴 틈이 없는 연속적 파괴.</li>
+<li>목록의 차가움 — 기물 목록(13~17절)과 처형 명단(18~21절)이 감정 없이 기록돼요. 눈물이 아니라 회계 보고처럼 기록하는 무게가 오히려 더 무거워요.</li>
+<li>그달리야 에피소드의 짧음 — 미스바 장면이 몇 절 만에 총독 임명·방문·암살·도주로 끝나요. 기대했던 회복의 숨이 곧바로 차단돼요.</li>
+<li>마지막 네 절의 결 전환 — 무거운 파괴 기록이 끝나고 27절부터 어조가 달라져요. "친절히 대우하여"(28절), "그 머리를 들게 하고"(27절), "그 일생 동안 항상 왕의 앞에서 먹었더라"(29절). 작지만 뚜렷한 결의 전환.</li>
+<li>P01 한나래: "왕이 눈멀고 성전이 불타는 장면을 지나 마지막에 한 사람이 밥상에서 먹는 그림이 나오는데, 그 작음이 오히려 크게 느껴졌어요."</li>
+<li>P07 오지혜: "처음부터 끝까지 무언가가 사라지는 장인 줄 알았는데, 맨 끝에서 무언가가 유지되는 장이기도 했어요."</li>
+</ul>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>1절 시작: "시드기야 왕 제구 년 열째 달 열째 날에 바벨론의 왕 느부갓네살이 그의 모든 군대를 거느리고 예루살렘을 치러 와서 성을 에워싸고 그 사면으로 토성을 쌓았더니."</li>
+<li>30절 끝: "왕이 그에게 날마다 양식을 주되 그의 죽는 날까지 평생 동안 항상 그렇게 하였더라."</li>
+<li>포위로 열려 매일의 양식으로 닫힘 — 예루살렘을 에워싼 군대로 시작해, 한 왕의 죽는 날까지 매일 받는 밥상으로 끝남.</li>
+<li>시드기야(눈 멀어 끌려감) ↔ 여호야긴(머리가 들려 먹음) — 두 왕의 운명이 한 장 안에서 대조되며 결말이 빚어짐.</li>
+<li>P02 이진우: "시작의 날짜(제9년 10월 10일)와 끝의 날짜(37년 후 12월 27일) 사이에 열왕기하 전체의 무게가 들어 있어요. 권의 시작 열왕기상 1장이 다윗의 마지막 날들이었는데, 이 권이 한 왕의 죽는 날까지 먹이심으로 닫히는 것이 기묘해요."</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>인물: 시드기야(유다 마지막 왕, 두 눈 멀어 포박·끌려감), 느부갓네살(바벨론 왕, 심판의 주체로 거듭 등장), 느부사라단(시위대장, 소각·철거·처형을 집행하는 실무 인물), 스라야·스바냐(처형된 제사장들), 그달리야(총독으로 세워지나 곧 암살됨), 이스마엘(그달리야를 암살한 왕족), 여호야긴(삼십칠 년 만에 옥에서 나와 왕의 식탁에서 먹는 유다 왕), 에윌므로닥(석방을 명한 바벨론 왕).</li>
+<li>중심 긴장: 말씀대로 임한 심판(신 28장 경고의 성취 — 왕이 끌려가고 성전이 불탐)과 다윗 집의 보존(왕하 8:19 '등불' — 여호야긴의 머리가 들림) 사이의 긴장이 한 장에서 공존함.</li>
+<li>시드기야의 마지막 본 것 — 아들들의 죽음을 본 뒤 두 눈이 뽑힘. 본문은 이것을 평가 없이 기록하고 다음 문장으로 넘어감.</li>
+<li>성전 기물 목록(13~17절) — 야긴과 보아스 두 기둥, 놋바다, 받침 수레, 냄비, 부삽, 불집게, 그릇들. 솔로몬이 만든 것들이 낱낱이 기록되며 사라짐. 본문이 "놋의 무게를 달 수 없었더라"(16절)고 적어 무게를 남겨 둠.</li>
+<li>그달리야 에피소드(22~26절) — 잠시 회복처럼 보이는 총독 통치가 암살로 끝나고 남은 자들도 두려워 애굽으로 내려감. 권 마지막의 짧은 숨이 다시 닫힘.</li>
+<li>여호야긴의 석방(27~30절) — 바벨론 왕이 즉위한 원년에 삼십칠 년 전의 왕을 옥에서 꺼내 식탁에서 먹인다. 본문은 이 사건에 해석을 달지 않고 날짜와 동작만 기록함.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1~7절): 포위와 시드기야의 최후 — 바벨론 군대의 포위(1~3), 성벽 무너짐과 도주(4~5), 시드기야 체포·리블라 심판·두 눈 멀어 바벨론으로(6~7).</li>
+<li>컷 2 (8~21절): 예루살렘 소각·철거·포로 — 느부사라단 입성(8), 성전·왕궁·집들 소각(9), 성벽 철거(10), 남은 자들 포로(11~12), 성전 기물 목록과 반출(13~17), 제사장·서기관 처형(18~21).</li>
+<li>컷 3 (22~26절): 그달리야 총독과 암살 — 그달리야 임명(22~23), 군대 장관들의 귀순과 그달리야의 설득(24), 이스마엘의 암살(25), 남은 자들의 애굽 도주(26).</li>
+<li>컷 4 (27~30절): 여호야긴의 석방 — 37년 후 에윌므로닥이 여호야긴을 옥에서 꺼냄(27), 친절히 대우하고 머리를 들게 함(28), 왕의 식탁에서 먹음(29), 매일 왕에게서 정해진 양식을 받음(30).</li>
+<li>P02 이진우: "컷 1~3이 사라지는 것의 목록이라면, 컷 4는 사라지지 않은 것의 한 증거예요. 비율로 보면 3:1인데, 마지막 1컷의 무게가 불균형하게 커요."</li>
+</ul>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>saraph</em>(שָׂרַף) — '불사르다·소각하다'(9절). 성전·왕궁·예루살렘의 집들 앞에 반복 사용. 철저한 파괴의 동사.</li>
+<li><em>nasa rosh</em>(נָשָׂא רֹאשׁ) — '머리를 들다'(27절). nasa는 들어올리다, rosh는 머리. 히브리어 관용구로 지위 회복·은혜로운 주목의 뜻. 창 40:13·20(바로가 관원장의 머리를 들게 함)에서도 쓰임.</li>
+<li><em>arukhah</em>(אֲרֻחָה) — '정해진 양식·일용할 분량'(30절). 왕이 매일 정해서 내리는 식량. 렘 52:34에도 같은 단어. 마지막 단어 군에 등장.</li>
+<li><em>galah/galuth</em>(גָּלָה/גָּלוּת) — '끌어가다·포로'(11·21·26절). 포로 이동의 반복 동사.</li>
+<li><em>nechoshet</em>(נְחֹשֶׁת) — '놋·청동'(13절). 16절 "놋의 무게를 달 수 없었더라" — 본문이 놋의 양을 헤아릴 수 없다고 적음.</li>
+<li><em>ammud</em>(עַמּוּד) — '기둥'(17절). 야긴과 보아스 두 기둥(왕상 7:15~22). 솔로몬 성전 건축의 표지가 여기서 해체됨.</li>
+<li><em>tsavah</em>(צָוָה) — '명령하다'(25:21). 느부갓네살의 명령으로 처형됨. 심판의 명령 구조.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>날짜 액자: 1절(제9년 10월 10일 포위 시작)과 27절(37년 후 12월 27일 석방) — 파괴의 날짜와 회복의 날짜가 시간의 양 끝을 표시함.</li>
+<li>두 왕의 대조: 시드기야(눈 멀어 어둠 속으로 끌려감) ↔ 여호야긴(머리가 들려 왕의 식탁에서 먹음). 한 장 안에서 두 운명이 교차함.</li>
+<li>목록 구조: 13~17절 기물 목록, 18~21절 처형 명단 — 사라지는 것들의 부고 형식. 감정을 개입시키지 않는 건식 기록.</li>
+<li>그달리야 에피소드의 기능: 5절 분량의 짧은 간주로 회복처럼 보이게 하다가 곧 닫힘 — 남은 자 모티프가 한 번 더 꺼졌다 켜지는 리듬.</li>
+<li>nasa rosh(머리를 들다) 역전: 7절에서 시드기야가 두 눈 멀어 어둠으로 들어가는 것과 27절에서 여호야긴의 머리가 들리는 것이 한 장의 수미상관 역전.</li>
+<li>권의 마지막 단어 군: arukhah(정해진 양식) — 왕이 죽는 날까지 매일 주어지는 밥상. 권 전체를 닫는 마지막 이미지가 식탁.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>바벨론의 포위 전술 — 토성(siege works)을 쌓고 사면을 에워싸 식량 공급을 차단. 25:1-4의 기근은 이 전술의 결과. ANE 전쟁 기록에서 공통적으로 확인됨.</li>
+<li>두 눈을 제거하는 정복 형벌 — 왕의 시력을 빼앗아 반란 능력을 제거하는 근동의 관행. 25:7의 배경. 아시리아·바벨론 전쟁 기록에서 확인됨.</li>
+<li>성전 기물 운반 — 정복된 신전의 금속 구조물을 전리품·자원으로 반출하는 바벨론의 표준 절차. 25:13~17의 배경.</li>
+<li>식탁 동행(table fellowship) — 정복된 왕을 왕의 식탁에 앉히는 것은 종속적 보호와 명예 유지를 동시에 의미하는 고대 근동의 의례. 25:29의 배경.</li>
+<li>포로 왕 기록(Weidner Tablets) — 실제로 바벨론에서 발견된 에윌므로닥(아멜-마르두크) 시대의 행정 문서에 여호야긴('야우킨 of the land of Yahud')과 그 아들들에게 기름·식량을 배급한 기록이 있음 — 고고학 배경, 확정 해석 아님.</li>
+<li>아브월 9일(Tisha BeAv) — 후대 유대 전통이 성전 소각일(25:8-9)을 아브월 9일로 확정하여 국가 금식일로 지킴. 전례 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>왕하 24장 ↔ 25장 — 여호야긴의 첫 포로(24:15)와 37년 뒤 석방(25:27~30)이 연결됨.</li>
+<li>왕하 25장 ↔ 렘 52장 — 거의 동일한 결말 단락. 예레미야 52:31-34도 여호야긴 석방으로 닫힘.</li>
+<li>왕하 25:9 ↔ 왕상 8장 — 소각되는 성전과 솔로몬 성전 봉헌 기도 사이의 거리.</li>
+<li>왕하 25:17 ↔ 왕상 7:15~22 — 야긴과 보아스 기둥의 건립(왕상)과 해체(왕하 25) 사이의 호.</li>
+<li>왕하 25:27~30 ↔ 왕하 8:19 — "여호와께서 다윗을 위하여 그에게 등불을 주시리라" 말씀과 여호야긴 석방의 연결.</li>
+<li>왕하 25:1~21 ↔ 신 28:36·64~65 — "여호와께서 너와 네 세운 왕을 네가 알지 못하는 나라로 끌어가리라" 율법 경고의 성취.</li>
+<li>왕하 25장 ↔ 렘 29:10 — "칠십 년이 차면 내가 너희를 권고하여" — 포로의 시간이 향하는 예레미야의 말씀.</li>
+<li>왕하 25장 ↔ 스 1:1~4 — 고레스 칙령, 포로 귀환 — 25장 이후의 다음 운동.</li>
+<li>왕하 25장 ↔ 창 40:13·20 — nasa rosh(머리를 들다) 같은 동사, 바로가 관원장의 머리를 들게 함 — 같은 어휘 배경.</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>시드기야 왕 제9년 열째 달 열째 날. 바벨론 군대가 예루살렘을 에워싼다. 토성이 쌓인다. 성 안에 기근이 심해진다. 성벽이 무너진다. 시드기야와 군사들이 야간에 도주하다 붙잡힌다. 리블라에서 시드기야의 아들들이 그 눈앞에서 죽임을 당한다. 그리고 그 눈들이 뽑힌다. 어둠 속에서 바벨론으로 끌려간다. 한 달 뒤, 느부사라단 시위대장이 예루살렘으로 들어온다. 성전과 왕궁과 예루살렘의 집들이 불탄다. 성벽이 헐린다. 남은 자들이 끌려간다. 성전 안의 청동 기둥, 놋바다, 받침 수레가 낱낱이 기록되며 바벨론으로 운반된다. 제사장들과 서기관들이 리블라로 끌려가 처형된다. 유다가 사로잡혀 그 땅에서 나간다. 바벨론 왕이 그달리야를 총독으로 세운다. 군대 장관들이 귀순한다. 그러나 이스마엘이 그달리야를 단도로 죽인다. 남은 자들이 두려워 애굽으로 내려간다. 화면이 끊어질 것처럼 잠시 멈춘다. 그리고 자막 — '여호야긴이 사로잡혀 간 지 삼십칠 년.' 바벨론의 새 왕 에윌므로닥이 즉위한 원년 열두째 달. 한 왕이 옥에서 나온다. 왕이 친절히 대우하며 그 머리를 들게 한다. 왕의 식탁에서 먹는다. 매일 정해진 양식을 받는다. 죽는 날까지. 페이드아웃.</p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li><strong>P01 한나래</strong>: "눈이 꺼진 왕과 머리가 들린 왕 — 한 장의 두 끝"</li>
+<li><strong>P02 이진우</strong>: "날짜로 열리고 날짜로 닫히는 — 37년의 거리"</li>
+<li><strong>P04 최현국</strong>: "성전이 불타고 왕이 눈먼 끝에서 — 꺼지지 않은 불씨"</li>
+<li><strong>P05 김미영</strong>: "토성에서 식탁까지 — 파괴 목록이 기르심 목록으로 끝나는"</li>
+<li><strong>P07 오지혜</strong>: "사라지는 것들의 긴 목록 끝에 — 유지되는 한 밥상"</li>
+<li><strong>P11 나경아</strong>: "<em>nasa rosh · arukhah</em> — 들린 머리와 매일의 양식이 권을 닫는"</li>
+<li>부제 제안: "시드기야의 두 눈이 뽑히고(25:7) 성전이 불타고(25:9) 제사장들이 처형되는(25:21) 파괴의 긴 기록 끝에 — '여호야긴이 사로잡혀 간 지 삼십칠 년'(25:27)이라는 자막과 함께 한 왕의 머리가 들리고 매일의 밥상이 이어지는 열왕기하의 마지막 네 절"</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (saraph·nasa rosh·arukhah·galah·nechoshet·ammud·tsavah 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (날짜 액자·두 왕 대조·목록 구조·nasa rosh 역전·arukhah 마지막 단어)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>25:9의 성전 소각을 '죄의 결과'나 '타락의 심판'으로 교훈화하지 않고, 소각·철거·포로 이동의 사건 사실과 신 28:36 율법 경고의 형태 연결로만 기록.</li>
+<li>25:7의 시드기야 실명을 도덕 평가로 닫지 않고, 마지막 본 것이 아들들의 죽음이라는 사실과 두 눈이 뽑히는 동작만 기록. 원인·교훈 단정 유보.</li>
+<li>25:27~30의 여호야긴 석방을 '소망의 증표·메시아 불씨'로 단정하지 않고, nasa rosh(머리를 들게 함)와 arukhah(매일의 양식)라는 동사·명사의 사실과 날짜 기록으로만 보존. 해석은 묵상 단계로 이월.</li>
+<li>그달리야 암살(25:25)을 권의 방향 전환의 의미로 단정하지 않고, 임명·귀순·암살·도주의 사건 순서로만 기록.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 2KI-025</p>
+<p>book: 열왕기하</p>
+<p>chapter: 25</p>
+<p>date: 2026-06-16</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P04 최현국</strong>: 제9년 열째 달 열째 날, 바벨론 군대가 예루살렘을 빈틈없이 둘러쌉니다. 흙으로 토성이 쌓입니다. 성 안에 기근이 극에 달합니다. 제11년 사월. 성벽 한 곳이 무너집니다. 왕과 군사들이 야간에 빠져나가다 기랄 광야에서 붙잡힙니다. 리블라로 끌려갑니다. 시드기야의 아들들이 그 눈앞에서 죽임을 당합니다. 그리고 그 눈들이 뽑힙니다. 쇠사슬이 채워집니다. 어둠 속에서 바벨론으로 끌려가는 왕의 실루엣. 한 달 뒤, 느부사라단이 입성합니다. 성전이 불탑니다. 왕궁이 불탑니다. 예루살렘의 모든 집이 불탑니다. 성벽이 무너집니다. 청동 기둥이 깨어집니다. 놋바다가 부서집니다. 받침 수레가 분해됩니다. 낱낱이 목록에 기록됩니다. 제사장과 서기관이 리블라로 끌려가 처형됩니다. 잠시, 총독이 세워집니다. 귀순이 있습니다. 그러나 그 총독이 암살당합니다. 남은 자들이 두려워 애굽으로 향합니다. 화면이 어두워집니다. 자막 — '삼십칠 년이 지났다.' 새 왕이 즉위합니다. 한 사람이 옥에서 나옵니다. 왕이 친절히 말합니다. 옥복을 갈아 입습니다. 식탁에 앉습니다. 매일 정해진 양식이 옵니다. 죽는 날까지. 페이드아웃.</p>
+<p><strong>성령일 선교사</strong>: 눈이 뽑히는 어둠과 머리가 들리는 식탁이 한 장 안에 있습니다. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "눈이 꺼진 왕과 머리가 들린 왕"</p>
+<p><strong>P02 이진우</strong>: "제9년 10월 10일부터 37년 후 12월 27일까지 — 날짜가 감싼 권의 끝"</p>
+<p><strong>P04 최현국</strong>: "불타는 성전의 끝에서 켜지는 불씨 — 열왕기하의 마지막 컷"</p>
+<p><strong>P05 김미영</strong>: "arukhah — 죽는 날까지 매일의 정해진 양식이 권을 닫는다"</p>
+<p><strong>P07 오지혜</strong>: "사라진 것과 사라지지 않은 것 — 마지막 네 절의 무게"</p>
+<p><strong>P11 나경아</strong>: "<em>nasa rosh</em> — 들린 머리가 권의 마지막 몸짓"</p>
+<p>부제 제안: "예루살렘 함락(25:1~21)의 파괴와 그달리야 암살(25:22~26)의 닫힘 끝에 — '삼십칠 년이 지나'(25:27) 여호야긴의 머리가 들리고 매일의 밥상이 그 죽는 날까지 이어지는 열왕기하의 결말"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 성전이 불타고 왕이 두 눈을 잃고 제사장들이 처형되는 그 긴 목록을 따라왔습니다. 그리고 맨 끝에 한 사람이 옥에서 나와 식탁에 앉아 있습니다. 그 두 장면을 같이 쥔 채로, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 오늘 성전이 불타고 왕이 눈을 잃는 장을 지나왔습니다. 오래 기다린 그 끝에 밥상이 있었습니다. 매일. 죽는 날까지. 37년의 어둠 속에서 누군가가 밥상을 준비하고 있었는지 아닌지를 본문은 말하지 않아요. 다만 밥상이 왔다는 것만 적어요. 저는 그 적음 앞에 머물고 싶어요.</p>
+<p><em>— 그 순간 떠오른 것을 각자 마음에만 둡니다.</em></p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>그래서 이 본문은 어디서 어디로 움직이는지요? 눈에 보이는 일 아래에서 무엇이 회복되고 있는지요? 이 본문이 품은 긴장은 무엇인지요? 이 불이 우리 안에서도 타오르고 있는지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 25장은 <strong>파괴에서 보존으로</strong> 움직여요. 컷 1~3이 사라지는 것들의 목록이고, 컷 4가 사라지지 않은 것의 증거예요. 권 전체로 보면, 열왕기상 1장이 다윗 왕의 마지막 날들로 시작했는데, 열왕기하 25장이 다윗 집의 한 왕이 '그 죽는 날까지' 먹이심 받는 것으로 닫혀요. 권 전체의 운동이 왕정의 시작에서 왕정의 심판으로, 그러나 다윗 집의 소멸이 아니라 보존으로 기울어요. 2KI의 spine — '오래 참으신 경고 끝에 말씀대로 심판하시되, 포로의 끝에서도 다윗 집의 불씨를 보존하신다' — 이 25:27~30에서 한 왕의 들린 머리로 마지막 단면을 찍어요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. <em>nasa rosh</em> — 머리를 들다(27절). 이 표현이 창 40:13에서 바로가 술 맡은 관원장에게 쓰여요 — "바로가 당신의 머리를 들고." 그 관원장은 복직하고 요셉은 감옥에 남아요. 그리고 창 40:20에서는 바로가 "모든 신하의 머리를 들었다"고도 해요. <strong>들린 머리가 항상 완전한 회복을 뜻하지는 않아요</strong> — 여호야긴도 바벨론 왕의 아래에서 먹어요. 그러나 들린 머리와 매일의 밥상이 권의 마지막 이미지라는 것은 사실이에요. 배경 관찰로만요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래로 보면, 표면은 나라가 망한 기록이에요. 그런데 그 아래에서 움직이는 건 다윗에게 주셨다는 등불(왕하 8:19)이 정말 꺼지지 않았는지 묻는 질문 같아요. 성전이 불탔어요. 왕이 눈을 잃었어요. 제사장들이 처형됐어요. 총독이 암살됐어요. 남은 자들이 도주했어요. 그런데 맨 끝에 한 사람이 식탁에 앉아서 먹고 있어요. <strong>본문은 이것이 불씨라고 말하지 않아요. 다만 꺼지지 않았다는 사실만 적어요.</strong> 그 침묵이 다음 질문을 남겨요.</p>
+<p><strong>P01 한나래</strong>: 긴장이에요. 시드기야는 마지막 본 것이 아들들의 죽음이고 그 뒤로는 어둠이에요. 여호야긴은 37년 만에 나와서 식탁에서 먹어요. 같은 다윗 집의 두 왕인데 운명의 결이 달라요. 본문은 왜 시드기야가 저렇게 됐는지, 왜 여호야긴이 이렇게 나왔는지를 설명하지 않아요. <strong>두 결말을 나란히 두고 다음 말을 하지 않아요.</strong> 그 침묵이 긴장이에요.</p>
+<p><strong>P04 최현국</strong>: 운동을 한 화면으로 보면, <strong>소각에서 식탁으로</strong> 기우는 운동이에요. 성전이 불탔는데 밥상이 왔어요. 그 두 이미지가 한 장에 있어요. 그리고 이 권의 다음은 역대기가 아니라 역사적으로는 에스라예요 — 고레스 칙령, 귀환. 25장이 끝나는 지점에서 아직 오지 않은 귀환이 기다리고 있어요. 밥상은 그 사이의 37년을 건너는 아주 작은 다리예요.</p>
+<p><strong>P05 김미영</strong>: 이 불이 우리 안에서 타오르느냐 물으시니 — 저는 30절이 불씨 같아요. "그 죽는 날까지 평생 동안 항상 그렇게 하였더라." 항상. 평생. 그 단어들이 남아요. 37년 동안 어둠 속에 있었던 사람에게 매일 밥상이 왔다는 것이요. 그 매일 앞에 잠깐 머물게 됩니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>파괴에서 보존으로, 소각에서 식탁으로, 눈이 꺼진 왕에서 머리가 들린 왕으로 — 권이 심판의 끝에서 꺼지지 않은 불씨 하나를 남겨 두는</strong> 그 운동을 손에 쥐고 다음 권으로 갑니다. 다음은 역대상입니다 — 아담에서부터 다시 쓰는 족보.</p>
+<p>---</p>
+
+<h2>열왕기하 25장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 25:7 — 마지막 본 것이 아들들의 죽음인 시드기야의 두 눈을 본문은 왜 평가 없이 기록하는가?</h2>
+<ul><li>아들들의 죽음을 보게 한 뒤 그 눈을 뽑는 장면이 본문에 단 두 문장으로 기록된다. 정죄도 애도도 없다. 이 침묵이 무엇을 뜻하는지 1장 안에서 닫지 않고 보존.</li></ul>
+
+<h2>Q2. 25:9 — 솔로몬이 봉헌한 성전이 소각될 때 본문은 무엇을 느끼게 하는가?</h2>
+<ul><li>왕상 8장의 봉헌 기도와 25:9의 소각 사이에 열왕기 전체의 무게가 들어 있다. 본문은 그 사이의 거리를 설명하지 않고 사실만 기록한다. 두 기록 사이의 의미를 묵상 단계로 이월.</li></ul>
+
+<h2>Q3. 25:13~17 — 성전 기물 목록을 본문이 낱낱이 기록한 이유는 무엇인가?</h2>
+<ul><li>"놋의 무게를 달 수 없었더라"(16절)라고 적으며 본문이 기물을 열거한다. 목록의 형식이 부고처럼 기능하는지, 혹은 다른 기능이 있는지 — 형태 관찰로만 보존.</li></ul>
+
+<h2>Q4. 25:22~26 — 그달리야 에피소드는 왜 이 장에 있는가?</h2>
+<ul><li>포로 이후 잠깐 세워진 총독이 암살되고 남은 자들이 도주하는 짧은 단락이 끝 부분에 놓인다. 이 에피소드가 권의 결말 구조에서 어떤 역할을 하는지 — 25장의 흐름과 함께 묵상 단계로 이월.</li></ul>
+
+<h2>Q5. 25:27~30 — 여호야긴의 석방이 권의 마지막 단락으로 배치된 것은 무엇을 말하는가?</h2>
+<ul><li>파괴의 목록이 끝난 자리에 37년 만의 석방이 나온다. 본문은 이것이 소망인지 결말인지를 해석하지 않는다. 해석을 달지 않고 nasa rosh(머리를 들게 함)와 arukhah(매일의 양식)라는 사실만 남겨 두고 보존.</li></ul>
+
+<h2>Q6. 25:30 — "그 죽는 날까지 평생 동안 항상 그렇게 하였더라"는 권의 마지막 문장이 왜 이 형식인가?</h2>
+<ul><li>권 전체가 한 왕의 죽는 날까지 매일의 밥상이라는 이미지로 닫힌다. 이 마지막 문장이 심판 이후를 향한 어떤 신호인지, 아니면 사실의 마무리인지를 관찰 단계에서 닫지 않고 묵상·사귐 단계로 이월. 보존.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">"시드기야의 두 눈이 뽑히고"(25:7) 성전이 불탄(25:9) 끝에서 — "여호야긴의 머리를 들게 하고"(25:27) 죽는 날까지 매일의 양식으로(25:30) 닫히는 열왕기하의 마지막 장.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: 2KI-025</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-16</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 열왕기하 25장은 "시드기야 왕 제구 년 열째 달 열째 날"(25:1) 바벨론의 포위와 기근을 거쳐, 시드기야가 마지막으로 본 것이 아들들의 죽음인 채 두 눈이 뽑혀 끌려가고(25:7), 성전과 왕궁과 예루살렘 집들이 소각되고(25:9), 청동 기둥과 놋바다가 낱낱이 목록에 적히며 사라지고(25:13~17), 그달리야 총독이 암살되고 남은 자들이 도주하는(25:25~26) 파괴의 긴 기록 끝에 — "여호야긴이 사로잡혀 간 지 삼십칠 년"(25:27)이라는 날짜와 함께 한 왕이 옥에서 나와 머리가 들리고 매일의 밥상이 그 죽는 날까지 이어지는(25:27~30), 열왕기하의 마지막 장이다.</p>
+<p><strong>한 문단</strong>: 예루살렘이 에워싸인다. 기근이 극에 달한다. 성벽이 무너지고 왕이 도주하다 잡힌다. 리블라에서 시드기야는 아들들이 죽는 것을 본 뒤 두 눈이 뽑혀 어둠 속에서 바벨론으로 끌려간다. 한 달 뒤 느부사라단이 들어와 성전과 왕궁과 집들을 소각한다. 청동 기둥과 놋바다와 받침 수레가 낱낱이 목록에 기록되며 깨어진다. 제사장들과 서기관들이 처형된다. 유다가 그 땅에서 사로잡혀 나간다. 잠시 총독이 세워졌다가 암살된다. 남은 자들도 도주한다. 그리고 서른일곱 해가 지난다. 새 왕이 즉위하는 원년 열두째 달. 여호야긴이 옥에서 나온다. 왕이 친절히 대우하고 그 머리를 들게 한다. 왕의 식탁에서 먹는다. 매일 정해진 양식을 받는다. 죽는 날까지.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>예루살렘 → 리블라 → 예루살렘 → 미스바 → 바벨론의 옥. 토성에서 매일의 밥상으로 끝나는 소품 곡선. 파괴 목록이 기르심 목록으로 전환.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>목록의 차가움(기물·처형 명단). 그달리야 간주의 짧은 숨이 곧 닫힘. 마지막 네 절의 결 전환 — 작지만 뚜렷한 어조 변화.</td></tr>
+<tr><td>3 시작과 끝</td><td>포위(1절)에서 매일의 양식(30절)으로. 시드기야(눈 멀어 끌려감) ↔ 여호야긴(머리 들려 먹음) 대조.</td></tr>
+<tr><td>4 등장인물·사상</td><td>시드기야·느부갓네살·느부사라단·그달리야·이스마엘·여호야긴·에윌므로닥. 심판(말씀대로)과 보존(다윗 등불)의 긴장 공존.</td></tr>
+<tr><td>5 장면 컷</td><td>포위·최후(1~7) / 소각·철거·포로(8~21) / 총독·암살(22~26) / 석방·식탁(27~30). 3:1 비율에서 마지막 1컷의 불균형한 무게.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>saraph·nasa rosh·arukhah 원어. 날짜 액자. 두 왕 대조. 놋 무게를 달 수 없었더라(16절). Weidner Tablets 배경.</td></tr>
+<tr><td>7 동영상</td><td>토성 → 두 눈 뽑힘 → 소각 → 목록 → 암살 → 37년 자막 → 옥에서 나옴 → 식탁 → 매일의 양식. 페이드아웃.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"성전이 불타고 왕이 눈먼 끝에서 — 꺼지지 않은 불씨"</td></tr>
+<tr><td>9 기도·내면</td><td>37년의 어둠 뒤 매일의 밥상 — 그 매일 앞에 머문다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 파괴의 목록과 그 끝에 남는 것</strong>: 25장은 사라지는 것들의 긴 목록이다. 왕의 눈, 성전, 기물들, 제사장들, 총독, 남은 자들 — 하나씩 목록에 기록되며 사라진다. 그런데 그 목록이 끝나는 곳에서 사라지지 않은 한 사람이 있다. 여호야긴. 본문은 그의 석방을 대단한 사건으로 기록하지 않는다. 날짜와 동작만 기록한다 — 옥에서 나왔다, 머리가 들렸다, 식탁에서 먹었다, 매일 양식이 왔다, 죽는 날까지. 목록의 끝에서 하나가 남아 있다는 사실. 본문은 그 이상을 말하지 않는다.</p>
+<p>2. <strong>결 2 — 시드기야의 어둠과 여호야긴의 식탁</strong>: 한 장 안에 두 왕이 있다. 시드기야는 마지막 본 것이 아들들의 죽음이고 그 뒤로 어둠이다. 여호야긴은 37년 만에 나와 왕의 식탁에서 먹는다. 본문은 왜 둘의 운명이 다른지를 설명하지 않는다. 두 운명을 나란히 두고 침묵한다. 그 침묵이 독자에게 질문을 남긴다.</p>
+<p>3. <strong>결 3 — 날짜가 감싼 권의 끝</strong>: 1절의 날짜(제9년 10월 10일)와 27절의 날짜(37년 후 12월 27일) 사이에 왕국의 끝이 들어 있다. 그러나 두 번째 날짜 뒤에 오는 것은 날마다 받는 밥상이다. 본문이 시간을 특정하여 두 날짜를 못박는 방식이, 그 사이에서 일어난 것들을 지워지지 않게 새긴다. 그리고 두 번째 날짜 뒤의 밥상은 그 권이 심판에서 끝나지 않는다는 것을 날짜보다 조용하게 말한다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>왕하 8:19 — "여호와께서 다윗을 위하여 그에게 등불을 주시리라" — 25:27~30의 여호야긴이 그 등불의 계속되는 단면.</li>
+<li>신 28:36·64~65 — 율법의 포로 경고 — 25:1~21의 성취.</li>
+<li>왕상 7:15~22; 8장 — 야긴·보아스 기둥 건립과 성전 봉헌 → 25:9·17에서 소각·해체.</li>
+<li>렘 52:31~34 — 여호야긴 석방 병행 기록 — 열왕기하와 예레미야가 같은 결말 단락을 공유함.</li>
+<li>창 40:13·20 — nasa rosh(머리를 들다) 동일 표현 — 요셉 이야기의 배경 어휘.</li>
+<li>렘 29:10 — 칠십 년 포로 예언 — 25장의 포로가 향하는 말씀.</li>
+<li>스 1:1~4 — 고레스 칙령 — 25장 이후 포로 귀환의 다음 운동.</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 포위된 성 안. 기근이 극에 달한 그 안에 나도 있다. 무너지는 성벽 소리를 듣는다.</li>
+<li><strong>멈춤 1</strong>: 25:7에서 멈춘다 — 마지막으로 본 것이 아들들의 죽음인 두 눈. 그 어둠의 무게를 서둘러 넘기지 않는다.</li>
+<li><strong>멈춤 2</strong>: 25:16에서 멈춘다 — "놋의 무게를 달 수 없었더라." 달 수 없는 무게의 것들이 사라진다. 그 목록의 끝에 선다.</li>
+<li><strong>끝</strong>: 25:30에서 멈춘다 — 그 죽는 날까지 매일의 밥상. 37년 어둠 뒤 매일이 온다는 것. 그 매일 앞에 잠시 머문다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 포위·최후(1~7)·소각·철거·포로(8~21)·총독·암살(22~26)·석방·식탁(27~30) 네 컷 완결</li>
+<li>[x] nasa rosh(27절)와 arukhah(30절) 원어 어휘 정착</li>
+<li>[x] 두 왕 대조(시드기야·여호야긴) 분포</li>
+<li>[x] 날짜 액자(1절·27절) 관찰</li>
+<li>[x] 왕하 8:19 등불·신 28장 경고·렘 52장 병행과의 다리</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가 (destination)</h3>
+<p>열왕기하의 spine은 "오래 참으신 경고 끝에 말씀대로 심판하시되, 포로의 끝에서도 다윗 집의 불씨를 보존하신다"이며, destination이 바로 이 25장이다 — 특히 25:27~30의 여호야긴 석방이 권 전체 운동의 수렴점이다. 권의 흐름은 이스라엘·유다 왕들의 교차 기록(왕하 1~17장), 히스기야의 신뢰와 앗수르 위기(18~20장), 므낫세의 극단적 우상숭배와 요시야의 개혁(21~23장), 여호야긴의 첫 포로(24장), 예루살렘 함락·성전 소각·여호야긴의 석방(25장)으로 이어진다. 구속사의 호에서 보면, 다윗에게 주신 약속 — "네 집과 네 나라가 내 앞에서 영원히 보전되고"(삼하 7:16) — 과 율법의 경고 — "여호와께서 너와 네 세운 왕을 끌어가리라"(신 28:36) — 가 이 장에서 동시에 성취된다. 왕이 눈멀어 끌려가고(경고의 성취), 그러나 다윗 집의 한 왕이 옥에서 나와 밥상에서 먹는다(약속의 보존). 25:27~30은 단순한 역사 부록이 아니다 — 권 전체의 긴장인 심판과 보존이 마지막 네 절에서 조용히 공존하며, nasa rosh(머리를 들게 함)와 arukhah(매일의 양식)라는 두 어휘가 그 공존의 최종 단면을 찍는다. 이 작은 불씨가 에스라·느헤미야·스가랴가 향할 귀환의 호를 받아들고 서 있다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>예루살렘 포위와 기근(25:1~4)에서 매일의 밥상(25:30)으로 / 성전 소각(25:9)에서 꺼지지 않은 한 불씨(25:27~30)로 / 시드기야의 꺼진 눈(25:7)에서 여호야긴의 들린 머리(25:27)로 — 심판의 끝이 소멸이 아니라 보존으로 기우는 운동.</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 25장은 사라지는 것들의 긴 기록에서 사라지지 않은 것 하나로 수렴하는 장이다. 컷 1~3이 파괴·이동·소멸의 연속이라면, 컷 4는 그 끝에서 보존의 최소 단위를 보여 준다. 그 최소 단위가 왕의 머리가 들리는 동작과 매일 오는 밥상이다. 권 전체의 운동선이 이 두 이미지에서 마무리된다 — 심판이 말씀대로 임했고, 그 끝에서 다윗 집의 불씨가 꺼지지 않았다는 두 사실이 동시에 서 있다.</p>
+
+<h3>I · ANE·유대 맥락</h3>
+<p>바벨론의 포위 전술(토성·식량 차단), 정복 왕의 실명 처벌(25:7), 성전 기물 운반(25:13~17), 식탁 동행 의례(25:29)는 모두 고대 근동 전쟁 기록과 행정 문서에서 확인되는 관행이다. 특히 에윌므로닥(아멜-마르두크) 시대 바벨론 행정 문서(Weidner Tablets)에 '야우킨 of the land of Yahud'와 그 아들들에게 식량을 배급한 기록이 있어 25:29~30의 밥상 기록과 외적으로 연결된다 — 고고학 배경으로만 두고, 확정 해석은 유보한다. 후대 유대 전통은 성전 소각일을 아브월 9일(Tisha BeAv)로 확정하여 금식일로 지키며, 여호야긴의 석방을 다윗 집 보존의 증표로 읽는 독법이 있다 — 전례·독법 배경으로만 보존.</p>
+
+<h3>J · 문학 구조 — 권의 마지막 장이 빚어지는 방식</h3>
+<p>25장은 날짜 액자(1절과 27절) 안에 파괴의 긴 목록을 두고, 그 목록이 끝나는 지점에 보존의 최소 단위(27~30절)를 붙인다. 이 비율(3:1 — 파괴 컷 셋, 보존 컷 하나)이 권의 결말 구조를 만든다. 그달리야 에피소드(22~26절)는 보존처럼 시작하다가 곧 닫히는 짧은 간주로, 독자가 일찍 숨을 쉬지 못하게 만든다. 그래서 27절의 '삼십칠 년'이라는 자막이 더 멀리서 오는 것처럼 느껴진다. 마지막 단어 군의 리듬도 의미 있다 — nasa rosh(들린 머리), arukhah(매일의 양식), "그 죽는 날까지 평생 동안 항상." 권 전체를 닫는 마지막 이미지가 소각이 아니라 밥상이다. 그 배치 자체가 권의 방향을 말한다.</p>
+
+<div class="next-row" style="margin-top:32px;">
+  <table style="font-size:0.9rem;width:100%;">
+    <thead><tr><th>이전 장</th><th>현재 장</th><th>다음</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><a href="/magazine/2KI/24/">열왕기하 24장</a><br><span style="color:var(--c-mute);font-size:0.82rem;">여호야긴 첫 포로·시드기야 즉위</span></td>
+        <td><strong>열왕기하 25장</strong><br><span style="color:var(--c-mute);font-size:0.82rem;">예루살렘 함락 · 불씨</span></td>
+        <td><a href="/magazine/1CH/1/">역대상 1장</a><br><span style="color:var(--c-mute);font-size:0.82rem;">아담에서 다시 쓰는 족보</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/2KI/24/"><div class="nav-kicker">← 이전 장</div><div class="nav-title">열왕기하 24장</div><div class="nav-preview">여호야긴 첫 포로와 시드기야 즉위 — 25장의 직접 배경.</div></a>
+      <a href="/magazine/2KI/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">열왕기하 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/1CH/1/"><div class="nav-kicker">다음 권 →</div><div class="nav-title">역대상 1장</div><div class="nav-preview">아담에서 다시 쓰는 족보 — 포로 이후 재건의 시선으로 역사를 다시 여는 역대기의 개막.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:2ki25', JSON.stringify({
+      href: '/magazine/2KI/25/',
+      title: '열왕기하 25장',
+      excerpt: '성전이 불타고 왕이 눈먼 끝에서 — 여호야긴의 머리를 들게 하고(25:27) 죽는 날까지 매일의 양식으로(25:30) 닫히는 열왕기하의 마지막 장. 꺼지지 않은 불씨.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2026-06-16</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>
