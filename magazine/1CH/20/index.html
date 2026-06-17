@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>역대상 20장 — Observatory | 네다바웨이</title>
+<meta name="description" content="역대상 20장을 9단계로 같이 관찰합니다. 해가 바뀌어 왕들이 출전할 때 요압이 암몬을 격파하고 랍바를 함락시키나 다윗은 예루살렘에 그대로 있고(20:1), 다윗이 그들의 왕의 머리에서 한 달란트 무게의 왕관을 취하며(20:2~3), 블레셋과의 전쟁에서 라파의 자손 거인들이 차례로 쓰러진다(20:4~8) — 역대기는 같은 절기에 일어난 밧세바 서사를 한 구절의 부재로만 비워 두고, 다윗 왕조 아래 위협이 제거되는 짧은 장을 무엇을 기록하고 무엇을 비웠는가로 관찰한다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/1CH/20/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/1CH/">역사서</a> · 역대상 · 20장</div>
+      <h1>역대상 20장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">1CH-020 · 역사서 · 히브리어</div>
+      <p class="essence">해가 바뀌어 왕들이 출전할 때 요압이 랍바를 함락시키는데, 본문은 같은 절기에 일어난 밧세바 서사를 "다윗은 예루살렘에 그대로 있더라"는 한 구절의 부재로만 비워 둔다. 왕관을 취한 뒤로는 라파의 자손 거인들이 차례로 쓰러진다. 짧은 여덟 절이 무엇을 기록하고 무엇을 비웠는가를 묻게 한다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 1CH-020</p>
+<p>book: 역대상</p>
+<p>book_en: 1 Chronicles</p>
+<p>chapter: 20</p>
+<p>bible_block: 역사서</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브(전쟁·승전)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 8</p>
+<p>observed_facts_count: 22</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [milchamah, Rapha, nakah, atarah, Rabbah, Gath, sadeh, megerah]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["20:5 엘하난이 죽인 대상이 MT 역대상에서는 '가드 골리앗의 아우 라흐미', 사무엘하 21:19에서는 '베들레헴 사람 엘하난이 골리앗을' — 평행 본문 사이 표현이 갈림. 본문 비교의 관찰 거리이며 본문 확정 아님", "거인의 손가락·발가락 수치(각 여섯씩 스물넷, 20:6)는 평행 삼하 21:20과 일치하나, 이름·지명 음역에서 MT와 LXX 사이 미세 갈림이 있음"]</p>
+<p>ane_refs: ["해가 바뀌어 '왕들이 출전할 때'(20:1) — 고대 근동에서 우기가 지나고 보급·행군이 가능해지는 봄에 군사 원정을 개시하던 계절적 관행. 전쟁 개막 시점을 가리키는 정형 표현의 배경", "함락한 성의 왕관(atarah)을 취해 자기 머리에 씀(20:2) — 정복한 왕의 표상을 승자가 취하는 고대 근동 승전 의례. 왕권의 이양을 가시화하는 행위의 배경", "함락 후 성읍 주민을 톱·도끼·쇠도구의 노역에 부림(20:3) — 정복지 인력을 부역에 동원하던 고대 근동 통치 관행의 배경", "라파(Rapha)의 자손 — 평균을 넘는 체격으로 묘사된 옛 거인족 전승. 가드를 거점으로 한 블레셋 진영의 위협을 가리키는 배경이며, 본문은 그들이 차례로 제거됨을 기록"]</p>
+<p>rabbinic_refs: ["후대 유대 전통은 역대상 20장과 사무엘하 11~12·21장의 평행·차이를 대조해, 역대기가 밧세바 서사를 기록하지 않고 비운 편집을 논의 — 본문 비교의 독법 배경, 본문 확정 아님", "거인 명단(십배·라흐미·손가락 스물넷)을 다윗 왕조 아래 옛 위협이 차례로 사라지는 기록으로 읽는 전통 — 독법 배경"]</p>
+<p>literary_devices: [seasonal_opening_formula, conspicuous_omission_of_bathsheba, kings_go_out_but_king_stays, crown_transfer_image, three_giant_episodes_serial, name_and_origin_catalog, parallel_text_divergence]</p>
+<p>repeated_words: ["전쟁(milchamah) — 4·5·6절에 반복, 블레셋과의 거인 전투 단락을 묶는 표제어", "치다·죽이다(nakah) — 1절 랍바 격파부터 4·5·8절 거인 제거까지 반복되는 동사. 위협이 차례로 쓰러지는 운동의 표식", "라파(Rapha) — 4·6·8절 거인족의 출신 표기. 제거되는 위협의 계보를 묶는 단어", "가드(Gath) — 5·6·8절 블레셋 성읍. 거인들의 거점으로 반복되는 지명"]</p>
+<p>cross_refs: ["삼하 11:1 (해가 바뀌어 왕들이 출전할 때 다윗이 예루살렘에 머묾 — 20:1의 직접 평행, 사무엘하는 이어서 밧세바 서사를 기록)", "삼하 12:26~31 (요압의 랍바 함락과 다윗의 왕관 취함 — 20:1~3의 직접 평행)", "삼하 21:18~22 (블레셋 거인들과의 전쟁 — 20:4~8의 직접 평행)", "삼상 17장 (다윗과 가드 사람 골리앗 — 20:5 '골리앗의 아우'의 배경)", "대상 11장 (다윗의 용사 명단 — 거인을 친 자들이 속한 전사 공동체)", "신 2:10~11·3:11 (라파·르바임 거인족 — 옛 위협의 계보 배경)", "대상 18~19장 (다윗의 연속 승전 — 20장이 마무리하는 전쟁 블록의 직전 마디)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-17</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>역대상 20장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 역대상 20장입니다. 여덟 절, 아주 짧은 장이에요. 앞선 18~19장은 다윗의 연속 승전을 기록했고, 20장은 그 전쟁 블록을 마무리합니다. 그런데 이 장에는 특이한 점이 하나 있어요. 1절이 "해가 바뀌어 왕들이 출전할 때가 되매 요압이 군대를 거느리고 나가서… 랍바를 쳐서 함락시켰으나 다윗은 예루살렘에 그대로 있더라"로 열려요. 사무엘하에서는 바로 이 시점, 이 한 구절 뒤에 밧세바 서사가 길게 이어집니다. 그런데 역대기는 그 서사를 적지 않고, "다윗은 예루살렘에 그대로 있더라"는 한 줄로만 그 시간을 비워 둬요. 오늘은 정죄하지 않고, 본문이 무엇을 기록하고 무엇을 비웠는가를 같이 보겠습니다. 낭독하고 침묵을 두겠습니다.</p>
+<p>(본문 낭독 20:1~8, 약 2분)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대가 둘로 갈려요. 하나는 멀리 랍바 — 암몬 자손의 성읍, 요압이 군대를 이끌고 가서 치는 전장이에요. 다른 하나는 예루살렘 — 다윗이 그대로 머문 곳이에요. 카메라가 두 곳을 동시에 잡아요. 한쪽에선 성이 무너지고, 다른 쪽에선 왕이 가만히 있어요. 그리고 1절 끝의 그 한 줄 — "다윗은 예루살렘에 그대로 있더라" — 가 두 무대 사이에 짧은 긴장으로 걸려요. 그다음 무대가 바뀌어요. 4절부터는 블레셋과의 전장, 가드 진영이에요. 거인들이 차례로 쓰러지는 들판이고요.</p>
+<p><strong>P02 이진우</strong>: 구조가 또렷해요. 여덟 절을 두 단락으로 나누면, 1~3절이 랍바 함락과 왕관·노역이고, 4~8절이 블레셋 거인 전투예요. 그리고 거인 단락이 다시 셋으로 나뉘어요 — 십브개가 십배를 친 일(4절), 엘하난이 라흐미를 친 일(5절), 요나단이 손가락 발가락 스물넷인 거인을 친 일(6~7절)이요. 셋이 차례로 줄지어요. 그리고 8절이 "이들은 가드의 라파의 소생이라"로 그 셋을 묶어 닫아요. 직렬로 늘어선 세 거인 제거예요.</p>
+<p><strong>P05 김미영</strong>: 소품으로 왕관이 보여요. 2절 — 다윗이 그들의 왕의 머리에서 보석이 들어간 왕관을 취하는데, 무게가 한 달란트래요. 손에 들기에 묵직한 금이에요. 그 무게가 만져졌어요. 그리고 또 하나 — 3절의 톱과 쇠도구예요. 함락한 성의 사람들을 그 도구로 노역에 부려요. 금관과 쇠연장, 두 종류의 금속이 같은 단락에 있어요. 하나는 머리에 쓰는 것이고, 하나는 일을 시키는 것이고요.</p>
+<p><strong>P07 오지혜</strong>: 소재를 나열하면 — 해가 바뀐 봄, 출전하는 왕들, 요압, 군대, 랍바, 암몬, 예루살렘에 머문 다윗, 왕관, 보석, 한 달란트의 금, 톱과 쇠도구, 노역, 그리고 블레셋, 가드, 거인들, 십배, 라흐미, 손가락 발가락 스물넷의 사람, 십브개, 엘하난, 요나단이에요. 앞쪽은 한 성의 함락에 모였다가, 뒤쪽은 거인들의 이름과 그들을 친 사람들의 이름으로 흩어져요. 그런데 셈해 보면 인물이 많지 않아요. 짧은 장이라 등장이 압축돼 있어요.</p>
+<p><strong>P01 한나래</strong>: 1절 끝이 마음에 걸려요 — "다윗은 예루살렘에 그대로 있더라." 다른 왕들이 다 나가는 때에, 군대도 요압이 끌고 나가는데, 왕은 가만히 있어요. 그 한 줄이 조용한데 묘하게 무거웠어요. 본문은 그 머묾에 대해 더 말하지 않아요. 비난도 칭찬도 없이 그냥 "있더라"로 두고 다음 절로 넘어가요. 무언가 말하지 않은 채 비워 둔 느낌이었어요.</p>
+<p><strong>P11 나경아</strong>: 어휘 몇 개요. <em>milchamah</em>(מִלְחָמָה) — '전쟁'. 4·5·6절 거인 단락의 표제어예요. <em>Rapha</em>(רָפָא) — '라파', 거인족의 이름이에요. 4·6·8절에 반복돼요. <em>nakah</em>(נָכָה) — '치다·죽이다'. 1절 랍바 격파부터 거인 제거까지 거듭되는 동사예요. <em>'atarah</em>(עֲטָרָה) — '왕관'. 2절. 머리에 쓰는 표상이고요. 배경 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 멀리 랍바와 가까이 예루살렘으로 갈린 무대이고, 함락·왕관과 거인 전투의 두 단락이고, 금관과 쇠연장의 두 금속 소품이고, 차례로 쓰러지는 세 거인이고, 그리고 "그대로 있더라"는 비워진 한 줄이고요. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 처음 읽었을 때 어떤 공기였는지요.</p>
+<p><strong>P01 한나래</strong>: 빠르고 건조했어요. 사건이 짧게 끊어져요 — 함락, 왕관, 노역, 그리고 거인 셋. 설명이 거의 없어요. 그런데 그 건조함 한가운데 1절 끝 한 줄이 묘하게 비어 있어요. "다윗은 예루살렘에 그대로 있더라"에서 무언가 더 있을 것 같은데, 본문은 곧장 왕관 이야기로 넘어가요. 채워지지 않은 여백이라는 인상이었어요.</p>
+<p><strong>P07 오지혜</strong>: 위협이 줄어드는 든든함이에요. 거인들이 차례로 쓰러져요. 십배도, 라흐미도, 손가락 스물넷의 사람도요. 오래된 두려움의 표상 같은 존재들이 하나씩 사라져요. 다윗 왕조 아래에서 옛 위협이 정리되는 느낌이었어요. 무섭다기보다 안정돼 가는 공기였어요.</p>
+<p><strong>P04 최현국</strong>: 두 화면이 겹친 묘함이에요. 1절에서 한쪽 화면은 전쟁이고 다른 쪽 화면은 머묾이에요. 보통 승전 기록이면 왕이 앞장서는데, 여기선 요압이 나가고 왕은 남아요. 그러다 2절에서 다윗이 다시 등장해 왕관을 취해요. 빠진 시간이 그 사이에 있는 것 같은데, 본문은 그 시간을 비춰 주지 않아요. 화면이 건너뛴 느낌이었어요.</p>
+<p><strong>P02 이진우</strong>: 압축의 공기예요. 사무엘하에서 같은 시점에 긴 서사가 펼쳐지는데, 역대기는 그것을 한 구절의 부재로 처리하고 곧장 승전과 거인 제거로 넘어가요. 다윗 통치를 떠받치는 기록만 남기고 나머지는 비워요. 편집의 의도가 분위기로 느껴졌어요 — 무엇을 보여 줄지를 분명히 골랐다는 공기요.</p>
+<p><strong>P05 김미영</strong>: 저는 2절의 왕관 무게가 진하게 남았어요. 한 달란트면 사람이 머리에 오래 쓰기 어려운 무게예요. 그런데 본문은 그 왕관을 다윗의 머리 위에 두었다고 해요. 정복한 왕의 표상을 취해서 자기 머리로 옮긴 거예요. 그 무거운 금이 머리에서 머리로 건너가는 장면이 만져졌어요. 승리의 무게가 가볍지 않다는 느낌이요.</p>
+<p><strong>P11 나경아</strong>: 번역 층위에서요 — 5절 "엘하난이 가드 골리앗의 아우 라흐미를 죽였더라"가 평행 본문(삼하 21:19)과 갈려요. 거기서는 엘하난이 '골리앗을' 죽인 것으로 읽혀요. 역대상은 '골리앗의 아우 라흐미'로 둬요. 두 본문 사이의 차이가 관찰 거리예요. 그리고 6절 손가락·발가락 각 여섯씩 스물넷은 평행 삼하 21:20과 일치해요. 관찰로만 남겨요.</p>
+<p><strong>성령일 선교사</strong>: 빠르고 건조한데 1절 끝에 채워지지 않은 여백이 있고, 위협이 줄어드는 든든함이고, 두 화면이 겹친 묘함이고, 무엇을 보여 줄지 분명히 고른 압축이고, 머리에서 머리로 건너간 왕관의 무게이고, 평행 본문과 갈리는 한 절까지. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 1CH-020</p>
+<p>book: 역대상</p>
+<p>chapter: 20</p>
+<p>date: 2026-06-17</p>
+<p>---</p>
+
+<h2>역대상 20장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대 둘: 멀리 랍바(암몬 성읍, 요압의 함락 전장, 1절) ↔ 가까이 예루살렘(다윗이 그대로 머문 곳, 1절 끝). 두 화면이 동시에 잡힘. 4절부터 무대가 블레셋·가드 진영으로 옮겨감.</li>
+<li>구조 둘: 랍바 함락·왕관·노역(1~3절) / 블레셋 거인 전투(4~8절). 거인 단락은 십브개·십배(4절), 엘하난·라흐미(5절), 요나단·손가락 스물넷의 거인(6~7절)의 셋으로 직렬 분절, 8절이 "가드의 라파의 소생"으로 묶어 닫음.</li>
+<li>소품 — 두 금속: 2절 머리에 쓰는 왕관(보석이 들어간, 한 달란트 금), 3절 노역에 쓰는 톱·쇠도구. 머리에 쓰는 것과 일을 시키는 것의 대비.</li>
+<li>소재 나열: 해 바뀐 봄·출전하는 왕들·요압·군대·랍바·암몬·머문 다윗·왕관·보석·한 달란트·톱·쇠도구·노역·블레셋·가드·거인·십배·라흐미·손가락 스물넷·십브개·엘하난·요나단.</li>
+<li>1절 끝의 비워진 한 줄: "다윗은 예루살렘에 그대로 있더라" — 비난도 칭찬도 없이 그 머묾을 한 구절로만 두고 넘어감.</li>
+<li>어휘: <em>milchamah</em>(מִלְחָמָה) 전쟁 / <em>Rapha</em>(רָפָא) 라파(거인족) / <em>nakah</em>(נָכָה) 치다·죽이다 / <em>'atarah</em>(עֲטָרָה) 왕관 / <em>megerah</em>(מְגֵרָה) 톱.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>빠르고 건조한 사건 나열 — 함락·왕관·노역·거인 셋이 설명 없이 짧게 끊어짐.</li>
+<li>1절 끝의 채워지지 않은 여백 — "예루살렘에 그대로 있더라"에 무언가 더 있을 듯하나 본문은 곧장 왕관으로 넘어감.</li>
+<li>위협이 줄어드는 든든함 — 거인들이 차례로 쓰러지며 옛 두려움의 표상이 하나씩 사라짐.</li>
+<li>두 화면이 겹친 묘함 — 한쪽은 전쟁, 다른 쪽은 왕의 머묾. 빠진 시간이 그 사이에 놓임.</li>
+<li>무엇을 보여 줄지 분명히 고른 압축 — 평행 사무엘하의 긴 서사를 한 구절의 부재로 처리.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(20:1): "해가 바뀌어 왕들이 출전할 때가 되매 요압이… 랍바를 쳐서 함락시켰으나 다윗은 예루살렘에 그대로 있더라" — 봄철 출전 정형구로 열되 곧바로 왕의 머묾을 한 줄로 새김.</li>
+<li>끝(20:8): "이들은 가드의 라파의 소생으로 다윗의 손과 그의 신복의 손에 다 죽었더라" — 제거된 거인들의 출신을 묶어 닫음. 위협의 종결로 마감.</li>
+<li>시작과 끝의 대조: 출전의 개막(1절)으로 열려, 옛 위협이 다 죽은 종결(8절)로 닫힘. 전쟁 블록을 마무리하는 형태.</li>
+<li>완결 여부: 18~20장의 연속 승전 기록을 닫는 단 — 20장에서 전쟁 단락이 종결되고, 21장은 인구 조사라는 다른 결의 사건으로 넘어감.</li>
+<li>축: 랍바 함락·왕관(1~3) → 블레셋 거인 셋의 직렬 제거(4~8). 한 성의 함락 뒤에 옛 위협의 계보를 차례로 정리하는 순서.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>요압: 군대를 거느리고 나가 암몬을 격파하고 랍바를 함락시킴(1절). 왕이 머문 동안 전장을 이끈 자.</li>
+<li>다윗: 1절에서 예루살렘에 그대로 머묾 — 본문이 비워 둔 시간의 주인공. 2절에서 다시 등장해 왕관을 취하고 성을 헐어 백성을 노역에 부림. 8절에서 거인들이 "다윗의 손과 그의 신복의 손에" 죽음.</li>
+<li>함락된 성의 왕(20:2): 머리에서 한 달란트 무게의 왕관을 빼앗긴 자. 정복의 표상이 다윗에게로 이양됨.</li>
+<li>십브개·엘하난·요나단: 거인을 친 세 용사(4·5·6절). 요나단은 다윗의 형 시므아의 아들 — 다윗의 가문이 위협 제거에 함께함.</li>
+<li>라파의 자손들(거인): 십배·라흐미·손가락 발가락 스물넷의 사람(4~7절). 가드를 거점으로 한 옛 위협. 차례로 제거됨(8절).</li>
+<li>1절 끝의 비워진 한 줄: 역대기 저자가 같은 시점의 긴 서사를 기록하지 않고 "예루살렘에 그대로 있더라"로만 두는 편집 — 무엇을 기록하고 무엇을 비웠는가의 관찰 거리.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li><strong>컷 1 (1절)</strong>: 봄철 출전 — 왕들이 나가는 때, 요압이 군대를 끌고 가 암몬을 격파하고 랍바를 함락. 그러나 다윗은 예루살렘에 그대로 있음.</li>
+<li><strong>컷 2 (2절)</strong>: 왕관의 이양 — 다윗이 함락된 성 왕의 머리에서 보석이 들어간 한 달란트 무게의 왕관을 취해 자기 머리에 둠. 성의 많은 노략물도 가져옴.</li>
+<li><strong>컷 3 (3절)</strong>: 성읍 노역 — 성 안 백성을 끌어내어 톱과 쇠도구의 노역에 부림. 암몬 자손의 모든 성읍에 그같이 행함. 그리고 다윗이 백성과 함께 예루살렘으로 돌아옴.</li>
+<li><strong>컷 4 (4절)</strong>: 첫 거인 — 블레셋과의 전쟁에서 십브개가 라파의 자손 십배를 쳐 죽임. 블레셋이 굴복함.</li>
+<li><strong>컷 5 (5절)</strong>: 둘째 거인 — 또 전쟁이 있어 엘하난이 가드 골리앗의 아우 라흐미를 죽임. 그 창 자루가 베틀채 같았음.</li>
+<li><strong>컷 6 (6~8절)</strong>: 셋째 거인과 종결 — 가드에서 손가락 발가락 각 여섯씩 스물넷인 거인이 이스라엘을 능욕하매, 다윗의 형 시므아의 아들 요나단이 그를 죽임. 이들은 가드 라파의 소생으로 다 죽음.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>milchamah</em>(מִלְחָמָה) — '전쟁'. 4·5·6절. 블레셋 거인 단락을 묶는 표제어. lacham(싸우다)의 명사형.</li>
+<li><em>Rapha</em>(רָפָא) — '라파'. 4·6·8절. 평균을 넘는 체격으로 묘사된 옛 거인족의 출신 표기. 르바임(Rephaim)과 같은 계보 어휘.</li>
+<li><em>nakah</em>(נָכָה) — '치다·죽이다'. 1절 랍바 격파부터 4·5·8절 거인 제거까지 거듭됨. 위협이 차례로 쓰러지는 운동을 잇는 동사.</li>
+<li><em>'atarah</em>(עֲטָרָה) — '왕관'. 2절. 머리에 두르는 표상. 정복한 왕의 표상을 승자가 취하는 행위의 어휘.</li>
+<li><em>Rabbah</em>(רַבָּה) — '랍바'. 1절. 암몬 자손의 수도 성읍. '큰(rab)'에서 온 지명.</li>
+<li><em>Gath</em>(גַּת) — '가드'. 5·6·8절. 블레셋의 성읍, 거인들의 거점. 골리앗의 출신지이기도 함.</li>
+<li><em>sadeh</em>(שָׂדֶה) — '들·전장'. 거인 전투가 벌어진 들판의 어휘. 충돌의 공간을 가리킴.</li>
+<li><em>megerah</em>(מְגֵרָה) — '톱'. 3절. 함락한 성 백성을 부린 노역 도구. 쇠연장과 함께 정복지 인력 동원의 소품.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>봄철 출전 정형구(seasonal opening): "해가 바뀌어 왕들이 출전할 때"(1절)는 우기 후 원정 개시를 가리키는 정형 표현. 전쟁 단락의 개막을 알리는 문학 장치.</li>
+<li>두드러진 생략(conspicuous omission): 같은 시점의 긴 서사를 역대기가 기록하지 않고 "예루살렘에 그대로 있더라" 한 구절로만 둠. 무엇을 비웠는가 자체가 관찰 거리.</li>
+<li>왕들은 나가나 왕은 머묾(kings go out but king stays): 1절에서 다른 왕들과 요압의 군대는 출전하나 다윗은 남음. 짧은 한 줄에 담긴 대조의 긴장.</li>
+<li>세 거인의 직렬(serial giant episodes): 4~7절이 십배·라흐미·손가락 스물넷의 거인을 차례로 제거하고, 8절이 "라파의 소생"으로 묶음. 위협을 계보로 정리하는 명단형 서사.</li>
+<li>평행 본문 갈림(parallel divergence): 5절 엘하난의 대상(라흐미 vs 골리앗)이 삼하 21:19과 표현이 갈림. 본문 비교의 관찰 거리, 본문 확정 아님.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>봄철 군사 원정 — 고대 근동에서 우기가 지나 보급·행군이 가능해지는 봄에 출정하던 계절적 관행. "왕들이 출전할 때"(1절)의 배경.</li>
+<li>왕관 취함 — 함락한 왕의 표상(atarah)을 승자가 자기 머리로 옮기는 승전 의례. 왕권 이양을 가시화하던 고대 근동 행위의 배경(2절).</li>
+<li>정복지 노역 — 함락한 성읍 주민을 톱·쇠도구의 부역에 동원하던 통치 관행. 3절의 배경.</li>
+<li>거인족 전승 — 라파(르바임)는 옛 토착 거인족으로 묘사됨(신 2~3장). 가드를 거점으로 한 블레셋 위협을 가리키며, 본문은 그들의 차례적 제거를 기록.</li>
+<li>포로 귀환 맥락 — 역대기가 귀환 공동체를 위해 기록됐다는 배경. 다윗 통치 아래 옛 위협이 정리되는 승전 기록은 회복 공동체에게 안정된 왕조의 유산을 비추는 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>역대상 20:1 ↔ 삼하 11:1 (해 바뀐 출전 때 다윗이 예루살렘에 머묾 — 직접 평행, 사무엘하는 이어서 긴 서사 기록)</li>
+<li>역대상 20:1~3 ↔ 삼하 12:26~31 (요압의 랍바 함락·다윗의 왕관 취함 — 직접 평행)</li>
+<li>역대상 20:4~8 ↔ 삼하 21:18~22 (블레셋 거인 전쟁 — 직접 평행)</li>
+<li>역대상 20:5 ↔ 삼상 17장 (다윗과 가드 사람 골리앗 — "골리앗의 아우"의 배경)</li>
+<li>역대상 20:4~8 ↔ 신 2:10~11·3:11 (라파·르바임 거인족 — 옛 위협의 계보 배경)</li>
+<li>역대상 20장 ↔ 대상 18~19장 (다윗의 연속 승전 — 20장이 마무리하는 전쟁 블록의 직전 마디)</li>
+<li>역대상 20:6 ↔ 대상 11장 (거인을 친 자들이 속한 다윗의 용사 공동체)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>카메라가 켜지면 봄의 들판이 펼쳐진다. 해가 바뀌고, 왕들이 출전할 철이다. 요압이 군대를 거느리고 멀리 랍바로 행군한다. 성이 흔들리고, 무너지고, 함락된다. 그런데 화면이 갑자기 다른 곳을 비춘다 — 예루살렘. 다윗이 거기 있다. 그대로. 자막처럼 한 줄이 지나간다 — "다윗은 예루살렘에 그대로 있더라." 그리고 화면이 그 머묾의 시간을 더 비추지 않고 건너뛴다. 다음 장면, 다윗이 함락된 성에 있다. 한 왕의 머리에서 묵직한 금관을 들어 올린다 — 보석이 들어간, 한 달란트 무게의. 그것을 자기 머리로 옮긴다. 성의 사람들이 끌려 나오고, 톱과 쇠연장의 노역에 부려진다. 다윗이 백성과 함께 예루살렘으로 돌아온다. 화면이 다시 바뀐다 — 블레셋의 들판. 거대한 그림자가 선다. 십배다. 십브개가 일어나 그를 쓰러뜨린다. 또 한 그림자, 라흐미 — 베틀채 같은 창을 든. 엘하난이 그를 죽인다. 그리고 가드에서 손가락 발가락이 스물넷인 거인이 이스라엘을 능욕하며 선다. 다윗의 형의 아들 요나단이 나아가 그를 친다. 카메라가 셋을 한 화면에 모은다 — 다 가드 라파의 소생이고, 다 죽었다. 화면이 쓰러진 거인들 위에서 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"비워 둔 한 줄과 차례로 쓰러진 거인들"</strong></li>
+<li>초벌 부제: "해가 바뀌어 왕들이 출전할 때 요압이 랍바를 함락시키나 다윗은 예루살렘에 그대로 있고(1절), 다윗이 한 달란트 무게의 왕관을 취하며(2~3절), 블레셋과의 전쟁에서 라파의 자손 거인들이 차례로 쓰러지는(4~8절) — 역대기가 같은 절기의 긴 서사를 한 구절의 부재로만 비워 둔 짧은 승전의 마무리"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (milchamah·Rapha·nakah·atarah·Rabbah·Gath·sadeh·megerah 등 8개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (봄철 출전 정형구·두드러진 생략·세 거인 직렬·왕관 이양·평행 본문 갈림 기록)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>1절 끝 "예루살렘에 그대로 있더라"를 "다윗의 게으름·죄의 시작"으로 곧장 도덕화하지 않고, 역대기가 같은 시점의 서사를 한 구절의 부재로 둔 편집 사실로만 보존.</li>
+<li>역대기가 같은 절기의 긴 서사를 비운 것을 "은폐"나 "미화"로 단정하지 않고, 본문이 무엇을 기록하고 무엇을 비웠는가의 형태 관찰로 먼저 둠 — 정죄 없이.</li>
+<li>거인들의 차례적 제거를 "우리도 거인 같은 문제를 이긴다"는 적용 설교로 닫지 않고, 다윗 왕조 아래 옛 위협이 계보로 정리되는 명단형 서사의 기능 관찰로 보존.</li>
+<li>2절 왕관 취함을 "다윗의 교만"으로 교훈화하기 전에, 정복한 왕의 표상을 승자가 취하는 고대 근동 승전 의례의 배경 사실로 먼저 기록.</li>
+<li>5절 평행 본문 갈림(라흐미 vs 골리앗)을 "성경의 오류"로도 "완전 일치"로도 단정하지 않고, 본문 비교의 관찰 거리로만 보존.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: 1CH-020</p>
+<p>book: 역대상</p>
+<p>chapter: 20</p>
+<p>date: 2026-06-17</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P02 이진우</strong>: 봄의 들판에서 시작해요. 요압의 군대가 행군하고, 랍바가 무너져요. 그런데 화면이 끊겨요 — 예루살렘으로. 다윗이 거기 있어요. 자막 한 줄, "그대로 있더라." 그리고 카메라가 그 시간을 더 비추지 않고 건너뛰어요. 다음 컷, 다윗이 함락된 성에서 묵직한 금관을 들어 자기 머리로 옮겨요. 사람들이 노역에 끌려가요. 화면이 다시 바뀌어요 — 블레셋의 들판. 거대한 그림자 셋이 차례로 서요. 십배, 라흐미, 손가락 스물넷의 거인. 십브개가, 엘하난이, 요나단이 차례로 그들을 쓰러뜨려요. 마지막 프레임은 쓰러진 거인들이에요 — 다 가드 라파의 소생이고, 다 죽었어요. 비워진 한 줄과 쓰러진 거인들, 두 이미지가 한 영상 안에 같이 있어요.</p>
+<p><strong>성령일 선교사</strong>: 함락에서 비워진 한 줄로, 건너뛴 시간을 지나 왕관으로, 그리고 차례로 쓰러진 거인들로 닫히는 흐름이군요.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "그대로 있더라 — 본문이 비워 둔 한 줄의 여백"</p>
+<p><strong>P02 이진우</strong>: "함락·왕관·거인 셋 — 전쟁 블록을 닫는 압축의 장"</p>
+<p><strong>P04 최현국</strong>: "랍바에서 가드로 — 두 화면이 겹친 짧은 승전의 무대"</p>
+<p><strong>P05 김미영</strong>: "머리에서 머리로 건너간 한 달란트의 금관"</p>
+<p><strong>P07 오지혜</strong>: "차례로 쓰러진 라파의 소생 — 줄어드는 옛 위협"</p>
+<p><strong>P11 나경아</strong>: "<em>nakah · Rapha · atarah</em> — 침, 거인, 왕관으로 짠 여덟 절"</p>
+<p>부제 공동 제안: "해가 바뀌어 왕들이 출전할 때 요압이 랍바를 함락시키나 다윗은 예루살렘에 그대로 있고(1절) — 역대기가 같은 절기의 긴 서사를 한 구절의 부재로 비워 둔 채, 다윗이 한 달란트 무게의 왕관을 취하고(2~3절) 블레셋 거인 셋이 차례로 쓰러져 '가드 라파의 소생'으로 묶여 닫히는(4~8절) 짧은 전쟁의 마무리"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 이 장의 흐름 안으로 들어가 봅시다. 비워 둔 한 줄, 머리에서 머리로 건너간 왕관, 차례로 쓰러진 거인들 — 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고, 머무는 것으로 충분합니다.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P01 한나래</strong>: (조용히) 주님, 오늘 비워진 한 줄 앞에서 멈췄습니다. "그대로 있더라"는 그 한 구절이요. 본문은 그 시간을 다 적지 않고 비워 두었어요. 저는 제 안에도 적지 못하고 비워 둔 시간들이 떠올랐습니다. 채워지지 않은 그 여백이 무엇인지 여쭙지는 않겠습니다. 다만 무엇을 기록하고 무엇을 비울지 아시는 그 손길 앞에 잠시 머뭅니다.</p>
+<p><em>— 각자 떠오르는 것을 마음에만 둡니다.</em></p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>이 장은 어디서 어디로 움직이는지요? 눈에 보이는 함락과 거인 제거 아래에서 무엇이 결정되고 있는지요? 이 장이 귀환 공동체에게 묻는 것이 무엇인지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 이 장은 <strong>전쟁의 개막에서 옛 위협의 종결로</strong> 움직여요. 1절은 출전의 봄으로 열리고, 8절은 거인들이 "다 죽었더라"로 닫혀요. 그 사이에 함락·왕관·노역·거인 셋이 압축돼요. 역대기의 spine — "아담부터 다시 쓴 계보와 다윗·성전의 유산으로 귀환 공동체를 언약 백성으로 다시 세우신다" — 에서 20장은 10~21장 다윗 통치 블록 중 18~20장 승전 단락을 닫는 매듭이에요. 운동의 방향은 '위협의 개막에서 위협의 정리로'예요.</p>
+<p><strong>P04 최현국</strong>: 권의 흐름에서 보면 phases가 1~9장 족보, 10~21장 다윗 통치, 22~27장 성전 준비인데, 20장은 17~20장의 언약·승전 흐름을 닫고 21~27장 성전 준비로 넘어가는 길목이에요. 도착점은 29:14 — "모든 것이 주께로 말미암았사오니 우리가 주의 손에서 받은 것으로 주께 드렸을 뿐이니이다." 흥미로운 건, 20장이 비워 둔 한 줄이에요. 역대기는 같은 시점의 긴 서사를 적지 않고 한 구절로만 둬요. 무엇을 기록하고 무엇을 비울지를 골랐어요. 그 선택이 결국 귀환 공동체를 위해 다윗과 성전의 유산을 또렷이 비추려는 편집과 같은 결로 닿아요. 단정은 아니고, 그렇게 닿는다는 관찰이요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래를 보면 — 1절 끝의 여백과 8절의 종결이 같이 있어요. 본문은 다윗의 머묾에 대해 비난도 칭찬도 하지 않고 비워 두면서, 동시에 옛 위협이 차례로 사라지는 것은 또렷이 기록해요. 보여 줄 것과 비울 것이 분명히 갈려요. 그러면서도 거인을 친 사람들의 이름은 지우지 않아요 — 십브개, 엘하난, 요나단. 비움과 기록이 한 장에 같이 있어요. 무엇을 남기고 무엇을 비울지의 그 선택이 인상 깊었어요 — 질문으로 다음 장에 가져가고 싶어요.</p>
+<p><strong>P01 한나래</strong>: 여백이에요. 다른 왕들이 다 나가는 봄에, 왕은 머물러요. 본문은 그 머묾을 한 줄로만 두고 더 말하지 않아요. 그게 차갑게도, 너그럽게도 읽혀요. 확신은 아니지만 — 그 비워진 한 줄에서, 모든 것을 다 적지 않고도 충분히 흐르는 이야기의 결이 느껴졌어요. 무엇을 비울지 아는 손길이 거기 있는 것 같았어요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. 8절의 "다 죽었더라"는 <em>nakah</em>(치다)의 수동형 흐름으로, 1절 랍바 격파부터 같은 동사가 거듭돼요. 한 동사가 성의 함락과 거인의 제거를 같은 운동으로 묶어요. 위협이 차례로 무너지는 문법적 동력이 그 반복에 있어요. 그리고 1절의 비워진 한 줄 — 본문이 적지 않은 그 시간이 전쟁 단락 한가운데 새겨진 것이 무엇을 남기는지, 질문으로 보존합니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>전쟁의 개막에서 옛 위협의 종결로 — 보여 줄 것과 비울 것을 분명히 가르면서도 거인을 친 이름들을 지우지 않고, 비워진 한 줄을 승전 단락 한가운데 둔다</strong>는 것을 손에 쥐고 다음 장으로 갑니다. 인구 조사라는 다른 결의 사건이 이어질 거예요.</p>
+<p>---</p>
+
+<h2>역대상 20장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 20:1 — "다윗은 예루살렘에 그대로 있더라"는 한 구절로만 그 시간을 두고 넘어가는 이 배열은 무엇을 드러내는가?</h2>
+<ul><li>역대기 저자는 같은 시점의 긴 서사를 기록하지 않고 머묾을 한 줄로만 둔다. 비난도 칭찬도 없는 이 비워 둠의 편집 의도를 정죄로도 미화로도 닫지 않고 보존.</li></ul>
+
+<h2>Q2. 20:1 — 같은 절기에 평행 본문(삼하 11~12장)이 기록한 서사를 역대기가 비운 것은 어떤 선택인가?</h2>
+<ul><li>역대기는 다윗과 성전의 유산을 또렷이 비추려 무엇을 기록하고 무엇을 비울지를 고른다. 이 생략 자체를 관찰 거리로 두고, "은폐"인지 "재서사"인지 단정하지 않고 보존.</li></ul>
+
+<h2>Q3. 20:2 — 다윗이 함락한 왕의 머리에서 한 달란트 무게의 왕관을 취해 자기 머리에 둔 것은 무엇을 가리키는가?</h2>
+<ul><li>정복한 왕의 표상(atarah)을 승자가 취하는 고대 근동 승전 의례다. 묵직한 금관이 머리에서 머리로 건너간 이 행위의 무게를 교훈으로 닫지 않고 형태 관찰로 보존.</li></ul>
+
+<h2>Q4. 20:4~8 — 라파의 자손 거인들이 차례로 제거되는 직렬 서사의 기능은 무엇인가?</h2>
+<ul><li>십배·라흐미·손가락 스물넷의 거인이 차례로 쓰러지고 "가드 라파의 소생"으로 묶인다. 옛 위협을 계보로 정리하는 이 명단형 서사가 무엇을 남기는지 질문으로 보존.</li></ul>
+
+<h2>Q5. 20:5 — 엘하난이 죽인 대상이 평행 본문(삼하 21:19)과 표현이 갈리는 것은 무엇을 묻게 하는가?</h2>
+<ul><li>역대상은 "골리앗의 아우 라흐미", 사무엘하는 "골리앗"으로 둔다. 두 본문 사이의 갈림을 "오류"로도 "완전 일치"로도 단정하지 않고 본문 비교의 관찰 거리로 이월.</li></ul>
+
+<h2>Q6. 20:8 — 위협의 종결(거인들이 다 죽음)을 적으면서도 비워진 한 줄(1절)을 함께 둔 이 장의 배치는 어떤 선택인가?</h2>
+<ul><li>보여 줄 것은 또렷이 적고 비울 것은 한 줄로 둔다. 비움과 기록이 한 장에 공존하는 이 편집이 귀환 공동체에게 무엇을 건네는지 단정하지 않고 보존.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">해가 바뀌어 요압이 랍바를 함락시키나 다윗은 예루살렘에 그대로 있고(20:1) — 역대기가 같은 절기의 서사를 한 구절의 부재로 비워 둔 채, 한 달란트 왕관을 취하고 라파의 자손 거인들이 차례로 쓰러져 닫히는 짧은 승전의 마무리.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: 1CH-020</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-17</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 역대상 20장은 해가 바뀌어 왕들이 출전할 때 요압이 암몬을 격파하고 랍바를 함락시키나 다윗은 예루살렘에 그대로 있고(1절) — 역대기가 같은 절기에 일어난 긴 서사를 "그대로 있더라"는 한 구절의 부재로만 비워 둔 채, 다윗이 함락한 왕의 머리에서 한 달란트 무게의 왕관을 취하고 성읍을 노역에 부리며(2~3절), 블레셋과의 전쟁에서 십배·라흐미·손가락 발가락 스물넷의 거인이 십브개·엘하난·요나단의 손에 차례로 쓰러져 "가드 라파의 소생"으로 묶여 닫히는(4~8절) — 다윗 통치 블록의 승전 단락을 마무리하는 여덟 절이다.</p>
+<p><strong>한 문단</strong>: 봄이 펼쳐진다. 해가 바뀌고 왕들이 출전할 철, 요압의 군대가 랍바로 행군해 성을 함락시킨다. 그런데 화면이 예루살렘을 비춘다 — 다윗이 거기 있다. 그대로. 자막 한 줄이 지나가고, 본문은 그 시간을 더 비추지 않고 건너뛴다. 다윗이 함락한 성에서 묵직한 금관을 들어 자기 머리로 옮긴다. 사람들이 노역에 끌려간다. 화면이 블레셋의 들판으로 바뀐다. 거대한 그림자 셋이 차례로 선다 — 십배, 라흐미, 손가락 스물넷의 거인. 십브개가, 엘하난이, 요나단이 그들을 쓰러뜨린다. 장은 무너진 거인들 위에서 닫힌다 — 다 가드 라파의 소생이고, 다 죽었다. 비워진 한 줄과 차례로 사라진 위협, 두 이미지가 한 장 안에 같이 놓인다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>멀리 랍바 ↔ 가까이 예루살렘으로 갈린 두 화면, 다시 가드 들판. 두 금속(왕관·쇠연장). 1절 끝의 비워진 한 줄.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>빠르고 건조한 사건 나열. 채워지지 않은 여백. 위협이 줄어드는 든든함. 무엇을 보여 줄지 분명히 고른 압축.</td></tr>
+<tr><td>3 시작과 끝</td><td>봄철 출전(1절)으로 열려 거인들이 "다 죽었더라"(8절)로 닫힘. 전쟁 블록을 마무리하는 종결.</td></tr>
+<tr><td>4 등장인물·사상</td><td>요압·다윗·함락된 왕·십브개·엘하난·요나단·라파의 자손. 1절 끝의 비워진 한 줄(편집의 선택).</td></tr>
+<tr><td>5 장면 컷</td><td>봄철 출전(컷1)·왕관 이양(컷2)·성읍 노역(컷3)·첫 거인(컷4)·둘째 거인(컷5)·셋째 거인과 종결(컷6) 6컷.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>milchamah·Rapha·nakah·atarah·Rabbah·Gath·sadeh·megerah 원어. 봄철 정형구·두드러진 생략·세 거인 직렬 구조. 삼하 11~12·21장 평행.</td></tr>
+<tr><td>7 동영상</td><td>함락→비워진 한 줄→건너뛴 시간→왕관→차례로 무너진 거인 셋→위협의 종결.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"비워 둔 한 줄과 차례로 쓰러진 거인들"</td></tr>
+<tr><td>9 기도·내면</td><td>채워지지 않은 여백 앞에 머뭄 — 적지 못하고 비워 둔 시간들이 떠오름.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 비워 둔 한 줄</strong>: 1절은 봄철 출전 정형구로 열되, 곧바로 "다윗은 예루살렘에 그대로 있더라"는 한 구절을 새긴다. 같은 시점에 평행 본문이 길게 펼친 서사를 역대기는 적지 않고 이 한 줄의 부재로만 둔다. 비난도 칭찬도 없다. 무엇을 기록하고 무엇을 비웠는가 — 그 선택 자체가 관찰 거리이며, 본문은 그 여백을 정죄로도 미화로도 닫지 않는다.</p>
+<p>2. <strong>결 2 — 차례로 쓰러지는 위협</strong>: 4~8절은 라파의 자손 거인 셋을 직렬로 제거한다. 십배는 십브개에게, 라흐미는 엘하난에게, 손가락 스물넷의 거인은 요나단에게 무너진다. nakah(치다)라는 한 동사가 1절 랍바 격파부터 거인 제거까지 거듭되며, 옛 위협이 같은 운동으로 사라진다. 8절은 그 셋을 "가드 라파의 소생"으로 묶어, 다윗 왕조 아래 옛 두려움의 계보가 정리됨을 기록한다.</p>
+<p>3. <strong>결 3 — 머리에서 머리로 건너간 왕관</strong>: 2절은 다윗이 함락한 왕의 머리에서 보석이 들어간 한 달란트 무게의 왕관을 취해 자기 머리에 둔다. 정복한 왕의 표상이 승자에게로 이양된다. 묵직한 금이 한 머리에서 다른 머리로 건너가는 이 행위는 고대 근동 승전 의례의 결을 따르며, 본문은 그 무게를 교훈으로 풀지 않고 가시적 장면으로 둔다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>역대상 20:1 ↔ 삼하 11:1 (해 바뀐 출전 때 다윗이 예루살렘에 머묾 — 직접 평행, 사무엘하는 이어서 긴 서사 기록)</li>
+<li>역대상 20:1~3 ↔ 삼하 12:26~31 (요압의 랍바 함락·다윗의 왕관 취함 — 직접 평행)</li>
+<li>역대상 20:4~8 ↔ 삼하 21:18~22 (블레셋 거인 전쟁 — 직접 평행)</li>
+<li>역대상 20:5 ↔ 삼상 17장 (다윗과 가드 사람 골리앗 — "골리앗의 아우"의 배경)</li>
+<li>역대상 20:4~8 ↔ 신 2:10~11·3:11 (라파·르바임 거인족 — 옛 위협의 계보 배경)</li>
+<li>역대상 20장 ↔ 대상 18~19장 (다윗의 연속 승전 — 20장이 마무리하는 전쟁 블록)</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 20:1에서 멈춘다 — 봄철 출전의 개막과 "그대로 있더라"는 비워진 한 줄 앞에 선다.</li>
+<li><strong>멈춤 1</strong>: 20:2에서 멈춘다 — 머리에서 머리로 건너간 한 달란트 왕관의 무게를 든다.</li>
+<li><strong>멈춤 2</strong>: 20:8에서 멈춘다 — 거인들이 "가드 라파의 소생으로 다 죽었더라"는 위협의 종결을 쥔다.</li>
+<li><strong>끝</strong>: 장이 비움(1절)과 종결(8절)을 한 화면에 두고 닫힌다. 21장에서 다른 결의 사건이 이어진다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 봄철 출전·왕관·노역·세 거인·종결의 6컷 완결</li>
+<li>[x] milchamah·Rapha·nakah·atarah·Rabbah·Gath·sadeh·megerah 원어 분포</li>
+<li>[x] 봄철 정형구·두드러진 생략·세 거인 직렬의 문학 구조 기록</li>
+<li>[x] 1절 끝 비워진 한 줄의 형태 관찰(정죄 없이)</li>
+<li>[x] 삼하 11~12·21장 평행과 갈림의 교차 참조 기록</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>역대상의 spine은 "아담부터 다시 쓴 계보와 다윗·성전의 유산으로, 귀환 공동체를 예배하는 언약 백성으로 다시 세우신다"이며, destination은 "모든 것이 주께로 말미암았사오니 우리가 주의 손에서 받은 것으로 주께 드렸을 뿐이니이다"(29:14)다. 역대상 전체의 phases — 1~9장(족보), 10~21장(다윗의 통치), 22~27장 이후(성전 준비) — 중에서, 20장은 17~20장의 다윗 언약·승전 흐름을 닫는 마디다. 구속사의 호에서 보면, 18~20장의 연속 승전이 여기서 종결되고 21장의 인구 조사로 결이 바뀐다. 권의 heart — 실패한 역사 위에 다윗과 성전의 유산으로 백성을 다시 세우시는 회복의 따뜻함 — 이 20장에서는 옛 위협이 차례로 정리되는 승전과, 같은 절기의 긴 서사를 한 구절의 부재로 비워 둔 편집으로 모습을 드러낸다. 통치 블록은 무엇을 기록하고 무엇을 비울지를 고르며, 다윗과 성전의 유산을 또렷이 비추는 쪽으로 본문을 추린다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>전쟁의 개막(1절)에서 옛 위협의 종결(8절)로 / 한 왕의 표상에서 승자의 머리로 건너간 왕관(2절)으로 / 평행 본문의 긴 서사에서 한 구절의 부재(1절 끝)로 — 개막에서 정리로, 표상에서 이양으로, 기록에서 비움으로 흐른다.</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 20장은 봄철 출전의 개막으로 열려 라파의 소생이 다 죽은 종결로 닫히면서, 다윗 통치 아래 옛 위협을 계보로 정리하고, 같은 절기의 긴 서사를 한 구절의 부재로 추려 두는 운동이다. 그 운동은 21장에서 인구 조사라는 다른 결의 사건으로 이어지고, 22~27장의 성전 준비로 향하며, 29:14의 "받은 것으로 주께 드렸을 뿐"의 드림으로 도착한다. 20장의 벡터는 그 긴 호에서 승전 단락을 닫는 매듭 — 보여 줄 것과 비울 것을 분명히 가르며 전쟁의 문을 닫는 동작이다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 함락과 왕관과 거인 제거다 — 어느 성이 무너지고, 누가 왕관을 취하고, 어느 거인이 쓰러지는지. 그러나 수면 아래에서는 다른 것이 움직인다. 첫째, 무엇을 기록하고 무엇을 비울지의 선택이다. 본문은 다윗의 머묾에 대해 비난도 칭찬도 없이 한 구절로만 두고, 같은 절기의 긴 서사를 비운다. 보여 줄 것과 비울 것이 또렷이 갈린다. 둘째, 옛 위협의 정리다. 라파의 자손 거인들이 차례로 무너져 "가드 라파의 소생"으로 묶인다. 오래된 두려움의 계보가 다윗 왕조 아래에서 종결된다. 셋째, 비움과 기록의 공존이다. 본문은 한 줄을 비우면서도 거인을 친 사람들의 이름은 지우지 않는다 — 십브개·엘하난·요나단. 비움이 무관심이 아니라 추림이라는 결을, 단정이 아닌 그렇게 닿는다는 관찰로 보존한다.</p>
+
+<h3>J · 실존적 부름 — 불씨</h3>
+<blockquote>
+<p>나의 이야기에서 나는 무엇을 또렷이 기록하고 무엇을 한 줄로 비워 두는가 — 그리고 오래 나를 두렵게 하던 그 거인들은 지금 어디쯤 무너져 있는가.</p>
+</blockquote>
+<p>이것은 가르침이 아니라 초대다. 역대상 20장은 독자에게 "비워라"거나 "이겨라"고 하지 않는다. 다만 같은 절기의 긴 서사를 한 구절의 부재로 추려 두고, 다윗 통치 아래 옛 위협이 차례로 사라지는 것을 또렷이 기록하며, 그 둘을 한 장 안에 나란히 둔다. 보여 줄 것과 비울 것을 분명히 가른 이 짧은 여덟 절을 보았을 때 — "내 삶의 어떤 시간은 적고 어떤 시간은 한 줄로 두며, 나의 옛 거인들은 어디쯤 무너졌는가" — 라는 물음 앞에 머무는 것, 그것이 이 장의 불씨다. 그 물음이 전쟁 단락을 닫는 짧은 장이 독자에게 건네는 가장 조용한 초대다.</p>
+
+<p><strong>다음 장으로 미는 운동 한 줄</strong>: 승전 단락이 옛 위협의 종결로 닫혔다 — 전쟁의 들판에서 결이 바뀌어, 다윗이 백성을 계수하는 인구 조사와 그 결과로 향하는 다른 빛깔의 사건이 다음 마디에서 시작된다(21장).</p>
+<p><strong>이 장에서 가져갈 한 단어</strong>: <em>nakah — 치다·죽이다(옛 위협이 차례로 무너지는 운동)</em>.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/1CH/19/"><div class="nav-kicker">← 이전</div><div class="nav-title">역대상 19장</div><div class="nav-preview">암몬과 아람 연합군과의 전쟁 — 20장이 그 승전 흐름을 마무리하는 직전 마디.</div></a>
+      <a href="/magazine/1CH/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">역대상 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/1CH/21/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">역대상 21장</div><div class="nav-preview">전쟁의 들판에서 결이 바뀌어 — 다윗이 백성을 계수하는 인구 조사와 그 결과로 향하는 다른 빛깔의 사건.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:1ch20', JSON.stringify({
+      href: '/magazine/1CH/20/',
+      title: '역대상 20장',
+      excerpt: '비워 둔 한 줄과 차례로 쓰러진 거인들. 해가 바뀌어 요압이 랍바를 함락시키나 다윗은 예루살렘에 그대로 있고 — 역대기가 같은 절기의 서사를 한 구절의 부재로 비워 둔 채, 한 달란트 왕관을 취하고 라파의 자손 거인들이 차례로 쓰러져 가드 라파의 소생으로 묶여 닫히는 짧은 승전의 마무리.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2026-06-17</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>
