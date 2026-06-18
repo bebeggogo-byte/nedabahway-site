@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>에스라 1장 — Observatory | 네다바웨이</title>
+<meta name="description" content="에스라 1장을 9단계로 같이 관찰합니다. 바사 왕 고레스 원년에 여호와께서 예레미야의 입으로 하신 말씀을 이루시려고 고레스의 마음을 감동시키시매(1:1) 조서가 온 나라에 반포되고, '하늘의 하나님 여호와께서 유다 예루살렘에 성전을 건축하라 하셨나니 그의 백성 된 자는 다 올라갈지어다'(1:2~4) 하니, 감동받은 족장·제사장·레위인이 일어나고 이웃이 예물로 힘을 도우며(1:5~6), 느부갓네살이 가져갔던 성전 기명 5,400개가 하나하나 세어져 세스바살에게 돌아온다(1:7~11) — 칙령의 출처를 하나님의 감동에 두고, 빼앗긴 것이 셈하여져 회복되는 결로 여는 귀환의 개막.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/EZR/1/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/EZR/">역사서</a> · 에스라 · 1장</div>
+      <h1>에스라 1장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">EZR-001 · 역사서 · 히브리어</div>
+      <p class="essence">바벨론 포로의 긴 침묵 다음에 본문이 여는 첫 동작은 한 이방 왕의 조서다. 그런데 본문은 그 칙령의 출처를 왕의 정치적 계산이 아니라 "여호와께서 고레스의 마음을 감동시키시매"(1:1) 한 구절에 둔다. 빼앗겨 신당에 갇혀 있던 성전 기명이 하나하나 세어져 돌아오는(1:9~11) 장면으로, 끊긴 듯한 역사가 회복의 문으로 다시 열린다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: EZR-001</p>
+<p>book: 에스라</p>
+<p>book_en: Ezra</p>
+<p>chapter: 1</p>
+<p>bible_block: 역사서</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브(칙령·귀환)+기명 목록</p>
+<p>language: 히브리어</p>
+<p>verse_count: 11</p>
+<p>observed_facts_count: 23</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [Koresh, ruach, ur, alah, keli, bayit, Yhwh, shamayim, kesef, zahav, nadav, sefar]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["1:9~11 기명 종류별 수치(쟁반·칼·대접 등)가 MT와 LXX(에스드라1서 포함) 사이에서 갈림 — 목록 본문의 숫자 전승 관찰", "고레스 조서의 음역·표현이 MT와 헬라어 전승 사이 미세 차이 — 칙령 본문의 전승 특성, 본문 확정 아님"]</p>
+<p>ane_refs: ["바사(페르시아) 제국의 피정복민 귀환·성소 복원 정책 — 고레스 원통(Cyrus Cylinder)에 새겨진, 신들의 처소와 백성을 본토로 돌려보낸다는 왕실 정책 선언과 맞닿는 배경. 본문 칙령의 정치적 정황", "왕의 조서(ketav) 반포 — 고대 근동에서 왕명을 문서로 적어 온 나라에 공포하던 행정 관행. 1:1 '조서를 내려 온 나라에 공포하고'의 배경", "약탈한 성소 기명의 보관과 반환 — 정복 왕이 피정복국 신전 기물을 자기 신당(bet elohim)에 두던 관행과, 정책 전환 시 되돌려주던 사례. 느부갓네살이 옮긴 기명(1:7)의 배경", "헌물 모금(자원하는 예물) — 성소 건축을 위해 이웃·공동체가 은·금·짐승으로 힘을 보태던 고대 근동의 후원 관행. 1:6의 배경"]</p>
+<p>rabbinic_refs: ["후대 유대 전통은 고레스 칙령을 예레미야 70년 예언(렘 25·29장)의 성취 시점과 맞추어 읽는다 — 연대 독법의 배경, 본문 확정 아님", "성전 기명 5,400개의 셈을 빼앗긴 거룩한 기물의 온전한 반환으로 읽는 전통 — 독법 배경"]</p>
+<p>literary_devices: [prophecy_fulfillment_opening, divine_stirring_of_a_king, edict_quotation, those_whose_spirit_God_stirred, neighbors_strengthened_with_gifts, vessel_inventory_as_restoration, counted_one_by_one]</p>
+<p>repeated_words: ["여호와(YHWH) — 칙령의 진짜 출처로 1·2·3·5·7절에 거듭 등장, 모든 동작의 배후 주어", "감동시키다·일으키다(ur) — 1절 고레스의 마음, 5절 족장들의 마음에 같은 동사가 쓰임 — 왕과 백성을 같은 손길이 일으킴", "올라가다(alah) — 3절 '올라갈지어다', 11절 '함께 올라가니라' — 귀환을 가리키는 표제 동사", "기명·그릇(keli) — 7~11절 목록의 표제어, 빼앗겼다 돌아오는 거룩한 기물", "성전·집(bayit) — 2~5절 '여호와의 성전', 7절 고레스의 '신당' — 두 집이 대비됨"]</p>
+<p>cross_refs: ["대하 36:22~23 (역대하의 마지막 두 절이 에스라 1:1~3과 거의 동일 — 끊김 없는 이음)", "렘 25:11~12·29:10 (칠십 년 후의 회복 예언 — 1:1 '예레미야의 입으로 하신 말씀'의 출처)", "사 44:28·45:1 (고레스를 이름으로 부르신 예언 — 칙령의 배후를 미리 비춤)", "왕하 24:13·25:13~17 (느부갓네살이 성전 기명을 가져감 — 1:7 반환의 직전 사건)", "단 1:1~2 (성전 기물을 시날 신당에 둠 — 1:7 '자기 신들의 신당에 두었던' 배경)", "스 6:3~5 (고레스 조서의 아람어 문서본 — 칙령의 또 다른 기록)", "학 1·2장 / 슥 4장 (뒷날 성전 재건의 독려 — 1장이 여는 재건 호의 이어짐)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-18</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>에스라 1장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 에스라 1장입니다. 열한 절입니다. 바로 앞 책 역대하는 36장 끝에서 예루살렘의 멸망과 포로, 그리고 고레스 조서로 닫혔어요. 그 마지막 두 절이 거의 그대로 에스라 1장 첫머리로 이어집니다 — 책이 바뀌었는데 문장이 끊기지 않아요. 오늘 본문은 한 이방 왕의 칙령으로 열립니다. "바사 왕 고레스 원년에… 여호와께서 고레스의 마음을 감동시키시매"(1절). 칙령이 반포되고, 백성이 올라가라는 부름을 받고, 빼앗겼던 성전 기명이 세어져 돌아옵니다. 오늘은 이 회복의 문이 어떻게 열리는지 같이 보겠습니다. 낭독하고 침묵을 두겠습니다.</p>
+<p>(본문 낭독 1:1~11, 약 3분)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대가 셋이에요. 첫째는 바사 왕의 궁정 — 조서가 작성되고 온 나라에 공포되는 공간이에요. 보이지 않는 손이 왕의 마음을 움직이는 무대죠. 둘째는 흩어진 포로들이 있는 사방의 거처 — "그 남은 백성이 있는 곳"(4절), 부름을 들은 사람들이 일어서는 무대예요. 셋째는 고레스의 신당(bet elohim) 곳간 — 느부갓네살이 옮겨다 둔 성전 기명이 꺼내져 세어지는 공간이에요. 궁정 → 흩어진 거처 → 곳간. 명령이 내려가고, 사람이 일어서고, 기물이 돌아오는 세 무대예요.</p>
+<p><strong>P02 이진우</strong>: 구조가 또렷해요. 1장은 세 단락이에요. 1~4절 고레스 칙령(예언 성취 → 조서 → 인용된 칙령문), 5~6절 감동받은 자들의 일어섬과 이웃의 힘 보탬, 7~11절 성전 기명의 반환과 셈이요. 그리고 7~11절 안에 또 작은 목록 구조가 있어요 — 금쟁반·은쟁반·칼·대접 등을 종류별로 세고, 마지막에 도합 5,400개로 합산해요. 서술이 회계 장부처럼 정확해지는 구간이에요.</p>
+<p><strong>P05 김미영</strong>: 소품으로 그릇이 보여요. 7~11절의 성전 기명(keli)이요. 한때 예루살렘 성전에 있다가 느부갓네살에게 빼앗겨 이방 신당에 갇혀 있던 것들이에요. 그게 다시 꺼내져요. 그리고 또 하나 — 은과 금이요. 4절과 6절에서 이웃이 보태는 은·금·물건·짐승. 빼앗겼던 금속이 돌아오고, 새 금속이 보태져요. 비어 있던 곳간이 다시 채워지는 소품들이에요.</p>
+<p><strong>P07 오지혜</strong>: 소재를 나열하면 — 고레스, 원년, 예레미야의 예언, 조서, 하늘의 하나님, 예루살렘, 성전, 올라가라는 부름, 은과 금, 짐승, 자원하는 예물, 족장, 제사장, 레위인, 그리고 5,400개의 기명, 세스바살이에요. 처음엔 한 왕의 입에서 시작했는데, 뒤로 갈수록 일어서는 사람들과 돌아오는 사물로 채워져요. 명령이 사람과 물건으로 번져 가는 게 따뜻하게 느껴졌어요.</p>
+<p><strong>P01 한나래</strong>: 1절이 마음에 남아요 — "여호와께서 고레스의 마음을 감동시키시매." 칙령을 말하기 전에, 그 칙령이 어디서 났는지를 먼저 한 줄로 못 박지 않고 조용히 둬요. 왕의 동기를 길게 설명하지도, 평가하지도 않아요. 그냥 '마음을 움직이셨다'고만요. 큰 사건의 출처를 짧은 한 구절에 담아 흘려 두는 그 절제가 인상 깊었어요.</p>
+<p><strong>P11 나경아</strong>: 어휘 몇 개요. <em>ruach</em>(רוּחַ) — '영·마음'. 1절 "고레스의 마음(ruach)을 감동시키시매"의 그 단어예요. 그리고 그 마음을 움직인 동사가 <em>ur</em>(עוּר) — '일으키다·깨우다'예요. <em>alah</em>(עָלָה) — '올라가다'. 3절 "올라갈지어다." 귀환을 가리키는 표제 동사예요. <em>keli</em>(כְּלִי) — '그릇·기명'. 7절 이하 목록의 표제어요. 배경 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 궁정에서 흩어진 거처로, 다시 곳간으로 옮겨가는 무대이고, 칙령·일어섬·기명 반환의 세 단락이고, 빼앗겼다 돌아오는 그릇과 보태지는 은·금의 소품이고, 명령이 사람과 사물로 번지는 소재이고, 칙령의 출처를 한 구절에 둔 1절이고요. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 처음 읽었을 때 어떤 공기였는지요.</p>
+<p><strong>P01 한나래</strong>: 조용하게 열리는 느낌이었어요. 큰 군대도, 천둥 같은 선언도 없어요. 한 왕이 마음이 움직여 종이에 명을 적고, 그 명이 온 나라에 퍼져요. 그런데 그 조용함 속에 큰 전환이 있어요 — 끊겼던 길이 다시 열려요. 요란하지 않게 회복이 시작되는 공기였어요.</p>
+<p><strong>P07 오지혜</strong>: 풀려나는 안도였어요. 포로라는 닫힌 상태에서 "올라갈지어다"라는 열린 부름으로요. 그리고 혼자 가라는 게 아니에요 — 남은 사람들이 은·금·짐승으로 힘을 보태요(6절). 떠나는 사람과 남는 사람이 함께 움직이는 그림이라 든든했어요.</p>
+<p><strong>P04 최현국</strong>: 명령과 응답이 번갈아요. 1~4절은 위에서 내려오는 칙령이에요 — 정지된 공문 같은 어조죠. 5~6절은 아래에서 올라오는 응답이에요 — 사람들이 일어서고 이웃이 보태는 움직임이요. 그리고 7~11절은 다시 정지된 회계예요 — 기물을 하나하나 세는 장부죠. 명령–응답–셈의 호흡이 느껴졌어요.</p>
+<p><strong>P02 이진우</strong>: 이음의 공기예요. 역대하 36장 끝과 에스라 1장 첫머리가 거의 같은 문장이에요. 책이 둘로 나뉘었는데 본문은 한 호흡처럼 이어져요. 포로로 닫힌 역사의 끝에서, 끊기지 않고 곧장 회복으로 넘어가요. 단절을 강조하기보다 잇댐을 보여 주는 편집이에요.</p>
+<p><strong>P05 김미영</strong>: 저는 7~11절의 기명 셈이 가장 진하게 남았어요. 보통 회복이라면 새 성전을 크게 짓는 장면을 기대하는데, 본문은 먼저 빼앗겼던 옛 그릇들을 하나하나 세요. 잃었던 것을 새것으로 덮지 않고, 그 자체를 셈하여 돌려받아요. 빼앗긴 것이 잊히지 않고 셈하여진다는 게 묘하게 위로가 됐어요.</p>
+<p><strong>P11 나경아</strong>: 번역 층위에서요 — 1절 "감동시키시매"의 동사가 <em>ur</em>(일으키다)인데, 같은 동사가 5절 "하나님께 감동을 받고 일어난" 족장들에게도 쓰여요. 왕의 마음과 백성의 마음을 같은 동사가 일으켜요. 그리고 1절의 칙령은 "예레미야의 입으로 하신 말씀을 이루게 하시려고"로 시작해요 — 회복이 우발이 아니라 예언의 이행이라는 표식이에요. 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 요란하지 않게 열리는 회복의 조용함, 닫힘에서 열림으로의 안도, 명령과 응답의 번갈음, 단절보다 잇댐을 보여 주는 편집, 빼앗긴 것을 새것으로 덮지 않고 셈하여 돌려받는 위로, 그리고 왕과 백성을 같은 동사로 일으키는 어휘까지. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: EZR-001</p>
+<p>book: 에스라</p>
+<p>chapter: 1</p>
+<p>date: 2026-06-18</p>
+<p>---</p>
+
+<h2>에스라 1장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대 셋: 바사 왕의 궁정(칙령 작성·공포, 1~4절) → 흩어진 포로들의 거처(일어섬, 5~6절) → 고레스의 신당 곳간(기명 반환과 셈, 7~11절). 명령이 사람과 사물로 번져 감.</li>
+<li>구조 셋: 칙령(예언 성취 → 조서 → 인용된 칙령문, 1~4절) / 감동받은 자들의 일어섬과 이웃의 힘 보탬(5~6절) / 성전 기명의 반환과 셈(7~11절). 7~11절 안에 종류별 회계 목록이 들어감.</li>
+<li>소품 — 두 집의 대비: 2~5절 "여호와의 성전"(bayit), 7절 고레스의 "신당"(bet elohim). 빼앗긴 기명이 한 집에서 다른 집으로 돌아옴.</li>
+<li>소재 나열: 고레스·원년·예레미야 예언·조서·하늘의 하나님·예루살렘·성전·올라가라는 부름·은·금·짐승·자원하는 예물·족장·제사장·레위인·5,400개의 기명·세스바살.</li>
+<li>1절의 한 구절: "여호와께서 고레스의 마음을 감동시키시매" — 칙령의 출처를 왕의 계산이 아니라 하나님의 감동에 둠.</li>
+<li>어휘: <em>ruach</em>(רוּחַ) 영·마음 / <em>ur</em>(עוּר) 일으키다·감동시키다 / <em>alah</em>(עָלָה) 올라가다·귀환 / <em>keli</em>(כְּלִי) 그릇·기명 / <em>bayit</em>(בַּיִת) 집·성전.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>요란하지 않게 열리는 회복의 조용함 — 군대·천둥 없이 한 왕의 마음과 한 장의 조서로 끊겼던 길이 다시 열림.</li>
+<li>닫힘에서 열림으로의 안도 — 포로라는 닫힌 상태에서 "올라갈지어다"의 열린 부름으로, 남는 자와 떠나는 자가 함께 움직임(6절).</li>
+<li>명령과 응답의 번갈음 — 위에서 내려오는 칙령(1~4절)과 아래에서 올라오는 일어섬(5~6절), 다시 정지된 회계(7~11절)의 호흡.</li>
+<li>단절보다 잇댐을 보여 주는 편집 — 대하 36장 끝과 에스라 1장 첫머리가 거의 같은 문장, 책이 나뉘어도 한 호흡으로 이어짐.</li>
+<li>빼앗긴 것을 새것으로 덮지 않고 셈하여 돌려받는 위로 — 옛 기명을 하나하나 세어 반환하는 결.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(1:1): "바사 왕 고레스 원년에 여호와께서 예레미야의 입으로 하신 말씀을 이루게 하시려고 여호와께서 바사 왕 고레스의 마음을 감동시키시매" — 칙령의 출처를 하나님의 감동에 두고 예언 성취로 엶.</li>
+<li>끝(1:11): "금, 은 기명의 도합이 오천사백 개라 사로잡힌 자를 바벨론에서 예루살렘으로 데리고 올 때에 세스바살이 그 모든 것을 함께 가지고 올라갔더라" — 셈하여진 기명과 함께 올라가는 귀환으로 닫힘.</li>
+<li>시작과 끝의 대조: 한 왕의 마음의 감동(1절)으로 열려, 셈하여진 기명과 함께 올라가는 백성(11절)으로 닫힘. 보이지 않는 감동이 보이는 행렬로 맺힘.</li>
+<li>완결 여부: 귀환은 시작되고 기명은 돌아왔으나, 성전 자체는 아직 세워지지 않음 — 2장 귀환자 명단, 3장 제단·기초로 이어지는 재건 호의 첫 단.</li>
+<li>축: 예언 성취·감동(1절) → 칙령·부름(2~4절) → 일어섬·힘 보탬(5~6절) → 기명 반환·셈·동행(7~11절)의 순서. 감동이 명령으로, 명령이 응답으로, 응답이 셈하여진 회복으로 흐름.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>고레스: 바사 왕. 마음이 감동되어(1절) 조서를 반포하고, 빼앗겼던 성전 기명을 내어 세어 줌(7~8절). 본문은 그의 동기를 평가하지 않고 그를 움직인 손길만 기록함.</li>
+<li>여호와: 칙령의 진짜 배후. 고레스의 마음을 감동시키고(1절), 족장들의 마음을 일으키며(5절), 예레미야의 예언을 이루게 하는(1절) 모든 동작의 주어.</li>
+<li>감동받은 자들: 유다·베냐민 족장과 제사장·레위인 중 "하나님께 감동을 받고" 일어난 자들(5절). 부름에 응답해 성전을 건축하러 올라가려 함.</li>
+<li>그 남은 백성·이웃(4·6절): 올라가지 않는 자들. 은·금·물건·짐승과 자원하는 예물로 떠나는 자들의 손을 강하게 함.</li>
+<li>세스바살: 유다 목백(11절). 고레스가 세어 준 성전 기명을 받아 바벨론에서 예루살렘으로 함께 가지고 올라간 인도자.</li>
+<li>1절의 한 구절: "여호와께서 고레스의 마음을 감동시키시매" — 이방 왕의 마음까지 움직여 회복의 문을 여시는 주권의 형태를, 단정 없이 한 구절로 둠.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li><strong>컷 1 (1절)</strong>: 감동의 순간 — 바사 왕 고레스의 마음을 여호와께서 감동시키시매. 예레미야의 예언이 이루어지는 보이지 않는 첫 장면.</li>
+<li><strong>컷 2 (1~4절)</strong>: 조서의 반포 — 고레스가 조서를 내려 온 나라에 공포함. "하늘의 하나님 여호와께서… 유다 예루살렘에 성전을 건축하라 하셨나니… 다 올라갈지어다."</li>
+<li><strong>컷 3 (5절)</strong>: 일어서는 사람들 — 유다·베냐민 족장과 제사장·레위인 중 하나님께 감동받은 자들이 성전을 건축하러 일어남.</li>
+<li><strong>컷 4 (6절)</strong>: 손을 보태는 이웃 — 사방 사람들이 은·금·물건·짐승과 자원하는 예물로 그 손을 강하게 함.</li>
+<li><strong>컷 5 (7~8절)</strong>: 곳간이 열림 — 고레스가 느부갓네살이 신당에 두었던 성전 기명을 꺼내어 고지기 미드르닷을 시켜 유다 목백 세스바살에게 세어 줌.</li>
+<li><strong>컷 6 (9~11절)</strong>: 셈하여 올라감 — 금쟁반·은쟁반·칼·대접 등을 종류별로 세어 도합 5,400개. 세스바살이 그 모든 것을 가지고 함께 올라감.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>ruach</em>(רוּחַ) — '영·마음·바람'. 1절 "고레스의 마음(ruach)을 감동시키시매." 사람의 내면 의지를 가리키는 단어로, 그 의지가 밖에서 움직여졌음을 표식함.</li>
+<li><em>ur</em>(עוּר) — '일으키다·깨우다·감동시키다'. 1절 고레스, 5절 족장들에게 같은 어근이 쓰임. 왕과 백성을 같은 손길이 일으킴.</li>
+<li><em>alah</em>(עָלָה) — '올라가다'. 3·11절. 예루살렘으로의 귀환을 가리키는 표제 동사. 지리적으로도 신학적으로도 '올라감'.</li>
+<li><em>keli</em>(כְּלִי) — '그릇·기명·기물'. 7~11절 목록의 표제어. 빼앗겼다 돌아오는 거룩한 성전 기물.</li>
+<li><em>bayit</em>(בַּיִת) — '집·성전'. 2~5절 "여호와의 성전(bet YHWH)", 7절 고레스의 "신당(bet elohim)." 두 집의 대비.</li>
+<li><em>shamayim</em>(שָׁמַיִם) — '하늘'. 2절 "하늘의 하나님(Elohe ha-shamayim)." 바사 시대 공문에 자주 쓰인, 온 하늘을 다스리는 신을 가리키는 칭호.</li>
+<li><em>nadav</em>(נָדַב) — '자원하다·기꺼이 드리다'. 6절 "자원하는 예물." 강요가 아닌 마음에서 우러난 헌물의 어휘.</li>
+<li><em>sefar</em>(סָפַר) — '세다·셈하다'. 8절 "세어 주니라." 기명을 하나하나 셈하여 반환하는 회계의 동사.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>예언 성취의 개막(prophecy fulfillment opening): 1절이 "예레미야의 입으로 하신 말씀을 이루게 하시려고"로 열림. 회복을 우발이 아니라 예언의 이행으로 둠.</li>
+<li>왕의 마음을 일으키심(divine stirring of a king): 칙령의 출처를 고레스의 정치가 아니라 여호와의 ur(일으키심)에 둠 — 보이는 왕명 뒤의 보이지 않는 주어.</li>
+<li>칙령 인용(edict quotation): 2~4절이 고레스의 1인칭 발화를 그대로 인용함. 서술 안에 공문서의 목소리가 직접 들어옴.</li>
+<li>마음이 감동된 자들(those whose spirit God stirred): 5절이 일어선 자를 신분이 아니라 "하나님께 감동을 받은" 내면으로 규정 — 응답의 기준을 마음에 둠.</li>
+<li>회복으로서의 기명 목록(vessel inventory as restoration): 7~11절이 빼앗긴 기물을 종류별로 세어 합산함. 무미한 듯한 회계가 곧 회복의 셈이 됨 — "하나하나 세어"(counted one by one).</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>바사 제국의 귀환·성소 복원 정책 — 고레스 원통에 새겨진, 신들의 처소와 백성을 본토로 돌려보낸다는 왕실 정책 선언과 맞닿는 배경. 1장 칙령의 정치적 정황.</li>
+<li>왕의 조서(ketav) 반포 — 고대 근동에서 왕명을 문서로 적어 온 나라에 공포하던 행정 관행. 1절 "조서를 내려 온 나라에 공포하고"의 배경.</li>
+<li>약탈한 성소 기명의 보관과 반환 — 정복 왕이 피정복국 신전 기물을 자기 신당에 두던 관행과 정책 전환 시 되돌려주던 사례. 1:7 기명 반환의 배경.</li>
+<li>자원하는 헌물 모금 — 성소 건축을 위해 이웃·공동체가 은·금·짐승으로 힘을 보태던 후원 관행. 1:6의 배경.</li>
+<li>포로 귀환 공동체 맥락 — 에스라가 귀환·재건 공동체를 위해 기록됐다는 배경. 이방 왕의 마음까지 움직이신 칙령과 셈하여 돌아온 기명은, 분열·상실 이후 공동체에 회복의 정당성과 연속성을 비추는 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>에스라 1:1~3 ↔ 대하 36:22~23 (역대하의 마지막 두 절과 거의 동일 — 끊김 없는 이음)</li>
+<li>에스라 1:1 ↔ 렘 25:11~12·29:10 (칠십 년 후의 회복 예언 — "예레미야의 입으로 하신 말씀"의 출처)</li>
+<li>에스라 1:1~2 ↔ 사 44:28·45:1 (고레스를 이름으로 부르신 예언 — 칙령의 배후를 미리 비춤)</li>
+<li>에스라 1:7 ↔ 왕하 24:13·25:13~17 (느부갓네살이 성전 기명을 가져감 — 반환의 직전 사건)</li>
+<li>에스라 1:7 ↔ 단 1:1~2 (성전 기물을 시날 신당에 둠 — "자기 신들의 신당에 두었던"의 배경)</li>
+<li>에스라 1:2~4 ↔ 스 6:3~5 (고레스 조서의 아람어 문서본 — 칙령의 또 다른 기록)</li>
+<li>에스라 1장 ↔ 학 1·2장 / 슥 4장 (뒷날 성전 재건 독려 — 1장이 여는 재건 호의 이어짐)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>카메라가 켜지면 바사 궁정 안이다. 한 왕이 책상 앞에 있다 — 고레스다. 그런데 화면의 초점은 왕의 얼굴이 아니라, 그 마음 안으로 들어가 무언가 움직이는 보이지 않는 손길이다. 자막 한 줄이 지나간다 — 오래전 예레미야의 입으로 하신 말씀을 이루시려고. 왕이 붓을 든다. 조서가 적히고, 사자(使者)들이 온 나라로 흩어진다. 화면이 흩어진 포로들의 거처로 넘어간다. 공문이 읽힌다 — "성전을 건축하라… 다 올라갈지어다." 사람들이 하나둘 일어선다. 족장, 제사장, 레위인. 마음이 움직여진 사람들이다. 이웃들이 다가와 그들의 손에 은과 금과 짐승을 쥐여 준다. 화면이 다시 궁정 곳간으로 옮겨간다. 먼지 쌓인 선반에서 그릇들이 꺼내진다 — 한때 예루살렘 성전에 있다가 빼앗겨 여기 묵혀 있던 기명들이다. 고지기가 그것을 하나하나 센다. 금쟁반, 은쟁반, 칼, 대접… 도합 5,400개. 마지막 프레임은 한 무리가 그 기명을 지고 길을 오르는 뒷모습이다 — 세스바살을 앞세우고, 바벨론을 등지고, 예루살렘을 향해 올라간다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"한 왕의 마음을 움직여 여신 회복의 문"</strong></li>
+<li>초벌 부제: "바사 왕 고레스 원년에 여호와께서 예레미야의 예언을 이루시려고 그의 마음을 감동시키시매 조서가 반포되고(1~4절), 감동받은 족장·제사장·레위인이 일어나며 이웃이 예물로 힘을 보태고(5~6절), 빼앗겼던 성전 기명 5,400개가 하나하나 세어져 세스바살과 함께 올라가는(7~11절) — 칙령의 출처를 하나님의 감동에 두고 빼앗긴 것이 셈하여져 돌아오는 귀환의 개막"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (ruach·ur·alah·keli·bayit·shamayim·nadav·sefar 등 8개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (예언 성취 개막·왕의 마음을 일으키심·칙령 인용·회복으로서의 기명 목록·바사 귀환 정책 기록)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>1절 "고레스의 마음을 감동시키시매"를 "그러니 하나님은 어떤 권력자도 다루신다"는 적용 설교로 닫지 않고, 칙령의 출처를 왕의 계산이 아니라 하나님의 감동에 둔 본문의 형태 관찰로만 보존.</li>
+<li>예레미야 예언의 성취(1절)를 "예언은 반드시 이루어진다는 교리"로 단정하기 전에, 끊긴 듯한 역사가 예언의 이행으로 다시 이어지는 편집 사실로만 기록.</li>
+<li>기명 5,400개의 반환을 "잃은 것은 회복된다는 약속"으로 교훈화하기 전에, 빼앗긴 기물을 하나하나 세어 돌려받는 회복의 셈(sefar)의 형태 관찰로 먼저 둠.</li>
+<li>"올라갈지어다"의 부름을 "우리도 사명을 향해 나아가야 한다"는 권면으로 곧장 적용하지 않고, alah(올라감)가 귀환을 가리키는 표제 동사라는 형태 사실로 보존.</li>
+<li>이웃의 자원하는 예물(6절)을 "헌신의 모범"으로 곧장 적용하지 않고, nadav(자원함)가 강요 없이 손을 강하게 한 후원의 결이라는 관찰로 보존.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: EZR-001</p>
+<p>book: 에스라</p>
+<p>chapter: 1</p>
+<p>date: 2026-06-18</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P02 이진우</strong>: 화면이 바사 궁정에서 열려요. 카메라가 왕의 마음 안으로 들어가요 — 무언가 일으켜지는 보이지 않는 첫 컷이에요. 자막 한 줄, 예레미야의 말씀을 이루시려고. 왕이 붓을 들고, 조서가 흩어지고, 공문이 포로들의 거처에서 읽혀요. 사람들이 일어서요 — 족장, 제사장, 레위인. 이웃이 다가와 은과 금과 짐승을 손에 쥐여 줘요. 화면이 곳간으로 옮겨가요. 먼지 쌓인 선반에서 옛 성전 기명이 꺼내져요. 고지기가 하나하나 세요 — 쟁반, 칼, 대접, 도합 5,400개. 마지막 프레임은 한 무리가 그 기물을 지고 길을 오르는 뒷모습이에요. 세스바살을 앞세우고, 바벨론을 등지고, 예루살렘을 향해서요. 첫 컷은 한 왕의 보이지 않는 마음, 마지막 컷은 셈하여진 기물을 진 행렬이에요.</p>
+<p><strong>성령일 선교사</strong>: 보이지 않는 마음의 감동에서, 흩어진 조서로, 일어선 사람들로, 셈하여진 기물을 진 행렬로 닫히는 흐름이군요.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "칙령의 출처를 한 구절에 둔 장 — 1절의 조용한 감동"</p>
+<p><strong>P02 이진우</strong>: "칙령·일어섬·기명 — 감동에서 셈하여진 회복으로 흐르는 세 단락"</p>
+<p><strong>P04 최현국</strong>: "궁정에서 거처로, 거처에서 곳간으로 — 명령이 사람과 사물로 번지는 무대"</p>
+<p><strong>P05 김미영</strong>: "하나하나 세어 돌려받은 그릇 — 빼앗긴 것을 새것으로 덮지 않는 결"</p>
+<p><strong>P07 오지혜</strong>: "올라갈지어다 — 닫힘에서 열림으로, 남는 자와 떠나는 자가 함께"</p>
+<p><strong>P11 나경아</strong>: "<em>ur · alah · keli</em> — 일으킴, 올라감, 그릇으로 짠 회복의 문"</p>
+<p>부제 공동 제안: "바사 왕 고레스 원년에 여호와께서 예레미야의 예언을 이루시려고 고레스의 마음을 감동시키시매(1절) 조서가 반포되고(2~4절), 하나님께 감동받은 족장·제사장·레위인이 일어나며 이웃이 자원하는 예물로 힘을 보태고(5~6절), 느부갓네살이 빼앗아 신당에 두었던 성전 기명 5,400개가 하나하나 세어져 세스바살과 함께 올라가는(7~11절) — 칙령의 출처를 하나님의 감동에 두고, 빼앗긴 것이 셈하여져 돌아오는 회복의 개막"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 이 장의 흐름 안으로 들어가 봅시다. 한 왕의 마음을 움직여 여신 문, 감동받아 일어선 사람들, 하나하나 세어 돌아온 기물 — 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고, 머무는 것으로 충분합니다.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P05 김미영</strong>: (조용히) 주님, 오늘 그릇을 세는 장면 앞에서 멈췄습니다. 빼앗겼던 그릇 하나하나를 새것으로 덮지 않고, 그 자체를 세어 돌려주셨어요. 저는 잃어버린 것들을 빨리 잊고 새것으로 덮으려 했던 게 떠올랐습니다. 그것을 여쭙지는 않겠습니다. 다만 빼앗긴 것이 잊히지 않고 셈하여진다는 그 결 앞에 잠시 머뭅니다.</p>
+<p><em>— 각자 떠오르는 것을 마음에만 둡니다.</em></p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>이 장은 어디서 어디로 움직이는지요? 눈에 보이는 칙령과 셈 아래에서 무엇이 회복되고 있는지요? 이 장이 귀환 공동체에게 묻는 것이 무엇인지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 이 장은 <strong>보이지 않는 감동에서 보이는 행렬로</strong> 움직여요. 1절은 한 왕의 마음 안의 보이지 않는 일으킴으로 열리고, 11절은 셈하여진 기물을 진 행렬이 길을 오르는 것으로 닫혀요. 운동의 방향은 '마음에서 행렬로'예요. 에스라의 spine — "이방 왕의 칙령으로 성전을 다시 세우시고, 말씀의 연구·준행·가르침으로 백성의 삶까지 재건하신다" — 에서 1장은 그 첫 단, 곧 칙령으로 문을 여는 마디예요. phases로 보면 1~2장 칙령·1차 귀환의 첫머리고요.</p>
+<p><strong>P04 최현국</strong>: 권의 흐름에서 보면 phases가 1~2장 칙령·1차 귀환, 3~6장 성전 기초·방해·완공, 7~8장 에스라의 귀환, 9~10장 말씀 개혁인데, 1장은 그 전체의 문을 여는 단이에요. 도착점은 7:10 — "에스라가 여호와의 율법을 연구하여 준행하며 율례와 규례를 이스라엘에게 가르치기로 결심하였었더라." 흥미로운 건 1장에 이미 그 도착점의 결이 비쳐요. 7:10에서는 사람의 마음이 율법을 향해 결심하는데, 1장에서는 하나님이 먼저 한 왕의 마음을 일으키시고(ur) 또 백성의 마음을 일으키세요(5절). 마음을 움직이는 같은 동사가 통치의 문과 개혁의 문 양쪽에 있어요. 회복이 건물에서 시작해 마음으로 가는 게 아니라, 마음에서 시작한다는 결이 첫 장에 비치는 거 같아요. 단정은 아니고, 그렇게 닿는다는 관찰이요.</p>
+<p><strong>P07 오지혜</strong>: 수면 아래를 보면 — 1절이 핵심이에요. 보통 한 제국의 정책 전환이라면 그 왕의 결단이나 정치적 이득으로 설명되는데, 본문은 곧바로 그 출처를 "여호와께서 감동시키시매"로 위로 돌려요. 회복의 동력이 왕의 관용도, 제국의 정책도 아니고 그 마음을 일으키신 손길이래요. 그런데 그러면서도 본문은 고레스의 이름과 조서와 행정 절차를 다 기록해요. 보이지 않는 감동을 말하면서 보이는 왕명도 지우지 않아요. 주권과 역사가 한 장 안에 같이 있어요 — 질문으로 다음 장에 가져가고 싶어요.</p>
+<p><strong>P01 한나래</strong>: 긴장이에요. 포로의 긴 침묵 다음에 회복이 와요. 그런데 그 회복이 천둥처럼 오지 않아요 — 한 이방 왕의 조용한 마음 한 자락에서 시작돼요. 거창한 구원 사건을 기대했는데, 문이 열리는 방식이 너무 잔잔해요. 그게 처음엔 작게 느껴졌는데, 다시 보니 그 잔잔함 안에 빼앗긴 그릇 하나까지 세는 세심함이 있었어요. 확신은 아니지만 — 큰 회복이 작은 셈으로 시작되는 그 결에서, 잊히지 않고 하나하나 챙기시는 손길이 느껴졌어요.</p>
+<p><strong>P11 나경아</strong>: 원어로 단서를요. 1절의 "감동시키시매"는 <em>he'ir</em>(ur의 사역형) — '일으켜 깨우다'예요. 잠든 것을 깨우는 뉘앙스죠. 그 동사가 5절 백성에게도 그대로 와요 — 왕과 백성이 같은 깨움을 받아요. 그리고 8·11절의 <em>sefar</em>(세다)는 무미한 회계 동사 같지만, 빼앗긴 거룩한 기물을 하나도 빠뜨리지 않고 셈하는 데 쓰여요. 일으킴(ur)과 셈함(sefar) — 마음을 깨우는 동사와 기물을 세는 동사가 한 장에 함께 있는 것이, 회복이 안과 밖 양쪽에서 일어남을 무엇으로 남기는지, 질문으로 보존합니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>보이지 않는 마음의 감동에서 셈하여진 기물의 행렬로 — 회복의 출처를 왕의 정치가 아니라 하나님의 일으키심에 두면서도 역사의 절차를 지우지 않고, 큰 회복을 빼앗긴 그릇 하나까지 세는 세심함으로 여신다</strong>는 것을 손에 쥐고 다음 장으로 갑니다. 일어선 사람들이 누구였는지, 그 이름과 수효가 이어질 거예요.</p>
+<p>---</p>
+
+<h2>에스라 1장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 1:1 — 칙령의 출처를 "여호와께서 고레스의 마음을 감동시키시매"로 두면서, 본문이 왕의 동기를 평가하지 않는 것은 무엇을 드러내는가?</h2>
+<ul><li>본문은 고레스의 관용·정치를 칭찬도 비판도 하지 않고, 그를 움직인 손길만 한 구절로 기록한다. 이 출처 귀속의 절제를 본문 안에서 닫지 않고 보존.</li></ul>
+
+<h2>Q2. 1:1 — 회복이 "예레미야의 입으로 하신 말씀을 이루게 하시려고"로 열리는 이 예언 성취의 개막은 무엇을 가리키는가?</h2>
+<ul><li>끊긴 듯한 포로의 역사가 예언의 이행으로 다시 이어진다. 칠십 년의 침묵 뒤에 회복이 우발이 아닌 이행으로 열리는 이 배열의 무게를 형태 관찰로 보존.</li></ul>
+
+<h2>Q3. 1:1·1:5 — 고레스의 마음과 족장들의 마음에 같은 동사(ur, 일으키다)가 쓰인 것은 어떤 선택인가?</h2>
+<ul><li>이방 왕의 마음과 언약 백성의 마음을 같은 깨움이 일으킨다. 밖의 왕과 안의 백성을 한 동사로 묶은 이 어휘의 결을 단정하지 않고 보존.</li></ul>
+
+<h2>Q4. 1:6 — 올라가지 않는 이웃이 은·금·짐승과 자원하는 예물(nadav)로 손을 강하게 하는 것은 무엇을 보여 주는가?</h2>
+<ul><li>떠나는 자와 남는 자가 함께 회복에 참여한다. 강요 없이 우러난 헌물로 손을 강하게 하는 이 동참의 형태를 교훈으로 닫지 않고 질문으로 이월.</li></ul>
+
+<h2>Q5. 1:7~11 — 새 성전을 짓기 전에 빼앗겼던 옛 기명을 하나하나 세어(sefar) 돌려받는 것은 무엇을 가리키는가?</h2>
+<ul><li>잃은 것을 새것으로 덮지 않고 그 자체를 셈하여 회복한다. 무미한 듯한 회계가 곧 회복의 셈이 되는 이 목록의 기능을 단정하지 않고 보존.</li></ul>
+
+<h2>Q6. 1:7 — 느부갓네살이 자기 신당에 두었던 성전 기명이 다시 여호와의 집을 향해 나오는 두 집(bayit)의 대비는 무엇을 남기는가?</h2>
+<ul><li>약탈로 이방 신당에 머물던 거룩한 기물이 본래의 집을 향해 돌아온다. 처소가 바뀌는 이 이동이 귀환 공동체에게 무엇을 건네는지 질문으로 보존.</li></ul>
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">바사 왕 고레스의 마음을 감동시켜 여신 칙령으로 회복의 문이 열리고 — 그 출처를 "여호와께서 고레스의 마음을 감동시키시매"(1:1) 한 구절에 두며, 빼앗겼던 성전 기명을 하나하나 세어 돌려받는 셈으로 닫히는 귀환의 개막.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: EZR-001</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-18</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 에스라 1장은 바사 왕 고레스 원년에 여호와께서 예레미야의 예언을 이루시려고 "고레스의 마음을 감동시키시매"(1절) 조서가 온 나라에 반포되어 "성전을 건축하라… 다 올라갈지어다"(2~4절) 하니, 하나님께 감동받은 족장·제사장·레위인이 일어나고 이웃이 자원하는 예물로 손을 강하게 하며(5~6절), 느부갓네살이 빼앗아 신당에 두었던 성전 기명 5,400개가 하나하나 세어져 세스바살과 함께 올라가는(7~11절) — 칙령의 출처를 하나님의 감동에 두고 빼앗긴 것이 셈하여져 돌아오는, 귀환과 재건 호의 개막이다.</p>
+<p><strong>한 문단</strong>: 포로의 긴 침묵 다음에 화면이 바사 궁정으로 열린다. 초점은 왕의 얼굴이 아니라 그 마음을 움직이는 보이지 않는 손길이다 — 오래전 예레미야의 입으로 하신 말씀을 이루시려고. 왕이 붓을 들고, 조서가 온 나라로 흩어진다. 공문이 포로들의 거처에서 읽힌다 — 성전을 건축하라, 다 올라가라. 사람들이 하나둘 일어선다. 마음이 움직여진 사람들이다. 이웃이 다가와 은과 금과 짐승을 손에 쥐여 준다. 화면이 곳간으로 옮겨간다. 먼지 쌓인 선반에서 옛 성전 기명이 꺼내진다. 고지기가 하나하나 센다 — 쟁반, 칼, 대접, 도합 5,400개. 장은 한 왕의 결단이 아니라, 셈하여진 기물을 진 한 무리가 바벨론을 등지고 예루살렘을 향해 올라가는 뒷모습 위에서 닫힌다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>궁정→흩어진 거처→곳간으로 옮겨가는 무대. 두 집(여호와의 성전·고레스의 신당)의 대비. 칙령의 출처를 한 구절에 둔 1절.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>요란하지 않게 열리는 회복. 닫힘에서 열림으로의 안도. 명령과 응답의 번갈음. 단절보다 잇댐. 셈하여 돌려받는 위로.</td></tr>
+<tr><td>3 시작과 끝</td><td>왕의 마음의 감동(1절)으로 열려 셈하여진 기물을 진 행렬(11절)로 닫힘. 보이지 않는 감동이 보이는 행렬로 맺힘. 2장으로 이어짐.</td></tr>
+<tr><td>4 등장인물·사상</td><td>고레스·여호와·감동받은 자들·이웃·세스바살. 1절 출처 귀속(감동). 1·5절 같은 동사 ur로 왕과 백성을 일으킴.</td></tr>
+<tr><td>5 장면 컷</td><td>감동(컷1)·조서 반포(컷2)·일어섬(컷3)·이웃의 힘 보탬(컷4)·곳간 열림(컷5)·셈하여 올라감(컷6) 6컷.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>ruach·ur·alah·keli·bayit·shamayim·nadav·sefar 원어. 예언 성취 개막·왕의 마음을 일으키심·회복으로서의 기명 목록. 대하 36·렘 25·사 44~45 평행.</td></tr>
+<tr><td>7 동영상</td><td>보이지 않는 마음의 감동→흩어진 조서→일어선 사람들→곳간의 옛 기명→셈하여진 기물을 진 행렬로 닫힘.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"한 왕의 마음을 움직여 여신 회복의 문"</td></tr>
+<tr><td>9 기도·내면</td><td>빼앗긴 것을 새것으로 덮지 않고 셈하여 돌려받는 결 앞에 머뭄 — 잃은 것을 빨리 잊고 덮으려 한 적이 많았다는 떠오름.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 끊김 없는 이음</strong>: 역대하 36장 끝과 에스라 1장 첫머리는 거의 같은 문장이다. 책이 둘로 나뉘었는데 본문은 한 호흡처럼 이어진다. 포로로 닫힌 역사의 끝에서, 단절을 강조하지 않고 곧장 회복으로 넘어간다. 그 회복은 "예레미야의 입으로 하신 말씀을 이루게 하시려고"(1절)로 시작한다 — 칠십 년의 침묵이 예언의 이행 안에서 다시 잇대어진다. 이것이 단정인지 편집의 효과인지 본문은 말하지 않는다.</p>
+<p>2. <strong>결 2 — 출처를 위로 돌리는 한 구절</strong>: 1절은 고레스의 칙령을 말하기 전에, 그 출처를 "여호와께서 고레스의 마음을 감동시키시매"로 먼저 둔다. 왕의 동기를 길게 설명하거나 평가하지 않고, 그를 움직인 손길만 한 구절로. 그러면서도 본문은 고레스의 이름과 조서와 행정 절차를 다 기록한다. 보이지 않는 감동을 말하면서 보이는 역사도 지우지 않는다 — 주권과 절차가 한 장에 공존하며, 둘 중 하나를 깎지 않는다.</p>
+<p>3. <strong>결 3 — 셈하여진 회복</strong>: 회복의 첫 동작을 본문은 새 성전을 짓는 것이 아니라 빼앗긴 옛 기명을 세는 데 둔다. 느부갓네살이 가져가 신당에 두었던 그릇들이 하나하나 세어져(sefar) 돌아온다 — 금쟁반, 은쟁반, 칼, 대접, 도합 5,400개. 잃은 것을 새것으로 덮지 않고 그 자체를 셈하여 돌려받는 이 회계가, 회복의 무게 중심을 거창한 건축이 아니라 빼앗긴 것 하나까지 챙기는 세심함에 둔다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>에스라 1:1~3 ↔ 대하 36:22~23 (역대하의 마지막 두 절과 거의 동일 — 끊김 없는 이음)</li>
+<li>에스라 1:1 ↔ 렘 25:11~12·29:10 (칠십 년 후의 회복 예언 — "예레미야의 입으로 하신 말씀"의 출처)</li>
+<li>에스라 1:1~2 ↔ 사 44:28·45:1 (고레스를 이름으로 부르신 예언 — 칙령의 배후를 미리 비춤)</li>
+<li>에스라 1:7 ↔ 왕하 24:13·25:13~17 / 단 1:1~2 (느부갓네살이 성전 기명을 가져가 신당에 둠 — 반환의 직전 사건)</li>
+<li>에스라 1:2~4 ↔ 스 6:3~5 (고레스 조서의 아람어 문서본 — 칙령의 또 다른 기록)</li>
+<li>에스라 1장 ↔ 학 1·2장 / 슥 4장 (뒷날 성전 재건 독려 — 1장이 여는 재건 호의 이어짐)</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 1:1에서 멈춘다 — 한 이방 왕의 마음을 움직이신 보이지 않는 손길 앞에 선다. 칙령의 출처가 위로 돌려진 한 구절을 든다.</li>
+<li><strong>멈춤 1</strong>: 1:5에서 멈춘다 — 왕과 같은 동사로 일으켜져 일어선 사람들의 마음을 쥔다.</li>
+<li><strong>멈춤 2</strong>: 1:8에서 멈춘다 — 빼앗긴 그릇을 하나하나 세어 돌려주는 그 셈의 세심함을 든다.</li>
+<li><strong>끝</strong>: 1:11에서 멈춘다 — 장이 한 왕의 결단이 아닌, 셈하여진 기물을 진 행렬로 닫힌다. 2장에서 그 일어선 자들의 이름과 수효가 이어진다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 감동·조서 반포·일어섬·이웃의 힘 보탬·곳간 열림·셈하여 올라감의 6컷 완결</li>
+<li>[x] ruach·ur·alah·keli·bayit·shamayim·nadav·sefar 원어 분포</li>
+<li>[x] 예언 성취 개막·왕의 마음을 일으키심·회복으로서의 기명 목록의 문학 구조 기록</li>
+<li>[x] 1절 출처 귀속(고레스의 마음을 감동시키시매)의 형태 관찰</li>
+<li>[x] 대하 36·렘 25·사 44~45·왕하 24~25·단 1장 교차 참조 기록</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>에스라의 spine은 "이방 왕의 칙령으로 성전을 다시 세우시고, 거기서 멈추지 않고 말씀의 연구·준행·가르침으로 백성의 삶까지 재건하신다"이며, destination은 "에스라가 여호와의 율법을 연구하여 준행하며 율례와 규례를 이스라엘에게 가르치기로 결심하였었더라"(7:10)다. 권 전체의 phases — 1~2장(고레스 칙령·1차 귀환), 3~6장(성전 기초·방해·학개와 스가랴·완공과 유월절), 7~8장(에스라의 귀환), 9~10장(통혼 자복·말씀 개혁) — 중에서, 1장은 그 전체의 문을 여는 첫 단이다. 구속사의 호에서 보면, 포로로 닫힌 역사의 침묵 다음에 1장은 이방 왕의 마음을 움직여 회복의 문을 연다. 권의 heart — "우리 하나님의 손은 자기를 찾는 모든 자에게 선을 베푸시고"(8:22)의 보호 — 가 1장에서는 고레스의 마음을 감동시키시는 손길(1절)과, 빼앗긴 기물을 하나도 빠뜨리지 않고 세어 돌려주시는 세심함(7~11절)으로 모습을 드러낸다. 재건의 호는 거창한 건축이 아니라 한 왕의 마음 한 자락에서, 그리고 빼앗긴 그릇 하나의 셈에서 시작된다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>보이지 않는 마음의 감동(1절)에서 셈하여진 기물의 행렬(11절)로 / 위에서 내려오는 칙령(1~4절)에서 아래에서 올라오는 일어섬(5~6절)으로 / 빼앗긴 그릇에서 세어져 돌아온 그릇(7~11절)으로 — 안에서 밖으로, 명령에서 응답으로, 상실에서 셈하여진 회복으로 흐른다.</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 1장은 한 이방 왕의 보이지 않는 마음의 일으킴으로 열려, 셈하여진 거룩한 기물을 진 한 무리가 예루살렘으로 올라가는 행렬로 닫히면서, 회복의 출처를 왕의 정치가 아니라 하나님의 감동에 돌리고 빼앗긴 것을 새것으로 덮지 않고 세어 돌려받는 운동이다. 그 운동은 2장에서 일어선 자들의 이름과 수효로 이어지고, 3장에서 제단과 성전 기초로, 6장에서 완공과 유월절로 나아가며, 7:10의 "율법을 연구하여 준행하며 가르치기로 결심"한 마음의 재건으로 도착한다. 1장의 벡터는 그 긴 호의 첫 매듭 — 회복의 문을 한 마음의 감동이라는 보이지 않는 동작으로 여는 첫걸음이다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 칙령과 귀환과 회계다 — 어느 왕이 명을 내리고, 누가 일어서고, 몇 개의 그릇이 돌아왔는지. 그러나 수면 아래에서는 다른 것이 움직인다. 첫째, 회복의 출처에 대한 물음이다. 보통 한 제국의 정책 전환은 왕의 결단이나 정치적 이득으로 설명되는데, 1절은 그 출처를 곧바로 위로 돌린다 — "여호와께서 고레스의 마음을 감동시키시매." 회복의 문법적 동력이 고레스에게서 그 마음을 일으키신 분에게로 옮겨간다. 둘째, 주권과 역사의 공존이다. 보이지 않는 감동을 말하면서도 본문은 고레스의 이름과 조서와 행정 절차를 지우지 않는다. 하나를 위해 다른 하나를 깎지 않는다 — 마음을 움직이신 손길과 그 손길이 통과한 역사의 절차가 같은 장에 나란히 선다. 셋째, 상실을 셈하여 회복으로 돌리는 결이다. 빼앗긴 그릇을 하나하나 세어 돌려주는 회계는, 회복이 잃은 것을 잊고 덮는 것이 아니라 빼앗긴 것 하나까지 기억하여 챙기는 일임을 통치의 문턱에 미리 비춘다 — 단정이 아닌, 그렇게 닿는다는 관찰로 보존.</p>
+
+<h3>J · 실존적 부름 — 불씨</h3>
+<blockquote>
+<p>내게 열린 회복의 문이 어디서 왔다고 나는 여기는가 — 그리고 빼앗기고 잃어버린 것을 나는 서둘러 새것으로 덮는가, 하나하나 세어 기억하며 돌려받는가.</p>
+</blockquote>
+<p>이것은 가르침이 아니라 초대다. 에스라 1장은 독자에게 "회복을 쟁취하라"고 하지 않는다. 다만 끊긴 역사의 침묵 다음에, 한 이방 왕의 마음을 움직여 조용히 문을 여는 손길을 보여 주고, 그 출처를 감동 한 구절로 흘려 두고, 일어선 사람들과 손을 보태는 이웃을 셈하고, 빼앗겼던 그릇을 하나하나 세어 돌려받는 회계를 보여 준다. 큰 회복이 한 마음의 보이지 않는 일으킴에서 시작되고 빼앗긴 것 하나까지 세어지는 것을 보았을 때 — "내 회복은 어디서 왔고, 나는 잃은 것을 덮는가 세어 기억하는가" — 라는 물음 앞에 머무는 것, 그것이 이 장의 불씨다. 그 물음이 귀환의 첫 장이 독자에게 건네는 가장 조용한 초대다.</p>
+
+<p><strong>다음 장으로 미는 운동 한 줄</strong>: 한 왕의 마음의 감동이 일어선 사람들로 번졌다 — 그 부름에 응답해 올라간 자들이 누구였는지, 가문과 성읍과 수효가 이름으로 셈하여지며, 귀환 공동체의 폭이 명단으로 펼쳐지는 다음 마디가 시작된다(2장).</p>
+<p><strong>이 장에서 가져갈 한 단어</strong>: <em>ur — 일으키다·깨우다(보이지 않는 마음을 먼저 움직이심)</em>.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/2CH/36/"><div class="nav-kicker">← 이전</div><div class="nav-title">역대하 36장</div><div class="nav-preview">예루살렘의 멸망과 포로, 그리고 고레스 조서 — 에스라 1장이 거의 같은 문장으로 곧바로 이어받는 직전 마디.</div></a>
+      <a href="/magazine/EZR/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">에스라 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/EZR/2/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">에스라 2장</div><div class="nav-preview">고레스의 부름에 응답해 올라간 자들 — 가문과 성읍과 수효가 이름으로 셈하여지는 귀환자 명단.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:ezr1', JSON.stringify({
+      href: '/magazine/EZR/1/',
+      title: '에스라 1장',
+      excerpt: '한 왕의 마음을 움직여 여신 회복의 문. 바사 왕 고레스 원년에 여호와께서 예레미야의 예언을 이루시려고 그의 마음을 감동시키시매(1:1) 조서가 반포되고, 감동받은 족장·제사장·레위인이 일어나며 이웃이 예물로 힘을 보태고, 빼앗겼던 성전 기명 5,400개가 하나하나 세어져 세스바살과 함께 올라가는 — 칙령의 출처를 하나님의 감동에 두고 빼앗긴 것이 셈하여져 돌아오는 귀환의 개막.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2026-06-18</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>

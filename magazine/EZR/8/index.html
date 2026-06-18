@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>에스라 8장 — Observatory | 네다바웨이</title>
+<meta name="description" content="에스라 8장을 9단계로 같이 관찰합니다. 귀환자 명단이 펼쳐지고, 레위인이 없어 따로 청하고, 아하와 강가에서 금식하며 겸비하여 평탄한 길을 구하고, 호위병을 왕에게 구하기를 부끄러워하였으니 — 왕 앞에서 이미 한 말이 행동을 묶는다(8:22). 고백이 먼저이고 행동이 그 고백에 따라 정렬되는 에스라 귀환 여정의 핵심 마디.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/EZR/8/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/EZR/">역사서</a> · 에스라 · 8장</div>
+      <h1>에스라 8장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">EZR-008 · 역사서 · 히브리어</div>
+      <p class="essence">호위병을 구할 수 있었으나 이미 왕 앞에서 "하나님의 손"을 말했기에 부끄러워 청하지 않는다 — 고백이 행동을 묶는다. 귀환 명단과 금식, 은금 기명의 위탁, 예루살렘 도착까지 이어지는 에스라 귀환 여정의 핵심 마디.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 소품은 무엇인가 · 배경 요소가 무엇인가.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: EZR-008</p>
+<p>book: 에스라</p>
+<p>book_en: Ezra</p>
+<p>chapter: 8</p>
+<p>bible_block: 역사서</p>
+<p>canon: 구약</p>
+<p>genre: 내러티브+명단+기도 보고</p>
+<p>language: 히브리어</p>
+<p>verse_count: 36</p>
+<p>observed_facts_count: 27</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [tsum, anah, yad tovah, bosh, nifla, mishkal]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["8:1~14 귀환자 명단에서 LXX(에스드라 1서)와 MT 사이의 인명 음역 및 수량 표기 차이 — 계보 목록 전승의 특성 관찰", "8:17 이도의 명칭 표기에서 사본 전통 간 미세 차이 — 본문 확정 아님"]</p>
+<p>ane_refs: ["왕이 신뢰하는 관리에게 귀중품 운반을 위탁하는 페르시아 행정 관행 — 8:24~30 은금 기명을 제사장들에게 달아 맡기는 위탁 절차의 배경", "귀환 여정 전 집단 금식과 정결 의례 — 고대 근동의 중요한 여정 출발 전 신탁 추구·정결 관행. 8:21~23 아하와 금식의 배경", "장거리 귀환 행렬의 무장 호위 관행 — 페르시아 시대 공식 귀환 행렬에 군사 호위가 동반되던 관행. 8:22에서 에스라가 그것을 요청하지 않은 비교 배경"]</p>
+<p>rabbinic_refs: ["아하와 강 금식을 에스라의 겸비로 읽어 율법 교사의 자기 낮춤 이상과 연결하는 전통 — 독법 배경, 본문 확정 아님", "레위인 부재를 에스라가 직접 나서서 해결하는 장면을 지도자의 주도성으로 읽는 전통 — 독법 배경"]</p>
+<p>literary_devices: [roster_then_gap_then_solution, fast_and_petition_pattern, spoken_confession_binds_action, weigh_and_entrust_ritual, safe_arrival_doxology]</p>
+<p>repeated_words: ["하나님의 선한 손(yad Elohav ha-tovah, 8:18·22·31) — 7장에서 이어진 반복구. 레위인 확보, 금식 응답, 여정 보호를 모두 같은 표식으로 귀속", "겸비하다·낮추다(anah, 8:21) — 금식의 목적을 설명하는 동사. '평탄한 길'을 구하는 자세", "부끄러움(bosh, 8:22) — 왕 앞에서 한 고백이 호위병을 구하지 못하게 묶는 정서적 표식"]</p>
+<p>cross_refs: ["스 7:6·9·28 (하나님의 선한 손 반복구 — 8장으로 이어짐)", "스 9장 (8장 예루살렘 도착 직후 통혼 문제 자복이 시작됨)", "느 1:4·9:1 (느헤미야의 금식 — 에스라 8장 금식과 구조 비교)", "출 18:21 (천부장·백부장 임명 — 귀환 명단 구조의 선례)", "대하 20:3 (여호사밧의 금식 선포 — 위기 앞 금식 패턴의 비교)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-19</p>
+<p>track: deep</p>
+<p>---</p>
+<h2>에스라 8장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 에스라 8장입니다. 서른여섯 절입니다. 7장 끝에서 에스라가 이스라엘 방백들을 모아 함께 올라오게 하였다고 했어요. 8장은 그 귀환 행렬의 구체적인 장면들입니다. 먼저 함께 올라온 가문 명단이 나오고, 레위인이 없어 따로 청하는 과정이 있고, 아하와 강가에서 금식을 선포하고, 호위병 없이 길을 떠나며, 은금 기명을 달아 위탁하고, 예루살렘에 도착하여 번제를 드리는 순서예요. 이 장의 핵심은 8:22입니다 — "이는 우리가 전에 왕에게 아뢰기를 우리 하나님의 손은 자기를 찾는 모든 자에게 선을 베푸시고 그를 배반하는 모든 자에게는 권능과 진노를 내리신다 하였으므로 길에서 적군을 막고 우리를 도울 보병과 마병을 왕에게 구하기를 부끄러워하였음이라." 낭독하고 침묵을 두겠습니다.</p>
+<p>(본문 낭독 8:1~36, 약 6분)</p>
+<p><strong>(침묵 약 1분)</strong> 🌿🌿</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품이 보이시는 대로 나눠 주세요.</p>
+<p><strong>P04 최현국</strong>: 무대가 이동하는 구조예요. 시작 무대는 바벨론 — 귀환 명단이 펼쳐지는 곳이에요(1~14절). 그다음이 아하와 강가 — 삼 일을 진 치고, 레위인을 따로 청하고, 금식을 선포하는 야외 무대예요(15~23절). 세 번째가 이동의 무대 — 행진하는 귀환 행렬. 그리고 마지막이 예루살렘 성전 뜰 — 번제와 은금 기명 봉헌이 있는 예배의 무대예요(33~36절). 명단의 방 → 강가의 캠프 → 길 위 → 성전 뜰로 이동해요.</p>
+<p><strong>P02 이진우</strong>: 구조로 보면 다섯 단락이에요. 귀환자 명단(1~14절) / 레위인 없음을 발견하고 청함(15~20절) / 금식 선포(21~23절) / 은금 기명 위탁(24~30절) / 여정과 예루살렘 도착(31~36절). 그런데 전체를 묶는 건 22절의 논리예요 — 호위병을 부끄러워하였음이라. 이 한 절이 이 장 전체의 긴장을 설명하는 논지예요.</p>
+<p><strong>P05 김미영</strong>: 소품이 눈에 들어왔어요. 24~30절의 은금 기명 목록 — 은 육백오십 달란트, 은 기명 일백 달란트, 금 일백 달란트, 금잔 이십 개 금 일천 다릭, 아름다운 놋그릇 둘. 이것들을 열두 제사장 우두머리에게 달아서 맡기는 장면이 섬세해요. "달아 맡긴다(mishkal, 무게를 재다)"는 수행이 나와요. 소중한 것을 정확히 계량하여 위탁하는 행위예요. 그리고 도착 후 33절에서 다시 달아 받아요. 떠나기 전 달고, 도착 후 다시 달아 — 양쪽 모두 무게 확인이에요.</p>
+<p><strong>P07 오지혜</strong>: 소재를 나열하면 — 귀환 명단(가문 이름·인원), 아하와 강, 천막, 레위인 부재, 이도에게 보낸 사람들, 카시피아 지역, 레위인들의 합류, 금식 선포, 아하와 강가의 삼 일, 호위병 부끄러움(8:22), 은금 기명 목록, 달아 맡김, 여정의 보호, 예루살렘 도착, 사흘 쉼, 은금 기명 달아 봉납, 번제, 왕의 조서 전달이에요. 이 장에서 가장 선명하게 남은 소재는 "부끄러워하였음이라"(8:22)예요. 왕 앞에서 이미 한 말이 행동을 묶는 그 단어요.</p>
+<p><strong>P01 한나래</strong>: 21절이 처음에 마음에 걸렸어요 — "내가 거기서 아하와 강가에서 금식을 선포하고 우리 하나님 앞에서 겸비하여 우리와 우리 어린 자녀와 모든 소유를 위하여 평탄한 길을 구하였으니." '겸비하여'와 '평탄한 길'이 나란히 있어요. 낮추고 나서 길을 구하는 순서예요. 그 순서가 마음에 닿았어요.</p>
+<p><strong>P11 나경아</strong>: 원어 몇 개요. <em>tsum</em>(צוּם) — '금식하다'. 21절 에스라의 금식 선포예요. <em>anah</em>(עָנָה/עָנַה) — '겸비하다·낮추다·자신을 낮추다'. 21절 금식의 목적어인데, 단순한 식사 거부가 아니라 자신을 낮추는 행위의 히브리어 표현이에요. <em>bosh</em>(בּוֹשׁ) — '부끄럽다'. 22절에서 호위병을 구하기를 부끄러워한 에스라의 정서예요. 원어의 뉘앙스는 수치가 아니라 이미 말한 것에 반하는 행동을 할 수 없는 일관성의 결이에요. <em>yad ha-tovah</em>(יַד הַטּוֹבָה) — '선한 손'. 18·22·31절에 반복돼요. 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 이동하는 무대 — 명단의 방·강가 캠프·길 위·성전 뜰. 다섯 단락. 은금 기명 달아 맡기고 도착 후 다시 달아 받는 무게 확인 소품. "부끄러워하였음이라"(22절)가 이 장의 논지. 겸비하여 평탄한 길을 구하는 순서. bosh·anah·tsum 원어. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 처음 읽었을 때 어떤 공기였는지요.</p>
+<p><strong>P01 한나래</strong>: 긴장과 고요가 섞였어요. 긴 명단이 나열되다가 갑자기 15절에서 "레위인이 없음"이 발견돼요. 그 발견의 공기가 긴장이에요. 그리고 그 긴장을 에스라가 사람을 보내 해결하는 과정, 금식하고 기도하는 과정이 조용하고 차분하게 흘러요. 마지막으로 도착해서 번제를 드리는 35~36절이 조용한 안도예요.</p>
+<p><strong>P07 오지혜</strong>: 8:22의 무게가 전체를 눌러요. 왕 앞에서 "하나님의 손"을 말했기 때문에 그 말과 반대되는 행동을 할 수 없다는 논리예요. 고백이 먼저 있고, 그 고백이 행동을 묶어요. 그 구조가 인상 깊고 무거웠어요.</p>
+<p><strong>P04 최현국</strong>: 명단 → 결핍 발견 → 해결 → 금식 → 출발 → 도착의 흐름이 이야기처럼 읽혔어요. 실패나 위기처럼 보이는 것들(레위인 없음, 호위병 없음)이 해결되거나 포용되면서 여정이 이어져요. 약점이 막힘이 아니라 다음 행동의 발단이 되는 구조예요.</p>
+<p><strong>P02 이진우</strong>: 숫자의 공기예요. 명단마다 인원 수가 나와요 — 이백오십 명, 칠십 명, 열여덟 명 등. 그리고 은금 기명도 수치로 나와요. 36절도 왕의 조서가 총독들에게 전달됐다는 결과 보고예요. 이 장이 전체적으로 기록의 공기예요 — 무엇을 어떻게 했는지 데이터로 남기는 방식이에요.</p>
+<p><strong>P05 김미영</strong>: 레위인을 따로 청하는 17~20절이 마음을 잡았어요. 에스라가 이도에게 사람을 보내 카시피아에서 레위인을 데려오게 해요. 그리고 20절 — "이 사람들은 모두 이름으로 지정된 자들이라." 이름으로 지정됐다는 표현이 조용히 따뜻했어요. 익명의 군중이 아니라 이름으로 불린 사람들이 합류하는 거예요.</p>
+<p><strong>P11 나경아</strong>: 31절의 <em>yad Elohav ha-tovah</em>(하나님의 선한 손)이 7장과 이어져요. 7:6·9·28에서 시작된 그 반복구가 8:18·22·31에서 이어져요. 두 장에 걸쳐 여섯 번 반복되는 셈이에요. 여정이 끝나는 도착 지점(31절)까지 같은 표식이 이어지는 것이 관찰돼요. 관찰로만요.</p>
+<p><strong>성령일 선교사</strong>: 긴장과 고요의 혼합. 고백이 행동을 묶는 8:22의 무게. 결핍이 막힘이 아닌 발단이 되는 구조. 숫자와 기록의 공기. 이름으로 지정된 레위인들. 하나님의 선한 손 반복구의 연속. 그대로 두지요.</p>
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+<p>---</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: EZR-008</p>
+<p>book: 에스라</p>
+<p>chapter: 8</p>
+<p>date: 2026-06-19</p>
+<p>---</p>
+
+<h2>에스라 8장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>이동하는 무대 넷: 바벨론(귀환 명단, 1~14절) → 아하와 강가 캠프(레위인 청함·금식, 15~23절) → 길 위(이동, 31절) → 예루살렘 성전 뜰(번제·봉납, 33~36절).</li>
+<li>구조 다섯: 귀환자 명단(1~14절) / 레위인 결핍 발견과 해결(15~20절) / 금식 선포(21~23절) / 은금 기명 위탁(24~30절) / 여정과 도착(31~36절).</li>
+<li>소품 — 은금 기명: 은 육백오십 달란트·은 기명 일백 달란트·금 일백 달란트·금잔 이십 개 금 일천 다릭·아름다운 놋그릇 둘. 출발 전 달아 맡기고, 도착 후 달아 봉납(mishkal, 무게 계량).</li>
+<li>소품 — 8:22 고백: "우리 하나님의 손은 자기를 찾는 모든 자에게 선을 베푸시고" — 왕 앞에서 이미 한 말이 호위병 요청을 막는 논리적 소품.</li>
+<li>반복구: yad ha-tovah(선한 손, 8:18·22·31). 7장 반복구(7:6·9·28)에서 이어짐. 두 장에 걸쳐 여섯 번.</li>
+<li>어휘: tsum(צוּם) 금식 / anah(עָנָה) 겸비하다 / bosh(בּוֹשׁ) 부끄럽다 / mishkal(מִשְׁקָל) 무게·달아 맡김 / yad tovah(יַד הַטּוֹבָה) 선한 손.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>긴장과 고요의 혼합 — 명단 나열 중 레위인 부재 발견(15절)으로 긴장. 해결·금식·기도로 고요하게 전환. 도착 후 번제로 안도.</li>
+<li>8:22의 무게 — 고백이 행동을 묶는다. 왕 앞에서 한 말이 호위병 요청을 막는다는 논리가 장 전체를 누름.</li>
+<li>결핍이 발단이 되는 구조 — 레위인 없음(15절)이 막힘이 아니라 따로 청하는 행동의 출발점. 호위병 없음이 금식과 기도의 계기.</li>
+<li>숫자와 기록의 공기 — 명단의 인원 수, 은금 기명의 수량, 날짜, 결과 보고. 여정을 데이터로 남기는 방식.</li>
+<li>이름으로 지정된 레위인들 — 20절 "이름으로 지정된 자들이라." 익명이 아니라 이름으로 불린 합류자들의 따뜻한 디테일.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(8:1): "그들과 함께 바벨론에서 올라온 족장들과 그들의 계보는 이러하니라" — 함께 올라온 무리의 명단으로 열림.</li>
+<li>끝(8:36): "그들이 왕의 조서를 왕의 총독들과 강 서쪽 총독들에게 전하매 그들이 백성과 하나님의 성전을 도왔더라" — 조서 전달과 도움 받음으로 닫힘.</li>
+<li>시작과 끝의 대조: 바벨론에서 출발하는 명단으로 열려, 예루살렘에서 총독들의 도움을 받으며 닫힘. 출발에서 도착으로, 명단에서 조서 전달로.</li>
+<li>완결 여부: 8장은 귀환 여정의 완료. 9장에서 에스라가 통혼 문제를 자복하는 새 단락이 시작됨.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>에스라: 귀환 행렬의 인솔자. 레위인 부재를 발견하고 직접 해결 지시. 금식 선포의 주체. 은금 위탁의 집행자. 8:22 고백의 당사자.</li>
+<li>귀환 가문들(1~14절): 이름과 인원이 열거된 열두 가문(+ 에스라 자신). 함께 올라온 무리의 구체성을 명단으로 부여.</li>
+<li>레위인(17~20절): 처음 없었다가 따로 청해 합류한 무리. 238명(성전 봉사자 포함). "이름으로 지정된" 합류자들.</li>
+<li>이도와 카시피아 형제들(17~18절): 레위인을 보내 준 사람들. 에스라가 "하나님의 선한 손이 우리에게" 보내 주셨다고 평가.</li>
+<li>열두 제사장 우두머리(24~30절): 은금 기명을 달아 위탁받은 책임자들. 성별된(거룩한) 자들로 지칭됨.</li>
+<li>8:22 신학 명제: "하나님의 손은 자기를 찾는 모든 자에게 선을 베푸시고 배반하는 모든 자에게는 권능과 진노를 내리신다" — 에스라가 왕 앞에서 한 고백의 내용. 이 고백이 이후 행동을 결정.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li><strong>컷 1 (1~14절)</strong>: 귀환 명단 — 바벨론에서 함께 올라온 가문 이름과 인원. 열두 가문의 목록.</li>
+<li><strong>컷 2 (15~20절)</strong>: 레위인 부재 발견과 해결 — 아하와 강가에서 삼 일 머물다 레위인이 없음을 발견. 이도에게 사람을 보내 카시피아에서 레위인과 성전 봉사자 238명 청해 합류시킴.</li>
+<li><strong>컷 3 (21~23절)</strong>: 금식 선포 — "우리 하나님 앞에서 겸비하여 평탄한 길을 구하였으니." 호위병 없이 가는 이유가 22절에 명시됨. "하나님이 이 뜻을 들으셨더라"(23절).</li>
+<li><strong>컷 4 (24~30절)</strong>: 은금 기명 위탁 — 열두 제사장 우두머리에게 달아 맡김. "여호와의 성전에서 달아 드리기까지 지킬지니라"(30절).</li>
+<li><strong>컷 5 (31~36절)</strong>: 여정과 도착 — 첫째 달 열두 날 아하와 강 떠남. "하나님의 선한 손이 우리 위에 있어"(31절) 보호받음. 예루살렘 도착, 사흘 쉼, 은금 달아 봉납, 번제, 조서 전달.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>tsum</em>(צוּם) — '금식하다'. 8:21 에스라의 금식 선포. 히브리어에서 금식은 단순 식이 거부가 아니라 하나님 앞에 자신을 내어 놓는 행위와 연결됨.</li>
+<li><em>anah</em>(עָנָה) — '겸비하다·낮추다·자신을 굴복시키다'. 8:21 "하나님 앞에서 겸비하여." 레위기 23장 욤 키푸르에도 같은 어근이 사용됨. 금식의 목적이 낮아짐임을 가리키는 어휘.</li>
+<li><em>bosh</em>(בּוֹשׁ) — '부끄럽다·수치스럽다'. 8:22 "부끄러워하였음이라." 단순한 체면이 아니라 이미 선포한 것과 반하는 행동을 할 수 없는 내면적 일관성의 표식.</li>
+<li><em>mishkal</em>(מִשְׁקָל) — '무게·달아 계량함'. 8:26·34 은금 기명을 달아 맡기고 달아 봉납하는 행위. 소중한 것을 정확히 계량하여 위탁·수령하는 절차적 신뢰의 표식.</li>
+<li><em>yad Elohav ha-tovah</em>(יַד אֱלֹהָיו הַטּוֹבָה) — '하나님의 선한 손'. 8:18·22·31. 7장(7:6·9·28)에 이어 8장에도 세 번 반복. 레위인 확보(18절)·금식 응답(22절)·여정 보호(31절) 모두 같은 표식으로 귀속.</li>
+<li><em>qadash</em>(קָדַשׁ) — '거룩하다·성별되다'. 8:28 제사장들을 "거룩한 자들"로 지칭. 은금을 그들에게 위탁한 근거가 성별됨에 있음.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>명단 → 결핍 → 해결(roster then gap then solution): 1~14절 명단, 15절 "레위인이 없음" 발견, 17~20절 해결. 결핍이 막힘이 아닌 행동의 촉발점이 되는 구조.</li>
+<li>금식과 청원 패턴(fast and petition pattern): 21~23절. 겸비(anah) → 금식(tsum) → 청원 → 응답. 느헤미야·여호사밧 금식과 구조적으로 유사.</li>
+<li>고백이 행동을 묶음(spoken confession binds action): 8:22. 왕 앞에서 한 고백이 호위병 요청을 불가능하게 만드는 논리. 고백의 선행성이 이후 선택을 결정.</li>
+<li>달아 맡기고 달아 받음(weigh and entrust ritual): 8:26(출발 전 계량·위탁)과 8:34(도착 후 계량·봉납). 여정의 시작과 끝을 무게 확인으로 표식.</li>
+<li>도착 후 송영(safe arrival doxology): 35~36절. 번제·속죄제·왕의 조서 전달. 여정 완료를 예배와 행정 보고로 닫음.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>귀중품 운반 위탁 관행 — 페르시아 행정에서 왕의 물자를 이동할 때 신뢰하는 관리에게 계량·문서화하여 위탁하던 관행. 8:24~30 제사장에게 달아 맡기는 절차의 배경.</li>
+<li>출발 전 금식과 정결 — 고대 근동에서 중요한 여정이나 전투 전에 신탁을 구하고 정결 의례를 행하던 관행. 아하와 강가의 삼 일 금식(21~23절)의 배경.</li>
+<li>장거리 귀환 행렬의 무장 호위 관행 — 페르시아 시대 공식 귀환 행렬에 군사 호위가 동반되던 관행. 8:22에서 에스라가 이를 요청하지 않은 것이 이 배경과 대비됨.</li>
+<li>카시피아 지역 — 레위인과 성전 봉사자들이 거주한 바벨론 지역(17~18절). 포로 공동체가 특정 지역에 집단 거주하던 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>에스라 8:22 ↔ 스 7:6·9·28 (하나님의 선한 손 반복구 — 7장에서 시작해 8장으로 이어짐)</li>
+<li>에스라 8:21~23 ↔ 느 1:4·9:1 (느헤미야의 금식 — 위기 앞 금식 패턴 비교)</li>
+<li>에스라 8:21~23 ↔ 대하 20:3~4 (여호사밧의 금식 선포 — 구조적 비교)</li>
+<li>에스라 8:35 ↔ 스 6:16~17 (봉헌 제물 — 6장 봉헌과 8장 도착 번제의 연결)</li>
+<li>에스라 8장 ↔ 스 9장 (8장 도착 직후 9장에서 통혼 자복이 시작됨 — 여정의 완료와 새 위기)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>카메라가 바벨론에서 명단을 훑는다. 이름과 숫자가 지나간다. 아하와 강가로 화면이 옮겨간다 — 천막들이 서고 불이 피워진다. 에스라가 무리를 살핀다. 그의 눈에 뭔가 없다 — 레위인이 없다. 에스라가 사람들을 보낸다. 카시피아 쪽으로 달려가는 모습. 238명이 합류한다. 화면이 조용해진다 — 에스라가 금식을 선포한다. "겸비하여 평탄한 길을 구하자." 무리가 앉는다. 음식이 치워진다. 8:22가 내레이션으로 흐른다 — "호위병을 왕에게 구하기를 부끄러워하였음이라." 기도가 올라간다. 첫째 달 열두 날, 길이 시작된다. 강을 건너고 들을 지나고 산을 넘는다. 31절이 지나간다 — "하나님의 선한 손이 우리 위에 있어 적군과 길에서 매복하는 자들에게서 우리를 건지셨더라." 예루살렘이 보인다. 사흘이 지나고 성전 뜰에서 은금이 다시 달린다. 번제가 드려진다. 왕의 조서가 총독들에게 전달된다. 카메라가 "그들이 백성과 하나님의 성전을 도왔더라"(36절) 위에서 닫힌다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"호위병을 부끄러워하였음이라 — 고백이 행동을 묶는다"</strong></li>
+<li>초벌 부제: "귀환 가문 명단이 열리고(1~14절), 레위인 부재를 발견하여 따로 청해 해결하며(15~20절), 아하와 강가에서 겸비하여 평탄한 길을 금식으로 구하고(21~23절), 왕 앞에서 한 고백 때문에 호위병을 부끄러워 청하지 않으며(22절), 은금 기명을 달아 위탁하고 예루살렘에 도착하여 번제를 드리는(33~36절) — 고백이 먼저이고 행동이 그 고백에 따라 정렬되는 에스라 귀환 여정"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (tsum·anah·bosh·mishkal·yad tovah·qadash 등 6개 기록)</li>
+<li>[x] 역사·문학 사실 최소 1개 (명단→결핍→해결·금식과 청원 패턴·고백이 행동을 묶음·달아 맡기고 달아 받음·도착 후 송영 기록)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨 + [10단계] 운동·도약 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>8:22의 "부끄러워하였음이라"를 "우리도 하나님을 믿고 사람의 도움을 의지하지 말자"는 교훈으로 닫지 않고, 왕 앞에서 이미 한 고백이 이후 행동을 결정하는 논리 구조의 형태로 관찰.</li>
+<li>금식을 "응답받는 기도법"으로 일반화하기 전에, 겸비(anah)와 청원이 결합된 금식 패턴을 본문의 구조로 먼저 기록.</li>
+<li>레위인 부재를 "하나님이 부족함을 채우신다"는 명제로 곧장 확장하지 않고, 결핍 발견이 행동의 촉발점이 된 본문의 서사 구조로 보존.</li>
+<li>은금 기명 달아 맡김을 "청지기 정신"으로 적용하기 전에, 출발 전 계량·위탁과 도착 후 계량·봉납을 대응시키는 문학 구조로 먼저 기록.</li>
+<li>도착 후 번제와 총독들의 도움을 "순종하면 복이 온다"는 공식으로 닫지 않고, 여정 완료를 예배와 행정 보고로 닫는 본문의 닫힘 형태로 관찰.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong>. <strong>9단계 동영상 안 걷기·기도</strong>. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: EZR-008</p>
+<p>book: 에스라</p>
+<p>chapter: 8</p>
+<p>date: 2026-06-19</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>성령일 선교사</strong>: 본문이 동영상처럼 움직인다면 무엇이 보이시나요?</p>
+<p><strong>P02 이진우</strong>: 바벨론에서 이름과 숫자가 지나가요. 아하와 강가로 화면이 옮겨가고 천막들이 서요. 에스라가 무리를 살피다 멈춰요 — 레위인이 없어요. 사람들을 카시피아로 보내고 238명이 돌아와요. 금식이 선포돼요 — 음식이 치워지고 무리가 앉아요. 8:22가 내레이션으로 흘러요. 기도가 올라가요. 길이 시작돼요. 강을 건너고 들을 지나고 산을 넘어요. 31절 — "하나님의 선한 손이 우리 위에." 예루살렘이 보여요. 사흘 후 성전 뜰에서 은금이 다시 달리고, 번제가 드려지고, 왕의 조서가 전달돼요. 마지막 자막 — "그들이 백성과 하나님의 성전을 도왔더라." 그 위에서 장이 닫혀요.</p>
+<p><strong>성령일 선교사</strong>: 명단에서 강가 캠프로, 레위인 합류로, 금식으로, 여정으로, 예루살렘 성전 뜰로 이동하며 "하나님의 선한 손이 우리 위에"를 지나 마지막 도움의 결과 위에서 닫히는 흐름이군요. 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "겸비하여 평탄한 길을 구하였으니 — 금식이 열어 주는 여정"</p>
+<p><strong>P02 이진우</strong>: "명단·결핍·해결·금식·위탁·도착 — 다섯 단락이 귀환 여정을 기록하는 방식"</p>
+<p><strong>P04 최현국</strong>: "바벨론 강가에서 예루살렘 성전 뜰로 — 이동하는 무대 위의 고백과 여정"</p>
+<p><strong>P05 김미영</strong>: "달아 맡기고 달아 받다 — 은금 기명이 여정의 시작과 끝을 표식하는 소품"</p>
+<p><strong>P07 오지혜</strong>: "부끄러워하였음이라 — 왕 앞에서 한 말이 호위병을 청하지 못하게 묶다"</p>
+<p><strong>P11 나경아</strong>: "<em>tsum · anah · bosh</em> — 금식하며 겸비하여 부끄러워한 에스라의 8장"</p>
+<p>부제 공동 제안: "귀환 가문 명단이 열리고(1~14절), 레위인을 따로 청해 합류시키며(15~20절), 아하와 강가에서 겸비하여 금식으로 평탄한 길을 구하고(21~23절), 왕 앞에서 한 고백 때문에 호위병을 부끄러워 청하지 않으며(22절), 은금 기명을 달아 위탁하고 예루살렘에 도착하여 번제와 조서 전달로 닫히는 — 고백이 먼저이고 행동이 그 고백에 따라 정렬되는 귀환 여정"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 이 장의 흐름 안으로 들어가 봅시다. 레위인 없음을 발견하고 따로 청하는 과정, 금식하며 겸비하여 평탄한 길을 구하는 장면, 왕 앞에서 한 말 때문에 호위병을 부끄러워 청하지 않는 에스라, 달아 맡기고 달아 받는 은금의 무게 — 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고, 머무는 것으로 충분합니다.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 주님, 8:22 앞에서 멈췄습니다. 에스라가 왕 앞에서 이미 한 말이 호위병을 청하지 못하게 했어요. 고백이 먼저였고 행동이 그 고백을 따라갔어요. 제가 이미 한 말과 이후 행동이 어떻게 다른지 생각이 났지만, 여기서 더 가지 않겠습니다. 다만 그 고백의 무게 앞에 잠시 서 있겠습니다.</p>
+<p><em>— 각자 떠오르는 것을 마음에만 둡니다.</em></p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 표면 관찰을 여기서 거두겠습니다. <strong>이 장은 어디서 어디로 움직이는지요? 눈에 보이는 여정 아래에서 무엇이 움직이고 있는지요? 8:22가 이 장 전체에서 어떤 역할을 하는지요?</strong></p>
+<p><strong>(침묵 약 45초)</strong> 🌿🌿</p>
+<p><strong>P02 이진우</strong>: 에스라서의 spine — "이방 왕의 칙령으로 성전을 다시 세우시고, 말씀의 연구·준행·가르침으로 백성의 삶까지 재건하신다" — 에서 8장은 7:10 결심을 품은 사람이 실제로 이동하는 여정이에요. 7장은 결심을 선언했고, 8장은 그 결심이 몸을 가지고 움직이는 장이에요. 운동 방향은 "말씀의 재건으로 가기 위한 여정의 완료"예요.</p>
+<p><strong>P04 최현국</strong>: 8:22가 이 장의 핵심 논리예요. 에스라서의 phases에서 7~8장이 에스라의 귀환인데, 그 귀환 여정에서 가장 중요한 선택이 8:22예요. 호위병을 요청할 수 있었으나 하지 않았어요 — 이유는 왕 앞에서 이미 한 고백 때문이에요. 고백이 행동을 결정한 거예요. 이것이 7:10의 결심(darash·asah·lamad)과 어떻게 연결되는지, 내면에서 먼저 정해진 것이 외적 선택을 결정하는 패턴이 반복되는지 관찰로 보존합니다.</p>
+<p><strong>P11 나경아</strong>: 원어로 한 가지요. 8:22의 <em>bosh</em>(부끄럽다)는 단순한 체면 손상이 아니에요. 히브리어에서 bosh는 자신이 의지하거나 선포한 것이 헛됨이 드러날 때의 수치와 연결돼요. 에스라가 왕 앞에서 "하나님의 손이 자기를 찾는 모든 자에게 선을 베푸신다"고 선포했는데, 그 직후 호위병을 구한다면 그 선포가 스스로 무너지는 거예요. bosh가 가리키는 것이 체면이 아니라 고백의 일관성인지 — 질문으로 다음 단계에 보존합니다.</p>
+<p><strong>성령일 선교사</strong>: 좋습니다. <strong>7:10의 결심이 몸을 가지고 이동하는 장이고, 레위인 결핍이 행동의 촉발점이 되며, 8:22에서 고백이 행동보다 먼저였음이 드러나고, 하나님의 선한 손이 세 번 더 이어져 여정을 닫는다</strong>는 것을 손에 쥐고 9장으로 갑니다. 거기서 예루살렘에 도착한 직후 통혼 문제가 에스라에게 알려지고, 새로운 위기가 시작될 거예요.</p>
+<p>---</p>
+
+<h2>에스라 8장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 8:15 — 아하와 강가에 삼 일을 머문 뒤에야 레위인 부재를 발견하는 것은 무엇을 가리키는가?</h2>
+<ul><li>출발 준비가 다 됐다고 여겼을 때 핵심 빠짐이 나타난다. 그 발견의 순서가 우연인지 의도된 서사 장치인지 본문은 말하지 않음. 질문으로 보존.</li></ul>
+
+<h2>Q2. 8:17~20 — 이도와 카시피아 형제들이 레위인을 보내 준 것을 에스라가 "하나님의 선한 손이 우리에게"라고 평가하는 것은 어떤 논리인가?</h2>
+<ul><li>사람이 요청하고 사람이 보내 줬는데 그것을 하나님의 손으로 귀속시키는 이 평가 방식이 어떤 신학 논리인지 — 관찰로 패턴은 확인되나 의미는 다음 단계로 이월.</li></ul>
+
+<h2>Q3. 8:21~23 — 금식과 함께 "겸비하여"(anah)가 오는 것은 금식의 어떤 차원을 가리키는가?</h2>
+<ul><li>단순한 식이 거부가 아니라 낮아짐이 금식의 목적으로 병기된다. 욤 키푸르의 anah와 같은 어근인지, 이 용법의 범위가 어디까지인지 — 원어 확인은 됐으나 의미 결정은 다음 단계로 이월.</li></ul>
+
+<h2>Q4. 8:22 — bosh(부끄러움)가 가리키는 것이 체면인가 고백의 일관성인가?</h2>
+<ul><li>에스라가 왕 앞에서 한 고백이 호위병 요청을 막는다. bosh의 히브리어 뉘앙스가 체면 손상인지, 선포한 것과 반하는 행동을 할 수 없는 내면적 일관성인지 — 본문은 두 가능성 모두를 열어 두고 있음. 묵상 단계로 이월.</li></ul>
+
+<h2>Q5. 8:26~34 — 은금 기명을 달아 맡기고 달아 받는 두 번의 계량 의식은 무엇을 표식하는가?</h2>
+<ul><li>출발 전 계량·위탁(26절)과 도착 후 계량·봉납(34절)이 여정의 시작과 끝을 표식한다. 이 양쪽 계량이 단순한 회계 절차인지, 여정 전체를 하나님 앞에 위탁하고 드리는 의례적 의미를 갖는지 — 본문은 말하지 않음. 질문으로 보존.</li></ul>
+
+<h2>Q6. 8:35~36 — 예루살렘 도착 직후 번제를 드리고 왕의 조서를 전달하는 것이 같은 절에 나란히 있는 것은 무엇을 가리키는가?</h2>
+<ul><li>예배(번제)와 행정(조서 전달)이 도착 직후 나란히 기록된다. 이 두 행위의 배치가 의도적인지, 어느 것이 먼저인지, 둘의 관계를 본문이 어떻게 보는지 — 관찰로 배치는 확인되나 의미는 묵상 단계로 이월.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">귀환 명단이 펼쳐지고, 레위인이 없어 따로 청하고, 아하와 강가에서 금식하며 겸비하여 평탄한 길을 구하고, 왕 앞에서 한 고백 때문에 호위병을 부끄러워 청하지 않으며(8:22), 은금을 달아 맡기고 예루살렘에 도착하여 번제로 닫히는 — 고백이 행동을 묶는 에스라 귀환 여정.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 표면 정리 위에 구속사 좌표·운동 벡터·수면 아래·실존적 부름의 심층 4블록(G·H·I·J)을 더합니다.</p>
+      <div class="md-body synthesis-body"><p>---</p>
+<p>sim_id: EZR-008</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-19</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+<p><strong>한 문장</strong>: 에스라 8장은 귀환 가문 명단으로 열리고(1~14절), 아하와 강가에서 레위인 부재를 발견해 따로 청해 해결하며(15~20절), 금식하며 겸비하여 평탄한 길을 구하고(21~23절), "우리가 전에 왕에게 아뢰기를 하나님의 손은 자기를 찾는 모든 자에게 선을 베푸신다 하였으므로 호위병을 구하기를 부끄러워하였음이라"(22절)고 밝히며, 은금 기명을 달아 열두 제사장에게 위탁하고(24~30절), 예루살렘에 도착하여 번제와 왕의 조서 전달로 닫히는(31~36절) — 7:10 결심이 몸을 가지고 이동한 귀환 여정이다.</p>
+<p><strong>한 문단</strong>: 바벨론에서 이름과 숫자가 지나간다. 아하와 강가에 천막이 선다. 에스라가 무리를 살피다 멈춘다 — 레위인이 없다. 사람들을 카시피아로 보내고 238명이 합류한다. 금식이 선포된다. 음식이 치워지고 무리가 앉는다. "우리 하나님의 손은 자기를 찾는 모든 자에게 선을 베푸신다"는 고백이 왕 앞에서 이미 말해졌기에 호위병을 구하기를 부끄러워한다. 기도가 올라간다. 길이 열린다. 강을 건너고 들을 지나 예루살렘이 보인다. 사흘 후 성전 뜰에서 은금이 다시 달리고 번제가 드려진다. 왕의 조서가 총독들에게 전달된다. "그들이 백성과 하나님의 성전을 도왔더라" — 그 한 줄 위에서 장이 닫힌다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>바벨론→아하와 강→길→성전 뜰의 이동 무대. 은금 기명 달아 맡김. 8:22 고백 소품. yad tovah 반복구.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>긴장과 고요의 혼합. 8:22의 무게. 결핍이 발단이 됨. 숫자와 기록의 공기. 이름으로 지정된 레위인들.</td></tr>
+<tr><td>3 시작과 끝</td><td>바벨론 명단으로 열려, 예루살렘 총독들의 도움으로 닫힘. 출발에서 도착으로. 명단에서 조서 전달로.</td></tr>
+<tr><td>4 등장인물·사상</td><td>에스라·귀환 가문·레위인·이도·열두 제사장. 8:22 신학 명제. bosh가 가리키는 고백의 일관성.</td></tr>
+<tr><td>5 장면 컷</td><td>귀환 명단(컷1)·레위인 결핍과 해결(컷2)·금식 선포(컷3)·은금 위탁(컷4)·여정과 도착(컷5) 5컷.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>tsum·anah·bosh·mishkal·yad tovah·qadash 원어. 명단→결핍→해결, 금식 패턴, 고백이 행동 묶음, 달아 맡기고 받음, 도착 후 송영 구조. 느 1, 대하 20 평행.</td></tr>
+<tr><td>7 동영상</td><td>명단→강가 캠프→레위인 합류→금식→8:22 내레이션→여정→"선한 손 위에"→성전 뜰 번제→"도왔더라"로 닫힘.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"호위병을 부끄러워하였음이라 — 고백이 행동을 묶는다"</td></tr>
+<tr><td>9 기도·내면</td><td>8:22 — 이미 한 말이 이후 선택을 묶는다는 것 앞에, 고백의 무게를 들고 머뭄.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 결핍이 막힘이 아니라 발단이다</strong>: 레위인 없음이 여정의 중단이 되지 않는다. 에스라가 사람을 보내고 238명이 합류한다. 같은 패턴이 호위병에서도 반복된다 — 없음이 금식의 계기가 된다. 이 장에서 결핍은 멈춤이 아니라 다음 행동의 촉발점이다.</p>
+<p>2. <strong>결 2 — 고백이 선택보다 먼저다</strong>: 8:22는 에스라의 선택이 왕 앞에서 한 고백에 의해 결정됐음을 밝힌다. 선택이 고백을 만든 게 아니라 고백이 선택의 범위를 결정했다. 7:10의 결심이 조서보다 먼저였던 것처럼, 8장의 행동은 고백에 의해 먼저 정렬돼 있었다.</p>
+<p>3. <strong>결 3 — 여정이 예배로 닫힌다</strong>: 8장은 도착과 함께 번제를 드리는 것으로 닫힌다. 6장의 성전 완공이 봉헌과 유월절로 닫혔던 것처럼, 8장의 여정 완료도 번제로 닫힌다. 그리고 그 번제와 나란히 왕의 조서가 전달되어 총독들이 돕는다. 예배와 행정이 같은 절에 나란히 놓인다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>에스라 8:22 ↔ 스 7:6·9·28 (하나님의 선한 손 반복구 — 두 장에 걸쳐 여섯 번)</li>
+<li>에스라 8:21~23 ↔ 느 1:4·9:1 (금식 패턴 — 위기 앞 겸비와 청원)</li>
+<li>에스라 8:21~23 ↔ 대하 20:3~4 (여호사밧의 금식 선포 — 구조적 비교)</li>
+<li>에스라 8:35 ↔ 스 6:16~17 (도착 번제 — 6장 봉헌과 연결)</li>
+<li>에스라 8장 ↔ 스 9장 (8장 도착 직후 9장 통혼 자복이 시작됨)</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: 8:1에서 멈춘다 — 이름과 숫자의 긴 목록이 열린다. 함께 올라온 무리의 구체성 앞에 선다.</li>
+<li><strong>멈춤 1</strong>: 8:15에서 멈춘다 — "레위인이 없음." 삼 일 머문 뒤 발견된 그 결핍 앞에 선다.</li>
+<li><strong>멈춤 2</strong>: 8:22에서 멈춘다 — "부끄러워하였음이라." 이미 한 말이 이후 선택을 묶는 그 논리 앞에 선다.</li>
+<li><strong>끝</strong>: 8:36에서 멈춘다 — "그들이 백성과 하나님의 성전을 도왔더라." 도착이 돕는 손들의 합류로 닫히고, 9장이 기다린다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 명단·결핍·해결·금식·위탁·도착의 다섯 단락 완결</li>
+<li>[x] tsum·anah·bosh·mishkal·yad tovah·qadash 원어 분포</li>
+<li>[x] 명단→결핍→해결·금식 패턴·고백이 행동 묶음·달아 맡기고 받음·도착 후 송영 문학 구조 기록</li>
+<li>[x] 8:22 에스라서의 권 핵심 구절 정박</li>
+<li>[x] 스 7, 느 1, 대하 20, 스 6·9장 교차 참조 기록</li>
+</ul>
+
+<hr>
+
+<h3>G · 구속사 좌표 — 이 장은 어디인가</h3>
+<p>에스라의 spine — "이방 왕의 칙령으로 성전을 다시 세우시고, 말씀의 연구·준행·가르침으로 백성의 삶까지 재건하신다"와 destination 7:10 — "연구하여 준행하며 가르치기로 결심하였었더라"에서 보면, 8장은 그 결심이 몸을 가지고 이동하는 여정의 기록이다. 7장이 내면의 결심을 선언했다면, 8장은 그 결심이 구체적인 지리·날짜·인원·물자를 통해 실행되는 장이다. 에스라서의 phases에서 7~8장이 에스라의 귀환인데, 8장은 그 귀환의 여정 완료다. 권의 heart인 8:22 — "하나님의 손은 자기를 찾는 모든 자에게 선을 베푸시고 그를 배반하는 모든 자에게는 권능과 진노를 내리신다" — 는 에스라서 전체를 관통하는 하나님의 선한 손 반복구의 가장 명시적인 선포다. 이 선포가 왕 앞에서 이미 이루어졌기 때문에 에스라의 선택이 그 선포와 일치해야 했다. 구속사 호에서 8장은 7:10의 결심이 실제 공동체(명단)와 실제 여정(날짜·길)을 통해 구현되는 전진 단계다. 다음 단계(9~10장)는 그 도착 이후 통혼 문제와 자복으로 이어지며, 말씀 재건의 내용이 드러난다.</p>
+
+<h3>H · 운동 벡터 — 무엇에서 무엇으로</h3>
+<blockquote>
+<p><strong>이름 목록(명단)에서 실제 이동(여정)으로 / 결심의 선언(7:10)에서 결심의 구현(귀환 완료)으로 / 고백(8:22)에서 고백에 따른 선택으로 — 선언에서 실행으로, 안에서 밖으로, 바벨론에서 예루살렘으로 흐른다.</strong></p>
+</blockquote>
+<p>한 화살표로 좁히면, 8장은 8:22를 중심으로 읽힌다. 에스라가 왕 앞에서 한 고백이 이 장 전체의 선택을 결정한다. 호위병 없이 가는 것, 금식하며 구하는 것, 제사장들에게 계량하여 위탁하는 것 모두가 그 고백의 논리 아래 있다. 고백이 먼저이고 행동이 그 고백에 따라 정렬된다. 이 운동이 9장의 자복으로 이어진다 — 도착 직후 통혼 문제를 마주한 에스라가 옷을 찢고 엎드리는 장면은 8장의 고백과 일관된 자세다.</p>
+
+<h3>I · 수면 아래 — 가시적 사건 아래의 본질</h3>
+<p>표면은 명단, 레위인 합류, 금식, 위탁, 여정, 도착이다. 수면 아래에서는 두 가지가 움직인다. 첫째, 고백의 선행성이다. 8:22는 선택이 고백에 의해 결정됐음을 명시한다. 에스라는 왕 앞에서 이미 선포했기 때문에 그와 반하는 행동을 bosh(부끄러움)의 언어로 막는다. 이것은 7:10의 결심이 조서보다 먼저였던 것과 같은 패턴이다 — 내면에서 먼저 정해진 것이 외적 선택의 범위를 결정한다. 둘째, 결핍이 행동의 촉발점이 된다. 레위인 없음이 막힘이 아니라 따로 청하는 행동으로, 호위병 없음이 금식과 기도의 계기로 전환된다. 이 장에서 결핍은 여정의 장애가 아니라 공동체를 더 깊이 엮는 계기다. 그리고 그 모든 여정 위에 yad ha-tovah(하나님의 선한 손) 반복구가 세 번 더 이어진다. 7장에서 시작된 그 표식이 8장의 레위인 합류(18절), 금식 응답(22절), 여정 보호(31절)를 모두 같은 언어로 귀속시킨다.</p>
+
+<h3>J · 실존적 부름 — 불씨</h3>
+<blockquote>
+<p>왕 앞에서 한 말이 사막 길에서의 선택을 묶었다 — 에스라가 호위병을 구하지 않은 건 용기가 아니라 이미 한 말의 무게였다.</p>
+</blockquote>
+<p>8장의 불씨는 8:22에 있다. 에스라의 선택이 용기에서 나온 게 아니라는 게 본문의 기록이다. 그는 이미 왕 앞에서 고백했고, 그 고백이 행동의 범위를 결정했다. 이 구조가 독자에게 건네는 조용한 초대는 "내가 먼저 한 말과 이후 선택이 어떻게 이어지는가"라는 물음이다. 고백이 먼저인가, 선택이 먼저인가. 에스라서는 7:10에서 결심이 조서보다 먼저였음을 시제로 기록했고, 8:22에서 고백이 선택보다 먼저였음을 bosh(부끄러움)의 언어로 기록한다. 두 장에 걸쳐 같은 패턴이 반복된다 — 내면에서 먼저 정해진 것이 외적 선택을 결정한다. 그리고 그 모든 것 위에 하나님의 선한 손이 여섯 번 반복된다.</p>
+
+<p><strong>다음 장으로 미는 운동 한 줄</strong>: 귀환 여정이 완료됐다 — 그런데 도착한 직후 에스라에게 통혼 문제가 알려지고, 에스라가 옷을 찢으며 엎드리는 자복이 9장에서 시작된다.</p>
+<p><strong>이 장에서 가져갈 한 단어</strong>: <em>bosh — 부끄러움(왕 앞에서 한 말이 사막의 선택을 묶다)</em>.</p></div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/EZR/7/"><div class="nav-kicker">← 이전</div><div class="nav-title">에스라 7장</div><div class="nav-preview">연구하여 준행하며 가르치기로 결심한 한 사람 — 아론까지 닿는 족보와 왕의 전권 조서, 에스라서의 destination(7:10).</div></a>
+      <a href="/magazine/EZR/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">에스라 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/EZR/9/"><div class="nav-kicker">다음 장 →</div><div class="nav-title">에스라 9장</div><div class="nav-preview">도착 직후 통혼 문제 — 에스라가 옷을 찢고 엎드려 자복하는 장면으로 시작되는 말씀 재건의 새 위기.</div></a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:ezr8', JSON.stringify({
+      href: '/magazine/EZR/8/',
+      title: '에스라 8장',
+      excerpt: '귀환 명단이 펼쳐지고, 레위인이 없어 따로 청하고, 아하와 강가에서 금식하며 겸비하여 평탄한 길을 구하고, 왕 앞에서 한 말 때문에 호위병을 부끄러워 청하지 않으며(8:22), 은금을 달아 맡기고 예루살렘에 도착하여 번제로 닫히는 — 고백이 행동을 묶는 에스라 귀환 여정.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2026-06-19</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+</body>
+</html>
