@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>욥기 22장 — Observatory | 네다바웨이</title>
+<meta name="description" content="욥기 22장을 9단계로 같이 관찰합니다. 엘리바스의 3차 고발과 화목의 초대.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/JOB/22/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+  <link rel="stylesheet" href="/assets/global-fonts.css">
+  <link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/JOB/">시가서</a> · <a href="/magazine/JOB/">욥기</a> · 22장</div>
+      <h1>욥기 22장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">JOB-022 · 시가서 · 히브리어</div>
+      <p class="essence">엘리바스의 고발이 끝에서 화목의 초대로 뒤집힌다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 욥기 22장은 엘리바스의 세 번째이자 마지막 발언이다. 무대, 소품, 고발의 어조, 그리고 갑작스러운 화목의 초대를 관찰한다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOB-022</p>
+<p>book: 욥기</p>
+<p>book_en: Job</p>
+<p>chapter: 22</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 지혜 드라마(담화·논쟁)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 30</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [tsaddiq, shaddai, beqa, tsurah, chaval, erev, tsama, yatom, almanah, zahav, ketem, ofir, nefesh, shuv, hochach, shalam, tov, tefilah, nasa, shaphal]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["욥22:2 '사람이 어찌 하나님께 유익이 되겠느냐' — LXX가 의미 확장", "욥22:30 '죄 없는 자' 히브리어와 LXX 해독 차이"]</p>
+<p>ane_refs: ["고대 근동 법정 고발 형식 — 죄목 열거 후 회개 촉구 패턴", "지혜 전통의 인과응보 도식 — 악인의 멸망·의인의 형통"]</p>
+<p>rabbinic_refs: ["b.Bava Batra 15b — 욥기 저자 논의", "욥기와 지혜 전통의 관계(참고)"]</p>
+<p>literary_devices: [rhetorical_question, accusation_list, imperatives_invitation, irony, chiasm]</p>
+<p>repeated_words: ["shaddai(전능자, 5회)", "shuv(돌이키다, 22:23)", "zahav(금, 22:24-25)", "choshek(어둠, 22:11)"]</p>
+<p>cross_refs: ["욥기 4장·15장(엘리바스 1·2차 발언)", "잠언 3:33-34(악인의 집 저주)", "이사야 58:6-7(굶주린 자 먹임)", "욥기 42:7-8(욥을 옳다 하심)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-21</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>욥기 22장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 오늘은 욥기 22장을 열겠습니다. 엘리바스가 세 번째이자 마지막으로 욥에게 말을 거는 장면입니다. 먼저 한 번 낭독한 뒤 잠시 머물겠습니다.</p>
+
+<p>(본문 낭독 22:1~30, 약 3분)</p>
+
+<p><strong>(침묵 약 40초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기가 느껴지셨는지요.</p>
+
+<p><strong>P01 한나래</strong>: 앞부분은 날카롭고 차갑게 고발하는데, 뒷부분에서 갑자기 따뜻한 초대의 어조로 바뀌는 게 이상했어요. 한 장 안에 두 가지 온도가 있어요.</p>
+
+<p><strong>P07 오지혜</strong>: "전능자"(<em>shaddai</em>)라는 단어가 여러 번 나오는 게 귀에 걸렸어요. 엘리바스가 계속 하나님의 이름을 소환하는데, 마치 자기 주장을 뒷받침하는 증거로 쓰는 것 같았어요.</p>
+
+<p><strong>P04 최현국</strong>: 저는 고발 목록이 일렬로 나열되는 무대가 보였어요. 법정 고발서를 읽는 느낌이었고요.</p>
+
+<p><strong>P05 김미영</strong>: 22절의 "그의 입에서 율법을 받으며"라는 부분에서, 갑자기 부드러운 초대의 냄새가 났어요. 직전까지의 날카로움과 달라요.</p>
+
+<p><strong>P02 이진우</strong>: 구조적으로 1~11절이 고발, 12~20절이 악인의 멸망, 21~30절이 화목의 초대로 세 단락이 있어요. 마지막 단락이 앞의 두 단락과 어조가 완전히 달라요.</p>
+
+<p><strong>P11 나경아</strong>: 첫 절 "사람이 어찌 하나님께 유익이 되겠느냐"가 히브리어 수사의문문 구조예요. 답을 요구하는 게 아니라 "유익이 될 수 없다"는 전제를 확인하는 문장이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 두 가지 온도, 그리고 수사의문문의 출발을 그대로 두겠습니다.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장의 무대는 어떤 곳인지요. 어떤 것들이 눈에 들어오시나요.</p>
+
+<p><strong>P04 최현국</strong>: 무대가 세 칸으로 보여요. 첫 번째는 법정 같은 공간—고발이 이루어지는 자리. 두 번째는 악인의 멸망 장면—불과 홍수와 어둠. 세 번째는 회복의 장소—금을 흙처럼 버리고 전능자를 보배로 삼는 자리.</p>
+
+<p><strong>P05 김미영</strong>: 소품이 많아요. 담보물(<em>chaval</em>), 옷(<em>beged</em>), 물(<em>mayim</em>), 금(<em>zahav</em>), 순금(<em>ketem ofir</em>), 빛(<em>or</em>), 어둠(<em>choshek</em>), 홍수(<em>shefah</em>). 물질이 많이 나오는데, 후반부에서 그 물질이 전복돼요—금을 버리고 하나님을 금으로 삼으라 해요.</p>
+
+<p><strong>P02 이진우</strong>: 4~5절에 흥미로운 구조가 있어요. "네가 하나님을 경외하므로 책망하시겠느냐… 아니라 네 악이 크고 네 죄악이 끝이 없기 때문이니라." 엘리바스가 하나님의 동기를 단정하고 있어요.</p>
+
+<p><strong>P11 나경아</strong>: 6절의 "담보물"이 히브리어 <em>chaval</em>인데, 형제에게서 담보를 취하는 행위를 법적으로 금지하는 맥락이 신명기·잠언에 있어요(신24:12). 엘리바스가 욥을 이 금지 규정의 위반자로 고발하는 거예요.</p>
+
+<p><strong>P01 한나래</strong>: 7절의 "피곤한 자에게 물을 마시우지 않고 주린 자에게 음식을 주지 않았다"는 고발이 가슴에 걸렸어요. 실제로 욥은 29장에서 정반대의 행동을 했다고 증언하는데—이 장에서는 그 반대가 고발로 등장해요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 대조를 지금은 관찰로 남겨 두겠습니다. 29장과의 연결은 나중에 열 수 있는 문으로 두지요.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장의 첫 문장과 마지막 문장은 어떤 관계로 보이시는지요.</p>
+
+<p><strong>P02 이진우</strong>: 1절은 "사람이 어찌 하나님께 유익이 되겠느냐"—사람과 하나님의 거리를 강조하는 질문. 30절은 "죄 없는 자도 건지시리니"—하나님이 오히려 건지시는 결. 시작은 거리이고 끝은 구원이에요.</p>
+
+<p><strong>P04 최현국</strong>: 방향이 뒤집혀요. 처음은 인간의 무능·죄를 말하다가, 끝에서는 죄인도 건지신다는 반전이 있어요.</p>
+
+<p><strong>P11 나경아</strong>: 30절 "죄 없는 자"가 히브리어 사본에 따라 "죄 없는 자도"인지 "죄 있는 자도"인지 독법이 갈려요. LXX는 "깨끗하지 않은 자도 건지신다"에 가깝고요. 이 독법 차이가 이 장의 결론을 크게 바꾸는데, 본문 자체가 답을 주지 않아요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 독법의 긴장을 미해결로 보존하겠습니다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장의 등장인물과 그들의 상황을 살펴보겠습니다.</p>
+
+<p><strong>P04 최현국</strong>: 발화자는 엘리바스, 수신자는 욥, 그리고 배경에 전능자 <em>shaddai</em>가 계속 소환돼요. 명시적으로 등장하진 않지만 22~30절에서 욥에게 "그분께 돌아가라"는 초대의 대상으로 계세요.</p>
+
+<p><strong>P07 오지혜</strong>: 상황을 요약하면 — 엘리바스가 욥의 죄를 열거하고, 그 죄가 재난의 원인이라 주장하며, 회개하면 형통이 온다고 촉구해요. 전형적인 인과응보 도식이에요.</p>
+
+<p><strong>P05 김미영</strong>: 사상으로는 "전능자의 뜻을 거스르는 것"(<em>shaddai</em>에게 돌아가지 않는 것)이 재난의 뿌리라는 엘리바스의 신학이 있어요.</p>
+
+<p><strong>P01 한나래</strong>: 그런데 12절 "하나님은 높은 하늘에 계시지 아니하냐"가 흥미해요. 엘리바스가 하나님의 높으심을 말하는데, 그 높으심이 하나님이 욥의 죄를 보신다는 맥락에서 쓰이고 있어요.</p>
+
+<p><strong>P02 이진우</strong>: 13~14절에서 엘리바스가 욥의 주장을 인용하는 것 같아요. "욥은 하나님이 구름 뒤에 가려 아무것도 못 보신다고 말한다"는 식으로요. 욥이 실제로 그렇게 말했는지는 확인이 필요해요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 인용의 정확성은 묵상으로 이월하겠습니다. 본문 안에서 관찰로만 남겨 두지요.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장을 몇 개의 컷으로 나눠 보시지요.</p>
+
+<p><strong>P04 최현국</strong>: 네 컷으로 보입니다.</p>
+
+<ul>
+<li><strong>컷 1 (1-5절)</strong>: 수사의문문들 — 사람이 하나님께 유익이 되겠느냐, 그래서 책망하시는 게 아니라 네 악 때문이다</li>
+<li><strong>컷 2 (6-11절)</strong>: 고발 목록 — 담보·물·음식·과부·고아 관련 여섯 가지 죄목</li>
+<li><strong>컷 3 (12-20절)</strong>: 악인의 멸망 그림 — 홍수와 불, "당신들의 집이 불타지 아니하냐"</li>
+<li><strong>컷 4 (21-30절)</strong>: 화목의 초대 — 전능자와 화목하라, 금을 흙처럼, 기도가 들리리라</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 컷 4가 분량은 앞의 세 컷보다 작지 않은데, 어조가 완전히 달라서 마치 다른 장을 보는 것 같아요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 엘리바스의 고발 목록(6-11절)이 나중에 욥의 결백 선언(31장)과 정면으로 충돌해요. 같은 소재인데 반대 방향으로 놓여요.</p>
+
+<p><strong>P11 나경아</strong>: 원어 정보를 드리면, 24절 "순금"이 <em>ketem ofir</em>인데 오빌에서 나는 금으로 고대 근동에서 최고 품질을 뜻해요. 25절에서 "<em>shaddai</em>가 네 금이 되리라"고 할 때, 최고의 물질 가치를 하나님으로 대체하는 언어적 전복이 일어납니다.</p>
+
+<p><strong>P05 김미영</strong>: 의문이에요. 21절 "그와 화목하라"(<em>saken na</em>)가 직역하면 "지금 그와 익숙해지라"에 가깝다고 해요. "화목"보다 더 일상적인 친밀함의 어감인데, 본문이 왜 이 단어를 쓰는지 궁금해요.</p>
+
+<p><strong>P02 이진우</strong>: 구조 발견이에요. 1~20절은 엘리바스가 3인칭으로 욥을 고발하는데, 21절부터 갑자기 2인칭 명령형으로 바뀌어요. "화목하라, 받으라, 돌이키라, 쌓으라"—명령의 나열이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 27절 "네가 그에게 기도하면 들으시겠고"가 위로처럼 들렸어요. 앞서 심판을 말하다 갑자기 기도가 응답된다는 약속으로 마무리하는 게요.</p>
+
+<p><strong>P11 나경아</strong>: ANE 배경으로, 메소포타미아 지혜문학에도 신과의 "화목" 요청 형식이 있어요. 에아와 마르두크에게 돌아오라는 탄원 패턴이요. 엘리바스가 이 전통 형식을 차용했을 가능성을 배경 자료로 남겨 둡니다.</p>
+
+<p><strong>성령일 선교사</strong>: 그 배경은 해석이 아닌 정보로 두겠습니다.</p>
+
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>성령일 선교사</strong>: 컷들을 이어 동영상으로 돌려 보겠습니다.</p>
+
+<p><strong>P04 최현국</strong>: 엘리바스가 일어서서 법정 고발관처럼 시작합니다. "사람이 하나님께 무슨 유익이 되겠느냐"—이미 결론이 정해진 질문으로.</p>
+
+<p><strong>P02 이진우</strong>: 그리고 죄목 목록이 줄줄이 나와요. 담보를 취했다, 물을 주지 않았다, 음식을 주지 않았다, 과부와 고아를 빈손으로 돌려보냈다.</p>
+
+<p><strong>P05 김미영</strong>: 그 고발이 끝나자마자 악인들이 홍수에 휩쓸리고 불에 타는 장면이 펼쳐져요. 욥에게 "이게 너의 결말이다"라고 보여 주는 것 같아요.</p>
+
+<p><strong>P01 한나래</strong>: 그런데 갑자기 카메라 앵글이 바뀌어요. 엘리바스가 욥에게 손을 내미는 장면으로. "전능자와 화목하라, 그러면 평안하리라."</p>
+
+<p><strong>P07 오지혜</strong>: 마지막 장면이 금을 땅에 던지고 대신 전능자를 보배로 삼는 이미지예요. 물질의 전복이 일어나요.</p>
+
+<p><strong>P11 나경아</strong>: 동영상이 고발에서 초대로 방향을 바꾸는데, 그 전환이 너무 급격해서 이 두 부분이 논리적으로 이어지는지 아니면 단절인지가 남는 질문이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 급격한 전환을 미해결로 보존하겠습니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>성령일 선교사</strong>: 각자 초벌 제목을 한 줄씩 나눠 주시겠는지요.</p>
+
+<p><strong>P01 한나래</strong>: "고발이 초대가 되는 순간"</p>
+<p><strong>P02 이진우</strong>: "세 단락의 온도차"</p>
+<p><strong>P04 최현국</strong>: "법정에서 화해 제안으로"</p>
+<p><strong>P05 김미영</strong>: "금을 흙처럼 던지는 전복"</p>
+<p><strong>P07 오지혜</strong>: "전능자를 금으로 삼으라"</p>
+<p><strong>P11 나경아</strong>: "<em>Shuv · Saken · Shaddai</em> — 돌이킴·익숙함·전능자"</p>
+
+<p><strong>성령일 선교사</strong>: 초벌로 남깁니다. 부제 제안: "엘리바스의 마지막 발언—고발 끝에 놓인 화목의 문"</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 이 동영상 안으로 들어가 보시지요. 고발의 목록 앞에서, 또 화목의 초대 앞에서 내면에 떠오르는 것을 주께 아뢰어 봅시다. 답을 구하지 말고 드려만 봅시다.</p>
+
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+
+<p><strong>P01 한나래</strong>: (조용히) 주님, 고발이 나를 향할 때 저는 어느 자리에 서 있는지요.</p>
+<p><strong>P05 김미영</strong>: 금을 버리고 당신을 금으로 삼는다는 게 어떤 무게인지, 아직 실감이 없어요.</p>
+<p><strong>P07 오지혜</strong>: "화목하라"는 초대가 이 고발 뒤에 놓인다는 게, 머물고 싶은 자리예요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 자리에 머뭅니다.</p>
+
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일 선교사</strong>: 이 본문 전체를 거두어 보겠습니다. 그래서 이 본문은 어디서 어디로 움직이는지요?</p>
+
+<p><strong>P02 이진우</strong>: 고발(인과응보)에서 초대(화목)로 움직이는데, 엘리바스 자신은 그 방향을 인과응보의 언어로 포장해요. 즉 "회개하면 형통한다"는 도식 안에서의 초대예요.</p>
+
+<p><strong>P11 나경아</strong>: 수면 아래에서 보면—욥기 전체 흐름 안에서 이 초대는 욥의 상황을 설명하려는 시도이지만, 42장에서 하나님이 엘리바스를 옳지 않다고 하실 때 이 초대 자체가 뒤집혀요.</p>
+
+<p><strong>P01 한나래</strong>: 이미/아직의 긴장이 있어요. 엘리바스의 초대는 지금 주어지는데, 욥의 실제 화목은 폭풍 응답 이후에야 다른 방식으로 이루어지거든요.</p>
+
+<p><strong>P07 오지혜</strong>: 본문이 미는 방향은 — "하나님과의 화목"이라는 실제 목표지점은 맞는데, 거기 이르는 길을 엘리바스가 틀리게 그리고 있다는 긴장이에요.</p>
+
+<p><strong>성령일 선교사</strong>: 그 긴장을 그대로 보존하겠습니다. 목적지는 옳고, 지도가 틀린 긴장.</p></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>LOCKED v2.0 형식.</strong> 욥기 22장 관찰 사실을 1️⃣~7️⃣ 단계로 정리한다. 드리프트 없이 본문이 말하는 것만.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOB-022</p>
+<p>book: 욥기</p>
+<p>chapter: 22</p>
+<p>date: 2026-06-21</p>
+<p>---</p>
+
+<h2>욥기 22장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로. 관찰에 머물고 해석·교리 단정은 미해결 질문으로 이월.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+
+<ul>
+<li>무대 세 공간: 법정 고발의 자리(1-11절) · 악인 멸망의 그림(12-20절) · 화목 초대의 자리(21-30절).</li>
+<li>소품 목록: 담보(<em>chaval</em>), 옷(<em>beged</em>), 물(<em>mayim</em>), 빵, 과부·고아, 금(<em>zahav</em>), 순금(<em>ketem ofir</em>), 어둠(<em>choshek</em>), 홍수(<em>shefah</em>), 빛(<em>or</em>).</li>
+<li>21절 이후 명령형 동사 연속: 화목하라, 받으라, 돌이키라, 세우라, 기도하라(청유 구조).</li>
+<li>"전능자"(<em>shaddai</em>) 5회 등장 — 엘리바스 발언의 신학적 중심 단어.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+
+<ul>
+<li>1-20절 고발·심판 어조 ↔ 21-30절 화목 초대 어조: 한 장 안의 이중 온도.</li>
+<li>"전능자"를 반복 소환하며 자기 주장을 신학화하는 어조.</li>
+<li>마지막 절의 "죄 없는/있는 자도 건지신다"가 독법에 따라 결론이 달라지는 긴장.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+
+<ul>
+<li>시작(1절): "사람이 어찌 하나님께 유익이 되겠느냐" — 수사의문문, 인간의 무능 전제.</li>
+<li>끝(30절): "죄 없는/있는 자도 건지시리니" — 구원의 약속으로 닫힘.</li>
+<li>고발의 무능 → 구원의 가능성: 방향 역전.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+
+<ul>
+<li>엘리바스: 발화자·고발자·초대자. 인과응보 신학을 구사.</li>
+<li>욥: 수신자. 이 장에서 직접 발화 없음.</li>
+<li>전능자(<em>shaddai</em>): 고발의 근거이자 화목의 대상.</li>
+<li>악인들(15-16절): 홍수에 쓸린 과거 멸망의 예시.</li>
+<li>사상: 인과응보(죄→재난·회개→회복)가 22장의 신학적 기반.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+
+<ul>
+<li>컷 1 (1-5): 수사의문문 — "하나님께 유익이 되겠느냐"에서 "네 악 때문이다"로.</li>
+<li>컷 2 (6-11): 고발 목록 — 담보·물·음식·과부·고아 여섯 죄목.</li>
+<li>컷 3 (12-20): 악인 멸망 그림 — 높으신 하나님, 홍수와 불.</li>
+<li>컷 4 (21-30): 화목 초대 — 전능자와 화목하라, 금을 버려라, 기도가 들리리라.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (1) 원어 카드</h2>
+
+<ul>
+<li><em>shaddai</em>(שַׁדַּי) — "전능자". 욥기 고유의 하나님 호칭(31회).</li>
+<li><em>chaval</em>(חָבַל) — 담보를 취하다. 신24:12의 금지 규정과 연관.</li>
+<li><em>ketem ofir</em>(כֶּתֶם אוֹפִיר) — 오빌의 순금. 고대 근동 최고 품질 금.</li>
+<li><em>saken na</em>(סְכֶן־נָא) — "지금 익숙해지라/화목하라". 단순 화해보다 일상적 친밀함의 어감.</li>
+<li><em>shuv</em>(שׁוּב) — "돌이키다·돌아오다". 구약 회개의 핵심 동사.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (2) 문학 구조</h2>
+
+<ul>
+<li>1-20절 3인칭 고발 → 21절부터 2인칭 명령형으로의 급격한 인칭 전환.</li>
+<li>금(<em>zahav</em>·<em>ketem ofir</em>)의 물질적 가치를 하나님으로 대체하는 언어적 전복(24-25절).</li>
+<li>고발과 화목 초대의 어조 단절 — 두 부분의 논리적 연결이 본문에서 불명확.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (3) ANE 배경</h2>
+
+<ul>
+<li>메소포타미아 지혜문학의 신과의 화목 요청 패턴(에아·마르두크 탄원 형식) — 배경 자료.</li>
+<li>법정 고발 형식(죄목 열거 후 회개 촉구)이 고대 근동 법정 문서에도 나타남 — 장르 배경.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (4) 교차 참조 노드</h2>
+
+<ul>
+<li>욥22 ↔ 욥31 (엘리바스의 고발 목록 vs 욥의 결백 선언 — 동일 소재 반대 방향)</li>
+<li>욥22 ↔ 욥42:7-8 (하나님이 엘리바스가 옳지 않다고 하심)</li>
+<li>욥22:6 ↔ 신24:12 (담보 금지 규정)</li>
+<li>욥22:24-25 ↔ 시19:10 (하나님의 말씀이 금보다 귀함)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 *동영상* 얻기</h2>
+
+<p>엘리바스가 법정 고발관처럼 일어선다. "사람이 하나님께 유익이 되겠느냐"로 시작해 욥의 죄목을 줄줄이 나열한다—담보, 물, 음식, 과부, 고아. 이어 악인들이 홍수에 쓸리는 장면을 보여 주며 "이것이 너의 결말이다"라 말한다. 그러다 갑자기 어조가 바뀐다—"전능자와 화목하라, 금을 흙처럼 버려라, 전능자가 네 금이 되리라, 기도하면 들으시리라." 고발에서 시작해 초대로 끝나는 동영상이지만, 두 부분 사이의 논리적 다리가 보이지 않는다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+
+<ul>
+<li>초벌 제목: <strong>"고발 끝에 놓인 화목의 문"</strong></li>
+<li>초벌 부제: "엘리바스 3차 — 인과응보의 신학이 초대를 포장하다"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+
+<ul>
+<li>[x] 원어 어휘 3개 이상 (5개 기록)</li>
+<li>[x] 역사·문화·지리·문학 사실 최소 1개 (ANE 법정 형식·메소포타미아 지혜 전통)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 4개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+
+<ul>
+<li>엘리바스의 초대를 "올바른 신앙"으로 단정하지 않음 — 42장에서 뒤집힘을 인지하되 관찰로 보존.</li>
+<li>인과응보 신학의 옳고 그름을 판단하지 않음 — 미해결 질문으로 이월.</li>
+<li>30절 독법 차이(<em>naqi</em> vs <em>lo naqi</em>) — 해석 대신 독법 긴장 자체를 보존.</li>
+</ul></div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제 정하기.</strong> <strong>9단계 — 동영상 안을 걸으며 관찰 과정을 통해 알게된 것들을 주께 말씀드리고 내면의 감동과 음성에 귀 기울이기.</strong> 관찰의 마무리는 기도다. 답을 구하지 않고 머문다.</p>
+        <div class="md-body"><p>---</p>
+<p>sim_id: JOB-022</p>
+<p>book: 욥기</p>
+<p>chapter: 22</p>
+<p>date: 2026-06-21</p>
+<p>---</p>
+
+<h2>욥기 22장 — 미해결 질문</h2>
+
+<blockquote>
+<p>LOCKED v2.0 가이드 원문 그대로의 결. 관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월. 다음 만남의 여지.</p>
+</blockquote>
+
+<h2>Q1. 엘리바스의 고발 목록은 실제 사실인가, 추측인가?</h2>
+
+<ul>
+<li>욥31장의 결백 선언과 정면으로 충돌하는 내용들이 고발 목록에 있다.</li>
+<li>엘리바스가 어디서 이 정보를 얻었는지 본문은 말하지 않는다. 묵상으로 이월.</li>
+</ul>
+
+<h2>Q2. "사람이 하나님께 유익이 되겠느냐"(1-3절)의 신학적 의미는?</h2>
+
+<ul>
+<li>엘리바스의 이 전제가 욥의 고난을 설명하는 데 어떻게 작동하는가.</li>
+<li>하나님이 보상이나 이익 때문에 욥을 돌보시는 게 아니라면, 논증의 방향이 바뀌어야 한다. 미해결.</li>
+</ul>
+
+<h2>Q3. 21절 "화목하라"(<em>saken na</em>)의 어감이 화해인가 친밀함인가?</h2>
+
+<ul>
+<li>"익숙해지다·친근해지다"의 어감이 단순한 화해 촉구와 다를 수 있다.</li>
+<li>욥기 전체에서 이 단어가 다시 나오는지, 의미 맥락이 어떻게 다른지는 관찰 밖으로 이월.</li>
+</ul>
+
+<h2>Q4. 30절의 독법 — "죄 없는 자"인가 "죄 있는 자"인가?</h2>
+
+<ul>
+<li>히브리어 사본과 LXX의 독법 차이가 이 장의 결론을 바꾼다.</li>
+<li>어느 독법이 더 맥락에 맞는지는 본문이 결정하지 않는다. 미해결.</li>
+</ul>
+
+<h2>Q5. 22-28절의 화목 초대는 진정한 위로인가 또 다른 신학적 압박인가?</h2>
+
+<ul>
+<li>"회개하면 형통한다"는 인과응보 도식 안의 초대로 읽힐 여지가 있다.</li>
+<li>이 초대를 받아들이는 것이 욥의 해방인지 또 다른 굴레인지는 묵상으로.</li>
+</ul>
+
+<h2>Q6. 엘리바스 3차 발언 이후 왜 욥의 답이 두 장(23-24장)에 걸쳐 나오는가?</h2>
+
+<ul>
+<li>논쟁의 비대칭성 — 엘리바스 1장 대 욥 2장의 분량 차이.</li>
+<li>구조적 이유인지, 욥의 증가하는 절박함인지는 미해결.</li>
+</ul>
+
+<p>---</p>
+
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p></div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">목적지는 옳고, 지도가 틀린 긴장.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 욥기 22장이 욥기 전체 흐름 안에서 어느 자리에 있는지 보겠습니다.</p>
+      <div class="md-body synthesis-body">
+        <p>---</p>
+<p>sim_id: JOB-022</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-21</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 장의 골격</h3>
+
+<p><strong>한 문장</strong>: 욥기 22장은 엘리바스의 마지막 발언으로, 고발에서 시작해 화목의 초대로 끝나지만 그 초대가 인과응보의 도식 안에 포장되어 있다.</p>
+
+<p><strong>한 문단</strong>: 엘리바스는 세 번째 발언에서 욥을 정면으로 고발한다—담보를 취하고, 굶주린 자에게 물을 주지 않고, 과부와 고아를 외면했다는 죄목이다. 이 고발이 끝난 뒤 악인들의 멸망 장면이 이어지고, 마지막으로 전능자와 화목하라는 초대가 등장한다. 금(<em>zahav</em>)을 흙처럼 버리고 전능자를 금으로 삼으라는 언어적 전복이 일어나며, 기도가 들리리라는 약속으로 닫힌다. 그러나 이 초대는 인과응보의 언어로 포장된 것—"회개하면 형통한다"는 도식 안의 화목이다. 42장에서 하나님이 엘리바스가 옳지 않다고 하실 때, 이 초대 자체가 뒤집힌다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대 장치, 배경, 소품, 소재 찾기</td><td>세 공간(법정·멸망·화목). 소품: 담보·금·순금·어둠·홍수. <em>shaddai</em> 5회.</td></tr>
+<tr><td>2 첫 느낌, 분위기 기록하기</td><td>고발 어조(1-20절) ↔ 화목 어조(21-30절) 이중 온도. 30절 독법 긴장.</td></tr>
+<tr><td>3 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</td><td>시작 — "사람이 하나님께 유익이 되겠느냐"(무능). 끝 — "죄 없는/있는 자도 건지신다"(구원). 방향 역전.</td></tr>
+<tr><td>4 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</td><td>엘리바스(고발·초대)·욥(침묵)·<em>shaddai</em>(근거·대상). 인과응보가 신학 기반.</td></tr>
+<tr><td>5 장면·사건을 나누어 몇 컷의 사진 얻기</td><td>컷1 수사의문문, 컷2 고발 목록, 컷3 악인 멸망, 컷4 화목 초대. 컷4에서 어조 단절.</td></tr>
+<tr><td>6 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기</td><td><em>saken na</em>(익숙함·화목). <em>ketem ofir</em>(최고 금→하나님으로 전복). ANE 법정 형식.</td></tr>
+<tr><td>7 상황의 흐름, 논지를 연결하여 동영상 얻기</td><td>고발관처럼 시작→죄목 나열→악인 멸망→갑자기 초대로 전환. 두 부분 논리적 다리 불명확.</td></tr>
+<tr><td>8 초벌 제목과 부제 정하기</td><td>초벌 제목 — "고발 끝에 놓인 화목의 문". 초벌 부제 — "인과응보의 신학이 초대를 포장하다".</td></tr>
+<tr><td>9 동영상 안을 걸으며 주께 말씀드리고 내면의 음성에 귀 기울이기</td><td>고발의 목록 앞에서 자신의 자리를 묻고, 화목의 초대 앞에 머문다. 답을 구하지 않고.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+
+<p>1. <strong>결 1 — 고발 목록과 결백 선언의 충돌</strong>: 엘리바스가 22장에서 욥을 고발하는 죄목과 욥이 31장에서 스스로 반박하는 내용이 정확히 겹친다. 같은 소재가 반대 방향으로 놓여 있다.</p>
+<p>2. <strong>결 2 — 금의 전복</strong>: 최고 품질의 금(<em>ketem ofir</em>)을 흙처럼 버리고 <em>shaddai</em>를 금으로 삼으라는 언어적 전복(24-25절)이 이 장의 가장 독특한 이미지다.</p>
+<p>3. <strong>결 3 — 올바른 목적지·잘못된 지도</strong>: 전능자와의 화목이라는 목적지는 옳다. 그러나 그 지도—인과응보 도식—는 42장에서 하나님이 직접 뒤집으신다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+
+<ul>
+<li>같은 권 안 — <strong>욥 31장</strong>(고발 vs 결백 선언 충돌). <strong>욥 42:7-8</strong>(하나님이 엘리바스를 옳지 않다 하심).</li>
+<li>다른 권 — <strong>신 24:12</strong>(담보 금지 규정·엘리바스의 고발 배경). <strong>이사야 58:6-7</strong>(굶주린 자 먹임·엘리바스가 고발한 죄목의 반대).</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+
+<ul>
+<li><strong>시작</strong>: 법정의 분위기 속에 고발 목록을 듣는다.</li>
+<li><strong>멈춤 1</strong>: 욥과 동일한 자리에 서서 — 내가 이 고발을 받는 자라면 무슨 말을 할 수 있는가.</li>
+<li><strong>멈춤 2</strong>: 금을 버리고 <em>shaddai</em>를 금으로 삼으라는 초대 앞에서 머문다.</li>
+<li><strong>멈춤 3</strong>: 이 초대가 진정한 화목인지 또 다른 조건부 제안인지 판단을 보류한다.</li>
+<li><strong>끝</strong>: 목적지(하나님과의 화목)는 옳다. 그러나 지도가 틀렸다는 긴장 안에 머문다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+
+<ul>
+<li>[x] 고발 목록과 화목 초대가 한 장 안에 있다</li>
+<li>[x] <em>shaddai</em>가 고발의 근거이자 화목의 대상으로 5회 등장한다</li>
+<li>[x] 금의 언어적 전복(24-25절)이 독특한 이미지다</li>
+<li>[x] 30절 독법이 이 장의 결론을 바꾸는 긴장이 있다</li>
+<li>[x] 42장과의 충돌이 이 장의 해석을 열어 둔다</li>
+</ul>
+
+<h3>G · 구속사 좌표</h3>
+
+<p>욥기 22장은 3-31장의 논쟁 구간(인과응보 논쟁·욥의 항변) 안에서, 3차 논쟁 사이클이 마무리되는 지점에 있다. 욥기 흐름(들음에서 봄으로)에서 22장은 아직 인과응보의 언어가 지배하는 국면—"귀로만 들음"의 단계다. 엘리바스가 제시하는 화목은 창조의 주권으로 임재하시는 하나님을 모르는 수준에서의 화목이다.</p>
+
+<h3>H · 운동 벡터</h3>
+
+<p>인과응보(욥의 죄→재난)라는 닫힌 도식에서 → 조건부 화목의 초대로 움직이지만, 그 화목 자체가 여전히 도식 안에 갇혀 있다. 22장의 운동은 <em>도식 안에서 더 부드러워지는 것</em>이지, 도식을 벗어나는 것이 아니다.</p>
+
+<h3>I · 수면 아래</h3>
+
+<p>현상: 엘리바스가 욥을 고발하고 화목을 초대한다. 수면 아래: 하나님이 실제로 어떤 분이신가에 대한 지식의 결핍이 있다. 엘리바스는 하나님의 높으심(12절)을 알면서도, 창조의 주권으로 침묵 속에 종을 신뢰하시는 하나님의 심정(욥기 심정 — "까닭 없이 고난당하는 종을 신뢰하시는 침묵 속의 신실하심")에는 닿지 못하고 있다.</p>
+
+<h3>J · 실존적 부름</h3>
+
+<p>이 본문이 독자에게 미는 방향: 화목하라는 초대가 올바른 목적지를 가리키고 있는지, 그 초대를 향해 걸어가고 있는지 — 그러나 그 길이 인과응보의 조건부 길인지 창조의 주권자를 직접 만나는 길인지를 묻는다. 이 본문은 답을 주지 않고, 그 물음을 품게 한다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>그분의 자리</em> — "그가 계신 곳"(욥23:3)으로 이어진다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/JOB/21/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">욥기 21장</div>
+        <div class="nav-preview">욥의 항변 — 악인이 형통하는 이유.</div>
+      </a>
+      <a href="/magazine/JOB/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">욥기 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/JOB/23/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">욥기 23장</div>
+        <div class="nav-preview">욥 — 그분의 자리를 찾아서.</div>
+      </a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last', JSON.stringify({
+      href: '/magazine/JOB/22/',
+      title: '욥기 22장',
+      excerpt: '엘리바스의 고발이 끝에서 화목의 초대로 뒤집힌다.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2026-06-21</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
