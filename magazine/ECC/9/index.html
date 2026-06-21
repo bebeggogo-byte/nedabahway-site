@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>전도서 9장 — Observatory | 네다바웨이</title>
+<meta name="description" content="전도서 9장을 9단계로 같이 관찰합니다. 모두에게 임하는 죽음 앞에서 산 자의 분깃이 선포됨—기쁨으로 먹고 마시며 힘을 다해 일하라는 가장 적극적인 초대.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/ECC/9/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s; user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·정보</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/ECC/">전도서</a> · 9장</div>
+      <h1>전도서 9장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">ECC-009 · 시가서 · 히브리어</div>
+      <p class="essence">모두에게 임하는 한 가지 일(죽음) 앞에서 산 자의 분깃이 선포됨—기쁨으로 먹고 마시며 힘을 다해 일하라는 가장 적극적인 초대.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 죽음이라는 보이지 않는 배경막 앞에서 산 자의 무대: 음식, 포도주, 흰 옷, 기름, 사랑하는 아내, 그리고 힘을 다해 일하는 손.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-009</p>
+<p>book: 전도서</p>
+<p>book_en: Ecclesiastes</p>
+<p>chapter: 9</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 지혜문학(담화)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 18</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [chelek, hevel, et, pega, simcha, mikveh, miqreh, sheol, chokhmah, amal, lev, ahavah]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["9:2 '정결·부정한 자' 목록 — 70인역 순서와 히브리어 원문 순서 미세 차이", "9:11 '시기와 우연' — pega 번역에 이견 있음(kairos/periptosis)"]</p>
+<p>ane_refs: ["고대 근동 '흰 옷과 기름 부음' 관습 — 잔치·기쁨의 상징(배경 자료)", "메소포타미아 길가메시 서사시 10판 — 죽음 앞 기쁨의 초대와 9:7-10 병행 관찰"]</p>
+<p>rabbinic_refs: ["Midrash Rabbah Qohelet 9:7 — 먹고 마심 초대의 도덕적 독해", "b.Eruvin 54a — '힘을 다하여 할지어다' 와 토라 학습 논의"]</p>
+<p>literary_devices: [contrast, repetition, chiasm, inclusio, catalog, imperative_sequence]</p>
+<p>repeated_words: ["chelek(분깃)", "miqreh(같은 운명)", "hevel(헛됨)", "tachat hashemesh(해 아래)", "chokhmah(지혜)"]</p>
+<p>cross_refs: ["전도서 2:24 (먹고 마시는 것이 하나님의 손에서)", "전도서 3:1 (범사에 기한과 때)", "전도서 5:18-19 (분깃을 즐거워하라)", "전도서 11:1-6 (너는 네 손으로 할 일을 힘써)", "잠언 5:18-19 (네 샘에서 즐거워하라)", "룻기 3:3 (목욕하고 기름 바르고 옷 입고)", "아가 5:1 (먹고 마시라)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-20</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>전도서 9장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 전도서 9장입니다. 8장에서 왕의 명령과 때와 공의에 관해 이야기했다면, 9장은 더 날카롭게 나아갑니다. 모두에게 임하는 한 가지 일, 그것을 통과한 후 가장 따뜻하게 울리는 초대. 낭독하겠습니다.</p>
+<p>(본문 낭독 9:1~18, 약 3분)</p>
+<p><strong>(침묵 약 50초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기가 느껴지셨는지요.</p>
+<p><strong>P11 나경아</strong>: <em>miqreh</em>(미크레·같은 운명·같은 일)가 9:2-3에서 반복되는 게 먼저 들어왔어요. 의인도, 악인도, 정결한 자도, 부정한 자도, 제사 드리는 자도, 드리지 않는 자도 — 같은 운명이 임한다는 그 관찰이 차갑게 느껴졌어요. 코헬렛이 애써 나열하는 느낌이요.</p>
+<p><strong>P02 이진우</strong>: 저는 9:4-6과 9:7-10의 대조가 극적으로 느껴졌어요. 죽은 자는 아무것도 모르고 분깃도 없다는 차가운 진술에서 — 갑자기 "기쁨으로 먹고 마시라"는 따뜻한 명령으로 전환되는 거잖아요. 그 전환이 예상보다 빠르고 강했어요.</p>
+<p><strong>P01 한나래</strong>: "살아있는 개가 죽은 사자보다 낫다"(9:4). 이 문장이 머릿속에 남아요. 개가 당시 경멸받는 동물이고 사자가 왕의 상징인데 — 그걸 뒤집어서 살아있음을 긍정하는 가장 솔직한 언어라는 느낌이 들었어요.</p>
+<p><strong>P04 최현국</strong>: 9:7-10이 전도서 전체에서 가장 따뜻하고 적극적인 구절이라고 느꼈어요. "기쁨으로 먹어라", "즐거운 마음으로 마셔라", "흰 옷을 입어라", "머리에 기름을 발라라", "아내와 즐겁게 살아라", "힘을 다해 일해라" — 이렇게 많은 긍정 명령이 한꺼번에 쏟아지는 건 전도서 어디에도 없었던 것 같아요.</p>
+<p><strong>P05 김미영</strong>: 소품들이 눈에 들어왔어요. 음식, 포도주, 흰 옷, 기름, 아내. 냄새와 색감이 있는 것들이에요. 전도서가 갑자기 감각적으로 변하는 순간이었어요.</p>
+<p><strong>P07 오지혜</strong>: "하나님이 네가 하는 일들을 기뻐하심이라"(9:7b) — 이 한 문장이 가장 마음에 남았어요. 기쁨으로 먹고 마시라는 초대의 근거가 하나님이 기뻐하신다는 것이에요. 먹는 행위가 예배와 연결되는 순간처럼 느껴졌어요.</p>
+<p><strong>성령일 선교사</strong>: 느낌들을 그대로 두지요. 무대 안으로 들어가 보겠습니다.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장의 무대는 어떤 곳인지요. 배경막은 무엇이고 소품은 무엇인지 찾아봅시다.</p>
+<p><strong>P04 최현국</strong>: 배경막은 죽음이에요. 보이지 않지만 무대 전체를 덮고 있어요. 모든 사람에게 임하는 <em>miqreh</em>(같은 운명)가 그 배경막입니다. 그 앞에서 산 자의 무대가 펼쳐지는 구조예요.</p>
+<p><strong>P05 김미영</strong>: 소품 목록을 정리해 드릴게요. 음식(레헴·빵·식물), 포도주, 흰 옷(베가딤 레바님·하얀 의복), 기름(샤멘), 아내(이샤), 손이 얻는 일(아말). 모두 9:7-10에 집중돼 있어요. 감각적이고 일상적인 소품들이에요.</p>
+<p><strong>P02 이진우</strong>: 9:14-15에 작은 성읍이 무대로 등장해요. 큰 왕이 와서 성을 포위하는데, 그 안에 가난하고 지혜로운 사람이 있었어요. 이 사람이 지혜로 성을 구원했지만 아무도 기억하지 않아요. 무대가 갑자기 전쟁터로 바뀌는 느낌이에요.</p>
+<p><strong>P11 나경아</strong>: 9:2에 나오는 인물 목록이 소재로 중요해요. 의인과 악인, 선인과 악인, 정결한 자와 부정한 자, 제사 드리는 자와 드리지 않는 자 — 여섯 쌍의 대조가 펼쳐지는데, 이 모두에게 같은 <em>miqreh</em>가 임한다고 해요. 목록이 무대의 '관객'처럼 나열돼 있어요.</p>
+<p><strong>P01 한나래</strong>: 9:12에 물고기 그물과 새 덫이 소품으로 나와요. 사람이 재앙의 날에 걸리는 것이 그물에 걸린 물고기, 덫에 걸린 새와 같다고요. 죽음의 갑작스러움을 잡아내는 이미지 소품이에요.</p>
+<p><strong>P07 오지혜</strong>: 9:17의 소재는 소리예요. "지혜자의 조용한 말"과 "우매자들을 다스리는 자의 외침"이 대조돼요. 시각 소품이 아니라 청각 소품이 마지막에 나와요.</p>
+<p><strong>성령일 선교사</strong>: 죽음이라는 배경막 앞에서 음식·포도주·흰 옷·기름·아내·일이라는 소품들. 기록으로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>P02 이진우</strong>: 시작(9:1): "이 모든 것을 내 마음에 들이며 살폈더니 의인들과 지혜로운 자들과 그들의 행위들이 하나님의 손 안에 있느니라" — 코헬렛의 탐구 선언으로 시작해요. 끝(9:18): "지혜가 전쟁 무기보다 낫거니와 죄인 한 사람이 많은 선한 것을 무너뜨리느니라" — 지혜와 죄인이라는 긴장으로 닫혀요.</p>
+<p><strong>P01 한나래</strong>: 시작은 하나님의 손 안에 있다는 신뢰로 열리는데, 끝은 한 사람의 죄인이 많은 선한 것을 무너뜨린다는 현실로 닫혀요. 시작의 확신과 끝의 긴장이 대조돼요.</p>
+<p><strong>P11 나경아</strong>: <em>chelek</em>(헬레크·분깃)이 9:6에서는 "죽은 자들에게 다시는 분깃이 없음"으로, 9:9에서는 "네 헛된 날들의 분깃이니라"로 두 번 나와요. 죽은 자의 chelek 없음에서 → 산 자의 chelek 있음으로 이동하는 것이 이 장의 핵심 운동이에요.</p>
+<p><strong>성령일 선교사</strong>: chelek의 두 얼굴을 기록에 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>P04 최현국</strong>: 인물 목록이 많아요. 의인, 지혜자, 악인, 정결한 자, 부정한 자, 선인, 제사 드리는 자, 드리지 않는 자(9:2) — 이것이 첫 번째 인물군이에요. 그리고 빠른 자, 강한 자, 지혜자, 총명자, 지식 있는 자(9:11) — 능력자들의 목록이 두 번째예요. 마지막으로 가난하고 지혜로운 자(9:15-16).</p>
+<p><strong>P02 이진우</strong>: "살아있는 개"와 "죽은 사자"(9:4)가 가장 인상적인 대조 인물이에요. 동물로 사람의 상황을 말하는 비교 형식이에요.</p>
+<p><strong>P07 오지혜</strong>: 9:7에서 하나님이 직접 무대에 등장하지 않지만 "하나님이 기뻐하심이라"는 말로 존재를 드러내요. 배경에 계시지만 결정적 역할을 하시는 분이에요.</p>
+<p><strong>P11 나경아</strong>: 사상의 핵심어들을 정리할게요. <em>miqreh</em>(같은 운명·같은 일·우연한 일) — 9:2, 3에서 반복. <em>chelek</em>(분깃) — 9:6, 9에서 반복. <em>simcha</em>(기쁨) — 9:7, 9에서 반복. <em>amal</em>(수고·일) — 9:9, 10에서 반복. <em>chokhmah</em>(지혜) — 9:10, 13, 15, 16, 18에서 반복. 이 단어들이 이 장의 사상 지도예요.</p>
+<p><strong>P05 김미영</strong>: 9:3에서 "악인의 마음은 악으로 가득하다"는 사상이 나와요. 사람이 산 날 동안 미침(<em>holalot</em>·홀랄로트)이 그들 마음에 있다고 해요. 이것도 <em>miqreh</em>처럼 모두에게 임하는 조건의 일부인지 아닌지가 본문에서 불분명해요.</p>
+<p><strong>P01 한나래</strong>: 9:1의 "사랑인지 미움인지 알 수 없다"는 관찰이 흥미로워요. 의인의 행사가 하나님의 손 안에 있는데, 그 결과로 하나님의 사랑이 임하는지 미움이 임하는지 사람이 모른다는 거예요. 불투명성의 관찰이에요.</p>
+<p><strong>성령일 선교사</strong>: 알 수 없다는 불투명성과, 그럼에도 기쁨으로 살라는 초대 — 이 두 개가 공존하고 있군요. 기록으로 남겨 두겠습니다.</p>
+<p><strong>(침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>P04 최현국</strong>: 네 컷으로 나뉩니다.</p>
+<ul>
+<li><strong>컷 1 (9:1-6)</strong>: 모두에게 임하는 <em>miqreh</em> — 의인·악인·정결·부정 모두에게 같은 운명. 죽은 자는 아무것도 없음.</li>
+<li><strong>컷 2 (9:7-10)</strong>: 산 자의 분깃 선포 — 먹고 마시고 흰 옷 입고 기름 바르고 아내와 즐기고 힘을 다해 일하라는 적극적 초대.</li>
+<li><strong>컷 3 (9:11-12)</strong>: 때와 우연 — 빠른 자가 이기는 게 아니고, 강한 자가 이기는 게 아니며, 재앙이 홀연히 임함.</li>
+<li><strong>컷 4 (9:13-18)</strong>: 가난한 지혜자의 이야기 — 지혜가 용맹보다 낫지만 기억받지 못함. 지혜가 무기보다 낫지만 한 죄인이 무너뜨림.</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 1의 차가움에서 컷 2의 따뜻함으로의 전환이 가장 극적이에요. 죽음의 나열에서 삶의 초대로 화면이 완전히 바뀌어요.</p>
+<p><strong>P11 나경아</strong>: 컷 4(9:13-18)가 컷 2의 역설 같아요. 지혜가 가장 낫다고 했는데, 지혜자가 기억받지 못하고 한 죄인이 선한 것을 무너뜨린다 — 9장은 따뜻한 초대로 끝나지 않고 긴장으로 닫혀요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P11 나경아</strong>: 원어 카드를 정리할게요.</p>
+<ul>
+<li><em>miqreh</em>(מִקְרֶה) — 같은 운명·같은 일·우연한 일. 9:2, 3에 반복. 동일한 최후가 모두에게 임한다는 뜻의 단어. <em>qarah</em>(일어나다) 어근에서 온 명사.</li>
+<li><em>chelek</em>(חֵלֶק) — 분깃·몫·portion. 9:6과 9:9에 반복. 죽은 자의 chelek 없음과 산 자의 chelek 있음이 대조됨.</li>
+<li><em>pega</em>(פֶּגַע) — 우연·우발·충격. 9:11에 한 번 등장. 시기(<em>et</em>)와 함께 쓰여 통제 불가능성을 표현.</li>
+<li><em>et</em>(עֵת) — 때·시기. 9:11에서 시기와 우연이 모든 사람에게 임한다고 함.</li>
+<li><em>mikveh</em>(מִקְוֶה) — 소망. 9:4에서 "산 자에게는 소망이 있다"는 표현에 사용.</li>
+<li><em>sheol</em>(שְׁאוֹל) — 스올·죽은 자의 세계. 9:10에서 "스올에는 일도 없고 계획도 없고 지식도 없고 지혜도 없다".</li>
+</ul>
+<p><strong>P02 이진우</strong>: 발견이에요. 9:7-10이 전도서에서 가장 명령법이 집중된 구절이에요. "먹으라", "마시라", "입으라", "발라라", "살지어다", "즐겁게 하라", "힘을 다해 할지어다" — 일곱 개의 명령이 쏟아져요. 코헬렛이 이렇게 많은 명령을 한꺼번에 내린 적이 없어요.</p>
+<p><strong>P04 최현국</strong>: 9:11에서 빠른 자·강한 자·지혜자·총명자·지식 있는 자라는 다섯 명의 능력자 목록이 나와요. 그리고 그 어느 누구도 <em>et</em>와 <em>pega</em>(때와 우연)로부터 자유롭지 않다고 해요. 이 목록도 9:2의 의인·악인 목록처럼 "예외 없음"을 강조하는 목록 구조예요.</p>
+<p><strong>P05 김미영</strong>: 9:7b "이는 하나님이 네가 하는 일들을 기뻐하심이라" — 이 구절이 신학적으로 무거워요. 코헬렛이 윤리적 조건을 붙이지 않아요. "의로운 자라면" "선한 자라면" 같은 조건 없이 그냥 "네가 하는 일들"이라고 해요. 이게 어떤 의미인지 본문이 설명하지 않아요.</p>
+<p><strong>P01 한나래</strong>: 발견 — 길가메시 서사시 10판에 비슷한 구절이 있어요. 술 여인 시두리가 길가메시에게 하는 말: "먹고 마시고 기쁘게 하라, 잔치 옷을 입고..." 코헬렛 9:7-10과 유사한 구조예요. 배경 자료로 남겨 두되 해석하지 않겠습니다.</p>
+<p><strong>P07 오지혜</strong>: 9:15의 "그러나 그 가난한 사람을 기억하는 자가 없었다"는 관찰이 마음에 걸려요. 지혜가 이겼지만 기억이 없어요. 2:16에서도 "지혜자의 기억도 없어지리로다"고 했는데 — 기억 없음이라는 주제가 다시 나와요.</p>
+<p><strong>성령일 선교사</strong>: <em>miqreh</em>의 차가움과 chelek의 따뜻함이 같은 장 안에서 공존한다는 것을 기록으로 남겨 두겠습니다.</p>
+<p><strong>(침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>P04 최현국</strong>: 코헬렛이 관찰 결과를 가져옵니다. "의인과 지혜자와 그들의 행사가 하나님의 손 안에 있다." 그런데 — "사랑을 받을지 미움을 받을지 알 수 없다." 불투명의 선언이에요.</p>
+<p><strong>P11 나경아</strong>: 카메라가 이동합니다. 의인, 악인, 정결한 자, 부정한 자 — 모두에게 같은 <em>miqreh</em>가 임해요. 9:3 마지막 — "그 후에 죽은 자에게로." 차가운 결론이에요.</p>
+<p><strong>P01 한나래</strong>: 9:4 — 개 한 마리가 살아있어요. 죽은 사자보다 낫습니다. 살아있음의 긍정이 이 반전에서 시작돼요.</p>
+<p><strong>P02 이진우</strong>: 그리고 화면이 완전히 바뀝니다. 9:7 — "가서 기쁨으로 네 음식을 먹어라." 식탁이 보입니다. 포도주 잔이 있어요. 흰 옷을 입은 사람이 있고, 기름을 바르고 있고, 아내와 웃고 있어요. 전도서에서 가장 화사한 화면이에요.</p>
+<p><strong>P05 김미영</strong>: "힘을 다해 할지어다" — 일하는 손의 클로즈업이에요. 그런데 바로 이어서: 스올에는 일이 없다고 해요. 지금 이 손이 움직이는 것의 소중함이 역설로 드러나요.</p>
+<p><strong>P07 오지혜</strong>: 9:11 — 경주가 시작됩니다. 빠른 자가 달려요. 그런데 이기지 못해요. 강한 자가 싸워요. 그런데 이기지 못해요. 때와 우연이 모두에게 임하기 때문이에요.</p>
+<p><strong>P02 이진우</strong>: 9:13-15 — 조용한 지혜자가 있어요. 성이 포위됐는데, 그가 지혜로 성을 구합니다. 그러나 아무도 기억하지 않아요. 9:17-18 — 지혜자의 조용한 말이 외침보다 낫지만, 한 죄인이 많은 선한 것을 무너뜨려요. 전체 동영상은 죽음이라는 차가운 현실 → 산 자의 분깃이라는 따뜻한 초대 → 때와 우연이라는 통제 불가능성 → 기억 없는 지혜의 긴장으로 이어지는 복잡한 흐름이에요.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>P01 한나래</strong>: "죽은 사자보다 살아있는 개가 낫다"</p>
+<p><strong>P02 이진우</strong>: "모두에게 임하는 한 가지 운명, 그래도 오늘 먹고 마셔라"</p>
+<p><strong>P04 최현국</strong>: "전도서의 가장 적극적인 초대 — 기쁨으로 먹고 힘을 다해 일하라"</p>
+<p><strong>P05 김미영</strong>: "흰 옷, 기름, 포도주, 아내 — 산 자의 분깃 목록"</p>
+<p><strong>P07 오지혜</strong>: "하나님이 기뻐하시는 일상, 지금 네가 하는 일"</p>
+<p><strong>P11 나경아</strong>: "<em>Chelek</em> — 죽은 자의 없음에서 산 자의 있음으로"</p>
+<p><strong>성령일 선교사</strong>: 부제로 "죽음이라는 한 가지 운명을 통과한 후, 산 자의 분깃을 기쁨으로 누리라는 가장 적극적인 초대"를 남겨 두겠습니다.</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 9장의 무대로 들어가 봅시다. 죽음이 배경막이 되어 있고, 앞에는 음식과 포도주와 아내와 일이 있는 자리로요. 답을 구하지 말고 그 자리에서 아뢰어 봅시다.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P04 최현국</strong>: (조용히) 지금 하고 있는 일에 힘을 다하고 있는지 모르겠어요. 스올에는 일이 없다는데, 지금 이 일이 얼마나 소중한지 느끼지 못하고 있었던 것 같아요.</p>
+<p><strong>P07 오지혜</strong>: "하나님이 네가 하는 일들을 기뻐하신다"는 말이 — 지금 내가 하는 일에도 그렇게 말씀하시는 건지, 그 말을 듣고 싶었어요.</p>
+<p><em>— 잠시 각자의 내면에 머문다. 답을 구하지 않는다. —</em></p>
+
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장은 어디서 어디로 움직이는 것 같은지요.</p>
+<p><strong>P02 이진우</strong>: "모두에게 임하는 죽음"이라는 가장 날카로운 현실에서 → "바로 지금 산 자로서 기쁨으로 먹고 마시며 힘을 다해 일하라"는 가장 적극적인 초대로 움직여요. 헛됨의 한가운데에서 삶의 긍정이 가장 크게 울리는 이동이에요.</p>
+<p><strong>P11 나경아</strong>: <em>chelek</em>(분깃)의 운동으로 보면 — 2장에서 씨앗이 심어지고, 3장·5장에서 자랐고, 9장에서 가장 충만하게 열매 맺어요. "죽은 자에게는 chelek이 없다, 그러므로 산 자인 너의 chelek을 지금 누려라" — 이 운동이 전도서 분깃 주제의 정점이에요.</p>
+<p><strong>P01 한나래</strong>: 독자에게 묻는다면 — "나는 지금 산 자의 분깃을 기쁨으로 누리고 있는가." 죽음을 알기 때문에 더 선명하게 오늘을 사는 자리로 부르는 운동이에요.</p>
+<p><strong>P04 최현국</strong>: 9장이 전도서 3~11장의 "때·분깃·하나님의 선물" 국면의 한가운데 있고, 가장 따뜻하게 적극적인 초대를 내리는 자리예요. 여기서 12장의 하나님을 경외하라는 결론을 향해 가속이 붙는 느낌이에요.</p>
+<p><strong>성령일 선교사</strong>: chelek의 충만함을 9장의 선물로 가져가지요.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계 관찰된 사실 LOCKED 정리.</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-009</p>
+<p>book: 전도서</p>
+<p>chapter: 9</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>전도서 9장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>배경막: 죽음(<em>miqreh</em>·같은 운명) — 무대 전체를 덮는 보이지 않는 배경.</li>
+<li>소품 목록(9:7-10) — 음식(레헴), 포도주, 흰 옷(베가딤 레바님), 기름(샤멘), 아내(이샤), 손이 얻는 일(<em>amal</em>).</li>
+<li>전쟁 무대(9:14-15): 큰 왕이 포위한 성읍, 가난하고 지혜로운 자.</li>
+<li>청각 소품(9:17): 지혜자의 조용한 말 vs 우매자를 다스리는 자의 외침.</li>
+<li>이미지 소품(9:12): 그물에 걸린 물고기, 덫에 걸린 새 — 재앙의 갑작스러움을 표현.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li><em>miqreh</em>의 차가운 반복(9:2-3) 이후, 9:7에서 따뜻한 명령으로 전환되는 극적 대조.</li>
+<li>9:7-10이 전도서 전체에서 명령법이 가장 집중된 구절 — 일곱 개의 긍정 명령.</li>
+<li>길가메시 서사시 10판의 시두리 조언과 병행 구조 관찰(배경 자료, 해석 보류).</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(9:1): 의인과 지혜자의 행사가 하나님의 손 안에 있다 — 신뢰의 선언.</li>
+<li>끝(9:18): 죄인 한 사람이 많은 선한 것을 무너뜨린다 — 현실의 긴장으로 닫힘.</li>
+<li><em>chelek</em>의 이동: 9:6 죽은 자의 chelek 없음 → 9:9 산 자의 chelek 있음.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>첫 번째 인물군(9:2): 의인·악인·선인·정결한 자·부정한 자·제사 드리는 자·드리지 않는 자 — 모두에게 같은 <em>miqreh</em>.</li>
+<li>두 번째 인물군(9:11): 빠른 자·강한 자·지혜자·총명자·지식 있는 자 — 모두 <em>et</em>와 <em>pega</em> 앞에 동일.</li>
+<li>세 번째 인물(9:15): 가난하고 지혜로운 자 — 지혜로 성을 구했으나 기억받지 못함.</li>
+<li>하나님: 배경에 계시되 9:7에서 기뻐하심으로 존재 드러내심.</li>
+<li><em>simcha</em>(기쁨): 9:7, 9에서 하나님의 초대 근거와 산 자의 분깃으로 사용.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (9:1-6): <em>miqreh</em> 선언 — 모두에게 같은 운명. 죽은 자에게는 chelek 없음.</li>
+<li>컷 2 (9:7-10): 산 자의 분깃 — 일곱 개의 명령. "하나님이 기뻐하심이라."</li>
+<li>컷 3 (9:11-12): <em>et</em>와 <em>pega</em> — 능력자도 때와 우연 앞에 동일. 재앙이 홀연히.</li>
+<li>컷 4 (9:13-18): 가난한 지혜자 — 기억 없음. 지혜가 낫지만 죄인이 무너뜨림.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (1) 원어 카드</h2>
+<ul>
+<li><em>miqreh</em>(מִקְרֶה) — 같은 운명·같은 일. <em>qarah</em>(일어나다) 어근. 9:2, 3 반복.</li>
+<li><em>chelek</em>(חֵלֶק) — 분깃·몫. 9:6(없음)과 9:9(있음)의 대조.</li>
+<li><em>pega</em>(פֶּגַע) — 우연·우발. 9:11에서 <em>et</em>와 함께 통제 불가능성 표현.</li>
+<li><em>mikveh</em>(מִקְוֶה) — 소망. 9:4 "산 자에게는 소망이 있다"에 사용.</li>
+<li><em>sheol</em>(שְׁאוֹל) — 죽은 자의 세계. 9:10 "일도 없고 지식도 없고 지혜도 없다".</li>
+<li><em>holalot</em>(הוֹלֵלוֹת) — 미침·어리석음. 9:3에서 산 자들 마음의 상태로 기술.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (2) 문학 구조</h2>
+<ul>
+<li>목록 구조 반복: 9:2(여섯 쌍의 인물), 9:11(다섯 능력자), 9:15-16(지혜자 일화) — "예외 없음"을 강조하는 목록 패턴.</li>
+<li>명령법 집중(9:7-10): 전도서 전체에서 가장 많은 긍정 명령이 한 단락에 집중됨.</li>
+<li><em>chelek</em> 반복 구조: 없음(9:6) → 있음(9:9) — 대조적 반복.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (3) ANE 배경 (해석 아님)</h2>
+<ul>
+<li>길가메시 서사시 10판 — 시두리의 충고와 9:7-10의 병행 구조(배경 자료).</li>
+<li>고대 근동의 흰 옷과 기름 부음 — 잔치와 기쁨의 관습적 표현(배경 자료).</li>
+<li>히브리어 <em>pega</em>는 70인역에서 다양하게 번역됨(kairos/periptosis).</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (4) 교차 참조 노드</h2>
+<ul>
+<li>ECC 9 ↔ ECC 2:24 (먹고 마시는 것이 하나님의 손에서 — 씨앗)</li>
+<li>ECC 9 ↔ ECC 3:1 (범사에 기한과 때 — <em>et</em> 연결)</li>
+<li>ECC 9 ↔ ECC 5:18-19 (분깃을 즐거워하라)</li>
+<li>ECC 9 ↔ ECC 11:1-6 (너는 네 손으로 할 일을 힘써)</li>
+<li>ECC 9 ↔ 룻기 3:3 (목욕하고 기름 바르고 옷 입고)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>코헬렛이 관찰 결과를 가져온다. 의인과 지혜자의 행사가 하나님의 손 안에 있다 — 그러나 사랑인지 미움인지 알 수 없다. 의인·악인 모두 같은 <em>miqreh</em>를 맞는다. 죽은 자에게는 아무것도 없다. 살아있는 개가 죽은 사자보다 낫다. 그리고 화면이 바뀐다 — 기쁨으로 먹어라, 즐거운 마음으로 마셔라, 흰 옷을 입어라, 기름을 발라라, 아내와 즐겁게 살아라, 힘을 다해 일해라. 하나님이 기뻐하신다. 스올에는 일이 없다. 빠른 자도 강한 자도 때와 우연 앞에서 동일하다. 그물에 걸린 물고기처럼 재앙이 홀연히 온다. 가난한 지혜자가 성을 구했으나 기억받지 못한다. 지혜자의 조용한 말이 외침보다 낫지만 한 죄인이 많은 선한 것을 무너뜨린다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"죽음이라는 같은 운명, 그래도 산 자의 분깃을 기쁨으로"</strong></li>
+<li>초벌 부제: "모두에게 임하는 <em>miqreh</em>를 통과한 후, 먹고 마시고 힘을 다해 일하라는 가장 적극적인 초대"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (miqreh, chelek, pega, et, mikveh, sheol, holalot 기록)</li>
+<li>[x] 역사·문화·지리·문학 사실 최소 1개 (길가메시 서사시 10판·ANE 잔치 관습)</li>
+<li>[x] 미해결 질문 1개 이상 (6건 s8에 기록)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 4개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>9:7-10의 "기쁨으로 먹고 마시라"가 쾌락주의 허용으로 드리프트될 위험 — "하나님이 기뻐하심이라"는 원천과 맥락 관찰만 기록, 해석 보류.</li>
+<li>9:7b "하나님이 기뻐하심이라"의 조건 없음이 윤리 면죄부로 번질 위험 — 본문 표현 그대로 보존.</li>
+<li>9:11의 <em>pega</em>(우연)가 운명론으로 드리프트될 위험 — 관찰 범주로만 남김.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 관찰한 것을 주께 아뢰기.</strong> 답을 구하지 않고 머문다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-009</p>
+<p>book: 전도서</p>
+<p>chapter: 9</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>전도서 9장 — 미해결 질문</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 9:1에서 의인의 행사가 하나님의 손 안에 있다면 왜 사랑과 미움을 알 수 없는가?</h2>
+<ul><li>하나님의 손 안에 있다는 신뢰와, 그 결과를 알 수 없다는 불투명성이 공존한다. 본문은 이 긴장을 해소하지 않는다. 보존.</li></ul>
+
+<h2>Q2. "살아있는 개가 죽은 사자보다 낫다"(9:4)는 무엇을 긍정하는 것인가?</h2>
+<ul><li>개는 당시 경멸의 동물, 사자는 왕의 상징. 이 반전이 살아있음에 대한 어떤 긍정인지 본문이 구체화하지 않는다. 보존.</li></ul>
+
+<h2>Q3. "하나님이 네가 하는 일들을 기뻐하심이라"(9:7b)는 관찰인가 신앙 선언인가?</h2>
+<ul><li>조건 없이 주어진 이 진술이 코헬렛의 신앙 고백인지 일반적 관찰인지 본문이 구분하지 않는다. 보존.</li></ul>
+
+<h2>Q4. "힘을 다하여 할지어다"(9:10)와 "스올에는 일이 없다"(9:10b)를 어떻게 함께 읽는가?</h2>
+<ul><li>스올의 일 없음이 현재 일의 동기인지 제한인지 본문이 결정하지 않는다. 두 진술이 나란히 있을 뿐이다. 보존.</li></ul>
+
+<h2>Q5. 시기(<em>et</em>)와 우연(<em>pega</em>)이 모든 사람에게 임한다(9:11-12)는 것과 하나님의 주권은 어떤 관계인가?</h2>
+<ul><li>9:1에서 하나님의 손 안이라 했는데, 9:11에서 때와 우연이 모두를 지배한다고 한다. 이 두 진술의 관계를 본문이 설명하지 않는다. 보존.</li></ul>
+
+<h2>Q6. 가난한 지혜자가 기억받지 못한다(9:15)는 사실을 코헬렛은 어떻게 처리하는가?</h2>
+<ul><li>기억 없음을 관찰하되 코헬렛이 이에 대해 어떤 판단을 내리는지 본문에서 특정 불가. 슬픔인지 고발인지 수용인지 분명하지 않다. 보존.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">죽음이라는 같은 운명을 통과한 후, 산 자의 분깃을 기쁨으로 누리라는 가장 적극적인 초대.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: ECC-009</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-20</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 편의 골격</h3>
+<p><strong>한 문장</strong>: 전도서 9장은 의인과 악인 모두에게 임하는 죽음이라는 같은 운명(<em>miqreh</em>)을 가장 날카롭게 직면시킨 후, 산 자의 분깃(<em>chelek</em>)을 기쁨으로 먹고 마시며 힘을 다해 일하고 아내와 즐겁게 살라는 가장 따뜻하고 적극적인 초대로 전환하는 장이다.</p>
+<p><strong>한 문단</strong>: 코헬렛이 관찰 결과를 펼친다. 의인과 지혜자의 행사가 하나님의 손 안에 있다 — 그러나 그 결과가 사랑인지 미움인지 알 수 없다. 의인도, 악인도, 정결한 자도, 부정한 자도 — 같은 <em>miqreh</em>를 맞는다. 악인의 마음이 악으로 가득하다. 죽은 자에게는 사랑도 미움도 시기도 없고 chelek도 없다. 그런데 — 살아있는 개가 죽은 사자보다 낫다. 그리고 화면이 완전히 바뀐다. 가서 기쁨으로 먹어라. 즐거운 마음으로 마셔라. 하나님이 기뻐하시기 때문이다. 흰 옷을 입고 기름을 발라라. 아내와 즐겁게 살아라. 네 손이 일을 얻는 대로 힘을 다해 하라 — 스올에는 일이 없다. 빠른 자도 강한 자도 때와 우연 앞에서 동일하다. 가난한 지혜자가 성을 구했으나 기억받지 못한다. 지혜가 낫지만 한 죄인이 선한 것을 무너뜨린다. 9장은 전도서에서 가장 차갑고 가장 따뜻한 두 음조가 공존하는 장이며, chelek 주제의 정점이다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품</td><td>죽음이 배경막. 음식·포도주·흰 옷·기름·아내·일이 산 자의 소품 목록.</td></tr>
+<tr><td>2 첫 느낌</td><td>miqreh의 차가운 반복 → 9:7의 따뜻한 전환. 가장 극적인 분위기 전환.</td></tr>
+<tr><td>3 시작과 끝</td><td>하나님의 손 안(9:1) → 죄인이 무너뜨림(9:18). 신뢰에서 긴장으로.</td></tr>
+<tr><td>4 등장인물·사상</td><td>세 그룹의 인물 목록. chelek의 없음(9:6) → 있음(9:9). simcha와 amal의 반복.</td></tr>
+<tr><td>5 장면 컷</td><td>컷1 miqreh / 컷2 산 자의 분깃 / 컷3 et와 pega / 컷4 기억 없는 지혜자.</td></tr>
+<tr><td>6 의문·발견</td><td>일곱 명령 집중(9:7-10). 길가메시 서사시 병행. 목록 구조 반복.</td></tr>
+<tr><td>7 동영상</td><td>죽음의 차가운 나열 → 산 자의 화사한 초대 → 통제 불가 → 기억 없는 지혜의 긴장.</td></tr>
+<tr><td>8 초벌 제목</td><td>"죽음이라는 같은 운명, 그래도 산 자의 분깃을 기쁨으로"</td></tr>
+<tr><td>9 기도·내면</td><td>"지금 하는 일에 힘을 다하고 있는가"라는 자리에 머묾.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — <em>miqreh</em>의 역설</strong>: 같은 운명이 모두에게 임한다는 관찰이 삶의 포기가 아니라 오히려 지금 사는 것의 소중함을 밀어낸다. 차가운 현실이 따뜻한 초대의 근거가 된다.</p>
+<p>2. <strong>결 2 — <em>chelek</em>의 전환</strong>: 9:6에서 죽은 자에게 chelek이 없다고 했고, 9:9에서 산 자에게 chelek이 있다고 한다. 없음과 있음의 대조가 초대의 논리다.</p>
+<p>3. <strong>결 3 — 지혜의 긴장</strong>: 9:7-10의 따뜻한 초대 후, 9:11-18은 지혜조차 통제 불가능한 세계와 기억 없음과 죄인의 파괴력 앞에 놓인다. 9장은 따뜻하게 끝나지 않는다. 긴장 안에서 초대를 붙드는 것이 이 장의 요청이다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>전도서 안 — ECC 2:24 (먹고 마시는 것이 하나님의 손에서 — chelek의 씨앗). ECC 3:1 (때의 주제). ECC 5:18-19 (분깃을 즐거워하라). ECC 11:1-6 (힘써 일하라 — chelek의 열매).</li>
+<li>다른 권 — 룻기 3:3 (목욕하고 기름 바르고 옷 입고). 아가 5:1 (먹고 마시라). 시편 128편 (수고의 열매를 누리라).</li>
+</ul>
+
+<h3>E · 한 사람의 의식 흐름</h3>
+<ul>
+<li><strong>시작</strong>: <em>miqreh</em>의 차가운 나열에 압도된다.</li>
+<li><strong>멈춤 1</strong>: "살아있는 개가 죽은 사자보다 낫다"(9:4)에서 삶의 긍정이 싹튼다.</li>
+<li><strong>멈춤 2</strong>: "기쁨으로 먹고 마시라 — 하나님이 기뻐하심이라"(9:7)에서 초대를 받는다.</li>
+<li><strong>멈춤 3</strong>: "힘을 다해 일하라 — 스올에는 일이 없다"(9:10)에서 지금 이 순간이 달리 보인다.</li>
+<li><strong>끝</strong>: 통제 불가능성과 기억 없음의 긴장 안에서 초대를 붙드는 눈이 열린다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] <em>miqreh</em>(같은 운명)가 모두에게 임한다는 관찰이 기록됨</li>
+<li>[x] <em>chelek</em>(분깃)의 없음과 있음의 대조가 기록됨</li>
+<li>[x] 일곱 개의 긍정 명령(9:7-10)이 기록됨</li>
+<li>[x] "하나님이 기뻐하심이라"는 초대의 근거가 기록됨</li>
+<li>[x] <em>et</em>와 <em>pega</em>(때와 우연)의 통제 불가능성이 기록됨</li>
+<li>[x] 가난한 지혜자의 기억 없음이 기록됨</li>
+</ul>
+
+<h3>G · 구속사 좌표 — ECC 흐름 위 이 장의 위치</h3>
+<p>전도서 흐름의 "때·분깃·하나님의 선물" 국면(3~11장) 안에서 9장은 핵심적 위치다. 헛됨을 통과해 온 여정이 이 장에서 가장 강렬한 삶의 긍정으로 폭발한다. 2장에서 씨앗으로 심어진 <em>chelek</em>이 9장에서 가장 충만하게 열매 맺는다. 모두에게 임하는 죽음이라는 가장 날카로운 현실을 직면시킨 후, 산 자의 분깃을 가장 따뜻하고 적극적으로 초대하는 장이 9장이다. 12:13의 하나님 경외 결론을 향해 이 장에서 가속이 붙는다.</p>
+
+<h3>H · 운동 벡터 — ECC spine의 이 장 국면</h3>
+<p>9장은 <strong>죽음이라는 한 가지 운명의 정직한 직면</strong>에서 <strong>바로 지금 산 자로서 기쁨으로 먹고 마시며 힘을 다해 일하라는 가장 적극적인 초대</strong>로 미는 국면이다. 헛됨을 외면하지 않고 통과한 후 생기는 가장 강렬한 삶의 긍정이다.</p>
+
+<h3>I · 수면 아래 — 이 장에서 비치는 하나님의 의중과 심정</h3>
+<p>9장 수면 아래에서 비치는 것: 죽음의 현실을 외면하게 하지 않으시되, 바로 그 현실이 오늘의 삶을 기쁨으로 누리도록 밀어내시는 하나님의 의중. "네가 하는 일들을 기뻐하심이라"(9:7)는 하나님의 심정 — 조건 없이 오늘 먹고 마시는 일상을 기뻐하시는 너그러우심. 가장 적극적인 초대의 배경에는 하나님이 먼저 기뻐하신다는 선행이 있다.</p>
+
+<h3>J · 실존적 부름 — ECC 향방이 독자 안에서 점화하는 불씨</h3>
+<p>"나는 지금 산 자의 분깃을 기쁨으로 누리고 있는가 — 힘을 다하여 일하며 사랑하며 먹고 마시는가." 9장이 독자 안에 놓는 불씨다. 죽음을 알기 때문에 더 선명하게 오늘을 살도록 부르는 역설적 초대가 이 눈을 연다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>chelek(분깃)</em> — 가장 충만히 열매 맺은 분깃을 들고 10장으로.</p>
+<p><strong>다음 장으로 미는 운동</strong>: 산 자의 분깃이라는 확신 위에서 지혜와 우매함에 관한 관찰이 계속된다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/ECC/8/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">전도서 8장</div>
+        <div class="nav-preview">왕의 명령과 때, 공의와 악인의 문제.</div>
+      </a>
+      <a href="/magazine/ECC/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">전도서 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/ECC/10/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">전도서 10장</div>
+        <div class="nav-preview">파리 한 마리가 기름을 썩게 하듯, 지혜와 우매의 작은 차이.</div>
+      </a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last:ecc9', JSON.stringify({
+      href: '/magazine/ECC/9/',
+      title: '전도서 9장',
+      excerpt: '모두에게 임하는 죽음이라는 같은 운명 앞에서 산 자의 분깃을 기쁨으로 누리라는 가장 적극적인 초대.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2026-06-20</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

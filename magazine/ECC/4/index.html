@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>전도서 4장 — Observatory | 네다바웨이</title>
+<meta name="description" content="전도서 4장을 9단계로 같이 관찰합니다. 학대·시기·고독의 헛됨을 통과하며, 두 사람이 함께함이 한 사람보다 낫다는 관찰.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/ECC/4/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s; user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·정보</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/ECC/">전도서</a> · 4장</div>
+      <h1>전도서 4장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">ECC-004 · 시가서 · 히브리어</div>
+      <p class="essence">학대받는 자의 눈물, 시기 받는 수고, 홀로 있는 자의 공허—그 한가운데서 두 사람이 함께함이 한 사람보다 낫다는 관찰.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 4장의 무대: 학대받는 자들의 눈물, 시기 어린 노동 현장, 홀로 수고하는 자의 텅 빈 집, 그리고 세 겹 줄이 쉽게 끊어지지 않는 공동체의 따뜻함.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-004</p>
+<p>book: 전도서</p>
+<p>book_en: Ecclesiastes</p>
+<p>chapter: 4</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 지혜문학(담화)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 16</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [hevel, amal, kinat, re'ut ruach, anawim, dima, nacham, shenayim, chelek, chokhmah, kisat yadayim, besaro]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["4:4 '시기'(kinat) — 70인역 phthonos 사용", "4:8 '동무도 자식도' — 원문 구조 히브리어 특유의 간결체", "4:13 '늙고 둔한 왕'의 '둔함'(kesil) — 70인역 어리석은 자 표현 방식 차이 있음"]</p>
+<p>ane_refs: ["고대 근동 지혜 문학의 고독 탄식과 4:8 비교(배경 자료)", "이집트 지혜서 '두 사람의 연대' 주제와 4:9-12 유사성 관찰", "고대 근동의 정치권력 교체 주제와 4:13-16 왕 교체 내러티브 비교"]</p>
+<p>rabbinic_refs: ["Midrash Rabbah Qohelet 4:1 — 학대 탄식에 대한 랍비 독해(참고)", "b.Sanhedrin 91b — 가난한 지혜자 주제 논의"]</p>
+<p>literary_devices: [lament, contrast, numerical_saying, royal_anecdote, first_person_observation]</p>
+<p>repeated_words: ["hevel(헛됨)", "amal(수고)", "echad(하나·혼자)", "shenayim(둘·두 사람)", "tov(좋다·낫다)"]</p>
+<p>cross_refs: ["전도서 3:16 (재판 자리의 불의 — 4:1 학대와 연속)", "전도서 5:8 (가난한 자 압박 — 4:1과 주제 연속)", "잠언 17:17 (형제는 위급 때를 위해 나심)", "전도서 9:14-15 (가난한 지혜자와 4:13 비교)", "창 2:18 (혼자 있는 것이 좋지 않다 — 4:9-12 배경)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-20</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>전도서 4장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 전도서 4장입니다. 3장에서 "범사에 기한이 있다"는 선언과 하나님의 때를 통과했는데, 이번 장에서 코헬렛은 시선을 아래로 내립니다. 해 아래 학대받는 자들, 시기 받는 수고, 홀로 있는 자의 공허함으로요. 낭독하겠습니다.</p>
+<p>(본문 낭독 4:1~16, 약 2분 30초)</p>
+<p><strong>(침묵 약 45초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기가 느껴지셨는지요?</p>
+<p><strong>P01 한나래</strong>: 1절부터 무겁고 답답했어요. "위로하는 자가 없음이로다"가 두 번 반복되는데, 그 반복이 묵직하게 쌓였어요. 학대받는 자들의 눈물 위에 아무도 없는 느낌이요.</p>
+<p><strong>P07 오지혜</strong>: 소품들이 2장과 달리 훨씬 덜해요. 2장의 포도원·집·정원이 아니라 — 4장은 눈물, 시기, 빈손, 홀로 있는 자의 방 같은 것들이에요. 소품이 줄어들면서 오히려 사람이 보여요.</p>
+<p><strong>P04 최현국</strong>: 분위기가 계속 전환돼요. 학대 탄식(1-3절) → 수고의 동기 비판(4-6절) → 고독 탄식(7-8절) → 연대 찬사(9-12절) → 정치 이야기(13-16절). 장면이 자주 바뀌는 느낌이에요.</p>
+<p><strong>P05 김미영</strong>: 9절 "두 사람이 한 사람보다 나음"이 가장 인상적이었어요. 그 앞에서 계속 헛됨이 나오다가, 갑자기 "낫다"는 말이 나와서 눈이 멈췄어요.</p>
+<p><strong>P02 이진우</strong>: 구조적으로는 헛됨 선언(4절, 8절, 16절)이 세 번 반복되는데, 9-12절의 "두 사람" 단락이 이 헛됨 사이에 끼어 있어요. 헛됨 틈새에 함께함의 가치가 삽입된 구조예요.</p>
+<p><strong>P11 나경아</strong>: 1절의 <em>anawim</em>(아나윔·억눌린 자들·가난한 자들)은 시편에서 자주 등장하는 말인데, 전도서에서는 드물어요. 시편의 하소연 언어가 여기서 울려요. <em>dima</em>(눈물)도 마찬가지예요 — 학대받는 자들의 <em>dim'ot</em>(눈물들, 복수형)이 흘러요.</p>
+<p><strong>성령일 선교사</strong>: 느낌들을 그대로 두지요. 무대로 들어가 보겠습니다.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장의 무대는 어떤 곳인지요. 어디에 있는 것 같은지요.</p>
+<p><strong>P04 최현국</strong>: 네 개의 다른 무대가 있어요. 첫째는 압제 받는 자들이 있는 곳 — 재판소인지, 노동 현장인지, 사회 전반인지 본문은 특정하지 않아요. 둘째는 일하는 사람의 작업 공간(4-6절). 셋째는 홀로 있는 자의 집(7-8절). 넷째는 두 사람이 함께 눕는 따뜻한 방(9-12절). 다섯째는 왕권 교체의 정치 무대(13-16절).</p>
+<p><strong>P05 김미영</strong>: 소품들이 감각적이에요. 눈물(1절), 손(5절, 6절), 몸의 온기(11절), 세 겹 줄(12절). 추상적 주제를 몸의 감각으로 표현해요.</p>
+<p><strong>P02 이진우</strong>: 6절 "한 손에 가득하고 평온한 것이 두 손에 가득하고 수고하며 바람을 잡는 것보다 낫다"는 대조가 있어요. 두 손 vs. 한 손, 수고 vs. 평온이라는 이항 대립이에요.</p>
+<p><strong>P11 나경아</strong>: 5절 <em>kisat yadayim</em>(키삿 야다임)은 직역하면 "손을 접다/주먹을 쥐다"예요. 게으름의 히브리어 관용 표현인데, "자기 살을 먹는다"(<em>akhal et besaro</em>)는 표현과 연결돼서 게으름이 자기 파괴로 이어진다는 강한 이미지를 만들어요.</p>
+<p><strong>P07 오지혜</strong>: 학대 장면의 소재는 — 폭력·권력·눈물·위로 없음·죽은 자·아직 안 태어난 자. 생명의 전 영역을 훑어요. 살아 있는 자, 이미 죽은 자, 아직 태어나지 않은 자까지요.</p>
+<p><strong>P01 한나래</strong>: "위로하는 자가 없음이로다"가 1절에도 나오고 1절 안에서 두 번 나와요. 반복이 탄식의 무게를 더해요. 단순한 반복이 아니라 상황의 절망을 강조하는 기법인 것 같아요.</p>
+<p><strong>성령일 선교사</strong>: 무대와 소품들을 기록으로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>P02 이진우</strong>: 시작(1절): "내가 다시 해 아래서 행하는 모든 학대를 살펴보았도다" — 코헬렛의 시선이 사회 현실로 향하는 선언. 끝(16절): "그에게 오는 후에 오는 자들도 그를 기뻐하지 아니하리니 이것도 헛되어 바람을 잡는 것이로다" — 젊은 왕조차도 시간이 지나면 잊히고, 이것도 헛됨.</p>
+<p><strong>P01 한나래</strong>: 시작은 학대받는 자들의 눈물, 끝은 왕권의 덧없음이에요. 사회 밑바닥의 고통에서 권력 꼭대기의 허무까지 훑어가는 장이에요.</p>
+<p><strong>P11 나경아</strong>: 히브리어로 보면, 1절의 <em>amal</em>(수고)과 16절의 <em>hevel</em>(헛됨)이 이 장을 괄호처럼 감싸고 있어요. 수고와 헛됨이라는 두 핵심 단어가 시작과 끝에 놓여요.</p>
+<p><strong>P04 최현국</strong>: 중간에 9-12절 "두 사람" 단락이 독립적인 섬처럼 있어요. 이 장 전체가 헛됨 위주로 흘러가는데, 9-12절만 유일하게 "낫다"는 긍정 관찰을 담아요.</p>
+<p><strong>성령일 선교사</strong>: 그 섬을 기록으로 남겨 두겠습니다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>P04 최현국</strong>: 등장인물이 여럿이에요. 학대받는 자들(anawim), 압제자들, 어리석은 자(5절), 수고하는 자(4절, 8절), 홀로 있는 자(8절), 두 사람(9-12절), 가난하고 지혜로운 젊은이(13절), 늙고 둔한 왕(13절), 후에 오는 젊은이(15-16절).</p>
+<p><strong>P02 이진우</strong>: 사상으로는 두 쌍의 대조가 보여요. 첫째: 학대받는 자 vs. 압제자 / 죽은 자가 낫다 vs. 살아 있는 자. 둘째: 혼자 vs. 둘이 / 어리석은 왕 vs. 지혜로운 젊은이. 이 장 전체가 대조로 구성돼요.</p>
+<p><strong>P05 김미영</strong>: "넘어지면 일으킬 동무"(10절)가 구체적이에요. 넘어짐이라는 소품, 일으킴이라는 행위, 그것을 해줄 동무라는 인물. 추상이 아니라 아주 구체적인 장면이에요.</p>
+<p><strong>P11 나경아</strong>: 8절 "내가 누구를 위하여 수고하며"에서 히브리어 <em>mi</em>(누구)가 물음의 중심이에요. 수고의 목적과 방향을 묻는 질문인데, 본문은 답하지 않아요. 홀로 있는 자가 스스로 묻는 질문으로만 남겨요.</p>
+<p><strong>P07 오지혜</strong>: 사상의 핵심이라면 — 수고의 동기 문제(4절, 8절)와 연대의 가치(9-12절) 두 가지가 교차해요. 왜 수고하는가, 그리고 누구와 함께하는가.</p>
+<p><strong>P01 한나래</strong>: 2-3절이 가장 날카로워요. "이미 죽은 자가 아직 살아 있는 자보다 복이 있으며, 태어나지 아니하여 해 아래서 행하는 악한 일을 보지 못한 자가 그들보다 더욱 낫다"는 말은 — 학대의 현실이 얼마나 극단적인지를 보여줘요. 코헬렛은 이것을 외면하지 않아요.</p>
+<p><strong>성령일 선교사</strong>: 2-3절의 무게를 그대로 두지요. 해석하지 말고 관찰로만요.</p>
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>P04 최현국</strong>: 네 컷으로 나뉩니다.</p>
+<ul>
+<li><strong>컷 1 (1-3절)</strong>: 학대 탄식 — 위로하는 자 없는 눈물. 죽은 자, 태어나지 않은 자가 더 낫다는 역설적 탄식.</li>
+<li><strong>컷 2 (4-8절)</strong>: 수고의 헛됨 — 시기로 하는 수고(4절), 게으름의 자기 파괴(5절), 한 손의 평온이 나음(6절), 홀로 있는 자의 끝없는 수고(7-8절).</li>
+<li><strong>컷 3 (9-12절)</strong>: 두 사람의 가치 — 일으킴·온기·방어. 세 겹 줄.</li>
+<li><strong>컷 4 (13-16절)</strong>: 왕권의 헛됨 — 가난한 지혜자가 왕보다 낫지만, 그도 결국 잊힘.</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 1과 2가 헛됨 계열, 컷 3이 긍정 관찰, 컷 4가 다시 헛됨으로 닫히는 구조예요. A-B-A' 형태의 조각 배열이에요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P11 나경아</strong>: 원어 카드 정리해 드리겠습니다.</p>
+<ul>
+<li><em>anawim</em>(עֲנָוִים) — 억눌린 자들·가난한 자들. 시편의 탄식 언어와 연결.</li>
+<li><em>dima</em>(דִּמְעָה) — 눈물. 1절에서 복수형 <em>dim'ot</em>으로 학대받는 자들의 눈물들.</li>
+<li><em>nacham</em>(נָחַם) — 위로하다. 1절에서 위로자 없음(<em>ein lahem menahem</em>)으로 부재가 강조됨.</li>
+<li><em>kinat</em>(קִנְאַת) — 시기·질투·경쟁심. 4절의 "모든 수고와 재주 있는 일은 이웃에게 시기를 받음"의 핵심어.</li>
+<li><em>re'ut ruach</em>(רְעוּת רוּחַ) — 바람 잡음·헛된 추구. 4장에서 4절, 6절에 등장.</li>
+<li><em>kisat yadayim</em>(כִּסֻּת יָדַיִם) — 손 게으름·주먹 쥠. 5절의 게으른 자 묘사.</li>
+<li><em>shenayim</em>(שְׁנַיִם) — 둘. 9-12절에서 "두 사람이 함께함"의 핵심어.</li>
+<li><em>chokhmah</em>(חָכְמָה) — 지혜. 13절의 "지혜로운 가난한 젊은이"의 지혜.</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 발견이에요. 4절의 "시기"(<em>kinat</em>)가 수고의 동기로 제시돼요. 수고의 내용이 아니라 수고의 동기가 헛됨의 원인이라고 하는 것은 드문 관찰이에요. 무엇을 하는가가 아니라 왜 하는가를 묻는 것이에요.</p>
+<p><strong>P05 김미영</strong>: 발견이요. 11절 "두 사람이 함께 누우면 따뜻하거니와 홀로이면 어떻게 따뜻할 수 있겠는가"가 생존 차원의 이야기예요. 온기가 생존의 문제예요. 낭만적 연대가 아니라 추위에 맞서는 실제적 연대예요.</p>
+<p><strong>P04 최현국</strong>: 문학 구조로 보면 — 4절, 6절, 8절, 16절에 각각 "헛됨"이 반복되는데, 9-12절은 헛됨이 없어요. 이 단락이 전체 장에서 헛됨 선언이 없는 유일한 구역이에요. 구조적으로 긍정 섬이에요.</p>
+<p><strong>P07 오지혜</strong>: ANE 배경으로 — 고대 근동 우정 계약과 12절 "세 겹 줄" 이미지가 연결될 수 있어요. 고대의 연대 관계는 계약과 줄(cord)로 상징되었어요. 단, 본문이 이것을 명시하지는 않아요.</p>
+<p><strong>P01 한나래</strong>: 의문이에요. 13-16절의 이야기가 역사적 특정 인물을 가리키는 건가요? 요셉, 다윗, 솔로몬 등 여러 가능성이 있는 것 같은데 본문이 이름을 밝히지 않아요. 보존하겠습니다.</p>
+<p><strong>P11 나경아</strong>: 교차 참조로 — 3장 16절의 "재판 자리에 악이 있다"와 4장 1절의 "학대"가 연속선 위에 있어요. 코헬렛의 시선이 3장의 불의한 재판에서 4장의 학대받는 자들로 이어지는 것으로 관찰돼요.</p>
+<p><strong>성령일 선교사</strong>: 이 연속선을 기록으로 남겨 두겠습니다.</p>
+<p><strong>(침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>P04 최현국</strong>: 코헬렛이 시선을 아래로 향합니다. 해 아래에서 행해지는 모든 학대를 봅니다. 눈물이 흐르는데 위로하는 자가 없어요. 한 번, 두 번 — "위로하는 자가 없음이로다." 카메라가 멈춥니다.</p>
+<p><strong>P01 한나래</strong>: 목소리가 들립니다 — "이미 죽은 자가 아직 살아 있는 자보다 복이 있다." 극단적인 탄식이에요. 태어나지 않은 자가 더 낫다는 역설까지 나와요.</p>
+<p><strong>P07 오지혜</strong>: 장면이 바뀝니다. 일하는 사람들이 보여요. 그런데 그 수고의 이면에 시기가 있어요. 코헬렛이 봅니다 — "이것도 헛됨이요 바람 잡는 것이라." 한 손의 평온이 두 손의 수고보다 낫다는 대조가 제시됩니다.</p>
+<p><strong>P02 이진우</strong>: 카메라가 홀로 있는 자의 방으로 들어갑니다. 동무도 자식도 없는데 수고가 그치지 않아요. 그 사람의 목소리 — "내가 누구를 위하여 수고하는가." 대답이 없어요.</p>
+<p><strong>P05 김미영</strong>: 화면이 밝아집니다. 두 사람이 함께 수고합니다. 한 사람이 넘어지면 다른 한 사람이 일으킵니다. 밤이 오자 두 사람이 누워 따뜻합니다. 세 겹 줄 — 쉽게 끊어지지 않습니다.</p>
+<p><strong>P11 나경아</strong>: 마지막 장면은 정치 무대입니다. 가난한 지혜자가 왕이 되었습니다. 백성이 몰려왔습니다. 그러나 또 다른 젊은이가 등장합니다. 처음 왕을 따르던 자들이 그를 떠납니다. 코헬렛의 결론: "이것도 헛됨이요 바람 잡는 것이로다."</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>P01 한나래</strong>: "위로하는 자 없는 눈물"</p>
+<p><strong>P02 이진우</strong>: "수고의 동기를 묻다: 시기인가, 연대인가"</p>
+<p><strong>P04 최현국</strong>: "헛됨 사이의 섬 — 두 사람이 함께함"</p>
+<p><strong>P05 김미영</strong>: "온기는 둘이 나누는 것"</p>
+<p><strong>P07 오지혜</strong>: "학대·시기·고독을 지나, 세 겹 줄"</p>
+<p><strong>P11 나경아</strong>: "<em>Shenayim</em> — 둘의 가치가 헛됨 사이에서 관찰되는 장"</p>
+<p><strong>성령일 선교사</strong>: 부제로 "학대와 고독의 헛됨 사이에서 두 사람이 함께함이 낫다는 관찰"을 남겨 두겠습니다.</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 코헬렛이 학대받는 자들의 눈물 앞에 섰던 자리로, 그리고 "내가 누구를 위하여 수고하는가" 묻는 홀로 있는 자의 자리로 상상으로 들어가 봅시다. 답을 구하지 말고 그 자리에 머물러 보지요.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P01 한나래</strong>: (조용히) 내 삶에 위로하는 자가 있는지, 그리고 내가 위로하는 자가 되어 있는지... 그 질문이 왔어요.</p>
+<p><strong>P05 김미영</strong>: 온기를 나눈다는 것이 얼마나 실제적인 것인지요. 11절이 생각났어요. 누군가와 따뜻했던 때가 있었고, 혼자 추웠던 때가 있었어요.</p>
+<p><strong>P02 이진우</strong>: 수고의 동기를 물어봤어요. 나는 왜 일하는가. 시기인가, 아니면 다른 무언가인가. 본문이 답을 주지 않아서 그 빈자리에 머물러 있었어요.</p>
+<p><em>— 잠시 각자의 내면에 머문다. 답을 구하지 않는다. —</em></p>
+
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장은 어디서 어디로 움직이는 것 같은지요.</p>
+<p><strong>P02 이진우</strong>: "학대와 시기와 고독의 헛됨"에서 "두 사람이 함께함이 낫다"는 관찰로 움직여요. 전면적인 해결이 아니라 — 헛됨 안에서 동무됨의 가치를 발견하는 방향이에요.</p>
+<p><strong>P11 나경아</strong>: 수면 아래에서 보면 — 3장이 하나님의 때를 말했다면, 4장은 그 때 안에서 인간이 만들어가는 관계의 이야기를 하고 있어요. 때를 아시는 분이 동무됨을 선물로 두신 것으로 읽힐 수 있어요. 단, 본문이 이것을 직접 연결하지는 않아요.</p>
+<p><strong>P01 한나래</strong>: 이 장이 품은 긴장은 — 해 아래 학대가 있고 위로가 없다는 것과, 두 사람이 함께하면 낫다는 것 사이의 긴장이에요. 본문은 이 긴장을 해소하지 않아요.</p>
+<p><strong>P07 오지혜</strong>: 독자를 부르는 것이 있다면 — "내 삶에 동무가 있는가, 그 동무됨이 선물인 줄 아는가"인 것 같아요.</p>
+<p><strong>P04 최현국</strong>: 4장 전체 운동을 한 문장으로 요약하면 — 헛됨의 현실들(학대, 시기, 고독)을 통과하되, 그 한가운데에서 두 사람이 함께함이 낫다는 관찰이 등장하는 장이에요.</p>
+<p><strong>성령일 선교사</strong>: 두 사람이 함께함이라는 관찰을 4장의 선물로 가져가지요.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계 관찰된 사실 LOCKED 정리.</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-004</p>
+<p>book: 전도서</p>
+<p>chapter: 4</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>전도서 4장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>다섯 개의 무대: 학대 현장(1-3절), 수고하는 자들의 공간(4-6절), 홀로 있는 자의 방(7-8절), 두 사람이 함께하는 곳(9-12절), 정치 권력 교체의 무대(13-16절).</li>
+<li>소품들: 눈물(<em>dima</em>), 손(<em>yadayim</em>·5-6절), 몸의 온기(11절), 세 겹 줄(12절), 감옥(14절), 왕좌(14-15절).</li>
+<li>소재들: 학대(<em>amal</em>), 시기(<em>kinat</em>), 게으름(<em>kisat yadayim</em>), 평온, 고독, 연대, 권력 교체.</li>
+<li>1절의 "위로하는 자가 없음이로다"(<em>ein lahem menahem</em>) — 이중 반복으로 탄식의 무게가 강조됨.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>1절부터 무겁고 답답한 공기. "위로 없음"의 이중 반복이 묵직하게 쌓임.</li>
+<li>2장의 거대한 소품들(포도원·집·재물)과 달리, 4장의 소품들은 눈물·손·온기·줄 등 작고 구체적인 것들.</li>
+<li>9-12절에서 갑자기 "낫다"(<em>tov</em>)는 말이 등장해 분위기가 잠깐 바뀜.</li>
+<li>장면이 자주 교체되는 다분할 구조 — 한 주제가 길게 전개되지 않음.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(1절): "내가 다시 해 아래서 행하는 모든 학대를 살펴보았도다" — 코헬렛의 사회 관찰 선언.</li>
+<li>끝(16절): "그에게 오는 후에 오는 자들도 그를 기뻐하지 아니하리니 이것도 헛됨이라" — 왕권의 헛됨으로 닫힘.</li>
+<li>사회 밑바닥(학대받는 자들)에서 권력 꼭대기(왕)까지 스캔하는 장.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>학대받는 자들(<em>anawim</em>): 눈물 흘리되 위로자 없음(1절).</li>
+<li>압제자들: 1절에서만 언급, 구체화 없음.</li>
+<li>어리석은 자(5절): <em>kisat yadayim</em> — 손 게으름으로 자기 살을 먹음.</li>
+<li>홀로 있는 자(7-8절): 동무도 자식도 없는데 수고를 그치지 않음. "내가 누구를 위하여 수고하는가" 자문.</li>
+<li>두 사람(9-12절): 일으킴·온기·방어의 연대. 헛됨 선언 없는 단락의 주인공.</li>
+<li>가난한 지혜자(13절): 감옥에서 왕이 됨.</li>
+<li>늙고 둔한 왕(13절): <em>kesil</em>(어리석음) — 경고를 받아들이지 못하는 자.</li>
+<li>후에 오는 젊은이(15-16절): 두 번째 교체의 예고.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1-3절): 학대 탄식 — 위로 없는 눈물, 죽은 자·태어나지 않은 자가 낫다는 역설.</li>
+<li>컷 2 (4-8절): 수고의 헛됨 — 시기로 하는 수고(4), 게으름의 자기 파괴(5), 한 손의 평온이 나음(6), 홀로 있는 자의 공허(7-8).</li>
+<li>컷 3 (9-12절): 두 사람의 가치 — 일으킴·온기·세 겹 줄. 이 장 유일의 긍정 관찰 구역.</li>
+<li>컷 4 (13-16절): 왕권의 헛됨 — 지혜 가난자가 왕이 되지만 다음 세대에 잊힘.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (1) 원어 카드</h2>
+<ul>
+<li><em>anawim</em>(עֲנָוִים) — 억눌린 자들. 시편 탄식 언어와 연결.</li>
+<li><em>dima</em>(דִּמְעָה) — 눈물. 1절에서 복수형 <em>dim'ot</em>.</li>
+<li><em>nacham</em>(נָחַם) — 위로하다. "위로자 없음"으로 부재 강조.</li>
+<li><em>kinat</em>(קִנְאַת) — 시기·질투. 4절의 수고 동기.</li>
+<li><em>kisat yadayim</em>(כִּסֻּת יָדַיִם) — 손 게으름. 5절.</li>
+<li><em>shenayim</em>(שְׁנַיִם) — 둘. 9-12절 핵심어.</li>
+<li><em>chokhmah</em>(חָכְמָה) — 지혜. 13절 가난한 지혜자의 지혜.</li>
+<li><em>re'ut ruach</em>(רְעוּת רוּחַ) — 바람 잡음. 4절, 6절에 등장.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (2) 문학 구조</h2>
+<ul>
+<li>A-B-A' 구조: 헛됨(1-8절) → 긍정 관찰 섬(9-12절) → 헛됨(13-16절).</li>
+<li>헛됨 선언(4, 8, 16절)이 장의 절점 역할.</li>
+<li>9-12절만 유일하게 <em>hevel</em>(헛됨) 없는 구역.</li>
+<li>1절의 "위로하는 자 없음" 이중 반복 — 강조 기법(히브리 시의 포함법적 반복).</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (3) ANE 배경 (해석 아님)</h2>
+<ul>
+<li>고대 근동 지혜 문학의 고독 탄식 — 이집트 "하퍼의 노래" 등과 4:8 고독 탄식 비교(배경 자료).</li>
+<li>세 겹 줄(12절) — 고대 연대·계약 상징으로서의 줄(cord) 이미지. 히브리 문화에서 줄은 유대·결속의 상징으로 자주 쓰임(배경 자료, 해석 아님).</li>
+<li>4:13-16의 왕 교체 내러티브 — 고대 근동 지혜 문학에서 정치 조언 구조 비교.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (4) 교차 참조 노드</h2>
+<ul>
+<li>ECC 4 ↔ ECC 3:16 (재판 자리의 불의 → 4:1 학대와 연속선)</li>
+<li>ECC 4 ↔ ECC 9:14-15 (가난한 지혜자 주제 반복)</li>
+<li>ECC 4 ↔ 창 2:18 ("혼자 있는 것이 좋지 않다" — 4:9-12 배경 관찰)</li>
+<li>ECC 4 ↔ 잠 17:17 (형제는 위급 때를 위해 — 4:10 비교)</li>
+<li>ECC 4 ↔ 시 56:8 (눈물을 주머니에 담으심 — 4:1의 눈물 무게와 비교)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>코헬렛이 해 아래를 봅니다. 학대받는 자들의 눈물이 흘러요. 위로하는 자가 없어요. "죽은 자가 낫다"는 탄식까지 흘러나옵니다. 장면이 바뀝니다 — 일하는 자들이 보이는데, 수고의 동기가 시기예요. 이것도 헛됨입니다. 게으른 자는 자기 살을 먹고, 한 손의 평온이 두 손의 수고보다 낫습니다. 홀로 있는 자의 방 — 동무도 자식도 없는데 수고가 멈추지 않습니다. "내가 누구를 위해 수고하는가." 대답이 없습니다. 그런데 화면이 바뀝니다 — 두 사람이 함께합니다. 넘어지면 일으켜 줍니다. 함께 누우면 따뜻합니다. 세 겹 줄은 쉽게 끊어지지 않습니다. 마지막 장면은 정치 무대입니다. 지혜로운 젊은이가 왕이 됩니다. 그러나 후에 오는 자들도 그를 기뻐하지 않습니다. 이것도 헛됨이라고 닫힙니다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"학대와 고독을 지나, 두 사람이 함께함"</strong></li>
+<li>초벌 부제: "학대·시기·고독의 헛됨 안에서 동무됨의 가치를 관찰한 장"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (anawim, dima, kinat, kisat yadayim, shenayim, chokhmah 기록)</li>
+<li>[x] 역사·문화·지리·문학 사실 최소 1개 (ANE 고독 탄식 문학, 세 겹 줄 상징, 왕 교체 내러티브)</li>
+<li>[x] 미해결 질문 1개 이상 (6건 s8에 기록)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 4개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>2-3절의 "죽은 자가 낫다"는 탄식이 허무주의나 자살 미화로 드리프트될 위험 — 코헬렛의 탄식 언어 그대로 보존, 해석 보류.</li>
+<li>9-12절의 "두 사람이 낫다"가 결혼 찬가나 특정 관계 유형의 옹호로 번질 위험 — 본문이 특정화하지 않으므로 관찰로만 보존.</li>
+<li>4절의 "시기"가 모든 경쟁 활동 부정으로 확장될 위험 — "수고와 재주 있는 일"의 동기 관찰로만 기록.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 관찰한 것을 주께 아뢰기.</strong> 답을 구하지 않고 머문다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-004</p>
+<p>book: 전도서</p>
+<p>chapter: 4</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>전도서 4장 — 미해결 질문</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 4:1-3의 탄식 — 코헬렛은 왜 죽은 자와 태어나지 않은 자가 낫다고 하는가?</h2>
+<ul><li>극단적 탄식 언어인가, 아니면 학대의 현실이 그만큼 심각하다는 고발인가? 본문은 판단을 내리지 않음. 보존.</li></ul>
+
+<h2>Q2. 4절의 "시기"(<em>kinat</em>)는 수고의 원인인가, 수고의 결과인가?</h2>
+<ul><li>히브리어 원문은 양방향으로 읽힐 수 있음 — 시기 때문에 수고하는가, 수고하면 시기를 받는가? 본문이 방향을 명시하지 않음. 보존.</li></ul>
+
+<h2>Q3. 9-12절의 "두 사람"은 어떤 관계를 가리키는가?</h2>
+<ul><li>친구, 형제, 배우자, 노동 동반자, 전쟁 동료 등 여러 관계 가능성이 있음. 본문이 특정화하지 않음. 보존.</li></ul>
+
+<h2>Q4. 12절의 "세 겹 줄"에서 세 번째 사람은 누구 혹은 무엇인가?</h2>
+<ul><li>하나님을 가리키는가, 단순히 수를 늘렸을 때의 강도를 비유하는가? 본문이 설명하지 않음. 보존.</li></ul>
+
+<h2>Q5. 4:13-16의 이야기는 역사적 특정 인물을 가리키는가?</h2>
+<ul><li>요셉, 다윗, 솔로몬, 여로보암 등 여러 후보가 학자들에 의해 제시됨. 본문은 이름을 밝히지 않음. 보존.</li></ul>
+
+<h2>Q6. "위로하는 자가 없음이로다"(1절)를 반복할 때, 코헬렛의 감정은 무엇인가?</h2>
+<ul><li>관찰자의 무력감인가, 분노인가, 아니면 단순한 현실 기술인가? 본문은 코헬렛의 감정 상태를 명시하지 않음. 보존.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">학대와 고독의 헛됨 안에서, 두 사람이 함께함이 한 사람보다 낫다는 관찰.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: ECC-004</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-20</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 편의 골격</h3>
+<p><strong>한 문장</strong>: 전도서 4장은 해 아래 학대·시기·고독의 헛됨을 코헬렛이 정직하게 관찰하되, 그 한가운데 9-12절에서 두 사람이 함께함이 한 사람보다 낫다는 유일한 긍정 관찰을 담고, 왕권의 헛됨으로 닫히는 16절의 장이다.</p>
+<p><strong>한 문단</strong>: 코헬렛의 시선이 사회 현실로 향한다. 학대받는 자들의 눈물, 위로하는 자 없음. 죽은 자가 살아 있는 자보다 낫다, 태어나지 않은 자가 더 낫다는 역설적 탄식이 나온다. 수고의 무대로 이동하면 — 수고의 동기가 시기임이 드러나고 이것도 헛됨이다. 게으른 자는 자기 살을 먹고, 한 손의 평온이 두 손의 수고보다 낫다. 홀로 있는 자의 방에서 질문이 온다: "내가 누구를 위하여 수고하는가." 그리고 장면이 바뀐다 — 두 사람이 함께한다. 넘어지면 일으키는 동무, 함께 누워 따뜻한 온기, 쉽게 끊어지지 않는 세 겹 줄. 이 장에서 유일하게 헛됨 선언이 없는 구역이다. 마지막은 정치 무대 — 지혜로운 젊은이가 왕이 되지만, 후에 오는 자들도 그를 기뻐하지 않는다. 이것도 헛됨이다. 4장은 헛됨의 파노라마 안에서 동무됨의 가치를 발견하는 장이다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품</td><td>다섯 무대. 눈물·손·온기·세 겹 줄 등 작고 구체적인 소품들.</td></tr>
+<tr><td>2 첫 느낌</td><td>무거운 공기. 소품이 줄어들면서 오히려 사람이 보임. 9-12절에서 잠깐 "낫다".</td></tr>
+<tr><td>3 시작과 끝</td><td>학대 관찰 선언(1절) → 왕권의 헛됨(16절). 밑바닥에서 꼭대기까지 스캔.</td></tr>
+<tr><td>4 등장인물·사상</td><td>학대받는 자·압제자·고독한 수고자·두 사람·지혜 가난자·늙은 왕. 연대의 가치 관찰.</td></tr>
+<tr><td>5 장면 컷</td><td>컷1 학대 탄식 / 컷2 수고의 헛됨 / 컷3 두 사람(긍정 섬) / 컷4 왕권 헛됨.</td></tr>
+<tr><td>6 의문·발견</td><td>kinat의 방향성 미결. 9-12절 유일한 헛됨 없는 구역. 시기-고독-연대 대조.</td></tr>
+<tr><td>7 동영상</td><td>눈물 → 헛됨 × 3 → 두 사람의 따뜻함 → 왕권의 사라짐.</td></tr>
+<tr><td>8 초벌 제목</td><td>"학대와 고독을 지나, 두 사람이 함께함"</td></tr>
+<tr><td>9 기도·내면</td><td>"내 삶에 위로하는 자가 있는가, 내가 위로하는 자인가"라는 자리에 머묾.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 수고의 동기 탐문</strong>: 4절에서 수고의 동기가 시기임이 드러난다. 8절에서 홀로 있는 자가 자신의 수고 목적을 묻는다. 4장은 무엇을 수고하는가보다 왜 수고하는가, 누구를 위해 수고하는가를 묻는다.</p>
+<p>2. <strong>결 2 — 헛됨 사이의 섬</strong>: 4장 전체에서 9-12절만 헛됨 선언이 없다. 이 구조적 배치는 두 사람이 함께함이 헛됨의 세계 안에서 발견된 가치임을 암시한다. 해결이 아니라 관찰이다.</p>
+<p>3. <strong>결 3 — 작음의 역설</strong>: 눈물·손·온기·줄처럼 작은 소품들이 이 장의 핵심을 담는다. 2장의 거대한 실험 장치(포도원·궁전·재물)가 아니라, 가장 작고 구체적인 것들에서 삶이 보인다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>전도서 안 — ECC 3:16 (재판 자리의 불의 → 4:1 학대와 연속). ECC 9:14-15 (가난한 지혜자 주제 확장). ECC 5:8 (가난한 자 압박 주제 지속).</li>
+<li>다른 권 — 창 2:18 ("혼자 있는 것이 좋지 않다" — 4:9-12의 인류학적 배경). 시 56:8 (눈물을 담으심). 잠 17:17 (형제는 위급 때를 위해).</li>
+</ul>
+
+<h3>E · 한 사람의 의식 흐름</h3>
+<ul>
+<li><strong>시작</strong>: 학대받는 자들의 눈물 앞에서 멈춘다.</li>
+<li><strong>멈춤 1</strong>: "위로하는 자가 없음이로다"의 이중 반복에서 무게를 느낀다.</li>
+<li><strong>멈춤 2</strong>: "내가 누구를 위하여 수고하는가"라는 홀로 있는 자의 질문에서 멈춘다.</li>
+<li><strong>멈춤 3</strong>: "두 사람이 함께 누우면 따뜻하다"는 말에서 잠깐 쉰다.</li>
+<li><strong>끝</strong>: 왕권도 헛됨이라는 닫힘과 함께, 동무됨이라는 관찰을 손에 쥔다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 학대·시기·고독의 헛됨이 각각 관찰됨</li>
+<li>[x] 9-12절의 두 사람 단락이 구조적 의미와 함께 기록됨</li>
+<li>[x] 수고의 동기 문제(kinat)가 원어와 함께 기록됨</li>
+<li>[x] 왕권 교체의 헛됨이 마무리로 기록됨</li>
+</ul>
+
+<h3>G · 구속사 좌표 — ECC 흐름 위 이 장의 위치</h3>
+<p>전도서 흐름의 "3~11장 때·분깃·하나님의 선물" 국면 중 두 번째 장이다. 3장이 하나님의 때와 영원을 사모하는 마음을 다루었다면, 4장은 그 때 안에서 인간이 경험하는 구체적인 고통과 관계의 현실을 정직하게 관찰한다. 헛됨을 외면하지 않고 — 학대받는 자의 눈물, 시기로 하는 수고, 홀로 있는 자의 공허를 모두 통과시키되 — 그 안에서 두 사람이 함께함이 낫다는 관찰을 남긴다. 경외를 향한 전도서의 운동 중, 인간 관계의 선물을 조명하는 위치에 있다.</p>
+
+<h3>H · 운동 벡터 — ECC spine의 이 장 국면</h3>
+<p>4장은 <strong>고독과 시기 받는 수고의 헛됨</strong>에서 <strong>함께함이 선물이라는 발견</strong>으로 미는 국면이다. 극적인 해소가 아니라 — 헛됨을 정직히 통과하면서 그 안에서 동무됨의 가치를 발견하는 조용한 전환이다. 2장의 먹고 마시는 것이 선물이었다면, 4장의 선물은 동무가 있다는 것이다.</p>
+
+<h3>I · 수면 아래 — 이 장에서 비치는 하나님의 의중과 심정</h3>
+<p>4장 수면 아래에서 비치는 것: 헛됨을 통과시키시되, 인간이 혼자가 아니라 함께하도록 지으심을 조용히 가리키시는 것 같다. 학대와 고독의 현실을 외면하지 않으시되, 그 안에서 동무됨의 가치를 열어 보이시는 하나님의 심정. "위로하는 자가 없음이로다"라는 탄식이 해소되지 않은 채 남아 있는 것도 — 그 탄식을 들으시는 분이 계시다는 것을 수면 아래에서 읽을 수 있는 것으로 관찰된다. 단, 본문이 이것을 직접 말하지는 않는다.</p>
+
+<h3>J · 실존적 부름 — ECC 향방이 독자 안에서 점화하는 불씨</h3>
+<p>"내 삶에 동무가 있는가, 그 동무됨이 하나님의 선물인 줄 아는가" — 4장이 독자 안에 놓는 작은 불씨다. 넘어질 때 일으켜 줄 동무, 추울 때 함께 따뜻해질 동무가 있다는 것이 헛됨의 세계 안에서 발견된 가치다. 그리고 내가 그 동무가 되어 있는가라는 물음도 함께 온다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>shenayim(둘·함께함)</em>.</p>
+<p><strong>다음 장으로 미는 운동</strong>: 동무됨의 가치를 발견한 눈이 5장의 서원과 재물 앞에서 무엇을 보는가.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/ECC/3/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">전도서 3장</div>
+        <div class="nav-preview">범사에 기한과 때, 영원을 사모하는 마음.</div>
+      </a>
+      <a href="/magazine/ECC/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">전도서 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/ECC/5/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">전도서 5장</div>
+        <div class="nav-preview">서원·재물의 헛됨·분깃을 즐거워하라.</div>
+      </a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last:ecc4', JSON.stringify({
+      href: '/magazine/ECC/4/',
+      title: '전도서 4장',
+      excerpt: '학대받는 자의 눈물, 시기 받는 수고, 홀로 있는 자의 공허, 두 사람이 함께함이 낫다는 관찰.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2026-06-20</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

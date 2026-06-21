@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>전도서 10장 — Observatory | 네다바웨이</title>
+<meta name="description" content="전도서 10장을 9단계로 같이 관찰합니다. 작은 어리석음이 지혜를 더럽히는 역설, 우매자가 높아지고 지혜자가 낮아지는 현실—침착함과 지혜로 삶의 위험을 헤쳐가는 관찰들.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/ECC/10/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s; user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·정보</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/ECC/">전도서</a> · 10장</div>
+      <h1>전도서 10장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">ECC-010 · 시가서 · 히브리어</div>
+      <p class="essence">작은 어리석음이 지혜를 더럽히는 역설, 우매자가 높아지고 지혜자가 낮아지는 현실—침착함과 지혜로 삶의 위험을 헤쳐가는 관찰들.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 왕궁·도로·공사 현장·연회장이 번갈아 펼쳐지는 10장. 죽은 파리, 무뎌진 도끼, 뱀, 새—작은 소품들이 큰 진리를 담는다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-010</p>
+<p>book: 전도서</p>
+<p>book_en: Ecclesiastes</p>
+<p>chapter: 10</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 지혜문학(잠언형 모음)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 20</p>
+<p>observed_facts_count: 26</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [kesil, chokhmah, zevuvim, ro'osh, yamin, smol, melek, amal, kesel, lashon, ayin, lachas]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["10:1 '향기름을 부패하게 하다' → 70인역 다른 독법", "10:19 '돈이 모든 것에 응한다' → 원문 표현 논쟁"]</p>
+<p>ane_refs: ["고대 근동 왕실 연회 묘사(10:16-17 배경)", "이집트 지혜 문학 아메네모페 교훈과 10:4 침착함 주제 비교"]</p>
+<p>rabbinic_refs: ["Midrash Rabbah Qohelet 10:1 — 죽은 파리의 도덕적 독해", "b.Sanhedrin 38b — 작은 어리석음의 위험"]</p>
+<p>literary_devices: [proverb_collection, paradox, metaphor, antithesis, observation_list]</p>
+<p>repeated_words: ["kesil(우매자)", "chokhmah(지혜)", "melek(왕)", "amal(수고)", "lev(마음)"]</p>
+<p>cross_refs: ["잠언 10:1-32 (지혜 vs 어리석음 대조)", "전도서 9:17-18 (지혜자의 말과 우매자)", "전도서 8:1-4 (왕 앞에서의 태도)", "전도서 5:2 (말이 많으면)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-20</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>전도서 10장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 전도서 10장입니다. 9장 말미에서 "작은 지혜자가 큰 성을 구한다"고 했는데, 10장은 그 반대편 — 작은 어리석음이 지혜를 더럽힌다는 관찰로 시작합니다. 낭독하겠습니다.</p>
+<p>(본문 낭독 10:1~20, 약 3분)</p>
+<p><strong>(침묵 약 45초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기가 느껴지셨는지요?</p>
+<p><strong>P02 이진우</strong>: 잠언 같았어요. 짧은 관찰들이 연속으로 이어지는 형식인데, 9장까지와 달리 "헛됨"이라는 말이 거의 사라졌어요. 잠언 형식의 단편 모음처럼 느껴졌고, 느슨해 보이지만 지혜 대 어리석음이라는 공통 주제가 전체를 묶고 있어요.</p>
+<p><strong>P01 한나래</strong>: 저는 1절의 죽은 파리 이미지가 계속 따라왔어요. 향기로운 기름병 안에 죽은 파리 한 마리가 들어가서 냄새가 다 썩어버린다는 — 그 이미지가 굉장히 강렬했어요. 작은 것 하나가 모든 것을 망친다는 느낌이요.</p>
+<p><strong>P05 김미영</strong>: 소품들이 생생해요. 죽은 파리, 무뎌진 도끼날, 뱀, 구덩이, 공중의 새... 다 일상의 물건들인데 그것들로 큰 진리를 이야기하는 방식이 인상적이었어요.</p>
+<p><strong>P04 최현국</strong>: 무대가 다양하게 펼쳐지는 게 눈에 들어왔어요. 왕궁 장면, 길거리, 공사 현장, 연회장... 계속 무대가 바뀌면서 각 장면마다 하나씩 관찰을 내놓는 구조예요.</p>
+<p><strong>P07 오지혜</strong>: 19절 "돈이 모든 것에 응한다"는 말이 이상하게 걸렸어요. 5-6장의 재물 비판과 달리 여기서는 그냥 사실 관찰처럼 나오는 것 같아서요.</p>
+<p><strong>P11 나경아</strong>: <em>zevuvim</em>(죽은 파리들)이 히브리어에서 단수집합명사예요. "파리들"인데 단수 동사를 취하는 — 그 작은 것들이 복수로 쌓이면서 향기름 전체를 망친다는 이미지가 히브리어 문법 안에서도 드러나요.</p>
+<p><strong>성령일 선교사</strong>: 느낌들을 그대로 두지요. 무대로 들어가 보겠습니다.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장의 무대와 소품들을 찾아볼까요.</p>
+<p><strong>P04 최현국</strong>: 네 가지 무대가 있어요. 첫째, 향기름 병(1절) — 작은 것의 큰 영향을 보여주는 소품. 둘째, 왕궁 앞 길(4절) — 권력자 앞에서의 행동 무대. 셋째, 공사 현장(8-11절) — 구덩이, 담, 돌, 나무, 도끼. 넷째, 연회장(16-19절) — 왕과 신하들이 먹고 마시는 장면.</p>
+<p><strong>P05 김미영</strong>: 소품으로는 향기름(1절) — 냄새, 액체, 부패. 도끼(10절) — 무게, 날, 손의 피로. 뱀(8, 11절) — 위험, 독, 갑작스러움. 공중의 새(20절) — 감시, 비밀의 누설. 이 소품들이 각 관찰의 배경을 이루어요.</p>
+<p><strong>P11 나경아</strong>: 1절의 <em>zevuvim maveth</em>(죽은 파리들)는 히브리어 관용구예요. <em>maveth</em>는 죽음이고 <em>zevuvim</em>은 파리들 — 죽은 파리들이 복수이지만 단수 동사를 취하는 독특한 문법이에요. <em>ya'biash</em>(썩게 하다, 악취 나게 하다)는 <em>ro'osh</em>(악취·부패·독)의 동사형이에요.</p>
+<p><strong>P02 이진우</strong>: 길 위의 우매자(3절)가 소품이에요. 우매자가 길을 걸으면서도 지혜가 없음이 드러난다 — 그냥 걷는 것이 소품이 되는 거예요. 발걸음 자체가 그 사람을 드러내는 소품.</p>
+<p><strong>P07 오지혜</strong>: 종이 말 타고 귀인이 걸어다닌다(7절) — 이 장면도 강렬한 소품이에요. 뒤집힌 신분의 가시적 표현이에요.</p>
+<p><strong>성령일 선교사</strong>: 무대와 소품들을 기록으로 남겨 두지요.</p>
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>P02 이진우</strong>: 시작(1절): "죽은 파리들이 향기름 제조자의 기름을 부패하게 한다" — 작은 어리석음의 큰 파괴력 선언. 끝(20절): "마음으로도 왕을 저주하지 말라 — 공중의 새가 그 소리를 전하리라" — 말의 위험성과 신중함으로 닫혀요.</p>
+<p><strong>P01 한나래</strong>: 시작은 작은 것이 큰 것을 망친다는 이미지이고, 끝은 말 하나가 얼마나 멀리 날아가는지에 대한 경고예요. 둘 다 "작은 것이 큰 영향을 미친다"는 주제로 연결돼요.</p>
+<p><strong>P11 나경아</strong>: 20절의 "공중의 새"는 히브리 관용구예요. "새가 말을 전한다"는 표현은 고대 근동에서 "비밀이 새어나간다"는 뜻으로 널리 쓰였어요. 문화적 배경이 있는 관용어예요.</p>
+<p><strong>성령일 선교사</strong>: 시작과 끝의 연결을 기록해 두겠습니다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>P04 최현국</strong>: 등장인물은 지혜자와 <em>kesil</em>(우매자)가 주축이에요. 그리고 <em>melek</em>(왕), 고관(지도자), 종, 귀인이 사회적 질서의 무대를 이루어요.</p>
+<p><strong>P02 이진우</strong>: 사상의 핵심은 두 가지예요. 첫째, <em>chokhmah</em>(지혜)의 실용적 유익 — 도끼날이 예리하면 힘이 덜 든다(10절). 둘째, <em>kesil</em>(어리석음)의 자기 노출 — 우매자는 가만히 있어도 어리석음이 드러난다(3절).</p>
+<p><strong>P01 한나래</strong>: 4절이 흥미로워요. 지도자가 화를 내도 네 자리를 떠나지 말라고 해요. 침착함이 큰 잘못을 방지한다는 — <em>marpe</em>(진정·치유)라는 단어가 쓰이는데, 그 자리에 머무는 침착함이 치유의 효과를 가진다는 거예요.</p>
+<p><strong>P11 나경아</strong>: <em>yamin</em>(오른쪽)과 <em>smol</em>(왼쪽) — 히브리 전통에서 오른쪽은 길상·권능·지혜의 방향이에요. 하나님의 오른손, 왕의 오른편 자리가 다 그래요. 우매자의 마음이 왼쪽에 있다는 건 단순한 공간 표현이 아니라 문화적 가치 판단이에요.</p>
+<p><strong>P05 김미영</strong>: 16-17절의 왕 비교가 강렬해요. 왕이 어리고 신하들이 아침부터 먹는 나라는 화, 왕이 귀족 출신이고 신하들이 힘을 위해 먹는 나라는 복. 지도자의 자질이 국가 전체에 영향을 미친다는 관찰이에요.</p>
+<p><strong>P07 오지혜</strong>: 18절 "게으름으로 서까래가 내려앉는다"는 이미지도 구체적이에요. 손이 늘어지면 집이 샌다 — 작은 게으름이 큰 무너짐으로 이어진다는 패턴이 1절의 죽은 파리와 같아요.</p>
+<p><strong>성령일 선교사</strong>: 지혜와 어리석음의 대조를 그대로 두지요. 해석하지 말고 관찰로만 남겨 두겠습니다.</p>
+<p><strong>(침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>P04 최현국</strong>: 다섯 컷으로 나뉩니다.</p>
+<ul>
+<li><strong>컷 1 (1-3절)</strong>: 죽은 파리 — 작은 어리석음의 큰 파괴력. 우매자의 마음은 왼쪽.</li>
+<li><strong>컷 2 (4-7절)</strong>: 왕궁 무대 — 권력자 앞에서의 침착함. 우매자가 높아지는 역전된 세계.</li>
+<li><strong>컷 3 (8-11절)</strong>: 공사 현장 — 위험의 역설들. 무뎌진 도끼와 지혜의 실용적 유익.</li>
+<li><strong>컷 4 (12-19절)</strong>: 말과 수고 — 지혜자의 말 vs 우매자의 말. 왕과 신하들의 연회.</li>
+<li><strong>컷 5 (20절)</strong>: 새의 경고 — 마음의 말도 날아다닌다.</li>
+</ul>
+<p><strong>P02 이진우</strong>: 5컷이지만 전체를 하나로 묶는 실이 있어요. 작은 것 하나가 큰 결과를 가져온다는 주제예요. 파리, 말, 도끼날, 서까래, 새 — 다 작은 것들이에요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P11 나경아</strong>: 원어 카드를 정리해 드릴게요.</p>
+<ul>
+<li><em>kesil</em>(כְּסִיל) — 우매자. 이 장에서 핵심 대조어. 지혜자(<em>chakham</em>)의 반대.</li>
+<li><em>chokhmah</em>(חָכְמָה) — 지혜. 1절에서는 더럽혀질 수 있는 것으로, 10절에서는 성공의 도구로.</li>
+<li><em>zevuvim</em>(זְבוּבִים) — 파리들. 단수집합명사. 작은 복수가 큰 것을 망침.</li>
+<li><em>ro'osh</em>(רֹאשׁ) — 독·악취·부패. 향기름과 대조되는 단어.</li>
+<li><em>yamin</em>(יָמִין) / <em>smol</em>(שְׂמֹאל) — 오른쪽/왼쪽. 히브리 문화적 가치 방향.</li>
+<li><em>marpe</em>(מַרְפֵּא) — 진정·치유·침착함(4절). 그 자리를 지키는 것이 치유가 된다.</li>
+<li><em>lachas</em>(לַחַשׁ) — 술사·마법사·속삭임(11절). 뱀이 물기 전에 말 못하게 하면 술사가 필요 없다는 역설.</li>
+</ul>
+<p><strong>P02 이진우</strong>: 발견이에요. 10장의 문학 구조가 느슨해 보이지만, 1절의 "작은 어리석음이 큰 것을 망침"이라는 테마가 전체를 관통해요. 파리(1절), 도끼날(10절), 서까래(18절), 새(20절)가 다 그 변주예요.</p>
+<p><strong>P05 김미영</strong>: 발견인데요. 8-11절의 위험 역설들이 흥미해요. 구덩이를 파는 자가 빠지고, 담을 허무는 자가 뱀에 물리고, 돌을 떠내는 자가 돌에 상하고, 나무를 쪼개는 자가 위험에 처한다 — 이건 어리석음이 아니라 일상적 위험이에요. 그런데 그 맥락에서 "지혜가 성공에 유리하다"는 말이 나와요. 지혜가 위험을 없애주는 게 아니라 더 잘 헤쳐가게 해준다는 거예요.</p>
+<p><strong>P07 오지혜</strong>: 19절 "돈이 모든 것에 응한다"는 말이 독립적인 관찰 같아요. 재물에 대한 찬사인지, 냉소적 사실 인정인지 본문이 설명하지 않아요. 5-6장의 재물 비판과 다른 맥락이에요.</p>
+<p><strong>P01 한나래</strong>: 의문이에요. 5-7절의 "우매자가 높아지고 귀인이 낮아지는 역전"을 코헬렛은 어떻게 보는 건가요. 판단인가요, 관찰인가요? 본문이 분명하지 않아요.</p>
+<p><strong>P04 최현국</strong>: 문학 구조로 — 10장은 9장 말미(9:17-18)와 연결돼요. "지혜자의 조용한 말이 어리석은 자의 외침보다 낫다"는 9:17이 10장 전체의 서론 역할을 해요.</p>
+<p><strong>성령일 선교사</strong>: <em>marpe</em>(침착함·치유)라는 씨앗을 무대에 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>P04 최현국</strong>: 향기름 병 위에 죽은 파리가 떨어져 있습니다. 냄새가 퍼져요. 그 한 마리가 전체 기름을 망쳤어요. 작은 어리석음이 지혜와 존귀를 더럽힌다 — 코헬렛이 선언합니다.</p>
+<p><strong>P01 한나래</strong>: 우매자가 길을 걸어갑니다. 뭔가 이상해요. 그냥 걷는데도 어리석음이 드러나요. 그가 만나는 모든 사람에게 그것이 보여요.</p>
+<p><strong>P02 이진우</strong>: 무대가 왕궁으로 이동합니다. 지도자의 얼굴에 분노가 올라와요. 그 자리에 머무는 자가 있고, 도망치는 자가 있어요. 머무는 자의 침착함이 큰 잘못을 막아요.</p>
+<p><strong>P05 김미영</strong>: 카메라가 이동합니다. 종이 말을 타고 지나가고, 귀인이 걸어가고 있어요. 뒤집힌 세계예요. 우매자가 높아지고 부유한 자가 낮은 곳에 있어요.</p>
+<p><strong>P07 오지혜</strong>: 공사 현장입니다. 구덩이를 파던 자가 그 구덩이에 빠졌어요. 담을 헐던 자가 뱀에 물렸어요. 도끼날이 무뎌졌는데도 계속 내리찍고 있어요. 그 사람 옆에 날카로운 도끼가 있었다면 달랐을 텐데 — 지혜가 성공에 유리하다는 말이 들립니다.</p>
+<p><strong>P11 나경아</strong>: 마지막 장면입니다. 침실에서 왕에 대한 불만을 말합니다. 아무도 없는 줄 알았어요. 그런데 창밖에 새가 앉아 있었어요. 새가 날아가요. 전체 동영상은 "작은 어리석음의 큰 파괴력 → 침착한 지혜의 실용적 유익 → 말의 위험"으로 이어지는 흐름이에요.</p>
+<p><strong>성령일 선교사</strong>: 동영상의 흐름을 기록으로 남겨 두겠습니다.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>P01 한나래</strong>: "죽은 파리 한 마리의 교훈"</p>
+<p><strong>P02 이진우</strong>: "작은 어리석음, 큰 파괴 — 침착한 지혜의 자리"</p>
+<p><strong>P04 최현국</strong>: "뒤집힌 세계에서 지혜로 살아가기"</p>
+<p><strong>P05 김미영</strong>: "무뎌진 도끼와 날카로운 지혜"</p>
+<p><strong>P07 오지혜</strong>: "파리, 뱀, 새 — 작은 것들의 큰 경고"</p>
+<p><strong>P11 나경아</strong>: "<em>Kesil</em>의 자기 노출과 <em>chokhmah</em>의 실용적 유익"</p>
+<p><strong>성령일 선교사</strong>: 부제로 "죽은 파리에서 공중의 새까지 — 작은 어리석음과 침착한 지혜의 대조"를 남겨 두겠습니다.</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 10장의 무대로 들어가 봅시다. 죽은 파리처럼 작은 어리석음이 내 안에 있는지, 무뎌진 도끼날처럼 자각하지 못한 것이 있는지 — 답을 구하지 말고 그 자리에 머물러 봅시다.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P05 김미영</strong>: (조용히) "내 말이 날개를 달고 날아다닌다"는 생각이 들었어요. 침실에서 했던 말들이요.</p>
+<p><strong>P01 한나래</strong>: 나는 도끼날이 무뎌진 줄도 모르고 계속 내리찍고 있지 않았나 하는 생각이요. 더 힘을 쓰면 된다고 생각했는데, 날카롭게 하는 것이 먼저였는데.</p>
+<p><em>— 잠시 각자의 내면에 머문다. 답을 구하지 않는다. —</em></p>
+
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장은 어디서 어디로 움직이는 것 같은지요.</p>
+<p><strong>P02 이진우</strong>: 어리석음의 작은 파괴력에 대한 관찰에서 → 침착함과 지혜로 일상을 헤쳐가는 실용적 지혜로 움직여요. 그리고 그 지혜로운 삶의 방식이 12장의 "하나님을 경외하라"는 결론을 향해 나아가는 한 단계가 돼요.</p>
+<p><strong>P11 나경아</strong>: 수면 아래에서 보면, 10장은 3-11장 국면 안에서 지혜 대 어리석음을 가장 집중적으로 다루는 장이에요. 잠언 형식으로 일상 속 지혜의 얼굴을 보여주면서, 12장의 경외로 가는 여정에서 "이렇게 살아라"를 구체적으로 그리는 거예요.</p>
+<p><strong>P07 오지혜</strong>: 독자에게 묻는다면 — "내 안의 죽은 파리는 무엇인가, 내 도끼날이 무뎌진 건 아닌가"인 것 같아요.</p>
+<p><strong>성령일 선교사</strong>: <em>chokhmah</em>의 실용적 유익과 <em>marpe</em>(침착함)를 10장의 선물로 가져가지요.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계 관찰된 사실 LOCKED 정리.</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-010</p>
+<p>book: 전도서</p>
+<p>chapter: 10</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>전도서 10장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>향기름 병과 죽은 파리(1절) — 부패와 오염의 소품. <em>zevuvim maveth</em>(죽은 파리들), 단수집합명사.</li>
+<li>왕궁 앞 길(4절) — 권력자 앞에서의 행동 무대. <em>marpe</em>(침착함)가 핵심 소품.</li>
+<li>공사 현장(8-11절) — 구덩이, 담, 돌, 나무, 무뎌진 도끼. 일상의 위험 소품들.</li>
+<li>연회장(16-19절) — 왕과 신하들의 먹고 마심. 국가 지도력 판단의 무대.</li>
+<li>침실과 공중의 새(20절) — 비밀이 새어나가는 장면. 공중의 새가 문화적 관용어.</li>
+<li>종이 말 타고 귀인이 걷는 길(7절) — 뒤집힌 신분의 가시적 소품.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>잠언 형식의 단편 모음 — "헛됨" 선언이 사라지고 관찰과 격언이 연속됨.</li>
+<li>죽은 파리 이미지의 강렬함 — 작은 것의 큰 파괴력이 전체 분위기를 이끔.</li>
+<li>무대가 빠르게 전환됨: 향기름 병 → 왕궁 → 공사 현장 → 연회장 → 침실.</li>
+<li>19절 "돈이 모든 것에 응한다"의 맥락 불명료함이 독자를 잠시 멈추게 함.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(1절): "죽은 파리들이 향기름을 부패하게 한다" — 작은 어리석음의 큰 파괴력 선언.</li>
+<li>끝(20절): "공중의 새가 그 소리를 전하리라" — 말의 위험성과 신중함으로 마침.</li>
+<li>시작과 끝이 "작은 것이 큰 영향을 미친다"는 동일 주제로 수렴.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li><em>kesil</em>(우매자): 마음이 왼쪽(2절), 길에서 어리석음이 드러남(3절), 높은 자리에 올라가는 역전(6절).</li>
+<li><em>chakham</em>(지혜자): 마음이 오른쪽(2절), 말이 은혜로움(12절), 도끼날을 예리하게 함(10절).</li>
+<li><em>melek</em>(왕): 어린 왕은 화(16절), 귀족 출신 왕은 복(17절).</li>
+<li>신하들: 아침부터 먹으면 화(16절), 힘을 위해 먹으면 복(17절).</li>
+<li><em>marpe</em>(침착함): 권력자의 분노 앞에서 그 자리를 지키는 것이 치유의 행위(4절).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1-3절): 죽은 파리 — 작은 어리석음의 큰 파괴력. 우매자의 마음은 왼쪽.</li>
+<li>컷 2 (4-7절): 왕궁 무대 — 침착함과 역전된 세계(우매자가 높아짐).</li>
+<li>컷 3 (8-11절): 공사 현장 — 위험의 역설들과 지혜의 실용적 유익.</li>
+<li>컷 4 (12-19절): 말과 수고 — 지혜자의 말 vs 우매자의 말. 왕과 신하의 연회.</li>
+<li>컷 5 (20절): 공중의 새 — 마음의 말도 날아다니는 경고.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (1) 원어 카드</h2>
+<ul>
+<li><em>kesil</em>(כְּסִיל) — 우매자. 잠언에서 자주 등장하는 어리석음의 유형어.</li>
+<li><em>chokhmah</em>(חָכְמָה) — 지혜. 1절에서 더럽혀질 수 있는 것, 10절에서 성공의 도구.</li>
+<li><em>zevuvim</em>(זְבוּבִים) — 파리들. 단수집합명사로 복수이지만 단수 동사 취함.</li>
+<li><em>ro'osh</em>(רֹאשׁ) — 독·악취·부패. 기름과 대조되는 단어.</li>
+<li><em>yamin</em>(יָמִין) / <em>smol</em>(שְׂמֹאל) — 오른쪽/왼쪽. 히브리 문화적 길상 방향 개념.</li>
+<li><em>marpe</em>(מַרְפֵּא) — 침착함·치유·진정(4절). 자리를 지키는 것이 치유.</li>
+<li><em>lachas</em>(לַחַשׁ) — 술사·마법사·속삭임(11절). 때를 맞추지 못한 기술의 무용함.</li>
+<li><em>amal</em>(עָמָל) — 수고(15절). 우매자의 수고가 그를 피곤하게 함.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (2) 문학 구조</h2>
+<ul>
+<li>10장은 잠언 형식의 단편 모음이지만, "작은 것이 큰 영향을 미친다"는 단일 주제가 관통.</li>
+<li>9:17-18이 10장의 서론 역할 — 지혜자의 조용한 말이 외침보다 낫다는 주제 연결.</li>
+<li>1절(파리)과 20절(새)이 수미상관(inclusio)처럼 작용 — 둘 다 작은 것의 큰 영향.</li>
+<li>8-11절의 위험 역설들은 anaphora(수미) 구조로 반복되며 리듬감을 형성.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (3) ANE 배경 (해석 아님)</h2>
+<ul>
+<li>고대 근동 왕실 연회 묘사(10:16-17 배경) — 왕의 자질과 국가 번영의 연관.</li>
+<li>이집트 지혜 문학 아메네모페 교훈과 10:4 침착함 주제 비교 — 고대 근동 공통 지혜 전통.</li>
+<li>"공중의 새가 말을 전한다"(20절) — 고대 근동 관용어로 널리 사용된 비밀 누설 표현.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (4) 교차 참조 노드</h2>
+<ul>
+<li>ECC 10 ↔ ECC 9:17-18 (지혜자의 조용한 말이 어리석은 자의 외침보다 낫다)</li>
+<li>ECC 10 ↔ ECC 8:1-4 (왕 앞에서의 태도와 침착함)</li>
+<li>ECC 10 ↔ 잠 10:1-32 (지혜 vs 어리석음의 잠언 형식 대조)</li>
+<li>ECC 10 ↔ ECC 5:2-3 (말이 많으면 어리석음이 드러남)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>향기름 병 위에 죽은 파리가 떨어진다. 냄새가 퍼진다. 작은 어리석음이 지혜와 존귀를 더럽힌다. 우매자가 길을 걷는데 그 어리석음이 드러난다. 권력자가 화를 내도 그 자리에 머무는 침착함이 큰 잘못을 막는다. 종이 말을 타고 귀인이 걸어가는 — 뒤집힌 세계. 구덩이를 파던 자가 빠지고, 담을 헐던 자가 뱀에 물린다. 무뎌진 도끼로 계속 찍는 것보다 날카롭게 하는 것이 지혜다. 우매자는 말이 많고 장래를 알지 못한다. 게으름으로 서까래가 내려앉는다. 침실에서 왕을 저주하는 말이 나간다 — 공중의 새가 그 소리를 전한다.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"죽은 파리와 침착한 지혜"</strong></li>
+<li>초벌 부제: "작은 어리석음의 큰 파괴력과 지혜의 실용적 유익 — 10장의 관찰 모음"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (kesil, chokhmah, zevuvim, ro'osh, yamin, smol, marpe, lachas, amal 기록)</li>
+<li>[x] 역사·문화·지리·문학 사실 최소 1개 (ANE 왕실 연회·이집트 지혜 문학 아메네모페·공중의 새 관용어)</li>
+<li>[x] 미해결 질문 1개 이상 (6건 s8에 기록)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 5개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>5-7절의 "우매자가 높아진다"는 관찰이 사회 비판이나 계층 구조 논의로 드리프트될 위험 — 사실 관찰로만 보존.</li>
+<li>19절 "돈이 모든 것에 응한다"가 재물 긍정 혹은 냉소적 비판으로 독해될 위험 — 본문이 맥락을 제공하지 않으므로 열린 관찰로 보존.</li>
+<li>4절 "침착함"이 복종이나 순종의 덕목으로 도덕화될 위험 — 실용적 지혜로서의 관찰에 머묾.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 관찰한 것을 주께 아뢰기.</strong> 답을 구하지 않고 머문다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-010</p>
+<p>book: 전도서</p>
+<p>chapter: 10</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>전도서 10장 — 미해결 질문</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. "죽은 파리"(10:1)로 향기름 전체가 상한다는 비유는 무엇을 가리키는가?</h2>
+<ul><li>작은 어리석음 하나가 쌓인 지혜 전체를 망친다는 뜻인지, 아니면 한 번의 실수가 평판을 영구히 훼손한다는 뜻인지 본문이 구체화하지 않음. 보존.</li></ul>
+
+<h2>Q2. 우매자의 마음이 "왼쪽"이라는 공간 은유는 어떤 어감인가?</h2>
+<ul><li><em>smol</em>(왼쪽)이 히브리 문화에서 불길·부정의 방향이지만, 코헬렛이 이 전통을 비판적으로 쓰는지 그냥 쓰는지 본문이 설명하지 않음. 보존.</li></ul>
+
+<h2>Q3. 10:5-7에서 우매자가 높아지고 귀인이 낮아지는 역전은 어떻게 봐야 하는가?</h2>
+<ul><li>코헬렛이 이 역전을 "잘못"이라고 부르는지(5절 "내가 본 폐단이 있다"), 아니면 그저 관찰인지 — 판단의 무게가 어느 정도인지 본문만으로 특정 불가. 보존.</li></ul>
+
+<h2>Q4. 10:8-11의 위험 역설들(구덩이, 담, 돌, 나무)은 어떤 공통 의미를 가지는가?</h2>
+<ul><li>위험이 어리석음 때문인지, 아니면 삶 자체의 위험을 가리키는지, 지혜가 위험을 제거하는지 완화하는지 본문에서 특정 불가. 보존.</li></ul>
+
+<h2>Q5. 10:19 "돈이 모든 것에 응한다"는 재물에 대한 긍정인가 관찰인가?</h2>
+<ul><li>5-6장의 재물 비판과 달리 여기서는 맥락이 없음. 냉소적 사실 인정인지, 단순 관찰인지, 아니면 연회의 맥락에서 재물의 기능을 설명하는 것인지 본문이 결정하지 않음. 보존.</li></ul>
+
+<h2>Q6. 10:20 "공중의 새가 소리를 전한다"는 관용구는 어떤 문화적 배경인가?</h2>
+<ul><li>고대 근동 관용어로 알려져 있지만, 코헬렛이 이 표현을 어디서 가져왔는지, 이스라엘 전통 안에서의 위치가 어떤지 본문 안에서 설명되지 않음. 보존.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">작은 어리석음의 파괴력을 통과하여 침착한 지혜로 일상을 살아가는 것이 12장 경외를 향한 여정의 한 단계다.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: ECC-010</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-20</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 편의 골격</h3>
+<p><strong>한 문장</strong>: 전도서 10장은 죽은 파리에서 공중의 새까지, 작은 어리석음이 지혜를 더럽히고 큰 것을 망치는 역설과 그 안에서 침착한 지혜로 일상을 헤쳐가는 실용적 관찰들의 모음이다.</p>
+<p><strong>한 문단</strong>: 향기름 병 안에 죽은 파리 한 마리가 들어가 전체를 망친다 — 이것이 10장의 서문이자 주제다. 우매자는 가만히 걷기만 해도 어리석음이 드러난다. 권력자 앞에서 침착함이 큰 잘못을 막는다. 우매자가 높은 자리에 오르고 귀인이 낮은 곳에 있는 역전된 세계가 코헬렛의 눈에 들어온다. 공사 현장에서는 구덩이 파는 자가 그 구덩이에 빠진다. 도끼날이 무뎌지면 힘이 더 드나니 지혜가 먼저다. 우매자는 말이 많고 자기 입술로 망한다. 게으름으로 집이 무너진다. 그리고 마지막에 들린다 — 공중의 새가 마음의 말도 전한다. 10장은 어리석음의 작은 파괴력과 지혜의 실용적 유익을 잠언 형식으로 집중 관찰하며, 12장의 결론으로 나아가는 후반부 여정의 한 단계다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품</td><td>향기름 병, 왕궁, 공사 현장, 연회장, 침실. 작은 소품들이 큰 진리를 담음.</td></tr>
+<tr><td>2 첫 느낌</td><td>잠언 형식의 단편 모음. "헛됨" 없이 관찰만. 죽은 파리 이미지의 강렬함.</td></tr>
+<tr><td>3 시작과 끝</td><td>1절(파리·파괴) → 20절(새·말의 위험). 둘 다 "작은 것의 큰 영향"으로 수렴.</td></tr>
+<tr><td>4 등장인물·사상</td><td>kesil(우매자) vs chakham(지혜자). melek(왕)의 자질. marpe(침착함).</td></tr>
+<tr><td>5 장면 컷</td><td>컷1 파리 / 컷2 왕궁 / 컷3 공사 현장 / 컷4 말과 수고 / 컷5 공중의 새.</td></tr>
+<tr><td>6 의문·발견</td><td>zevuvim 단수집합명사. yamin/smol 문화적 방향. marpe와 lachas 원어. 위험 역설들.</td></tr>
+<tr><td>7 동영상</td><td>파리→길→왕궁→역전→공사→말→연회→새. 작은 것의 큰 영향 반복.</td></tr>
+<tr><td>8 초벌 제목</td><td>"죽은 파리와 침착한 지혜"</td></tr>
+<tr><td>9 기도·내면</td><td>"내 도끼날이 무뎌진 건 아닌가", "내 말이 날개를 달고 날아다닌다"는 자리에 머묾.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 작은 것의 큰 영향 반복</strong>: 죽은 파리(1절) → 무뎌진 도끼날(10절) → 게으름으로 내려앉는 서까래(18절) → 공중의 새(20절). 같은 주제가 다른 소품으로 반복되며 누적된다.</p>
+<p>2. <strong>결 2 — 침착함(<em>marpe</em>)의 실용성</strong>: 4절의 "그 자리를 떠나지 말라"는 도피하지 않는 것이 지혜라는 관찰이다. <em>marpe</em>(치유·진정)가 도피가 아닌 자리 지킴에서 온다.</p>
+<p>3. <strong>결 3 — 역전된 세계의 관찰</strong>: 5-7절의 역전(우매자가 높아짐)을 코헬렛은 "폐단"이라고 부르면서도 해결책을 제시하지 않는다. 관찰로만 남겨 두는 것이 10장의 방식이다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>전도서 안 — ECC 9:17-18 (지혜자의 말과 우매자), ECC 8:1-4 (왕 앞에서의 태도), ECC 5:2-3 (말과 어리석음).</li>
+<li>다른 권 — 잠언 10:1-32 (지혜 vs 어리석음 모음). 잠언 17:28 (우매자도 잠잠하면 지혜로운 자로 여겨짐).</li>
+</ul>
+
+<h3>E · 한 사람의 의식 흐름</h3>
+<ul>
+<li><strong>시작</strong>: 죽은 파리 이미지에 멈춘다.</li>
+<li><strong>멈춤 1</strong>: "작은 어리석음이 무엇인가"를 자신에게 묻는다.</li>
+<li><strong>멈춤 2</strong>: "내 도끼날이 무뎌진 건 아닌가"를 자신에게 묻는다.</li>
+<li><strong>끝</strong>: 공중의 새가 날아가는 장면에서 — 말의 무게를 새롭게 느끼는 눈을 손에 쥔다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 죽은 파리에서 공중의 새까지 "작은 것의 큰 영향"이 반복됨을 관찰함</li>
+<li>[x] 침착함(<em>marpe</em>)이 지혜의 실용적 표현으로 관찰됨</li>
+<li>[x] 역전된 세계(우매자 상승)가 관찰로 보존됨</li>
+<li>[x] 원어(kesil, chokhmah, zevuvim, marpe, lachas 등) 기록됨</li>
+</ul>
+
+<h3>G · 구속사 좌표 — ECC 흐름 위 이 장의 위치</h3>
+<p>전도서의 "3~11장 때·분깃·하나님의 선물" 국면 안에서 10장은 후반부에 위치한다. 1-6장이 헛됨의 다양한 차원을 탐구했다면, 7-11장은 그 안에서 어떻게 살아야 하는지를 집중 관찰한다. 10장은 특히 잠언 형식으로 지혜 vs 어리석음을 일상 장면에서 관찰함으로써, 12장의 "하나님을 경외하고 그의 명령들을 지키라"는 결론을 향해 나아가는 준비 단계 역할을 한다. 전도서의 <em>spine</em>(해 아래 헛됨을 통과하여 창조주를 경외하는 자리로)에서 10장은 그 여정의 구체적 일상 훈련 단계다.</p>
+
+<h3>H · 운동 벡터 — ECC spine의 이 장 국면</h3>
+<p>10장은 <strong>어리석음의 작은 파괴력에 대한 인식</strong>에서 <strong>침착하고 날카로운 지혜로 일상을 살아가는 훈련</strong>으로 미는 국면이다. 극적인 움직임이 아니라 일상의 구체적 장면들 속에서 지혜의 얼굴을 찾는 횡적 탐구다. 그 탐구가 12장의 종적 결론을 지탱하는 토대가 된다.</p>
+
+<h3>I · 수면 아래 — 이 장에서 비치는 하나님의 의중과 심정</h3>
+<p>10장 수면 아래에서 비치는 것: 어리석음의 파괴력을 알게 하시되, 그 앎이 절망이 아니라 지혜로운 삶의 방식으로 이어지기를 원하시는 것 같다. 죽은 파리를 보여주시는 것은 경고이되, 도끼날을 날카롭게 하라는 말씀은 실용적 희망이다. 침착함(<em>marpe</em>)을 가르치시는 것은, 흔들리는 세상 안에서도 그 자리를 지킬 수 있다는 하나님의 심정 같다. 12장의 경외를 향한 여정에서 일상의 지혜를 훈련시키시는 심정.</p>
+
+<h3>J · 실존적 부름 — ECC 향방이 독자 안에서 점화하는 불씨</h3>
+<p>"내 말에, 내 결정에, 내 일상에 작은 어리석음이 향기름을 망치고 있지는 않은가" — 10장이 독자 안에 놓는 불씨다. 그리고 동시에 — "무뎌진 도끼날을 날카롭게 하는 것이 더 힘을 쓰는 것보다 먼저다"라는 침착한 자기 점검으로의 부름이다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>marpe</em>(침착함·치유).</p>
+<p><strong>다음 장으로 미는 운동</strong>: 지혜로운 일상의 훈련이 11장의 "씨를 뿌리고 바람을 보지 말라"는 적극적 행동으로 이어진다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/ECC/9/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">전도서 9장</div>
+        <div class="nav-preview">죽음 앞에서의 평등과 즐거움의 명령.</div>
+      </a>
+      <a href="/magazine/ECC/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">전도서 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/ECC/11/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">전도서 11장</div>
+        <div class="nav-preview">씨를 뿌리고 바람을 보지 말라 — 불확실 속 적극적 행동.</div>
+      </a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last:ecc10', JSON.stringify({
+      href: '/magazine/ECC/10/',
+      title: '전도서 10장',
+      excerpt: '작은 어리석음의 큰 파괴력과 침착한 지혜의 실용적 유익 — 죽은 파리에서 공중의 새까지.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2026-06-20</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>전도서 3장 — Observatory | 네다바웨이</title>
+<meta name="description" content="전도서 3장을 9단계로 같이 관찰합니다. 범사에 기한과 때, 영원을 사모하는 마음을 주셨으나 하나님의 하시는 일을 측량할 수 없어 먹고 마시며 자기 일에 즐거워하는 것이 하나님의 선물.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/ECC/3/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s; user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·정보</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/ECC/">전도서</a> · 3장</div>
+      <h1>전도서 3장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">ECC-003 · 시가서 · 히브리어</div>
+      <p class="essence">범사에 기한과 때가 있고, 영원을 사모하는 마음을 주셨으나 하나님의 하시는 일을 측량할 수 없어 먹고 마시며 자기 일에 즐거워하는 것이 하나님의 선물.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">관찰 시뮬레이션 raw transcript</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 14쌍의 대조 무대: 태어남과 죽음, 심음과 뽑음, 울음과 웃음, 전쟁과 평화. 그리고 때를 주관하시는 하나님과 영원을 사모하지만 다 알 수 없는 인간.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-003</p>
+<p>book: 전도서</p>
+<p>book_en: Ecclesiastes</p>
+<p>chapter: 3</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 지혜문학(시·담화)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 22</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [et, hevel, olam, yitron, chelek, amal, simcha, nephesh, ruach, mispat, tzaddik, rasha]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["3:11 'olam' 번역 → 70인역 ton aiona(시간적 영원) vs 히브리어 원문의 다의성", "3:19 동물과 인간의 동일한 운명 구절 → 70인역 번역이 히브리어 원문을 약화시키는 경향"]</p>
+<p>ane_refs: ["고대 메소포타미아 '때의 목록' 전통과 3:1-8 28가지 때 목록 비교(배경 자료)", "이집트 지혜문학의 '적절한 때' 개념과 코헬렛의 et 개념 병행 관찰", "고대 근동 죽음·부활 순환 신화와 코헬렛의 비판적 거리 관찰"]</p>
+<p>rabbinic_refs: ["Midrash Rabbah Qohelet 3:1 — 때의 목록에 대한 랍비적 독해(참고)", "b.Moed Katan 9a — 웃을 때와 울 때 논의"]</p>
+<p>literary_devices: [chiasm, merism, binary_pairs, rhetorical_question, meditation, inclusio]</p>
+<p>repeated_words: ["et(때·기한)", "hevel(헛됨)", "amal(수고)", "simcha(기쁨·즐거움)", "elohim(하나님)", "tachat hashemesh(해 아래)"]</p>
+<p>cross_refs: ["전도서 2:24-26 (먹고 마시는 것이 하나님의 손에서 — 3장과 연속)", "전도서 5:18-19 (분깃을 즐거워하라)", "전도서 8:6 (모든 일에 때가 있음)", "전도서 12:13 (경외의 결론)", "창세기 1-2장 (창조 시간성과 et 개념)", "욥기 14:5 (사람의 날이 정해짐)", "시편 31:15 (나의 때가 주의 손에)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-20</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>전도서 3장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 전도서 3장입니다. 2장에서 세 실험이 모두 헛됨으로 끝나고 "먹고 마시는 것이 하나님의 손에서"라는 첫 씨앗이 심어졌습니다. 3장은 그 씨앗 다음에 오는 장입니다. 낭독하겠습니다.</p>
+<p>(본문 낭독 3:1~22, 약 3분 30초)</p>
+<p><strong>(침묵 약 45초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기가 느껴지셨는지요?</p>
+<p><strong>P01 한나래</strong>: 1-8절은 리듬이 있어요. "날 때가 있고, 죽을 때가 있고" — 거의 노래처럼 들렸어요. 그런데 9절에서 갑자기 멈춰요. "수고하는 자가 그 수고로 말미암아 무엇을 얻으랴" — 노래가 끝나고 현실로 돌아오는 느낌이었어요.</p>
+<p><strong>P07 오지혜</strong>: 28가지 때가 쏟아져요. 날 때, 죽을 때, 심을 때, 뽑을 때, 울 때, 웃을 때, 전쟁할 때, 평화할 때... 끝없이 나오는 것 같았어요. 숨이 가빠지다가 9절에서 딱 멈추는 느낌이요.</p>
+<p><strong>P04 최현국</strong>: 두 파트가 보였어요. 1-8절의 시 형식과 9-22절의 산문 형식. 앞에서 때를 나열하고 뒤에서 그 때를 응시하는 구조처럼 읽혔어요.</p>
+<p><strong>P05 김미영</strong>: 11절 "영원을 사모하는 마음을 주셨다"는 구절이 특이했어요. 아름다운 느낌도 있고, 동시에 "그런데 다 알 수 없게 하셨다"는 말이 따라와서... 선물인데 동시에 한계인 느낌이에요.</p>
+<p><strong>P02 이진우</strong>: 2장에서 <em>yitron</em>(유익)을 물었는데 3장 9절에서 또 나와요. "수고하는 자가 그 수고로 말미암아 무엇을 얻으랴" — 같은 질문이 반복돼요. 전도서가 이 질문을 계속 붙들고 있어요.</p>
+<p><strong>P11 나경아</strong>: 1절의 <em>zeman</em>(즈만)과 <em>et</em>(에트)가 모두 "때"로 번역되는데 히브리어에서 미묘하게 달라요. <em>zeman</em>은 정해진 시간·일정, <em>et</em>는 적절한 때·기회의 뉘앙스가 있어요. 두 단어가 함께 나오는 것이 눈에 들어왔어요.</p>
+<p><strong>성령일 선교사</strong>: 느낌들을 그대로 두지요. 무대로 들어가 보겠습니다.</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장의 무대는 어디이고, 어떤 소품들이 있는지요?</p>
+<p><strong>P04 최현국</strong>: 1-8절의 무대는 거대한 시간의 무대입니다. 생·사, 심음·뽑음, 파괴·건설, 전쟁·평화까지 — 인간 삶의 전 영역을 아우르는 시간의 스펙트럼이에요. 소품이 특별히 없어요. 시간 자체가 무대이고 소품입니다.</p>
+<p><strong>P05 김미영</strong>: 3절에 "돌을 던질 때와 돌을 거둘 때"라는 표현이 있어요. 돌이 소품으로 등장해요. 이건 건축 혹은 밭을 갈기 위한 돌을 걷어내는 농경 이미지일 수 있는데, 또는 전쟁에서 돌 던지는 이미지일 수도 있어요. 본문은 설명 없이 이미지만 던져 줍니다.</p>
+<p><strong>P07 오지혜</strong>: 5절 "안을 때와 안는 일을 멀리할 때" — 이것도 소품이에요. 포옹이라는 신체적 이미지가 삶의 때 목록에 들어가 있어요. 추상과 구체가 섞여 있어요.</p>
+<p><strong>P02 이진우</strong>: 16-17절에서 "심판 자리"와 "의인과 악인"이 등장해요. 법정 무대가 새로 펼쳐집니다. 1-8절의 우주적 시간 무대와 달리 16-17절은 사회적·도덕적 무대예요.</p>
+<p><strong>P11 나경아</strong>: 18-20절에서 인간과 짐승이 같은 무대에 올라옵니다. 흙 — <em>aphar</em>(아파르)가 소품으로 등장해요. 인간도 짐승도 모두 흙으로 돌아간다. 창세기 3장과 연결되는 소품이에요.</p>
+<p><strong>P01 한나래</strong>: 20절 "다 흙으로 말미암았으므로 다 흙으로 돌아가나니" — 흙이 시작이자 끝이에요. 이 장의 마지막 소품이 흙인 셈이에요.</p>
+<p><strong>성령일 선교사</strong>: 무대와 소품들을 기록으로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>P02 이진우</strong>: 시작(1절): "범사에 기한이 있고 천하만사가 다 때가 있나니" — 때의 선언으로 시작해요. 끝(22절): "사람이 자기 일에 즐거워하는 것보다 나은 것이 없나니 이는 그것이 그의 분깃이기 때문이라 — 그의 뒤에 있을 일을 보려고 그를 데리고 돌아올 자가 누구이겠느냐"로 닫혀요.</p>
+<p><strong>P01 한나래</strong>: 시작은 때의 주권에 대한 선언이고, 끝은 그 때를 알 수 없으므로 지금 자기 일에서 즐거워하라는 귀착이에요. 불확실한 미래에서 현재의 분깃으로 방향이 수렴돼요.</p>
+<p><strong>P11 나경아</strong>: 22절의 "뒤에 무슨 일이 있을지 누가 데려와 그에게 보이겠는가"는 수사적 질문이에요. 아무도 미래를 보여줄 수 없다 — 이것도 9절의 <em>yitron</em> 질문처럼 미래의 알 수 없음을 가리키는 거예요. 그래서 지금 자기 일에 즐거워하는 것이 분깃이에요.</p>
+<p><strong>성령일 선교사</strong>: 시작(때의 주권)과 끝(현재의 분깃)을 기록으로 남겨 두겠습니다.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>P04 최현국</strong>: 코헬렛·하나님·인생들(<em>benei ha-adam</em>)·짐승·의인·악인이 등장해요. 코헬렛은 관찰자, 하나님은 때를 정하시고 영원을 마음에 두게 하시는 분, 인생들은 수고하며 알 수 없는 존재들이에요.</p>
+<p><strong>P02 이진우</strong>: 사상으로는 세 가지가 중요해요. 첫째, 때의 주권 — 모든 것에 정해진 때가 있다(1-8절). 둘째, 인식론적 한계 — 하나님이 하시는 일의 시종을 알 수 없다(11절). 셋째, 일상의 선물 — 먹고 마시며 수고 중에 즐거워함이 하나님의 선물이다(12-13절).</p>
+<p><strong>P11 나경아</strong>: <em>olam</em>(올람·영원)이 핵심어예요. 11절에서 하나님이 "사람들의 마음에 <em>olam</em>을 두셨다"고 해요. <em>olam</em>은 영원이라는 뜻도 있고, '세상' 혹은 '오래된 것'의 뜻도 있어요. "영원을 사모하는 마음"인지 "세계(시간의 전체)에 대한 감각"인지 번역마다 달라요. 본문은 결정하지 않아요.</p>
+<p><strong>P05 김미영</strong>: 14절 "하나님이 행하시는 모든 것은 영원히 있을 것이라 — 그 위에 더할 수도 없고 그것에서 덜할 수도 없나니" — 하나님의 행사는 완결적이에요. 인간이 더하거나 빼지 못하는 불변성이에요.</p>
+<p><strong>P07 오지혜</strong>: 15절 "이제 있는 것이 옛적에 있었고 장래에 있을 것도 옛적에 있었나니" — 1장 9절의 "새것이 없다"는 선언이 여기서 다시 울립니다. 반복어가 이 장을 1장과 연결해요.</p>
+<p><strong>P01 한나래</strong>: 18-19절이 충격적이에요. "인생이 당하는 일을 짐승도 당하나니 그들이 당하는 일이 일반이라" — 죽음 앞에서 인간과 짐승이 같다는 말이에요. 2장에서 지혜자와 우매자가 같은 죽음을 맞는다고 했는데, 3장에서는 인간과 짐승이 같은 죽음을 맞는다고 해요. 범위가 넓어졌어요.</p>
+<p><strong>성령일 선교사</strong>: 그 충격을 그대로 두지요. 지금은 관찰로만 남겨 둡시다.</p>
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>P04 최현국</strong>: 다섯 컷으로 나뉩니다.</p>
+<ul>
+<li><strong>컷 1 (1-8절)</strong>: 때의 시편 — 28가지 대조 쌍으로 이루어진 인간 삶의 전체 시간 스펙트럼</li>
+<li><strong>컷 2 (9-11절)</strong>: yitron 질문 재등장 — 수고로 얻는 것이 무엇이냐? 하나님이 노고를 주셨고 때를 아름답게 하셨으며 영원(olam)을 마음에 두셨으나 다 알 수 없게 하셨다</li>
+<li><strong>컷 3 (12-15절)</strong>: 선물의 선언 — 기뻐하며 선을 행함, 먹고 마심·낙이 하나님의 선물, 하나님의 행사는 영원하며 더하거나 뺄 수 없음</li>
+<li><strong>컷 4 (16-17절)</strong>: 불의의 관찰 — 심판 자리에 불의, 의인과 악인을 하나님이 심판하실 것</li>
+<li><strong>컷 5 (18-22절)</strong>: 흙과 혼의 물음 — 인간과 짐승의 동일한 죽음, 인생의 혼이 위로 올라가는가? 자기 일에 즐거워하는 것이 분깃</li>
+</ul>
+<p><strong>P02 이진우</strong>: 컷 1이 전체의 틀이고 컷 2-5가 그 틀 안에서 생겨나는 질문들이에요. "때가 있다 → 그런데 얻는 게 뭐냐 → 그러나 이것이 선물 → 그러나 불의가 있다 → 그러나 알 수 없다 → 그래도 자기 일에 즐거워하라"는 흐름이에요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P11 나경아</strong>: 원어 카드 정리해 드리겠습니다.</p>
+<ul>
+<li><em>et</em>(עֵת) — 때·기회·적절한 시기. 3:1-8에서 28번 반복. 단순한 시간적 순서가 아니라 적절한 때의 뉘앙스.</li>
+<li><em>zeman</em>(זְמָן) — 정해진 때·일정. 1절에서 <em>et</em>와 함께 등장. 두 단어가 겹침으로 강조 효과.</li>
+<li><em>olam</em>(עוֹלָם) — 영원·세상·시간의 전체. 11절에서 핵심 개념. 번역 논쟁이 있는 어휘.</li>
+<li><em>yitron</em>(יִתְרוֹן) — 유익·순이익. 9절에서 2장의 질문이 재등장.</li>
+<li><em>chelek</em>(חֵלֶק) — 분깃·몫. 22절에서 "이것이 그의 분깃"이라는 2장의 씨앗이 꽃피어요.</li>
+<li><em>nephesh</em>(נֶפֶשׁ) — 혼·생기·자아. 21절에서 인생의 혼이 위로 올라가는가 물어요.</li>
+<li><em>ruach</em>(רוּחַ) — 영·바람·숨. 19절에서 인생과 짐승의 <em>ruach</em>가 같다고 해요.</li>
+</ul>
+<p><strong>P02 이진우</strong>: 문학 구조 발견이에요. 1-8절이 키아즘(교차 구조)인지 단순 나열인지 학자들이 다뤄요. 관찰 범위에서는 28가지 때가 14쌍의 대조를 이루는 것만 기록합니다. 대조는 <em>merism</em>(양 끝으로 전체를 표현하는 방식) — "날 때와 죽을 때"로 삶 전체를, "전쟁할 때와 평화할 때"로 사회 전체를 가리켜요.</p>
+<p><strong>P04 최현국</strong>: ANE 배경 발견이에요. 고대 메소포타미아 문서에 "때의 목록" 전통이 있어요. 코헬렛의 1-8절이 그 전통을 따르면서도 하나님이 모든 때를 정하신다는 독특한 신학적 틀을 얹는다는 관찰이 가능해요. 단 이 비교는 배경 자료이지 해석이 아님을 기록해 둡니다.</p>
+<p><strong>P05 김미영</strong>: 감각 디테일 발견이에요. 3절 "돌을 던질 때와 돌을 거둘 때" — 이 구절이 무엇을 가리키는지 본문이 설명하지 않아요. 성적 은유인지(한 유대 해석), 농경 이미지인지, 전쟁 이미지인지 불분명해요. 보존.</p>
+<p><strong>P01 한나래</strong>: 발견이에요. 12절 "기뻐하며 선을 행하는 것보다 나은 것이 없다"에서 "선을 행하는 것"이 구체적으로 무엇인지 본문이 설명하지 않아요. 도덕적 행위인지 단순히 좋은 것을 하는 것인지 불분명해요.</p>
+<p><strong>P07 오지혜</strong>: 반복어 발견이에요. 21절 "위로 올라가는지 아래로 내려가는지 누가 알겠느냐" — 이 물음이 답을 주지 않아요. 코헬렛이 아는 척하지 않는 자세가 인상적이에요. 미해결로 남겨 두는 정직함이에요.</p>
+<p><strong>성령일 선교사</strong>: <em>olam</em>의 다의성과 21절의 알 수 없음을 무대에 남겨 두지요.</p>
+<p><strong>(침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>P04 최현국</strong>: 화면이 열립니다. 거대한 시간의 무대. "날 때가 있고 죽을 때가 있다. 심을 때가 있고 뽑을 때가 있다." 리드미컬하게 쌍이 이어집니다. 울음과 웃음, 슬픔과 춤, 전쟁과 평화 — 인간 삶의 전 스펙트럼이 쏟아져요.</p>
+<p><strong>P02 이진우</strong>: 9절에서 카메라가 멈춥니다. "수고하는 자가 그 수고로 무엇을 얻는가?" 이 질문과 함께 화면이 조용해져요. 10-11절: 하나님이 인생들에게 노고를 주셨어요. 모든 것을 때를 따라 아름답게 하셨고, <em>olam</em>을 마음에 두셨어요. 그런데 하나님이 하시는 일의 시종을 사람이 측량할 수 없게 하셨어요.</p>
+<p><strong>P05 김미영</strong>: 12-13절에서 화면이 다시 밝아져요. 먹는 사람, 마시는 사람, 수고 중에 낙을 보는 사람 — 2장 24절과 같은 이미지가 돌아와요. "이것이 하나님의 선물이다." <em>chelek</em>(분깃)이 꽃피는 장면이에요.</p>
+<p><strong>P07 오지혜</strong>: 16-17절: 화면이 법정으로 이동해요. 심판 자리에 불의가 있어요. 그런데 하나님이 의인과 악인을 심판하실 것이라는 말이 들려요. 판결은 하나님께 있어요.</p>
+<p><strong>P01 한나래</strong>: 18-21절: 화면이 어두워져요. 인간과 짐승이 같이 죽어요. 흙으로 돌아가요. 혼이 위로 올라가는지 아래로 내려가는지 — 모른다고 해요. 카메라가 하늘과 땅 사이를 응시해요.</p>
+<p><strong>P11 나경아</strong>: 22절: 화면이 다시 현재로 돌아와요. 자기 일에 즐거워하는 사람이에요. 그의 뒤에 무슨 일이 있을지 알 수 없어요. 알 수 없으므로 지금 이 자리에서 즐거워하는 것이 분깃이에요. 동영상이 끝나요.</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>P01 한나래</strong>: "때를 주관하시는 분 앞에서 자기 분깃에 즐거워하기"</p>
+<p><strong>P02 이진우</strong>: "14쌍의 때와 하나 알 수 없음"</p>
+<p><strong>P04 최현국</strong>: "우주적 시간표 앞의 인간 — 때를 아름답게, 영원을 마음에"</p>
+<p><strong>P05 김미영</strong>: "olam과 먹고 마심 — 영원을 사모하지만 일상에 선물이 있음"</p>
+<p><strong>P07 오지혜</strong>: "28번의 때가 쏟아진 후, 자기 일에 즐거워하라"</p>
+<p><strong>P11 나경아</strong>: "et와 chelek — 때의 수수께끼와 분깃의 확인"</p>
+<p><strong>성령일 선교사</strong>: 초벌 부제로 "때의 수수께끼에서 먹고 마시는 선물의 확인으로"를 남겨 두겠습니다.</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 1-8절의 때 목록 안에 자신의 지금을 놓아보시지요. "나는 지금 어떤 때 안에 있는가" — 답을 구하지 말고 그 자리에 잠시 머무르시지요.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P05 김미영</strong>: (조용히) 저는 지금 어떤 때에 있는지 잘 모르겠어요. 그게 이 장이 말하는 것과 같은 것 같기도 해요.</p>
+<p><strong>P11 나경아</strong>: <em>olam</em>을 마음에 두셨다는 것 — 영원에 대한 갈망이 나한테도 있다는 것이 느껴졌어요. 그런데 다 알 수 없다는 것도요.</p>
+<p><strong>P02 이진우</strong>: 때를 알 수 없는데도 그 때 안에서 수고하고 먹고 마시는 것 — 이것이 선물이라는 게 낯설고도 실감나요.</p>
+<p><em>— 잠시 각자의 내면에 머문다. 답을 구하지 않는다. —</em></p>
+
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장은 어디서 어디로 움직이는 것 같은지요. 가르치지 말고 관찰로만 말씀해 주세요.</p>
+<p><strong>P02 이진우</strong>: "때의 수수께끼 앞의 막막함"에서 "먹고 마시는 것이 선물이라는 확인"으로 움직여요. 1-11절이 때의 압도감을 쌓고, 12-13절이 그 안에서 선물을 가리키는 구조예요.</p>
+<p><strong>P11 나경아</strong>: 수면 아래에서 보면, 하나님이 때를 정하시고 <em>olam</em>을 마음에 두신 분이시지만 사람에게 다 알게 하지 않으신다는 것 — 이것이 이 장의 긴장이에요. 전도서의 하나님은 전능하지만 가리시는 분이기도 해요.</p>
+<p><strong>P04 최현국</strong>: 이 장이 독자에게 내미는 것은 "때를 다 알 수 없지만 지금 자기 일에서 즐거워하라"는 부름인 것 같아요. 전도서의 목적지인 12:13의 "경외하고 명령을 지키라"를 향한 한 걸음이에요.</p>
+<p><strong>P01 한나래</strong>: 이 장이 품은 역설은 — 때를 주관하시는 하나님이 계신다는 것이 두렵기도 하고 위안이기도 하다는 것이에요. 어느 쪽인지는 본문이 결정하지 않아요.</p>
+<p><strong>P07 오지혜</strong>: 독자를 부르는 것이 있다면 — "지금 당신이 서 있는 이 때가 하나님이 정하신 때 안에 있음을 아는가"인 것 같아요.</p>
+<p><strong>성령일 선교사</strong>: <em>et</em>의 수수께끼와 <em>chelek</em>의 선물을 3장의 두 기둥으로 가져가지요.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">관찰된 사실 LOCKED v2.0</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계 관찰된 사실 LOCKED 정리.</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-003</p>
+<p>book: 전도서</p>
+<p>chapter: 3</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>전도서 3장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>1-8절: 시간 자체가 무대이자 소품. 28가지 때가 14쌍의 대조를 이루는 인간 삶의 전 영역.</li>
+<li>소품 목록: 돌(3절 — 던질 때·거둘 때), 포옹(5절 — 안을 때·멀리할 때), 흙(<em>aphar</em>·20절 — 흙으로 돌아감).</li>
+<li>16절: 법정 무대 등장 — "심판 자리", "의인", "악인"이 새 소품으로 등장.</li>
+<li>18-20절: 인간과 짐승이 같은 흙 무대에 올라옴. 창세기 3장의 흙 모티프와 연결 가능(배경 자료).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>1-8절의 리드미컬한 시 형식(노래처럼 들림)과 9절의 갑작스러운 멈춤이 대조를 이룸.</li>
+<li>11절 "영원을 사모하는 마음을 주셨으나 다 알 수 없게 하셨다"는 선물과 한계가 동시에 느껴짐.</li>
+<li>두 파트 감각: 1-8절 시 형식, 9-22절 산문·담화 형식.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(1절): "범사에 기한이 있고 천하만사가 다 때가 있나니" — 때의 주권 선언.</li>
+<li>끝(22절): "사람이 자기 일에 즐거워하는 것보다 나은 것이 없나니 이는 그것이 그의 분깃이기 때문이라." — 현재 분깃으로 수렴.</li>
+<li>불확실한 미래(22절 수사적 질문)에서 현재의 분깃(<em>chelek</em>)으로 방향이 이동.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>코헬렛(관찰자·사색자), 하나님(때를 정하신 분·선물 수여자), 인생들(<em>benei ha-adam</em>·수고하는 자들), 짐승(죽음을 공유하는 존재들), 의인·악인(16-17절 법정 등장).</li>
+<li><em>olam</em>(영원·세상·시간의 전체) — 11절 핵심어, 번역 논쟁 중.</li>
+<li><em>chelek</em>(분깃·몫) — 22절에서 2장의 씨앗이 열매로 등장.</li>
+<li><em>yitron</em>(유익·순이익) — 9절에서 재등장, 2장의 핵심 질문이 반복됨.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1-8절): 때의 시편 — 28가지 대조 쌍, 삶의 전 스펙트럼</li>
+<li>컷 2 (9-11절): yitron 질문 재등장 → 하나님이 노고를 주시고 올람을 마음에 두셨으나 다 알 수 없음</li>
+<li>컷 3 (12-15절): 선물 선언 — 먹고 마심·낙이 하나님의 선물, 하나님의 행사는 영원함</li>
+<li>컷 4 (16-17절): 법정 불의 관찰 → 하나님이 심판하실 것</li>
+<li>컷 5 (18-22절): 흙과 혼의 물음 → 알 수 없음 → 자기 일의 분깃</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (1) 원어 카드</h2>
+<ul>
+<li><em>et</em>(עֵת) — 때·기회·적절한 시기. 1-8절에서 28회 반복. 적절한 때의 뉘앙스.</li>
+<li><em>zeman</em>(זְמָן) — 정해진 때·일정. 1절에서 et와 함께 등장하여 강조 효과.</li>
+<li><em>olam</em>(עוֹלָם) — 영원·세상·시간의 전체. 11절 핵심어. 번역 논쟁 있음.</li>
+<li><em>yitron</em>(יִתְרוֹן) — 유익·순이익. 9절에서 2장의 질문 재등장.</li>
+<li><em>chelek</em>(חֵלֶק) — 분깃·몫. 22절에서 "그의 분깃"으로 등장. 2장의 씨앗이 꽃핌.</li>
+<li><em>nephesh</em>(נֶפֶשׁ) — 혼·생기. 21절에서 인생의 혼이 위로 올라가는가 묻는 문맥.</li>
+<li><em>ruach</em>(רוּחַ) — 영·바람·숨. 19절에서 인생과 짐승의 ruach가 같다고 표현됨.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (2) 문학 구조</h2>
+<ul>
+<li>1-8절: 14쌍 대조의 <em>merism</em>(양 끝으로 전체를 표현하는 문학 기법) — 날 때·죽을 때로 삶 전체를, 전쟁·평화로 사회 전체를 가리킴.</li>
+<li>9절: yitron 질문이 2장 다음으로 재등장 — 전도서의 반복 질문 구조.</li>
+<li>15절: 1:9 "해 아래 새것이 없다"의 반향 — 내부 교차참조 기능.</li>
+<li>전체 구조: 때의 시편(1-8) → 질문(9) → 하나님의 행사 응시(10-15) → 불의 관찰(16-17) → 죽음과 알 수 없음(18-21) → 분깃의 결론(22).</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (3) ANE 배경 (해석 아님)</h2>
+<ul>
+<li>고대 메소포타미아 "때의 목록" 전통 — 코헬렛의 1-8절과 형식적 유사성 관찰(배경 자료).</li>
+<li>이집트 지혜문학의 "적절한 때(<em>et</em>) 인식" 개념 — 코헬렛과 병행 관찰.</li>
+<li>창세기 3:19 "흙으로 돌아가리라"와 전도서 3:20 "다 흙으로 돌아가나니" — 언어적 연결 관찰.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (4) 교차 참조 노드</h2>
+<ul>
+<li>ECC 3 ↔ ECC 1:9 (해 아래 새것이 없음 — 3:15 반향)</li>
+<li>ECC 3 ↔ ECC 2:24-26 (먹고 마시는 선물 — 3:12-13 연속)</li>
+<li>ECC 3 ↔ ECC 8:6 (모든 일에 때가 있음)</li>
+<li>ECC 3 ↔ ECC 12:13 (경외의 결론 — 3장이 향하는 방향)</li>
+<li>ECC 3 ↔ 창세기 3:19 (흙으로 돌아감 — 3:20 언어 연결)</li>
+<li>ECC 3 ↔ 시편 31:15 (나의 때가 주의 손에)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>28가지 때가 쏟아진다. 리듬이 있다. 9절에서 멈춘다 — "수고로 무엇을 얻는가?" 10-11절: 하나님이 노고를 주셨고, 때를 아름답게 하셨고, <em>olam</em>을 마음에 두셨으나 다 알 수 없게 하셨다. 12-13절: 그러나 먹고 마시며 수고 중에 낙을 보는 것이 하나님의 선물이다. 14-15절: 하나님의 행사는 영원히 있을 것이다. 16-17절: 심판 자리에 불의가 있다 — 그러나 하나님이 심판하실 것이다. 18-21절: 인간과 짐승이 같이 죽고 같이 흙으로 돌아간다. 혼이 위로 올라가는지 — 아무도 모른다. 22절: 자기 일에 즐거워하는 것이 분깃이다. 뒤를 알 수 없으므로.</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"때의 수수께끼와 분깃의 선물"</strong></li>
+<li>초벌 부제: "28가지 때 앞에서 영원을 사모하되 다 알 수 없어, 먹고 마시는 것이 하나님의 선물"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (et, zeman, olam, yitron, chelek, nephesh, ruach 기록)</li>
+<li>[x] 역사·문화·지리·문학 사실 최소 1개 (ANE 때의 목록 전통·merism·창세기 연결)</li>
+<li>[x] 미해결 질문 1개 이상 (6건 s8에 기록)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 5개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>12절 "선을 행하는 것"이 도덕 권면으로 드리프트될 위험 — 본문 표현 그대로 보존, 해석 보류.</li>
+<li>11절 <em>olam</em>이 특정 번역(영원한 갈망)으로 고정될 위험 — 번역 논쟁 중임을 기록하고 다의성 보존.</li>
+<li>21절 혼의 행방(위로/아래로) 논의가 사후 세계 교리로 드리프트될 위험 — "누가 알겠는가"로 끝나는 본문의 자세 그대로 보존.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도 · 미해결 질문</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 관찰한 것을 주께 아뢰기.</strong> 답을 구하지 않고 머문다. <strong>미해결 질문 Q1~Q6.</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-003</p>
+<p>book: 전도서</p>
+<p>chapter: 3</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>전도서 3장 — 미해결 질문</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 3절 "돌을 던질 때와 돌을 거둘 때"는 정확히 무엇을 가리키는가?</h2>
+<ul><li>농경 이미지(밭에서 돌 제거)인지, 전쟁 이미지(무기 던지기)인지, 성적 은유(일부 유대 해석)인지 본문이 설명하지 않음. 보존.</li></ul>
+
+<h2>Q2. 11절 <em>olam</em>(עוֹלָם)은 "영원"인가, "세상·시간의 전체"인가?</h2>
+<ul><li>히브리어 <em>olam</em>의 다의성 — 번역마다 다름. 70인역은 <em>ton aiona</em>(시간적 영원)으로 옮겼으나 히브리어 원문의 함의 전체를 담는지 불확실. 관찰 단계에서 결정 보류.</li></ul>
+
+<h2>Q3. 21절에서 인생의 혼(<em>ruach</em>)은 위로 올라가고 짐승의 혼은 아래로 내려간다는 것은 긍정인가, 부정 질문인가?</h2>
+<ul><li>"위로 올라가는지 누가 알겠느냐"는 수사적 부정 질문(아무도 모른다)인지, 어떤 차이를 인정하는 것인지 본문 자체가 결론을 내리지 않음. 보존.</li></ul>
+
+<h2>Q4. 16절의 "심판 자리에 불의"는 무엇을 가리키는가?</h2>
+<ul><li>사법 제도의 부패인지, 더 넓은 사회적 불의인지 본문이 구체화하지 않음. 17절 "하나님이 심판하실 것"이 어떤 방식의 심판인지도 본문이 설명하지 않음. 보존.</li></ul>
+
+<h2>Q5. 12절 "선을 행하는 것"(<em>la'asot tov</em>)은 도덕적 행위인가, 좋은 삶을 사는 것인가?</h2>
+<ul><li>히브리어 <em>tov</em>(좋음)는 도덕적 선과 일반적 좋음 양쪽 의미를 가짐. 본문이 어느 쪽인지 특정하지 않음. 보존.</li></ul>
+
+<h2>Q6. 14절 "하나님이 행하시는 모든 것은 영원히 있을 것이라 — 더할 수도 없고 덜할 수도 없나니"는 무슨 의미인가?</h2>
+<ul><li>하나님의 행사가 인간이 바꿀 수 없는 불변성인지, 완전성인지, 인간의 한계 선언인지 본문이 해석하지 않음. "이는 하나님이 사람들이 자기를 경외하게 하려 하심이라"는 이어지는 구절도 이 연결을 명확히 설명하지 않음. 보존.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">때의 수수께끼를 통과하며, 먹고 마시는 것이 하나님의 선물임을 확인하는 장.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: ECC-003</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-20</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 편의 골격</h3>
+<p><strong>한 문장</strong>: 전도서 3장은 28가지 때의 쌍으로 이루어진 인간 삶의 전 스펙트럼을 펼쳐 놓은 뒤, 때를 정하시고 영원을 마음에 두셨으나 다 알 수 없게 하신 하나님 앞에서 먹고 마시며 자기 일에 즐거워하는 것이 하나님의 선물이라고 확인하는 22절의 장이다.</p>
+<p><strong>한 문단</strong>: 코헬렛이 시를 펼친다. "날 때가 있고 죽을 때가 있다." 28가지 때가 14쌍의 대조를 이루며 쏟아진다. 그 리듬이 끝나자마자 9절의 질문이 온다 — 수고로 무엇을 얻는가? 10-11절: 하나님이 노고를 주셨고, 모든 것을 때를 따라 아름답게 하셨고, 영원(<em>olam</em>)을 마음에 두셨으나 하나님의 일의 시종을 사람이 측량할 수 없게 하셨다. 12-13절: 그러나 먹고 마시며 낙을 누리는 것이 하나님의 선물이다. 14-15절: 하나님의 행사는 영원하여 더하거나 뺄 수 없다. 16-17절: 불의가 있지만 하나님이 심판하실 것이다. 18-21절: 인간과 짐승이 같이 죽고 흙으로 돌아간다. 혼의 행방은 알 수 없다. 22절: 그러므로 자기 일에 즐거워하는 것이 분깃이다. 뒤를 알 수 없으므로. 3장은 때의 압도감에서 시작해 현재의 분깃으로 닻을 내린다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품</td><td>시간 자체가 무대. 돌·포옹·흙이 소품. 16절에 법정 무대 등장.</td></tr>
+<tr><td>2 첫 느낌</td><td>1-8절 리듬 → 9절 급멈춤. 11절 선물과 한계가 동시에 감지됨.</td></tr>
+<tr><td>3 시작과 끝</td><td>때의 선언(1절) → 자기 일의 분깃(22절). 우주적 시간에서 현재의 분깃으로.</td></tr>
+<tr><td>4 등장인물·사상</td><td>코헬렛·하나님·인생들·짐승·의인·악인. olam, chelek, yitron 핵심 개념어.</td></tr>
+<tr><td>5 장면 컷</td><td>컷1 때의 시편 / 컷2 yitron 재등장 / 컷3 선물 선언 / 컷4 법정 불의 / 컷5 흙과 분깃.</td></tr>
+<tr><td>6 의문·발견</td><td>olam 번역 논쟁. 3절 돌 이미지 불확실. 21절 혼의 행방 알 수 없음. merism 문학 구조.</td></tr>
+<tr><td>7 동영상</td><td>때의 쏟아짐 → 멈춤(yitron) → 선물 → 법정 → 흙·혼 → 자기 일의 분깃.</td></tr>
+<tr><td>8 초벌 제목</td><td>"때의 수수께끼와 분깃의 선물"</td></tr>
+<tr><td>9 기도·내면</td><td>"나는 지금 어떤 때에 있는가" 물음 앞에 머무는 자리.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — yitron 질문의 재등장</strong>: 2장 22절과 3장 9절이 같은 질문("수고로 얻는 것이 무엇이냐")을 반복한다. 전도서가 이 질문을 놓지 않고 계속 붙드는 구조다.</p>
+<p>2. <strong>결 2 — chelek의 개화</strong>: 2장 24절에서 심어진 <em>chelek</em>(분깃)의 씨앗이 3장 22절에서 "이것이 그의 분깃이기 때문이라"로 꽃핀다. 2-3장이 씨앗과 꽃의 관계다.</p>
+<p>3. <strong>결 3 — olam과 et의 긴장</strong>: 하나님이 <em>olam</em>(영원)을 마음에 두셨으나 하나님의 일의 시종을 알 수 없게 하셨다는 것과, 1-8절에서 모든 것에 <em>et</em>(정한 때)가 있다는 것 사이의 긴장 — 때는 있는데 알 수 없다. 이 긴장이 3장의 핵심 결이다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>전도서 안 — ECC 1:9 (새것이 없음, 3:15 반향), ECC 2:24-26 (먹고 마시는 선물의 씨앗, 3장에서 확장), ECC 5:18-19 (분깃의 발전), ECC 8:6 (모든 일에 때), ECC 12:13 (경외의 결론).</li>
+<li>다른 권 — 창세기 3:19 (흙으로 돌아감·3:20 언어 연결), 시편 31:15 (나의 때가 주의 손에), 욥기 14:5 (사람의 날이 정해짐).</li>
+</ul>
+
+<h3>E · 한 사람의 의식 흐름</h3>
+<ul>
+<li><strong>시작</strong>: 28가지 때의 리듬에 휩쓸린다. 노래처럼 들린다.</li>
+<li><strong>멈춤 1</strong>: 9절의 질문("수고로 무엇을 얻는가")에서 멈춘다.</li>
+<li><strong>멈춤 2</strong>: 11절 "영원을 사모하는 마음을 두셨으나 다 알 수 없게 하셨다"에서 멈춘다. 선물인지 한계인지 알 수 없는 자리다.</li>
+<li><strong>멈춤 3</strong>: 21절 "위로 올라가는지 누가 알겠느냐"에서 멈춘다. 아무도 모른다.</li>
+<li><strong>끝</strong>: 22절 "자기 일에 즐거워하는 것이 분깃"이라는 자리에 닻을 내린다.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] 28가지 때가 삶의 전 스펙트럼을 이루는 것이 관찰됨</li>
+<li>[x] <em>yitron</em> 질문이 2장에 이어 재등장함이 기록됨</li>
+<li>[x] <em>olam</em>의 다의성과 번역 논쟁이 기록됨</li>
+<li>[x] 먹고 마심·자기 일의 분깃(<em>chelek</em>)이 선물로 확인됨</li>
+<li>[x] 인간과 짐승의 동일한 죽음이 관찰됨</li>
+<li>[x] 혼의 행방 알 수 없음이 미해결로 보존됨</li>
+</ul>
+
+<h3>G · 구속사 좌표 — ECC 흐름 위 이 장의 위치</h3>
+<p>전도서 흐름 위에서 3장의 위치: ECC spine의 "3~11장 때·분깃·하나님의 선물" 국면의 첫 장이다. 1-2장이 헛됨을 실험하고 선언한 뒤 2장 말미에서 "먹고 마시는 것이 하나님의 손에서"라는 첫 씨앗을 심었다면, 3장은 그 씨앗 위에 "때의 수수께끼"를 더하며 먹고 마시는 선물의 내용을 확장한다. 때를 정하시는 하나님의 주권과 인간의 인식론적 한계가 함께 등장한다. 이 국면은 최종 목적지인 12:13 "하나님을 경외하고 그의 명령들을 지킬지어다"를 향해 쌓아가는 중반부의 첫 걸음이다.</p>
+
+<h3>H · 운동 벡터 — ECC spine의 이 장 국면</h3>
+<p>3장의 운동 방향은 <strong>'때의 수수께끼'에서 '먹고 마시는 선물의 확인'으로</strong>다. 1-8절의 때 목록이 인간 삶의 전 영역을 펼쳐 놓고, 9-11절이 그 압도감 속에서 "다 알 수 없음"의 한계를 명시한 뒤, 12-13절이 "그럼에도 먹고 마시며 낙을 누리는 것이 하나님의 선물"이라고 닻을 내린다. 운동의 방향은 거대한 시간의 수수께끼에서 현재의 일상 선물로의 수렴이다. 극적인 반전이 아니라 때의 압도감을 통과한 후 도달하는 조용한 확인이다.</p>
+
+<h3>I · 수면 아래 — 이 장에서 비치는 하나님의 의중과 심정</h3>
+<p>3장 수면 아래에서 비치는 것: 하나님이 모든 것에 정한 때를 두시고 그것을 때를 따라 아름답게 하시는 분이지만, 그 일의 시종을 사람이 다 알 수 없게 하셨다는 것 — 이것은 가리심이면서 동시에 경외로의 초대처럼 읽힌다. 일상의 먹고 마심을 선물로 주시는 너그러우심이 14절 "하나님의 행사는 영원히 있을 것이라"는 불변성과 연결된다. 영원을 마음에 두게 하셨으나 다 알 수 없게 하신 것 — 이것이 수면 아래에서 감지되는 하나님의 의중: 때를 주관하시면서 인간을 경외의 자리로 이끄시는 것.</p>
+
+<h3>J · 실존적 부름 — ECC 향방이 독자 안에서 점화하는 불씨</h3>
+<p>3장이 독자 안에 놓는 불씨: "지금 당신이 서 있는 이 때가 하나님이 정하신 때 안에 있다 — 그 때를 다 알 수 없지만, 지금 자기 일에서 즐거워하는 것이 분깃이다." 28가지 때 목록이 독자에게 묻는다 — "당신은 지금 어떤 때에 있는가?" 이 물음이 전도서의 최종 귀착점인 12:13 "창조주를 경외하라"를 향한 불씨다. 때를 주관하시는 분을 경외하게 하시려는 목적(14절 "이는 하나님이 사람들이 자기를 경외하게 하려 하심이라")이 수면 아래에서 이 불씨를 지핀다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>et(때)</em>.</p>
+<p><strong>다음 장으로 미는 운동</strong>: 때를 알 수 없는 상황에서도 수고 중에 선물을 받는 눈이 4장의 "학대·수고의 동기" 문제 앞에서 어떻게 작동하는지로 이어진다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/ECC/2/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">전도서 2장</div>
+        <div class="nav-preview">세 실험의 헛됨과 먹고 마시는 선물.</div>
+      </a>
+      <a href="/magazine/ECC/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">전도서 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/ECC/4/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">전도서 4장</div>
+        <div class="nav-preview">학대·수고의 동기·두 사람이 한 사람보다 나음.</div>
+      </a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last:ecc3', JSON.stringify({
+      href: '/magazine/ECC/3/',
+      title: '전도서 3장',
+      excerpt: '28가지 때의 수수께끼와 영원을 사모하지만 다 알 수 없어 먹고 마시는 것이 하나님의 선물.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2026-06-20</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

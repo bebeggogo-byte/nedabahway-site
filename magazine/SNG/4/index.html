@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>아가 4장 — Observatory | 네다바웨이</title>
+<meta name="description" content="아가 4장을 9단계로 같이 관찰합니다. 신랑이 신부의 아름다움을 머리부터 발끝까지 칭송하고, 잠근 동산과 향품의 샘을 노래한다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/SNG/4/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/SNG/">시가서</a> · <a href="/magazine/SNG/">아가</a> · 4장</div>
+      <h1>아가 4장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">SNG-004 · 시가서 · 히브리어</div>
+      <p class="essence">"나의 사랑, 나의 어여쁜 자야 — 일어나 함께 가자" — 신랑이 신부의 아름다움을 머리에서 발끝까지 칭송하고, 잠근 동산과 향품의 샘으로 부른다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 어떤 물건이 등장하는가. 아가 4장은 신랑이 신부의 아름다움을 칭송하는 노래(1~7절)와 잠근 동산·향품의 샘을 향한 부름(8~16절)으로 이루어진다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: SNG-004</p>
+<p>book: 아가</p>
+<p>book_en: Song of Songs</p>
+<p>chapter: 4</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 시·사랑 노래</p>
+<p>language: 히브리어</p>
+<p>verse_count: 16</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [yafah_ra'yati, gan_naul, mayan_chatum, nard_vecharkom, levonah, myrrh_mor, kerem, kalah, gilad, sharon]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["4:1 '비둘기 눈'을 70인역은 동일하게 옮김", "4:12 gan naul — '잠근 동산'을 70인역은 κῆπος κεκλεισμένος(닫힌 정원)로 옮김"]</p>
+<p>ane_refs: ["와스프(wasf) — 신체 묘사 형식의 사랑시. 고대 근동(이집트·수메르) 연애시에서 공통적으로 나타나는 장르(배경)", "길르앗의 몰약·향품은 고대 근동 무역로의 핵심 향신료(배경)", "잠근 동산(gan naul)은 왕실 소유의 닫힌 정원을 연상시키는 이미지(배경)"]</p>
+<p>rabbinic_refs: ["랍비 전통에서 아가 4:12를 이스라엘의 정결 혹은 시나이 계시 전 상태로 읽는 해석 전통(배경, 적용 아님)"]</p>
+<p>literary_devices: [wasf, anaphora, inclusio, sensory_imagery, metaphor_chain]</p>
+<p>repeated_words: ["나의 사랑(ra'yati)", "어여쁘다(yafah)", "흠이 없다(tam)", "잠근 동산(gan_naul)", "신부(kalah)"]</p>
+<p>cross_refs: ["아 1:15 (비둘기 눈 — 반복)", "아 6:4~ (신부 칭송의 유사 구조)", "아 8:6~7 (사랑의 인장 — 이 장이 향하는 목적지)", "창 2:8~9 (에덴 동산 — 배경적 울림)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-20</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>아가 4장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 아가 4장입니다. 신랑이 신부의 아름다움을 전면적으로 칭송하는 노래가 중심이에요. 낭독하고 머물겠습니다.</p>
+<p>(본문 낭독 4:1~16, 약 80초)</p>
+<p><strong>(침묵 약 45초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기가 느껴지셨는지요.</p>
+<p><strong>P01 한나래</strong>: 달라요. 1~3장에서 신부가 신랑을 찾아 헤매는 장면이었다면, 4장은 신랑이 신부를 바라보고 말하는 장이에요. 시선이 완전히 바뀌어요. 신랑의 눈에 비친 신부가 이 장의 전부예요.</p>
+<p><strong>P04 최현국</strong>: 풍성한 비유들이 줄을 잇는 느낌이에요. 비둘기 눈, 길르앗 산에서 내려오는 염소 떼, 큰 목욕통에서 나온 털 깎인 양 떼, 홍색 실, 석류 한 쪽 — 한 장이 이미지들로 가득해요.</p>
+<p><strong>P05 김미영</strong>: 향기들이 쌓여요. 몰약(mor), 유향(levonah), 나드(nard), 번홍화(charkom), 계피(kinamon), 창포, 각종 향목 — 잠근 동산이 향기의 집약처 같아요.</p>
+<p><strong>P02 이진우</strong>: 구조 있어요. 1~7절이 신부 신체 칭송(와스프 형식)이고, 8~15절이 잠근 동산·향품의 샘을 부르는 노래, 16절이 신부의 응답으로 마무리돼요. 세 단락 구조예요.</p>
+<p><strong>P07 오지혜</strong>: "흠이 없다"(7절)가 이 칭송 노래의 절정처럼 들렸어요. 머리에서 발끝까지 칭송하다가 "나의 사랑, 너는 온전히 어여쁘고 흠이 없도다"로 끝나요.</p>
+<p><strong>P11 나경아</strong>: 12절 "잠근 동산"이 히브리어로 <em>gan naul</em>인데, <em>naul</em>이 '잠그다·닫다·봉하다'의 뉘앙스예요. 같은 절에 "잠근 샘"(<em>mayan chatum</em>)이 병치돼요. 두 번 강조되는 이미지예요. 배경으로만요.</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품을 보지요.</p>
+<p><strong>P04 최현국</strong>: 무대가 바뀌어요. 전반(1~7절)은 신랑이 신부를 바라보는 장면 — 특정 장소보다 신부의 몸 자체가 무대예요. 후반(8~16절)은 레바논·아마나·스닐·헤르몬 산들이 등장하고, 잠근 동산이 주된 공간이 돼요.</p>
+<p><strong>P05 김미영</strong>: 소품·소재가 두 층이에요. 첫째 층(1~7절) — 비둘기, 길르앗 산, 털 깎인 양 떼, 홍색 실, 석류, 다윗의 망대, 방패, 용사의 방패 천. 둘째 층(8~16절) — 나드·번홍화·창포·계피·유향나무·몰약·알로에·각종 향목, 동산, 샘, 생수 우물.</p>
+<p><strong>P11 나경아</strong>: 8절에서 "레바논"과 함께 등장하는 "아마나, 스닐, 헤르몬"은 북방 산지들이에요. 특히 스닐과 헤르몬은 아모리·아람 전통에서 같은 산의 다른 이름으로 쓰인 경우도 있어요(신 3:9). 배경으로만요.</p>
+<p><strong>P07 오지혜</strong>: "다윗의 망대"(4절) 소품이 특이해요. 방패 천 개가 달려 있고 용사들의 방패들이라고 해요. 신부의 목을 묘사하면서 이 이미지를 쓰는 게 독특해요.</p>
+<p><strong>성령일 선교사</strong>: 신부의 몸을 무대로 삼은 칭송과, 동산·샘으로의 초대 — 두 무대를 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>P02 이진우</strong>: 1절 "나의 사랑, 너는 어여쁘고 어여쁘도다 네 눈이 비둘기 같다"로 열려요. 16절 "북풍아 일어나라 남풍아 오라 나의 동산에 불어서 향기를 발하라 내 사랑하는 자가 자기 동산에 들어가 그 아름다운 열매를 먹으리로다"로 닫혀요.</p>
+<p><strong>P01 한나래</strong>: 시작은 신랑의 칭송 — 신부를 향한 선언이에요. 끝은 신부의 응답 — 신부가 바람을 부르고 신랑을 동산으로 초대해요. 신랑의 노래가 신부의 초대로 마무리돼요.</p>
+<p><strong>P04 최현국</strong>: 받는 자(신부)에서 초대하는 자(신부)로 신부의 역할이 이동해요. 칭송을 받다가 응답하는 구조예요.</p>
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>P07 오지혜</strong>: 이 장의 인물은 신랑과 신부 둘뿐이에요. 1~3장에서 등장했던 예루살렘 딸들, 경비원들이 없어요. 둘만의 공간이에요.</p>
+<p><strong>P02 이진우</strong>: 신부가 칭송받는 신체 부위가 일곱이에요. 눈, 머리카락, 이, 입술, 뺨, 목, 가슴 — 머리에서 아래로 이동하는 순서예요(와스프 형식).</p>
+<p><strong>P11 나경아</strong>: 7절 "흠이 없다"의 히브리어 <em>tam</em>은 '온전한·완전한·흠 없는'이에요. 욥기 1:1에서 욥의 성품을 묘사할 때도 쓰이는 단어예요. 배경으로만요.</p>
+<p><strong>P01 한나래</strong>: 사상으로 보면, 이 장 전체가 "신부가 신랑의 눈에 어떻게 보이는가"의 선언이에요. 단순한 외모 묘사가 아니라 신랑이 신부를 바라보는 방식의 진술처럼 느껴져요.</p>
+<p><strong>P05 김미영</strong>: 12절 "잠근 동산·잠근 샘·봉한 우물"의 세 이미지가 한 절에 있어요. '잠근다'는 특성이 세 번 반복돼요.</p>
+<p><strong>성령일 선교사</strong>: 신랑이 신부를 바라보는 선언, 잠근 동산·샘의 이미지들을 그대로 두지요.</p>
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>P04 최현국</strong>: 세 컷입니다.</p>
+<ul>
+<li><strong>컷 1 (1~7절)</strong>: 신부 신체 칭송 — 와스프 형식으로 머리에서 가슴까지 비유를 통해 칭송. "흠이 없도다"로 마무리.</li>
+<li><strong>컷 2 (8~15절)</strong>: 잠근 동산·향품의 샘 — 신랑이 신부를 "나의 신부"(kalah)로 부르고 잠근 동산과 향품의 샘·생수 우물로 묘사.</li>
+<li><strong>컷 3 (16절)</strong>: 신부의 응답 — "북풍아 남풍아 오라 내 사랑하는 자가 자기 동산에 들어오리로다".</li>
+</ul>
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>P02 이진우</strong>: 발견이에요. 4절 "다윗의 망대"가 신부의 목을 묘사하는 비유로 쓰여요. 군사 이미지(방패 천, 용사의 방패)가 신부 신체 묘사에 들어오는 것이 이 장 고유의 특이점이에요. 본문이 설명하지 않아요.</p>
+<p><strong>P11 나경아</strong>: 12절 <em>gan naul</em>(잠근 동산)이 이 장의 핵심 원어예요. <em>naul</em>은 '잠금·봉함'의 의미인데, 같은 절에 <em>mayan chatum</em>(잠근 샘)이 병치돼요. 13~14절의 향품 목록이 아가에서 가장 풍부한 향신료 열거예요 — 나드(nard), 번홍화(charkom), 창포(kaneh), 계피(kinamon), 유향나무(atzei levonah), 몰약(mor), 알로에(ahaloth). 배경으로만요.</p>
+<p><strong>P05 김미영</strong>: 의문이에요. 8절 "신부야 레바논에서 오라"는 신부에게 레바논·북방 산지에서 내려오라는 초대인데, 신부가 실제로 레바논에 있는 건지, 비유인지 본문이 명확하지 않아요.</p>
+<p><strong>P07 오지혜</strong>: 발견. 9절 "나의 누이 나의 신부"(<em>achoti kalah</em>)라는 호칭이 이 장에서 다섯 번(9·10·11·12·5:1절) 나타나요. '누이·신부'가 동시에 호칭돼요. 배경 자료 없이 본문이 설명하지 않아요.</p>
+<p><strong>성령일 선교사</strong>: 와스프 구조, 잠근 동산 이미지, "나의 누이 나의 신부" 호칭, 다윗의 망대 비유를 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>P04 최현국</strong>: 신랑이 신부를 본다. "나의 사랑, 너는 어여쁘고 어여쁘도다." 눈이 베일 뒤 비둘기 같다. 머리카락이 길르앗 산에서 내려오는 염소 떼 같다. 이가 털 깎이고 목욕하고 올라온 양 떼 같아 짝을 잃은 것이 없다. 입술이 홍색 실 같고, 뺨이 베일 뒤 석류 한 쪽 같다. 목이 다윗의 망대 같아 방패 천 개, 용사의 방패가 달렸다. 두 유방이 백합화 가운데서 꼴을 먹는 쌍태 어린 사슴 같다. "흠이 없도다." 그리고 신랑이 신부를 부른다 — "나의 신부야, 레바논에서 함께 오라." "나의 누이, 나의 신부." 그녀의 사랑이 포도주보다 나으며 향기가 모든 향품보다 좋다. "너는 잠근 동산이요, 잠근 샘이요, 봉한 우물이로다." 나드와 번홍화, 창포와 계피, 각종 향품과 몰약과 알로에. "생수의 우물이요, 레바논에서 흘러내리는 시내로다." 그리고 신부가 응답한다 — "북풍아 일어나라, 남풍아 오라, 나의 동산에 불어라. 내 사랑하는 자가 자기 동산에 들어와 열매를 먹을지어다."</p>
+<p><strong>성령일 선교사</strong>: 신랑의 칭송이 신부의 초대로 이어지는 장이에요. 여기까지입니다.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "나의 사랑, 너는 흠이 없도다"</p>
+<p><strong>P02 이진우</strong>: "잠근 동산과 봉한 우물 — 신부 칭송의 절정"</p>
+<p><strong>P04 최현국</strong>: "와스프 — 신랑이 신부를 바라보는 방식"</p>
+<p><strong>P05 김미영</strong>: "나드와 몰약 — 향기들의 동산"</p>
+<p><strong>P07 오지혜</strong>: "나의 누이, 나의 신부"</p>
+<p><strong>P11 나경아</strong>: "<em>gan naul</em> — 잠근 동산, 봉한 우물"</p>
+<p>부제 제안: "신랑이 신부를 전면적으로 칭송하고, 신부는 바람을 불러 동산에 향기를 발하게 한다"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: 신랑이 신부를 바라보는 방식을 관찰한 자리에서, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) "흠이 없도다"는 선언이 울려요. 칭송하는 자의 눈이 어떤 눈인가를 생각해요.</p>
+<p><strong>(침묵)</strong> 🌿</p>
+<p><strong>성령일 선교사</strong>: 그 자리를 그대로 두지요. 신랑의 눈이 신부를 바라보는 자리입니다.</p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 이 본문은 어디서 어디로 움직이는지요?</p>
+<p><strong>P02 이진우</strong>: 칭송받는 신부(1~7절)에서 동산으로 초대받는 신부(8~15절)로, 그리고 신부가 응답해 신랑을 동산으로 초대하는 자(16절)로 이동해요. 받는 자에서 초대하는 자로.</p>
+<p><strong>성령일 선교사</strong>: 눈에 보이는 칭송과 동산 아래에서 무엇이 드러나는지요?</p>
+<p><strong>P01 한나래</strong>: 이 장 전체가 신랑의 눈이 신부를 어떻게 보는가의 선언인 것 같아요. "흠이 없도다"는 최종 평가가 아니라 신랑의 눈이 도달한 자리예요. 본문이 그 이상을 말하지 않지만요.</p>
+<p><strong>성령일 선교사</strong>: 이 본문이 품은 긴장은 무엇인지요?</p>
+<p><strong>P11 나경아</strong>: "잠근 동산"이에요. 잠겨 있으면서 동시에 향기를 발하는 동산. 닫혀 있는 것과 향기가 흘러나오는 것이 동시에 성립해요. 본문이 설명하지 않는 긴장이에요.</p>
+<p><strong>성령일 선교사</strong>: 잠겨 있으면서 향기를 발하는 긴장을 그대로 두지요. 칭송과 갈망의 국면이 새로 열렸습니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2단계~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: SNG-004</p>
+<p>book: 아가</p>
+<p>chapter: 4</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>아가 4장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대 두 공간 — ① 신부의 몸 자체가 무대인 칭송 공간(1~7절) ② 레바논·아마나·스닐·헤르몬 산지와 잠근 동산(8~16절).</li>
+<li>소품 층1(칭송): 비둘기·길르앗 산·털 깎인 양 떼·홍색 실·석류·다윗의 망대·방패 천·쌍태 어린 사슴·백합화.</li>
+<li>소품 층2(동산): 나드(nard)·번홍화(charkom)·창포(kaneh)·계피(kinamon)·유향나무(atzei levonah)·몰약(mor)·알로에(ahaloth)·각종 향목·생수 우물·레바논 시내.</li>
+<li>와스프(wasf) — 고대 근동 연애시의 신체 칭송 형식(배경). 잠근 동산은 왕실 소유 정원 이미지와 겹침(배경).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>신랑이 신부를 바라보는 방향성. 1~3장의 신부 중심 서술에서 신랑의 시선으로 전환.</li>
+<li>비유들의 풍요로움 — 자연(산·동물·과일)과 건축(다윗의 망대)이 함께 등장.</li>
+<li>"흠이 없도다"(7절)가 칭송의 절정으로 느껴짐.</li>
+<li>후반부의 향기 밀도 — 나드·번홍화·창포·계피·몰약·알로에가 한 단락에 집중.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>1절: "나의 사랑, 너는 어여쁘고 어여쁘도다 네 눈이 비둘기 같다" — 신랑의 칭송 선언.</li>
+<li>16절: "북풍아 일어나라 남풍아 오라 나의 동산에 불어서 향기를 발하라 내 사랑하는 자가 자기 동산에 들어가 열매를 먹으리로다" — 신부의 응답·초대.</li>
+<li>신랑의 선언 → 신부의 응답·초대. 받는 자에서 초대하는 자로.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>등장인물 — 신랑과 신부 둘뿐. 예루살렘 딸들·경비원들 없음.</li>
+<li>신부 신체 칭송 부위 일곱 — 눈·머리카락·이·입술·뺨·목·가슴. 머리에서 아래로 이동하는 와스프 구조.</li>
+<li>"나의 누이 나의 신부"(<em>achoti kalah</em>) 호칭이 이 장에서 다섯 번 반복(9·10·11·12절 및 5:1절).</li>
+<li>12절 "잠근 동산·잠근 샘·봉한 우물" 세 이미지가 한 절에서 신부를 묘사.</li>
+<li>핵심 선언: "흠이 없도다"(7절, <em>tam</em>).</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1~7절): 신부 신체 칭송 — 와스프 형식. "흠이 없도다"로 절정.</li>
+<li>컷 2 (8~15절): 잠근 동산·향품의 샘 — 신랑이 "나의 신부"를 부르며 동산·향품·생수로 묘사.</li>
+<li>컷 3 (16절): 신부의 응답 — "북풍아·남풍아 오라. 내 사랑하는 자가 동산에 들어오라."</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>yafah ra'yati</em>(יָפָה רַעְיָתִי) — 나의 사랑, 어여쁜 자. ra'yati = '나의 동료·사랑하는 자'. 1절.</li>
+<li><em>gan naul</em>(גַּן נָעוּל) — 잠근 동산. naul = '잠기다·닫히다'. 12절.</li>
+<li><em>mayan chatum</em>(מַעְיַן חָתוּם) — 봉한 샘. chatum = '봉하다·인치다'. 12절.</li>
+<li><em>tam</em>(תָּם) — 흠 없음·완전함. 7절. 욥 1:1에서도 같은 단어 사용.</li>
+<li><em>achoti kalah</em>(אֲחֹתִי כַלָּה) — 나의 누이 나의 신부. 9·10·11·12절.</li>
+<li><em>nard</em>(נֵרְדְּ) — 나드. 13절. 고대 향신료로 인도 원산(배경).</li>
+<li><em>charkom</em>(כַּרְכֹּם) — 번홍화(사프란). 14절.</li>
+<li><em>kinamon</em>(קִנָּמֹן) — 계피. 14절.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>와스프(wasf) — 신체 부위를 위에서 아래로 차례로 비유하는 사랑시 형식. 고대 근동 공통 양식(배경).</li>
+<li>"나의 사랑·나의 누이 신부" 호칭이 장을 관통하는 반복어.</li>
+<li>16절 신부의 응답이 신랑의 칭송에 대한 역-초대 구조를 이룸.</li>
+<li>1:15의 "비둘기 눈" 비유가 4:1에서 재등장 — 교차 반복.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>와스프 형식은 이집트 사랑시(Chester Beatty Papyrus)와 수메르 연애 찬가에서도 발견됨(배경).</li>
+<li>나드·계피·몰약 등은 고대 근동 무역로에서 유통된 고급 향신료(배경).</li>
+<li>잠근 동산 이미지는 페르시아·고대 근동 왕실 정원(pairi-daeza)을 연상시키는 배경적 울림(배경).</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>아 4 ↔ 아 1:15 (비둘기 눈 — 반복어)</li>
+<li>아 4 ↔ 아 6:4~10 (신부 칭송의 유사 구조)</li>
+<li>아 4 ↔ 아 8:6~7 (죽음같이 강한 사랑 — 이 장이 향하는 SNG 목적지)</li>
+<li>아 4 ↔ 창 2:8~9 (에덴 동산 — 배경적 울림, 단정 아님)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>신랑이 신부를 향해 말한다. "나의 사랑, 너는 어여쁘고 어여쁘도다." 눈이 비둘기 같다. 머리카락이 길르앗 산에서 내려오는 염소 떼처럼 흘러내린다. 이가 털 깎이고 목욕한 양 떼처럼 짝이 있다. 입술은 홍색 실, 뺨은 석류 한 쪽, 목은 다윗의 망대처럼 방패들이 달렸다. 두 유방은 백합화 가운데 꼴 먹는 쌍태 사슴 같다. "나의 사랑, 너는 온전히 어여쁘고 흠이 없다." 그리고 신랑이 신부를 부른다 — "레바논에서 함께 오라. 나의 누이, 나의 신부." 그녀의 사랑이 포도주보다 나으며 향기가 모든 향품보다 좋다. "너는 잠근 동산, 잠근 샘, 봉한 우물이다." 동산의 열매들 — 나드·번홍화·창포·계피·유향나무·몰약·알로에·각종 향목. "생수의 우물, 레바논에서 흐르는 시내." 그리고 신부가 응답한다 — "북풍아 일어나라. 남풍아 오라. 나의 동산에 향기를 발하라. 내 사랑하는 자가 자기 동산에 들어와 열매를 먹으리로다."</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"나의 사랑, 너는 흠이 없도다 — 잠근 동산과 향품의 샘"</strong></li>
+<li>초벌 부제: "신랑이 신부를 와스프로 칭송하고, 신부는 바람을 불러 동산에 향기를 발하게 한다"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (8개: yafah_ra'yati·gan_naul·mayan_chatum·tam·achoti_kalah·nard·charkom·kinamon)</li>
+<li>[x] 역사·문학 사실 최소 1개 (와스프 형식·반복어 구조·잠근 동산 이미지)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>잠근 동산을 알레고리로 단정하지 않고 관찰로 보존.</li>
+<li>와스프 비유들을 해석하지 않고 형식 특징만 기록.</li>
+<li>"나의 누이 신부" 호칭의 신학적 의미를 단정하지 않음.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong> 묵상에서 재조정 가능. <strong>9단계 기도</strong> 답을 구하지 않고 머문다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: SNG-004</p>
+<p>book: 아가</p>
+<p>chapter: 4</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>아가 4장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 4절 "다윗의 망대"와 "방패 천 개"가 신부의 목을 묘사하는 비유로 쓰인 이유는?</h2>
+<ul><li>군사 건축물 이미지가 신체 칭송에 들어오는 이유를 본문이 설명하지 않음. 보존.</li></ul>
+
+<h2>Q2. "나의 누이 나의 신부"(achoti kalah) 호칭의 '누이'는 무엇을 의미하는가?</h2>
+<ul><li>고대 이집트 연애시에서 '누이'가 연인을 부르는 일반 호칭이라는 배경 자료가 있으나, 이 본문에서의 의미는 확정하지 않음. 보존.</li></ul>
+
+<h2>Q3. 잠근 동산(gan naul)이 신부를 가리키는 비유인가, 실제 공간인가?</h2>
+<ul><li>본문이 명시적으로 연결하지 않음. 보존.</li></ul>
+
+<h2>Q4. 8절 "레바논에서 오라"는 신부가 실제로 레바논에 있다는 의미인가, 비유인가?</h2>
+<ul><li>본문이 설명하지 않음. 보존.</li></ul>
+
+<h2>Q5. 13~14절의 향신료 목록이 당시 팔레스타인에서 실제로 구할 수 있었는가?</h2>
+<ul><li>나드는 인도 원산, 번홍화는 지중해 원산 등 무역로를 통한 수입품이 포함됨. 배경 확인 필요. 보존.</li></ul>
+
+<h2>Q6. 신부의 응답(16절)에서 "북풍·남풍"이 무엇을 의미하는가?</h2>
+<ul><li>바람이 향기를 퍼뜨리는 자연 현상인지, 특정 상징인지 본문이 밝히지 않음. 보존.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">신랑의 눈이 신부를 바라보는 방식 — "흠이 없도다"에서 잠근 동산으로</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: SNG-004</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-20</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 편의 골격</h3>
+<p><strong>한 문장</strong>: 아가 4장은 신랑이 신부의 아름다움을 머리에서 가슴까지 와스프 형식으로 칭송하고("흠이 없도다"), 신부를 잠근 동산·향품의 샘으로 부르며, 신부가 바람을 불러 신랑을 동산으로 초대하는 노래다.</p>
+<p><strong>한 문단</strong>: 아가 3장에서 찾고 부르는 갈망의 국면이 마무리된 뒤, 4장에서 신랑이 신부를 바라보는 시선이 열린다. "나의 사랑, 너는 어여쁘고 어여쁘도다"로 시작해 눈·머리카락·이·입술·뺨·목·가슴을 차례로 비유한다. 절정은 7절 "흠이 없도다"(<em>tam</em>). 그리고 8절부터 신랑이 신부를 "나의 누이, 나의 신부"로 부르며 레바논에서 함께 오라 초대한다. 신부는 잠근 동산·잠근 샘·봉한 우물로 묘사되고, 동산에는 나드·번홍화·창포·계피·몰약·알로에의 향기가 가득하다. 마지막에 신부가 응답한다 — "북풍아 남풍아 오라, 내 사랑하는 자가 동산에 들어와 열매를 먹으리로다." 칭송을 받는 신부가 초대하는 자로 전환되는 장이다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>신부 몸이 무대(전반) / 레바논·잠근 동산·생수 우물(후반). 나드·계피·몰약 등 향신료 소품 집중.</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>신랑의 시선으로 전환. 비유의 풍요로움. "흠이 없도다" 절정. 향기 밀도.</td></tr>
+<tr><td>3 시작과 끝</td><td>"나의 사랑, 어여쁘도다"(1절) → "내 사랑하는 자가 동산에 들어와 열매를 먹으리로다"(16절). 선언→초대.</td></tr>
+<tr><td>4 등장인물·사상</td><td>신랑·신부 둘뿐. 와스프 구조 일곱 부위. "나의 누이 신부" 다섯 번. 잠근 동산·샘·우물 세 이미지.</td></tr>
+<tr><td>5 장면 컷</td><td>컷1 와스프 칭송(1~7절) / 컷2 잠근 동산 초대(8~15절) / 컷3 신부의 응답(16절).</td></tr>
+<tr><td>6 의문·발견·정보</td><td>와스프 형식. gan naul·mayan chatum 원어. "다윗의 망대" 비유. "나의 누이 신부" 호칭 다섯 번.</td></tr>
+<tr><td>7 동영상</td><td>칭송→"흠이 없도다"→"레바논에서 오라"→잠근 동산 묘사→신부의 초대.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"나의 사랑, 너는 흠이 없도다 — 잠근 동산과 향품의 샘" / "신랑이 신부를 와스프로 칭송하고 신부는 동산으로 초대한다"</td></tr>
+<tr><td>9 기도·내면</td><td>"흠이 없도다"는 선언 앞에서 신랑의 눈이 어떤 눈인가를 아뢴다. 답 없이 머문다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 와스프 구조와 "흠이 없도다"</strong>: 신체 부위 일곱을 차례로 비유하는 칭송이 7절 "나의 사랑, 너는 온전히 어여쁘고 흠이 없다"(<em>tam</em>)로 집약된다. 와스프의 목적이 부위별 묘사가 아니라 이 선언에 있는 것 같다.</p>
+<p>2. <strong>결 2 — 잠근 동산의 역설</strong>: 12절에서 신부가 "잠근 동산, 잠근 샘, 봉한 우물"로 묘사되면서 동시에 13~15절에서 향기를 발하고 생수가 흐른다. 닫혀 있으면서 향기와 물이 흘러나오는 긴장이 한 절에 공존한다.</p>
+<p>3. <strong>결 3 — 신부의 응답</strong>: 16절에서 신부가 바람을 부른다. 칭송을 받다가 초대하는 자로 전환되는 마지막 움직임이다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>같은 권 안 — <strong>아 1:15</strong> (비둘기 눈 반복), <strong>아 6:4~10</strong> (유사 칭송 구조), <strong>아 8:6~7</strong> (사랑의 인장 — SNG 목적지).</li>
+<li>다른 권 — <strong>창 2:8~9</strong> (에덴 동산 — 배경적 울림, 단정 아님), <strong>욥 1:1</strong> (tam — 흠 없음·완전함 같은 단어).</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: "나의 사랑, 너는 어여쁘도다"의 선언 앞에 멈춘다.</li>
+<li><strong>멈춤 1</strong>: "흠이 없도다" — 신랑의 눈이 신부를 어떻게 보는가의 선언.</li>
+<li><strong>멈춤 2</strong>: 잠근 동산 — 닫혀 있으면서 향기를 발하는 긴장.</li>
+<li><strong>끝</strong>: 신부의 응답 — 바람을 부르고 신랑을 초대하는 전환.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] "나의 사랑, 어여쁘도다" — 신랑의 시선 전환이 이 장을 연다</li>
+<li>[x] 와스프 형식으로 신체 부위 일곱을 칭송한다</li>
+<li>[x] "흠이 없도다"(tam)가 칭송의 절정이다</li>
+<li>[x] "나의 누이 나의 신부"(achoti kalah)가 다섯 번 반복된다</li>
+<li>[x] 잠근 동산·잠근 샘·봉한 우물이 한 절에 병치된다</li>
+<li>[x] 신부가 16절에서 바람을 불러 신랑을 초대한다</li>
+</ul>
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>잠근 동산(gan naul)</em>.</p>
+
+<h3>G · 구속사 좌표</h3>
+<p>아가 4장은 SNG 흐름의 <strong>두 번째 국면(4~7장 — 칭송과 갈망·잃음과 다시 찾음)이 열리는 첫 장</strong>이다. 1~3장의 찾고 부르는 갈망이 마무리된 뒤, 이 장에서 신랑이 신부를 전면적으로 바라보는 칭송의 시선이 새로 열린다. SNG의 spine인 "찾고 부르는 갈망 → 죽음같이 강한 사랑의 인장" 흐름 위에서, 4장은 칭송을 통해 사랑의 깊이를 드러내는 국면의 시작점이다. "흠이 없도다"는 신랑의 눈에서 시작한 선언이 8:6~7의 "사랑은 죽음같이 강하고" 인장을 향해 나아가는 첫 단계다.</p>
+
+<h3>H · 운동 벡터</h3>
+<p>신부를 칭송받는 자(1~7절) → 잠근 동산·향품의 샘으로 묘사되는 자(8~15절) → 신랑을 초대하는 자(16절). 수동에서 능동으로, 받는 자에서 초대하는 자로 신부의 위치가 이동하는 화살표.</p>
+
+<h3>I · 수면 아래</h3>
+<p>표면: 신랑이 신부를 와스프 형식으로 칭송하고, 신부를 잠근 동산으로 부른다. 수면 아래에서 관찰되는 것: 이 장이 신랑의 눈이 신부를 향하는 방식에 관한 장이라는 것 — "흠이 없도다"는 최종 평가가 아니라 신랑의 시선이 도달한 자리의 선언이다. 또한 잠근 동산이 닫혀 있으면서 동시에 향기와 생수를 발한다는 것 — 보존과 풍요가 공존하는 이미지다. 이것이 SNG의 언약적 사랑의 결을 드러내는 한에서 관찰하되, 단정하지 않는다.</p>
+
+<h3>J · 실존적 부름</h3>
+<p>"나의 사랑, 너는 흠이 없도다" — 이 선언을 말하는 자의 눈으로 바라보이는 자리에 있는가. 잠근 동산이 닫혀 있으면서 향기를 발하는 것처럼, 이 사랑이 내 안에서 무언가를 봉하면서도 흘러나오게 하는가. 본문이 가르치는 것이 아니라, 신랑의 시선이 향한 자리로 초대하는 부름이다.</p>
+<p><strong>다음 장으로 미는 운동</strong>: 신랑의 칭송과 신부의 응답이 완성된다 — 5장에서 신랑이 문을 두드리고 신부가 놓치는 장면이 열린다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/SNG/3/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">아가 3장</div>
+        <div class="nav-preview">밤의 찾음, 붙잡음, 솔로몬의 가마 행렬.</div>
+      </a>
+      <a href="/magazine/SNG/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">아가 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/SNG/5/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">아가 5장</div>
+        <div class="nav-preview">신랑의 문 두드림, 신부가 놓침, 다시 찾아 헤맴.</div>
+      </a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last:sng4', JSON.stringify({
+      href: '/magazine/SNG/4/',
+      title: '아가 4장',
+      excerpt: '"나의 사랑, 너는 흠이 없도다" — 신랑이 신부를 와스프로 칭송하고, 잠근 동산과 향품의 샘으로 부른다.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-20</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

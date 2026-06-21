@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>잠언 7장 — Observatory | 네다바웨이</title>
+<meta name="description" content="잠언 7장을 9단계로 관찰합니다. 황혼의 거리, 창가에서 바라보는 아버지가 목격한 어리석음의 장면.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/PRO/7/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">&#8801;</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/PRO/">잠언</a> · 7장</div>
+      <h1>잠언 7장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;"><span class="badge">PRO-007 · 시가서 · 히브리어</span></div>
+      <p class="essence">황혼의 거리, 창가에서 바라보는 아버지가 목격한 어리석음의 장면.</p>
+    </header>
+
+    <details class="stage" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기 — 시뮬레이션 raw transcript</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 잠언 7장은 잠언 1-9장 전체에서 가장 극적인 내러티브 단락입니다. 창가에서 바라보는 아버지-관찰자, 황혼의 거리, 음녀의 유혹 — 이 장면들의 무대와 소품을 관찰합니다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: PRO-007</p>
+<p>book: 잠언</p>
+<p>book_en: Proverbs</p>
+<p>chapter: 7</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 지혜문학</p>
+<p>language: 히브리어</p>
+<p>verse_count: 27</p>
+<p>observed_facts_count: 28</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>hebrew_terms: [isha_zarah, ba-erev, nashek, chalets, shevil, shivyon]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-20</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>잠언 7장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>&#9888;&#65039; 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 잠언 7장입니다. 5장과 6장의 음녀 경고에 이어, 이 장은 가장 극적인 방식으로 그 경고를 구체화합니다. 아버지가 창문에서 내다보며 실제 장면을 목격하는 것처럼 기술합니다. 낭독합시다.</p>
+
+<p>(본문 낭독 7:1~27, 약 3분)</p>
+
+<p><strong>(침묵 약 50초)</strong> 🌿</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>P04 최현국</strong>: 무대가 세 층으로 구성됩니다. (1) 아버지의 집 창가 — 관찰 포인트. (2) 황혼의 거리 — 사건 현장. (3) 음녀의 집 — 결말 장소.</p>
+
+<p><strong>P01 한나래</strong>: 7:6-9의 무대 설정이 정교합니다. "내가 집 창문에서, 살창에서 내다보다가"(7:6, <em>chaloni</em> 창문, <em>eshnav</em> 살창). 아버지는 안에서 밖을 봅니다 — 관찰자 시점이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 7:8-9의 시간과 공간 설정이 매우 구체적이에요. "그녀의 거리를 지나 그녀의 집 골목으로 들어가는데"(7:8, <em>shevil beitah</em>), "저물 때, 황혼 무렵, 밤과 어두움 중에"(7:9, <em>ba-erev, be-neshef ha-yom, be-ishon laylah va-afelah</em>). 시간이 세 단계로 묘사됩니다.</p>
+
+<p><strong>P02 이진우</strong>: 황혼(<em>ba-erev</em>)에서 어둠(<em>ishon laylah</em>)으로의 이동 — 빛이 사라지는 시간대를 세밀하게 그립니다. 이것이 단순한 시간 정보가 아니에요. 어리석음이 빛이 사라지는 시간에 번성한다는 상징입니다.</p>
+
+<p><strong>P11 나경아</strong>: 7:10의 음녀 소품이 인상적이에요. "기생의 옷"(<em>shith zonah</em>)을 입고 "간계"(<em>natsurah lev</em>)로 나옵니다. 옷이 그녀의 정체를 드러내는 소품이에요.</p>
+
+<p><strong>P05 김미영</strong>: 7:16-17의 음녀의 집 소품들이 구체적입니다. "이집트 포목으로 내 침상을 폈으며"(7:16), "몰약과 침향과 계피로 뿌렸나이다"(7:17). 이집트 포목과 향료 — 이것들은 당시 사치품이에요. 음녀의 유혹이 감각을 자극하는 물건들로 구성됩니다.</p>
+
+<p><strong>P04 최현국</strong>: 7:21-22의 결정적 소품은 "부드러운 입술"과 "아첨하는 말"이에요. 물리적 소품이 아니라 언어적 소품입니다. 7:22-23의 동물 비유들 — "소가 도수장으로 끌려가듯, 새가 그물에 들어가듯, 화살이 간을 뚫듯".</p>
+
+<p><strong>P07 오지혜</strong>: 7:14의 소품이 흥미로워요. "내게 화목제를 드려야 할 것이 있었는데 오늘 서원한 것을 갚았나이다". 제사 음식이 소품으로 등장합니다. 화목제 고기는 당일 혹은 이튿날 먹어야 했는데(레 7:15-16), 음녀가 그것을 미끼로 씁니다.</p>
+
+<p><strong>P01 한나래</strong>: 제사 음식을 유혹 미끼로 쓰는 것이 충격적이에요. 거룩한 것이 유혹의 도구가 됩니다.</p>
+
+<p><strong>P02 이진우</strong>: 7:11-12의 음녀 묘사도 세밀해요. "그의 발은 집안에 머물지 않는다"(7:11, <em>raglehah lo-tishkonnah veitah</em>). 음녀는 집 안에 가만있지 못하고 거리, 광장, 골목을 돌아다닙니다. 이것이 5:6 "그녀의 길은 안정됨이 없다"(<em>orach chayyim pen tifalls</em>)와 연결돼요.</p>
+
+<p><strong>P11 나경아</strong>: 7:27의 마지막 소품이자 결론 — "그의 집은 스올의 길이라 사망의 방으로 내려가느니라"(<em>beitah derekh she'ol, yoredot el-chadrei mavet</em>). 음녀의 집이 지옥 문으로 묘사됩니다. 집이 소품에서 상징으로 전환됩니다.</p>
+
+<p><strong>성령일 선교사</strong>: 창가, 황혼, 이집트 포목, 향료, 제사 음식, 스올의 문 — 이 소품들이 7장의 무대를 구성합니다. 그 구체성을 유지합시다.</p>
+
+<p><strong>(침묵 약 35초)</strong> 🌿</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>P05 김미영</strong>: 소설 같습니다. 잠언에서 이렇게 서사적인 장면이 나올 줄 몰랐어요.</p>
+
+<p><strong>P01 한나래</strong>: "창가에서 내다보다가"(7:6) — 아버지가 목격자로 등장하는 것이 인상적이에요. 교훈이 아니라 보고입니다.</p>
+
+<p><strong>P07 오지혜</strong>: 황혼(7:9)의 분위기가 불안합니다. 빛이 사라지는 시간에 어리석음이 시작됩니다.</p>
+
+<p><strong>P04 최현국</strong>: 7:21-22의 전환이 급작스러워요. 오래 설득하더니 갑자기 "그가 곧 그를 따라갔다". 유혹의 결과가 이렇게 빠릅니다.</p>
+
+<p><strong>P02 이진우</strong>: 동물 비유들(소, 새, 화살)이 어리석음의 수동성을 강조해요. 젊은이가 능동적으로 선택하는 것이 아니라 끌려가는 것처럼 묘사됩니다.</p>
+
+<p><strong>P11 나경아</strong>: 전체적으로 "이것이 현실"이라는 느낌입니다. 추상적 경고가 아니라 실제 장면을 목격한 것처럼 기술합니다.</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>P01 한나래</strong>: 시작(7:1-5)은 아버지의 교훈 모드입니다. "내 아들아 내 말을 지키며 내 명령을 간직하라"(7:1). 5장과 6장의 도입부와 동일한 패턴이에요.</p>
+
+<p><strong>P11 나경아</strong>: 7:4 "지혜에게 너는 내 누이라 하며 명철을 친족이라 부르라"는 독특해요. 지혜를 "누이"와 "친족"으로 의인화합니다. 음녀를 이방인(<em>zarah</em>)으로 보는 것과 대조됩니다 — 지혜는 가족, 음녀는 이방인.</p>
+
+<p><strong>P04 최현국</strong>: 끝(7:24-27)으로 돌아와 다시 아버지의 교훈 모드입니다. "이제 아들들아 내 말을 듣고 내 입의 말에 주의하라"(7:24). 장면을 목격한 후 결론을 내립니다.</p>
+
+<p><strong>P07 오지혜</strong>: 7:26-27의 결론 — "대저 그가 쓰러뜨린 자가 많고 그에게 죽임을 당한 자가 강하니라 그의 집은 스올의 길이라". 이것이 장의 마지막 음이에요. 경고로 끝납니다.</p>
+
+<p><strong>성령일 선교사</strong>: 교훈 → 목격 → 교훈의 구조입니다.</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>P07 오지혜</strong>: 등장인물은 셋입니다. 아버지(창가에서 관찰), 젊은이(어리석은 자, <em>peti</em>), 음녀(<em>isha zarah</em>).</p>
+
+<p><strong>P05 김미영</strong>: 젊은이 묘사가 세밀해요. 7:7 "어리석은 자 중에서 지각 없는 청년을 보았노라"(<em>peti, chasar lev na'ar</em>). "지각 없는"(<em>chasar lev</em>)은 직역하면 "마음이 결핍된". 이 표현이 6:32에도 나왔죠.</p>
+
+<p><strong>P02 이진우</strong>: 7:8 "그녀의 거리를 지나 그녀의 집 골목으로 들어가는데". 젊은이가 의도적으로 음녀의 영역으로 들어갑니다. 우연이 아니에요.</p>
+
+<p><strong>P01 한나래</strong>: 음녀의 묘사가 다층적입니다. 옷(7:10), 몸짓(7:13 "그를 붙잡고 입을 맞추고"), 말(7:14-20), 집의 소품(7:16-17). 음녀는 시각, 촉각, 언어를 모두 활용합니다.</p>
+
+<p><strong>P11 나경아</strong>: 7:19-20의 남편 부재 설명이 흥미롭습니다. "내 남편은 집에 있지 아니하고 먼 길을 떠났는데 은 주머니를 가지고 보름날에야 집에 돌아오리라". 남편이 없다, 그것도 보름이나 — 안전하다는 신호입니다. 음녀가 상황을 이용합니다.</p>
+
+<p><strong>P04 최현국</strong>: 7:15 "내가 너를 찾다가 만났나이다"는 계획된 만남임을 암시해요. 음녀가 이 젊은이를 의도적으로 찾은 것입니다.</p>
+
+<p><strong>성령일 선교사</strong>: 세 인물과 그 역할을 정리했습니다.</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<h2>[5단계] 장면 컷</h2>
+
+<p><strong>P04 최현국</strong>: 다섯 장면으로 나눕니다.</p>
+
+<p><strong>장면 1 (7:1-5)</strong> — 아버지의 도입 교훈. 계명을 지키고, 지혜를 누이처럼 사랑하라.</p>
+
+<p><strong>장면 2 (7:6-9)</strong> — 창가에서 내다보는 아버지. 황혼 무렵, 어리석은 젊은이가 음녀의 거리로 들어간다.</p>
+
+<p><strong>장면 3 (7:10-20)</strong> — 음녀의 등장과 유혹. 화려한 옷, 입맞춤, 제사 음식 제안, 이집트 침상, 향료, 남편 부재 정보.</p>
+
+<p><strong>장면 4 (7:21-23)</strong> — 유혹의 성공. 젊은이가 따라간다. 소처럼, 새처럼, 화살처럼 — 수동적으로 끌려간다.</p>
+
+<p><strong>장면 5 (7:24-27)</strong> — 아버지의 결론 교훈. "내 말을 들어라, 그의 집은 스올의 길이다".</p>
+
+<p><strong>P07 오지혜</strong>: 구조가 A-B-C-B'-A' 형태의 키아즘처럼 보여요. 아버지 교훈(A) → 거리 장면(B) → 음녀 클라이맥스(C) → 따라감(B') → 아버지 결론(A').</p>
+
+<h2>[6단계] 의문·발견·깨달음</h2>
+
+<p><strong>P01 한나래</strong>: 7:6의 "내가 집 창문에서 내다보다가" — 이것이 실제 목격인지 아니면 수사적 장치인지 궁금합니다. 아버지가 실제로 이 장면을 봤나요?</p>
+
+<p><strong>P11 나경아</strong>: 학자들은 이것을 "예시적 목격"으로 봅니다 — 아버지가 실제 경험에서 나온 교훈을 마치 지금 목격하는 것처럼 생생하게 전달하는 수사 기법입니다. <em>nashek</em>(입을 맞춤, 7:13)의 갑작스러움도 그 생생함의 일부예요.</p>
+
+<p><strong>P07 오지혜</strong>: 7:14 "오늘 화목제를 드렸다"는 것이 유혹 전략으로 쓰이는 것이 충격적이에요. 제사가 유혹의 미끼?</p>
+
+<p><strong>P04 최현국</strong>: 레 7:15-16에 따르면 화목제 고기는 당일 혹은 이튿날까지 먹어야 했습니다. 음녀는 "오늘 제사를 드렸으니 고기가 있다, 와서 같이 먹자"는 미끼를 씁니다. 종교 행위를 이용한 유혹입니다.</p>
+
+<p><strong>P02 이진우</strong>: 7:22-23의 동물 비유 세 가지를 분석하면: (1) 소가 도수장으로(<em>shivyon</em>, 올가미), (2) 새가 그물로, (3) 화살이 간을 뚫음. 이 세 비유가 다 죽음으로 귀결됩니다. 유혹의 최종 결과가 죽음이에요.</p>
+
+<p><strong>P05 김미영</strong>: 7:26 "그가 쓰러뜨린 자가 많고 그에게 죽임을 당한 자가 강하니라" — "강한 자"도 죽임을 당한다는 것이 경고예요. 자신이 강하다고 생각하는 자도 예외가 없습니다.</p>
+
+<h2>[7단계] 동영상 흐름</h2>
+
+<p><strong>P04 최현국</strong>: 이 장의 동영상 흐름이 잠언에서 가장 영화적입니다.</p>
+
+<p>오프닝 — 아버지의 목소리: "내 아들아, 내 말을 지키라"(7:1). 지혜를 누이처럼 사랑하라는 교훈.</p>
+
+<p>장면 전환 — 카메라가 위로 올라가 창가에 서 있는 아버지를 보여줍니다. 아버지가 살창 사이로 밖을 내다봅니다(7:6).</p>
+
+<p>황혼의 거리 — 아래 거리에 어리석은 젊은이가 걸어옵니다(7:7-8). 조명이 점점 어두워집니다. 저물 때 → 황혼 → 밤의 어둠(7:9).</p>
+
+<p>음녀 등장 — 화려한 옷을 입은 음녀가 나타납니다(7:10). 젊은이를 붙잡고 입을 맞춥니다(7:13). 제사 음식을 제안하고, 이집트 침상과 향료를 설명합니다(7:14-18). 남편이 없다는 정보(7:19-20).</p>
+
+<p>클라이맥스 — "그가 곧 그를 따라갔다"(7:22a). 소처럼, 새처럼, 화살처럼 — 슬로우 모션으로 젊은이가 음녀의 집으로 들어가는 장면.</p>
+
+<p>아버지의 결론 — 카메라가 다시 창가의 아버지에게로. 아버지가 말합니다: "그의 집은 스올의 길이다"(7:27).</p>
+
+<p><strong>P07 오지혜</strong>: 이 동영상은 외부 → 내부 → 외부의 구조입니다. 아버지가 창 안에서 바깥을 보고, 결론을 안으로 가져옵니다.</p>
+
+<h2>[8단계] 초벌 제목</h2>
+
+<p><strong>P01 한나래</strong>: "황혼의 목격자".</p>
+<p><strong>P02 이진우</strong>: "창가에서 본 어리석음".</p>
+<p><strong>P05 김미영</strong>: "스올로 통하는 집".</p>
+<p><strong>P11 나경아</strong>: "소처럼 끌려간 청년 — 잠언 7장".</p>
+
+<h2>[9단계] 기도</h2>
+
+<p><strong>성령일 선교사</strong>: 관찰을 마치며 기도합시다.</p>
+
+<p><strong>P04 최현국</strong>: 황혼 무렵, 빛이 사라지는 시간에 제가 어디를 걷는지 알게 해주소서.</p>
+
+<p><strong>P07 오지혜</strong>: 지혜를 누이처럼, 명철을 친족처럼 여기는 친밀함을 허락하여 주옵소서.</p>
+
+<p><strong>P01 한나래</strong>: 화려한 감각의 유혹 앞에서 빨리 끌려가지 않고 멈출 수 있는 힘을 주세요.</p>
+
+<p><strong>P02 이진우</strong>: 어리석음이 번성하는 밤의 길목에서 제 발을 지켜 주옵소서.</p>
+
+<p><strong>P05 김미영</strong>: 제 마음이 <em>chasar lev</em>가 아니라 지혜로 충만하게 해주세요.</p>
+
+<p><strong>P11 나경아</strong>: 스올로 통하는 집의 매혹보다 하나님의 집의 평안을 더 구하게 하소서.</p>
+
+<p><strong>성령일 선교사</strong>: 아멘. 수고 많으셨습니다.</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>P05 김미영</strong>: 이번 주 실천 — 내가 "음녀의 거리"(위험한 영역)로 의도적으로 발을 들여놓는 패턴이 있는지 점검하기.</p>
+
+<p><strong>P01 한나래</strong>: 지혜를 "누이"처럼 친밀하게 대하는 것 — 매일 지혜서 한 단락을 기도로 읽기.</p>
+
+<p><strong>P02 이진우</strong>: 황혼 시간(저녁) 스마트폰 사용 패턴 점검 — 어두움 중에 내가 어디로 가는지.</p>
+
+<p><strong>P04 최현국</strong>: "강한 자도 죽임을 당한다"(7:26) — 내가 특별히 면역이 있다고 생각하는 유혹이 무엇인지 솔직하게 적어보기.</p>
+
+<p><strong>P07 오지혜</strong>: 아버지가 창가에서 보듯, 하나님이 내 걸음을 보신다는 인식으로 한 주를 살기.</p>
+
+<p><strong>P11 나경아</strong>: 7:4 "지혜에게 너는 내 누이라 하라" — 지혜와 나의 관계를 묘사하는 짧은 기도문 써보기.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">관찰된 사실 — LOCKED v2.0 9단계 형식</span>
+        <span class="stage__toggle">관찰 카드 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro">잠언 7장의 구조, 인물, 행동, 배경, 반복, 대조, 히브리어 어휘를 체계적으로 정리합니다.</p>
+        <div class="md-body">
+
+<h2>1&#65039;&#8419; 구조</h2>
+<p>잠언 7장의 구조는 액자 형식입니다.</p>
+<ul>
+<li>서론 (7:1-5): 아버지의 교훈 — 계명을 지키고 지혜를 누이처럼 사랑하라</li>
+<li>목격 장면 (7:6-23): 창가에서 내다보는 아버지가 황혼의 거리에서 음녀에게 유혹당하는 젊은이를 목격</li>
+<li>결론 (7:24-27): 아버지가 교훈으로 돌아와 경고를 완성함</li>
+</ul>
+
+<h2>2&#65039;&#8419; 인물</h2>
+<ul>
+<li>아버지 (7:6-9 창가 관찰자, 7:24-27 교훈 결론)</li>
+<li>젊은이/어리석은 자 (<em>peti</em>, <em>chasar lev na'ar</em>, 7:7-8)</li>
+<li>음녀/이방 여인 (<em>isha zarah</em>, 7:5,10): 화려한 옷, 뻔뻔한 얼굴(<em>atsumat panim</em>, 7:13)</li>
+<li>음녀의 남편 (7:19-20, 부재중): 먼 길 떠남, 보름 후 귀환</li>
+</ul>
+
+<h2>3&#65039;&#8419; 행동</h2>
+<ul>
+<li>7:6: 아버지가 창에서 내다봄</li>
+<li>7:8: 젊은이가 음녀의 거리를 지나 골목으로 들어감</li>
+<li>7:10: 음녀가 나옴, 기생 옷 입음</li>
+<li>7:13: 음녀가 젊은이를 붙잡고 입을 맞춤</li>
+<li>7:14: 화목제 드렸다고 말함 (제사 음식 제안)</li>
+<li>7:16-17: 이집트 침상, 향료 묘사</li>
+<li>7:19-20: 남편 부재 정보 제공</li>
+<li>7:21: 많은 말로 유혹, 아첨으로 꿈</li>
+<li>7:22: 젊은이가 곧 따라감</li>
+</ul>
+
+<h2>4&#65039;&#8419; 배경</h2>
+<ul>
+<li>황혼/밤 문화: ANE에서 어둠은 도덕적 경계가 느슨해지는 시간. <em>ba-erev</em>(저물 때)는 위험의 시간 표지.</li>
+<li>화목제 고기 규정: 레 7:15-16에 따라 화목제 고기는 당일 또는 이튿날 먹어야 함. 음녀가 이를 유혹 미끼로 사용.</li>
+<li>이집트 포목: 당시 고급 수입품. 이집트 리넨은 지중해 무역에서 최고급품이었음.</li>
+<li>향료(몰약·침향·계피): ANE에서 성적 매혹의 도구로 자주 등장(아 4:14, 1:13 등).</li>
+</ul>
+
+<h2>5&#65039;&#8419; 반복</h2>
+<ul>
+<li>"음녀"(<em>isha zarah</em>): 7:5, 7:10 — 장을 프레임하는 반복</li>
+<li>"지각 없는"(<em>chasar lev</em>): 7:7 — 6:32와 연결되는 반복</li>
+<li>시간 삼중 반복(7:9): "저물 때, 황혼 무렵, 밤과 어두움 중에" — 점층적 어둠</li>
+<li>"말"과 "입"의 반복: 7:1(내 말), 7:2(내 계명), 7:21(많은 말), 7:24(내 말) — 말의 경쟁</li>
+</ul>
+
+<h2>6&#65039;&#8419; 대조</h2>
+<ul>
+<li>지혜(누이, 친족, 7:4) vs 음녀(이방인, <em>zarah</em>, 7:5)</li>
+<li>아버지의 말/계명 (보호) vs 음녀의 말/아첨 (파멸)</li>
+<li>밝은 낮의 지혜 vs 황혼의 어리석음</li>
+<li>스올의 길(음녀의 집, 7:27) vs 생명의 길(계명, 6:23)</li>
+</ul>
+
+<h2>7&#65039;&#8419; 히브리어</h2>
+<ul>
+<li><strong>isha_zarah</strong>(אִשָּׁה זָרָה, 7:5) — 이방 여인, 음녀. "zarah"는 외부인/낯선 자. 지혜("누이")의 반대.</li>
+<li><strong>ba-erev</strong>(בָּעֶרֶב, 7:9) — 저물 때, 황혼. 어리석음이 시작되는 시간.</li>
+<li><strong>nashek</strong>(נָשַׁק, 7:13) — 입을 맞추다. 음녀의 첫 신체적 접촉.</li>
+<li><strong>chalets</strong>(חָלַץ, 관련어) — 해방/탈출. 음녀의 집에서 탈출하지 못하는 젊은이와 대조.</li>
+<li><strong>shevil</strong>(שְׁבִיל, 7:8) — 좁은 길, 골목. 음녀의 집 골목.</li>
+<li><strong>shivyon</strong>(שִׁוְיוֹן, 7:22 관련) — 올가미, 족쇄. 소를 잡아당기는 도구 이미지.</li>
+</ul>
+
+<h2>8&#65039;&#8419; 초벌 제목</h2>
+<ul>
+<li>주제어: 창가, 황혼, 음녀, 스올, 어리석음</li>
+<li>초벌 제목 후보: "황혼의 목격자", "창가에서 본 어리석음", "스올로 통하는 집"</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s3">
+      <summary>
+        <span class="stage__num">단계 3</span>
+        <span class="stage__title-inline">아버지의 교훈 (7:1-5) — 지혜를 누이처럼</span>
+        <span class="stage__toggle">더 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+<h3>7:1-5 — 서론 교훈</h3>
+<p>7:1-2 "내 아들아 내 말을 지키며 내 명령을 네게 간직하라 내 명령을 지켜 살며 내 법을 네 눈동자처럼 지키라". "눈동자처럼 지키라"(<em>ke-ishon eineka</em>)는 신 32:10과 시 17:8의 표현과 같습니다 — 하나님이 이스라엘을 눈동자처럼 지키신다는 표현을 아버지의 계명에 적용합니다.</p>
+
+<p>7:3 "이것을 네 손가락에 매며 이것을 네 마음판에 새기라". 신 6:8 "너는 또 그것을 네 손목에 매어 기호를 삼으며"와 평행합니다. 계명이 몸에 새겨져야 합니다.</p>
+
+<p>7:4의 의인화 — "지혜에게 너는 내 누이라 하며 명철을 친족이라 부르라". 히브리어 <em>achot</em>(누이)와 <em>moda'</em>(친족/친구)가 친밀한 가족 관계를 표현합니다. 음녀가 <em>zarah</em>(이방인)인 것과 정반대입니다.</p>
+
+<p>7:5 "이것이 너를 음녀에게서, 말로 호리는 이방 여인에게서 지키리라". 5장(5:3-4)과 6장(6:24)에서 반복된 음녀 경고가 여기서도 이어집니다. 지혜를 친밀하게 여기는 것이 음녀로부터의 보호책입니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s4">
+      <summary>
+        <span class="stage__num">단계 4</span>
+        <span class="stage__title-inline">창가 목격 장면 (7:6-23) — 황혼의 극장</span>
+        <span class="stage__toggle">더 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+<h3>7:6-9 — 관찰자와 무대 설정</h3>
+<p>7:6 "내가 집 창문에서 살창 사이로 내다보다가". <em>chaloni</em>(창문)와 <em>eshnav</em>(살창)가 함께 나옵니다. <em>eshnav</em>는 격자 창으로, 안에서는 밖이 보이지만 밖에서는 안이 잘 안 보이는 구조입니다. 아버지는 보호된 관찰 포인트에서 봅니다.</p>
+
+<p>7:7-8은 젊은이의 배경을 설정합니다. "어리석은 자 중에서 지각 없는 청년을 보았노라"(<em>peti, chasar lev na'ar</em>). "그녀의 거리를 지나 그녀의 집 골목으로 들어가는데"(<em>shevil beitah</em>). 이 골목이 이미 음녀의 영역임이 암시됩니다.</p>
+
+<p>7:9의 시간 묘사 — "저물 때, 황혼 무렵, 밤과 어두움 중에"(<em>ba-erev, be-neshef ha-yom, be-ishon laylah va-afelah</em>). 세 단계의 어두움이 점층적으로 묘사됩니다. 이 어둠은 단순한 배경이 아니라 어리석음이 번성하는 조건입니다.</p>
+
+<h3>7:10-21 — 음녀의 유혹</h3>
+<p>7:10 "기생의 옷을 입고 간계를 가진 자가 그를 맞으니". <em>shith zonah</em>(기생의 옷)는 직업적 매춘부의 복장입니다. 창 38:14-15에서 다말이 창기로 변장할 때도 같은 이미지가 등장합니다.</p>
+
+<p>7:13-15 음녀의 첫 번째 움직임 — 붙잡고, 입맞추고, 뻔뻔한 얼굴로 말합니다. "오늘 화목제를 드렸으므로 내 서원한 것을 갚았나이다". 제사 음식을 미끼로 쓰는 것이 충격적입니다. 레 7:15 "그의 화목제물을 드린 날에 먹을 것이요" — 화목제 고기는 당일 먹어야 합니다. 음녀가 종교적 의무를 유혹의 도구로 삼습니다.</p>
+
+<p>7:16-17의 감각적 묘사 — "이집트 포목으로 내 침상을 폈으며 몰약과 침향과 계피로 뿌렸나이다". 시각(이집트 포목)과 후각(향료)이 동시에 자극됩니다. 아 1:13 "나의 사랑하는 자는 내게 몰약 향주머니라"와 같은 향료 이미지가 여기서는 유혹의 도구로 등장합니다.</p>
+
+<p>7:19-20 남편 부재 정보 — "내 남편은 집에 있지 아니하고 먼 길을 떠났는데 은 주머니를 가지고 보름날에야 집에 돌아오리라". 남편의 돈(은 주머니), 거리(먼 길), 시간(보름)이 모두 안전하다는 신호입니다. 음녀가 상황을 계산적으로 활용합니다.</p>
+
+<h3>7:22-23 — 유혹의 성공</h3>
+<p>7:22a "그가 곧 그를 따라갔다"(<em>halakh acharehah pith'om</em>). "곧"(<em>pith'om</em>)이 갑작스러움을 강조합니다. 오랜 설득 끝에 갑자기 따라갑니다.</p>
+
+<p>7:22b-23의 세 비유: (1) "소가 도수장으로 끌려가듯"(<em>shor el-tevach</em>), (2) "새가 올무로 빨리 들어가듯"(<em>tzipor el-pach yemaher</em>), (3) "화살이 그의 간을 뚫는 것"(<em>ke-chetz kavedah yafsoch</em>). 소는 힘이 있어도 모르고 끌려가고, 새는 빠르지만 잡히고, 화살은 치명적입니다. 세 비유가 무지함, 속도, 치명성을 각각 강조합니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s5">
+      <summary>
+        <span class="stage__num">단계 5</span>
+        <span class="stage__title-inline">결론 교훈 (7:24-27) — 스올의 길</span>
+        <span class="stage__toggle">더 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+<h3>7:24-27 — 아버지의 결론</h3>
+<p>7:24 "이제 아들들아 내 말을 듣고 내 입의 말에 주의하라". "아들들아"(<em>banim</em>)가 복수로 쓰입니다 — 목격된 사건이 특정 아들이 아니라 모든 아들에게 주는 교훈임을 드러냅니다.</p>
+
+<p>7:25 "네 마음이 그의 길로 치우치지 말며 그의 길에 미혹되지 말지어다"(<em>al-yeset el-derakeha libbeka al-teta be-nesivoteha</em>). "치우치다"(<em>yeset</em>)와 "미혹되다"(<em>ta'ah</em>) — 두 동사가 마음의 편향과 길 잃음을 표현합니다.</p>
+
+<p>7:26 "대저 그가 쓰러뜨린 자가 많고 그에게 죽임을 당한 자가 강하니라"(<em>ki rabbim chalalim hipilah ve-atsumim kol harugeyha</em>). 과거 희생자들의 존재 — 이것이 이미 검증된 위험임을 보여줍니다. "강한 자"(<em>atsumim</em>)도 예외가 없었습니다.</p>
+
+<p>7:27 "그의 집은 스올의 길이라 사망의 방으로 내려가느니라"(<em>beitah derekh she'ol, yoredot el-chadrei mavet</em>). 음녀의 집이 스올(<em>she'ol</em>, 죽음의 세계)의 입구로 묘사됩니다. 5:5 "그녀의 발은 사망으로 내려가며 그녀의 걸음은 스올에 이르나니"와 같은 결론입니다. 이 집이 물리적으로 아름답게 보여도 영적으로는 죽음으로 가는 문입니다.</p>
+
+<h3>5-9장 내에서 7장의 위치</h3>
+<p>잠언 5장(음녀 경고), 6:20-35(음녀 경고 심화), 7장(목격 장면)은 점층 구조입니다. 5장은 원칙, 6장은 구체적 결과, 7장은 실제 장면 — 동일한 경고가 점점 구체화됩니다. 다음 8장은 지혜가 반대로 불러 세우는 장면으로, 7장의 음녀와 8장의 지혜가 대조를 이룹니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s6">
+      <summary>
+        <span class="stage__num">단계 6</span>
+        <span class="stage__title-inline">ANE 배경 — 황혼, 향료, 음녀 이미지</span>
+        <span class="stage__toggle">더 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+<h3>ANE 황혼과 도덕적 위험</h3>
+<p>고대 근동에서 황혼(<em>erev</em>)은 도덕적 경계가 무너지는 시간으로 인식되었습니다. 법적 활동은 낮에, 음모와 부도덕은 밤에 일어나는 것으로 이해되었습니다. 잠언 7:9의 점층적 어둠 묘사는 이 문화적 전제 위에 있습니다.</p>
+
+<h3>이집트 포목과 향료</h3>
+<p>이집트 리넨(<em>mishqeh mitsrayim</em>)은 당시 지중해 세계에서 최고급 섬유였습니다. 고고학적 발굴에서 가나안 상류층 주거지에서 이집트 포목이 발견됩니다. 몰약(<em>mor</em>), 침향(<em>ahalim</em>), 계피(<em>qinnamon</em>)는 아가서에도 등장하는 성적 매혹의 상징물입니다. 음녀가 이것들을 사용한다는 것은 최고 수준의 감각적 유혹을 의미합니다.</p>
+
+<h3>화목제 고기 규정</h3>
+<p>레위기 7:15-16에 따르면 화목제 고기는 제사 드린 날 먹어야 하고(서원제는 이튿날까지). 잠언 7:14의 음녀는 이 규정을 교묘하게 이용합니다 — "오늘 제사를 드렸으니 오늘 와야 한다"는 논리입니다. 종교적 의무가 유혹의 명분이 됩니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s7">
+      <summary>
+        <span class="stage__num">단계 7</span>
+        <span class="stage__title-inline">교차 참조 — 잠언 5장, 8장, 아가서</span>
+        <span class="stage__toggle">더 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+<h3>잠언 내부 교차 참조</h3>
+<ul>
+<li>잠 5:3-5 (음녀의 입은 꿀, 발은 사망으로) ↔ 잠 7:21 (음녀의 많은 말로 유혹)</li>
+<li>잠 6:24 (음녀의 아첨하는 혀) ↔ 잠 7:5 (말로 호리는 이방 여인)</li>
+<li>잠 8:1-4 (지혜가 높은 곳에서 부름) ↔ 잠 7:10-12 (음녀가 거리에서 나옴)</li>
+<li>잠 9:1-6 (지혜의 잔치) ↔ 잠 7:14-18 (음녀의 제사 음식과 침상)</li>
+<li>잠 2:16-19 (음녀의 길은 사망) ↔ 잠 7:27 (스올의 길)</li>
+</ul>
+
+<h3>외부 교차 참조</h3>
+<ul>
+<li>창 38:14-15 (다말이 창기처럼 옷 입음) ↔ 잠 7:10 (기생의 옷)</li>
+<li>레 7:15-16 (화목제 고기 당일 취식 규정) ↔ 잠 7:14 (화목제를 유혹 미끼로)</li>
+<li>아 1:13, 4:14 (몰약·침향·계피) ↔ 잠 7:17 (음녀의 향료)</li>
+<li>신 32:10 (눈동자처럼 지키심) ↔ 잠 7:2 (눈동자처럼 지키라)</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s8">
+      <summary>
+        <span class="stage__num">단계 8</span>
+        <span class="stage__title-inline">미해결 질문 Q1-Q6</span>
+        <span class="stage__toggle">질문 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+<p><strong>Q1.</strong> 7:6 "내가 창에서 내다보다가" — 이것이 실제 아버지의 목격 경험인가, 아니면 수사적 허구(에토피아)인가? 이 질문이 본문 해석에 어떤 영향을 주는가?</p>
+
+<p><strong>Q2.</strong> 7:4 "지혜에게 너는 내 누이라 하라"에서 지혜의 의인화가 얼마나 구체적인가? 단순한 비유인가, 아니면 이후 8장의 지혜 여인으로 발전하는 전 단계인가?</p>
+
+<p><strong>Q3.</strong> 7:14의 화목제 미끼 — 음녀가 실제로 화목제를 드렸을 가능성이 있는가? 아니면 이것은 순전한 거짓말인가? 이 질문이 음녀의 성격 이해에 어떤 영향을 주는가?</p>
+
+<p><strong>Q4.</strong> 7:22-23의 세 비유(소, 새, 화살)에서 젊은이가 순전히 수동적 희생자로 묘사되는 것이 공정한가? 7:8에서 그가 의도적으로 "그녀의 거리"로 들어간 것은 어떻게 해석해야 하는가?</p>
+
+<p><strong>Q5.</strong> 7:26 "강한 자도 죽임을 당한다"는 경고 — 이것이 육체적 강인함이 영적 위험에 무용함을 의미하는가? 지혜문학의 인간 이해와 어떻게 연결되는가?</p>
+
+<p><strong>Q6.</strong> 잠언 7장과 아가서는 같은 감각적 이미지(향료, 침상, 몸의 접촉)를 사용하는데 정반대의 평가를 합니다. 같은 이미지가 어떻게 지혜(아가서)와 어리석음(잠언 7장)을 동시에 표현하는가?</p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num">종합</span>
+      <h2 class="stage__title">잠언 7장 종합 정리</h2>
+      <div class="synthesis-body">
+        <p><strong>A. 핵심 주제</strong>: 잠언 7장은 잠언 1-9장 전체에서 가장 극적인 단락입니다. 추상적 경고가 아닌 구체적 장면으로, 어리석음의 실체를 창가에서 목격하게 합니다. 황혼의 거리, 화려한 소품들, 음녀의 전략적 유혹, 그리고 수동적으로 끌려가는 젊은이 — 이 모든 것이 생생한 서사로 펼쳐집니다.</p>
+
+        <p><strong>B. 창가의 신학</strong>: 7:6 "내가 창에서 내다보다가"는 이 장 전체의 관점을 규정합니다. 아버지-관찰자는 안전한 위치에서 위험한 현실을 목격합니다. 이것은 지혜의 관점 — 창 안에서 창밖을 보는 것, 즉 계명 안에서 세상의 위험을 인식하는 것입니다.</p>
+
+        <p><strong>C. 황혼의 상징</strong>: 7:9의 세 단계 어둠(<em>ba-erev, be-neshef, be-ishon laylah va-afelah</em>)은 단순한 시간 표시가 아닙니다. 어둠은 어리석음의 조건입니다 — 빛이 사라질수록 분별력도 사라집니다. 잠언의 반복되는 이미지인 빛(6:23 "계명은 등불")과 어둠의 대조가 여기서 가장 강렬하게 나타납니다.</p>
+
+        <p><strong>D. 음녀의 전략</strong>: 음녀는 다섯 가지 전략을 씁니다. (1) 촉각 — 붙잡고 입맞춤(7:13), (2) 종교 — 화목제 음식(7:14), (3) 시각 — 이집트 침상(7:16), (4) 후각 — 향료(7:17), (5) 안전 보장 — 남편 부재 정보(7:19-20). 오감을 모두 동원한 체계적 유혹입니다.</p>
+
+        <p><strong>E. 젊은이의 능동성</strong>: 7:22 "그가 곧 따라갔다"는 수동적인 것 같지만, 7:8에서 젊은이는 이미 "그녀의 거리"로 의도적으로 들어갔습니다. 유혹은 위험 지대에 발을 들여놓는 순간부터 시작됩니다. 완전한 수동적 희생자가 아니라 스스로 위험에 들어간 자입니다.</p>
+
+        <p><strong>F. 세 비유의 의미</strong>: 소(무지 — 도수장인 줄 모름), 새(속도 — 빨리 들어감), 화살(치명성 — 간을 뚫음). 이 세 비유가 어리석음의 세 차원을 표현합니다. 무지하게 들어가서, 빠르게 빠져들고, 치명적으로 끝납니다.</p>
+
+        <p><strong>G. 지혜-음녀 대조</strong>: 7장의 음녀와 8장의 지혜는 잠언 1-9장의 핵심 대조를 이룹니다. 음녀는 황혼의 거리에서 특정 젊은이를 찾고(7:15), 지혜는 높은 곳에서 모든 사람을 부릅니다(8:1-4). 음녀는 감각을 자극하고, 지혜는 이성을 호소합니다.</p>
+
+        <p><strong>H. 스올의 집</strong>: 7:27 "그의 집은 스올의 길이라"는 잠언의 핵심 신학을 담습니다. 외관상 매혹적인 것이 실제로는 사망의 문입니다. 이 이미지는 신약에서 "넓은 길과 좁은 길"(마 7:13-14)의 선구가 됩니다.</p>
+
+        <p><strong>I. 잠언 5-7장의 점층 구조</strong>: 5장(원칙적 경고) → 6:20-35(구체적 결과) → 7장(목격 장면) — 같은 경고가 점점 구체화됩니다. 아버지의 절박함이 점층적으로 증가합니다. 7장 이후 8장은 지혜가 음녀의 자리에서 반대로 부릅니다 — 같은 거리, 같은 광장, 다른 목소리.</p>
+
+        <p><strong>J. 현대적 적용</strong>: "황혼"은 오늘날 스마트폰 화면의 빛이 꺼진 늦은 밤의 은밀한 시간일 수 있습니다. "음녀의 집 골목으로 들어가는" 것은 자신이 약한 영역으로 스스로 발을 들여놓는 모든 행동입니다. 아버지의 창가 질문 — "너는 지금 어떤 거리를 걷고 있는가?"</p>
+
+        <table>
+          <thead>
+            <tr><th>단락</th><th>장소</th><th>핵심 이미지</th><th>주제</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>7:1-5</td><td>집 안</td><td>눈동자, 마음판</td><td>계명을 지키라</td></tr>
+            <tr><td>7:6-9</td><td>창가/거리</td><td>황혼, 살창</td><td>관찰 — 어둠이 온다</td></tr>
+            <tr><td>7:10-20</td><td>거리/음녀 집</td><td>향료, 이집트 포목</td><td>유혹의 전략</td></tr>
+            <tr><td>7:21-23</td><td>음녀 집</td><td>소, 새, 화살</td><td>어리석음의 결과</td></tr>
+            <tr><td>7:24-27</td><td>집 안</td><td>스올의 길</td><td>결론 경고</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <nav class="next-row">
+      <a href="/magazine/PRO/6/">
+        <div class="nav-kicker">&#8592; 이전 장</div>
+        <div class="nav-title">잠언 6장</div>
+        <div class="nav-preview">개미에게 배우고, 일곱 가지 가증함을 피하며, 아버지의 명령을 따르라</div>
+      </a>
+      <a href="/magazine/PRO/8/">
+        <div class="nav-kicker">다음 장 &#8594;</div>
+        <div class="nav-title">잠언 8장</div>
+        <div class="nav-preview">창조 이전부터 계셨던 지혜가 성문에서 오늘도 부른다</div>
+      </a>
+    </nav>
+  </main>
+</div>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){.foot--mini .foot--mini__inner{justify-content:flex-start}.foot--mini>div>span{display:block}}
+  </style>
+  <div class="foot--mini__inner">
+    <span>&#169; 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

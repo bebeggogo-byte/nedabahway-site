@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>잠언 6장 — Observatory | 네다바웨이</title>
+<meta name="description" content="잠언 6장을 9단계로 관찰합니다. 개미에게 배우고, 일곱 가지 가증함을 피하며, 아버지의 명령으로 음녀를 멀리하라.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/PRO/6/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">&#8801;</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/PRO/">잠언</a> · 6장</div>
+      <h1>잠언 6장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;"><span class="badge">PRO-006 · 시가서 · 히브리어</span></div>
+      <p class="essence">개미에게 배우고, 일곱 가지 가증함을 피하며, 아버지의 명령을 따르라.</p>
+    </header>
+
+    <details class="stage" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기 — 시뮬레이션 raw transcript</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 잠언 6장의 다섯 단락(보증·게으름·악인·일곱 가증함·음녀)이 차례로 펼쳐지는 무대를 관찰한다. 원어·ANE 배경은 무대 설정 자료로 주입한다 (해석 아닌 배경).</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: PRO-006</p>
+<p>book: 잠언</p>
+<p>book_en: Proverbs</p>
+<p>chapter: 6</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 지혜문학</p>
+<p>language: 히브리어</p>
+<p>verse_count: 35</p>
+<p>observed_facts_count: 32</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>hebrew_terms: [arev, nirdaem, to'evah, charutz, isha_zarah, musar, mitzvah]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-20</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>잠언 6장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>&#9888;&#65039; 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 잠언 6장입니다. 5장에서 음녀를 피하라는 경고가 나왔지요. 6장은 다섯 가지 주제를 담고 있습니다. 보증(1-5절), 게으름과 개미(6-11절), 악한 자(12-15절), 여호와께서 미워하시는 일곱 가지(16-19절), 음녀의 위험(20-35절). 낭독합시다.</p>
+
+<p>(본문 낭독 6:1~35, 약 3분 30초)</p>
+
+<p><strong>(침묵 약 45초)</strong> 🌿</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>P04 최현국</strong>: 무대가 크게 두 공간으로 나뉩니다. 전반부(1-19절)는 가르침의 공간 — 아버지가 아들에게 앉아서 교훈하는 실내, 일종의 서재나 가정 교육의 결. 후반부(20-35절)는 거리와 집 안으로 이동합니다.</p>
+
+<p><strong>P07 오지혜</strong>: 소품이 흥미롭습니다. 6:1-5에서 나오는 소품은 "손"(<em>kaph</em>)과 "담보"(<em>arev</em>)예요. 보증 행위의 물리적 표시는 손을 치는 것이었어요. 고대 근동에서 계약 체결 시 손바닥을 치는 관행이 있었습니다.</p>
+
+<p><strong>P01 한나래</strong>: 6:6-11의 무대는 야외입니다. "개미에게 가라"(6:6)는 자연 세계로 나가는 거예요. 개미집(<em>nirdaem</em>, 깊은 잠)이 게으른 자와 대조를 이루는 소품이에요.</p>
+
+<p><strong>P02 이진우</strong>: 6:9 "게으른 자여 네가 어느 때까지 누워 있겠느냐 네가 어느 때에 잠이 깨어 일어나겠느냐"는 아이러니입니다. 개미는 여름에 쉬지 않고 준비하는데, 사람은 조금 더 자겠다고 말해요.</p>
+
+<p><strong>P11 나경아</strong>: 6:10-11의 "조금 더 자자, 조금 더 졸자, 손을 모으고 조금 더 눕자"(<em>me'at shena, me'at tenumat, me'at chibbuq yadayim</em>)는 세 번 반복되는 게으름의 구문이에요. 게으름이 점층적으로 묘사됩니다.</p>
+
+<p><strong>P05 김미영</strong>: 6:12-15의 악한 자 묘사가 특이해요. "불량한 자, 악한 자"(<em>adam beliyya'al, ish aven</em>)가 행하는 것이 주로 몸의 언어예요. "구부러진 입"(6:12), "눈짓"(6:13), "발로 뜻을 보임"(6:13), "손가락질"(6:13). 말 대신 몸으로 악을 전달해요.</p>
+
+<p><strong>P04 최현국</strong>: 6:16-19의 소품은 신체 부위들입니다. 눈, 혀, 손, 발, 마음이 일곱 가지 죄와 연결됩니다. 이 단락은 마치 신체 지도처럼 구성돼요.</p>
+
+<p><strong>P07 오지혜</strong>: 6:20-35의 음녀 단락에서 소품은 "아버지의 계명"(<em>mitzvah av</em>)과 "어머니의 법"(<em>torat em</em>)이에요. 이것이 몸에 매여야 할 것이고(6:21), 걸을 때도 인도하며(6:22), 잠잘 때도 지켜야 해요(6:22).</p>
+
+<p><strong>P02 이진우</strong>: 6:22-23에서 아버지의 계명이 의인화돼요. "다닐 때에 너를 인도하며 잘 때에 너를 보호하며 깰 때에 너와 말하리니"(6:22). 계명이 마치 동행자처럼 묘사됩니다.</p>
+
+<p><strong>P01 한나래</strong>: 6:24-25의 음녀 소품은 "혀"(<em>lashon</em>)와 "눈꺼풀"(<em>af'apayim</em>)이에요. 6:24 "음녀의 아첨하는 혀에서"와 6:25 "그의 눈꺼풀에 홀리지 말며". 음녀의 무기가 말과 시선입니다.</p>
+
+<p><strong>P11 나경아</strong>: 6:26 "음녀로 말미암아 사람이 한 조각 떡에 이르게" 됩니다. 음녀와의 관계가 경제적 파탄을 가져온다는 현실적 묘사예요. ANE에서 창기는 남성의 재산을 탕진시키는 존재로 경고되었습니다.</p>
+
+<p><strong>P05 김미영</strong>: 6:27-29의 비유가 강렬해요. "사람이 불을 품에 품고서 어찌 그의 옷이 타지 아니하겠으며"(6:27). 불과 숯이 소품으로 등장하며, 음녀와의 관계를 뜨거운 불에 비유합니다.</p>
+
+<p><strong>성령일 선교사</strong>: 무대의 소품들 — 손, 개미, 몸짓, 신체 부위 목록, 계명, 불과 숯 — 이것들이 이 장을 구성하는 구체적 언어들입니다. 그 구체성을 유지합시다.</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>P05 김미영</strong>: 첫 느낌은 "다급함"이에요. 6:3-5에서 "빨리 스스로 구원하라, 노루처럼, 새처럼 달아나라"는 표현이 굉장히 급박합니다.</p>
+
+<p><strong>P01 한나래</strong>: 동시에 "지혜의 실용성"도 느껴집니다. 개미 이야기, 보증 이야기, 이 모두가 실생활과 직결된 교훈들이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 일곱 가지 가증한 것 목록이 굉장히 체계적이에요. 마치 죄의 분류표 같습니다.</p>
+
+<p><strong>P04 최현국</strong>: 후반부(20-35절) 음녀 경고는 5장보다 더 구체적이에요. 경제적 결과(6:26)와 사회적 결과(6:33-35)까지 제시합니다.</p>
+
+<p><strong>P02 이진우</strong>: <em>to'evah</em>(가증함)이라는 단어가 이 장의 분위기를 결정해요. 하나님이 단순히 싫어하시는 게 아니라 혐오하시는 것들이 있다는 선명한 경고입니다.</p>
+
+<p><strong>P11 나경아</strong>: 전반적으로 이 장은 아버지의 절박함이 느껴져요. "아들아, 이것만큼은 피하라"는 간절한 목소리입니다.</p>
+
+<p><strong>성령일 선교사</strong>: 첫 느낌들을 그대로 남깁니다.</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>P01 한나래</strong>: 시작(6:1)은 "내 아들아"(<em>beni</em>)로 시작합니다. 이 호칭이 잠언 1-9장 전체를 관통하는 아버지-아들 관계의 표시예요.</p>
+
+<p><strong>P04 최현국</strong>: 끝(6:35)은 "그가 어떤 보상도 받아들이지 아니하며 네가 아무리 선물을 많이 줄지라도 들어주지 아니하리라"입니다. 간음죄에 대한 남편의 분노는 돈으로도 해결이 안 된다는 현실적 결론이에요.</p>
+
+<p><strong>P11 나경아</strong>: "내 아들아"로 시작해서 "그가 용서하지 않으리라"로 끝납니다. 시작은 사랑스러운 호칭, 끝은 용서 없는 결과예요. 6장의 모든 교훈이 "아버지가 아들을 구하려는" 절박함에서 나옵니다.</p>
+
+<p><strong>P07 오지혜</strong>: 시작의 "보증"과 끝의 "간음" 사이에는 모두 "사회적 파탄"이라는 공통 위험이 있어요.</p>
+
+<p><strong>성령일 선교사</strong>: 시작과 끝을 그대로 간직합시다.</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>P07 오지혜</strong>: 등장 인물은 아버지, 아들, 이웃(보증 당사자), 개미, 불량한 자, 간음한 여인, 질투하는 남편입니다.</p>
+
+<p><strong>P05 김미영</strong>: 가장 특이한 "등장인물"은 개미입니다. 잠언에서 동물이 교훈의 모델로 등장하는 경우예요. 개미의 특징: "두목도 없고 감독자도 없고 통치자도 없으되"(6:7) 스스로 준비합니다.</p>
+
+<p><strong>P02 이진우</strong>: "두목도 없고 감독자도 없고"라는 것이 핵심이에요. 외부 강제 없이 내면에서 나오는 근면함 — <em>charutz</em>(부지런함)의 본질이 이것입니다.</p>
+
+<p><strong>P01 한나래</strong>: 6:16-19의 일곱 가증함에서 각 항목의 주어는 신체 부위예요. "교만한 눈, 거짓된 혀, 무죄한 피를 흘리는 손, 악한 계교를 꾀하는 마음, 빨리 악으로 달려가는 발, 거짓을 말하는 증인, 형제 사이를 이간하는 자". 몸의 각 부분이 죄의 도구가 됩니다.</p>
+
+<p><strong>P11 나경아</strong>: 6:16의 히브리어 구조가 독특해요. "여호와께서 미워하시는 것 곧 그의 마음에 싫어하시는 것이 육 칠 가지이니"(<em>shesh hen sane YHWH ve-sheva to'avot nafsho</em>). 육 칠 가지(<em>shesh-sheva</em>)는 히브리 시에서 쓰이는 "x/x+1" 점층 공식이에요. 시 목록의 끝을 강조합니다.</p>
+
+<p><strong>P04 최현국</strong>: 6:20-35의 음녀 단락은 5장보다 더 법적이에요. 6:29 "그의 아내와 동침하는 자도 그리하리라"에서 간음은 이웃의 재산권 침해로 봅니다. 6:34-35에서 남편의 질투(<em>qin'ah</em>)와 복수가 법을 초월해요.</p>
+
+<p><strong>P07 오지혜</strong>: <em>isha zarah</em>(이방 여인, 6:24)가 5장의 <em>zurah</em>와 같아요. 이 표현이 단지 외국인을 뜻하는지, 아니면 부도덕한 여인을 뜻하는지 해석이 갈립니다.</p>
+
+<p><strong>성령일 선교사</strong>: 그 해석의 여지를 남겨 둡니다.</p>
+
+<p><strong>(침묵 약 35초)</strong> 🌿</p>
+
+<h2>[5단계] 장면 컷</h2>
+
+<p><strong>P04 최현국</strong>: 장면을 다섯 컷으로 나눕니다.</p>
+
+<p><strong>장면 1 (6:1-5)</strong> — 보증의 위험. 이웃을 위해 보증 섰다면 빨리 빠져나오라. 노루처럼 새처럼 달아나라.</p>
+
+<p><strong>장면 2 (6:6-11)</strong> — 게으름 경고. 개미에게 가서 배우라. 잠자는 게으른 자에게 빈궁이 강도처럼 온다.</p>
+
+<p><strong>장면 3 (6:12-15)</strong> — 악한 자의 몸짓 언어. 눈짓, 발짓, 손짓으로 악을 꾸미는 자는 갑자기 망한다.</p>
+
+<p><strong>장면 4 (6:16-19)</strong> — 여호와의 일곱 가증함 목록. 교만한 눈부터 형제를 이간하는 자까지.</p>
+
+<p><strong>장면 5 (6:20-35)</strong> — 아버지의 계명이 지키는 음녀 경고. 불을 품에 품고 타지 않을 수 없듯, 간음은 자기 파멸이다.</p>
+
+<p><strong>P07 오지혜</strong>: 다섯 컷이 서로 독립적인 것 같지만 모두 "자멸적 행동"을 보여주는 공통 주제가 있어요.</p>
+
+<p><strong>P02 이진우</strong>: 보증(경제 파탄), 게으름(빈궁), 악한 자(갑작스러운 파멸), 일곱 가증함(하나님의 혐오), 간음(회복 불가) — 모두 자멸로 귀결됩니다.</p>
+
+<h2>[6단계] 의문·발견·깨달음·정보</h2>
+
+<p><strong>P01 한나래</strong>: 6:1-5의 보증 경고가 왜 지혜 문학의 맥락에 나오는지 궁금해요. 보증은 도덕적 잘못이 아닌데도 피하라고 합니다.</p>
+
+<p><strong>P11 나경아</strong>: ANE 문헌에서 보증(<em>arev</em>)은 사회적 신용 거래의 핵심이었어요. 상대방이 갚지 못하면 보증인이 파산할 수 있었습니다. 잠언은 도덕적 판단보다 실용적 지혜를 전달해요 — 피하는 것이 지혜입니다.</p>
+
+<p><strong>P07 오지혜</strong>: 개미 이야기(6:6-8)에서 흥미로운 게 있어요. "여름에 양식을 예비하며 추수 때에 먹을 것을 모으느니라"(6:8). 이것이 단순한 근면 교훈을 넘어 종말론적 준비를 상징하는 것으로 해석하는 학자들이 있어요.</p>
+
+<p><strong>P04 최현국</strong>: 6:16-19의 일곱 가증함 목록을 분석하면: (1) 교만한 눈 — 내면의 태도, (2) 거짓된 혀 — 말, (3) 무죄한 피를 흘리는 손 — 행동, (4) 악한 계교를 꾀하는 마음 — 계획, (5) 빨리 악으로 달려가는 발 — 이동, (6) 거짓 증인 — 공동체에 미치는 영향, (7) 형제 사이를 이간 — 관계 파괴. 이 목록은 개인적 죄에서 공동체 파괴로 나아가는 구조입니다.</p>
+
+<p><strong>P02 이진우</strong>: 6:26의 "음녀로 말미암아 사람이 한 조각 떡에 이르게 되며"는 경제적 파탄이에요. 그런데 6:26b "남의 아내는 귀한 생명을 사냥함이니라". 유부녀와의 간음은 단순히 경제 문제가 아니라 생명 자체를 위협합니다.</p>
+
+<p><strong>P05 김미영</strong>: 6:30-31의 도둑 비유가 놀라워요. "도둑이 주릴 때 배를 채우려고 도둑질하면 사람이 멸시하지 않거니와...그가 잡히면 칠 배를 갚아야 하므로 자기 집의 재산을 다 내주게 되리라". 도둑도 발각되면 일곱 배를 갚아야 한다는 법적 배상 원칙(출 22:1)이 배경이에요.</p>
+
+<p><strong>P11 나경아</strong>: 6:32-33에서 간음은 도둑보다 더 나쁘다고 합니다. "여인과 간음하는 자는 지각이 없는 자라 이것을 행하는 자는 자기의 영혼을 망하게 하며". 도둑은 변상이라도 가능하지만 간음은 명예를 되돌릴 수 없어요.</p>
+
+<h2>[7단계] 동영상 흐름</h2>
+
+<p><strong>P04 최현국</strong>: 이 장을 동영상으로 연결하면 이렇습니다.</p>
+
+<p>오프닝 — 아버지가 아들에게 말합니다 (6:1 "내 아들아").</p>
+
+<p>첫 번째 위험 (6:1-5) — 카메라가 이웃집에서 잘못 서명한 보증서를 보여줍니다. 빠져나오라는 다급한 말. 노루가 달리고 새가 날아가는 이미지.</p>
+
+<p>두 번째 위험 (6:6-11) — 카메라가 개미 집으로 이동. 개미들이 바쁘게 움직이는 클로즈업. 그 옆에 누워 자는 사람. "조금 더 자자"는 독백. 그러다 빈궁이 강도처럼 들이닥치는 충격 장면.</p>
+
+<p>세 번째 위험 (6:12-15) — 악한 자가 이리저리 눈짓하고 손짓하는 장면. 갑자기 재앙이 닥쳐 파멸하는 결말.</p>
+
+<p>일곱 가증함 (6:16-19) — 클로즈업 시퀀스. 교만한 눈 → 거짓된 혀 → 피 묻은 손 → 계략을 꾸미는 마음 → 달려가는 발 → 거짓 증언 → 다툼의 씨앗. 마치 신체 부위를 스캔하는 것처럼.</p>
+
+<p>음녀 경고 (6:20-35) — 밤 거리를 걷는 젊은이. 음녀가 다가와 말을 건다. 아버지의 계명이 "보호막"처럼 빛난다. 불을 품에 품는 어리석은 자의 이미지. 옷이 타는 장면. 남편의 분노로 사회적 파멸.</p>
+
+<p><strong>P07 오지혜</strong>: 동영상의 흐름이 점점 위험도가 높아집니다. 보증(경제적 위험) → 게으름(사회적 위험) → 악한 자(도덕적 위험) → 일곱 가증함(영적 위험) → 간음(총체적 파멸).</p>
+
+<p><strong>성령일 선교사</strong>: 그 점층 구조를 그대로 두지요.</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<h2>[8단계] 초벌 제목</h2>
+
+<p><strong>P01 한나래</strong>: 초벌 제목 제안 — "자멸의 다섯 길목".</p>
+
+<p><strong>P02 이진우</strong>: "개미가 가르치는 것, 아버지가 막는 것".</p>
+
+<p><strong>P05 김미영</strong>: "가증함의 일곱 얼굴".</p>
+
+<p><strong>P11 나경아</strong>: "불을 품에 품지 말라 — 잠언 6장의 다섯 경고".</p>
+
+<p><strong>성령일 선교사</strong>: 이 제목들을 남깁니다.</p>
+
+<h2>[9단계] 기도</h2>
+
+<p><strong>성령일 선교사</strong>: 마치면서 각자 간단히 기도합시다. 오늘 관찰에서 받은 한 가지를 기도로 표현해주세요.</p>
+
+<p><strong>P04 최현국</strong>: 개미처럼 외부 강제 없이 스스로 선을 행할 수 있는 내면의 힘을 구합니다.</p>
+
+<p><strong>P07 오지혜</strong>: 제 몸의 각 부위가 가증함의 도구가 아니라 거룩함의 도구가 되게 해달라고 기도합니다.</p>
+
+<p><strong>P01 한나래</strong>: 아버지의 계명이 낮에도 밤에도 저를 지키는 빛이 되기를 기도합니다.</p>
+
+<p><strong>P02 이진우</strong>: 형제 사이를 이간하는 혀가 아니라 화평을 이루는 혀를 주시길 기도합니다.</p>
+
+<p><strong>P05 김미영</strong>: 작은 게으름이 쌓여 큰 가난이 되지 않도록 부지런함을 허락하여 주옵소서.</p>
+
+<p><strong>P11 나경아</strong>: 주님이 미워하시는 것들을 저도 미워하고 주님이 사랑하시는 것들을 저도 사랑하게 해주세요.</p>
+
+<p><strong>성령일 선교사</strong>: 아멘. 오늘 관찰 수고 많으셨습니다.</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>P05 김미영</strong>: 이번 주 한 가지 실천 — 아침에 일어날 때 "조금 더 자자"를 세 번 이상 말하지 않기.</p>
+
+<p><strong>P01 한나래</strong>: 보증 관련 결정을 내릴 때 먼저 지혜로운 사람에게 물어보기.</p>
+
+<p><strong>P02 이진우</strong>: 누군가를 이간시키는 말을 듣게 될 때 그 자리에서 멈추기.</p>
+
+<p><strong>P04 최현국</strong>: 일주일 동안 매일 일곱 가증함 목록을 보며 내 하루를 점검하기.</p>
+
+<p><strong>P07 오지혜</strong>: 아버지의 계명이 내 마음에 새겨진다는 6:21을 암송하기.</p>
+
+<p><strong>P11 나경아</strong>: 일곱 가증함 중 가장 내 삶에 가까운 하나를 골라 그것에 대해 구체적으로 회개하기.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">관찰된 사실 — LOCKED v2.0 9단계 형식</span>
+        <span class="stage__toggle">관찰 카드 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro">잠언 6장의 구조, 인물, 행동, 배경, 반복, 대조, 히브리어 어휘를 체계적으로 정리합니다.</p>
+        <div class="md-body">
+
+<h2>1&#65039;&#8419; 구조</h2>
+<p>잠언 6장은 다섯 독립 단락으로 구성됩니다.</p>
+<ul>
+<li>단락 A (6:1-5): 보증의 위험 — 이웃을 위한 보증에서 빠져나오라</li>
+<li>단락 B (6:6-11): 게으름과 개미 — 개미에게 배워라, 부지런하라</li>
+<li>단락 C (6:12-15): 악한 자의 몸짓 언어 — 몸으로 악을 꾸미는 자의 파멸</li>
+<li>단락 D (6:16-19): 여호와가 미워하시는 일곱 가지 — 가증함 목록</li>
+<li>단락 E (6:20-35): 음녀 경고 — 아버지의 계명으로 음녀를 피하라</li>
+</ul>
+
+<h2>2&#65039;&#8419; 인물</h2>
+<ul>
+<li>화자: 아버지 (전체 장을 관통)</li>
+<li>수신자: 아들 (6:1, 6:20 "내 아들아")</li>
+<li>이웃 (6:1-5, 보증 당사자)</li>
+<li>개미 (6:6-8, 교훈의 모델)</li>
+<li>게으른 자 (6:6, 9-11)</li>
+<li>불량한 자/악한 자 (6:12-15)</li>
+<li>음녀/이방 여인 (<em>isha zarah</em>, 6:24)</li>
+<li>질투하는 남편 (6:34-35)</li>
+</ul>
+
+<h2>3&#65039;&#8419; 행동</h2>
+<ul>
+<li>6:1-3: 보증 섬, 손을 침, 이웃의 손에 빠짐</li>
+<li>6:3-5: 겸손히 부탁함, 자는 것 같지 말고, 노루처럼 달아남</li>
+<li>6:6: 개미에게 감</li>
+<li>6:8: 여름에 양식 예비, 추수 때 식량 모음</li>
+<li>6:9-10: 누워 잠잠, 조금 더 자자고 말함</li>
+<li>6:12-13: 구부러진 입, 눈짓, 발짓, 손가락질</li>
+<li>6:14: 마음에 악을 꾀함, 다툼을 일으킴</li>
+<li>6:21: 계명을 마음에 새김, 목에 맴</li>
+<li>6:22: 다닐 때 인도받음, 잘 때 보호받음</li>
+<li>6:27-28: 불을 품에 품음, 숯불을 밟음</li>
+<li>6:29: 이웃의 아내와 동침</li>
+<li>6:32: 간음함, 지각 없음, 영혼 망함</li>
+</ul>
+
+<h2>4&#65039;&#8419; 배경</h2>
+<ul>
+<li>ANE 보증 제도: 구두 약속과 손을 치는 행위가 계약 체결의 표시. 신용이 없으면 보증인이 전부 책임.</li>
+<li>히브리 농업 문화: 개미의 여름 비축은 겨울 생존의 기초. 게으름은 곧 굶주림.</li>
+<li>고대 근동 몸짓 언어: 눈짓, 발짓, 손가락질은 비밀 신호로 악한 계략을 공모하는 방식.</li>
+<li>이스라엘 법: 도둑은 일곱 배 배상(출 22:1), 간음은 사형(신 22:22). 6:31-35는 이 법적 배경에서 읽혀야 함.</li>
+<li>지혜문학 전통: 개미 등 자연물이 교훈의 모델로 등장하는 것은 이집트 지혜문학(아메넴오페 교훈)에서도 공통.</li>
+</ul>
+
+<h2>5&#65039;&#8419; 반복</h2>
+<ul>
+<li>"내 아들아"(<em>beni</em>): 6:1, 6:20 — 단락을 구분하는 주소어</li>
+<li>"게으른 자"(<em>atsel</em>): 6:6, 6:9 — 두 번 반복</li>
+<li>"조금"(<em>me'at</em>): 6:10 "조금 더 자자, 조금 더 졸자, 조금 더 눕자" — 세 번 반복</li>
+<li>"to'evah"(가증함): 6:16 "미워하시는 것"과 동의어로 반복</li>
+<li>"어머니"(<em>em</em>): 6:20 "어머니의 법을 떠나지 말라" — 아버지와 어머니 함께 등장</li>
+</ul>
+
+<h2>6&#65039;&#8419; 대조</h2>
+<ul>
+<li>개미(부지런함, 자율적 준비) vs 게으른 자(누워 잠잠, 외부 강제 없이 실패)</li>
+<li>몸으로 악을 꾸미는 자(눈짓·손짓) vs 아버지의 계명이 지키는 자(빛이 됨)</li>
+<li>도둑(발각되어도 배상 가능) vs 간음한 자(배상 불가, 영구적 수치)</li>
+<li>일곱 가증함의 "몸 목록"(죄의 도구) vs 계명과 법의 "빛과 길"(보호의 도구)</li>
+</ul>
+
+<h2>7&#65039;&#8419; 히브리어</h2>
+<ul>
+<li><strong>arev</strong>(עָרַב, 6:1) — 보증서다, 담보하다. 손을 치는 행위와 연결.</li>
+<li><strong>nirdaem</strong>(נִרְדָּם, 6:9) — 깊이 잠들다. 게으름의 극단적 표현.</li>
+<li><strong>to'evah</strong>(תּוֹעֵבָה, 6:16) — 가증함, 혐오스러운 것. 제의적 불결함과 도덕적 혐오 모두 표현.</li>
+<li><strong>charutz</strong>(חָרוּץ, 잠 10:4 등) — 부지런한, 날카로운. 개미의 근면과 대조되는 게으름을 강조.</li>
+<li><strong>isha_zarah</strong>(אִשָּׁה זָרָה, 6:24) — 이방 여인, 음녀. 남편이 있는 외간 여자.</li>
+<li><strong>musar</strong>(מוּסָר, 6:23) — 훈계, 교훈, 징계. 아버지의 명령과 연결된 훈육 개념.</li>
+<li><strong>mitzvah</strong>(מִצְוָה, 6:20) — 계명. 아버지의 계명(<em>mitzvah av</em>)이 지키는 자를 보호함.</li>
+</ul>
+
+<h2>8&#65039;&#8419; 초벌 제목</h2>
+<ul>
+<li>주제어: 자멸, 경고, 개미, 일곱 가증함, 불</li>
+<li>초벌 제목 후보: "불을 품에 품지 말라", "자멸의 다섯 길목", "개미가 가르치는 부지런함"</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s3">
+      <summary>
+        <span class="stage__num">단계 3</span>
+        <span class="stage__title-inline">보증과 게으름 — 경제적 지혜</span>
+        <span class="stage__toggle">더 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+<h3>보증(6:1-5) — 사회적 신용의 위험</h3>
+<p>6:1-2에서 "네가 이웃을 위하여 담보하며 타인을 위하여 보증하였으면 네 입의 말로 네가 얽혔으며 네 입의 말로 인하여 잡혔느니라". <em>arev</em>(보증)는 고대 이스라엘에서 매우 구체적인 법적 행위였습니다. 손을 치는 것(6:1, <em>taka'ta le-zar kapeka</em>)이 계약 체결의 외적 표시였고, 이는 법적 구속력을 가졌습니다.</p>
+
+<p>ANE에서 보증 제도는 사회적 연대의 표현이기도 했지만, 동시에 큰 위험을 수반했습니다. 채무자가 갚지 못할 경우 보증인이 전 재산을 잃거나 심지어 노예가 될 수도 있었습니다(잠 11:15, 17:18, 22:26 참조). 잠언은 도덕적 결함이 아닌 실용적 위험으로 이를 경고합니다.</p>
+
+<p>6:3-5의 해결책이 인상적입니다: "겸손히 가서 네 이웃을 간절히 구하며...노루가 사냥꾼의 손에서 벗어나는 것 같이, 새가 그물 치는 자의 손에서 벗어나는 것 같이 스스로 구원하라". 도망가라, 빠져나오라 — 체면보다 실제를 택하라는 것입니다.</p>
+
+<h3>게으름(6:6-11) — 자연의 교훈</h3>
+<p>잠언 6:6의 "게으른 자여 개미에게 가서 그가 하는 것을 보고 지혜를 얻으라"는 자연 관찰을 통한 교훈의 대표적 예입니다. 이집트 지혜문학, 메소포타미아 격언 모두 자연을 통한 교훈을 담고 있으며, 잠언도 이 전통 안에 있습니다.</p>
+
+<p>개미의 특성 세 가지: (1) "두목도 없고"(<em>ein qatzin</em>), (2) "감독자도 없고"(<em>shofet</em>), (3) "통치자도 없으되"(<em>moshel</em>). 이 세 가지 직위는 모두 외부 권위자를 뜻합니다. 개미는 아무도 강제하지 않아도 스스로 일합니다 — 이것이 <em>charutz</em>(부지런함)의 이상적 형태입니다.</p>
+
+<p>6:9-11의 풍자가 날카롭습니다: "게으른 자여 네가 어느 때까지 누워 있겠느냐 네가 어느 때에 잠이 깨어 일어나겠느냐 좀 더 자자, 좀 더 졸자, 손을 모으고 좀 더 누워 있자 하면 네 빈궁이 강도 같이 오며 네 궁핍이 무장한 자 같이 이르리라". 게으름의 점층 구문(<em>me'at shena, me'at tenumat, me'at chibbuq yadayim</em>)은 아주 조금씩 망해가는 과정을 보여줍니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s4">
+      <summary>
+        <span class="stage__num">단계 4</span>
+        <span class="stage__title-inline">악한 자와 일곱 가증함 — 몸의 언어</span>
+        <span class="stage__toggle">더 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+<h3>악한 자의 몸짓 언어 (6:12-15)</h3>
+<p>6:12-14는 악한 자를 신체 언어로 묘사하는 독특한 단락입니다. "불량한 자, 악한 자는 구부러진 말을 하고 다니며"(6:12). "구부러진 말"(<em>iqqeshut pe</em>)은 진실과 거짓이 뒤섞인 교활한 언어입니다.</p>
+
+<p>6:13의 신체 신호들: "눈짓을 하며, 발로 뜻을 보이며, 손가락질을 하며". 이 비밀 신호들은 공모자 사이의 의사소통 수단입니다. 말 없이도 악을 전달하는 능숙함 — 이것이 더 위험합니다.</p>
+
+<p>6:14 "마음에 패역을 품으며 항상 악을 꾀하며 다툼을 일으키는 자". 외적 행동(눈짓, 손짓)이 내적 상태(패역한 마음)에서 나옵니다. 6:15의 결과 — "그러므로 그의 재앙이 갑자기 임하리니 그가 갑자기 망하여 구원을 얻지 못하리라". "갑자기"(<em>pit'om</em>)가 두 번 반복됩니다. 계략으로 살다가 계략처럼 갑자기 끝납니다.</p>
+
+<h3>일곱 가증함 (6:16-19)</h3>
+<p>6:16-19는 히브리 지혜문학의 수사적 전통인 "수 형식"(<em>x / x+1</em>)을 사용합니다: "여호와께서 미워하시는 것 곧 그의 마음에 싫어하시는 것이 육 칠 가지이니"(6:16). 이 형식은 잠 30:15-31에도 나타납니다.</p>
+
+<p>일곱 항목 분석:</p>
+<ul>
+<li>(1) 교만한 눈(<em>einayim ramot</em>) — 태도의 죄, 내면의 오만</li>
+<li>(2) 거짓된 혀(<em>leshon shaqer</em>) — 말의 죄, 진실 왜곡</li>
+<li>(3) 무죄한 피를 흘리는 손(<em>yadayim shofkhot dam naqiy</em>) — 행동의 죄, 폭력</li>
+<li>(4) 악한 계교를 꾀하는 마음(<em>lev chorresh makhshevot aven</em>) — 계획의 죄, 내면의 악</li>
+<li>(5) 빨리 악으로 달려가는 발(<em>raglayim meharot larutz le-ra'ah</em>) — 이동의 죄, 악을 향한 열심</li>
+<li>(6) 거짓을 말하는 증인(<em>ed shaqarim</em>) — 공동체의 죄, 법정 부패</li>
+<li>(7) 형제 사이를 이간하는 자(<em>meshallach medon bein achim</em>) — 관계 파괴, 공동체 분열</li>
+</ul>
+
+<p>이 목록은 개인의 내면(교만, 계략)에서 시작해 공동체 파괴(이간질)로 끝납니다. 죄의 사회적 파급력이 구조 안에 담겨 있습니다.</p>
+
+<p><em>to'evah</em>(가증함)은 이스라엘에서 제의적 불결함(<em>tame</em>)과 도덕적 혐오 모두를 표현하는 강한 단어입니다. 레위기에서는 주로 제의적 맥락에서, 잠언에서는 도덕적 맥락에서 쓰입니다. 하나님이 단순히 "싫어하시는" 것이 아니라 "혐오하시는" 것임을 강조합니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s5">
+      <summary>
+        <span class="stage__num">단계 5</span>
+        <span class="stage__title-inline">아버지의 계명과 음녀의 유혹 (6:20-35)</span>
+        <span class="stage__toggle">더 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+<h3>아버지의 계명 — 보호막 (6:20-23)</h3>
+<p>6:20-21 "내 아들아 네 아버지의 계명을 지키며 네 어머니의 법을 떠나지 말고 그것을 항상 네 마음에 새기며 네 목에 매라". <em>mitzvah</em>(계명)와 <em>torah</em>(법/교훈)가 함께 등장합니다. 이 두 단어의 조합은 5:1-2에도 나타나며, 잠언 1-9장 전체의 틀입니다.</p>
+
+<p>6:21 "네 목에 매라"는 물리적 이미지입니다. 실제로 고대 이스라엘에서 부적이나 문서를 목에 걸거나 손목에 매는 관습이 있었습니다(신 6:8, 11:18 "손목에 매어 표를 삼으라" 참조). 계명이 몸에 붙어 있어야 합니다.</p>
+
+<p>6:22의 의인화가 아름답습니다: "그것이 네가 다닐 때에 너를 인도하며 네가 잘 때에 너를 보호하며 네가 깰 때에 너와 말하리니". 계명이 세 시간대(다닐 때·잘 때·깰 때)에 동행합니다. 24시간 동행자로서의 계명.</p>
+
+<p>6:23 "대저 계명은 등불이요 법은 빛이요 훈계의 책망은 곧 생명의 길이라"(<em>ki ner mitzvah ve-torah or, ve-derekh chayyim tokhachot musar</em>). 등불(<em>ner</em>), 빛(<em>or</em>), 생명의 길(<em>derekh chayyim</em>) — 세 가지 이미지. 시 119:105와 평행합니다.</p>
+
+<h3>음녀 경고 — 불을 품에 (6:24-35)</h3>
+<p>6:24 "이것이 너를 음녀에게서, 말로 호리는 이방 여인에게서 지키리라". <em>isha zarah</em>(이방 여인)는 5:3의 <em>zurah</em>와 같은 표현입니다. "말로 호리는"(<em>chalaqah</em>, 부드럽게 설득하는)이 음녀의 첫 번째 무기입니다.</p>
+
+<p>6:25 "네 마음에 그의 아름다움을 탐하지 말며 그의 눈꺼풀에 홀리지 말라". "눈꺼풀"(<em>af'apayim</em>)이 매혹의 도구로 등장합니다. 고대 이집트와 메소포타미아에서 눈 화장은 성적 매혹의 중요한 요소였습니다.</p>
+
+<p>6:27-29의 세 비유:</p>
+<ul>
+<li>"사람이 불을 품에 품고서 어찌 그의 옷이 타지 아니하겠으며"(6:27) — 물리적 불가능성</li>
+<li>"사람이 숯불을 밟고서 어찌 그의 발이 데지 아니하겠느냐"(6:28) — 물리적 불가능성</li>
+<li>"남의 아내와 통간하는 자도 그리하리라"(6:29) — 도덕적 불가능성</li>
+</ul>
+<p>불과 숯의 비유는 간음의 불가피한 결과를 자연 법칙처럼 제시합니다.</p>
+
+<p>6:30-35는 도둑 비유와의 비교를 통해 간음의 심각성을 강조합니다. 도둑은 발각되어도 일곱 배를 갚으면 됩니다(출 22:1). 그러나 간음한 자는 "자기의 영혼을 망하게 하며"(6:32), 질투하는 남편의 분노는 어떤 재물로도 풀 수 없습니다(6:35). 경제적 배상 불가 — 이것이 간음이 도둑보다 더 파괴적임을 보여줍니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s6">
+      <summary>
+        <span class="stage__num">단계 6</span>
+        <span class="stage__title-inline">ANE 배경 — 보증, 개미, 신체 목록</span>
+        <span class="stage__toggle">더 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+<h3>ANE 보증 제도</h3>
+<p>고대 근동에서 보증(<em>arev</em>)은 상업 거래의 필수 요소였습니다. 우르 3세 시대(기원전 2100년경) 문서부터 보증인 제도가 등장합니다. 채무자가 갚지 못할 경우 보증인이 신체 자유까지 잃을 수 있었습니다. 이스라엘 법에서도 보증인은 법적 의무를 졌습니다(잠 11:15, 17:18, 22:26-27 참조).</p>
+
+<p>잠언이 보증을 피하라고 하는 것은 도덕적 판단이 아닙니다. 실용적 지혜입니다 — 위험한 경제적 노출을 피하라는 것입니다. 이것이 잠언 지혜의 특성 중 하나: 도덕 규범이 아닌 현실적 삶의 지혜.</p>
+
+<h3>이집트 지혜문학과 자연 관찰</h3>
+<p>아메넴오페(Amenemope)의 교훈(기원전 1200년경)과 프타호텝(Ptahhotep)의 격언에도 자연 관찰을 통한 교훈이 있습니다. 잠언의 개미 이야기(6:6-8)는 이 전통 안에 있으면서도 독특합니다 — 이집트 문헌은 통치자와 사회 구조를 강조하지만, 잠언의 개미는 "두목 없이" 스스로 일합니다. 자율적 근면함의 강조입니다.</p>
+
+<h3>신체 부위 목록과 저주 문학</h3>
+<p>6:16-19의 신체 부위 목록(눈, 혀, 손, 마음, 발)은 ANE 저주 문학과 연결됩니다. 이집트의 "부정 고백"(Negative Confession, 사자의 서 125장)에도 신체 부위별로 죄를 고백하는 형식이 있습니다. 이스라엘 맥락에서 이 목록은 저주가 아니라 하나님의 혐오(<em>to'evah</em>) 목록입니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s7">
+      <summary>
+        <span class="stage__num">단계 7</span>
+        <span class="stage__title-inline">교차 참조 — 잠언 내부와 율법</span>
+        <span class="stage__toggle">더 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+<h3>잠언 내부 교차 참조</h3>
+<ul>
+<li>잠 5:1-23 (음녀 경고) ↔ 잠 6:20-35 (더 구체적 음녀 경고)</li>
+<li>잠 7:1-27 (음녀의 유혹 장면) ↔ 잠 6:24-25 (음녀의 말과 눈짓)</li>
+<li>잠 10:4 "손이 부지런한 자는 부요하게 되고" ↔ 잠 6:6-11 (개미의 부지런함)</li>
+<li>잠 11:15 "타인을 위하여 보증이 된 자는 손해를 당하여도" ↔ 잠 6:1-5</li>
+<li>잠 30:15-31 (수 형식 목록) ↔ 잠 6:16-19 (일곱 가증함)</li>
+</ul>
+
+<h3>율법서 교차 참조</h3>
+<ul>
+<li>출 22:1 (도둑은 다섯 배 혹은 일곱 배 배상) ↔ 잠 6:31 (칠 배 배상)</li>
+<li>신 22:22 (간음 — 남녀 모두 사형) ↔ 잠 6:32-35 (간음의 파멸적 결과)</li>
+<li>신 6:8 "너는 또 그것을 네 손목에 매어 기호를 삼으며" ↔ 잠 6:21 "네 목에 매라"</li>
+<li>레 18:20 (이웃의 아내와 동침 금지) ↔ 잠 6:29 "남의 아내와 통간하는 자"</li>
+<li>시 119:105 "주의 말씀은 내 발에 등이요 내 길에 빛이니이다" ↔ 잠 6:23 "계명은 등불이요 법은 빛이요"</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage" id="s8">
+      <summary>
+        <span class="stage__num">단계 8</span>
+        <span class="stage__title-inline">미해결 질문 Q1-Q6</span>
+        <span class="stage__toggle">질문 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <div class="md-body">
+<p><strong>Q1.</strong> 6:1-5의 보증 경고는 단순히 경제적 실용성인가, 아니면 더 깊은 사회 윤리적 함의(이웃 관계의 경계 설정)를 담고 있는가?</p>
+
+<p><strong>Q2.</strong> 개미(6:6-8)가 "두목도 없이" 일한다는 것이 개인의 자율성을 강조하는 것인가, 아니면 공동체 내 질서의 자연스러운 작동을 보여주는 것인가?</p>
+
+<p><strong>Q3.</strong> 일곱 가증함(6:16-19)의 마지막 항목이 "형제 사이를 이간하는 자"인 것은 이 목록이 공동체 윤리를 최고 가치로 보는 것인가? 개인 죄보다 관계 파괴를 더 심각하게 보는 신학적 이유는?</p>
+
+<p><strong>Q4.</strong> <em>isha zarah</em>(6:24)가 외국 여성을 의미하는지, 아니면 단순히 "다른/부도덕한 여성"을 의미하는지 — 이 해석 차이가 6장 전체 메시지에 어떤 영향을 미치는가?</p>
+
+<p><strong>Q5.</strong> 6:32 "여인과 간음하는 자는 지각이 없는 자라"(<em>chasar lev</em>, 마음이 없는 자)는 간음을 도덕적 결함이 아니라 지혜의 결핍으로 보는 것인가? 이것이 지혜문학의 특징적 관점인가?</p>
+
+<p><strong>Q6.</strong> 6:34-35에서 남편의 질투(<em>qin'ah</em>)가 어떤 법적 보상도 받아들이지 않는다는 것은 — 이것이 고대 이스라엘 법체계에서 간음에 대한 실제 관행을 반영하는 것인가, 아니면 수사적 강조인가?</p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num">종합</span>
+      <h2 class="stage__title">잠언 6장 종합 정리</h2>
+      <div class="synthesis-body">
+        <p><strong>A. 핵심 주제</strong>: 잠언 6장은 다섯 가지 독립적 주제를 통해 하나의 메시지를 전달합니다 — 자멸적 행동을 피하고 아버지의 계명 안에 거하라. 보증(경제적 자멸), 게으름(사회적 자멸), 악한 자의 몸짓(도덕적 자멸), 일곱 가증함(영적 자멸), 간음(총체적 자멸) — 이 다섯 길목은 모두 파멸로 이어집니다.</p>
+
+        <p><strong>B. 개미의 신학</strong>: 6:6-8의 개미는 잠언에서 가장 유명한 교훈 이미지 중 하나입니다. "두목도 없고 감독자도 없고 통치자도 없으되" 스스로 준비하는 개미는 외부 강제 없이 내면에서 우러나오는 근면함의 이상을 제시합니다. 이것은 단순한 부지런함이 아니라 자율적 지혜(<em>charutz</em>)입니다.</p>
+
+        <p><strong>C. 일곱 가증함의 구조적 의미</strong>: 6:16-19의 일곱 항목은 교만한 눈(내면)에서 시작해 형제 사이를 이간하는 자(공동체 파괴)로 끝납니다. 죄는 개인에서 공동체로 번져갑니다. <em>to'evah</em>(가증함)는 하나님이 단순히 싫어하시는 것이 아니라 혐오하시는 것 — 이 강도가 이 단락의 핵심 톤입니다.</p>
+
+        <p><strong>D. 계명의 의인화</strong>: 6:22-23에서 아버지의 계명이 의인화됩니다 — 다닐 때 인도하고, 잘 때 보호하고, 깰 때 말하는 동행자. "계명은 등불이요 법은 빛이요 훈계의 책망은 생명의 길이라"(6:23). 이 구절은 시편 119:105의 선구입니다. 계명이 적이 아니라 보호자로 제시됩니다.</p>
+
+        <p><strong>E. 불의 비유</strong>: 6:27-29의 불과 숯 비유는 간음의 결과를 자연 법칙처럼 제시합니다. 불을 품어도 옷이 안 타는 것이 불가능하듯, 간음하고도 다치지 않는 것이 불가능합니다. 이것은 도덕적 판단 이전에 현실의 법칙입니다.</p>
+
+        <p><strong>F. 도둑과 간음의 비교</strong>: 6:30-35는 잠언에서 가장 놀라운 비교 중 하나입니다. 도둑은 발각되어도 배상이 가능합니다(일곱 배). 그러나 간음한 자는 질투하는 남편의 분노를 어떤 것으로도 풀 수 없습니다. 경제적 배상 불가 — 이것이 간음이 도둑보다 더 심각한 파멸임을 보여줍니다.</p>
+
+        <p><strong>G. 아버지의 절박함</strong>: "내 아들아"(6:1, 6:20)로 시작되는 이 장 전체에는 아버지의 절박함이 흐릅니다. 다섯 경고 모두 "이것만큼은 피하라"는 간절함에서 나옵니다. 지혜는 차가운 교훈이 아니라 뜨거운 부모의 사랑에서 흘러나옵니다.</p>
+
+        <p><strong>H. 히브리어 음향학</strong>: <em>arev</em>(보증, 담보), <em>nirdaem</em>(깊이 잠듦), <em>to'evah</em>(가증함), <em>musar</em>(훈계), <em>mitzvah</em>(계명) — 이 단어들은 각각 잠언의 핵심 신학 어휘입니다. <em>musar</em>는 잠언 1:2에서 이미 목적으로 제시되었고, <em>mitzvah</em>는 계명 순종의 실천입니다.</p>
+
+        <p><strong>I. 잠언 1-9장 내에서의 위치</strong>: 잠언 6장은 1-9장의 "아버지의 교훈" 단락 중 유일하게 다섯 가지 주제를 한 장에 묶은 장입니다. 5장(음녀)과 7장(음녀의 유혹 장면) 사이에 위치하면서도, 보증·게으름·악인·일곱 가증함이라는 별도 단락들을 포함합니다. 이 배열이 의도적인지, 아니면 편집 과정의 결과인지는 학자들 사이에 논쟁 중입니다.</p>
+
+        <p><strong>J. 현대적 적용</strong>: 개미의 자율적 부지런함(6:6-8)은 디지털 시대에도 유효합니다 — 외부 감시 없이 스스로 일하는 사람이 지혜로운 자입니다. 일곱 가증함 목록(6:16-19)은 SNS 시대에 새롭게 읽힙니다 — 교만한 자기 표현, 거짓된 말, 이간질이 그 어느 때보다 쉬워진 시대에 이 경고는 더 예리합니다.</p>
+
+        <table>
+          <thead>
+            <tr><th>단락</th><th>주제</th><th>결과</th><th>핵심 어휘</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>6:1-5</td><td>보증</td><td>경제적 파탄</td><td>arev</td></tr>
+            <tr><td>6:6-11</td><td>게으름</td><td>빈궁</td><td>nirdaem, charutz</td></tr>
+            <tr><td>6:12-15</td><td>악한 자</td><td>갑작스러운 파멸</td><td>beliyya'al</td></tr>
+            <tr><td>6:16-19</td><td>일곱 가증함</td><td>하나님의 혐오</td><td>to'evah</td></tr>
+            <tr><td>6:20-35</td><td>음녀</td><td>총체적 파멸</td><td>isha_zarah, mitzvah</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <nav class="next-row">
+      <a href="/magazine/PRO/5/">
+        <div class="nav-kicker">&#8592; 이전 장</div>
+        <div class="nav-title">잠언 5장</div>
+        <div class="nav-preview">음녀의 유혹을 피하고 아내의 품을 즐거워하라</div>
+      </a>
+      <a href="/magazine/PRO/7/">
+        <div class="nav-kicker">다음 장 &#8594;</div>
+        <div class="nav-title">잠언 7장</div>
+        <div class="nav-preview">황혼의 거리, 창가에서 바라보는 아버지가 목격한 어리석음의 장면</div>
+      </a>
+    </nav>
+  </main>
+</div>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){.foot--mini .foot--mini__inner{justify-content:flex-start}.foot--mini>div>span{display:block}}
+  </style>
+  <div class="foot--mini__inner">
+    <span>&#169; 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
+  </div>
+</footer>
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>아가 5장 — Observatory | 네다바웨이</title>
+<meta name="description" content="아가 5장을 9단계로 같이 관찰합니다. 신랑이 문을 두드리고 신부가 놓치며, 예루살렘 딸들에게 신랑을 찾아 달라 부탁하고 신랑의 아름다움을 칭송한다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/SNG/5/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s;
+    user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline {
+    flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
+    font-weight: 700; color: var(--c-ink); text-wrap: balance;
+  }
+  .stage__toggle {
+    font-size: 0.82rem; color: var(--c-copper); font-weight: 600;
+    letter-spacing: 0.04em; flex-shrink: 0;
+  }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·깨달음</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/SNG/">시가서</a> · <a href="/magazine/SNG/">아가</a> · 5장</div>
+      <h1>아가 5장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">SNG-005 · 시가서 · 히브리어</div>
+      <p class="essence">"나의 사랑하는 자가 문을 두드리며 — 나의 누이 나의 사랑 나를 열어 다오" — 신랑이 문을 두드리고 신부가 놓치며, 예루살렘 딸들에게 신랑의 아름다움을 고백한다.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 어떤 공간인가 · 어떤 물건이 등장하는가. 아가 5장은 신랑이 동산에 들어옴(1절), 신랑의 문 두드림과 신부가 놓침(2~8절), 예루살렘 딸들의 질문과 신랑 칭송(9~16절)으로 이루어진다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: SNG-005</p>
+<p>book: 아가</p>
+<p>book_en: Song of Songs</p>
+<p>chapter: 5</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 시·사랑 노래</p>
+<p>language: 히브리어</p>
+<p>verse_count: 16</p>
+<p>observed_facts_count: 25</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 5</p>
+<p>hebrew_terms: [dodi_dofeq, patachti_lo, mor_avar, shomrim, tzah_ve'adom, roshoi_tale_tal, beten_shen_shel_shor, keseph, sappirim, levanon, dodi_ve_ze_re_i]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["5:2 dodi dofeq — 70인역은 ψαύει(두드린다·접촉한다)로 옮김", "5:10 tzah ve'adom — 70인역은 λευκαίνων καὶ πυρρός(희고 붉은)로 직역"]</p>
+<p>ane_refs: ["야간 방문·문 두드림은 고대 근동 구애 시의 공통 장면(배경)", "이슬로 젖은 머리(5:2)는 밤 시간 야외 정황의 묘사(배경)", "사파이어·상아·레바논 삼나무는 왕실 사치 소재로 알려진 항목(배경)"]</p>
+<p>rabbinic_refs: ["랍비 전통에서 5:2 '잠들었으나 마음이 깨어 있음'을 이스라엘의 하나님을 향한 잠재적 연결로 읽는 해석 전통(배경, 적용 아님)"]</p>
+<p>literary_devices: [dramatic_irony, wasf_male, repetition, threshold_scene, night_scene]</p>
+<p>repeated_words: ["나의 사랑하는 자(dodi)", "찾다(baqash)", "예루살렘 딸들", "신랑은 어디 갔느냐"]</p>
+<p>cross_refs: ["아 3:1~4 (찾아 헤맴 — 유사 구조의 심화)", "아 5:10~16 (남성 와스프 — 신랑 신체 칭송)", "아 8:6~7 (죽음같이 강한 사랑 — SNG 목적지)", "욥 1:1 (tam — 흠 없음)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-20</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>아가 5장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+<p><strong>성령일 선교사</strong>: 아가 5장입니다. 4장에서 신랑의 칭송이 끝나고 신부가 동산으로 초대했는데, 5장에서 신랑이 동산에 들어오고 — 그리고 신랑이 문을 두드리고 신부가 놓치는 장면이 나와요. 낭독하고 머물겠습니다.</p>
+<p>(본문 낭독 5:1~16, 약 90초)</p>
+<p><strong>(침묵 약 45초)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+<p><strong>성령일 선교사</strong>: 어떤 공기가 느껴지셨는지요.</p>
+<p><strong>P01 한나래</strong>: 1절은 밝고 기쁜데 — "나의 누이 나의 신부에게 왔다" — 그 다음 2절부터 분위기가 급변해요. "내가 잠들었으나 마음은 깨어 있구나" — 이 긴장감이 장 전체에 깔려요.</p>
+<p><strong>P04 최현국</strong>: 장이 세 막으로 나뉘어요. 1절 신랑의 입장 선언, 2~8절 문 두드림과 놓침, 9~16절 예루살렘 딸들의 질문과 신랑 칭송. 드라마 구조예요.</p>
+<p><strong>P05 김미영</strong>: 소품들이 두 층이에요. 2절의 이슬 — "내 머리에는 이슬이 가득하다"는 신랑의 밤 정황. 10~16절의 신랑 묘사 소품 — 상아·사파이어·금·레바논 삼나무가 왕실 소재들이에요.</p>
+<p><strong>P02 이진우</strong>: 구조 발견이에요. 2~8절이 3장의 찾아 헤맴과 유사하지만 더 강해요. 3장에서는 신부가 나가서 찾았고, 5장에서는 신랑이 먼저 오는데 신부가 열지 않아요. 그리고 찾았으나 못 찾는 결과가 더 심화돼요.</p>
+<p><strong>P07 오지혜</strong>: 6절이 울렸어요. "내가 사랑하는 자를 찾아도 찾지 못하였고 그를 불러도 응답이 없었다." 3장 찾음보다 더 절박해요.</p>
+<p><strong>P11 나경아</strong>: 2절 <em>dodi dofeq</em>(내 사랑하는 자가 두드리며)에서 <em>dofeq</em>가 심장이 '두근거리다·박동하다'는 뜻도 있어요. "문을 두드리며"가 심장의 박동 이미지를 동시에 담는다는 해석이 있어요. 배경으로만요.</p>
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+<p><strong>성령일 선교사</strong>: 무대와 소품을 보지요.</p>
+<p><strong>P04 최현국</strong>: 무대가 세 공간이에요. ① 1절 — 동산(4장의 초대가 실현된 공간). ② 2~8절 — 문 안(신부)과 문 밖(신랑)의 임계 공간. 문이 경계선이에요. ③ 9~16절 — 예루살렘 딸들이 있는 공간에서 신부가 신랑을 묘사.</p>
+<p><strong>P05 김미영</strong>: 소품 두 층. 밤 층 — 이슬, 문, 문의 구멍(손이 들어오는 공간), 몰약(머리에 떨어지는), 문빗장. 왕실 층(10~16절) — 금·사파이어·상아·루비·금·레바논 삼나무.</p>
+<p><strong>P11 나경아</strong>: 10절 <em>dodi tzah ve'adom</em>(내 사랑하는 자는 희고 붉다)에서 <em>tzah</em>는 '빛나는·선명한', <em>adom</em>은 '붉은'이에요. '빛나는 붉음'의 조합이 나타내는 것을 본문이 설명하지 않아요. 배경으로만요.</p>
+<p><strong>P07 오지혜</strong>: 5절 "내 손에서 몰약이 떨어졌다" — 신랑이 문 구멍으로 손을 넣었을 때 몰약이 문빗장에 묻어요. 신랑이 다녀간 흔적이 남는 장면이에요.</p>
+<p><strong>성령일 선교사</strong>: 문의 경계, 몰약의 흔적, 왕실 소재들을 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+<p><strong>P02 이진우</strong>: 1절 "나의 누이, 나의 신부에게 내가 왔다 — 몰약과 향품을 거두고 꿀을 먹었으며"로 열려요. 16절 "그의 입은 심히 달콤하고 그는 전부 사랑스럽구나. 예루살렘 딸들아, 이는 내가 사랑하는 자요, 내 친구로다"로 닫혀요.</p>
+<p><strong>P01 한나래</strong>: 시작은 신랑의 기쁜 입장 선언. 끝은 신부의 신랑 고백 선언. 신랑이 말하는 것으로 시작해 신부가 신랑을 증언하는 것으로 끝나요.</p>
+<p><strong>P04 최현국</strong>: 처음(신랑의 말)→중간(놓침·찾음)→끝(신부의 신랑 증언). 만남이 놓침을 통과해 더 깊어진 증언으로 닫혀요.</p>
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+<p><strong>P07 오지혜</strong>: 인물들이에요 — 신랑, 신부, 예루살렘 딸들, 성읍 경비원들(7절). 예루살렘 딸들이 9절에서 질문하는 역할로 등장해요.</p>
+<p><strong>P02 이진우</strong>: 7절 경비원들 장면이 3장 3절과 비교돼요. 3장에서는 경비원을 만나고 지나쳤는데, 5장에서는 경비원들이 신부를 쳐서 상하게 하고 겉옷을 빼앗아요. 강도가 달라요.</p>
+<p><strong>P11 나경아</strong>: 신랑 묘사(10~16절)가 아가에서 유일한 남성 와스프예요. 신부 와스프(4장)에 대응하는 구조로, 신부가 신랑을 묘사해요. 머리, 머리카락, 눈, 뺨, 입술, 손, 배, 다리, 외모, 입 — 역시 위에서 아래로 이동해요.</p>
+<p><strong>P01 한나래</strong>: 사상으로 보면, 6절 "그가 내 영혼은 떠나갔다"(<em>nafshi yatza'ah</em>)가 강렬해요. 신랑이 떠났을 때 "내 영혼이 나갔다"는 묘사. 찾지 못함이 영혼이 나가는 것처럼 느껴지는 갈망이에요.</p>
+<p><strong>P05 김미영</strong>: 11절 "그 머리는 순금 같고 — 정금이고 그의 머리카락은 고불고불하고 까마귀같이 검다." 금과 검은색의 대비예요.</p>
+<p><strong>성령일 선교사</strong>: 문의 놓침과 영혼이 나가는 갈망, 신랑 칭송의 증언을 그대로 두지요.</p>
+<p><strong>(짧은 침묵)</strong> 🌿</p>
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+<p><strong>P04 최현국</strong>: 네 컷입니다.</p>
+<ul>
+<li><strong>컷 1 (1절)</strong>: 신랑의 동산 입장 선언 — "왔다, 먹었다, 마셨다."</li>
+<li><strong>컷 2 (2~6절)</strong>: 문 두드림과 놓침 — 잠들었으나 마음이 깨어 있는 신부, 신랑의 목소리, 몰약의 흔적, 열었으나 신랑이 없음.</li>
+<li><strong>컷 3 (7~8절)</strong>: 성읍 헤맴·경비원 만남 — 신부가 상하고 겉옷을 빼앗김. 예루살렘 딸들에게 부탁.</li>
+<li><strong>컷 4 (9~16절)</strong>: 신랑 칭송 — 예루살렘 딸들의 질문에 신부가 신랑을 묘사함.</li>
+</ul>
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+<p><strong>P02 이진우</strong>: 발견이에요. 2절 "내가 잠들었으나 마음은 깨어 있구나"가 이 장 전체의 역설이에요. 잠들었다면 열지 못하는 것이 이해되지만, 마음이 깨어 있다는 것이 왜 열지 않았는가를 더 어렵게 해요. 본문이 설명하지 않아요.</p>
+<p><strong>P11 나경아</strong>: 6절 <em>nafshi yatza'ah</em>(내 영혼이 나갔다)에서 <em>nafshi</em>는 '영혼·목숨·자아'예요. 1장에서 신부가 신랑을 <em>she'ahavah nafshi</em>(내 영혼이 사랑하는 자)라 했는데, 여기서 신랑이 떠나자 그 <em>nafshi</em>가 나간 거예요. 배경으로만요.</p>
+<p><strong>P05 김미영</strong>: 의문이에요. 7절 경비원들이 신부를 상하게 하고 겉옷을 빼앗는 이유가 본문에 없어요. 3장에서는 경비원들이 중립적이었는데 5장에서는 적대적이에요. 왜 다른지 본문이 밝히지 않아요.</p>
+<p><strong>P07 오지혜</strong>: 발견. 10절 "나의 사랑하는 자는 희고 붉으며 만 사람에게서 뛰어나구나"의 선언이 3장의 솔로몬 묘사와 어떤 관계인지 본문이 연결하지 않아요.</p>
+<p><strong>성령일 선교사</strong>: 잠들었으나 마음이 깨어 있는 역설, nafshi yatza'ah의 원어, 경비원들의 변화된 태도를 그대로 두지요.</p>
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+<p><strong>P04 최현국</strong>: 신랑이 선언한다 — "나의 누이, 나의 신부에게 왔다." 동산의 향품을 거두고 꿀과 포도주를 마셨다. 그리고 밤이 온다. 신부가 잠들었지만 마음은 깨어 있다. 목소리가 들린다 — "나의 누이, 나의 사랑, 나의 비둘기야, 나의 완전한 자야, 열어 다오. 내 머리에는 이슬이, 내 머리카락에는 밤 이슬이 가득하다." 신부가 말한다 — "내가 옷을 벗었는데 어떻게 입겠느냐." 망설이는 사이 신랑의 손이 문 구멍으로 들어오고, 신부가 일어나 문을 열었을 때 — 신랑은 없다. 그가 돌아섰다. 신부가 나가 찾는다. 거리를 헤맨다. 경비원들이 신부를 상하게 하고 겉옷을 빼앗는다. 신부가 예루살렘 딸들에게 부탁한다 — "내 사랑하는 자를 만나면 내가 사랑으로 병들었다고 전해 주오." 예루살렘 딸들이 묻는다 — "당신의 사랑하는 자가 다른 사람들의 사랑하는 자보다 어떻게 더 낫소?" 신부가 답한다 — "희고 붉고, 만 사람에게서 뛰어나다. 금 같은 머리, 고불고불 검은 머리카락, 비둘기 같은 눈, 향초 즙 같은 뺨, 백합화 같은 입술에서 몰약이 떨어지고, 금 노리개 같은 손, 상아 판 같은 배에 사파이어가 박혔고, 금 기둥 같은 다리가 정금 받침 위에 있고, 레바논 삼나무 같은 외모. 그 입은 달고 그는 전부 사랑스럽다. 예루살렘 딸들아, 이는 내 사랑하는 자요, 내 친구로다."</p>
+<p><strong>성령일 선교사</strong>: 놓침에서 더 강해진 증언으로 이어지는 장이에요. 여기까지입니다.</p>
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+<p><strong>P01 한나래</strong>: "내 영혼이 나갔다 — 신랑을 놓친 자리"</p>
+<p><strong>P02 이진우</strong>: "잠들었으나 마음은 깨어 있구나"</p>
+<p><strong>P04 최현국</strong>: "문 두드림과 빈 문간 — 더 강해진 증언"</p>
+<p><strong>P05 김미영</strong>: "몰약이 문빗장에 떨어지고"</p>
+<p><strong>P07 오지혜</strong>: "그는 전부 사랑스럽구나 — 만 사람에게서 뛰어난 자"</p>
+<p><strong>P11 나경아</strong>: "<em>dodi dofeq</em> — 두드리는 자, 떠난 자"</p>
+<p>부제 제안: "신랑이 문을 두드리고 신부가 망설이다 놓치며, 더 강해진 갈망이 신랑 증언으로 이어진다"</p>
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+<p><strong>성령일 선교사</strong>: "열었으나 신랑이 없던" 그 문간 자리에서, 관찰로 알게 된 것을 주께 아뢰어 봅시다. 답을 구하지 말고요.</p>
+<p><strong>(긴 침묵 약 1분)</strong> 🌿🌿</p>
+<p><strong>P07 오지혜</strong>: (조용히) 망설였다가 열었을 때 없던 자리를 생각해요. 그 몰약의 흔적만 남은 문빗장을.</p>
+<p><strong>(침묵)</strong> 🌿</p>
+<p><strong>성령일 선교사</strong>: 그 자리를 그대로 두지요. 놓침이 더 강한 증언을 낳은 자리입니다.</p>
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+<p><strong>성령일 선교사</strong>: 이 본문은 어디서 어디로 움직이는지요?</p>
+<p><strong>P02 이진우</strong>: 신랑이 문을 두드리는 것(다가옴)에서 신부가 망설이다 놓침으로, 놓침에서 더 강한 증언으로. 만남이 아니라 놓침이 더 깊은 고백을 이끌어내는 운동이에요.</p>
+<p><strong>성령일 선교사</strong>: 눈에 보이는 문 두드림과 놓침 아래에서 무엇이 드러나는지요?</p>
+<p><strong>P01 한나래</strong>: 신부의 갈망이 놓침을 통해 더 선명해지는 것 같아요. "그는 전부 사랑스럽다"는 16절 선언이 만남이 아닌 놓침 뒤에 나온다는 게 이 장의 구조예요. 본문이 그 이상을 설명하지 않지만요.</p>
+<p><strong>성령일 선교사</strong>: 이 본문이 품은 긴장은 무엇인지요?</p>
+<p><strong>P11 나경아</strong>: 마음이 깨어 있는데 열지 않은 신부예요. 갈망과 망설임이 동시에 있어요. 그리고 그 망설임이 놓침을 만들고, 놓침이 더 강한 갈망을 만들어요. 이미/아직의 긴장이 이 장 내내 있어요.</p>
+<p><strong>성령일 선교사</strong>: 그 긴장을 그대로 두지요. 잃음과 다시 찾음의 국면 안에 있습니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2단계~7단계</strong> 관찰된 사실 정리.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: SNG-005</p>
+<p>book: 아가</p>
+<p>chapter: 5</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>아가 5장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>무대 세 공간 — ① 1절 동산(4장 초대의 실현) ② 2~8절 문 안팎(신부 방 안·신랑 문 밖·성읍 거리) ③ 9~16절 예루살렘 딸들 앞에서의 신랑 칭송.</li>
+<li>소품 밤 층 — 이슬, 문, 문의 구멍(chur), 몰약(손에서 떨어지는), 문빗장(manul).</li>
+<li>소품 왕실 층(10~16절) — 순금·사파이어·상아·루비·금 기둥·정금 받침·레바논 삼나무.</li>
+<li>야간 방문 장면과 이슬 묘사는 밤 시간 야외 정황(배경). 왕실 소재들은 왕의 아름다움 묘사(배경).</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>1절의 기쁨과 2절부터의 긴장 대비 — 신랑의 입장 선언 직후 밤 장면으로 전환.</li>
+<li>"잠들었으나 마음은 깨어 있구나" — 역설적 상태.</li>
+<li>6절 "내 영혼이 나갔다"(nafshi yatza'ah) — 이 장의 감정적 절정.</li>
+<li>10~16절 신랑 칭송은 정밀하고 왕실적인 아름다움.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>1절: "나의 누이, 나의 신부에게 내가 왔다 — 몰약을 거두고 꿀과 포도주를 마셨다" — 신랑의 기쁜 입장.</li>
+<li>16절: "그는 전부 사랑스럽구나. 예루살렘 딸들아 이는 내 사랑하는 자요 내 친구로다" — 신부의 신랑 증언.</li>
+<li>신랑의 말(1절) → 놓침(6절) → 신부의 신랑 증언(16절). 만남이 아닌 놓침을 통과해 더 강해진 고백으로 닫힘.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>등장인물 — 신랑(1~2절 목소리), 신부, 성읍 경비원들(7절), 예루살렘 딸들(9·13절).</li>
+<li>경비원들 — 3장에서 중립적이었으나 5장에서 신부를 상하게 하고 겉옷을 빼앗음. 변화된 태도(이유 미기술).</li>
+<li>신랑 신체 칭송 요소 — 머리·머리카락·눈·뺨·입술·손·배·다리·외모·입 (10개 부위). 아가 유일의 남성 와스프.</li>
+<li>핵심 동작: 두드리다 → 열지 않다 → 열었으나 없다 → 찾다 → 경비원에게 상함 → 증언하다.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1절): 동산 입장 선언.</li>
+<li>컷 2 (2~6절): 문 두드림·망설임·몰약·열었으나 없음·영혼이 나감.</li>
+<li>컷 3 (7~8절): 성읍 헤맴·경비원·예루살렘 딸들에게 부탁.</li>
+<li>컷 4 (9~16절): 예루살렘 딸들의 질문·신부의 신랑 칭송 증언.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (1) 원어 카드</h2>
+<ul>
+<li><em>dodi dofeq</em>(דוֹדִי דוֹפֵק) — 내 사랑하는 자가 두드리며. dofeq는 '두드리다'이자 '박동하다'. 2절.</li>
+<li><em>nafshi yatza'ah</em>(נַפְשִׁי יָצְאָה) — 내 영혼이 나갔다. 6절.</li>
+<li><em>dodi tzah ve'adom</em>(דוֹדִי צַח וְאָדֹם) — 희고 붉은 내 사랑하는 자. tzah = 빛나는·선명한. 10절.</li>
+<li><em>roshoi ketem paz</em>(רֹאשׁוֹ כֶּתֶם פָּז) — 그 머리는 정금 같고. ketem paz = 순금. 11절.</li>
+<li><em>beten sheshen</em>(בִּטְנוֹ שֵׁן שֶׁן) — 상아 판 같은 배. 14절.</li>
+<li><em>chur</em>(חוֹר) — 문의 구멍·틈. 4절.</li>
+<li><em>manul</em>(מַנְעוּל) — 문빗장. 5절.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (2) 문학 구조</h2>
+<ul>
+<li>아가 5장이 3장 찾아 헤맴의 심화 구조 — 두 장면 비교: 3장(신부가 찾아나감) vs 5장(신랑이 왔으나 신부가 놓침). 강도 상승.</li>
+<li>남성 와스프(10~16절) — 4장의 여성 와스프에 대응. 신부가 신랑을 묘사하는 유일한 남성 신체 칭송.</li>
+<li>nafshi 반복 — 1장에서 she'ahavah nafshi(영혼이 사랑하는 자), 6절 nafshi yatza'ah(영혼이 나갔다). 같은 단어의 다른 상태.</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (3) ANE·배경</h2>
+<ul>
+<li>야간 방문·문 두드림은 고대 근동 구애시의 정형 장면(배경).</li>
+<li>레바논 삼나무·사파이어·상아·금은 왕실 건축·장식에 사용된 고급 소재(배경).</li>
+<li>이슬 젖은 머리는 야간 야외 정황 묘사(배경).</li>
+</ul>
+
+<h2>6️⃣ 의문·발견·정보 — (4) 교차 참조 노드</h2>
+<ul>
+<li>아 5 ↔ 아 3:1~4 (찾아 헤맴 — 유사 구조, 5장에서 강도 심화)</li>
+<li>아 5 ↔ 아 4:1~7 (여성 와스프 — 남성 와스프 5:10~16과 대응)</li>
+<li>아 5 ↔ 아 8:6~7 (사랑은 죽음같이 강하고 — SNG 목적지)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>신랑이 동산에 들어와 선언한다. "나의 누이, 나의 신부에게 왔다." 밤이 온다. 신부가 잠들었으나 마음은 깨어 있다. 신랑의 목소리가 들린다 — "열어 다오, 내 머리에 이슬이 가득하다." 신부가 망설인다 — "옷을 벗었는데." 신랑의 손이 문 구멍으로 들어오고, 신부의 마음이 움직인다. 일어나 몰약 바른 손으로 문을 열었으나 — 신랑이 없다. 문빗장에 몰약만 남았다. 신부가 나가 찾는다. 성읍을 헤맨다. 경비원들을 만나 상하고 겉옷을 빼앗긴다. 예루살렘 딸들에게 부탁한다 — "사랑으로 병들었다고 전해 주오." 딸들이 묻는다 — "당신의 사랑하는 자가 다른 이들의 사랑보다 어떻게 낫소?" 신부가 말한다 — "희고 붉으며 만 사람에게서 뛰어나다. 정금 머리, 고불고불 검은 머리카락, 비둘기 눈, 몰약 뺨, 백합화 입술, 금 손, 상아 배에 사파이어, 금 기둥 같은 다리, 레바논 삼나무 같은 외모. 입은 달고 그는 전부 사랑스럽다. 예루살렘 딸들아 이가 내 사랑하는 자, 내 친구로다."</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"내 영혼이 나갔다 — 놓침에서 더 강해진 증언으로"</strong></li>
+<li>초벌 부제: "신랑이 문을 두드리고 신부가 망설이다 놓치며, 그 놓침이 더 강렬한 신랑 고백으로 이어진다"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (7개: dodi_dofeq·nafshi_yatza'ah·tzah_ve'adom·roshoi_ketem_paz·chur·manul·beten_sheshen)</li>
+<li>[x] 역사·문학 사실 최소 1개 (남성 와스프·3장과의 심화 구조·nafshi 반복)</li>
+<li>[x] 미해결 질문 1개 이상 (6건)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1~9단계 전 항목 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>경비원들의 태도 변화를 알레고리로 단정하지 않고 관찰로 보존.</li>
+<li>nafshi yatza'ah를 신학적으로 단정하지 않음.</li>
+<li>신랑 칭송을 신학 적용 없이 관찰로 보존.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 초벌 제목·부제</strong> 묵상에서 재조정 가능. <strong>9단계 기도</strong> 답을 구하지 않고 머문다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: SNG-005</p>
+<p>book: 아가</p>
+<p>chapter: 5</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>아가 5장 — 미해결 질문 (LOCKED)</h2>
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. "잠들었으나 마음이 깨어 있다"(2절)는 어떤 상태인가 — 육체 수면 중 의식의 각성인가, 비유인가?</h2>
+<ul><li>본문이 설명하지 않음. 보존.</li></ul>
+
+<h2>Q2. 신부가 신랑의 목소리를 들으면서 왜 즉시 열지 않았는가?</h2>
+<ul><li>3절 "옷을 벗었는데"가 이유처럼 보이지만 본문이 망설임의 내면을 설명하지 않음. 보존.</li></ul>
+
+<h2>Q3. 5장 경비원들이 3장과 달리 신부를 상하게 한 이유는?</h2>
+<ul><li>본문이 이유를 기술하지 않음. 보존.</li></ul>
+
+<h2>Q4. "내 영혼이 나갔다"(nafshi yatza'ah, 6절)는 신체적 실신인가, 정서적 표현인가?</h2>
+<ul><li>고대 근동 관용어일 수 있으나 본문이 명확히 하지 않음. 보존.</li></ul>
+
+<h2>Q5. 신랑 칭송(10~16절)에서 "만 사람에게서 뛰어나구나"의 기준은 무엇인가?</h2>
+<ul><li>본문이 비교 기준을 밝히지 않음. 보존.</li></ul>
+
+<h2>Q6. 1절의 신랑 입장(동산)과 2절의 문 두드림은 시간적으로 같은 밤인가, 다른 장면인가?</h2>
+<ul><li>본문이 연결을 명시하지 않음. 보존.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">문이 열렸을 때 신랑은 없었다 — 놓침이 더 강한 증언을 낳는 장</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 결입니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: SNG-005</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-20</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 편의 골격</h3>
+<p><strong>한 문장</strong>: 아가 5장은 신랑이 문을 두드리고 신부가 망설이다 놓치며, 찾아 헤매고 경비원에게 상하며, 더 강해진 갈망이 신랑 전면 칭송으로 이어지는 노래다.</p>
+<p><strong>한 문단</strong>: 신랑이 동산에 들어온다. 그날 밤 신랑이 문을 두드린다 — "열어 다오, 이슬이 젖었다." 신부가 잠들었으나 마음은 깨어 있다. 망설이다 일어나 열었을 때 신랑이 없다. 문빗장에 몰약만 남았다. 신부가 나가 성읍을 헤매지만 찾지 못하고 경비원에게 상하고 겉옷을 빼앗긴다. 예루살렘 딸들에게 신랑을 찾아 달라 부탁하며 "사랑으로 병들었다"고 전하라 한다. 딸들이 묻는다 — "당신의 사랑하는 자가 어떻게 더 낫소?" 신부가 신랑을 처음부터 끝까지 칭송한다 — 정금 머리, 고불고불 검은 머리카락, 비둘기 눈, 상아 배, 금 기둥 다리. "그는 전부 사랑스럽다. 이가 내 사랑하는 자요 내 친구로다." 4장의 신랑 칭송에 이어, 5장은 신부가 신랑을 증언하는 장이다.</p>
+
+<h3>B · 9단계 통합 표 (LOCKED 원문 라벨 그대로)</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품·소재</td><td>동산·문 안팎·성읍(세 공간). 이슬·몰약·문구멍·빗장(밤 소품). 금·사파이어·상아·레바논 삼나무(왕실 소품).</td></tr>
+<tr><td>2 첫 느낌·분위기</td><td>1절 기쁨 → 2절 역설적 긴장. nafshi yatza'ah의 갈망 절정. 남성 와스프의 정밀함.</td></tr>
+<tr><td>3 시작과 끝</td><td>신랑의 입장 선언(1절) → 신부의 신랑 증언(16절). 만남이 아닌 놓침을 통과한 더 강한 고백.</td></tr>
+<tr><td>4 등장인물·사상</td><td>신랑·신부·경비원·예루살렘 딸들. 경비원 태도 변화(이유 미기술). 남성 와스프(아가 유일). nafshi 반복.</td></tr>
+<tr><td>5 장면 컷</td><td>컷1 동산 입장 / 컷2 문 두드림·망설임·놓침 / 컷3 성읍 헤맴·부탁 / 컷4 신랑 칭송 증언.</td></tr>
+<tr><td>6 의문·발견·정보</td><td>dodi dofeq 원어. nafshi yatza'ah. 3장과 심화 비교. 남성 와스프 구조. 경비원 태도 변화.</td></tr>
+<tr><td>7 동영상</td><td>입장→두드림→망설임→열었으나 없음→성읍 헤맴→상함→딸들 부탁→신랑 칭송 증언.</td></tr>
+<tr><td>8 초벌 제목·부제</td><td>"내 영혼이 나갔다 — 놓침에서 더 강해진 증언으로" / "망설임이 놓침을 만들고, 놓침이 더 강렬한 고백으로 이어진다"</td></tr>
+<tr><td>9 기도·내면</td><td>열었을 때 없는 자리, 문빗장의 몰약 흔적 앞에서 아뢴다. 답 없이 머문다.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — 망설임과 놓침의 연결</strong>: 신부가 "잠들었으나 마음이 깨어 있다"(2절). 망설임(3절)이 놓침(6절)을 만든다. 본문이 이 사이를 채워 설명하지 않고 그 구조 자체를 제시한다.</p>
+<p>2. <strong>결 2 — nafshi의 이동</strong>: 1장에서 신부가 신랑을 <em>she'ahavah nafshi</em>(영혼이 사랑하는 자)라 했는데, 6절에서 신랑이 떠나자 <em>nafshi yatza'ah</em>(영혼이 나갔다). 같은 단어가 다른 상태를 담는다.</p>
+<p>3. <strong>결 3 — 놓침이 증언을 강하게 만드는 구조</strong>: 16절 "그는 전부 사랑스럽구나"는 만남 뒤가 아니라 놓침·상함·부탁 뒤에 나온다. 이 배치가 이 장의 고유한 구조다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>같은 권 안 — <strong>아 3:1~4</strong> (찾아 헤맴의 첫 장면 — 5장에서 심화), <strong>아 4:1~7</strong> (여성 와스프 — 남성 와스프 5:10~16과 대응), <strong>아 8:6~7</strong> (죽음같이 강한 사랑 — SNG 목적지).</li>
+<li>다른 권 — <strong>시 63편</strong> (주를 찾음·영혼이 목말라 함), <strong>창 3:8~10</strong> (하나님이 부르시고 숨음 — 문맥 비교, 단정 아님).</li>
+</ul>
+
+<h3>E · 한 사람의 의식흐름</h3>
+<ul>
+<li><strong>시작</strong>: "잠들었으나 마음은 깨어 있구나" — 두 상태가 공존하는 자리.</li>
+<li><strong>멈춤 1</strong>: "열었으나 신랑이 없었다" — 문빗장의 몰약 흔적.</li>
+<li><strong>멈춤 2</strong>: "내 영혼이 나갔다" — 갈망의 정점.</li>
+<li><strong>끝</strong>: "그는 전부 사랑스럽구나" — 놓침이 낳은 더 강한 고백.</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] "잠들었으나 마음이 깨어 있구나" — 역설적 상태가 이 장을 연다</li>
+<li>[x] 신랑의 문 두드림과 신부의 망설임·놓침이 장의 중심</li>
+<li>[x] "내 영혼이 나갔다"(nafshi yatza'ah)가 갈망의 절정이다</li>
+<li>[x] 경비원들의 태도가 3장과 달리 적대적으로 변했다</li>
+<li>[x] 아가 유일의 남성 와스프(10~16절)가 이 장에 있다</li>
+<li>[x] "그는 전부 사랑스럽구나"가 놓침 뒤의 더 강한 고백으로 닫힌다</li>
+</ul>
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>찾음(baqash)</em>.</p>
+
+<h3>G · 구속사 좌표</h3>
+<p>아가 5장은 SNG 흐름의 <strong>두 번째 국면(4~7장 — 칭송과 갈망·잃음과 다시 찾음) 안에서 '잃음'의 핵심 장면</strong>이다. 4장의 칭송이 절정에 이른 직후, 5장에서 신랑이 문을 두드리고 신부가 놓치는 역전이 일어난다. SNG spine인 "찾고 부르는 갈망 → 죽음같이 강한 사랑의 인장" 흐름 위에서, 이 장은 갈망이 잃음으로 심화되는 굴곡이다. 3장의 찾아 헤맴이 여기서 더 강화된다 — 경비원에게 상하고 겉옷을 빼앗기는 것이 찾음의 대가다. 그리고 이 잃음이 6장에서 다시 찾음으로 이어진다.</p>
+
+<h3>H · 운동 벡터</h3>
+<p>신랑의 다가옴(문 두드림) → 신부의 망설임·놓침(잃음) → 찾아 헤맴(더 강한 갈망) → 더 강해진 신랑 증언(사랑의 심화). 만남이 아닌 놓침을 통과해 사랑이 깊어지는 화살표.</p>
+
+<h3>I · 수면 아래</h3>
+<p>표면: 신랑이 문을 두드리고 신부가 망설이다 놓친다. 수면 아래에서 관찰되는 것: 이 장이 갈망의 심화가 어떻게 일어나는가를 보여 준다 — 만남이 아닌 놓침이 더 강한 증언을 낳는다는 것. "그는 전부 사랑스럽다"는 고백은 만남의 기쁨이 아니라 놓침의 아픔 뒤에 나온다. 이것이 SNG의 "찾고 부르는 갈망" 국면이 어떻게 "끌 수 없는 사랑의 인장"으로 이동하는가의 한 단계를 보여 준다. 단정이 아닌 관찰로 보존.</p>
+
+<h3>J · 실존적 부름</h3>
+<p>"잠들었으나 마음은 깨어 있구나" — 이 두 상태가 지금 내 안에 공존하는가. 문이 열렸을 때 없었던 자리, 몰약 흔적만 남은 빗장 앞에서 — 그 놓침이 갈망을 더 강하게 만드는가, 사라지게 하는가. 본문이 가르치는 것이 아니라, 망설임과 놓침의 자리로 초대하는 부름이다.</p>
+<p><strong>다음 장으로 미는 운동</strong>: 신부가 신랑을 찾아 헤매는 갈망이 절정에 이른다 — 6장에서 예루살렘 딸들이 신랑을 찾아 나서고, 신랑이 다시 나타난다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/SNG/4/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">아가 4장</div>
+        <div class="nav-preview">신부의 아름다움 칭송, 잠근 동산, 향품의 샘.</div>
+      </a>
+      <a href="/magazine/SNG/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">아가 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/SNG/6/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">아가 6장</div>
+        <div class="nav-preview">신랑을 어디서 찾을까, 술람미 여인, 돌아오라.</div>
+      </a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last:sng5', JSON.stringify({
+      href: '/magazine/SNG/5/',
+      title: '아가 5장',
+      excerpt: '"내 영혼이 나갔다" — 신랑이 문을 두드리고 신부가 놓치며, 놓침이 더 강한 신랑 증언으로 이어진다.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+      .foot--mini>div>span{display:block}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 920a801 · 2026-06-20</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>

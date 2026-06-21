@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>잠언 10장 — Observatory | 네다바웨이</title>
+<meta name="description" content="잠언 10장을 9단계로 같이 관찰합니다.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/PRO/10/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-label { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ul { list-style: none; padding: 0; }
+  .toc-side li { padding: 6px 0; color: var(--c-mute); line-height: 1.5; font-size: 0.86rem; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary { list-style: none; cursor: pointer; padding: 18px 22px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; transition: background .15s; user-select: none; }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; content: "접기 ↑"; color: var(--c-mute); }
+  .stage__body { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  .yaml-meta { background: #f7f6f3; border: 1px solid var(--c-line); border-radius: 8px; padding: 16px 18px; font-size: 0.82rem; overflow-x: auto; margin-bottom: 18px; font-family: monospace; line-height: 1.6; white-space: pre-wrap; }
+  .sim-disclaimer { font-size: 0.88rem; line-height: 1.7; border-left: 3px solid #e0a800; padding: 12px 18px; background: #fffbeb; margin-bottom: 22px; border-radius: 0 6px 6px 0; }
+  .support-aside { margin-top: 48px; padding: 22px 24px; border: 1px dashed var(--c-line); border-radius: 10px; font-size: 0.92rem; color: var(--c-mute); line-height: 1.7; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">&#8801;</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side" id="tocSide">
+    <nav aria-label="목차">
+      <p class="toc-label">목차</p>
+      <ul>
+        <li><a href="#s1">S1 · 시뮬레이션</a></li>
+        <li><a href="#s2">S2 · 사실 잠금</a></li>
+        <li><a href="#s8">S8 · 열린 질문</a></li>
+        <li><a href="#synthesis">통합 합성</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/PRO/">잠언</a> · 10장</div>
+      <h1>잠언 10장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">PRO-010 · 시가서 · 히브리어</div>
+      <p class="essence">의인과 악인이 대구로 서다 — 솔로몬 잠언의 첫 문(10:1).</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">S1</span>
+        <span class="stage__title-inline">무대·배경·소품·소재 — 관찰 시뮬레이션</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__body">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong></p>
+        <div class="md-body">
+
+<pre class="yaml-meta"><code>---
+sim_id: PRO-010
+book: 잠언
+chapter: 10
+bible_block: 시가서
+language: 히브리어
+hebrew_terms: [tzaddik, rasha, mashal, sefatayim, chayim, ahavah, charutz]
+facilitator: 성령일_선교사
+participants: [P01, P02, P04, P05, P07, P11]
+drift_flag: false
+date: 2026-06-10
+---
+</code></pre>
+
+<blockquote class="sim-disclaimer">
+<p>본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h3>S1 — 무대·배경·소품·소재</h3>
+
+<p><strong>성령일 선교사</strong>: 오늘 우리는 잠언 10장에 들어섭니다. 1절 첫 단어가 이 책의 새 출발을 알립니다. "솔로몬의 잠언이라"(미쉴레 쉐로모). 1장~9장이 부모가 아들에게 건네는 긴 연설이었다면, 10장부터는 격언 하나하나가 독립적으로 서 있는 모자이크입니다. 무대를 설정해 봅시다. 어떤 장면이 떠오르세요?</p>
+
+<p><strong>P01</strong> 한나래: 저는 시장 광장이 떠올라요. 상인이 저울을 들고 손님과 거래하는 장면. 부지런한 손과 게으른 손이 나란히 대비되어 있어요(10:4). 한쪽은 번성하고 한쪽은 가난해지는 그림이 선명합니다.</p>
+
+<p><strong>P02</strong> 도선호: 저는 가족 식탁이 먼저 보입니다. 1절이 "지혜로운 아들은 아비를 기쁘게 하고, 미련한 아들은 어미의 근심이라"로 시작하잖아요. 부모의 얼굴이 두 대조적인 아들 때문에 기쁨과 슬픔으로 갈라지는 모습입니다.</p>
+
+<p><strong>P04</strong> 이석호: 언어적으로 보면 10장은 거의 전부 '안티테제(antithesis) 병행법'으로 구성됩니다. A행과 B행이 정반대 진술로 서로를 강화합니다. 히브리어로 이를 '미쉴레 니파르달림'—구별된 잠언들—이라 부르기도 하죠.</p>
+
+<p><strong>P05</strong> 박솔아: 무대 소품으로 '입술'이 자주 등장해요. 10:11, 10:13, 10:18, 10:19, 10:20, 10:21—거의 절반이 말과 관련됩니다. 입이 생명샘이 되기도 하고 폭력의 도구가 되기도 합니다.</p>
+
+<p><strong>P07</strong> 최민재: 고대 근동(ANE) 배경에서 보면, '의인(tzaddik)'이라는 단어는 단순히 도덕적 선함이 아니라 공동체 안에서 올바른 관계를 유지하는 사람을 뜻했습니다. 법정 언어이기도 했죠. '악인(rasha)'은 공동체 질서를 깨뜨리는 자였습니다.</p>
+
+<p><strong>P11</strong> 강유진: 저는 10:12의 "사랑은 모든 허물을 가리느니라"가 가장 강렬하게 다가옵니다. 히브리어 '아하바(ahavah)'—사랑—가 덮개 역할을 하는 것이 마치 무대 위에서 누군가 다른 이의 실수를 자신의 몸으로 가려주는 장면 같습니다.</p>
+
+<p><strong>성령일 선교사</strong>: 잘 관찰하셨습니다. 무대에는 가정·시장·법정·공동체 광장이 동시에 펼쳐져 있고, 소품은 저울·입술·손·빛·어둠입니다. 배경은 솔로몬 시대의 이스라엘이지만 보편적 인간 현실을 담고 있습니다.</p>
+
+<h3>S2 — 인물 분석</h3>
+
+<p><strong>성령일 선교사</strong>: 10장에 등장하는 인물 유형을 분류해 봅시다. 이름 있는 인물은 없지만 뚜렷한 유형이 반복됩니다.</p>
+
+<p><strong>P01</strong> 한나래: 지혜로운 아들과 미련한 아들(1절). 부지런한 자와 게으른 자(4,5절). 의인과 악인(2,3,6,7,11,16,20,24,25,28,30,32절). 이 세 쌍이 핵심입니다.</p>
+
+<p><strong>P02</strong> 도선호: 말을 많이 하는 자와 입술을 제어하는 자(19절)도 중요한 쌍입니다. "말이 많으면 허물을 면하기 어려우나 그 입술을 제어하는 자는 지혜가 있느니라"—말의 양과 지혜가 반비례합니다.</p>
+
+<p><strong>P04</strong> 이석호: '아들'이 주요 청중이지만, 1절의 어머니와 아버지도 반응하는 인물로 등장합니다. 지혜는 자신만의 것이 아니라 공동체 전체에 기쁨과 슬픔으로 파급됩니다.</p>
+
+<p><strong>P05</strong> 박솔아: 10:15의 "부자의 재물은 그의 견고한 성이요, 가난한 자의 궁핍은 그의 패망이니라"는 경제적 현실을 있는 그대로 묘사합니다. 그러나 이것이 가르침이라기보다 현실 서술임을 주목해야 합니다.</p>
+
+<p><strong>P07</strong> 최민재: ANE 지혜 문학에서 '의인/악인' 대조는 이집트의 마아트(Maat, 질서·정의) 전통과도 연결됩니다. 그러나 히브리 잠언은 이 질서가 인격적 하나님과의 관계에서 비롯된다는 점이 다릅니다.</p>
+
+<p><strong>P11</strong> 강유진: 10:22에서 "여호와께서 주시는 복은 사람을 부하게 하고"라고 하면서 주체가 하나님으로 바뀝니다. 인간의 행동만이 아니라 하나님의 주권이 모든 것의 배후에 있음을 드러내는 장치입니다.</p>
+
+<p><strong>성령일 선교사</strong>: 인물 분석에서 중요한 발견은, 10장이 단순히 '착한 사람 vs 나쁜 사람'이 아니라 '하나님과의 관계 안에서 살아가는 공동체 인간'을 그린다는 것입니다.</p>
+
+<h3>S3 — 구조와 흐름</h3>
+
+<p><strong>성령일 선교사</strong>: 10장의 구조를 파악해 봅시다. 32절 전체를 어떻게 나눌 수 있을까요?</p>
+
+<p><strong>P01</strong> 한나래: 1절이 표제 역할("솔로몬의 잠언")을 하고, 2-32절이 독립적 격언들입니다. 하지만 주제별 묶음을 찾을 수 있어요. 1-5절은 가정과 노동, 6-11절은 의인의 복, 12-21절은 말의 윤리, 22-32절은 의와 악의 운명이라고 볼 수 있습니다.</p>
+
+<p><strong>P02</strong> 도선호: 말 주제가 12-21절에 집중되는 것이 흥미롭습니다. 특히 13절 "명철한 자의 입에는 지혜가 있어도 미련한 자의 등을 위하여는 채찍이 있느니라"는 신체적 이미지로 말의 중요성을 강화합니다.</p>
+
+<p><strong>P04</strong> 이석호: 히브리어 원문에서 각 절은 '와우(vav) 접속사'나 독립적으로 연결되며, 의도적인 배열이 있다고 학자들은 주장합니다. 예를 들어 6-7절이 의인의 이름과 기억을 다루고, 8-10절이 바른 길과 숨은 죄를 다루는 식입니다.</p>
+
+<p><strong>P05</strong> 박솔아: 10:25는 구조적 중심점처럼 보입니다. "폭풍이 지나가면 악인은 없어져도 의인은 영원한 기초 위에 서리라." 이 절 이후로 의인의 항구성 주제가 강화됩니다.</p>
+
+<p><strong>P07</strong> 최민재: ANE 격언 모음집과 비교하면, 이집트의 아메네모페 교훈(Amenemope)도 비슷한 주제 묶음 구조를 사용합니다. 고대 편집자들이 의도적으로 연결 고리를 만들었을 가능성이 높습니다.</p>
+
+<p><strong>P11</strong> 강유진: 첫 절(아들의 지혜)과 마지막 절(의인의 입술이 기쁨을 줌)이 수미상관 구조를 이룹니다. 지혜는 가정에서 시작해 공동체의 기쁨으로 확장됩니다.</p>
+
+<p><strong>성령일 선교사</strong>: 구조 분석이 훌륭합니다. 독립된 격언들이 느슨하게 연결되면서도 의인과 악인의 대조라는 큰 흐름 안에 묶여 있습니다.</p>
+
+<h3>S4 — 핵심 어휘 분석</h3>
+
+<p><strong>성령일 선교사</strong>: 10장의 핵심 히브리어 어휘를 살펴봅니다.</p>
+
+<p><strong>P01</strong> 한나래: 차딕(tzaddik, 의인)이 가장 자주 등장합니다. 15회 이상 나옵니다. 이 단어는 '곧은, 수직의'라는 물리적 이미지에서 출발해 '옳은, 정의로운'이라는 도덕적 의미로 발전했습니다.</p>
+
+<p><strong>P02</strong> 도선호: 라샤(rasha, 악인)는 차딕과 쌍을 이루며 등장합니다. '소란스러운, 폭력적인'이라는 어근에서 왔다는 견해가 있습니다. 공동체를 흔드는 자입니다.</p>
+
+<p><strong>P04</strong> 이석호: 마쉬알(mashal, 잠언·격언)은 표제어로 쓰입니다. '비교하다, 지배하다'라는 이중 어근을 가집니다. 격언은 현실을 비교·분류함으로써 삶을 지배(이해)하는 도구입니다.</p>
+
+<p><strong>P05</strong> 박솔아: 스파타임(sefatayim, 입술—쌍수형)이 말 관련 절에 반복됩니다. 하임(chayim, 생명)과 함께 쓰여 "의인의 입은 생명의 샘"(10:11) 표현을 만듭니다. 입술이 생명의 통로가 됩니다.</p>
+
+<p><strong>P07</strong> 최민재: 아하바(ahavah, 사랑)는 10:12에 한 번 등장하지만 강렬합니다. '사랑이 모든 허물을 가린다'는 이 표현은 신약 베드로전서 4:8에서 인용됩니다. 구약의 아하바가 신약 공동체 원리의 근거가 됩니다.</p>
+
+<p><strong>P11</strong> 강유진: 차루츠(charutz, 부지런한 자)는 10:4에서 "부지런한 자의 손은 부하게 한다"로 쓰입니다. '뾰족한, 예리한'이라는 어근에서 왔습니다. 부지런함을 날카로운 도구로 비유하는 이미지입니다.</p>
+
+<p><strong>성령일 선교사</strong>: 히브리어 어휘 하나하나가 물리적 세계와 도덕적 세계를 연결하는 다리 역할을 합니다. 이것이 히브리 시가의 특징입니다.</p>
+
+<h3>S5 — 문학적 기법</h3>
+
+<p><strong>성령일 선교사</strong>: 잠언 10장이 사용하는 문학적 기법을 분석합니다.</p>
+
+<p><strong>P01</strong> 한나래: 가장 두드러진 기법은 병행법(parallelism)입니다. 특히 반의적 병행법(antithetical parallelism)—A는 이렇지만 B는 저렇다—이 거의 모든 절에 적용됩니다. "지혜로운 아들은 아비를 기쁘게 하고 / 미련한 아들은 어미의 근심이라"(10:1).</p>
+
+<p><strong>P02</strong> 도선호: 은유(metaphor)가 풍부합니다. "의인의 입은 생명의 샘"(10:11), "의인의 기억은 칭찬을 받아도"(10:7), "여호와의 복은 사람을 부하게 하고"(10:22). 추상적 덕목이 구체적 이미지로 구현됩니다.</p>
+
+<p><strong>P04</strong> 이석호: 수(數) 병행도 발견됩니다. 10:10에서 "눈짓을 하는 자는 슬픔을 주고"—비언어적 기만—와 말의 기만이 병행됩니다. 몸의 언어와 입의 언어가 동일한 해악을 끼친다는 이중 구조입니다.</p>
+
+<p><strong>P05</strong> 박솔아: 자연 이미지도 등장합니다. 10:25의 '폭풍(수파)'은 악인의 순간적 사라짐을, 10:26의 '식초와 연기'는 게으른 자의 불쾌함을 표현합니다. 감각적 비유로 도덕적 현실을 전달합니다.</p>
+
+<p><strong>P07</strong> 최민재: 10:20의 "의인의 혀는 순은과 같고"는 금속 이미지를 사용합니다. 고대 경제에서 은은 매우 귀중한 물질이었습니다. 의인의 말이 사회에서 가장 값진 교환 수단임을 암시합니다.</p>
+
+<p><strong>P11</strong> 강유진: 반복(repetition)이 강조 기능을 합니다. '의인'과 '악인'이 짝으로 32절 전체에 걸쳐 반복되면서 독자의 마음에 선택의 무게를 심어줍니다.</p>
+
+<p><strong>성령일 선교사</strong>: 문학적 기법들이 단순히 장식이 아니라 메시지 전달의 핵심 수단임을 확인했습니다. 형식과 내용이 분리되지 않습니다.</p>
+
+<h3>S6 — 신학적 주제</h3>
+
+<p><strong>성령일 선교사</strong>: 10장의 신학적 주제를 탐구합니다. 어떤 하나님의 모습이 드러나나요?</p>
+
+<p><strong>P01</strong> 한나래: 10:3에서 "여호와는 의인의 영혼은 주리지 않게 하시되 악인의 소욕은 물리치시느니라." 하나님이 결핍과 충족의 주권자로 등장합니다. 도덕적 질서가 하나님의 의지와 연결됩니다.</p>
+
+<p><strong>P02</strong> 도선호: 10:22의 "여호와께서 주시는 복은 사람을 부하게 하고 근심을 겸하여 주지 아니하시느니라." 이것이 신학적 핵심입니다. 진정한 부는 하나님에게서 오며, 그 부에는 슬픔이 없습니다.</p>
+
+<p><strong>P04</strong> 이석호: '행위-결과 연결(deed-consequence nexus)'이라는 신학 개념이 작동합니다. 고대 이스라엘은 의로운 행동이 복을 낳고 악한 행동이 재앙을 낳는다고 믿었습니다. 그러나 이것이 자동적 법칙이 아니라 하나님의 주권 안에서 작동합니다.</p>
+
+<p><strong>P05</strong> 박솔아: 10:29에서 "여호와의 도는 완전한 자에게 보장이 되고 행악하는 자에게는 멸망이 되느니라." 하나님의 길(데렉 아도나이)이 인간의 도덕적 행보의 기준이자 결과를 결정합니다.</p>
+
+<p><strong>P07</strong> 최민재: 비교 신학적으로, 바빌론 지혜 문학도 신적 정의를 논하지만 이스라엘처럼 인격적 관계 언어는 사용하지 않습니다. 잠언의 하나님은 법칙이 아니라 아버지이자 왕으로 묘사됩니다.</p>
+
+<p><strong>P11</strong> 강유진: 10:12에서 "사랑이 모든 허물을 가리느니라"—이것은 하나님의 사랑의 반영입니다. 공동체 안에서 사랑이 실천될 때 하나님의 성품이 드러납니다. 신론과 윤리가 분리되지 않습니다.</p>
+
+<p><strong>성령일 선교사</strong>: 10장의 하나님은 창조 질서의 유지자이시며, 의인을 붙드시고 악인의 소망을 꺾으시는 주권자이십니다. 동시에 사랑으로 공동체를 세우시는 분이십니다.</p>
+
+<h3>S7 — 삶의 적용 관찰</h3>
+
+<p><strong>성령일 선교사</strong>: 관찰된 것들이 오늘의 삶과 어떻게 연결되는지 살펴봅니다. (판단이 아닌 연결입니다.)</p>
+
+<p><strong>P01</strong> 한나래: 10:4의 "손을 게으르게 놀리는 자는 가난하게 되고 손이 부지런한 자는 부하게 되느니라." 현대 노동 윤리와 직접 연결됩니다. 하지만 모든 가난이 게으름 때문이 아님을 10:15의 현실 서술이 균형을 잡아줍니다.</p>
+
+<p><strong>P02</strong> 도선호: 10:19의 "말이 많으면 허물을 면하기 어려우나 그 입술을 제어하는 자는 지혜가 있느니라." SNS 시대에 더 날카롭게 들립니다. 발언의 양과 지혜의 질은 반비례할 수 있습니다.</p>
+
+<p><strong>P04</strong> 이석호: 10:12에서 "미움은 다툼을 일으켜도 사랑은 모든 허물을 가리느니라." 가정·직장·교회 공동체에서 미움이 갈등을 증폭시키는 반면, 사랑이 관계를 유지하는 실제적 힘임을 보여줍니다.</p>
+
+<p><strong>P05</strong> 박솔아: 10:24의 "악인에게는 두려워하는 것이 임하려니와 의인은 그 원하는 것이 이루어지느니라." 내면의 두려움과 소망이 결국 외부 현실과 연결된다는 심리적 통찰입니다.</p>
+
+<p><strong>P07</strong> 최민재: 10:26의 "게으른 자는 그 부리는 자에게 마치 이에 식초 같고 눈에 연기 같으니라." 조직 리더십 관점에서, 게으름이 가져오는 자극과 고통을 감각적으로 전달합니다.</p>
+
+<p><strong>P11</strong> 강유진: 10:11에서 "의인의 입은 생명의 샘이니라." 우리의 말이 다른 사람에게 생명을 주는 샘이 될 수 있다는 것—이것이 가장 실천 가능한 관찰입니다.</p>
+
+<p><strong>성령일 선교사</strong>: 관찰은 판단이 아닙니다. 하지만 관찰이 깊어질수록 삶으로의 연결은 자연스럽게 일어납니다. 10장은 우리에게 '어떤 사람이 될 것인가'를 선택하도록 조용히 초대합니다.</p>
+
+<h3>S8 — 열린 질문</h3>
+
+<p><strong>성령일 선교사</strong>: 관찰 후 답하지 않고 남겨두는 열린 질문들입니다. 이 질문들을 가지고 본문 안에 머무세요.</p>
+
+<p><strong>P01</strong> 한나래: 10:3에서 의인의 영혼은 주리지 않게 하신다는 약속—이것을 어떻게 이해해야 할까요? 현실에서 의인이 굶주리는 경우는 어떻게 해석해야 합니까?</p>
+
+<p><strong>P02</strong> 도선호: 10:12의 "사랑이 모든 허물을 가린다"는 책임 회피의 근거가 될 수 있지 않을까요? 사랑이 가리는 것과 정의가 밝혀야 하는 것 사이의 경계는 어디입니까?</p>
+
+<p><strong>P04</strong> 이석호: 32절 전체에서 의인과 악인이 분명히 나뉩니다. 하지만 현실의 인간은 그 경계가 흐릿합니다. 이 이분법은 이상형인가, 아니면 실제 인간 유형인가?</p>
+
+<p><strong>P05</strong> 박솔아: 10:15에서 "부자의 재물은 그의 견고한 성이라"—이것은 잠언의 지지인가, 아니면 현실 관찰인가? 저자의 의도를 어떻게 구분합니까?</p>
+
+<p><strong>P07</strong> 최민재: 행위-결과 연결이 10장의 기저에 있습니다. 그런데 욥기는 이 연결을 복잡하게 만듭니다. 잠언과 욥기는 서로 모순인가, 아니면 상호 보완인가?</p>
+
+<p><strong>P11</strong> 강유진: 10:22의 "여호와께서 주시는 복은 근심을 겸하여 주지 아니하시느니라"—이것이 번영 신학(prosperity theology)의 근거가 될 수 있습니까? 그 오독의 위험은 무엇입니까?</p>
+
+<p><strong>성령일 선교사</strong>: 이 질문들을 닫지 마세요. 열린 채로 본문과 함께 앉아 있는 것이 성경 관찰의 성숙한 자세입니다.</p>
+
+<h3>S9 — 마무리 통합</h3>
+
+<p><strong>성령일 선교사</strong>: 오늘 관찰을 마무리합니다. 각자 잠언 10장에서 가져가는 하나의 이미지를 나눠 주세요.</p>
+
+<p><strong>P01</strong> 한나래: 저는 '두 아들의 얼굴'을 가져갑니다. 지혜와 미련함의 선택이 나만의 이야기가 아니라 내 가족 전체를 기쁨과 슬픔으로 이끈다는 것이 묵직하게 남습니다.</p>
+
+<p><strong>P02</strong> 도선호: 저는 '입에서 흐르는 샘물'입니다. 내 말이 누군가에게 생명을 줄 수 있다는 것—이것을 오늘 실천해보고 싶습니다.</p>
+
+<p><strong>P04</strong> 이석호: 저는 '저울 위의 은'입니다. 의인의 혀가 순은과 같다는 이미지. 말의 무게와 가치를 다시 생각하게 됩니다.</p>
+
+<p><strong>P05</strong> 박솔아: 저는 '폭풍 후의 기초'입니다. 10:25—폭풍이 지나가도 의인은 영원한 기초 위에 서 있습니다. 흔들림 후의 안정감이 인상적입니다.</p>
+
+<p><strong>P07</strong> 최민재: 저는 '사랑이 덮는 허물'입니다. 공동체가 서로의 약점을 덮어주는 문화가 되었으면 합니다.</p>
+
+<p><strong>P11</strong> 강유진: 저는 '부지런한 손'입니다. 작은 성실함이 쌓여 인생을 만들어간다는 단순하지만 강력한 진리입니다.</p>
+
+<p><strong>성령일 선교사</strong>: 잠언 10장은 솔로몬 잠언의 문을 엽니다. 의인과 악인의 대조가 32절 내내 이어지지만, 그 안에서 우리가 발견하는 것은 '선택의 자유와 책임'입니다. 의인의 길은 생명이요, 악인의 길은 소멸입니다. 이 관찰이 각자의 삶에서 씨앗이 되기를 바랍니다. 다음 시간에는 11장을 관찰합니다.</p>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">S2</span>
+        <span class="stage__title-inline">관찰된 사실 잠금 — 7가지 범주</span>
+        <span class="stage__toggle">사실 보기 →</span>
+      </summary>
+      <div class="stage__body">
+        <p class="stage__intro"><strong>관찰된 사실 (LOCKED)</strong></p>
+        <div class="md-body">
+          <h3>범주 1 — 구조적 사실</h3>
+          <ul>
+            <li>잠언 10장은 1절 표제("솔로몬의 잠언이라")로 시작하며, 잠언 1-9장(긴 연설)과 구별되는 독립 격언 모음의 시작임</li>
+            <li>2-32절 총 31개의 독립 격언으로 구성됨</li>
+            <li>거의 모든 절이 반의적 병행법(antithetical parallelism) 구조를 가짐</li>
+          </ul>
+
+          <h3>범주 2 — 어휘적 사실</h3>
+          <ul>
+            <li>차딕(tzaddik, 의인)이 본문에 15회 이상 등장함</li>
+            <li>라샤(rasha, 악인)가 차딕과 쌍으로 반복 등장함</li>
+            <li>스파타임(sefatayim, 입술)과 말 관련 어휘가 10절 이상에 걸쳐 나타남</li>
+            <li>차루츠(charutz, 부지런한 자)와 레미야(remiyah, 게으른 자)가 10:4에 대조로 등장함</li>
+          </ul>
+
+          <h3>범주 3 — 신학적 사실</h3>
+          <ul>
+            <li>여호와(YHWH)가 명시적으로 3절, 22절, 29절에 등장함</li>
+            <li>10:3에서 하나님이 의인의 필요를 채우고 악인의 소욕을 물리치시는 주체로 기술됨</li>
+            <li>10:22에서 진정한 부의 원천이 여호와임이 명시됨</li>
+          </ul>
+
+          <h3>범주 4 — 주제적 사실</h3>
+          <ul>
+            <li>말(언어)이 10:11, 13, 14, 18, 19, 20, 21, 31, 32절에 주요 주제로 등장함</li>
+            <li>노동과 게으름이 10:4, 5, 26절에 등장함</li>
+            <li>의인의 항구성과 악인의 소멸이 10:25, 27, 28, 30절에 집중됨</li>
+          </ul>
+
+          <h3>범주 5 — 수사학적 사실</h3>
+          <ul>
+            <li>10:11에서 은유("의인의 입은 생명의 샘") 사용됨</li>
+            <li>10:20에서 금속 비유("의인의 혀는 순은과 같고") 사용됨</li>
+            <li>10:26에서 감각적 비유("식초", "연기") 사용됨</li>
+          </ul>
+
+          <h3>범주 6 — 인물 사실</h3>
+          <ul>
+            <li>10:1에서 아들, 아버지, 어머니가 등장함</li>
+            <li>구체적 이름을 가진 인물은 없으며, 모두 유형(type) 인물임</li>
+            <li>10:15에서 부자와 가난한 자가 경제적 현실 서술로 등장함</li>
+          </ul>
+
+          <h3>범주 7 — 상호텍스트적 사실</h3>
+          <ul>
+            <li>10:12("사랑이 모든 허물을 가린다")는 베드로전서 4:8에서 인용됨</li>
+            <li>10:25의 기초 이미지는 마태복음 7:24-27 반석 비유와 연결됨</li>
+            <li>10:1의 아들 지혜 주제는 잠언 1-9장 프롤로그와 연속성을 이룸</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">S8</span>
+        <span class="stage__title-inline">열린 질문 — 관찰 후 남겨두는 것들</span>
+        <span class="stage__toggle">질문 보기 →</span>
+      </summary>
+      <div class="stage__body">
+        <p class="stage__intro"><strong>관찰 후 답하지 않고 남겨두는 열린 질문들.</strong></p>
+        <div class="md-body">
+          <ul>
+            <li><strong>Q1.</strong> 10:3에서 "의인의 영혼은 주리지 않게 하신다"는 약속이 현실의 굶주리는 의인과 어떻게 공존할 수 있는가? 이 긴장을 어떻게 지혜롭게 들을 것인가?</li>
+            <li><strong>Q2.</strong> 10:12에서 "사랑이 모든 허물을 가린다"는 선언이 책임 회피의 근거가 될 수 있는가? 사랑으로 덮는 것과 정의로 밝히는 것 사이의 경계선은 무엇인가?</li>
+            <li><strong>Q3.</strong> 32절 전체가 의인/악인 이분법을 유지하는데, 실제 인간은 두 요소를 모두 가지고 있다. 이 이분법은 이상형인가, 아니면 실제 인간 유형을 묘사하는가?</li>
+            <li><strong>Q4.</strong> 10:15에서 부자의 재물이 견고한 성이라는 서술은 경제적 현실의 서술인가, 아니면 재물에 의존하는 것을 은연중 지지하는가? 저자의 의도를 어떻게 판별하는가?</li>
+            <li><strong>Q5.</strong> 행위-결과 연결이 10장의 근본 논리인데, 욥기는 이를 해체한다. 잠언 10장과 욥기는 어떤 관계인가? 정경 안에서 이 긴장을 어떻게 이해해야 하는가?</li>
+            <li><strong>Q6.</strong> 10:22에서 "여호와께서 주시는 복은 근심을 겸하여 주지 아니하신다"는 약속이 번영 신학(prosperity theology)의 성경적 근거로 사용될 때, 그 해석의 한계와 위험은 무엇인가?</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <section id="synthesis" class="stage stage--synthesis">
+      <span class="stage__num">통합 합성</span>
+      <h2 style="font-family:var(--ff-serif);font-size:1.5rem;font-weight:700;margin:12px 0 16px;">잠언 10장 — 통합 합성 (A–H)</h2>
+      <div class="synthesis-body">
+        <p><strong>A. 핵심 메시지</strong><br>잠언 10장은 솔로몬 격언 모음의 첫 장으로, 의인과 악인의 삶이 얼마나 다른 결말로 귀결되는지를 32개의 대조 격언으로 보여줍니다. 그 중심에는 하나님의 주권이 있으며, 의인의 삶은 하나님이 붙드십니다.</p>
+        <p><strong>B. 구조 요약</strong><br>1절(표제) + 2-5절(가정·노동) + 6-11절(의인의 복) + 12-21절(말의 윤리) + 22-32절(의와 악의 운명)으로 이어지며, 주제가 점진적으로 심화됩니다.</p>
+        <p><strong>C. 핵심 히브리어</strong><br>차딕(의인), 라샤(악인), 아하바(사랑), 차루츠(부지런함), 스파타임(입술), 하임(생명), 마쉬알(잠언)이 본 장의 어휘적 기둥을 이룹니다.</p>
+        <p><strong>D. 신학적 중심</strong><br>10:3과 10:22에서 여호와가 명시적으로 등장하며, 도덕적 질서의 배후에 인격적 하나님이 계심을 밝힙니다. 의인의 풍요와 악인의 소망이 꺾이는 것 모두 하나님의 손에 달려 있습니다.</p>
+        <p><strong>E. 말의 신학</strong><br>본 장 절반 이상이 말과 관련됩니다. 의인의 입이 생명의 샘이 되고 순은이 되는 반면, 악인의 입은 폭력과 거짓을 낳습니다. 말은 단순한 의사소통 도구가 아니라 존재 방식의 표현입니다.</p>
+        <p><strong>F. 경제적 지혜</strong><br>부지런한 손과 게으른 손의 대조(10:4), 부자의 견고한 성(10:15)은 현실 경제를 외면하지 않습니다. 하지만 진정한 부의 원천은 인간의 노력이 아닌 여호와의 복임을 10:22에서 선언합니다.</p>
+        <p><strong>G. 사랑과 공동체</strong><br>10:12의 "사랑이 모든 허물을 가린다"는 공동체를 지탱하는 원리입니다. 미움이 다툼을 일으키는 반면, 사랑은 허물을 덮어 공동체를 보호합니다. 이것은 신약 공동체 원리의 구약적 뿌리입니다.</p>
+        <p><strong>H. 종말론적 시각</strong><br>10:25, 27, 28, 30절에서 의인의 영원성과 악인의 소멸이 반복됩니다. 이 잠언들은 단순히 현세적 성공을 보장하는 것이 아니라 최종적 현실—의인이 서고 악인이 없어지는—을 바라보는 시각을 제시합니다. 이로써 잠언 10장은 지혜서이면서 동시에 예언서적 비전을 품고 있습니다.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/PRO/9/">
+        <div class="nav-kicker">← 이전</div>
+        <div class="nav-title">잠언 9장</div>
+        <div class="nav-preview">지혜와 어리석음이 동시에 부르는 잔치 — 두 여인의 초대 앞에 선 사람.</div>
+      </a>
+      <a href="/magazine/PRO/11/">
+        <div class="nav-kicker">다음 →</div>
+        <div class="nav-title">잠언 11장</div>
+        <div class="nav-preview">공평한 추를 기뻐하시는 하나님 — 교만이 낮추이고 겸손이 지혜를 얻는다(11:2).</div>
+      </a>
+    </div>
+
+    <aside class="support-aside">
+      <p>이 관찰이 유익했다면 <a href="/support.html">후원</a>으로 함께해 주세요.</p>
+    </aside>
+  </main>
+</div>
+
+<script>
+(function(){
+  var key='observatory:pro-10-last';
+  try { localStorage.setItem(key, Date.now()); } catch(e){}
+})();
+</script>
+<script>
+(function(){
+  var toc=document.getElementById('tocSide');
+  if(!toc)return;
+  var links=toc.querySelectorAll('a[href^="#"]');
+  function activate(){
+    var best=null,bestTop=-Infinity;
+    links.forEach(function(a){
+      var t=document.getElementById(a.getAttribute('href').slice(1));
+      if(!t)return;
+      var r=t.getBoundingClientRect();
+      if(r.top<=120&&r.top>bestTop){bestTop=r.top;best=a;}
+    });
+    links.forEach(function(a){a.classList.remove('is-active');});
+    if(best)best.classList.add('is-active');
+  }
+  window.addEventListener('scroll',activate,{passive:true});
+  activate();
+})();
+</script>
+<footer style="text-align:center;padding:32px 16px;font-size:0.82rem;color:var(--c-mute);border-top:1px solid var(--c-line);margin-top:64px;">
+  &copy; 2026 네다바웨이
+</footer>
+<script src="/assets/back-to-top.js" defer="defer"></script>
+<script src="/assets/deck-toggle.js" defer="defer"></script>
+<script src="/assets/sbm-share.js" defer="defer"></script>
+</body>
+</html>

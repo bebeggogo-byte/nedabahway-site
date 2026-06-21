@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>전도서 5장 — Observatory | 네다바웨이</title>
+<meta name="description" content="전도서 5장을 9단계로 같이 관찰합니다. 하나님 앞에서 말을 삼가고 서원을 지키며, 재물의 헛됨을 통과해 분깃(chelek)을 기뻐하는 것이 하나님의 선물임을 관찰.">
+<link rel="canonical" href="https://www.nedabah.org/magazine/ECC/5/">
+<link rel="stylesheet" href="/assets/v3.css">
+<link rel="stylesheet" href="/assets/nav-right.css">
+<link rel="stylesheet" href="/assets/deck-toggle.css">
+<link rel="stylesheet" href="/assets/back-to-top.css">
+<link rel="stylesheet" href="/assets/typography-v4.css">
+<link rel="stylesheet" href="/assets/mobile-v1.css">
+<style>
+  .obs-shell { max-width: 1180px; margin: 0 auto; padding: 64px 28px 96px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  @media (max-width: 880px) { .obs-shell { grid-template-columns: 1fr; gap: 24px; } }
+  .toc-side { position: sticky; top: 84px; align-self: start; border-left: 1px solid var(--c-line); padding-left: 18px; font-size: 0.86rem; }
+  @media (max-width: 880px) { .toc-side { position: static; border-left: 0; border-bottom: 1px solid var(--c-line); padding: 0 0 16px; } }
+  .toc-side__head { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .toc-side ol { list-style: none; padding: 0; }
+  .toc-side .toc-9steps { counter-reset: step; }
+  .toc-side .toc-9steps li { counter-increment: step; padding: 6px 0; color: var(--c-mute); text-wrap: pretty; line-height: 1.5; font-size: 0.86rem; }
+  .toc-side .toc-9steps li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side .toc-synthesis { counter-reset: step 9; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--c-line2); }
+  .toc-side .toc-synthesis li { counter-increment: step; padding: 6px 0; line-height: 1.5; font-size: 0.9rem; }
+  .toc-side .toc-synthesis li::before { content: counter(step) "."; margin-right: 8px; color: var(--c-copper); font-weight: 700; min-width: 18px; display: inline-block; }
+  .toc-side a { display: inline; color: inherit; transition: color .15s; }
+  .toc-side a:hover { color: var(--c-copper); }
+  .toc-side a.is-active { color: var(--c-copper); font-weight: 600; }
+  .obs-mast { border-bottom: 1px solid var(--c-line); padding-bottom: 28px; margin-bottom: 36px; }
+  .obs-mast .crumb { font-size: 0.82rem; color: var(--c-mute); }
+  .obs-mast .crumb a { border-bottom: 1px solid currentColor; padding-bottom:1px; }
+  .obs-mast h1 { font-family: var(--ff-serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin: 12px 0 6px; text-wrap: balance; }
+  .obs-mast .essence { margin-top: 14px; font-size: 1.04rem; color: var(--c-ink); text-wrap: pretty; max-width: 56ch; line-height: 1.7; }
+  .stage { margin: 44px 0; padding-top: 28px; border-top: 1px solid var(--c-line); }
+  .stage:first-of-type { border-top: 0; padding-top: 0; }
+  .stage__num { display: inline-block; font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 700; color: var(--c-copper); border: 1px solid var(--c-copper); padding: 2px 10px; border-radius: 999px; }
+  .stage__title { font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }
+  .md-body p { line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }
+  .md-body ul { list-style: none; padding: 0; margin: 12px 0; }
+  .md-body li { padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }
+  .md-body blockquote { font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }
+  .next-row { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .next-row a { border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }
+  .next-row a:hover { border-color: var(--c-copper); transform: translateY(-2px); }
+  .next-row .nav-kicker { font-size: 0.76rem; color: var(--c-mute); letter-spacing: 0.06em; }
+  .next-row .nav-title { font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; margin-top: 6px; text-wrap: balance; }
+  .next-row .nav-preview { font-size: 0.88rem; color: var(--c-mute); margin-top: 6px; line-height: 1.6; text-wrap: pretty; }
+  .stage--synthesis { background: linear-gradient(180deg, transparent 0%, #FAF6EE 30%); padding: 36px 28px 32px; border-radius: 12px; border-top: 2px solid var(--c-copper); margin-top: 56px; }
+  .stage--synthesis .stage__title { color: var(--c-ink); }
+  .synthesis-body p { line-height: 1.85; }
+  .synthesis-body table { border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }
+  .synthesis-body th, .synthesis-body td { border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .synthesis-body th { background: rgba(194,65,12,0.06); font-weight: 700; }
+  details.stage { border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }
+  details.stage[open] { border-color: var(--c-copper); box-shadow: 0 4px 14px rgba(26,26,26,0.04); }
+  details.stage > summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    transition: background .15s; user-select: none;
+  }
+  details.stage > summary::-webkit-details-marker { display: none; }
+  details.stage > summary:hover { background: rgba(194,65,12,0.03); }
+  details.stage[open] > summary { border-bottom: 1px solid var(--c-line); }
+  .stage__title-inline { flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem; font-weight: 700; color: var(--c-ink); text-wrap: balance; }
+  .stage__toggle { font-size: 0.82rem; color: var(--c-copper); font-weight: 600; letter-spacing: 0.04em; flex-shrink: 0; }
+  details.stage[open] .stage__toggle::after { content: ""; }
+  details.stage[open] .stage__toggle { color: var(--c-mute); }
+  details.stage[open] .stage__toggle::before { content: "접기 ↑"; }
+  details.stage[open] .stage__toggle > * { display: none; }
+  details.stage > summary > .stage__toggle { position: relative; }
+  details.stage[open] > summary > .stage__toggle { font-size: 0; }
+  details.stage[open] > summary > .stage__toggle::before { font-size: 0.82rem; }
+  .stage__inner { padding: 22px 26px 28px; }
+  .stage__intro { color: var(--c-mute); font-size: 0.95rem; line-height: 1.7; margin-bottom: 14px; text-wrap: pretty; }
+  details.stage:first-of-type { margin-top: 0; }
+</style>
+<link rel="stylesheet" href="/assets/global-fonts.css">
+<link rel="stylesheet" href="/assets/global-nav.css">
+</head>
+<body>
+
+<nav class="gnav" role="navigation" aria-label="주요 메뉴">
+  <div class="gnav__inner">
+    <a href="/" class="gnav__logo">네다바웨이</a>
+    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
+    <ul class="gnav__links" id="gnavLinks">
+      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
+      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
+      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
+      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
+      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
+      <li><a href="/about.html" class="gnav__link">소개</a></li>
+      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="obs-shell">
+  <aside class="toc-side">
+    <div class="toc-side__head">9단계 차례</div>
+    <ol class="toc-9steps">
+      <li><a href="#s1" data-target="s1">무대·배경·소품·소재</a></li>
+      <li><a href="#s2" data-target="s2">첫 느낌·분위기</a></li>
+      <li><a href="#s2" data-target="s2">시작과 끝</a></li>
+      <li><a href="#s2" data-target="s2">등장인물·사상</a></li>
+      <li><a href="#s2" data-target="s2">장면 컷 분절</a></li>
+      <li><a href="#s2" data-target="s2">의문·발견·정보</a></li>
+      <li><a href="#s2" data-target="s2">동영상 흐름</a></li>
+      <li><a href="#s8" data-target="s8">초벌 제목·부제</a></li>
+      <li><a href="#s8" data-target="s8">동영상 걷기·기도</a></li>
+    </ol>
+    <ol class="toc-synthesis" start="10">
+      <li><a href="#synthesis" data-target="synthesis" style="color:var(--c-copper);font-weight:700;">종합 정리</a></li>
+    </ol>
+  </aside>
+  <main class="obs-main" style="min-width:0;">
+    <header class="obs-mast">
+      <div class="crumb"><a href="/magazine.html">Observatory</a> · <a href="/magazine/ECC/">전도서</a> · 5장</div>
+      <h1>전도서 5장</h1>
+      <div style="font-size:0.86rem;color:var(--c-mute);letter-spacing:0.04em;">ECC-005 · 시가서 · 히브리어</div>
+      <p class="essence">하나님 앞에서 말을 삼가고 서원을 지키며, 재물의 헛됨을 통과해 먹고 마시며 분깃을 기뻐하는 것이 하나님의 선물임을 관찰.</p>
+    </header>
+
+    <details class="stage stage--collapsed" id="s1">
+      <summary>
+        <span class="stage__num">단계 1</span>
+        <span class="stage__title-inline">무대 장치, 배경, 소품, 소재 찾기</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>본문을 연극 무대처럼 상상한다.</strong> 하나님의 집, 서원의 제단, 은을 사랑하는 자의 창고, 일꾼의 잠자리, 부자의 뒤척이는 침실, 그리고 먹고 마시며 수고를 즐기는 사람의 밥상.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-005</p>
+<p>book: 전도서</p>
+<p>book_en: Ecclesiastes</p>
+<p>chapter: 5</p>
+<p>bible_block: 시가서</p>
+<p>canon: 구약</p>
+<p>genre: 지혜문학(담화)</p>
+<p>language: 히브리어</p>
+<p>verse_count: 20</p>
+<p>observed_facts_count: 24</p>
+<p>open_questions_count: 6</p>
+<p>silence_moments: 4</p>
+<p>hebrew_terms: [neder, peh, shema, chelek, amal, keseph, osher, maton, simcha, yirat_elohim, hevel, shenah]</p>
+<p>aramaic_terms: []</p>
+<p>greek_terms: []</p>
+<p>lxx_divergences: ["5:1 '발을 삼가라' — 70인역 prosechet tous podas sou(발에 주의를 기울여라) 약간 다른 뉘앙스", "5:6 '신체의 실수' — 히브리어 beshegagah(실수·부주의), LXX '입 앞에서'로 다르게 읽음"]</p>
+<p>ane_refs: ["서원(neder) 관행과 고대 근동 신전 서약 제도 비교(배경 자료)", "고대 이스라엘 농업 경제에서 일꾼(obed)의 수면과 부자의 불면 대조 — 사회경제 배경", "앗수르·바벨론 탐욕 문학과 '은을 사랑하는 자' 모티프 비교"]</p>
+<p>rabbinic_refs: ["Midrash Rabbah Qohelet 5:1 — 하나님의 집에서 듣는 것의 중요성", "b.Nedarim 77b — 서원 취소와 이행 논의", "m.Avot 1:17 — 말을 줄이는 것의 지혜"]</p>
+<p>literary_devices: [antithesis, contrast, proverbial_saying, repetition, chiasm, escalating_series]</p>
+<p>repeated_words: ["hevel(헛됨)", "chelek(분깃)", "amal(수고)", "keseph(은·돈)", "simcha(기쁨)", "neder(서원)", "tachat hashemesh(해 아래)"]</p>
+<p>cross_refs: ["신명기 23:21-23 (서원하고 갚지 않으면 죄가 됨)", "잠언 13:7 (부한 체하나 아무것도 없는 자)", "전도서 2:24-26 (먹고 마심이 하나님의 손에서)", "전도서 3:13 (분깃과 수고의 열매)", "전도서 9:7 (먹고 마시며 즐거워하라)", "전도서 12:13 (하나님을 경외하라는 결론)"]</p>
+<p>facilitator: 성령일_선교사</p>
+<p>participants: [P01, P02, P04, P05, P07, P11]</p>
+<p>quality_passed: true</p>
+<p>drift_flag: false</p>
+<p>date: 2026-06-20</p>
+<p>track: deep</p>
+<p>---</p>
+
+<h2>전도서 5장 — 관찰 시뮬레이션 raw transcript</h2>
+
+<blockquote>
+<p>⚠️ 본 transcript는 SBM 관찰 단계 시뮬레이션용 가상 대화입니다. 실존 인물이 아닌 가상 페르소나 6인과 진행자의 시연이며, 외부 공개용이 아닙니다.</p>
+</blockquote>
+
+<h2>오프닝</h2>
+
+<p><strong>성령일 선교사</strong>: 전도서 5장입니다. 4장에서 동무와 함께하는 수고, 억압받는 자들의 현실을 관찰했는데, 5장은 이제 하나님의 집으로 들어갑니다. 천천히 낭독하겠습니다.</p>
+<p>(본문 낭독 5:1~20, 약 4분)</p>
+<p><strong>(침묵 약 50초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[1단계] 무대·배경·소품·소재</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장의 무대는 어떤 곳들이 있는지요.</p>
+
+<p><strong>P04 최현국</strong>: 크게 세 공간이 보여요. 첫째는 하나님의 집, 즉 성전 또는 예배 처소(1절). 둘째는 가난한 자를 학대하는 관청이나 재판소 같은 공적 공간(8절). 셋째는 부자의 침실 — 배부름 때문에 잠을 못 자는(12절) 그 방이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 소품도 다양해요. 제물·서원·말·꿈이 1-7절의 소품이고요. 8절부터는 재물이 소품이에요 — 은(keseph·케세프), 부(osher·오쉐르), 재물(이 장에서 세 번 이상 등장). 그리고 마지막엔 밥상, 먹고 마시는 것이 소품으로 등장해요(18절).</p>
+
+<p><strong>P01 한나래</strong>: 소재로는 <em>neder</em>(네데르·서원)이 강하게 들어와요. 4절 "하나님 앞에서 서원하고 갚지 아니하면 죄가 되나니" — 서원이라는 말의 무게가 느껴졌어요. 말이 아니라 약속, 계약 같은 어감이에요.</p>
+
+<p><strong>P02 이진우</strong>: 1절 "하나님의 집에 갈 때에 네 발을 삼가라"는 진입 지시로 시작해요. 성전·예배 처소에 들어가는 태도를 말하는 건데, <em>shema</em>(쉐마·들음)가 핵심 소재예요. "가까이 가서 듣는 것이 어리석은 자의 제사보다 낫다"고 해요.</p>
+
+<p><strong>P11 나경아</strong>: 원어로 1절 "발을 삼가라"는 히브리어 <em>shamar ragleka</em>(샤마르 라글레카)예요. <em>shamar</em>는 지키다·조심하다·보존하다. 발은 접근 방식 전체를 상징해요. 하나님의 집에 들어가는 전체 자세를 가리키는 제유법(提喩)입니다.</p>
+
+<p><strong>P05 김미영</strong>: 12절 "일하는 자의 잠은 그가 적게 먹든지 많이 먹든지 달다"는 말이 뜻밖이에요. 잠이라는 소품이 갑자기 나와서 — 부자의 재물이 잠을 못 자게 한다는 것과 대비가 돼요. 자는 것이 소품으로 들어온다는 게 인상적이었어요.</p>
+
+<p><strong>성령일 선교사</strong>: 하나님의 집·재판소·침실·밥상이라는 네 공간과 그 소품들을 기록으로 남겨 두지요.</p>
+
+<p>---</p>
+
+<h2>[2단계] 첫 느낌·분위기</h2>
+
+<p><strong>성령일 선교사</strong>: 처음 들으셨을 때 어떤 공기가 느껴지셨는지요.</p>
+
+<p><strong>P01 한나래</strong>: 전반부(1-7절)는 조심스럽고 묵직한 분위기예요. 말 하나하나를 무게 재듯이 하는 느낌이었어요. 후반부(18-20절)는 갑자기 따뜻해져요. "먹고 마시며 분깃을 기뻐하라"는 말이 나오는 순간 공기가 달라지는 느낌이었어요.</p>
+
+<p><strong>P02 이진우</strong>: 저는 8-17절의 분위기가 가장 무거웠어요. 가난한 자를 학대하는 현실, 재물을 쌓는데 해를 받는 현실, 빈손으로 돌아가는 현실. 연달아서 나오는 현실 관찰이 압박감을 줬어요.</p>
+
+<p><strong>P04 최현국</strong>: 저는 구조적으로 세 덩어리가 느껴졌어요. 예배 덩어리(1-7절), 현실 덩어리(8-17절), 선물 덩어리(18-20절). 세 공기가 달라요.</p>
+
+<p><strong>P07 오지혜</strong>: "꿈이 많으면 헛된 것처럼 말이 많으면 헛됨이라"(7절)는 짧은 문장이 마치 탁 — 하고 닫히는 소리처럼 들렸어요. 그 짧음이 오히려 무게가 있었어요.</p>
+
+<p><strong>P11 나경아</strong>: 히브리 시학으로 보면 이 장은 잠언과 비슷한 격언 연쇄 형식이에요. 명령형이 많아요 — "삼가라", "서두르지 말라", "갚으라", "놀라지 말라". 명령들이 연달아 나오는 분위기예요.</p>
+
+<p><strong>P05 김미영</strong>: 18절 "내가 본 선한 것"이라는 표현이 눈에 들어왔어요. 코헬렛이 관찰자로서 선언하는 어조가 느껴졌어요. 교훈이 아니라 발견이라는 느낌이요.</p>
+
+<p>---</p>
+
+<h2>[3단계] 시작과 끝</h2>
+
+<p><strong>P02 이진우</strong>: 시작(1절): "하나님의 집에 갈 때에 네 발을 삼가라 — 가까이 가서 듣는 것이 어리석은 자의 제사보다 낫다." 끝(20절): "하나님이 그의 마음의 기쁨(<em>simcha</em>)으로 응답하심이라." 시작이 조심·들음이라면, 끝은 기쁨·응답이에요.</p>
+
+<p><strong>P01 한나래</strong>: 흥미로운 대조예요. 1절에서 "발을 삼가라"고 했는데, 20절에서 "하나님이 응답하신다"고 해요. 사람의 조심스러운 접근과 하나님의 응답이 수미(首尾)를 이루는 것 같아요.</p>
+
+<p><strong>P11 나경아</strong>: 원문 20절을 보면 "하나님이 그에게 그 마음의 기쁨으로 응답하신다"는 표현이 독특해요. 기쁨이 하나님의 응답 방식이에요. <em>simcha</em>(심하·기쁨)가 하나님이 주시는 것의 형태로 나와요.</p>
+
+<p><strong>P05 김미영</strong>: 그러면 5장의 운동은 — "발을 조심해서 들어가는" 자리에서 "하나님의 기쁨으로 응답받는" 자리로 가는 건가요?</p>
+
+<p><strong>성령일 선교사</strong>: 관찰로 기록만 해 두겠습니다. 해석은 잠시 뒤에.</p>
+
+<p>---</p>
+
+<h2>[4단계] 등장인물·사물·상황·사상</h2>
+
+<p><strong>P04 최현국</strong>: 등장인물 목록이에요. 코헬렛(관찰자), 어리석은 자(제사 드리는데 듣지 않는 자·1절), 서원하는 자(2-6절), 부자(11-12절), 일하는 자/일꾼(12절), 하나님이 기뻐하시는 사람(19절).</p>
+
+<p><strong>P02 이진우</strong>: 8-9절에 등장하는 "높은 자 위에 더 높은 자 그 위에 더 높은 자" — 관료 계층 구조예요. 가난한 자를 학대하는 구조가 단순히 한 개인의 문제가 아니라 중첩된 권력 구조임을 관찰로 남겨 둔다는 게 눈에 들어왔어요.</p>
+
+<p><strong>P07 오지혜</strong>: 10절 "은을 사랑하는 자는 은으로 만족하지 않고"에서 <em>keseph</em>(케세프·은·돈)가 나와요. 이 문장은 아이러니한 격언이에요. 돈으로 만족하려는 자가 돈이 더할수록 갈증이 는다는 관찰이에요.</p>
+
+<p><strong>P11 나경아</strong>: 사상으로는 <em>yirat elohim</em>(이라트 엘로힘·하나님을 경외함)이 이 장의 핵심어예요. 7절 마지막 "오직 하나님을 경외할지니라"가 1-7절 전체의 결론이에요. <em>yare</em>(야레·경외하다·두려워하다) 동사에서 나온 명사로, 전도서에서 12:13의 결론을 선취(先取)하는 어감이에요.</p>
+
+<p><strong>P01 한나래</strong>: 13절 "재물을 지키다가 해를 받는다"는 표현이 생생해요. 지키는 것이 오히려 해를 가져온다는 역설이에요. 재물이 자산이 아니라 위험이 되는 상황이에요.</p>
+
+<p><strong>P05 김미영</strong>: 14-15절은 모태에서 나왔다가 알몸으로 돌아간다는 이미지예요. 욥기 1:21 "모태에서 알몸으로 나왔사온즉 또한 알몸이 돌아가올지라"와 비슷한 표현이에요. 다른 본문과의 대화처럼 느껴졌어요.</p>
+
+<p><strong>(침묵 약 30초)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[5단계] 장면 컷 분절</h2>
+
+<p><strong>P04 최현국</strong>: 세 컷이에요.</p>
+<ul>
+<li><strong>컷 1 (1-7절)</strong>: 하나님의 집 — 발을 삼가라, 말을 아끼라, 서원을 지키라. <em>yirat elohim</em>으로 닫힘.</li>
+<li><strong>컷 2 (8-17절)</strong>: 해 아래의 현실 — 가난한 자 학대, 재물의 불만족, 일꾼의 달콤한 잠 vs 부자의 불면, 빈손으로 돌아가는 알몸.</li>
+<li><strong>컷 3 (18-20절)</strong>: 내가 본 선한 것 — 먹고 마시며 수고의 열매를 즐기는 것이 분깃이요 하나님의 선물이라.</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 세 컷의 논리가 있어요. 컷 1은 "하나님 앞에서 어떻게 설 것인가", 컷 2는 "해 아래서 현실이 어떠한가", 컷 3은 "그 현실 안에서 무엇이 선한 것인가"예요.</p>
+
+<p><strong>P07 오지혜</strong>: 컷 3이 놀라워요. 컷 2에서 재물의 헛됨, 알몸으로 돌아감을 봤는데, 컷 3에서는 "먹고 마시는 것이 선물"이라고 해요. 무너진 것들 다음에 나오는 작은 긍정이에요.</p>
+
+<p>---</p>
+
+<h2>[6단계] 의문·발견·정보</h2>
+
+<p><strong>P11 나경아</strong>: 원어 카드 정리해 드릴게요.</p>
+<ul>
+<li><em>neder</em>(נֶדֶר·네데르) — 서원·맹세. 하나님 앞에서 자발적으로 드린 약속. 민수기·신명기에서 법적 구속력이 있어요.</li>
+<li><em>peh</em>(פֶּה·페) — 입·말. 2절 "하나님 앞에서 입을 조급하게 열지 말라"에서 나와요.</li>
+<li><em>shema</em>(שְׁמַע·쉐마) — 들음·청종. 1절 "가까이 가서 듣는 것"의 핵심어예요. 이스라엘의 가장 핵심적인 신앙 고백("이스라엘아 들으라")과 같은 어근이에요.</li>
+<li><em>chelek</em>(חֵלֶק·헬레크) — 분깃·몫·portion. 18-19절에서 "이것이 그의 분깃이라", "자기 분깃을 기뻐하게 하신다"로 두 번 나와요.</li>
+<li><em>maton</em>(מַתָּן·마탄) — 선물·증여. 19절 "이것이 하나님의 선물이라"에서 쓰여요. 2장의 <em>mi-yad ha-elohim</em>(하나님의 손에서)과 의미적으로 연결돼요.</li>
+<li><em>shenah</em>(שֵׁנָה·쉐나) — 잠. 12절 "일하는 자의 잠은 달다"에서 나와요.</li>
+</ul>
+
+<p><strong>P02 이진우</strong>: 발견이에요. 1절 "어리석은 자의 제사(<em>zebach</em>·제바흐)"가 소의 제사인데, 하나님의 집에서 제물을 드리는 것이 자동으로 좋은 것이 아니에요. "가서 듣는 것"이 더 낫다고 해요. 행위보다 태도, 양보다 질의 구분이에요.</p>
+
+<p><strong>P04 최현국</strong>: 문학 구조 관찰이에요. 6절 "서원하고 갚지 못하면 신체의 실수라 말하지 말라"에서 <em>beshegagah</em>(베쉐가가·부주의·실수·무의식적 허물)이 나와요. 레위기 법에서는 <em>shegagah</em>가 무의식적 죄의 법적 용어예요. 그것을 핑계로 대지 말라는 말이에요.</p>
+
+<p><strong>P07 오지혜</strong>: 의문이에요. 8절 "놀라지 말라"는 무슨 뜻인가요? 가난한 자가 학대당하는 것을 보고 놀라지 말라는 건가요? 묵인하라는 뜻인가요? 아니면 다른 맥락인가요? 본문이 설명하지 않아요.</p>
+
+<p><strong>P01 한나래</strong>: 발견이에요. 9절 "땅의 이익은 모든 것을 위함이라"는 구절이 해석이 어려워요. 왕도 밭에서 나는 것으로 먹는다는 말인지, 농업적 생산이 모든 계층을 먹인다는 사회 관찰인지 — 본문이 특정하지 않아요. 보존해요.</p>
+
+<p><strong>P05 김미영</strong>: 18절 "내가 본 선한 것"은 코헬렛이 직접 관찰자로 서는 순간이에요. 앞에서 "이것도 헛됨이요"를 반복했다가, 여기서 "이것이 선하다"고 해요. 같은 관찰자가 다른 판단을 내리는 전환이에요.</p>
+
+<p><strong>P11 나경아</strong>: ANE 배경으로 — 고대 근동에서 서원(<em>neder</em>)은 법적 구속력이 있는 계약이었어요. 신전에서 서원을 하면 신이 증인이 되는 구조예요. 우가리트 문서에도 서원 불이행에 대한 신의 진노 기록이 있어요. 5:2-6이 단순한 도덕 교훈이 아니라 법적·종교적 맥락을 가지고 있어요.</p>
+
+<p>---</p>
+
+<h2>[7단계] 동영상 — 컷 이어 붙이기</h2>
+
+<p><strong>P04 최현국</strong>: 카메라가 하나님의 집 문 앞에서 시작해요. 문 앞에 서 있는 사람에게 목소리가 들려요 — "발을 삼가라. 가서 듣는 것이 낫다." 사람이 조용히 들어가요.</p>
+
+<p><strong>P02 이진우</strong>: 안에 들어가서 서원을 하는 사람이 보여요. 그런데 며칠이 지나고 갚지 못한다는 장면이 이어져요. "신체의 실수라 말하지 말라." 말과 행동의 간격이 화면에 보여요. "말이 많으면 헛됨이라." 화면이 조용해져요.</p>
+
+<p><strong>P07 오지혜</strong>: 카메라가 밖으로 나와요. 재판소에서 가난한 자가 억울하게 당하는 장면이에요. "놀라지 말라 — 높은 자 위에 더 높은 자가 있다." 구조가 보여요. 한 사람의 문제가 아니라 층층이 쌓인 구조예요.</p>
+
+<p><strong>P01 한나래</strong>: 장면이 전환돼요. 재물을 쌓는 창고. 그런데 소비자가 늘어나요. "재물이 더할수록 먹는 자도 더하니." 창고가 가득 차는데 비어요. 부자가 잠 못 드는 침실. 일꾼은 달게 자요.</p>
+
+<p><strong>P05 김미영</strong>: 그리고 15절에서 장면이 바뀌어요. 출생과 죽음의 알몸. "모태에서 나왔다가 알몸으로 돌아간다." 재물이 사라지는 장면이에요.</p>
+
+<p><strong>P11 나경아</strong>: 18절에서 카메라가 다시 좁아져요. 밥상 앞에 앉은 사람. 먹고 마시는 사람. 자기 수고의 열매를 보는 사람. 그리고 들려요 — "이것이 그의 분깃이라. 이것이 하나님의 선물이라." 화면이 작지만 빛이 있어요.</p>
+
+<p><strong>성령일 선교사</strong>: 화면이 작지만 빛이 있다는 표현을 그대로 두겠습니다.</p>
+<p><strong>(침묵)</strong> 🌿</p>
+
+<p>---</p>
+
+<h2>[8단계] 초벌 제목·부제</h2>
+
+<p><strong>P01 한나래</strong>: "발을 삼가고 말을 아끼며 분깃을 기뻐하라"</p>
+<p><strong>P02 이진우</strong>: "서원의 무게와 재물의 헛됨, 그리고 작은 밥상의 빛"</p>
+<p><strong>P04 최현국</strong>: "하나님의 집에서 밥상까지 — 듣고 기뻐하는 분깃"</p>
+<p><strong>P05 김미영</strong>: "이것이 하나님의 선물 — 먹고 마시며 수고를 즐기는 것"</p>
+<p><strong>P07 오지혜</strong>: "말이 많으면 헛됨이라, 오직 하나님을 경외할지니라"</p>
+<p><strong>P11 나경아</strong>: "<em>Chelek</em> — 분깃이 선물로 명시되는 장"</p>
+<p><strong>성령일 선교사</strong>: 초벌 부제로 "하나님 앞의 침묵과 경외를 통과해, 먹고 마시는 분깃이 하나님의 선물임이 명시되는 장"을 남겨 두겠습니다.</p>
+
+<p>---</p>
+
+<h2>[9단계] 기도·내면 떠오름</h2>
+
+<p><strong>성령일 선교사</strong>: 각자의 자리로 들어가 봅시다. 말이 많은 자리가 있었다면, 서원했다가 지키지 못한 자리가 있었다면, 재물을 의지하다가 헛됨을 만난 자리가 있었다면 — 답을 구하지 말고 그냥 그 자리에 머물러 봅시다.</p>
+<p><strong>(긴 침묵 약 1분 30초)</strong> 🌿🌿</p>
+<p><strong>P05 김미영</strong>: (조용히) 오늘 아침도 밥을 먹었는데, 그게 분깃인 줄 몰랐던 것 같아요.</p>
+<p><strong>P02 이진우</strong>: 서원하고 지키지 못한 것들이 생각나네요. 큰 것은 아닌데 — 그냥 그게 떠올랐어요.</p>
+<p><strong>P01 한나래</strong>: 말이 많은 기도를 드린 것이 생각나요. 들으러 가야 하는 자리에서 말을 많이 했던 것이요.</p>
+<p><em>— 잠시 각자의 내면에 머문다. 답을 구하지 않는다. —</em></p>
+
+<p>---</p>
+
+<h2>[10단계] 운동·도약</h2>
+
+<p><strong>성령일 선교사</strong>: 이 장은 어디서 어디로 움직이는 것 같은지요.</p>
+
+<p><strong>P02 이진우</strong>: "말을 아끼고 서원을 지켜라"는 경고에서 "먹고 마시며 분깃을 기뻐하는 것이 선물"이라는 선언으로 움직여요. 조심스러운 자리에서 기쁜 자리로의 이동이에요.</p>
+
+<p><strong>P11 나경아</strong>: 수면 아래에서 보면 — 2장에서 심어진 <em>chelek</em>(분깃)의 씨앗이 5장에서 "이것이 하나님의 선물"이라는 말로 명시화돼요. 씨앗이 꽃이 피는 순간이에요. 3장의 때, 4장의 동무, 5장의 분깃 — 전도서의 3~11장 국면이 진행되고 있어요.</p>
+
+<p><strong>P04 최현국</strong>: 5장이 품은 긴장은 — 경외와 침묵을 요구하면서도, 먹고 마시며 기뻐하라고 해요. 침묵과 기쁨이 공존할 수 있는가? 본문은 그 긴장을 해소하지 않고 그냥 두는 것 같아요.</p>
+
+<p><strong>P07 오지혜</strong>: 독자를 부르는 것이라면 — "나는 지금 하나님 앞에서 말을 아끼는 자인가, 아니면 많은 말로 꿈을 꾸는 자인가"인 것 같아요. 그리고 "오늘의 밥상이 하나님의 선물인 것을 아는가"도요.</p>
+
+<p><strong>성령일 선교사</strong>: <em>chelek</em>이 <em>maton</em>(선물)으로 명시되는 이 장의 선언을 가지고 가겠습니다.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s2">
+      <summary>
+        <span class="stage__num">단계 2~7</span>
+        <span class="stage__title-inline">첫 느낌 · 시작과 끝 · 등장인물 · 장면 컷 · 의문 · 동영상</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>2~7단계 관찰된 사실 LOCKED 정리.</strong></p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-005</p>
+<p>book: 전도서</p>
+<p>chapter: 5</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>전도서 5장 — 관찰된 사실 (LOCKED v2.0 9단계 형식)</h2>
+
+<blockquote>
+<p>단계 라벨은 LOCKED v2.0 가이드 원문 그대로.</p>
+</blockquote>
+
+<h2>1️⃣ 무대 장치, 배경, 소품, 소재 찾기</h2>
+<ul>
+<li>공간 1: 하나님의 집(성전·예배 처소) — 발을 삼가라(1절), 듣는 것이 낫다(1절).</li>
+<li>공간 2: 관청·재판소(공적 공간) — 가난한 자가 학대당하는 현실(8절).</li>
+<li>공간 3: 부자의 침실 — 배부름으로 잠 못 이루는 부자(12절) vs 달게 자는 일꾼(12절).</li>
+<li>공간 4: 밥상·일상 — 먹고 마시며 수고를 즐기는 사람(18절).</li>
+<li>소품: 제물·서원(<em>neder</em>)·말(<em>peh</em>)·꿈·은(<em>keseph</em>)·재물·잠(<em>shenah</em>)·밥상.</li>
+<li>1절 <em>shamar ragleka</em>(샤마르 라글레카·발을 삼가라) — 하나님의 집에 들어가는 전체 자세의 제유.</li>
+</ul>
+
+<h2>2️⃣ 첫 느낌, 분위기 기록하기</h2>
+<ul>
+<li>1-7절: 조심스럽고 묵직한 공기. 명령형이 연달아 나옴(삼가라·서두르지 말라·갚으라).</li>
+<li>8-17절: 무거운 현실 관찰. 학대·불만족·불면·알몸으로 돌아감이 연속으로 등장.</li>
+<li>18-20절: 공기가 달라짐. "내가 본 선한 것" — 따뜻하고 작은 빛.</li>
+<li>7절 "꿈이 많으면 헛된 것처럼 말이 많으면 헛됨이라" — 짧은 문장이 탁 닫히는 느낌.</li>
+</ul>
+
+<h2>3️⃣ 본문이 어떻게 시작하여 어떻게 끝나는지 기록하기</h2>
+<ul>
+<li>시작(1절): "하나님의 집에 갈 때에 네 발을 삼가라 — 가서 듣는 것이 낫다."</li>
+<li>끝(20절): "하나님이 그의 마음의 기쁨(<em>simcha</em>)으로 응답하심이라."</li>
+<li>사람의 조심스러운 접근(1절) → 하나님의 기쁨으로 응답(20절). 주어가 사람에서 하나님으로 이동.</li>
+</ul>
+
+<h2>4️⃣ 등장인물 또는 사물을 나열하고 처한 상황과 사상 파악하기</h2>
+<ul>
+<li>코헬렛(관찰자·18절 "내가 본 선한 것" 선언자).</li>
+<li>어리석은 자(제사 드리되 듣지 않는 자·1절).</li>
+<li>서원하는 자(2-6절·이행 못하면 죄).</li>
+<li>부자(11-12절·재물이 쌓이지만 잠 못 잠).</li>
+<li>일하는 자/일꾼(12절·달게 잠).</li>
+<li>하나님(7·19절·경외의 대상이자 분깃과 기쁨의 수여자).</li>
+<li><em>yirat elohim</em>(이라트 엘로힘·하나님 경외): 1-7절의 결론어(7절).</li>
+<li><em>chelek</em>(헬레크·분깃): 18-19절에 두 번 등장. 전도서 2장의 씨앗이 명시적 선언으로 개화.</li>
+</ul>
+
+<h2>5️⃣ 장면·사건을 나누어 몇 컷의 사진 얻기</h2>
+<ul>
+<li>컷 1 (1-7절): 하나님의 집 — 듣기·말 아끼기·서원 이행·경외. "<em>yirat elohim</em>"으로 닫힘.</li>
+<li>컷 2 (8-17절): 해 아래 현실 — 학대 구조·재물 불만족·일꾼의 잠 vs 부자 불면·알몸으로 돌아감.</li>
+<li>컷 3 (18-20절): 선한 것 — 먹고 마시며 수고를 즐기는 분깃, 하나님의 선물, 마음의 기쁨으로 응답.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (1) 원어 카드</h2>
+<ul>
+<li><em>neder</em>(נֶדֶר) — 서원·맹세. 하나님 앞 법적 구속력 있는 약속. 우가리트 문서에도 서원 불이행 기록 있음.</li>
+<li><em>peh</em>(פֶּה) — 입·말. 2절 "입을 조급하게 열지 말라"의 핵심어.</li>
+<li><em>shema</em>(שְׁמַע) — 들음. 이스라엘 핵심 신앙 고백과 동일 어근. 1절 "가서 듣는 것"의 핵심.</li>
+<li><em>chelek</em>(חֵלֶק) — 분깃. 18절 "이것이 그의 분깃", 19절 "자기 분깃을 기뻐하게" — 두 번 명시.</li>
+<li><em>maton</em>(מַתָּן) — 선물·증여. 19절 "하나님의 선물이라". 2장 <em>mi-yad ha-elohim</em>의 명시적 전개.</li>
+<li><em>shenah</em>(שֵׁנָה) — 잠. 12절 "일하는 자의 잠은 달다".</li>
+<li><em>beshegagah</em>(בִּשְׁגָגָה) — 실수·부주의·무의식적 허물. 레위기 법적 용어 차용(6절).</li>
+<li><em>keseph</em>(כֶּסֶף) — 은·돈. 10절 "은을 사랑하는 자는 은으로 만족하지 않음".</li>
+<li><em>yirat elohim</em>(יִרְאַת אֱלֹהִים) — 하나님 경외. 7절 1-7절 결론어. 전도서 12:13의 선취.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (2) 문학 구조</h2>
+<ul>
+<li>명령형 연쇄(1-7절): "삼가라·서두르지 말라·갚으라·놀라지 말라" — 격언 연쇄 구조.</li>
+<li>1절 <em>shema</em>(듣기) → 20절 <em>simcha</em>(기쁨의 응답): 수미쌍관(首尾雙關) 구조.</li>
+<li>7절이 1-7절의 결론, 17절이 8-17절의 결론, 20절이 18-20절의 결론 — 세 결론 구조.</li>
+<li>컷 2의 현실(재물의 헛됨) 이후 컷 3(분깃의 선물)으로 이동 — 2장 패턴 반복·심화.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (3) ANE 배경 (해석 아님)</h2>
+<ul>
+<li>서원(<em>neder</em>)은 고대 근동 법적·종교적 계약. 우가리트 문서에 신전 서원 불이행 기록 있음.</li>
+<li>8-9절 관료 계층 구조("높은 자 위에 더 높은 자") — 고대 근동 제국 행정 구조와 유사 관찰.</li>
+<li>12절 일꾼의 달콤한 잠 vs 부자의 불면 — 고대 이스라엘 농업 경제 사회적 대비.</li>
+</ul>
+
+<h2>6️⃣ 의문점, 발견, 깨달음, 정보, 탐구 내용 등을 기록해두기 — (4) 교차 참조 노드</h2>
+<ul>
+<li>ECC 5 ↔ ECC 2:24-26 (먹고 마심이 하나님의 손에서 — 씨앗 → 개화)</li>
+<li>ECC 5 ↔ ECC 3:13 (사람이 먹고 마시며 수고 중에 낙을 보는 것이 하나님의 선물)</li>
+<li>ECC 5 ↔ ECC 9:7 (먹고 마시며 즐거워하라 — 동일 모티프 재등장)</li>
+<li>ECC 5 ↔ 신 23:21-23 (서원하고 갚지 않으면 죄가 됨 — 법적 배경)</li>
+<li>ECC 5 ↔ 욥 1:21 (알몸으로 왔다가 알몸으로 돌아감 — 동일 이미지)</li>
+<li>ECC 5 ↔ ECC 12:13 (하나님을 경외하라 — 5:7의 <em>yirat elohim</em> 선취)</li>
+</ul>
+
+<h2>7️⃣ 상황의 흐름, 논지를 연결하여 동영상 얻기</h2>
+<p>하나님의 집 문 앞. "발을 삼가라." 사람이 조용히 들어간다. 서원하는 자가 있다. 갚지 못한다. "신체의 실수라 말하지 말라." 7절 — "말이 많으면 헛됨이라. 오직 하나님을 경외하라." 카메라가 재판소로 이동한다. 가난한 자가 억울하다. "놀라지 말라 — 높은 자 위에 더 높은 자가 있다." 재물 창고. 채워지는데 소비자도 늘어난다. 부자가 잠 못 든다. 일꾼은 달게 잔다. 15절 — 알몸으로 왔다가 알몸으로 돌아간다. 18절 — 카메라가 좁아진다. 밥상 앞 사람. 먹고 마시는 사람. 수고의 열매를 보는 사람. "이것이 그의 분깃이라. 이것이 하나님의 선물이라." 20절 — "하나님이 그의 마음의 기쁨으로 응답하심이라."</p>
+
+<h2>8️⃣ 초벌 제목과 부제 정하기</h2>
+<ul>
+<li>초벌 제목: <strong>"발을 삼가고, 분깃을 기뻐하라"</strong></li>
+<li>초벌 부제: "하나님 앞에서 말을 아끼고 경외하며, 먹고 마시는 수고의 열매가 하나님의 선물임을 발견하는 장"</li>
+</ul>
+
+<h2>품질 체크 자가감사 (6/6)</h2>
+<ul>
+<li>[x] 원어 어휘 3개 이상 (neder, peh, shema, chelek, maton, shenah, keseph, yirat elohim 기록)</li>
+<li>[x] 역사·문화·지리·문학 사실 최소 1개 (ANE 서원 법적 배경·우가리트 문서·고대 이스라엘 농업경제 대비)</li>
+<li>[x] 미해결 질문 1개 이상 (6건 s8에 기록)</li>
+<li>[x] 진행자 "가르치기" 문장 0건</li>
+<li>[x] 상투어 과반복 없음</li>
+<li>[x] 묵상 어휘(의미/교훈/적용) 진행자 발화 0건</li>
+</ul>
+
+<h2>9단계 자가감사</h2>
+<ul>
+<li>[x] 1단계 무대·배경·소품 기록됨</li>
+<li>[x] 2단계 첫 느낌·분위기 기록됨</li>
+<li>[x] 3단계 시작·끝 기록됨</li>
+<li>[x] 4단계 인물·사물·상황·사상 기록됨</li>
+<li>[x] 5단계 장면 컷 3개</li>
+<li>[x] 6단계 의문·발견·정보 기록됨</li>
+<li>[x] 7단계 동영상 흐름 기록됨</li>
+<li>[x] 8단계 초벌 제목·부제 기록됨</li>
+<li>[x] 9단계 기도·내면 떠오름 기록됨</li>
+</ul>
+
+<h2>드리프트 관찰</h2>
+<ul>
+<li>18-20절의 "먹고 마시며 즐기라"가 쾌락주의 허용으로 드리프트될 위험 — "하나님의 선물"이라는 원천과 "수고의 열매"라는 조건을 원문 그대로 보존.</li>
+<li>7절 "하나님을 경외하라"가 율법주의 강화로 번질 위험 — 원문 표현 그대로, 맥락(말의 헛됨) 안에서 기록.</li>
+<li>8절 "놀라지 말라"가 불의 묵인으로 해석될 위험 — 본문이 설명하지 않으므로 보존, 해석 보류.</li>
+</ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="stage stage--collapsed" id="s8">
+      <summary>
+        <span class="stage__num">단계 8~9</span>
+        <span class="stage__title-inline">초벌 제목·부제 · 동영상 안 걷기·기도</span>
+        <span class="stage__toggle">시뮬레이션 보기 →</span>
+      </summary>
+      <div class="stage__inner">
+        <p class="stage__intro"><strong>8단계 — 초벌 제목과 부제.</strong> <strong>9단계 — 동영상 안을 걸으며 관찰한 것을 주께 아뢰기.</strong> 답을 구하지 않고 머문다.</p>
+        <div class="md-body">
+<p>---</p>
+<p>sim_id: ECC-005</p>
+<p>book: 전도서</p>
+<p>chapter: 5</p>
+<p>date: 2026-06-20</p>
+<p>---</p>
+
+<h2>전도서 5장 — 미해결 질문</h2>
+
+<blockquote>
+<p>관찰 단계에서는 답하지 않고 보존. 묵상·사귐 단계로 이월.</p>
+</blockquote>
+
+<h2>Q1. 1절 "어리석은 자의 제사"와 "가서 듣는 것"은 어떻게 다른가?</h2>
+<ul><li>제사를 드리는 것 자체가 문제인가, 아니면 태도의 문제인가? "듣는 것이 낫다"는 비교급이 제사를 폐하는 것인지 순서를 말하는 것인지 본문이 특정하지 않음. 보존.</li></ul>
+
+<h2>Q2. 8절 "놀라지 말라"는 어떤 태도를 가리키는가?</h2>
+<ul><li>가난한 자 학대를 보고 놀라지 말라는 것이 현실 묵인인가, 더 높은 분이 보신다는 위로인가? 본문이 명시하지 않음. 보존.</li></ul>
+
+<h2>Q3. 9절 "땅의 이익은 모든 것을 위함이라"는 무엇을 가리키는가?</h2>
+<ul><li>왕도 땅의 소산으로 먹는다는 사회 관찰인가, 농업 경제의 공공성 선언인가? 해석 다수. 보존.</li></ul>
+
+<h2>Q4. 서원(<em>neder</em>) 이행 실패를 "신체의 실수"라 핑계 대지 말라(6절)는 어떤 상황을 가리키는가?</h2>
+<ul><li><em>beshegagah</em>가 레위기 법적 용어이지만, 5장에서의 맥락이 제의적 실수인지 도덕적 의도 부재인지 본문이 더 설명하지 않음. 보존.</li></ul>
+
+<h2>Q5. 18절 "내가 본 선한 것"이 앞의 헛됨 관찰과 어떤 논리로 연결되는가?</h2>
+<ul><li>헛됨의 반대가 선함인가, 아니면 헛됨 안에서 선함을 보는 것인가? 본문은 두 관찰을 병렬로 제시하고 논리를 설명하지 않음. 보존.</li></ul>
+
+<h2>Q6. 20절 "하나님이 마음의 기쁨으로 응답하신다"는 어떤 관계를 가리키는가?</h2>
+<ul><li>기쁨이 하나님의 응답 방식인가, 기쁨을 누릴 수 있도록 마음을 움직이신다는 것인가? 원문 구조가 두 독법을 모두 허용함. 보존.</li></ul>
+
+<p>---</p>
+<p><em>이 질문들은 묵상 단계에서 재방문. 관찰 단계는 여기서 멈춘다.</em></p>
+        </div>
+      </div>
+    </details>
+
+    <section class="stage stage--synthesis" id="synthesis">
+      <span class="stage__num" style="background:var(--c-copper);color:var(--c-bg);border-color:var(--c-copper);">종합 정리</span>
+      <h2 class="stage__title">하나님 앞의 침묵과 경외를 통과해, 먹고 마시는 분깃이 하나님의 선물로 명시되는 장.</h2>
+      <p class="stage__intro">9단계 관찰을 한 곳에 모읍니다.</p>
+      <div class="md-body synthesis-body">
+<p>---</p>
+<p>sim_id: ECC-005</p>
+<p>type: synthesis</p>
+<p>version: v2.1</p>
+<p>created: 2026-06-20</p>
+<p>---</p>
+
+<h2>종합 정리</h2>
+
+<h3>A · 한 편의 골격</h3>
+<p><strong>한 문장</strong>: 전도서 5장은 하나님의 집에서 말을 아끼고 서원을 지키며 하나님을 경외하라는 명령(1-7절), 해 아래 재물과 권력의 헛됨(8-17절), 그리고 먹고 마시며 수고의 열매를 즐기는 것이 <em>chelek</em>(분깃)이요 하나님의 <em>maton</em>(선물)이라는 명시적 선언(18-20절)으로 이루어진 장이다.</p>
+<p><strong>한 문단</strong>: 하나님의 집 문 앞에서 시작된다. "발을 삼가라. 가서 듣는 것이 어리석은 자의 제사보다 낫다." 말을 많이 하는 자, 서원을 지키지 않는 자에 대한 경고가 연달아 온다. 7절 — "말이 많으면 헛됨이라. 오직 하나님을 경외하라." 카메라가 이동한다. 가난한 자를 학대하는 관료 구조. 재물이 더할수록 먹는 자도 더하는 불만족. 재물을 지키다가 해를 받는 역설. 일꾼은 달게 자는데 부자는 잠 못 든다. 알몸으로 왔다가 알몸으로 돌아간다. 18절 — 카메라가 좁아진다. "내가 본 선한 것 — 먹고 마시며 수고에서 낙을 보는 것이 선하고 아름답다. 이것이 그의 분깃이다." 19절 — "하나님이 재물과 부요를 주사 그가 누리게 하시고 자기 분깃을 기뻐하게 하시면, 이것이 하나님의 선물이다." 20절 — "하나님이 그의 마음의 기쁨으로 응답하심이라." 조심스러운 접근이 하나님의 응답으로 닫히는 장이다.</p>
+
+<h3>B · 9단계 통합 표</h3>
+<table>
+<thead><tr><th>단계</th><th>핵심 발견</th></tr></thead>
+<tbody>
+<tr><td>1 무대·배경·소품</td><td>하나님의 집·관청·부자의 침실·밥상. 소품: 서원·말·은·잠·알몸.</td></tr>
+<tr><td>2 첫 느낌</td><td>1-7절 묵직함 → 8-17절 무거운 현실 → 18-20절 작은 빛. 세 공기의 변화.</td></tr>
+<tr><td>3 시작과 끝</td><td>사람의 발을 삼감(1절) → 하나님의 기쁨으로 응답(20절). 주어 이동.</td></tr>
+<tr><td>4 등장인물·사상</td><td>코헬렛·어리석은 자·서원자·부자·일꾼·하나님. chelek·yirat elohim·maton.</td></tr>
+<tr><td>5 장면 컷</td><td>컷1 경외(1-7절) / 컷2 현실 관찰(8-17절) / 컷3 분깃의 선물(18-20절).</td></tr>
+<tr><td>6 의문·발견</td><td>shema(들음)·beshegagah·chelek 두 번 명시·maton 등장. Q1~Q6 보존.</td></tr>
+<tr><td>7 동영상</td><td>하나님의 집 → 헛됨의 현실 → 밥상의 클로즈업 → 하나님의 응답.</td></tr>
+<tr><td>8 초벌 제목</td><td>"발을 삼가고, 분깃을 기뻐하라"</td></tr>
+<tr><td>9 기도·내면</td><td>"오늘 아침 밥이 분깃인 줄 몰랐다"는 자리. 말 많은 기도 자리에서 머묾.</td></tr>
+</tbody>
+</table>
+
+<h3>C · 본문이 본문을 읽게 하는 세 결</h3>
+<p>1. <strong>결 1 — <em>shema</em>와 <em>simcha</em>의 수미쌍관</strong>: 1절 "가서 듣는 것"(<em>shema</em>)으로 시작해, 20절 "마음의 기쁨"(<em>simcha</em>)으로 응답받음. 들음이 기쁨으로 닫히는 구조다.</p>
+<p>2. <strong>결 2 — <em>chelek</em>의 개화</strong>: 전도서 2장에서 심어진 <em>chelek</em>(분깃)이 5장에서 "이것이 그의 분깃이라"(18절), "자기 분깃을 기뻐하게 하신다"(19절)로 두 번 명시된다. 씨앗이 꽃피는 순간이다.</p>
+<p>3. <strong>결 3 — 말의 역설</strong>: 말을 많이 하지 말라(2-7절)고 하면서, 선물 선언(18-20절)에서는 "이것이 선하다, 이것이 분깃이다, 이것이 선물이다"가 반복된다. 하나님의 선물 앞에서는 말이 풍성해진다.</p>
+
+<h3>D · 다른 본문과의 다리</h3>
+<ul>
+<li>전도서 안 — ECC 2:24-26 (먹고 마심이 하나님의 손에서 — 씨앗 자리), ECC 3:13 (먹고 마시며 낙을 보는 것이 하나님의 선물), ECC 9:7 (먹고 마시며 즐거워하라), ECC 12:13 (하나님 경외 결론).</li>
+<li>다른 권 — 신 23:21-23 (서원과 이행의 법), 욥 1:21 (알몸으로 왔다가 알몸으로), 잠 17:28 (미련한 자도 잠잠하면 지혜롭다 여김).</li>
+</ul>
+
+<h3>E · 한 사람의 의식 흐름</h3>
+<ul>
+<li><strong>시작</strong>: 하나님의 집 문 앞에서 긴장한다. "발을 삼가라."</li>
+<li><strong>멈춤 1</strong>: "말이 많으면 헛됨이라"(7절)에서 말을 멈춘다.</li>
+<li><strong>멈춤 2</strong>: 알몸으로 돌아간다(15절)는 것 앞에 멈춘다.</li>
+<li><strong>멈춤 3</strong>: "이것이 하나님의 선물"(19절)이라는 선언 앞에 멈춘다.</li>
+<li><strong>끝</strong>: 오늘의 밥상이 분깃이라는 것을 아는 눈을 손에 쥔다(관찰, 해석 보류).</li>
+</ul>
+
+<h3>F · 자족성 점검</h3>
+<ul>
+<li>[x] <em>neder</em>(서원)의 무게와 이행 요구가 기록됨</li>
+<li>[x] <em>chelek</em>(분깃)이 두 번 명시됨 — 전도서 분깃 주제의 절정</li>
+<li>[x] <em>maton</em>(선물)이 처음 명시적으로 등장함</li>
+<li>[x] <em>yirat elohim</em>(하나님 경외)이 1-7절의 결론으로 기록됨</li>
+<li>[x] 일꾼의 잠 vs 부자의 불면 대비가 기록됨</li>
+<li>[x] 알몸으로 돌아감(욥 1:21 병행)이 기록됨</li>
+</ul>
+
+<h3>G · 구속사 좌표 — ECC 흐름 위 이 장의 위치</h3>
+<p>전도서 흐름의 "때·분깃·하나님의 선물 국면(3~11장)" 안에 있는 장이다. 3장이 "때"를 통해 하나님의 주권을 관찰했고, 4장이 동무와 억압의 현실을 관찰했다면, 5장은 이 국면 안에서 서원·재물의 헛됨을 통과시키며 <em>chelek</em>(분깃)을 즐거워하라는 초대가 더욱 명시화되는 장이다. 2장에서 <em>chelek</em>의 씨앗이 심어졌다면, 5장에서 그 씨앗은 "이것이 하나님의 선물(<em>maton</em>)"이라는 명시적 선언으로 꽃피운다. 전도서의 나선형 진행에서 5장은 분깃 주제의 절정 중 하나다.</p>
+
+<h3>H · 운동 벡터 — ECC spine의 이 장 국면</h3>
+<p>5장은 <strong>말 많음·서원 불이행·재물 추구의 헛됨</strong>에서 <strong>분깃을 기뻐하는 것이 하나님의 선물이라는 선언</strong>으로 밀어가는 국면이다. 경외의 자리(침묵과 듣기)를 통과하지 않으면 분깃의 선물을 누릴 수 없다는 순서가 장 전체에 내재한다. 1절의 <em>shamar</em>(삼가라·보존하라)가 18절의 <em>simcha</em>(기쁨)로 이어지는 구조다.</p>
+
+<h3>I · 수면 아래 — 이 장에서 비치는 하나님의 의중과 심정</h3>
+<p>수면 아래에서 비치는 것: 말을 아끼게 하시고 하나님을 경외하게 하시는 하나님. 재물이 쌓여도 누리지 못하는 현실을 직면시키시되, 먹고 마시며 수고의 열매를 누리는 것이 진정한 선물임을 보이시는 심정. "내 손에서 오는 선물을 선물로 받는 눈이 열리기를 원하시는 것 같다"는 인상을 관찰로 남겨 둔다. 경외(yirat elohim)가 분깃의 수용과 연결되어 있다는 것 — 두려움과 기쁨이 같은 하나님 앞에서 공존하는 것을 원하시는 것 같다.</p>
+
+<h3>J · 실존적 부름 — ECC 향방이 독자 안에서 점화하는 불씨</h3>
+<p>"내 분깃을 기뻐하는가, 하나님이 주신 것을 하나님의 선물로 누리는가" — 5장이 독자 안에 놓는 불씨다. 발을 삼가고 말을 아끼며 서원을 지키는 자리에서 비로소 "이것이 선물이다"를 들을 수 있다는 역설이 이 불씨를 지핀다. 큰 재물이 아니라 오늘의 밥상, 오늘의 수고, 오늘의 먹고 마심이 분깃이라는 것을 보는 눈을 묻는 장이다.</p>
+
+<p><strong>다음 장으로 가져갈 한 단어</strong>: <em>maton(선물)</em>.</p>
+<p><strong>다음 장으로 미는 운동</strong>: 분깃이 선물로 명시됐는데, 6장은 그 선물을 누리지 못하는 경우를 관찰한다. 선물이 있어도 누리지 못하면 어떻게 되는가.</p>
+      </div>
+    </section>
+
+    <div class="next-row">
+      <a href="/magazine/ECC/4/">
+        <div class="nav-kicker">← 이전 장</div>
+        <div class="nav-title">전도서 4장</div>
+        <div class="nav-preview">억압받는 자들의 현실과 동무와 함께하는 수고.</div>
+      </a>
+      <a href="/magazine/ECC/">
+        <div class="nav-kicker">↑ 권 차례</div>
+        <div class="nav-title">전도서 차례로</div>
+        <div class="nav-preview">다른 장을 골라 들어가실 수 있습니다.</div>
+      </a>
+      <a href="/magazine/ECC/6/">
+        <div class="nav-kicker">→ 다음 장</div>
+        <div class="nav-title">전도서 6장</div>
+        <div class="nav-preview">누리지 못하는 재물의 헛됨.</div>
+      </a>
+    </div>
+
+    <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
+  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 곳을 만듭니다.</h3>
+  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 곳을 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
+  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
+    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
+    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
+  </div>
+  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
+</aside>
+
+  </main>
+</div>
+
+<script>
+  try {
+    localStorage.setItem('observatory:last:ecc5', JSON.stringify({
+      href: '/magazine/ECC/5/',
+      title: '전도서 5장',
+      excerpt: '하나님 앞에서 말을 삼가고 서원을 지키며, 먹고 마시는 분깃이 하나님의 선물임을 관찰.'
+    }));
+  } catch(e) {}
+
+  (function() {
+    var navLinks = document.querySelectorAll('.toc-side a[data-target]');
+    function openAndScroll(targetId) {
+      var el = document.getElementById(targetId);
+      if (!el) return;
+      if (el.tagName === 'DETAILS') el.open = true;
+      navLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var activeLinks = document.querySelectorAll('.toc-side a[data-target="' + targetId + '"]');
+      activeLinks.forEach(function(a) { a.classList.add('is-active'); });
+      setTimeout(function() {
+        var rect = el.getBoundingClientRect();
+        window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+      }, 30);
+    }
+    navLinks.forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var t = this.getAttribute('data-target');
+        history.replaceState(null, '', '#' + t);
+        openAndScroll(t);
+      });
+    });
+    if (location.hash) {
+      var initial = location.hash.replace('#', '');
+      if (document.getElementById(initial)) {
+        setTimeout(function() { openAndScroll(initial); }, 60);
+      }
+    }
+    var stages = ['s1', 's2', 's8', 'synthesis']
+      .map(function(id) { var n = document.getElementById(id); return n ? {id: id, el: n} : null; })
+      .filter(Boolean);
+    function updateActive() {
+      var y = window.scrollY + 120;
+      var current = null;
+      for (var i = 0; i < stages.length; i++) {
+        if (stages[i].el.offsetTop <= y) current = stages[i].id;
+      }
+      if (current) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('is-active', a.getAttribute('data-target') === current);
+        });
+      }
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
+</script>
+
+<footer class="foot foot--mini">
+  <style>
+    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
+    .foot--mini strong{color:#2a241c}
+    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
+    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    @media(max-width:680px){
+      .foot--mini .foot--mini__inner{justify-content:flex-start}
+    }
+  </style>
+  <div class="foot--mini__inner">
+    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
+    <span>고유번호 <strong>137-82-94771</strong></span>
+    <span class="foot--mini__build">build 2026-06-20</span>
+  </div>
+</footer>
+
+<script src="/assets/back-to-top.js" defer></script>
+<script src="/assets/deck-toggle.js" defer></script>
+<script src="/assets/sbm-share.js" defer></script>
+</body>
+</html>
