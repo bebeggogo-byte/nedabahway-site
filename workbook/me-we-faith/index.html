@@ -583,7 +583,32 @@ body{background:white;}
 <textarea rows="2" id="mdActListen" placeholder="예: 조언하려 서두르다 상대의 진짜 마음을 놓쳤다"></textarea>
 <div class="label-sm">기도 — 한 줄 기도</div>
 <input class="text-input" id="prayActListen" placeholder="예: 듣기는 속히, 말하기는 더디 하는 사람이 되게 하소서"></div>
-<div class="next-nav"><button class="prev-card" onclick="showTab('actSafety')">◀</button><button class="next-card" onclick="showTab('actDisc')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🎭 3-다 · 한 몸의 다양성</div></button></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actSafety')">◀</button><button class="next-card" onclick="showTab('actHexaco')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🧭 3-나+ · 성품 여섯 빛깔</div></button></div>
+</div>
+
+<!-- ===== 3-나+ · 성품의 여섯 빛깔 (HEXACO) ===== -->
+<div class="activity-section" id="actHexaco">
+<div class="bridge">🌉 소통 스타일을 보기 전에 — 나를 이루는 <b>성품의 여섯 빛깔</b>을 살핍니다. 유형이 아니라, <b>여섯 개의 스펙트럼</b> 위에 놓인 지금의 내 자리예요.</div>
+<div class="sec-title"><span class="sec-num">3-나+</span>성품의 여섯 빛깔 (HEXACO)</div>
+<div class="sec-desc">정직겸손 · 정서성 · 외향성 · 원만성 · 성실성 · 개방성 (+ 이타성) — 27문항, 우열이 아니라 결의 차이</div>
+<div class="verse">무슨 일을 하든지 마음을 다하여 주께 하듯 하고 사람에게 하듯 하지 말라<span class="verse-ref">골로새서 3:23 · 개역개정</span></div>
+<div class="guide-box">🧭 각 문항을 1~5점으로 <b>(1 전혀 아니다 · 5 매우 그렇다)</b>. 규준(비교할 평균 집단)이 없는 <b>자기 성찰용</b> 문항이라, 점수는 백분위가 아니라 <b>1~5점 평균과 밴드(낮음·중간·높음)</b>로만 봅니다. 좋고 나쁨이 아니라 <b>스펙트럼 위 지금의 내 자리</b> — 유형이 아닌 오늘의 스냅샷이며, 성품은 <b>자라가는 것</b>입니다.</div>
+<div class="guide-box" style="border-left-color:var(--accent);background:#efe7d6;color:#5a4a33;">🧭 <b>이 검사의 본질과 의도</b> — HEXACO는 여러 언어권의 실증 연구로 추려낸 <b>여섯 성격 요인</b> 모델입니다. 사람을 몇 가지 '유형'으로 나누지 않고, 여섯 개의 <b>연속선(스펙트럼)</b> 위 지금 내 자리를 봅니다. MBTI·빅파이브와의 결정적 차이는 맨 앞의 <b>정직-겸손(H)</b> — 정직·겸손이냐, 이용·과시냐를 드러내는 축이에요. 여섯 결 중 <b>정직-겸손</b>과 아래의 <b>이타성</b>은 인격(성품)에 가깝고, 정서성·외향성·원만성·성실성·개방성은 <b>타고난 기질·성향</b>에 가깝습니다 — 어느 쪽도 더 낫거나 못하지 않아요. 목표는 둘: 나를 정직하게 이해하고, 서로의 다름을 존중하며 <b>한 몸</b>으로 세워지는 것.</div>
+<div id="hexQ"></div>
+<div class="result-box" id="hexResult">
+<h3>🎨 성품의 여섯 빛깔 <span style="font-size:11px;opacity:.85;">(실시간)</span></h3>
+<div class="radar-wrap"><svg id="hexRadar" viewBox="0 0 360 320"></svg></div>
+<div id="hexBars"></div>
+<div id="hexLines" style="font-size:12px;line-height:1.9;margin-top:10px;opacity:.97;"></div>
+<p id="hexCaveat" style="font-size:11px;opacity:.85;margin-top:8px;line-height:1.6;">※ 규준 없는 자기보고 스냅샷입니다. 유형이 아니라 여섯 스펙트럼 위 내 자리이며, 성품은 자라갑니다.</p>
+</div>
+<div class="card" id="hexAltWrap" style="display:none;border-left:4px solid var(--accent);"><div class="card-title" style="color:var(--accent);">🤲 이타성 (Altruism) · 네다바</div><div id="hexAlt" style="font-size:13px;line-height:1.85;"></div></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 여섯 빛깔 중, 하나님이 지금 자라게 하시려는 자리는?</div>
+<textarea rows="2" id="mdActHexaco" placeholder="예: 성실함은 채워졌지만, 새로움에 여는 마음은 더 자라야 한다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActHexaco" placeholder="예: 맡기신 성품을 청지기로 정직하게 가꾸어 자라가게 하소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actListen')">◀</button><button class="next-card" onclick="showTab('actDisc')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🎭 3-다 · 한 몸의 다양성</div></button></div>
 </div>
 
 <div class="activity-section" id="actDisc">
@@ -599,7 +624,7 @@ body{background:white;}
 <textarea rows="2" id="mdActDisc" placeholder="예: 느린 유형을 답답해했는데, 그 성실함이 팀을 받쳐왔다"></textarea>
 <div class="label-sm">기도 — 한 줄 기도</div>
 <input class="text-input" id="prayActDisc" placeholder="예: 다름을 우열로 보지 않고 한 몸으로 존중하게 하소서"></div>
-<div class="next-nav"><button class="prev-card" onclick="showTab('actListen')">◀</button><button class="next-card" onclick="showTab('actPeer')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🤝 3-라 · 서로 세움</div></button></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actHexaco')">◀</button><button class="next-card" onclick="showTab('actPeer')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🤝 3-라 · 서로 세움</div></button></div>
 </div>
 
 <div class="activity-section" id="actPeer">
@@ -766,7 +791,7 @@ var GROUPS=[
  {id:'g0',label:'0부 워밍업',items:[['act0','📋 자가진단'],['actReview','🌓 전반기 회고']]},
  {id:'g1',label:'1부 ME',items:[['actWheel','🎡 라이프 휠'],['actRipple','🌊 파급효과'],['actStrength','💪 강점'],['actSelfLead','🧭 셀프리더십'],['actCircle','🎯 영향력의 원']]},
  {id:'g2',label:'2부 LEAD',items:[['actMotive','🔋 동기'],['actGrow','🌱 GROW']]},
- {id:'g3',label:'3부 WE',items:[['actSafety','🛡️ 안전감'],['actListen','👂 경청'],['actDisc','🎭 소통'],['actPeer','🤝 동료코칭'],['actStrengthMap','🧩 강점역할'],['actSBI','🌟 인정'],['actPromise','✋ 약속']]},
+ {id:'g3',label:'3부 WE',items:[['actSafety','🛡️ 안전감'],['actListen','👂 경청'],['actHexaco','🧭 성품(HEXACO)'],['actDisc','🎭 소통'],['actPeer','🤝 동료코칭'],['actStrengthMap','🧩 강점역할'],['actSBI','🌟 인정'],['actPromise','✋ 약속']]},
  {id:'g4',label:'마무리',items:[['actPost','✍️ 마무리·리포트']]}
 ];
 function findGroup(id){ for(var i=0;i<GROUPS.length;i++){ for(var j=0;j<GROUPS[i].items.length;j++){ if(GROUPS[i].items[j][0]===id) return GROUPS[i].id; } } return 'g0'; }
@@ -796,7 +821,7 @@ function showTab(id){
   window.scrollTo(0,0);
 }
 // ===== 진행률 / 완료 판정 =====
-var SECTION_IDS=['act0','actWheel','actStrength','actSelfLead','actCircle','actMotive','actGrow','actSafety','actListen','actDisc','actPeer','actStrengthMap','actSBI','actPromise'];
+var SECTION_IDS=['act0','actWheel','actStrength','actSelfLead','actCircle','actMotive','actGrow','actSafety','actListen','actHexaco','actDisc','actPeer','actStrengthMap','actSBI','actPromise'];
 function isDone(id){
   switch(id){
     case 'act0': return getV('psSubmitted',false)===true;
@@ -808,6 +833,7 @@ function isDone(id){
     case 'actGrow': return !!(getV('gW1','') && getV('gG',''));
     case 'actSafety': return Object.keys(getV('safe',{})).length>=8;
     case 'actListen': return !!getV('lFo','');
+    case 'actHexaco': return Object.keys(getV('hexaco',{})).length>=27;
     case 'actDisc': return Object.keys(getV('disc',{})).length>=5;
     case 'actPeer': return !!getV('peerStep','');
     case 'actStrengthMap': return !!(Object.keys(getV('smCnt',{})).length||getV('strFam','')||getV('strPpl',''));
@@ -1003,6 +1029,35 @@ function buildReport(){
   var dsc=getDiscSc();
   if(dsc){ var dt2='D'; ['I','S','C'].forEach(function(k){ if(dsc[k]>dsc[dt2])dt2=k; }); var info=DISC_INFO[dt2]; var dcol={D:'#B4472E',I:'#9a6a3a',S:'#4F7A5B',C:'#3B82F6'}[dt2];
     H+='<div class="rp-block"><div class="rp-bt">🎭 나의 소통 스타일</div><div class="rp-disc"><div class="big" style="background:'+dcol+'">'+dt2+'</div><div><div class="dn">'+esc(info.n)+'</div><div class="dd">'+esc(info.desc)+'</div><div class="ds">강점 '+esc(info.str)+' · 주의 '+esc(info.weak)+'</div></div></div></div>'; }
+  // HEXACO 성품의 여섯 빛깔 (완료 시에만 · 약 2쪽, 시각 중심)
+  var hxans=getV('hexaco',{});
+  if(Object.keys(hxans).length>=27){
+    var hxavg=hexAvgs(hxans);
+    var hxv=HEX_ORDER.map(function(k){ return hxavg[k]; });
+    var hxlab=HEX_ORDER.map(function(k){ return HEX_NAME[k]+' '+hxavg[k].toFixed(1); });
+    var hhi=HEX_ORDER[0],hlo=HEX_ORDER[0]; HEX_ORDER.forEach(function(k){ if(hxavg[k]>hxavg[hhi])hhi=k; if(hxavg[k]<hxavg[hlo])hlo=k; });
+    // ① 히어로 육각형(六 = hexagon) — 시각 중심
+    H+='<div class="rp-block"><div class="rp-bt">🎨 성품의 여섯 빛깔 (HEXACO)</div>';
+    H+='<div style="text-align:center;font-size:12px;color:#888;margin:-4px 0 4px;">유형이 아니라 여섯 스펙트럼 위 내 자리 · 규준 없는 자기보고 스냅샷 (5점 평균)</div>';
+    H+='<div style="max-width:440px;margin:0 auto;">'+_radarSVG(hxv,hxlab,5,'rgba(30,64,175,.14)','#1E40AF')+'</div></div>';
+    // ② 시각 데이터 — 밴드 막대 + 한눈 요약 스트립
+    H+='<div class="rp-block"><div class="rp-bt">📊 여섯 빛깔 밴드</div>';
+    H+=_bars(HEX_ORDER.map(function(k){ var a=hxavg[k],b=hexBand(a); return {label:HEX_NAME[k]+' ('+k+')',val:a,max:5,disp:a.toFixed(1)+' · '+b,color:HEX_BAND_COL_D[b],badge:b,badgeBg:HEX_BADGE_BG[b],badgeC:HEX_BADGE_C[b]}; }));
+    H+='<div class="rp-chips" style="margin-top:10px;">'+HEX_ORDER.map(function(k){ return '<span class="rp-chip plain">'+esc(HEX_NAME[k]+' · '+hexBand(hxavg[k]))+'</span>'; }).join('')+'</div></div>';
+    // ③ 요인별 임팩트 카드 — 헤드라인 + 쉬운 설명 + 그 사람 밴드의 강점/주의
+    H+='<div class="rp-block"><div class="rp-bt">🧬 여섯 빛깔, 나에게는</div><div class="rp-cards">';
+    HEX_ORDER.forEach(function(k){ var a=hxavg[k],b=hexBand(a),info=HEX_INFO[k],bd=info[hexBandKey(b)];
+      H+='<div class="rp-cd"><div class="l">'+esc(HEX_NAME[k]+' ('+k+') · '+b)+'</div><div class="v"><b>'+esc(info.head)+'</b><br>'+esc(info.desc)+'<br><span style="color:#33553d;">💪 강점 '+esc(bd.str)+'</span><br><span style="color:#8f3320;">⚠️ 주의 '+esc(bd.warn)+'</span></div></div>'; });
+    H+='</div></div>';
+    // ③+ 이타성(Altruism) — HEXACO 25번째 결 · 네다바
+    if(hxavg.ALT!=null){ var altB=hexBand(hxavg.ALT), altBd=HEX_ALT_INFO[hexBandKey(altB)];
+      H+='<div class="rp-block"><div class="rp-bt">🤲 이타성 (Altruism) · 네다바</div><div class="rp-cd" style="border-left:4px solid #9a6a3a;"><div class="l">이타성 · '+esc(altB)+' ('+hxavg.ALT.toFixed(1)+'/5)</div><div class="v"><b>'+esc(HEX_ALT_INFO.head)+'</b><br>'+esc(HEX_ALT_INFO.desc)+'<br><span style="color:#33553d;">💪 '+esc(altBd.str)+'</span><br><span style="color:#8f3320;">⚠️ '+esc(altBd.warn)+'</span></div></div></div>';
+    }
+    // ④ 종합 한 줄 + 자라가는 것 / 청지기 프레이밍
+    H+='<div class="rp-block"><div class="rp-bt">✨ 당신의 성품을 한 문장으로</div><div class="rp-note">'+
+       esc('「'+HEX_INFO[hhi].head+'」이 지금 가장 선명한 빛깔이고, 「'+HEX_INFO[hlo].head+'」은 오늘 하나님이 자라게 하시는 자리입니다.')+'\n\n'+
+       esc('성품은 고정된 유형이 아니라 자라가는 것 — 맡기신 여섯 빛깔을 정직과 겸손으로 가꾸는 청지기의 몫입니다 (골 3:23 · 엡 4:29).')+'</div></div>';
+  }
   // 심리적 안전감 4단계
   var sf=getV('safe',{});
   if(Object.keys(sf).length>=8){ var sm=[[0,0],[0,0],[0,0],[0,0]]; SAFE.forEach(function(q,i){ if(sf[i]){sm[q.d][0]+=sf[i];sm[q.d][1]++;} }); var nm=['포용','학습','기여','도전'];
@@ -1028,7 +1083,7 @@ function buildReport(){
   // 소감
   var refl=getV('reflection',''); if(refl) H+='<div class="rp-block"><div class="rp-bt">✍️ 오늘 활동 소감 · 기도와 감사</div><div class="rp-note">'+esc(refl)+'</div></div>';
   // 묵상과 기도 (섹션별, 있는 것만)
-  var devoDefs=[['청지기 자기점검','mdAct0','prayAct0'],['감사·회개·에벤에셀','mdActReview','prayActReview'],['전인적 삶·안식','mdActWheel','prayActWheel'],['지체 원리·빛과 소금','mdActRipple','prayActRipple'],['은사 발견','mdActStrength','prayActStrength'],['청지기 리더십','mdActSelfLead','prayActSelfLead'],['하나님 주권과 내 몫','mdActCircle','prayActCircle'],['소명·자원하는 마음','mdActMotive','prayActMotive'],['분별·기도적 목표','mdActGrow','prayActGrow'],['은혜의 공동체','mdActSafety','prayActSafety'],['속히 듣기','mdActListen','prayActListen'],['한 몸의 다양성','mdActDisc','prayActDisc'],['서로 세움','mdActPeer','prayActPeer'],['은사 확인·격려','mdActStrengthMap','prayActStrengthMap'],['축복의 말','mdActSBI','prayActSBI'],['공동체 언약·순종','mdActPromise','prayActPromise'],['마무리 기도','mdActPost','prayActPost']];
+  var devoDefs=[['청지기 자기점검','mdAct0','prayAct0'],['감사·회개·에벤에셀','mdActReview','prayActReview'],['전인적 삶·안식','mdActWheel','prayActWheel'],['지체 원리·빛과 소금','mdActRipple','prayActRipple'],['은사 발견','mdActStrength','prayActStrength'],['청지기 리더십','mdActSelfLead','prayActSelfLead'],['하나님 주권과 내 몫','mdActCircle','prayActCircle'],['소명·자원하는 마음','mdActMotive','prayActMotive'],['분별·기도적 목표','mdActGrow','prayActGrow'],['은혜의 공동체','mdActSafety','prayActSafety'],['속히 듣기','mdActListen','prayActListen'],['성품의 여섯 빛깔(HEXACO)','mdActHexaco','prayActHexaco'],['한 몸의 다양성','mdActDisc','prayActDisc'],['서로 세움','mdActPeer','prayActPeer'],['은사 확인·격려','mdActStrengthMap','prayActStrengthMap'],['축복의 말','mdActSBI','prayActSBI'],['공동체 언약·순종','mdActPromise','prayActPromise'],['마무리 기도','mdActPost','prayActPost']];
   var devoCards=[];
   devoDefs.forEach(function(d){ var md=getV(d[1],''), pr=getV(d[2],''); if(md||pr){ var v=''; if(md) v+='🕮 '+esc(md); if(md&&pr) v+='<br>'; if(pr) v+='🙏 '+esc(pr); devoCards.push('<div class="rp-cd"><div class="l">'+esc(d[0])+'</div><div class="v">'+v+'</div></div>'); } });
   if(devoCards.length){ H+='<div class="rp-block"><div class="rp-bt">🕊️ 묵상과 기도</div><div class="rp-cards">'+devoCards.join('')+'</div></div>'; }
@@ -1365,6 +1420,125 @@ function scoreDisc(){
    '<p style="font-size:12.5px;margin-top:8px;">🤝 <b>이 유형(나)과 일할 때 팁:</b> '+info.tip+'</p>'+secLine;
 }
 
+// ===== 3-나+ HEXACO 성품의 여섯 빛깔 =====
+// 원본 문항 · 규준(norm) 없음 → 1~5점 평균 + 밴드로만 해석 (백분위/유형 아님)
+var HEXACO=[
+ {t:'아무도 모른다 해도, 부정한 이득은 취하고 싶지 않다.',f:'H',r:false,tag:'정직-겸손'},
+ {t:'원하는 걸 얻으려고 사람을 치켜세워 이용한 적이 있다.',f:'H',r:true,tag:'정직-겸손'},
+ {t:'나는 남들보다 특별한 대우나 특권을 받을 만하다고 느낀다.',f:'H',r:true,tag:'정직-겸손'},
+ {t:'값비싼 물건으로 나를 과시하는 데는 별 관심이 없다.',f:'H',r:false,tag:'정직-겸손'},
+ {t:'큰일을 앞두면 쉽게 걱정되고 마음이 불안해진다.',f:'E',r:false,tag:'정서성'},
+ {t:'힘든 일이 있어도 감정적으로 잘 흔들리지 않는 편이다.',f:'E',r:true,tag:'정서성'},
+ {t:'가까운 사람과 오래 떨어져 있으면 마음이 많이 쓰인다.',f:'E',r:false,tag:'정서성'},
+ {t:'웬만한 위험 앞에서도 별로 두렵지 않다.',f:'E',r:true,tag:'정서성'},
+ {t:'처음 보는 사람들과도 어렵지 않게 어울린다.',f:'X',r:false,tag:'외향성'},
+ {t:'여러 사람 앞에 나서는 자리는 되도록 피하고 싶다.',f:'X',r:true,tag:'외향성'},
+ {t:'나는 대체로 활기차고 에너지가 있는 편이다.',f:'X',r:false,tag:'외향성'},
+ {t:'모임에서 나는 주로 조용히 듣고만 있는 편이다.',f:'X',r:true,tag:'외향성'},
+ {t:'나에게 잘못한 사람도 비교적 쉽게 용서하는 편이다.',f:'A',r:false,tag:'원만성'},
+ {t:'의견이 다르면 끝까지 따져서 이겨야 직성이 풀린다.',f:'A',r:true,tag:'원만성'},
+ {t:'웬만한 불편은 참고 상대를 너그럽게 대한다.',f:'A',r:false,tag:'원만성'},
+ {t:'한번 서운하면 그 감정이 꽤 오래 간다.',f:'A',r:true,tag:'원만성'},
+ {t:'일을 시작하기 전에 계획을 세우고 순서를 정한다.',f:'C',r:false,tag:'성실성'},
+ {t:'물건이나 일정을 자주 깜빡하고 어수선한 편이다.',f:'C',r:true,tag:'성실성'},
+ {t:'맡은 일은 꼼꼼히 확인하고 끝까지 마무리한다.',f:'C',r:false,tag:'성실성'},
+ {t:'급하면 대충 넘기고 완성도는 크게 신경 쓰지 않는다.',f:'C',r:true,tag:'성실성'},
+ {t:'새로운 아이디어나 낯선 방식에 호기심이 생긴다.',f:'O',r:false,tag:'개방성'},
+ {t:'익숙하고 늘 하던 방식이 가장 편하고 좋다.',f:'O',r:true,tag:'개방성'},
+ {t:'예술·자연·이야기에서 깊은 감동을 자주 느낀다.',f:'O',r:false,tag:'개방성'},
+ {t:'추상적이거나 철학적인 주제에는 별로 흥미가 없다.',f:'O',r:true,tag:'개방성'},
+ {t:'곤경에 빠진 사람을 보면 그냥 지나치기가 어렵다.',f:'ALT',r:false,tag:'이타성'},
+ {t:'내가 조금 손해를 보더라도 남을 돕는 편이다.',f:'ALT',r:false,tag:'이타성'},
+ {t:'남의 어려움은 대체로 그 사람이 알아서 할 몫이라고 생각한다.',f:'ALT',r:true,tag:'이타성'}
+];
+var HEX_ORDER=['H','E','X','A','C','O'];
+var HEX_NAME={H:'정직-겸손',E:'정서성',X:'외향성',A:'원만성',C:'성실성',O:'개방성'};
+// 밴드 색: 화면(어두운 result-box)용 밝은 톤 / 리포트(밝은 배경)용 진한 톤 — 노랑 없음
+var HEX_BAND_COL_L={'높음':'#6EE7B7','중간':'#93b4e8','낮음':'#E9B98C'};
+var HEX_BAND_COL_D={'높음':'#4F7A5B','중간':'#1E40AF','낮음':'#9a6a3a'};
+var HEX_BADGE_BG={'높음':'#e2ece4','중간':'#e9eef9','낮음':'#efe6da'};
+var HEX_BADGE_C={'높음':'#33553d','중간':'#1E40AF','낮음':'#6b4a2a'};
+var HEX_INFO={
+ H:{head:'겉과 속이 같은 사람',phrase:'이익 앞에서도 양심이 먼저',desc:'규칙이 없어도 정직하게, 특별대우를 바라지 않는 마음. 맡기신 것을 정직·겸손으로 지키는 청지기의 결입니다.',
+    high:{str:'뒤가 없어 사람들이 마음 놓고 다가옵니다.',warn:'남의 얕은 술수를 놓쳐 손해 볼 수 있어요. 순진함을 지혜로 지키세요.'},
+    mid:{str:'정직과 실리를 상황 따라 조율합니다.',warn:'원칙과 이익 사이에서 흔들릴 때가 있어요.'},
+    low:{str:'자기표현과 협상에 능해 기회를 잘 잡습니다.',warn:'이익이 앞서면 신뢰를 잃을 수 있어요. 작은 정직부터 연습해요.'}},
+ E:{head:'깊이 느끼는 마음',phrase:'걱정과 애착을 깊게 느낌',desc:'두려움·걱정, 소중한 이를 향한 애착을 얼마나 깊게 느끼는가. 여림이 아니라 세심함입니다.',
+    high:{str:'공감이 깊고 위험을 미리 살핍니다.',warn:'걱정이 앞서 지칠 수 있어요. 안심할 자리를 만드세요.'},
+    mid:{str:'감정과 침착함 사이에서 균형을 잡습니다.',warn:'가끔 어느 쪽인지 스스로 헷갈릴 수 있어요.'},
+    low:{str:'웬만한 압박에도 담담하고 단단합니다.',warn:'남의 불안을 가볍게 볼 수 있어요. 한 번 더 물어봐 주세요.'}},
+ X:{head:'사람 사이에서 켜지는 에너지',phrase:'어울릴 때 힘이 난다',desc:'사람들과 어울리고 나설 때 힘이 솟는 결. 조용함도 나쁜 게 아니라 다른 충전 방식입니다.',
+    high:{str:'분위기를 살리고 사람을 잇습니다.',warn:'조용한 이의 몫을 덮을 수 있어요. 여백을 주세요.'},
+    mid:{str:'나설 때와 물러설 때를 가립니다.',warn:'상황에 따라 에너지 차이가 큽니다.'},
+    low:{str:'차분히 관찰하고 깊게 집중합니다.',warn:'좋은 생각을 속에만 둘 수 있어요. 한마디 꺼내보세요.'}},
+ A:{head:'품이 넓은 사람',phrase:'서운함을 잘 내려놓음',desc:'서운함을 얼마나 쉽게 풀고, 다툼보다 화합을 택하는가. 너그러움의 결입니다.',
+    high:{str:'갈등을 부드럽게 풀고 오래 품습니다.',warn:'할 말을 삼켜 손해 볼 수 있어요. 필요한 선은 지키세요.'},
+    mid:{str:'참을 때와 짚을 때를 가립니다.',warn:'상대에 따라 태도 차이가 날 수 있어요.'},
+    low:{str:'옳고 그름을 분명히 짚어 문제를 바로잡습니다.',warn:'서운함이 오래가면 관계가 굳어요. 먼저 풀어보세요.'}},
+ C:{head:'끝까지 해내는 힘',phrase:'계획하고 꼼꼼히 마무리',desc:'계획을 세우고 맡은 일을 끝까지 붙드는 결. 신뢰의 바탕입니다.',
+    high:{str:'믿고 맡길 수 있고 마무리가 깔끔합니다.',warn:'완벽을 좇다 지칠 수 있어요. 충분히 좋음도 허락하세요.'},
+    mid:{str:'중요한 일엔 꼼꼼, 나머진 유연합니다.',warn:'우선순위에 따라 완성도가 갈립니다.'},
+    low:{str:'유연하고 빠르게 큰 그림을 봅니다.',warn:'마무리가 새어나갈 수 있어요. 작은 체크리스트를 두세요.'}},
+ O:{head:'새로움에 열린 눈',phrase:'낯선 것에 호기심',desc:'새 아이디어·예술·깊은 질문에 끌리는 호기심의 결. 상상과 배움의 문입니다.',
+    high:{str:'새 길을 먼저 보고 배움이 넘칩니다.',warn:'익숙한 기본을 소홀히 할 수 있어요. 기초도 챙기세요.'},
+    mid:{str:'익숙함과 새로움을 상황에 맞게 씁니다.',warn:'때때로 어느 쪽에도 깊이 못 들 수 있어요.'},
+    low:{str:'검증된 방식으로 안정감을 줍니다.',warn:'새 기회를 놓칠 수 있어요. 가끔 낯선 문을 열어보세요.'}}
+};
+var HEX_ALT_INFO={head:'이타성 — 자원하여 내어주는 마음',
+ desc:'여섯 요인 밖에 HEXACO가 따로 두는 25번째 결(정직-겸손·정서성·원만성이 어우러진 자리)입니다. 네다바(נְדָבָה) — 강요가 아니라 마음에서 우러난 드림, 이 단체가 말하는 \'자원하는 이타\'가 바로 여기입니다.',
+ high:{str:'먼저 살피고 내어주는 손이 팀을 살립니다.',warn:'다 떠안다 지칠 수 있어요. 내어줌에도 안식이 필요합니다.'},
+ mid:{str:'도울 때와 지킬 때를 분별합니다.',warn:'마음과 행동이 때때로 엇갈릴 수 있어요.'},
+ low:{str:'선을 지키며 자기 몫을 단단히 감당합니다.',warn:'한 걸음의 내어줌이 큰 물꼬가 됩니다 — 작은 이타부터.'}};
+function hexBandKey(band){ return band==='높음'?'high':band==='낮음'?'low':'mid'; }
+function hexBand(v){ return v==null?null:(v<2.6?'낮음':(v>3.6?'높음':'중간')); }
+function hexAvgs(ans){
+  var sum={}; HEX_ORDER.forEach(function(k){ sum[k]=[0,0]; }); sum.ALT=[0,0];
+  HEXACO.forEach(function(q,i){ if(ans[i]!==undefined){ var v=q.r?(6-ans[i]):ans[i]; if(!sum[q.f]) sum[q.f]=[0,0]; sum[q.f][0]+=v; sum[q.f][1]++; } });
+  var avg={}; HEX_ORDER.forEach(function(k){ avg[k]= sum[k][1]? sum[k][0]/sum[k][1] : null; });
+  avg.ALT= sum.ALT[1]? sum.ALT[0]/sum.ALT[1] : null;
+  return avg;
+}
+function renderHexaco(){ renderLikert('hexQ','hexaco', HEXACO, function(ans){ scoreHexaco(ans); }); }
+function scoreHexaco(ans){
+  var avg=hexAvgs(ans);
+  var vals=HEX_ORDER.map(function(k){ return avg[k]==null?0:avg[k]; });
+  var labels=HEX_ORDER.map(function(k){ return HEX_NAME[k]; });
+  drawHexRadar(vals,labels);
+  var bars='';
+  HEX_ORDER.forEach(function(k){
+    var a=avg[k], band=hexBand(a), pct=a==null?0:a/5*100;
+    var col=a==null?'rgba(255,255,255,.4)':HEX_BAND_COL_L[band];
+    var badge=band?'<span class="ps-badge" style="background:rgba(255,255,255,.2);color:#fff;">'+band+'</span>':'';
+    bars+='<div class="ps-area-row"><div class="ps-area-head"><span>'+HEX_NAME[k]+' ('+k+')'+badge+'</span><span>'+(a==null?'–':a.toFixed(1)+' / 5')+'</span></div><div class="ps-area-bar"><div class="ps-area-fill" style="width:'+pct+'%;background:'+col+'"></div></div></div>';
+  });
+  document.getElementById('hexBars').innerHTML=bars;
+  var lines='';
+  HEX_ORDER.forEach(function(k){ var a=avg[k]; if(a==null) return; var band=hexBand(a), info=HEX_INFO[k];
+    lines+='<div><b>'+info.head+'</b> <span style="color:'+HEX_BAND_COL_L[band]+';font-weight:700;">'+band+'</span> · '+info.phrase+'</div>'; });
+  var done=Object.keys(ans).length;
+  if(!lines) lines='<span style="opacity:.85;">문항에 답하면 여섯 빛깔이 여기 나타납니다.</span>';
+  else if(done<27) lines+='<div style="opacity:.8;margin-top:6px;">답할수록 여섯 빛깔이 선명해집니다. ('+done+'/27)</div>';
+  else { var hi=HEX_ORDER[0],lo=HEX_ORDER[0]; HEX_ORDER.forEach(function(k){ if(avg[k]>avg[hi])hi=k; if(avg[k]<avg[lo])lo=k; });
+    lines+='<div style="margin-top:8px;">✓ 27문항 완료 — 지금 가장 선명한 빛깔은 「<b>'+HEX_INFO[hi].head+'</b>」, 오늘 자라갈 자리는 「<b>'+HEX_INFO[lo].head+'</b>」. 유형이 아니라 자라가는 성품입니다.</div>'; }
+  document.getElementById('hexLines').innerHTML=lines;
+  var altA=avg.ALT, altWrap=document.getElementById('hexAltWrap');
+  if(altWrap){ if(altA==null){ altWrap.style.display='none'; }
+    else { var ab=hexBand(altA), abd=HEX_ALT_INFO[hexBandKey(ab)]; altWrap.style.display='block';
+      document.getElementById('hexAlt').innerHTML='<b>'+HEX_ALT_INFO.head+'</b> <span style="color:'+HEX_BAND_COL_D[ab]+';font-weight:800;">'+ab+' ('+altA.toFixed(1)+'/5)</span><br>'+HEX_ALT_INFO.desc+'<br><span style="color:#33553d;">💪 '+abd.str+'</span><br><span style="color:#8f3320;">⚠️ '+abd.warn+'</span>'; } }
+}
+function drawHexRadar(vals,labels){
+  var svg=document.getElementById('hexRadar'); if(!svg) return;
+  var cx=180,cy=158,R=104,n=vals.length,s='';
+  [0.25,0.5,0.75,1].forEach(function(r){ var pts=''; for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; pts+=(cx+Math.cos(a)*R*r)+','+(cy+Math.sin(a)*R*r)+' '; } s+='<polygon points="'+pts+'" style="fill:none;stroke:rgba(255,255,255,.25);stroke-width:1;"/>'; });
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+Math.cos(a)*R)+'" y2="'+(cy+Math.sin(a)*R)+'" style="stroke:rgba(255,255,255,.25);stroke-width:1;"/>'; }
+  var poly='',pts=[];
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; var val=vals[i]/5; var x=cx+Math.cos(a)*R*val,y=cy+Math.sin(a)*R*val; poly+=x+','+y+' '; pts.push([x,y]); }
+  s+='<polygon points="'+poly+'" style="fill:rgba(255,255,255,.32);stroke:#fff;stroke-width:2.5;stroke-linejoin:round;"/>';
+  pts.forEach(function(p){ s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3.5" fill="#fff"/>'; });
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; var x=cx+Math.cos(a)*(R+28),y=cy+Math.sin(a)*(R+20)+4; s+='<text x="'+x+'" y="'+y+'" text-anchor="middle" style="font-size:10px;fill:#fff;font-weight:700;">'+labels[i]+' '+(vals[i]?vals[i].toFixed(1):'–')+'</text>'; }
+  svg.innerHTML=s;
+}
+
 // ===== 3-바 SBI =====
 function buildSBI(){
   ['sbiWho','sbiS','sbiB','sbiI'].forEach(function(id){ setV(id,document.getElementById(id).value); });
@@ -1387,7 +1561,7 @@ function buildFinal(){
 // ===== bind plain inputs =====
 function bindInputs(){
   var ids=['rvWin','rvLuck','rvPeople','rvLetgo','rvKw','rvKeep','rvDrop','rvStart','rpA','rpB','strStory','strMore','slWhen','slWhat','circleAction','mvNote','gG','gR','gO','gW1','gW2','safeAction','lF','lFe','lFo','peerStep','strFam','strPpl','sbiWho','sbiS','sbiB','sbiI','prOne','prAct','prT1','prT2','prT3','reflection',
-  'mdAct0','prayAct0','mdActReview','prayActReview','mdActWheel','prayActWheel','mdActRipple','prayActRipple','mdActStrength','prayActStrength','mdActSelfLead','prayActSelfLead','mdActCircle','prayActCircle','mdActMotive','prayActMotive','mdActGrow','prayActGrow','mdActSafety','prayActSafety','mdActListen','prayActListen','mdActDisc','prayActDisc','mdActPeer','prayActPeer','mdActStrengthMap','prayActStrengthMap','mdActSBI','prayActSBI','mdActPromise','prayActPromise','mdActPost','prayActPost'];
+  'mdAct0','prayAct0','mdActReview','prayActReview','mdActWheel','prayActWheel','mdActRipple','prayActRipple','mdActStrength','prayActStrength','mdActSelfLead','prayActSelfLead','mdActCircle','prayActCircle','mdActMotive','prayActMotive','mdActGrow','prayActGrow','mdActSafety','prayActSafety','mdActListen','prayActListen','mdActHexaco','prayActHexaco','mdActDisc','prayActDisc','mdActPeer','prayActPeer','mdActStrengthMap','prayActStrengthMap','mdActSBI','prayActSBI','mdActPromise','prayActPromise','mdActPost','prayActPost'];
   ids.forEach(function(id){ var el=document.getElementById(id); if(!el)return; el.value=getV(id,''); el.addEventListener('input',function(){ setV(id,el.value); }); });
   // mood restore
   var m=getV('mood',''); if(m){ document.querySelectorAll('.mood-btn').forEach(function(b){ if(b.textContent===m)b.classList.add('picked'); }); }
@@ -1397,7 +1571,7 @@ function bindInputs(){
 function initAll(){
   renderTabs();
   renderPS(); renderWheel(); renderStr(); renderSL(); renderConcerns();
-  renderMV(); renderSafe(); renderDisc();
+  renderMV(); renderSafe(); renderDisc(); renderHexaco();
   bindInputs(); renderStrMap();
   showTab('act0');
   refreshProgress();
