@@ -522,7 +522,43 @@ body{background:white;}
 <textarea rows="2" id="mdActMotive" placeholder="예: 인정받으려 애쓰다 지쳤다 — 다시 부르심의 기쁨으로 하고 싶다"></textarea>
 <div class="label-sm">기도 — 한 줄 기도</div>
 <input class="text-input" id="prayActMotive" placeholder="예: 마음이 감동되어 자원하여 드리는 마음을 부어 주소서"></div>
-<div class="next-nav"><button class="prev-card" onclick="showTab('actCircle')">◀</button><button class="next-card" onclick="showTab('actGrow')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🌱 2-나 · 분별·기도적 목표</div></button></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actCircle')">◀</button><button class="next-card" onclick="showTab('actBlindspot')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🕳️ 2-가+ · 나의 사각지대</div></button></div>
+</div>
+
+<!-- ===== 2-가+ · 나의 사각지대 ===== -->
+<div class="activity-section" id="actBlindspot">
+<div class="bridge">🌉 무엇이 나를 움직이는지 살폈다면 — 이제 <b>나도 모르게 나를 지치게 하는 자리</b>를 봅니다. 사각지대는 정의상 내 눈엔 보이지 않으니, 나를 살피시는 하나님과 서로가 거울이 되어줍니다.</div>
+<div class="sec-title"><span class="sec-num">2-가+</span>나의 사각지대</div>
+<div class="sec-desc">뇌는 익숙한 것을 '정답'이라 여깁니다 — 그래서 스스로는 보기 어려운 자리를, 정죄가 아니라 겸손한 살핌으로 들여다봅니다</div>
+<div class="verse">하나님이여 나를 살피사 내 마음을 아시며 나를 시험하사 내 뜻을 아옵소서<span class="verse-ref">시편 139:23 · 개역개정</span></div>
+<div class="guide-box">🕳️ <b>사각지대(Blind Spot)</b> — 익숙함이 편견을 만듭니다. 뇌는 늘 하던 판단을 '정답'으로 저장하죠. 그래서 나를 살피시는 하나님이 필요하고(시 139:23), 서로가 서로의 거울이 되어줍니다. 아래는 진단이 아니라, <b>살펴볼 자리</b>를 찾는 자기 성찰입니다.</div>
+<div class="card"><div class="card-title">🪞 A. 에코이스트 자가 점검 <span style="font-size:11px;color:var(--sub);">(0 낮음 ~ 10 높음)</span></div>
+<p class="label-sm" style="margin-top:0;">각 문항을 0~10으로 — 높을수록 그런 경향이 강한 편이에요. 우열이 아니라, 나를 살피는 자리입니다.</p>
+<div id="bsEchoGrid"></div>
+<div id="bsEchoResult" style="display:none;"></div></div>
+<div class="card"><div class="card-title">🔌 B. 나의 방전 신호</div>
+<p class="label-sm" style="margin-top:0;">지치면 이런 모습이 튀어나온다 — 나만의 신호</p>
+<input class="text-input" id="bsDischarge" placeholder="예: 말수가 줄고 혼자 삭인다 / 괜히 예민해진다 / 다 내가 하려 든다"></div>
+<div class="card"><div class="card-title">🧩 C. 나의 익숙함</div>
+<p class="label-sm" style="margin-top:0;">내가 '정답'이라 믿어온 익숙한 판단 하나 (사람에 대한 것이면 더 좋아요)</p>
+<input class="text-input" id="bsFamiliar" placeholder="예: '저 사람은 원래 저래' / '이건 원래 이렇게 하는 거야'"></div>
+<div class="card"><div class="card-title">👏 D. 감탄 목록</div>
+<p class="label-sm" style="margin-top:0;">최근 내가 나 자신에게 감탄했던 순간 (작을수록 좋습니다)</p>
+<input class="text-input" id="bsAdmire" placeholder="예: 오늘 아침 제때 일어났다 / 하기 싫은 전화를 먼저 걸었다">
+<div class="tip-box" style="margin:8px 0 0;">💡 아주 작은 것 하나면 충분해요 — '잘 참았다' 한 줄도 훌륭한 감탄입니다.</div></div>
+<div class="card"><div class="card-title">🚶 E. 실천 선언 · '거리 두기'</div>
+<p class="label-sm" style="margin-top:0;">익숙함에서 한 걸음 — 세 가지 '거리' 중 하나를 고르세요</p>
+<div id="bsDistOpts"></div>
+<div class="label-sm">고른 거리로, 이번 주에 해볼 한 가지</div>
+<input class="text-input" id="bsDeclare" placeholder="나는 이번 주에 ______ 을(를) 해보겠습니다.">
+<button class="btn btn-primary" style="width:100%;margin-top:10px;" onclick="buildBsCard()">📇 선언 카드 만들기</button>
+<div class="summary-card" id="bsCard" style="display:none;"></div></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 하나님이 살펴 드러내시려는 나의 사각지대 하나</div>
+<textarea rows="2" id="mdActBlindspot" placeholder="예: 늘 '내 탓'으로 삭이던 습관이 실은 나를 지치게 했다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActBlindspot" placeholder="예: 나를 살피시는 주님, 익숙함에 가린 자리를 은혜로 보게 하소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actMotive')">◀</button><button class="next-card" onclick="showTab('actGrow')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🌱 2-나 · 분별·기도적 목표</div></button></div>
 </div>
 
 <div class="activity-section" id="actGrow">
@@ -543,7 +579,7 @@ body{background:white;}
 <textarea rows="2" id="mdActGrow" placeholder="예: 조급함을 내려놓고, 주님이 원하시는 속도로 가고 싶다"></textarea>
 <div class="label-sm">기도 — 한 줄 기도</div>
 <input class="text-input" id="prayActGrow" placeholder="예: 주의 뜻이면 이 걸음을 이루시고, 아니면 막아 주소서"></div>
-<div class="next-nav"><button class="prev-card" onclick="showTab('actMotive')">◀</button><button class="next-card" onclick="showTab('actSafety')"><span class="nn-arrow">→</span><div class="nn-label">3부</div><div class="nn-title">🛡️ 3-가 · 은혜의 공동체</div></button></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actBlindspot')">◀</button><button class="next-card" onclick="showTab('actSafety')"><span class="nn-arrow">→</span><div class="nn-label">3부</div><div class="nn-title">🛡️ 3-가 · 은혜의 공동체</div></button></div>
 </div>
 
 <!-- ===== 3부 ===== -->
@@ -790,7 +826,7 @@ function pickMood(b){ document.querySelectorAll('.mood-btn').forEach(function(x)
 var GROUPS=[
  {id:'g0',label:'0부 워밍업',items:[['act0','📋 자가진단'],['actReview','🌓 전반기 회고']]},
  {id:'g1',label:'1부 ME',items:[['actWheel','🎡 라이프 휠'],['actRipple','🌊 파급효과'],['actStrength','💪 강점'],['actSelfLead','🧭 셀프리더십'],['actCircle','🎯 영향력의 원']]},
- {id:'g2',label:'2부 LEAD',items:[['actMotive','🔋 동기'],['actGrow','🌱 GROW']]},
+ {id:'g2',label:'2부 LEAD',items:[['actMotive','🔋 동기'],['actBlindspot','🕳️ 사각지대'],['actGrow','🌱 GROW']]},
  {id:'g3',label:'3부 WE',items:[['actSafety','🛡️ 안전감'],['actListen','👂 경청'],['actHexaco','🧭 성품(HEXACO)'],['actDisc','🎭 소통'],['actPeer','🤝 동료코칭'],['actStrengthMap','🧩 강점역할'],['actSBI','🌟 인정'],['actPromise','✋ 약속']]},
  {id:'g4',label:'마무리',items:[['actPost','✍️ 마무리·리포트']]}
 ];
@@ -821,7 +857,7 @@ function showTab(id){
   window.scrollTo(0,0);
 }
 // ===== 진행률 / 완료 판정 =====
-var SECTION_IDS=['act0','actWheel','actStrength','actSelfLead','actCircle','actMotive','actGrow','actSafety','actListen','actHexaco','actDisc','actPeer','actStrengthMap','actSBI','actPromise'];
+var SECTION_IDS=['act0','actWheel','actStrength','actSelfLead','actCircle','actMotive','actBlindspot','actGrow','actSafety','actListen','actHexaco','actDisc','actPeer','actStrengthMap','actSBI','actPromise'];
 function isDone(id){
   switch(id){
     case 'act0': return getV('psSubmitted',false)===true;
@@ -830,6 +866,7 @@ function isDone(id){
     case 'actSelfLead': return Object.keys(getV('sl',{})).length>=12;
     case 'actCircle': { var l=getV('concerns',[]); return l.length>0 && l.some(function(c){return c.s>0;}); }
     case 'actMotive': return Object.keys(getV('mv',{})).length>=12;
+    case 'actBlindspot': return Object.keys(getV('bsEcho',{})).length>=5 || !!getV('bsDeclare','');
     case 'actGrow': return !!(getV('gW1','') && getV('gG',''));
     case 'actSafety': return Object.keys(getV('safe',{})).length>=8;
     case 'actListen': return !!getV('lFo','');
@@ -1021,6 +1058,21 @@ function buildReport(){
   var msc=getMotiveSc();
   if(msc){ var mk=['recog','rel','growth','stable'],mt=mk[0]; mk.forEach(function(k){ if(msc[k]>msc[mt])mt=k; }); var mmax=Math.max(1,msc.recog,msc.rel,msc.growth,msc.stable);
     H+='<div class="rp-block"><div class="rp-bt">🔋 나를 움직이는 동기</div>'+_bars(mk.map(function(k){ return {label:MV_NAME[k],val:msc[k],max:mmax,disp:String(msc[k]),color:(k===mt?'#9a6a3a':'#9db0c8'),badge:(k===mt?'가장 강함':''),badgeBg:'#efe6da',badgeC:'#6b4a2a'}; }))+'</div>'; }
+  // 나의 사각지대
+  var bsEcho=getV('bsEcho',{}), bsDecl=getV('bsDeclare',''), bsDi=getV('bsDist',null);
+  if(Object.keys(bsEcho).length || bsDecl){
+    H+='<div class="rp-block"><div class="rp-bt">🕳️ 나의 사각지대</div>';
+    if(Object.keys(bsEcho).length){ var bhi=-1,bhv=-1; BS_ECHO.forEach(function(t,i){ if(bsEcho[i]!==undefined&&bsEcho[i]>bhv){bhv=bsEcho[i];bhi=i;} });
+      if(bhi>=0) H+='<div class="rp-hl">🪞 가장 높은 자리 · <b>'+esc(BS_ECHO[bhi])+'</b> ('+bhv+'/10) — 약점이 아니라 살펴볼 자리</div>'; }
+    var bcards=[];
+    if(getV('bsDischarge','')) bcards.push(['방전 신호', getV('bsDischarge','')]);
+    if(getV('bsFamiliar','')) bcards.push(["익숙한 '정답'", getV('bsFamiliar','')]);
+    if(getV('bsAdmire','')) bcards.push(['나에게 감탄한 순간', getV('bsAdmire','')]);
+    if(bsDi!=null && bsDi<BS_DIST.length) bcards.push(['실천 · '+BS_DIST[bsDi].k, bsDecl||BS_DIST[bsDi].d]);
+    else if(bsDecl) bcards.push(['실천 선언', bsDecl]);
+    if(bcards.length) H+='<div class="rp-cards">'+bcards.map(function(c){return '<div class="rp-cd"><div class="l">'+esc(c[0])+'</div><div class="v">'+esc(c[1])+'</div></div>';}).join('')+'</div>';
+    H+='</div>';
+  }
   // 셀프리더십 3전략
   var slans=getV('sl',{});
   if(Object.keys(slans).length>=12){ var ssm=[[0,0],[0,0],[0,0]]; SL.forEach(function(q,i){ if(slans[i]){ssm[q.d][0]+=slans[i];ssm[q.d][1]++;} }); var slv=[0,1,2].map(function(d){ return ssm[d][1]?ssm[d][0]/ssm[d][1]:0; }); var sllo=0; slv.forEach(function(v,d){ if(v<slv[sllo])sllo=d; });
@@ -1083,7 +1135,7 @@ function buildReport(){
   // 소감
   var refl=getV('reflection',''); if(refl) H+='<div class="rp-block"><div class="rp-bt">✍️ 오늘 활동 소감 · 기도와 감사</div><div class="rp-note">'+esc(refl)+'</div></div>';
   // 묵상과 기도 (섹션별, 있는 것만)
-  var devoDefs=[['청지기 자기점검','mdAct0','prayAct0'],['감사·회개·에벤에셀','mdActReview','prayActReview'],['전인적 삶·안식','mdActWheel','prayActWheel'],['지체 원리·빛과 소금','mdActRipple','prayActRipple'],['은사 발견','mdActStrength','prayActStrength'],['청지기 리더십','mdActSelfLead','prayActSelfLead'],['하나님 주권과 내 몫','mdActCircle','prayActCircle'],['소명·자원하는 마음','mdActMotive','prayActMotive'],['분별·기도적 목표','mdActGrow','prayActGrow'],['은혜의 공동체','mdActSafety','prayActSafety'],['속히 듣기','mdActListen','prayActListen'],['성품의 여섯 빛깔(HEXACO)','mdActHexaco','prayActHexaco'],['한 몸의 다양성','mdActDisc','prayActDisc'],['서로 세움','mdActPeer','prayActPeer'],['은사 확인·격려','mdActStrengthMap','prayActStrengthMap'],['축복의 말','mdActSBI','prayActSBI'],['공동체 언약·순종','mdActPromise','prayActPromise'],['마무리 기도','mdActPost','prayActPost']];
+  var devoDefs=[['청지기 자기점검','mdAct0','prayAct0'],['감사·회개·에벤에셀','mdActReview','prayActReview'],['전인적 삶·안식','mdActWheel','prayActWheel'],['지체 원리·빛과 소금','mdActRipple','prayActRipple'],['은사 발견','mdActStrength','prayActStrength'],['청지기 리더십','mdActSelfLead','prayActSelfLead'],['하나님 주권과 내 몫','mdActCircle','prayActCircle'],['소명·자원하는 마음','mdActMotive','prayActMotive'],['나의 사각지대','mdActBlindspot','prayActBlindspot'],['분별·기도적 목표','mdActGrow','prayActGrow'],['은혜의 공동체','mdActSafety','prayActSafety'],['속히 듣기','mdActListen','prayActListen'],['성품의 여섯 빛깔(HEXACO)','mdActHexaco','prayActHexaco'],['한 몸의 다양성','mdActDisc','prayActDisc'],['서로 세움','mdActPeer','prayActPeer'],['은사 확인·격려','mdActStrengthMap','prayActStrengthMap'],['축복의 말','mdActSBI','prayActSBI'],['공동체 언약·순종','mdActPromise','prayActPromise'],['마무리 기도','mdActPost','prayActPost']];
   var devoCards=[];
   devoDefs.forEach(function(d){ var md=getV(d[1],''), pr=getV(d[2],''); if(md||pr){ var v=''; if(md) v+='🕮 '+esc(md); if(md&&pr) v+='<br>'; if(pr) v+='🙏 '+esc(pr); devoCards.push('<div class="rp-cd"><div class="l">'+esc(d[0])+'</div><div class="v">'+v+'</div></div>'); } });
   if(devoCards.length){ H+='<div class="rp-block"><div class="rp-bt">🕊️ 묵상과 기도</div><div class="rp-cards">'+devoCards.join('')+'</div></div>'; }
@@ -1342,6 +1394,62 @@ function scoreMV(){
   document.getElementById('mvBars').innerHTML=html;
 }
 
+// ===== 2-가+ 나의 사각지대 =====
+var BS_ECHO=[
+ '나는 주목받는 것이 몹시 불편하다',
+ '갈등이 생길 것 같으면 미리 피한다',
+ "문제가 생기면 무조건 '내 탓'부터 한다",
+ '남에게 폐 끼치는 것이 정말 싫다',
+ '나는 나 자신에게 지나치게 엄격하다'
+];
+var BS_DIST=[
+ {k:'관계의 거리',d:'나쁜 연락처는 지우고, 느슨하고 다양한 인맥'},
+ {k:'시선의 거리',d:'감각과 편견을 의심하고, 맥락을 분리'},
+ {k:'나와의 거리',d:'낯선 취미로 새로운 나의 가치를 발견'}
+];
+function renderBlindspot(){
+  var g=document.getElementById('bsEchoGrid'); if(!g) return;
+  var vals=getV('bsEcho',{}); var html='';
+  BS_ECHO.forEach(function(t,i){
+    var set=vals[i]!==undefined; var v=set?vals[i]:0;
+    html+='<div class="wheel-row" style="padding:4px 8px;border-radius:8px;"><label>'+(i+1)+'. '+t+'</label><input type="range" min="0" max="10" value="'+v+'" data-i="'+i+'"><span class="wheel-val" id="bsv'+i+'">'+(set?v:'–')+'</span></div>';
+  });
+  g.innerHTML=html;
+  g.querySelectorAll('input').forEach(function(inp){ inp.oninput=function(){
+    var i=+inp.dataset.i; document.getElementById('bsv'+i).textContent=inp.value;
+    var vals=getV('bsEcho',{}); vals[i]=+inp.value; setV('bsEcho',vals); scoreBlindspot();
+  };});
+  renderBsDist();
+  scoreBlindspot();
+}
+function scoreBlindspot(){
+  var vals=getV('bsEcho',{}); var el=document.getElementById('bsEchoResult'); if(!el) return;
+  if(!Object.keys(vals).length){ el.style.display='none';
+    document.querySelectorAll('#bsEchoGrid .wheel-row').forEach(function(r){ r.style.background='transparent'; }); return; }
+  var hi=-1,hv=-1; BS_ECHO.forEach(function(t,i){ if(vals[i]!==undefined && vals[i]>hv){ hv=vals[i]; hi=i; } });
+  document.querySelectorAll('#bsEchoGrid .wheel-row').forEach(function(r,idx){ r.style.background=(idx===hi?'#f3efe4':'transparent'); });
+  el.style.display='block';
+  el.innerHTML='<div class="tip-box" style="margin:10px 0 0;">🪞 지금 가장 높은 자리 — <b>'+esc(BS_ECHO[hi])+'</b> ('+hv+'점)<br>가장 높은 곳이 지금 당신을 지치게 하는 자리일 수 있어요 — 약점이 아니라, 살펴볼 자리입니다.</div>';
+}
+function renderBsDist(){
+  var c=document.getElementById('bsDistOpts'); if(!c) return;
+  var chosen=getV('bsDist',null);
+  c.innerHTML=BS_DIST.map(function(o,i){
+    return '<label class="opt'+(chosen===i?' chosen':'')+'" onclick="pickBsDist('+i+')"><b>'+o.k+'</b> — '+o.d+'</label>';
+  }).join('');
+}
+function pickBsDist(i){ setV('bsDist',i); renderBsDist(); }
+function buildBsCard(){
+  setV('bsDeclare',document.getElementById('bsDeclare').value);
+  var el=document.getElementById('bsCard'); if(!el) return;
+  var di=getV('bsDist',null), dist=(di!=null&&di<BS_DIST.length)?BS_DIST[di]:null;
+  var sent=getV('bsDeclare','');
+  el.style.display='block';
+  el.innerHTML='<h3>📇 나의 사각지대 실천 선언</h3>'+
+   '<div class="kv"><b>거리</b> · '+(dist?esc(dist.k)+' — '+esc(dist.d):'—')+'</div>'+
+   '<div class="kv"><b>선언</b> · '+(sent?esc(sent):'나는 이번 주에 ______ 을(를) 해보겠습니다.')+'</div>';
+}
+
 // ===== 2-나 GROW =====
 function prefillGrow(){
   if(getV('gG','')) return;
@@ -1560,8 +1668,8 @@ function buildFinal(){
 
 // ===== bind plain inputs =====
 function bindInputs(){
-  var ids=['rvWin','rvLuck','rvPeople','rvLetgo','rvKw','rvKeep','rvDrop','rvStart','rpA','rpB','strStory','strMore','slWhen','slWhat','circleAction','mvNote','gG','gR','gO','gW1','gW2','safeAction','lF','lFe','lFo','peerStep','strFam','strPpl','sbiWho','sbiS','sbiB','sbiI','prOne','prAct','prT1','prT2','prT3','reflection',
-  'mdAct0','prayAct0','mdActReview','prayActReview','mdActWheel','prayActWheel','mdActRipple','prayActRipple','mdActStrength','prayActStrength','mdActSelfLead','prayActSelfLead','mdActCircle','prayActCircle','mdActMotive','prayActMotive','mdActGrow','prayActGrow','mdActSafety','prayActSafety','mdActListen','prayActListen','mdActHexaco','prayActHexaco','mdActDisc','prayActDisc','mdActPeer','prayActPeer','mdActStrengthMap','prayActStrengthMap','mdActSBI','prayActSBI','mdActPromise','prayActPromise','mdActPost','prayActPost'];
+  var ids=['rvWin','rvLuck','rvPeople','rvLetgo','rvKw','rvKeep','rvDrop','rvStart','rpA','rpB','strStory','strMore','slWhen','slWhat','circleAction','mvNote','bsDischarge','bsFamiliar','bsAdmire','bsDeclare','gG','gR','gO','gW1','gW2','safeAction','lF','lFe','lFo','peerStep','strFam','strPpl','sbiWho','sbiS','sbiB','sbiI','prOne','prAct','prT1','prT2','prT3','reflection',
+  'mdAct0','prayAct0','mdActReview','prayActReview','mdActWheel','prayActWheel','mdActRipple','prayActRipple','mdActStrength','prayActStrength','mdActSelfLead','prayActSelfLead','mdActCircle','prayActCircle','mdActMotive','prayActMotive','mdActBlindspot','prayActBlindspot','mdActGrow','prayActGrow','mdActSafety','prayActSafety','mdActListen','prayActListen','mdActHexaco','prayActHexaco','mdActDisc','prayActDisc','mdActPeer','prayActPeer','mdActStrengthMap','prayActStrengthMap','mdActSBI','prayActSBI','mdActPromise','prayActPromise','mdActPost','prayActPost'];
   ids.forEach(function(id){ var el=document.getElementById(id); if(!el)return; el.value=getV(id,''); el.addEventListener('input',function(){ setV(id,el.value); }); });
   // mood restore
   var m=getV('mood',''); if(m){ document.querySelectorAll('.mood-btn').forEach(function(b){ if(b.textContent===m)b.classList.add('picked'); }); }
@@ -1571,7 +1679,7 @@ function bindInputs(){
 function initAll(){
   renderTabs();
   renderPS(); renderWheel(); renderStr(); renderSL(); renderConcerns();
-  renderMV(); renderSafe(); renderDisc(); renderHexaco();
+  renderMV(); renderBlindspot(); renderSafe(); renderDisc(); renderHexaco();
   bindInputs(); renderStrMap();
   showTab('act0');
   refreshProgress();
