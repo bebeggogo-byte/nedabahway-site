@@ -590,9 +590,10 @@ body{background:white;}
 <div class="activity-section" id="actHexaco">
 <div class="bridge">🌉 소통 스타일을 보기 전에 — 나를 이루는 <b>성품의 여섯 빛깔</b>을 살핍니다. 유형이 아니라, <b>여섯 개의 스펙트럼</b> 위에 놓인 지금의 내 자리예요.</div>
 <div class="sec-title"><span class="sec-num">3-나+</span>성품의 여섯 빛깔 (HEXACO)</div>
-<div class="sec-desc">정직겸손 · 정서성 · 외향성 · 원만성 · 성실성 · 개방성 — 24문항, 우열이 아니라 결의 차이</div>
+<div class="sec-desc">정직겸손 · 정서성 · 외향성 · 원만성 · 성실성 · 개방성 (+ 이타성) — 27문항, 우열이 아니라 결의 차이</div>
 <div class="verse">무슨 일을 하든지 마음을 다하여 주께 하듯 하고 사람에게 하듯 하지 말라<span class="verse-ref">골로새서 3:23 · 개역개정</span></div>
 <div class="guide-box">🧭 각 문항을 1~5점으로 <b>(1 전혀 아니다 · 5 매우 그렇다)</b>. 규준(비교할 평균 집단)이 없는 <b>자기 성찰용</b> 문항이라, 점수는 백분위가 아니라 <b>1~5점 평균과 밴드(낮음·중간·높음)</b>로만 봅니다. 좋고 나쁨이 아니라 <b>스펙트럼 위 지금의 내 자리</b> — 유형이 아닌 오늘의 스냅샷이며, 성품은 <b>자라가는 것</b>입니다.</div>
+<div class="guide-box" style="border-left-color:var(--accent);background:#efe7d6;color:#5a4a33;">🧭 <b>이 검사의 본질과 의도</b> — HEXACO는 여러 언어권의 실증 연구로 추려낸 <b>여섯 성격 요인</b> 모델입니다. 사람을 몇 가지 '유형'으로 나누지 않고, 여섯 개의 <b>연속선(스펙트럼)</b> 위 지금 내 자리를 봅니다. MBTI·빅파이브와의 결정적 차이는 맨 앞의 <b>정직-겸손(H)</b> — 정직·겸손이냐, 이용·과시냐를 드러내는 축이에요. 여섯 결 중 <b>정직-겸손</b>과 아래의 <b>이타성</b>은 인격(성품)에 가깝고, 정서성·외향성·원만성·성실성·개방성은 <b>타고난 기질·성향</b>에 가깝습니다 — 어느 쪽도 더 낫거나 못하지 않아요. 목표는 둘: 나를 정직하게 이해하고, 서로의 다름을 존중하며 <b>한 몸</b>으로 세워지는 것.</div>
 <div id="hexQ"></div>
 <div class="result-box" id="hexResult">
 <h3>🎨 성품의 여섯 빛깔 <span style="font-size:11px;opacity:.85;">(실시간)</span></h3>
@@ -601,6 +602,7 @@ body{background:white;}
 <div id="hexLines" style="font-size:12px;line-height:1.9;margin-top:10px;opacity:.97;"></div>
 <p id="hexCaveat" style="font-size:11px;opacity:.85;margin-top:8px;line-height:1.6;">※ 규준 없는 자기보고 스냅샷입니다. 유형이 아니라 여섯 스펙트럼 위 내 자리이며, 성품은 자라갑니다.</p>
 </div>
+<div class="card" id="hexAltWrap" style="display:none;border-left:4px solid var(--accent);"><div class="card-title" style="color:var(--accent);">🤲 이타성 (Altruism) · 네다바</div><div id="hexAlt" style="font-size:13px;line-height:1.85;"></div></div>
 <div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
 <div class="label-sm">묵상 — 여섯 빛깔 중, 하나님이 지금 자라게 하시려는 자리는?</div>
 <textarea rows="2" id="mdActHexaco" placeholder="예: 성실함은 채워졌지만, 새로움에 여는 마음은 더 자라야 한다"></textarea>
@@ -831,7 +833,7 @@ function isDone(id){
     case 'actGrow': return !!(getV('gW1','') && getV('gG',''));
     case 'actSafety': return Object.keys(getV('safe',{})).length>=8;
     case 'actListen': return !!getV('lFo','');
-    case 'actHexaco': return Object.keys(getV('hexaco',{})).length>=24;
+    case 'actHexaco': return Object.keys(getV('hexaco',{})).length>=27;
     case 'actDisc': return Object.keys(getV('disc',{})).length>=5;
     case 'actPeer': return !!getV('peerStep','');
     case 'actStrengthMap': return !!(Object.keys(getV('smCnt',{})).length||getV('strFam','')||getV('strPpl',''));
@@ -1029,7 +1031,7 @@ function buildReport(){
     H+='<div class="rp-block"><div class="rp-bt">🎭 나의 소통 스타일</div><div class="rp-disc"><div class="big" style="background:'+dcol+'">'+dt2+'</div><div><div class="dn">'+esc(info.n)+'</div><div class="dd">'+esc(info.desc)+'</div><div class="ds">강점 '+esc(info.str)+' · 주의 '+esc(info.weak)+'</div></div></div></div>'; }
   // HEXACO 성품의 여섯 빛깔 (완료 시에만 · 약 2쪽, 시각 중심)
   var hxans=getV('hexaco',{});
-  if(Object.keys(hxans).length>=24){
+  if(Object.keys(hxans).length>=27){
     var hxavg=hexAvgs(hxans);
     var hxv=HEX_ORDER.map(function(k){ return hxavg[k]; });
     var hxlab=HEX_ORDER.map(function(k){ return HEX_NAME[k]+' '+hxavg[k].toFixed(1); });
@@ -1047,6 +1049,10 @@ function buildReport(){
     HEX_ORDER.forEach(function(k){ var a=hxavg[k],b=hexBand(a),info=HEX_INFO[k],bd=info[hexBandKey(b)];
       H+='<div class="rp-cd"><div class="l">'+esc(HEX_NAME[k]+' ('+k+') · '+b)+'</div><div class="v"><b>'+esc(info.head)+'</b><br>'+esc(info.desc)+'<br><span style="color:#33553d;">💪 강점 '+esc(bd.str)+'</span><br><span style="color:#8f3320;">⚠️ 주의 '+esc(bd.warn)+'</span></div></div>'; });
     H+='</div></div>';
+    // ③+ 이타성(Altruism) — HEXACO 25번째 결 · 네다바
+    if(hxavg.ALT!=null){ var altB=hexBand(hxavg.ALT), altBd=HEX_ALT_INFO[hexBandKey(altB)];
+      H+='<div class="rp-block"><div class="rp-bt">🤲 이타성 (Altruism) · 네다바</div><div class="rp-cd" style="border-left:4px solid #9a6a3a;"><div class="l">이타성 · '+esc(altB)+' ('+hxavg.ALT.toFixed(1)+'/5)</div><div class="v"><b>'+esc(HEX_ALT_INFO.head)+'</b><br>'+esc(HEX_ALT_INFO.desc)+'<br><span style="color:#33553d;">💪 '+esc(altBd.str)+'</span><br><span style="color:#8f3320;">⚠️ '+esc(altBd.warn)+'</span></div></div></div>';
+    }
     // ④ 종합 한 줄 + 자라가는 것 / 청지기 프레이밍
     H+='<div class="rp-block"><div class="rp-bt">✨ 당신의 성품을 한 문장으로</div><div class="rp-note">'+
        esc('「'+HEX_INFO[hhi].head+'」이 지금 가장 선명한 빛깔이고, 「'+HEX_INFO[hlo].head+'」은 오늘 하나님이 자라게 하시는 자리입니다.')+'\n\n'+
@@ -1440,7 +1446,10 @@ var HEXACO=[
  {t:'새로운 아이디어나 낯선 방식에 호기심이 생긴다.',f:'O',r:false,tag:'개방성'},
  {t:'익숙하고 늘 하던 방식이 가장 편하고 좋다.',f:'O',r:true,tag:'개방성'},
  {t:'예술·자연·이야기에서 깊은 감동을 자주 느낀다.',f:'O',r:false,tag:'개방성'},
- {t:'추상적이거나 철학적인 주제에는 별로 흥미가 없다.',f:'O',r:true,tag:'개방성'}
+ {t:'추상적이거나 철학적인 주제에는 별로 흥미가 없다.',f:'O',r:true,tag:'개방성'},
+ {t:'곤경에 빠진 사람을 보면 그냥 지나치기가 어렵다.',f:'ALT',r:false,tag:'이타성'},
+ {t:'내가 조금 손해를 보더라도 남을 돕는 편이다.',f:'ALT',r:false,tag:'이타성'},
+ {t:'남의 어려움은 대체로 그 사람이 알아서 할 몫이라고 생각한다.',f:'ALT',r:true,tag:'이타성'}
 ];
 var HEX_ORDER=['H','E','X','A','C','O'];
 var HEX_NAME={H:'정직-겸손',E:'정서성',X:'외향성',A:'원만성',C:'성실성',O:'개방성'};
@@ -1475,12 +1484,18 @@ var HEX_INFO={
     mid:{str:'익숙함과 새로움을 상황에 맞게 씁니다.',warn:'때때로 어느 쪽에도 깊이 못 들 수 있어요.'},
     low:{str:'검증된 방식으로 안정감을 줍니다.',warn:'새 기회를 놓칠 수 있어요. 가끔 낯선 문을 열어보세요.'}}
 };
+var HEX_ALT_INFO={head:'이타성 — 자원하여 내어주는 마음',
+ desc:'여섯 요인 밖에 HEXACO가 따로 두는 25번째 결(정직-겸손·정서성·원만성이 어우러진 자리)입니다. 네다바(נְדָבָה) — 강요가 아니라 마음에서 우러난 드림, 이 단체가 말하는 \'자원하는 이타\'가 바로 여기입니다.',
+ high:{str:'먼저 살피고 내어주는 손이 팀을 살립니다.',warn:'다 떠안다 지칠 수 있어요. 내어줌에도 안식이 필요합니다.'},
+ mid:{str:'도울 때와 지킬 때를 분별합니다.',warn:'마음과 행동이 때때로 엇갈릴 수 있어요.'},
+ low:{str:'선을 지키며 자기 몫을 단단히 감당합니다.',warn:'한 걸음의 내어줌이 큰 물꼬가 됩니다 — 작은 이타부터.'}};
 function hexBandKey(band){ return band==='높음'?'high':band==='낮음'?'low':'mid'; }
 function hexBand(v){ return v==null?null:(v<2.6?'낮음':(v>3.6?'높음':'중간')); }
 function hexAvgs(ans){
-  var sum={}; HEX_ORDER.forEach(function(k){ sum[k]=[0,0]; });
-  HEXACO.forEach(function(q,i){ if(ans[i]!==undefined){ var v=q.r?(6-ans[i]):ans[i]; sum[q.f][0]+=v; sum[q.f][1]++; } });
+  var sum={}; HEX_ORDER.forEach(function(k){ sum[k]=[0,0]; }); sum.ALT=[0,0];
+  HEXACO.forEach(function(q,i){ if(ans[i]!==undefined){ var v=q.r?(6-ans[i]):ans[i]; if(!sum[q.f]) sum[q.f]=[0,0]; sum[q.f][0]+=v; sum[q.f][1]++; } });
   var avg={}; HEX_ORDER.forEach(function(k){ avg[k]= sum[k][1]? sum[k][0]/sum[k][1] : null; });
+  avg.ALT= sum.ALT[1]? sum.ALT[0]/sum.ALT[1] : null;
   return avg;
 }
 function renderHexaco(){ renderLikert('hexQ','hexaco', HEXACO, function(ans){ scoreHexaco(ans); }); }
@@ -1502,10 +1517,14 @@ function scoreHexaco(ans){
     lines+='<div><b>'+info.head+'</b> <span style="color:'+HEX_BAND_COL_L[band]+';font-weight:700;">'+band+'</span> · '+info.phrase+'</div>'; });
   var done=Object.keys(ans).length;
   if(!lines) lines='<span style="opacity:.85;">문항에 답하면 여섯 빛깔이 여기 나타납니다.</span>';
-  else if(done<24) lines+='<div style="opacity:.8;margin-top:6px;">답할수록 여섯 빛깔이 선명해집니다. ('+done+'/24)</div>';
+  else if(done<27) lines+='<div style="opacity:.8;margin-top:6px;">답할수록 여섯 빛깔이 선명해집니다. ('+done+'/27)</div>';
   else { var hi=HEX_ORDER[0],lo=HEX_ORDER[0]; HEX_ORDER.forEach(function(k){ if(avg[k]>avg[hi])hi=k; if(avg[k]<avg[lo])lo=k; });
-    lines+='<div style="margin-top:8px;">✓ 24문항 완료 — 지금 가장 선명한 빛깔은 「<b>'+HEX_INFO[hi].head+'</b>」, 오늘 자라갈 자리는 「<b>'+HEX_INFO[lo].head+'</b>」. 유형이 아니라 자라가는 성품입니다.</div>'; }
+    lines+='<div style="margin-top:8px;">✓ 27문항 완료 — 지금 가장 선명한 빛깔은 「<b>'+HEX_INFO[hi].head+'</b>」, 오늘 자라갈 자리는 「<b>'+HEX_INFO[lo].head+'</b>」. 유형이 아니라 자라가는 성품입니다.</div>'; }
   document.getElementById('hexLines').innerHTML=lines;
+  var altA=avg.ALT, altWrap=document.getElementById('hexAltWrap');
+  if(altWrap){ if(altA==null){ altWrap.style.display='none'; }
+    else { var ab=hexBand(altA), abd=HEX_ALT_INFO[hexBandKey(ab)]; altWrap.style.display='block';
+      document.getElementById('hexAlt').innerHTML='<b>'+HEX_ALT_INFO.head+'</b> <span style="color:'+HEX_BAND_COL_D[ab]+';font-weight:800;">'+ab+' ('+altA.toFixed(1)+'/5)</span><br>'+HEX_ALT_INFO.desc+'<br><span style="color:#33553d;">💪 '+abd.str+'</span><br><span style="color:#8f3320;">⚠️ '+abd.warn+'</span>'; } }
 }
 function drawHexRadar(vals,labels){
   var svg=document.getElementById('hexRadar'); if(!svg) return;
