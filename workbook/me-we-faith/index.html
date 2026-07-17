@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ME → WE 워크숍 (크리스찬 버전) — 네다바웨이</title>
+<meta name="theme-color" content="#1E40AF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;500;700&display=swap');
+:root{
+--navy:#1E3A5F;--teal:#1E40AF;--accent:#8a9a7a;--copper:#9a6a3a;--red:#B4472E;
+--green:#4F7A5B;--blue:#3B82F6;--purple:#5B6B9E;--yellow:#8a9a7a;
+--bg:#f7f3ec;--card:#fdfaf3;--surface:#efe7d6;--text:#2a241c;--sub:#5a5048;--border:#e3dccd;
+--D:#B4472E;--I:#9a6a3a;--S:#4F7A5B;--C:#3B82F6;
+--ff-serif:'Noto Serif KR', serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
+/* LOGIN */
+.login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#1E3A5F 0%,#1E40AF 100%);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:24px;transition:opacity .5s,transform .5s;}
+.login-screen.hidden{opacity:0;pointer-events:none;transform:translateY(-20px);}
+.login-box{background:var(--card);border-radius:20px;padding:36px 30px;max-width:380px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+.login-logo{font-size:13px;color:var(--teal);font-weight:700;letter-spacing:.5px;margin-bottom:8px;}
+.login-title{font-size:22px;font-weight:900;color:var(--navy);margin-bottom:4px;}
+.login-sub{font-size:13px;color:var(--sub);margin-bottom:24px;}
+.login-input{width:100%;padding:14px 16px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-family:inherit;outline:none;transition:border .2s;text-align:center;}
+.login-input:focus{border-color:var(--teal);}
+.remember-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;font-size:13.5px;color:var(--sub);cursor:pointer;user-select:none;}
+.remember-row input{width:18px;height:18px;accent-color:var(--teal);cursor:pointer;}
+.login-btn{width:100%;padding:14px;background:var(--navy);color:white;border:none;border-radius:12px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;margin-top:12px;}
+.login-btn:active{background:var(--teal);}
+/* HEADER */
+.app-header{background:var(--card);border-bottom:3px solid var(--navy);padding:12px 16px;position:sticky;top:0;z-index:100;}
+.header-top{display:flex;justify-content:space-between;align-items:center;}
+.header-brand{font-size:10px;color:var(--teal);font-weight:700;}
+.header-user{font-size:12px;color:var(--sub);}
+.header-title{font-size:16px;font-weight:900;color:var(--navy);margin-top:2px;}
+.pdf-bar{padding:10px 16px;background:var(--card);border-bottom:1px solid var(--border);display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
+.pdf-btn{padding:9px 16px;background:var(--accent);color:white;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+.pdf-btn.secondary{background:var(--navy);}
+.pdf-btn.danger{background:#f6ece9;color:#8f3320;border:1px solid #e2c7bf;}
+.save-note{font-size:11px;color:var(--sub);align-self:center;}
+/* TABS */
+.tab-nav{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:62px;z-index:99;}
+.tab-groups{display:flex;gap:4px;padding:8px 12px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;border-bottom:1px solid #ece3d2;}
+.tab-groups::-webkit-scrollbar{display:none;}
+.tab-group-btn{flex-shrink:0;padding:8px 14px;border-radius:10px 10px 0 0;border:none;background:transparent;font-size:12px;font-weight:800;color:var(--sub);cursor:pointer;font-family:inherit;white-space:nowrap;border-bottom:3px solid transparent;}
+.tab-group-btn.active{color:var(--navy);border-bottom-color:var(--navy);background:linear-gradient(180deg,var(--card),var(--bg));}
+.tab-chips{display:flex;gap:6px;padding:8px 12px;overflow-x:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(180deg,var(--bg),var(--card));}
+.tab-chips::-webkit-scrollbar{display:none;}
+.tab-chip{flex-shrink:0;padding:6px 12px;border-radius:16px;border:1.5px solid var(--border);background:var(--card);font-size:11.5px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;white-space:nowrap;}
+.tab-chip.active{background:var(--navy);color:white;border-color:var(--navy);}
+/* SECTION */
+.activity-section{display:none;padding:16px;max-width:620px;margin:0 auto;}
+.activity-section.active{display:block;}
+.sec-num{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;border-radius:14px;background:var(--teal);color:white;font-size:13px;font-weight:900;margin-right:8px;}
+.sec-title{font-size:18px;font-weight:900;color:var(--navy);display:flex;align-items:center;margin-bottom:4px;}
+.sec-desc{font-size:13px;color:var(--sub);margin-bottom:16px;padding-left:36px;}
+.card{background:var(--card);border-radius:14px;padding:16px;margin-bottom:12px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.card-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.guide-box{background:#e9eef9;border-left:4px solid var(--teal);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px;font-size:13px;color:#1E40AF;line-height:1.7;}
+.warn-box{background:#eef0e7;border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px;font-size:13px;color:#4a5340;line-height:1.7;}
+.tip-box{background:#e9f0ea;border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px;font-size:13px;color:#33553d;line-height:1.7;}
+.story-box{border-left:4px solid var(--copper);background:#f3efe4;border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px;font-size:13px;line-height:1.7;color:#5f4a30;}
+.story-box b{color:var(--copper);}
+.ripple-row{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid #ece3d2;}
+.rp-k{flex:0 0 88px;font-weight:800;color:var(--teal);}
+.rp-ar{color:var(--sub);font-weight:700;}
+.rp-v{flex:1;color:var(--text);}
+.bridge{display:flex;gap:10px;background:#e9eef9;border-left:4px solid var(--teal);border-radius:0 12px 12px 0;padding:12px 14px;margin-bottom:14px;font-size:13px;color:#1E40AF;line-height:1.65;}
+textarea,.text-input{width:100%;padding:12px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;resize:vertical;outline:none;background:#fbf8f1;}
+textarea:focus,.text-input:focus{border-color:var(--teal);background:#fffdf8;}
+.text-input{padding:10px 12px;}
+.btn{padding:10px 18px;border:none;border-radius:10px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;}
+.btn-primary{background:var(--navy);color:white;}
+.btn-outline{background:var(--card);color:var(--navy);border:1.5px solid var(--navy);}
+.label-sm{font-size:12px;color:var(--sub);margin:8px 0 4px;font-weight:600;}
+/* scripture / verse */
+.verse{font-family:var(--ff-serif);border-left:3px solid var(--teal);background:var(--card);padding:12px 15px;border-radius:0 10px 10px 0;margin:10px 0;font-size:14.5px;line-height:1.95;color:var(--text);}
+.verse-ref{display:block;font-family:'Noto Sans KR',sans-serif;font-size:11px;color:var(--sub);margin-top:8px;font-weight:600;letter-spacing:.2px;}
+.verse-more{margin:6px 0 2px;font-size:12.5px;}
+.verse-more>summary{cursor:pointer;color:var(--teal);font-weight:700;font-family:'Noto Sans KR',sans-serif;font-size:12px;list-style:none;padding:2px 0;}
+.verse-more>summary::-webkit-details-marker{display:none;}
+.verse-more>summary::before{content:'▸ ';}
+.verse-more[open]>summary::before{content:'▾ ';}
+.verse-more .verse{margin:8px 0 2px;border-left-color:var(--accent);background:var(--surface);font-size:14px;}
+.heb{font-weight:700;color:var(--copper);}
+.heb em{font-style:normal;font-family:var(--ff-serif);}
+.verse-banner{font-family:var(--ff-serif);background:rgba(255,255,255,.15);border-left:3px solid rgba(255,255,255,.6);border-radius:0 8px 8px 0;padding:9px 13px;margin-top:11px;font-size:13.5px;line-height:1.75;}
+.verse-banner .verse-ref{color:rgba(255,255,255,.82);margin-top:5px;}
+.devo-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--copper);border-radius:0 12px 12px 0;}
+.devo-card .card-title{color:var(--copper);}
+/* tags */
+.tag-wrap{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0;}
+.tag{display:inline-flex;align-items:center;padding:9px 14px;border-radius:20px;font-size:13.5px;font-weight:500;border:1.5px solid var(--border);background:var(--card);cursor:pointer;user-select:none;min-height:38px;transition:all .12s;}
+.tag.selected{background:var(--teal);color:white;border-color:var(--teal);}
+.tag.top{background:var(--accent);color:white;border-color:var(--accent);box-shadow:0 0 0 2px rgba(138,154,122,.32);}
+/* likert */
+.lk-row{display:flex;gap:4px;justify-content:space-between;margin-top:6px;}
+.lk-row button{flex:1;padding:10px 4px;border:1.5px solid var(--border);background:var(--card);border-radius:8px;font-size:15px;font-weight:700;color:var(--sub);cursor:pointer;font-family:inherit;}
+.lk-row button.chosen{background:var(--teal);color:white;border-color:var(--teal);}
+.lk-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--sub);margin-top:4px;padding:0 2px;}
+.q-card{background:var(--card);border-radius:12px;padding:13px 14px;margin-bottom:10px;border:1px solid var(--border);}
+.q-text{font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.q-tag{display:inline-block;font-size:10px;color:#1E40AF;background:#e9eef9;border:1px solid #c5d3f0;padding:1px 7px;border-radius:8px;margin-bottom:6px;}
+/* choice */
+.opt{display:block;padding:11px 12px;border:1.5px solid var(--border);border-radius:10px;margin:6px 0;cursor:pointer;font-size:13.5px;}
+.opt.chosen{border-color:var(--teal);background:var(--teal);color:white;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media(max-width:520px){.grid-2{grid-template-columns:1fr;}}
+/* result bars */
+.result-box{background:linear-gradient(135deg,#1E3A5F,#1E40AF);color:white;border-radius:14px;padding:16px;margin:12px 0;}
+.result-box h3{font-size:15px;margin-bottom:10px;}
+.bar{margin:7px 0;}
+.bar-label{font-size:12px;font-weight:700;display:flex;justify-content:space-between;}
+.bar-track{background:rgba(255,255,255,.25);border-radius:8px;height:10px;overflow:hidden;margin-top:3px;}
+.bar-fill{height:100%;background:white;border-radius:8px;transition:width .3s;}
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;}
+.score-cell{background:rgba(255,255,255,.15);border-radius:8px;padding:8px;font-size:11px;}
+.score-cell b{display:block;font-size:18px;font-weight:900;}
+/* radar */
+.radar-wrap{display:flex;justify-content:center;margin:8px 0;}
+.radar-wrap svg{width:100%;max-width:360px;height:auto;}
+.radar-grid{fill:none;stroke:#ddd4c2;stroke-width:1;}
+.radar-axis{stroke:#ddd4c2;stroke-width:1;}
+.radar-area{fill:rgba(30,64,175,.18);stroke:#1E40AF;stroke-width:2;stroke-linejoin:round;}
+.radar-point{fill:var(--accent);stroke:#fdfaf3;stroke-width:1.5;}
+.radar-label{font-size:9px;fill:#1E3A5F;font-weight:600;}
+/* wheel grid */
+.wheel-row{display:flex;align-items:center;gap:8px;margin:9px 0;}
+.wheel-row label{flex:0 0 38%;font-size:13px;font-weight:700;color:var(--text);}
+.wh-hint{display:block;font-size:10px;color:var(--sub);font-weight:400;margin-top:1px;line-height:1.3;}
+.wheel-row input[type=range]{flex:1.4;accent-color:var(--teal);}
+.wheel-val{width:26px;text-align:center;font-weight:800;color:var(--teal);font-size:14px;}
+/* circle */
+.circle-area{position:relative;margin:14px auto;width:min(320px,84vw);aspect-ratio:1/1;}
+.circle-outer{position:absolute;inset:0;border-radius:50%;border:2px dashed #cbbfa6;display:flex;align-items:flex-start;justify-content:center;padding-top:8px;background:radial-gradient(circle,rgba(154,106,58,.05) 60%,transparent 60%);}
+.circle-inner{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:49%;height:49%;border-radius:50%;border:2px solid var(--teal);background:rgba(30,64,175,.07);display:flex;align-items:center;justify-content:center;}
+.circle-label{font-size:10px;font-weight:700;color:var(--sub);}
+.circle-label.inner{color:var(--teal);}
+.concern-tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;}
+.c-tag{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:16px;font-size:12px;font-weight:500;cursor:pointer;user-select:none;}
+.c-tag.none{background:#efe7d6;color:var(--sub);border:1px solid var(--border);}
+.c-tag.interest{background:#f0e7da;color:#6b4a2a;border:1px solid #d3bfa2;}
+.c-tag.influence{background:#e2ece4;color:#33553d;border:1px solid #a9c9b3;}
+.c-tag .cx{width:18px;height:18px;border-radius:50%;background:rgba(0,0,0,.12);display:inline-flex;align-items:center;justify-content:center;font-weight:900;}
+/* strength tournament */
+.tag.s1{background:var(--teal);color:#fff;border-color:var(--teal);}
+.tag.s2{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 0 0 2px rgba(59,130,246,.25);}
+.tag.s3{background:linear-gradient(135deg,#9a6a3a,#8a9a7a);color:#fff;border-color:var(--copper);box-shadow:0 0 0 3px rgba(154,106,58,.30);font-weight:700;}
+.str-legend{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 10px;font-size:11.5px;color:var(--sub);}
+.str-legend span{display:inline-flex;align-items:center;gap:5px;}
+.str-dot{width:13px;height:13px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.1);}
+.tag.sm1{background:#dbe3f5;border-color:#bccbee;color:#1E40AF;}
+.tag.sm2{background:var(--blue);border-color:var(--blue);color:#fff;}
+.tag.sm3{background:linear-gradient(135deg,#9a6a3a,#8a9a7a);border-color:var(--copper);color:#fff;box-shadow:0 0 0 2px rgba(154,106,58,.22);}
+.tag .smb{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;border-radius:9px;background:rgba(0,0,0,.32);color:#fff;font-size:11px;font-weight:800;margin-left:6px;padding:0 5px;}
+.tag.sm1 .smb{background:#1E40AF;}
+/* influence-circle chips */
+.cpool{display:flex;flex-wrap:wrap;gap:8px;min-height:42px;padding:10px;background:#f2ecdf;border:1.5px dashed var(--border);border-radius:10px;margin-top:6px;}
+.ptag{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:16px;font-size:12px;font-weight:600;background:var(--card);border:1.5px solid var(--border);color:var(--text);cursor:pointer;user-select:none;}
+.cchip{position:absolute;transform:translate(-50%,-50%);background:var(--card);border:1.5px solid;border-radius:14px;padding:6px 9px;font-size:11px;font-weight:700;line-height:1.1;white-space:nowrap;max-width:92px;overflow:hidden;text-overflow:ellipsis;cursor:pointer;box-shadow:0 2px 7px rgba(0,0,0,.14);transition:left .4s cubic-bezier(.34,1.3,.5,1),top .4s cubic-bezier(.34,1.3,.5,1);display:inline-flex;align-items:center;gap:5px;z-index:2;}
+.cchip.interest{border-color:#9a6a3a;color:#6b4a2a;background:#f3ede3;}
+.cchip.influence{border-color:#4F7A5B;color:#33553d;background:#e6efe8;z-index:4;}
+.ptag .cx,.cchip .cx{width:16px;height:16px;flex:0 0 16px;border-radius:50%;background:rgba(0,0,0,.13);display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:11px;}
+/* submit + ps result */
+.submit-btn{width:100%;padding:15px;border:none;border-radius:12px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;margin:10px 0 6px;background:var(--accent);color:#fff;transition:opacity .2s,background .2s;}
+.submit-btn:disabled{background:#CBD5E1;cursor:not-allowed;}
+.ps-area-row{margin:10px 0;}
+.ps-area-head{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;font-weight:700;margin-bottom:4px;}
+.ps-area-bar{height:14px;border-radius:7px;background:rgba(255,255,255,.22);overflow:hidden;}
+.ps-area-fill{height:100%;border-radius:7px;transition:width .6s;}
+.ps-badge{display:inline-block;font-size:10px;padding:1px 7px;border-radius:8px;margin-left:6px;font-weight:800;vertical-align:middle;}
+.ps-badge.high{background:#e2ece4;color:#33553d;}
+.ps-badge.low{background:#efe6da;color:#6b4a2a;}
+.ps-badge.delta-up{background:#e2ece4;color:#33553d;}
+.ps-badge.delta-down{background:#f4e4df;color:#8f3320;}
+.ps-badge.delta-zero{background:rgba(255,255,255,.25);color:#fff;}
+/* header progress */
+.hp-wrap{display:flex;align-items:center;gap:8px;margin-top:8px;}
+.hp-bar{flex:1;height:7px;background:#e3dccd;border-radius:4px;overflow:hidden;}
+.hp-fill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--accent));border-radius:4px;transition:width .4s;}
+.hp-txt{font-size:11px;font-weight:800;color:var(--navy);white-space:nowrap;}
+.tab-chip.done{border-color:#a9c9b3;color:var(--green);}
+.tab-chip.done.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.sum-sec{font-size:11px;font-weight:800;color:var(--copper);margin:12px 0 3px;letter-spacing:.3px;border-top:1px dashed #d8cdb8;padding-top:8px;}
+.sum-sec:first-child{border-top:none;padding-top:0;}
+/* next nav */
+.next-nav{display:flex;gap:10px;margin:18px 0 8px;}
+.next-card{flex:1;background:linear-gradient(135deg,var(--navy),var(--teal));color:white;border-radius:14px;padding:14px 16px;cursor:pointer;border:none;font-family:inherit;text-align:left;}
+.next-card .nn-label{font-size:11px;opacity:.85;margin-bottom:3px;}
+.next-card .nn-title{font-size:15px;font-weight:900;}
+.next-card .nn-arrow{float:right;font-size:20px;}
+.prev-card{flex:0 0 auto;background:var(--card);color:var(--navy);border:1.5px solid var(--border);border-radius:14px;padding:14px 12px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:700;}
+.phase-banner{border-radius:14px;padding:14px 16px;margin:6px 0 14px;color:white;}
+.phase-banner.p1{background:linear-gradient(135deg,#1E3A5F,#1E40AF);}
+.phase-banner.p2{background:linear-gradient(135deg,#1E40AF,#8a9a7a);}
+.phase-banner.p3{background:linear-gradient(135deg,#1E40AF,#4F7A5B);}
+.pb-tag{font-size:11px;opacity:.9;letter-spacing:2px;font-weight:700;}
+.pb-title{font-size:17px;font-weight:900;margin-top:2px;}
+.pb-sub{font-size:12px;opacity:.95;margin-top:4px;line-height:1.55;}
+.mood-check{background:var(--surface);border:1px dashed var(--copper);border-radius:12px;padding:12px 14px;margin-bottom:14px;}
+.mc-title{font-size:12px;font-weight:700;color:var(--copper);margin-bottom:6px;}
+.mood-row{display:flex;gap:6px;flex-wrap:wrap;}
+.mood-btn{flex:1;min-width:64px;padding:9px 6px;background:var(--card);border:1.5px solid var(--border);border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--sub);}
+.mood-btn.picked{background:var(--accent);color:white;border-color:var(--accent);}
+.progress{height:6px;background:#e3dccd;border-radius:3px;overflow:hidden;margin:10px 0;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--accent));width:0;transition:width .3s;}
+.summary-card{background:linear-gradient(135deg,#fdfaf3,#efe7d6);border:2px solid var(--accent);border-radius:14px;padding:16px;margin:12px 0;}
+.summary-card h3{font-size:15px;color:var(--navy);margin-bottom:8px;}
+.kv{font-size:13px;margin:4px 0;}.kv b{color:var(--copper);}
+.app-footer{margin:36px auto 24px;max-width:620px;padding:16px 20px;text-align:center;font-size:11px;color:var(--sub);border-top:1px solid var(--border);}
+.stage-wrap{display:flex;gap:6px;margin:10px 0;}
+.stage{flex:1;text-align:center;padding:10px 4px;border-radius:10px;border:1.5px solid var(--border);font-size:11px;font-weight:700;color:var(--sub);background:var(--card);}
+.stage.lit{background:var(--green);color:white;border-color:var(--green);}
+/* report (PDF) — visual */
+#reportRoot{font-family:'Noto Sans KR',sans-serif;color:#2a241c;background:#fdfaf3;width:800px;box-sizing:border-box;}
+.rp-hero{background:linear-gradient(135deg,#1E3A5F,#1E40AF);color:#fff;padding:30px 34px;}
+.rp-hero .rp-kf{font-size:13px;font-weight:700;letter-spacing:1px;opacity:.85;}
+.rp-hero h1{font-size:27px;font-weight:900;margin-top:4px;}
+.rp-hero .meta{font-size:13px;opacity:.9;margin-top:6px;}
+.rp-hero .mood{display:inline-block;margin-top:14px;background:rgba(255,255,255,.18);border-radius:20px;padding:7px 16px;font-size:14px;font-weight:700;}
+.rp-body{padding:8px 34px 30px;}
+.rp-block{margin:22px 0;}
+.rp-bt{font-size:17px;font-weight:900;color:var(--navy);border-left:5px solid var(--teal);padding-left:11px;margin-bottom:12px;}
+.rp-hl{margin-top:6px;font-size:13px;background:#f3efe4;border:1px solid #d8cdb8;color:#6b4a2a;border-radius:10px;padding:9px 13px;}
+.rp-q{margin-top:10px;font-size:14px;color:#4a4238;background:#f2ecdf;border-radius:10px;padding:11px 14px;line-height:1.6;}
+.rp-bars .b{margin:11px 0;}
+.rp-bars .bl{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;font-weight:700;margin-bottom:5px;}
+.rp-bars .bt{height:18px;background:#e8e0d0;border-radius:9px;overflow:hidden;}
+.rp-bars .bf{height:100%;border-radius:9px;}
+.rp-tag{font-size:11px;font-weight:800;padding:2px 9px;border-radius:9px;margin-left:6px;}
+.rp-chips{display:flex;flex-wrap:wrap;gap:9px;}
+.rp-chip{padding:10px 18px;border-radius:22px;font-size:15px;font-weight:800;color:#fff;background:linear-gradient(135deg,#1E40AF,#8a9a7a);box-shadow:0 2px 6px rgba(30,64,175,.22);}
+.rp-chip.plain{background:#e8e0d0;color:var(--navy);box-shadow:none;font-weight:700;font-size:13.5px;}
+.rp-disc{display:flex;gap:16px;align-items:center;background:#f2ecdf;border-radius:14px;padding:18px;}
+.rp-disc .big{width:66px;height:66px;flex:0 0 66px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:#fff;}
+.rp-disc .dn{font-size:17px;font-weight:900;color:var(--navy);}
+.rp-disc .dd{font-size:13px;color:#555;margin-top:3px;}
+.rp-disc .ds{font-size:12.5px;color:#777;margin-top:5px;}
+.rp-stages{display:flex;gap:9px;}
+.rp-stage{flex:1;text-align:center;padding:13px 4px;border-radius:11px;font-size:13.5px;font-weight:800;line-height:1.5;}
+.rp-stage .sv{font-size:15px;}
+.rp-stage.on{background:#4F7A5B;color:#fff;}
+.rp-stage.off{background:#e8e0d0;color:#a59d8d;}
+.rp-cards{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.rp-cd{background:#fdfaf3;border:1.5px solid var(--border);border-radius:12px;padding:13px 15px;}
+.rp-cd .l{font-size:11.5px;font-weight:800;color:var(--teal);}
+.rp-cd .v{font-size:14px;margin-top:5px;line-height:1.55;}
+.rp-team{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.rp-team .tl{font-size:13px;font-weight:800;color:var(--navy);margin-right:4px;}
+.rp-note{background:#f3efe4;border:1.5px solid #d8cdb8;border-radius:12px;padding:17px;font-size:14.5px;line-height:1.9;white-space:pre-wrap;word-break:break-word;}
+.rp-foot2{text-align:center;font-size:10px;color:var(--sub);margin-top:20px;border-top:1px solid var(--border);padding-top:10px;}
+@media print{
+.login-screen,.tab-nav,.app-header,.pdf-bar,.next-nav,.prev-card,.next-card{display:none!important;}
+.activity-section{display:block!important;page-break-after:always;padding:18px;max-width:100%;}
+body{background:white;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="loginScreen">
+<div class="login-box">
+<div class="login-logo">네다바웨이 · nedavah 워크숍</div>
+<div class="login-title">자원하는 마음으로 드립니다</div>
+<div class="login-sub" style="font-family:var(--ff-serif);color:var(--copper);font-size:13.5px;line-height:1.8;margin-bottom:14px;">"자원하는 예물 — <span class="heb">nedavah(<em>נְדָבָה</em>)</span>", 마음에서 우러난 드림</div>
+<div class="login-sub">처음이시면 <b>이름과 비밀번호 4자리를 새로 정해</b> 입장하세요</div>
+<input class="login-input" id="nameInput" placeholder="이름 (새로 정하기)" maxlength="12" autocomplete="off">
+<input class="login-input" id="pinInput" placeholder="비밀번호 4자리 숫자" maxlength="4" inputmode="numeric" autocomplete="off" style="margin-top:10px;letter-spacing:6px;font-size:18px;">
+<label class="remember-row"><input type="checkbox" id="rememberChk"> 이 기기에서 <b>로그인 유지</b></label>
+<button class="login-btn" onclick="doLogin()">입장하기</button>
+<div style="margin-top:12px;font-size:11px;color:#a59d8d;line-height:1.6;">💡 다음에 같은 <b>이름·비밀번호</b>로 들어오면 작성하던 응답이 그대로 복원됩니다<br>🔒 입력 즉시 이 기기에 자동 저장돼요</div>
+</div>
+<div style="margin-top:16px;font-size:10px;color:rgba(255,255,255,.75);">© 2026 네다바웨이 · ME → WE 워크숍 (크리스찬)</div>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none;">
+<div class="app-header">
+<div class="header-top">
+<span class="header-brand">네다바웨이 · 청지기 · 은사 · 자원하는 마음</span>
+<span class="header-user" id="headerUser"></span>
+</div>
+<div class="header-title">ME → WE 워크숍 · 크리스찬 활동지</div>
+<div class="hp-wrap"><div class="hp-bar"><div class="hp-fill" id="hpFill"></div></div><span class="hp-txt" id="hpTxt">0/14</span></div>
+</div>
+<div class="pdf-bar">
+<button class="pdf-btn" onclick="window.print()">📄 전체 활동지 PDF 저장</button>
+<button class="pdf-btn secondary" onclick="logout()">🚪 로그아웃</button>
+<button class="pdf-btn danger" onclick="resetState()">🔄 내 응답 초기화</button>
+<span class="save-note">🔒 입력은 자동 저장돼요</span>
+</div>
+<div class="tab-nav" id="tabNav"></div>
+
+<!-- ===== 0부 ===== -->
+<div class="activity-section" id="act0">
+<div class="phase-banner p1" style="background:linear-gradient(135deg,#1E3A5F,#1E40AF);">
+<div class="pb-tag">0부 · 청지기 자기점검</div>
+<div class="pb-title">시작 전, 지금의 나를 정직하게</div>
+<div class="pb-sub">16문항 · 약 5분. 점수는 평가가 아니라 살핌입니다. 사후에 같은 문항을 다시 답해 변화를 봅니다.</div>
+<div class="verse-banner">하나님이여 나를 살피사 내 마음을 아시며 나를 시험하사 내 뜻을 아옵소서<span class="verse-ref">시편 139:23 · 개역개정</span></div>
+</div>
+<div class="mood-check">
+<div class="mc-title">🌤️ 지금 내 컨디션은? (하나만)</div>
+<div class="mood-row">
+<button class="mood-btn" onclick="pickMood(this)">😴 지침</button>
+<button class="mood-btn" onclick="pickMood(this)">😐 그저그럼</button>
+<button class="mood-btn" onclick="pickMood(this)">🙂 괜찮음</button>
+<button class="mood-btn" onclick="pickMood(this)">😊 좋음</button>
+<button class="mood-btn" onclick="pickMood(this)">🔥 의욕충만</button>
+</div>
+</div>
+<div class="verse">그리고 맡은 자들에게 구할 것은 충성이니라<span class="verse-ref">고린도전서 4:2 · 개역개정</span></div>
+<div class="guide-box">🧭 <b>응답 방법</b> — 각 문항을 1~5점으로. <b>1 = 전혀 아니다, 5 = 매우 그렇다</b>. 우열을 매기는 게 아니라, 하나님이 맡기신 것들(시간·관계·마음·일)을 지금 어떻게 돌보고 있는지 정직하게 살펴보는 청지기 점검입니다. 낮은 점수는 부족이 아니라, 오늘 은혜로 가장 크게 자랄 자리예요.</div>
+<div class="progress"><div class="progress-fill" id="psFill"></div></div>
+<p class="text-sm" id="psProg" style="color:var(--sub);font-size:12px;margin-bottom:8px;">0 / 16 완료</p>
+<div id="psQ"></div>
+<button class="submit-btn" id="psSubmit" disabled onclick="submitPS()">📊 16문항을 모두 답하면 결과를 볼 수 있어요 (0/16)</button>
+<div class="result-box" id="psResult" style="display:none;">
+<h3>🎯 사전 자가진단 결과</h3>
+<div class="radar-wrap"><svg id="psRadar" viewBox="0 0 360 320"></svg></div>
+<div id="psBars"></div>
+<p class="text-sm" id="psFocus" style="font-size:12px;opacity:.95;margin-top:10px;line-height:1.7;"></p>
+</div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 이 점검 앞에서 하나님께 정직하게 드리고 싶은 한 가지</div>
+<textarea rows="2" id="mdAct0" placeholder="예: 바쁘다는 핑계로 마음과 관계를 돌보지 못했음을 본다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayAct0" placeholder="예: 주님, 저를 살피시고 오늘 자라야 할 자리를 보게 하소서"></div>
+<div class="next-nav"><button class="next-card" onclick="showTab('actReview')"><span class="nn-arrow">→</span><div class="nn-label">다음 활동</div><div class="nn-title">🌓 감사·회개·에벤에셀</div></button></div>
+</div>
+
+<!-- ===== 0-나 · 2026 전반기 회고 ===== -->
+<div class="activity-section" id="actReview">
+<div class="phase-banner p1" style="background:linear-gradient(135deg,#1E40AF,#8a9a7a);">
+<div class="pb-tag">0부 · 감사 · 회개 · 에벤에셀</div>
+<div class="pb-title">벌써 6월 말, 여기까지 도우셨다</div>
+<div class="pb-sub">한 해의 절반을 돌아봅니다. 감사할 것, 내려놓을 것, 새로 순종할 것을 적습니다. 평가가 아니라, 도우신 손길을 세는 시간입니다.</div>
+<div class="verse-banner">…여호와께서 여기까지 우리를 도우셨다 하고 그 이름을 에벤에셀이라 하니라<span class="verse-ref">사무엘상 7:12 · 개역개정</span></div>
+</div>
+<div class="story-box">💬 <b>진행자 이야기</b> — 올 상반기를 돌아보니, 제 힘으로 된 일보다 누군가 건넨 한마디·한 번의 도움으로 풀린 일이 더 많았습니다. 돌아보면 그 하나하나가 "여기까지 도우셨다"는 표적이었죠. 시편 103편도 주께서 베푸신 은혜를 잊지 말고 감사하라고 권합니다(시 103:2 참고). 잠깐 멈춰 적어보면, 잊고 지나친 은혜가 의외로 많습니다.</div>
+<div class="card"><div class="card-title">🏆 ① 2026 전반기, 나의 가장 큰 성취·배움</div>
+<p class="label-sm" style="margin-top:0;">크든 작든 스스로 대견한 것, 새로 배운 것</p>
+<textarea rows="2" id="rvWin" placeholder="예: 낯선 업무를 맡아 끝까지 해냄 / 발표 울렁증을 조금 줄임"></textarea></div>
+<div class="card"><div class="card-title">🍀 ② 뜻밖의 행운·도움·기회</div>
+<p class="label-sm" style="margin-top:0;">내 노력 밖에서 찾아온 기회, 누군가의 도움</p>
+<textarea rows="2" id="rvLuck" placeholder="예: 우연히 맡은 일이 큰 배움이 됨 / 막힐 때 선배의 한마디"></textarea></div>
+<div class="card"><div class="card-title">🤝 ③ 함께한 사람들 (고마운 얼굴)</div>
+<textarea rows="2" id="rvPeople" placeholder="예: 힘들 때 들어준 동료 / 믿고 맡겨준 리더 / 가족의 응원"></textarea></div>
+<div class="card"><div class="card-title">🍂 ④ 아쉬웠던 것 · 하반기엔 내려놓을 것</div>
+<textarea rows="2" id="rvLetgo" placeholder="예: 혼자 떠안던 책임 / 미뤄둔 건강 관리 / 못다 한 말"></textarea></div>
+<div class="tip-box">💡 <b>키워드 정리</b> — 2026 전반기를 한 단어로 요약하면? (예: 성장 · 버팀 · 새 시작 · 관계 · 회복…)</div>
+<div class="card"><input class="text-input" id="rvKw" placeholder="예: 버팀 · 배움 · 새 동료"></div>
+<div class="card" style="border-left:4px solid var(--teal);">
+<div class="card-title">🔄 하반기를 향한 세 가지 <span style="font-size:11px;color:var(--sub);">(감사 · 내려놓음 · 새 순종)</span></div>
+<div class="label-sm" style="color:var(--green);">🙏 감사 — 계속 이어갈, 하나님이 주신 좋은 것 1가지</div>
+<input class="text-input" id="rvKeep" placeholder="예: 주 2회 운동 / 가족과 저녁 함께 먹기" style="margin-bottom:10px;">
+<div class="label-sm" style="color:var(--red);">🕊️ 내려놓음 — 나를 지치게 한, 주께 맡기고 놓을 1가지</div>
+<input class="text-input" id="rvDrop" placeholder="예: 혼자 다 떠안기 / 퇴근 후에도 일 생각" style="margin-bottom:10px;">
+<div class="label-sm" style="color:var(--copper);">🌱 새 순종 — 하반기에 새로 순종해볼 작은 1가지</div>
+<input class="text-input" id="rvStart" placeholder="예: 월 1회 새 사람 섬기기 / 자기 전 10분 말씀 읽기">
+</div>
+<div class="warn-box">🗣️ <b>옆 사람과 1분만</b> — 가장 감사한 하나를 짧게 나눠주세요. 듣는 사람은 "그래서 어땠어요?" 한 번만. (넘겨도 괜찮음)</div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 상반기에 "여기까지 도우셨다" 싶은 한 장면</div>
+<textarea rows="2" id="mdActReview" placeholder="예: 막막했던 순간에 뜻밖의 도움으로 길이 열렸다"></textarea>
+<div class="label-sm">기도 — 한 줄 감사/회개 기도</div>
+<input class="text-input" id="prayActReview" placeholder="예: 잊고 지낸 은혜를 기억하게 하시고, 하반기를 맡깁니다"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('act0')">◀</button><button class="next-card" onclick="showTab('actWheel')"><span class="nn-arrow">→</span><div class="nn-label">다음 · 1부 ME</div><div class="nn-title">🎡 1-가 · 라이프 휠</div></button></div>
+</div>
+
+<!-- ===== 1부 ===== -->
+<div class="activity-section" id="actWheel">
+<div class="phase-banner p1"><div class="pb-tag">1부 ME · 나를 이해하다</div><div class="pb-title">팀을 말하기 전에, 나부터 본다</div><div class="pb-sub">전인적 삶 · 안식 → 은사 발견 → 청지기 리더십 → 하나님 주권과 내 몫</div>
+<div class="verse-banner">네 마음을 다하고 목숨을 다하고 뜻을 다하고 힘을 다하여 주 너의 하나님을 사랑하라<span class="verse-ref">마가복음 12:30 · 개역개정</span></div></div>
+<div class="sec-title"><span class="sec-num">1-가</span>전인적 삶의 휠 · 마음·목숨·뜻·힘</div>
+<div class="sec-desc">16개 영역을 0~10으로 — 일만이 아니라 건강·관계·마음·재정까지, 하나님이 맡기신 삶이 얼마나 고르게 채워져 있나</div>
+<div class="story-box">💬 <b>진행자 이야기</b> — 작년 제 휠은 '업무성과'만 높고 '운동 · 친밀한 관계 · 자기와의 약속'은 바닥이었습니다. 일은 잘 굴러가는데 정작 나를 돌보는 칸은 텅 비어 있었죠. 예수님은 <b>마음·목숨·뜻·힘</b>을 다해 사랑하라 하셨습니다 — 삶은 어느 한 칸이 아니라 전인(全人)입니다. 성경은 <b>안식</b>도 명령으로 주셨죠(출 20:8 참고). 저녁 30분 걷기와 주말 안부 전화라는 작은 습관이 운동·건강·관계를 한꺼번에 끌어올렸습니다. 오늘은 비어 있는 조각들도 천천히 들여다봐 주세요.</div>
+<div class="warn-box">✏️ 슬라이더를 움직이면 <b>아래 원형 그래프</b>가 실시간으로 그려집니다.</div>
+<div class="card"><div class="card-title">🌀 나의 에너지 휠 <span style="font-size:11px;color:var(--sub);">(실시간)</span></div>
+<div class="radar-wrap"><svg id="wheelRadar" viewBox="0 0 360 360"></svg></div>
+<p style="text-align:center;font-size:11px;color:var(--sub);">중심 0점 · 바깥 10점</p></div>
+<div class="card"><div class="card-title">📊 16개 영역 점수</div><div id="wheelGrid"></div></div>
+<div class="result-box"><h3>🌀 결과 해석 <span style="font-size:11px;opacity:.85;">(실시간)</span></h3>
+<div class="scores"><div class="score-cell"><b id="wAvg">–</b>전체 평균</div><div class="score-cell"><b id="wLow" style="font-size:14px;">–</b>가장 낮은 영역</div></div>
+<p id="wInterp" style="font-size:12.5px;line-height:1.75;margin-top:8px;opacity:.97;">점수를 입력하면 해석이 바로 여기에 나타납니다.</p>
+<div id="wBars" style="margin-top:10px;"></div>
+<p style="font-size:11.5px;opacity:.9;margin-top:10px;">⭐ 점수를 올리려 말고, <b>가장 낮은 한 영역에 작은 순종 하나</b>를 거세요. (2부 GROW에서 다룹니다)</p></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 마음·목숨·뜻·힘 중 지금 가장 비어 있는 자리는?</div>
+<textarea rows="2" id="mdActWheel" placeholder="예: '힘'은 채워졌는데 '마음(쉼·기도)'이 비어 있다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActWheel" placeholder="예: 일에 쏠린 삶에 안식과 균형을 회복시켜 주소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actReview')">◀</button><button class="next-card" onclick="showTab('actRipple')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🌊 1-가+ · 지체 원리</div></button></div>
+</div>
+
+<!-- ===== 1-가+ · 파급효과 ===== -->
+<div class="activity-section" id="actRipple">
+<div class="bridge">🌉 휠에서 <b>가장 낮은 영역</b>이 눈에 들어왔다면 — 그 한 칸이 오르면 나만 좋아지는 게 아닙니다. <b>지체(肢體)로 이어진 몸 전체에 흐릅니다.</b></div>
+<div class="sec-title"><span class="sec-num">1-가+</span>지체 원리 · 빛과 소금</div>
+<div class="sec-desc">개인이 바로 서면 → 한 몸된 지체와 세상으로 흐른다</div>
+<div class="verse">만일 한 지체가 고통을 받으면 모든 지체가 함께 고통을 받고 한 지체가 영광을 얻으면 모든 지체가 함께 즐거워하느니라<span class="verse-ref">고린도전서 12:26 · 개역개정</span>
+<details class="verse-more"><summary>NIV 원문 보기</summary><div class="verse">If one part suffers, every part suffers with it; if one part is honored, every part rejoices with it.<span class="verse-ref">1 Corinthians 12:26 · NIV</span></div></details></div>
+<div class="verse">이같이 너희 빛이 사람 앞에 비치게 하여 그들로 너희 착한 행실을 보고 하늘에 계신 너희 아버지께 영광을 돌리게 하라<span class="verse-ref">마태복음 5:16 · 개역개정</span></div>
+<div class="guide-box">🌊 <b>심리학이 관찰한 것을, 성경은 이렇게 말합니다</b> — 나의 변화가 팀에 흐른다는 사실은 연구로도 드러납니다. 성경은 그 이유를 더 깊이 말하죠: 우리는 <b>한 몸의 지체</b>이고, 각자는 <b>세상의 빛과 소금</b>이라는 것.</div>
+<div class="card" style="border-left:4px solid var(--teal);"><div class="card-title" style="color:var(--teal);">📈 근거 ① 몰입도와 생산성 · <b>+21%</b></div>
+<p style="font-size:13px;line-height:1.7;">한 사람의 몰입도가 높은 팀 → 생산성 평균 <b>21%↑</b>, 결근율 <b>41%↓</b>, 안전사고 <b>70%↓</b>.<br><span style="font-size:11px;color:var(--sub);">출처 · 갤럽 「글로벌 직장 보고서」 (약 270만 명 메타분석)</span></p></div>
+<div class="card" style="border-left:4px solid var(--accent);"><div class="card-title" style="color:var(--accent);">❤️ 근거 ② 감정과 팀 분위기 · <b>약 70%</b></div>
+<p style="font-size:13px;line-height:1.7;">팀 분위기의 약 <b>70%</b>는 구성원들의 감정조절 수준에서 온다. 한 사람의 감정이 팀 전체로 전염된다.<br><span style="font-size:11px;color:var(--sub);">출처 · 대니얼 골먼 「감성지능」 (하버드 비즈니스 리뷰)</span></p></div>
+<div class="card" style="border-left:4px solid var(--green);"><div class="card-title" style="color:var(--green);">🤲 근거 ③ 한 명의 친절 · <b>한 명이면 충분</b></div>
+<p style="font-size:13px;line-height:1.7;">도움 주는 동료 <b>한 명</b>만 있어도 팀 협력 행동과 성과가 평균 이상으로 올라간다.<br><span style="font-size:11px;color:var(--sub);">출처 · 애덤 그랜트 「Give and Take」 (와튼스쿨 조직심리학)</span></p></div>
+<div class="result-box"><h3>🔑 핵심</h3><p style="font-size:13px;line-height:1.7;opacity:.97;">내 작은 자기관리(시간 약속 · 감정 · 건강) → 동료 신뢰 → 팀 분위기 안정 → 사업·성과로 <b>흐른다</b>. 반대도 같다. 한 사람의 변화는 결코 '나만의 일'이 아니다.</p></div>
+<div class="card"><div class="card-title">🌱 내 에너지 휠 '가장 낮은 영역'</div>
+<div id="rpLow" style="display:inline-block;background:#f3efe4;color:var(--copper);font-weight:800;border:1.5px solid #d8cdb8;border-radius:10px;padding:8px 14px;font-size:14px;margin-bottom:6px;">(1-가 에너지 휠을 먼저 작성하세요)</div>
+<div class="label-sm">이 영역이 <b>1점만</b> 오른다면 → 동료·팀에게 어떻게 전해질까요? (1~2개)</div>
+<input class="text-input" id="rpA" placeholder="① 예: 시간 약속을 지키면 동료가 나를 기다리지 않아도 된다" style="margin-bottom:8px;">
+<input class="text-input" id="rpB" placeholder="② (선택)"></div>
+<div class="card"><div class="card-title">💡 참고 사례 · 1점 ↑ 변화 (직장)</div>
+<div style="font-size:12.5px;">
+<div class="ripple-row"><span class="rp-k">건강 ↑</span><span class="rp-ar">→</span><span class="rp-v">무거운 업무도 거뜬 · 결근 부담 ↓</span></div>
+<div class="ripple-row"><span class="rp-k">시간·습관 ↑</span><span class="rp-ar">→</span><span class="rp-v">약속 시간 지킴 · 동료 신뢰 ↑</span></div>
+<div class="ripple-row"><span class="rp-k">감정·마음 ↑</span><span class="rp-ar">→</span><span class="rp-v">기복 ↓ · 팀 분위기 안정</span></div>
+<div class="ripple-row"><span class="rp-k">관계 ↑</span><span class="rp-ar">→</span><span class="rp-v">마음 편함 · 업무 집중력 ↑</span></div>
+<div class="ripple-row"><span class="rp-k">배움·성장 ↑</span><span class="rp-ar">→</span><span class="rp-v">새 기술 → 동료에게 공유</span></div>
+<div class="ripple-row"><span class="rp-k">인사·태도 ↑</span><span class="rp-ar">→</span><span class="rp-v">먼저 인사 · 동료가 편히 다가옴</span></div>
+<div class="ripple-row"><span class="rp-k">경청 ↑</span><span class="rp-ar">→</span><span class="rp-v">끝까지 듣기 → 갈등 ↓</span></div>
+<div class="ripple-row"><span class="rp-k">배려 ↑</span><span class="rp-ar">→</span><span class="rp-v">동료 컨디션 살핌 · 힘든 일 먼저</span></div>
+<div class="ripple-row" style="border-bottom:none;"><span class="rp-k">인정·감사 ↑</span><span class="rp-ar">→</span><span class="rp-v">"고마워요" 자주 → 주는 사람도 기분 ↑</span></div>
+</div></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 내 작은 변화가 어느 지체(동료·가정·공동체)에 흐를까</div>
+<textarea rows="2" id="mdActRipple" placeholder="예: 내가 먼저 밝게 인사하면 팀 분위기가 달라진다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActRipple" placeholder="예: 내 작은 순종이 함께한 지체들에게 빛으로 흐르게 하소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actWheel')">◀</button><button class="next-card" onclick="showTab('actStrength')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">💪 1-나 · 은사 발견</div></button></div>
+</div>
+
+<div class="activity-section" id="actStrength">
+<div class="bridge">🌉 비어 보이는 자리가 있어도 괜찮습니다. 먼저 <b>하나님이 내게 맡기신 은사(강점)</b>부터 챙겨봅니다.</div>
+<div class="sec-title"><span class="sec-num">1-나</span>은사 발견 · 받은 대로</div>
+<div class="sec-desc">'나답다' 싶은 은사를 토너먼트로 좁혀, 대표 은사 5개를 정합니다 — 자랑거리가 아니라 맡겨진 선물입니다</div>
+<div class="verse">각각 은사를 받은 대로 하나님의 여러 가지 은혜를 맡은 선한 청지기 같이 서로 봉사하라<span class="verse-ref">베드로전서 4:10 · 개역개정</span>
+<details class="verse-more"><summary>원어 · 은사(charisma) 보기</summary><div class="verse">우리에게 주신 은혜대로 받은 은사가 각각 다르니<span class="verse-ref">로마서 12:6 · 개역개정</span></div><div style="font-size:12.5px;color:var(--sub);padding:4px 2px 0;line-height:1.7;">은사 — 헬라어 <span class="heb">charisma(<em>χάρισμα</em>) · charismata</span> · 은혜(charis)로 <b>거저 주어진 선물</b>이라는 뜻 (롬 12, 고전 12).</div></details></div>
+<div class="guide-box">🏆 <b>3단계 토너먼트</b> — 카드를 누를 때마다 단계가 올라갑니다.<br>1번 클릭 = <b>1차 선택</b> → 2번 = <b>후보(준결승)</b> → 3번 = <b>대표 은사(최종 ⭐)</b> → 4번 = 초기화.<br>대표 은사는 5개까지 둘 수 있어요.</div>
+<div class="str-legend"><span><i class="str-dot" style="background:#fdfaf3;border-color:var(--border)"></i>미선택</span><span><i class="str-dot" style="background:var(--teal)"></i>1차 선택</span><span><i class="str-dot" style="background:var(--blue)"></i>후보 ☆</span><span><i class="str-dot" style="background:linear-gradient(135deg,#9a6a3a,#8a9a7a)"></i>대표 ⭐</span></div>
+<div class="card"><div class="card-title">은사 카드 <span style="font-size:11px;color:var(--sub);" id="strCount"></span></div><div class="tag-wrap" id="strTags"></div></div>
+<div class="card"><div class="label-sm">⭐ 내 대표 은사가 가장 잘 쓰였던(섬김이 된) 최근 일은?</div><textarea rows="2" id="strStory" placeholder="예: 집안일이 한꺼번에 몰렸을 때 침착하게 순서를 정해 처리했다 / 친구의 고민을 끝까지 들어줬다 / 마감 직전 팀을 다독였다"></textarea>
+<div class="label-sm">이 은사를 '더 쓰면 좋을(섬길)' 상황 한 가지</div><input class="text-input" id="strMore" placeholder="예: 회의에서 의견이 갈릴 때 중재 역할"></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 이 은사를 누구를 섬기라고 맡기셨을까</div>
+<textarea rows="2" id="mdActStrength" placeholder="예: 경청의 은사를, 지친 동료를 위해 쓰라 하신 것 같다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActStrength" placeholder="예: 받은 은사를 자랑이 아니라 섬김으로 쓰게 하소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actRipple')">◀</button><button class="next-card" onclick="showTab('actSelfLead')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🧭 1-다 · 청지기 리더십</div></button></div>
+</div>
+
+<div class="activity-section" id="actSelfLead">
+<div class="bridge">🌉 은사를 알았다면, <b>나는 나를 어떻게 이끄는가</b> — 맡겨진 것을 성실히 다스리는 <b>청지기의 자기 리더십</b>을 봅니다.</div>
+<div class="sec-title"><span class="sec-num">1-다</span>청지기 리더십 3전략</div>
+<div class="sec-desc">행동중심 · 자연보상 · 건설적 사고 — 12문항 (Manz·Neck를 성경의 눈으로)</div>
+<div class="verse">무슨 일을 하든지 마음을 다하여 주께 하듯 하고 사람에게 하듯 하지 말라<span class="verse-ref">골로새서 3:23 · 개역개정</span>
+<details class="verse-more"><summary>NIV 원문 보기</summary><div class="verse">Whatever you do, work at it with all your heart, as working for the Lord, not for human masters<span class="verse-ref">Colossians 3:23 · NIV</span></div></details></div>
+<div class="guide-box">🧭 <b>심리학의 3전략을 성경은 이렇게 읽습니다</b> — 5점 척도로 답하고, 약한 전략 하나에 <b>작은 순종 루틴 1개</b>를 설계합니다.<br>· <b>행동중심 = 성실한 청지기</b> (작은 일에도 충성 · 눅 16:10 참고)<br>· <b>자연보상 = 기쁨의 순종</b> (주께 하듯 마음을 다해 · 골 3:23)<br>· <b>건설적 사고 = 믿음의 생각</b> (참되고 경건한 것을 생각 · 빌 4:8 참고)</div>
+<div id="slQ"></div>
+<div class="result-box"><h3>🧭 나의 셀프리더십 프로필</h3><div id="slBars"></div><p id="slAdvice" style="font-size:12px;opacity:.95;margin-top:6px;"></p></div>
+<div class="card"><div class="card-title">🌱 보강 루틴 설계</div>
+<div class="label-sm">언제 (신호/시점)</div><input class="text-input" id="slWhen" placeholder="예: 매주 월요일 출근 직후">
+<div class="label-sm">무엇을 (아주 작게)</div><input class="text-input" id="slWhat" placeholder="예: 이번 주 목표 1개를 메모에 적는다">
+</div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 가장 약한 전략을 '주께 하듯' 바꾸려면 무엇 하나?</div>
+<textarea rows="2" id="mdActSelfLead" placeholder="예: 단조로운 일도 주께 드리듯 감사로 시작해 본다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActSelfLead" placeholder="예: 작은 일에도 충성하는 성실한 청지기가 되게 하소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actStrength')">◀</button><button class="next-card" onclick="showTab('actCircle')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🎯 1-라 · 하나님 주권과 내 몫</div></button></div>
+</div>
+
+<div class="activity-section" id="actCircle">
+<div class="bridge">🌉 에너지를 어디에 쓸지 정리합니다. <b>주께 맡길 걱정</b>과 <b>내가 순종할 몫</b>을 나눠봅니다.</div>
+<div class="sec-title"><span class="sec-num">1-라</span>하나님 주권과 내 몫</div>
+<div class="sec-desc">요즘의 고민을 적고, 관심의 원(맡길 것) / 영향력의 원(순종할 것)으로 분류 (Covey를 성경의 눈으로)</div>
+<div class="verse">사람이 마음으로 자기의 길을 계획할지라도 그의 걸음을 인도하시는 이는 여호와시니라<span class="verse-ref">잠언 16:9 · 개역개정</span>
+<details class="verse-more"><summary>NIV 원문 보기</summary><div class="verse">In their hearts humans plan their course, but the LORD establishes their steps.<span class="verse-ref">Proverbs 16:9 · NIV</span></div></details></div>
+<div class="verse">아무 것도 염려하지 말고 다만 모든 일에 기도와 간구로, 너희 구할 것을 감사함으로 하나님께 아뢰라<span class="verse-ref">빌립보서 4:6 · 개역개정</span></div>
+<div class="guide-box">🎯 <b>관심의 원 = 내가 바꿀 수 없어 주께 맡길 것</b>(염려는 기도로 · 빌 4:6). <b>영향력의 원 = 하나님이 내게 맡기신, 오늘 순종할 몫</b>. 계획은 내가, 걸음은 주님이 인도하십니다(잠 16:9).</div>
+<div class="card"><div class="label-sm">고민을 하나씩 입력하고 Enter</div>
+<input class="text-input" id="circleInput" placeholder="예: 부모님 건강 / 미뤄둔 운동 / 가족과 보낼 시간 / 회사 조직개편 / 내 시간 사용" onkeydown="if(event.key==='Enter'){addConcern();}">
+<button class="btn btn-outline" style="margin-top:8px;padding:8px 14px;font-size:13px;" onclick="addConcern()">+ 추가</button></div>
+<div class="card"><div class="card-title">분류 <span style="font-size:11px;color:var(--sub);">(단어를 누르면 이동: 대기 → 관심의 원 → 영향력의 원 → 대기)</span></div>
+<div class="circle-area" id="concernCircle"><div class="circle-outer"><span class="circle-label">관심의 원 · 영향 밖</span></div><div class="circle-inner"><span class="circle-label inner">영향력의<br>원</span></div></div>
+<div class="label-sm" style="margin-top:10px;">⏳ 대기 중인 고민 <span style="color:var(--sub);font-weight:400;">— 단어를 눌러 원 안으로 보내세요</span></div>
+<div class="cpool" id="concernPool"></div>
+<div style="font-size:11px;color:var(--sub);margin-top:8px;line-height:1.6;">🟡 <b>관심의 원</b> = 신경 쓰이지만 내가 <b>바꿀 수 없는</b> 일 (조직개편·남의 태도 등) · 🟢 <b>영향력의 원</b> = 내가 <b>직접 바꿀 수 있는</b> 일 (내 행동·먼저 건넬 말 등)</div></div>
+<div class="card"><div class="label-sm">🟢 '영향력의 원(내 몫)' 안의 것 중 하나에 — 오늘 할 첫 순종</div><input class="text-input" id="circleAction" placeholder="예: 오늘 저녁 30분 산책 / 자기 전 부모님께 안부 전화"></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 지금 붙들고 있는 염려 중 주께 맡겨야 할 것 하나</div>
+<textarea rows="2" id="mdActCircle" placeholder="예: 조직개편은 내 손 밖의 일 — 주께 맡기고 내 몫에 집중"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActCircle" placeholder="예: 염려는 주께 맡기고, 오늘 맡기신 몫에 순종하게 하소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actSelfLead')">◀</button><button class="next-card" onclick="showTab('actMotive')"><span class="nn-arrow">→</span><div class="nn-label">2부</div><div class="nn-title">🔋 2-가 · 소명·자원하는 마음</div></button></div>
+</div>
+
+<!-- ===== 2부 ===== -->
+<div class="activity-section" id="actMotive">
+<div class="phase-banner p2"><div class="pb-tag">2부 LEAD · 나를 이끌다</div><div class="pb-title">무엇이 나를 움직이는가 — 소명과 자원함</div><div class="pb-sub">동기 엔진 진단 → 분별·기도적 목표(GROW)</div>
+<div class="verse-banner">무슨 일을 하든지 마음을 다하여 주께 하듯 하고 사람에게 하듯 하지 말라<span class="verse-ref">골로새서 3:23 · 개역개정</span></div></div>
+<div class="sec-title"><span class="sec-num">2-가</span>소명 · 자원하는 마음(nedavah)</div>
+<div class="sec-desc">12문항 양자택일 — 나를 움직이는 동기 4유형을, 삯꾼의 힘과 부르심의 힘으로 다시 봅니다</div>
+<div class="verse" style="border-left-color:var(--copper);">자원하는 예물 — <span class="heb">nedavah(<em>נְדָבָה</em>)</span> · 강요가 아니라 마음에서 우러난 드림<span class="verse-ref">출애굽기 35 · 성막을 위해 마음이 감동된 자들이 자원하여 드림 (원어 nedavah)</span></div>
+<div class="card"><div class="grid-2">
+<div style="background:#f0e7da;border-left:4px solid var(--copper);border-radius:8px;padding:10px;font-size:12.5px;"><b style="color:var(--copper);">외재 = 삯꾼의 힘</b><br>보상·인정·평가처럼 밖에서 오는 힘. 강하지만 빨리 식고, 삯이 끊기면 멈춥니다.</div>
+<div style="background:#e6efe8;border-left:4px solid var(--green);border-radius:8px;padding:10px;font-size:12.5px;"><b style="color:var(--green);">내재 = 부르심·자원함</b><br>소명·의미·성장에서 솟는 힘. 마음에서 우러난 <span class="heb">nedavah</span>의 드림 — 느리지만 오래갑니다.</div></div></div>
+<div id="mvQ"></div>
+<div class="result-box"><h3>🔋 내 동기 프로필</h3><div id="mvBars"></div></div>
+<div class="card"><div class="label-sm">🔌 내 동기가 가장 잘 충전되는 환경/조건은?</div><input class="text-input" id="mvNote" placeholder="예: 결과보다 과정에서 배우는 게 있을 때"></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 내 일이 '삯' 때문인가, '자원하는 마음(nedavah)'에서 나오나</div>
+<textarea rows="2" id="mdActMotive" placeholder="예: 인정받으려 애쓰다 지쳤다 — 다시 부르심의 기쁨으로 하고 싶다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActMotive" placeholder="예: 마음이 감동되어 자원하여 드리는 마음을 부어 주소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actCircle')">◀</button><button class="next-card" onclick="showTab('actGrow')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🌱 2-나 · 분별·기도적 목표</div></button></div>
+</div>
+
+<div class="activity-section" id="actGrow">
+<div class="bridge">🌉 1부에서 고른 <b>가장 낮은 영역</b>과 <b>보강 루틴</b>을 목표 칸에 미리 담아뒀습니다. 이걸 <b>분별과 기도</b>로 코칭해 봅니다.</div>
+<div class="sec-title"><span class="sec-num">2-나</span>분별·기도적 목표 (GROW)</div>
+<div class="sec-desc">목표 · 현실 · 대안 · 실행의지 (Whitmore GROW를 분별의 눈으로)</div>
+<div class="guide-box">🌱 목표를 세우되 <b>하나님의 선하신 뜻을 분별</b>하며 세웁니다(롬 12:2 참고 — 세상 방식을 따르지 말고 생각을 새롭게 하여 하나님의 선한 뜻을 분별하라는 취지). 계획은 세우되 "<b>주의 뜻이면</b>" 하겠다는 겸손으로 붙듭니다(약 4:13-15 참고 — 내일 일을 장담하지 말고 주의 뜻에 맡기라는 취지).</div>
+<div class="card"><div class="card-title" style="color:var(--accent);">G · Goal — 무엇을 이루고 싶은가</div><textarea rows="2" id="gG" placeholder="작고 구체적으로"></textarea></div>
+<div class="card"><div class="card-title" style="color:var(--blue);">R · Reality — 지금 어디에 있나</div><textarea rows="2" id="gR" placeholder="현재 상황·이미 해본 것"></textarea></div>
+<div class="card"><div class="card-title" style="color:var(--purple);">O · Options — 가능한 길 3가지</div><textarea rows="3" id="gO" placeholder="1)  2)  3)"></textarea></div>
+<div class="card"><div class="card-title" style="color:var(--green);">W · Will — 첫 한 걸음 + 시점</div>
+<input class="text-input" id="gW1" placeholder="첫 걸음 (오늘/이번 주 할 수 있는 것)"><div style="height:8px;"></div>
+<input class="text-input" id="gW2" placeholder="언제까지 / 방해물 대비"></div>
+<button class="btn btn-primary" style="width:100%;" onclick="buildGrowCard()">📇 나의 실행 카드 만들기</button>
+<div class="summary-card" id="growCard" style="display:none;"></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 이 목표는 내 욕심인가, 분별된 선한 뜻인가</div>
+<textarea rows="2" id="mdActGrow" placeholder="예: 조급함을 내려놓고, 주님이 원하시는 속도로 가고 싶다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActGrow" placeholder="예: 주의 뜻이면 이 걸음을 이루시고, 아니면 막아 주소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actMotive')">◀</button><button class="next-card" onclick="showTab('actSafety')"><span class="nn-arrow">→</span><div class="nn-label">3부</div><div class="nn-title">🛡️ 3-가 · 은혜의 공동체</div></button></div>
+</div>
+
+<!-- ===== 3부 ===== -->
+<div class="activity-section" id="actSafety">
+<div class="phase-banner p3"><div class="pb-tag">3부 WE · 우리를 살리다</div><div class="pb-title">나를 만났으니, 이제 서로 받는 우리로</div><div class="pb-sub">은혜의 공동체 → 속히 듣기 → 한 몸의 다양성 → 서로 세움 → 은사 확인 → 축복의 말 → 언약</div>
+<div class="verse-banner">그러므로 그리스도께서 우리를 받아 하나님께 영광을 돌리심과 같이 너희도 서로 받으라<span class="verse-ref">로마서 15:7 · 개역개정</span></div></div>
+<div class="sec-title"><span class="sec-num">3-가</span>은혜의 공동체 · 서로 받음</div>
+<div class="sec-desc">우리 공동체는 어디까지 서로 받아주는가 — 4단계 (Edmondson·Clark를 은혜의 눈으로)</div>
+<div class="verse">그러므로 그리스도께서 우리를 받아 하나님께 영광을 돌리심과 같이 너희도 서로 받으라<span class="verse-ref">로마서 15:7 · 개역개정</span></div>
+<div class="guide-box">🛡️ 각 문항에 5점 척도로. 4단계가 차례로 켜집니다: <b>포용 → 학습 → 기여 → 도전</b>. 이는 곧 <b>서로 받고, 서로의 짐을 함께 지는</b> 은혜의 공동체의 모습입니다(갈 6:2 참고 — 서로의 무거운 짐을 나눠 지라고 권하는 취지).</div>
+<div id="safeQ"></div>
+<div class="stage-wrap" id="safeStages">
+<div class="stage" data-s="0">포용</div><div class="stage" data-s="1">학습</div><div class="stage" data-s="2">기여</div><div class="stage" data-s="3">도전</div></div>
+<p id="safeMsg" style="font-size:12px;color:var(--sub);margin:8px 0 0;line-height:1.6;">8문항에 답하면 4단계 진단이 완성됩니다.</p>
+<div class="card"><div class="label-sm">🪜 우리 공동체가 '서로 받음'을 한 단계 올릴 작은 행동 하나</div><input class="text-input" id="safeAction" placeholder="예: 회의에서 '모르겠다'는 말을 리더가 먼저 한다"></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 내가 아직 온전히 '받지' 못한 사람은 없는가</div>
+<textarea rows="2" id="mdActSafety" placeholder="예: 나와 스타일이 다른 그 사람을 그리스도처럼 받아들이고 싶다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActSafety" placeholder="예: 그리스도께서 나를 받으심같이, 나도 서로 받게 하소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actGrow')">◀</button><button class="next-card" onclick="showTab('actListen')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">👂 3-나 · 속히 듣기</div></button></div>
+</div>
+
+<div class="activity-section" id="actListen">
+<div class="bridge">🌉 서로 받는 공동체는 <b>속히 듣는 것</b>에서 시작합니다. 듣기 수준을 한 칸 올려봅니다.</div>
+<div class="sec-title"><span class="sec-num">3-나</span>속히 듣기 (3F)</div>
+<div class="sec-desc">사실(Fact) · 감정(Feeling) · 핵심(Focus) — 듣기는 속히, 말하기는 더디</div>
+<div class="verse">사람마다 듣기는 속히 하고 말하기는 더디 하며 성내기도 더디 하라<span class="verse-ref">야고보서 1:19 · 개역개정</span></div>
+<div class="guide-box">👂 다 듣기 전에 대답하면 부끄러움이 된다고 성경은 말합니다(잠 18:13 참고). 조언을 서두르지 말고, 사실·감정·핵심을 <b>끝까지</b> 들어 되돌려 줍니다.</div>
+<div class="card"><div class="card-title">📼 대화 사례</div><div style="font-size:13px;line-height:1.7;background:#F8FAFC;border-radius:10px;padding:12px;">동료 A: "이번 프로젝트, 또 일정이 당겨졌어요. 솔직히 이렇게까지 해야 하나 싶기도 하고… 그래도 끝은 봐야죠."</div>
+<div class="label-sm">사실(Fact) — 무슨 일이 일어났나</div><input class="text-input" id="lF" placeholder="예: 프로젝트 일정이 또 앞당겨졌다">
+<div class="label-sm">감정(Feeling) — 어떤 마음일까</div><input class="text-input" id="lFe" placeholder="예: 지치고 회의감이 들지만 책임감도 있다">
+<div class="label-sm">핵심(Focus) — 진짜 하고 싶은 말</div><input class="text-input" id="lFo" placeholder="예: 인정받고 싶고, 무리한 일정은 조정되길 바란다"></div>
+<div class="tip-box">🔁 옆 사람과 2인 1조. 한 명이 30초 말하고, 듣는 사람은 <b>조언 대신</b> 3F로 되돌려주기. 역할 교대.</div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 나는 듣기에 속한가, 말하기에 속한가</div>
+<textarea rows="2" id="mdActListen" placeholder="예: 조언하려 서두르다 상대의 진짜 마음을 놓쳤다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActListen" placeholder="예: 듣기는 속히, 말하기는 더디 하는 사람이 되게 하소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actSafety')">◀</button><button class="next-card" onclick="showTab('actDisc')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🎭 3-다 · 한 몸의 다양성</div></button></div>
+</div>
+
+<div class="activity-section" id="actDisc">
+<div class="bridge">🌉 같은 말도 사람마다 다르게 듣습니다. <b>내 소통 스타일</b>을 알아봅니다 — 우열이 아니라 <b>한 몸의 다른 지체</b>입니다.</div>
+<div class="sec-title"><span class="sec-num">3-다</span>한 몸의 다양성 (DiSC)</div>
+<div class="sec-desc">주도(D) · 사교(I) · 안정(S) · 신중(C) — 어느 유형도 더 낫거나 못하지 않습니다</div>
+<div class="verse">만일 한 지체가 고통을 받으면 모든 지체가 함께 고통을 받고 한 지체가 영광을 얻으면 모든 지체가 함께 즐거워하느니라<span class="verse-ref">고린도전서 12:26 · 개역개정</span></div>
+<div class="guide-box">🎭 한 몸에 많은 지체가 있으되 그 기능이 다 다르다고 성경은 말합니다(롬 12:4-5 참고). 내 유형을 알아 <b>다른 유형을 정죄하지 않고 존중</b>하기 위한 진단입니다.</div>
+<div id="discQ"></div>
+<div class="result-box" id="discResult" style="display:none;"></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 나와 다른 유형의 지체를 나는 어떻게 대해 왔나</div>
+<textarea rows="2" id="mdActDisc" placeholder="예: 느린 유형을 답답해했는데, 그 성실함이 팀을 받쳐왔다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActDisc" placeholder="예: 다름을 우열로 보지 않고 한 몸으로 존중하게 하소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actListen')">◀</button><button class="next-card" onclick="showTab('actPeer')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🤝 3-라 · 서로 세움</div></button></div>
+</div>
+
+<div class="activity-section" id="actPeer">
+<div class="bridge">🌉 2부에서 나를 코칭했던 <b>GROW 질문</b>을, 이번엔 동료를 <b>세우기</b> 위해 그대로 써봅니다.</div>
+<div class="sec-title"><span class="sec-num">3-라</span>서로 세움 · 동료 코칭</div>
+<div class="sec-desc">2인 1조 · 코치는 답을 주지 않고 질문으로 세운다 (GROW)</div>
+<div class="verse">그러므로 피차 권면하고 서로 덕을 세우기를 너희가 하는 것 같이 하라<span class="verse-ref">데살로니가전서 5:11 · 개역개정</span></div>
+<div class="verse">철이 철을 날카롭게 하는 것 같이 사람이 그의 친구의 얼굴을 빛나게 하느니라<span class="verse-ref">잠언 27:17 · 개역개정</span></div>
+<div class="warn-box">⏱️ 한 명이 코치, 한 명이 피코치. 7분 코칭 후 역할 교대. <b>조언 금지, 세우는 질문만.</b></div>
+<div class="card"><div class="card-title" style="color:var(--accent);">G · 질문 예시</div><div style="font-size:13px;color:var(--text);">"이번에 정말 이루고 싶은 건 뭐예요?" · "그게 이뤄지면 뭐가 달라지죠?"</div></div>
+<div class="card"><div class="card-title" style="color:var(--blue);">R · 질문 예시</div><div style="font-size:13px;">"지금은 어떤 상황이에요?" · "이미 해본 건 뭐가 있어요?"</div></div>
+<div class="card"><div class="card-title" style="color:var(--purple);">O · 질문 예시</div><div style="font-size:13px;">"가능한 방법을 3가지만 떠올려볼까요?" · "제약이 없다면요?"</div></div>
+<div class="card"><div class="card-title" style="color:var(--green);">W · 질문 예시</div><div style="font-size:13px;">"가장 먼저 할 한 걸음은요?" · "언제 시작할까요?"</div></div>
+<div class="card"><div class="label-sm">🤝 내가 코칭하며 들은 — 동료가 정한 '첫 걸음'</div><input class="text-input" id="peerStep" placeholder="동료의 다짐을 적어주세요"></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 나는 동료를 '세우는' 사람인가, '눌러 앉히는' 사람인가</div>
+<textarea rows="2" id="mdActPeer" placeholder="예: 답을 주려 하기보다 질문으로 세워줄 때 상대가 살아났다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActPeer" placeholder="예: 철이 철을 날카롭게 하듯, 서로 세우는 친구가 되게 하소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actDisc')">◀</button><button class="next-card" onclick="showTab('actStrengthMap')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🧩 3-마 · 은사 확인·격려</div></button></div>
+</div>
+
+<div class="activity-section" id="actStrengthMap">
+<div class="bridge">🌉 1-나에서는 내가 <b>스스로</b> 은사를 찾았죠. 이번엔 <b>동료가 보는 내 은사</b>를 들으며 서로 격려합니다.</div>
+<div class="sec-title"><span class="sec-num">3-마</span>은사 확인 · 격려(바나바)</div>
+<div class="sec-desc">한 사람씩 돌아가며 서로의 은사를 5개씩 말해주며 세웁니다 — '격려의 아들' 바나바처럼</div>
+<div class="verse">서로 돌아보아 사랑과 선행을 격려하며<span class="verse-ref">히브리서 10:24 · 개역개정</span></div>
+<div class="verse">철이 철을 날카롭게 하는 것 같이 사람이 그의 친구의 얼굴을 빛나게 하느니라<span class="verse-ref">잠언 27:17 · 개역개정</span></div>
+<div class="guide-box">🗣️ <b>진행 방법</b> — 한 명을 정해, 나머지가 그 사람의 강점을 한마디씩 말해줍니다(1인당 5개). 내 차례에 <b>누군가 내 강점을 말할 때마다</b> 아래에서 그 카드를 한 번씩 눌러주세요.<br>· 한 카드는 <b>최대 10번</b>까지 · 10번을 넘기면 <b>0으로 초기화</b>됩니다.<br>· <b>3번</b> 이상 → 주목받는 강점 · <b>6번</b> 이상 → 모두가 인정한 대표 강점.</div>
+<div class="str-legend"><span><i class="str-dot" style="background:#fdfaf3;border-color:var(--border)"></i>0회</span><span><i class="str-dot" style="background:#dbe3f5"></i>1~2회</span><span><i class="str-dot" style="background:var(--blue)"></i>3~5회 주목</span><span><i class="str-dot" style="background:linear-gradient(135deg,#9a6a3a,#8a9a7a)"></i>6회+ 대표</span></div>
+<div class="card"><div class="card-title">🃏 동료가 말해준 강점을 누르세요 <span style="font-size:11px;color:var(--sub);" id="smCount"></span></div><div class="tag-wrap" id="smTags"></div></div>
+<div class="result-box"><h3>👥 동료들이 가장 많이 말해준 내 강점</h3><div id="smTop" style="font-size:13px;line-height:1.9;"></div></div>
+<div class="card" style="border-left:4px solid var(--accent);">
+<div class="card-title">🔎 이 강점들을 돌아보니… <span style="font-size:11px;color:var(--sub);">(나누기)</span></div>
+<p class="label-sm" style="margin-top:0;">정답이 아니라, 내 강점이 그동안 어디서 나왔는지 떠올려 적어봅니다.</p>
+<div class="label-sm">👨‍👩‍👧 <b>가족</b>에게는 이 강점을 이렇게 써왔던 것 같다</div>
+<textarea rows="2" id="strFam" placeholder="예: 책임감 — 집안일이 몰릴 때 내가 먼저 챙겼다 / 공감 — 가족의 고민을 늘 들어줬다"></textarea>
+<div class="label-sm">🧑‍🤝‍🧑 <b>사람들(동료·친구)</b>에게는 이 강점을 이렇게 써왔던 것 같다</div>
+<textarea rows="2" id="strPpl" placeholder="예: 경청 — 친구가 힘들 때 끝까지 들어줬다 / 추진력 — 모임에서 먼저 나서서 일을 벌였다"></textarea>
+<div class="tip-box" style="margin:10px 0 0;">💬 옆 사람과 나눠보세요 — "내 은사가 ○○에게 이렇게 닿았더라." 소리 내어 말하다 보면 맡겨진 은사가 더 또렷해집니다.</div></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 동료가 비춰준 은사에서 하나님의 뜻이 보이는가</div>
+<textarea rows="2" id="mdActStrengthMap" placeholder="예: 사람들이 '경청'을 말해줬다 — 지친 이를 품으라는 부르심 같다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActStrengthMap" placeholder="예: 바나바처럼 남의 은사를 알아보고 격려하는 사람이 되게 하소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actPeer')">◀</button><button class="next-card" onclick="showTab('actSBI')"><span class="nn-arrow">→</span><div class="nn-label">다음</div><div class="nn-title">🌟 3-바 · 축복·덕을 세우는 말</div></button></div>
+</div>
+
+<div class="activity-section" id="actSBI">
+<div class="bridge">🌉 은사가 보였다면, <b>덕을 세우는 말로 축복</b>합니다. 막연한 칭찬 말고 구체적으로.</div>
+<div class="sec-title"><span class="sec-num">3-바</span>축복·덕을 세우는 말 (SBI)</div>
+<div class="sec-desc">상황(Situation) · 행동(Behavior) · 영향(Impact) — 듣는 이에게 은혜를 끼치는 말</div>
+<div class="verse">무릇 더러운 말은 너희 입 밖에도 내지 말고 오직 덕을 세우는 데 소용되는 대로 선한 말을 하여 듣는 자들에게 은혜를 끼치게 하라<span class="verse-ref">에베소서 4:29 · 개역개정</span></div>
+<div class="verse">그러므로 피차 권면하고 서로 덕을 세우기를 너희가 하는 것 같이 하라<span class="verse-ref">데살로니가전서 5:11 · 개역개정</span></div>
+<div class="card"><div class="label-sm">누구에게</div><input class="text-input" id="sbiWho" placeholder="동료 이름">
+<div class="label-sm">S · 어떤 상황에서</div><input class="text-input" id="sbiS" placeholder="예: 지난주 고객 클레임이 몰렸을 때">
+<div class="label-sm">B · 무엇을 했는지 (관찰한 행동)</div><input class="text-input" id="sbiB" placeholder="예: 침착하게 우선순위를 정해 하나씩 응대했다">
+<div class="label-sm">I · 그게 어떤 영향을 줬는지</div><input class="text-input" id="sbiI" placeholder="예: 덕분에 팀 전체가 흔들리지 않았다"></div>
+<button class="btn btn-primary" style="width:100%;" onclick="buildSBI()">🌟 인정 카드 만들기</button>
+<div class="summary-card" id="sbiCard" style="display:none;"></div>
+<div class="tip-box">📨 만든 축복의 말을 <b>실제로 전하세요</b> — 말로든 메시지로든. 듣는 이에게 은혜가 됩니다.</div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 내 입에서 나온 말은 은혜를 끼쳤나, 무너뜨렸나</div>
+<textarea rows="2" id="mdActSBI" placeholder="예: 무심한 말로 상처 준 적이 있다 — 덕을 세우는 말을 연습하고 싶다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActSBI" placeholder="예: 내 말이 듣는 이에게 은혜를 끼치는 말이 되게 하소서"></div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actStrengthMap')">◀</button><button class="next-card" onclick="showTab('actPromise')"><span class="nn-arrow">→</span><div class="nn-label">마무리</div><div class="nn-title">✋ 3-사 · 공동체 언약·순종</div></button></div>
+</div>
+
+<div class="activity-section" id="actPromise">
+<div class="bridge">🌉 오늘 만난 것들을 <b>두 가지 산출물</b>로 고정합니다 — 개인의 순종 결단과 공동체 언약.</div>
+<div class="sec-title"><span class="sec-num">3-사</span>공동체 언약 + 순종의 다짐</div>
+<div class="sec-desc">세션을 언약과 순종으로 남깁니다</div>
+<div class="verse">두 사람이 한 사람보다 나음은 그들이 수고함으로 좋은 상을 얻을 것임이라<span class="verse-ref">전도서 4:9 · 개역개정</span></div>
+<div class="guide-box">✋ 여호수아는 자신과 온 집이 여호와를 섬기겠다고 <b>먼저 결단</b>했습니다(수 24:15 참고). 오늘의 다짐도 그런 <b>순종의 결단</b>이 되게 합니다.</div>
+<div class="card"><div class="card-title">🙋 순종의 다짐 (개인)</div>
+<div class="label-sm">오늘 가장 울린 한 가지</div><input class="text-input" id="prOne" placeholder="">
+<div class="label-sm">내일 할 작은 행동 1개 (5초/오늘 가능)</div><input class="text-input" id="prAct" placeholder=""></div>
+<div class="card"><div class="card-title">🤝 우리 공동체 언약 3가지 <span style="font-size:11px;color:var(--sub);">(테이블에서 합의)</span></div>
+<input class="text-input" id="prT1" placeholder="언약 1" style="margin-bottom:8px;">
+<input class="text-input" id="prT2" placeholder="언약 2" style="margin-bottom:8px;">
+<input class="text-input" id="prT3" placeholder="언약 3"></div>
+<button class="btn btn-primary" style="width:100%;" onclick="buildFinal()">📇 최종 카드 만들기</button>
+<div class="summary-card" id="finalCard" style="display:none;"></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 이 다짐을 지킬 힘은 어디서 오는가</div>
+<textarea rows="2" id="mdActPromise" placeholder="예: 내 결심이 아니라, 시작하신 주님이 이루실 것을 믿는다"></textarea>
+<div class="label-sm">기도 — 한 줄 기도</div>
+<input class="text-input" id="prayActPromise" placeholder="예: 나와 내 집이 주를 섬기기로 한 이 언약을 지키게 하소서"></div>
+<div class="tip-box">🎯 마지막으로 — 오늘의 나를 <b>한 장의 시각 리포트</b>로 저장합니다.</div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actSBI')">◀</button><button class="next-card" onclick="showTab('actPost')"><span class="nn-arrow">→</span><div class="nn-label">마무리</div><div class="nn-title">📄 리포트 저장</div></button></div>
+</div>
+
+<!-- ===== 마무리: 소감 + 시각 리포트 ===== -->
+<div class="activity-section" id="actPost">
+<div class="phase-banner p3" style="background:linear-gradient(135deg,#1E40AF,#4F7A5B);"><div class="pb-tag">마무리 · 시작하신 이가 이루시리라</div><div class="pb-title">오늘의 나를 기도로 한 장에</div><div class="pb-sub">소감을 기도와 감사로 적고, 버튼 한 번으로 시각 리포트를 저장하세요.</div>
+<div class="verse-banner">너희 안에서 착한 일을 시작하신 이가 그리스도 예수의 날까지 이루실 줄을 우리는 확신하노라<span class="verse-ref">빌립보서 1:6 · 개역개정</span></div></div>
+<div class="verse" style="border-left-color:var(--copper);">오늘 받은 은혜를 <span class="heb">nedavah(<em>נְדָבָה</em>)</span> — 자원하는 마음으로 다시 주께 드립니다. 마음이 감동된 자가 자원하여 드리듯(출애굽기 35 · 원어 nedavah).<span class="verse-ref">네다바웨이 · 자원하여 드림</span></div>
+<div class="card"><div class="card-title">✍️ 오늘 활동 소감 · 기도와 감사</div>
+<div class="label-sm">오늘 느낀 점·다짐을 기도와 감사로 적어보세요 — 리포트 마지막에 그대로 담깁니다</div>
+<textarea rows="4" id="reflection" placeholder="예: 염려는 주께 맡기고 내 몫에 순종하기로 했다. 시작하신 주님이 이루실 것을 믿으며, 내일부터 옆 팀에 먼저 인사를 건네보려 한다…"></textarea></div>
+<div class="card devo-card"><div class="card-title">🕊️ 묵상과 기도</div>
+<div class="label-sm">묵상 — 오늘 하루를 한 문장으로 주께 올려드린다면</div>
+<textarea rows="2" id="mdActPost" placeholder="예: 나를 살피시고 은사를 맡기신 주님께 감사드립니다"></textarea>
+<div class="label-sm">기도 — 마지막 한 줄 기도</div>
+<input class="text-input" id="prayActPost" placeholder="예: 시작하신 이가 이루실 줄 믿고, 자원하는 마음으로 순종하겠습니다"></div>
+<button class="submit-btn" id="exportBtn" onclick="exportPDF()" style="background:var(--navy);">📄 나의 시각 리포트 PDF 저장 · 카톡·메일 공유</button>
+<p style="font-size:11.5px;color:var(--sub);text-align:center;margin:6px 2px 0;line-height:1.65;">👆 누르면 오늘 활동이 <b>그래프·차트</b>로 담긴 <b>한 장 리포트 PDF</b>가 만들어지고, 휴대폰 <b>공유</b>로 <b>카카오톡·이메일</b>에 바로 보낼 수 있어요.</p>
+<div id="reportRoot" aria-hidden="true" style="position:fixed;left:-9999px;top:0;width:800px;display:none;"></div>
+<div class="tip-box">🎉 수고하셨습니다! 시작하신 주님이 이루실 줄 믿습니다. 오늘의 기록이 한 장의 리포트로 남았습니다.</div>
+<div class="next-nav"><button class="prev-card" onclick="showTab('actPromise')">◀</button></div>
+</div>
+
+<div class="app-footer">네다바웨이 · <span class="heb">nedavah(<em>נְדָבָה</em>)</span> 네다바 · 자원하는 예물/마음 (출애굽기 35)<br>ME → WE 워크숍 (크리스찬 버전) · 청지기 · 은사 · 서로 세움<br>도구로 사용한 이론: Manz·Neck 셀프리더십 / Whitmore GROW / Edmondson·Clark 심리적 안전감 / Covey 영향력의 원 / SBI · DiSC — 성경의 눈으로 다시 읽음</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+// ===== STATE =====
+var KEY='', state={}, REMEMBER_KEY='meweF_remember';
+function save(){ if(KEY){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} } if(typeof refreshProgress==='function') refreshProgress(); }
+function setV(k,v){ state[k]=v; save(); }
+function getV(k,d){ return state[k]===undefined?d:state[k]; }
+
+function enterApp(){
+  document.getElementById('headerUser').textContent=(state.name||'')+'님';
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('app').style.display='block';
+  initAll();
+}
+function doLogin(){
+  var n=document.getElementById('nameInput').value.trim();
+  var p=document.getElementById('pinInput').value.trim();
+  if(!n||p.length!==4){ alert('이름과 비밀번호 4자리를 입력하세요'); return; }
+  KEY='meweF_'+n+'_'+p;
+  var saved=localStorage.getItem(KEY);
+  state = saved?JSON.parse(saved):{};
+  state.name=n; save();
+  if(document.getElementById('rememberChk') && document.getElementById('rememberChk').checked){ try{ localStorage.setItem(REMEMBER_KEY, KEY); }catch(e){} }
+  else { try{ localStorage.removeItem(REMEMBER_KEY); }catch(e){} }
+  enterApp();
+}
+function tryAutoLogin(){
+  var rk=null; try{ rk=localStorage.getItem(REMEMBER_KEY); }catch(e){}
+  if(!rk) return false;
+  KEY=rk; var saved=null; try{ saved=localStorage.getItem(rk); }catch(e){}
+  state = saved?JSON.parse(saved):{};
+  if(!state.name){ var parts=rk.split('_'); state.name= parts.length>=3? parts[1] : ''; }
+  enterApp();
+  return true;
+}
+function logout(){
+  if(confirm('로그아웃할까요?\n작성한 내용은 이 기기에 저장돼 있어, 같은 이름·비밀번호로 다시 불러올 수 있어요.')){
+    try{ localStorage.removeItem(REMEMBER_KEY); }catch(e){}
+    location.reload();
+  }
+}
+function resetState(){ if(confirm('내 응답을 모두 지울까요? (되돌릴 수 없습니다)')){ try{ localStorage.removeItem(KEY); localStorage.removeItem(REMEMBER_KEY); }catch(e){} location.reload(); } }
+function pickMood(b){ document.querySelectorAll('.mood-btn').forEach(function(x){x.classList.remove('picked');}); b.classList.add('picked'); setV('mood',b.textContent); }
+
+// ===== TABS =====
+var GROUPS=[
+ {id:'g0',label:'0부 워밍업',items:[['act0','📋 자가진단'],['actReview','🌓 전반기 회고']]},
+ {id:'g1',label:'1부 ME',items:[['actWheel','🎡 라이프 휠'],['actRipple','🌊 파급효과'],['actStrength','💪 강점'],['actSelfLead','🧭 셀프리더십'],['actCircle','🎯 영향력의 원']]},
+ {id:'g2',label:'2부 LEAD',items:[['actMotive','🔋 동기'],['actGrow','🌱 GROW']]},
+ {id:'g3',label:'3부 WE',items:[['actSafety','🛡️ 안전감'],['actListen','👂 경청'],['actDisc','🎭 소통'],['actPeer','🤝 동료코칭'],['actStrengthMap','🧩 강점역할'],['actSBI','🌟 인정'],['actPromise','✋ 약속']]},
+ {id:'g4',label:'마무리',items:[['actPost','✍️ 마무리·리포트']]}
+];
+function findGroup(id){ for(var i=0;i<GROUPS.length;i++){ for(var j=0;j<GROUPS[i].items.length;j++){ if(GROUPS[i].items[j][0]===id) return GROUPS[i].id; } } return 'g0'; }
+function renderTabs(){
+  var html='<div class="tab-groups">';
+  GROUPS.forEach(function(g){ html+='<button class="tab-group-btn" data-group="'+g.id+'" onclick="openGroup(\''+g.id+'\')">'+g.label+'</button>'; });
+  html+='</div><div class="tab-chips" id="tabChips"></div>';
+  document.getElementById('tabNav').innerHTML=html;
+}
+function openGroup(gid){
+  var g=GROUPS.find(function(x){return x.id===gid;});
+  document.querySelectorAll('.tab-group-btn').forEach(function(b){ b.classList.toggle('active',b.dataset.group===gid); });
+  document.getElementById('tabChips').innerHTML=g.items.map(function(it){ var dn=isDone(it[0]); return '<button class="tab-chip'+(dn?' done':'')+'" data-id="'+it[0]+'" onclick="showTab(\''+it[0]+'\')">'+(dn?'✓ ':'')+it[1]+'</button>'; }).join('');
+}
+var CURID='act0';
+function showTab(id){
+  CURID=id;
+  var gid=findGroup(id);
+  openGroup(gid);
+  document.querySelectorAll('.activity-section').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab-chip').forEach(function(b){ b.classList.toggle('active',b.dataset.id===id); });
+  if(id==='actGrow') prefillGrow();
+  if(id==='actRipple') fillRippleLow();
+  if(id==='actStrengthMap') renderStrMap();
+  refreshProgress();
+  window.scrollTo(0,0);
+}
+// ===== 진행률 / 완료 판정 =====
+var SECTION_IDS=['act0','actWheel','actStrength','actSelfLead','actCircle','actMotive','actGrow','actSafety','actListen','actDisc','actPeer','actStrengthMap','actSBI','actPromise'];
+function isDone(id){
+  switch(id){
+    case 'act0': return getV('psSubmitted',false)===true;
+    case 'actWheel': return Object.keys(getV('wheel',{})).length>0;
+    case 'actStrength': { var lv=getV('strLv',{}); return Object.keys(lv).some(function(k){return lv[k]===3;}); }
+    case 'actSelfLead': return Object.keys(getV('sl',{})).length>=12;
+    case 'actCircle': { var l=getV('concerns',[]); return l.length>0 && l.some(function(c){return c.s>0;}); }
+    case 'actMotive': return Object.keys(getV('mv',{})).length>=12;
+    case 'actGrow': return !!(getV('gW1','') && getV('gG',''));
+    case 'actSafety': return Object.keys(getV('safe',{})).length>=8;
+    case 'actListen': return !!getV('lFo','');
+    case 'actDisc': return Object.keys(getV('disc',{})).length>=5;
+    case 'actPeer': return !!getV('peerStep','');
+    case 'actStrengthMap': return !!(Object.keys(getV('smCnt',{})).length||getV('strFam','')||getV('strPpl',''));
+    case 'actSBI': return !!getV('sbiB','');
+    case 'actPromise': return !!(getV('prAct','')||getV('prOne',''));
+  }
+  return false;
+}
+function refreshProgress(){
+  var d=0; SECTION_IDS.forEach(function(id){ if(isDone(id))d++; });
+  var f=document.getElementById('hpFill'), t=document.getElementById('hpTxt');
+  if(f) f.style.width=(d/SECTION_IDS.length*100)+'%';
+  if(t) t.textContent=d+'/'+SECTION_IDS.length;
+}
+
+// ===== generic likert diagnostic =====
+function renderLikert(containerId, prefix, items, onChange){
+  var c=document.getElementById(containerId); var html='';
+  items.forEach(function(q,i){
+    html+='<div class="q-card"><span class="q-tag">'+q.tag+'</span><div class="q-text">'+(i+1)+'. '+q.t+'</div><div class="lk-row">';
+    for(var v=1;v<=5;v++){ html+='<button data-i="'+i+'" data-v="'+v+'">'+v+'</button>'; }
+    html+='</div><div class="lk-labels"><span>전혀 아니다</span><span>매우 그렇다</span></div></div>';
+  });
+  c.innerHTML=html;
+  c.querySelectorAll('button').forEach(function(b){
+    b.onclick=function(){
+      var i=+b.dataset.i, v=+b.dataset.v;
+      c.querySelectorAll('button[data-i="'+i+'"]').forEach(function(x){x.classList.remove('chosen');});
+      b.classList.add('chosen');
+      var ans=getV(prefix,{}); ans[i]=v; setV(prefix,ans); onChange(ans);
+    };
+  });
+  var ans=getV(prefix,{});
+  Object.keys(ans).forEach(function(i){ var b=c.querySelector('button[data-i="'+i+'"][data-v="'+ans[i]+'"]'); if(b)b.classList.add('chosen'); });
+  onChange(ans);
+}
+
+// ===== 0부 pre-survey =====
+var PS=[
+ {t:'스스로 목표를 정하고 점검하는 편이다',tag:'셀프리더십',d:'sl'},
+ {t:'힘든 일도 의미를 찾아 동기를 만든다',tag:'셀프리더십',d:'sl'},
+ {t:'부정적 생각이 들 때 관점을 바꿔본다',tag:'셀프리더십',d:'sl'},
+ {t:'바꿀 수 없는 일보다 바꿀 수 있는 일에 집중한다',tag:'셀프리더십',d:'sl'},
+ {t:'우리 팀에선 모르는 것을 편하게 물어볼 수 있다',tag:'안전감',d:'safe'},
+ {t:'실수해도 비난받지 않는 분위기다',tag:'안전감',d:'safe'},
+ {t:'다른 의견을 말해도 괜찮다',tag:'안전감',d:'safe'},
+ {t:'내 아이디어가 팀에서 진지하게 다뤄진다',tag:'안전감',d:'safe'},
+ {t:'동료의 말을 끝까지 듣고 핵심을 파악한다',tag:'소통',d:'com'},
+ {t:'칭찬·피드백을 구체적으로 전한다',tag:'소통',d:'com'},
+ {t:'갈등이 생겨도 대화로 풀려 한다',tag:'소통',d:'com'},
+ {t:'상대 유형에 맞춰 소통 방식을 바꾼다',tag:'소통',d:'com'},
+ {t:'요즘 일에서 에너지를 얻는다',tag:'동기',d:'mot'},
+ {t:'내 일이 의미 있다고 느낀다',tag:'동기',d:'mot'},
+ {t:'성장하고 있다는 감각이 있다',tag:'동기',d:'mot'},
+ {t:'아침에 출근이 부담스럽지 않다',tag:'동기',d:'mot'}
+];
+var PS_AREA={sl:'셀프리더십',safe:'심리적 안전감',com:'소통',mot:'동기'};
+var PS_COL={sl:'#3B82F6',safe:'#5B6B9E',com:'#1E40AF',mot:'#9a6a3a'};
+function renderPS(){
+  var c=document.getElementById('psQ'); var html='';
+  PS.forEach(function(q,i){
+    html+='<div class="q-card"><span class="q-tag">'+q.tag+'</span><div class="q-text">'+(i+1)+'. '+q.t+'</div><div class="lk-row">';
+    for(var v=1;v<=5;v++) html+='<button data-i="'+i+'" data-v="'+v+'">'+v+'</button>';
+    html+='</div><div class="lk-labels"><span>1 · 전혀 아니다</span><span>매우 그렇다 · 5</span></div></div>';
+  });
+  c.innerHTML=html;
+  c.querySelectorAll('button').forEach(function(b){ b.onclick=function(){
+    var i=+b.dataset.i,v=+b.dataset.v;
+    c.querySelectorAll('button[data-i="'+i+'"]').forEach(function(x){x.classList.remove('chosen');}); b.classList.add('chosen');
+    var ans=getV('ps',{}); ans[i]=v; setV('ps',ans); psProgress(ans);
+  };});
+  var ans=getV('ps',{}); Object.keys(ans).forEach(function(i){ var b=c.querySelector('button[data-i="'+i+'"][data-v="'+ans[i]+'"]'); if(b)b.classList.add('chosen'); });
+  psProgress(ans);
+  if(getV('psSubmitted',false)) submitPS(true);
+}
+function psProgress(ans){
+  var done=Object.keys(ans).length;
+  document.getElementById('psFill').style.width=(done/16*100)+'%';
+  document.getElementById('psProg').textContent=done+' / 16 완료';
+  var btn=document.getElementById('psSubmit');
+  if(done>=16){ btn.disabled=false; btn.textContent= getV('psSubmitted',false)?'🔄 결과 다시 보기':'📊 결과 보기 — 제출하기'; }
+  else { btn.disabled=true; btn.textContent='📊 16문항을 모두 답하면 결과를 볼 수 있어요 ('+done+'/16)'; }
+}
+function submitPS(silent){
+  var ans=getV('ps',{}); if(Object.keys(ans).length<16){ if(!silent) alert('16문항을 모두 답해주세요.'); return; }
+  setV('psSubmitted',true);
+  var order=['sl','safe','com','mot']; var sum={sl:[0,0],safe:[0,0],com:[0,0],mot:[0,0]};
+  PS.forEach(function(q,i){ if(ans[i]){ sum[q.d][0]+=ans[i]; sum[q.d][1]++; } });
+  var avgs={}; order.forEach(function(k){ avgs[k]=sum[k][0]/sum[k][1]; });
+  var low=order[0],high=order[0];
+  order.forEach(function(k){ if(avgs[k]<avgs[low])low=k; if(avgs[k]>avgs[high])high=k; });
+  var bars='';
+  order.forEach(function(k){
+    var a=avgs[k], pct=a/5*100;
+    var badge = k===low?'<span class="ps-badge low">오늘 집중</span>':(k===high?'<span class="ps-badge high">강점</span>':'');
+    bars+='<div class="ps-area-row"><div class="ps-area-head"><span>'+PS_AREA[k]+badge+'</span><span>'+a.toFixed(1)+' / 5</span></div><div class="ps-area-bar"><div class="ps-area-fill" style="width:'+pct+'%;background:'+PS_COL[k]+'"></div></div></div>';
+  });
+  document.getElementById('psBars').innerHTML=bars;
+  drawPSRadar(order.map(function(k){return avgs[k];}), order.map(function(k){return PS_AREA[k];}));
+  var tot=(avgs.sl+avgs.safe+avgs.com+avgs.mot)/4;
+  document.getElementById('psFocus').innerHTML='전체 평균 <b>'+tot.toFixed(1)+' / 5</b>. 가장 단단한 영역은 「'+PS_AREA[high]+'」, 오늘 워크숍에서 가장 많이 가져갈 영역은 「<b>'+PS_AREA[low]+'</b>」입니다. 점수가 낮다고 부족한 게 아니라, <b>오늘 가장 크게 자랄 수 있는 자리</b>예요. 워크숍 마지막에 같은 16문항을 다시 풀어 변화를 확인합니다.';
+  document.getElementById('psResult').style.display='block';
+  psProgress(ans);
+  if(!silent) document.getElementById('psResult').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function drawPSRadar(vals,labels){
+  var svg=document.getElementById('psRadar'),cx=180,cy=158,R=104,n=vals.length;
+  var s='';
+  [0.25,0.5,0.75,1].forEach(function(r){ var pts=''; for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; pts+=(cx+Math.cos(a)*R*r)+','+(cy+Math.sin(a)*R*r)+' '; } s+='<polygon points="'+pts+'" style="fill:none;stroke:rgba(255,255,255,.25);stroke-width:1;"/>'; });
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+Math.cos(a)*R)+'" y2="'+(cy+Math.sin(a)*R)+'" style="stroke:rgba(255,255,255,.25);stroke-width:1;"/>'; }
+  var poly='';var pts=[];
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; var val=vals[i]/5; var x=cx+Math.cos(a)*R*val,y=cy+Math.sin(a)*R*val; poly+=x+','+y+' '; pts.push([x,y]); }
+  s+='<polygon points="'+poly+'" style="fill:rgba(255,255,255,.32);stroke:#fff;stroke-width:2.5;stroke-linejoin:round;"/>';
+  pts.forEach(function(p){ s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3.5" fill="#fff"/>'; });
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; var x=cx+Math.cos(a)*(R+26),y=cy+Math.sin(a)*(R+20)+4; s+='<text x="'+x+'" y="'+y+'" text-anchor="middle" style="font-size:11px;fill:#fff;font-weight:700;">'+labels[i]+' '+vals[i].toFixed(1)+'</text>'; }
+  svg.innerHTML=s;
+}
+
+// ===== 진단 평균 / 리포트 helper =====
+function psAreaAvgs(key){
+  var ans=getV(key,{}); if(Object.keys(ans).length<16) return null;
+  var sum={sl:[0,0],safe:[0,0],com:[0,0],mot:[0,0]};
+  PS.forEach(function(q,i){ if(ans[i]){ sum[q.d][0]+=ans[i]; sum[q.d][1]++; } });
+  var a={}; ['sl','safe','com','mot'].forEach(function(k){ a[k]=sum[k][0]/sum[k][1]; }); return a;
+}
+function getWheelLow(){ var vals=getV('wheel',{}); if(!Object.keys(vals).length)return ''; var lo=99,li=-1; for(var i=0;i<WHEEL.length;i++){ var v=vals[i]!==undefined?vals[i]:5; if(v<lo){lo=v;li=i;} } return li>=0?WHEEL[li]+' ('+lo+'점)':''; }
+function getMotiveSc(){ var ans=getV('mv',{}); if(Object.keys(ans).length<12)return null; var sc={recog:0,rel:0,growth:0,stable:0,ext:0}; MV.forEach(function(m,i){ if(ans[i]==='a')sc[m.ta]++; else if(ans[i]==='b')sc[m.tb]++; }); sc.recog+=sc.ext; delete sc.ext; return sc; }
+function getDiscSc(){ var ans=getV('disc',{}); if(Object.keys(ans).length<5)return null; var sc={D:0,I:0,S:0,C:0}; Object.keys(ans).forEach(function(i){ sc[ans[i]]++; }); return sc; }
+// ===== 시각 리포트 빌드 (PDF) =====
+function _radarSVG(vals, labels, maxV, fill, stroke){
+  var size=320, cx=160, cy=160, R=92, n=vals.length;
+  var s='<svg width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:4px auto;">';
+  function ring(f){ var p=''; for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; p+=(cx+Math.cos(a)*R*f)+','+(cy+Math.sin(a)*R*f)+' '; } return p; }
+  [0.25,0.5,0.75,1].forEach(function(f){ s+='<polygon points="'+ring(f)+'" fill="none" stroke="#E2E5EA" stroke-width="1"/>'; });
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; s+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+Math.cos(a)*R)+'" y2="'+(cy+Math.sin(a)*R)+'" stroke="#E2E5EA" stroke-width="1"/>'; }
+  var dp=''; for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2, f=Math.max(0,Math.min(1,vals[i]/maxV)); dp+=(cx+Math.cos(a)*R*f)+','+(cy+Math.sin(a)*R*f)+' '; }
+  s+='<polygon points="'+dp+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="2.5" stroke-linejoin="round"/>';
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2, f=Math.max(0,Math.min(1,vals[i]/maxV)); s+='<circle cx="'+(cx+Math.cos(a)*R*f)+'" cy="'+(cy+Math.sin(a)*R*f)+'" r="3.4" fill="#C0651F"/>'; }
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2, lx=cx+Math.cos(a)*(R+20), ly=cy+Math.sin(a)*(R+15)+4; s+='<text x="'+lx+'" y="'+ly+'" text-anchor="middle" font-size="10" font-weight="700" fill="#1B3A5C">'+esc(labels[i])+'</text>'; }
+  return s+'</svg>';
+}
+function _bars(items){
+  var h='<div class="rp-bars">';
+  items.forEach(function(it){ var pct=Math.max(2,Math.min(100, it.val/it.max*100));
+    var tag=it.badge?' <span class="rp-tag" style="background:'+(it.badgeBg||'#EEF1F5')+';color:'+(it.badgeC||'#444')+'">'+esc(it.badge)+'</span>':'';
+    h+='<div class="b"><div class="bl"><span>'+esc(it.label)+tag+'</span><span>'+esc(it.disp)+'</span></div><div class="bt"><div class="bf" style="width:'+pct+'%;background:'+it.color+'"></div></div></div>'; });
+  return h+'</div>';
+}
+function _circle(interest, influence){
+  var h='<div class="circle-area" style="width:300px;height:300px;margin:6px auto;">'+
+    '<div class="circle-outer"><span class="circle-label">관심의 원 · 영향 밖</span></div>'+
+    '<div class="circle-inner"><span class="circle-label inner">영향력의<br>원</span></div>';
+  function place(items,radius,cls){ var n=items.length; items.forEach(function(t,k){ var x,y; if(radius===0){x=50;y=50;} else { var a=Math.PI*2*k/n-Math.PI/2; x=50+Math.cos(a)*radius; y=50+Math.sin(a)*radius; } h+='<span class="cchip '+cls+'" style="left:'+x+'%;top:'+y+'%;">'+esc(t)+'</span>'; }); }
+  place(interest,33,'interest'); place(influence, influence.length>1?13:0,'influence');
+  return h+'</div>';
+}
+function buildReport(){
+  var root=document.getElementById('reportRoot'); if(!root) return;
+  var name=esc(state.name||'나'), dt=''; try{ dt=new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'}); }catch(e){}
+  var H='<div class="rp-hero"><div class="rp-kf">네다바웨이 · ME → WE 워크숍 (크리스찬)</div><h1>'+name+'님의 한 장 리포트</h1><div class="meta">'+(dt?dt+' · ':'')+'청지기 · 은사 · 서로 세움</div>';
+  if(getV('mood','')) H+='<div class="mood">오늘 컨디션 '+esc(getV('mood',''))+'</div>';
+  H+='<div style="margin-top:14px;font-family:\'Noto Serif KR\',serif;font-size:14px;line-height:1.85;background:rgba(255,255,255,.14);border-left:3px solid rgba(255,255,255,.6);border-radius:0 8px 8px 0;padding:10px 14px;">너희 안에서 착한 일을 시작하신 이가 그리스도 예수의 날까지 이루실 줄을 우리는 확신하노라<span style="display:block;font-family:\'Noto Sans KR\',sans-serif;font-size:11px;opacity:.82;margin-top:6px;">빌립보서 1:6 · 개역개정</span></div>';
+  H+='<div style="margin-top:10px;font-size:12px;opacity:.9;">🕊️ nedavah(נְדָבָה) · 자원하는 마음으로 오늘의 은혜를 다시 주께 드립니다</div>';
+  H+='</div><div class="rp-body">';
+  // 에너지 휠 (막대)
+  var wv=getV('wheel',{});
+  if(Object.keys(wv).length){
+    var wvals=WHEEL.map(function(w,i){ return wv[i]!==undefined?wv[i]:5; });
+    var wlo=0; wvals.forEach(function(v,i){ if(v<wvals[wlo])wlo=i; });
+    H+='<div class="rp-block"><div class="rp-bt">🌀 나의 에너지 휠 <span style="font-size:12px;color:#888;font-weight:600;">(0~10)</span></div>';
+    H+=_bars(WHEEL.map(function(w,i){ return {label:w,val:wvals[i],max:10,disp:wvals[i]+' / 10',color:(i===wlo?'#9a6a3a':'#1E40AF'),badge:(i===wlo?'가장 비어있음':''),badgeBg:'#efe6da',badgeC:'#6b4a2a'}; }));
+    H+='<div class="rp-hl">⭐ <b>'+esc(WHEEL[wlo])+'</b> 영역에 작은 행동 하나를 거세요 — 점수가 낮은 한 곳부터.</div></div>';
+  }
+  // 자가진단 4영역 (막대)
+  var pre=psAreaAvgs('ps');
+  if(pre){ var order=['sl','safe','com','mot'],lo=order[0],hi=order[0]; order.forEach(function(k){ if(pre[k]<pre[lo])lo=k; if(pre[k]>pre[hi])hi=k; });
+    H+='<div class="rp-block"><div class="rp-bt">🎯 나의 자가진단 <span style="font-size:12px;color:#888;font-weight:600;">(5점 만점)</span></div>';
+    H+=_bars(order.map(function(k){ return {label:PS_AREA[k],val:pre[k],max:5,disp:pre[k].toFixed(1)+' / 5',color:PS_COL[k],badge:(k===hi?'강점':(k===lo?'오늘 집중':'')),badgeBg:(k===hi?'#e2ece4':'#efe6da'),badgeC:(k===hi?'#33553d':'#6b4a2a')}; }));
+    H+='</div>';
+  }
+  // 대표 강점
+  var top=getV('strTop',[])||[];
+  if(top.length){ H+='<div class="rp-block"><div class="rp-bt">💪 나의 대표 강점</div><div class="rp-chips">'+top.map(function(s){return '<span class="rp-chip">'+esc(s)+'</span>';}).join('')+'</div>'; if(getV('strStory','')) H+='<div class="rp-q">“'+esc(getV('strStory',''))+'”</div>'; H+='</div>'; }
+  // 동기
+  var msc=getMotiveSc();
+  if(msc){ var mk=['recog','rel','growth','stable'],mt=mk[0]; mk.forEach(function(k){ if(msc[k]>msc[mt])mt=k; }); var mmax=Math.max(1,msc.recog,msc.rel,msc.growth,msc.stable);
+    H+='<div class="rp-block"><div class="rp-bt">🔋 나를 움직이는 동기</div>'+_bars(mk.map(function(k){ return {label:MV_NAME[k],val:msc[k],max:mmax,disp:String(msc[k]),color:(k===mt?'#9a6a3a':'#9db0c8'),badge:(k===mt?'가장 강함':''),badgeBg:'#efe6da',badgeC:'#6b4a2a'}; }))+'</div>'; }
+  // 셀프리더십 3전략
+  var slans=getV('sl',{});
+  if(Object.keys(slans).length>=12){ var ssm=[[0,0],[0,0],[0,0]]; SL.forEach(function(q,i){ if(slans[i]){ssm[q.d][0]+=slans[i];ssm[q.d][1]++;} }); var slv=[0,1,2].map(function(d){ return ssm[d][1]?ssm[d][0]/ssm[d][1]:0; }); var sllo=0; slv.forEach(function(v,d){ if(v<slv[sllo])sllo=d; });
+    H+='<div class="rp-block"><div class="rp-bt">🧭 청지기 리더십 3전략</div>'+_bars([0,1,2].map(function(d){ return {label:SL_NAME[d],val:slv[d],max:5,disp:slv[d].toFixed(1)+' / 5',color:(d===sllo?'#9a6a3a':'#4F7A5B'),badge:(d===sllo?'보강':''),badgeBg:'#efe6da',badgeC:'#6b4a2a'}; }))+'</div>'; }
+  // DiSC
+  var dsc=getDiscSc();
+  if(dsc){ var dt2='D'; ['I','S','C'].forEach(function(k){ if(dsc[k]>dsc[dt2])dt2=k; }); var info=DISC_INFO[dt2]; var dcol={D:'#B4472E',I:'#9a6a3a',S:'#4F7A5B',C:'#3B82F6'}[dt2];
+    H+='<div class="rp-block"><div class="rp-bt">🎭 나의 소통 스타일</div><div class="rp-disc"><div class="big" style="background:'+dcol+'">'+dt2+'</div><div><div class="dn">'+esc(info.n)+'</div><div class="dd">'+esc(info.desc)+'</div><div class="ds">강점 '+esc(info.str)+' · 주의 '+esc(info.weak)+'</div></div></div></div>'; }
+  // 심리적 안전감 4단계
+  var sf=getV('safe',{});
+  if(Object.keys(sf).length>=8){ var sm=[[0,0],[0,0],[0,0],[0,0]]; SAFE.forEach(function(q,i){ if(sf[i]){sm[q.d][0]+=sf[i];sm[q.d][1]++;} }); var nm=['포용','학습','기여','도전'];
+    H+='<div class="rp-block"><div class="rp-bt">🛡️ 우리 팀 심리적 안전감</div><div class="rp-stages">';
+    for(var d=0;d<4;d++){ var av=sm[d][1]?sm[d][0]/sm[d][1]:0; H+='<div class="rp-stage '+(av>=3.5?'on':'off')+'">'+nm[d]+'<br><span class="sv">'+(sm[d][1]?av.toFixed(1):'-')+'</span></div>'; }
+    H+='</div></div>'; }
+  // 영향력의 원
+  var cc=getV('concerns',[]);
+  if(cc.length){ var itr=cc.filter(function(c){return c.s===1;}).map(function(c){return c.t;}); var inf=cc.filter(function(c){return c.s===2;}).map(function(c){return c.t;});
+    if(itr.length||inf.length) H+='<div class="rp-block"><div class="rp-bt">🎯 영향력의 원</div>'+_circle(itr,inf)+'</div>'; }
+  // 나의 다짐
+  var cards=[];
+  if(getV('gW1','')) cards.push(['GROW · 첫 걸음', getV('gW1','')]);
+  if(getV('circleAction','')) cards.push(['영향력의 원 · 첫 행동', getV('circleAction','')]);
+  if(getV('lFo','')) cards.push(['경청 · 진짜 하고 싶은 말', getV('lFo','')]);
+  if(getV('sbiB','')) cards.push(['인정 한마디', (getV('sbiWho','')||'동료')+'님 — '+getV('sbiB','')]);
+  if(getV('prOne','')) cards.push(['오늘 가장 울린 것', getV('prOne','')]);
+  if(getV('prAct','')) cards.push(['내일 할 작은 행동', getV('prAct','')]);
+  if(cards.length){ H+='<div class="rp-block"><div class="rp-bt">✋ 나의 다짐</div><div class="rp-cards">'+cards.map(function(c){return '<div class="rp-cd"><div class="l">'+esc(c[0])+'</div><div class="v">'+esc(c[1])+'</div></div>';}).join('')+'</div>';
+    var teams=[getV('prT1',''),getV('prT2',''),getV('prT3','')].filter(Boolean);
+    if(teams.length) H+='<div class="rp-team"><span class="tl">🤝 우리 팀 약속</span>'+teams.map(function(t){return '<span class="rp-chip plain">'+esc(t)+'</span>';}).join('')+'</div>';
+    H+='</div>'; }
+  // 소감
+  var refl=getV('reflection',''); if(refl) H+='<div class="rp-block"><div class="rp-bt">✍️ 오늘 활동 소감 · 기도와 감사</div><div class="rp-note">'+esc(refl)+'</div></div>';
+  // 묵상과 기도 (섹션별, 있는 것만)
+  var devoDefs=[['청지기 자기점검','mdAct0','prayAct0'],['감사·회개·에벤에셀','mdActReview','prayActReview'],['전인적 삶·안식','mdActWheel','prayActWheel'],['지체 원리·빛과 소금','mdActRipple','prayActRipple'],['은사 발견','mdActStrength','prayActStrength'],['청지기 리더십','mdActSelfLead','prayActSelfLead'],['하나님 주권과 내 몫','mdActCircle','prayActCircle'],['소명·자원하는 마음','mdActMotive','prayActMotive'],['분별·기도적 목표','mdActGrow','prayActGrow'],['은혜의 공동체','mdActSafety','prayActSafety'],['속히 듣기','mdActListen','prayActListen'],['한 몸의 다양성','mdActDisc','prayActDisc'],['서로 세움','mdActPeer','prayActPeer'],['은사 확인·격려','mdActStrengthMap','prayActStrengthMap'],['축복의 말','mdActSBI','prayActSBI'],['공동체 언약·순종','mdActPromise','prayActPromise'],['마무리 기도','mdActPost','prayActPost']];
+  var devoCards=[];
+  devoDefs.forEach(function(d){ var md=getV(d[1],''), pr=getV(d[2],''); if(md||pr){ var v=''; if(md) v+='🕮 '+esc(md); if(md&&pr) v+='<br>'; if(pr) v+='🙏 '+esc(pr); devoCards.push('<div class="rp-cd"><div class="l">'+esc(d[0])+'</div><div class="v">'+v+'</div></div>'); } });
+  if(devoCards.length){ H+='<div class="rp-block"><div class="rp-bt">🕊️ 묵상과 기도</div><div class="rp-cards">'+devoCards.join('')+'</div></div>'; }
+  H+='<div class="rp-foot2">네다바웨이 · nedavah 네다바 · 자원하는 예물/마음 (출애굽기 35) · ME → WE 워크숍 (크리스찬)<br>도구로 사용한 이론: Manz·Neck 셀프리더십 / Whitmore GROW / Edmondson·Clark 심리적 안전감 / Covey 영향력의 원 / SBI · DiSC</div></div>';
+  root.innerHTML=H;
+}
+function exportPDF(){
+  var btn=document.getElementById('exportBtn'); var orig=btn?btn.textContent:'';
+  var root=document.getElementById('reportRoot');
+  function restore(){ if(btn){ btn.textContent=orig; btn.disabled=false; } if(root) root.style.display='none'; }
+  if(typeof html2canvas==='undefined' || typeof window.jspdf==='undefined'){
+    alert('PDF 생성 도구를 불러오지 못했어요(인터넷 연결을 확인해 주세요).\n인쇄 화면에서 "PDF로 저장"을 선택해도 됩니다.'); window.print(); return;
+  }
+  if(btn){ btn.disabled=true; btn.textContent='⏳ PDF 만드는 중…'; }
+  buildReport(); root.style.display='block';
+  var SCALE=2;
+  html2canvas(root,{scale:SCALE,backgroundColor:'#ffffff',useCORS:true,windowWidth:800}).then(function(canvas){
+    var jsPDF=window.jspdf.jsPDF, pdf=new jsPDF('p','mm','a4');
+    var PW=pdf.internal.pageSize.getWidth(), PH=pdf.internal.pageSize.getHeight();
+    var M=13, GAP=4, usableW=PW-2*M, usableH=PH-2*M;
+    var mmPerPx=usableW/canvas.width;
+    // 항목(블록) 경계를 수집 → 페이지 경계에서 막대·카드가 잘리지 않게
+    var rr=root.getBoundingClientRect(), segs=[];
+    try{ root.querySelectorAll(':scope>.rp-hero, :scope>.rp-body>.rp-block, :scope>.rp-body>.rp-foot2').forEach(function(n){
+      var r=n.getBoundingClientRect(), t=Math.max(0,Math.round((r.top-rr.top)*SCALE)), b=Math.round((r.bottom-rr.top)*SCALE); if(b>t) segs.push([t,b]);
+    }); }catch(e){}
+    if(!segs.length) segs=[[0,canvas.height]];
+    function slice(t,b,destY){ var hpx=b-t; if(hpx<=0)return; var tc=document.createElement('canvas'); tc.width=canvas.width; tc.height=hpx; var cx=tc.getContext('2d'); cx.fillStyle='#fff'; cx.fillRect(0,0,tc.width,hpx); cx.drawImage(canvas,0,t,canvas.width,hpx,0,0,canvas.width,hpx); pdf.addImage(tc.toDataURL('image/jpeg',0.92),'JPEG',M,destY,usableW,hpx*mmPerPx); }
+    var y=M;
+    segs.forEach(function(sg){
+      var t=sg[0], b=sg[1], hmm=(b-t)*mmPerPx;
+      if(hmm<=usableH){
+        if(y+hmm>PH-M+0.5){ pdf.addPage(); y=M; }
+        slice(t,b,y); y+=hmm+GAP;
+      } else {
+        var cur=t;
+        while(cur<b){
+          if(y>PH-M-12){ pdf.addPage(); y=M; }
+          var roomPx=(PH-M-y)/mmPerPx, chunk=Math.min(roomPx, b-cur);
+          slice(cur,cur+chunk,y); cur+=chunk; y+=chunk*mmPerPx;
+          if(cur<b){ pdf.addPage(); y=M; }
+        }
+        y+=GAP;
+      }
+    });
+    var blob=pdf.output('blob');
+    var fname=(state.name||'나')+'_ME-WE_워크숍_리포트.pdf';
+    var file=null; try{ file=new File([blob],fname,{type:'application/pdf'}); }catch(e){}
+    if(file && navigator.canShare && navigator.canShare({files:[file]})){
+      navigator.share({files:[file], title:'ME→WE 워크숍 리포트', text:(state.name||'')+'님의 오늘 워크숍 종합 리포트'}).then(restore).catch(restore);
+    } else {
+      var url=URL.createObjectURL(blob), a=document.createElement('a'); a.href=url; a.download=fname; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){ URL.revokeObjectURL(url); },4000);
+      alert('PDF가 저장됐어요. 카카오톡·이메일에 이 파일을 첨부해 보내면 됩니다.'); restore();
+    }
+  }).catch(function(e){ alert('PDF 생성 중 문제가 있었어요. 인쇄 화면에서 "PDF로 저장"을 선택해 주세요.'); window.print(); restore(); });
+}
+
+// ===== 1-가 wheel =====
+var WHEEL=['운동','강점개발','자산','친밀한 관계','식욕관리','전문성','재정관리','자기와의 약속','질병관리','시간관리','업무성과','부모관계','체중조절','지식학습','보편적 친구관계','사회적 리더십'];
+var WHEEL_SHORT=['운동','강점개발','자산','친밀한관계','식욕관리','전문성','재정관리','자기약속','질병관리','시간관리','업무성과','부모관계','체중조절','지식학습','친구관계','사회리더십'];
+var WHEEL_HINT=['규칙적으로 몸을 움직이는가','내 강점을 키우고 있는가','자산을 쌓아가고 있는가','친구·배우자 등 가까운 사이','식습관·과식을 잘 조절하는가','일의 전문성을 키우는가','저축·지출을 잘 관리하는가','삶의 기준을 지키며 사는가','건강·지병을 잘 돌보는가','시간을 잘 쓰고 있는가','일에서 성과를 내고 있는가','부모님과의 관계','체중·몸 상태 관리','새로운 것을 배우는가','일상적 친구관계','모임·사회에서의 역할'];
+function renderWheel(){
+  var g=document.getElementById('wheelGrid'); var vals=getV('wheel',{}); var html='';
+  WHEEL.forEach(function(w,i){
+    var v=vals[i]!==undefined?vals[i]:5;
+    html+='<div class="wheel-row"><label>'+w+'<span class="wh-hint">'+WHEEL_HINT[i]+'</span></label><input type="range" min="0" max="10" value="'+v+'" data-i="'+i+'"><span class="wheel-val" id="wv'+i+'">'+v+'</span></div>';
+  });
+  g.innerHTML=html;
+  g.querySelectorAll('input').forEach(function(inp){ inp.oninput=function(){
+    var i=+inp.dataset.i; document.getElementById('wv'+i).textContent=inp.value;
+    var vals=getV('wheel',{}); vals[i]=+inp.value; setV('wheel',vals); drawWheel(vals);
+  };});
+  drawWheel(vals);
+}
+function drawWheel(vals){
+  var svg=document.getElementById('wheelRadar'),cx=180,cy=180,R=110,n=WHEEL.length;
+  var s='';
+  [0.25,0.5,0.75,1].forEach(function(r){ var pts=''; for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; pts+=(cx+Math.cos(a)*R*r)+','+(cy+Math.sin(a)*R*r)+' '; } s+='<polygon class="radar-grid" points="'+pts+'"/>'; });
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; s+='<line class="radar-axis" x1="'+cx+'" y1="'+cy+'" x2="'+(cx+Math.cos(a)*R)+'" y2="'+(cy+Math.sin(a)*R)+'"/>'; }
+  var poly=''; var pts=[];
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; var val=(vals[i]!==undefined?vals[i]:5)/10; var x=cx+Math.cos(a)*R*val, y=cy+Math.sin(a)*R*val; poly+=x+','+y+' '; pts.push([x,y]); }
+  s+='<polygon class="radar-area" points="'+poly+'"/>';
+  pts.forEach(function(p){ s+='<circle class="radar-point" cx="'+p[0]+'" cy="'+p[1]+'" r="2.6"/>'; });
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; var x=cx+Math.cos(a)*(R+20), y=cy+Math.sin(a)*(R+20)+3; s+='<text class="radar-label" x="'+x+'" y="'+y+'" text-anchor="middle">'+WHEEL_SHORT[i]+'</text>'; }
+  svg.innerHTML=s;
+  // scores
+  var tot=0,cnt=0,arr=[]; for(var i=0;i<n;i++){ var v=vals[i]!==undefined?vals[i]:5; tot+=v;cnt++; arr.push({i:i,v:v}); }
+  var avg=cnt?tot/cnt:0;
+  document.getElementById('wAvg').textContent=cnt?avg.toFixed(1):'–';
+  var sorted=arr.slice().sort(function(a,b){return a.v-b.v;});
+  var low=sorted[0], high=sorted[sorted.length-1];
+  document.getElementById('wLow').textContent=WHEEL[low.i]+' ('+low.v+')';
+  // interpretation
+  var msg='';
+  if(avg>=8) msg='전반적으로 균형이 <b>매우 좋은 편</b>이에요. 지금의 리듬을 유지하면서, 가장 든든한 「'+WHEEL[high.i]+'」의 힘을 가장 낮은 「'+WHEEL[low.i]+'」로 조금만 나눠보세요.';
+  else if(avg>=6) msg='대체로 <b>안정적</b>이에요. 다만 비어 보이는 칸이 있다면 「'+WHEEL[low.i]+'」가 지금 가장 먼저 챙길 신호일 수 있어요.';
+  else if(avg>=4) msg='지금은 에너지가 <b>한쪽으로 쏠려</b> 있을 수 있어요. 일 바깥의 영역(건강·관계·마음)이 비어 있지 않은지 살펴보고, 「'+WHEEL[low.i]+'」부터 아주 작게 채워보세요.';
+  else msg='요즘 <b>많이 지쳐</b> 있는 상태일 수 있어요. 점수를 끌어올리려 애쓰기보다, 지금 가장 힘이 되는 「'+WHEEL[high.i]+'」에 먼저 기대도 괜찮습니다.';
+  if(high.v-low.v>=5) msg+=' 최고(「'+WHEEL[high.i]+'」)와 최저(「'+WHEEL[low.i]+'」)의 <b>격차가 큰 편</b> — 균형 회복이 올해 후반기의 열쇠예요.';
+  document.getElementById('wInterp').innerHTML=msg;
+  // bar chart: top3 / bottom3
+  var topN=sorted.slice(-3).reverse(), botN=sorted.slice(0,3);
+  function barRows(list,color){ return list.map(function(o){ return '<div class="bar"><div class="bar-label"><span>'+WHEEL[o.i]+'</span><span>'+o.v+'</span></div><div class="bar-track"><div class="bar-fill" style="width:'+(o.v*10)+'%;background:'+color+'"></div></div></div>'; }).join(''); }
+  document.getElementById('wBars').innerHTML=
+    '<div style="font-size:11px;font-weight:800;opacity:.92;margin-bottom:2px;">🔝 가장 높은 영역 TOP 3</div>'+barRows(topN,'#6EE7B7')+
+    '<div style="font-size:11px;font-weight:800;opacity:.92;margin:10px 0 2px;">🔻 가장 낮은 영역 BOTTOM 3</div>'+barRows(botN,'#F3B07A');
+}
+
+// ===== 1-나 strengths =====
+var STR=['실행력','책임감','꼼꼼함','창의성','공감','경청','추진력','분석력','긍정','인내','유연성','리더십','협업','소통','계획성','호기심','성실','용기','겸손','유머','신중함','배움','회복력','문제해결','조율','열정','정직','집중','배려','전략적사고'];
+function renderStr(){
+  // migrate old strSel/strTop → strLv if needed
+  if(state.strLv===undefined && (getV('strSel',[]).length||getV('strTop',[]).length)){
+    var nl={}; getV('strSel',[]).forEach(function(s){nl[s]=1;}); getV('strTop',[]).forEach(function(s){nl[s]=3;}); setV('strLv',nl);
+  }
+  var w=document.getElementById('strTags'); var lv=getV('strLv',{});
+  w.innerHTML=STR.map(function(s){
+    var L=lv[s]||0; var cls='tag'+(L?(' s'+L):'');
+    var mark=L===1?'':L===2?' ☆':L===3?' ⭐':'';
+    return '<span class="'+cls+'" onclick="toggleStr(\''+s+'\')">'+s+mark+'</span>';
+  }).join('');
+  var c1=0,c2=0,c3=0; Object.keys(lv).forEach(function(k){ if(lv[k]===1)c1++; else if(lv[k]===2)c2++; else if(lv[k]===3)c3++; });
+  document.getElementById('strCount').textContent='1차 '+c1+' · 후보 '+c2+' · 대표 '+c3+'/5';
+}
+function toggleStr(s){
+  var lv=getV('strLv',{}); var L=lv[s]||0;
+  if(L===2){ var c3=0; Object.keys(lv).forEach(function(k){ if(lv[k]===3)c3++; });
+    if(c3>=5){ alert('대표 강점(최종 ⭐)은 5개까지예요. 다른 대표 강점을 한 번 더 눌러 비운 뒤 골라주세요.'); return; } }
+  L=(L+1)%4; // 0→1차→후보→대표→0
+  if(L===0) delete lv[s]; else lv[s]=L;
+  setV('strLv',lv);
+  setV('strTop', Object.keys(lv).filter(function(k){return lv[k]===3;}));
+  renderStr();
+}
+function renderStrMap(){
+  var w=document.getElementById('smTags'); if(!w) return;
+  var cnt=getV('smCnt',{});
+  w.innerHTML=STR.map(function(s){
+    var c=cnt[s]||0; var tier=c>=6?3:c>=3?2:c>=1?1:0;
+    var cls='tag'+(tier?(' sm'+tier):'');
+    return '<span class="'+cls+'" onclick="bumpStr(\''+s+'\')">'+s+(c?'<span class="smb">'+c+'</span>':'')+'</span>';
+  }).join('');
+  var total=Object.keys(cnt).reduce(function(a,k){return a+(cnt[k]||0);},0);
+  document.getElementById('smCount').textContent= total? '총 '+total+'회 기록':'';
+  var arr=Object.keys(cnt).filter(function(k){return (cnt[k]||0)>=1;}).map(function(k){return {k:k,c:cnt[k]};}).sort(function(a,b){return b.c-a.c;});
+  var el=document.getElementById('smTop');
+  if(!arr.length){ el.innerHTML='<span style="opacity:.85;">동료가 말해준 강점을 누를 때마다 여기에 모여요.</span>'; return; }
+  var top=arr.filter(function(o){return o.c>=3;});
+  el.innerHTML=(top.length?top:arr.slice(0,5)).map(function(o){
+    var mk=o.c>=6?'⭐':o.c>=3?'🔹':'·';
+    return mk+' <b>'+o.k+'</b> <span style="opacity:.85;">'+o.c+'회</span>';
+  }).join('<br>');
+}
+function bumpStr(s){ var cnt=getV('smCnt',{}); var c=(cnt[s]||0)+1; if(c>10)c=0; cnt[s]=c; setV('smCnt',cnt); renderStrMap(); }
+function fillRippleLow(){ var el=document.getElementById('rpLow'); if(!el)return; var vals=getV('wheel',{}); if(!Object.keys(vals).length){ el.textContent='(1-가 에너지 휠을 먼저 작성하면 가장 낮은 영역이 자동 표시됩니다)'; return; } var lo=99,li=0; for(var i=0;i<WHEEL.length;i++){ var v=vals[i]!==undefined?vals[i]:5; if(v<lo){lo=v;li=i;} } el.textContent='⚡ '+WHEEL[li]+' ('+lo+'점)'; }
+
+// ===== 1-다 self-leadership =====
+var SL=[
+ {t:'나는 스스로 목표를 정하고 진행을 점검한다',tag:'행동중심',d:0},
+ {t:'잘 해낸 나에게 작은 보상을 준다',tag:'행동중심',d:0},
+ {t:'미루기 쉬운 일을 의식적으로 관리한다',tag:'행동중심',d:0},
+ {t:'내 행동을 관찰하고 기록하는 편이다',tag:'행동중심',d:0},
+ {t:'일 속에서 즐거운 요소를 찾아낸다',tag:'자연보상',d:1},
+ {t:'단조로운 일도 의미를 부여해 한다',tag:'자연보상',d:1},
+ {t:'결과만큼 과정 자체를 즐기려 한다',tag:'자연보상',d:1},
+ {t:'내가 좋아하는 방식으로 일을 설계한다',tag:'자연보상',d:1},
+ {t:'어려운 일 앞에서 잘될 거라 스스로 말한다',tag:'건설적 사고',d:2},
+ {t:'성공 장면을 미리 머릿속에 그린다',tag:'건설적 사고',d:2},
+ {t:'부정적 생각을 알아차리고 바꾼다',tag:'건설적 사고',d:2},
+ {t:'실패를 배움의 기회로 해석한다',tag:'건설적 사고',d:2}
+];
+var SL_NAME=['행동중심 전략','자연보상 전략','건설적 사고 전략'];
+function renderSL(){
+  renderLikert('slQ','sl', SL, function(ans){ scoreSL(ans); });
+}
+function scoreSL(ans){
+  var sum=[[0,0],[0,0],[0,0]];
+  SL.forEach(function(q,i){ if(ans[i]){ sum[q.d][0]+=ans[i]; sum[q.d][1]++; } });
+  var html=''; var low=null,lv=99;
+  for(var d=0;d<3;d++){ var avg=sum[d][1]?sum[d][0]/sum[d][1]:0; var pct=avg/5*100;
+    html+='<div class="bar"><div class="bar-label"><span>'+SL_NAME[d]+'</span><span>'+(sum[d][1]?avg.toFixed(1):'–')+'</span></div><div class="bar-track"><div class="bar-fill" style="width:'+pct+'%"></div></div></div>';
+    if(sum[d][1]&&avg<lv){lv=avg;low=d;} }
+  document.getElementById('slBars').innerHTML=html;
+  document.getElementById('slAdvice').textContent= low!==null? '👉 가장 낮은 「'+SL_NAME[low]+'」에 작은 루틴 하나를 걸어보세요.':'';
+  if(low!==null) setV('slLow',SL_NAME[low]);
+}
+
+// ===== 1-라 circle =====
+function addConcern(){
+  var inp=document.getElementById('circleInput'); var v=inp.value.trim(); if(!v)return;
+  var list=getV('concerns',[]); list.push({t:v,s:0}); setV('concerns',list); inp.value=''; renderConcerns();
+}
+function cycleConcern(i){ var list=getV('concerns',[]); list[i].s=(list[i].s+1)%3; setV('concerns',list); renderConcerns(); }
+function delConcern(i,e){ e.stopPropagation(); var list=getV('concerns',[]); list.splice(i,1); setV('concerns',list); renderConcerns(); }
+function esc(s){ return (s+'').replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];}); }
+function renderConcerns(){
+  var list=getV('concerns',[]);
+  var circle=document.getElementById('concernCircle'); if(!circle) return;
+  circle.querySelectorAll('.cchip').forEach(function(x){x.remove();});
+  var interest=[],influence=[],pool=[];
+  list.forEach(function(c,i){ c._i=i; if(c.s===1)interest.push(c); else if(c.s===2)influence.push(c); else pool.push(c); });
+  document.getElementById('concernPool').innerHTML= pool.length? pool.map(function(c){ return '<span class="ptag" onclick="cycleConcern('+c._i+')" title="'+esc(c.t)+'">'+esc(c.t)+'<span class="cx" onclick="delConcern('+c._i+',event)">×</span></span>'; }).join('') : '<span style="font-size:11.5px;color:var(--sub);align-self:center;">고민을 추가하면 여기 담깁니다 · 단어를 눌러 원 안으로 보내세요</span>';
+  placeChips(circle, interest, 32.5, 'interest');
+  placeChips(circle, influence, influence.length>1?11.5:0, 'influence');
+}
+function placeChips(circle, items, radiusPct, cls){
+  var n=items.length;
+  items.forEach(function(c,k){
+    var x,y;
+    if(radiusPct===0){ x=50; y=50; } else { var a=Math.PI*2*k/n-Math.PI/2; x=50+Math.cos(a)*radiusPct; y=50+Math.sin(a)*radiusPct; }
+    var el=document.createElement('span');
+    el.className='cchip '+cls; el.style.left=x+'%'; el.style.top=y+'%'; el.title=c.t;
+    el.innerHTML=esc(c.t)+'<span class="cx">×</span>';
+    el.onclick=function(){ cycleConcern(c._i); };
+    el.querySelector('.cx').onclick=function(e){ delConcern(c._i,e); };
+    circle.appendChild(el);
+  });
+}
+
+// ===== 2-가 motivation =====
+var MV=[
+ {q:'더 신나는 쪽은?',a:'보너스·인센티브',b:'새로운 걸 배우는 것',ta:'ext',tb:'growth'},
+ {q:'일할 맛 나는 순간은?',a:'성과를 인정받을 때',b:'동료와 호흡이 맞을 때',ta:'recog',tb:'rel'},
+ {q:'더 끌리는 목표는?',a:'1등·최고 기록',b:'안정적으로 오래가는 것',ta:'ext',tb:'stable'},
+ {q:'스트레스 받는 쪽은?',a:'성장 정체',b:'관계 갈등',ta:'growth',tb:'rel'},
+ {q:'동기가 오르는 칭찬은?',a:'"역시 최고야"',b:'"많이 늘었네"',ta:'recog',tb:'growth'},
+ {q:'중요하게 보는 것은?',a:'분명한 보상',b:'심리적 안정감',ta:'ext',tb:'stable'},
+ {q:'더 힘 나는 환경은?',a:'경쟁·도전',b:'협력·신뢰',ta:'recog',tb:'rel'},
+ {q:'일을 고를 때',a:'성장 기회',b:'예측 가능성',ta:'growth',tb:'stable'},
+ {q:'더 좋은 피드백은?',a:'공개적 인정',b:'배움이 되는 조언',ta:'recog',tb:'growth'},
+ {q:'팀에서 내 역할은?',a:'성과를 끌어내기',b:'분위기를 지키기',ta:'ext',tb:'rel'},
+ {q:'더 만족스러운 건?',a:'눈에 보이는 결과',b:'꾸준한 루틴',ta:'ext',tb:'stable'},
+ {q:'몰입되는 순간',a:'실력이 느는 게 느껴질 때',b:'사람들과 함께할 때',ta:'growth',tb:'rel'}
+];
+var MV_NAME={recog:'인정·성취',rel:'관계·협력',growth:'성장·배움',stable:'안정·지속',ext:'성취·결과'};
+function renderMV(){
+  var c=document.getElementById('mvQ'); var ans=getV('mv',{});
+  c.innerHTML=MV.map(function(m,i){
+    return '<div class="q-card"><div class="q-text">'+(i+1)+'. '+m.q+'</div>'+
+    '<label class="opt'+(ans[i]==='a'?' chosen':'')+'" onclick="pickMV('+i+',\'a\')">'+m.a+'</label>'+
+    '<label class="opt'+(ans[i]==='b'?' chosen':'')+'" onclick="pickMV('+i+',\'b\')">'+m.b+'</label></div>';
+  }).join('');
+  scoreMV();
+}
+function pickMV(i,c){ var ans=getV('mv',{}); ans[i]=c; setV('mv',ans); renderMV(); }
+function scoreMV(){
+  var ans=getV('mv',{}); var sc={recog:0,rel:0,growth:0,stable:0,ext:0};
+  MV.forEach(function(m,i){ if(ans[i]==='a')sc[m.ta]++; else if(ans[i]==='b')sc[m.tb]++; });
+  // merge ext into recog for display simplicity
+  sc.recog+=sc.ext; delete sc.ext;
+  var keys=['recog','rel','growth','stable']; var max=Math.max(1,Math.max(sc.recog,sc.rel,sc.growth,sc.stable));
+  var html=keys.map(function(k){ var pct=sc[k]/max*100;
+    return '<div class="bar"><div class="bar-label"><span>'+MV_NAME[k]+'</span><span>'+sc[k]+'</span></div><div class="bar-track"><div class="bar-fill" style="width:'+pct+'%"></div></div></div>'; }).join('');
+  if(Object.keys(ans).length>=12){ var top=keys[0]; keys.forEach(function(k){ if(sc[k]>sc[top])top=k; });
+    html+='<p style="font-size:12px;opacity:.95;margin-top:8px;">🔋 가장 강한 동기는 「<b>'+MV_NAME[top]+'</b>」 — 이 동기가 채워지는 환경을 스스로 설계해 보세요.</p>'; }
+  document.getElementById('mvBars').innerHTML=html;
+}
+
+// ===== 2-나 GROW =====
+function prefillGrow(){
+  if(getV('gG','')) return;
+  var low=''; var vals=getV('wheel',{});
+  if(Object.keys(vals).length){ var lo=99,li=0; for(var i=0;i<WHEEL.length;i++){ var v=vals[i]!==undefined?vals[i]:5; if(v<lo){lo=v;li=i;} } low=WHEEL[li]; }
+  var what=getV('slWhat','');
+  var seed=''; if(low) seed='[가장 낮은 영역: '+low+'] ';
+  if(what) seed+=what;
+  if(seed){ document.getElementById('gG').value=seed; setV('gG',seed); }
+}
+function buildGrowCard(){
+  ['gG','gR','gO','gW1','gW2'].forEach(function(id){ setV(id,document.getElementById(id).value); });
+  var el=document.getElementById('growCard');
+  el.style.display='block';
+  el.innerHTML='<h3>📇 나의 실행 카드</h3>'+
+   '<div class="kv"><b>목표</b> · '+(getV('gG','')||'—')+'</div>'+
+   '<div class="kv"><b>첫 걸음</b> · '+(getV('gW1','')||'—')+'</div>'+
+   '<div class="kv"><b>기한·대비</b> · '+(getV('gW2','')||'—')+'</div>';
+}
+
+// ===== 3-가 safety =====
+var SAFE=[
+ {t:'우리 팀에서 나는 있는 그대로 받아들여진다',tag:'포용',d:0},
+ {t:'팀의 일원으로 소속감을 느낀다',tag:'포용',d:0},
+ {t:'모르는 것을 편하게 질문할 수 있다',tag:'학습',d:1},
+ {t:'실수를 인정해도 안전하다',tag:'학습',d:1},
+ {t:'내 아이디어를 자유롭게 낸다',tag:'기여',d:2},
+ {t:'내 기여가 팀에 반영된다',tag:'기여',d:2},
+ {t:'기존 방식에 이견을 말할 수 있다',tag:'도전',d:3},
+ {t:'리더에게도 반대 의견을 낼 수 있다',tag:'도전',d:3}
+];
+function renderSafe(){ renderLikert('safeQ','safe',SAFE,function(ans){ scoreSafe(ans); }); }
+function scoreSafe(ans){
+  var sum=[[0,0],[0,0],[0,0],[0,0]];
+  SAFE.forEach(function(q,i){ if(ans[i]){ sum[q.d][0]+=ans[i]; sum[q.d][1]++; } });
+  var stages=document.querySelectorAll('#safeStages .stage');
+  var lit=0,tot=0,cnt=0;
+  for(var d=0;d<4;d++){ var avg=sum[d][1]?sum[d][0]/sum[d][1]:0; var on=sum[d][1]&&avg>=3.5; stages[d].classList.toggle('lit',!!on); if(sum[d][1]){tot+=avg;cnt++; if(on)lit++;} }
+  var done=Object.keys(ans).length; var msg=document.getElementById('safeMsg'); if(!msg) return;
+  if(done<8){ msg.innerHTML='8문항에 모두 답하면 4단계 진단이 완성됩니다. <b>('+done+'/8)</b> · 단계는 평균 3.5점 이상일 때 켜집니다.'; }
+  else { msg.innerHTML='우리 팀 평균 <b>'+(tot/cnt).toFixed(1)+' / 5</b> · <b>'+lit+'/4 단계</b> 켜짐. '+(lit===4?'네 단계가 모두 켜졌어요 — 단단한 팀입니다. 이 분위기를 지킬 약속을 정해보세요.':'아직 켜지지 않은 단계가 오늘 팀이 함께 키울 지점입니다.'); }
+}
+
+// ===== 3-다 DiSC =====
+var DISC=[
+ {q:'회의에서 나는…',o:[['결론부터 빠르게 말한다','D'],['분위기를 띄우며 말한다','I'],['다 듣고 차분히 정리한다','S'],['근거와 데이터를 확인한다','C']]},
+ {q:'일을 할 때 중요한 건…',o:[['속도와 결과','D'],['사람과 재미','I'],['안정과 조화','S'],['정확성과 기준','C']]},
+ {q:'스트레스 받을 때 나는…',o:[['직설적이 된다','D'],['말이 많아진다','I'],['조용히 참는다','S'],['더 신중해진다','C']]},
+ {q:'새 프로젝트에서 나는…',o:[['먼저 치고 나간다','D'],['사람을 끌어모은다','I'],['꾸준히 받쳐준다','S'],['꼼꼼히 검토한다','C']]},
+ {q:'동료에게 듣고 싶은 말',o:[['"결단력 있다"','D'],['"같이 있으면 즐겁다"','I'],['"믿음직하다"','S'],['"정확하다"','C']]}
+];
+var DISC_INFO={
+ D:{n:'주도형 (D)',desc:'결과 지향·추진력. 빠른 결정.',str:'추진력, 결단',weak:'조급함, 독단',tip:'결론과 핵심만 간결하게, 선택권을 주며'},
+ I:{n:'사교형 (I)',desc:'관계 지향·열정. 활기를 만든다.',str:'친화력, 낙관',weak:'산만함, 즉흥',tip:'밝게 호응하고 함께 즐기며, 인정 표현 듬뿍'},
+ S:{n:'안정형 (S)',desc:'협력 지향·꾸준함. 팀을 받친다.',str:'성실, 경청',weak:'변화 회피',tip:'재촉 말고 차분히, 안심시키며'},
+ C:{n:'신중형 (C)',desc:'정확 지향·분석. 기준을 지킨다.',str:'정확, 논리',weak:'완벽주의',tip:'근거·자료와 함께, 시간 주며'}
+};
+function renderDisc(){
+  var c=document.getElementById('discQ'); var ans=getV('disc',{});
+  c.innerHTML=DISC.map(function(d,i){ return '<div class="q-card"><div class="q-text">'+(i+1)+'. '+d.q+'</div>'+
+    d.o.map(function(o){ return '<label class="opt'+(ans[i]===o[1]?' chosen':'')+'" onclick="pickDisc('+i+',\''+o[1]+'\')">'+o[0]+'</label>'; }).join('')+'</div>'; }).join('');
+  scoreDisc();
+}
+function pickDisc(i,t){ var ans=getV('disc',{}); ans[i]=t; setV('disc',ans); renderDisc(); }
+function scoreDisc(){
+  var ans=getV('disc',{}); var sc={D:0,I:0,S:0,C:0};
+  Object.keys(ans).forEach(function(i){ sc[ans[i]]++; });
+  var done=Object.keys(ans).length; var el=document.getElementById('discResult');
+  if(done<DISC.length){ el.style.display='none'; return; }
+  var ordered=['D','I','S','C'].slice().sort(function(a,b){ return sc[b]-sc[a]; });
+  var top=ordered[0]; var info=DISC_INFO[top]; el.style.display='block';
+  var secType = sc[ordered[1]]>0 ? ordered[1] : null;
+  var secLine = '<p style="font-size:11.5px;opacity:.85;margin-top:6px;">'+(secType?'보조 성향: <b>'+DISC_INFO[secType].n+'</b> · ':'')+'점수 D '+sc.D+' / I '+sc.I+' / S '+sc.S+' / C '+sc.C+'</p>';
+  el.innerHTML='<h3>🎭 내 소통 스타일: '+info.n+'</h3><p style="font-size:12.5px;opacity:.95;margin-bottom:8px;">'+info.desc+'</p>'+
+   '<div class="scores"><div class="score-cell"><b style="font-size:13px;">'+info.str+'</b>강점</div><div class="score-cell"><b style="font-size:13px;">'+info.weak+'</b>주의</div></div>'+
+   '<p style="font-size:12.5px;margin-top:8px;">🤝 <b>이 유형(나)과 일할 때 팁:</b> '+info.tip+'</p>'+secLine;
+}
+
+// ===== 3-바 SBI =====
+function buildSBI(){
+  ['sbiWho','sbiS','sbiB','sbiI'].forEach(function(id){ setV(id,document.getElementById(id).value); });
+  var el=document.getElementById('sbiCard'); el.style.display='block';
+  el.innerHTML='<h3>🌟 인정 카드 — '+(getV('sbiWho','')||'동료')+'님께</h3>'+
+   '<p style="font-size:13.5px;line-height:1.7;">'+(getV('sbiS','')||'…')+' 상황에서, <b>'+(getV('sbiB','')||'…')+'</b> 해주셨어요. 덕분에 '+(getV('sbiI','')||'…')+'</p>';
+}
+
+// ===== 3-사 final =====
+function buildFinal(){
+  ['prOne','prAct','prT1','prT2','prT3'].forEach(function(id){ setV(id,document.getElementById(id).value); });
+  var el=document.getElementById('finalCard'); el.style.display='block';
+  var t=[getV('prT1',''),getV('prT2',''),getV('prT3','')].filter(Boolean);
+  el.innerHTML='<h3>📇 '+(state.name||'나')+'의 마무리 카드</h3>'+
+   '<div class="kv"><b>가장 울린 한 가지</b> · '+(getV('prOne','')||'—')+'</div>'+
+   '<div class="kv"><b>내일 할 작은 행동</b> · '+(getV('prAct','')||'—')+'</div>'+
+   '<div class="kv"><b>우리 팀 약속</b> · '+(t.length?t.join(' / '):'—')+'</div>';
+}
+
+// ===== bind plain inputs =====
+function bindInputs(){
+  var ids=['rvWin','rvLuck','rvPeople','rvLetgo','rvKw','rvKeep','rvDrop','rvStart','rpA','rpB','strStory','strMore','slWhen','slWhat','circleAction','mvNote','gG','gR','gO','gW1','gW2','safeAction','lF','lFe','lFo','peerStep','strFam','strPpl','sbiWho','sbiS','sbiB','sbiI','prOne','prAct','prT1','prT2','prT3','reflection',
+  'mdAct0','prayAct0','mdActReview','prayActReview','mdActWheel','prayActWheel','mdActRipple','prayActRipple','mdActStrength','prayActStrength','mdActSelfLead','prayActSelfLead','mdActCircle','prayActCircle','mdActMotive','prayActMotive','mdActGrow','prayActGrow','mdActSafety','prayActSafety','mdActListen','prayActListen','mdActDisc','prayActDisc','mdActPeer','prayActPeer','mdActStrengthMap','prayActStrengthMap','mdActSBI','prayActSBI','mdActPromise','prayActPromise','mdActPost','prayActPost'];
+  ids.forEach(function(id){ var el=document.getElementById(id); if(!el)return; el.value=getV(id,''); el.addEventListener('input',function(){ setV(id,el.value); }); });
+  // mood restore
+  var m=getV('mood',''); if(m){ document.querySelectorAll('.mood-btn').forEach(function(b){ if(b.textContent===m)b.classList.add('picked'); }); }
+}
+
+// ===== INIT =====
+function initAll(){
+  renderTabs();
+  renderPS(); renderWheel(); renderStr(); renderSL(); renderConcerns();
+  renderMV(); renderSafe(); renderDisc();
+  bindInputs(); renderStrMap();
+  showTab('act0');
+  refreshProgress();
+}
+document.getElementById('pinInput').addEventListener('keydown',function(e){ if(e.key==='Enter')doLogin(); });
+// 로그인 유지가 켜져 있으면 자동 로그인 (없으면 깨끗한 로그인 화면에 이름칸 포커스)
+if(!tryAutoLogin()){ var ni=document.getElementById('nameInput'); if(ni) try{ ni.focus(); }catch(e){} }
+</script>
+</body>
+</html>
