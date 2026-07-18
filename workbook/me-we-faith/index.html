@@ -535,7 +535,12 @@ body{background:white;}
 <div class="card"><div class="card-title">🪞 A. 에코이스트 자가 점검 <span style="font-size:11px;color:var(--sub);">(0 낮음 ~ 10 높음)</span></div>
 <p class="label-sm" style="margin-top:0;">각 문항을 0~10으로 — 높을수록 그런 경향이 강한 편이에요. 우열이 아니라, 나를 살피는 자리입니다.</p>
 <div id="bsEchoGrid"></div>
-<div id="bsEchoResult" style="display:none;"></div></div>
+<div id="bsEchoResult" style="display:none;">
+<div class="card-title" style="margin-top:6px;">🕸️ 나의 에코이스트 지도 <span style="font-size:11px;color:var(--sub);">(실시간)</span></div>
+<div class="radar-wrap"><svg id="bsRadar" viewBox="0 0 320 300"></svg></div>
+<p style="text-align:center;font-size:11px;color:var(--sub);margin-top:-2px;">중심 0 · 바깥 10 — 넓게 퍼질수록 살펴볼 자리가 많다는 신호</p>
+<div id="bsEchoMsg"></div>
+</div></div>
 <div class="card"><div class="card-title">🔌 B. 나의 방전 신호</div>
 <p class="label-sm" style="margin-top:0;">지치면 이런 모습이 튀어나온다 — 나만의 신호</p>
 <input class="text-input" id="bsDischarge" placeholder="예: 말수가 줄고 혼자 삭인다 / 괜히 예민해진다 / 다 내가 하려 든다"></div>
@@ -1063,6 +1068,8 @@ function buildReport(){
   if(Object.keys(bsEcho).length || bsDecl){
     H+='<div class="rp-block"><div class="rp-bt">🕳️ 나의 사각지대</div>';
     if(Object.keys(bsEcho).length){ var bhi=-1,bhv=-1; BS_ECHO.forEach(function(t,i){ if(bsEcho[i]!==undefined&&bsEcho[i]>bhv){bhv=bsEcho[i];bhi=i;} });
+      H+='<div style="text-align:center;font-size:12px;color:#888;margin:-2px 0 2px;">에코이스트 지도 (0~10) — 넓게 퍼질수록 살펴볼 자리가 많다는 신호</div>';
+      H+='<div style="max-width:330px;margin:0 auto 6px;">'+_radarSVG(BS_ECHO.map(function(t,i){return bsEcho[i]||0;}),BS_ECHO_SHORT,10,'rgba(30,64,175,.14)','#1E40AF')+'</div>';
       if(bhi>=0) H+='<div class="rp-hl">🪞 가장 높은 자리 · <b>'+esc(BS_ECHO[bhi])+'</b> ('+bhv+'/10) — 약점이 아니라 살펴볼 자리</div>'; }
     var bcards=[];
     if(getV('bsDischarge','')) bcards.push(['방전 신호', getV('bsDischarge','')]);
@@ -1402,6 +1409,7 @@ var BS_ECHO=[
  '남에게 폐 끼치는 것이 정말 싫다',
  '나는 나 자신에게 지나치게 엄격하다'
 ];
+var BS_ECHO_SHORT=['주목 불편','갈등 회피','내 탓','폐 끼침','자기 엄격'];
 var BS_DIST=[
  {k:'관계의 거리',d:'나쁜 연락처는 지우고, 느슨하고 다양한 인맥'},
  {k:'시선의 거리',d:'감각과 편견을 의심하고, 맥락을 분리'},
@@ -1422,14 +1430,28 @@ function renderBlindspot(){
   renderBsDist();
   scoreBlindspot();
 }
+function drawBsRadar(vals,labels){
+  var svg=document.getElementById('bsRadar'); if(!svg) return;
+  var cx=160,cy=148,R=92,n=vals.length,s='';
+  [0.25,0.5,0.75,1].forEach(function(r){ var pts=''; for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; pts+=(cx+Math.cos(a)*R*r)+','+(cy+Math.sin(a)*R*r)+' '; } s+='<polygon class="radar-grid" points="'+pts+'"/>'; });
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; s+='<line class="radar-axis" x1="'+cx+'" y1="'+cy+'" x2="'+(cx+Math.cos(a)*R)+'" y2="'+(cy+Math.sin(a)*R)+'"/>'; }
+  var poly='',pts=[]; for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; var val=Math.max(0,Math.min(1,(vals[i]||0)/10)); var x=cx+Math.cos(a)*R*val,y=cy+Math.sin(a)*R*val; poly+=x+','+y+' '; pts.push([x,y]); }
+  s+='<polygon class="radar-area" points="'+poly+'"/>';
+  pts.forEach(function(p){ s+='<circle class="radar-point" cx="'+p[0]+'" cy="'+p[1]+'" r="2.6"/>'; });
+  for(var i=0;i<n;i++){ var a=Math.PI*2*i/n-Math.PI/2; var x=cx+Math.cos(a)*(R+22),y=cy+Math.sin(a)*(R+20)+3; s+='<text class="radar-label" x="'+x+'" y="'+y+'" text-anchor="middle">'+labels[i]+'</text>'; }
+  svg.innerHTML=s;
+}
 function scoreBlindspot(){
   var vals=getV('bsEcho',{}); var el=document.getElementById('bsEchoResult'); if(!el) return;
-  if(!Object.keys(vals).length){ el.style.display='none';
-    document.querySelectorAll('#bsEchoGrid .wheel-row').forEach(function(r){ r.style.background='transparent'; }); return; }
-  var hi=-1,hv=-1; BS_ECHO.forEach(function(t,i){ if(vals[i]!==undefined && vals[i]>hv){ hv=vals[i]; hi=i; } });
-  document.querySelectorAll('#bsEchoGrid .wheel-row').forEach(function(r,idx){ r.style.background=(idx===hi?'#f3efe4':'transparent'); });
+  var grid=document.querySelectorAll('#bsEchoGrid .wheel-row');
+  if(!Object.keys(vals).length){ el.style.display='none'; grid.forEach(function(r){ r.style.background='transparent'; }); return; }
   el.style.display='block';
-  el.innerHTML='<div class="tip-box" style="margin:10px 0 0;">🪞 지금 가장 높은 자리 — <b>'+esc(BS_ECHO[hi])+'</b> ('+hv+'점)<br>가장 높은 곳이 지금 당신을 지치게 하는 자리일 수 있어요 — 약점이 아니라, 살펴볼 자리입니다.</div>';
+  drawBsRadar(BS_ECHO.map(function(t,i){ return vals[i]||0; }), BS_ECHO_SHORT);
+  var hi=-1,hv=-1,sum=0,cnt=0; BS_ECHO.forEach(function(t,i){ if(vals[i]!==undefined){ if(vals[i]>hv){ hv=vals[i]; hi=i; } sum+=vals[i]; cnt++; } });
+  grid.forEach(function(r,idx){ r.style.background=(idx===hi?'#f3efe4':'transparent'); });
+  var avg=cnt?sum/cnt:0;
+  var msg=document.getElementById('bsEchoMsg');
+  if(msg) msg.innerHTML='<div class="tip-box" style="margin:8px 0 0;">🪞 지금 가장 높은 자리 — <b>'+esc(BS_ECHO[hi])+'</b> ('+hv+'점) · 평균 '+avg.toFixed(1)+'/10<br>가장 높은 곳이 지금 당신을 지치게 하는 자리일 수 있어요 — 약점이 아니라, <b>살펴볼 자리</b>입니다.</div>';
 }
 function renderBsDist(){
   var c=document.getElementById('bsDistOpts'); if(!c) return;
