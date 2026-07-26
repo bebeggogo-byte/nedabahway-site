@@ -60,13 +60,16 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
-          if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_ANON_KEY" ]; then
+          # Project URL is public (sent by every browser request); default to the
+          # known project so only the anon key needs to be supplied as a secret.
+          SUPABASE_URL="${SUPABASE_URL:-https://wdxzndgbowigicbjsnbi.supabase.co}"
+          if [ -n "$SUPABASE_ANON_KEY" ]; then
             mkdir -p assets/js
             printf "window.__SUPABASE_URL__  = '%s';\nwindow.__SUPABASE_ANON__ = '%s';\n" \
               "$SUPABASE_URL" "$SUPABASE_ANON_KEY" > assets/js/supabase-config.js
             echo "supabase-config.js injected ($SUPABASE_URL)"
           else
-            echo "::warning::SUPABASE_URL / SUPABASE_ANON_KEY secrets not set — Supabase-backed pages (vote, vote-admin, admin) will not connect and login will fail."
+            echo "::warning::SUPABASE_ANON_KEY secret not set — Supabase-backed pages (vote, vote-admin, admin) will not connect and login will fail. Add it in Settings > Secrets and variables > Actions."
           fi
 
       - name: Configure Pages
