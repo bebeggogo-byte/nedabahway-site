@@ -55,6 +55,20 @@ jobs:
           echo "=== public artifact root ==="
           ls -la | head -40
 
+      - name: Inject Supabase config (from repo secrets)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_ANON_KEY" ]; then
+            mkdir -p assets/js
+            printf "window.__SUPABASE_URL__  = '%s';\nwindow.__SUPABASE_ANON__ = '%s';\n" \
+              "$SUPABASE_URL" "$SUPABASE_ANON_KEY" > assets/js/supabase-config.js
+            echo "supabase-config.js injected ($SUPABASE_URL)"
+          else
+            echo "::warning::SUPABASE_URL / SUPABASE_ANON_KEY secrets not set — Supabase-backed pages (vote, vote-admin, admin) will not connect and login will fail."
+          fi
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
