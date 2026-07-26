@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>투표 현황 (관리자) — 학교 소개 쇼츠</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  :root{ --bg:#fbf7ee; --ink:#1A1A1A; --sub:#7a6f5f; --accent:#a4541a; --accent-bg:#fef0e2;
+    --line:#E2E8F0; --card:#fff; --ok:#16a34a; }
+  *{box-sizing:border-box;}
+  body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);margin:0;}
+  .wrap{max-width:840px;margin:0 auto;padding:26px 18px 90px;}
+  h1{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:800;letter-spacing:-.02em;margin:0;}
+  .head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
+  .userbar{font-size:12px;color:var(--sub);}
+  .userbar a{color:var(--accent);cursor:pointer;}
+
+  /* login */
+  #loginView{max-width:360px;margin:8vh auto 0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 24px;}
+  #loginView h2{font-family:'Noto Serif KR',serif;font-size:19px;margin:0 0 4px;}
+  #loginView p{font-size:13px;color:var(--sub);margin:0 0 18px;}
+  #loginView input{width:100%;padding:13px;font-size:15px;font-family:inherit;border:1px solid var(--line);border-radius:10px;margin-bottom:10px;}
+  .err{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;padding:10px 12px;border-radius:9px;font-size:12.5px;margin-bottom:10px;}
+
+  .btn{padding:12px 18px;font-size:14px;font-weight:700;font-family:inherit;border:none;border-radius:10px;background:var(--accent);color:#fff;cursor:pointer;}
+  .btn.w{width:100%;padding:14px;}
+  .btn-ghost{background:#fff;color:var(--accent);border:1px solid var(--accent);}
+  .btn-sm{padding:8px 13px;font-size:12.5px;border-radius:8px;}
+  .btn-danger{background:#fff;color:#dc2626;border:1px solid #fecaca;}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;}
+  .stat .n{font-size:30px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1;}
+  .stat .l{font-size:12px;color:var(--sub);margin-top:7px;}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:18px;}
+  .card h3{font-size:15px;font-weight:800;margin:0 0 4px;letter-spacing:-.01em;}
+  .card .desc{font-size:12.5px;color:var(--sub);margin:0 0 16px;line-height:1.6;}
+  .card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
+
+  /* ranking */
+  .rank-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #f4efe3;}
+  .rank-row:last-child{border-bottom:none;}
+  .rank-no{width:26px;font-size:14px;font-weight:800;color:var(--sub);text-align:center;flex-shrink:0;font-variant-numeric:tabular-nums;}
+  .rank-row.top .rank-no{color:var(--accent);}
+  .rank-main{flex:1;min-width:0;}
+  .rank-name{font-size:14.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:5px;}
+  .rank-bar{height:9px;background:#f1ecdf;border-radius:999px;overflow:hidden;}
+  .rank-bar > i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .5s;}
+  .rank-row.top .rank-bar > i{background:linear-gradient(90deg,#c2691f,#a4541a);}
+  .rank-val{font-size:15px;font-weight:800;color:var(--ink);width:64px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums;}
+  .rank-val small{font-size:11px;color:var(--sub);font-weight:600;}
+
+  /* QR */
+  .qr-box{display:flex;gap:22px;align-items:center;flex-wrap:wrap;}
+  #qrCanvas{width:180px;height:180px;border:1px solid var(--line);border-radius:12px;background:#fff;}
+  .qr-side{flex:1;min-width:220px;}
+  .qr-url{font-size:13px;color:var(--accent);word-break:break-all;background:var(--accent-bg);padding:10px 12px;border-radius:9px;margin-bottom:12px;}
+
+  .turnout{display:flex;flex-wrap:wrap;gap:7px;}
+  .chip{font-size:12px;background:#f4efe3;color:var(--sub);padding:5px 11px;border-radius:999px;}
+  .chip b{color:var(--accent);}
+  .muted{font-size:12.5px;color:var(--sub);}
+  .live{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ok);font-weight:700;}
+  .live .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 1.4s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  @media(max-width:520px){ .stats{grid-template-columns:1fr;} .stat{display:flex;justify-content:space-between;text-align:left;align-items:center;} .stat .l{margin-top:0;} }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginView" hidden>
+  <h2>투표 현황 (관리자)</h2>
+  <p>진행자 계정으로 로그인하면 실시간 집계를 볼 수 있습니다.</p>
+  <form id="loginForm">
+    <div class="err" id="loginError" hidden></div>
+    <input type="email" id="email" placeholder="이메일" autocomplete="username" required>
+    <input type="password" id="password" placeholder="비밀번호" autocomplete="current-password" required>
+    <button class="btn w" id="loginBtn" type="submit">로그인</button>
+  </form>
+</div>
+
+<!-- ADMIN -->
+<div class="wrap" id="adminView" hidden>
+  <div class="head">
+    <div>
+      <h1>투표 현황</h1>
+      <div class="live"><span class="dot"></span>실시간 자동 갱신</div>
+    </div>
+    <div class="userbar"><span id="userEmail"></span> · <a id="signOutBtn">로그아웃</a></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="n" id="stVoters">0</div><div class="l">투표 인원 (예상 64명)</div></div>
+    <div class="stat"><div class="n" id="stPicks">0</div><div class="l">누적 선택 수</div></div>
+    <div class="stat"><div class="n" id="stLead">—</div><div class="l">현재 1위</div></div>
+  </div>
+
+  <div class="card">
+    <h3>학교별 득표 순위</h3>
+    <p class="desc">각 투표자가 최대 3곳을 선택하며, 선택 1회 = 1점입니다. 득표순 정렬.</p>
+    <div id="ranking"><div class="muted">불러오는 중…</div></div>
+    <div class="card-actions" style="margin-top:16px;">
+      <button class="btn btn-ghost btn-sm" id="csvBtn">CSV 내보내기</button>
+      <button class="btn btn-ghost btn-sm" id="refreshBtn">새로고침</button>
+      <button class="btn btn-danger btn-sm" id="resetBtn">전체 초기화</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>참여 현황 (소속 학교별)</h3>
+    <p class="desc">누가 어디서 왔는지 — 투표자 소속 학교 분포입니다.</p>
+    <div class="turnout" id="turnout"><span class="muted">데이터 없음</span></div>
+  </div>
+
+  <div class="card">
+    <h3>투표 QR 코드</h3>
+    <p class="desc">이 QR을 강당 화면에 띄우거나 인쇄해 배부하세요. 스캔하면 투표 페이지가 열립니다.</p>
+    <div class="qr-box">
+      <canvas id="qrCanvas" width="180" height="180"></canvas>
+      <div class="qr-side">
+        <div class="qr-url" id="voteUrl"></div>
+        <div class="card-actions">
+          <button class="btn btn-sm" id="printBtn">QR 인쇄</button>
+          <button class="btn btn-ghost btn-sm" id="copyBtn">주소 복사</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/supabase-config.js" onerror="console.warn('supabase-config.js missing')"></script>
+<script type="module">
+import { signInWithPassword, signOut, currentUser } from '/assets/js/supabase-client.js';
+import { SCHOOLS, SCHOOL_NAMES, TOTAL_DELEGATES } from '/assets/js/shorts-schools.js';
+import { fetchAllVotes, subscribeVotes, resetAllVotes } from '/assets/js/shorts-voting-client.js';
+import QRCode from 'https://esm.sh/qrcode@1.5.4';
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const VOTE_URL = location.origin + '/vote.html';
+let channel = null;
+
+// ---- Auth ----
+async function boot(){
+  const u = await currentUser();
+  if (u) showAdmin(u); else showLogin();
+}
+function showLogin(){ $('loginView').hidden=false; $('adminView').hidden=true; }
+function showAdmin(u){
+  $('loginView').hidden=true; $('adminView').hidden=false;
+  $('userEmail').textContent = u.email;
+  initQR(); load();
+  if (!channel) channel = subscribeVotes(() => load());
+}
+$('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn=$('loginBtn'); btn.disabled=true; btn.textContent='로그인 중…';
+  const err=$('loginError'); err.hidden=true;
+  try { await signInWithPassword($('email').value, $('password').value); showAdmin(await currentUser()); }
+  catch(e2){ err.textContent='로그인 실패: '+(e2.message||e2); err.hidden=false; }
+  finally { btn.disabled=false; btn.textContent='로그인'; }
+});
+$('signOutBtn').addEventListener('click', async () => { await signOut(); location.reload(); });
+
+// ---- Tally ----
+async function load(){
+  let votes;
+  try { votes = await fetchAllVotes(); }
+  catch(e){ $('ranking').innerHTML = `<div class="err">로드 실패: ${esc(e.message||e)}</div>`; return; }
+
+  const counts = Object.fromEntries(SCHOOL_NAMES.map(n => [n, 0]));
+  const turnout = {};
+  let totalPicks = 0;
+  votes.forEach(v => {
+    (v.choices||[]).forEach(c => { if (c in counts){ counts[c]++; totalPicks++; } });
+    const s = v.voter_school || '기타';
+    turnout[s] = (turnout[s]||0) + 1;
+  });
+
+  $('stVoters').textContent = votes.length;
+  $('stPicks').textContent = totalPicks;
+
+  const ranked = SCHOOL_NAMES.map(n => ({ name:n, votes:counts[n] })).sort((a,b) => b.votes - a.votes);
+  const max = Math.max(1, ranked[0].votes);
+  $('stLead').textContent = ranked[0].votes > 0 ? ranked[0].name.replace('고등학교','') : '—';
+
+  $('ranking').innerHTML = ranked.map((r,i) => {
+    const pct = Math.round((r.votes / max) * 100);
+    const top = r.votes > 0 && r.votes === ranked[0].votes;
+    return `<div class="rank-row ${top?'top':''}">
+      <div class="rank-no">${i+1}</div>
+      <div class="rank-main">
+        <div class="rank-name">${esc(r.name)}</div>
+        <div class="rank-bar"><i style="width:${pct}%"></i></div>
+      </div>
+      <div class="rank-val">${r.votes}<small>표</small></div>
+    </div>`;
+  }).join('');
+
+  const tEntries = Object.entries(turnout).sort((a,b) => b[1]-a[1]);
+  $('turnout').innerHTML = tEntries.length
+    ? tEntries.map(([s,n]) => `<span class="chip">${esc(s)} <b>${n}</b></span>`).join('')
+    : '<span class="muted">데이터 없음</span>';
+}
+
+// ---- QR ----
+function initQR(){
+  $('voteUrl').textContent = VOTE_URL;
+  QRCode.toCanvas($('qrCanvas'), VOTE_URL, { width:180, margin:1, color:{ dark:'#1A1A1A', light:'#ffffff' } }, (err) => { if (err) console.warn(err); });
+}
+$('copyBtn').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(VOTE_URL); $('copyBtn').textContent='복사됨!'; setTimeout(()=>$('copyBtn').textContent='주소 복사',1400); } catch{}
+});
+$('printBtn').addEventListener('click', async () => {
+  const dataUrl = await QRCode.toDataURL(VOTE_URL, { width:520, margin:2 });
+  const w = window.open('', '_blank');
+  w.document.write(`<html><head><title>투표 QR</title><style>
+    body{font-family:'Noto Sans KR',sans-serif;text-align:center;padding:48px 20px;color:#1A1A1A;}
+    h1{font-size:26px;margin:0 0 6px;} p{color:#7a6f5f;font-size:15px;margin:0 0 28px;}
+    img{width:420px;height:420px;} .u{margin-top:18px;font-size:15px;color:#a4541a;word-break:break-all;}
+    </style></head><body>
+    <h1>학교 소개 쇼츠 투표</h1>
+    <p>휴대폰 카메라로 QR을 스캔해 투표하세요 · 최대 3곳 선택</p>
+    <img src="${dataUrl}" alt="투표 QR"><div class="u">${esc(VOTE_URL)}</div>
+    <script>window.onload=()=>setTimeout(()=>window.print(),300)<\/script>
+    </body></html>`);
+  w.document.close();
+});
+
+// ---- CSV ----
+$('csvBtn').addEventListener('click', async () => {
+  const votes = await fetchAllVotes();
+  const counts = Object.fromEntries(SCHOOL_NAMES.map(n => [n, 0]));
+  votes.forEach(v => (v.choices||[]).forEach(c => { if (c in counts) counts[c]++; }));
+  const ranked = SCHOOL_NAMES.map(n => ({ name:n, votes:counts[n] })).sort((a,b)=>b.votes-a.votes);
+  let csv = '﻿순위,학교,득표수\n';
+  ranked.forEach((r,i) => { csv += `${i+1},"${r.name}",${r.votes}\n`; });
+  csv += `\n투표 인원,${votes.length}\n예상 인원,${TOTAL_DELEGATES}\n`;
+  const blob = new Blob([csv], { type:'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'shorts-vote-results.csv'; a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+$('refreshBtn').addEventListener('click', load);
+$('resetBtn').addEventListener('click', async () => {
+  if (!confirm('모든 투표 데이터를 삭제합니다. 되돌릴 수 없습니다. 계속할까요?')) return;
+  if (!confirm('정말 초기화합니까? (행사 재사용 시에만 사용)')) return;
+  try { await resetAllVotes(); load(); alert('초기화되었습니다.'); }
+  catch(e){ alert('초기화 실패: ' + (e.message||e)); }
+});
+
+boot();
+</script>
+</body>
+</html>
