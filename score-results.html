@@ -41,6 +41,7 @@
 </head>
 <body>
 <div class="wrap">
+  <div style="color:#a4541a;font-size:12.5px;font-weight:800;letter-spacing:.02em;margin:0 0 6px;">2026 전도학생회장단 리더십 캠프</div>
   <h1>발표 점수 결과 — 조별 순위</h1>
   <div class="live"><span class="dot"></span>실시간 자동 갱신 · 100점 만점 환산 평균순</div>
 
@@ -113,7 +114,6 @@ async function load(){
   }).sort((x,y) => y.avg - x.avg || y.count - x.count);
   lastRanked = ranked;
 
-  const max = Math.max(1, ranked[0].avg);
   $('stLead').textContent = ranked[0].count > 0 ? ranked[0].name : '—';
 
   $('ranking').innerHTML = ranked.map((r,i) => {
@@ -121,7 +121,7 @@ async function load(){
     const top = r.count > 0 && r.avg === ranked[0].avg;
     const bd = r.crit.map(c => `<span class="bd">${esc(c.label)} <b>${c.avg==null?'-':(c.avg*10).toFixed(1)}</b></span>`).join('');
     return `<div class="rank-row ${top?'top':''}">
-      <div class="rank-no">${i+1}</div>
+      <div class="rank-no">${(r.count>0 && i<3) ? ['🥇','🥈','🥉'][i] : (i+1)}</div>
       <div class="rank-main">
         <div class="rank-name">${esc(r.name)}<span class="cnt">${r.count}명 완료</span></div>
         <div class="rank-bar"><i style="width:${pct}%"></i></div>

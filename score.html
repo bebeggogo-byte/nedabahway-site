@@ -62,6 +62,10 @@
   .submit.done{background:#fff;color:var(--ok);border:1.5px solid #bbf7d0;}
   .submit.redo{background:#fff;color:var(--accent);border:1.5px solid var(--accent);}
 
+  .jump{position:sticky;top:0;z-index:6;background:var(--bg);display:flex;flex-wrap:wrap;gap:6px;padding:8px 0 10px;margin-bottom:8px;border-bottom:1px solid var(--line);}
+  .jbtn{min-width:38px;padding:7px 9px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:13px;font-weight:800;color:var(--ink);cursor:pointer;font-family:inherit;}
+  .jbtn.done{border-color:#bbf7d0;background:#f6fef9;color:var(--ok);}
+  .tcard{scroll-margin-top:64px;}
   .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1A1A1A;color:#fff;
     padding:11px 18px;border-radius:999px;font-size:13.5px;z-index:50;opacity:0;transition:opacity .2s;white-space:nowrap;}
   .toast.show{opacity:.94;}
@@ -70,6 +74,7 @@
 <body>
 <div class="wrap">
   <div class="head">
+    <div style="color:#a4541a;font-size:12.5px;font-weight:800;letter-spacing:.02em;margin:0 0 8px;">2026 전도학생회장단 리더십 캠프</div>
     <h1>발표 조 점수 매기기</h1>
     <p>각 조 6개 항목에 1~10점을 주고 <b>제출</b>을 누르세요.<br>입력한 점수는 폰이 꺼져도 남아있어요.</p>
   </div>
@@ -100,6 +105,7 @@
   <section class="step" id="step2">
     <div class="whobar"><span id="whoLabel"></span><a id="resetRole">역할 변경</a></div>
     <div class="progress">제출 완료 <b id="submittedCount">0</b> / <span id="teamTotal">0</span> 조 · 입력한 점수는 이 폰에 자동 저장됩니다</div>
+    <div class="jump" id="teamJump"></div>
     <div id="teamList"></div>
   </section>
 </div>
@@ -183,6 +189,8 @@ function refreshCard(team){
   if (isSub && !card.dataset.dirty){ btn.textContent='제출 완료 ✓'; btn.classList.add('done'); btn.disabled=false; }
   else if (isSub && card.dataset.dirty){ btn.textContent='수정됨 · 다시 제출'; btn.classList.add('redo'); btn.disabled=!done; }
   else { btn.textContent='제출'; btn.disabled=!done; }
+  const jb = document.querySelector(`#teamJump .jbtn[data-jump="${CSS.escape(team)}"]`);
+  if (jb) jb.classList.toggle('done', isSub);
 }
 
 function updateProgress(){
@@ -202,10 +210,16 @@ async function enterScoring(){
       <div class="tcard-top"><div class="tcard-name">${esc(t)}</div><div class="tcard-total"></div></div>
       ${CRITERIA.map(c => `<div class="crit" data-key="${c.key}">
         <div class="crit-label">${esc(c.label)}<small>${esc(c.hint||'')}</small></div>
-        <div class="chips">${nums.map(n=>`<button class="chip" data-score="${n}">${n}</button>`).join('')}</div>
+        <div class="chips">${nums.map(n=>`<button class="chip" data-score="${n}" aria-label="${esc(c.label)} ${n}점">${n}</button>`).join('')}</div>
       </div>`).join('')}
       <button class="submit">제출</button>
     </div>`).join('');
+
+  $('teamJump').innerHTML = shownTeams().map(t => `<button class="jbtn" data-jump="${esc(t)}">${esc(t)}</button>`).join('');
+  $('teamJump').querySelectorAll('.jbtn').forEach(b => b.addEventListener('click', () => {
+    const c = $('teamList').querySelector(`.tcard[data-team="${CSS.escape(b.dataset.jump)}"]`);
+    if (c) c.scrollIntoView({ behavior:'smooth', block:'start' });
+  }));
 
   $('teamList').querySelectorAll('.tcard').forEach(card => {
     const team = card.dataset.team;
