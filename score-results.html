@@ -119,7 +119,7 @@ async function load(){
   $('ranking').innerHTML = ranked.map((r,i) => {
     const pct = r.count ? Math.round((r.avg / MAX_TOTAL) * 100) : 0;
     const top = r.count > 0 && r.avg === ranked[0].avg;
-    const bd = r.crit.map(c => `<span class="bd">${esc(c.label)} <b>${c.avg==null?'-':c.avg.toFixed(1)}</b></span>`).join('');
+    const bd = r.crit.map(c => `<span class="bd">${esc(c.label)} <b>${c.avg==null?'-':(c.avg*10).toFixed(1)}</b></span>`).join('');
     return `<div class="rank-row ${top?'top':''}">
       <div class="rank-no">${i+1}</div>
       <div class="rank-main">
@@ -133,11 +133,11 @@ async function load(){
 }
 
 $('csvBtn').addEventListener('click', () => {
-  const head = ['순위','조','평균(100점)','완료인원', ...CRITERIA.map(c=>c.label+' 평균(10점)')];
+  const head = ['순위','조','평균(100점)','완료인원', ...CRITERIA.map(c=>c.label+' 평균(100점)')];
   let csv = '﻿' + head.join(',') + '\n';
   lastRanked.forEach((r,i) => {
     const cols = [i+1, `"${r.name}"`, r.count ? (r.avg / MAX_TOTAL * 100).toFixed(2) : '', r.count,
-      ...r.crit.map(c => c.avg==null?'':c.avg.toFixed(2))];
+      ...r.crit.map(c => c.avg==null?'':(c.avg*10).toFixed(2))];
     csv += cols.join(',') + '\n';
   });
   const blob = new Blob([csv], { type:'text/csv;charset=utf-8;' });
