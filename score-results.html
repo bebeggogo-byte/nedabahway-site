@@ -42,7 +42,7 @@
 <body>
 <div class="wrap">
   <h1>발표 점수 결과 — 조별 순위</h1>
-  <div class="live"><span class="dot"></span>실시간 자동 갱신 · 6개 항목 합계(60점) 평균순</div>
+  <div class="live"><span class="dot"></span>실시간 자동 갱신 · 100점 만점 환산 평균순</div>
 
   <div class="stats">
     <div class="stat"><div class="n" id="stJudges">0</div><div class="l">채점 인원</div></div>
@@ -117,7 +117,7 @@ async function load(){
   $('stLead').textContent = ranked[0].count > 0 ? ranked[0].name : '—';
 
   $('ranking').innerHTML = ranked.map((r,i) => {
-    const pct = Math.round((r.avg / max) * 100);
+    const pct = r.count ? Math.round((r.avg / MAX_TOTAL) * 100) : 0;
     const top = r.count > 0 && r.avg === ranked[0].avg;
     const bd = r.crit.map(c => `<span class="bd">${esc(c.label)} <b>${c.avg==null?'-':c.avg.toFixed(1)}</b></span>`).join('');
     return `<div class="rank-row ${top?'top':''}">
@@ -127,16 +127,16 @@ async function load(){
         <div class="rank-bar"><i style="width:${pct}%"></i></div>
         <div class="breakdown">${bd}</div>
       </div>
-      <div class="rank-val">${r.count ? r.avg.toFixed(1) : '-'}<small>/ ${MAX_TOTAL}점</small></div>
+      <div class="rank-val">${r.count ? (r.avg / MAX_TOTAL * 100).toFixed(1) : '-'}<small>/ 100점</small></div>
     </div>`;
   }).join('');
 }
 
 $('csvBtn').addEventListener('click', () => {
-  const head = ['순위','조','평균합계','완료인원', ...CRITERIA.map(c=>c.label+' 평균')];
+  const head = ['순위','조','평균(100점)','완료인원', ...CRITERIA.map(c=>c.label+' 평균(10점)')];
   let csv = '﻿' + head.join(',') + '\n';
   lastRanked.forEach((r,i) => {
-    const cols = [i+1, `"${r.name}"`, r.count ? r.avg.toFixed(2) : '', r.count,
+    const cols = [i+1, `"${r.name}"`, r.count ? (r.avg / MAX_TOTAL * 100).toFixed(2) : '', r.count,
       ...r.crit.map(c => c.avg==null?'':c.avg.toFixed(2))];
     csv += cols.join(',') + '\n';
   });
