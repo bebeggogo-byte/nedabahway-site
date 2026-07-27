@@ -11,45 +11,48 @@
   *{box-sizing:border-box;}
   body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;
     background:var(--bg);color:var(--ink);margin:0;-webkit-tap-highlight-color:transparent;}
-  .wrap{max-width:620px;margin:0 auto;padding:22px 16px 60px;}
+  .wrap{max-width:640px;margin:0 auto;padding:22px 16px 60px;}
   .head{text-align:center;margin:6px 0 18px;}
   .head h1{font-family:'Noto Serif KR',serif;font-size:21px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px;}
   .head p{font-size:13px;color:var(--sub);line-height:1.6;margin:0;}
   .cfg-warn{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;padding:12px;border-radius:10px;font-size:13px;line-height:1.6;margin-bottom:14px;display:none;}
 
   .step{display:none;} .step.is-on{display:block;}
-
   .label{font-size:13px;font-weight:700;color:var(--sub);margin:0 0 10px;}
-  .rolebtns{display:flex;gap:12px;margin-bottom:18px;}
-  .rolebtn{flex:1;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:26px 12px;
+  .rolebtns{display:flex;gap:12px;margin-bottom:16px;}
+  .rolebtn{flex:1;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:24px 12px;
     font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--ink);}
+  .rolebtn.sel{border-color:var(--accent);background:var(--accent-bg);color:var(--accent);}
   .rolebtn:active{transform:scale(.98);}
   .rolebtn small{display:block;font-size:12px;font-weight:600;color:var(--sub);margin-top:6px;}
-  select{width:100%;padding:14px 12px;font-size:16px;font-family:inherit;border:1px solid var(--line);
-    border-radius:12px;background:#fff;color:var(--ink);appearance:none;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a4541a' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
-    background-repeat:no-repeat;background-position:right 16px center;}
+  .rolebtn.sel small{color:var(--accent);}
+  input[type=text],select{width:100%;padding:14px 12px;font-size:16px;font-family:inherit;border:1px solid var(--line);
+    border-radius:12px;background:#fff;color:var(--ink);}
+  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a4541a' d='M6 8 0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;}
+  .sub2{font-size:12px;color:var(--sub);margin:8px 2px 0;line-height:1.6;}
   .btn{width:100%;padding:15px;font-size:16px;font-weight:800;font-family:inherit;border:none;border-radius:14px;
     background:var(--accent);color:#fff;cursor:pointer;margin-top:14px;}
   .btn:disabled{background:#d9cdbb;}
-  .btn-ghost{background:#fff;color:var(--accent);border:1.5px solid var(--accent);}
 
   .whobar{display:flex;justify-content:space-between;align-items:center;background:var(--accent-bg);
     border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:13px;color:var(--accent);font-weight:700;}
   .whobar a{color:var(--sub);font-weight:600;font-size:12px;cursor:pointer;}
   .hint{font-size:12.5px;color:var(--sub);line-height:1.6;margin:2px 2px 16px;}
 
-  .tcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;margin-bottom:12px;}
+  .tcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;margin-bottom:14px;}
   .tcard.done{border-color:#bbf7d0;background:#f6fef9;}
-  .tcard-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;}
-  .tcard-name{font-size:16px;font-weight:800;letter-spacing:-.01em;}
-  .tcard-state{font-size:12px;font-weight:700;color:var(--sub);}
-  .tcard.done .tcard-state{color:var(--ok);}
-  .chips{display:flex;gap:6px;flex-wrap:wrap;}
-  .chip{flex:1;min-width:30px;height:44px;border:1.5px solid var(--line);border-radius:10px;background:#fff;
-    font-size:16px;font-weight:800;color:var(--ink);cursor:pointer;font-family:inherit;
-    display:flex;align-items:center;justify-content:center;}
-  .chip:active{transform:scale(.94);}
+  .tcard-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+  .tcard-name{font-size:17px;font-weight:800;letter-spacing:-.01em;}
+  .tcard-total{font-size:13px;font-weight:700;color:var(--sub);}
+  .tcard.done .tcard-total{color:var(--ok);}
+  .crit{margin-top:11px;}
+  .crit-label{font-size:13px;font-weight:700;margin-bottom:6px;}
+  .crit-label small{font-weight:500;color:var(--sub);margin-left:5px;font-size:11.5px;}
+  .chips{display:flex;gap:5px;}
+  .chip{flex:1;min-width:0;height:38px;border:1.5px solid var(--line);border-radius:8px;background:#fff;
+    font-size:14px;font-weight:800;color:var(--ink);cursor:pointer;font-family:inherit;
+    display:flex;align-items:center;justify-content:center;padding:0;}
+  .chip:active{transform:scale(.92);}
   .chip.sel{background:var(--accent);border-color:var(--accent);color:#fff;}
 
   .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1A1A1A;color:#fff;
@@ -61,29 +64,37 @@
 <div class="wrap">
   <div class="head">
     <h1>발표 조 점수 매기기</h1>
-    <p>각 조 발표가 끝나면 <b>1~10점</b>을 눌러 주세요. (언제든 다시 눌러 수정 가능)</p>
+    <p>각 조 발표를 보고 <b>4개 항목</b>에 1~10점씩 주세요.<br>합계로 순위가 정해집니다.</p>
   </div>
 
   <div class="cfg-warn" id="cfgWarn">채점 서버 설정이 아직 연결되지 않았습니다. 진행자에게 문의해 주세요.</div>
 
   <!-- STEP 1: 역할 -->
   <section class="step is-on" id="step1">
-    <p class="label">먼저, 어느 쪽이신가요?</p>
+    <p class="label">어느 쪽이신가요?</p>
     <div class="rolebtns">
       <button class="rolebtn" id="roleStudent">학생<small>내 조는 빼고 채점</small></button>
-      <button class="rolebtn" id="roleTeacher">선생님<small>10개 조 모두 채점</small></button>
+      <button class="rolebtn" id="roleTeacher">선생님<small>이름 입력 · 전체 채점</small></button>
     </div>
-    <div id="teamPick" hidden>
-      <p class="label">본인 조를 선택하세요 (그 조는 채점 대상에서 빠집니다)</p>
+
+    <div id="studentBox" hidden>
+      <p class="label">본인 조를 선택하세요 (그 조는 채점에서 빠집니다)</p>
       <select id="ownTeam"><option value="">— 내 조 선택 —</option></select>
       <button class="btn" id="startStudent" disabled>채점 시작</button>
+    </div>
+
+    <div id="teacherBox" hidden>
+      <p class="label">선생님 성함을 입력하세요</p>
+      <input type="text" id="teacherName" placeholder="예: 김창환" autocomplete="off" maxlength="20">
+      <p class="sub2">이름은 진행자 확인용이며 결과에는 공개되지 않습니다.</p>
+      <button class="btn" id="startTeacher" disabled>채점 시작</button>
     </div>
   </section>
 
   <!-- STEP 2: 채점 -->
   <section class="step" id="step2">
     <div class="whobar"><span id="whoLabel"></span><a id="resetRole">역할 변경</a></div>
-    <p class="hint">발표가 끝난 조의 점수를 눌러 주세요. 누르면 <b>바로 저장</b>됩니다. 다 안 해도 되고, 나중에 수정해도 됩니다.</p>
+    <p class="hint">각 조 발표가 끝나면 4개 항목에 점수를 눌러 주세요. 누르면 <b>바로 저장</b>되고, 언제든 수정할 수 있어요.</p>
     <div id="teamList"></div>
   </section>
 </div>
@@ -92,7 +103,7 @@
 
 <script src="/assets/js/supabase-config.js" onerror="console.warn('supabase-config.js missing')"></script>
 <script type="module">
-import { TEAMS, MIN_SCORE, MAX_SCORE } from '/assets/js/presentation-teams.js';
+import { TEAMS, CRITERIA, MIN_SCORE, MAX_SCORE, MAX_TOTAL } from '/assets/js/presentation-teams.js';
 import { sb } from '/assets/js/supabase-client.js';
 
 const $ = (id) => document.getElementById(id);
@@ -104,7 +115,6 @@ if (!window.__SUPABASE_URL__ || String(window.__SUPABASE_URL__).includes('YOUR-P
   $('cfgWarn').style.display = 'block';
 }
 
-// stable judge id
 let judgeUuid = localStorage.getItem('score_judge_uuid');
 if (!judgeUuid) {
   judgeUuid = (crypto.randomUUID ? crypto.randomUUID() : 'j-'+Date.now()+'-'+Math.random().toString(16).slice(2));
@@ -112,73 +122,122 @@ if (!judgeUuid) {
 }
 let role = localStorage.getItem('score_judge_role') || '';
 let ownTeam = localStorage.getItem('score_judge_team') || '';
+let judgeName = localStorage.getItem('score_judge_name') || '';
 
-// populate own-team select
+// local score state: scores[team] = { s_problem, s_status, s_idea, s_plan }
+const scores = {};
+TEAMS.forEach(t => { scores[t] = {}; });
+
+// team dropdown
 TEAMS.forEach(t => { const o=document.createElement('option'); o.value=t; o.textContent=t; $('ownTeam').appendChild(o); });
 
-$('roleStudent').addEventListener('click', () => { $('teamPick').hidden=false; $('ownTeam').focus(); });
-$('roleTeacher').addEventListener('click', () => { role='teacher'; ownTeam=''; persistRole(); enterScoring(); });
+$('roleStudent').addEventListener('click', () => {
+  $('roleStudent').classList.add('sel'); $('roleTeacher').classList.remove('sel');
+  $('studentBox').hidden=false; $('teacherBox').hidden=true;
+});
+$('roleTeacher').addEventListener('click', () => {
+  $('roleTeacher').classList.add('sel'); $('roleStudent').classList.remove('sel');
+  $('teacherBox').hidden=false; $('studentBox').hidden=true; $('teacherName').focus();
+});
 $('ownTeam').addEventListener('change', () => { $('startStudent').disabled = !$('ownTeam').value; });
+$('teacherName').addEventListener('input', () => { $('startTeacher').disabled = !$('teacherName').value.trim(); });
+
 $('startStudent').addEventListener('click', () => {
-  role='student'; ownTeam=$('ownTeam').value; persistRole(); enterScoring();
+  role='student'; ownTeam=$('ownTeam').value; judgeName=''; persist(); enterScoring();
+});
+$('startTeacher').addEventListener('click', () => {
+  role='teacher'; ownTeam=''; judgeName=$('teacherName').value.trim();
+  if (!judgeName) return; persist(); enterScoring();
 });
 $('resetRole').addEventListener('click', () => {
-  localStorage.removeItem('score_judge_role'); localStorage.removeItem('score_judge_team');
+  ['score_judge_role','score_judge_team','score_judge_name'].forEach(k=>localStorage.removeItem(k));
   location.reload();
 });
-function persistRole(){ localStorage.setItem('score_judge_role', role); localStorage.setItem('score_judge_team', ownTeam||''); }
+function persist(){
+  localStorage.setItem('score_judge_role', role);
+  localStorage.setItem('score_judge_team', ownTeam||'');
+  localStorage.setItem('score_judge_name', judgeName||'');
+}
+
+function chipRow(team, crit){
+  const nums = Array.from({length:MAX_SCORE-MIN_SCORE+1},(_,i)=>MIN_SCORE+i);
+  return `<div class="crit" data-key="${crit.key}">
+    <div class="crit-label">${esc(crit.label)}<small>${esc(crit.hint||'')}</small></div>
+    <div class="chips">${nums.map(n=>`<button class="chip" data-score="${n}">${n}</button>`).join('')}</div>
+  </div>`;
+}
+
+function updateTotal(team){
+  const card = $('teamList').querySelector(`.tcard[data-team="${CSS.escape(team)}"]`);
+  if (!card) return;
+  const vals = CRITERIA.map(c => scores[team][c.key]).filter(v => typeof v === 'number');
+  const sum = vals.reduce((a,b)=>a+b,0);
+  const complete = vals.length === CRITERIA.length;
+  card.classList.toggle('done', complete);
+  card.querySelector('.tcard-total').textContent = complete
+    ? `합계 ${sum} / ${MAX_TOTAL} · 완료 ✓`
+    : `합계 ${sum} / ${MAX_TOTAL} (${vals.length}/${CRITERIA.length}개)`;
+}
 
 async function enterScoring(){
   $('step1').classList.remove('is-on'); $('step2').classList.add('is-on');
-  $('whoLabel').textContent = role==='teacher' ? '선생님 (심사위원)' : `학생 · 내 조: ${ownTeam}`;
+  $('whoLabel').textContent = role==='teacher' ? `선생님 · ${judgeName}` : `학생 · 내 조: ${ownTeam}`;
+
   const teams = TEAMS.filter(t => !(role==='student' && t===ownTeam));
-  const list = $('teamList');
-  list.innerHTML = teams.map(t => `
+  $('teamList').innerHTML = teams.map(t => `
     <div class="tcard" data-team="${esc(t)}">
-      <div class="tcard-top"><div class="tcard-name">${esc(t)}</div><div class="tcard-state">점수 대기</div></div>
-      <div class="chips">${Array.from({length:MAX_SCORE-MIN_SCORE+1},(_,i)=>MIN_SCORE+i)
-        .map(n=>`<button class="chip" data-score="${n}">${n}</button>`).join('')}</div>
+      <div class="tcard-top"><div class="tcard-name">${esc(t)}</div><div class="tcard-total">합계 0 / ${MAX_TOTAL}</div></div>
+      ${CRITERIA.map(c => chipRow(t, c)).join('')}
     </div>`).join('');
 
-  list.querySelectorAll('.tcard').forEach(card => {
+  $('teamList').querySelectorAll('.tcard').forEach(card => {
     const team = card.dataset.team;
-    card.querySelectorAll('.chip').forEach(chip => {
-      chip.addEventListener('click', () => saveScore(team, parseInt(chip.dataset.score,10), card));
+    card.querySelectorAll('.crit').forEach(cr => {
+      const key = cr.dataset.key;
+      cr.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('click', () => setScore(team, key, parseInt(chip.dataset.score,10), cr));
+      });
     });
   });
 
-  // restore my existing scores
+  // restore existing scores for this judge
   try {
-    const { data } = await sb.from('presentation_scores').select('team,score').eq('judge_uuid', judgeUuid);
-    (data||[]).forEach(r => {
-      const card = list.querySelector(`.tcard[data-team="${CSS.escape(r.team)}"]`);
-      if (card) markCard(card, r.score);
+    const cols = 'team,' + CRITERIA.map(c=>c.key).join(',');
+    const { data } = await sb.from('presentation_scores').select(cols).eq('judge_uuid', judgeUuid);
+    (data||[]).forEach(row => {
+      if (!(row.team in scores)) return;
+      CRITERIA.forEach(c => {
+        if (typeof row[c.key] === 'number') {
+          scores[row.team][c.key] = row[c.key];
+          const cr = $('teamList').querySelector(`.tcard[data-team="${CSS.escape(row.team)}"] .crit[data-key="${c.key}"]`);
+          if (cr) markChip(cr, row[c.key]);
+        }
+      });
+      updateTotal(row.team);
     });
   } catch(e){ /* table may not exist yet */ }
 }
 
-function markCard(card, score){
-  card.classList.add('done');
-  card.querySelector('.tcard-state').textContent = `${score}점 저장됨 ✓`;
-  card.querySelectorAll('.chip').forEach(c => c.classList.toggle('sel', parseInt(c.dataset.score,10)===score));
+function markChip(critEl, score){
+  critEl.querySelectorAll('.chip').forEach(c => c.classList.toggle('sel', parseInt(c.dataset.score,10)===score));
 }
 
-async function saveScore(team, score, card){
-  // optimistic UI
-  markCard(card, score);
+async function setScore(team, key, score, critEl){
+  scores[team][key] = score;
+  markChip(critEl, score);
+  updateTotal(team);
   try {
-    const { error } = await sb.from('presentation_scores').upsert({
-      judge_uuid: judgeUuid, judge_role: role, judge_team: ownTeam || null, team, score
-    }, { onConflict: 'judge_uuid,team' });
+    const row = { judge_uuid: judgeUuid, judge_role: role, judge_name: judgeName || null, judge_team: ownTeam || null, team };
+    CRITERIA.forEach(c => { row[c.key] = (typeof scores[team][c.key] === 'number') ? scores[team][c.key] : null; });
+    const { error } = await sb.from('presentation_scores').upsert(row, { onConflict: 'judge_uuid,team' });
     if (error) throw error;
-    toast(`${team} ${score}점 저장`);
-  } catch(e){
-    toast('저장 실패: ' + (e.message||e));
-  }
+    toast(`${team} 저장됨`);
+  } catch(e){ toast('저장 실패: ' + (e.message||e)); }
 }
 
-// auto-resume if role already chosen on this device
-if (role==='teacher' || (role==='student' && ownTeam)) enterScoring();
+// auto-resume
+if (role==='teacher' && judgeName) enterScoring();
+else if (role==='student' && ownTeam) enterScoring();
 </script>
 </body>
 </html>
