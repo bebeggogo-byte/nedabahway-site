@@ -71,7 +71,7 @@
 <div class="wrap">
   <div class="head">
     <h1>발표 조 점수 매기기</h1>
-    <p>각 조 4개 항목에 1~10점을 주고 <b>제출</b>을 누르세요.<br>입력한 점수는 폰이 꺼져도 남아있어요.</p>
+    <p>각 조 6개 항목에 1~10점을 주고 <b>제출</b>을 누르세요.<br>입력한 점수는 폰이 꺼져도 남아있어요.</p>
   </div>
 
   <div class="cfg-warn" id="cfgWarn">채점 서버 설정이 아직 연결되지 않았습니다. 진행자에게 문의해 주세요.</div>
@@ -242,7 +242,7 @@ async function enterScoring(){
 }
 
 async function submitTeam(team, card){
-  if (!complete(team)){ toast('4개 항목을 모두 채워주세요'); return; }
+  if (!complete(team)){ toast('모든 항목을 채워주세요'); return; }
   const btn = card.querySelector('.submit'); btn.disabled=true; btn.textContent='제출 중…';
   try {
     const row = { judge_uuid: judgeUuid, judge_role: role, judge_name: judgeName||null, judge_team: ownTeam||null, team };
