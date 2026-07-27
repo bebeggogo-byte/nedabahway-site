@@ -9,26 +9,29 @@
   :root{ --bg:#fbf7ee; --ink:#1A1A1A; --sub:#7a6f5f; --accent:#a4541a; --accent-bg:#fef0e2; --line:#E2E8F0; --ok:#16a34a; }
   *{box-sizing:border-box;}
   body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);margin:0;}
-  .wrap{max-width:720px;margin:0 auto;padding:26px 18px 90px;}
+  .wrap{max-width:760px;margin:0 auto;padding:26px 18px 90px;}
   h1{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:800;letter-spacing:-.02em;margin:0 0 4px;}
   .live{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ok);font-weight:700;margin-bottom:20px;}
   .live .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 1.4s infinite;}
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
   .stats{display:flex;gap:12px;margin-bottom:22px;}
   .stat{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;}
-  .stat .n{font-size:28px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1;}
+  .stat .n{font-size:26px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1;}
   .stat .l{font-size:12px;color:var(--sub);margin-top:7px;}
-  .rank-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid #f4efe3;}
+  .rank-row{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid #f4efe3;}
   .rank-row:last-child{border-bottom:none;}
-  .rank-no{width:30px;font-size:16px;font-weight:800;color:var(--sub);text-align:center;flex-shrink:0;font-variant-numeric:tabular-nums;}
+  .rank-no{width:30px;font-size:16px;font-weight:800;color:var(--sub);text-align:center;flex-shrink:0;font-variant-numeric:tabular-nums;padding-top:2px;}
   .rank-row.top .rank-no{color:var(--accent);}
   .rank-main{flex:1;min-width:0;}
-  .rank-name{font-size:15.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:5px;}
-  .rank-name .cnt{font-size:11.5px;color:var(--sub);font-weight:600;margin-left:6px;}
+  .rank-name{font-size:16px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px;}
+  .rank-name .cnt{font-size:11.5px;color:var(--sub);font-weight:600;margin-left:7px;}
   .rank-bar{height:10px;background:#f1ecdf;border-radius:999px;overflow:hidden;}
   .rank-bar>i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .5s;}
   .rank-row.top .rank-bar>i{background:linear-gradient(90deg,#c2691f,#a4541a);}
-  .rank-val{font-size:20px;font-weight:800;width:66px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums;}
+  .breakdown{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .bd{font-size:11px;background:#f4efe3;color:var(--sub);padding:3px 9px;border-radius:999px;}
+  .bd b{color:var(--accent);}
+  .rank-val{font-size:22px;font-weight:800;width:78px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums;padding-top:2px;}
   .rank-val small{font-size:11px;color:var(--sub);font-weight:600;display:block;margin-top:1px;}
   .msg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;font-size:13.5px;color:var(--sub);line-height:1.7;}
   .msg.err{background:#fef2f2;border-color:#fecaca;color:#b91c1c;}
@@ -39,11 +42,11 @@
 <body>
 <div class="wrap">
   <h1>발표 점수 결과 — 조별 순위</h1>
-  <div class="live"><span class="dot"></span>실시간 자동 갱신 · 평균 점수순</div>
+  <div class="live"><span class="dot"></span>실시간 자동 갱신 · 4개 항목 합계(40점) 평균순</div>
 
   <div class="stats">
     <div class="stat"><div class="n" id="stJudges">0</div><div class="l">채점 인원</div></div>
-    <div class="stat"><div class="n" id="stScores">0</div><div class="l">누적 채점 수</div></div>
+    <div class="stat"><div class="n" id="stEvals">0</div><div class="l">완료된 채점 수</div></div>
     <div class="stat"><div class="n" id="stLead">—</div><div class="l">현재 1위</div></div>
   </div>
 
@@ -55,45 +58,59 @@
 <script src="/assets/js/supabase-config.js" onerror="console.warn('supabase-config.js missing')"></script>
 <script type="module">
 import { sb } from '/assets/js/supabase-client.js';
-import { TEAMS } from '/assets/js/presentation-teams.js';
+import { TEAMS, CRITERIA, MAX_TOTAL } from '/assets/js/presentation-teams.js';
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let lastRanked = [];
 
-async function fetchScores(){
-  const { data, error } = await sb.from('presentation_scores').select('judge_uuid,team,score').limit(10000);
+async function fetchRows(){
+  const cols = 'judge_uuid,team,' + CRITERIA.map(c=>c.key).join(',');
+  const { data, error } = await sb.from('presentation_scores').select(cols).limit(10000);
   if (error) throw error;
   return data || [];
 }
 
+function isComplete(row){ return CRITERIA.every(c => typeof row[c.key] === 'number'); }
+function rowTotal(row){ return CRITERIA.reduce((s,c) => s + (row[c.key]||0), 0); }
+
 async function load(){
   let rows;
-  try { rows = await fetchScores(); }
+  try { rows = await fetchRows(); }
   catch(e){
-    const hint = /relation|does not exist|schema/i.test(e.message||'')
-      ? '아직 채점 표(presentation_scores)가 만들어지지 않았습니다. 진행자에게 문의하세요.'
+    const hint = /relation|does not exist|column|schema/i.test(e.message||'')
+      ? '아직 채점 표(presentation_scores)가 준비되지 않았습니다. 진행자에게 문의하세요.'
       : ('결과를 불러오지 못했습니다: ' + esc(e.message||e));
     $('ranking').innerHTML = `<div class="msg err">${hint}</div>`;
     return;
   }
 
-  const sum = Object.fromEntries(TEAMS.map(t => [t, 0]));
-  const cnt = Object.fromEntries(TEAMS.map(t => [t, 0]));
+  const agg = {};
+  TEAMS.forEach(t => { agg[t] = { totalSum:0, n:0, crit:Object.fromEntries(CRITERIA.map(c=>[c.key,{s:0,n:0}])) }; });
   const judges = new Set();
+  let evals = 0;
+
   rows.forEach(r => {
-    if (r.team in sum){ sum[r.team] += r.score; cnt[r.team]++; }
     judges.add(r.judge_uuid);
+    if (!(r.team in agg)) return;
+    // per-criterion averages use any provided value
+    CRITERIA.forEach(c => { if (typeof r[c.key]==='number'){ agg[r.team].crit[c.key].s += r[c.key]; agg[r.team].crit[c.key].n++; } });
+    // team total average uses only fully-completed evaluations
+    if (isComplete(r)){ agg[r.team].totalSum += rowTotal(r); agg[r.team].n++; evals++; }
   });
 
   $('stJudges').textContent = judges.size;
-  $('stScores').textContent = rows.length;
+  $('stEvals').textContent = evals;
 
-  const ranked = TEAMS.map(t => ({
-    name: t,
-    avg: cnt[t] ? sum[t] / cnt[t] : 0,
-    count: cnt[t],
-  })).sort((a,b) => b.avg - a.avg || b.count - a.count);
+  const ranked = TEAMS.map(t => {
+    const a = agg[t];
+    return {
+      name: t,
+      avg: a.n ? a.totalSum / a.n : 0,
+      count: a.n,
+      crit: CRITERIA.map(c => ({ label:c.label, avg: a.crit[c.key].n ? a.crit[c.key].s/a.crit[c.key].n : null })),
+    };
+  }).sort((x,y) => y.avg - x.avg || y.count - x.count);
   lastRanked = ranked;
 
   const max = Math.max(1, ranked[0].avg);
@@ -102,20 +119,27 @@ async function load(){
   $('ranking').innerHTML = ranked.map((r,i) => {
     const pct = Math.round((r.avg / max) * 100);
     const top = r.count > 0 && r.avg === ranked[0].avg;
+    const bd = r.crit.map(c => `<span class="bd">${esc(c.label)} <b>${c.avg==null?'-':c.avg.toFixed(1)}</b></span>`).join('');
     return `<div class="rank-row ${top?'top':''}">
       <div class="rank-no">${i+1}</div>
       <div class="rank-main">
-        <div class="rank-name">${esc(r.name)}<span class="cnt">${r.count}명 채점</span></div>
+        <div class="rank-name">${esc(r.name)}<span class="cnt">${r.count}명 완료</span></div>
         <div class="rank-bar"><i style="width:${pct}%"></i></div>
+        <div class="breakdown">${bd}</div>
       </div>
-      <div class="rank-val">${r.count ? r.avg.toFixed(1) : '-'}<small>평균</small></div>
+      <div class="rank-val">${r.count ? r.avg.toFixed(1) : '-'}<small>/ ${MAX_TOTAL}점</small></div>
     </div>`;
   }).join('');
 }
 
 $('csvBtn').addEventListener('click', () => {
-  let csv = '﻿순위,조,평균점수,채점인원\n';
-  lastRanked.forEach((r,i) => { csv += `${i+1},"${r.name}",${r.count ? r.avg.toFixed(2) : ''},${r.count}\n`; });
+  const head = ['순위','조','평균합계','완료인원', ...CRITERIA.map(c=>c.label+' 평균')];
+  let csv = '﻿' + head.join(',') + '\n';
+  lastRanked.forEach((r,i) => {
+    const cols = [i+1, `"${r.name}"`, r.count ? r.avg.toFixed(2) : '', r.count,
+      ...r.crit.map(c => c.avg==null?'':c.avg.toFixed(2))];
+    csv += cols.join(',') + '\n';
+  });
   const blob = new Blob([csv], { type:'text/csv;charset=utf-8;' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob); a.download = 'presentation-scores.csv'; a.click();
