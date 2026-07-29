@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>발표 조 점수 매기기 — 중등부</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  :root{ --bg:#fbf7ee; --ink:#1A1A1A; --sub:#7a6f5f; --accent:#a4541a; --accent-bg:#fef0e2;
+    --line:#E2E8F0; --card:#fff; --ok:#16a34a; }
+  *{box-sizing:border-box;}
+  body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;
+    background:var(--bg);color:var(--ink);margin:0;-webkit-tap-highlight-color:transparent;}
+  .wrap{max-width:640px;margin:0 auto;padding:22px 16px 60px;}
+  .head{text-align:center;margin:6px 0 18px;}
+  .head .event{color:var(--accent);font-size:12.5px;font-weight:800;letter-spacing:.02em;margin:0 0 8px;}
+  .head h1{font-family:'Noto Serif KR',serif;font-size:21px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px;}
+  .head p{font-size:13px;color:var(--sub);line-height:1.6;margin:0;}
+  .cfg-warn{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;padding:12px;border-radius:10px;font-size:13px;line-height:1.6;margin-bottom:14px;display:none;}
+  .step{display:none;} .step.is-on{display:block;}
+  .label{font-size:13px;font-weight:700;color:var(--sub);margin:0 0 10px;}
+  .rolebtns{display:flex;gap:12px;margin-bottom:16px;}
+  .rolebtn{flex:1;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:24px 12px;
+    font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--ink);}
+  .rolebtn.sel{border-color:var(--accent);background:var(--accent-bg);color:var(--accent);}
+  .rolebtn:active{transform:scale(.98);}
+  .rolebtn small{display:block;font-size:12px;font-weight:600;color:var(--sub);margin-top:6px;}
+  .rolebtn.sel small{color:var(--accent);}
+  input[type=text],select{width:100%;padding:14px 12px;font-size:16px;font-family:inherit;border:1px solid var(--line);
+    border-radius:12px;background:#fff;color:var(--ink);}
+  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a4541a' d='M6 8 0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;}
+  .sub2{font-size:12px;color:var(--sub);margin:8px 2px 0;line-height:1.6;}
+  .btn{width:100%;padding:15px;font-size:16px;font-weight:800;font-family:inherit;border:none;border-radius:14px;background:var(--accent);color:#fff;cursor:pointer;margin-top:14px;}
+  .btn:disabled{background:#d9cdbb;}
+  .whobar{display:flex;justify-content:space-between;align-items:center;background:var(--accent-bg);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:13px;color:var(--accent);font-weight:700;}
+  .whobar a{color:var(--sub);font-weight:600;font-size:12px;cursor:pointer;}
+  .progress{font-size:12.5px;font-weight:700;color:var(--sub);margin:0 2px 14px;}
+  .progress b{color:var(--accent);}
+  .jump{position:sticky;top:0;z-index:6;background:var(--bg);display:flex;flex-wrap:wrap;gap:6px;padding:8px 0 10px;margin-bottom:8px;border-bottom:1px solid var(--line);}
+  .jbtn{min-width:38px;padding:7px 9px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:13px;font-weight:800;color:var(--ink);cursor:pointer;font-family:inherit;}
+  .jbtn.done{border-color:#bbf7d0;background:#f6fef9;color:var(--ok);}
+  .tcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;margin-bottom:14px;scroll-margin-top:64px;}
+  .tcard.submitted{border-color:#bbf7d0;background:#f6fef9;}
+  .tcard-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px;}
+  .tcard-name{font-size:17px;font-weight:800;letter-spacing:-.01em;}
+  .tcard-total{font-size:13px;font-weight:700;color:var(--sub);}
+  .tcard.submitted .tcard-total{color:var(--ok);}
+  .crit{margin-top:11px;}
+  .crit-label{font-size:13px;font-weight:700;margin-bottom:6px;}
+  .crit-label small{font-weight:500;color:var(--sub);margin-left:5px;font-size:11.5px;}
+  .chips{display:flex;gap:5px;}
+  .chip{flex:1;min-width:0;height:38px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:14px;font-weight:800;color:var(--ink);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;padding:0;}
+  .chip:active{transform:scale(.92);}
+  .chip.sel{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .submit{width:100%;margin-top:14px;padding:12px;font-size:15px;font-weight:800;font-family:inherit;border:none;border-radius:10px;background:var(--accent);color:#fff;cursor:pointer;}
+  .submit:disabled{background:#e5ddcf;color:#a99;cursor:not-allowed;}
+  .submit.done{background:#fff;color:var(--ok);border:1.5px solid #bbf7d0;}
+  .submit.redo{background:#fff;color:var(--accent);border:1.5px solid var(--accent);}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1A1A1A;color:#fff;padding:11px 18px;border-radius:999px;font-size:13.5px;z-index:50;opacity:0;transition:opacity .2s;white-space:nowrap;}
+  .toast.show{opacity:.94;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="event" id="eventLabel">2026 전도학생회장단 리더십 캠프</div>
+    <h1>발표 조 점수 매기기</h1>
+    <p>각 조 6개 항목에 1~10점을 주고 <b>제출</b>을 누르세요.<br>입력한 점수는 폰이 꺼져도 남아있어요.</p>
+  </div>
+  <div class="cfg-warn" id="cfgWarn">채점 서버 설정이 아직 연결되지 않았습니다. 진행자에게 문의해 주세요.</div>
+
+  <section class="step is-on" id="step1">
+    <p class="label">어느 쪽이신가요?</p>
+    <div class="rolebtns">
+      <button class="rolebtn" id="roleStudent">학생<small>내 조는 빼고 채점</small></button>
+      <button class="rolebtn" id="roleTeacher">선생님<small>이름 입력 · 전체 채점</small></button>
+    </div>
+    <div id="studentBox" hidden>
+      <p class="label">본인 조를 선택하세요 (그 조는 채점에서 빠집니다)</p>
+      <select id="ownTeam"><option value="">— 내 조 선택 —</option></select>
+      <button class="btn" id="startStudent" disabled>채점 시작</button>
+    </div>
+    <div id="teacherBox" hidden>
+      <p class="label">선생님 성함을 입력하세요</p>
+      <input type="text" id="teacherName" placeholder="예: 김창환" autocomplete="off" maxlength="20">
+      <p class="sub2">이름은 진행자 확인용이며 결과에는 공개되지 않습니다.</p>
+      <button class="btn" id="startTeacher" disabled>채점 시작</button>
+    </div>
+  </section>
+
+  <section class="step" id="step2">
+    <div class="whobar"><span id="whoLabel"></span><a id="resetRole">역할 변경</a></div>
+    <div class="progress">제출 완료 <b id="submittedCount">0</b> / <span id="teamTotal">0</span> 조 · 입력한 점수는 이 폰에 자동 저장됩니다</div>
+    <div class="jump" id="teamJump"></div>
+    <div id="teamList"></div>
+  </section>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="/assets/js/supabase-config.js" onerror="console.warn('supabase-config.js missing')"></script>
+<script type="module">
+import { getRound, CRITERIA, MIN_SCORE, MAX_SCORE, MAX_TOTAL } from '/assets/js/ms-data.js';
+import { sb } from '/assets/js/supabase-client.js';
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),1500); }
+
+const round = getRound();
+const TEAMS = round.teams;
+$('eventLabel').textContent = `2026 전도학생회장단 리더십 캠프 · 중등부 ${round.label}`;
+
+if (!window.__SUPABASE_URL__ || String(window.__SUPABASE_URL__).includes('YOUR-PROJECT')) $('cfgWarn').style.display='block';
+
+let judgeUuid = localStorage.getItem('ms_score_uuid_'+round.key);
+if (!judgeUuid){ judgeUuid=(crypto.randomUUID?crypto.randomUUID():'j-'+Date.now()+'-'+Math.random().toString(16).slice(2)); localStorage.setItem('ms_score_uuid_'+round.key, judgeUuid); }
+let role = localStorage.getItem('ms_score_role_'+round.key) || '';
+let ownTeam = localStorage.getItem('ms_score_team_'+round.key) || '';
+let judgeName = localStorage.getItem('ms_score_name_'+round.key) || '';
+
+const STATE_KEY = 'ms_score_state_'+round.key+'_'+judgeUuid;
+let state = { scores:{}, submitted:{} };
+try { const raw=localStorage.getItem(STATE_KEY); if(raw) state=JSON.parse(raw); } catch(e){}
+TEAMS.forEach(t => { if(!state.scores[t]) state.scores[t]={}; });
+function saveLocal(){ try { localStorage.setItem(STATE_KEY, JSON.stringify(state)); } catch(e){} }
+
+TEAMS.forEach(t => { const o=document.createElement('option'); o.value=t; o.textContent=t; $('ownTeam').appendChild(o); });
+
+$('roleStudent').addEventListener('click', () => { $('roleStudent').classList.add('sel'); $('roleTeacher').classList.remove('sel'); $('studentBox').hidden=false; $('teacherBox').hidden=true; });
+$('roleTeacher').addEventListener('click', () => { $('roleTeacher').classList.add('sel'); $('roleStudent').classList.remove('sel'); $('teacherBox').hidden=false; $('studentBox').hidden=true; $('teacherName').focus(); });
+$('ownTeam').addEventListener('change', () => { $('startStudent').disabled=!$('ownTeam').value; });
+$('teacherName').addEventListener('input', () => { $('startTeacher').disabled=!$('teacherName').value.trim(); });
+$('startStudent').addEventListener('click', () => { role='student'; ownTeam=$('ownTeam').value; judgeName=''; persist(); enterScoring(); });
+$('startTeacher').addEventListener('click', () => { const n=$('teacherName').value.trim(); if(!n) return; role='teacher'; ownTeam=''; judgeName=n; persist(); enterScoring(); });
+$('resetRole').addEventListener('click', () => { ['role','team','name'].forEach(k=>localStorage.removeItem('ms_score_'+k+'_'+round.key)); location.reload(); });
+function persist(){ localStorage.setItem('ms_score_role_'+round.key, role); localStorage.setItem('ms_score_team_'+round.key, ownTeam||''); localStorage.setItem('ms_score_name_'+round.key, judgeName||''); }
+
+function complete(team){ return CRITERIA.every(c => typeof state.scores[team][c.key]==='number'); }
+function total(team){ return CRITERIA.reduce((s,c)=> s+(state.scores[team][c.key]||0), 0); }
+function shownTeams(){ return TEAMS.filter(t => !(role==='student' && t===ownTeam)); }
+
+function refreshCard(team){
+  const card=$('teamList').querySelector(`.tcard[data-team="${CSS.escape(team)}"]`); if(!card) return;
+  const done=complete(team), isSub=!!state.submitted[team];
+  card.classList.toggle('submitted', isSub);
+  card.querySelector('.tcard-total').textContent = isSub ? `제출됨 · 합계 ${total(team)} / ${MAX_TOTAL}` : `합계 ${total(team)} / ${MAX_TOTAL}`;
+  CRITERIA.forEach(c => { const cr=card.querySelector(`.crit[data-key="${c.key}"]`); const v=state.scores[team][c.key]; cr.querySelectorAll('.chip').forEach(ch=>ch.classList.toggle('sel', parseInt(ch.dataset.score,10)===v)); });
+  const btn=card.querySelector('.submit'); btn.classList.remove('done','redo');
+  if(isSub && !card.dataset.dirty){ btn.textContent='제출 완료 ✓'; btn.classList.add('done'); btn.disabled=false; }
+  else if(isSub && card.dataset.dirty){ btn.textContent='수정됨 · 다시 제출'; btn.classList.add('redo'); btn.disabled=!done; }
+  else { btn.textContent='제출'; btn.disabled=!done; }
+  const jb=document.querySelector(`#teamJump .jbtn[data-jump="${CSS.escape(team)}"]`); if(jb) jb.classList.toggle('done', isSub);
+}
+function updateProgress(){ const teams=shownTeams(); $('teamTotal').textContent=teams.length; $('submittedCount').textContent=teams.filter(t=>state.submitted[t]).length; }
+
+async function enterScoring(){
+  $('step1').classList.remove('is-on'); $('step2').classList.add('is-on');
+  $('whoLabel').textContent = role==='teacher' ? `선생님 · ${judgeName}` : `학생 · 내 조: ${ownTeam}`;
+  const nums=Array.from({length:MAX_SCORE-MIN_SCORE+1},(_,i)=>MIN_SCORE+i);
+  $('teamList').innerHTML = shownTeams().map(t => `
+    <div class="tcard" data-team="${esc(t)}">
+      <div class="tcard-top"><div class="tcard-name">${esc(t)}</div><div class="tcard-total"></div></div>
+      ${CRITERIA.map(c => `<div class="crit" data-key="${c.key}">
+        <div class="crit-label">${esc(c.label)}<small>${esc(c.hint||'')}</small></div>
+        <div class="chips">${nums.map(n=>`<button class="chip" data-score="${n}" aria-label="${esc(c.label)} ${n}점">${n}</button>`).join('')}</div>
+      </div>`).join('')}
+      <button class="submit">제출</button>
+    </div>`).join('');
+
+  $('teamJump').innerHTML = shownTeams().map(t => `<button class="jbtn" data-jump="${esc(t)}">${esc(t)}</button>`).join('');
+  $('teamJump').querySelectorAll('.jbtn').forEach(b => b.addEventListener('click', () => {
+    const c=$('teamList').querySelector(`.tcard[data-team="${CSS.escape(b.dataset.jump)}"]`); if(c) c.scrollIntoView({behavior:'smooth', block:'start'});
+  }));
+
+  $('teamList').querySelectorAll('.tcard').forEach(card => {
+    const team=card.dataset.team;
+    card.querySelectorAll('.crit').forEach(cr => cr.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => {
+      state.scores[team][cr.dataset.key]=parseInt(chip.dataset.score,10);
+      if(state.submitted[team]) card.dataset.dirty='1';
+      saveLocal(); refreshCard(team);
+    })));
+    card.querySelector('.submit').addEventListener('click', () => submitTeam(team, card));
+    refreshCard(team);
+  });
+  updateProgress();
+
+  try {
+    const cols='team,'+CRITERIA.map(c=>c.key).join(',');
+    const { data } = await sb.from('ms_scores').select(cols).eq('round', round.key).eq('judge_uuid', judgeUuid);
+    let changed=false;
+    (data||[]).forEach(row => {
+      if(!(row.team in state.scores)) return;
+      const hasLocal=CRITERIA.some(c=>typeof state.scores[row.team][c.key]==='number');
+      if(!hasLocal){ CRITERIA.forEach(c=>{ if(typeof row[c.key]==='number') state.scores[row.team][c.key]=row[c.key]; }); if(complete(row.team)) state.submitted[row.team]=true; changed=true; refreshCard(row.team); }
+    });
+    if(changed){ saveLocal(); updateProgress(); }
+  } catch(e){}
+}
+
+async function submitTeam(team, card){
+  if(!complete(team)){ toast('모든 항목을 채워주세요'); return; }
+  const btn=card.querySelector('.submit'); btn.disabled=true; btn.textContent='제출 중…';
+  try {
+    const row={ round: round.key, judge_uuid: judgeUuid, judge_role: role, judge_name: judgeName||null, judge_team: ownTeam||null, team };
+    CRITERIA.forEach(c => { row[c.key]=state.scores[team][c.key]; });
+    const { error } = await sb.from('ms_scores').upsert(row, { onConflict: 'round,judge_uuid,team' });
+    if(error) throw error;
+    state.submitted[team]=true; delete card.dataset.dirty; saveLocal(); refreshCard(team); updateProgress(); toast(`${team} 제출 완료`);
+  } catch(e){ toast('제출 실패: '+(e.message||e)); refreshCard(team); }
+}
+
+if (role==='teacher' && judgeName) enterScoring();
+else if (role==='student' && ownTeam) enterScoring();
+</script>
+</body>
+</html>

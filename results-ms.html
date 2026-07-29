@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>학교 소개 투표 결과 — 중등부</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+  :root{ --bg:#fbf7ee; --ink:#1A1A1A; --sub:#7a6f5f; --accent:#a4541a; --accent-bg:#fef0e2; --line:#E2E8F0; --ok:#16a34a; }
+  *{box-sizing:border-box;}
+  body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);margin:0;}
+  .wrap{max-width:720px;margin:0 auto;padding:26px 18px 90px;}
+  .event{color:var(--accent);font-size:12.5px;font-weight:800;letter-spacing:.02em;margin:0 0 6px;}
+  h1{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:800;letter-spacing:-.02em;margin:0 0 4px;}
+  .live{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ok);font-weight:700;margin-bottom:20px;}
+  .live .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 1.4s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  .stats{display:flex;gap:12px;margin-bottom:22px;}
+  .stat{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;}
+  .stat .n{font-size:28px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1;}
+  .stat .l{font-size:12px;color:var(--sub);margin-top:7px;}
+  .rank-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f4efe3;}
+  .rank-row:last-child{border-bottom:none;}
+  .rank-no{width:30px;font-size:15px;font-weight:800;color:var(--sub);text-align:center;flex-shrink:0;font-variant-numeric:tabular-nums;}
+  .rank-row.top .rank-no{color:var(--accent);}
+  .rank-main{flex:1;min-width:0;}
+  .rank-name{font-size:14.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:5px;}
+  .rank-bar{height:10px;background:#f1ecdf;border-radius:999px;overflow:hidden;}
+  .rank-bar>i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .5s;}
+  .rank-row.top .rank-bar>i{background:linear-gradient(90deg,#c2691f,#a4541a);}
+  .rank-val{font-size:16px;font-weight:800;width:64px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums;}
+  .rank-val small{font-size:11px;color:var(--sub);font-weight:600;}
+  .msg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;font-size:13.5px;color:var(--sub);line-height:1.7;}
+  .msg.err{background:#fef2f2;border-color:#fecaca;color:#b91c1c;}
+  .foot{margin-top:20px;text-align:center;}
+  .btn{padding:11px 18px;font-size:13.5px;font-weight:700;font-family:inherit;border:1px solid var(--accent);border-radius:9px;background:#fff;color:var(--accent);cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="event" id="eventLabel">2026 전도학생회장단 리더십 캠프</div>
+  <h1>학교 소개 투표 결과</h1>
+  <div class="live"><span class="dot"></span>실시간 자동 갱신 · 득표순</div>
+  <div class="stats">
+    <div class="stat"><div class="n" id="stVoters">0</div><div class="l">투표 인원</div></div>
+    <div class="stat"><div class="n" id="stPicks">0</div><div class="l">누적 선택 수</div></div>
+    <div class="stat"><div class="n" id="stLead">—</div><div class="l">현재 1위</div></div>
+  </div>
+  <div id="ranking"><div class="msg">불러오는 중…</div></div>
+  <div class="foot"><button class="btn" id="csvBtn">CSV로 저장</button></div>
+</div>
+
+<script src="/assets/js/supabase-config.js" onerror="console.warn('supabase-config.js missing')"></script>
+<script type="module">
+import { sb } from '/assets/js/supabase-client.js';
+import { getRound } from '/assets/js/ms-data.js';
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const round = getRound();
+const NAMES = round.schools.map(s => s.name);
+let lastRanked = [];
+$('eventLabel').textContent = `2026 전도학생회장단 리더십 캠프 · 중등부 ${round.label}`;
+
+async function load(){
+  let votes;
+  try {
+    const { data, error } = await sb.from('school_votes').select('choices').eq('round', round.key).limit(5000);
+    if (error) throw error; votes = data || [];
+  } catch(e){
+    const hint = /relation|does not exist|schema/i.test(e.message||'') ? '아직 투표 표(school_votes)가 준비되지 않았습니다. 진행자에게 문의하세요.' : ('결과를 불러오지 못했습니다: '+esc(e.message||e));
+    $('ranking').innerHTML = `<div class="msg err">${hint}</div>`; return;
+  }
+  const counts = Object.fromEntries(NAMES.map(n=>[n,0])); let picks=0;
+  votes.forEach(v => (v.choices||[]).forEach(c => { if (c in counts){ counts[c]++; picks++; } }));
+  $('stVoters').textContent = votes.length; $('stPicks').textContent = picks;
+  const ranked = NAMES.map(n=>({name:n, votes:counts[n]})).sort((a,b)=>b.votes-a.votes);
+  lastRanked = ranked;
+  const max = Math.max(1, ranked[0].votes);
+  $('stLead').textContent = ranked[0].votes>0 ? ranked[0].name : '—';
+  $('ranking').innerHTML = ranked.map((r,i) => {
+    const pct = Math.round((r.votes/max)*100);
+    const top = r.votes>0 && r.votes===ranked[0].votes;
+    return `<div class="rank-row ${top?'top':''}"><div class="rank-no">${(r.votes>0&&i<3)?['🥇','🥈','🥉'][i]:(i+1)}</div>
+      <div class="rank-main"><div class="rank-name">${esc(r.name)}</div><div class="rank-bar"><i style="width:${pct}%"></i></div></div>
+      <div class="rank-val">${r.votes}<small>표</small></div></div>`;
+  }).join('');
+}
+$('csvBtn').addEventListener('click', () => {
+  let csv='﻿순위,학교,득표수\n';
+  lastRanked.forEach((r,i)=>{ csv+=`${i+1},"${r.name}",${r.votes}\n`; });
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}); const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob); a.download=`school-votes-${round.key}.csv`; a.click(); URL.revokeObjectURL(a.href);
+});
+sb.channel('ms-vote-'+round.key).on('postgres_changes', { event:'*', schema:'public', table:'school_votes' }, load).subscribe();
+load();
+</script>
+</body>
+</html>
