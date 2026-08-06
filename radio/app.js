@@ -44,6 +44,7 @@ const state = {
   sleepTimer: null,
   sleepTickTimer: null,
   sleepEndAt: 0,
+  sleepFading: false,
   geoEnabled: false,
   geoWatchId: null,
   geoLastSnapAt: 0,
@@ -342,12 +343,20 @@ function formatRemaining(ms) {
   if (m >= 1) return `${m}분 ${s.toString().padStart(2, '0')}초 남음`;
   return `${s}초 남음`;
 }
+const SLEEP_FADE_MS = 30_000; // gentle volume fade over the final 30s (in-app audio only)
+const SLEEP_TICK_MS = 250;    // fine cadence so the fade ramp stays smooth
+
+function isInAppPlaying() {
+  return !!(els.audio && els.audio.src && !els.audio.paused);
+}
 function clearSleepTimer() {
   clearTimeout(state.sleepTimer);
   clearInterval(state.sleepTickTimer);
   state.sleepTimer = null;
   state.sleepTickTimer = null;
   state.sleepEndAt = 0;
+  state.sleepFading = false;
+  if (els.audio) els.audio.volume = 1; // undo any in-progress fade
   els.sleepTimer.classList.remove('is-active');
   els.sleepLabel.textContent = '슬립 타이머';
 }
@@ -355,20 +364,36 @@ function setSleepTimer(minutes) {
   clearSleepTimer();
   if (!minutes) return;
   state.sleepEndAt = Date.now() + minutes * 60 * 1000;
+  let lastLabel = '';
   const tick = () => {
     const left = state.sleepEndAt - Date.now();
     if (left <= 0) {
       clearSleepTimer();
       if (state.playing) stopStream();
       els.sleepLabel.textContent = '슬립 종료';
-      setTimeout(() => { els.sleepLabel.textContent = '슬립 타이머'; }, 2500);
+      setTimeout(() => {
+        if (els.sleepLabel.textContent === '슬립 종료') els.sleepLabel.textContent = '슬립 타이머';
+      }, 2500);
       return;
     }
-    els.sleepLabel.textContent = formatRemaining(left);
+    // Ramp the volume down over the final window — only when playing in-app HLS.
+    if (left <= SLEEP_FADE_MS && isInAppPlaying()) {
+      state.sleepFading = true;
+      els.audio.volume = Math.max(0, Math.min(1, left / SLEEP_FADE_MS));
+    } else if (state.sleepFading && !isInAppPlaying()) {
+      state.sleepFading = false;
+      if (els.audio) els.audio.volume = 1;
+    }
+    const label = state.sleepFading
+      ? `페이드아웃 · ${Math.ceil(left / 1000)}초`
+      : formatRemaining(left);
+    if (label !== lastLabel) {
+      els.sleepLabel.textContent = label;
+      lastLabel = label;
+    }
   };
   tick();
-  state.sleepTickTimer = setInterval(tick, 1000);
-  state.sleepTimer = setTimeout(tick, minutes * 60 * 1000);
+  state.sleepTickTimer = setInterval(tick, SLEEP_TICK_MS);
   els.sleepTimer.classList.add('is-active');
 }
 
