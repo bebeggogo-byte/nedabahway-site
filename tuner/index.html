@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,user-scalable=no">
+<title>클래식 라디오 튜너 — 전국 주파수</title>
+<meta name="description" content="현재 위치의 KBS 클래식FM 주파수를 자동으로 안내하고, 한 번 탭으로 KBS 공식 앱·웹에서 바로 듣습니다. 좋았던 곡은 원터치 유튜브 검색.">
+<meta name="theme-color" content="#241812">
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="클래식 튜너">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="canonical" href="https://www.nedabah.org/tuner/">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<style>
+:root{
+  --bg:#241812; --surface:#33241A; --surface-2:#42311F;
+  --fg:#F4E9D4; --fg-mute:#D6C2A0; --fg-dim:#A98F6C; --line:#4E3A26;
+  --accent:#D2A24E; --accent-bright:#EEC77A; --accent-soft:rgba(210,162,78,0.15);
+  --yt:#FF3B30; --ink:#2A1A0C;
+  --grain:repeating-linear-gradient(93deg, rgba(255,226,182,0.022) 0 3px, rgba(0,0,0,0.055) 3px 6px, rgba(255,226,182,0.012) 6px 11px), repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 108px, rgba(255,222,175,0.022) 108px 111px, rgba(0,0,0,0.05) 111px 216px);
+  --ff:system-ui,-apple-system,'Pretendard Variable',sans-serif;
+  --ff-serif:Georgia,'Noto Serif KR',serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+html{font-size:17px;-webkit-text-size-adjust:100%}
+body{font-family:var(--ff);color:var(--fg);line-height:1.5;word-break:keep-all;overflow-x:hidden;
+  background:radial-gradient(ellipse at 50% -8%, #4A3320 0%, rgba(74,51,32,0) 52%), var(--grain), var(--bg);}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+.hidden{display:none!important}
+
+/* onboarding */
+.onboard{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;justify-content:center;
+  padding:calc(env(safe-area-inset-top) + 28px) 26px calc(env(safe-area-inset-bottom) + 28px);overflow-y:auto;
+  background:radial-gradient(ellipse at 50% 15%, rgba(210,162,78,0.12) 0%, rgba(36,24,18,0) 45%), radial-gradient(ellipse at 50% 18%, #3E2B1A 0%, var(--bg) 60%), var(--grain), var(--bg);
+  animation:fadeIn .35s ease-out both;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.ob__brand{text-align:center;font-size:.8rem;font-weight:700;letter-spacing:.4em;color:var(--accent);margin-bottom:14px}
+.ob__title{text-align:center;font-family:var(--ff-serif);font-weight:900;font-size:2.1rem;line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
+.ob__lede{text-align:center;font-size:1.05rem;color:var(--fg-mute);max-width:360px;margin:0 auto 28px;line-height:1.6}
+.ob__note{display:flex;align-items:center;gap:12px;max-width:440px;width:100%;margin:0 auto 24px;padding:16px 18px;border-radius:16px;background:var(--surface);border:1px solid var(--line);font-size:.98rem;color:var(--fg-mute);line-height:1.5}
+.ob__note b{color:var(--fg)}
+.ob__note svg{width:24px;height:24px;flex-shrink:0;color:var(--accent)}
+.choice{display:flex;flex-direction:column;gap:12px;max-width:440px;width:100%;margin:0 auto 28px}
+.choice__opt{display:flex;align-items:center;gap:16px;padding:20px;border-radius:16px;text-align:left;border:2px solid var(--line);background:var(--surface);transition:border-color .15s,background .15s}
+.choice__opt.is-sel{border-color:var(--accent);background:var(--accent-soft)}
+.choice__radio{width:24px;height:24px;flex-shrink:0;border-radius:50%;border:2.5px solid var(--fg-dim);position:relative}
+.choice__opt.is-sel .choice__radio{border-color:var(--accent)}
+.choice__opt.is-sel .choice__radio::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--accent)}
+.choice__name{font-size:1.15rem;font-weight:700}
+.choice__name .tag{display:inline-block;margin-left:8px;font-size:.72rem;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 8px;vertical-align:middle}
+.choice__sub{font-size:.92rem;color:var(--fg-mute);margin-top:4px}
+.ob__cta{max-width:440px;width:100%;margin:0 auto;padding:22px;border-radius:18px;background:var(--accent);color:var(--ink);font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .1s}
+.ob__cta:active{transform:scale(.98)}
+.ob__cta svg{width:22px;height:22px}
+.ob__fine{text-align:center;font-size:.86rem;color:var(--fg-dim);margin:18px auto 0;max-width:380px;line-height:1.55}
+
+/* player */
+.player{position:relative;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+  padding:calc(env(safe-area-inset-top) + 20px) 26px calc(env(safe-area-inset-bottom) + 26px);
+  background:radial-gradient(ellipse at 50% 34%, rgba(210,162,78,0.10) 0%, rgba(36,24,18,0) 46%), radial-gradient(ellipse at 50% 30%, #3E2B1A 0%, var(--bg) 66%), var(--grain), var(--bg);
+  -webkit-user-select:none;user-select:none;}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;font-weight:700;letter-spacing:.3em;color:var(--accent)}
+.settings-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--fg-dim);border:1px solid var(--line)}
+.settings-btn svg{width:22px;height:22px}
+.settings-btn:active{background:var(--surface)}
+
+.install-chip{align-self:center;display:inline-flex;align-items:center;gap:8px;margin:14px auto 0;padding:11px 18px;border-radius:999px;border:1.5px solid var(--accent);color:var(--accent);background:var(--accent-soft);font-size:.95rem;font-weight:700}
+.install-chip[hidden]{display:none}
+.install-chip svg{width:17px;height:17px}
+.ios-guide{align-self:center;max-width:330px;margin:12px auto 0;padding:12px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);color:var(--fg-mute);font-size:.9rem;text-align:center;line-height:1.6}
+.ios-guide[hidden]{display:none}
+.ios-guide b{color:var(--fg)}
+.ios-guide svg{width:16px;height:16px;vertical-align:-3px;color:var(--accent)}
+
+.stage{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px 0}
+.stage::before{content:'';position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:min(90%,440px);height:320px;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at center, rgba(0,0,0,0.30) 1.1px, transparent 1.5px);background-size:11px 11px;
+  -webkit-mask-image:radial-gradient(ellipse at center, #000 52%, transparent 80%);mask-image:radial-gradient(ellipse at center, #000 52%, transparent 80%);opacity:.5}
+.stage>*{position:relative;z-index:1}
+.stage__label{font-size:.82rem;font-weight:700;letter-spacing:.45em;color:var(--fg-mute);margin-bottom:22px;text-transform:uppercase}
+.stage__freq{font-family:var(--ff-serif);font-weight:900;font-size:clamp(6rem,26vw,10rem);line-height:.9;letter-spacing:-.05em;color:var(--accent-bright);text-shadow:0 0 26px rgba(238,199,122,0.22)}
+.stage__unit{font-family:var(--ff-serif);font-size:1.5rem;font-weight:700;color:var(--fg-mute);letter-spacing:.05em}
+.stage__city{margin-top:20px;font-size:1.25rem;font-weight:600;color:var(--fg);display:inline-flex;align-items:center;gap:8px}
+.stage__city svg{width:17px;height:17px;color:var(--accent)}
+
+.listen{margin-top:34px;padding:20px 40px;border-radius:999px;background:var(--accent);color:var(--ink);font-weight:800;font-size:1.2rem;display:inline-flex;align-items:center;gap:12px;text-decoration:none;transition:transform .1s}
+.listen:active{transform:scale(.96)}
+.listen svg{width:24px;height:24px}
+.listen__hint{margin-top:14px;font-size:.85rem;color:var(--fg-dim)}
+.remember{margin-top:20px;padding:13px 24px;border-radius:999px;border:2px solid var(--accent);color:var(--accent);font-size:1.02rem;font-weight:700;display:inline-flex;align-items:center;gap:10px;transition:transform .1s,background .15s}
+.remember:active{transform:scale(.96);background:var(--accent-soft)}
+.remember svg{width:19px;height:19px}
+.remember.saved{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+
+.bar{display:flex;gap:12px}
+.bar-btn{flex:1;padding:18px;border-radius:16px;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:10px;font-size:1.05rem;font-weight:700;white-space:nowrap;color:var(--fg-mute)}
+.bar-btn:active{background:var(--surface-2)}
+.bar-btn svg{width:20px;height:20px}
+.bar-btn .count{min-width:26px;height:26px;padding:0 7px;border-radius:999px;background:var(--accent);color:var(--ink);font-size:.9rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+
+/* sheets */
+.scrim{position:fixed;inset:0;z-index:110;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.is-open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:120;background:var(--grain),linear-gradient(180deg,#3A2818 0%,var(--surface) 40%);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:10px 24px calc(env(safe-area-inset-bottom) + 26px);transform:translateY(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);max-height:90vh;overflow-y:auto}
+.sheet.is-open{transform:translateY(0)}
+.grab{width:46px;height:5px;border-radius:3px;background:var(--line);margin:8px auto 20px}
+.sheet__title{font-size:1.5rem;font-weight:800;margin-bottom:22px}
+.glabel{font-size:.82rem;font-weight:700;letter-spacing:.2em;color:var(--fg-dim);text-transform:uppercase;margin:0 0 12px}
+.group{margin-bottom:30px}
+.hist-empty{text-align:center;color:var(--fg-dim);font-size:1.05rem;padding:40px 0 30px;line-height:1.7}
+.hist-card{background:var(--surface-2);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:14px}
+.hist-card__top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+.hist-card__time{font-size:1.3rem;font-weight:800}
+.hist-card__meta{font-size:.95rem;color:var(--fg-mute);margin-top:4px}
+.hist-card__del{width:38px;height:38px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--fg-dim);border:1px solid var(--line)}
+.hist-card__del svg{width:18px;height:18px}
+.hist-card__yt{width:100%;padding:18px;border-radius:14px;background:var(--yt);color:#fff;font-size:1.15rem;font-weight:800;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .1s}
+.hist-card__yt:active{transform:scale(.98)}
+.hist-card__yt svg{width:24px;height:24px}
+.hist-clear{width:100%;margin-top:8px;padding:14px;border-radius:12px;color:var(--fg-dim);font-size:.95rem;border:1px solid var(--line)}
+.mode-opt{display:flex;align-items:center;gap:14px;padding:18px;border-radius:16px;border:2px solid var(--line);background:var(--surface-2);text-align:left;width:100%;margin-bottom:12px}
+.mode-opt.is-sel{border-color:var(--accent);background:var(--accent-soft)}
+.mode-opt__name{font-size:1.1rem;font-weight:700}
+.mode-opt__sub{font-size:.9rem;color:var(--fg-mute);margin-top:3px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rgn{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:16px 12px;text-align:center}
+.rgn:active{background:var(--surface)}
+.rgn.is-active{background:var(--accent-soft);border-color:var(--accent)}
+.rgn__city{font-size:.95rem;font-weight:600}
+.rgn__freq{font-family:var(--ff-serif);font-weight:800;font-size:1.3rem;color:var(--accent);margin-top:3px}
+.note{font-size:1rem;color:var(--fg-mute);line-height:1.65;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:18px}
+.note b{color:var(--fg)}
+</style>
+</head>
+<body>
+
+<section class="onboard" id="onboard" aria-label="시작 설정">
+  <div class="ob__brand">CLASSIC RADIO TUNER</div>
+  <h1 class="ob__title">전국 어디든,<br>내 주파수</h1>
+  <p class="ob__lede">위치는 지금 한 번만. 전국 어디를 달려도 현재 위치의 클래식FM 주파수를 자동으로 잡아줍니다.</p>
+
+  <div class="ob__note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+    <span>재생은 <b>KBS 공식 앱·웹</b>에서 열립니다. 앱은 주파수 안내와 좋았던 곡 기록을 도와줘요.</span>
+  </div>
+
+  <div class="choice" id="choice" role="radiogroup" aria-label="위치 사용 방식">
+    <button class="choice__opt is-sel" type="button" data-mode="always" role="radio" aria-checked="true">
+      <span class="choice__radio" aria-hidden="true"></span>
+      <span><span class="choice__name">항상 자동<span class="tag">권장</span></span><span class="choice__sub">켤 때마다 묻지 않고 바로 잡아줌</span></span>
+    </button>
+    <button class="choice__opt" type="button" data-mode="ask" role="radio" aria-checked="false">
+      <span class="choice__radio" aria-hidden="true"></span>
+      <span><span class="choice__name">켤 때 확인</span><span class="choice__sub">켤 때 한 번만 물어봄</span></span>
+    </button>
+  </div>
+
+  <button class="ob__cta" id="obCta" type="button">시작하기
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </button>
+  <p class="ob__fine">위치는 가까운 주파수를 고르는 데만 쓰이고 저장·전송되지 않습니다.</p>
+</section>
+
+<section class="player hidden" id="player">
+  <div class="top">
+    <span>CLASSIC RADIO</span>
+    <button class="settings-btn" id="settingsBtn" type="button" aria-label="설정">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </div>
+
+  <button class="install-chip" id="installChip" type="button" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 11l4 4 4-4M5 21h14"/></svg>
+    홈 화면에 추가
+  </button>
+  <div class="ios-guide" id="iosGuide" hidden>
+    아래 <b>공유</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg> 버튼 → <b>홈 화면에 추가</b>를 누르면 앱으로 설치돼요
+  </div>
+
+  <div class="stage">
+    <div class="stage__label">지금 이 지역</div>
+    <div class="stage__freq" id="freq">93.7<span class="stage__unit">MHz</span></div>
+    <div class="stage__city"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span id="cityName">내 주파수</span></div>
+
+    <a class="listen" id="listenBtn" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      KBS에서 듣기
+    </a>
+    <div class="listen__hint">KBS 공식 플레이어가 새 창에서 열립니다</div>
+
+    <button class="remember" id="rememberBtn" type="button">
+      <svg id="rememberIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <span id="rememberText">지금 곡 기억</span>
+    </button>
+  </div>
+
+  <div class="bar">
+    <button class="bar-btn" id="histBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <span>기억한 곡</span><span class="count" id="histCount">0</span>
+    </button>
+    <button class="bar-btn" id="shareBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+      <span>공유</span>
+    </button>
+  </div>
+</section>
+
+<div class="scrim" id="scrim"></div>
+<section class="sheet" id="histSheet" aria-label="기억한 곡" aria-hidden="true">
+  <div class="grab"></div><div class="sheet__title">기억한 곡</div>
+  <div id="histList"></div>
+  <button class="hist-clear hidden" id="histClear" type="button">전체 지우기</button>
+</section>
+<section class="sheet" id="setSheet" aria-label="설정" aria-hidden="true">
+  <div class="grab"></div><div class="sheet__title">설정</div>
+  <div class="group">
+    <div class="glabel">위치 사용 방식</div>
+    <div id="modeRow" role="radiogroup" aria-label="위치 사용 방식">
+      <button class="mode-opt is-sel" type="button" data-mode="always" role="radio" aria-checked="true"><span class="choice__radio" aria-hidden="true"></span><span><span class="mode-opt__name">항상 자동</span><span class="mode-opt__sub">켤 때마다 묻지 않고 바로</span></span></button>
+      <button class="mode-opt" type="button" data-mode="ask" role="radio" aria-checked="false"><span class="choice__radio" aria-hidden="true"></span><span><span class="mode-opt__name">켤 때 확인</span><span class="mode-opt__sub">켤 때 한 번만 물어봄</span></span></button>
+    </div>
+  </div>
+  <div class="group"><div class="glabel">지역 직접 선택</div><div class="grid" id="manualGrid"></div></div>
+  <div class="group"><div class="glabel">재생 안내</div><p class="note">이 앱은 주파수 안내 도구입니다. <b>재생은 KBS 공식 앱·웹</b>에서 이뤄지며, 데이터·저작권도 KBS 공식 채널을 따릅니다.</p></div>
+</section>
+
+<script>
+const REGIONS=[
+  {city:"내 주파수",freq:93.7,isDefault:true},
+  {city:"서울/경기/인천",freq:93.1,lat:37.5665,lng:126.9780},
+  {city:"춘천",freq:91.9,lat:37.8813,lng:127.7298},
+  {city:"강릉",freq:89.1,lat:37.7519,lng:128.8761},
+  {city:"원주",freq:89.5,lat:37.3422,lng:127.9202},
+  {city:"대전",freq:98.5,lat:36.3504,lng:127.3845},
+  {city:"청주",freq:102.1,lat:36.6424,lng:127.4890},
+  {city:"충주",freq:100.3,lat:36.9910,lng:127.9259},
+  {city:"전주",freq:100.7,lat:35.8242,lng:127.1480},
+  {city:"광주",freq:92.3,lat:35.1595,lng:126.8526},
+  {city:"목포",freq:98.3,lat:34.8118,lng:126.3922},
+  {city:"순천",freq:94.5,lat:34.9506,lng:127.4872},
+  {city:"대구",freq:89.7,lat:35.8714,lng:128.6014},
+  {city:"안동",freq:88.1,lat:36.5684,lng:128.7294},
+  {city:"포항",freq:93.5,lat:36.0190,lng:129.3435},
+  {city:"울산",freq:101.9,lat:35.5384,lng:129.3114},
+  {city:"부산",freq:92.7,lat:35.1796,lng:129.0756},
+  {city:"창원",freq:93.9,lat:35.2280,lng:128.6817},
+  {city:"진주",freq:89.3,lat:35.1800,lng:128.1076},
+  {city:"제주시",freq:96.3,lat:33.4996,lng:126.5312},
+  {city:"서귀포",freq:99.9,lat:33.2541,lng:126.5601}
+];
+const KBS_ONAIR="https://onair.kbs.co.kr/index.html?sname=onair&stype=live&ch_code=24&ch_type=radioList";
+const K={onboarded:"tuner.onboarded",mode:"tuner.locMode",city:"tuner.lastCity",hist:"tuner.history"};
+const GEO_OPTS={enableHighAccuracy:true,maximumAge:60000,timeout:8000};
+const GEO_THROTTLE=60000, HIST_MAX=50;
+const el=id=>document.getElementById(id);
+const $={onboard:el('onboard'),player:el('player'),choice:el('choice'),obCta:el('obCta'),freq:el('freq'),cityName:el('cityName'),
+  listenBtn:el('listenBtn'),rememberBtn:el('rememberBtn'),rememberIcon:el('rememberIcon'),rememberText:el('rememberText'),
+  settingsBtn:el('settingsBtn'),scrim:el('scrim'),histBtn:el('histBtn'),histCount:el('histCount'),histSheet:el('histSheet'),histList:el('histList'),histClear:el('histClear'),
+  setSheet:el('setSheet'),modeRow:el('modeRow'),manualGrid:el('manualGrid'),shareBtn:el('shareBtn'),installChip:el('installChip'),iosGuide:el('iosGuide')};
+const state={current:null,geoWatchId:null,geoLastSnapAt:0};
+
+$.listenBtn.href=KBS_ONAIR;
+function regionByCity(c){return REGIONS.find(r=>r.city===c);}
+function pickDefault(){const s=localStorage.getItem(K.city);if(s){const h=regionByCity(s);if(h)return h;}return REGIONS.find(r=>r.isDefault)||REGIONS[0];}
+function setCurrent(r,{persist=true}={}){if(!r)return;state.current=r;$.freq.innerHTML=`${r.freq.toFixed(1)}<span class="stage__unit">MHz</span>`;$.cityName.textContent=r.city;if(persist)localStorage.setItem(K.city,r.city);markManual(r.city);}
+
+/* geo */
+function hav(a,b){const R=6371,rad=d=>d*Math.PI/180;const dLat=rad(b.lat-a.lat),dLng=rad(b.lng-a.lng);const h=Math.sin(dLat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLng/2)**2;return 2*R*Math.asin(Math.sqrt(h));}
+function nearest(lat,lng){let best=null,bk=Infinity;for(const r of REGIONS){if(typeof r.lat!=='number')continue;const km=hav({lat,lng},{lat:r.lat,lng:r.lng});if(km<bk){best=r;bk=km;}}return best;}
+function applyFix(p){const r=nearest(p.coords.latitude,p.coords.longitude);if(r&&(!state.current||state.current.city!==r.city))setCurrent(r);state.geoLastSnapAt=Date.now();}
+function requestOnce(){if(navigator.geolocation)navigator.geolocation.getCurrentPosition(applyFix,()=>{},GEO_OPTS);}
+function startWatch(){if(!navigator.geolocation)return;requestOnce();if(state.geoWatchId!==null)navigator.geolocation.clearWatch(state.geoWatchId);state.geoWatchId=navigator.geolocation.watchPosition(p=>{if(Date.now()-state.geoLastSnapAt<GEO_THROTTLE)return;applyFix(p);},()=>{},GEO_OPTS);}
+
+/* mode */
+function getMode(){return localStorage.getItem(K.mode)||'always';}
+function setMode(m){localStorage.setItem(K.mode,m);syncMode(m);}
+function syncMode(m){document.querySelectorAll('#choice .choice__opt,#modeRow .mode-opt').forEach(b=>{const on=b.dataset.mode===m;b.classList.toggle('is-sel',on);b.setAttribute('aria-checked',on?'true':'false');});}
+
+/* history */
+function loadHist(){try{return JSON.parse(localStorage.getItem(K.hist)||'[]');}catch(e){return[];}}
+function saveHist(a){localStorage.setItem(K.hist,JSON.stringify(a.slice(0,HIST_MAX)));}
+function fmtWhen(ts){return new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(ts));}
+function ytUrl(e){const q=e.title&&e.title.trim()?e.title:`KBS 클래식FM 선곡 ${e.dateKey} ${e.hm}`;return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q);}
+function rememberNow(){const now=new Date();const p=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(now);const g=t=>p.find(x=>x.type===t)?.value||'';const e={ts:Date.now(),title:'',city:state.current?.city||'',freq:state.current?state.current.freq.toFixed(1):'',dateKey:`${g('year')}-${g('month')}-${g('day')}`,hm:`${g('hour')}:${g('minute')}`};const a=loadHist();a.unshift(e);saveHist(a);renderHist();$.rememberBtn.classList.add('saved');$.rememberIcon.innerHTML='<path d="M20 6 9 17l-5-5"/>';$.rememberText.textContent='기억함';setTimeout(()=>{$.rememberBtn.classList.remove('saved');$.rememberIcon.innerHTML='<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>';$.rememberText.textContent='지금 곡 기억';},1600);}
+function renderHist(){const a=loadHist();$.histCount.textContent=String(a.length);$.histClear.classList.toggle('hidden',a.length===0);if(a.length===0){$.histList.innerHTML='<div class="hist-empty">아직 없어요.<br>좋은 곡이 나오면 <b>지금 곡 기억</b>을 누르세요.</div>';return;}const frag=document.createDocumentFragment();a.forEach(e=>{const c=document.createElement('div');c.className='hist-card';const meta=[e.city,e.freq?e.freq+' MHz':''].filter(Boolean).join(' · ');c.innerHTML=`<div class="hist-card__top"><div><div class="hist-card__time">${fmtWhen(e.ts)}</div><div class="hist-card__meta">${meta}</div></div><button class="hist-card__del" type="button" aria-label="삭제"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M6 18 18 6"/></svg></button></div><a class="hist-card__yt" href="${ytUrl(e)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.9-.5-5.8a3 3 0 0 0-2.1-2.1C18.5 3.6 12 3.6 12 3.6s-6.5 0-8.4.5A3 3 0 0 0 1.5 6.2C1 8.1 1 12 1 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 8.4.5 8.4.5s6.5 0 8.4-.5a3 3 0 0 0 2.1-2.1C23 15.9 23 12 23 12zM9.8 15.5v-7l6 3.5-6 3.5z"/></svg>유튜브에서 찾기</a>`;c.querySelector('.hist-card__del').addEventListener('click',()=>{saveHist(loadHist().filter(x=>x.ts!==e.ts));renderHist();});frag.appendChild(c);});$.histList.replaceChildren(frag);}
+
+/* manual */
+function renderManual(){const frag=document.createDocumentFragment();for(const r of REGIONS){const b=document.createElement('button');b.type='button';b.className='rgn';b.dataset.city=r.city;b.innerHTML=`<div class="rgn__city">${r.city}</div><div class="rgn__freq">${r.freq.toFixed(1)}</div>`;b.addEventListener('click',()=>{setCurrent(r);closeSheets();});frag.appendChild(b);}$.manualGrid.replaceChildren(frag);}
+function markManual(city){document.querySelectorAll('.rgn').forEach(b=>b.classList.toggle('is-active',b.dataset.city===city));}
+
+/* sheets */
+function openSheet(s){closeSheets();s.classList.add('is-open');s.setAttribute('aria-hidden','false');$.scrim.classList.add('is-open');}
+function closeSheets(){[$.histSheet,$.setSheet].forEach(s=>{s.classList.remove('is-open');s.setAttribute('aria-hidden','true');});$.scrim.classList.remove('is-open');}
+$.scrim.addEventListener('click',closeSheets);
+$.settingsBtn.addEventListener('click',()=>openSheet($.setSheet));
+$.histBtn.addEventListener('click',()=>{renderHist();openSheet($.histSheet);});
+$.histClear.addEventListener('click',()=>{saveHist([]);renderHist();});
+$.modeRow.addEventListener('click',e=>{const b=e.target.closest('.mode-opt');if(!b)return;setMode(b.dataset.mode);if(b.dataset.mode==='always')startWatch();});
+$.rememberBtn.addEventListener('click',rememberNow);
+
+/* share */
+$.shareBtn.addEventListener('click',async()=>{const d={title:'클래식 라디오 튜너',text:'전국 위치별 클래식FM 주파수 + KBS 공식으로 바로 듣기',url:location.href};try{if(navigator.share){await navigator.share(d);return;}}catch(e){if(e&&e.name==='AbortError')return;}try{await navigator.clipboard.writeText(d.url);const p=$.shareBtn.innerHTML;$.shareBtn.innerHTML='<span>링크 복사됨</span>';setTimeout(()=>{$.shareBtn.innerHTML=p;},1500);}catch(e){window.prompt('링크를 복사하세요',d.url);}});
+
+/* install */
+let deferredPrompt=null;
+const isStandalone=()=>window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent);
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;if(!isStandalone())$.installChip.hidden=false;});
+window.addEventListener('appinstalled',()=>{$.installChip.hidden=true;$.iosGuide.hidden=true;deferredPrompt=null;});
+function initInstall(){if(isStandalone())return;$.installChip.addEventListener('click',async()=>{if(deferredPrompt){deferredPrompt.prompt();try{await deferredPrompt.userChoice;}catch(e){}deferredPrompt=null;$.installChip.hidden=true;}else{$.iosGuide.hidden=!$.iosGuide.hidden;}});if(isIOS())$.installChip.hidden=false;}
+
+/* onboarding */
+$.choice.addEventListener('click',e=>{const b=e.target.closest('.choice__opt');if(!b)return;setMode(b.dataset.mode);});
+$.obCta.addEventListener('click',()=>{const m=document.querySelector('#choice .choice__opt.is-sel')?.dataset.mode||'always';localStorage.setItem(K.mode,m);localStorage.setItem(K.onboarded,'1');$.onboard.classList.add('hidden');$.player.classList.remove('hidden');requestOnce();if(m==='always')startWatch();});
+
+/* boot */
+renderManual();renderHist();setCurrent(pickDefault(),{persist:false});syncMode(getMode());initInstall();
+if(localStorage.getItem(K.onboarded)==='1'){$.onboard.classList.add('hidden');$.player.classList.remove('hidden');if(getMode()==='always')startWatch();else requestOnce();}
+if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
+</script>
+</body>
+</html>
