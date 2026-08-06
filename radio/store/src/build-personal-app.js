@@ -16,8 +16,11 @@ html = html.split('../stations.json').join('./stations.json')
            .split('../icons/').join('./icons/');
 fs.writeFileSync(path.join(OUT, 'index.html'), html);
 
-// data
+// data + PWA files
 fs.copyFileSync(path.join(SRC, 'stations.json'), path.join(OUT, 'stations.json'));
+for (const f of ['manifest.webmanifest', 'sw.js']) {
+  fs.copyFileSync(path.join(SRC, 'mvp', f), path.join(OUT, f));
+}
 
 // icons
 for (const f of fs.readdirSync(path.join(SRC, 'icons'))) {
