@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,user-scalable=no">
 <title>클래식FM — 켜면 바로 재생</title>
-<meta name="description" content="위치는 한 번만 설정. 이동해도 주파수 자동 전환. 통화·다른 앱이 켜지면 멈췄다 자동 재생. KBS 클래식FM 온라인 수신.">
+<meta name="description" content="위치는 한 번만 설정. 전국 어디를 달려도 주파수 자동 전환. 통화·다른 앱이 켜지면 멈췄다 자동 재생. 이동통신 데이터로 OK. KBS 클래식FM 온라인 수신.">
 <meta name="theme-color" content="#0F1419">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -289,8 +289,8 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 <!-- ============ ONBOARDING (첫 실행 1회) ============ -->
 <section class="onboard" id="onboard" aria-label="시작 설정">
   <div class="onboard__brand">CLASSIC FM</div>
-  <h1 class="onboard__title">켜면 바로, 이동해도 자동</h1>
-  <p class="onboard__lede">위치는 지금 한 번만 설정하면 됩니다. 제주시·서귀포를 오가도 주파수가 자동으로 바뀝니다.</p>
+  <h1 class="onboard__title">켜면 바로, 전국 어디든</h1>
+  <p class="onboard__lede">위치는 지금 한 번만 설정하면 됩니다. 전국 어디를 달려도 현재 위치 주파수로 자동 전환 — 장거리 운전에도 손댈 필요 없어요.</p>
 
   <!-- 데이터 안내 -->
   <div class="card">
@@ -298,14 +298,15 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
       <span class="card__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
       </span>
-      <span class="card__title">온라인 수신으로 재생됩니다</span>
+      <span class="card__title">온라인 수신 · 이동통신 데이터로 OK</span>
     </div>
-    <p class="card__desc">저작권 정책에 따라 <strong>인터넷 스트리밍</strong>으로 방송을 받아옵니다. 이동통신 데이터가 사용되니 <strong>Wi-Fi 환경을 권장</strong>합니다.</p>
+    <p class="card__desc">저작권 정책에 따라 <strong>인터넷 스트리밍</strong>으로 방송을 받아옵니다. <strong>오디오만</strong> 받으므로 영상보다 훨씬 가볍고, <strong>Wi-Fi 없이 이동통신(LTE·5G)만으로도</strong> 부담 없이 들을 수 있습니다. (128kbps 기준)</p>
     <div class="data-figs">
-      <div class="data-fig"><div class="data-fig__num" id="figMin">~1MB</div><div class="data-fig__lbl">1분당 예상</div></div>
-      <div class="data-fig"><div class="data-fig__num" id="figHour">~58MB</div><div class="data-fig__lbl">1시간당 예상</div></div>
-      <div class="data-fig"><div class="data-fig__num">128k</div><div class="data-fig__lbl">음질(kbps)</div></div>
+      <div class="data-fig"><div class="data-fig__num" id="figHour">~58MB</div><div class="data-fig__lbl">1시간</div></div>
+      <div class="data-fig"><div class="data-fig__num" id="figDrive">~290MB</div><div class="data-fig__lbl">5시간 운전</div></div>
+      <div class="data-fig"><div class="data-fig__num" id="figDay">~460MB</div><div class="data-fig__lbl">하루 8시간</div></div>
     </div>
+    <p class="card__desc" style="margin-top:10px;font-size:.78rem;color:var(--fg-dim)">유튜브 영상(시간당 약 1~2GB)보다 훨씬 적습니다. 무제한 요금제면 사실상 신경 쓸 필요 없어요.</p>
   </div>
 
   <!-- 위치 설정 -->
@@ -357,10 +358,10 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 
   <div class="stage" id="stage" role="button" tabindex="0" aria-label="탭하여 재생/정지">
     <div class="stage__label">지금 이 지역</div>
-    <div class="stage__freq" id="freq">96.3<span class="stage__unit">MHz</span></div>
+    <div class="stage__freq" id="freq">93.7<span class="stage__unit">MHz</span></div>
     <div class="stage__city" id="city">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      <span id="cityName">제주시</span>
+      <span id="cityName">내 주파수</span>
     </div>
     <div class="stage__name">KBS Classic FM</div>
 
@@ -427,7 +428,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 
   <div class="sheet__group">
     <div class="sheet__glabel">데이터 사용</div>
-    <p class="data-note">온라인 수신 방식이라 재생 중 데이터가 사용됩니다. <strong>약 1MB/분, 58MB/시간</strong>(128kbps 기준)이 예상됩니다. Wi-Fi 사용을 권장합니다.</p>
+    <p class="data-note">온라인 수신 방식이라 재생 중 데이터가 사용됩니다. <strong>약 58MB/시간</strong>(128kbps 오디오)이 예상되며, <strong>5시간 운전 ≈ 290MB · 하루 8시간 ≈ 460MB</strong> 수준입니다. 이동통신(LTE·5G)만으로도 충분하며, 무제한 요금제면 신경 쓰지 않아도 됩니다.</p>
   </div>
 </section>
 
@@ -439,15 +440,29 @@ const FALLBACK = {
   audioUrlAlt:"https://radio.bsod.kr/stream/?stn=kbs&ch=1fm",
   streamUrl:"https://onair.kbs.co.kr/index.html?sname=onair&stype=live&ch_code=24&ch_type=radioList",
   fallbackUrl:"https://www.youtube.com/@KBS_ClassicFM/live",
-  defaultCity:"제주시", defaultFreq:96.3,
+  defaultCity:"내 주파수", defaultFreq:93.7,
   regions:[
-    {city:"제주시",freq:96.3,lat:33.4996,lng:126.5312},
-    {city:"서귀포",freq:99.9,lat:33.2541,lng:126.5601},
+    {city:"내 주파수",freq:93.7,isDefault:true},
     {city:"서울/경기/인천",freq:93.1,lat:37.5665,lng:126.9780},
-    {city:"부산",freq:92.7,lat:35.1796,lng:129.0756},
-    {city:"대구",freq:89.7,lat:35.8714,lng:128.6014},
+    {city:"춘천",freq:91.9,lat:37.8813,lng:127.7298},
+    {city:"강릉",freq:89.1,lat:37.7519,lng:128.8761},
+    {city:"원주",freq:89.5,lat:37.3422,lng:127.9202},
+    {city:"대전",freq:98.5,lat:36.3504,lng:127.3845},
+    {city:"청주",freq:102.1,lat:36.6424,lng:127.4890},
+    {city:"충주",freq:100.3,lat:36.9910,lng:127.9259},
+    {city:"전주",freq:100.7,lat:35.8242,lng:127.1480},
     {city:"광주",freq:92.3,lat:35.1595,lng:126.8526},
-    {city:"대전",freq:98.5,lat:36.3504,lng:127.3845}
+    {city:"목포",freq:98.3,lat:34.8118,lng:126.3922},
+    {city:"순천",freq:94.5,lat:34.9506,lng:127.4872},
+    {city:"대구",freq:89.7,lat:35.8714,lng:128.6014},
+    {city:"안동",freq:88.1,lat:36.5684,lng:128.7294},
+    {city:"포항",freq:93.5,lat:36.0190,lng:129.3435},
+    {city:"울산",freq:101.9,lat:35.5384,lng:129.3114},
+    {city:"부산",freq:92.7,lat:35.1796,lng:129.0756},
+    {city:"창원",freq:93.9,lat:35.2280,lng:128.6817},
+    {city:"진주",freq:89.3,lat:35.1800,lng:128.1076},
+    {city:"제주시",freq:96.3,lat:33.4996,lng:126.5312},
+    {city:"서귀포",freq:99.9,lat:33.2541,lng:126.5601}
   ]
 };
 
@@ -470,8 +485,7 @@ const $ = {
   audio:el('audio'),
   settingsBtn:el('settingsBtn'), sheet:el('sheet'), sheetScrim:el('sheetScrim'),
   modeRow:el('modeRow'), manualGrid:el('manualGrid'),
-  sleep:el('sleep'), sleepToggle:el('sleepToggle'), sleepMenu:el('sleepMenu'), sleepLabel:el('sleepLabel'),
-  figMin:el('figMin'), figHour:el('figHour')
+  sleep:el('sleep'), sleepToggle:el('sleepToggle'), sleepMenu:el('sleepMenu'), sleepLabel:el('sleepLabel')
 };
 
 const ICON_PLAY='<path d="M8 5v14l11-7z"/>';
@@ -756,8 +770,7 @@ $.stage.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.prev
 /* ---------- boot ---------- */
 (async()=>{
   state.data=await loadData();
-  // data figures from bitrate (128 kbps -> ~0.96 MB/min, ~57.6 MB/hr)
-  $.figMin.textContent='~1MB'; $.figHour.textContent='~58MB';
+  // data figures (128 kbps -> ~57.6 MB/hr, ~288 MB/5h, ~461 MB/8h) are static in HTML
   renderManual();
   setCurrent(pickDefault(),{persist:false});
   setupMediaSession();
