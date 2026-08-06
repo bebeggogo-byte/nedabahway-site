@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,user-scalable=no">
 <title>클래식FM — 켜면 바로 재생</title>
-<meta name="description" content="위치는 한 번만 설정. 전국 어디를 달려도 주파수 자동 전환. 통화·다른 앱이 켜지면 멈췄다 자동 재생. 이동통신 데이터로 OK. KBS 클래식FM 온라인 수신.">
+<meta name="description" content="위치는 한 번만. 전국 어디를 달려도 주파수 자동 전환. 통화·다른 앱이 켜지면 멈췄다 자동 재생. 좋았던 곡은 원터치로 유튜브 검색. KBS 클래식FM 온라인 수신.">
 <meta name="theme-color" content="#0F1419">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -19,416 +19,305 @@
   --surface:#1A1F26;
   --surface-2:#242B33;
   --fg:#F5F5F2;
-  --fg-mute:#B4BAC2;
+  --fg-mute:#C3C9D1;
   --fg-dim:#8B919B;
   --line:#2A3139;
   --accent:#D4A574;
   --accent-bright:#E8BA85;
-  --accent-soft:rgba(212,165,116,0.12);
+  --accent-soft:rgba(212,165,116,0.14);
   --live:#E53E3E;
-  --ok:#5FB878;
+  --yt:#FF3B30;
   --ff:system-ui,-apple-system,'Pretendard Variable',sans-serif;
   --ff-serif:Georgia,'Noto Serif KR',serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
-html{font-size:16px;-webkit-text-size-adjust:100%}
+html{font-size:17px;-webkit-text-size-adjust:100%}
 body{
-  font-family:var(--ff);
-  background:var(--bg);
-  color:var(--fg);
-  line-height:1.5;
-  word-break:keep-all;
-  overflow-x:hidden;
+  font-family:var(--ff);background:var(--bg);color:var(--fg);
+  line-height:1.5;word-break:keep-all;overflow-x:hidden;
 }
 button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+.hidden{display:none!important}
 
 /* ===================== ONBOARDING ===================== */
 .onboard{
   position:fixed;inset:0;z-index:100;
-  background:radial-gradient(ellipse at 50% 20%, #1E2833 0%, var(--bg) 62%);
-  display:flex;flex-direction:column;
-  padding:calc(env(safe-area-inset-top) + 40px) 22px calc(env(safe-area-inset-bottom) + 24px);
-  overflow-y:auto;
-  animation:fadeIn .4s ease-out both;
+  background:radial-gradient(ellipse at 50% 18%, #1E2833 0%, var(--bg) 60%);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(env(safe-area-inset-top) + 28px) 26px calc(env(safe-area-inset-bottom) + 28px);
+  overflow-y:auto;animation:fadeIn .35s ease-out both;
 }
-.onboard[hidden]{display:none}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.ob__brand{text-align:center;font-size:.8rem;font-weight:700;letter-spacing:.4em;color:var(--accent);margin-bottom:14px}
+.ob__title{text-align:center;font-family:var(--ff-serif);font-weight:900;font-size:2.1rem;line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
+.ob__lede{text-align:center;font-size:1.05rem;color:var(--fg-mute);max-width:360px;margin:0 auto 34px;line-height:1.6}
 
-.onboard__brand{
-  text-align:center;font-size:.72rem;font-weight:700;letter-spacing:.4em;
-  color:var(--accent);margin-bottom:6px;
+/* data — one clean line */
+.ob__data{
+  display:flex;align-items:center;gap:14px;
+  max-width:440px;width:100%;margin:0 auto 26px;
+  padding:18px 20px;border-radius:16px;
+  background:var(--surface);border:1px solid var(--line);
 }
-.onboard__title{
-  text-align:center;font-family:var(--ff-serif);font-weight:700;
-  font-size:1.65rem;letter-spacing:-.02em;margin-bottom:6px;
-}
-.onboard__lede{
-  text-align:center;font-size:.9rem;color:var(--fg-mute);
-  max-width:340px;margin:0 auto 26px;line-height:1.6;
-}
+.ob__data-num{font-family:var(--ff-serif);font-weight:900;font-size:1.9rem;color:var(--accent);line-height:1;white-space:nowrap}
+.ob__data-txt{font-size:1rem;color:var(--fg-mute);line-height:1.45}
+.ob__data-txt strong{color:var(--fg);font-weight:600}
 
-.card{
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:18px 18px 16px;
-  margin:0 auto 14px;
-  max-width:420px;width:100%;
-}
-.card__head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.card__icon{
-  width:34px;height:34px;flex-shrink:0;border-radius:10px;
-  background:var(--accent-soft);color:var(--accent);
-  display:flex;align-items:center;justify-content:center;
-}
-.card__icon svg{width:18px;height:18px}
-.card__title{font-size:.98rem;font-weight:700;letter-spacing:-.01em}
-.card__desc{font-size:.83rem;color:var(--fg-mute);line-height:1.6}
-.card__desc strong{color:var(--fg);font-weight:600}
-
-/* data figures */
-.data-figs{
-  display:flex;gap:10px;margin-top:12px;
-}
-.data-fig{
-  flex:1;text-align:center;
-  background:var(--surface-2);border:1px solid var(--line);
-  border-radius:12px;padding:12px 6px;
-}
-.data-fig__num{
-  font-family:var(--ff-serif);font-weight:700;
-  font-size:1.25rem;color:var(--accent);line-height:1.1;
-}
-.data-fig__lbl{font-size:.68rem;color:var(--fg-dim);margin-top:4px;letter-spacing:.02em}
-
-/* location choice */
-.choice{
-  display:flex;flex-direction:column;gap:8px;margin-top:12px;
-}
+/* location choice — two big taps */
+.choice{display:flex;flex-direction:column;gap:12px;max-width:440px;width:100%;margin:0 auto 28px}
 .choice__opt{
-  display:flex;align-items:flex-start;gap:12px;
-  padding:14px;border-radius:12px;
-  border:1.5px solid var(--line);background:var(--surface-2);
-  text-align:left;transition:border-color .15s,background .15s;
+  display:flex;align-items:center;gap:16px;
+  padding:20px;border-radius:16px;text-align:left;
+  border:2px solid var(--line);background:var(--surface);
+  transition:border-color .15s,background .15s;
 }
 .choice__opt.is-sel{border-color:var(--accent);background:var(--accent-soft)}
-.choice__radio{
-  width:20px;height:20px;flex-shrink:0;margin-top:1px;border-radius:50%;
-  border:2px solid var(--fg-dim);position:relative;transition:border-color .15s;
-}
+.choice__radio{width:24px;height:24px;flex-shrink:0;border-radius:50%;border:2.5px solid var(--fg-dim);position:relative;transition:border-color .15s}
 .choice__opt.is-sel .choice__radio{border-color:var(--accent)}
-.choice__opt.is-sel .choice__radio::after{
-  content:'';position:absolute;inset:3px;border-radius:50%;background:var(--accent);
-}
-.choice__body{flex:1;min-width:0}
-.choice__name{font-size:.92rem;font-weight:600}
-.choice__name .tag{
-  display:inline-block;margin-left:6px;font-size:.62rem;font-weight:700;
-  letter-spacing:.04em;color:var(--accent);
-  background:var(--accent-soft);border-radius:5px;padding:1px 6px;vertical-align:middle;
-}
-.choice__sub{font-size:.76rem;color:var(--fg-mute);margin-top:3px;line-height:1.5}
+.choice__opt.is-sel .choice__radio::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--accent)}
+.choice__name{font-size:1.15rem;font-weight:700;letter-spacing:-.01em}
+.choice__name .tag{display:inline-block;margin-left:8px;font-size:.72rem;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 8px;vertical-align:middle}
+.choice__sub{font-size:.92rem;color:var(--fg-mute);margin-top:4px}
 
-.onboard__cta{
-  max-width:420px;width:100%;margin:8px auto 0;
-  padding:16px;border-radius:14px;
-  background:var(--accent);color:#111;
-  font-weight:700;font-size:1rem;letter-spacing:-.01em;
-  display:flex;align-items:center;justify-content:center;gap:8px;
+.ob__cta{
+  max-width:440px;width:100%;margin:0 auto;
+  padding:22px;border-radius:18px;background:var(--accent);color:#111;
+  font-weight:800;font-size:1.25rem;letter-spacing:-.01em;
+  display:flex;align-items:center;justify-content:center;gap:10px;
   transition:transform .1s,background .2s;
 }
-.onboard__cta:active{transform:scale(.98)}
-.onboard__fine{
-  text-align:center;font-size:.72rem;color:var(--fg-dim);
-  margin:14px auto 0;max-width:360px;line-height:1.6;
-}
+.ob__cta:active{transform:scale(.98)}
+.ob__cta svg{width:22px;height:22px}
+.ob__fine{text-align:center;font-size:.86rem;color:var(--fg-dim);margin:18px auto 0;max-width:380px;line-height:1.55}
 
 /* ===================== PLAYER ===================== */
 .player{
   position:relative;min-height:100vh;min-height:100dvh;
   display:flex;flex-direction:column;
-  padding:calc(env(safe-area-inset-top) + 16px) 22px calc(env(safe-area-inset-bottom) + 22px);
-  background:radial-gradient(ellipse at 50% 30%, #1E2833 0%, var(--bg) 65%);
+  padding:calc(env(safe-area-inset-top) + 20px) 26px calc(env(safe-area-inset-bottom) + 26px);
+  background:radial-gradient(ellipse at 50% 30%, #1E2833 0%, var(--bg) 66%);
   -webkit-user-select:none;user-select:none;
 }
-.player[hidden]{display:none}
-.player__top{
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:.7rem;font-weight:700;letter-spacing:.32em;color:var(--accent);
-}
-.player__status{display:flex;align-items:center;gap:7px;color:var(--fg-mute)}
-.live-dot{width:7px;height:7px;border-radius:50%;background:var(--fg-dim);transition:background .25s}
+.player__top{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;font-weight:700;letter-spacing:.3em;color:var(--accent)}
+.player__status{display:flex;align-items:center;gap:8px;color:var(--fg-mute)}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--fg-dim);transition:background .25s}
 .player.is-playing .live-dot{background:var(--live);animation:pulse 1.6s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(229,62,62,.6)}70%{box-shadow:0 0 0 8px rgba(229,62,62,0)}100%{box-shadow:0 0 0 0 rgba(229,62,62,0)}}
-.settings-btn{
-  width:38px;height:38px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--fg-dim);border:1px solid var(--line);
-}
-.settings-btn svg{width:18px;height:18px}
-.settings-btn:active{background:var(--surface)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(229,62,62,.6)}70%{box-shadow:0 0 0 9px rgba(229,62,62,0)}100%{box-shadow:0 0 0 0 rgba(229,62,62,0)}}
+.icon-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--fg-dim);border:1px solid var(--line)}
+.icon-btn svg{width:22px;height:22px}
+.icon-btn:active{background:var(--surface)}
 
-.stage{
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;text-align:center;
-  cursor:pointer;padding:16px 0;
-}
-.stage__label{
-  font-size:.72rem;font-weight:700;letter-spacing:.5em;
-  color:var(--fg-mute);margin-bottom:18px;text-transform:uppercase;
-}
-.stage__freq{
-  font-family:var(--ff-serif);font-weight:900;
-  font-size:clamp(5rem,23vw,9rem);line-height:.92;letter-spacing:-.05em;
-  color:var(--accent);
-}
+.stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;padding:12px 0}
+.stage__label{font-size:.82rem;font-weight:700;letter-spacing:.45em;color:var(--fg-mute);margin-bottom:22px;text-transform:uppercase}
+.stage__freq{font-family:var(--ff-serif);font-weight:900;font-size:clamp(6rem,26vw,10rem);line-height:.9;letter-spacing:-.05em;color:var(--accent)}
 .player.is-playing .stage__freq{color:var(--accent-bright);animation:breathe 3.2s ease-in-out infinite}
-@keyframes breathe{0%,100%{filter:drop-shadow(0 0 0 rgba(232,186,132,0))}50%{filter:drop-shadow(0 0 22px rgba(232,186,132,.32))}}
+@keyframes breathe{0%,100%{filter:drop-shadow(0 0 0 rgba(232,186,132,0))}50%{filter:drop-shadow(0 0 24px rgba(232,186,132,.32))}}
 @media (prefers-reduced-motion: reduce){.player.is-playing .stage__freq{animation:none}}
-.stage__unit{font-family:var(--ff-serif);font-size:1.35rem;font-weight:700;color:var(--fg-mute);letter-spacing:.05em}
-.stage__city{
-  margin-top:16px;font-size:1.02rem;font-weight:500;color:var(--fg-mute);
-  display:inline-flex;align-items:center;gap:6px;
-}
-.stage__city svg{width:14px;height:14px;color:var(--accent);opacity:.9}
-.stage__name{font-family:var(--ff-serif);font-style:italic;font-size:.92rem;color:var(--fg-dim);margin-top:4px}
+.stage__unit{font-family:var(--ff-serif);font-size:1.5rem;font-weight:700;color:var(--fg-mute);letter-spacing:.05em}
+.stage__city{margin-top:20px;font-size:1.25rem;font-weight:600;color:var(--fg);display:inline-flex;align-items:center;gap:8px}
+.stage__city svg{width:17px;height:17px;color:var(--accent)}
 
-.stage__btn{
-  margin-top:30px;padding:15px 30px;border-radius:999px;
-  background:var(--accent);color:#111;font-weight:700;font-size:.98rem;
-  display:inline-flex;align-items:center;gap:9px;transition:transform .1s,background .2s;
-}
+.stage__btn{margin-top:34px;padding:20px 44px;border-radius:999px;background:var(--accent);color:#111;font-weight:800;font-size:1.25rem;display:inline-flex;align-items:center;gap:12px;transition:transform .1s,background .2s}
 .stage:active .stage__btn{transform:scale(.96)}
 .player.is-playing .stage__btn{background:var(--surface-2);color:var(--fg)}
-.stage__btn svg{width:19px;height:19px}
-.stage__hint{margin-top:14px;font-size:.8rem;color:var(--fg-dim);min-height:1.2em}
+.stage__btn svg{width:24px;height:24px}
 
-/* interruption banner */
-.interrupt{
-  margin-top:16px;max-width:320px;
-  font-size:.78rem;color:var(--accent-bright);
-  background:var(--accent-soft);border:1px solid var(--accent);
-  border-radius:10px;padding:9px 14px;
-  display:none;align-items:center;gap:7px;justify-content:center;
-}
+/* remember + interrupt (single line each, big) */
+.remember{margin-top:22px;padding:14px 26px;border-radius:999px;border:2px solid var(--accent);color:var(--accent);font-size:1.05rem;font-weight:700;display:none;align-items:center;gap:10px;transition:transform .1s,background .15s}
+.remember.is-shown{display:inline-flex}
+.remember:active{transform:scale(.96);background:var(--accent-soft)}
+.remember svg{width:20px;height:20px}
+.remember.saved{background:var(--accent);color:#111;border-color:var(--accent)}
+
+.interrupt{margin-top:22px;max-width:340px;font-size:1rem;font-weight:600;color:var(--accent-bright);background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:14px 18px;display:none;align-items:center;gap:9px;justify-content:center}
 .interrupt.is-shown{display:inline-flex}
-.interrupt svg{width:14px;height:14px;flex-shrink:0}
+.interrupt svg{width:18px;height:18px;flex-shrink:0}
 
-/* sleep timer */
-.sleep{margin-top:24px;position:relative}
-.sleep__toggle{
-  display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;
-  border:1px solid var(--line);color:var(--fg-mute);font-size:.78rem;font-weight:500;
-  transition:border-color .15s,color .15s,background .15s;
-}
-.sleep__toggle svg{width:14px;height:14px}
-.sleep.is-active .sleep__toggle{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
-.sleep__menu{
-  position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);
-  background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:6px;
-  display:flex;flex-direction:column;gap:2px;min-width:170px;
-  box-shadow:0 10px 40px rgba(0,0,0,.45);z-index:10;
-}
-.sleep__menu[hidden]{display:none}
-.sleep__menu button{padding:11px 14px;border-radius:8px;text-align:center;font-size:.85rem;color:var(--fg-mute);font-weight:500}
-.sleep__menu button:hover{background:var(--surface);color:var(--fg)}
-.sleep__menu button:last-child{color:var(--fg-dim);border-top:1px solid var(--line);margin-top:4px;padding-top:12px}
+/* bottom bar: big taps only */
+.player__bar{display:flex;gap:12px;align-items:stretch}
+.bar-btn{flex:1;padding:18px;border-radius:16px;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:10px;font-size:1.05rem;font-weight:700;color:var(--fg-mute);transition:background .12s,border-color .12s}
+.bar-btn:active{background:var(--surface-2)}
+.bar-btn svg{width:20px;height:20px}
+.bar-btn .count{min-width:26px;height:26px;padding:0 7px;border-radius:999px;background:var(--accent);color:#111;font-size:.9rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+.bar-btn.is-active{border-color:var(--accent);color:var(--accent)}
 
-.player__foot{text-align:center;font-size:.66rem;color:var(--fg-dim);letter-spacing:.14em;padding-top:10px}
+/* sleep menu (popover) */
+.sleep-pop{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 110px);transform:translateX(-50%);background:var(--surface-2);border:1px solid var(--line);border-radius:18px;padding:8px;display:flex;flex-direction:column;gap:4px;min-width:220px;box-shadow:0 12px 48px rgba(0,0,0,.5);z-index:60}
+.sleep-pop[hidden]{display:none}
+.sleep-pop button{padding:16px;border-radius:12px;font-size:1.05rem;font-weight:600;color:var(--fg-mute);text-align:center}
+.sleep-pop button:active{background:var(--surface);color:var(--fg)}
 
-/* ===================== SETTINGS SHEET ===================== */
-.sheet-scrim{position:fixed;inset:0;z-index:110;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .25s}
-.sheet-scrim.is-open{opacity:1;pointer-events:auto}
-.sheet{
-  position:fixed;left:0;right:0;bottom:0;z-index:120;
-  background:var(--surface);border-top:1px solid var(--line);
-  border-radius:20px 20px 0 0;
-  padding:8px 20px calc(env(safe-area-inset-bottom) + 22px);
-  transform:translateY(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);
-  max-height:88vh;overflow-y:auto;
-}
+/* ===================== SHEETS ===================== */
+.scrim{position:fixed;inset:0;z-index:110;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.is-open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:120;background:var(--surface);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:10px 24px calc(env(safe-area-inset-bottom) + 26px);transform:translateY(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);max-height:90vh;overflow-y:auto}
 .sheet.is-open{transform:translateY(0)}
-.sheet__grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:8px auto 16px}
-.sheet__title{font-size:1.05rem;font-weight:700;margin-bottom:4px}
-.sheet__sub{font-size:.8rem;color:var(--fg-mute);margin-bottom:18px}
-.sheet__group{margin-bottom:22px}
-.sheet__glabel{font-size:.7rem;font-weight:700;letter-spacing:.24em;color:var(--fg-dim);text-transform:uppercase;margin-bottom:10px}
+.sheet__grab{width:46px;height:5px;border-radius:3px;background:var(--line);margin:8px auto 20px}
+.sheet__title{font-size:1.5rem;font-weight:800;margin-bottom:22px;letter-spacing:-.01em}
+.sheet__glabel{font-size:.82rem;font-weight:700;letter-spacing:.2em;color:var(--fg-dim);text-transform:uppercase;margin:0 0 12px}
+.sheet__group{margin-bottom:30px}
 
-.mode-row{display:flex;flex-direction:column;gap:8px}
-.mode-opt{
-  display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:12px;
-  border:1.5px solid var(--line);background:var(--surface-2);text-align:left;
-}
+/* history cards — big, sparse, one action */
+.hist-empty{text-align:center;color:var(--fg-dim);font-size:1.05rem;padding:40px 0 30px;line-height:1.7}
+.hist-card{background:var(--surface-2);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:14px}
+.hist-card__top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+.hist-card__time{font-size:1.3rem;font-weight:800;letter-spacing:-.01em}
+.hist-card__meta{font-size:.95rem;color:var(--fg-mute);margin-top:4px}
+.hist-card__del{width:38px;height:38px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--fg-dim);border:1px solid var(--line)}
+.hist-card__del svg{width:18px;height:18px}
+.hist-card__yt{width:100%;padding:18px;border-radius:14px;background:var(--yt);color:#fff;font-size:1.15rem;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .1s}
+.hist-card__yt:active{transform:scale(.98)}
+.hist-card__yt svg{width:24px;height:24px}
+.hist-clear{width:100%;margin-top:8px;padding:14px;border-radius:12px;color:var(--fg-dim);font-size:.95rem;border:1px solid var(--line)}
+
+/* settings */
+.mode-opt{display:flex;align-items:center;gap:14px;padding:18px;border-radius:16px;border:2px solid var(--line);background:var(--surface-2);text-align:left;width:100%;margin-bottom:12px}
 .mode-opt.is-sel{border-color:var(--accent);background:var(--accent-soft)}
-.mode-opt .choice__radio{margin-top:0}
-.mode-opt__body{flex:1}
-.mode-opt__name{font-size:.9rem;font-weight:600}
-.mode-opt__sub{font-size:.74rem;color:var(--fg-mute);margin-top:2px}
-
-/* manual region (hidden behind settings) */
-.manual{margin-top:2px}
-.manual__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.rgn{
-  background:var(--surface-2);border:1px solid var(--line);border-radius:12px;
-  padding:11px 10px 9px;text-align:left;transition:border-color .15s,background .12s;
-}
-.rgn:active{transform:scale(.97)}
+.mode-opt__name{font-size:1.1rem;font-weight:700}
+.mode-opt__sub{font-size:.9rem;color:var(--fg-mute);margin-top:3px}
+.manual__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rgn{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:16px 12px;text-align:center}
+.rgn:active{background:var(--surface)}
 .rgn.is-active{background:var(--accent-soft);border-color:var(--accent)}
-.rgn__city{font-size:.82rem;font-weight:600}
-.rgn__freq{font-family:var(--ff-serif);font-weight:700;font-size:1.05rem;color:var(--accent);margin-top:1px}
-.data-note{
-  font-size:.76rem;color:var(--fg-mute);line-height:1.6;
-  background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:13px 15px;
-}
+.rgn__city{font-size:.95rem;font-weight:600}
+.rgn__freq{font-family:var(--ff-serif);font-weight:800;font-size:1.3rem;color:var(--accent);margin-top:3px}
+.data-note{font-size:1rem;color:var(--fg-mute);line-height:1.65;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:18px}
 .data-note strong{color:var(--fg);font-weight:600}
 </style>
 </head>
 <body>
 
-<!-- ============ ONBOARDING (첫 실행 1회) ============ -->
+<!-- ============ ONBOARDING ============ -->
 <section class="onboard" id="onboard" aria-label="시작 설정">
-  <div class="onboard__brand">CLASSIC FM</div>
-  <h1 class="onboard__title">켜면 바로, 전국 어디든</h1>
-  <p class="onboard__lede">위치는 지금 한 번만 설정하면 됩니다. 전국 어디를 달려도 현재 위치 주파수로 자동 전환 — 장거리 운전에도 손댈 필요 없어요.</p>
+  <div class="ob__brand">CLASSIC FM</div>
+  <h1 class="ob__title">켜면 바로,<br>전국 어디든</h1>
+  <p class="ob__lede">위치는 지금 한 번만. 전국 어디를 달려도 주파수가 자동으로 바뀝니다.</p>
 
-  <!-- 데이터 안내 -->
-  <div class="card">
-    <div class="card__head">
-      <span class="card__icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
-      </span>
-      <span class="card__title">온라인 수신 · 이동통신 데이터로 OK</span>
-    </div>
-    <p class="card__desc">저작권 정책에 따라 <strong>인터넷 스트리밍</strong>으로 방송을 받아옵니다. <strong>오디오만</strong> 받으므로 영상보다 훨씬 가볍고, <strong>Wi-Fi 없이 이동통신(LTE·5G)만으로도</strong> 부담 없이 들을 수 있습니다. (128kbps 기준)</p>
-    <div class="data-figs">
-      <div class="data-fig"><div class="data-fig__num" id="figHour">~58MB</div><div class="data-fig__lbl">1시간</div></div>
-      <div class="data-fig"><div class="data-fig__num" id="figDrive">~290MB</div><div class="data-fig__lbl">5시간 운전</div></div>
-      <div class="data-fig"><div class="data-fig__num" id="figDay">~460MB</div><div class="data-fig__lbl">하루 8시간</div></div>
-    </div>
-    <p class="card__desc" style="margin-top:10px;font-size:.78rem;color:var(--fg-dim)">유튜브 영상(시간당 약 1~2GB)보다 훨씬 적습니다. 무제한 요금제면 사실상 신경 쓸 필요 없어요.</p>
+  <div class="ob__data">
+    <span class="ob__data-num">58MB</span>
+    <span class="ob__data-txt"><strong>1시간 데이터</strong> · 오디오만 받아 가벼워요. Wi-Fi 없이 LTE로도 충분.</span>
   </div>
 
-  <!-- 위치 설정 -->
-  <div class="card">
-    <div class="card__head">
-      <span class="card__icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+  <div class="choice" id="choice" role="radiogroup" aria-label="위치 사용 방식">
+    <button class="choice__opt is-sel" type="button" data-mode="always" role="radio" aria-checked="true">
+      <span class="choice__radio" aria-hidden="true"></span>
+      <span>
+        <span class="choice__name">항상 자동<span class="tag">권장</span></span>
+        <span class="choice__sub">켤 때마다 묻지 않고 바로 재생</span>
       </span>
-      <span class="card__title">내 위치로 주파수 자동 설정</span>
-    </div>
-    <p class="card__desc">앱을 켤 때 위치를 어떻게 잡을지 <strong>한 번만</strong> 골라주세요. 언제든 설정에서 바꿀 수 있습니다.</p>
-    <div class="choice" id="choice" role="radiogroup" aria-label="위치 사용 방식">
-      <button class="choice__opt is-sel" type="button" data-mode="always" role="radio" aria-checked="true">
-        <span class="choice__radio" aria-hidden="true"></span>
-        <span class="choice__body">
-          <span class="choice__name">항상 자동<span class="tag">권장</span></span>
-          <span class="choice__sub">앱을 켜면 묻지 않고 현재 위치 주파수로 바로 재생. 이동 시 자동 전환.</span>
-        </span>
-      </button>
-      <button class="choice__opt" type="button" data-mode="ask" role="radio" aria-checked="false">
-        <span class="choice__radio" aria-hidden="true"></span>
-        <span class="choice__body">
-          <span class="choice__name">켤 때마다 확인</span>
-          <span class="choice__sub">앱을 켤 때 위치를 지금 쓸지 한 번 물어봅니다.</span>
-        </span>
-      </button>
-    </div>
+    </button>
+    <button class="choice__opt" type="button" data-mode="ask" role="radio" aria-checked="false">
+      <span class="choice__radio" aria-hidden="true"></span>
+      <span>
+        <span class="choice__name">켤 때 확인</span>
+        <span class="choice__sub">켤 때 한 번만 물어봄</span>
+      </span>
+    </button>
   </div>
 
-  <button class="onboard__cta" id="onboardCta" type="button">
+  <button class="ob__cta" id="obCta" type="button">
     시작하기
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
   </button>
-  <p class="onboard__fine">‘시작하기’를 누르면 위치 권한을 한 번 요청합니다. 위치 정보는 가까운 방송 주파수를 고르는 데만 쓰이고 저장·전송되지 않습니다.</p>
+  <p class="ob__fine">위치는 가까운 주파수를 고르는 데만 쓰이고 저장·전송되지 않습니다.</p>
 </section>
 
-<!-- ============ PLAYER (메인) ============ -->
-<section class="player" id="player" hidden>
+<!-- ============ PLAYER ============ -->
+<section class="player hidden" id="player">
   <div class="player__top">
     <span>CLASSIC FM</span>
     <span class="player__status">
       <span class="live-dot" id="liveDot"></span>
       <span id="statusText">OFF AIR</span>
-      <button class="settings-btn" id="settingsBtn" type="button" aria-label="설정" style="margin-left:8px">
+      <button class="icon-btn" id="settingsBtn" type="button" aria-label="설정" style="margin-left:10px">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
       </button>
     </span>
   </div>
 
-  <div class="stage" id="stage" role="button" tabindex="0" aria-label="탭하여 재생/정지">
+  <div class="stage" id="stage" role="button" tabindex="0" aria-label="탭하여 재생 또는 정지">
     <div class="stage__label">지금 이 지역</div>
     <div class="stage__freq" id="freq">93.7<span class="stage__unit">MHz</span></div>
     <div class="stage__city" id="city">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       <span id="cityName">내 주파수</span>
     </div>
-    <div class="stage__name">KBS Classic FM</div>
 
     <div class="stage__btn" id="playBtn">
       <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
       <span id="playText">라이브 듣기</span>
     </div>
-    <div class="stage__hint" id="hint">KBS 공식 라디오 · 탭하여 재생</div>
+
+    <button class="remember" id="rememberBtn" type="button">
+      <svg id="rememberIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <span id="rememberText">이 곡 기억</span>
+    </button>
 
     <div class="interrupt" id="interrupt" role="status">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>
       <span id="interruptText">통화·다른 앱 사용 중 — 끝나면 자동 재생</span>
     </div>
-
-    <div class="sleep" id="sleep">
-      <button class="sleep__toggle" id="sleepToggle" type="button" aria-expanded="false" aria-controls="sleepMenu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <span id="sleepLabel">슬립 타이머</span>
-      </button>
-      <div class="sleep__menu" id="sleepMenu" role="menu" hidden>
-        <button type="button" data-min="10" role="menuitem">10분</button>
-        <button type="button" data-min="30" role="menuitem">30분</button>
-        <button type="button" data-min="60" role="menuitem">1시간</button>
-        <button type="button" data-min="90" role="menuitem">1시간 30분</button>
-        <button type="button" data-min="0" role="menuitem">끄기</button>
-      </div>
-    </div>
   </div>
 
-  <div class="player__foot">NEDABAHWAY · CLASSIC FM</div>
+  <div class="player__bar">
+    <button class="bar-btn" id="histBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <span>기억한 곡</span><span class="count" id="histCount">0</span>
+    </button>
+    <button class="bar-btn" id="sleepBtn" type="button" aria-haspopup="true" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <span id="sleepLabel">슬립</span>
+    </button>
+  </div>
+
+  <div class="sleep-pop" id="sleepPop" role="menu" hidden>
+    <button type="button" data-min="10" role="menuitem">10분 뒤 끄기</button>
+    <button type="button" data-min="30" role="menuitem">30분 뒤 끄기</button>
+    <button type="button" data-min="60" role="menuitem">1시간 뒤 끄기</button>
+    <button type="button" data-min="90" role="menuitem">1시간 30분 뒤</button>
+    <button type="button" data-min="0" role="menuitem">타이머 끄기</button>
+  </div>
 </section>
 
-<!-- ============ SETTINGS SHEET ============ -->
-<div class="sheet-scrim" id="sheetScrim"></div>
-<section class="sheet" id="sheet" aria-label="설정" aria-hidden="true">
+<!-- ============ SHEETS ============ -->
+<div class="scrim" id="scrim"></div>
+
+<!-- history -->
+<section class="sheet" id="histSheet" aria-label="기억한 곡" aria-hidden="true">
+  <div class="sheet__grab"></div>
+  <div class="sheet__title">기억한 곡</div>
+  <div id="histList"></div>
+  <button class="hist-clear hidden" id="histClear" type="button">전체 지우기</button>
+</section>
+
+<!-- settings -->
+<section class="sheet" id="setSheet" aria-label="설정" aria-hidden="true">
   <div class="sheet__grab"></div>
   <div class="sheet__title">설정</div>
-  <div class="sheet__sub">위치 방식과 지역을 여기서 바꿀 수 있어요.</div>
 
   <div class="sheet__group">
     <div class="sheet__glabel">위치 사용 방식</div>
-    <div class="mode-row" id="modeRow" role="radiogroup" aria-label="위치 사용 방식">
+    <div id="modeRow" role="radiogroup" aria-label="위치 사용 방식">
       <button class="mode-opt is-sel" type="button" data-mode="always" role="radio" aria-checked="true">
         <span class="choice__radio" aria-hidden="true"></span>
-        <span class="mode-opt__body">
-          <span class="mode-opt__name">항상 자동</span>
-          <span class="mode-opt__sub">켤 때마다 묻지 않고 바로 현재 위치로</span>
-        </span>
+        <span><span class="mode-opt__name">항상 자동</span><span class="mode-opt__sub">켤 때마다 묻지 않고 바로</span></span>
       </button>
       <button class="mode-opt" type="button" data-mode="ask" role="radio" aria-checked="false">
         <span class="choice__radio" aria-hidden="true"></span>
-        <span class="mode-opt__body">
-          <span class="mode-opt__name">켤 때마다 확인</span>
-          <span class="mode-opt__sub">앱을 켤 때 한 번 물어봄</span>
-        </span>
+        <span><span class="mode-opt__name">켤 때 확인</span><span class="mode-opt__sub">켤 때 한 번만 물어봄</span></span>
       </button>
     </div>
   </div>
 
   <div class="sheet__group">
-    <div class="sheet__glabel">지역 직접 선택 <span style="color:var(--fg-dim);font-weight:400;letter-spacing:0;text-transform:none">(선택)</span></div>
-    <div class="manual"><div class="manual__grid" id="manualGrid"></div></div>
+    <div class="sheet__glabel">지역 직접 선택</div>
+    <div class="manual__grid" id="manualGrid"></div>
   </div>
 
   <div class="sheet__group">
     <div class="sheet__glabel">데이터 사용</div>
-    <p class="data-note">온라인 수신 방식이라 재생 중 데이터가 사용됩니다. <strong>약 58MB/시간</strong>(128kbps 오디오)이 예상되며, <strong>5시간 운전 ≈ 290MB · 하루 8시간 ≈ 460MB</strong> 수준입니다. 이동통신(LTE·5G)만으로도 충분하며, 무제한 요금제면 신경 쓰지 않아도 됩니다.</p>
+    <p class="data-note">재생 중 <strong>약 58MB/시간</strong>. 5시간 운전 ≈ 290MB, 하루 8시간 ≈ 460MB. LTE·5G만으로 충분합니다.</p>
   </div>
 </section>
 
@@ -466,204 +355,110 @@ const FALLBACK = {
   ]
 };
 
-const K = {
-  onboarded:"classicfm.mvp.onboarded",
-  mode:"classicfm.mvp.locMode",      // 'always' | 'ask'
-  city:"classicfm.mvp.lastCity"
-};
+const K = { onboarded:"classicfm.mvp.onboarded", mode:"classicfm.mvp.locMode", city:"classicfm.mvp.lastCity", hist:"classicfm.mvp.history" };
 const GEO_OPTS = { enableHighAccuracy:true, maximumAge:60000, timeout:8000 };
 const GEO_THROTTLE = 60000;
+const HIST_MAX = 50;
 
-const el = (id)=>document.getElementById(id);
+const el = id=>document.getElementById(id);
 const $ = {
   onboard:el('onboard'), player:el('player'), stage:el('stage'),
-  choice:el('choice'), onboardCta:el('onboardCta'),
+  choice:el('choice'), obCta:el('obCta'),
   freq:el('freq'), cityName:el('cityName'),
-  playBtn:el('playBtn'), playIcon:el('playIcon'), playText:el('playText'),
-  hint:el('hint'), statusText:el('statusText'),
+  playIcon:el('playIcon'), playText:el('playText'), statusText:el('statusText'),
+  rememberBtn:el('rememberBtn'), rememberIcon:el('rememberIcon'), rememberText:el('rememberText'),
   interrupt:el('interrupt'), interruptText:el('interruptText'),
   audio:el('audio'),
-  settingsBtn:el('settingsBtn'), sheet:el('sheet'), sheetScrim:el('sheetScrim'),
-  modeRow:el('modeRow'), manualGrid:el('manualGrid'),
-  sleep:el('sleep'), sleepToggle:el('sleepToggle'), sleepMenu:el('sleepMenu'), sleepLabel:el('sleepLabel')
+  settingsBtn:el('settingsBtn'), scrim:el('scrim'),
+  histBtn:el('histBtn'), histCount:el('histCount'), histSheet:el('histSheet'), histList:el('histList'), histClear:el('histClear'),
+  setSheet:el('setSheet'), modeRow:el('modeRow'), manualGrid:el('manualGrid'),
+  sleepBtn:el('sleepBtn'), sleepPop:el('sleepPop'), sleepLabel:el('sleepLabel')
 };
 
 const ICON_PLAY='<path d="M8 5v14l11-7z"/>';
 const ICON_STOP='<path d="M6 6h12v12H6z"/>';
 const ICON_LOAD='<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="40 20" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle>';
 
-const state = {
-  data:null, current:null,
-  intendPlaying:false,   // user wants audio on
-  interrupted:false,     // paused by call/other app, awaiting resume
-  loading:false,
-  geoWatchId:null, geoLastSnapAt:0,
-  sleepEndAt:0, sleepTimer:null, sleepTick:null
-};
+const state = { data:null, current:null, intendPlaying:false, interrupted:false, geoWatchId:null, geoLastSnapAt:0, sleepEndAt:0, sleepTimer:null, sleepTick:null };
 
 /* ---------- data ---------- */
 async function loadData(){
-  try{
-    const res = await fetch('../stations.json',{cache:'no-cache'});
-    if(res.ok) return await res.json();
-  }catch(e){/* ignore */}
+  try{ const r=await fetch('../stations.json',{cache:'no-cache'}); if(r.ok) return await r.json(); }catch(e){}
   return FALLBACK;
 }
 function regionByCity(c){ return state.data.regions.find(r=>r.city===c); }
 function pickDefault(){
-  const saved = localStorage.getItem(K.city);
-  if(saved){ const hit=regionByCity(saved); if(hit) return hit; }
-  return state.data.regions.find(r=>r.city===state.data.defaultCity)
-      || state.data.regions.find(r=>r.isDefault)
-      || state.data.regions[0];
+  const saved=localStorage.getItem(K.city);
+  if(saved){ const h=regionByCity(saved); if(h) return h; }
+  return state.data.regions.find(r=>r.city===state.data.defaultCity) || state.data.regions.find(r=>r.isDefault) || state.data.regions[0];
 }
-
-/* ---------- current region ---------- */
 function setCurrent(r,{persist=true}={}){
-  if(!r) return;
-  state.current=r;
-  $.freq.innerHTML = `${r.freq.toFixed(1)}<span class="stage__unit">MHz</span>`;
-  $.cityName.textContent = r.city;
+  if(!r) return; state.current=r;
+  $.freq.innerHTML=`${r.freq.toFixed(1)}<span class="stage__unit">MHz</span>`;
+  $.cityName.textContent=r.city;
   if(persist) localStorage.setItem(K.city,r.city);
-  markManual(r.city);
-  updateMediaMetadata();
+  markManual(r.city); updateMediaMetadata();
 }
 
 /* ---------- streaming ---------- */
-function canPlayHls(a){
-  return a.canPlayType('application/vnd.apple.mpegurl')!=='' || a.canPlayType('application/x-mpegURL')!=='';
-}
+function canPlayHls(a){ return a.canPlayType('application/vnd.apple.mpegurl')!=='' || a.canPlayType('application/x-mpegURL')!==''; }
 function setStatus(mode){
-  // mode: 'off' | 'loading' | 'on'
   $.player.classList.toggle('is-playing', mode==='on');
-  if(mode==='loading'){
-    state.loading=true;
-    $.statusText.textContent='CONNECTING';
-    $.playIcon.innerHTML=ICON_LOAD; $.playText.textContent='연결 중…';
-    $.hint.textContent='잠시만요'; return;
-  }
-  state.loading=false;
-  if(mode==='on'){
-    $.statusText.textContent='ON AIR';
-    $.playIcon.innerHTML=ICON_STOP; $.playText.textContent='정지';
-    $.hint.textContent='재생 중 · 통화·다른 앱이 켜지면 자동으로 멈춰요';
-  }else{
-    $.statusText.textContent='OFF AIR';
-    $.playIcon.innerHTML=ICON_PLAY; $.playText.textContent='라이브 듣기';
-    $.hint.textContent='KBS 공식 라디오 · 탭하여 재생';
-  }
+  $.rememberBtn.classList.toggle('is-shown', mode==='on');
+  if(mode==='loading'){ $.statusText.textContent='CONNECTING'; $.playIcon.innerHTML=ICON_LOAD; $.playText.textContent='연결 중'; return; }
+  if(mode==='on'){ $.statusText.textContent='ON AIR'; $.playIcon.innerHTML=ICON_STOP; $.playText.textContent='정지'; }
+  else{ $.statusText.textContent='OFF AIR'; $.playIcon.innerHTML=ICON_PLAY; $.playText.textContent='라이브 듣기'; }
 }
 async function tryStream(src){
-  if(!src || !canPlayHls($.audio)) return false;
-  try{
-    $.audio.src=src;
-    const p=$.audio.play();
-    if(p && p.then) await p;
-    return true;
-  }catch(e){ console.warn('play failed',src,e); return false; }
+  if(!src||!canPlayHls($.audio)) return false;
+  try{ $.audio.src=src; const p=$.audio.play(); if(p&&p.then) await p; return true; }catch(e){ return false; }
 }
 async function play(){
   if(!state.data) return;
-  state.intendPlaying=true;
-  hideInterrupt();
-  setStatus('loading');
+  state.intendPlaying=true; hideInterrupt(); setStatus('loading');
   const d=state.data;
-  if(await tryStream(d.audioUrl)){ return; }
-  if(await tryStream(d.audioUrlAlt)){ return; }
-  // fallback: open official player in new tab
-  if(d.streamUrl){ window.open(d.streamUrl,'_blank','noopener'); setStatus('off'); state.intendPlaying=false; $.hint.textContent='앱 내 재생 불가 — 공식 플레이어(새 탭)로 열었어요'; return; }
+  if(await tryStream(d.audioUrl)) return;
+  if(await tryStream(d.audioUrlAlt)) return;
+  if(d.streamUrl){ window.open(d.streamUrl,'_blank','noopener'); setStatus('off'); state.intendPlaying=false; return; }
   setStatus('off'); state.intendPlaying=false;
 }
-function stop(){
-  state.intendPlaying=false; state.interrupted=false; hideInterrupt();
-  $.audio.pause(); $.audio.removeAttribute('src'); $.audio.load();
-  setStatus('off');
-}
-function toggle(){
-  if(state.intendPlaying && !$.audio.paused) stop();
-  else play();
-}
+function stop(){ state.intendPlaying=false; state.interrupted=false; hideInterrupt(); $.audio.pause(); $.audio.removeAttribute('src'); $.audio.load(); setStatus('off'); }
+function toggle(){ if(state.intendPlaying && !$.audio.paused) stop(); else play(); }
 
 /* ---------- interruption / auto-resume ---------- */
-function showInterrupt(msg){ if(msg) $.interruptText.textContent=msg; $.interrupt.classList.add('is-shown'); }
+function showInterrupt(){ $.interrupt.classList.add('is-shown'); }
 function hideInterrupt(){ $.interrupt.classList.remove('is-shown'); }
 async function tryResume(){
-  if(!state.intendPlaying || !state.interrupted) return;
-  if($.audio.paused){
-    try{
-      const p=$.audio.play();
-      if(p && p.then) await p;
-    }catch(e){ /* still blocked; will retry on next focus */ }
-  }
+  if(!state.intendPlaying||!state.interrupted) return;
+  if($.audio.paused){ try{ const p=$.audio.play(); if(p&&p.then) await p; }catch(e){} }
 }
-
-$.audio.addEventListener('playing',()=>{
-  state.interrupted=false; hideInterrupt(); setStatus('on');
-  if('mediaSession' in navigator) navigator.mediaSession.playbackState='playing';
-});
-$.audio.addEventListener('pause',()=>{
-  if(!state.intendPlaying) return;              // user-initiated stop already handled
-  // unexpected pause => interruption (call / other media / OS)
-  state.interrupted=true;
-  showInterrupt('통화·다른 앱 사용 중 — 끝나면 자동 재생');
-  setStatus('off');
-  if('mediaSession' in navigator) navigator.mediaSession.playbackState='paused';
-});
-$.audio.addEventListener('error',()=>{
-  if(state.intendPlaying){ $.hint.textContent='스트림 오류 — 다시 시도해 주세요'; setStatus('off'); }
-});
-// resume triggers: returning to app, network back, focus regained
+$.audio.addEventListener('playing',()=>{ state.interrupted=false; hideInterrupt(); setStatus('on'); if('mediaSession'in navigator) navigator.mediaSession.playbackState='playing'; });
+$.audio.addEventListener('pause',()=>{ if(!state.intendPlaying) return; state.interrupted=true; showInterrupt(); setStatus('off'); if('mediaSession'in navigator) navigator.mediaSession.playbackState='paused'; });
+$.audio.addEventListener('error',()=>{ if(state.intendPlaying){ setStatus('off'); } });
 document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') tryResume(); });
 window.addEventListener('focus',tryResume);
 window.addEventListener('online',tryResume);
 
-/* ---------- geolocation (auto region) ---------- */
-function haversineKm(a,b){
-  const R=6371,rad=d=>d*Math.PI/180;
-  const dLat=rad(b.lat-a.lat),dLng=rad(b.lng-a.lng);
-  const h=Math.sin(dLat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLng/2)**2;
-  return 2*R*Math.asin(Math.sqrt(h));
-}
-function nearest(lat,lng){
-  let best=null,bestKm=Infinity;
-  for(const r of state.data.regions){
-    if(typeof r.lat!=='number'||typeof r.lng!=='number') continue;
-    const km=haversineKm({lat,lng},{lat:r.lat,lng:r.lng});
-    if(km<bestKm){best=r;bestKm=km;}
-  }
-  return best;
-}
-function applyFix(pos){
-  const r=nearest(pos.coords.latitude,pos.coords.longitude);
-  if(r && (!state.current || state.current.city!==r.city)) setCurrent(r);
-  state.geoLastSnapAt=Date.now();
-}
-function requestLocationOnce(){
-  if(!('geolocation' in navigator)) return;
-  navigator.geolocation.getCurrentPosition(applyFix,()=>{},GEO_OPTS);
-}
+/* ---------- geolocation ---------- */
+function haversineKm(a,b){ const R=6371,rad=d=>d*Math.PI/180; const dLat=rad(b.lat-a.lat),dLng=rad(b.lng-a.lng); const h=Math.sin(dLat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLng/2)**2; return 2*R*Math.asin(Math.sqrt(h)); }
+function nearest(lat,lng){ let best=null,bk=Infinity; for(const r of state.data.regions){ if(typeof r.lat!=='number'||typeof r.lng!=='number') continue; const km=haversineKm({lat,lng},{lat:r.lat,lng:r.lng}); if(km<bk){best=r;bk=km;} } return best; }
+function applyFix(pos){ const r=nearest(pos.coords.latitude,pos.coords.longitude); if(r&&(!state.current||state.current.city!==r.city)) setCurrent(r); state.geoLastSnapAt=Date.now(); }
+function requestLocationOnce(){ if('geolocation'in navigator) navigator.geolocation.getCurrentPosition(applyFix,()=>{},GEO_OPTS); }
 function startGeoWatch(){
-  if(!('geolocation' in navigator)) return;
+  if(!('geolocation'in navigator)) return;
   requestLocationOnce();
   if(state.geoWatchId!==null) navigator.geolocation.clearWatch(state.geoWatchId);
-  state.geoWatchId=navigator.geolocation.watchPosition((pos)=>{
-    if(Date.now()-state.geoLastSnapAt<GEO_THROTTLE) return;
-    applyFix(pos);
-  },()=>{},GEO_OPTS);
+  state.geoWatchId=navigator.geolocation.watchPosition(pos=>{ if(Date.now()-state.geoLastSnapAt<GEO_THROTTLE) return; applyFix(pos); },()=>{},GEO_OPTS);
 }
 
 /* ---------- media session ---------- */
 function updateMediaMetadata(){
-  if(!('mediaSession' in navigator)||!state.current) return;
+  if(!('mediaSession'in navigator)||!state.current) return;
   const r=state.current;
-  navigator.mediaSession.metadata=new MediaMetadata({
-    title:'KBS 클래식FM', artist:`${r.city} · ${r.freq.toFixed(1)} MHz`, album:'KBS 1FM Classic',
-    artwork:[{src:'../icons/icon-192.png',sizes:'192x192',type:'image/png'},{src:'../icons/icon-512.png',sizes:'512x512',type:'image/png'}]
-  });
+  navigator.mediaSession.metadata=new MediaMetadata({ title:'KBS 클래식FM', artist:`${r.city} · ${r.freq.toFixed(1)} MHz`, album:'KBS 1FM Classic', artwork:[{src:'../icons/icon-192.png',sizes:'192x192',type:'image/png'},{src:'../icons/icon-512.png',sizes:'512x512',type:'image/png'}] });
 }
 function setupMediaSession(){
-  if(!('mediaSession' in navigator)) return;
-  const ms=navigator.mediaSession;
+  if(!('mediaSession'in navigator)) return; const ms=navigator.mediaSession;
   ms.setActionHandler('play',()=>play());
   ms.setActionHandler('pause',()=>{ if(!$.audio.paused) $.audio.pause(); });
   ms.setActionHandler('stop',()=>stop());
@@ -672,118 +467,136 @@ function setupMediaSession(){
 
 /* ---------- location mode ---------- */
 function getMode(){ return localStorage.getItem(K.mode)||'always'; }
-function setMode(m){
-  localStorage.setItem(K.mode,m);
-  syncModeUI(m);
-}
+function setMode(m){ localStorage.setItem(K.mode,m); syncModeUI(m); }
 function syncModeUI(m){
-  document.querySelectorAll('#choice .choice__opt').forEach(b=>{
-    const on=b.dataset.mode===m; b.classList.toggle('is-sel',on); b.setAttribute('aria-checked',on?'true':'false');
-  });
-  document.querySelectorAll('#modeRow .mode-opt').forEach(b=>{
-    const on=b.dataset.mode===m; b.classList.toggle('is-sel',on); b.setAttribute('aria-checked',on?'true':'false');
-  });
+  document.querySelectorAll('#choice .choice__opt').forEach(b=>{ const on=b.dataset.mode===m; b.classList.toggle('is-sel',on); b.setAttribute('aria-checked',on?'true':'false'); });
+  document.querySelectorAll('#modeRow .mode-opt').forEach(b=>{ const on=b.dataset.mode===m; b.classList.toggle('is-sel',on); b.setAttribute('aria-checked',on?'true':'false'); });
 }
-// per-launch behavior for 'ask' mode
 function askLocationThisSession(){
-  $.hint.textContent='현재 위치로 주파수를 맞출까요?';
-  showInterrupt('탭 한 번으로 현재 위치 주파수 적용 →');
-  $.interrupt.style.cursor='pointer';
-  const handler=()=>{ $.interrupt.style.cursor=''; hideInterrupt(); $.interrupt.removeEventListener('click',handler); requestLocationOnce(); startGeoWatch(); setStatus('off'); };
-  $.interrupt.addEventListener('click',handler);
+  $.interruptText.textContent='탭 한 번으로 현재 위치 주파수 적용';
+  showInterrupt(); $.interrupt.style.cursor='pointer';
+  const h=()=>{ $.interrupt.style.cursor=''; hideInterrupt(); $.interruptText.textContent='통화·다른 앱 사용 중 — 끝나면 자동 재생'; $.interrupt.removeEventListener('click',h); requestLocationOnce(); startGeoWatch(); };
+  $.interrupt.addEventListener('click',h);
 }
 
-/* ---------- onboarding ---------- */
-$.choice.addEventListener('click',e=>{
-  const b=e.target.closest('.choice__opt'); if(!b) return;
-  setMode(b.dataset.mode);
-});
-$.onboardCta.addEventListener('click',()=>{
-  const mode=document.querySelector('#choice .choice__opt.is-sel')?.dataset.mode||'always';
-  localStorage.setItem(K.mode,mode);
-  localStorage.setItem(K.onboarded,'1');
-  $.onboard.hidden=true; $.player.hidden=false;
-  // request location once now (works for both modes; 'always' keeps watching)
-  requestLocationOnce();
-  if(mode==='always') startGeoWatch();
-});
+/* ---------- history (기억한 곡) ---------- */
+function loadHist(){ try{ return JSON.parse(localStorage.getItem(K.hist)||'[]'); }catch(e){ return []; } }
+function saveHist(a){ localStorage.setItem(K.hist,JSON.stringify(a.slice(0,HIST_MAX))); }
+function fmtWhen(ts){
+  const d=new Date(ts);
+  const f=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false});
+  return f.format(d);
+}
+function ytUrl(entry){
+  // 정확한 곡 제목 확보 시 그 제목으로, 아니면 그 시각의 KBS 선곡으로 검색
+  const q = entry.title && entry.title.trim()
+    ? entry.title
+    : `KBS 클래식FM 선곡 ${entry.dateKey} ${entry.hm}`;
+  return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
+}
+function rememberNow(){
+  const now=new Date();
+  const kst=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(now);
+  const g=t=>kst.find(p=>p.type===t)?.value||'';
+  const entry={
+    ts:Date.now(),
+    title:'',                                  // 라이브 곡 제목(향후 메타데이터 연동 시 채움)
+    city:state.current?.city||'',
+    freq:state.current?state.current.freq.toFixed(1):'',
+    dateKey:`${g('year')}-${g('month')}-${g('day')}`,
+    hm:`${g('hour')}:${g('minute')}`
+  };
+  const arr=loadHist(); arr.unshift(entry); saveHist(arr); renderHist();
+  // feedback
+  $.rememberBtn.classList.add('saved');
+  $.rememberIcon.innerHTML='<path d="M20 6 9 17l-5-5"/>';
+  $.rememberText.textContent='기억함';
+  setTimeout(()=>{ $.rememberBtn.classList.remove('saved'); $.rememberIcon.innerHTML='<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>'; $.rememberText.textContent='이 곡 기억'; },1600);
+}
+function renderHist(){
+  const arr=loadHist();
+  $.histCount.textContent=String(arr.length);
+  $.histClear.classList.toggle('hidden',arr.length===0);
+  if(arr.length===0){ $.histList.innerHTML='<div class="hist-empty">아직 없어요.<br>재생 중 좋은 곡이 나오면<br><b>♥ 이 곡 기억</b>을 누르세요.</div>'; return; }
+  const frag=document.createDocumentFragment();
+  arr.forEach(e=>{
+    const card=document.createElement('div'); card.className='hist-card';
+    const meta=[e.city, e.freq?e.freq+' MHz':''].filter(Boolean).join(' · ');
+    card.innerHTML=`
+      <div class="hist-card__top">
+        <div><div class="hist-card__time">${fmtWhen(e.ts)}</div><div class="hist-card__meta">${meta}</div></div>
+        <button class="hist-card__del" type="button" aria-label="삭제"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M6 18 18 6"/></svg></button>
+      </div>
+      <a class="hist-card__yt" href="${ytUrl(e)}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.9-.5-5.8a3 3 0 0 0-2.1-2.1C18.5 3.6 12 3.6 12 3.6s-6.5 0-8.4.5A3 3 0 0 0 1.5 6.2C1 8.1 1 12 1 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 8.4.5 8.4.5s6.5 0 8.4-.5a3 3 0 0 0 2.1-2.1C23 15.9 23 12 23 12zM9.8 15.5v-7l6 3.5-6 3.5z"/></svg>
+        유튜브에서 찾기
+      </a>`;
+    card.querySelector('.hist-card__del').addEventListener('click',()=>{ const a=loadHist().filter(x=>x.ts!==e.ts); saveHist(a); renderHist(); });
+    frag.appendChild(card);
+  });
+  $.histList.replaceChildren(frag);
+}
 
-/* ---------- settings sheet ---------- */
-function openSheet(){ $.sheet.classList.add('is-open'); $.sheetScrim.classList.add('is-open'); $.sheet.setAttribute('aria-hidden','false'); }
-function closeSheet(){ $.sheet.classList.remove('is-open'); $.sheetScrim.classList.remove('is-open'); $.sheet.setAttribute('aria-hidden','true'); }
-$.settingsBtn.addEventListener('click',e=>{ e.stopPropagation(); openSheet(); });
-$.sheetScrim.addEventListener('click',closeSheet);
-$.modeRow.addEventListener('click',e=>{
-  const b=e.target.closest('.mode-opt'); if(!b) return;
-  setMode(b.dataset.mode);
-  if(b.dataset.mode==='always') startGeoWatch();
-});
+/* ---------- sheets ---------- */
+function openSheet(sh){ closeSheets(); sh.classList.add('is-open'); sh.setAttribute('aria-hidden','false'); $.scrim.classList.add('is-open'); }
+function closeSheets(){ [$.histSheet,$.setSheet].forEach(s=>{ s.classList.remove('is-open'); s.setAttribute('aria-hidden','true'); }); $.scrim.classList.remove('is-open'); }
+$.scrim.addEventListener('click',closeSheets);
+$.settingsBtn.addEventListener('click',e=>{ e.stopPropagation(); openSheet($.setSheet); });
+$.histBtn.addEventListener('click',()=>{ renderHist(); openSheet($.histSheet); });
+$.histClear.addEventListener('click',()=>{ saveHist([]); renderHist(); });
+$.modeRow.addEventListener('click',e=>{ const b=e.target.closest('.mode-opt'); if(!b) return; setMode(b.dataset.mode); if(b.dataset.mode==='always') startGeoWatch(); });
 
-/* ---------- manual region grid (hidden in settings) ---------- */
+/* manual region */
 function renderManual(){
   const frag=document.createDocumentFragment();
   for(const r of state.data.regions){
-    const b=document.createElement('button');
-    b.type='button'; b.className='rgn'; b.dataset.city=r.city;
+    const b=document.createElement('button'); b.type='button'; b.className='rgn'; b.dataset.city=r.city;
     b.innerHTML=`<div class="rgn__city">${r.city}</div><div class="rgn__freq">${r.freq.toFixed(1)}</div>`;
-    b.addEventListener('click',()=>{ setCurrent(r); closeSheet(); if(state.intendPlaying) play(); });
+    b.addEventListener('click',()=>{ setCurrent(r); closeSheets(); if(state.intendPlaying) play(); });
     frag.appendChild(b);
   }
   $.manualGrid.replaceChildren(frag);
 }
-function markManual(city){
-  document.querySelectorAll('.rgn').forEach(b=>b.classList.toggle('is-active',b.dataset.city===city));
-}
+function markManual(city){ document.querySelectorAll('.rgn').forEach(b=>b.classList.toggle('is-active',b.dataset.city===city)); }
 
 /* ---------- sleep timer ---------- */
-function fmtRemain(ms){
-  if(ms<=0) return '0분';
-  const s=Math.ceil(ms/1000),m=Math.floor(s/60),ss=s%60;
-  if(m>=60){const h=Math.floor(m/60),rm=m%60;return rm?`${h}시간 ${rm}분`:`${h}시간`;}
-  if(m>=1) return `${m}분 ${String(ss).padStart(2,'0')}초 남음`;
-  return `${ss}초 남음`;
-}
-function clearSleep(){
-  clearTimeout(state.sleepTimer);clearInterval(state.sleepTick);
-  state.sleepTimer=null;state.sleepTick=null;state.sleepEndAt=0;
-  $.sleep.classList.remove('is-active');$.sleepLabel.textContent='슬립 타이머';
-}
+function fmtRemain(ms){ const s=Math.ceil(ms/1000),m=Math.floor(s/60); if(m>=60){const h=Math.floor(m/60),rm=m%60;return rm?`${h}시간 ${rm}분`:`${h}시간`;} if(m>=1) return `${m}분`; return `${s}초`; }
+function clearSleep(){ clearTimeout(state.sleepTimer); clearInterval(state.sleepTick); state.sleepTimer=null; state.sleepTick=null; state.sleepEndAt=0; $.sleepBtn.classList.remove('is-active'); $.sleepLabel.textContent='슬립'; }
 function setSleep(min){
   clearSleep(); if(!min) return;
   state.sleepEndAt=Date.now()+min*60000;
-  const tick=()=>{
-    const left=state.sleepEndAt-Date.now();
-    if(left<=0){clearSleep(); if(state.intendPlaying) stop(); $.sleepLabel.textContent='슬립 종료'; setTimeout(()=>$.sleepLabel.textContent='슬립 타이머',2500); return;}
-    $.sleepLabel.textContent=fmtRemain(left);
-  };
+  const tick=()=>{ const left=state.sleepEndAt-Date.now(); if(left<=0){ clearSleep(); if(state.intendPlaying) stop(); return; } $.sleepLabel.textContent=fmtRemain(left); };
   tick(); state.sleepTick=setInterval(tick,1000); state.sleepTimer=setTimeout(tick,min*60000);
-  $.sleep.classList.add('is-active');
+  $.sleepBtn.classList.add('is-active');
 }
-$.sleepToggle.addEventListener('click',e=>{ e.stopPropagation(); const h=$.sleepMenu.hidden; $.sleepMenu.hidden=!h; $.sleepToggle.setAttribute('aria-expanded',h?'true':'false'); });
-$.sleepMenu.addEventListener('click',e=>{ e.stopPropagation(); const b=e.target.closest('button[data-min]'); if(!b) return; setSleep(parseInt(b.dataset.min,10)); $.sleepMenu.hidden=true; $.sleepToggle.setAttribute('aria-expanded','false'); });
-document.addEventListener('click',e=>{ if(!$.sleepMenu.hidden && !$.sleep.contains(e.target)) { $.sleepMenu.hidden=true; $.sleepToggle.setAttribute('aria-expanded','false'); } });
+$.sleepBtn.addEventListener('click',e=>{ e.stopPropagation(); const h=$.sleepPop.hidden; $.sleepPop.hidden=!h; $.sleepBtn.setAttribute('aria-expanded',h?'true':'false'); });
+$.sleepPop.addEventListener('click',e=>{ const b=e.target.closest('button[data-min]'); if(!b) return; setSleep(parseInt(b.dataset.min,10)); $.sleepPop.hidden=true; $.sleepBtn.setAttribute('aria-expanded','false'); });
+document.addEventListener('click',e=>{ if(!$.sleepPop.hidden && !$.sleepPop.contains(e.target) && e.target!==$.sleepBtn && !$.sleepBtn.contains(e.target)){ $.sleepPop.hidden=true; $.sleepBtn.setAttribute('aria-expanded','false'); } });
 
-/* ---------- stage interactions ---------- */
-$.stage.addEventListener('click',e=>{ if(e.target.closest('.sleep')||e.target.closest('.interrupt')) return; toggle(); });
+/* ---------- stage / remember ---------- */
+$.stage.addEventListener('click',e=>{ if(e.target.closest('.remember')||e.target.closest('.interrupt')) return; toggle(); });
 $.stage.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+$.rememberBtn.addEventListener('click',e=>{ e.stopPropagation(); rememberNow(); });
+
+/* ---------- onboarding ---------- */
+$.choice.addEventListener('click',e=>{ const b=e.target.closest('.choice__opt'); if(!b) return; setMode(b.dataset.mode); });
+$.obCta.addEventListener('click',()=>{
+  const mode=document.querySelector('#choice .choice__opt.is-sel')?.dataset.mode||'always';
+  localStorage.setItem(K.mode,mode); localStorage.setItem(K.onboarded,'1');
+  $.onboard.classList.add('hidden'); $.player.classList.remove('hidden');
+  requestLocationOnce(); if(mode==='always') startGeoWatch();
+});
 
 /* ---------- boot ---------- */
 (async()=>{
   state.data=await loadData();
-  // data figures (128 kbps -> ~57.6 MB/hr, ~288 MB/5h, ~461 MB/8h) are static in HTML
-  renderManual();
+  renderManual(); renderHist();
   setCurrent(pickDefault(),{persist:false});
   setupMediaSession();
-
-  const onboarded=localStorage.getItem(K.onboarded)==='1';
   syncModeUI(getMode());
-  if(!onboarded){
-    $.onboard.hidden=false; $.player.hidden=true;
-  }else{
-    $.onboard.hidden=true; $.player.hidden=false;
-    const mode=getMode();
-    if(mode==='always') startGeoWatch();
-    else askLocationThisSession();
+  if(localStorage.getItem(K.onboarded)==='1'){
+    $.onboard.classList.add('hidden'); $.player.classList.remove('hidden');
+    if(getMode()==='always') startGeoWatch(); else askLocationThisSession();
   }
 })();
 </script>
