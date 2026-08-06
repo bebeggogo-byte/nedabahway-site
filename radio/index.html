@@ -351,22 +351,6 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 .group__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 @media(min-width:480px){.group__grid{grid-template-columns:repeat(3,1fr)}}
 
-/* Collapsible nationwide frequency list — location-first, list as reference */
-.regions__all{margin:14px 0 4px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.regions__all-toggle{
-  list-style:none;cursor:pointer;user-select:none;
-  display:flex;align-items:center;gap:10px;
-  padding:14px 16px;color:var(--fg);font-weight:600;font-size:.92rem;
-  -webkit-tap-highlight-color:transparent;
-}
-.regions__all-toggle::-webkit-details-marker{display:none}
-.regions__all-toggle:hover{color:var(--accent-bright)}
-.regions__all-hint{color:var(--fg-dim);font-weight:500;font-size:.78rem}
-.regions__all-chevron{width:18px;height:18px;margin-left:auto;color:var(--fg-dim);transition:transform .2s ease;flex:none}
-.regions__all[open] .regions__all-chevron{transform:rotate(180deg)}
-.regions__all[open] .regions__all-toggle{border-bottom:1px solid var(--line)}
-.regions__all-body{padding:16px 14px 6px}
-
 .station{
   background:var(--surface);
   border:1px solid var(--line);
@@ -577,8 +561,10 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
     <div class="regions__head">
       <div class="regions__label">REGIONS</div>
       <div class="regions__title">지역별 주파수</div>
-      <div class="regions__sub">위치를 켜면 자동 선택 · 목록에서 직접 선택도 가능</div>
+      <div class="regions__sub">탭하여 해당 주파수로 전환</div>
     </div>
+
+    <div id="groups"></div>
 
     <button class="geo-toggle" id="geoToggle" type="button" role="switch" aria-checked="false" aria-label="내 위치로 자동 전환">
       <div class="geo-toggle__text">
@@ -587,17 +573,6 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
       </div>
       <div class="geo-toggle__switch" aria-hidden="true"></div>
     </button>
-
-    <details class="regions__all">
-      <summary class="regions__all-toggle">
-        전국 주파수 보기
-        <span class="regions__all-hint">전국 동일 방송</span>
-        <svg class="regions__all-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-      </summary>
-      <div class="regions__all-body">
-        <div id="groups"></div>
-      </div>
-    </details>
 
     <div id="install" class="install">
       <strong>홈 화면에 설치</strong>하면 다음부터 바로 실행됩니다.
