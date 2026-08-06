@@ -166,6 +166,15 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 .bar-btn .count{min-width:26px;height:26px;padding:0 7px;border-radius:999px;background:var(--accent);color:var(--ink);font-size:.9rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
 .bar-btn.is-active{border-color:var(--accent);color:var(--accent)}
 
+/* add-to-home-screen */
+.install-chip{align-self:center;display:inline-flex;align-items:center;gap:8px;margin:14px auto 0;padding:11px 18px;border-radius:999px;border:1.5px solid var(--accent);color:var(--accent);background:var(--accent-soft);font-size:.95rem;font-weight:700}
+.install-chip[hidden]{display:none}
+.install-chip svg{width:17px;height:17px}
+.ios-guide{align-self:center;max-width:330px;margin:12px auto 0;padding:12px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);color:var(--fg-mute);font-size:.9rem;text-align:center;line-height:1.6}
+.ios-guide[hidden]{display:none}
+.ios-guide b{color:var(--fg)}
+.ios-guide svg{width:16px;height:16px;vertical-align:-3px;color:var(--accent)}
+
 /* sleep menu (popover) */
 .sleep-pop{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 110px);transform:translateX(-50%);background:var(--surface-2);border:1px solid var(--line);border-radius:18px;padding:8px;display:flex;flex-direction:column;gap:4px;min-width:220px;box-shadow:0 12px 48px rgba(0,0,0,.5);z-index:60}
 .sleep-pop[hidden]{display:none}
@@ -258,6 +267,14 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
       </button>
     </span>
+  </div>
+
+  <button class="install-chip" id="installChip" type="button" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 11l4 4 4-4M5 21h14"/></svg>
+    홈 화면에 추가
+  </button>
+  <div class="ios-guide" id="iosGuide" hidden>
+    아래 <b>공유</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg> 버튼 → <b>홈 화면에 추가</b>를 누르면 앱으로 설치돼요
   </div>
 
   <div class="stage" id="stage" role="button" tabindex="0" aria-label="탭하여 재생 또는 정지">
@@ -611,12 +628,28 @@ $.obCta.addEventListener('click',()=>{
   requestLocationOnce(); if(mode==='always') startGeoWatch();
 });
 
+/* ---------- add to home screen ---------- */
+let deferredPrompt=null;
+const isStandalone=()=>window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent);
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; if(!isStandalone()) el('installChip').hidden=false; });
+window.addEventListener('appinstalled',()=>{ el('installChip').hidden=true; el('iosGuide').hidden=true; deferredPrompt=null; });
+function initInstall(){
+  if(isStandalone()) return;                 // already installed → no button
+  el('installChip').addEventListener('click',async()=>{
+    if(deferredPrompt){ deferredPrompt.prompt(); try{ await deferredPrompt.userChoice; }catch(e){} deferredPrompt=null; el('installChip').hidden=true; }
+    else { el('iosGuide').hidden=!el('iosGuide').hidden; }   // iOS / no-prompt: show guide
+  });
+  if(isIOS()) el('installChip').hidden=false; // iOS never fires beforeinstallprompt
+}
+
 /* ---------- boot ---------- */
 (async()=>{
   state.data=await loadData();
   renderManual(); renderHist();
   setCurrent(pickDefault(),{persist:false});
   setupMediaSession();
+  initInstall();
   syncModeUI(getMode());
   if(localStorage.getItem(K.onboarded)==='1'){
     $.onboard.classList.add('hidden'); $.player.classList.remove('hidden');
