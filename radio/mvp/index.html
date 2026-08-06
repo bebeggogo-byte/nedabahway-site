@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,user-scalable=no">
+<meta name="robots" content="noindex,nofollow">
+<title>클래식FM — 켜면 바로 재생</title>
+<meta name="description" content="위치는 한 번만. 전국 어디를 달려도 주파수 자동 전환. 통화·다른 앱이 켜지면 멈췄다 자동 재생. 좋았던 곡은 원터치로 유튜브 검색. KBS 클래식FM 온라인 수신.">
+<meta name="theme-color" content="#241812">
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="클래식FM">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="canonical" href="https://www.nedabah.org/radio/mvp/">
+<link rel="apple-touch-icon" href="../icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../icons/icon-192.png">
+<style>
+:root{
+  /* Warm walnut cabinet + brass dial — retro hi-fi speaker mood */
+  --bg:#241812;
+  --surface:#33241A;
+  --surface-2:#42311F;
+  --fg:#F4E9D4;
+  --fg-mute:#D6C2A0;
+  --fg-dim:#A98F6C;
+  --line:#4E3A26;
+  --accent:#D2A24E;
+  --accent-bright:#EEC77A;
+  --accent-soft:rgba(210,162,78,0.15);
+  --live:#DC6A38;
+  --yt:#FF3B30;
+  --ink:#2A1A0C;                 /* dark text on brass */
+  --grain:repeating-linear-gradient(93deg, rgba(255,226,182,0.022) 0 3px, rgba(0,0,0,0.055) 3px 6px, rgba(255,226,182,0.012) 6px 11px), repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 108px, rgba(255,222,175,0.022) 108px 111px, rgba(0,0,0,0.05) 111px 216px);
+  --ff:system-ui,-apple-system,'Pretendard Variable',sans-serif;
+  --ff-serif:Georgia,'Noto Serif KR',serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+html{font-size:17px;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--ff);color:var(--fg);
+  line-height:1.5;word-break:keep-all;overflow-x:hidden;
+  background:
+    radial-gradient(ellipse at 50% -8%, #4A3320 0%, rgba(74,51,32,0) 52%),
+    var(--grain),
+    var(--bg);
+}
+button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer}
+.hidden{display:none!important}
+
+/* ===================== ONBOARDING ===================== */
+.onboard{
+  position:fixed;inset:0;z-index:100;
+  background:
+    radial-gradient(ellipse at 50% 15%, rgba(210,162,78,0.12) 0%, rgba(36,24,18,0) 45%),
+    radial-gradient(ellipse at 50% 18%, #3E2B1A 0%, var(--bg) 60%),
+    var(--grain), var(--bg);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(env(safe-area-inset-top) + 28px) 26px calc(env(safe-area-inset-bottom) + 28px);
+  overflow-y:auto;animation:fadeIn .35s ease-out both;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.ob__brand{text-align:center;font-size:.8rem;font-weight:700;letter-spacing:.4em;color:var(--accent);margin-bottom:14px}
+.ob__title{text-align:center;font-family:var(--ff-serif);font-weight:900;font-size:2.1rem;line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
+.ob__lede{text-align:center;font-size:1.05rem;color:var(--fg-mute);max-width:360px;margin:0 auto 34px;line-height:1.6}
+
+/* data — one clean line */
+.ob__data{
+  display:flex;align-items:center;gap:14px;
+  max-width:440px;width:100%;margin:0 auto 26px;
+  padding:18px 20px;border-radius:16px;
+  background:var(--surface);border:1px solid var(--line);
+}
+.ob__data-num{font-family:var(--ff-serif);font-weight:900;font-size:1.9rem;color:var(--accent);line-height:1;white-space:nowrap}
+.ob__data-txt{font-size:1rem;color:var(--fg-mute);line-height:1.45}
+.ob__data-txt strong{color:var(--fg);font-weight:600}
+
+/* location choice — two big taps */
+.choice{display:flex;flex-direction:column;gap:12px;max-width:440px;width:100%;margin:0 auto 28px}
+.choice__opt{
+  display:flex;align-items:center;gap:16px;
+  padding:20px;border-radius:16px;text-align:left;
+  border:2px solid var(--line);background:var(--surface);
+  transition:border-color .15s,background .15s;
+}
+.choice__opt.is-sel{border-color:var(--accent);background:var(--accent-soft)}
+.choice__radio{width:24px;height:24px;flex-shrink:0;border-radius:50%;border:2.5px solid var(--fg-dim);position:relative;transition:border-color .15s}
+.choice__opt.is-sel .choice__radio{border-color:var(--accent)}
+.choice__opt.is-sel .choice__radio::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--accent)}
+.choice__name{font-size:1.15rem;font-weight:700;letter-spacing:-.01em}
+.choice__name .tag{display:inline-block;margin-left:8px;font-size:.72rem;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 8px;vertical-align:middle}
+.choice__sub{font-size:.92rem;color:var(--fg-mute);margin-top:4px}
+
+.ob__cta{
+  max-width:440px;width:100%;margin:0 auto;
+  padding:22px;border-radius:18px;background:var(--accent);color:var(--ink);
+  font-weight:800;font-size:1.25rem;letter-spacing:-.01em;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:transform .1s,background .2s;
+}
+.ob__cta:active{transform:scale(.98)}
+.ob__cta svg{width:22px;height:22px}
+.ob__fine{text-align:center;font-size:.86rem;color:var(--fg-dim);margin:18px auto 0;max-width:380px;line-height:1.55}
+
+/* ===================== PLAYER ===================== */
+.player{
+  position:relative;min-height:100vh;min-height:100dvh;
+  display:flex;flex-direction:column;
+  padding:calc(env(safe-area-inset-top) + 20px) 26px calc(env(safe-area-inset-bottom) + 26px);
+  background:
+    radial-gradient(ellipse at 50% 34%, rgba(210,162,78,0.10) 0%, rgba(36,24,18,0) 46%),
+    radial-gradient(ellipse at 50% 30%, #3E2B1A 0%, var(--bg) 66%),
+    var(--grain), var(--bg);
+  -webkit-user-select:none;user-select:none;
+}
+.player__top{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;font-weight:700;letter-spacing:.3em;color:var(--accent)}
+.player__status{display:flex;align-items:center;gap:8px;color:var(--fg-mute)}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--fg-dim);transition:background .25s}
+.player.is-playing .live-dot{background:var(--live);animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(220,106,56,.6)}70%{box-shadow:0 0 0 9px rgba(220,106,56,0)}100%{box-shadow:0 0 0 0 rgba(220,106,56,0)}}
+.icon-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--fg-dim);border:1px solid var(--line)}
+.icon-btn svg{width:22px;height:22px}
+.icon-btn:active{background:var(--surface)}
+
+.stage{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;padding:12px 0}
+/* speaker grille texture behind the dial */
+.stage::before{content:'';position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
+  width:min(90%,440px);height:320px;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at center, rgba(0,0,0,0.30) 1.1px, transparent 1.5px);
+  background-size:11px 11px;
+  -webkit-mask-image:radial-gradient(ellipse at center, #000 52%, transparent 80%);
+  mask-image:radial-gradient(ellipse at center, #000 52%, transparent 80%);
+  opacity:.5;}
+.stage > *{position:relative;z-index:1}
+.stage__label{font-size:.82rem;font-weight:700;letter-spacing:.45em;color:var(--fg-mute);margin-bottom:22px;text-transform:uppercase}
+.stage__freq{font-family:var(--ff-serif);font-weight:900;font-size:clamp(6rem,26vw,10rem);line-height:.9;letter-spacing:-.05em;color:var(--accent-bright);text-shadow:0 0 26px rgba(238,199,122,0.22)}
+.player.is-playing .stage__freq{color:var(--accent-bright);animation:breathe 3.2s ease-in-out infinite}
+@keyframes breathe{0%,100%{filter:drop-shadow(0 0 4px rgba(238,199,122,.15))}50%{filter:drop-shadow(0 0 28px rgba(238,199,122,.42))}}
+@media (prefers-reduced-motion: reduce){.player.is-playing .stage__freq{animation:none}}
+.stage__unit{font-family:var(--ff-serif);font-size:1.5rem;font-weight:700;color:var(--fg-mute);letter-spacing:.05em}
+.stage__city{margin-top:20px;font-size:1.25rem;font-weight:600;color:var(--fg);display:inline-flex;align-items:center;gap:8px}
+.stage__city svg{width:17px;height:17px;color:var(--accent)}
+
+.stage__btn{margin-top:34px;padding:20px 44px;border-radius:999px;background:var(--accent);color:var(--ink);font-weight:800;font-size:1.25rem;display:inline-flex;align-items:center;gap:12px;transition:transform .1s,background .2s}
+.stage:active .stage__btn{transform:scale(.96)}
+.player.is-playing .stage__btn{background:var(--surface-2);color:var(--fg)}
+.stage__btn svg{width:24px;height:24px}
+
+/* remember + interrupt (single line each, big) */
+.remember{margin-top:22px;padding:14px 26px;border-radius:999px;border:2px solid var(--accent);color:var(--accent);font-size:1.05rem;font-weight:700;display:none;align-items:center;gap:10px;transition:transform .1s,background .15s}
+.remember.is-shown{display:inline-flex}
+.remember:active{transform:scale(.96);background:var(--accent-soft)}
+.remember svg{width:20px;height:20px}
+.remember.saved{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+
+.interrupt{margin-top:22px;max-width:340px;font-size:1rem;font-weight:600;color:var(--accent-bright);background:var(--accent-soft);border:1px solid var(--accent);border-radius:14px;padding:14px 18px;display:none;align-items:center;gap:9px;justify-content:center}
+.interrupt.is-shown{display:inline-flex}
+.interrupt svg{width:18px;height:18px;flex-shrink:0}
+
+/* bottom bar: big taps only */
+.player__bar{display:flex;gap:12px;align-items:stretch}
+.bar-btn{flex:1;padding:18px;border-radius:16px;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:10px;font-size:1.05rem;font-weight:700;white-space:nowrap;color:var(--fg-mute);transition:background .12s,border-color .12s}
+.bar-btn:active{background:var(--surface-2)}
+.bar-btn svg{width:20px;height:20px}
+.bar-btn .count{min-width:26px;height:26px;padding:0 7px;border-radius:999px;background:var(--accent);color:var(--ink);font-size:.9rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+.bar-btn.is-active{border-color:var(--accent);color:var(--accent)}
+
+/* add-to-home-screen */
+.install-chip{align-self:center;display:inline-flex;align-items:center;gap:8px;margin:14px auto 0;padding:11px 18px;border-radius:999px;border:1.5px solid var(--accent);color:var(--accent);background:var(--accent-soft);font-size:.95rem;font-weight:700}
+.install-chip[hidden]{display:none}
+.install-chip svg{width:17px;height:17px}
+.ios-guide{align-self:center;max-width:330px;margin:12px auto 0;padding:12px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);color:var(--fg-mute);font-size:.9rem;text-align:center;line-height:1.6}
+.ios-guide[hidden]{display:none}
+.ios-guide b{color:var(--fg)}
+.ios-guide svg{width:16px;height:16px;vertical-align:-3px;color:var(--accent)}
+
+/* sleep menu (popover) */
+.sleep-pop{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 110px);transform:translateX(-50%);background:var(--surface-2);border:1px solid var(--line);border-radius:18px;padding:8px;display:flex;flex-direction:column;gap:4px;min-width:220px;box-shadow:0 12px 48px rgba(0,0,0,.5);z-index:60}
+.sleep-pop[hidden]{display:none}
+.sleep-pop button{padding:16px;border-radius:12px;font-size:1.05rem;font-weight:600;color:var(--fg-mute);text-align:center}
+.sleep-pop button:active{background:var(--surface);color:var(--fg)}
+
+/* ===================== SHEETS ===================== */
+.scrim{position:fixed;inset:0;z-index:110;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.is-open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:120;background:var(--grain),linear-gradient(180deg,#3A2818 0%,var(--surface) 40%);border-top:1px solid var(--line);border-radius:24px 24px 0 0;padding:10px 24px calc(env(safe-area-inset-bottom) + 26px);transform:translateY(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1);max-height:90vh;overflow-y:auto}
+.sheet.is-open{transform:translateY(0)}
+.sheet__grab{width:46px;height:5px;border-radius:3px;background:var(--line);margin:8px auto 20px}
+.sheet__title{font-size:1.5rem;font-weight:800;margin-bottom:22px;letter-spacing:-.01em}
+.sheet__glabel{font-size:.82rem;font-weight:700;letter-spacing:.2em;color:var(--fg-dim);text-transform:uppercase;margin:0 0 12px}
+.sheet__group{margin-bottom:30px}
+
+/* history cards — big, sparse, one action */
+.hist-empty{text-align:center;color:var(--fg-dim);font-size:1.05rem;padding:40px 0 30px;line-height:1.7}
+.hist-card{background:var(--surface-2);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:14px}
+.hist-card__top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+.hist-card__time{font-size:1.3rem;font-weight:800;letter-spacing:-.01em}
+.hist-card__meta{font-size:.95rem;color:var(--fg-mute);margin-top:4px}
+.hist-card__del{width:38px;height:38px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--fg-dim);border:1px solid var(--line)}
+.hist-card__del svg{width:18px;height:18px}
+.hist-card__yt{width:100%;padding:18px;border-radius:14px;background:var(--yt);color:#fff;font-size:1.15rem;font-weight:800;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .1s}
+.hist-card__yt:active{transform:scale(.98)}
+.hist-card__yt svg{width:24px;height:24px}
+.hist-clear{width:100%;margin-top:8px;padding:14px;border-radius:12px;color:var(--fg-dim);font-size:.95rem;border:1px solid var(--line)}
+
+/* settings */
+.mode-opt{display:flex;align-items:center;gap:14px;padding:18px;border-radius:16px;border:2px solid var(--line);background:var(--surface-2);text-align:left;width:100%;margin-bottom:12px}
+.mode-opt.is-sel{border-color:var(--accent);background:var(--accent-soft)}
+.mode-opt__name{font-size:1.1rem;font-weight:700}
+.mode-opt__sub{font-size:.9rem;color:var(--fg-mute);margin-top:3px}
+.manual__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rgn{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:16px 12px;text-align:center}
+.rgn:active{background:var(--surface)}
+.rgn.is-active{background:var(--accent-soft);border-color:var(--accent)}
+.rgn__city{font-size:.95rem;font-weight:600}
+.rgn__freq{font-family:var(--ff-serif);font-weight:800;font-size:1.3rem;color:var(--accent);margin-top:3px}
+.data-note{font-size:1rem;color:var(--fg-mute);line-height:1.65;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:18px}
+.data-note strong{color:var(--fg);font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- ============ ONBOARDING ============ -->
+<section class="onboard" id="onboard" aria-label="시작 설정">
+  <div class="ob__brand">CLASSIC FM</div>
+  <h1 class="ob__title">켜면 바로,<br>전국 어디든</h1>
+  <p class="ob__lede">위치는 지금 한 번만. 전국 어디를 달려도 주파수가 자동으로 바뀝니다.</p>
+
+  <div class="ob__data">
+    <span class="ob__data-num">58MB</span>
+    <span class="ob__data-txt"><strong>1시간 데이터</strong> · 오디오만 받아 가벼워요. Wi-Fi 없이 LTE로도 충분.</span>
+  </div>
+
+  <div class="choice" id="choice" role="radiogroup" aria-label="위치 사용 방식">
+    <button class="choice__opt is-sel" type="button" data-mode="always" role="radio" aria-checked="true">
+      <span class="choice__radio" aria-hidden="true"></span>
+      <span>
+        <span class="choice__name">항상 자동<span class="tag">권장</span></span>
+        <span class="choice__sub">켤 때마다 묻지 않고 바로 재생</span>
+      </span>
+    </button>
+    <button class="choice__opt" type="button" data-mode="ask" role="radio" aria-checked="false">
+      <span class="choice__radio" aria-hidden="true"></span>
+      <span>
+        <span class="choice__name">켤 때 확인</span>
+        <span class="choice__sub">켤 때 한 번만 물어봄</span>
+      </span>
+    </button>
+  </div>
+
+  <button class="ob__cta" id="obCta" type="button">
+    시작하기
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </button>
+  <p class="ob__fine">위치는 가까운 주파수를 고르는 데만 쓰이고 저장·전송되지 않습니다.</p>
+</section>
+
+<!-- ============ PLAYER ============ -->
+<section class="player hidden" id="player">
+  <div class="player__top">
+    <span>CLASSIC FM</span>
+    <span class="player__status">
+      <span class="live-dot" id="liveDot"></span>
+      <span id="statusText">OFF AIR</span>
+      <button class="icon-btn" id="settingsBtn" type="button" aria-label="설정" style="margin-left:10px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+    </span>
+  </div>
+
+  <button class="install-chip" id="installChip" type="button" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 11l4 4 4-4M5 21h14"/></svg>
+    홈 화면에 추가
+  </button>
+  <div class="ios-guide" id="iosGuide" hidden>
+    아래 <b>공유</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg> 버튼 → <b>홈 화면에 추가</b>를 누르면 앱으로 설치돼요
+  </div>
+
+  <div class="stage" id="stage" role="button" tabindex="0" aria-label="탭하여 재생 또는 정지">
+    <div class="stage__label">지금 이 지역</div>
+    <div class="stage__freq" id="freq">93.7<span class="stage__unit">MHz</span></div>
+    <div class="stage__city" id="city">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span id="cityName">내 주파수</span>
+    </div>
+
+    <div class="stage__btn" id="playBtn">
+      <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <span id="playText">라이브 듣기</span>
+    </div>
+
+    <button class="remember" id="rememberBtn" type="button">
+      <svg id="rememberIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <span id="rememberText">이 곡 기억</span>
+    </button>
+
+    <div class="interrupt" id="interrupt" role="status">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>
+      <span id="interruptText">통화·다른 앱 사용 중 — 끝나면 자동 재생</span>
+    </div>
+  </div>
+
+  <div class="player__bar">
+    <button class="bar-btn" id="histBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+      <span>기억한 곡</span><span class="count" id="histCount">0</span>
+    </button>
+    <button class="bar-btn" id="sleepBtn" type="button" aria-haspopup="true" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <span id="sleepLabel">슬립</span>
+    </button>
+  </div>
+
+  <div class="sleep-pop" id="sleepPop" role="menu" hidden>
+    <button type="button" data-min="10" role="menuitem">10분 뒤 끄기</button>
+    <button type="button" data-min="30" role="menuitem">30분 뒤 끄기</button>
+    <button type="button" data-min="60" role="menuitem">1시간 뒤 끄기</button>
+    <button type="button" data-min="90" role="menuitem">1시간 30분 뒤</button>
+    <button type="button" data-min="0" role="menuitem">타이머 끄기</button>
+  </div>
+</section>
+
+<!-- ============ SHEETS ============ -->
+<div class="scrim" id="scrim"></div>
+
+<!-- history -->
+<section class="sheet" id="histSheet" aria-label="기억한 곡" aria-hidden="true">
+  <div class="sheet__grab"></div>
+  <div class="sheet__title">기억한 곡</div>
+  <div id="histList"></div>
+  <button class="hist-clear hidden" id="histClear" type="button">전체 지우기</button>
+</section>
+
+<!-- settings -->
+<section class="sheet" id="setSheet" aria-label="설정" aria-hidden="true">
+  <div class="sheet__grab"></div>
+  <div class="sheet__title">설정</div>
+
+  <div class="sheet__group">
+    <div class="sheet__glabel">위치 사용 방식</div>
+    <div id="modeRow" role="radiogroup" aria-label="위치 사용 방식">
+      <button class="mode-opt is-sel" type="button" data-mode="always" role="radio" aria-checked="true">
+        <span class="choice__radio" aria-hidden="true"></span>
+        <span><span class="mode-opt__name">항상 자동</span><span class="mode-opt__sub">켤 때마다 묻지 않고 바로</span></span>
+      </button>
+      <button class="mode-opt" type="button" data-mode="ask" role="radio" aria-checked="false">
+        <span class="choice__radio" aria-hidden="true"></span>
+        <span><span class="mode-opt__name">켤 때 확인</span><span class="mode-opt__sub">켤 때 한 번만 물어봄</span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="sheet__group">
+    <div class="sheet__glabel">지역 직접 선택</div>
+    <div class="manual__grid" id="manualGrid"></div>
+  </div>
+
+  <div class="sheet__group">
+    <div class="sheet__glabel">데이터 사용</div>
+    <p class="data-note">재생 중 <strong>약 58MB/시간</strong>. 5시간 운전 ≈ 290MB, 하루 8시간 ≈ 460MB. LTE·5G만으로 충분합니다.</p>
+  </div>
+</section>
+
+<audio id="audio" preload="none" playsinline></audio>
+
+<script>
+const FALLBACK = {
+  audioUrl:"https://radio.bsod.kr/stream/static?stn=kbs&ch=1fm",
+  audioUrlAlt:"https://radio.bsod.kr/stream/?stn=kbs&ch=1fm",
+  streamUrl:"https://onair.kbs.co.kr/index.html?sname=onair&stype=live&ch_code=24&ch_type=radioList",
+  fallbackUrl:"https://www.youtube.com/@KBS_ClassicFM/live",
+  defaultCity:"내 주파수", defaultFreq:93.7,
+  regions:[
+    {city:"내 주파수",freq:93.7,isDefault:true},
+    {city:"서울/경기/인천",freq:93.1,lat:37.5665,lng:126.9780},
+    {city:"춘천",freq:91.9,lat:37.8813,lng:127.7298},
+    {city:"강릉",freq:89.1,lat:37.7519,lng:128.8761},
+    {city:"원주",freq:89.5,lat:37.3422,lng:127.9202},
+    {city:"대전",freq:98.5,lat:36.3504,lng:127.3845},
+    {city:"청주",freq:102.1,lat:36.6424,lng:127.4890},
+    {city:"충주",freq:100.3,lat:36.9910,lng:127.9259},
+    {city:"전주",freq:100.7,lat:35.8242,lng:127.1480},
+    {city:"광주",freq:92.3,lat:35.1595,lng:126.8526},
+    {city:"목포",freq:98.3,lat:34.8118,lng:126.3922},
+    {city:"순천",freq:94.5,lat:34.9506,lng:127.4872},
+    {city:"대구",freq:89.7,lat:35.8714,lng:128.6014},
+    {city:"안동",freq:88.1,lat:36.5684,lng:128.7294},
+    {city:"포항",freq:93.5,lat:36.0190,lng:129.3435},
+    {city:"울산",freq:101.9,lat:35.5384,lng:129.3114},
+    {city:"부산",freq:92.7,lat:35.1796,lng:129.0756},
+    {city:"창원",freq:93.9,lat:35.2280,lng:128.6817},
+    {city:"진주",freq:89.3,lat:35.1800,lng:128.1076},
+    {city:"제주시",freq:96.3,lat:33.4996,lng:126.5312},
+    {city:"서귀포",freq:99.9,lat:33.2541,lng:126.5601}
+  ]
+};
+
+const K = { onboarded:"classicfm.mvp.onboarded", mode:"classicfm.mvp.locMode", city:"classicfm.mvp.lastCity", hist:"classicfm.mvp.history" };
+const GEO_OPTS = { enableHighAccuracy:true, maximumAge:60000, timeout:8000 };
+const GEO_THROTTLE = 60000;
+const HIST_MAX = 50;
+
+const el = id=>document.getElementById(id);
+const $ = {
+  onboard:el('onboard'), player:el('player'), stage:el('stage'),
+  choice:el('choice'), obCta:el('obCta'),
+  freq:el('freq'), cityName:el('cityName'),
+  playIcon:el('playIcon'), playText:el('playText'), statusText:el('statusText'),
+  rememberBtn:el('rememberBtn'), rememberIcon:el('rememberIcon'), rememberText:el('rememberText'),
+  interrupt:el('interrupt'), interruptText:el('interruptText'),
+  audio:el('audio'),
+  settingsBtn:el('settingsBtn'), scrim:el('scrim'),
+  histBtn:el('histBtn'), histCount:el('histCount'), histSheet:el('histSheet'), histList:el('histList'), histClear:el('histClear'),
+  setSheet:el('setSheet'), modeRow:el('modeRow'), manualGrid:el('manualGrid'),
+  sleepBtn:el('sleepBtn'), sleepPop:el('sleepPop'), sleepLabel:el('sleepLabel')
+};
+
+const ICON_PLAY='<path d="M8 5v14l11-7z"/>';
+const ICON_STOP='<path d="M6 6h12v12H6z"/>';
+const ICON_LOAD='<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="40 20" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle>';
+
+const state = { data:null, current:null, intendPlaying:false, interrupted:false, geoWatchId:null, geoLastSnapAt:0, sleepEndAt:0, sleepTimer:null, sleepTick:null };
+
+/* ---------- data ---------- */
+async function loadData(){
+  try{ const r=await fetch('../stations.json',{cache:'no-cache'}); if(r.ok) return await r.json(); }catch(e){}
+  return FALLBACK;
+}
+function regionByCity(c){ return state.data.regions.find(r=>r.city===c); }
+function pickDefault(){
+  const saved=localStorage.getItem(K.city);
+  if(saved){ const h=regionByCity(saved); if(h) return h; }
+  return state.data.regions.find(r=>r.city===state.data.defaultCity) || state.data.regions.find(r=>r.isDefault) || state.data.regions[0];
+}
+function setCurrent(r,{persist=true}={}){
+  if(!r) return; state.current=r;
+  $.freq.innerHTML=`${r.freq.toFixed(1)}<span class="stage__unit">MHz</span>`;
+  $.cityName.textContent=r.city;
+  if(persist) localStorage.setItem(K.city,r.city);
+  markManual(r.city); updateMediaMetadata();
+}
+
+/* ---------- streaming ---------- */
+function canPlayHls(a){ return a.canPlayType('application/vnd.apple.mpegurl')!=='' || a.canPlayType('application/x-mpegURL')!==''; }
+function setStatus(mode){
+  $.player.classList.toggle('is-playing', mode==='on');
+  $.rememberBtn.classList.toggle('is-shown', mode==='on');
+  if(mode==='loading'){ $.statusText.textContent='CONNECTING'; $.playIcon.innerHTML=ICON_LOAD; $.playText.textContent='연결 중'; return; }
+  if(mode==='on'){ $.statusText.textContent='ON AIR'; $.playIcon.innerHTML=ICON_STOP; $.playText.textContent='정지'; }
+  else{ $.statusText.textContent='OFF AIR'; $.playIcon.innerHTML=ICON_PLAY; $.playText.textContent='라이브 듣기'; }
+}
+async function tryStream(src){
+  if(!src||!canPlayHls($.audio)) return false;
+  try{ $.audio.src=src; const p=$.audio.play(); if(p&&p.then) await p; return true; }catch(e){ return false; }
+}
+async function play(){
+  if(!state.data) return;
+  state.intendPlaying=true; hideInterrupt(); setStatus('loading');
+  const d=state.data;
+  if(await tryStream(d.audioUrl)) return;
+  if(await tryStream(d.audioUrlAlt)) return;
+  if(d.streamUrl){ window.open(d.streamUrl,'_blank','noopener'); setStatus('off'); state.intendPlaying=false; return; }
+  setStatus('off'); state.intendPlaying=false;
+}
+function stop(){ state.intendPlaying=false; state.interrupted=false; hideInterrupt(); $.audio.pause(); $.audio.removeAttribute('src'); $.audio.load(); setStatus('off'); }
+function toggle(){ if(state.intendPlaying && !$.audio.paused) stop(); else play(); }
+
+/* ---------- interruption / auto-resume ---------- */
+function showInterrupt(){ $.interrupt.classList.add('is-shown'); }
+function hideInterrupt(){ $.interrupt.classList.remove('is-shown'); }
+async function tryResume(){
+  if(!state.intendPlaying||!state.interrupted) return;
+  if($.audio.paused){ try{ const p=$.audio.play(); if(p&&p.then) await p; }catch(e){} }
+}
+$.audio.addEventListener('playing',()=>{ state.interrupted=false; hideInterrupt(); setStatus('on'); if('mediaSession'in navigator) navigator.mediaSession.playbackState='playing'; });
+$.audio.addEventListener('pause',()=>{ if(!state.intendPlaying) return; state.interrupted=true; showInterrupt(); setStatus('off'); if('mediaSession'in navigator) navigator.mediaSession.playbackState='paused'; });
+$.audio.addEventListener('error',()=>{ if(state.intendPlaying){ setStatus('off'); } });
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') tryResume(); });
+window.addEventListener('focus',tryResume);
+window.addEventListener('online',tryResume);
+
+/* ---------- geolocation ---------- */
+function haversineKm(a,b){ const R=6371,rad=d=>d*Math.PI/180; const dLat=rad(b.lat-a.lat),dLng=rad(b.lng-a.lng); const h=Math.sin(dLat/2)**2+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.sin(dLng/2)**2; return 2*R*Math.asin(Math.sqrt(h)); }
+function nearest(lat,lng){ let best=null,bk=Infinity; for(const r of state.data.regions){ if(typeof r.lat!=='number'||typeof r.lng!=='number') continue; const km=haversineKm({lat,lng},{lat:r.lat,lng:r.lng}); if(km<bk){best=r;bk=km;} } return best; }
+function applyFix(pos){ const r=nearest(pos.coords.latitude,pos.coords.longitude); if(r&&(!state.current||state.current.city!==r.city)) setCurrent(r); state.geoLastSnapAt=Date.now(); }
+function requestLocationOnce(){ if(navigator.geolocation) navigator.geolocation.getCurrentPosition(applyFix,()=>{},GEO_OPTS); }
+function startGeoWatch(){
+  if(!navigator.geolocation) return;
+  requestLocationOnce();
+  if(state.geoWatchId!==null) navigator.geolocation.clearWatch(state.geoWatchId);
+  state.geoWatchId=navigator.geolocation.watchPosition(pos=>{ if(Date.now()-state.geoLastSnapAt<GEO_THROTTLE) return; applyFix(pos); },()=>{},GEO_OPTS);
+}
+
+/* ---------- media session ---------- */
+function updateMediaMetadata(){
+  if(!('mediaSession'in navigator)||!state.current) return;
+  const r=state.current;
+  navigator.mediaSession.metadata=new MediaMetadata({ title:'KBS 클래식FM', artist:`${r.city} · ${r.freq.toFixed(1)} MHz`, album:'KBS 1FM Classic', artwork:[{src:'../icons/icon-192.png',sizes:'192x192',type:'image/png'},{src:'../icons/icon-512.png',sizes:'512x512',type:'image/png'}] });
+}
+function setupMediaSession(){
+  if(!('mediaSession'in navigator)) return; const ms=navigator.mediaSession;
+  ms.setActionHandler('play',()=>play());
+  ms.setActionHandler('pause',()=>{ if(!$.audio.paused) $.audio.pause(); });
+  ms.setActionHandler('stop',()=>stop());
+  ['seekto','previoustrack','nexttrack'].forEach(a=>{ try{ms.setActionHandler(a,null);}catch(e){} });
+}
+
+/* ---------- location mode ---------- */
+function getMode(){ return localStorage.getItem(K.mode)||'always'; }
+function setMode(m){ localStorage.setItem(K.mode,m); syncModeUI(m); }
+function syncModeUI(m){
+  document.querySelectorAll('#choice .choice__opt').forEach(b=>{ const on=b.dataset.mode===m; b.classList.toggle('is-sel',on); b.setAttribute('aria-checked',on?'true':'false'); });
+  document.querySelectorAll('#modeRow .mode-opt').forEach(b=>{ const on=b.dataset.mode===m; b.classList.toggle('is-sel',on); b.setAttribute('aria-checked',on?'true':'false'); });
+}
+function askLocationThisSession(){
+  $.interruptText.textContent='탭 한 번으로 현재 위치 주파수 적용';
+  showInterrupt(); $.interrupt.style.cursor='pointer';
+  const h=()=>{ $.interrupt.style.cursor=''; hideInterrupt(); $.interruptText.textContent='통화·다른 앱 사용 중 — 끝나면 자동 재생'; $.interrupt.removeEventListener('click',h); requestLocationOnce(); startGeoWatch(); };
+  $.interrupt.addEventListener('click',h);
+}
+
+/* ---------- history (기억한 곡) ---------- */
+function loadHist(){ try{ return JSON.parse(localStorage.getItem(K.hist)||'[]'); }catch(e){ return []; } }
+function saveHist(a){ localStorage.setItem(K.hist,JSON.stringify(a.slice(0,HIST_MAX))); }
+function fmtWhen(ts){
+  const d=new Date(ts);
+  const f=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false});
+  return f.format(d);
+}
+function ytUrl(entry){
+  // 정확한 곡 제목 확보 시 그 제목으로, 아니면 그 시각의 KBS 선곡으로 검색
+  const q = entry.title && entry.title.trim()
+    ? entry.title
+    : `KBS 클래식FM 선곡 ${entry.dateKey} ${entry.hm}`;
+  return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
+}
+function rememberNow(){
+  const now=new Date();
+  const kst=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(now);
+  const g=t=>kst.find(p=>p.type===t)?.value||'';
+  const entry={
+    ts:Date.now(),
+    title:'',                                  // 라이브 곡 제목(향후 메타데이터 연동 시 채움)
+    city:state.current?.city||'',
+    freq:state.current?state.current.freq.toFixed(1):'',
+    dateKey:`${g('year')}-${g('month')}-${g('day')}`,
+    hm:`${g('hour')}:${g('minute')}`
+  };
+  const arr=loadHist(); arr.unshift(entry); saveHist(arr); renderHist();
+  // feedback
+  $.rememberBtn.classList.add('saved');
+  $.rememberIcon.innerHTML='<path d="M20 6 9 17l-5-5"/>';
+  $.rememberText.textContent='기억함';
+  setTimeout(()=>{ $.rememberBtn.classList.remove('saved'); $.rememberIcon.innerHTML='<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>'; $.rememberText.textContent='이 곡 기억'; },1600);
+}
+function renderHist(){
+  const arr=loadHist();
+  $.histCount.textContent=String(arr.length);
+  $.histClear.classList.toggle('hidden',arr.length===0);
+  if(arr.length===0){ $.histList.innerHTML='<div class="hist-empty">아직 없어요.<br>재생 중 좋은 곡이 나오면<br><b>♥ 이 곡 기억</b>을 누르세요.</div>'; return; }
+  const frag=document.createDocumentFragment();
+  arr.forEach(e=>{
+    const card=document.createElement('div'); card.className='hist-card';
+    const meta=[e.city, e.freq?e.freq+' MHz':''].filter(Boolean).join(' · ');
+    card.innerHTML=`
+      <div class="hist-card__top">
+        <div><div class="hist-card__time">${fmtWhen(e.ts)}</div><div class="hist-card__meta">${meta}</div></div>
+        <button class="hist-card__del" type="button" aria-label="삭제"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M6 18 18 6"/></svg></button>
+      </div>
+      <a class="hist-card__yt" href="${ytUrl(e)}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.9-.5-5.8a3 3 0 0 0-2.1-2.1C18.5 3.6 12 3.6 12 3.6s-6.5 0-8.4.5A3 3 0 0 0 1.5 6.2C1 8.1 1 12 1 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 8.4.5 8.4.5s6.5 0 8.4-.5a3 3 0 0 0 2.1-2.1C23 15.9 23 12 23 12zM9.8 15.5v-7l6 3.5-6 3.5z"/></svg>
+        유튜브에서 찾기
+      </a>`;
+    card.querySelector('.hist-card__del').addEventListener('click',()=>{ const a=loadHist().filter(x=>x.ts!==e.ts); saveHist(a); renderHist(); });
+    frag.appendChild(card);
+  });
+  $.histList.replaceChildren(frag);
+}
+
+/* ---------- sheets ---------- */
+function openSheet(sh){ closeSheets(); sh.classList.add('is-open'); sh.setAttribute('aria-hidden','false'); $.scrim.classList.add('is-open'); }
+function closeSheets(){ [$.histSheet,$.setSheet].forEach(s=>{ s.classList.remove('is-open'); s.setAttribute('aria-hidden','true'); }); $.scrim.classList.remove('is-open'); }
+$.scrim.addEventListener('click',closeSheets);
+$.settingsBtn.addEventListener('click',e=>{ e.stopPropagation(); openSheet($.setSheet); });
+$.histBtn.addEventListener('click',()=>{ renderHist(); openSheet($.histSheet); });
+$.histClear.addEventListener('click',()=>{ saveHist([]); renderHist(); });
+$.modeRow.addEventListener('click',e=>{ const b=e.target.closest('.mode-opt'); if(!b) return; setMode(b.dataset.mode); if(b.dataset.mode==='always') startGeoWatch(); });
+
+/* manual region */
+function renderManual(){
+  const frag=document.createDocumentFragment();
+  for(const r of state.data.regions){
+    const b=document.createElement('button'); b.type='button'; b.className='rgn'; b.dataset.city=r.city;
+    b.innerHTML=`<div class="rgn__city">${r.city}</div><div class="rgn__freq">${r.freq.toFixed(1)}</div>`;
+    b.addEventListener('click',()=>{ setCurrent(r); closeSheets(); if(state.intendPlaying) play(); });
+    frag.appendChild(b);
+  }
+  $.manualGrid.replaceChildren(frag);
+}
+function markManual(city){ document.querySelectorAll('.rgn').forEach(b=>b.classList.toggle('is-active',b.dataset.city===city)); }
+
+/* ---------- sleep timer ---------- */
+function fmtRemain(ms){ const s=Math.ceil(ms/1000),m=Math.floor(s/60); if(m>=60){const h=Math.floor(m/60),rm=m%60;return rm?`${h}시간 ${rm}분`:`${h}시간`;} if(m>=1) return `${m}분`; return `${s}초`; }
+function clearSleep(){ clearTimeout(state.sleepTimer); clearInterval(state.sleepTick); state.sleepTimer=null; state.sleepTick=null; state.sleepEndAt=0; $.sleepBtn.classList.remove('is-active'); $.sleepLabel.textContent='슬립'; }
+function setSleep(min){
+  clearSleep(); if(!min) return;
+  state.sleepEndAt=Date.now()+min*60000;
+  const tick=()=>{ const left=state.sleepEndAt-Date.now(); if(left<=0){ clearSleep(); if(state.intendPlaying) stop(); return; } $.sleepLabel.textContent=fmtRemain(left); };
+  tick(); state.sleepTick=setInterval(tick,1000); state.sleepTimer=setTimeout(tick,min*60000);
+  $.sleepBtn.classList.add('is-active');
+}
+$.sleepBtn.addEventListener('click',e=>{ e.stopPropagation(); const h=$.sleepPop.hidden; $.sleepPop.hidden=!h; $.sleepBtn.setAttribute('aria-expanded',h?'true':'false'); });
+$.sleepPop.addEventListener('click',e=>{ const b=e.target.closest('button[data-min]'); if(!b) return; setSleep(parseInt(b.dataset.min,10)); $.sleepPop.hidden=true; $.sleepBtn.setAttribute('aria-expanded','false'); });
+document.addEventListener('click',e=>{ if(!$.sleepPop.hidden && !$.sleepPop.contains(e.target) && e.target!==$.sleepBtn && !$.sleepBtn.contains(e.target)){ $.sleepPop.hidden=true; $.sleepBtn.setAttribute('aria-expanded','false'); } });
+
+/* ---------- stage / remember ---------- */
+$.stage.addEventListener('click',e=>{ if(e.target.closest('.remember')||e.target.closest('.interrupt')) return; toggle(); });
+$.stage.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+$.rememberBtn.addEventListener('click',e=>{ e.stopPropagation(); rememberNow(); });
+
+/* ---------- onboarding ---------- */
+$.choice.addEventListener('click',e=>{ const b=e.target.closest('.choice__opt'); if(!b) return; setMode(b.dataset.mode); });
+$.obCta.addEventListener('click',()=>{
+  const mode=document.querySelector('#choice .choice__opt.is-sel')?.dataset.mode||'always';
+  localStorage.setItem(K.mode,mode); localStorage.setItem(K.onboarded,'1');
+  $.onboard.classList.add('hidden'); $.player.classList.remove('hidden');
+  requestLocationOnce(); if(mode==='always') startGeoWatch();
+});
+
+/* ---------- add to home screen ---------- */
+let deferredPrompt=null;
+const isStandalone=()=>window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent);
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; if(!isStandalone()) el('installChip').hidden=false; });
+window.addEventListener('appinstalled',()=>{ el('installChip').hidden=true; el('iosGuide').hidden=true; deferredPrompt=null; });
+function initInstall(){
+  if(isStandalone()) return;                 // already installed → no button
+  el('installChip').addEventListener('click',async()=>{
+    if(deferredPrompt){ deferredPrompt.prompt(); try{ await deferredPrompt.userChoice; }catch(e){} deferredPrompt=null; el('installChip').hidden=true; }
+    else { el('iosGuide').hidden=!el('iosGuide').hidden; }   // iOS / no-prompt: show guide
+  });
+  if(isIOS()) el('installChip').hidden=false; // iOS never fires beforeinstallprompt
+}
+
+/* ---------- boot ---------- */
+(async()=>{
+  state.data=await loadData();
+  renderManual(); renderHist();
+  setCurrent(pickDefault(),{persist:false});
+  setupMediaSession();
+  initInstall();
+  syncModeUI(getMode());
+  if(localStorage.getItem(K.onboarded)==='1'){
+    $.onboard.classList.add('hidden'); $.player.classList.remove('hidden');
+    if(getMode()==='always') startGeoWatch(); else askLocationThisSession();
+  }
+})();
+</script>
+<script>if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}</script>
+</body>
+</html>
