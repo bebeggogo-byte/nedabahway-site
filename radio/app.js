@@ -40,10 +40,14 @@ const state = {
   data: null,
   current: null,
   playing: false,
+  wantsPlayback: false,
+  userInitiatedStop: false,
+  pausedAt: 0,
   loadTimer: null,
   sleepTimer: null,
   sleepTickTimer: null,
   sleepEndAt: 0,
+  sleepFading: false,
   geoEnabled: false,
   geoWatchId: null,
   geoLastSnapAt: 0,
@@ -205,6 +209,8 @@ function canPlayHls(audio) {
 }
 
 function openExternalPlayer() {
+  state.wantsPlayback = false;
+  clearResumeWatch();
   const d = state.data;
   if (!d || !d.streamUrl) { showFallback('재생 링크가 없습니다.'); return; }
   window.open(d.streamUrl, '_blank', 'noopener');
@@ -263,9 +269,12 @@ async function startStream() {
 
 function stopStream() {
   clearTimeout(state.loadTimer);
+  state.wantsPlayback = false;
+  clearResumeWatch();
   els.playerFrameInner.replaceChildren();
   closePlayerDock();
   if (els.audio) {
+    state.userInitiatedStop = true;
     els.audio.pause();
     els.audio.removeAttribute('src');
     els.audio.load();
@@ -299,20 +308,97 @@ els.playerFrameClose.addEventListener('click', (e) => {
 
 if (els.audio) {
   els.audio.addEventListener('playing', () => {
+    state.wantsPlayback = true;
+    state.userInitiatedStop = false;
+    state.pausedAt = 0;
+    clearResumeWatch();
     setPlayingUI(true);
     if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
   });
   els.audio.addEventListener('pause', () => {
-    if (!state.playing) return;
-    setPlayingUI(false);
+    const deliberate = state.userInitiatedStop;
+    state.userInitiatedStop = false;
+    if (deliberate) {
+      setPlayingUI(false);
+      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+      return;
+    }
+    if (!state.wantsPlayback) {
+      if (!state.playing) return;
+      setPlayingUI(false);
+      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+      return;
+    }
+    // External interruption (phone call, other app/tab media, OS ducking):
+    // keep the intent to play and auto-resume once the interruption ends.
+    state.pausedAt = Date.now();
     if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+    els.statusText.textContent = 'PAUSED';
+    els.heroHint.textContent = '통화·외부 재생 중 — 끝나면 자동 재생';
+    scheduleResume();
   });
   els.audio.addEventListener('error', () => {
+    if (state.wantsPlayback) { scheduleResume(); return; }
     console.warn('audio error, falling back to external player');
     openExternalPlayer();
   });
   els.audio.addEventListener('waiting', () => setPlayingUI(state.playing, { loading: true }));
+  els.audio.addEventListener('canplay', () => {
+    if (state.wantsPlayback && els.audio.paused) attemptResume();
+  });
 }
+
+// ===== Auto-resume after interruptions (calls, other media) =====
+
+const RESUME_MAX_RETRIES = 4;
+const RESUME_STALE_MS = 30_000; // reconnect to live edge if paused longer than this
+let resumeRetries = 0;
+let resumeTimer = null;
+
+function clearResumeWatch() {
+  clearTimeout(resumeTimer);
+  resumeTimer = null;
+  resumeRetries = 0;
+}
+
+async function reacquireStream() {
+  const d = state.data;
+  if (!d || !els.audio || !canPlayHls(els.audio)) return;
+  if (d.audioUrl && await tryAudioSrc(d.audioUrl)) return;
+  if (d.audioUrlAlt) await tryAudioSrc(d.audioUrlAlt);
+}
+
+function attemptResume() {
+  if (!state.wantsPlayback || !els.audio) return;
+  if (!navigator.onLine || !els.audio.paused) return;
+  const stale = state.pausedAt && (Date.now() - state.pausedAt > RESUME_STALE_MS);
+  if (els.audio.src && !stale) {
+    const p = els.audio.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+  } else {
+    reacquireStream();
+  }
+}
+
+function scheduleResume() {
+  clearResumeWatch();
+  const step = () => {
+    resumeTimer = null;
+    if (!state.wantsPlayback || (els.audio && !els.audio.paused)) return;
+    attemptResume();
+    if (++resumeRetries < RESUME_MAX_RETRIES) {
+      resumeTimer = setTimeout(step, 1500 * resumeRetries);
+    }
+  };
+  resumeTimer = setTimeout(step, 400);
+}
+
+function resumeOnReturn() {
+  if (state.wantsPlayback && els.audio && els.audio.paused) attemptResume();
+}
+document.addEventListener('visibilitychange', () => { if (!document.hidden) resumeOnReturn(); });
+window.addEventListener('focus', resumeOnReturn);
+window.addEventListener('online', resumeOnReturn);
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
@@ -342,12 +428,20 @@ function formatRemaining(ms) {
   if (m >= 1) return `${m}분 ${s.toString().padStart(2, '0')}초 남음`;
   return `${s}초 남음`;
 }
+const SLEEP_FADE_MS = 30_000; // gentle volume fade over the final 30s (in-app audio only)
+const SLEEP_TICK_MS = 250;    // fine cadence so the fade ramp stays smooth
+
+function isInAppPlaying() {
+  return !!(els.audio && els.audio.src && !els.audio.paused);
+}
 function clearSleepTimer() {
   clearTimeout(state.sleepTimer);
   clearInterval(state.sleepTickTimer);
   state.sleepTimer = null;
   state.sleepTickTimer = null;
   state.sleepEndAt = 0;
+  state.sleepFading = false;
+  if (els.audio) els.audio.volume = 1; // undo any in-progress fade
   els.sleepTimer.classList.remove('is-active');
   els.sleepLabel.textContent = '슬립 타이머';
 }
@@ -355,20 +449,36 @@ function setSleepTimer(minutes) {
   clearSleepTimer();
   if (!minutes) return;
   state.sleepEndAt = Date.now() + minutes * 60 * 1000;
+  let lastLabel = '';
   const tick = () => {
     const left = state.sleepEndAt - Date.now();
     if (left <= 0) {
       clearSleepTimer();
       if (state.playing) stopStream();
       els.sleepLabel.textContent = '슬립 종료';
-      setTimeout(() => { els.sleepLabel.textContent = '슬립 타이머'; }, 2500);
+      setTimeout(() => {
+        if (els.sleepLabel.textContent === '슬립 종료') els.sleepLabel.textContent = '슬립 타이머';
+      }, 2500);
       return;
     }
-    els.sleepLabel.textContent = formatRemaining(left);
+    // Ramp the volume down over the final window — only when playing in-app HLS.
+    if (left <= SLEEP_FADE_MS && isInAppPlaying()) {
+      state.sleepFading = true;
+      els.audio.volume = Math.max(0, Math.min(1, left / SLEEP_FADE_MS));
+    } else if (state.sleepFading && !isInAppPlaying()) {
+      state.sleepFading = false;
+      if (els.audio) els.audio.volume = 1;
+    }
+    const label = state.sleepFading
+      ? `페이드아웃 · ${Math.ceil(left / 1000)}초`
+      : formatRemaining(left);
+    if (label !== lastLabel) {
+      els.sleepLabel.textContent = label;
+      lastLabel = label;
+    }
   };
   tick();
-  state.sleepTickTimer = setInterval(tick, 1000);
-  state.sleepTimer = setTimeout(tick, minutes * 60 * 1000);
+  state.sleepTickTimer = setInterval(tick, SLEEP_TICK_MS);
   els.sleepTimer.classList.add('is-active');
 }
 
@@ -488,7 +598,10 @@ function geoError(err) {
     3: '위치 요청 시간 초과',
   };
   setGeoSub(map[err.code] || '위치 오류');
-  setTimeout(() => disableGeo({ silent: true }), 2000);
+  // Only a hard permission denial turns auto-detect off. Transient GPS
+  // errors (no signal / timeout) keep the watch alive and retry, so the
+  // user never has to grant permission again.
+  if (err.code === 1) setTimeout(() => disableGeo({ silent: true }), 2000);
 }
 
 function enableGeo() {
@@ -513,12 +626,39 @@ function disableGeo({ silent = false } = {}) {
   state.geoEnabled = false;
   els.geoToggle.classList.remove('is-on');
   els.geoToggle.setAttribute('aria-checked', 'false');
-  localStorage.removeItem(GEO_KEY);
+  localStorage.setItem(GEO_KEY, '0'); // remember explicit opt-out
   if (state.geoWatchId !== null) {
     navigator.geolocation.clearWatch(state.geoWatchId);
     state.geoWatchId = null;
   }
   if (!silent) setGeoSub('제주↔서귀포 이동 시 주파수 자동 선택');
+}
+
+// Auto-detect location on load. Once permission is granted we never prompt
+// again — we just start detecting. A manual off (GEO_KEY==='0') is respected.
+async function initGeoAuto() {
+  if (!('geolocation' in navigator)) return;
+  const pref = localStorage.getItem(GEO_KEY); // '1' on · '0' user opted out · null unset
+  if (pref === '0') return;
+  if (!('permissions' in navigator) || !navigator.permissions || !navigator.permissions.query) {
+    if (pref === '1') enableGeo();
+    return;
+  }
+  try {
+    const status = await navigator.permissions.query({ name: 'geolocation' });
+    if (status.state === 'granted' || (pref === '1' && status.state !== 'denied')) {
+      enableGeo();
+    }
+    status.onchange = () => {
+      if (status.state === 'granted' && localStorage.getItem(GEO_KEY) !== '0') {
+        if (!state.geoEnabled) enableGeo();
+      } else if (status.state === 'denied') {
+        disableGeo({ silent: true });
+      }
+    };
+  } catch {
+    if (pref === '1') enableGeo();
+  }
 }
 
 if (els.geoToggle) {
@@ -599,7 +739,7 @@ window.addEventListener('online', () => {
     state.data = await loadStations();
     renderGroups(state.data);
     setCurrent(pickDefault(state.data));
-    if (localStorage.getItem(GEO_KEY) === '1') enableGeo();
+    initGeoAuto();
   } catch (err) {
     console.error(err);
     els.heroHint.textContent = '데이터 로드 실패 — 네트워크 확인 후 새로고침';
