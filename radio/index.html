@@ -351,6 +351,23 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 .group__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 @media(min-width:480px){.group__grid{grid-template-columns:repeat(3,1fr)}}
 
+/* Conditional list visibility — hidden once location is known, shown as fallback */
+.regions__reveal{display:none}
+.regions.is-auto .regions__head{display:none}
+.regions.is-auto #groups{display:none}
+.regions.is-auto.is-revealed #groups{display:block;margin-top:12px}
+.regions.is-auto .regions__reveal{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:13px 16px;
+  border:1px solid var(--line);border-radius:12px;
+  background:transparent;color:var(--fg-mute);
+  font-size:.86rem;font-weight:600;
+  transition:color .15s,border-color .15s;
+}
+.regions.is-auto .regions__reveal:hover{color:var(--fg);border-color:var(--fg-dim)}
+.regions__reveal-chevron{width:16px;height:16px;transition:transform .2s ease;flex:none}
+.regions.is-auto.is-revealed .regions__reveal-chevron{transform:rotate(180deg)}
+
 .station{
   background:var(--surface);
   border:1px solid var(--line);
@@ -563,6 +580,11 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
       <div class="regions__title">지역별 주파수</div>
       <div class="regions__sub">탭하여 해당 주파수로 전환</div>
     </div>
+
+    <button class="regions__reveal" id="regionsReveal" type="button" aria-expanded="false" aria-controls="groups">
+      <span id="regionsRevealText">다른 지역 주파수 보기</span>
+      <svg class="regions__reveal-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
 
     <div id="groups"></div>
 
