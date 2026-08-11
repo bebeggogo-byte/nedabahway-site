@@ -681,6 +681,33 @@ async function initGeoAuto() {
   }
 }
 
+// Auto-detect location on load. Once permission is granted we never prompt
+// again — we just start detecting. A manual off (GEO_KEY==='0') is respected.
+async function initGeoAuto() {
+  if (!('geolocation' in navigator)) return;
+  const pref = localStorage.getItem(GEO_KEY); // '1' on · '0' user opted out · null unset
+  if (pref === '0') return;
+  if (!('permissions' in navigator) || !navigator.permissions || !navigator.permissions.query) {
+    if (pref === '1') enableGeo();
+    return;
+  }
+  try {
+    const status = await navigator.permissions.query({ name: 'geolocation' });
+    if (status.state === 'granted' || (pref === '1' && status.state !== 'denied')) {
+      enableGeo();
+    }
+    status.onchange = () => {
+      if (status.state === 'granted' && localStorage.getItem(GEO_KEY) !== '0') {
+        if (!state.geoEnabled) enableGeo();
+      } else if (status.state === 'denied') {
+        disableGeo({ silent: true });
+      }
+    };
+  } catch {
+    if (pref === '1') enableGeo();
+  }
+}
+
 if (els.geoToggle) {
   els.geoToggle.addEventListener('click', () => {
     if (state.geoEnabled) disableGeo();
