@@ -135,7 +135,7 @@ function renderEquity(equity) {
   window.addEventListener('resize', () => chart.resize());
 }
 
-function renderKpis(equity) {
+function renderKpis(equity, heartbeat) {
   const points = equity?.points || [];
   if (points.length === 0) return;
   const last = points[points.length - 1];
@@ -144,7 +144,9 @@ function renderKpis(equity) {
   pnlEl.textContent = (last.pnl > 0 ? '+' : '') + fmtKRW(last.pnl);
   pnlEl.classList.add(last.pnl > 0 ? 'kpi__value--up' : (last.pnl < 0 ? 'kpi__value--dn' : 'kpi__value--neutral'));
   document.getElementById('kpi-pnl-sub').textContent = fmtPct(last.pnl_pct);
-  document.getElementById('kpi-cycles').textContent = points.length;
+  // "실행 횟수"의 단일 출처는 heartbeat.n_cycles_total. heartbeat 미존재 시에만 equity 포인트 수로 폴백.
+  const cycles = (heartbeat && heartbeat.n_cycles_total != null) ? heartbeat.n_cycles_total : points.length;
+  document.getElementById('kpi-cycles').textContent = cycles;
 }
 
 function renderDecisions(decisions) {
@@ -884,7 +886,7 @@ async function load() {
   renderStatus(meta || {});
   renderAgents(meta || {});
   renderEquity(equity || {});
-  renderKpis(equity || {});
+  renderKpis(equity || {}, heartbeat);
   renderDecisions(decisions || {});
   renderCritiques(critiques || {});
   renderHeartbeat(heartbeat);
