@@ -71,6 +71,7 @@ async function render() {
     else if (route === 'read') await viewReader(arg);
     else if (route === 'my') viewMy();
     else if (route === 'settings') viewSettings();
+    else if (route === 'guide') viewGuide();
     else await viewToday();
   } catch (e) {
     main.innerHTML = `<div class="empty">불러오지 못했습니다.<br><small>${esc(e.message || '')}</small><br><br>
@@ -236,6 +237,46 @@ async function viewMy() {
   main.innerHTML = html || '<div class="empty">아직 북마크나 메모가 없습니다.<br>관찰을 읽으며 ☆·✎로 담아 보세요.</div>';
 }
 
+/* ---------- 뷰: SBM 소개·사용법 ---------- */
+function viewGuide() {
+  LS.set('seen', true);              // 첫 진입 안내를 보았음
+  setTab(null); backBtn.hidden = false;
+  topTitle.textContent = 'SBM이란?';
+  main.innerHTML = `
+    <section class="guide">
+      <p class="guide__lead">성경 한 장을 <b>관찰</b>합니다.<br>가르침이 아니라, 본문이 스스로 말하게 합니다.</p>
+
+      <h2 class="guide__h">왜 관찰인가</h2>
+      <p>처음 성경을 펼친 사람도, 오래 읽은 사람도 — 해석을 듣기 전에 <b>본문을 있는 그대로 바라보는 것</b>에서 시작합니다.
+      이해하지 못할 때 곁에서 건네진 한마디처럼, SBM은 답을 서둘러 주지 않고 함께 봅니다.</p>
+
+      <div class="guide__badge">관찰이지 가르침이 아닙니다 · 본문에 없는 것을 더하지 않습니다</div>
+
+      <h2 class="guide__h">한 장을 이렇게 읽습니다</h2>
+      <ol class="guide__steps">
+        <li><b>무대를 본다</b> — 배경·인물·사물·장면을 낱낱이</li>
+        <li><b>결을 느낀다</b> — 첫 느낌, 시작과 끝, 반복되는 것</li>
+        <li><b>깊이 본다</b> — 원어·문학 구조·고대 배경, 그리고 이 장이 무엇을 향해 <b>움직이는가</b></li>
+        <li><b>질문에 머문다</b> — 답을 구하지 않고 열린 물음 앞에 잠시 선다</li>
+        <li><b>종합한다</b> — 요지와 함께, 이 장이 미는 방향과 부름 한 줄</li>
+      </ol>
+      <p class="guide__note">각 장은 진행자와 여섯 관찰자가 함께 본 <b>9단계 관찰</b>의 결이며, 그 위에 책 전체의 흐름(하나님의 의중과 심정)을 얹어 정리합니다.</p>
+
+      <h2 class="guide__h">세 가지 약속</h2>
+      <ul class="guide__promises">
+        <li><span>◍</span> <b>관찰</b> — 해석을 강요하지 않습니다. 판단은 당신의 몫으로 남깁니다.</li>
+        <li><span>◍</span> <b>무계정·무추적</b> — 진도·메모는 이 기기에만 저장됩니다.</li>
+        <li><span>◍</span> <b>오프라인</b> — 한 번 저장하면 어디서나, 네트워크 없이도.</li>
+      </ul>
+
+      <div class="btn-row" style="margin-top:24px">
+        <a class="btn" href="#/today">오늘의 관찰 시작하기 →</a>
+        <a class="btn btn--ghost" href="#/library">성경 목차 보기</a>
+      </div>
+      <p class="guide__foot">SBM · Self Bible Meditation for Maturity — 성숙을 위한 셀프 성경 묵상<br>성경 66권 1189장 전권 관찰 · nedabah.org</p>
+    </section>`;
+}
+
 /* ---------- 뷰: 설정 ---------- */
 function viewSettings() {
   topTitle.textContent = '설정';
@@ -256,6 +297,11 @@ function viewSettings() {
       <div class="set-row"><div><div class="set-row__t">진도·메모 초기화</div>
         <div class="set-row__d">이 기기의 기록만 지웁니다(서버 전송 없음).</div></div>
         <button class="btn btn--ghost" id="resetAll">초기화</button></div>
+    </div>
+    <div class="set-group">
+      <div class="set-row"><div><div class="set-row__t">SBM이란 · 사용법</div>
+        <div class="set-row__d">관찰 방법과 이 앱의 약속을 봅니다.</div></div>
+        <a class="btn btn--ghost" href="#/guide">보기</a></div>
     </div>
     <div class="set-group">
       <div class="set-row" style="display:block">
@@ -409,6 +455,8 @@ function modal(title, inner) {
 
 /* ---------- 부팅 ---------- */
 applySettings();
+// 첫 방문(안내 미열람·진도 없음)이면 소개로 안내한다.
+if (!LS.get('seen') && !state.progress && !location.hash) location.hash = '#/guide';
 window.addEventListener('hashchange', render);
 render();
 if ('serviceWorker' in navigator) {

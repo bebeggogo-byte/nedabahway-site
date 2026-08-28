@@ -24,12 +24,23 @@ page.on('console', m => {
 });
 page.on('requestfailed', r => { if (!/favicon/.test(r.url())) {} });
 
-// 1. 오늘 뷰 로드
+// 0. 첫 진입 → 소개(온보딩)
 await page.goto(BASE, { waitUntil: 'networkidle' });
 await page.evaluate(() => navigator.serviceWorker?.ready);  // SW 활성화 대기
+await page.waitForSelector('.guide__lead', { timeout: 8000 });
+ok('첫 진입 소개(온보딩) 노출', await page.isVisible('.guide__lead'));
+await page.click('.guide a.btn');  // 시작하기 → 오늘
+
+// 1. 오늘 뷰 로드
 await page.waitForSelector('.today-hero__t', { timeout: 8000 });
 ok('오늘 뷰 로드', await page.isVisible('.today-hero__t'));
 ok('관찰 배지 표시', await page.isVisible('.topbar__badge'));
+// 도움말(?) 버튼으로 소개 재열람
+await page.click('.topbar__help');
+await page.waitForSelector('.guide__lead', { timeout: 5000 });
+ok('도움말(?) 소개 재열람', await page.isVisible('.guide__lead'));
+await page.click('.guide a.btn');
+await page.waitForSelector('.today-hero__t', { timeout: 8000 });
 
 // 2. 오늘 → 리더 열기
 await page.click('a.btn');
