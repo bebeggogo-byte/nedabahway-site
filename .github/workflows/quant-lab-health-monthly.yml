@@ -25,7 +25,7 @@ jobs:
       n_candidates: ${{ steps.run.outputs.n_candidates }}
       candidates: ${{ steps.run.outputs.candidates }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -79,7 +79,7 @@ jobs:
     if: needs.evaluate-health.outputs.n_candidates != '0' && needs.evaluate-health.outputs.n_candidates != ''
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: main
 
