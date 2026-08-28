@@ -26,6 +26,9 @@ const els = {
   heroNow: document.getElementById('heroNow'),
   geoToggle: document.getElementById('geoToggle'),
   geoSub: document.getElementById('geoSub'),
+  regions: document.getElementById('regions'),
+  regionsReveal: document.getElementById('regionsReveal'),
+  regionsRevealText: document.getElementById('regionsRevealText'),
 };
 
 const GEO_KEY = 'classicfm.geoEnabled';
@@ -589,6 +592,22 @@ function applyGeoFix(pos) {
   const dist = km < 1 ? `${Math.round(km * 1000)}m` : `${km.toFixed(1)}km`;
   setGeoSub(`${region.city} (${region.freq.toFixed(1)} MHz) · ${dist}`);
   state.geoLastSnapAt = Date.now();
+  // Location known → collapse the region list to a clean hero (list stays
+  // one tap away via the reveal button).
+  setRegionsAuto(true);
+}
+
+// Conditional list visibility: hide the region list once location is known,
+// show it as a fallback when geo is off/denied/unavailable.
+function setRegionsAuto(on) {
+  if (!els.regions) return;
+  const was = els.regions.classList.contains('is-auto');
+  els.regions.classList.toggle('is-auto', on);
+  if ((on && !was) || !on) {
+    els.regions.classList.remove('is-revealed');
+    if (els.regionsReveal) els.regionsReveal.setAttribute('aria-expanded', 'false');
+    if (els.regionsRevealText) els.regionsRevealText.textContent = '다른 지역 주파수 보기';
+  }
 }
 
 function geoError(err) {
@@ -632,6 +651,34 @@ function disableGeo({ silent = false } = {}) {
     state.geoWatchId = null;
   }
   if (!silent) setGeoSub('제주↔서귀포 이동 시 주파수 자동 선택');
+  setRegionsAuto(false); // geo off → show the list as fallback
+}
+
+// Auto-detect location on load. Once permission is granted we never prompt
+// again — we just start detecting. A manual off (GEO_KEY==='0') is respected.
+async function initGeoAuto() {
+  if (!('geolocation' in navigator)) return;
+  const pref = localStorage.getItem(GEO_KEY); // '1' on · '0' user opted out · null unset
+  if (pref === '0') return;
+  if (!('permissions' in navigator) || !navigator.permissions || !navigator.permissions.query) {
+    if (pref === '1') enableGeo();
+    return;
+  }
+  try {
+    const status = await navigator.permissions.query({ name: 'geolocation' });
+    if (status.state === 'granted' || (pref === '1' && status.state !== 'denied')) {
+      enableGeo();
+    }
+    status.onchange = () => {
+      if (status.state === 'granted' && localStorage.getItem(GEO_KEY) !== '0') {
+        if (!state.geoEnabled) enableGeo();
+      } else if (status.state === 'denied') {
+        disableGeo({ silent: true });
+      }
+    };
+  } catch {
+    if (pref === '1') enableGeo();
+  }
 }
 
 // Auto-detect location on load. Once permission is granted we never prompt
@@ -665,6 +712,16 @@ if (els.geoToggle) {
   els.geoToggle.addEventListener('click', () => {
     if (state.geoEnabled) disableGeo();
     else enableGeo();
+  });
+}
+
+if (els.regionsReveal) {
+  els.regionsReveal.addEventListener('click', () => {
+    const revealed = els.regions.classList.toggle('is-revealed');
+    els.regionsReveal.setAttribute('aria-expanded', String(revealed));
+    if (els.regionsRevealText) {
+      els.regionsRevealText.textContent = revealed ? '주파수 목록 접기' : '다른 지역 주파수 보기';
+    }
   });
 }
 
