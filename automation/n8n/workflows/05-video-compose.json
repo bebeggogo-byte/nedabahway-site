@@ -1,0 +1,83 @@
+{
+  "name": "05 — Video Composition",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "minutes", "minutesInterval": 30 }] }
+      },
+      "id": "trigger",
+      "name": "Every 30m",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{$env.NOTION_DB_PIPELINE_RUNS}}",
+        "returnAll": false,
+        "limit": 5,
+        "filterType": "manual",
+        "matchType": "anyFilter",
+        "filters": {
+          "conditions": [
+            { "key": "Status|select", "condition": "equals", "selectValue": "assets_done" }
+          ]
+        }
+      },
+      "id": "fetch-runs",
+      "name": "Fetch assets_done Runs",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "command": "=docker compose exec -T worker python /scripts/video/transcribe.py --run \"{{$json.property_RunID}}\""
+      },
+      "id": "transcribe",
+      "name": "Transcribe (Whisper)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "command": "=docker compose exec -T worker python /scripts/video/compose.py --run \"{{$('Fetch assets_done Runs').item.json.property_RunID}}\""
+      },
+      "id": "compose",
+      "name": "Compose (FFmpeg)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{$('Fetch assets_done Runs').item.json.id}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Status|select", "selectValue": "composed" },
+            { "key": "VideoPath|rich_text", "textContent": "=/media/{{$('Fetch assets_done Runs').item.json.property_RunID}}/short.mp4" }
+          ]
+        }
+      },
+      "id": "mark-composed",
+      "name": "Mark composed",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1200, 300]
+    }
+  ],
+  "connections": {
+    "Every 30m": { "main": [[{ "node": "Fetch assets_done Runs", "type": "main", "index": 0 }]] },
+    "Fetch assets_done Runs": { "main": [[{ "node": "Transcribe (Whisper)", "type": "main", "index": 0 }]] },
+    "Transcribe (Whisper)": { "main": [[{ "node": "Compose (FFmpeg)", "type": "main", "index": 0 }]] },
+    "Compose (FFmpeg)": { "main": [[{ "node": "Mark composed", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "tags": [{ "name": "trot-automation" }, { "name": "phase-2" }]
+}

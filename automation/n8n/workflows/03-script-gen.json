@@ -1,0 +1,164 @@
+{
+  "name": "03 — Script Generation",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "minutes", "minutesInterval": 30 }] }
+      },
+      "id": "trigger",
+      "name": "Every 30m",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{$env.NOTION_DB_RAW_NEWS}}",
+        "returnAll": false,
+        "limit": 5,
+        "filterType": "manual",
+        "matchType": "anyFilter",
+        "filters": {
+          "conditions": [
+            { "key": "Status|select", "condition": "equals", "selectValue": "classified" }
+          ]
+        },
+        "options": { "sort": { "sortValue": [{ "key": "PublishedAt", "direction": "descending" }] } }
+      },
+      "id": "fetch-classified",
+      "name": "Fetch Classified",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "const { randomUUID } = require('crypto');\nfor (const item of items) {\n  item.json.run_id = randomUUID();\n}\nreturn items;"
+      },
+      "id": "assign-run",
+      "name": "Assign RunID",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": "={{$env.NOTION_DB_PIPELINE_RUNS}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "RunID|title", "title": "={{$json.run_id}}" },
+            { "key": "SourceURL|url", "urlValue": "={{$json.property_URL}}" },
+            { "key": "Status|select", "selectValue": "pending" },
+            { "key": "ScriptModel|rich_text", "textContent": "={{$env.CLAUDE_SCRIPT_MODEL}}" },
+            { "key": "CreatedAt|date", "date": "={{$now.toISO()}}" }
+          ]
+        }
+      },
+      "id": "create-run",
+      "name": "Create pipeline_runs Row",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "command": "=docker compose exec -T worker python /scripts/llm/script_generator.py --source \"{{$('Assign RunID').item.json.property_URL}}\" --run-id \"{{$('Assign RunID').item.json.run_id}}\" --retry 1"
+      },
+      "id": "run-generator",
+      "name": "Run script_generator.py",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1200, 300]
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "for (const item of items) {\n  const out = (item.json.stdout || '').trim();\n  try {\n    item.json.result = JSON.parse(out.split('\\n').pop());\n  } catch (e) {\n    item.json.result = { error: e.message, raw: out };\n  }\n}\nreturn items;"
+      },
+      "id": "parse-result",
+      "name": "Parse Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1440, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "typeValidation": "loose" },
+          "conditions": [
+            {
+              "leftValue": "={{$json.result.quality_score}}",
+              "rightValue": 0.7,
+              "operator": { "type": "number", "operation": "gte" }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-pass",
+      "name": "If quality >= 0.70",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1680, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{$('Create pipeline_runs Row').item.json.id}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Status|select", "selectValue": "script_done" },
+            { "key": "QualityScore|number", "numberValue": "={{$json.result.quality_score}}" }
+          ]
+        }
+      },
+      "id": "mark-script-done",
+      "name": "Mark script_done",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1920, 200]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{$('Create pipeline_runs Row').item.json.id}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Status|select", "selectValue": "failed" },
+            { "key": "FailedAtStep|select", "selectValue": "script" },
+            { "key": "QualityScore|number", "numberValue": "={{$json.result.quality_score || 0}}" }
+          ]
+        }
+      },
+      "id": "mark-failed",
+      "name": "Mark failed",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1920, 400]
+    }
+  ],
+  "connections": {
+    "Every 30m": { "main": [[{ "node": "Fetch Classified", "type": "main", "index": 0 }]] },
+    "Fetch Classified": { "main": [[{ "node": "Assign RunID", "type": "main", "index": 0 }]] },
+    "Assign RunID": { "main": [[{ "node": "Create pipeline_runs Row", "type": "main", "index": 0 }]] },
+    "Create pipeline_runs Row": { "main": [[{ "node": "Run script_generator.py", "type": "main", "index": 0 }]] },
+    "Run script_generator.py": { "main": [[{ "node": "Parse Result", "type": "main", "index": 0 }]] },
+    "Parse Result": { "main": [[{ "node": "If quality >= 0.70", "type": "main", "index": 0 }]] },
+    "If quality >= 0.70": {
+      "main": [
+        [{ "node": "Mark script_done", "type": "main", "index": 0 }],
+        [{ "node": "Mark failed", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "tags": [{ "name": "trot-automation" }, { "name": "phase-2" }]
+}

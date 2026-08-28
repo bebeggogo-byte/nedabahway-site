@@ -1,0 +1,93 @@
+{
+  "name": "08 — Takedown",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "takedown",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "webhook",
+      "name": "Operator Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "command": "=docker compose exec -T worker python -c \"from googleapiclient.discovery import build; from google.oauth2.credentials import Credentials; import os, json; c=Credentials.from_authorized_user_file(os.environ['YOUTUBE_TOKEN'], ['https://www.googleapis.com/auth/youtube']); y=build('youtube','v3',credentials=c); r=y.videos().update(part='status', body={'id':'{{$json.body.video_id}}','status':{'privacyStatus':'private'}}).execute(); print(json.dumps({'video_id': r['id'], 'status': r['status']['privacyStatus']}))\""
+      },
+      "id": "set-private",
+      "name": "Set Private",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{$env.NOTION_DB_PIPELINE_RUNS}}",
+        "returnAll": false,
+        "limit": 1,
+        "filterType": "manual",
+        "matchType": "anyFilter",
+        "filters": {
+          "conditions": [
+            {
+              "key": "YouTubeVideoID|rich_text",
+              "condition": "equals",
+              "richTextValue": "={{$('Operator Webhook').item.json.body.video_id}}"
+            }
+          ]
+        }
+      },
+      "id": "find-run",
+      "name": "Find pipeline_runs Row",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{$json.id}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Status|select", "selectValue": "archived" }
+          ]
+        }
+      },
+      "id": "mark-archived",
+      "name": "Mark archived",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.ALERT_WEBHOOK}}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"[TROT-AUTO takedown] Video {{$('Operator Webhook').item.json.body.video_id}} set to private. Reason: {{$('Operator Webhook').item.json.body.reason || 'unspecified'}}\"\n}"
+      },
+      "id": "notify",
+      "name": "Notify Operator",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 300]
+    }
+  ],
+  "connections": {
+    "Operator Webhook": { "main": [[{ "node": "Set Private", "type": "main", "index": 0 }]] },
+    "Set Private": { "main": [[{ "node": "Find pipeline_runs Row", "type": "main", "index": 0 }]] },
+    "Find pipeline_runs Row": { "main": [[{ "node": "Mark archived", "type": "main", "index": 0 }]] },
+    "Mark archived": { "main": [[{ "node": "Notify Operator", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "tags": [{ "name": "trot-automation" }, { "name": "phase-2" }, { "name": "legal" }]
+}

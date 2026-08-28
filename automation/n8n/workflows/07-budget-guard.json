@@ -1,0 +1,131 @@
+{
+  "name": "07 — Budget Guard",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "hours", "hoursInterval": 1 }] }
+      },
+      "id": "trigger",
+      "name": "Every 1h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{$env.NOTION_DB_PIPELINE_RUNS}}",
+        "returnAll": true,
+        "filterType": "manual",
+        "matchType": "anyFilter",
+        "filters": {
+          "conditions": [
+            {
+              "key": "CreatedAt|date",
+              "condition": "past_month"
+            }
+          ]
+        }
+      },
+      "id": "fetch-runs",
+      "name": "Fetch Last 30d Runs",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "const USD_KRW = 1380;\nlet totalUSD = 0;\nfor (const item of items) {\n  totalUSD += (item.json.property_CostUSD || 0);\n}\nconst totalKRW = totalUSD * USD_KRW;\nconst max = Number(process.env.BUDGET_MAX_KRW || 500000);\nconst haltPct = Number(process.env.BUDGET_HALT_PCT || 90);\nconst pct = (totalKRW / max) * 100;\nreturn [{ json: { totalUSD, totalKRW, pct, max, haltPct, status: pct >= haltPct ? 'halt' : pct >= 85 ? 'warn85' : pct >= 70 ? 'warn70' : 'ok' } }];"
+      },
+      "id": "aggregate",
+      "name": "Aggregate Costs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "typeValidation": "loose" },
+          "conditions": [
+            {
+              "leftValue": "={{$json.status}}",
+              "rightValue": "ok",
+              "operator": { "type": "string", "operation": "notEqual" }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-not-ok",
+      "name": "If not OK",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.ALERT_WEBHOOK}}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"[TROT-AUTO budget {{$json.status}}] {{Math.round($json.pct)}}% of ₩{{$json.max}} consumed (${{$json.totalUSD.toFixed(2)}} ≈ ₩{{Math.round($json.totalKRW)}})\"\n}"
+      },
+      "id": "alert",
+      "name": "Alert Webhook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "typeValidation": "loose" },
+          "conditions": [
+            {
+              "leftValue": "={{$json.status}}",
+              "rightValue": "halt",
+              "operator": { "type": "string", "operation": "equal" }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-halt",
+      "name": "If halt",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1200, 400]
+    },
+    {
+      "parameters": {
+        "command": "=touch /media/.budget_halt"
+      },
+      "id": "halt-flag",
+      "name": "Create halt flag",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1440, 400]
+    }
+  ],
+  "connections": {
+    "Every 1h": { "main": [[{ "node": "Fetch Last 30d Runs", "type": "main", "index": 0 }]] },
+    "Fetch Last 30d Runs": { "main": [[{ "node": "Aggregate Costs", "type": "main", "index": 0 }]] },
+    "Aggregate Costs": { "main": [[{ "node": "If not OK", "type": "main", "index": 0 }]] },
+    "If not OK": {
+      "main": [
+        [
+          { "node": "Alert Webhook", "type": "main", "index": 0 },
+          { "node": "If halt", "type": "main", "index": 0 }
+        ],
+        []
+      ]
+    },
+    "If halt": { "main": [[{ "node": "Create halt flag", "type": "main", "index": 0 }], []] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "tags": [{ "name": "trot-automation" }, { "name": "phase-2" }]
+}

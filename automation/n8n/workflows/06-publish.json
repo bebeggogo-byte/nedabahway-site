@@ -1,0 +1,90 @@
+{
+  "name": "06 — Publish (scheduled slots)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "cronExpression", "expression": "0 7,10,13,17,21 * * *" }
+          ]
+        }
+      },
+      "id": "trigger",
+      "name": "07/10/13/17/21 KST",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{$env.NOTION_DB_PIPELINE_RUNS}}",
+        "returnAll": false,
+        "limit": 1,
+        "filterType": "manual",
+        "matchType": "anyFilter",
+        "filters": {
+          "conditions": [
+            { "key": "Status|select", "condition": "equals", "selectValue": "composed" }
+          ]
+        },
+        "options": { "sort": { "sortValue": [{ "key": "CreatedAt", "direction": "ascending" }] } }
+      },
+      "id": "fetch-next",
+      "name": "Fetch Next composed Run",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "command": "=docker compose exec -T worker python /scripts/youtube/uploader.py --run \"{{$json.property_RunID}}\" --visibility public"
+      },
+      "id": "upload",
+      "name": "YouTube Upload",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "for (const item of items) {\n  const out = (item.json.stdout || '').trim();\n  try {\n    item.json.result = JSON.parse(out.split('\\n').pop());\n  } catch (e) {\n    item.json.result = { error: e.message, raw: out };\n  }\n}\nreturn items;"
+      },
+      "id": "parse-upload",
+      "name": "Parse Upload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{$('Fetch Next composed Run').item.json.id}}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Status|select", "selectValue": "uploaded" },
+            { "key": "YouTubeVideoID|rich_text", "textContent": "={{$json.result.video_id}}" },
+            { "key": "PublishedAt|date", "date": "={{$now.toISO()}}" }
+          ]
+        }
+      },
+      "id": "mark-uploaded",
+      "name": "Mark uploaded",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1200, 300]
+    }
+  ],
+  "connections": {
+    "07/10/13/17/21 KST": { "main": [[{ "node": "Fetch Next composed Run", "type": "main", "index": 0 }]] },
+    "Fetch Next composed Run": { "main": [[{ "node": "YouTube Upload", "type": "main", "index": 0 }]] },
+    "YouTube Upload": { "main": [[{ "node": "Parse Upload", "type": "main", "index": 0 }]] },
+    "Parse Upload": { "main": [[{ "node": "Mark uploaded", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1", "timezone": "Asia/Seoul" },
+  "pinData": {},
+  "tags": [{ "name": "trot-automation" }, { "name": "phase-2" }]
+}
