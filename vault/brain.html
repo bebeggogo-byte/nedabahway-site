@@ -60,8 +60,7 @@
     top: 0; left: 0; right: 0;
     padding: 14px 20px;
     padding-top: max(14px, env(safe-area-inset-top));
-    background: linear-gradient(to bottom, rgba(5, 8, 16, 0.95), rgba(5, 8, 16, 0.6) 70%, transparent);
-    backdrop-filter: blur(8px);
+    background: linear-gradient(to bottom, rgba(5, 8, 16, 0.98), rgba(5, 8, 16, 0.85) 70%, rgba(5, 8, 16, 0));
     z-index: 100;
     display: flex;
     justify-content: space-between;
@@ -120,8 +119,7 @@
     position: fixed;
     top: 80px;
     left: 16px;
-    background: rgba(10, 14, 26, 0.85);
-    backdrop-filter: blur(10px);
+    background: rgba(10, 14, 26, 0.96);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 10px;
     padding: 14px 16px;
@@ -161,8 +159,7 @@
     top: 80px;
     right: 16px;
     width: 280px;
-    background: rgba(10, 14, 26, 0.92);
-    backdrop-filter: blur(12px);
+    background: rgba(10, 14, 26, 0.97);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 10px;
     padding: 18px;
@@ -312,20 +309,40 @@
     pointer-events: none;
     fill: var(--cream);
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    text-shadow: 0 0 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.7);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: -0.1px;
+    paint-order: stroke;
+    stroke: rgba(5, 8, 16, 0.85);
+    stroke-width: 3px;
+    stroke-linejoin: round;
   }
   .node.active circle.glow {
+    transform-box: fill-box;
+    transform-origin: center;
     animation: synapseGlow 2.4s ease-in-out infinite;
+    will-change: opacity, transform;
   }
   @keyframes synapseGlow {
-    0%, 100% { opacity: 0.4; r: var(--glow-min); }
-    50% { opacity: 0.85; r: var(--glow-max); }
+    0%, 100% { opacity: 0.4; transform: scale(0.85); }
+    50%      { opacity: 0.85; transform: scale(1.25); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .node.active circle.glow { animation: none; opacity: 0.55; }
   }
   .link {
     stroke-linecap: round;
     transition: stroke-opacity 0.2s, stroke-width 0.2s;
+  }
+  .link--active {
+    stroke-dasharray: 4 6;
+    animation: dashflow 1.2s linear infinite;
+  }
+  @keyframes dashflow {
+    to { stroke-dashoffset: -10; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .link--active { animation: none; stroke-dasharray: none; }
   }
   .link-pulse {
     fill: var(--teal);
@@ -334,7 +351,8 @@
   }
   .node.dim circle, .node.dim text { opacity: 0.18; }
   .link.dim { stroke-opacity: 0.05; }
-  .node.highlight circle.core { filter: drop-shadow(0 0 8px currentColor); }
+  .node.highlight circle.core { stroke: var(--cream); stroke-width: 2.5px; }
+  .node.highlight circle.glow { opacity: 0.9 !important; }
 </style>
   <link rel="stylesheet" href="/assets/global-fonts.css">
   <link rel="stylesheet" href="/assets/global-nav.css">
@@ -442,8 +460,8 @@ function setupGradients() {
   for (const lobe of DATA.lobes) {
     const grad = defs.append('radialGradient')
       .attr('id', 'glow-' + lobe.id);
-    grad.append('stop').attr('offset', '0%').attr('stop-color', lobe.color).attr('stop-opacity', 0.6);
-    grad.append('stop').attr('offset', '60%').attr('stop-color', lobe.color).attr('stop-opacity', 0.15);
+    grad.append('stop').attr('offset', '0%').attr('stop-color', lobe.color).attr('stop-opacity', 0.55);
+    grad.append('stop').attr('offset', '60%').attr('stop-color', lobe.color).attr('stop-opacity', 0.13);
     grad.append('stop').attr('offset', '100%').attr('stop-color', lobe.color).attr('stop-opacity', 0);
   }
 
@@ -452,6 +470,26 @@ function setupGradients() {
   brainGrad.append('stop').attr('offset', '0%').attr('stop-color', '#1f2740').attr('stop-opacity', 0.4);
   brainGrad.append('stop').attr('offset', '70%').attr('stop-color', '#0a0e1a').attr('stop-opacity', 0.2);
   brainGrad.append('stop').attr('offset', '100%').attr('stop-color', '#0a0e1a').attr('stop-opacity', 0);
+}
+
+// Per-edge linear gradient (source-lobe → target-lobe color).
+// Endpoints are updated each tick so the gradient follows the curve.
+let edgeGrads = null;
+function buildEdgeGradients(links) {
+  const lobeColor = id => {
+    const lobe = DATA.lobes.find(l => l.id === id);
+    return lobe ? lobe.color : '#888';
+  };
+  const sel = defs.selectAll('linearGradient.edge-grad').data(links);
+  const enter = sel.enter().append('linearGradient')
+    .attr('class', 'edge-grad')
+    .attr('id', (_, i) => 'edge-grad-' + i)
+    .attr('gradientUnits', 'userSpaceOnUse');
+  enter.append('stop').attr('offset', '0%')
+    .attr('stop-color', d => lobeColor(nodeMap[d.source.id || d.source].lobe));
+  enter.append('stop').attr('offset', '100%')
+    .attr('stop-color', d => lobeColor(nodeMap[d.target.id || d.target].lobe));
+  edgeGrads = enter.merge(sel);
 }
 
 function renderLegend() {
@@ -555,34 +593,37 @@ function renderGraph() {
   const g = svg.append('g').attr('class', 'zoom-layer');
   svg.call(d3.zoom().scaleExtent([0.4, 3]).on('zoom', e => g.attr('transform', e.transform)));
 
-  // Links (시냅스)
+  // Per-edge bicolor gradients (must be in defs before <path stroke="url(#...)">).
+  buildEdgeGradients(links);
+
+  // Links (시냅스) — bicolor gradient stroke + soft curve
   const linkLayer = g.append('g').attr('class', 'links');
-  const link = linkLayer.selectAll('line').data(links).enter().append('line')
-    .attr('class', 'link')
-    .attr('stroke', d => {
-      const s = nodeMap[d.source], t = nodeMap[d.target];
-      const lobe = DATA.lobes.find(l => l.id === s.lobe);
-      return lobe ? lobe.color : '#666';
+  const link = linkLayer.selectAll('path').data(links).enter().append('path')
+    .attr('class', d => {
+      const s = nodeMap[d.source.id || d.source];
+      const t = nodeMap[d.target.id || d.target];
+      return 'link' + (s && t && s.active && t.active ? ' link--active' : '');
     })
-    .attr('stroke-width', d => 0.6 + d.weight * 0.6)
-    .attr('stroke-opacity', 0.35);
+    .attr('fill', 'none')
+    .attr('stroke', (_, i) => `url(#edge-grad-${i})`)
+    .attr('stroke-width', d => 0.9 + d.weight * 0.8)
+    .attr('stroke-opacity', 0.6)
+    .attr('stroke-linecap', 'round');
 
   // Nodes (뉴런)
   const nodeLayer = g.append('g').attr('class', 'nodes');
   const node = nodeLayer.selectAll('g').data(DATA.nodes).enter().append('g')
-    .attr('class', d => 'node' + (d.active ? ' active' : ''))
-    .style('--glow-min', d => (d.size + 4) + 'px')
-    .style('--glow-max', d => (d.size + 14) + 'px');
+    .attr('class', d => 'node' + (d.active ? ' active' : ''));
 
-  // Glow halo
+  // Glow halo (tighter radius — scale animation handles breathing)
   node.append('circle')
     .attr('class', 'glow')
-    .attr('r', d => d.size + 4)
+    .attr('r', d => d.size + 6)
     .attr('fill', d => {
       const lobe = DATA.lobes.find(l => l.id === d.lobe);
       return lobe ? lobe.color : '#fff';
     })
-    .attr('opacity', d => d.active ? 0.6 : 0.25);
+    .attr('opacity', d => d.active ? 0.45 : 0.18);
 
   // Core circle (뉴런 본체)
   node.append('circle')
@@ -617,11 +658,12 @@ function renderGraph() {
 
   // Force simulation (인력 → 뇌엽 위치, 척력 → 노드 간격)
   simulation = d3.forceSimulation(DATA.nodes)
+    .alphaDecay(0.05)
+    .velocityDecay(0.45)
     .force('link', d3.forceLink(links).id(d => d.id).distance(d => 50 + (4 - d.weight) * 18).strength(0.3))
     .force('charge', d3.forceManyBody().strength(-180))
     .force('collision', d3.forceCollide().radius(d => d.size + 14))
     .force('lobe', alpha => {
-      // 각 노드를 자기 lobe 중심으로 끌어당김
       for (const n of DATA.nodes) {
         if (n.fx_target != null) {
           n.vx += (n.fx_target - n.x) * 0.04 * alpha;
@@ -630,44 +672,94 @@ function renderGraph() {
       }
     })
     .on('tick', () => {
-      link
-        .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
-        .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+      link.attr('d', d => {
+        const sx = d.source.x, sy = d.source.y;
+        const tx = d.target.x, ty = d.target.y;
+        const dx = tx - sx, dy = ty - sy;
+        const len = Math.sqrt(dx * dx + dy * dy) || 1;
+        const bow = Math.min(28, len * 0.12);
+        const mx = (sx + tx) / 2 - (dy / len) * bow;
+        const my = (sy + ty) / 2 + (dx / len) * bow;
+        return `M${sx},${sy} Q${mx},${my} ${tx},${ty}`;
+      });
+      if (edgeGrads) {
+        edgeGrads
+          .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+          .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+      }
       node.attr('transform', d => `translate(${d.x},${d.y})`);
     });
 
-  // Synapse pulse (활성 부서 → 연결 부서로 데이터 흐름)
-  if (pulseEnabled) startPulses(g, links);
+  // Cache for toggling pulses without re-rendering the whole SVG
+  graphLayer = g;
+  graphLinks = links;
+
+  // Synapse pulse (활성 부서 → 연결 부서)
+  if (pulseEnabled && !prefersReducedMotion()) startPulses();
 }
 
-function startPulses(g, links) {
-  const activeLinks = links.filter(l => {
+let graphLayer = null;
+let graphLinks = null;
+let pulseRafHandle = null;
+let pulseLastEmit = 0;
+let activePulseCount = 0;
+const PULSE_INTERVAL_MS = 320;
+const PULSE_MAX_CONCURRENT = 6;
+const PULSE_DURATION_MS = 900;
+
+function prefersReducedMotion() {
+  return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function startPulses() {
+  stopPulses();
+  if (!graphLayer || !graphLinks) return;
+  const activeLinks = graphLinks.filter(l => {
     const s = nodeMap[l.source.id || l.source];
     return s && s.active;
   });
   if (!activeLinks.length) return;
 
-  function emit() {
-    if (!pulseEnabled) return;
-    const link = activeLinks[Math.floor(Math.random() * activeLinks.length)];
-    const s = nodeMap[link.source.id || link.source];
-    const t = nodeMap[link.target.id || link.target];
-    if (!s || !t) return;
-    const lobe = DATA.lobes.find(l => l.id === s.lobe);
-    const color = lobe ? lobe.color : '#1ABC9C';
-    const pulse = g.insert('circle', '.nodes')
-      .attr('r', 3)
-      .attr('fill', color)
-      .attr('opacity', 0.95)
-      .attr('cx', s.x).attr('cy', s.y)
-      .style('filter', `drop-shadow(0 0 6px ${color})`);
-    pulse.transition().duration(900).ease(d3.easeQuadInOut)
-      .attr('cx', t.x).attr('cy', t.y)
-      .attr('opacity', 0)
-      .on('end', () => pulse.remove());
+  pulseLastEmit = 0;
+  function frame(now) {
+    if (!pulseEnabled || document.hidden) {
+      pulseRafHandle = requestAnimationFrame(frame);
+      return;
+    }
+    if (now - pulseLastEmit >= PULSE_INTERVAL_MS && activePulseCount < PULSE_MAX_CONCURRENT) {
+      pulseLastEmit = now;
+      const link = activeLinks[Math.floor(Math.random() * activeLinks.length)];
+      const s = nodeMap[link.source.id || link.source];
+      const t = nodeMap[link.target.id || link.target];
+      if (s && t) {
+        const lobe = DATA.lobes.find(l => l.id === s.lobe);
+        const color = lobe ? lobe.color : '#1ABC9C';
+        activePulseCount++;
+        const pulse = graphLayer.insert('circle', '.nodes')
+          .attr('class', 'link-pulse-dot')
+          .attr('r', 4)
+          .attr('fill', color)
+          .attr('stroke', color)
+          .attr('stroke-width', 0.8)
+          .attr('stroke-opacity', 0.6)
+          .attr('opacity', 0.95)
+          .attr('cx', s.x).attr('cy', s.y);
+        pulse.transition().duration(PULSE_DURATION_MS).ease(d3.easeQuadInOut)
+          .attr('cx', t.x).attr('cy', t.y)
+          .attr('opacity', 0)
+          .on('end', () => { pulse.remove(); activePulseCount--; });
+      }
+    }
+    pulseRafHandle = requestAnimationFrame(frame);
   }
+  pulseRafHandle = requestAnimationFrame(frame);
+}
 
-  setInterval(emit, 280);
+function stopPulses() {
+  if (pulseRafHandle) {
+    cancelAnimationFrame(pulseRafHandle);
+    pulseRafHandle = null;
+  }
 }
 
 function highlightNode(d, on) {
@@ -729,7 +821,11 @@ document.getElementById('btnPulse').onclick = () => {
   pulseEnabled = !pulseEnabled;
   document.getElementById('btnPulse').classList.toggle('active', pulseEnabled);
   document.getElementById('btnPulse').textContent = pulseEnabled ? '시냅스 ON' : '시냅스 OFF';
-  if (pulseEnabled) renderGraph(); // 재시작
+  if (pulseEnabled && !prefersReducedMotion()) {
+    startPulses();
+  } else {
+    stopPulses();
+  }
 };
 document.getElementById('btnPulse').classList.add('active');
 
@@ -739,6 +835,26 @@ document.getElementById('btnReset').onclick = () => {
   dimMode = null;
   applyDim();
 };
+
+// Pause work when tab is hidden; resume gently when visible.
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    if (simulation) simulation.stop();
+  } else {
+    if (simulation) simulation.alpha(0.05).restart();
+  }
+});
+
+// Honor user's reduced-motion preference at runtime.
+if (window.matchMedia) {
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const apply = () => {
+    if (mq.matches) stopPulses();
+    else if (pulseEnabled) startPulses();
+  };
+  if (mq.addEventListener) mq.addEventListener('change', apply);
+  else if (mq.addListener) mq.addListener(apply);
+}
 
 window.addEventListener('resize', () => {
   svg.attr('width', W()).attr('height', H());
