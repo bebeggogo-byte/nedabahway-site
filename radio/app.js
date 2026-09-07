@@ -46,6 +46,7 @@ const state = {
   wantsPlayback: false,
   userInitiatedStop: false,
   pausedAt: 0,
+  seekLiveOnPlaying: false, // one-shot: re-sync to the live edge on the next 'playing'
   loadTimer: null,
   sleepTimer: null,
   sleepTickTimer: null,
@@ -278,6 +279,8 @@ function stopStream() {
   clearTimeout(state.loadTimer);
   state.wantsPlayback = false;
   clearResumeWatch();
+  clearResumeStall();
+  state.seekLiveOnPlaying = false;
   els.playerFrameInner.replaceChildren();
   closePlayerDock();
   if (els.audio) {
@@ -326,6 +329,11 @@ if (els.audio) {
     state.userInitiatedStop = false;
     state.pausedAt = 0;
     clearResumeWatch();
+    clearResumeStall(); // playback confirmed → cancel the plan-B source reload
+    if (state.seekLiveOnPlaying) {
+      state.seekLiveOnPlaying = false;
+      seekToLiveEdge();
+    }
     setPlayingUI(true);
     if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
   });
@@ -380,15 +388,80 @@ async function reacquireStream() {
   if (d.audioUrlAlt) await tryAudioSrc(d.audioUrlAlt);
 }
 
+// ===== Resume without releasing the lock-screen binding (iOS) =====
+//
+// iOS keeps the lock-screen / Now Playing controls bound to this page only while
+// the <audio> element still holds its media resource. Re-assigning src to
+// "reconnect" runs the media load algorithm, which EMPTIES the element for a
+// moment — iOS drops the binding and the remote play command falls through to
+// the default music app (Apple Music). So on resume we never touch src first:
+// play() the existing element (binding kept), then re-sync to the live edge by
+// seeking once playback is confirmed. Only if playback genuinely does not start
+// do we fall back to reloading the source (the previous behaviour), as plan B.
+let resumeStallTimer = null;
+
+function clearResumeStall() {
+  clearTimeout(resumeStallTimer);
+  resumeStallTimer = null;
+}
+
+function hasLoadedResource() {
+  const a = els.audio;
+  return !!(a && a.currentSrc && a.networkState !== HTMLMediaElement.NETWORK_EMPTY);
+}
+
+// Jump a resumed live stream to the live edge without reloading the source.
+function seekToLiveEdge() {
+  const a = els.audio;
+  if (!a) return;
+  try {
+    const s = a.seekable;
+    if (!s || !s.length) return;
+    const end = s.end(s.length - 1);
+    if (!Number.isFinite(end)) return;
+    const target = Math.max(0, end - 2); // a hair behind the edge avoids stalling on the last segment
+    if (Math.abs(a.currentTime - target) > 3) a.currentTime = target;
+  } catch { /* seeking can be unsupported mid-load; harmless */ }
+}
+
+async function resumeLive() {
+  const a = els.audio;
+  if (!state.data || !a) return;
+  state.wantsPlayback = true;
+  state.userInitiatedStop = false;
+  if (!hasLoadedResource()) { startStream(); return; } // nothing loaded → full start
+  clearTimeout(state.loadTimer);
+  setPlayingUI(false, { loading: true });
+  state.seekLiveOnPlaying = true;
+  clearResumeStall();
+  // Plan B watchdog: if it does not actually start playing, reload the source.
+  resumeStallTimer = setTimeout(() => {
+    resumeStallTimer = null;
+    if (state.wantsPlayback && (a.paused || a.readyState < HTMLMediaElement.HAVE_FUTURE_DATA)) {
+      state.seekLiveOnPlaying = false;
+      reacquireStream();
+    }
+  }, 4000);
+  try {
+    const p = a.play();
+    if (p && typeof p.then === 'function') await p;
+  } catch (err) {
+    console.warn('resume play() failed, reloading source', err);
+    clearResumeStall();
+    state.seekLiveOnPlaying = false;
+    reacquireStream();
+  }
+}
+
 // Resume ONLY when the user is actually back in the app. The document.hidden
 // guard is the key fix: while a call or another audio app is active the page is
 // backgrounded (hidden), so we never resume and never play over it.
 function attemptResume() {
   if (!state.wantsPlayback || !els.audio) return;
   if (document.hidden || !navigator.onLine || !els.audio.paused) return;
-  // Reconnect to the live edge — resuming a paused live HLS element with play()
-  // is unreliable (stalls with no audio), so always reload the source.
-  reacquireStream();
+  // Resume on the existing element and re-sync to the live edge by seeking; the
+  // source is only reloaded if playback fails to start (see resumeLive).
+  resumeLive();
 }
 
 // The only resume trigger: the user returned to the app (foreground / focus /
@@ -792,11 +865,11 @@ function setupMediaSession() {
   if (!('mediaSession' in navigator)) return;
   const ms = navigator.mediaSession;
   ms.setActionHandler('play', () => {
-    // Re-acquire the live stream (reconnect to the live edge). Resuming a paused
-    // live HLS element with play() often stalls with no audio, so always reload.
-    state.wantsPlayback = true;
-    state.userInitiatedStop = false;
-    startStream();
+    // Resume WITHOUT reloading the source: reloading empties the element and iOS
+    // then hands the lock-screen play command to Apple Music. resumeLive() plays
+    // the existing element (binding kept), re-syncs to the live edge, and only
+    // reloads if playback fails to start.
+    resumeLive();
   });
   ms.setActionHandler('pause', () => {
     // Deliberate user pause (lock screen / headphones / car). Clear the intent
@@ -806,6 +879,8 @@ function setupMediaSession() {
     state.wantsPlayback = false;
     state.userInitiatedStop = true;
     clearResumeWatch();
+    clearResumeStall(); // a pending plan-B reload must not fire after the user paused
+    state.seekLiveOnPlaying = false;
     if (els.audio && !els.audio.paused) els.audio.pause();
     navigator.mediaSession.playbackState = 'paused';
   });
