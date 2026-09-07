@@ -47,6 +47,7 @@ const state = {
   userInitiatedStop: false,
   pausedAt: 0,
   seekLiveOnPlaying: false, // one-shot: re-sync to the live edge on the next 'playing'
+  reloadWhenVisible: false, // a source reload was needed while hidden; do it on foreground
   loadTimer: null,
   sleepTimer: null,
   sleepTickTimer: null,
@@ -281,6 +282,7 @@ function stopStream() {
   clearResumeWatch();
   clearResumeStall();
   state.seekLiveOnPlaying = false;
+  state.reloadWhenVisible = false;
   els.playerFrameInner.replaceChildren();
   closePlayerDock();
   if (els.audio) {
@@ -374,6 +376,17 @@ if (els.audio) {
     // Real progress after a resume → the stream is alive; cancel the plan-B reload.
     if (resumeStartTime != null && els.audio.currentTime - resumeStartTime > 0.5) clearResumeStall();
   });
+  els.audio.addEventListener('progress', () => {
+    // During a resume, the moment the live playlist refreshes (seekable moves on),
+    // re-sync to the live edge by seeking — no reload, so the binding survives.
+    if (resumeStartTime == null) return;
+    const end = seekableEnd();
+    if (end > resumeSeekEnd + 1) {
+      resumeSeekEnd = end;
+      seekToLiveEdge();
+      resumeStartTime = els.audio.currentTime;
+    }
+  });
 }
 
 // ===== Auto-resume after interruptions (calls, other media) =====
@@ -405,6 +418,7 @@ async function reacquireStream() {
 // do we fall back to reloading the source (the previous behaviour), as plan B.
 let resumeStallTimer = null;
 let resumeStartTime = null; // currentTime when the resume began (progress baseline)
+let resumeSeekEnd = -1;     // seekable end at resume; a later increase = playlist refreshed
 
 function clearResumeStall() {
   clearTimeout(resumeStallTimer);
@@ -440,7 +454,13 @@ async function resumeLive() {
   if (!state.data || !a) return;
   state.wantsPlayback = true;
   state.userInitiatedStop = false;
-  if (!hasLoadedResource()) { startStream(); return; } // nothing loaded → full start
+  if (!hasLoadedResource()) {
+    // Nothing loaded (after stop / first run). A fresh load cannot start while the
+    // page is hidden (WebKit background restriction) — defer it to the foreground.
+    if (document.hidden) { state.reloadWhenVisible = true; return; }
+    startStream();
+    return;
+  }
   clearTimeout(state.loadTimer);
   setPlayingUI(false, { loading: true });
   state.seekLiveOnPlaying = true;
@@ -449,29 +469,58 @@ async function resumeLive() {
     const p = a.play();
     if (p && typeof p.then === 'function') await p;
   } catch (err) {
-    console.warn('resume play() failed, reloading source', err);
+    console.warn('resume play() failed', err);
     state.seekLiveOnPlaying = false;
-    reacquireStream();
+    deferOrReload();
     return;
   }
   // If the playlist is still fresh, jump to the live edge right away (no reload).
   seekToLiveEdge();
-  // Plan B watchdog — PROGRESS-based. A stale live HLS on iOS "resumes" (paused=false,
-  // 'playing' fires, readyState stays high) yet never advances, so paused/readyState/
-  // events are not trustworthy; only currentTime is. If it has not moved after 3s,
-  // reload the source (the previous behaviour). By now the remote play command has
-  // already been consumed by this page, so the reload does not hand off to Apple Music.
+  // Progress watchdog. A stale live HLS "resumes" (paused=false, 'playing' fires,
+  // readyState stays high) yet never advances — only currentTime is trustworthy.
   resumeStartTime = a.currentTime;
+  resumeSeekEnd = seekableEnd();
+  armResumeWatch(a, 0);
+}
+
+function seekableEnd() {
+  try { const s = els.audio.seekable; return s && s.length ? s.end(s.length - 1) : -1; } catch { return -1; }
+}
+
+// Reload the source only while the page is visible. While hidden (screen locked)
+// WebKit pauses a freshly loaded resource before it can produce audio: the element
+// ends up empty and silent, Now Playing is released, and the next lock-screen play
+// goes to the default music app (Apple Music). So while hidden we keep the existing
+// (bound) element and do the reload as soon as the app is in the foreground.
+function deferOrReload() {
+  if (document.hidden) { state.reloadWhenVisible = true; return; }
+  reacquireStream();
+}
+
+const RESUME_WATCH_MS = 3000;
+const RESUME_WATCH_MAX_ROUNDS = 2;
+
+function armResumeWatch(a, round) {
   resumeStallTimer = setTimeout(() => {
     resumeStallTimer = null;
+    if (!state.wantsPlayback) { resumeStartTime = null; return; }
     const start = resumeStartTime;
-    resumeStartTime = null;
-    if (!state.wantsPlayback) return;
     const advanced = start != null && (a.currentTime - start) > 0.5;
-    if (advanced && !a.paused) return; // audible progress → resume succeeded
+    if (advanced && !a.paused) { resumeStartTime = null; return; } // audible progress
+    // No progress yet. If Safari refreshed the live playlist (seekable moved on),
+    // re-sync by seeking — no reload needed — and give it one more round.
+    const end = seekableEnd();
+    if (end > resumeSeekEnd + 1 && round < RESUME_WATCH_MAX_ROUNDS) {
+      resumeSeekEnd = end;
+      seekToLiveEdge();
+      resumeStartTime = a.currentTime;
+      armResumeWatch(a, round + 1);
+      return;
+    }
+    resumeStartTime = null;
     state.seekLiveOnPlaying = false;
-    reacquireStream();
-  }, 3000);
+    deferOrReload();
+  }, RESUME_WATCH_MS);
 }
 
 // Resume ONLY when the user is actually back in the app. The document.hidden
@@ -490,7 +539,20 @@ function attemptResume() {
 function resumeOnReturn() {
   if (state.wantsPlayback && els.audio && els.audio.paused) attemptResume();
 }
-document.addEventListener('visibilitychange', () => { if (!document.hidden) resumeOnReturn(); });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) return;
+  // A reload was needed while the screen was locked; now that we are visible it is
+  // allowed — do it first (the element may be "playing" yet silent, so resumeOnReturn
+  // would not trigger on its own).
+  if (state.reloadWhenVisible && state.wantsPlayback) {
+    state.reloadWhenVisible = false;
+    clearResumeStall();
+    state.seekLiveOnPlaying = false;
+    reacquireStream();
+    return;
+  }
+  resumeOnReturn();
+});
 window.addEventListener('focus', resumeOnReturn);
 window.addEventListener('online', resumeOnReturn);
 
@@ -902,6 +964,7 @@ function setupMediaSession() {
     clearResumeWatch();
     clearResumeStall(); // a pending plan-B reload must not fire after the user paused
     state.seekLiveOnPlaying = false;
+    state.reloadWhenVisible = false;
     if (els.audio && !els.audio.paused) els.audio.pause();
     navigator.mediaSession.playbackState = 'paused';
   });
