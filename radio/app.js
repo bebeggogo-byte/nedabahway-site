@@ -239,6 +239,10 @@ async function startStream() {
   if (!state.data) return;
   const d = state.data;
 
+  // Intent to play (in-app). Set before playback so a 'playing' event is
+  // recognized as wanted; a fallback to the external player resets this.
+  state.wantsPlayback = true;
+  state.userInitiatedStop = false;
   clearTimeout(state.loadTimer);
   setPlayingUI(false, { loading: true });
 
@@ -311,7 +315,14 @@ els.playerFrameClose.addEventListener('click', (e) => {
 
 if (els.audio) {
   els.audio.addEventListener('playing', () => {
-    state.wantsPlayback = true;
+    if (!state.wantsPlayback) {
+      // Spurious auto-resume after a deliberate stop — live streams can emit a
+      // stray 'playing' while re-buffering. Keep it stopped so the lock-screen
+      // button does not flicker back to the pause icon.
+      els.audio.pause();
+      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+      return;
+    }
     state.userInitiatedStop = false;
     state.pausedAt = 0;
     clearResumeWatch();
@@ -736,6 +747,8 @@ function setupMediaSession() {
   if (!('mediaSession' in navigator)) return;
   const ms = navigator.mediaSession;
   ms.setActionHandler('play', () => {
+    state.wantsPlayback = true;
+    state.userInitiatedStop = false;
     if (els.audio && els.audio.src) {
       els.audio.play().catch(() => startStream());
     } else {
@@ -743,15 +756,15 @@ function setupMediaSession() {
     }
   });
   ms.setActionHandler('pause', () => {
-    if (els.audio && !els.audio.paused) {
-      // User pressed pause (lock screen / headphones / car). Treat it as a
-      // deliberate stop so it is NOT mistaken for an interruption and does not
-      // auto-resume on return. Pressing play again resumes normally.
-      state.wantsPlayback = false;
-      state.userInitiatedStop = true;
-      clearResumeWatch();
-      els.audio.pause();
-    }
+    // Deliberate user pause (lock screen / headphones / car). Clear the intent
+    // so it is not mistaken for an interruption and does not auto-resume, and
+    // set the lock-screen state to paused immediately so the button settles on
+    // the play icon without flickering.
+    state.wantsPlayback = false;
+    state.userInitiatedStop = true;
+    clearResumeWatch();
+    if (els.audio && !els.audio.paused) els.audio.pause();
+    navigator.mediaSession.playbackState = 'paused';
   });
   ms.setActionHandler('stop', () => stopStream());
   // togglemuteoff is what some car controls send — handle as play

@@ -77,18 +77,22 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
   position:relative;
   min-height:100vh;
   min-height:100dvh;
-  padding:calc(env(safe-area-inset-top) + 32px) 24px 32px;
+  padding:calc(env(safe-area-inset-top) + 34px) 24px 30px;
   display:flex;flex-direction:column;
-  background:radial-gradient(ellipse at 50% 30%, #1E2833 0%, var(--bg) 65%);
+  background:
+    radial-gradient(120% 80% at 50% 20%, rgba(212,165,116,0.10) 0%, rgba(212,165,116,0) 55%),
+    radial-gradient(150% 120% at 50% 118%, #05070a 0%, transparent 60%),
+    linear-gradient(180deg, #151c24 0%, #0d1116 58%, #0a0d11 100%);
   cursor:pointer;
   -webkit-user-select:none;user-select:none;
 }
 .hero__top{
   display:flex;justify-content:space-between;align-items:center;
-  font-size:.7rem;font-weight:700;letter-spacing:.35em;
+  font-size:.66rem;font-weight:700;letter-spacing:.4em;
   color:var(--accent);
 }
-.hero__brand{color:var(--accent)}
+.hero__brand{color:var(--accent);display:inline-flex;align-items:center;gap:9px}
+.hero__brand::before{content:'';width:16px;height:1px;background:var(--accent);opacity:.55}
 .hero__status{
   display:flex;align-items:center;gap:7px;
   color:var(--fg-mute);
@@ -110,27 +114,41 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 }
 
 .hero__center{
-  flex:1;
+  flex:1;position:relative;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   text-align:center;
   padding:20px 0;
 }
+/* Concentric tuner-dial rings behind the frequency */
+.hero__center::before{
+  content:'';position:absolute;z-index:0;pointer-events:none;
+  width:min(80vw,344px);height:min(80vw,344px);border-radius:50%;
+  border:1px solid rgba(212,165,116,0.14);
+  box-shadow:inset 0 0 0 24px rgba(212,165,116,0.025), inset 0 0 70px rgba(212,165,116,0.06);
+}
+.hero__center::after{
+  content:'';position:absolute;z-index:0;pointer-events:none;
+  width:min(54vw,228px);height:min(54vw,228px);border-radius:50%;
+  border:1px solid rgba(212,165,116,0.10);
+}
+.hero__center > *{position:relative;z-index:1}
 .hero__label{
-  font-size:.72rem;font-weight:700;letter-spacing:.5em;
-  color:var(--fg-mute);margin-bottom:20px;
-  text-transform:uppercase;
+  font-size:.66rem;font-weight:700;letter-spacing:.55em;
+  color:var(--accent);opacity:.85;margin-bottom:18px;
+  text-transform:uppercase;text-indent:.55em;
 }
 .hero__freq{
   font-family:var(--ff-serif);
   font-weight:900;
-  font-size:clamp(5rem,22vw,9rem);
-  line-height:.95;
-  letter-spacing:-.05em;
+  font-size:clamp(5.2rem,23vw,9.5rem);
+  line-height:.9;
+  letter-spacing:-.055em;
   color:var(--accent);
-  margin-bottom:8px;
+  margin-bottom:6px;
   transition:color .3s;
   will-change:filter;
+  text-shadow:0 2px 34px rgba(212,165,116,0.14);
 }
 .hero.is-playing .hero__freq{
   color:var(--accent-bright);
@@ -156,19 +174,23 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 }
 .hero__unit{
   font-family:var(--ff-serif);
-  font-size:1.4rem;font-weight:700;
+  font-size:1.25rem;font-weight:700;
   color:var(--fg-mute);
-  letter-spacing:.05em;
+  letter-spacing:.08em;
 }
 .hero__city{
-  font-size:1.05rem;font-weight:500;
-  color:var(--fg-mute);margin-top:14px;
+  font-size:1.02rem;font-weight:600;
+  color:var(--fg);margin-top:18px;letter-spacing:.02em;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.hero__city::before,.hero__city::after{
+  content:'';width:18px;height:1px;background:var(--line);flex:none;
 }
 .hero__name{
   font-family:var(--ff-serif);font-style:italic;
-  font-weight:500;font-size:.95rem;
-  color:var(--fg-dim);margin-top:4px;
-  letter-spacing:.02em;
+  font-weight:500;font-size:.9rem;
+  color:var(--fg-dim);margin-top:7px;
+  letter-spacing:.03em;
 }
 .hero__now{
   margin-top:10px;
@@ -179,22 +201,24 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 }
 
 .hero__action{
-  margin-top:28px;
-  padding:14px 28px;
+  margin-top:30px;
+  padding:15px 34px;
   border-radius:999px;
-  background:var(--accent);
-  color:var(--bg);
-  font-weight:700;font-size:.95rem;
-  letter-spacing:.02em;
-  display:inline-flex;align-items:center;gap:8px;
-  transition:transform .1s,background .2s;
+  background:linear-gradient(180deg,var(--accent-bright),var(--accent));
+  color:#1a1206;
+  font-weight:800;font-size:.92rem;
+  letter-spacing:.03em;
+  display:inline-flex;align-items:center;gap:9px;
+  box-shadow:0 8px 28px rgba(212,165,116,0.22);
+  transition:transform .1s,background .2s,box-shadow .2s;
 }
 .hero:active .hero__action{transform:scale(.96)}
 .hero.is-playing .hero__action{
   background:var(--surface-2);
   color:var(--fg);
+  box-shadow:none;border:1px solid var(--line);
 }
-.hero__action svg{width:18px;height:18px}
+.hero__action svg{width:17px;height:17px}
 
 .hero__hint{
   margin-top:14px;
@@ -351,22 +375,11 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 .group__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 @media(min-width:480px){.group__grid{grid-template-columns:repeat(3,1fr)}}
 
-/* Conditional list visibility — hidden once location is known, shown as fallback */
-.regions__reveal{display:none}
-.regions.is-auto .regions__head{display:none}
-.regions.is-auto #groups{display:none}
-.regions.is-auto.is-revealed #groups{display:block;margin-top:12px}
-.regions.is-auto .regions__reveal{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  width:100%;padding:13px 16px;
-  border:1px solid var(--line);border-radius:12px;
-  background:transparent;color:var(--fg-mute);
-  font-size:.86rem;font-weight:600;
-  transition:color .15s,border-color .15s;
-}
-.regions.is-auto .regions__reveal:hover{color:var(--fg);border-color:var(--fg-dim)}
-.regions__reveal-chevron{width:16px;height:16px;transition:transform .2s ease;flex:none}
-.regions.is-auto.is-revealed .regions__reveal-chevron{transform:rotate(180deg)}
+/* Location-only: the region enumeration is hidden — geolocation fills the dial.
+   Only the location control and info remain below the hero. */
+.regions__head,
+.regions__reveal,
+#groups{display:none !important}
 
 .station{
   background:var(--surface);
@@ -562,7 +575,7 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
   </div>
 
   <div class="hero__bottom">
-    <span>↓ 지역별 주파수</span>
+    <span>KBS 1FM · 제주</span>
   </div>
 
   <div class="player-frame" id="playerFrame" aria-hidden="true">

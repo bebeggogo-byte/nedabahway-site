@@ -8,6 +8,9 @@
   -webkit-backdrop-filter: saturate(160%) blur(10px);
   border-bottom: 1px solid #E2E8F0;
   font-family: var(--ff, 'Pretendard Variable', sans-serif);
+  /* Clear the phone status bar (clock/battery) in installed PWA / fullscreen.
+     0 in normal browsers, so it is a no-op there. */
+  padding-top: env(safe-area-inset-top);
 }
 .gnav__inner{
   max-width: 1180px; margin: 0 auto;
