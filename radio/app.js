@@ -333,35 +333,34 @@ if (els.audio) {
       return;
     }
     // External interruption (phone call, other app/tab media, OS ducking):
-    // keep the intent to play and auto-resume once the interruption ends.
+    // STAY paused for the whole interruption. Do NOT resume on a timer here —
+    // that would play over the call/other audio. We resume only when the user
+    // actually returns to the app (see resumeOnReturn).
     state.pausedAt = Date.now();
     if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
     els.statusText.textContent = 'PAUSED';
-    els.heroHint.textContent = '통화·외부 재생 중 — 끝나면 자동 재생';
-    scheduleResume();
+    els.heroHint.textContent = '통화·외부 재생 중 일시정지 — 앱으로 돌아오면 재생';
   });
   els.audio.addEventListener('error', () => {
-    if (state.wantsPlayback) { scheduleResume(); return; }
+    // Mid-playback error during an interruption: stay paused and wait for the
+    // user to return; do not pop a new tab or retry over the interruption.
+    // Only fall back to the external player for a genuine startup failure.
+    if (state.wantsPlayback) { setPlayingUI(false); return; }
     console.warn('audio error, falling back to external player');
     openExternalPlayer();
   });
   els.audio.addEventListener('waiting', () => setPlayingUI(state.playing, { loading: true }));
-  els.audio.addEventListener('canplay', () => {
-    if (state.wantsPlayback && els.audio.paused) attemptResume();
-  });
 }
 
 // ===== Auto-resume after interruptions (calls, other media) =====
 
-const RESUME_MAX_RETRIES = 4;
 const RESUME_STALE_MS = 30_000; // reconnect to live edge if paused longer than this
-let resumeRetries = 0;
 let resumeTimer = null;
 
+// Kept so 'playing'/stopStream/openExternalPlayer can cancel any pending resume.
 function clearResumeWatch() {
   clearTimeout(resumeTimer);
   resumeTimer = null;
-  resumeRetries = 0;
 }
 
 async function reacquireStream() {
@@ -371,9 +370,12 @@ async function reacquireStream() {
   if (d.audioUrlAlt) await tryAudioSrc(d.audioUrlAlt);
 }
 
+// Resume ONLY when the user is actually back in the app. The document.hidden
+// guard is the key fix: while a call or another audio app is active the page is
+// backgrounded (hidden), so we never resume and never play over it.
 function attemptResume() {
   if (!state.wantsPlayback || !els.audio) return;
-  if (!navigator.onLine || !els.audio.paused) return;
+  if (document.hidden || !navigator.onLine || !els.audio.paused) return;
   const stale = state.pausedAt && (Date.now() - state.pausedAt > RESUME_STALE_MS);
   if (els.audio.src && !stale) {
     const p = els.audio.play();
@@ -383,19 +385,8 @@ function attemptResume() {
   }
 }
 
-function scheduleResume() {
-  clearResumeWatch();
-  const step = () => {
-    resumeTimer = null;
-    if (!state.wantsPlayback || (els.audio && !els.audio.paused)) return;
-    attemptResume();
-    if (++resumeRetries < RESUME_MAX_RETRIES) {
-      resumeTimer = setTimeout(step, 1500 * resumeRetries);
-    }
-  };
-  resumeTimer = setTimeout(step, 400);
-}
-
+// The only resume trigger: the user returned to the app (foreground / focus /
+// network back). Never resume on a timer while the interruption is active.
 function resumeOnReturn() {
   if (state.wantsPlayback && els.audio && els.audio.paused) attemptResume();
 }
