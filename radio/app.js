@@ -582,6 +582,14 @@ if (shareBtn) {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !sheet.hidden) closeSheet();
   });
+
+  // Relaunch / bfcache restore → always land on the radio main screen (sheet closed).
+  window.addEventListener('pageshow', () => {
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+    sheet.classList.remove('is-open');
+    sheet.hidden = true;
+    document.body.style.overflow = '';
+  });
 })();
 
 if ('serviceWorker' in navigator) {
