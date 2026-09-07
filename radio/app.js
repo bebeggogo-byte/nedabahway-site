@@ -365,7 +365,6 @@ if (els.audio) {
 
 // ===== Auto-resume after interruptions (calls, other media) =====
 
-const RESUME_STALE_MS = 30_000; // reconnect to live edge if paused longer than this
 let resumeTimer = null;
 
 // Kept so 'playing'/stopStream/openExternalPlayer can cancel any pending resume.
@@ -387,13 +386,9 @@ async function reacquireStream() {
 function attemptResume() {
   if (!state.wantsPlayback || !els.audio) return;
   if (document.hidden || !navigator.onLine || !els.audio.paused) return;
-  const stale = state.pausedAt && (Date.now() - state.pausedAt > RESUME_STALE_MS);
-  if (els.audio.src && !stale) {
-    const p = els.audio.play();
-    if (p && typeof p.catch === 'function') p.catch(() => {});
-  } else {
-    reacquireStream();
-  }
+  // Reconnect to the live edge — resuming a paused live HLS element with play()
+  // is unreliable (stalls with no audio), so always reload the source.
+  reacquireStream();
 }
 
 // The only resume trigger: the user returned to the app (foreground / focus /
@@ -747,13 +742,11 @@ function setupMediaSession() {
   if (!('mediaSession' in navigator)) return;
   const ms = navigator.mediaSession;
   ms.setActionHandler('play', () => {
+    // Re-acquire the live stream (reconnect to the live edge). Resuming a paused
+    // live HLS element with play() often stalls with no audio, so always reload.
     state.wantsPlayback = true;
     state.userInitiatedStop = false;
-    if (els.audio && els.audio.src) {
-      els.audio.play().catch(() => startStream());
-    } else {
-      startStream();
-    }
+    startStream();
   });
   ms.setActionHandler('pause', () => {
     // Deliberate user pause (lock screen / headphones / car). Clear the intent
