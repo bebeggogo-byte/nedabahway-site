@@ -4,14 +4,14 @@
 <link rel="stylesheet" href="/assets/nedabah.bundle.css">
 <meta charset="UTF-8">
 <script>
-/* Safety net: /radio/ is intentionally not published (personal-only build, see
-   pages-deploy.yml). A stale home-screen shortcut or bookmark to /radio/* must not
-   dead-end on this 404 — send it straight to the public, retransmission-free tuner.
-   Runs before first paint; other 404 paths are left untouched. */
+/* Safety net: any stray /radio sub-path (old bookmark, renamed file) must not
+   dead-end on this 404 — send it to the radio main. Never redirect when already
+   exactly at /radio/ so a missing radio can't loop. Runs before first paint;
+   other 404 paths are left untouched. */
 (function () {
   var p = location.pathname;
-  if (p === '/radio' || p.indexOf('/radio/') === 0) {
-    location.replace('/tuner/');
+  if (p !== '/radio/' && (p === '/radio' || p.indexOf('/radio/') === 0)) {
+    location.replace('/radio/');
   }
 })();
 </script>
