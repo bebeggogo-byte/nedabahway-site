@@ -329,7 +329,8 @@ if (els.audio) {
     state.userInitiatedStop = false;
     state.pausedAt = 0;
     clearResumeWatch();
-    clearResumeStall(); // playback confirmed → cancel the plan-B source reload
+    // NOTE: do not clear the resume watchdog here — a stale live stream can fire
+    // 'playing' without audible progress; only real currentTime progress clears it.
     if (state.seekLiveOnPlaying) {
       state.seekLiveOnPlaying = false;
       seekToLiveEdge();
@@ -369,6 +370,10 @@ if (els.audio) {
     openExternalPlayer();
   });
   els.audio.addEventListener('waiting', () => setPlayingUI(state.playing, { loading: true }));
+  els.audio.addEventListener('timeupdate', () => {
+    // Real progress after a resume → the stream is alive; cancel the plan-B reload.
+    if (resumeStartTime != null && els.audio.currentTime - resumeStartTime > 0.5) clearResumeStall();
+  });
 }
 
 // ===== Auto-resume after interruptions (calls, other media) =====
@@ -399,10 +404,12 @@ async function reacquireStream() {
 // seeking once playback is confirmed. Only if playback genuinely does not start
 // do we fall back to reloading the source (the previous behaviour), as plan B.
 let resumeStallTimer = null;
+let resumeStartTime = null; // currentTime when the resume began (progress baseline)
 
 function clearResumeStall() {
   clearTimeout(resumeStallTimer);
   resumeStallTimer = null;
+  resumeStartTime = null;
 }
 
 function hasLoadedResource() {
@@ -420,7 +427,11 @@ function seekToLiveEdge() {
     const end = s.end(s.length - 1);
     if (!Number.isFinite(end)) return;
     const target = Math.max(0, end - 2); // a hair behind the edge avoids stalling on the last segment
-    if (Math.abs(a.currentTime - target) > 3) a.currentTime = target;
+    if (Math.abs(a.currentTime - target) > 3) {
+      a.currentTime = target;
+      // a seek is a jump, not progress — re-baseline the resume watchdog
+      if (resumeStartTime != null) resumeStartTime = a.currentTime;
+    }
   } catch { /* seeking can be unsupported mid-load; harmless */ }
 }
 
@@ -434,23 +445,33 @@ async function resumeLive() {
   setPlayingUI(false, { loading: true });
   state.seekLiveOnPlaying = true;
   clearResumeStall();
-  // Plan B watchdog: if it does not actually start playing, reload the source.
-  resumeStallTimer = setTimeout(() => {
-    resumeStallTimer = null;
-    if (state.wantsPlayback && (a.paused || a.readyState < HTMLMediaElement.HAVE_FUTURE_DATA)) {
-      state.seekLiveOnPlaying = false;
-      reacquireStream();
-    }
-  }, 4000);
   try {
     const p = a.play();
     if (p && typeof p.then === 'function') await p;
   } catch (err) {
     console.warn('resume play() failed, reloading source', err);
-    clearResumeStall();
     state.seekLiveOnPlaying = false;
     reacquireStream();
+    return;
   }
+  // If the playlist is still fresh, jump to the live edge right away (no reload).
+  seekToLiveEdge();
+  // Plan B watchdog — PROGRESS-based. A stale live HLS on iOS "resumes" (paused=false,
+  // 'playing' fires, readyState stays high) yet never advances, so paused/readyState/
+  // events are not trustworthy; only currentTime is. If it has not moved after 3s,
+  // reload the source (the previous behaviour). By now the remote play command has
+  // already been consumed by this page, so the reload does not hand off to Apple Music.
+  resumeStartTime = a.currentTime;
+  resumeStallTimer = setTimeout(() => {
+    resumeStallTimer = null;
+    const start = resumeStartTime;
+    resumeStartTime = null;
+    if (!state.wantsPlayback) return;
+    const advanced = start != null && (a.currentTime - start) > 0.5;
+    if (advanced && !a.paused) return; // audible progress → resume succeeded
+    state.seekLiveOnPlaying = false;
+    reacquireStream();
+  }, 3000);
 }
 
 // Resume ONLY when the user is actually back in the app. The document.hidden
