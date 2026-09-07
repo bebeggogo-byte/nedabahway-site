@@ -744,6 +744,12 @@ function setupMediaSession() {
   });
   ms.setActionHandler('pause', () => {
     if (els.audio && !els.audio.paused) {
+      // User pressed pause (lock screen / headphones / car). Treat it as a
+      // deliberate stop so it is NOT mistaken for an interruption and does not
+      // auto-resume on return. Pressing play again resumes normally.
+      state.wantsPlayback = false;
+      state.userInitiatedStop = true;
+      clearResumeWatch();
       els.audio.pause();
     }
   });
