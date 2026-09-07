@@ -3,6 +3,18 @@
 <head>
 <link rel="stylesheet" href="/assets/nedabah.bundle.css">
 <meta charset="UTF-8">
+<script>
+/* Safety net: /radio/ is intentionally not published (personal-only build, see
+   pages-deploy.yml). A stale home-screen shortcut or bookmark to /radio/* must not
+   dead-end on this 404 — send it straight to the public, retransmission-free tuner.
+   Runs before first paint; other 404 paths are left untouched. */
+(function () {
+  var p = location.pathname;
+  if (p === '/radio' || p.indexOf('/radio/') === 0) {
+    location.replace('/tuner/');
+  }
+})();
+</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>404 — 페이지를 찾지 못했습니다 | 네다바웨이</title>
 

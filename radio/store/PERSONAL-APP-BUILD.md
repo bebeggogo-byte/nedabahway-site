@@ -18,8 +18,9 @@
 node radio/store/src/build-personal-app.js
 ```
 
-→ `radio/.appdist/` 에 `index.html + stations.json + icons/` 가 자체 완결형으로 생성됩니다.
-(코드 수정 후에는 이 명령을 다시 실행)
+→ `radio/.appdist/` 에 **풀기능 라디오**(`radio/index.html` + `app.js`)가 `stations.json + icons/ + assets/(사이트 CSS)`와 함께
+자체 완결형으로 생성됩니다. 통화 중단 처리·잠금화면 제어·슬립 페이드·위치 자동 전환·자동 실행·인앱 소개 시트가 모두 포함됩니다.
+(`radio/mvp/`가 아닙니다. 코드 수정 후에는 이 명령을 다시 실행)
 
 ## 2) Capacitor 설치 (최초 1회)
 ```bash
