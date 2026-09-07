@@ -794,12 +794,34 @@ window.addEventListener('online', () => {
   }
 });
 
+// Try to start playing as soon as the app opens. Browser autoplay policy may
+// block this without a prior user gesture (common on iOS); in that case we
+// quietly fall back to the idle "tap to play" state and never open an
+// external tab.
+async function autoStart() {
+  const d = state.data;
+  if (!d || !els.audio || !canPlayHls(els.audio)) return;
+  state.wantsPlayback = true;
+  state.userInitiatedStop = false;
+  setPlayingUI(false, { loading: true });
+  if ((d.audioUrl && await tryAudioSrc(d.audioUrl)) ||
+      (d.audioUrlAlt && await tryAudioSrc(d.audioUrlAlt))) {
+    els.heroHint.textContent = '앱 내 재생 중 · 차량 컨트롤 작동';
+    return;
+  }
+  // Autoplay blocked (no user gesture yet) — leave idle so a tap starts it.
+  state.wantsPlayback = false;
+  setPlayingUI(false);
+  els.heroHint.textContent = 'KBS 클래식FM · 탭하여 재생';
+}
+
 (async () => {
   try {
     state.data = await loadStations();
     renderGroups(state.data);
     setCurrent(pickDefault(state.data));
     initGeoAuto();
+    autoStart();
   } catch (err) {
     console.error(err);
     els.heroHint.textContent = '데이터 로드 실패 — 네트워크 확인 후 새로고침';
