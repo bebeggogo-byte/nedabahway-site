@@ -26,6 +26,9 @@ const els = {
   heroNow: document.getElementById('heroNow'),
   geoToggle: document.getElementById('geoToggle'),
   geoSub: document.getElementById('geoSub'),
+  regions: document.getElementById('regions'),
+  regionsReveal: document.getElementById('regionsReveal'),
+  regionsRevealText: document.getElementById('regionsRevealText'),
 };
 
 const GEO_KEY = 'classicfm.geoEnabled';
@@ -330,35 +333,34 @@ if (els.audio) {
       return;
     }
     // External interruption (phone call, other app/tab media, OS ducking):
-    // keep the intent to play and auto-resume once the interruption ends.
+    // STAY paused for the whole interruption. Do NOT resume on a timer here —
+    // that would play over the call/other audio. We resume only when the user
+    // actually returns to the app (see resumeOnReturn).
     state.pausedAt = Date.now();
     if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
     els.statusText.textContent = 'PAUSED';
-    els.heroHint.textContent = '통화·외부 재생 중 — 끝나면 자동 재생';
-    scheduleResume();
+    els.heroHint.textContent = '통화·외부 재생 중 일시정지 — 앱으로 돌아오면 재생';
   });
   els.audio.addEventListener('error', () => {
-    if (state.wantsPlayback) { scheduleResume(); return; }
+    // Mid-playback error during an interruption: stay paused and wait for the
+    // user to return; do not pop a new tab or retry over the interruption.
+    // Only fall back to the external player for a genuine startup failure.
+    if (state.wantsPlayback) { setPlayingUI(false); return; }
     console.warn('audio error, falling back to external player');
     openExternalPlayer();
   });
   els.audio.addEventListener('waiting', () => setPlayingUI(state.playing, { loading: true }));
-  els.audio.addEventListener('canplay', () => {
-    if (state.wantsPlayback && els.audio.paused) attemptResume();
-  });
 }
 
 // ===== Auto-resume after interruptions (calls, other media) =====
 
-const RESUME_MAX_RETRIES = 4;
 const RESUME_STALE_MS = 30_000; // reconnect to live edge if paused longer than this
-let resumeRetries = 0;
 let resumeTimer = null;
 
+// Kept so 'playing'/stopStream/openExternalPlayer can cancel any pending resume.
 function clearResumeWatch() {
   clearTimeout(resumeTimer);
   resumeTimer = null;
-  resumeRetries = 0;
 }
 
 async function reacquireStream() {
@@ -368,9 +370,12 @@ async function reacquireStream() {
   if (d.audioUrlAlt) await tryAudioSrc(d.audioUrlAlt);
 }
 
+// Resume ONLY when the user is actually back in the app. The document.hidden
+// guard is the key fix: while a call or another audio app is active the page is
+// backgrounded (hidden), so we never resume and never play over it.
 function attemptResume() {
   if (!state.wantsPlayback || !els.audio) return;
-  if (!navigator.onLine || !els.audio.paused) return;
+  if (document.hidden || !navigator.onLine || !els.audio.paused) return;
   const stale = state.pausedAt && (Date.now() - state.pausedAt > RESUME_STALE_MS);
   if (els.audio.src && !stale) {
     const p = els.audio.play();
@@ -380,19 +385,8 @@ function attemptResume() {
   }
 }
 
-function scheduleResume() {
-  clearResumeWatch();
-  const step = () => {
-    resumeTimer = null;
-    if (!state.wantsPlayback || (els.audio && !els.audio.paused)) return;
-    attemptResume();
-    if (++resumeRetries < RESUME_MAX_RETRIES) {
-      resumeTimer = setTimeout(step, 1500 * resumeRetries);
-    }
-  };
-  resumeTimer = setTimeout(step, 400);
-}
-
+// The only resume trigger: the user returned to the app (foreground / focus /
+// network back). Never resume on a timer while the interruption is active.
 function resumeOnReturn() {
   if (state.wantsPlayback && els.audio && els.audio.paused) attemptResume();
 }
@@ -589,6 +583,22 @@ function applyGeoFix(pos) {
   const dist = km < 1 ? `${Math.round(km * 1000)}m` : `${km.toFixed(1)}km`;
   setGeoSub(`${region.city} (${region.freq.toFixed(1)} MHz) · ${dist}`);
   state.geoLastSnapAt = Date.now();
+  // Location known → collapse the region list to a clean hero (list stays
+  // one tap away via the reveal button).
+  setRegionsAuto(true);
+}
+
+// Conditional list visibility: hide the region list once location is known,
+// show it as a fallback when geo is off/denied/unavailable.
+function setRegionsAuto(on) {
+  if (!els.regions) return;
+  const was = els.regions.classList.contains('is-auto');
+  els.regions.classList.toggle('is-auto', on);
+  if ((on && !was) || !on) {
+    els.regions.classList.remove('is-revealed');
+    if (els.regionsReveal) els.regionsReveal.setAttribute('aria-expanded', 'false');
+    if (els.regionsRevealText) els.regionsRevealText.textContent = '다른 지역 주파수 보기';
+  }
 }
 
 function geoError(err) {
@@ -632,6 +642,34 @@ function disableGeo({ silent = false } = {}) {
     state.geoWatchId = null;
   }
   if (!silent) setGeoSub('제주↔서귀포 이동 시 주파수 자동 선택');
+  setRegionsAuto(false); // geo off → show the list as fallback
+}
+
+// Auto-detect location on load. Once permission is granted we never prompt
+// again — we just start detecting. A manual off (GEO_KEY==='0') is respected.
+async function initGeoAuto() {
+  if (!('geolocation' in navigator)) return;
+  const pref = localStorage.getItem(GEO_KEY); // '1' on · '0' user opted out · null unset
+  if (pref === '0') return;
+  if (!('permissions' in navigator) || !navigator.permissions || !navigator.permissions.query) {
+    if (pref === '1') enableGeo();
+    return;
+  }
+  try {
+    const status = await navigator.permissions.query({ name: 'geolocation' });
+    if (status.state === 'granted' || (pref === '1' && status.state !== 'denied')) {
+      enableGeo();
+    }
+    status.onchange = () => {
+      if (status.state === 'granted' && localStorage.getItem(GEO_KEY) !== '0') {
+        if (!state.geoEnabled) enableGeo();
+      } else if (status.state === 'denied') {
+        disableGeo({ silent: true });
+      }
+    };
+  } catch {
+    if (pref === '1') enableGeo();
+  }
 }
 
 // Auto-detect location on load. Once permission is granted we never prompt
@@ -665,6 +703,16 @@ if (els.geoToggle) {
   els.geoToggle.addEventListener('click', () => {
     if (state.geoEnabled) disableGeo();
     else enableGeo();
+  });
+}
+
+if (els.regionsReveal) {
+  els.regionsReveal.addEventListener('click', () => {
+    const revealed = els.regions.classList.toggle('is-revealed');
+    els.regionsReveal.setAttribute('aria-expanded', String(revealed));
+    if (els.regionsRevealText) {
+      els.regionsRevealText.textContent = revealed ? '주파수 목록 접기' : '다른 지역 주파수 보기';
+    }
   });
 }
 
