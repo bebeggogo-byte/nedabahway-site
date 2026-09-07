@@ -542,6 +542,48 @@ if (shareBtn) {
   });
 }
 
+// ===== In-app 소개(intro) sheet =====
+(function initAboutSheet() {
+  const sheet = document.getElementById('aboutSheet');
+  const openBtn = document.getElementById('aboutBtn');
+  if (!sheet || !openBtn) return;
+  const closeBtn = document.getElementById('aboutClose');
+  const returnBtn = document.getElementById('aboutReturn');
+  const backdrop = document.getElementById('aboutBackdrop');
+  let lastFocus = null;
+  let hideTimer = null;
+
+  function openSheet(e) {
+    if (e) e.stopPropagation();
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; } // cancel any pending hide → race-free reopen
+    lastFocus = document.activeElement;
+    sheet.hidden = false;
+    // force reflow so the initial translateY(100%) is committed, then transition up.
+    // Synchronous + reliable — avoids rAF timing gaps after heavy prior interactions.
+    void sheet.offsetWidth;
+    sheet.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    (closeBtn || sheet).focus?.();
+  }
+  function closeSheet(e) {
+    if (e) e.stopPropagation();
+    if (sheet.hidden) return;
+    sheet.classList.remove('is-open');
+    document.body.style.overflow = '';
+    if (hideTimer) clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => { sheet.hidden = true; hideTimer = null; }, 340); // hide after slide-down
+    lastFocus?.focus?.();
+  }
+
+  openBtn.addEventListener('click', openSheet);
+  closeBtn?.addEventListener('click', closeSheet);
+  returnBtn?.addEventListener('click', closeSheet);
+  backdrop?.addEventListener('click', closeSheet);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !sheet.hidden) closeSheet();
+  });
+})();
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').catch(err => console.warn(err));
