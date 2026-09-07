@@ -3,6 +3,18 @@
 <head>
 <link rel="stylesheet" href="/assets/nedabah.bundle.css">
 <meta charset="UTF-8">
+<script>
+/* Safety net: any stray /radio sub-path (old bookmark, renamed file) must not
+   dead-end on this 404 — send it to the radio main. Never redirect when already
+   exactly at /radio/ so a missing radio can't loop. Runs before first paint;
+   other 404 paths are left untouched. */
+(function () {
+  var p = location.pathname;
+  if (p !== '/radio/' && (p === '/radio' || p.indexOf('/radio/') === 0)) {
+    location.replace('/radio/');
+  }
+})();
+</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>404 — 페이지를 찾지 못했습니다 | 네다바웨이</title>
 

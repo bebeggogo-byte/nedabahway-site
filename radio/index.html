@@ -93,6 +93,21 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 }
 .hero__brand{color:var(--accent);display:inline-flex;align-items:center;gap:9px}
 .hero__brand::before{content:'';width:16px;height:1px;background:var(--accent);opacity:.55}
+.hero__top-right{display:flex;align-items:center;gap:14px}
+.hero__about-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  min-height:34px;padding:6px 11px;
+  font-family:inherit;font-size:.62rem;font-weight:700;letter-spacing:.18em;
+  color:var(--fg-mute);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.14);border-radius:999px;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:color .18s,border-color .18s,background .18s;
+}
+.hero__about-btn svg{width:14px;height:14px}
+.hero__about-btn:hover,.hero__about-btn:focus-visible{
+  color:var(--accent);border-color:var(--accent);background:rgba(212,165,116,.10);
+}
 .hero__status{
   display:flex;align-items:center;gap:7px;
   color:var(--fg-mute);
@@ -232,8 +247,8 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
   position:relative;
 }
 .sleep-timer__toggle{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:8px 14px;border-radius:999px;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:10px 18px;border-radius:999px;
   background:transparent;border:1px solid var(--line);
   color:var(--fg-mute);
   font-size:.78rem;font-weight:500;
@@ -495,42 +510,72 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 }
 .extras__btn:hover{border-color:var(--fg-dim);color:var(--fg)}
 .extras__btn svg{width:14px;height:14px}
+
+/* ── 소개 시트 (라디오 내 인앱 소개) ───────────────────────── */
+.about-sheet{position:fixed;inset:0;z-index:120;display:flex;align-items:flex-end;justify-content:center}
+.about-sheet[hidden]{display:none}
+.about-sheet__backdrop{position:absolute;inset:0;background:rgba(6,9,13,.62);
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  opacity:0;transition:opacity .28s ease}
+.about-sheet.is-open .about-sheet__backdrop{opacity:1}
+.about-sheet__panel{
+  position:relative;width:100%;max-width:560px;
+  max-height:88vh;display:flex;flex-direction:column;
+  background:var(--surface-2, #171e26);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px 22px 0 0;
+  padding-top:env(safe-area-inset-top);
+  box-shadow:0 -18px 48px rgba(0,0,0,.5);
+  transform:translateY(100%);transition:transform .32s cubic-bezier(.22,.61,.36,1)}
+.about-sheet.is-open .about-sheet__panel{transform:translateY(0)}
+@media(min-width:600px){
+  .about-sheet{align-items:center}
+  .about-sheet__panel{border-radius:22px;max-height:86vh}
+}
+.about-sheet__close{
+  position:absolute;top:14px;right:14px;z-index:2;
+  width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:50%;
+  color:var(--fg-mute);cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:color .15s,border-color .15s,background .15s}
+.about-sheet__close:hover,.about-sheet__close:focus-visible{color:var(--fg);border-color:var(--fg-dim);background:rgba(255,255,255,.1)}
+.about-sheet__close svg{width:18px;height:18px}
+.about-sheet__body{
+  padding:30px 26px calc(env(safe-area-inset-bottom) + 26px);
+  overflow-y:auto;-webkit-overflow-scrolling:touch}
+.about-sheet__eyebrow{font-size:.62rem;font-weight:700;letter-spacing:.34em;color:var(--accent);margin-bottom:8px}
+.about-sheet__title{font-size:1.7rem;font-weight:700;color:var(--fg);margin:0 0 14px;letter-spacing:-.01em}
+.about-sheet__lead{font-size:.96rem;line-height:1.72;color:var(--fg-mute);margin:0 0 18px}
+.about-sheet__block{margin:0 0 12px;padding:13px 16px;background:rgba(255,255,255,.04);border-radius:12px}
+.about-sheet__block-label{font-size:.6rem;font-weight:700;letter-spacing:.2em;color:var(--accent);margin-bottom:6px}
+.about-sheet__block p{margin:0;font-size:.86rem;line-height:1.6;color:var(--fg-mute)}
+.about-sheet__facts{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;margin:20px 0 24px}
+.about-sheet__facts div{display:flex;flex-direction:column;gap:3px}
+.about-sheet__facts dt{font-size:.64rem;font-weight:700;letter-spacing:.14em;color:var(--fg-dim);text-transform:uppercase}
+.about-sheet__facts dd{margin:0;font-size:.92rem;font-weight:600;color:var(--fg)}
+.about-sheet__mail{display:inline-block;margin-top:9px;font-size:.86rem;font-weight:600;color:var(--accent);
+  text-decoration:none;border-bottom:1px dotted var(--accent)}
+.about-sheet__return{
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  min-height:52px;padding:14px;border:0;border-radius:14px;
+  background:var(--accent);color:#0d1116;
+  font-family:inherit;font-size:.98rem;font-weight:700;letter-spacing:.01em;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;transition:filter .15s}
+.about-sheet__return:hover{filter:brightness(1.06)}
+.about-sheet__return svg{width:17px;height:17px}
 </style>
   <link rel="stylesheet" href="/assets/global-fonts.css">
-  <link rel="stylesheet" href="/assets/global-nav.css">
 <link rel="stylesheet" href="/assets/v3.css">
 
 <link rel="stylesheet" href="/assets/nav-right.css">
 
 
-<link rel="stylesheet" href="/assets/deck-toggle.css">
-
-<link rel="stylesheet" href="/assets/back-to-top.css">
 <link rel="stylesheet" href="/assets/typography-v4.css">
 
 <link rel="stylesheet" href="/assets/mobile-v1.css">
   <link rel="stylesheet" href="/assets/warm-tone-v1.css">
 </head>
 <body>
-
-<nav class="gnav" role="navigation" aria-label="주요 메뉴">
-  <div class="gnav__inner">
-    <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
-    <ul class="gnav__links" id="gnavLinks">
-      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
-      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
-      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
-      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
-      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
-      <li><a href="/about.html" class="gnav__link">소개</a></li>
-      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
-    </ul>
-  </div>
-</nav>
-
-
-
 
 
 
@@ -539,10 +584,16 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 <section class="hero app-enter" id="hero" role="button" tabindex="0" aria-label="탭하여 클래식FM 재생">
   <div class="hero__top">
     <span class="hero__brand">CLASSIC FM</span>
-    <span class="hero__status">
-      <span class="hero__live-dot" id="liveDot"></span>
-      <span id="statusText">OFF AIR</span>
-    </span>
+    <div class="hero__top-right">
+      <button class="hero__about-btn" id="aboutBtn" type="button" aria-label="네다바웨이 소개 보기" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span>소개</span>
+      </button>
+      <span class="hero__status">
+        <span class="hero__live-dot" id="liveDot"></span>
+        <span id="statusText">OFF AIR</span>
+      </span>
+    </div>
   </div>
 
   <div class="hero__center">
@@ -637,6 +688,46 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
   </div>
 </section>
 
+<div class="about-sheet" id="aboutSheet" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" hidden>
+  <div class="about-sheet__backdrop" id="aboutBackdrop"></div>
+  <div class="about-sheet__panel" role="document">
+    <button class="about-sheet__close" id="aboutClose" type="button" aria-label="라디오로 돌아가기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+    </button>
+    <div class="about-sheet__body">
+      <div class="about-sheet__eyebrow">NEDABAHWAY</div>
+      <h2 class="about-sheet__title" id="aboutTitle">네다바웨이</h2>
+      <p class="about-sheet__lead">제주에 뿌리를 둔 비영리 임의단체입니다. 이 라디오 앱도 네다바웨이가 제공합니다.</p>
+
+      <div class="about-sheet__block">
+        <div class="about-sheet__block-label">SBM</div>
+        <p>성경을 스스로 관찰하는 방법(SBM)을 함께 연구하고 나눕니다.</p>
+      </div>
+      <div class="about-sheet__block">
+        <div class="about-sheet__block-label">교육</div>
+        <p>진로·AI·리더십·퍼실리테이션을 배우고 나누는 자리를 엽니다.</p>
+      </div>
+      <div class="about-sheet__block">
+        <div class="about-sheet__block-label">후원·문의</div>
+        <p>후원과 협력은 이메일로 문의해 주세요.</p>
+        <a class="about-sheet__mail" href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a>
+      </div>
+
+      <dl class="about-sheet__facts">
+        <div><dt>설립</dt><dd>2025년 3월 20일</dd></div>
+        <div><dt>거점</dt><dd>제주</dd></div>
+        <div><dt>성격</dt><dd>비영리 임의단체</dd></div>
+        <div><dt>운영</dt><dd>김창환 대표</dd></div>
+      </dl>
+
+      <button class="about-sheet__return" id="aboutReturn" type="button">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        라디오로 돌아가기
+      </button>
+    </div>
+  </div>
+</div>
+
 <audio id="audio" preload="none" playsinline></audio>
 
 <script src="./app.js"></script>
@@ -665,8 +756,5 @@ button{font-family:inherit;color:inherit;background:none;border:none;cursor:poin
 </footer>
 
 
-<script src="/assets/back-to-top.js" defer></script>
-
-<script src="/assets/deck-toggle.js" defer></script>
 </body>
 </html>
