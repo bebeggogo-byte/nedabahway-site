@@ -48,6 +48,7 @@ const state = {
   pausedAt: 0,
   seekLiveOnPlaying: false, // one-shot: re-sync to the live edge on the next 'playing'
   reloadWhenVisible: false, // a source reload was needed while hidden; do it on foreground
+  interrupted: false,       // system audio interruption in progress (call, Siri, other app)
   loadTimer: null,
   sleepTimer: null,
   sleepTickTimer: null,
@@ -247,6 +248,7 @@ async function startStream() {
   state.userInitiatedStop = false;
   clearTimeout(state.loadTimer);
   setPlayingUI(false, { loading: true });
+  ensureInterruptionWatch(); // user gesture context: arm the iOS interruption signal
 
   // 1) Direct HLS via radio.bsod.kr proxy (CORS-OK, in-app playback)
   if (d.audioUrl && canPlayHls(els.audio)) {
@@ -283,6 +285,7 @@ function stopStream() {
   clearResumeStall();
   state.seekLiveOnPlaying = false;
   state.reloadWhenVisible = false;
+  releaseInterruptionWatch();
   els.playerFrameInner.replaceChildren();
   closePlayerDock();
   if (els.audio) {
@@ -329,18 +332,25 @@ if (els.audio) {
       return;
     }
     state.userInitiatedStop = false;
+    const wasInterrupted = state.pausedAt > 0;
     state.pausedAt = 0;
     clearResumeWatch();
+    // (keeper baseline is reset on 'pause'/'loadstart', NOT here: a keeper-initiated
+    //  live-edge seek also fires 'playing' and must not restart the stall clock)
     // NOTE: do not clear the resume watchdog here — a stale live stream can fire
     // 'playing' without audible progress; only real currentTime progress clears it.
     if (state.seekLiveOnPlaying) {
       state.seekLiveOnPlaying = false;
       seekToLiveEdge();
     }
+    // Back from a system interruption (call, Siri, other app audio): the live stream
+    // is stale by now — re-sync to the live edge and verify real progress.
+    if (wasInterrupted && resumeStartTime == null) beginResumeWatch(els.audio);
     setPlayingUI(true);
     if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
   });
   els.audio.addEventListener('pause', () => {
+    keeperNoteProgress(); // fresh stall baseline on the next resume
     const deliberate = state.userInitiatedStop;
     state.userInitiatedStop = false;
     if (deliberate) {
@@ -364,13 +374,26 @@ if (els.audio) {
     els.heroHint.textContent = '통화·외부 재생 중 일시정지 — 앱으로 돌아오면 재생';
   });
   els.audio.addEventListener('error', () => {
-    // Mid-playback error during an interruption: stay paused and wait for the
-    // user to return; do not pop a new tab or retry over the interruption.
-    // Only fall back to the external player for a genuine startup failure.
-    if (state.wantsPlayback) { setPlayingUI(false); return; }
+    if (state.wantsPlayback) {
+      // The user still wants playback. A genuine startup failure is handled by
+      // startStream's own fallback chain (it awaits play() and moves on), so only
+      // recover here once playback had actually been established. Reload now if
+      // visible, otherwise as soon as the app is visible; never pop the external tab
+      // for a mid-play error, and rate-limit so a dead stream cannot loop.
+      if (!state.playing) return;
+      const now = Date.now();
+      if (now - lastErrorRecoveryAt < 8000) return;
+      lastErrorRecoveryAt = now;
+      setPlayingUI(false, { loading: true });
+      clearResumeStall();
+      state.seekLiveOnPlaying = false;
+      deferOrReload();
+      return;
+    }
     console.warn('audio error, falling back to external player');
     openExternalPlayer();
   });
+  els.audio.addEventListener('loadstart', keeperNoteProgress);
   els.audio.addEventListener('waiting', () => setPlayingUI(state.playing, { loading: true }));
   els.audio.addEventListener('timeupdate', () => {
     // Real progress after a resume → the stream is alive; cancel the plan-B reload.
@@ -419,6 +442,7 @@ async function reacquireStream() {
 let resumeStallTimer = null;
 let resumeStartTime = null; // currentTime when the resume began (progress baseline)
 let resumeSeekEnd = -1;     // seekable end at resume; a later increase = playlist refreshed
+let lastErrorRecoveryAt = 0;
 
 function clearResumeStall() {
   clearTimeout(resumeStallTimer);
@@ -474,14 +498,104 @@ async function resumeLive() {
     deferOrReload();
     return;
   }
-  // If the playlist is still fresh, jump to the live edge right away (no reload).
+  beginResumeWatch(a);
+}
+
+// After any resume of the existing element (lock screen, interruption ended, stray
+// pause): jump to the live edge if the playlist is fresh, then verify REAL progress.
+// A stale live HLS "resumes" (paused=false, 'playing' fires, readyState stays high)
+// yet never advances — only currentTime is trustworthy.
+function beginResumeWatch(a) {
+  ensureInterruptionWatch();
   seekToLiveEdge();
-  // Progress watchdog. A stale live HLS "resumes" (paused=false, 'playing' fires,
-  // readyState stays high) yet never advances — only currentTime is trustworthy.
   resumeStartTime = a.currentTime;
   resumeSeekEnd = seekableEnd();
   armResumeWatch(a, 0);
 }
+
+// ===== System interruption signal (iOS/WebKit) =====
+//
+// WebKit flips an AudioContext to state 'interrupted' while a call / Siri / another
+// app holds the audio session, and back to 'running' when it ends. That is the only
+// reliable "the interruption is over" signal a page gets — it lets us resume the
+// moment the call ends WITHOUT ever retrying play() over the call (which used to
+// leak the radio into calls). Non-WebKit browsers never report 'interrupted'.
+let interruptionCtx = null;
+
+function ensureInterruptionWatch() {
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return;
+  try {
+    if (!interruptionCtx) {
+      interruptionCtx = new AC();
+      interruptionCtx.addEventListener('statechange', () => {
+        const s = interruptionCtx.state;
+        if (s === 'interrupted') { state.interrupted = true; return; }
+        if (s === 'running' && state.interrupted) {
+          state.interrupted = false;
+          if (state.wantsPlayback && els.audio && els.audio.paused) resumeLive();
+        }
+      });
+    }
+    if (interruptionCtx.state === 'suspended') interruptionCtx.resume().catch(() => {});
+  } catch { /* no signal available; the keeper + foreground return still recover */ }
+}
+
+function releaseInterruptionWatch() {
+  state.interrupted = false;
+  if (interruptionCtx && interruptionCtx.state === 'running') interruptionCtx.suspend().catch(() => {});
+}
+
+// ===== Playback keeper: never stay silent while the user wants playback =====
+//
+// The user's contract with a radio: it keeps playing until THEY press stop. So while
+// wantsPlayback is set, recover on our own from a stalled live stream (no progress),
+// a pause we did not ask for (interruption ended, stray pause) and mid-play errors —
+// within the iOS rules: seeking is always allowed, a source reload only when visible.
+const KEEPER_TICK_MS = 2000;
+const STALL_SEEK_MS = 8000;     // below half realtime for 8s → jump to the live edge
+const STALL_RELOAD_MS = 20000;  // still stalled → reload (visible) / defer (hidden)
+const PAUSED_RETRY_MS = 6000;   // non-user pause while visible → retry resume
+let kpTime = -1;                // last checkpoint currentTime
+let kpAt = Date.now();          // when that checkpoint was taken
+let lastKeeperSeekAt = 0;
+let lastKeeperReloadAt = 0;
+let lastPausedRetryAt = 0;
+
+function keeperNoteProgress() { kpTime = -1; kpAt = Date.now(); }
+
+function keeperTick() {
+  const a = els.audio;
+  const now = Date.now();
+  if (!a || !state.wantsPlayback || state.sleepFading) { keeperNoteProgress(); return; }
+  if (resumeStartTime != null) return; // a resume watch is already driving recovery
+  if (a.paused) {
+    // Paused without the user asking (interruption ended, stray pause). While hidden
+    // or during an interruption we must not guess — play() could leak into a call;
+    // the interruption signal and the foreground return handle those. Visible: retry.
+    if (document.hidden || state.interrupted) return;
+    if (now - lastPausedRetryAt < PAUSED_RETRY_MS) return;
+    lastPausedRetryAt = now;
+    resumeLive();
+    return;
+  }
+  const t = a.currentTime;
+  if (kpTime < 0 || t < kpTime) { kpTime = t; kpAt = now; return; } // baseline, or a reload reset the clock
+  const win = (now - kpAt) / 1000;
+  if (win < 4) return; // too short a window to judge
+  if (t - kpTime >= win * 0.5) { kpTime = t; kpAt = now; return; } // healthy: at least half realtime
+  // Stalled or merely crawling for `win` seconds.
+  if (win * 1000 >= STALL_SEEK_MS && now - lastKeeperSeekAt >= STALL_SEEK_MS) {
+    lastKeeperSeekAt = now;
+    seekToLiveEdge();
+    kpTime = a.currentTime; // a seek is a jump, not progress — keep the stall clock running
+  }
+  if (win * 1000 >= STALL_RELOAD_MS && now - lastKeeperReloadAt >= STALL_RELOAD_MS) {
+    lastKeeperReloadAt = now;
+    deferOrReload(); // hidden → deferred to the foreground, visible → reload now
+  }
+}
+setInterval(keeperTick, KEEPER_TICK_MS);
 
 function seekableEnd() {
   try { const s = els.audio.seekable; return s && s.length ? s.end(s.length - 1) : -1; } catch { return -1; }
