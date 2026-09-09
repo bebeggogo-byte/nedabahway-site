@@ -43,6 +43,28 @@ if (leftover) {
   console.warn('warning: absolute-rooted refs remain (may 404 in-app):', leftover.join(', '));
 }
 
+// Native media session (Android): the WebView has no Media Session API, so bundle the
+// Capacitor core runtime + @jofr/capacitor-media-session (IIFE builds) ahead of app.js.
+// app.js detects `window.capacitorMediaSession` and routes lock-screen / headset
+// controls and the background foreground-service through the plugin. Skipped when the
+// packages are not installed (e.g. an iOS-only setup) — the Web API is used instead.
+const VENDOR = [
+  ['@capacitor/core/dist/capacitor.js', 'capacitor.js'],
+  ['@jofr/capacitor-media-session/dist/plugin.js', 'media-session.js'],
+];
+const vendorTags = [];
+for (const [pkgPath, outName] of VENDOR) {
+  const from = path.join(ROOT, 'node_modules', pkgPath);
+  if (!fs.existsSync(from)) { console.warn('note: not installed, skipping vendor script:', pkgPath); vendorTags.length = 0; break; }
+  fs.mkdirSync(path.join(OUT, 'vendor'), { recursive: true });
+  fs.copyFileSync(from, path.join(OUT, 'vendor', outName));
+  vendorTags.push(`<script src="./vendor/${outName}"></script>`);
+}
+if (vendorTags.length === VENDOR.length) {
+  html = html.replace('<script src="./app.js"></script>', vendorTags.join('\n') + '\n<script src="./app.js"></script>');
+  console.log('vendor: bundled Capacitor core + media-session plugin');
+}
+
 fs.writeFileSync(path.join(OUT, 'index.html'), html);
 
 // App logic + data + PWA files (all referenced relatively from index.html)

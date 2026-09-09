@@ -328,7 +328,7 @@ if (els.audio) {
       // stray 'playing' while re-buffering. Keep it stopped so the lock-screen
       // button does not flicker back to the pause icon.
       els.audio.pause();
-      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+      msSetPlaybackState('paused');
       return;
     }
     state.userInitiatedStop = false;
@@ -347,7 +347,7 @@ if (els.audio) {
     // is stale by now — re-sync to the live edge and verify real progress.
     if (wasInterrupted && resumeStartTime == null) beginResumeWatch(els.audio);
     setPlayingUI(true);
-    if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+    msSetPlaybackState('playing');
   });
   els.audio.addEventListener('pause', () => {
     keeperNoteProgress(); // fresh stall baseline on the next resume
@@ -355,13 +355,13 @@ if (els.audio) {
     state.userInitiatedStop = false;
     if (deliberate) {
       setPlayingUI(false);
-      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+      msSetPlaybackState('paused');
       return;
     }
     if (!state.wantsPlayback) {
       if (!state.playing) return;
       setPlayingUI(false);
-      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+      msSetPlaybackState('paused');
       return;
     }
     // External interruption (phone call, other app/tab media, OS ducking):
@@ -369,7 +369,7 @@ if (els.audio) {
     // that would play over the call/other audio. We resume only when the user
     // actually returns to the app (see resumeOnReturn).
     state.pausedAt = Date.now();
-    if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+    msSetPlaybackState('paused');
     els.statusText.textContent = 'PAUSED';
     els.heroHint.textContent = '통화·외부 재생 중 일시정지 — 앱으로 돌아오면 재생';
   });
@@ -444,6 +444,15 @@ let resumeStartTime = null; // currentTime when the resume began (progress basel
 let resumeSeekEnd = -1;     // seekable end at resume; a later increase = playlist refreshed
 let lastErrorRecoveryAt = 0;
 
+// iOS/WebKit only: a freshly loaded resource cannot start while the page is hidden
+// (it is paused by the background restriction before it can produce audio, Now
+// Playing is lost and the next lock-screen play goes to Apple Music). Android — the
+// Chrome PWA or the native app with its foreground service — may reload in the
+// background, which is what keeps a pocketed radio alive after a dead stream.
+const RELOAD_BLOCKED_WHEN_HIDDEN = /iP(hone|ad|od)/.test(navigator.userAgent)
+  || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+function reloadBlockedNow() { return document.hidden && RELOAD_BLOCKED_WHEN_HIDDEN; }
+
 function clearResumeStall() {
   clearTimeout(resumeStallTimer);
   resumeStallTimer = null;
@@ -481,7 +490,7 @@ async function resumeLive() {
   if (!hasLoadedResource()) {
     // Nothing loaded (after stop / first run). A fresh load cannot start while the
     // page is hidden (WebKit background restriction) — defer it to the foreground.
-    if (document.hidden) { state.reloadWhenVisible = true; return; }
+    if (reloadBlockedNow()) { state.reloadWhenVisible = true; return; }
     startStream();
     return;
   }
@@ -607,7 +616,7 @@ function seekableEnd() {
 // goes to the default music app (Apple Music). So while hidden we keep the existing
 // (bound) element and do the reload as soon as the app is in the foreground.
 function deferOrReload() {
-  if (document.hidden) { state.reloadWhenVisible = true; return; }
+  if (reloadBlockedNow()) { state.reloadWhenVisible = true; return; }
   reacquireStream();
 }
 
@@ -1043,24 +1052,47 @@ if (els.regionsReveal) {
 }
 
 // ===== Media Session (car / lock screen controls) =====
+//
+// Adapter: browsers use the Media Session Web API. The Android WebView has none, so
+// the native (Capacitor) app ships the @jofr/capacitor-media-session plugin, which
+// provides the same surface plus a foreground service for background playback. The
+// plugin's script is only included in the native bundle (radio/store/src/build-
+// personal-app.js); on the website `nativeMediaSession` is simply null.
+const nativeMediaSession = (typeof window !== 'undefined'
+  && window.capacitorMediaSession && window.capacitorMediaSession.MediaSession) || null;
+const hasMediaSession = !!nativeMediaSession || ('mediaSession' in navigator);
+
+function msSetPlaybackState(playbackState) {
+  if (nativeMediaSession) { nativeMediaSession.setPlaybackState({ playbackState }).catch(() => {}); return; }
+  if ('mediaSession' in navigator) navigator.mediaSession.playbackState = playbackState;
+}
+function msSetMetadata(meta) {
+  if (nativeMediaSession) { nativeMediaSession.setMetadata(meta).catch(() => {}); return; }
+  if ('mediaSession' in navigator) navigator.mediaSession.metadata = new MediaMetadata(meta);
+}
+function msSetActionHandler(action, handler) {
+  if (nativeMediaSession) { nativeMediaSession.setActionHandler({ action }, handler).catch(() => {}); return; }
+  if ('mediaSession' in navigator) navigator.mediaSession.setActionHandler(action, handler);
+}
 
 function updateMediaMetadata() {
-  if (!('mediaSession' in navigator) || !state.current) return;
+  if (!hasMediaSession || !state.current) return;
   const r = state.current;
-  navigator.mediaSession.metadata = new MediaMetadata({
+  const abs = (p) => new URL(p, location.href).href; // absolute for the native notification
+  msSetMetadata({
     title: 'KBS 클래식FM',
     artist: `${r.city} · ${r.freq.toFixed(1)} MHz`,
     album: 'KBS 1FM Classic',
     artwork: [
-      { src: './icons/icon-192.png', sizes: '192x192', type: 'image/png' },
-      { src: './icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+      { src: abs('./icons/icon-192.png'), sizes: '192x192', type: 'image/png' },
+      { src: abs('./icons/icon-512.png'), sizes: '512x512', type: 'image/png' },
     ],
   });
 }
 
 function setupMediaSession() {
-  if (!('mediaSession' in navigator)) return;
-  const ms = navigator.mediaSession;
+  if (!hasMediaSession) return;
+  const ms = { setActionHandler: msSetActionHandler };
   ms.setActionHandler('play', () => {
     // Resume WITHOUT reloading the source: reloading empties the element and iOS
     // then hands the lock-screen play command to Apple Music. resumeLive() plays
@@ -1080,7 +1112,7 @@ function setupMediaSession() {
     state.seekLiveOnPlaying = false;
     state.reloadWhenVisible = false;
     if (els.audio && !els.audio.paused) els.audio.pause();
-    navigator.mediaSession.playbackState = 'paused';
+    msSetPlaybackState('paused');
   });
   ms.setActionHandler('stop', () => stopStream());
   // togglemuteoff is what some car controls send — handle as play
