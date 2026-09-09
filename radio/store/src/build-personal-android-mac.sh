@@ -64,6 +64,13 @@ if ! grep -q 'ACCESS_FINE_LOCATION' "$MANIFEST"; then
   perl -0pi -e 's#</manifest>#    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />\n</manifest>#' "$MANIFEST"
   echo "✔ AndroidManifest: 위치 권한 추가"
 fi
+if ! grep -q 'FOREGROUND_SERVICE_MEDIA_PLAYBACK' "$MANIFEST"; then
+  # 안드로이드 14+(targetSdk 34): 미디어 재생 포그라운드 서비스를 시작하려면 이 타입 권한이
+  # 매니페스트에 있어야 함(없으면 재생 시작 시 SecurityException으로 앱 종료).
+  # 플러그인(@jofr/capacitor-media-session 4.0.0) 매니페스트에는 FOREGROUND_SERVICE만 있어 앱에서 보강.
+  perl -0pi -e 's#</manifest>#    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />\n</manifest>#' "$MANIFEST"
+  echo "✔ AndroidManifest: 미디어 재생 포그라운드 서비스 권한 추가 (안드로이드 14+)"
+fi
 printf 'sdk.dir=%s\n' "$SDK" > android/local.properties
 
 # --- 5) APK 빌드 -------------------------------------------------------------
