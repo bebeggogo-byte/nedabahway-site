@@ -2,187 +2,32 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>자료실 — 현장 검증 자료 큐레이션 | 네다바웨이</title>
-<meta name="description" content="네다바웨이가 강의·제안·진단·근거에 실제로 쓰는 자료. 검수 통과한 자료만 한 건씩 공개합니다. {{TOTAL_PUBLIC}}건 공개 중.">
-<meta property="og:title" content="네다바웨이 자료실">
-<meta property="og:description" content="현장에서 검증한 자료만 — 매일 추가됩니다">
-<meta property="og:url" content="https://www.nedabah.org/resources/">
-<link rel="canonical" href="https://www.nedabah.org/resources/">
-<link rel="stylesheet" href="/assets/v3.css">
-
-<link rel="stylesheet" href="/assets/nav-right.css">
-
-
-<link rel="stylesheet" href="/assets/deck-toggle.css">
-
-<link rel="stylesheet" href="/assets/back-to-top.css">
-
-<link rel="stylesheet" href="/assets/mobile-v1.css">
-<style>
-.cat-grid { display: grid; gap: 18px; grid-template-columns: 1fr; margin: 28px 0; }
-@media (min-width: 640px) { .cat-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 960px) { .cat-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
-.cat {
-  background: var(--c-surface);
-  border: 1px solid var(--c-line);
-  border-radius: 14px;
-  padding: 24px 22px;
-  text-align: left;
-  cursor: pointer;
-  transition: all .2s;
-  width: 100%;
-  display: block;
-  position: relative;
-}
-.cat:hover { border-color: var(--c-copper); transform: translateY(-2px); }
-.cat::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--cat-color); border-radius: 14px 14px 0 0; }
-.cat__abbr { font-size: .68rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--c-mute); margin-bottom: 10px; }
-.cat__title { font-family: var(--ff-serif); font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
-.cat__more { font-size: .78rem; color: var(--c-copper); font-weight: 600; }
-
-.modal { position: fixed; inset: 0; background: rgba(20,20,20,.7); z-index: 200; display: none; align-items: center; justify-content: center; padding: 20px; }
-.modal.is-open { display: flex; }
-.modal__box { background: #fff; border-radius: 18px; padding: 32px 28px; max-width: 440px; width: 100%; text-align: center; }
-.modal__cat { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--c-mute); font-weight: 700; margin-bottom: 8px; }
-.modal__title { font-family: var(--ff-serif); font-size: 1.3rem; font-weight: 700; margin-bottom: 14px; }
-.modal__msg { color: var(--c-mute); line-height: 1.8; font-size: .92rem; margin-bottom: 22px; }
-.modal__btn { display: inline-block; padding: 12px 26px; background: var(--c-ink); color: var(--c-bg); border-radius: 999px; font-weight: 600; font-size: .88rem; margin: 4px; }
-.modal__btn--ghost { background: #fff; color: var(--c-ink); border: 1px solid var(--c-line); }
-
-.notice { margin-top: 50px; padding: 22px 24px; background: var(--c-surface); border: 1px solid var(--c-line); border-radius: 12px; font-size: .9rem; color: var(--c-mute); line-height: 1.8; }
-.notice strong { color: var(--c-ink); }
-</style>
-  <link rel="stylesheet" href="/assets/global-fonts.css">
-  <link rel="stylesheet" href="/assets/global-nav.css">
-  <link rel="stylesheet" href="/assets/warm-tone-v1.css">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-
-<nav class="gnav" role="navigation" aria-label="주요 메뉴">
-  <div class="gnav__inner">
-    <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
-    <ul class="gnav__links" id="gnavLinks">
-      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
-      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
-      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
-      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
-      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
-      <li><a href="/about.html" class="gnav__link">소개</a></li>
-      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
-    </ul>
-  </div>
-</nav>
-
-
-
-
-
-
-
-
-
-<header class="masthead">
-  <div class="kicker">Resources · 자료실</div>
-  <h1 class="h1">현장에서 <em>실제로 쓰는</em><br>자료만.</h1>
-  <p class="lead">활동지·제안서·근거자료·프롬프트·진단도구·성경관찰 큐레이션 — 강의 현장에서 한 번이라도 써본 자료를 익명화·일반화 후 공개합니다. 검수 통과한 자료만 한 건씩 풀립니다. <strong>현재 {{TOTAL_PUBLIC}}건 공개 · 마지막 갱신 {{LAST_UPDATED}}</strong></p>
-</header>
-
-<main>
-
-  <section class="wrap section">
-    <div class="section__head">
-      <div class="kicker">8 카테고리</div>
-      <h2 class="section__title">자료 카테고리</h2>
-      <p class="section__hint">각 카테고리별로 검수가 진행 중입니다. 즉시 필요하시면 카드 클릭 후 메일 안내를 받으세요.</p>
-    </div>
-    <div class="cat-grid">
-      {{LOCKED_CATEGORIES}}
-    </div>
-  </section>
-
-  <section class="wrap section">
-    <div class="section__head">
-      <div class="kicker">현재 공개</div>
-      <h2 class="section__title">검수 통과 자료 (최신 12건)</h2>
-      <p class="section__hint">신규 공개분은 변경 이력에서 전체 확인 가능.</p>
-    </div>
-    <div class="grid grid--3">
-      {{PUBLIC_CARDS}}
-    </div>
-    <div class="actions">
-      <a href="/resources/changelog.html" class="btn btn--ghost">변경 이력 전체 →</a>
-    </div>
-  </section>
-
-  <div class="wrap">
-    <div class="notice">
-      <strong>자료실 운영 원칙.</strong> 네다바웨이는 매일 신규 자료를 제작하지만 모든 자료가 외부 공개되는 것은 아닙니다. 클라이언트 정보·미검증 가설·내부 운영 자료는 비공개로 유지합니다. 검수 통과한 자료만 한 건씩 외부에 공개되며, <a href="/resources/changelog.html" style="color:var(--c-copper);font-weight:600">변경 이력</a>에서 흐름을 확인할 수 있습니다.
-    </div>
-  </div>
-
-</main>
-
-<div class="modal" id="catModal" onclick="closeCatModal(event)">
-  <div class="modal__box" onclick="event.stopPropagation()">
-    <div class="modal__cat" id="catModalLabel">CATEGORY</div>
-    <div class="modal__title" id="catModalTitle">자료 검수 중</div>
-    <p class="modal__msg" id="catModalMsg">현재 검수 진행 중입니다. 완료된 자료는 한 건씩 자료실에 추가됩니다. 지금 필요하시면 메일로 안내드립니다.</p>
-    <a href="" id="catModalMail" class="modal__btn">📧 메일로 안내 받기</a>
-    <button class="modal__btn modal__btn--ghost" onclick="closeCatModal()">닫기</button>
-  </div>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
 </div>
-
-
-
-<script>
-document.querySelectorAll('.cat').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const label = btn.dataset.label;
-    const pub = btn.dataset.pub;
-    const total = btn.dataset.total;
-    document.getElementById('catModalLabel').textContent = label.toUpperCase();
-    document.getElementById('catModalTitle').textContent = `${label} — 검수 중 ${total - pub}건`;
-    document.getElementById('catModalMsg').textContent = `현재 ${total}건 중 ${pub}건이 외부 공개되어 있습니다. 비공개 자료가 즉시 필요하시면 메일로 안내드립니다.`;
-    const mail = `mailto:nedabah.way@gmail.com?subject=${encodeURIComponent('[자료 안내 요청] ' + label)}&body=${encodeURIComponent(label + ' 카테고리 자료가 필요합니다. 활용 목적: ')}`;
-    document.getElementById('catModalMail').href = mail;
-    document.getElementById('catModal').classList.add('is-open');
-  });
-});
-function closeCatModal(e) {
-  if (e && e.target.closest('.modal__box')) return;
-  document.getElementById('catModal').classList.remove('is-open');
-}
-</script>
-
-
-
-
-
-<footer class="foot foot--mini">
-  <style>
-    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
-    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
-    .foot--mini strong{color:#2a241c}
-    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
-    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
-    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
-    @media(max-width:680px){
-      .foot--mini .foot--mini__inner{justify-content:flex-start}
-      .foot--mini>div>span{display:block}
-    }
-  </style>
-  <div class="foot--mini__inner">
-    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong>137-82-94771</strong></span>
-    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
-  </div>
-</footer>
-
-
-<script src="/assets/back-to-top.js" defer></script>
-
-<script src="/assets/deck-toggle.js" defer></script>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
+</main>
+<script type="text/plain" id="nw-vault-data">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</script>
 </body>
 </html>

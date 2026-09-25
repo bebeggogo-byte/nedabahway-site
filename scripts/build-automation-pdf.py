@@ -50,7 +50,7 @@ CSS_TEXT = """
     content: counter(page) " / " counter(pages);
     font-family: 'Noto Sans CJK KR', sans-serif;
     font-size: 9pt;
-    color: #8a7a64;
+    color: #665f57;
   }
 }
 
@@ -68,14 +68,14 @@ body {
   padding-top: 60mm;
 }
 .cover .label {
-  font-size: 9pt; letter-spacing: .25em; color: #b45309;
+  font-size: 9pt; letter-spacing: .25em; color: #1d4ed8;
   font-weight: 700;
 }
 .cover h1 {
   font-family: 'Noto Serif CJK KR', serif;
   font-size: 38pt; line-height: 1.15;
   margin: 6mm 0 2mm;
-  color: #3a322a;
+  color: #1b1b1b;
 }
 .cover .sub {
   font-family: 'Noto Serif CJK KR', serif;
@@ -84,11 +84,11 @@ body {
   font-weight: 400;
 }
 .cover .meta {
-  font-size: 10.5pt; color: #3a322a; line-height: 1.85;
+  font-size: 10.5pt; color: #1b1b1b; line-height: 1.85;
 }
-.cover .meta strong { color: #3a322a; }
+.cover .meta strong { color: #1b1b1b; }
 .cover hr.divider {
-  border: none; border-top: 2px solid #b45309;
+  border: none; border-top: 2px solid #1d4ed8;
   width: 30mm; margin: 0 0 6mm; padding: 0;
 }
 
@@ -96,10 +96,10 @@ body {
 .toc { page-break-after: always; }
 .toc h2 {
   font-family: 'Noto Serif CJK KR', serif;
-  font-size: 22pt; color: #3a322a; margin: 0 0 6mm;
+  font-size: 22pt; color: #1b1b1b; margin: 0 0 6mm;
 }
 .toc .toc-section {
-  font-weight: 700; color: #b45309;
+  font-weight: 700; color: #1d4ed8;
   font-size: 10pt; letter-spacing: .12em;
   margin-top: 6mm;
 }
@@ -111,7 +111,7 @@ body {
   font-size: 10.5pt;
   page-break-inside: avoid;
 }
-.toc li small { color: #8a7a64; font-size: 9pt; }
+.toc li small { color: #665f57; font-size: 9pt; }
 
 /* ─── 챕터 (각 자동화 1개) ─── */
 .chapter {
@@ -119,13 +119,13 @@ body {
 }
 .chapter .ch-tag {
   display: block;
-  font-size: 9pt; letter-spacing: .14em; color: #b45309;
+  font-size: 9pt; letter-spacing: .14em; color: #1d4ed8;
   font-weight: 700;
   margin-bottom: 2mm;
 }
 .chapter h1 {
   font-family: 'Noto Serif CJK KR', serif;
-  font-size: 22pt; color: #3a322a; line-height: 1.2;
+  font-size: 22pt; color: #1b1b1b; line-height: 1.2;
   margin: 0 0 3mm;
 }
 .chapter .summary {
@@ -135,7 +135,7 @@ body {
 
 /* 메타 카드 */
 .starter-card {
-  border: 1px solid #e5d8c4; background: #fbf6ec;
+  border: 1px solid #e5d8c4; background: #f1ede5;
   border-radius: 4px; padding: 4mm 5mm;
   margin: 0 0 6mm;
   font-size: 9.5pt;
@@ -144,10 +144,10 @@ body {
 .starter-card .row { display: block; padding: 1mm 0; }
 .starter-card .si {
   display: inline-block; width: 22mm;
-  font-size: 8pt; color: #8a7a64; letter-spacing: .08em;
+  font-size: 8pt; color: #665f57; letter-spacing: .08em;
   font-weight: 700; text-transform: uppercase;
 }
-.starter-card .sv { color: #3a322a; font-weight: 600; }
+.starter-card .sv { color: #1b1b1b; font-weight: 600; }
 
 /* 도구 박스 */
 .tool-cta {
@@ -157,17 +157,17 @@ body {
   font-size: 9.5pt;
   page-break-inside: avoid;
 }
-.tool-cta strong { color: #b45309; }
-.tool-cta .url { font-family: monospace; color: #3a322a; }
+.tool-cta strong { color: #1d4ed8; }
+.tool-cta .url { font-family: monospace; color: #1b1b1b; }
 
 /* 본문 */
 .chapter h2 {
-  font-size: 13pt; color: #3a322a; margin: 7mm 0 2mm;
-  padding-left: 3mm; border-left: 3px solid #b45309;
+  font-size: 13pt; color: #1b1b1b; margin: 7mm 0 2mm;
+  padding-left: 3mm; border-left: 3px solid #1d4ed8;
   page-break-after: avoid;
 }
 .chapter h3 {
-  font-size: 11pt; color: #3a322a; margin: 5mm 0 1mm;
+  font-size: 11pt; color: #1b1b1b; margin: 5mm 0 1mm;
   page-break-after: avoid;
 }
 .chapter h4 {
@@ -181,9 +181,9 @@ body {
 .chapter li { margin: .5mm 0; }
 
 .chapter blockquote {
-  background: #fbf6ec; border-left: 3px solid #b45309;
+  background: #f1ede5; border-left: 3px solid #1d4ed8;
   padding: 2mm 5mm; margin: 2mm 0 3mm;
-  color: #3a322a;
+  color: #1b1b1b;
   page-break-inside: avoid;
 }
 
@@ -194,7 +194,7 @@ body {
   page-break-inside: avoid;
 }
 .chapter th {
-  background: #fbf6ec; text-align: left;
+  background: #f1ede5; text-align: left;
   padding: 1.5mm 2mm; border-bottom: 1.5px solid #e5d8c4;
   font-weight: 700;
 }
@@ -235,7 +235,7 @@ body {
 }
 
 /* 외부 링크 표시 (PDF에서는 클릭 가능) */
-.chapter a { color: #b45309; text-decoration: none; }
+.chapter a { color: #1d4ed8; text-decoration: none; }
 .chapter a:hover { text-decoration: underline; }
 """
 
@@ -315,7 +315,7 @@ def main() -> None:
             )
             n += 1
         toc_parts.append('</ol>')
-    toc_parts.append('<p style="margin-top:8mm;color:#8a7a64;font-size:9.5pt;">자료 허브: nedabah.org/auto · 도구 모음: nedabah.org/auto/tools · 강의 의뢰: nedabah.way@gmail.com</p>')
+    toc_parts.append('<p style="margin-top:8mm;color:#665f57;font-size:9.5pt;">자료 허브: nedabah.org/auto · 도구 모음: nedabah.org/auto/tools · 강의 의뢰: nedabah.way@gmail.com</p>')
     toc_parts.append('</section>')
     toc = ''.join(toc_parts)
 

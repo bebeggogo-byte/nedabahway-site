@@ -2,263 +2,32 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>편집부가 본 자료 #01 — 효과크기·AI 리터러시 측정·공공조달 RFP 언어 | 네다바웨이 매거진</title>
-<meta name="description" content="네다바웨이 편집부가 이번 주 공부한 외부 자료 큐레이션 1호. 원저자·발행기관·링크·왜 중요한지·어디에 쓰면 좋은지를 함께 적습니다. 출처 표기가 기본 원칙입니다.">
-<meta property="og:title" content="CURATION #01 — 편집부가 본 자료 큐레이션">
-<meta property="og:description" content="출처·원저자·쓰임을 함께 적는 큐레이션 1호">
-<meta property="og:type" content="article">
-<meta property="article:published_time" content="2026-04-18">
-<meta property="article:section" content="CURATION">
-<meta property="og:url" content="https://www.nedabah.org/blog/posts/2026-04-18_ref-curation-01.html">
-<link rel="canonical" href="https://www.nedabah.org/blog/posts/2026-04-18_ref-curation-01.html">
-<style>
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap');
-:root{
-  --c-bg:#FAFAF7;--c-surface:#FFFFFF;--c-fg:#1A1A1A;
-  --c-mute:#6B6B6B;--c-mute2:#9A9A9A;--c-line:#E8E6E0;--c-line2:#D6D3CA;
-  --c-accent:#10803D;--c-copper:#C2410C;
-  --c-curation:#C2410C;--c-curation-soft:#FDF1EA;
-  --ff:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
-  --ff-serif:'Noto Serif KR',Georgia,serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px;scroll-behavior:smooth}
-body{font-family:var(--ff);background:var(--c-bg);color:var(--c-fg);line-height:1.8;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
-a{color:inherit}a:hover{text-decoration:underline}
-
-.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,247,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line)}
-.nav__inner{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
-.nav__logo{font-family:var(--ff-serif);font-weight:700;font-size:1.15rem}
-.nav__links{display:flex;gap:22px;align-items:center}
-.nav__link{font-size:.86rem;color:var(--c-mute);font-weight:500}
-.nav__link--active{color:var(--c-accent);font-weight:700}
-.nav__cta{font-size:.84rem;padding:9px 18px;border-radius:999px;background:var(--c-fg);color:var(--c-bg);font-weight:600}
-@media(max-width:760px){.nav__links .nav__link:not(.nav__link--active){display:none}}
-
-.wrap{max-width:760px;margin:0 auto;padding:56px 24px 80px}
-.back{font-size:.85rem;color:var(--c-mute);margin-bottom:24px;display:inline-block;text-decoration:underline;text-decoration-color:var(--c-line2);text-underline-offset:3px}
-.meta{display:flex;gap:10px;align-items:center;font-size:.78rem;color:var(--c-mute);margin-bottom:18px;flex-wrap:wrap;font-weight:500}
-.meta__cat{padding:4px 11px;border-radius:999px;background:var(--c-curation-soft);color:var(--c-curation);font-weight:700;letter-spacing:.12em;font-size:.7rem;text-transform:uppercase}
-.h1{font-family:var(--ff-serif);font-size:clamp(1.9rem,4.5vw,2.8rem);font-weight:700;line-height:1.22;letter-spacing:-.02em;margin-bottom:22px}
-.lead{font-family:var(--ff-serif);font-size:1.12rem;color:#333;line-height:1.8;margin-bottom:40px;padding-bottom:30px;border-bottom:1px solid var(--c-line);font-weight:500}
-
-article h2{font-family:var(--ff-serif);font-size:1.45rem;font-weight:700;margin:44px 0 18px;line-height:1.3;letter-spacing:-.02em}
-article p{margin-bottom:18px;font-size:1rem;color:#2a2a2a;line-height:1.85}
-article strong{color:var(--c-fg);font-weight:700}
-article em{color:var(--c-copper);font-style:normal;font-weight:600}
-
-.principle{background:var(--c-curation-soft);border:1px solid #F4D7C3;border-radius:14px;padding:24px 26px;margin:28px 0}
-.principle__label{font-size:.72rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--c-curation);margin-bottom:10px}
-.principle ol{padding-left:22px;margin:8px 0 0;color:#3a3a3a;font-size:.95rem}
-.principle li{margin-bottom:10px;line-height:1.75}
-.principle li strong{color:var(--c-fg)}
-
-.curated{display:grid;gap:18px;margin:28px 0 8px}
-.cref{background:var(--c-surface);border:1px solid var(--c-line);border-radius:14px;padding:26px 26px;transition:border-color .2s}
-.cref:hover{border-color:var(--c-line2)}
-.cref__head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.72rem;color:var(--c-mute2);margin-bottom:12px;font-weight:600;letter-spacing:.05em}
-.cref__type{padding:3px 10px;border-radius:999px;background:var(--c-curation-soft);color:var(--c-curation);font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:.66rem}
-.cref__title{font-family:var(--ff-serif);font-size:1.12rem;font-weight:700;line-height:1.4;margin-bottom:8px;color:var(--c-fg);letter-spacing:-.01em}
-.cref__author{font-size:.88rem;color:var(--c-mute);margin-bottom:14px;font-weight:500}
-.cref__why{font-size:.95rem;color:#2a2a2a;line-height:1.78;margin-bottom:14px}
-.cref__use{display:flex;gap:14px;flex-wrap:wrap;font-size:.84rem;color:var(--c-mute);padding-top:12px;border-top:1px solid var(--c-line)}
-.cref__use strong{color:var(--c-fg)}
-.cref__link{display:inline-flex;align-items:center;gap:6px;font-size:.88rem;color:var(--c-accent);margin-top:12px;word-break:break-all;font-weight:600}
-.cref__link:hover{text-decoration:underline}
-
-.engage{margin-top:64px;padding-top:36px;border-top:1px solid var(--c-line)}
-.engage__row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.like-btn{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;background:var(--c-surface);border:1px solid var(--c-line);color:var(--c-fg);font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s}
-.like-btn:hover{border-color:var(--c-curation);color:var(--c-curation)}
-.like-btn--active{background:var(--c-curation-soft);border-color:var(--c-curation);color:var(--c-curation)}
-.like-btn__count{font-variant-numeric:tabular-nums;font-size:.85rem;color:var(--c-mute)}
-.like-btn--active .like-btn__count{color:var(--c-curation)}
-.share-btn{padding:10px 18px;border-radius:999px;background:transparent;border:1px solid var(--c-line);color:var(--c-mute);font-family:inherit;font-size:.85rem;cursor:pointer;font-weight:600}
-.share-btn:hover{border-color:var(--c-fg);color:var(--c-fg)}
-.engage__note{font-size:.78rem;color:var(--c-mute2);margin-top:14px;line-height:1.7}
-
-.comments{margin-top:44px;padding-top:36px;border-top:1px solid var(--c-line)}
-.comments__title{font-size:.75rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--c-mute);margin-bottom:16px}
-.comments__setup{background:var(--c-surface);border:1px dashed var(--c-line2);border-radius:12px;padding:20px 22px;color:#555;font-size:.88rem;line-height:1.75}
-.comments__setup strong{color:var(--c-fg)}
-.comments__setup a{color:var(--c-accent);font-weight:600}
-
-.footer-note{margin-top:56px;color:var(--c-mute);font-size:.85rem;line-height:1.75}
-</style>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-
-<nav class="nav">
-  <div class="nav__inner">
-    <a class="nav__logo" href="/">네다바웨이</a>
-    <div class="nav__links">
-      <a class="nav__link" href="/iden.html">IDEN</a>
-      <a class="nav__link" href="/programs.html">교육설계</a>
-      <a class="nav__link" href="/portfolio.html">포트폴리오</a>
-      <a class="nav__link nav__link--active" href="/blog/">매거진</a>
-      <a class="nav__link" href="/resources/">자료실</a>
-      <a class="nav__cta" href="/#contact">문의</a>
-    </div>
-  </div>
-</nav>
-
-<main class="wrap">
-  <a class="back" href="/blog/">← 매거진 목록</a>
-
-  <div class="meta">
-    <span class="meta__cat">CURATION · 큐레이션</span>
-    <span>·</span><span>2026-04-18</span>
-    <span>·</span><span>편집부가 본 자료 #01</span>
-    <span>·</span><span>읽는 시간 4분</span>
-  </div>
-
-  <h1 class="h1">출처를 밝히고 모읍니다 — 편집부가 공부한 외부 자료 #01</h1>
-
-  <p class="lead">
-    매 격주, 편집부가 실제로 읽고 강의 설계·제안서·블로그 글에 참고한 <strong>외부 자료</strong>를 한 자리에 정리합니다. 원저자·발행기관·링크·왜 중요한지·어디에 쓰면 좋은지를 함께 적는 것이 기본 원칙입니다.
-  </p>
-
-  <article>
-
-    <div class="principle">
-      <div class="principle__label">큐레이션 5원칙</div>
-      <ol>
-        <li><strong>원저자·발행기관·발행연도</strong>를 반드시 먼저 적습니다.</li>
-        <li><strong>직접 링크</strong>를 답니다. 요약본만 읽고 인용하지 않습니다.</li>
-        <li><strong>왜 중요한지</strong> 편집부의 판단을 한 문단으로 적습니다 — 광고성 요약 금지.</li>
-        <li><strong>어디에 쓰면 좋은지</strong> 구체 용처를 답니다(제안서·활동지·강의 오프닝·기관 보고서 등).</li>
-        <li>해석이 <strong>편집부 판단</strong>인 부분과 <strong>원문 내용</strong>인 부분을 구분해 표기합니다.</li>
-      </ol>
-    </div>
-
-    <h2>이번 주 자료 4건</h2>
-
-    <div class="curated">
-
-      <div class="cref">
-        <div class="cref__head">
-          <span class="cref__type">Book</span>
-          <span>2009</span><span>·</span><span>교육공학 · 메타분석</span>
-        </div>
-        <div class="cref__title">Visible Learning — 800개 이상의 교육 메타분석 종합</div>
-        <div class="cref__author">John Hattie · Routledge</div>
-        <p class="cref__why">
-          <strong>왜 중요한가.</strong> 교육 효과크기 <em>0.4 이상</em>이라는 업계 기준선의 원출처. 공공조달·HRD 제안서에서 "효과크기"라는 단어를 쓸 때 유일하게 의지할 수 있는 표준 참고입니다. 국내 번역본도 있으나, 숫자 인용은 영문 원서 쪽 수 기반이 안전합니다.
-        </p>
-        <div class="cref__use">
-          <span><strong>쓰임</strong> · 제안서 "학습성과 측정" 섹션 각주 / 강의 오프닝 근거 인용 / 활동지 설계 원칙 문서화</span>
-        </div>
-        <p style="font-size:.82rem;color:var(--c-mute2);margin-top:10px">※ 출판사 정식 서지: Hattie, J. (2009). <em>Visible Learning</em>. Routledge, London. · ISBN 978-0-415-47618-8</p>
-      </div>
-
-      <div class="cref">
-        <div class="cref__head">
-          <span class="cref__type">Policy</span>
-          <span>정부 포털</span><span>·</span><span>국내 HRD 정책</span>
-        </div>
-        <div class="cref__title">HRD-Net · 국민내일배움카드 훈련과정 심사기준</div>
-        <div class="cref__author">고용노동부 · 한국고용정보원</div>
-        <p class="cref__why">
-          <strong>왜 중요한가.</strong> 공공 HRD 강의 시장의 룰북. AI 리터러시 관련 심사기준은 최근 2년간 <em>학습성과 증빙</em> 항목이 점점 두꺼워지는 추세입니다. 제안서를 쓰기 전에 최신 고시본을 한 번 훑고 시작하면 심사 언어와 용어가 맞물립니다.
-        </p>
-        <div class="cref__use">
-          <span><strong>쓰임</strong> · 신규 과정 신청 / RFP 대응 제안서 언어 정렬 / 사업자 등록 전 기초 공부</span>
-        </div>
-        <a class="cref__link" href="https://www.hrd.go.kr" target="_blank" rel="noopener">https://www.hrd.go.kr →</a>
-      </div>
-
-      <div class="cref">
-        <div class="cref__head">
-          <span class="cref__type">DB</span>
-          <span>정부 포털</span><span>·</span><span>법령·고시</span>
-        </div>
-        <div class="cref__title">국가법령정보센터 — 행정예고·고시 전문 검색</div>
-        <div class="cref__author">법제처</div>
-        <p class="cref__why">
-          <strong>왜 중요한가.</strong> "AI 교육 의무화" 같은 표현이 실제 법령·고시에 어떤 언어로 박히는지 확인하는 1차 출처. 기사·해설서 대신 여기서 원문을 직접 확인하는 습관이 인용의 신뢰도를 결정합니다.
-        </p>
-        <div class="cref__use">
-          <span><strong>쓰임</strong> · 블로그 글 팩트체크 / 제안서에 법령 번호·조문 표기 / 행정예고 알림 설정 기반</span>
-        </div>
-        <a class="cref__link" href="https://www.law.go.kr" target="_blank" rel="noopener">https://www.law.go.kr →</a>
-      </div>
-
-      <div class="cref">
-        <div class="cref__head">
-          <span class="cref__type">Repo</span>
-          <span>오픈 소스</span><span>·</span><span>평가 지표 모음</span>
-        </div>
-        <div class="cref__title">OECD Learning Compass 2030 · 역량 프레임워크 공개 문서</div>
-        <div class="cref__author">OECD Education & Skills Directorate</div>
-        <p class="cref__why">
-          <strong>왜 중요한가.</strong> 국내 정책 언어가 자주 참조하는 상위 프레임. AI 리터러시를 <em>디지털·변혁적 역량</em>으로 위치 지을 때 "우리 강의의 국제 좌표"를 한 줄로 설명할 수 있게 해주는 근거. 심사에서 "이 강의가 국제 프레임과 정렬되어 있는가"를 물었을 때 쓸 수 있는 카드.
-        </p>
-        <div class="cref__use">
-          <span><strong>쓰임</strong> · 제안서 상위 프레임 인용 / 기관 대상 설명회 오프닝 / 기획서의 전략 정렬 슬라이드</span>
-        </div>
-        <a class="cref__link" href="https://www.oecd.org/education/2030-project/" target="_blank" rel="noopener">https://www.oecd.org/education/2030-project/ →</a>
-      </div>
-
-    </div>
-
-    <h2>편집부 메모</h2>
-    <p>
-      이번 호는 의도적으로 국내·해외·1차 출처(법령/포털)·학술(메타분석)을 섞었습니다. 공공조달 심사위원이 가장 반기는 인용 조합이 이 네 결입니다. 다음 CURATION에서는 <strong>국내 HRD 학회지 최근 호</strong>에서 효과크기를 수치로 보고한 논문 3편을 묶어 소개할 예정입니다.
-    </p>
-    <p>
-      혹시 여러분이 실제 강의 현장에서 쓰시는 <em>1차 출처 자료</em>가 있다면 댓글로 공유해 주세요. 검증 후 다음 호에 원저자·링크와 함께 반영하겠습니다.
-    </p>
-
-  </article>
-
-  <section class="engage">
-    <div class="engage__row">
-      <button class="like-btn" id="likeBtn" aria-pressed="false">
-        <span aria-hidden="true">♥</span><span>좋아요</span>
-        <span class="like-btn__count" id="likeCount">0</span>
-      </button>
-      <button class="share-btn" id="shareBtn">링크 복사</button>
-    </div>
-    <p class="engage__note">※ 좋아요는 이 기기에서 기록됩니다. 편집부는 주 단위로 총합을 집계해 큐레이션 방향에 반영합니다.</p>
-  </section>
-
-
-  <footer class="footer-note">
-    <p>네다바웨이 매거진 · CURATION #01 · 편집: 편집부 + 리서치 / 검증: 리서치 2부</p>
-  </footer>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
-
-<script>
-(() => {
-  const slug = location.pathname.replace(/\W+/g,'_');
-  const likeKey = 'like_' + slug;
-  const countKey = 'likeCount_' + slug;
-  const btn = document.getElementById('likeBtn');
-  const countEl = document.getElementById('likeCount');
-  let liked = localStorage.getItem(likeKey) === '1';
-  let count = parseInt(localStorage.getItem(countKey) || '0', 10);
-  const render = () => { btn.classList.toggle('like-btn--active', liked); btn.setAttribute('aria-pressed', String(liked)); countEl.textContent = count; };
-  render();
-  btn.addEventListener('click', () => {
-    if (liked) { liked = false; count = Math.max(0, count - 1); }
-    else { liked = true; count += 1; }
-    localStorage.setItem(likeKey, liked ? '1' : '0');
-    localStorage.setItem(countKey, String(count));
-    render();
-  });
-  document.getElementById('shareBtn').addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(location.href);
-      const b = document.getElementById('shareBtn');
-      const t = b.textContent; b.textContent = '복사됨 ✓';
-      setTimeout(() => b.textContent = t, 1600);
-    } catch(e) { alert(location.href); }
-  });
-})();
-</script>
-<script src="/assets/share-bar.js" async></script>
+<script type="text/plain" id="nw-vault-data">+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</script>
 </body>
 </html>

@@ -44,7 +44,7 @@ META_LINKS = """<link rel="manifest" href="/manifest.webmanifest">
 <link rel="me" href="https://blog.naver.com/nedabah">
 <link rel="author" href="/about.html">
 <link rel="publisher" href="https://www.nedabah.org/">
-<meta name="theme-color" content="#3a322a">
+<meta name="theme-color" content="#1b1b1b">
 <meta name="application-name" content="네다바웨이">
 <meta name="apple-mobile-web-app-title" content="네다바웨이">
 <meta name="apple-mobile-web-app-capable" content="yes">

@@ -1,178 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<title>[D6] multi-agent system design — 일일 자료 기반 약식 논문 노트 | 네다바웨이 자료실</title>
-<meta name="description" content="D6 부서가 2026-04-28 일일 리서치(300건) 기반으로 작성한 paper. 주제: multi-agent system design">
-<link rel="canonical" href="https://www.nedabah.org/resources/evidence/2026-04-28_d6-paper-d6-multi-agent-system-design-일일-자료-기반-약식-논문-노트.html">
-<meta property="og:title" content="[D6] multi-agent system design — 일일 자료 기반 약식 논문 노트">
-<meta property="og:description" content="D6 부서가 2026-04-28 일일 리서치(300건) 기반으로 작성한 paper. 주제: multi-agent system design">
-<meta property="og:url" content="https://www.nedabah.org/resources/evidence/2026-04-28_d6-paper-d6-multi-agent-system-design-일일-자료-기반-약식-논문-노트.html">
-<meta property="og:type" content="article">
-<meta property="og:image" content="https://www.nedabah.org/assets/og-default.svg">
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "홈",
-      "item": "https://www.nedabah.org/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "자료실",
-      "item": "https://www.nedabah.org/resources/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "근거자료",
-      "item": "https://www.nedabah.org/resources/evidence/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "[D6] multi-agent system design — 일일 자료 기반 약식 논문 노트",
-      "item": "https://www.nedabah.org/resources/evidence/2026-04-28_d6-paper-d6-multi-agent-system-design-일일-자료-기반-약식-논문-노트.html"
-    }
-  ]
-}
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body { max-width: 760px; margin: 2rem auto; padding: 0 1rem; font-family: 'Noto Sans KR', system-ui, sans-serif; line-height: 1.7; color: #222; }
-h1, h2, h3 { line-height: 1.3; margin-top: 2rem; }
-h1 { border-bottom: 2px solid #111; padding-bottom: .5rem; }
-ul { padding-left: 1.5rem; }
-pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 6px; }
-.meta { color: #666; font-size: .9rem; }
-.back { display: inline-block; margin-top: 2rem; }
-</style>
-  <link rel="stylesheet" href="/assets/global-fonts.css">
-  <link rel="stylesheet" href="/assets/global-nav.css">
-<link rel="stylesheet" href="/assets/v3.css">
-
-<link rel="stylesheet" href="/assets/nav-right.css">
-
-
-<link rel="stylesheet" href="/assets/deck-toggle.css">
-
-<link rel="stylesheet" href="/assets/back-to-top.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
-
-<link rel="stylesheet" href="/assets/mobile-v1.css">
-  <link rel="stylesheet" href="/assets/warm-tone-v1.css">
-<!-- SPEC-REVISIT-001 re-visit wiring -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
 <link rel="manifest" href="/manifest.webmanifest">
-<script src="/assets/analytics.js" defer></script>
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-
-<nav class="gnav" role="navigation" aria-label="주요 메뉴">
-  <div class="gnav__inner">
-    <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
-    <ul class="gnav__links" id="gnavLinks">
-      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
-      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
-      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
-      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
-      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
-      <li><a href="/about.html" class="gnav__link">소개</a></li>
-      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
-    </ul>
-  </div>
-</nav>
-<main class="article-body">
-<header class="resource-header">
-<h1>[D6] multi-agent system design — 일일 자료 기반 약식 논문 노트</h1>
-
-<p>_D6 · paper · 2026-04-28_</p>
-</header>
-
-<h2>Abstract</h2>
-
-<p>본 노트는 D6 부서가 2026-04-28 수집한 231건의 자료를 토대로 &quot;multi-agent system design&quot; 주제에 대해 약식 논문 형태로 정리한 것이다. 1차 자료는 arXiv·Semantic Scholar·Crossref에서 수집되었으며 익명화·일반화 필터를 거쳤다.</p>
-
-<h2>1. Introduction</h2>
-
-<p>오늘의 핵심 질문: &quot;multi-agent system design 영역에서 가장 최근에 보고된 신호는 무엇인가?&quot;</p>
-
-<h2>2. Method</h2>
-<ul>
-<li>소스: arXiv, Semantic Scholar Graph API, Crossref</li>
-<li>검색 쿼리 6건</li>
-<li>수집 총량: 231건</li>
-</ul>
-
-<h2>3. Findings — 5건 핵심 자료</h2>
-<p>1. <strong>Spend Less, Fit Better: Budget-Efficient Scaling Law Fitting via Active Experiment Selection</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2604.22753v1">https://arxiv.org/abs/2604.22753v1</a></p>
-<p>2. <strong>Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2604.22748v1">https://arxiv.org/abs/2604.22748v1</a></p>
-<p>3. <strong>Code for All: Educational Applications of the &quot;Vibe Coding&quot; Hackathon in Programming Education across All Skill Levels</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2604.22747v1">https://arxiv.org/abs/2604.22747v1</a></p>
-<p>4. <strong>Carrollian quantum states and flat space holography</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2604.22745v1">https://arxiv.org/abs/2604.22745v1</a></p>
-<p>5. <strong>Describing the swdatatoolkit: A Space Weather Data Analysis Library</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2604.22741v1">https://arxiv.org/abs/2604.22741v1</a></p>
-
-<h2>4. Discussion — 타 부서 통합 신호</h2>
-
-<ul>
-<li>[D12/웰니스] tags: [D12, 웰니스, 루틴, 건강]</li>
-<li>[D2/집필] tags: [D2, 콘텐츠집필, 일일리포트]</li>
-<li>[D10/분석] tags: [D10, 분석, KPI, 주간리포트]</li>
-<li>[D14/SBM] tags: [D14, SBM, 영적성숙, 묵상]</li>
-<li>[?/IdleBrain] 야간_아이디어_0200</li>
-</ul>
-
-<h2>5. Conclusion</h2>
-<p>다음 이터레이션에서 후속 검증 필요.</p>
-
-
-<p>---</p>
-
-<p>_생성: Daily Research Engine v1 · 부서 D6 · 형태 paper_</p>
-
-<div class="back"><a href="/resources/">← 자료실로</a></div>
-<aside class="cta-next" aria-labelledby="cta-next-title">
-  <h2 id="cta-next-title">다음 한 걸음</h2>
-  <p>자료를 읽고 한 사람의 일을 다시 디자인하고 싶다면, 무료 30분 상담에서 좌표를 함께 잡아 봅니다.</p>
-  <p class="cta-next__links">
-    <a class="cta-next__primary" href="/contact.html">무료 30분 상담 신청</a>
-    <a class="cta-next__secondary" href="/p/">5개 과정 라인업 보기</a>
-  </p>
-</aside>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
-<footer class="foot foot--mini">
-  <style>
-    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
-    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
-    .foot--mini strong{color:#2a241c}
-    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
-    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
-    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
-    @media(max-width:680px){
-      .foot--mini .foot--mini__inner{justify-content:flex-start}
-      .foot--mini>div>span{display:block}
-    }
-  </style>
-  <div class="foot--mini__inner">
-    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong>137-82-94771</strong></span>
-    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
-  </div>
-</footer>
-
-
-<script src="/assets/back-to-top.js" defer></script>
-
-<script src="/assets/deck-toggle.js" defer></script>
+<script type="text/plain" id="nw-vault-data">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</script>
 </body>
 </html>

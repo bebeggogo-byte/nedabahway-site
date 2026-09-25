@@ -30,9 +30,9 @@ bootstrap이 자동으로:
 `</head>` 앞:
 ```html
 <link rel="stylesheet" href="/assets/ai-studio/v2.css">
-<meta property="og:image" content="https://www.nedabah.org/assets/og/ai-studio.svg">
+<meta property="og:image" content="https://www.nedabah.org/assets/og/ai-studio.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.nedabah.org/assets/og/ai-studio.svg">
+<meta name="twitter:image" content="https://www.nedabah.org/assets/og/ai-studio.jpg">
 ```
 
 `</body>` 앞:

@@ -32,7 +32,7 @@
     link.href = '#main';
     link.className = 'skip-link';
     link.textContent = '본문으로 건너뛰기';
-    link.style.cssText = 'position:absolute;left:-9999px;top:1rem;background:#1E40AF;color:#fff;padding:.75rem 1.25rem;text-decoration:none;border-radius:4px;z-index:10000';
+    link.style.cssText = 'position:absolute;left:-9999px;top:1rem;background:#1d4ed8;color:#fff;padding:.75rem 1.25rem;text-decoration:none;border-radius:4px;z-index:10000';
     link.addEventListener('focus', () => { link.style.left = '1rem'; });
     link.addEventListener('blur', () => { link.style.left = '-9999px'; });
     document.body.insertBefore(link, document.body.firstChild);

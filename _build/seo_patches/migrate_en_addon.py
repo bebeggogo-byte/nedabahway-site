@@ -45,7 +45,7 @@ def patch_file(p: Path, dry: bool) -> str:
     en_block = (
         f'{MARKER_BEGIN}\n'
         f'<div class="en-addon" style="margin-top:2.5rem;padding-top:1.2rem;'
-        f'border-top:1px dashed #d0c8b6;font-size:.85rem;color:#7a6f5e;max-width:680px;">'
+        f'border-top:1px dashed #d0c8b6;font-size:.85rem;color:#5f574d;max-width:680px;">'
         f'<p style="margin:0 0 .4rem 0;"><strong>EN</strong> — {abstract}</p>'
         f'<p style="margin:0;font-style:italic;">— {quote}</p>'
         f"</div>\n"

@@ -3,239 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>최근 결과 | 네다바웨이</title>
-<meta name="description" content="이 단말의 브라우저에 저장된 최근 도구 결과를 다시 봅니다. 다른 기기에서는 보이지 않으며 외부로 전송되지 않습니다.">
-<link rel="canonical" href="https://www.nedabah.org/auto/history/">
-<meta property="og:title" content="최근 결과 — 네다바웨이">
-<meta property="og:description" content="이 단말의 브라우저에 저장된 최근 도구 결과를 다시 봅니다. 다른 기기에서는 보이지 않으며 외부로 전송되지 않습니다.">
-<meta property="og:url" content="https://www.nedabah.org/auto/history/">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://www.nedabah.org/assets/og/history.svg">
-<meta property="og:locale" content="ko_KR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.nedabah.org/assets/og/history.svg">
-<link rel="stylesheet" href="/auto/tools/_style.css">
-<style>
-  .hist-hero { margin:0 0 1.4rem; }
-  .hist-hero h1 { font-family:'Noto Serif KR',serif; font-size:1.9rem; line-height:1.25; margin:.2rem 0 .4rem; }
-  .hist-hero p { font-size:.95rem; color:var(--muted); margin:0; }
-
-  .hist-controls { display:flex; gap:.6rem; align-items:center; flex-wrap:wrap; margin:1rem 0 1.4rem; padding:.7rem .9rem; background:var(--bg); border:1px solid var(--line); border-radius:8px; }
-  .hist-controls label { font-size:.85rem; color:var(--muted); }
-  .hist-controls select { padding:.4rem .6rem; border:1px solid var(--line); border-radius:6px; font-family:inherit; font-size:.88rem; background:#fff; }
-  .hist-controls .clear { margin-left:auto; padding:.4rem .85rem; background:#fff; border:1px solid var(--line); border-radius:6px; color:#a8410e; font-size:.85rem; cursor:pointer; }
-  .hist-controls .clear:hover { background:#fdecec; border-color:#a8410e; }
-  .hist-count { font-size:.82rem; color:var(--muted); }
-
-  .hist-list { display:flex; flex-direction:column; gap:.7rem; }
-  .hist-card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:.95rem 1.1rem; }
-  .hist-card__head { display:flex; justify-content:space-between; align-items:baseline; gap:.5rem; flex-wrap:wrap; margin-bottom:.4rem; }
-  .hist-card__tool { font-size:.78rem; letter-spacing:.06em; font-weight:700; color:var(--accent); }
-  .hist-card__time { font-size:.78rem; color:var(--muted); }
-  .hist-card__title { font-size:.98rem; margin:.2rem 0; color:var(--ink); font-weight:600; }
-  .hist-card__preview { font-size:.88rem; color:var(--muted); line-height:1.55; margin:.3rem 0 .8rem; word-break:keep-all; }
-  .hist-card__actions { display:flex; gap:.4rem; flex-wrap:wrap; }
-  .hist-card__actions button, .hist-card__actions a { padding:.3rem .65rem; font-size:.78rem; font-weight:600; background:#fff; border:1px solid var(--line); border-radius:5px; color:var(--ink); cursor:pointer; text-decoration:none; }
-  .hist-card__actions button:hover, .hist-card__actions a:hover { background:#fff8e8; border-color:var(--accent); color:var(--accent); }
-  .hist-card__actions button.is-done { background:#2f7a3d; color:#fff; border-color:#2f7a3d; }
-  .hist-card__actions .danger { color:#a8410e; }
-  .hist-card__actions .danger:hover { background:#fdecec; border-color:#a8410e; color:#a8410e; }
-
-  .hist-empty { padding:2.5rem 1.5rem; text-align:center; background:var(--bg); border:2px dashed var(--line); border-radius:12px; color:var(--muted); }
-  .hist-empty a { color:var(--accent); font-weight:700; }
-</style>
-<!-- SPEC-REVISIT-001 re-visit wiring -->
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
 <link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-<nav class="gnav" aria-label="주요 메뉴">
-  <div class="gnav__inner">
-    <a href="/" class="gnav__logo">네다바웨이</a>
-    <ul class="gnav__links">
-      <li><a href="/auto/tools/" class="gnav__link">도구 모음</a></li>
-      <li><a href="/auto/start/" class="gnav__link">시작하기</a></li>
-      <li><a href="/privacy.html" class="gnav__link">개인정보</a></li>
-      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
-    </ul>
-  </div>
-</nav>
-
-<main class="tool-shell">
-
-<header class="hist-hero">
-  <p style="font-size:.78rem;color:var(--accent);letter-spacing:.18em;font-weight:700;">RECENT RESULTS</p>
-  <h1>최근 결과</h1>
-  <p>이 단말의 브라우저에만 저장됩니다. 다른 기기에서는 보이지 않습니다. 최근 30개까지.</p>
-</header>
-
-<div class="hist-controls" id="histControls" style="display:none;">
-  <label for="histFilter">도구 필터</label>
-  <select id="histFilter"><option value="">전체</option></select>
-  <span class="hist-count" id="histCount"></span>
-  <button class="clear" type="button" id="histClear">전부 지우기</button>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
 </div>
-
-<div id="histRoot" class="hist-list"></div>
-
-<aside class="cta-next" aria-labelledby="cta-next-title">
-  <h2 id="cta-next-title">다음 한 걸음</h2>
-  <p>자료를 읽고 한 사람의 일을 다시 디자인하고 싶다면, 무료 30분 상담에서 좌표를 함께 잡아 봅니다.</p>
-  <p class="cta-next__links">
-    <a class="cta-next__primary" href="/contact.html">무료 30분 상담 신청</a>
-    <a class="cta-next__secondary" href="/p/">5개 과정 라인업 보기</a>
-  </p>
-</aside>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
-
-<footer class="foot">
-  <p>김창환 · 네다바웨이 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a> · <a href="/privacy.html">개인정보</a></p>
-</footer>
-
-<script src="/auto/tools/_lib.js" defer></script>
-<script src="/assets/share-bar.js" defer></script>
-<script defer>
-(function () {
-  const HISTORY_KEY = 'mz:history';
-
-  // 도구 slug → 한글명 (Batch 2 _lib.js TOOLS와 동기화 — sync source는 _lib.js)
-  const TOOL_NAMES = {
-    'meeting-actions':   '회의록 → 액션아이템',
-    'news-digest':       '경쟁사·뉴스 다이제스트',
-    'kpi-comment':       '주간 KPI 코멘트',
-    'onboarding-kit':    '입사자 환영 키트',
-    'leave-summary':     '휴가 신청 정리',
-    'pulse-analysis':    '설문 응답 분석',
-    'resume-screening':  '이력서 5분 스크리닝',
-    'content-calendar':  '30일 콘텐츠 캘린더',
-    'lead-scoring':      '리드 스코어링',
-    'mention-classifier':'리뷰·멘션 분류기',
-    'sales-followup':    '세일즈 콜 후속 메일',
-    'mail-reply-drafter':'메일 답장 초안기',
-  };
-
-  const $root = document.getElementById('histRoot');
-  const $filter = document.getElementById('histFilter');
-  const $count = document.getElementById('histCount');
-  const $controls = document.getElementById('histControls');
-  const $clear = document.getElementById('histClear');
-
-  function escapeHtml(s) {
-    return String(s == null ? '' : s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-  }
-
-  function load() {
-    try {
-      const raw = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
-      return Array.isArray(raw) ? raw : [];
-    } catch (_) { return []; }
-  }
-  function save(arr) {
-    try { localStorage.setItem(HISTORY_KEY, JSON.stringify(arr)); } catch (_) { /* swallow */ }
-  }
-
-  function relTime(iso) {
-    const t = new Date(iso).getTime();
-    if (isNaN(t)) return '';
-    const sec = Math.max(0, Math.floor((Date.now() - t) / 1000));
-    if (sec < 60) return '방금 전';
-    if (sec < 3600) return Math.floor(sec/60) + '분 전';
-    if (sec < 86400) return Math.floor(sec/3600) + '시간 전';
-    if (sec < 86400*2) return '어제';
-    if (sec < 86400*7) return Math.floor(sec/86400) + '일 전';
-    return new Date(iso).toLocaleDateString('ko-KR');
-  }
-
-  async function copyToClipboard(text) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(text);
-    } else {
-      const ta = document.createElement('textarea');
-      ta.value = text; ta.style.cssText = 'position:absolute;left:-9999px';
-      document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); } finally { document.body.removeChild(ta); }
-    }
-  }
-
-  function render() {
-    const all = load();
-    if (!all.length) {
-      $controls.style.display = 'none';
-      $root.innerHTML = '<div class="hist-empty">아직 저장된 결과가 없습니다. 도구를 한 번 써 보세요 → <a href="/auto/tools/">도구 모음</a></div>';
-      return;
-    }
-    // 필터 옵션 갱신 (히스토리에 등장한 slug만)
-    const slugs = Array.from(new Set(all.map(e => e.slug))).sort();
-    const cur = $filter.value;
-    $filter.innerHTML = '<option value="">전체 (' + all.length + ')</option>' +
-      slugs.map(s => {
-        const cnt = all.filter(e => e.slug === s).length;
-        const label = (TOOL_NAMES[s] || s) + ' (' + cnt + ')';
-        return '<option value="' + escapeHtml(s) + '"' + (s === cur ? ' selected' : '') + '>' + escapeHtml(label) + '</option>';
-      }).join('');
-
-    const filter = $filter.value;
-    const items = filter ? all.filter(e => e.slug === filter) : all;
-    $count.textContent = items.length + '개';
-    $controls.style.display = 'flex';
-
-    $root.innerHTML = items.map(e => {
-      const toolName = TOOL_NAMES[e.slug] || e.slug;
-      return `<div class="hist-card" data-id="${escapeHtml(e.id)}">
-        <div class="hist-card__head">
-          <span class="hist-card__tool">${escapeHtml(toolName)}</span>
-          <span class="hist-card__time">${escapeHtml(relTime(e.ts))}</span>
-        </div>
-        <div class="hist-card__title">${escapeHtml(e.title || '')}</div>
-        <p class="hist-card__preview">${escapeHtml(e.preview || '')}${(e.preview || '').length >= 120 ? '…' : ''}</p>
-        <div class="hist-card__actions">
-          <button type="button" data-act="copy">📋 전체 복사</button>
-          <a href="/auto/tools/${escapeHtml(e.slug)}/">🔗 도구 다시 열기</a>
-          <button type="button" class="danger" data-act="delete">🗑 이 항목 삭제</button>
-        </div>
-      </div>`;
-    }).join('');
-  }
-
-  $filter.addEventListener('change', render);
-
-  $clear.addEventListener('click', () => {
-    if (!confirm('저장된 결과 ' + load().length + '개를 모두 삭제할까요? 되돌릴 수 없습니다.')) return;
-    try { localStorage.removeItem(HISTORY_KEY); } catch (_) {}
-    $filter.value = '';
-    render();
-  });
-
-  $root.addEventListener('click', async (ev) => {
-    const btn = ev.target.closest('[data-act]');
-    if (!btn) return;
-    const card = btn.closest('.hist-card');
-    if (!card) return;
-    const id = card.dataset.id;
-    const act = btn.dataset.act;
-    const all = load();
-    const entry = all.find(e => e.id === id);
-    if (!entry) return;
-
-    if (act === 'copy') {
-      try {
-        await copyToClipboard(entry.fullText || entry.preview || '');
-        const orig = btn.textContent;
-        btn.textContent = '복사됨 ✓';
-        btn.classList.add('is-done');
-        setTimeout(() => { btn.textContent = orig; btn.classList.remove('is-done'); }, 1600);
-      } catch (_) { alert('복사에 실패했습니다.'); }
-    } else if (act === 'delete') {
-      if (!confirm('이 결과 1건을 삭제할까요?')) return;
-      save(all.filter(e => e.id !== id));
-      render();
-    }
-  });
-
-  render();
-})();
-</script>
-<script src="/assets/analytics.js" defer></script>
+<script type="text/plain" id="nw-vault-data">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</script>
 </body>
 </html>

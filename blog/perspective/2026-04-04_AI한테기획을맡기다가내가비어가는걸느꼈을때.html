@@ -1,222 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>AI한테 기획을 맡기다가, 내가 비어 가는 걸 느꼈을 때 · 김창환 · 네다바웨이</title>
-<meta name="description" content="혼자 일하면서 ChatGPT한테 기획을 맡기는 게 편해졌어요. 그런데 두 달쯤 지나니까 제 머리 안이 텅 빈 느낌이 들더라고요. 그래서 한 가지 작은 규칙을 만들었어요.">
-<meta property="og:title" content="AI한테 기획을 맡기다가, 내가 비어 가는 걸 느꼈을 때">
-<meta property="og:description" content="질문은 내가 먼저, 그다음에 AI에게 묻기.">
-<meta property="og:type" content="article">
-<link rel="canonical" href="https://www.nedabah.org/blog/perspective/2026-04-04_AI한테기획을맡기다가내가비어가는걸느꼈을때.html">
-<link rel="alternate" type="application/rss+xml" title="관점 노트 RSS" href="/blog/perspective/feed.xml">
-<link rel="alternate" type="application/atom+xml" title="관점 노트 Atom" href="/blog/perspective/feed.atom">
-<link rel="alternate" type="application/feed+json" title="관점 노트 JSON Feed" href="/blog/perspective/feed.json">
-<style>
-  body{font-family:'Pretendard','Noto Serif KR',serif;background:#f7f3ec;color:#1a1a1a;
-    line-height:1.95;font-size:16.5px;-webkit-font-smoothing:antialiased;margin:0}
-  .nav{position:sticky;top:0;background:rgba(250,250,247,.94);backdrop-filter:blur(8px);
-    border-bottom:1px solid #d8cdb8;z-index:100}
-  .nav__inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
-  .nav__logo{font-weight:800;letter-spacing:-.01em;text-decoration:none;color:#2a241c}
-  .nav__links{display:flex;gap:24px;font-size:14px;color:#6b7280}
-  .nav__links a{color:inherit;text-decoration:none}
-  .nav__links a:hover{color:#2a241c}
-  .nav__cta{background:#a4541a;color:#fff;padding:7px 14px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none}
-
-  .wrap{max-width:640px;margin:0 auto;padding:48px 22px 96px}
-  .meta{font-size:12px;color:#9a9a9a;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px;font-family:-apple-system,sans-serif}
-  h1{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.35;margin:0 0 32px;font-family:'Noto Serif KR',serif}
-  p{margin:1.2em 0;font-size:16.5px;color:#3a322a}
-  strong{font-weight:700;color:#2a241c}
-  .signature{margin-top:36px;font-size:14px;color:#6b7280;font-style:italic}
-  .footer-note{margin-top:48px;padding-top:24px;border-top:1px solid #d8cdb8;font-size:13px;color:#9a9a9a;font-family:-apple-system,sans-serif;line-height:1.7}
-  .footer-note a{color:#6e5a3e;font-weight:600}
-</style>
-  <link rel="stylesheet" href="/assets/global-fonts.css">
-  <link rel="stylesheet" href="/assets/global-nav.css">
-<link rel="stylesheet" href="/assets/v3.css">
-
-<link rel="stylesheet" href="/assets/nav-right.css">
-
-
-<link rel="stylesheet" href="/assets/deck-toggle.css">
-
-<link rel="stylesheet" href="/assets/back-to-top.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
-
-<link rel="stylesheet" href="/assets/mobile-v1.css">
-
-<link rel="stylesheet" href="/assets/perspective-pager.css">
-<script defer src="/assets/perspective-pager.js"></script>
-
-<!-- BEGIN seo_patches: blogposting v2 -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI한테 기획을 맡기다가, 내가 비어 가는 걸 느꼈을 때",
-  "description": "혼자 일하면서 ChatGPT한테 기획을 맡기는 게 편해졌어요. 그런데 두 달쯤 지나니까 제 머리 안이 텅 빈 느낌이 들더라고요. 그래서 한 가지 작은 규칙을 만들었어요.",
-  "datePublished": "2026-04-04",
-  "dateModified": "2026-04-04",
-  "author": {
-    "@type": "Person",
-    "@id": "https://www.nedabah.org/about.html#kim-changhwan",
-    "name": "김창환",
-    "alternateName": "Kim Changhwan",
-    "url": "https://www.nedabah.org/about.html",
-    "sameAs": [
-      "https://www.linkedin.com/in/nedabah-way-3605413aa/",
-      "https://www.youtube.com/channel/UCWnbno58Hrtiu8fPjrCCTfQ",
-      "https://blog.naver.com/nedabah"
-    ]
-  },
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://www.nedabah.org/#organization",
-    "name": "네다바웨이",
-    "alternateName": "Nedabahway",
-    "url": "https://www.nedabah.org",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.nedabah.org/assets/og-default.svg"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/nedabah-way-3605413aa/",
-      "https://www.youtube.com/channel/UCWnbno58Hrtiu8fPjrCCTfQ",
-      "https://blog.naver.com/nedabah"
-    ]
-  },
-  "mainEntityOfPage": "https://www.nedabah.org/blog/perspective/2026-04-04_AI한테기획을맡기다가내가비어가는걸느꼈을때.html",
-  "url": "https://www.nedabah.org/blog/perspective/2026-04-04_AI한테기획을맡기다가내가비어가는걸느꼈을때.html",
-  "image": "https://www.nedabah.org/assets/og-default.svg",
-  "inLanguage": "ko-KR",
-  "isPartOf": {
-    "@type": "Blog",
-    "name": "관점 노트 — 네다바웨이",
-    "url": "https://www.nedabah.org/blog/perspective/"
-  }
-}
-</script>
-<!-- END seo_patches: blogposting v2 -->
-<!-- BEGIN seo_patches: speakable -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "url": "https://www.nedabah.org/blog/perspective/2026-04-04_AI한테기획을맡기다가내가비어가는걸느꼈을때.html",
-  "speakable": {
-    "@type": "SpeakableSpecification",
-    "cssSelector": [
-      "h1",
-      ".lead",
-      "article p:first-of-type",
-      ".speakable"
-    ]
-  }
-}
-</script>
-<!-- END seo_patches: speakable -->
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-
-<nav class="gnav" role="navigation" aria-label="주요 메뉴">
-  <div class="gnav__inner">
-    <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
-    <ul class="gnav__links" id="gnavLinks">
-      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
-      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
-      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
-      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
-      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
-      <li><a href="/about.html" class="gnav__link">소개</a></li>
-      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
-    </ul>
-  </div>
-</nav>
-
-
-
-
-
-
-
-
-
-<article class="wrap">
-  <div class="meta">관점 노트 · 김창환 · 2026-04-04<br><span style="font-size:12px;color:#9a9a9a;font-style:italic"> · 화요일 새벽 4시, 책상 앞에서 혼자 적은 메모</span></div>
-  <h1>AI한테 기획을 맡기다가, 내가 비어 가는 걸 느꼈을 때</h1>
-
-  <p>고백을 하나 해 볼게요.</p>
-
-  <p>저는 혼자 일하거든요. 강의 기획서, 활동지, 제안서, 메일 답장 — 다 혼자 짜요. 작년 여름쯤부터 ChatGPT한테 초안을 부탁하기 시작했어요. 처음엔 신기했어요. 30분 걸리던 일이 5분이면 됐거든요. “이거 진짜 좋다”라고 혼잣말까지 했어요.</p>
-
-  <p>그런데 두 달쯤 지나니까 이상한 일이 생기더라고요.</p>
-
-  <p>강의를 새로 의뢰받았는데, 평소 같으면 머릿속에서 자연스럽게 떠오르던 흐름이 안 떠올랐어요. 빈 종이 앞에 앉아서 5분, 10분이 그냥 흘러가요. 결국 또 ChatGPT를 켜요. 입력창에 “00 주제 강의 기획 좀 짜 줘”라고 씁니다. AI가 답을 주고, 저는 그걸 다듬어요. 다듬고 나면 그럴듯한 기획서가 돼요. <strong>그런데 며칠 뒤에 그 기획을 다시 보면, 거기에 ‘제’가 안 보여요.</strong> 누가 짠 거 같지가 않은 거예요.</p>
-
-  <p>한 번은 강의 끝나고 차 안에서 한참 멍하니 앉아 있었어요. 강의는 무사히 끝났는데, 끝낸 사람이 저인지 AI인지 구분이 안 됐거든요. 그날 처음으로 “내가 비어 가고 있구나”라는 생각이 들었어요.</p>
-
-  <p>그래서 4월 초에 작은 규칙을 하나 만들었어요. 규칙이라고 부르기엔 단순해요.</p>
-
-  <p><strong>“AI한테 묻기 전에, 5분만 먼저 종이에 적기.”</strong></p>
-
-  <p>주제가 뭐든, 일단 종이를 펴고 5분 동안 제가 떠올릴 수 있는 걸 다 적어요. 단어든, 문장이든, 흐트러진 생각이든 상관없어요. 5분이 지나야 ChatGPT를 켜요. 그리고 묻는 방식도 바꿨어요. “기획 짜 줘”가 아니라, “저는 지금 이렇게 생각하고 있어요. 빠진 게 뭐가 있을까요?”로요.</p>
-
-  <p>이렇게 한 달쯤 했더니, 머리 안이 다시 켜지는 느낌이 들어요. AI는 여전히 옆에 있어요. 다만 제가 먼저 생각을 꺼내고 나서 묻는 거니까, 답이 와도 ‘내 생각의 빈 부분을 채우는 결’가 되더라고요. 처음부터 답을 받는 거랑은 완전히 달라요.</p>
-
-  <p>혼자 일하시는 분들 중에 비슷한 곳에 계신 분이 있을 것 같아서 적어 봤어요. 만약 요즘 “AI 없이는 일이 안 시작돼”라는 느낌이 드신다면, 5분만 먼저 종이를 펴 보시면 좋겠어요. 5분이 별 거 아닌 것 같아도, 그 5분이 ‘이건 내가 한 일이다’라는 감각을 다시 살려 주거든요.</p>
-
-  <p>저도 매일 새벽에 그 5분을 다시 시작해요. 어제도, 오늘도. 어색해요. 어색한데, 어색한 만큼 머리가 다시 깨어나요.</p>
-
-  <p class="signature">— 김창환</p>
-
-  <div class="footer-note">
-    이 글은 김창환이 2025년 봄에 본인의 작업 방식을 점검하면서 적은 짧은 고백입니다.<br>
-    <a href="/blog/perspective/">관점 노트 전체 보기</a> · <a href="/contact.html">강의·집필 문의</a>
-  </div>
-</article>
-
-
-
-
-
-<div id="related-posts"></div>
-<script src="/assets/related-posts-v1.js" defer></script>
-<footer class="foot foot--mini">
-  <style>
-    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
-    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
-    .foot--mini strong{color:#2a241c}
-    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
-    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
-    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
-    @media(max-width:680px){
-      .foot--mini .foot--mini__inner{justify-content:flex-start}
-      .foot--mini>div>span{display:block}
-    }
-  </style>
-  <div class="foot--mini__inner">
-    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong>137-82-94771</strong></span>
-    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
-  </div>
-</footer>
-
-
-<script src="/assets/back-to-top.js" defer></script>
-
-<script src="/assets/deck-toggle.js" defer></script>
-<!-- BEGIN seo_patches: en_addon -->
-<div class="en-addon" style="margin-top:2.5rem;padding-top:1.2rem;border-top:1px dashed #d0c8b6;font-size:.85rem;color:#7a6f5e;max-width:680px;"><p style="margin:0 0 .4rem 0;"><strong>EN</strong> — A short Korean observation by Kim Changhwan on AI한테기획을맡기다가내가비어가는걸느꼈을때.</p><p style="margin:0;font-style:italic;">— Kim Changhwan claims that the real returns at the one-person scale go to whoever builds the most ruthless critic next to AI.</p></div>
-<!-- END seo_patches: en_addon -->
-<!-- BEGIN seo_patches: related_links -->
-<aside class="related-posts" style="margin-top:3rem;padding:1.5rem;border-top:2px solid #e5d8c4;background:transparent;max-width:680px;"><h2 style="font-size:.95rem;font-weight:600;letter-spacing:.04em;color:#7a6f5e;margin:0 0 .8rem 0;">함께 읽으면 좋은 관점 노트</h2><ul style="list-style:none;padding:0;margin:0;font-size:.92rem;line-height:1.85;">
-      <li><a href="/blog/perspective/2026-04-03_해야할일이30개넘어갈때.html">해야 할 일 리스트가 30개를 넘어갈 때 멈춰야 하는 이유</a></li>
-      <li><a href="/blog/perspective/2026-04-05_아이가챗GPT랑대화하는게걱정될때.html">아이가 챗GPT랑 대화하는 게 걱정될 때</a></li>
-      <li><a href="/blog/perspective/2026-05-27_AI가써준글에내이름을붙이는것에대한짧은생각.html">AI가 써 준 글에 내 이름을 붙이는 것에 대한 짧은 생각</a></li>
-    </ul></aside>
-<!-- END seo_patches: related_links -->
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
+</main>
+<script type="text/plain" id="nw-vault-data">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</script>
 </body>
 </html>

@@ -17,7 +17,7 @@ const STYLE_ID = 'twg-style';
 const css = `
 .twg{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',sans-serif;max-width:1180px;margin:48px auto;padding:0 20px;}
 .twg-head{margin-bottom:20px;}
-.twg-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:1.5px;color:#a4541a;text-transform:uppercase;margin-bottom:6px;}
+.twg-eyebrow{font-size:11.5px;font-weight:700;letter-spacing:1.5px;color:#1d4ed8;text-transform:uppercase;margin-bottom:6px;}
 .twg-title{font-family:'Noto Serif KR',serif;font-size:24px;font-weight:800;letter-spacing:-.02em;color:#1A1A1A;margin:0 0 6px;}
 .twg-sub{font-size:13.5px;color:#475569;line-height:1.7;margin:0;}
 .twg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
@@ -27,7 +27,7 @@ const css = `
 .twg-card::before{content:'\\201C';position:absolute;top:-2px;left:14px;font-family:'Noto Serif KR',serif;font-size:48px;font-weight:800;color:#fdf4ec;line-height:1;}
 .twg-body{font-size:14px;line-height:1.8;color:#1A1A1A;margin:6px 0 14px;position:relative;z-index:1;}
 .twg-who{font-size:13px;font-weight:700;color:#1A1A1A;}
-.twg-role{font-size:11.5px;color:#7a6f5f;margin-top:2px;}
+.twg-role{font-size:11.5px;color:#5f574d;margin-top:2px;}
 .twg-empty{padding:30px 0;color:#94a3b8;font-size:13px;text-align:center;}
 `;
 

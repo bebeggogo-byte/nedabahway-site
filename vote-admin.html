@@ -2,258 +2,32 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>투표 현황 (관리자) — 학교 소개 쇼츠</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<style>
-  :root{ --bg:#fbf7ee; --ink:#1A1A1A; --sub:#7a6f5f; --accent:#a4541a; --accent-bg:#fef0e2;
-    --line:#E2E8F0; --card:#fff; --ok:#16a34a; }
-  *{box-sizing:border-box;}
-  body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);margin:0;}
-  .wrap{max-width:840px;margin:0 auto;padding:26px 18px 90px;}
-  h1{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:800;letter-spacing:-.02em;margin:0;}
-  .head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
-  .userbar{font-size:12px;color:var(--sub);}
-  .userbar a{color:var(--accent);cursor:pointer;}
-
-  /* login */
-  #loginView{max-width:360px;margin:8vh auto 0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 24px;}
-  #loginView h2{font-family:'Noto Serif KR',serif;font-size:19px;margin:0 0 4px;}
-  #loginView p{font-size:13px;color:var(--sub);margin:0 0 18px;}
-  #loginView input{width:100%;padding:13px;font-size:15px;font-family:inherit;border:1px solid var(--line);border-radius:10px;margin-bottom:10px;}
-  .err{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;padding:10px 12px;border-radius:9px;font-size:12.5px;margin-bottom:10px;}
-
-  .btn{padding:12px 18px;font-size:14px;font-weight:700;font-family:inherit;border:none;border-radius:10px;background:var(--accent);color:#fff;cursor:pointer;}
-  .btn.w{width:100%;padding:14px;}
-  .btn-ghost{background:#fff;color:var(--accent);border:1px solid var(--accent);}
-  .btn-sm{padding:8px 13px;font-size:12.5px;border-radius:8px;}
-  .btn-danger{background:#fff;color:#dc2626;border:1px solid #fecaca;}
-
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;}
-  .stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;}
-  .stat .n{font-size:30px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1;}
-  .stat .l{font-size:12px;color:var(--sub);margin-top:7px;}
-
-  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:18px;}
-  .card h3{font-size:15px;font-weight:800;margin:0 0 4px;letter-spacing:-.01em;}
-  .card .desc{font-size:12.5px;color:var(--sub);margin:0 0 16px;line-height:1.6;}
-  .card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
-
-  /* ranking */
-  .rank-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #f4efe3;}
-  .rank-row:last-child{border-bottom:none;}
-  .rank-no{width:26px;font-size:14px;font-weight:800;color:var(--sub);text-align:center;flex-shrink:0;font-variant-numeric:tabular-nums;}
-  .rank-row.top .rank-no{color:var(--accent);}
-  .rank-main{flex:1;min-width:0;}
-  .rank-name{font-size:14.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:5px;}
-  .rank-bar{height:9px;background:#f1ecdf;border-radius:999px;overflow:hidden;}
-  .rank-bar > i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .5s;}
-  .rank-row.top .rank-bar > i{background:linear-gradient(90deg,#c2691f,#a4541a);}
-  .rank-val{font-size:15px;font-weight:800;color:var(--ink);width:64px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums;}
-  .rank-val small{font-size:11px;color:var(--sub);font-weight:600;}
-
-  /* QR */
-  .qr-box{display:flex;gap:22px;align-items:center;flex-wrap:wrap;}
-  #qrCanvas{width:180px;height:180px;border:1px solid var(--line);border-radius:12px;background:#fff;}
-  .qr-side{flex:1;min-width:220px;}
-  .qr-url{font-size:13px;color:var(--accent);word-break:break-all;background:var(--accent-bg);padding:10px 12px;border-radius:9px;margin-bottom:12px;}
-
-  .turnout{display:flex;flex-wrap:wrap;gap:7px;}
-  .chip{font-size:12px;background:#f4efe3;color:var(--sub);padding:5px 11px;border-radius:999px;}
-  .chip b{color:var(--accent);}
-  .muted{font-size:12.5px;color:var(--sub);}
-  .live{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ok);font-weight:700;}
-  .live .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 1.4s infinite;}
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
-  @media(max-width:520px){ .stats{grid-template-columns:1fr;} .stat{display:flex;justify-content:space-between;text-align:left;align-items:center;} .stat .l{margin-top:0;} }
-</style>
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-
-<!-- LOGIN -->
-<div id="loginView" hidden>
-  <h2>투표 현황 (관리자)</h2>
-  <p>진행자 계정으로 <b>한 번만</b> 로그인하면, 이 기기에서는 로그아웃 전까지 계속 관리자로 유지됩니다.</p>
-  <form id="loginForm">
-    <div class="err" id="loginError" hidden></div>
-    <input type="email" id="email" placeholder="이메일" autocomplete="username" required>
-    <input type="password" id="password" placeholder="비밀번호" autocomplete="current-password" required>
-    <button class="btn w" id="loginBtn" type="submit">로그인</button>
-  </form>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
 </div>
-
-<!-- ADMIN -->
-<div class="wrap" id="adminView" hidden>
-  <div class="head">
-    <div>
-      <h1>투표 현황</h1>
-      <div class="live"><span class="dot"></span>실시간 자동 갱신</div>
-    </div>
-    <div class="userbar"><span id="userEmail"></span> · <span title="이 기기는 관리자로 기억됩니다. 로그아웃하기 전까지 다시 로그인할 필요가 없어요.">이 기기 관리자 기억됨</span> · <a id="signOutBtn">로그아웃</a></div>
-  </div>
-
-  <div class="stats">
-    <div class="stat"><div class="n" id="stVoters">0</div><div class="l">투표 인원 (예상 64명)</div></div>
-    <div class="stat"><div class="n" id="stPicks">0</div><div class="l">누적 선택 수</div></div>
-    <div class="stat"><div class="n" id="stLead">—</div><div class="l">현재 1위</div></div>
-  </div>
-
-  <div class="card">
-    <h3>학교별 득표 순위</h3>
-    <p class="desc">각 투표자가 최대 3곳을 선택하며, 선택 1회 = 1점입니다. 득표순 정렬.</p>
-    <div id="ranking"><div class="muted">불러오는 중…</div></div>
-    <div class="card-actions" style="margin-top:16px;">
-      <button class="btn btn-ghost btn-sm" id="csvBtn">CSV 내보내기</button>
-      <button class="btn btn-ghost btn-sm" id="refreshBtn">새로고침</button>
-      <button class="btn btn-danger btn-sm" id="resetBtn">전체 초기화</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>참여 현황 (소속 학교별)</h3>
-    <p class="desc">누가 어디서 왔는지 — 투표자 소속 학교 분포입니다.</p>
-    <div class="turnout" id="turnout"><span class="muted">데이터 없음</span></div>
-  </div>
-
-  <div class="card">
-    <h3>투표 QR 코드</h3>
-    <p class="desc">이 QR을 강당 화면에 띄우거나 인쇄해 배부하세요. 스캔하면 투표 페이지가 열립니다.</p>
-    <div class="qr-box">
-      <canvas id="qrCanvas" width="180" height="180"></canvas>
-      <div class="qr-side">
-        <div class="qr-url" id="voteUrl"></div>
-        <div class="card-actions">
-          <button class="btn btn-sm" id="printBtn">QR 인쇄</button>
-          <button class="btn btn-ghost btn-sm" id="copyBtn">주소 복사</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="/assets/js/supabase-config.js" onerror="console.warn('supabase-config.js missing')"></script>
-<script type="module">
-import { signInWithPassword, signOut, currentUser } from '/assets/js/supabase-client.js';
-import { SCHOOLS, SCHOOL_NAMES, TOTAL_DELEGATES } from '/assets/js/shorts-schools.js';
-import { fetchAllVotes, subscribeVotes, resetAllVotes } from '/assets/js/shorts-voting-client.js';
-import QRCode from 'https://esm.sh/qrcode@1.5.4';
-
-const $ = (id) => document.getElementById(id);
-const esc = (s) => String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const VOTE_URL = location.origin + '/vote.html';
-let channel = null;
-
-// ---- Auth ----
-async function boot(){
-  const u = await currentUser();
-  if (u) showAdmin(u); else showLogin();
-}
-function showLogin(){ $('loginView').hidden=false; $('adminView').hidden=true; }
-function showAdmin(u){
-  $('loginView').hidden=true; $('adminView').hidden=false;
-  $('userEmail').textContent = u.email;
-  initQR(); load();
-  if (!channel) channel = subscribeVotes(() => load());
-}
-$('loginForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const btn=$('loginBtn'); btn.disabled=true; btn.textContent='로그인 중…';
-  const err=$('loginError'); err.hidden=true;
-  try { await signInWithPassword($('email').value, $('password').value); showAdmin(await currentUser()); }
-  catch(e2){ err.textContent='로그인 실패: '+(e2.message||e2); err.hidden=false; }
-  finally { btn.disabled=false; btn.textContent='로그인'; }
-});
-$('signOutBtn').addEventListener('click', async () => { await signOut(); location.reload(); });
-
-// ---- Tally ----
-async function load(){
-  let votes;
-  try { votes = await fetchAllVotes(); }
-  catch(e){ $('ranking').innerHTML = `<div class="err">로드 실패: ${esc(e.message||e)}</div>`; return; }
-
-  const counts = Object.fromEntries(SCHOOL_NAMES.map(n => [n, 0]));
-  const turnout = {};
-  let totalPicks = 0;
-  votes.forEach(v => {
-    (v.choices||[]).forEach(c => { if (c in counts){ counts[c]++; totalPicks++; } });
-    const s = v.voter_school || '기타';
-    turnout[s] = (turnout[s]||0) + 1;
-  });
-
-  $('stVoters').textContent = votes.length;
-  $('stPicks').textContent = totalPicks;
-
-  const ranked = SCHOOL_NAMES.map(n => ({ name:n, votes:counts[n] })).sort((a,b) => b.votes - a.votes);
-  const max = Math.max(1, ranked[0].votes);
-  $('stLead').textContent = ranked[0].votes > 0 ? ranked[0].name.replace('고등학교','') : '—';
-
-  $('ranking').innerHTML = ranked.map((r,i) => {
-    const pct = Math.round((r.votes / max) * 100);
-    const top = r.votes > 0 && r.votes === ranked[0].votes;
-    return `<div class="rank-row ${top?'top':''}">
-      <div class="rank-no">${i+1}</div>
-      <div class="rank-main">
-        <div class="rank-name">${esc(r.name)}</div>
-        <div class="rank-bar"><i style="width:${pct}%"></i></div>
-      </div>
-      <div class="rank-val">${r.votes}<small>표</small></div>
-    </div>`;
-  }).join('');
-
-  const tEntries = Object.entries(turnout).sort((a,b) => b[1]-a[1]);
-  $('turnout').innerHTML = tEntries.length
-    ? tEntries.map(([s,n]) => `<span class="chip">${esc(s)} <b>${n}</b></span>`).join('')
-    : '<span class="muted">데이터 없음</span>';
-}
-
-// ---- QR ----
-function initQR(){
-  $('voteUrl').textContent = VOTE_URL;
-  QRCode.toCanvas($('qrCanvas'), VOTE_URL, { width:180, margin:1, color:{ dark:'#1A1A1A', light:'#ffffff' } }, (err) => { if (err) console.warn(err); });
-}
-$('copyBtn').addEventListener('click', async () => {
-  try { await navigator.clipboard.writeText(VOTE_URL); $('copyBtn').textContent='복사됨!'; setTimeout(()=>$('copyBtn').textContent='주소 복사',1400); } catch{}
-});
-$('printBtn').addEventListener('click', async () => {
-  const dataUrl = await QRCode.toDataURL(VOTE_URL, { width:520, margin:2 });
-  const w = window.open('', '_blank');
-  w.document.write(`<html><head><title>투표 QR</title><style>
-    body{font-family:'Noto Sans KR',sans-serif;text-align:center;padding:48px 20px;color:#1A1A1A;}
-    h1{font-size:26px;margin:0 0 6px;} p{color:#7a6f5f;font-size:15px;margin:0 0 28px;}
-    img{width:420px;height:420px;} .u{margin-top:18px;font-size:15px;color:#a4541a;word-break:break-all;}
-    </style></head><body>
-    <h1>학교 소개 쇼츠 투표</h1>
-    <p>휴대폰 카메라로 QR을 스캔해 투표하세요 · 최대 3곳 선택</p>
-    <img src="${dataUrl}" alt="투표 QR"><div class="u">${esc(VOTE_URL)}</div>
-    <script>window.onload=()=>setTimeout(()=>window.print(),300)<\/script>
-    </body></html>`);
-  w.document.close();
-});
-
-// ---- CSV ----
-$('csvBtn').addEventListener('click', async () => {
-  const votes = await fetchAllVotes();
-  const counts = Object.fromEntries(SCHOOL_NAMES.map(n => [n, 0]));
-  votes.forEach(v => (v.choices||[]).forEach(c => { if (c in counts) counts[c]++; }));
-  const ranked = SCHOOL_NAMES.map(n => ({ name:n, votes:counts[n] })).sort((a,b)=>b.votes-a.votes);
-  let csv = '﻿순위,학교,득표수\n';
-  ranked.forEach((r,i) => { csv += `${i+1},"${r.name}",${r.votes}\n`; });
-  csv += `\n투표 인원,${votes.length}\n예상 인원,${TOTAL_DELEGATES}\n`;
-  const blob = new Blob([csv], { type:'text/csv;charset=utf-8;' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob); a.download = 'shorts-vote-results.csv'; a.click();
-  URL.revokeObjectURL(a.href);
-});
-
-$('refreshBtn').addEventListener('click', load);
-$('resetBtn').addEventListener('click', async () => {
-  if (!confirm('모든 투표 데이터를 삭제합니다. 되돌릴 수 없습니다. 계속할까요?')) return;
-  if (!confirm('정말 초기화합니까? (행사 재사용 시에만 사용)')) return;
-  try { await resetAllVotes(); load(); alert('초기화되었습니다.'); }
-  catch(e){ alert('초기화 실패: ' + (e.message||e)); }
-});
-
-boot();
-</script>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
+</main>
+<script type="text/plain" id="nw-vault-data">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</script>
 </body>
 </html>

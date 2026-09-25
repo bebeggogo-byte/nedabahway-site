@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Generate unified Open Graph SVG images for 12 tools + 4 system pages.
 
-Output: assets/og/{slug}.svg (1200x630)
+Output: assets/og/{slug}.svg (1200x630). JPG twins used by og:image are
+        rendered from these by scripts/build-og-jpg.py (brand v2).
 
 Design: 좌측에 큰 도구 한글명, 그 아래 1줄 요약. 우상단 "네다바웨이" 워드마크.
-        좌측 색띠. 사이트 팔레트(#3a322a, #b45309, #fbf6ec) 사용.
+        좌측 색띠. 사이트 팔레트(#1b1b1b, #1d4ed8, #f1ede5) 사용.
         텍스트는 SVG <text> (이미지 아님). Pretendard → 시스템 fallback.
 
 Usage: python3 scripts/build-og-images.py
@@ -28,7 +29,7 @@ ITEMS = [
     ("pulse-analysis",    "설문 응답 분석",          "익명 응답 → 감성·주제 + 1페이지 코멘트", "tool"),
     ("resume-screening",  "이력서 5분 스크리닝",    "공고+이력서 → 매칭도 + 강점·우려 + 면접 질문", "tool"),
     ("content-calendar",  "30일 콘텐츠 캘린더",     "월 테마 → 30일치 헤드라인·후크·CTA", "tool"),
-    ("lead-scoring",      "리드 스코어링",           "리드 정보 → 룰+AI 점수 + 첫 응답 메시지", "tool"),
+    ("lead-scoring",      "리드 스코어링",           "4가지 선택 → 등급·점수 + 첫 답장 초안", "tool"),
     ("mention-classifier","리뷰·멘션 분류기",       "멘션 → 감성·주제 + 부정 멘션 즉시 강조", "tool"),
     ("sales-followup",    "세일즈 콜 후속 메일",    "미팅 메모 → 후속 메일 + 다음 단계 + 일정 제안", "tool"),
     ("mail-reply-drafter","메일 답장 초안기",       "받은 메일 + 톤 → 한 줄·짧은·자세한 답장 3종", "tool"),
@@ -59,16 +60,16 @@ def summary_size(s: str) -> int:
 
 
 def build_svg(slug: str, title: str, summary: str, kind: str) -> str:
-    bg = "#3a322a"
-    accent = "#b45309"
-    accent2 = "#d97706"
-    light = "#fbf6ec"
+    bg = "#1b1b1b"
+    accent = "#1d4ed8"
+    accent2 = "#3b82f6"
+    light = "#f1ede5"
     muted = "#cbb89c"
 
     # 시스템 페이지는 약간 다른 톤(따뜻한 베이지 배경 + 어두운 텍스트)
     if kind == "system":
         bg_main = light
-        title_color = "#3a322a"
+        title_color = "#1b1b1b"
         summary_color = "#6a604f"
         wordmark_color = accent
         label_color = accent

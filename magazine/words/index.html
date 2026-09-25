@@ -2,183 +2,32 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>원어 단어집 — Observatory | 네다바웨이</title>
-<meta name="description" content="히브리어 133·헬라어 42 단어. 본문이 본문을 다시 읽게 하는 단서들.">
-<link rel="canonical" href="https://www.nedabah.org/magazine/words/">
-<link rel="stylesheet" href="/assets/v3.css">
-
-<link rel="stylesheet" href="/assets/nav-right.css">
-
-
-<link rel="stylesheet" href="/assets/deck-toggle.css">
-
-<link rel="stylesheet" href="/assets/back-to-top.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
-
-<link rel="stylesheet" href="/assets/mobile-v1.css">
-<style>
-  .words-mast { max-width: 1180px; margin: 0 auto; padding: 96px 28px 48px; border-bottom: 1px solid var(--c-line); }
-  .words-mast h1 { font-family: var(--ff-serif); font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 800; margin: 14px 0 14px; text-wrap: balance; }
-  .words-mast .lead { font-size: 1.06rem; line-height: 1.75; color: var(--c-mute); max-width: 56ch; text-wrap: pretty; }
-
-  .lang-tabs { display: flex; gap: 12px; margin-top: 28px; }
-  .lang-tabs button {
-    padding: 10px 18px; border: 1px solid var(--c-line); background: var(--c-surface); border-radius: 999px;
-    font-weight: 600; font-size: 0.92rem; cursor: pointer; transition: border-color .2s, background .2s;
-  }
-  .lang-tabs button.is-on { background: var(--c-ink); color: var(--c-bg); border-color: var(--c-ink); }
-  .lang-tabs button:hover:not(.is-on) { border-color: var(--c-copper); }
-
-  .words-grid {
-    max-width: 1180px; margin: 56px auto 0; padding: 0 28px 96px;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
-  }
-  @media (max-width: 880px) { .words-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .words-grid { grid-template-columns: 1fr; } }
-
-  .word-card {
-    background: var(--c-surface); border: 1px solid var(--c-line); border-radius: 12px;
-    padding: 22px 24px; transition: border-color .2s, transform .2s;
-  }
-  .word-card:hover { border-color: var(--c-copper); transform: translateY(-1px); }
-  .word-card__lang {
-    font-size: 0.74rem; color: var(--c-copper); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-  }
-  .word-card__word {
-    font-family: var(--ff-serif); font-size: 1.7rem; font-weight: 700; margin: 4px 0 2px; letter-spacing: -0.01em;
-  }
-  .word-card__trans { font-size: 0.86rem; color: var(--c-mute); font-style: italic; }
-  .word-card__gloss { font-size: 0.94rem; margin-top: 12px; line-height: 1.65; text-wrap: pretty; }
-  .word-card__refs { margin-top: 10px; font-size: 0.78rem; color: var(--c-mute2); }
-  .word-card__refs a { color: inherit; border-bottom: 1px dotted currentColor; }
-  .word-card.is-hidden { display: none; }
-</style>
-  <link rel="stylesheet" href="/assets/global-fonts.css">
-  <link rel="stylesheet" href="/assets/global-nav.css">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-
-<nav class="gnav" role="navigation" aria-label="주요 메뉴">
-  <div class="gnav__inner">
-    <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
-    <ul class="gnav__links" id="gnavLinks">
-      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
-      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
-      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
-      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
-      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
-      <li><a href="/about.html" class="gnav__link">소개</a></li>
-      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
-    </ul>
-  </div>
-</nav>
-
-
-
-
-
-
-
-
-
-
-<header class="words-mast">
-  <div style="font-size:0.82rem;color:var(--c-mute);"><a href="/magazine.html" style="border-bottom:1px solid currentColor;padding-bottom:1px;">Observatory</a> · 원어 단어집</div>
-  <h1>한 단어가 본문을 다시 읽게 합니다.</h1>
-  <p class="lead">히브리어 133·헬라어 42. 관찰을 진행하면서 본문이 자기 무게로 다시 보이게 한 단어들을 모아 두는 결입니다. 단어 옆에는 그 단어가 어디에서 다른 결로 다시 등장하는지 적습니다.</p>
-  <div class="lang-tabs" role="tablist">
-    <button class="is-on" data-lang="all">전체</button>
-    <button data-lang="he">히브리어 133</button>
-    <button data-lang="gr">헬라어 42</button>
-  </div>
-</header>
-
-<main class="words-grid" id="grid">
-
-  <article class="word-card" data-lang="he"><div class="word-card__lang">히브리어</div><div class="word-card__word">בָּרָא</div><div class="word-card__trans">bara</div><p class="word-card__gloss">새로운 곳을 *시작하는* 행동. 사람의 손에는 거의 쓰이지 않는 동사. 창세기 1·5·6장에서 결의 표지가 된다.</p><div class="word-card__refs">→ <a href="/magazine/GEN/1/">창 1장</a>, <a href="/magazine/GEN/5/">창 5장</a></div></article>
-
-  <article class="word-card" data-lang="he"><div class="word-card__lang">히브리어</div><div class="word-card__word">חֶסֶד</div><div class="word-card__trans">chesed</div><p class="word-card__gloss">언약 안에서 끝까지 옆에 머무는 결. 한 단어로는 옮기기 어려워 본문 곳곳에서 다른 단어와 짝을 이룬다.</p></article>
-
-  <article class="word-card" data-lang="he"><div class="word-card__lang">히브리어</div><div class="word-card__word">תֹהוּ וָבֹהוּ</div><div class="word-card__trans">tohu wa-bohu</div><p class="word-card__gloss">혼돈과 공허. 시작 *전*의 결. 창세기 1:2의 결의 시작점.</p><div class="word-card__refs">→ <a href="/magazine/GEN/1/">창 1장</a></div></article>
-
-  <article class="word-card" data-lang="he"><div class="word-card__lang">히브리어</div><div class="word-card__word">רוּחַ</div><div class="word-card__trans">ruach</div><p class="word-card__gloss">영·바람·숨. 같은 단어가 본문 곳곳에서 다른 곳을 받는다.</p><div class="word-card__refs">→ <a href="/magazine/GEN/1/">창 1장</a></div></article>
-
-  <article class="word-card" data-lang="he"><div class="word-card__lang">히브리어</div><div class="word-card__word">שָׁלוֹם</div><div class="word-card__trans">shalom</div><p class="word-card__gloss">조각이 다시 한 결로 모이는 결. 단순한 평화가 아니라 *온전함*에 가깝다.</p></article>
-
-  <article class="word-card" data-lang="he"><div class="word-card__lang">히브리어</div><div class="word-card__word">בְּרִית</div><div class="word-card__trans">berit</div><p class="word-card__gloss">언약. 자르는 행동(berit를 *자르다* — karat berit)과 묶이는 지점에서 무게가 살아난다. 창 9장의 결의 결.</p><div class="word-card__refs">→ <a href="/magazine/GEN/9/">창 9장</a></div></article>
-
-  <article class="word-card" data-lang="he"><div class="word-card__lang">히브리어</div><div class="word-card__word">אָדָם</div><div class="word-card__trans">adam</div><p class="word-card__gloss">사람. *흙*(adamah)에서 온 이름. 창 2장에서 같은 어근이 *사람·흙·붉음*을 같은 곳에 묶는다.</p></article>
-
-  <article class="word-card" data-lang="he"><div class="word-card__lang">히브리어</div><div class="word-card__word">קָרָא</div><div class="word-card__trans">qara</div><p class="word-card__gloss">부르다·이름하다·읽다. 같은 동사가 세 지점에서 다른 무게를 받는다.</p></article>
-
-  <article class="word-card" data-lang="gr"><div class="word-card__lang">헬라어</div><div class="word-card__word">λόγος</div><div class="word-card__trans">logos</div><p class="word-card__gloss">단어이자 결, 말이자 결. 요한복음 1장에서 본문을 여는 명사. 본문이 단어로 시작된다는 사실을 본다.</p><div class="word-card__refs">→ <a href="/magazine/JHN/1/">요 1장</a></div></article>
-
-  <article class="word-card" data-lang="gr"><div class="word-card__lang">헬라어</div><div class="word-card__word">ἀγάπη</div><div class="word-card__trans">agape</div><p class="word-card__gloss">조건 없이 옆에 머무는 결. 같은 본문 안에서 다른 사랑 단어와 나란히 놓이는 지점에서 결이 드러난다.</p></article>
-
-  <article class="word-card" data-lang="gr"><div class="word-card__lang">헬라어</div><div class="word-card__word">πίστις</div><div class="word-card__trans">pistis</div><p class="word-card__gloss">붙들림과 붙드림 사이의 결. 한 단어가 명사이자 동사의 곳에 같이 놓인다.</p></article>
-
-  <article class="word-card" data-lang="gr"><div class="word-card__lang">헬라어</div><div class="word-card__word">ἄνωθεν</div><div class="word-card__trans">anothen</div><p class="word-card__gloss">"위로부터" 또는 "다시". 한 단어가 두 의미를 동시에 담아 요한복음 3장의 대화를 어긋나게 만든다.</p><div class="word-card__refs">→ <a href="/magazine/JHN/3/">요 3장</a></div></article>
-
-  <article class="word-card" data-lang="gr"><div class="word-card__lang">헬라어</div><div class="word-card__word">σημεῖον</div><div class="word-card__trans">semeion</div><p class="word-card__gloss">표적·신호. 요한복음에서 *기적*이 아니라 *가리키는* 곳을 표시하는 단어로 쓰인다.</p><div class="word-card__refs">→ <a href="/magazine/JHN/2/">요 2장</a></div></article>
-
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
-
-<aside style="margin:48px auto 96px;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
-  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">단어집을 쌓는 결</div>
-  <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">한 단어가 한 본문을 다시 읽게 합니다.</h3>
-  <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">단어집은 관찰이 진행될수록 자라납니다. 사전·코덱스·라이선스 비용이 들기에, 후원이 단어 한 개를 더 정확히 적게 합니다.</p>
-  <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
-    <span style="color:#6B6B6B;font-size:0.78rem;letter-spacing:0.06em;">후원 계좌</span><br>
-    <strong style="font-family:var(--ff-serif);">하나은행 927-910009-77504 · 네다바웨이</strong>
-  </div>
-  <a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:700;font-size:0.9rem;">후원 결 자세히 →</a>
-</aside>
-
-<script>
-  document.querySelectorAll('.lang-tabs button').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      document.querySelectorAll('.lang-tabs button').forEach(function(b){ b.classList.remove('is-on'); });
-      btn.classList.add('is-on');
-      var lang = btn.dataset.lang;
-      document.querySelectorAll('.word-card').forEach(function(c){
-        if (lang === 'all' || c.dataset.lang === lang) c.classList.remove('is-hidden');
-        else c.classList.add('is-hidden');
-      });
-    });
-  });
-</script>
-
-
-
-
-
-
-
-<footer class="foot foot--mini">
-  <style>
-    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
-    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
-    .foot--mini strong{color:#2a241c}
-    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
-    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
-    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
-    @media(max-width:680px){
-      .foot--mini .foot--mini__inner{justify-content:flex-start}
-      .foot--mini>div>span{display:block}
-    }
-  </style>
-  <div class="foot--mini__inner">
-    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong>137-82-94771</strong></span>
-    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
-  </div>
-</footer>
-
-
-<script src="/assets/back-to-top.js" defer></script>
-
-<script src="/assets/deck-toggle.js" defer></script>
+<script type="text/plain" id="nw-vault-data">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</script>
 </body>
 </html>

@@ -31,11 +31,11 @@ TPL = """<!DOCTYPE html>
 <meta property="og:title" content="{title} — 자동화 9선">
 <meta property="og:description" content="{summary}">
 <meta property="og:url" content="https://www.nedabah.org{target}">
-<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.jpg">
 <meta property="og:locale" content="ko_KR">
 <script>location.replace('{target}');</script>
 </head>
-<body style="font-family:system-ui,-apple-system,'Noto Sans KR',sans-serif;text-align:center;padding:3rem 1.5rem;color:#3a322a;">
+<body style="font-family:system-ui,-apple-system,'Noto Sans KR',sans-serif;text-align:center;padding:3rem 1.5rem;color:#1b1b1b;">
 <p>{title} 가이드로 이동합니다…</p>
 <p><a href="{target}">자동으로 이동되지 않으면 여기를 누르세요 →</a></p>
 </body>

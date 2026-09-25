@@ -1,193 +1,33 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<link rel="stylesheet" href="/assets/nedabah.bundle.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>조직 업무 자동화 실무 9선 — 김창환 강의 | 네다바웨이</title>
-<meta name="description" content="기획·HR·마케팅 자동화 9가지를 누구나 30분 내 구축하도록 설계한 실무 강의. Google Apps Script + Gemini 무료 티어 + Slack/메일. 즉시 복사·실행 가능한 코드 제공.">
-<link rel="canonical" href="https://www.nedabah.org/lectures/business-automation.html">
-<meta property="og:title" content="조직 업무 자동화 실무 9선 — 김창환 강의">
-<meta property="og:description" content="기획·HR·마케팅 9가지 자동화를 누구나 30분에. 코드·시트 템플릿·트러블슈팅까지 모두 공개.">
-<meta property="og:url" content="https://www.nedabah.org/lectures/business-automation.html">
-<meta property="og:type" content="article">
-<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="ko_KR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="조직 업무 자동화 실무 9선 — 김창환 강의">
-<meta name="twitter:description" content="기획·HR·마케팅 9가지 자동화를 누구나 30분에. 코드·시트 템플릿·트러블슈팅 모두 공개.">
-<meta name="twitter:image" content="https://www.nedabah.org/assets/og-automation-9.svg">
-<meta name="keywords" content="업무 자동화, 기획 자동화, HR 자동화, 마케팅 자동화, Apps Script, Gemini, 노코드, RPA">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": ["Service","Course"],
-  "name": "조직 업무 자동화 실무 9선",
-  "description": "기획·HR·마케팅 자동화 9가지를 누구나 30분 내 구축하도록 설계한 실무 강의.",
-  "provider": {"@id": "https://www.nedabah.org/#organization"},
-  "instructor": {"@id": "https://www.nedabah.org/about.html#kim-changhwan"},
-  "audience": {"@type":"Audience","audienceType":"기획·전략·HR·마케팅·운영 실무자, 팀장, SMB 대표"},
-  "url": "https://www.nedabah.org/lectures/business-automation.html",
-  "inLanguage": "ko-KR",
-  "courseMode": "blended",
-  "timeRequired": "120분~6시간",
-  "offers": {
-    "@type": "Offer",
-    "url": "https://www.nedabah.org/contact.html",
-    "priceCurrency": "KRW",
-    "availability": "https://schema.org/InStock",
-    "description": "강의료는 형식·인원·이동거리 종합 협의. 비영리·교육기관 협의 가능."
-  },
-  "keywords": "업무 자동화, 기획 자동화, HR 자동화, 마케팅 자동화, Apps Script, Gemini, 노코드"
-}
-</script>
-<!-- SPEC-REVISIT-001 re-visit wiring -->
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
 <link rel="manifest" href="/manifest.webmanifest">
-<script src="/assets/analytics.js" defer></script>
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-<nav class="gnav" role="navigation" aria-label="주요 메뉴">
-  <div class="gnav__inner">
-    <a href="/" class="gnav__logo">네다바웨이</a>
-    <ul class="gnav__links">
-      <li><a href="/auto/tools/" class="gnav__link">🚀 도구 모음</a></li>
-      <li><a href="/auto/" class="gnav__link">자료 허브</a></li>
-      <li><a href="/lectures/" class="gnav__link">강의 목록</a></li>
-      <li><a href="/about.html" class="gnav__link">소개</a></li>
-      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
-    </ul>
-  </div>
-</nav>
-
-<main style="max-width:760px;margin:4rem auto;padding:0 1.5rem;font-family:'Noto Serif KR',serif;line-height:1.85;">
-<header style="margin-bottom:3rem;">
-  <p style="font-size:.8rem;color:#b45309;letter-spacing:.18em;font-weight:700;">LECTURE · 조직 자동화</p>
-  <h1 style="font-size:2.2rem;line-height:1.3;margin:.6rem 0 1rem;">조직 업무 자동화 실무 9선</h1>
-  <p style="font-size:1.1rem;color:#6a604f;font-style:italic;">기획 3 · HR 3 · 마케팅 3. 누구나 30분에 만들 수 있도록 설계했고, 코드·시트 템플릿·트러블슈팅까지 모두 공개합니다.</p>
-</header>
-
-<article class="prose">
-
-<section style="background:#fbf6ec;padding:1.5rem 2rem;border-radius:10px;margin-bottom:2rem;">
-<h2 style="font-size:1.05rem;margin-top:0;">한눈에</h2>
-<table style="width:100%;font-size:.95rem;">
-<tr><td style="padding:.4rem 0;color:#6a604f;width:30%;">대상</td><td>기획·전략·HR·마케팅·운영 실무자, 팀장, SMB 대표</td></tr>
-<tr><td style="padding:.4rem 0;color:#6a604f;">시간</td><td>120분(쇼케이스) / 4시간(워크숍) / 6시간(직접 구축)</td></tr>
-<tr><td style="padding:.4rem 0;color:#6a604f;">형식</td><td>강의 + 라이브 시연 + 핸즈온. 노트북 1대만 있으면 됨</td></tr>
-<tr><td style="padding:.4rem 0;color:#6a604f;">스택</td><td>Google Apps Script · Sheets/Docs/Forms · Gemini 무료 티어 · Slack</td></tr>
-<tr><td style="padding:.4rem 0;color:#6a604f;">월 운영비</td><td>0원 ~ 매우 적음 (소규모 팀 기준)</td></tr>
-</table>
-</section>
-
-<section style="margin-top:1.5rem;padding:1.4rem 1.6rem;background:linear-gradient(135deg,#fff8ea 0%, #fbe9c5 100%);border:1px solid #e8d2a4;border-radius:12px;">
-  <h2 style="margin:0 0 .4rem;font-size:1.1rem;color:#3a322a;">강의 의뢰 전, 도구를 직접 써보세요</h2>
-  <p style="font-size:.96rem;color:#3a322a;margin:0 0 .8rem;">9개 자동화의 핵심 로직을 미니 웹앱 9개로 만들어두었습니다. <strong>설치·코딩 없이 입력만으로 결과를 가져갑니다.</strong> 도구가 만드는 결과를 직접 본 뒤 강의 형식·인원·시간 의뢰를 결정하세요.</p>
-  <div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;">
-    <a href="/auto/tools/" style="display:inline-block;background:#b45309;color:#fff;padding:.7rem 1.4rem;border-radius:8px;text-decoration:none;font-weight:700;">🚀 9개 도구 열기</a>
-    <a href="/auto/tools/meeting-actions/" style="display:inline-block;background:#fff;color:#3a322a;padding:.7rem 1.2rem;border-radius:8px;text-decoration:none;font-weight:600;border:1px solid #e8d2a4;">회의록 도구 바로가기</a>
-    <a href="/auto/tools/content-calendar/" style="display:inline-block;background:#fff;color:#3a322a;padding:.7rem 1.2rem;border-radius:8px;text-decoration:none;font-weight:600;border:1px solid #e8d2a4;">콘텐츠 캘린더 바로가기</a>
-  </div>
-</section>
-
-<h2 style="font-size:1.4rem;margin-top:2.5rem;">왜 이 강의인가</h2>
-<p>대다수 자동화 강의는 SaaS 시연으로 끝나거나, 코드가 있어도 발표용 슬라이드에 갇혀 있습니다. 이 강의는 "강의가 끝나는 순간 9가지 자동화의 코드와 시트가 학습자 손에 그대로 남는 것"을 목표로 설계했습니다. 모든 코드는 <strong>복붙 즉시 실행</strong>되며, 시트 템플릿과 트러블슈팅 표가 함께 제공됩니다.</p>
-
-<h2 style="font-size:1.4rem;margin-top:2.5rem;">다루는 9가지</h2>
-
-<h3 style="margin-top:1.6rem;font-size:1.1rem;color:#b45309;">기획 자동화</h3>
-<ol style="line-height:2;">
-  <li><a href="/resources/automation/planning/01-meeting-notes-to-actions.html">회의록 → 액션아이템 자동 정리</a> — Doc 한 장이 시트·Slack으로 분해된다</li>
-  <li><a href="/resources/automation/planning/02-competitor-news-digest.html">경쟁사·뉴스 일일 다이제스트</a> — 출근 전 한 장의 메일</li>
-  <li><a href="/resources/automation/planning/03-weekly-kpi-report.html">주간 KPI 자동 리포트</a> — AI가 변동·이상·권고를 함께 작성</li>
-</ol>
-
-<h3 style="margin-top:1.6rem;font-size:1.1rem;color:#b45309;">HR 자동화</h3>
-<ol style="line-height:2;" start="4">
-  <li><a href="/resources/automation/hr/01-onboarding-kit.html">신규 입사자 온보딩 키트</a> — 입사자 한 줄 입력 → 메일·캘린더·Slack·체크리스트 동시 생성</li>
-  <li><a href="/resources/automation/hr/02-leave-approval-workflow.html">휴가 신청 슬랙 승인 워크플로우</a> — 폼 → 팀장 슬랙 카드 → 캘린더·잔여 자동 갱신</li>
-  <li><a href="/resources/automation/hr/03-pulse-survey-sentiment.html">분기 펄스서베이 + AI 감성 분석</a> — 응답 1,000건도 30분 안에</li>
-</ol>
-
-<h3 style="margin-top:1.6rem;font-size:1.1rem;color:#b45309;">마케팅 자동화</h3>
-<ol style="line-height:2;" start="7">
-  <li><a href="/resources/automation/marketing/01-content-calendar-generator.html">30일 콘텐츠 캘린더 자동 생성</a> — 테마 한 줄 → 30일 헤드라인·후크·CTA</li>
-  <li><a href="/resources/automation/marketing/02-lead-scoring-router.html">인입 리드 자동 스코어링·배정</a> — Hot/Warm/Cold 분류 + 담당자 즉시 알림</li>
-  <li><a href="/resources/automation/marketing/03-review-mention-digest.html">리뷰·멘션 주간 다이제스트</a> — 부정 멘션 24시간 안에 인지</li>
-</ol>
-
-<p style="margin-top:1.5rem;"><a href="/resources/automation/" style="display:inline-block;background:#fbf6ec;border:1px solid #e5d8c4;padding:.6rem 1.2rem;border-radius:8px;text-decoration:none;color:#3a322a;">전체 자료 허브로 이동 →</a></p>
-
-<h2 style="font-size:1.4rem;margin-top:2.5rem;">강의 후 가져가는 것</h2>
-<ol style="line-height:1.9;">
-<li>9가지 자동화의 완성 코드와 시트 템플릿 (즉시 실행)</li>
-<li>자기 조직에 적용할 수 있는 첫 1가지 선택과 30분 셋업 경험</li>
-<li>"AI는 보조, 사람은 검토" 원칙이 담긴 워크플로 설계 감각</li>
-<li>각 자동화의 트러블슈팅 표와 응용 아이디어 4가지씩</li>
-</ol>
-
-<h2 style="font-size:1.4rem;margin-top:2.5rem;">진행 방식</h2>
-<p>이 강의는 <strong>핸즈온 중심</strong>으로 진행됩니다. 강사가 1개를 라이브로 끝까지 만든 뒤, 학습자가 자기 비즈니스 데이터로 1개를 직접 구축합니다. 강의가 끝났을 때 학습자의 노트북에는 실제로 동작하는 자동화 1~3개가 남아 있어야 합니다.</p>
-<p>인원은 10~50명이 가장 효과적이며, 100명 이상 청중일 경우 시연 중심으로 형식을 조정합니다. 온·오프라인 모두 가능하지만 핸즈온 효과가 뚜렷한 오프라인을 권장합니다.</p>
-
-<h2 style="font-size:1.4rem;margin-top:2.5rem;">사전 준비</h2>
-<ul style="line-height:1.9;">
-  <li>구글 계정 (Workspace 또는 일반 계정)</li>
-  <li>Gemini API 키 — 강의 시작 시 함께 발급</li>
-  <li>(선택) Slack Workspace · 네이버 개발자 키</li>
-  <li>코딩 경험 불필요. 복사·붙여넣기만 가능하면 됨</li>
-</ul>
-
-<h2 style="font-size:1.4rem;margin-top:2.5rem;">강의료 안내</h2>
-<p>강의료는 (1) 강의 형식·시간, (2) 인원, (3) 이동 거리, (4) 기관 성격(영리/비영리/교육)을 종합해 1대1로 안내합니다. 비영리·교육기관 협의 가능합니다. 정확한 견적은 의뢰 시 회신해 드립니다.</p>
-
-</article>
-
-<aside style="margin-top:3rem;padding:1.6rem 1.8rem;background:#fbf6ec;border:1px solid #e8d2a4;border-radius:12px;">
-  <h2 style="margin-top:0;font-size:1.1rem;">📦 자료 한 번에 받기 (무료)</h2>
-  <p style="font-size:.95rem;color:#6a604f;margin:.3rem 0 1rem;">강의 후 학습용·워크숍 핸드아웃·자체 적용 모두 한 패키지로.</p>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:.7rem;">
-    <a href="/resources/automation/automation-9-workbook.pdf" download style="display:block;padding:.9rem 1rem;background:#fff;border:1px solid #e5d8c4;border-radius:10px;text-decoration:none;color:#3a322a;">
-      <span style="font-size:1.3rem;">📘</span>
-      <strong style="display:block;margin-top:.25rem;">PDF 워크북</strong>
-      <span style="font-size:.8rem;color:#6a604f;">9선 통합본 · 약 1.8 MB</span>
-    </a>
-    <a href="/resources/automation/automation-9-kit.zip" download style="display:block;padding:.9rem 1rem;background:#fff;border:1px solid #e5d8c4;border-radius:10px;text-decoration:none;color:#3a322a;">
-      <span style="font-size:1.3rem;">🗂️</span>
-      <strong style="display:block;margin-top:.25rem;">자료 키트 ZIP</strong>
-      <span style="font-size:.8rem;color:#6a604f;">9개 .gs + PDF + README</span>
-    </a>
-    <a href="/resources/automation/automation-9-handout.pdf" download style="display:block;padding:.9rem 1rem;background:#fff;border:1px solid #e5d8c4;border-radius:10px;text-decoration:none;color:#3a322a;">
-      <span style="font-size:1.3rem;">📄</span>
-      <strong style="display:block;margin-top:.25rem;">A4 한 장 핸드아웃</strong>
-      <span style="font-size:.8rem;color:#6a604f;">강의실·QR 인쇄용</span>
-    </a>
-  </div>
-  <p style="margin:1rem 0 0;font-size:.82rem;color:#6a604f;">짧은 URL: <strong style="color:#b45309;">nedabah.org/auto</strong> · 모든 자료는 자기 조직 적용을 위해 자유롭게 사용·수정 가능합니다.</p>
-</aside>
-
-<aside style="margin-top:2rem;padding:2rem;background:#3a322a;color:#fbf6ec;border-radius:12px;text-align:center;">
-  <h2 style="margin-top:0;font-size:1.4rem;">의뢰</h2>
-  <p style="font-size:1rem;line-height:1.7;">이메일 또는 사이트에서 1분 안에 의뢰 가능. 24~48시간 내 회신.</p>
-  <p><a href="/contact.html" style="display:inline-block;background:#b45309;color:white;padding:.8rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;margin-top:.5rem;">강의 의뢰 →</a></p>
-</aside>
-
-<aside style="margin-top:3rem;padding:2rem;background:#fbf6ec;border-radius:12px;">
-  <h2 style="margin-top:0;font-size:1.1rem;">관련 자료</h2>
-  <ul style="list-style:none;padding:0;line-height:2;">
-    <li>→ <a href="/resources/automation/">자동화 자료 허브 (9개 가이드)</a></li>
-    <li>→ <a href="/lectures/solo-operator-ai.html">1인 사업자 AI 자동화 실전</a></li>
-    <li>→ <a href="/lectures/">강의 전체 목록</a></li>
-    <li>→ <a href="/blog/perspective/">관점 노트 100+편</a></li>
-  </ul>
-</aside>
-
-<footer style="margin-top:4rem;padding-top:2rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;">
-  <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
-</footer>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
-<script src="/assets/share-bar.js" defer></script>
+<script type="text/plain" id="nw-vault-data">3DU0/ZB25CwNNUvTk+q5QWDporC0AppBASAGN4eXNqIVb9qeP/2qugxpVaI5IF1aWkXjDCFBJtgvb/wNAJqcfLtYcXujq5BE6gyH5HI1iHXJLe4NE/Um0yqwIAUr9Aa3WPm0yL9ZO1wjScEfQkRZDSKYvYlHSVEUgREtXG26fDAbGjLThVpv1DB0e4izHt+O6csoXiLkVWWnhNRKc20n6YBB8ctz+rdEjJnNX4MHCgBFW0XYmUtkOZ6Mrwf/wj/ul9gGJZRGsLb/tANa0CFdWWpStGm7ds3O4nFpSgkkevDu+OXIHDH8TMtfgjoL/eM9+c1shOfzSxD70tMRtpTvly0qnogt3jhJhC0Ip3PiMuV2d+4fXktkiXD6IGyitQXyd7rVfNfepfsHGiWWnQB7zi4bVkE+OXzrw6tkPKUbXETb8HnDGbL5m7ZLEYpeQuGyUZLGHH11X9hwvjdC2dn9HHFc4W79yEq3fp63Edrrb2Kn8iEzdOb+3brWyr7NpcrpbSWyi+8dLbQLcQ3LP9u+yJCXTw/3w6BtS0VZB/Gml3hDn7duFfdLK72d0DDvc9QMdKci+vI/LQXsTJoS066Nlds5k7jCgmnfg8r7XshenB87HLgkSAdgzHoeF3BCrl9BRqWNkZEwg6m/6hZ8wv8iNJPCAcIgbfy2T+phX4h0Y79q4F4iXiQDsC1XMlDVvI4Mr55f74BQOj+rs7+ZZ/jB1CA/V1tiqRfxLSqOQpcgO1ljAmJSwagHhfDrhK995MoqGIwCavAXnA5FTdQhP4BBbGEyQbUh9reBx6JD9ECrdZ1YU3cem2KpoBbwvSlqtpVhAaLP+eMB2kPQDilt8ZcSyHno38EKmsqpLF+MzYJdXrsixI2xx3d8tx+rFzCOm9bccSgKwUopmSyqHBy5UZMKYYSfA5Qj+vtGbTdRG8tVkhQJLVJK+KQOc++xrhdx7JrzL5j6ayFd0tszcmWHKAmYtTv7SSIHDokx57m/4/cHdT3TXVLaQtdh8KlPD0zJG8yKVIaUBzGvN7mPB8U+aYOlfhgG4Kfv/tDkYvbmfeAxEg1S3PhzWEKOsa6KsTlaUJJ6W3rcDWdelk9HDr+6YGw+srZK2a4NLYoICrEkJj61rTeOUpOWUwpV1uZdQnqjCMo5bbpUnjzs1h9wMAycV5V/OF/pCzoQdTfvDiXNK2n4nE3maPFLld4xJXT6AA61XS/e7yK9ilgD7QySbycyO8e8qsNHwmVPwdWluB52ePowVmaQODD30F32YLYvSoVLj680CXP+x0l23n27veLAkfP3OirROeFenlwDNw+UsDa299QZ77ZyG9o662yahQQt44paOaVpi0ZHkwkY3qTtWlEYslEDPd69xfa2/XKsFOPjFkK8oM3c7KN2sRAmrLV3ciJPsPrroJVOpKTqKjfF/tHF56n7uO9U8xgYr3+UEJv6uXk6/S7TeigEbNqFIA5dJh49XpXbLB4wiHaqvPBfqq7Zi+2CKYrYjPhi3PpieGYD+DWA2dQYZVzoKjScbxWUqXMMQFWJSOowqK0Or+QwI8UVs3Fottm/ntHm/1MG9/TFx97vI5oDFiyJ/xXubSH2hMfXW+QqsHo90KFRovWu5rJpk+lbvYQuFH7chWff+fWUv7sw2Gce8F6JblrlfHOZASnUKGuwrDTNwtZj1JFr2JDF1hUktraJ8NFya+3X78CsxIyanHUisUvLjUvpUoAKBZZ1pydnzmqo0xuV+r3htfLGeHniqI7scwigRa+i0EkCx8Cv+z0Bjbwe2Ftg5SbTmoR/60geXVjSC6hJOOaHtxbifP+5xYmTsfGovB7zlM2hgN+YdP3+lHOhhBa+bAqAEdngBxkueqcJIX7rf9r144+vvhVeaMgFTqU3qiPYQlheOEZztOnADnagH3zsq2NB+VwPfU3EX272eeFkPMxhPkkc4GZrDrorFruniwlqLoU3IHIETHzlQdQBVS2zdt/X1Agn/R+3NxWEN1Zy5d7JvhLCbEAiYT3bo3Ljs5UkqXjruh11OmPCwoz5Xw7sEmj9ZJVGeM6FmsSkXUiKYhwVaM7Dt9pRMEcTlBRMJZid6O924fnFGBOtxhI5CBSh88CG10i7vkEBTbeY+ufR4yZa0lozS31BiF4vhhrN0iMWi+uzY5ELuZLOoadO7r5AFN5B9Om9Qbn1XGQjQeiaPPxo6K+jvNWrDGIkx3R57bui+6TL+crIteWu5Srff6snpJhPbu/yIA3wX4pNI7VFiUWfwrk2u8MQ7D4H5H5u6UjljhKMkoNc5JmjKDT5DR/RY6rMLrpN8lnX8Q72Pqg75qGOBV56FlAWQbytVBiy6JCgrDycyyODKxpTJSSgbJsBExIRea0MwjKZrloZQ0dKSqCh1LqMP1khElyrKJiR8OeWvX8rSGdffXwduITyMggJV1LD/T8bNmIU6RGxQN6Iag8eyL9zAmZ9s+wNeMPLb3TETHgnnBvmICA8mx1YX9J1g4DCR3w/IJoz30FQuRrBzRrqe+++yj12wLtVW7hnvm8xxYSY0C4uvFD+LrHxqh+5MBlykKx7F9Xvpj/H7EoUZ2+LvPk6SHzGJHejrQVJqIEi9e/ccQFN7U2vzqLg2DFhXtMajUjrHb8FkaFvasZ6nslj/XlXXNobDSvHWlizRbXGliIA44d2kZqPb6/GBVgi36nAkCZ+5u8mHtuxuFyqytAGFSNgl4vqIl3PsOh24Nh0DUGFCUPujAupPS7PMUnvQrcrFa5FrTEqa44x2L+MUOHfMOVF0YPlD12tOkn1gI5LVlqBH/6riTSHBypneMpFs26azo7awO1b1TCa31ebrpLe8jzhp/pQDyV366nqQ07YP+sA0WmMNVDPSGGUS98SsSRxaE1KYRhPtiHkIsrcEjSMOs9ydAslarG0uPL5xtTpbrr+npajiCjb/kvHvlAKJ4v/0+npvb8U30LO+VNJqluANjnYmSeeAjmAesT3sFCGWG8rp6bDCSiU3JbO1FGW1q1ruml+g7uzAmSmKbG3KMPmTJHbQSM3tiFVy5RNU+rsJW5YFOVAIp+OwE5qMyDHJGkHOle7c3enKHZ14mdkFIBjt30UdmTQnzmRfnkeNbd1vTTrw6cVFKJ1MTsW0YrthyKutjr9EAZCniYqcbyf8uNvtSLBNhHHEq2BDlZ1ZeYpuyVrgvgEEKn83YYJtwQej8K+6v1+BSf/Y9HQUcx6una5p+3GiIMJjrt6vNjpP6om5PZwDiok4SGDbbiD21aNMAeCmOWm9+2H1lSJVxsazBnr/9/WkhVaFwnDQr+dEfS7DhYcCuDm++T5ICfmM+Fx+N6amnf2YfVe47rehf959D+sePw3wVtaV/hyZvwN31kjoRv/JIPCcPn80OjdW7HFLQEWlfs9GHU/o9UKm7PLTDwj5KDBsTi8oJp83cRN2/cKR3l+2+uvVnBX0/s+x/uTFyM1sZAmNSt217Am+YBx2GEDpwn4zVyF0O3a4Ikmigh2rPC5kztjCPAicVFqbHQ0s3DCEVSfxLXDBT0g9tSNoeZqfDobhZ9opRDQ1lXgRjzSQT1wbg7kLa7Uc6tIlHK+UAU6wBqqWp/KQQ5Nog3/jCx/Ty1R5nME5HDpYLFLJV9tQE3aP3kbdS8Shkz/OQV5Ulw333ZpkY75TbHPA46wU/vkR6GB9pDykSBEwVDjHo0VK82jxOYAfFjJl2ejVaCdVphwd47TJwinCaCQfplQmwsEsgaUrXKqYvJwjzVRDzj/aC74mooyM4LFBRl5cKPto0Co/tSnliZM2Ce2P5mFOjOFtPrFaVDRIlwDtfK0AdSReiheHwNT7Q31QV/nKbjvnJ+Sawbmxuce9nKwSYHh9qTJtr8hOmdn5iTab4mZzIE3HM9OSdHMV/8k+WylumDEKlY/ppZafj5Cz9kXIpTeTqr3VY5EhOKiLxc40QGuR7hPdyc/9B8Qd9FnyY0PRuimYsdUaD5K8cXpJVK8yxGdEgyvVGx6kHGtNPwjO7SAOG4NYqszF+dRWUnhRFBF3z4lTeYyH9gZOs1rwe1uNeBICqrVSIqTrWlTmhU9UEOXr0ErK4nfbYFf/ySg2s7hBuwc+QKRQP19AlwYuuER0wuJl07L7Z3wJKMNbQb6RfzEbQhgxlZoeiYb/T6agjXUX4LhZRNVukuy5abIw4oK/0xImhfTLT4ULdbBEsm+zLpk4QlDmo7vn+7QA9SwskYqg2P8hEM6w/JFjOTp1HQfc4G1SX09F/wjsfTvWsWaScGxZsfiCd+yOuFUlLIEzqVvCkS3WzDmEx7ioJZjr1q6ARJMXWbPcEQlHWVMF3oTbETlLYN9yAmCsF7WIjRcJ1y7S1d/YSn6s4ePUPk6fZxgNk7N0QfPcqeVpVbQslmilamlyfXiJ75QTX2qeHKid2xPN/x17rIv1Nwgc5u/m5CsGt6E6AswxYo3YhU0WpemcshhQ1LEDM1IkAFTkH1xH7JyKrY4pwylIxiC5G9VpqyVGO2Sm+b/Waw+r5E3SemdJQmKph2hc0Ozx7Fvrw7L2sg4htfLNwZ1uNk0I6FFD/S93g0JMIohTnf9cjTIu68uiNRC8smHKVH1zRoKSlWVXTBvd6KFYFi6LCYT5aSbisr5o/4UeKyWbEdFrcV2kZ32ftiilkB7ccnR7hg4Ga9fG6pLZifw3NIpJmoRnpF0ZVbET9wFwZNqzSZPCf5fnKMCX2lhj2EmWUULZtsyejL31D3TzTzb9njDJJ7od0BzpIEMTA2XFENXhzDwfmaqWkGNAlAZ9dcVI3U/6QliFqsw1aOLzyhv8TWcGGA4ZVAZZ8yb2NVxUAKmwMsqq7ZKE4RHmZg+x35m45qDBb3f/1ACm/VvwF7BzTheBtMMTELbLrfl8MTl1J55TGpp41CyUn+1IVX7WKqf6/mvQAyU6Urzs1aUQHm5iWn4jI5D17Ii98IWaL1SMYHJ6OD0McCVe/ryof7hL950elIm/gO/OWVMfKxCCqQ161RjWBEf6jRoKd7x4Rrpmr1taQkjjjoHv7p425G0MMemKxrH2cw0g45sw8ptS+gdAWphejuHizsQ+x8eT3IoUMfNlOtg7U5bj7bx3LsOSPwaHL9WgkLO+2fAytqhaEH4a/cn3QHQqFift6y1GHjbgP3w9aY4s8ekZbvPoUTf3AESLUav6Ysm5VgD1TY+TL6LO2zvsk6OlKtsbfy5mKglOQcsC5GO+mfCD6IQ1hmHl+aC368AiVviZYxsEcyzRSe7suTGGVDsdnw+x50boJozGH3epOKVoT+0PK/Aq87wpFttwslRA9DexeCntEbCUTJF+hD862y9MEj5LRh1Dr8Ja7amQUyZXjjcf9Naf52NW9xhTXv9EV4i3O9B6fOqlmFpsJMi61RDhVWuOW4KmAgqoyU/XxZrrfAt+KZ2c6z5nFnRbVBl9NrZK7rlBQ82MjL49zouMbDmPCruNvzl9miX7sDrK4EnKD72hcE7OWj19cRnT/4Nltx+1EI56B62uvZ0MEKZU3h/03RybpyNmwmWX2mQO/6Oc9SNAj+vODstL4Twgnug1BCKJ5UnP8QvitAStcc0gnMNbOcRS2h3Qb/VMGqIT1bHcIvAI1+v7EmuQJ3p3bsY75+xk+MyWQ8vPWqb5r/yvT6zjqJq4d94dqQdmVERc8FLn9wn9KoHd9VQslErKewKtZMoZoijtGUXMsbX5xuUFCqRSEqvkzxiCoi9+xs1FkjaHeK9BDKwGsUWazV025X61UeNG0KIIsvRXHrCS7GmNnJK6dvNozKVSRz9ikoEP75D61OBDN58+wSNq6PjTC776jddHakFI1TaW9Z6HkHH6QeFLxGPMD58vUpHOLzZkkZRB1vhJiuhyehNkhColUpdwZ3sfO337XxNmcbpQHD1Rw/oauaDAOC1W3bcVnOjoafTDALO62TRRNeeFcWtINBb1PXUSlZR0RCE9uXk6cDsUANUt1ucPYQbHQ9nRPwi5qZR8FBVl8pf6Hx9EwFDqqo/ftd7gxcplSDEOaZEDarmkVuKnHGf14wo+vv5vBbHSy8ujSJgN/BSY6qjIcgU88Y7msYzarltznWvnx0CzLUAOoJ2d7icIcPFXpZ3pRfSAqgeF/Ou9EyOFQKdrZjBW2LKod0LABnuAD9Rkj7hg5Fsrq4JAai7YN8govM8vCMKPmvtsoDQw3DakHzeFqm6na92GSQ6+hNA1SS3xtMHy1G/h1jeuOEPDZNFYhutPUhkai4eoZUy7yWK65GnkX/sXJgUuns1CNDwNYfv/80D0akE7soFBZZEfYfH2meZJ3IxBKKe0swJI6hSeuYJyZcPX7P+dk0LPJBW80OY7ZvBn/xLqzgU2lgcbaGxZ1Sf83PZQeLreNF5ueuGHNmrSQCJ6iX8ufbzv4uEjShoU7ooRc0eudVgH/rPWS+T/VEWPcXF3dXcEnNKaaNn4K1qkZcXVhITmHUW0xG8XKsS7tKH+5vfT8Cmdj0tydjGb/laVNEh3TKZWn+jBJymo/NSXJeME38L2hWsiAv71TLeivrK7/gOSTAehAhVwTrKJWI+Rol559SHzsh5RjKgKiEaQ85wN0Y4/mFNxRb+Bd3KYaYih1aw0R5T+cVhGTURhhgOVw3b/7b60XK4vp/aLXhowgqsQMi085cF0nw7J397aq+MMFk8n5/49MR2Dr7FZG/cRz+X1N9bmjlNKaSQndf3Badm7goHk0mUSTIw1hTNPLssNKMa2uKY1vu7tZmx0yVUCwjsgRSpp13wjpodWv4fNB2rteDkvAspqS8wmhyC517enfULH/OKfkY45itKcmk5TZmoqKwt7B2kSPRkaWIb06Tqxqaw6ZlCxycC6GT0NKMdU862Izbif/U2KKvz9F3es1kW3pM1o68xvkdw8WI15CoUnFIPTi9AwXW/AMl1BbYhm0xtDKXVGRIHvawgar2CFSaNouM2sRR7rSaMruqIBxja94FxlrLiAHIcU4iEeiVS5Wp5gsyRmSfs1VwDGnlF9ecusgKAZntxITaMj2AsAavK10ddjg8BzKL3zFNiiVLQUrFK9kKSFtlRcc7KWDbJBqMh9H9w3vZEpKDFjFZ9W1qQdalfoiXoPejv</script>
 </body>
 </html>

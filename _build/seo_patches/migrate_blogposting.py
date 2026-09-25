@@ -44,7 +44,7 @@ def extract_meta(html: str, fname: str) -> dict:
     url = canon_m.group(1) if canon_m else f"https://www.nedabah.org/blog/perspective/{fname}"
 
     img_m = OG_IMAGE_RE.search(html)
-    image = img_m.group(1) if img_m else "https://www.nedabah.org/assets/og-default.svg"
+    image = img_m.group(1) if img_m else "https://www.nedabah.org/assets/og-default.jpg"
 
     date_m = DATE_RE.search(fname)
     if date_m:
@@ -84,7 +84,7 @@ def build_schema(meta: dict) -> dict:
             "url": "https://www.nedabah.org",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.nedabah.org/assets/og-default.svg",
+                "url": "https://www.nedabah.org/assets/og-default.jpg",
             },
         },
         "mainEntityOfPage": meta["url"],
