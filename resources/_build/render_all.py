@@ -268,7 +268,7 @@ ul{{list-style:none;padding:0}}
 # 보정한다 — 시각 디자인·본문은 변경하지 않는다.
 
 SITE_ORIGIN = "https://www.nedabah.org"
-OG_DEFAULT_IMAGE = "/assets/og-default.svg"
+OG_DEFAULT_IMAGE = "/assets/og-default.jpg"
 BROKEN_STYLE_LINK = '<link rel="stylesheet" href="/resources/_templates/style.css">'
 
 # 개별 페이지 대상 하위 디렉터리 (자료실 형식별 디렉터리)

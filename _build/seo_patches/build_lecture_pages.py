@@ -320,7 +320,7 @@ def build_page(data: dict) -> str:
 <meta property="og:description" content="{data['lead']}">
 <meta property="og:url" content="https://www.nedabah.org/lectures/{data['slug']}.html">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://www.nedabah.org/assets/og-default.svg">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-default.jpg">
 <meta name="keywords" content="{', '.join(data['keywords'])}">
 
 <script type="application/ld+json">

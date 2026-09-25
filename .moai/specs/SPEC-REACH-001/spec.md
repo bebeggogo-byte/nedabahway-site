@@ -34,7 +34,7 @@ This is an **audit-and-improve** SPEC, not greenfield. The repository already ha
 a `feeds/` hub page, three `blog/perspective/` feeds (`feed.xml` / `feed.atom` /
 `feed.json`), additional feeds (`blog/feed.xml` English, `magazine/feed.xml`,
 `iden/feed.xml`, `resources/feed.json`), an established `og:image` convention
-(`/assets/og-*.svg` at 1200×630 with an `og-default.svg` fallback), and one
+(`/assets/og-*.svg` at 1200×630 with an `og-default.jpg` fallback), and one
 English page (`about.en.html`) already carrying `hreflang`. The work is to audit
 this infrastructure, close the gaps the audit finds, and prove the result with the
 repository's own tooling.
@@ -162,7 +162,7 @@ from the inventory or that fails REQ-REACH-002.
 Every page on the reach surface **shall** declare an `og:image` whose `href`
 resolves to an existing, reachable image asset. **If** a page has no bespoke
 share image, **then** it **shall** reference the site default share image
-(`/assets/og-default.svg`) so no shareable page is left without a share image.
+(`/assets/og-default.jpg`) so no shareable page is left without a share image.
 
 ### REQ-REACH-009 — Share-card metadata correctness (High)
 Every page on the reach surface **shall** carry a share-card metadata set that
@@ -241,7 +241,7 @@ All criteria are verified against the frozen feed inventory in
 | AC-5 | All feed-internal URLs resolve | `npm run links` (lychee) over every feed file reports zero dead URLs; each `atom:link rel="self"` matches the feed's own public URL |
 | AC-6 | Feed autodiscovery present on content pages | Audit script over the reach surface: every page in a content set with a published feed declares a `<link rel="alternate">` with the correct `type` and a resolving `href` |
 | AC-7 | Subscription hub is correct and complete | `feeds/index.html` lists every inventory feed with format + content label and links each to a URL that resolves; advertises no feed absent from the inventory |
-| AC-8 | Every shareable page resolves an og:image | Audit script over the reach surface: every page declares an `og:image`; every `og:image` resolves via `npm run links`; pages with no bespoke image reference `/assets/og-default.svg` |
+| AC-8 | Every shareable page resolves an og:image | Audit script over the reach surface: every page declares an `og:image`; every `og:image` resolves via `npm run links`; pages with no bespoke image reference `/assets/og-default.jpg` |
 | AC-9 | Share-card metadata is complete and correct | Audit script: every reach-surface page has `og:title`, `og:description`, `og:url` (= canonical), `og:type`, `og:image`, `og:image:width/height/alt`, and `twitter:card=summary_large_image` |
 | AC-10 | Bilingual scope is frozen | `.moai/specs/SPEC-REACH-001/english-variants.txt` exists and lists exactly the pages with a committed English variant, including `about.html`↔`about.en.html` and `blog/` |
 | AC-11 | hreflang reciprocity holds | Audit script over `english-variants.txt`: every listed page and its variant declare reciprocal `hreflang` ko/en/x-default links, each resolving (HTTP 200); zero hreflang links to non-existent variants |
@@ -268,7 +268,7 @@ backed by artifact evidence (a passing command output or a committed file):
    feed declares a correct, resolving `<link rel="alternate">` feed
    autodiscovery `<head>` element (AC-6).
 4. **Share cards** — **100%** of the reach surface resolves an `og:image`
-   (bespoke or the `og-default.svg` fallback) and carries the complete,
+   (bespoke or the `og-default.jpg` fallback) and carries the complete,
    correct share-card metadata set including `twitter:card=summary_large_image`
    and `og:image:alt` (AC-8, AC-9).
 5. **Bilingual wiring** — the English-variant set is frozen in
@@ -322,7 +322,7 @@ bilingual reach mechanics themselves.
   resources into English, and does not commit the site to becoming bilingual.
 - ❌ Designing a large set of new bespoke OG images. S3 ensures every shareable
   page *resolves* an `og:image` — bespoke where one already exists, the
-  `og-default.svg` fallback otherwise. Producing a bespoke share image per
+  `og-default.jpg` fallback otherwise. Producing a bespoke share image per
   article is explicitly out of scope and is not required to pass the gate.
 - ❌ Paid promotion, ad spend, paid syndication, paid social-scheduling tools, or
   paid analytics services.
@@ -353,7 +353,7 @@ bilingual reach mechanics themselves.
 - **Existing infrastructure**: `feeds/index.html` (subscription hub),
   `blog/perspective/feed.{xml,atom,json}`, `blog/feed.xml`, `magazine/feed.xml`,
   `iden/feed.xml`, `resources/feed.json`, `assets/og-*.svg` (including
-  `og-default.svg`), `about.en.html`, the global navigation component, and the
+  `og-default.jpg`), `about.en.html`, the global navigation component, and the
   static feed-build scripts.
 
 ## Assumptions
