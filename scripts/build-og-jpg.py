@@ -3,7 +3,7 @@
 
 Reads the <text> lines of assets/og-*.svg and assets/og/*.svg (written by
 scripts/build-og-images.py), then draws them on the NEDABAHWAY v2 card:
-paper background, symbol + wordmark, eyebrow / title / summary in Pretendard,
+paper background, multicolor wordmark, eyebrow / title / summary in Pretendard,
 three type blobs on the right and the six-color bar at the bottom.
 Social apps (KakaoTalk, Facebook) do not render SVG share images, so pages
 point og:image at the .jpg twins.
@@ -19,8 +19,7 @@ F=lambda w,s: ImageFont.truetype(f'{S}/Pretendard-{w}.otf',s)
 INK=(27,27,27); MUTE=(85,80,74); BLUE=(29,78,216); PAPER=(241,237,229)
 TYPES=['explorer','maker','connector','supporter','thinker','enjoyer']
 COLORS=[(255,107,61),(255,200,87),(59,130,246),(16,185,129),(139,92,246),(244,114,182)]
-sym=Image.open('assets/brand/nw-symbol.png').convert('RGBA')
-word=Image.open('assets/brand/nw-wordmark.png').convert('RGBA')
+word=Image.open('assets/brand/nw-wordmark-color.png').convert('RGBA')
 blobs=[Image.open(f'assets/brand/type-{t}.png').convert('RGBA') for t in TYPES]
 def texts(p):
     s=open(p,encoding='utf-8').read(); out=[]
@@ -50,7 +49,7 @@ def render(src,dst,idx):
     for (x,y,h,rot),b in zip([(870,90,210,-12),(990,300,170,14),(820,370,150,6)],picks):
         bl=fit(blobs[b],h).rotate(rot,expand=True,resample=Image.BICUBIC); im.alpha_composite(bl,(x,y))
     # logo
-    s=fit(sym,64); im.alpha_composite(s,(80,64)); w=fit(word,30); im.alpha_composite(w,(80+s.width+14,64+(64-30)//2+2))
+    w=fit(word,52); im.alpha_composite(w,(76,66))
     y=190
     if eyebrow:
         d.text((80,y),eyebrow,font=F('Bold',24),fill=BLUE); y+=48
