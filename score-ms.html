@@ -2,215 +2,32 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>발표 조 점수 매기기 — 중등부</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<style>
-  :root{ --bg:#f1ede5; --ink:#1A1A1A; --sub:#5f574d; --accent:#1d4ed8; --accent-bg:#eaf1fe;
-    --line:#E2E8F0; --card:#fff; --ok:#16a34a; }
-  *{box-sizing:border-box;}
-  body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;
-    background:var(--bg);color:var(--ink);margin:0;-webkit-tap-highlight-color:transparent;}
-  .wrap{max-width:640px;margin:0 auto;padding:22px 16px 60px;}
-  .head{text-align:center;margin:6px 0 18px;}
-  .head .event{color:var(--accent);font-size:12.5px;font-weight:800;letter-spacing:.02em;margin:0 0 8px;}
-  .head h1{font-family:'Noto Serif KR',serif;font-size:21px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px;}
-  .head p{font-size:13px;color:var(--sub);line-height:1.6;margin:0;}
-  .cfg-warn{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;padding:12px;border-radius:10px;font-size:13px;line-height:1.6;margin-bottom:14px;display:none;}
-  .step{display:none;} .step.is-on{display:block;}
-  .label{font-size:13px;font-weight:700;color:var(--sub);margin:0 0 10px;}
-  .rolebtns{display:flex;gap:12px;margin-bottom:16px;}
-  .rolebtn{flex:1;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:24px 12px;
-    font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--ink);}
-  .rolebtn.sel{border-color:var(--accent);background:var(--accent-bg);color:var(--accent);}
-  .rolebtn:active{transform:scale(.98);}
-  .rolebtn small{display:block;font-size:12px;font-weight:600;color:var(--sub);margin-top:6px;}
-  .rolebtn.sel small{color:var(--accent);}
-  input[type=text],select{width:100%;padding:14px 12px;font-size:16px;font-family:inherit;border:1px solid var(--line);
-    border-radius:12px;background:#fff;color:var(--ink);}
-  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a4541a' d='M6 8 0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;}
-  .sub2{font-size:12px;color:var(--sub);margin:8px 2px 0;line-height:1.6;}
-  .btn{width:100%;padding:15px;font-size:16px;font-weight:800;font-family:inherit;border:none;border-radius:14px;background:var(--accent);color:#fff;cursor:pointer;margin-top:14px;}
-  .btn:disabled{background:#d9cdbb;}
-  .whobar{display:flex;justify-content:space-between;align-items:center;background:var(--accent-bg);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:13px;color:var(--accent);font-weight:700;}
-  .whobar a{color:var(--sub);font-weight:600;font-size:12px;cursor:pointer;}
-  .progress{font-size:12.5px;font-weight:700;color:var(--sub);margin:0 2px 14px;}
-  .progress b{color:var(--accent);}
-  .jump{position:sticky;top:0;z-index:6;background:var(--bg);display:flex;flex-wrap:wrap;gap:6px;padding:8px 0 10px;margin-bottom:8px;border-bottom:1px solid var(--line);}
-  .jbtn{min-width:38px;padding:7px 9px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:13px;font-weight:800;color:var(--ink);cursor:pointer;font-family:inherit;}
-  .jbtn.done{border-color:#bbf7d0;background:#f6fef9;color:var(--ok);}
-  .tcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;margin-bottom:14px;scroll-margin-top:64px;}
-  .tcard.submitted{border-color:#bbf7d0;background:#f6fef9;}
-  .tcard-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px;}
-  .tcard-name{font-size:17px;font-weight:800;letter-spacing:-.01em;}
-  .tcard-total{font-size:13px;font-weight:700;color:var(--sub);}
-  .tcard.submitted .tcard-total{color:var(--ok);}
-  .crit{margin-top:11px;}
-  .crit-label{font-size:13px;font-weight:700;margin-bottom:6px;}
-  .crit-label small{font-weight:500;color:var(--sub);margin-left:5px;font-size:11.5px;}
-  .chips{display:flex;gap:5px;}
-  .chip{flex:1;min-width:0;height:38px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:14px;font-weight:800;color:var(--ink);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;padding:0;}
-  .chip:active{transform:scale(.92);}
-  .chip.sel{background:var(--accent);border-color:var(--accent);color:#fff;}
-  .submit{width:100%;margin-top:14px;padding:12px;font-size:15px;font-weight:800;font-family:inherit;border:none;border-radius:10px;background:var(--accent);color:#fff;cursor:pointer;}
-  .submit:disabled{background:#e5ddcf;color:#a99;cursor:not-allowed;}
-  .submit.done{background:#fff;color:var(--ok);border:1.5px solid #bbf7d0;}
-  .submit.redo{background:#fff;color:var(--accent);border:1.5px solid var(--accent);}
-  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1A1A1A;color:#fff;padding:11px 18px;border-radius:999px;font-size:13.5px;z-index:50;opacity:0;transition:opacity .2s;white-space:nowrap;}
-  .toast.show{opacity:.94;}
-</style>
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-<div class="wrap">
-  <div class="head">
-    <div class="event" id="eventLabel">2026 전도학생회장단 리더십 캠프</div>
-    <h1>발표 조 점수 매기기</h1>
-    <p>각 조 6개 항목에 1~10점을 주고 <b>제출</b>을 누르세요.<br>입력한 점수는 폰이 꺼져도 남아있어요.</p>
-  </div>
-  <div class="cfg-warn" id="cfgWarn">채점 서버 설정이 아직 연결되지 않았습니다. 진행자에게 문의해 주세요.</div>
-
-  <section class="step is-on" id="step1">
-    <p class="label">어느 쪽이신가요?</p>
-    <div class="rolebtns">
-      <button class="rolebtn" id="roleStudent">학생<small>내 조는 빼고 채점</small></button>
-      <button class="rolebtn" id="roleTeacher">선생님<small>이름 입력 · 전체 채점</small></button>
-    </div>
-    <div id="studentBox" hidden>
-      <p class="label">본인 조를 선택하세요 (그 조는 채점에서 빠집니다)</p>
-      <select id="ownTeam"><option value="">— 내 조 선택 —</option></select>
-      <button class="btn" id="startStudent" disabled>채점 시작</button>
-    </div>
-    <div id="teacherBox" hidden>
-      <p class="label">선생님 성함을 입력하세요</p>
-      <input type="text" id="teacherName" placeholder="예: 김창환" autocomplete="off" maxlength="20">
-      <p class="sub2">이름은 진행자 확인용이며 결과에는 공개되지 않습니다.</p>
-      <button class="btn" id="startTeacher" disabled>채점 시작</button>
-    </div>
-  </section>
-
-  <section class="step" id="step2">
-    <div class="whobar"><span id="whoLabel"></span><a id="resetRole">역할 변경</a></div>
-    <div class="progress">제출 완료 <b id="submittedCount">0</b> / <span id="teamTotal">0</span> 조 · 입력한 점수는 이 폰에 자동 저장됩니다</div>
-    <div class="jump" id="teamJump"></div>
-    <div id="teamList"></div>
-  </section>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
 </div>
-<div class="toast" id="toast"></div>
-
-<script src="/assets/js/supabase-config.js" onerror="console.warn('supabase-config.js missing')"></script>
-<script type="module">
-import { getRound, CRITERIA, MIN_SCORE, MAX_SCORE, MAX_TOTAL } from '/assets/js/ms-data.js';
-import { sb } from '/assets/js/supabase-client.js';
-
-const $ = (id) => document.getElementById(id);
-const esc = (s) => String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),1500); }
-
-const round = getRound();
-const TEAMS = round.teams;
-$('eventLabel').textContent = `2026 전도학생회장단 리더십 캠프 · 중등부 ${round.label}`;
-
-if (!window.__SUPABASE_URL__ || String(window.__SUPABASE_URL__).includes('YOUR-PROJECT')) $('cfgWarn').style.display='block';
-
-let judgeUuid = localStorage.getItem('ms_score_uuid_'+round.key);
-if (!judgeUuid){ judgeUuid=(crypto.randomUUID?crypto.randomUUID():'j-'+Date.now()+'-'+Math.random().toString(16).slice(2)); localStorage.setItem('ms_score_uuid_'+round.key, judgeUuid); }
-let role = localStorage.getItem('ms_score_role_'+round.key) || '';
-let ownTeam = localStorage.getItem('ms_score_team_'+round.key) || '';
-let judgeName = localStorage.getItem('ms_score_name_'+round.key) || '';
-
-const STATE_KEY = 'ms_score_state_'+round.key+'_'+judgeUuid;
-let state = { scores:{}, submitted:{} };
-try { const raw=localStorage.getItem(STATE_KEY); if(raw) state=JSON.parse(raw); } catch(e){}
-TEAMS.forEach(t => { if(!state.scores[t]) state.scores[t]={}; });
-function saveLocal(){ try { localStorage.setItem(STATE_KEY, JSON.stringify(state)); } catch(e){} }
-
-TEAMS.forEach(t => { const o=document.createElement('option'); o.value=t; o.textContent=t; $('ownTeam').appendChild(o); });
-
-$('roleStudent').addEventListener('click', () => { $('roleStudent').classList.add('sel'); $('roleTeacher').classList.remove('sel'); $('studentBox').hidden=false; $('teacherBox').hidden=true; });
-$('roleTeacher').addEventListener('click', () => { $('roleTeacher').classList.add('sel'); $('roleStudent').classList.remove('sel'); $('teacherBox').hidden=false; $('studentBox').hidden=true; $('teacherName').focus(); });
-$('ownTeam').addEventListener('change', () => { $('startStudent').disabled=!$('ownTeam').value; });
-$('teacherName').addEventListener('input', () => { $('startTeacher').disabled=!$('teacherName').value.trim(); });
-$('startStudent').addEventListener('click', () => { role='student'; ownTeam=$('ownTeam').value; judgeName=''; persist(); enterScoring(); });
-$('startTeacher').addEventListener('click', () => { const n=$('teacherName').value.trim(); if(!n) return; role='teacher'; ownTeam=''; judgeName=n; persist(); enterScoring(); });
-$('resetRole').addEventListener('click', () => { ['role','team','name'].forEach(k=>localStorage.removeItem('ms_score_'+k+'_'+round.key)); location.reload(); });
-function persist(){ localStorage.setItem('ms_score_role_'+round.key, role); localStorage.setItem('ms_score_team_'+round.key, ownTeam||''); localStorage.setItem('ms_score_name_'+round.key, judgeName||''); }
-
-function complete(team){ return CRITERIA.every(c => typeof state.scores[team][c.key]==='number'); }
-function total(team){ return CRITERIA.reduce((s,c)=> s+(state.scores[team][c.key]||0), 0); }
-function shownTeams(){ return TEAMS.filter(t => !(role==='student' && t===ownTeam)); }
-
-function refreshCard(team){
-  const card=$('teamList').querySelector(`.tcard[data-team="${CSS.escape(team)}"]`); if(!card) return;
-  const done=complete(team), isSub=!!state.submitted[team];
-  card.classList.toggle('submitted', isSub);
-  card.querySelector('.tcard-total').textContent = isSub ? `제출됨 · 합계 ${total(team)} / ${MAX_TOTAL}` : `합계 ${total(team)} / ${MAX_TOTAL}`;
-  CRITERIA.forEach(c => { const cr=card.querySelector(`.crit[data-key="${c.key}"]`); const v=state.scores[team][c.key]; cr.querySelectorAll('.chip').forEach(ch=>ch.classList.toggle('sel', parseInt(ch.dataset.score,10)===v)); });
-  const btn=card.querySelector('.submit'); btn.classList.remove('done','redo');
-  if(isSub && !card.dataset.dirty){ btn.textContent='제출 완료 ✓'; btn.classList.add('done'); btn.disabled=false; }
-  else if(isSub && card.dataset.dirty){ btn.textContent='수정됨 · 다시 제출'; btn.classList.add('redo'); btn.disabled=!done; }
-  else { btn.textContent='제출'; btn.disabled=!done; }
-  const jb=document.querySelector(`#teamJump .jbtn[data-jump="${CSS.escape(team)}"]`); if(jb) jb.classList.toggle('done', isSub);
-}
-function updateProgress(){ const teams=shownTeams(); $('teamTotal').textContent=teams.length; $('submittedCount').textContent=teams.filter(t=>state.submitted[t]).length; }
-
-async function enterScoring(){
-  $('step1').classList.remove('is-on'); $('step2').classList.add('is-on');
-  $('whoLabel').textContent = role==='teacher' ? `선생님 · ${judgeName}` : `학생 · 내 조: ${ownTeam}`;
-  const nums=Array.from({length:MAX_SCORE-MIN_SCORE+1},(_,i)=>MIN_SCORE+i);
-  $('teamList').innerHTML = shownTeams().map(t => `
-    <div class="tcard" data-team="${esc(t)}">
-      <div class="tcard-top"><div class="tcard-name">${esc(t)}</div><div class="tcard-total"></div></div>
-      ${CRITERIA.map(c => `<div class="crit" data-key="${c.key}">
-        <div class="crit-label">${esc(c.label)}<small>${esc(c.hint||'')}</small></div>
-        <div class="chips">${nums.map(n=>`<button class="chip" data-score="${n}" aria-label="${esc(c.label)} ${n}점">${n}</button>`).join('')}</div>
-      </div>`).join('')}
-      <button class="submit">제출</button>
-    </div>`).join('');
-
-  $('teamJump').innerHTML = shownTeams().map(t => `<button class="jbtn" data-jump="${esc(t)}">${esc(t)}</button>`).join('');
-  $('teamJump').querySelectorAll('.jbtn').forEach(b => b.addEventListener('click', () => {
-    const c=$('teamList').querySelector(`.tcard[data-team="${CSS.escape(b.dataset.jump)}"]`); if(c) c.scrollIntoView({behavior:'smooth', block:'start'});
-  }));
-
-  $('teamList').querySelectorAll('.tcard').forEach(card => {
-    const team=card.dataset.team;
-    card.querySelectorAll('.crit').forEach(cr => cr.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => {
-      state.scores[team][cr.dataset.key]=parseInt(chip.dataset.score,10);
-      if(state.submitted[team]) card.dataset.dirty='1';
-      saveLocal(); refreshCard(team);
-    })));
-    card.querySelector('.submit').addEventListener('click', () => submitTeam(team, card));
-    refreshCard(team);
-  });
-  updateProgress();
-
-  try {
-    const cols='team,'+CRITERIA.map(c=>c.key).join(',');
-    const { data } = await sb.from('ms_scores').select(cols).eq('round', round.key).eq('judge_uuid', judgeUuid);
-    let changed=false;
-    (data||[]).forEach(row => {
-      if(!(row.team in state.scores)) return;
-      const hasLocal=CRITERIA.some(c=>typeof state.scores[row.team][c.key]==='number');
-      if(!hasLocal){ CRITERIA.forEach(c=>{ if(typeof row[c.key]==='number') state.scores[row.team][c.key]=row[c.key]; }); if(complete(row.team)) state.submitted[row.team]=true; changed=true; refreshCard(row.team); }
-    });
-    if(changed){ saveLocal(); updateProgress(); }
-  } catch(e){}
-}
-
-async function submitTeam(team, card){
-  if(!complete(team)){ toast('모든 항목을 채워주세요'); return; }
-  const btn=card.querySelector('.submit'); btn.disabled=true; btn.textContent='제출 중…';
-  try {
-    const row={ round: round.key, judge_uuid: judgeUuid, judge_role: role, judge_name: judgeName||null, judge_team: ownTeam||null, team };
-    CRITERIA.forEach(c => { row[c.key]=state.scores[team][c.key]; });
-    const { error } = await sb.from('ms_scores').upsert(row, { onConflict: 'round,judge_uuid,team' });
-    if(error) throw error;
-    state.submitted[team]=true; delete card.dataset.dirty; saveLocal(); refreshCard(team); updateProgress(); toast(`${team} 제출 완료`);
-  } catch(e){ toast('제출 실패: '+(e.message||e)); refreshCard(team); }
-}
-
-if (role==='teacher' && judgeName) enterScoring();
-else if (role==='student' && ownTeam) enterScoring();
-</script>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
+</main>
+<script type="text/plain" id="nw-vault-data">EDzaThieR9iUs7Uy5Q5j3fqrCaXDnu6K1VfMyQVeZbUmf+B5Wb3lREly2Wokz7CizyVi6lpXMBvovnjHFLPi2Phtrl/ofdJXbhhU2Mv6AIG7PxZHYRUUMBesHMN44OzjA8EF/5IZv8VbzkmK9Udzgh6bGXeNLipF+Zst9Df2dCbxHIGXxQuebePWK+yybrNWmm4ipvMqM4Ul6VuzFSaw8Ai3Alx/0TXLp+2OMKuQ6AxR2EBO/Mah7Sf24w0dyiLwmyS/ONwiIOQ+HPbI1+x5bZz/IU9imlffTUTYWFG77Avq0/R+l3pgtd1MmqUhshLpDS7lfe/YIDKPpPk87j9HyzB09yEYmdj88aW1EGPDPlMF7HIryISNWigrSIbJIp5nuk2Prx3sTdZeUCWaI+9/9iLEEAd+Nz3n5O6XV3RmRXCv+S/uFoFnmC+2kXON7qqf4soBb1N3CP83B9KMPOTPeKwFKtyolyfsnRztxj1hnUNnyq/8knYh57K3JYT9nbVHxU5FxNJ4gtKI78VYDo8kucazpG81BWMh6su0W58IfePoDAlt+HsDuBccnn6hQtW1HRKUYghU7jn3xCoavxJROuqstajIELVI2sBNt1wrO3wFr9hQ77VLiDFMDhkcgqjuFwgbqSKB2gMRSwwf4reLN0jkxCoX8FSwUyUtPwx22uqp7BO9njoJ19cCOmU6+dcVbi2Jr34A3dQfNytDIgj9euJTLzox+xwhY2x6yBv9TXsoaiVu/YIGnfRBPKgTtkVqfx9lEpcx2MiKOS5Xb7ebflC+lxtg9Rpl1BE9O2WTAvxc5iMzbAAILRSMLtLCK6+j+wJNRzjdGIHXPr/fMHzzCEb4HKMun+/LRVHmQMK4mwjthy1N7FkZuOrALhTLpHSULounLm6unELox3z9EojP67JiIPfC23/0s/1VJLhlib4v3xpHlqEcANJupceM4tF63NTgtQfH3QVUtswCXEM8B7PT0WeQK05yRZ8jAMcf7OexhraIfm2u5aYlqqql3J3mTC+OhEWC++NhorPslGBQtzpmL8ryQNt56Ju7BVHJ+oyslix1f61Zv7j7xHL75jTLSfiOi3Vw3X9YLPMJPmqYWWuQNEuvLNV0Lh3E9RLmB26r5emEppG+bVb20gi7KPLn50ToApdz/U8vWMxf4v9VXtq4TahyAcB4JkzKv8i9gVeGYDjuXWzwK8G3cIiKvHrFV7r+QhNcdonG9bzyWyUkDRPLgfanbP8Y5L3EkNsoAXhwQ/DLT3ERl/1ZoUQ4pVSPR6lovIgyUI9ZZI15BmBfc07nmq6AMqeZXp2Fpx6UJXxN8jWgkjdCCUv3HP/cKz3bprCb9PQ/fp72FW3U1Kt4ucO/XTbn1he3YfPQ38sbp45bdBjnttZLzauqI/fEmWBG1ApF29J5pjiyNPtCiBxitfo1d0SnSVSrti1kh1Hiv80GYMdD9vKFpx4jVKr24QDRQ7mnSiXb/9Zm9Nagc9WGn0us9+7nf9i/SMxevY918dI+QSfeWcBA5/N2a6Fo2CmUVnoU1ACJ5cH8jgYMg8pgp5liBky03RopXEJKqYIIe3VOa7iplYYE24M0BV9aXQjEKwkgVTX+Gj9VcpdxKeixYtJYqTpiOHRCDhSe39Se6im3aCInTBi4QMWkMNE439hXKGCRp83gYbDih6+IuC6hctzUHW6/lpTMtEXNVEm/RpL6qIJiM0Wr8pLIUgHpoeJakA5IndY6seHPoGCcDmS5/K+ndWgh4UlZvOxE/VnjZ34Ctid6FuUBY5H2cwVvmHfK7+/KoqdSTTntOsvubuQie3pZCWYgpUATFaBuwPirHzNeWeWS4/cRWtKpHY0OvCC19iKaLE0ydSg+5JkXG6W55PQujE/oA+wQY+O95pNgLfb9YHhoXPrwnMe/BBpmXHjOaGSdQbXY7Gcrrqx8RbJn6IJ+ObSejfqGW1QSFOBjHoU1MSJblgwh6gV7YFtoaFN/1MldfRNUPKya1XvbUIjZ8FsVeY7RHg+D8VGQk6cA9sj3ZGuTUnnh07CmOlzAUY+itgkIDb877bRwiXcOAj8VRQmwLU3VvWsdSPbUO2XECtUdMUgO9EBkUP9aLVQTsCaFdwtekX3wiqRTI66iJmEt4zllpk2/SDKS9wb8XIHDrCjJulOZURc3B3cSrF6OzObdKoJjSUkrd6DMpCwU64Au8mWurODw2gmp0a1bptuDsQwlhZT9yd50dCXGue4EkKsvLbL8HeTJQPIENKl45DpssRc2UXe9FSJtIW288STYkRpLK426txDsuHsEIILDR6Ng/NlkdkLZM1dUoWqGABlkyTYCBM0VJrDzOtRN1GQ1QIVc8Bk08YpXcTU1sjLpI/G8e43jxMHQDTgy0Baub52Xumjh1xJWSZE2wwXs8vNBMsxgOMxndR0W6lnGxvVFI/gOp9h4AVACmQ7wLKhlva0lzbhy4qeQjpup7sQmB9pSgAfZZqV4MYHYU+wITpFZZeOAVUPD1RxmXZjXtCa2VIMQosqPbIbaBI+dnDE1VFWu6Bi8dGDCxGbmznZqKWY/rByfFCLiXj+Ksp2CGEg+Wi/Eh20fled5DzND/iOzDLYK+C1XzsxG3Z8SaxUXpzuQqJb5UP583bHWwF1Nu0G4Py4lnJ3miBgIMffE85MBvvJ49523YsYB/Q7i2kVsJ6Jef4PaIu1A/F8SDFmn4v/AUzSKvlYfX/Ic88O8hvbuaejN5qfGwxTZYEg+/1Gc9GJw8QKmoXnZxZayjTlMNaKhV9DrSqB1Pcp157mutdeK7+fggh+xz+Quvmmrp+L4mgKouo99MHoCPiLOjXPgtXhLxutmIPoWiFgTZgDFmkqheVfZ+Qbbd6RsLw+eb0vweypPP96yicToDBcOc7bCN00fgioqqepWk71gGIqOHV3tIVBH9YAg0Nk6ZXIa8uQmmmBvoYnyccyfEui+optrJYSUy72LbLmKh9rMbJlLFSxQtxMo5iQoHfdwgjJWDPcq3aRY+CvegJTVoxEVvm31CxAFWGM+lUWrkxujFOxpkfQSJH/mHSHNyZ9Do24O+4a+flCMzEvpDhhNkr8YlwNpZetzftZChFeGovTEElrDOJBcy87J0GC9SyhCnB0xpXruNp/n3B3J2c0MA0HJe8Q8JAghYRXMnaIBRiELc78+hHF/iaoN2u6tHYxsAA1URe9XxhSHy/0h1UD5Djxee3Ouj2zKFd5p/OyNLOFekSw8LojUhtbuAGd0mRhkPSTg71zMhjKR70bh2FZU4a9BXoyyjaTAeM2vkjUhMsRskEZqGiBILT8tnK9arP2u5dT1uhr4JKkVfcVUFqdkVr98oUxYfxdLqXsouP8B02k2i/ErXN5EcPWCBmX9WmdE3q82CuaF0AkZkuzNq/EKQyNuf4wkUvmKeLVNeg9s+XnlhKDticpczh6oWwGzTkteVhhG1X8CX+Kz0wMGPu3M0HEeCSsdJdY2BHWVpceCY/APRX/kkIQUiKQn8V+bbh3lLuRtpNbxznQNKWWDfqyBWjPQSbM/HK/Xa28itlWV580LraTLYUuBTLl2az7xm3Wce7vbbB7n4eLNbWpeHe55lza3D7uoaIA8JHWlA4K1RoG2aFhSJcGCOLjZd7LrzPnQc7an21hesVKTB8YN7/k1OSlEHKcINkYGuaxX+bmAYL490k4gbHHnLWmnybqyJaZ79VhgpaTMyb+Mbg3gEkJqa3aH/ItMk8pDGNMTZw+Vtyxx9iu3ddmmNs153qN3rGV5JzH7DpFPJRUBGieazgaEeP93IJXPupT/3YgxFgrx0PNLn98arFVG70Xbi2Bw3jTCtsA4bP0xZ0XjcCICy8XJPMNxMcTM+oliuaiQsQotu6qbCOXqe342t4Lejo0KjjyKHe1+VX9mR0OUsZMLZXC6CEbAg6lgl5yAb/5kCmU0rgAvz2NmLMrhZrsBqFb2Ny+YzZ3WLLcc0SxxNJdVGfBpUyY2gwbewhkqTpIp7+WSXUZhxLlJ6oU9nwamq9I7cBhNRvXMFnoWTag4JRQgarc1PB5Dk+D4/zijPntEu3JGQzLBULfeyWLiu8bWFBLchoLAmBmahViG/H8kuVRrby33fmWgwlDPYvdxPTRI62EeOXqJ5q/53zoNIou0mOIk/WRodCxZWKhOJoku7DbY+YF1e/BP52s+J8ozra68xxRzJNFS80nvnrXS7AiPIULjxPVIzdJuA+Wtm9cMVTe8hmeb5plC+Cg/lIHepXamjeSQ6j7dt3CUVzAhRmYnaeB2ueqnter27OmuAiOqQNbRBjHA+fU9xrvkUQIu9yWUR7/Riu0AnPWQhfpM7hHKhXB/48fP09I9R7o4TG/QPYlA7mC9nSHNSTd0SY5XWhhRvt43mfzDsWEmege75Af9DRt3oAhzpa8DZi2JtGXlxfN4ayGDsH042Ha20N7/XmR6aYtmHNy/OSXnu4L3KnV4GoxYEdR+o6uXhBnsZQUgLCwZK/5O7WcQGj4Cq2XlWpGP9cA1NjVaSLdwX2zl47cpnvX5/lVz/1g8MlTVlt4Cy53ooYuldIz00Blnos+vJpU6wp5XW7i5AZWJ10qdpFfWrvZOitz3pJxrw5l50fSsOq7bUlQbcdeYKHRK7JHEWzhRnfA3oeUvfZH1Fg6VyCvZQwyHGLXyO0FgQsv26pCqpy136g6Pe4WJMgkvVfpd7FAksBhpEaigtiIuPSZcmNcMB66Pk6uM4nmpP5A9cEfeC7bxMUrwKKpo/cJJFpiOyuteR1vkLgYv4Jq2X5Bd7oqaibyqhWmu6tek34LQ4gzwgdEZpp4lykl/53ia5/X/pWf5w5pHoodelzjLdAIg+q+dmOA0zZt4kuREy2fhztC3Ua5ip363rSueHWtoBKKUR+8MLwOPYLbQltGOpoOYcG/jv2DtvkQYa/bHmOpEflnrfSLmDl1ZmoncyPpZGQyxgp8xa2aumC/+9E2jkYglrsynLd+UR5tD1HxZxbvTkTh5+0LgKkIcZODAnenI7DCYK3stT24C8yvYQJTsbl/QIriiCHzDQvby7nXBMTM37kJEC9moZYDorZzzXk4npa22ibCh1o3OVbwRfTfO7E8lPddXZQjkpgoydh4wczGPEXn3HHlJIEe9gnFz4Tca9sKeAo43akcwctiJk4bFpHXV+hjf9bocrxklDxC2I+w6t5s5xWY1zuP3UHS8g0YhgGDP8paZ5vEVbakF2Jocn2+A/vz1KEsuCVPXLgoCVwOp7vYCBj57PQxdQujm+udK/rq2VeQiAeRqDOQRXZFaQwz1y5H+Jxkh3d2OHYudavbpoLZt0mNX7KK3o2los7yVDCV+tp8Rsj6TPHQLlB2+U9LxJY2xskEb3un76NdDxs9IfZZQswu3m9fVyv3Hr1FJ4lial5VbPxPAXw6+dFq856fiAgpGjlNiygvmUGAQzJtMJMjnsZ5tavv6j/EgGIp/d4y0Kj2A9rsNd3q+Xiejf7OPLJTx0wOwGeqjepruNJe6ZPyzAeP4j8ZBbVSb2p2AJeD5NLYWk8yten8FxBV/ymc7uOCkWNmHi0KsZHsok5DfEViP7cNm1ksxSiWJvFB5E6TFfo+04EGgaTs3vy+3BsvyMi3VTKPc55B9x5cEj6+y9nz4Dh+QLr2CXAB1xhg/1rYmgjM441n92msRSWucU8GZ4Qfh+i1sfblSM+t9DNJjjvHlvkjZn5GLLr4iIPGrDOV95jYjp5tpSNY7cm4Xuahe8NlBh2tGEz5gpvl/+dVmfJ2mDCwjoKf0ERfzPkPSc47opjvrnbBlKR0pJt5Dnnq/old7GPFiCO4IQ6tJ9KAxiIA/dIIaaYiHQCdIhZ7WtD2JNpL2q6yaWN6TYnJVtQlMJXHEtGP1JrAH1Nee/W5TVxtm1ZgUIx1CTNMThFl1DOmPJsawIaashp7KaZX8SST1rur77RlcJCcPKjyxQ3AQ4vYqsdxRLhBHQhthObhmrX2gaFtnhvfsoKru2eH+01N5ujEAtRu4207mR8OUNsPjTC4ZSnlnxTxvvZeQk7v5porPU1L+8URYEG1aZwL1aCADhRvzmzeHOjobC1Z+5XtOuF7llAi3yurvDedmIO+W4SCfzxH+8thJkNP4Iv0PyjUG7lRuJ8enlJmpvukobdx7/uKkn0XVQkuSReq01+V7I7357OqPDZDBLtkOK/n4nfzBCOg+8HvxOetlTtq/00ZYX2ziW8pJ16t8uKReT1zJGi/+xY6DTM/sXejAo/aXtwk5OpbF3poq4x9ypBCy6FhDAXPgcLX425/iLRTJis9Tq49FG2KtZ2syrLV7yzrNUM8Rbsd5ieV8sc8nCpxAEG8d/iWBdRKHdyJUKGrdHULM+4x39cQ6NvfCm7eZqWHqJT+ni14jbV5LygHLKhZ47UUrNkxSx1F0jUwv228RSeqcxYb3U74s2RYpej56LaPOdRNDjBYKtqvRs6+WE5fs8DoMD1is7T6RCQnluOUbj04TURY/Zpp6+zwkMLcGPCMy90oNU9WSBFppFKz7d+/Ga0F2cKPQf6WHagfSBgmknRzr4N4YMoBpujFgnzcZH3awMx3Olz39rDn8KwtwvXOBxp358XlVjDR+bVoudQS74JZyCmH5evGsu8HMYYZpY1GrZ+S1Li8xAUBj3UPPpKs+E2aLYv5YjxWp2Zg4yqoGR/jlfaRWwEMS0zCGQA3lsXGxZGGL6AnqBn1fgHrGvcJRM6Sux/O+xkxQJlfYrr765UcEmUTplH7UMNjkl3uIZjoUJyyAXPz5xoabi6U+Ztht7TuxoeF2+YXJUpY1XiRm+XUS5i0bbiOFCp1HmQ2wlg8ojzOcj+sBLXpiwrAyCqO119DiA7IGMtB7Z31WwrfzdZz5Oo7ET204INLzbHdoenWfyo4S7PgEfRuLOMZk864e6GPbPdvRm3OYZLuZ6I5STBSnTXh1p/qtkVXnvk6cKJnPlSDXk4+u4vRDp9HUmpqW8egZ+a3CtGqdHvyNFV6Cf5s2j7O7fpwxdsM7FLm7ZbKyNQISPJw9LmEq7nL5LJq3rS4GHJz6sAthSYMerJjeFtccO1mlVnkt7dLbGQl7t/IDVwEIM7iVjNm4TTHzrapo73HkAl/ymvHTK3WObOfAZuTRUdWm6KUXmaK8Sg/CqNtmCFj8oS4bDyWvwtNI/TVHnZK46b2u7v7PZYCayYkoD59c42a7U6yPG4eQeWzd3pbep4Rc4UDmJKzLv3Y6nesQ2DdE6SLL+LUbcaXLGGcb9eWmFTCR6clXn5K+ubmAY2V9fH6ayNXVZm0Bm4fHXjOnKiw=</script>
 </body>
 </html>

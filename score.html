@@ -2,276 +2,32 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>발표 조 점수 매기기</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<style>
-  :root{ --bg:#f1ede5; --ink:#1A1A1A; --sub:#5f574d; --accent:#1d4ed8; --accent-bg:#eaf1fe;
-    --line:#E2E8F0; --card:#fff; --ok:#16a34a; }
-  *{box-sizing:border-box;}
-  body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;
-    background:var(--bg);color:var(--ink);margin:0;-webkit-tap-highlight-color:transparent;}
-  .wrap{max-width:640px;margin:0 auto;padding:22px 16px 60px;}
-  .head{text-align:center;margin:6px 0 18px;}
-  .head h1{font-family:'Noto Serif KR',serif;font-size:21px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px;}
-  .head p{font-size:13px;color:var(--sub);line-height:1.6;margin:0;}
-  .cfg-warn{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;padding:12px;border-radius:10px;font-size:13px;line-height:1.6;margin-bottom:14px;display:none;}
-
-  .step{display:none;} .step.is-on{display:block;}
-  .label{font-size:13px;font-weight:700;color:var(--sub);margin:0 0 10px;}
-  .rolebtns{display:flex;gap:12px;margin-bottom:16px;}
-  .rolebtn{flex:1;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:24px 12px;
-    font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;color:var(--ink);}
-  .rolebtn.sel{border-color:var(--accent);background:var(--accent-bg);color:var(--accent);}
-  .rolebtn:active{transform:scale(.98);}
-  .rolebtn small{display:block;font-size:12px;font-weight:600;color:var(--sub);margin-top:6px;}
-  .rolebtn.sel small{color:var(--accent);}
-  input[type=text],select{width:100%;padding:14px 12px;font-size:16px;font-family:inherit;border:1px solid var(--line);
-    border-radius:12px;background:#fff;color:var(--ink);}
-  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a4541a' d='M6 8 0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;}
-  .sub2{font-size:12px;color:var(--sub);margin:8px 2px 0;line-height:1.6;}
-  .btn{width:100%;padding:15px;font-size:16px;font-weight:800;font-family:inherit;border:none;border-radius:14px;
-    background:var(--accent);color:#fff;cursor:pointer;margin-top:14px;}
-  .btn:disabled{background:#d9cdbb;}
-
-  .whobar{display:flex;justify-content:space-between;align-items:center;background:var(--accent-bg);
-    border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:13px;color:var(--accent);font-weight:700;}
-  .whobar a{color:var(--sub);font-weight:600;font-size:12px;cursor:pointer;}
-  .hint{font-size:12.5px;color:var(--sub);line-height:1.6;margin:2px 2px 14px;}
-  .progress{font-size:12.5px;font-weight:700;color:var(--sub);margin:0 2px 14px;}
-  .progress b{color:var(--accent);}
-
-  .tcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 15px;margin-bottom:14px;}
-  .tcard.submitted{border-color:#bbf7d0;background:#f6fef9;}
-  .tcard-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px;}
-  .tcard-name{font-size:17px;font-weight:800;letter-spacing:-.01em;}
-  .tcard-total{font-size:13px;font-weight:700;color:var(--sub);}
-  .tcard.submitted .tcard-total{color:var(--ok);}
-  .crit{margin-top:11px;}
-  .crit-label{font-size:13px;font-weight:700;margin-bottom:6px;}
-  .crit-label small{font-weight:500;color:var(--sub);margin-left:5px;font-size:11.5px;}
-  .chips{display:flex;gap:5px;}
-  .chip{flex:1;min-width:0;height:38px;border:1.5px solid var(--line);border-radius:8px;background:#fff;
-    font-size:14px;font-weight:800;color:var(--ink);cursor:pointer;font-family:inherit;
-    display:flex;align-items:center;justify-content:center;padding:0;}
-  .chip:active{transform:scale(.92);}
-  .chip.sel{background:var(--accent);border-color:var(--accent);color:#fff;}
-  .submit{width:100%;margin-top:14px;padding:12px;font-size:15px;font-weight:800;font-family:inherit;
-    border:none;border-radius:10px;background:var(--accent);color:#fff;cursor:pointer;}
-  .submit:disabled{background:#e5ddcf;color:#a99;cursor:not-allowed;}
-  .submit.done{background:#fff;color:var(--ok);border:1.5px solid #bbf7d0;}
-  .submit.redo{background:#fff;color:var(--accent);border:1.5px solid var(--accent);}
-
-  .jump{position:sticky;top:0;z-index:6;background:var(--bg);display:flex;flex-wrap:wrap;gap:6px;padding:8px 0 10px;margin-bottom:8px;border-bottom:1px solid var(--line);}
-  .jbtn{min-width:38px;padding:7px 9px;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:13px;font-weight:800;color:var(--ink);cursor:pointer;font-family:inherit;}
-  .jbtn.done{border-color:#bbf7d0;background:#f6fef9;color:var(--ok);}
-  .tcard{scroll-margin-top:64px;}
-  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#1A1A1A;color:#fff;
-    padding:11px 18px;border-radius:999px;font-size:13.5px;z-index:50;opacity:0;transition:opacity .2s;white-space:nowrap;}
-  .toast.show{opacity:.94;}
-</style>
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-<div class="wrap">
-  <div class="head">
-    <div style="color:#1d4ed8;font-size:12.5px;font-weight:800;letter-spacing:.02em;margin:0 0 8px;">2026 전도학생회장단 리더십 캠프</div>
-    <h1>발표 조 점수 매기기</h1>
-    <p>각 조 6개 항목에 1~10점을 주고 <b>제출</b>을 누르세요.<br>입력한 점수는 폰이 꺼져도 남아있어요.</p>
-  </div>
-
-  <div class="cfg-warn" id="cfgWarn">채점 서버 설정이 아직 연결되지 않았습니다. 진행자에게 문의해 주세요.</div>
-
-  <!-- STEP 1: 역할 -->
-  <section class="step is-on" id="step1">
-    <p class="label">어느 쪽이신가요?</p>
-    <div class="rolebtns">
-      <button class="rolebtn" id="roleStudent">학생<small>내 조는 빼고 채점</small></button>
-      <button class="rolebtn" id="roleTeacher">선생님<small>이름 입력 · 전체 채점</small></button>
-    </div>
-    <div id="studentBox" hidden>
-      <p class="label">본인 조를 선택하세요 (그 조는 채점에서 빠집니다)</p>
-      <select id="ownTeam"><option value="">— 내 조 선택 —</option></select>
-      <button class="btn" id="startStudent" disabled>채점 시작</button>
-    </div>
-    <div id="teacherBox" hidden>
-      <p class="label">선생님 성함을 입력하세요</p>
-      <input type="text" id="teacherName" placeholder="예: 김창환" autocomplete="off" maxlength="20">
-      <p class="sub2">이름은 진행자 확인용이며 결과에는 공개되지 않습니다.</p>
-      <button class="btn" id="startTeacher" disabled>채점 시작</button>
-    </div>
-  </section>
-
-  <!-- STEP 2: 채점 -->
-  <section class="step" id="step2">
-    <div class="whobar"><span id="whoLabel"></span><a id="resetRole">역할 변경</a></div>
-    <div class="progress">제출 완료 <b id="submittedCount">0</b> / <span id="teamTotal">0</span> 조 · 입력한 점수는 이 폰에 자동 저장됩니다</div>
-    <div class="jump" id="teamJump"></div>
-    <div id="teamList"></div>
-  </section>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
 </div>
-
-<div class="toast" id="toast"></div>
-
-<script src="/assets/js/supabase-config.js" onerror="console.warn('supabase-config.js missing')"></script>
-<script type="module">
-import { TEAMS, CRITERIA, MIN_SCORE, MAX_SCORE, MAX_TOTAL } from '/assets/js/presentation-teams.js';
-import { sb } from '/assets/js/supabase-client.js';
-
-const $ = (id) => document.getElementById(id);
-const esc = (s) => String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show');
-  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),1500); }
-
-if (!window.__SUPABASE_URL__ || String(window.__SUPABASE_URL__).includes('YOUR-PROJECT')) {
-  $('cfgWarn').style.display = 'block';
-}
-
-let judgeUuid = localStorage.getItem('score_judge_uuid');
-if (!judgeUuid) {
-  judgeUuid = (crypto.randomUUID ? crypto.randomUUID() : 'j-'+Date.now()+'-'+Math.random().toString(16).slice(2));
-  localStorage.setItem('score_judge_uuid', judgeUuid);
-}
-let role = localStorage.getItem('score_judge_role') || '';
-let ownTeam = localStorage.getItem('score_judge_team') || '';
-let judgeName = localStorage.getItem('score_judge_name') || '';
-
-// ---- local persistent state (survives phone-off / refresh) ----
-const STATE_KEY = 'score_state_' + judgeUuid;
-let state = { scores:{}, submitted:{} };   // scores[team]={key:val}, submitted[team]=true
-try { const raw = localStorage.getItem(STATE_KEY); if (raw) state = JSON.parse(raw); } catch(e){}
-TEAMS.forEach(t => { if (!state.scores[t]) state.scores[t] = {}; });
-function saveLocal(){ try { localStorage.setItem(STATE_KEY, JSON.stringify(state)); } catch(e){} }
-
-TEAMS.forEach(t => { const o=document.createElement('option'); o.value=t; o.textContent=t; $('ownTeam').appendChild(o); });
-
-$('roleStudent').addEventListener('click', () => {
-  $('roleStudent').classList.add('sel'); $('roleTeacher').classList.remove('sel');
-  $('studentBox').hidden=false; $('teacherBox').hidden=true;
-});
-$('roleTeacher').addEventListener('click', () => {
-  $('roleTeacher').classList.add('sel'); $('roleStudent').classList.remove('sel');
-  $('teacherBox').hidden=false; $('studentBox').hidden=true; $('teacherName').focus();
-});
-$('ownTeam').addEventListener('change', () => { $('startStudent').disabled = !$('ownTeam').value; });
-$('teacherName').addEventListener('input', () => { $('startTeacher').disabled = !$('teacherName').value.trim(); });
-$('startStudent').addEventListener('click', () => { role='student'; ownTeam=$('ownTeam').value; judgeName=''; persist(); enterScoring(); });
-$('startTeacher').addEventListener('click', () => { const n=$('teacherName').value.trim(); if(!n) return; role='teacher'; ownTeam=''; judgeName=n; persist(); enterScoring(); });
-$('resetRole').addEventListener('click', () => {
-  ['score_judge_role','score_judge_team','score_judge_name'].forEach(k=>localStorage.removeItem(k)); location.reload();
-});
-function persist(){
-  localStorage.setItem('score_judge_role', role);
-  localStorage.setItem('score_judge_team', ownTeam||'');
-  localStorage.setItem('score_judge_name', judgeName||'');
-}
-
-function complete(team){ return CRITERIA.every(c => typeof state.scores[team][c.key] === 'number'); }
-function total(team){ return CRITERIA.reduce((s,c)=> s + (state.scores[team][c.key]||0), 0); }
-
-function refreshCard(team){
-  const card = $('teamList').querySelector(`.tcard[data-team="${CSS.escape(team)}"]`);
-  if (!card) return;
-  const done = complete(team);
-  const isSub = !!state.submitted[team];
-  card.classList.toggle('submitted', isSub);
-  card.querySelector('.tcard-total').textContent = isSub
-    ? `제출됨 · 합계 ${total(team)} / ${MAX_TOTAL}`
-    : `합계 ${total(team)} / ${MAX_TOTAL}`;
-  // chip selection
-  CRITERIA.forEach(c => {
-    const cr = card.querySelector(`.crit[data-key="${c.key}"]`);
-    const v = state.scores[team][c.key];
-    cr.querySelectorAll('.chip').forEach(ch => ch.classList.toggle('sel', parseInt(ch.dataset.score,10)===v));
-  });
-  // submit button
-  const btn = card.querySelector('.submit');
-  btn.classList.remove('done','redo');
-  if (isSub && !card.dataset.dirty){ btn.textContent='제출 완료 ✓'; btn.classList.add('done'); btn.disabled=false; }
-  else if (isSub && card.dataset.dirty){ btn.textContent='수정됨 · 다시 제출'; btn.classList.add('redo'); btn.disabled=!done; }
-  else { btn.textContent='제출'; btn.disabled=!done; }
-  const jb = document.querySelector(`#teamJump .jbtn[data-jump="${CSS.escape(team)}"]`);
-  if (jb) jb.classList.toggle('done', isSub);
-}
-
-function updateProgress(){
-  const teams = shownTeams();
-  $('teamTotal').textContent = teams.length;
-  $('submittedCount').textContent = teams.filter(t => state.submitted[t]).length;
-}
-function shownTeams(){ return TEAMS.filter(t => !(role==='student' && t===ownTeam)); }
-
-async function enterScoring(){
-  $('step1').classList.remove('is-on'); $('step2').classList.add('is-on');
-  $('whoLabel').textContent = role==='teacher' ? `선생님 · ${judgeName}` : `학생 · 내 조: ${ownTeam}`;
-
-  const nums = Array.from({length:MAX_SCORE-MIN_SCORE+1},(_,i)=>MIN_SCORE+i);
-  $('teamList').innerHTML = shownTeams().map(t => `
-    <div class="tcard" data-team="${esc(t)}">
-      <div class="tcard-top"><div class="tcard-name">${esc(t)}</div><div class="tcard-total"></div></div>
-      ${CRITERIA.map(c => `<div class="crit" data-key="${c.key}">
-        <div class="crit-label">${esc(c.label)}<small>${esc(c.hint||'')}</small></div>
-        <div class="chips">${nums.map(n=>`<button class="chip" data-score="${n}" aria-label="${esc(c.label)} ${n}점">${n}</button>`).join('')}</div>
-      </div>`).join('')}
-      <button class="submit">제출</button>
-    </div>`).join('');
-
-  $('teamJump').innerHTML = shownTeams().map(t => `<button class="jbtn" data-jump="${esc(t)}">${esc(t)}</button>`).join('');
-  $('teamJump').querySelectorAll('.jbtn').forEach(b => b.addEventListener('click', () => {
-    const c = $('teamList').querySelector(`.tcard[data-team="${CSS.escape(b.dataset.jump)}"]`);
-    if (c) c.scrollIntoView({ behavior:'smooth', block:'start' });
-  }));
-
-  $('teamList').querySelectorAll('.tcard').forEach(card => {
-    const team = card.dataset.team;
-    card.querySelectorAll('.crit').forEach(cr => {
-      cr.querySelectorAll('.chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-          state.scores[team][cr.dataset.key] = parseInt(chip.dataset.score,10);
-          if (state.submitted[team]) card.dataset.dirty = '1';
-          saveLocal(); refreshCard(team);
-        });
-      });
-    });
-    card.querySelector('.submit').addEventListener('click', () => submitTeam(team, card));
-    refreshCard(team);
-  });
-  updateProgress();
-
-  // backup restore from server for anything missing locally (e.g. localStorage cleared)
-  try {
-    const cols = 'team,' + CRITERIA.map(c=>c.key).join(',');
-    const { data } = await sb.from('presentation_scores').select(cols).eq('judge_uuid', judgeUuid);
-    let changed = false;
-    (data||[]).forEach(row => {
-      if (!(row.team in state.scores)) return;
-      const hasLocal = CRITERIA.some(c => typeof state.scores[row.team][c.key] === 'number');
-      if (!hasLocal){
-        CRITERIA.forEach(c => { if (typeof row[c.key]==='number') state.scores[row.team][c.key]=row[c.key]; });
-        if (complete(row.team)) state.submitted[row.team] = true;
-        changed = true; refreshCard(row.team);
-      }
-    });
-    if (changed){ saveLocal(); updateProgress(); }
-  } catch(e){ /* table may not exist yet */ }
-}
-
-async function submitTeam(team, card){
-  if (!complete(team)){ toast('모든 항목을 채워주세요'); return; }
-  const btn = card.querySelector('.submit'); btn.disabled=true; btn.textContent='제출 중…';
-  try {
-    const row = { judge_uuid: judgeUuid, judge_role: role, judge_name: judgeName||null, judge_team: ownTeam||null, team };
-    CRITERIA.forEach(c => { row[c.key] = state.scores[team][c.key]; });
-    const { error } = await sb.from('presentation_scores').upsert(row, { onConflict: 'judge_uuid,team' });
-    if (error) throw error;
-    state.submitted[team] = true; delete card.dataset.dirty; saveLocal();
-    refreshCard(team); updateProgress(); toast(`${team} 제출 완료`);
-  } catch(e){
-    toast('제출 실패: ' + (e.message||e)); refreshCard(team);
-  }
-}
-
-if (role==='teacher' && judgeName) enterScoring();
-else if (role==='student' && ownTeam) enterScoring();
-</script>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
+</main>
+<script type="text/plain" id="nw-vault-data">umuU+/ogHBMN7C7kGcIF2ehLxUVuroN8/RfoR9Q4MY19H6SZxmZTyNU5qqxX7rgz1gAntcVo38HL+vAdlK7y8qjKgJ++xYJHzH+VCHeATFegOOHGZGsw/oiAskOuyfJ3DKWqrKSwRjK8pqHtJCWmJVn2LVwoTMse4PvZw6a77aH6DbfPP58iSNCo/1eglxwfzPfmb5Gm/J+ivlpXgNN4mEUxwpmnFcVlwe0zfHpgIJWvayEWfCNrY7JO6EYoHaQIcpPHgyA+VW65eoA7sMicDjOldP2y9792nSOn9640Yyfk6b8Ui9znaeqQ+sb3ZHlSSjVYBN+xdHcmitZJEjubZ7iGgOhXgdIjG5NY5ViYyZ0B+m8aOG+ItN7eegx4XSjvCkLSAQ29GYaoP+PF947EeD/UB3nSpTG7JyL2jCHTvMeuKjU0BUiCjUFgTzgYW04Op/Pc+7PUjezQVc4s9uJ1HDsk8Fizh6Szpg6BNLX1zD0VhfwMyyGPQ/hgEdge2WxIntBowJVMuOOLRswCAU6YB59rqpyWhfiK1Nu2F+7Mpb0X8f/u2nZs0eG17GPAq9r5AppewkpiS8y6S6BDjnDawNFZTlXXA5O650RYT7lAd8yOb6rUV4aLPrLVo86+6ls/OxtjDaMdzKzEodPQR+SXdH7eIjwjmSoJmzKQxTDij9svG13987++RVT0pR0mxz8W7eNaTM8cGoKeRDNUd3OMfeB89CfEIFlUgkBHW9wPWdLEEuGz3vtzEcMUxbMQmzvvrnGUswPZbtxYuksQhIiFkesdbR3Kzv2DjWNyW+x8zalR4kC4kY+XWx9JSzl4rZNKOjPnTONPI1v0l4Dzs+k6BGaNjG5NlR5qXpWv5CcvQBLYin7ISpmgbCVGWoNRw4W1og4vJbHGr6/14T9HFyjP4uHpaapkNa0ItQZUqLqJ0igdo+nDOaSktp9aG8Z/fqibktREsdWKB0eE0A0YzgI0lbhAtR9LM8jgWO1uRr3qKY+iGdnairHBdezrNOd+2r/Td8Ov7FDFxyBVK5+BHTmeGPmQ8EsqxLiJClsYOxndaB+9f4MR7kyqEXG/o07YwJFxzoEH/rHOHxUvKAoFSpIzXfcK8zN36/Bs7XJJFGY9ctRXavogi0YGdqzi5nQU04ux0n5Px+nIfWKVhNOkvBRaBzRw0CaCH/yW3d/9mgMS6fMbBqHFTG5yfMLiiXWPHCQb9t/U2duJQFcXKQ+nwJoqX2J+LQ7/4cWR36izjhtbxeVSARzzMKh7RK8sHXSitgKpLpa2va/ncu0+PS/jHPdX30A4rkJ54ln/vi1iFsVcNJWhCwSGD5n+Be3EKU7Rz2EoJ5ik6eJEyEUcQVtYJ4wnv5ntVkjpvGmwG+xYihXXwlScSpRW8Thi3l57kNXKkXIMQYRz6sNaZWmLj3Ysi2OujtgyDXYCDMfzPWWYD4BHDTY+XSf2IfyiGeizbE3xhC+2Ea/0q4jwz4TLQ//h7tEarQ4aO0WBTtamH/tNfHIga8F/acvY3EhFKsHoG7HIDDD3a6H0FmuSeCcvQIxDZTdvUhJrC4U47OPnsdlkvs6gheqQDBHSuuwlJax7DAWkJwNkQuW886II5efuxkuYe4cNSMtSKgo0L7ckg0mP6mLgLMUAjBXwSKZNSa4Z5uLXZiFof37gs103exfLKpXz461CrjzaVKA9TkZZyRPEJdxvrbcppjM2P8tX0qUJjh1Th5TxgIHjzTcU6U+v6Gwkbw6KBB6pAu57b0ryWRMy7agomLt6yiKZpfxFuLlsJBRVThYktrUIsvf7xVrKo4E7qnOECgrJ1gWNzXD60rudbG1UMk1zpbRD6Xu+qLTxJvBJ7JmV9kXCHn9UniBeb/CQMrZg5JFlby5ukCkRN2gHrp9jPUYehXtslStIzu+ZttWK3E9tfLHc6i2IPO9RtIhWoEoQ4lXurfz2xSGvhSeLqwqdHdIHeNXzL6mFMqlm7NFZx+uas3GR+tSLLXo1LWoMtsGGEBfvunqnUB+vO6s4EX7Y0tXEBNJZq8a4fe0f/ufp/a3Jxxxfhkf7R6w4k+VNKGZ8F6P+fFsFN6Mfg3wWWkj6kT1QgF0Ikm394Gkz+pwW2pdQKsN9NVMIaZlZL3eUtj0YaNqAdFqnDgGo07HPXW4Qxq9FvGzrFlnuAQm/u6CsWpkXN5QQtVc0gkQWzhyEokaaYaGH25IythbIYip1BZXgwnCGGmsV+HrQxYfSyOVbdnrETsX9T1GItkRp+3Th9xrGFyAna5mJUjQdzKXKw09ETV4AnsWIZC44wOU6lb+15+ki5Z0rGcjT8trYqFb3ca6Hao9ynjHSRVAXkwu4Fyto8Pcdo7sxpIE9s7/8b1jj3EkOiNVgUxg4QhSu5gzMoOTDQUrDwbugXYW+Q4Fw4PMl4XwHuoVpetCCMDo4eHFI6ySmDSQAZWYCy8TwYHW5n27oy5MOBlUPPE3yNz+Jj2nEJT7xtjbYwgWiYsvjJY4esjPApHNBHlKzpVdPBq2rxtOnVOMSthdg8n60FGO786VBu/8qlDQgJyGR8CzI3HWiGb2WJDjOPVBFjlafRXZtfN0DvmuW2WQIOBWWVTz9oDOFMpVRQNMOxukeNkgN2lpo7v5QbTYRuMQigsv7s+qce4hA4ibf2B1TGRJQdy8+4q1zDL8RR4ps1sD6SqflNjZzAlM2It/+GDPsBt81bpQgT6UecoLy+rIaRcnRJgsPF0Qx/P2n8u/Q+ahh4YAu7xo0aT/DBvfiGr4la8Dl+1ZdCoVzvfBaVJq2vUN3mctaZApYPKY2/tqoQlTkXrqTpmAAa9shU+fSuM+2Rau4lPwuXRkLwZ5e2QzoGn+BK4ifSMdUOem5sf/t6HhQ0kAeew9eC0QiVhwItIMWBwEC78wP7SKzfodBonjL/Xhs+CGEhUDSOKcERa0+f9Kgn2yFjjTKtsNlRfV0UlbBaSPMJ3Fz/ejnNFa2nFo5cw9RzP3ii14gMQV3XBXLyVztR1OJtaFt2qYSFGLiFJaaKp69Una8ooHu30WKEhJrMFLXSOrqwJGylm10NFKwFXdZTA7BDA/yrpQ9lI97hNMEVnDJJDIsb9NRZpC+gVyszBU3v1cmd8fUeyzlB870uMQRuecnOi2x12Qyfe+yn/4gUhBED30csRsj8BRG4tuQPSFjJsiLFAS2dsxoDFj5pGMYQbMCHavDSTxVbixW+kGqspDn8ekCCCSF6iXFrKTELBf37dkCDVEl6fCXDwJG8nEgLoEpxQMHwbmKgxujs0GY8S+7QBEV/hcZehZfeFPDzC8LHoIS2AeDVcnSiQuw84IH4zQxwrGJ2DIEm4OSuOwk0iuKVr2wzmeyDGb9Fm4qlkRHfgHBsf7+T85L5YXT79UFg+Oasp1otcgbaJpfzEgHWnef5Ad07+6gqg+IOYw6kgwTTS4cEAxpM1C2sP3pwF8brf1Wrc/3ZTaqna+Twyna0SKFSGhKcHsQR69FyE4aJuuH++cb+iVWtoz6vTUMNtGY0Cx8AQFt4+5f52hUxDfwtkMdvnH466x15GUfzH1G/BVbbonRNZR76hFKuMln24oF9OYvQnMn2ZI49uOoo3oa7KH9lgObfRASIaDO1e5I1Bq8uPoqx1qyxpczjdMEmXT3s8pn/SUfoXVVuMWKMjAeX5KiY6Am/iiOihcWNKktbNRKuR2wp1k35jffMSgcuFC7cUEs39GFdw2XM9YOOX4jdyzFYx9oZMfRAccTxi4igSZNosETnqqgcwwLMBFLG0Xvx7YT/d5HU2jbXPLrMruWYowvVAbXZkKw2R7cy2g/l0ER2tPOu6YLfnznDXegOhnMpKgm3VDEUuk5131quep965gVg0xdItKSqpdFv/OMm/0v1OsVlys6W1Pa6K8JZoSYJCGjQlghvlBrjr/Kojd0w/fthkslnl2xOwk4SKjo2iq2Gt9hAN+my/xv+e37ZIwGiF5gdJWXS6gHfiKsbQYX00ti2eeszAa9ROrC3hx7NEn0IrpWyfIeZEyrOJ38qpN8gTt+H135R7XuYqFMhXWuHIRPHFlJlXNHpUYAno5/IUAXpqZa7XYBncsJMqqBjGwKZTFtrWoUZwGMEQFq2iGHCs5nk/c4tCf7ByFo+hnkFhKUYzvDEv/A2zYuA9Q+EARA8ZAS+Bmfhj7CS81oh1hN/i4K22G0SamrK9wcK/WuU2NLQPqK4Rb2x1ClmQXsHVpTAWAJIcur0BWcCC9D28Lmbup23DGQ3ogrPZ1k9hk+5Vc5x95zoBpYpvLG5Z4ofqTRxQfLoprk+vGMNvPOrD4Cixnz2mGcN6IJzzOdgzdHXhTikkG3Y4iTciMAmxJ8imi8pk1nzGAG+hkH/OUj41BS7pXzubISt6HsKh85xk8sKOoHKTrdoy2NokjQnuntbSlFZlL/T2PDPg5LKTmZ31k+edKCPwXdLeZENs36sxtrUqS5CkXGZ5OKnBaW07IxaFRH4X+HsPTT9n9XyHNhx8Q1bgvo/ewWec4zDhGkuAm95l26DnkOP55UDEvVLtzDKl0vdqhNR7fu5mhAfYth6RvJW4/emM+7y/SeB3K/FmnC6w1FVP4MsPGy4ZWrGvMsp6A0k9aY1Nrtht/qdNQm6f1WL0zSKBsSMRMJiCUL1l9Y9LSojd5suE6JRrSXrsZD64sxmFinRcPKdx4SrLttdZYKJF2tDpsFMXChDFgAphz/2ooGXkgEhMRXr5mSj70HeEXITauXIy82jz+QRdGRW4gva7axAuzQsQm8RJ/cZfg2eNhD+U+T/Yi99WQBE8SlzlTnm0ihV7QZoc7HVvjoI0ncLeudqA1Jib011llBvP70vnN8ztUxy+6pxycR6MTgzmmz75zatNk6eZtE8YBs8q3anJP3Uvze0t0NHrtMyFT4NKYwKJqEFCm5fAL+M0H1YlY5u+QJhAe0oJs1XsPmE9EIaCcNKPdF4AhvNkTMBSf4lchY328bSb8MxkPNmqb3MqqKfemhU8JyOaEFnRSWG89b2q/fMcGnw7i8gsJu5e9nin+nSnYBxmBFPl6K0U6P7/ENd3ApUvvXlbNg9kA43vUqfQ7i4JI2aLgUTrrUH1Ru39SbpHCjAh44KiaLdYQhvy1it4kWm/NJzPHXzchFtRjA7fmTVYQLaypj53nlnrkY8Dq1fWByVAlMRAeUaFafimq1iqEE2I35QQlOlkkpvjU1xg4XKeuZhET+E/sJnoUkxmlL36nykTuLRSxq6cRxqXpEhTI/qriHfyalOu+NwfAo9NncV7ZSmzDMjXw+6WYRnONl1f9HjMWfUW9C4mQqD20n6Lssdk3udPB3bC1nThnhbneKPUyxubXfTCCvDgPYHPkiNkLNK7XzVf2cWjEXbkq60x1Khvpbdb661p+fdfTE7RN5BeTjP6QCqWVtvQ46366UjzRvgKxtyosCC9WkL87SDE+D3HVjPqSPHXj1awglIOSjYUmij+jiQoNALTivkk9PhW2IX7uolBBXZsG9U6VA/gq4DvMMUm4axpHxuAqQwvyEDXhZp35cfeDxMGVTlU1yydCaE9jqw7mc+dbCkobKrHfBWxP2dNcA5QxY5LEybTEQDgXIWvtC9J7axK/fzV5+u53Jv61Ow0wox7xhqlaSy0JCcBpeVE4Akc4esaeQf6FMGUGOpuMO7QmqZLduAPWIva9v4+hgG4V2ubcyHGjDducbci0I4digYsSZ772f92ZnTn/7yC/5r1JYlCKBBu6uVYB4a3Dv8+u5PdjvKx89ZsEnvFM4SBzcsxb6GK9QOCIqWfVcHlb+X+kZgcawMzpMxCiF83iRE9uHhinXIajPYox3e3iZF++PTBGZZ4tiZrb5d4Gti7WFshg92JOhkkpJrLsDBFEjnwgXkPZu06D+dDP/lmOS7KdBRPLEcZMUGn1j5XE5UhCYCe0tRurjWm8YblMHx5GKzVVqQ90WBsnw1HxX9KZ+Z1bEfecEz4zGruAZQ5QJp/OS2Kju53n59e1jztx/00d8csQt7BBxsBTGhmu2S9ceqEsd1veLOiQHonj9cqI96/uF4s6p00cKPdB3gm9BJpckg00ck8Em3QHURj/pa2FOVtkv3ygZO74Wnpi/QFv83vfNF3FUJNw7pcorG+dkHSAoLaeVzCtazFpVKGxRopsqJqKXnnRKNedBJBVCdWmATj9QQ0NPWdE0IcInCqvrBlXDwL3kzDbzykNcasxmwXAiJab0+zLW+wmBnw3JYVgn3048kVjFfesy8WwfQknlq1pJ/bxydTkQaIRCwEsrpD/MJK0Fv1i3xSe3DKgWjuqQ1fwwpDiIbgNT5TzIhWlQyPI7NqYVlpCNl+ig3BOJFyQD3CVbm37+X4FZhXJRIXfSmwzqa2UrtUJffE4Q1CdCwReIPX5vJjtOMOk7FKpG0CL9lZ6KTrunSpTj+6wlB0k5gDi3Hv7WDgJ7ck6FZJ+BAcvv91ie8nCytHRusbr0HYtRnWKhJaMPLt7f6m7enIj8jqTiggwvD59/wwScwk97qlLSZoRgRFpiudwqcRadRSKpLlO8fTPPaWM8l/CWj9cD5Bf0toBrDg59K5mQXjpVT4NghVe3WQsMOqlXcH65+Zd3adv53MM5yotdHneUrHPIYI7xFXrkl6xi0pDTYSZ4F7Tz+fGLmOyhq5xV+4Rz9GFkMpv0JrZituyZbKdClhNDK2DNEBalVmjCxmpi4irK7t6dL2EP4IDNZE3FHSDCUSKYB1lD39GkTrRWNDAd91Xegk6WrD2A4pxGYrooie2FaXVA7fkmCeB4GbI/48drJxAcMB2a5EGnMVJ0HRzVxfEVsGIiAF76Ge33Kh1mrEtvFwl61jybrRjY7XrM/yMtU0WgKTvtmnHIWGJNTbtdVVM8308SMRc10GQcBWyEJ2x+PBtfrBmCT6lwOoCZSPInPRgpG/KSsIkA2v44dmTTIZ/bd/rxEfWMAJ7l7EwuPHxSAVlk/i4JgD+7HNxI4OyiHOZGQIKFeOcWlAOWZv7wdwA2qQxxF2e9VyzcujP7wZiNe2dnjq3+BGhK78teSdC5vIJXadkDcUdmlD6ggvJhYI4VaE73RU/EQxk2NDiANmCOGd/VlU9KF7ErQ+F/RgbLtLIK0bxQM184hOkqKVisNlX9I3ym/QiQKojOP7LjaMb5tO2Y/VrKqfapgQRyV1tZNBkxQuFncuPlOA3+giUcVzbqZplcagx8dZARIdAQSl8r/LynQdmTmui/65jZ5Hq696NB3GNlLmNvlfcs22EJERHQScDjwMnsFETFAXEKAh/Iqhrqk7XBzof1/I3Sv7q9ExCLfBL5HrN4v0bCFbNMjIwR5bK+HErkUf5ylFhzh4CQ0fE10JsbrC7anDAizRqx5LDFz8J9ZwiWNmTOIS/qzCohYtxpvquKuAjUogoL/R4Wq14ukxwJNJ1+ulJLjoYEr4gs7CZdT0oUSIM8NDOgsVa9FuQlpask+ZOSEcyWSImzmQwv3N1aVFLMUtopANrHGYWYlMpG7FfoH62wKBtph4V9YWpxOk2WVA==</script>
 </body>
 </html>

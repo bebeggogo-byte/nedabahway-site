@@ -1,116 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<title>[D6] multi-agent system design — 재사용 프롬프트 팩 | 네다바웨이 자료실</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/assets/v3.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
-<link rel="stylesheet" href="/resources/_templates/style.css">
-<style>
-.article-body { max-width: 760px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #222; }
-.article-body h1, .article-body h2, .article-body h3 { line-height: 1.3; margin-top: 2rem; }
-.article-body h1 { border-bottom: 2px solid #111; padding-bottom: .5rem; }
-.article-body ul { padding-left: 1.5rem; }
-.article-body pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 6px; }
-.article-body .meta { color: #666; font-size: .9rem; }
-.article-body .back { display: inline-block; margin-top: 2rem; }
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-<nav class="nav">
-  <div class="nav__inner">
-    <a href="/" class="nav__logo">네다바웨이</a>
-    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
-    <div class="nav__links">
-      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
-      <a href="/learning.html" class="nav__link">학습 노트</a>
-      <a href="/ai.html" class="nav__link">AI 작업실</a>
-      <a href="/programs.html" class="nav__link">강의·코칭</a>
-      <a href="/magazine.html" class="nav__link">성경관찰</a>
-      <a href="/about.html" class="nav__link">소개</a>
-      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
-    </div>
-  </div>
-</nav>
-<main class="article-body">
-<h1>[D6] multi-agent system design — 재사용 프롬프트 팩</h1>
-
-<p>_D6 · prompt_pack · 2026-06-15_</p>
-
-<h2>multi-agent system design — 재사용 프롬프트 5개</h2>
-
-
-<h3>Prompt 1</h3>
-<pre>
-다음 5건 자료를 표 형태로 비교해줘. 컬럼은 출처·핵심주장·우리 사업 시사점.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Learning to Reason by Analogy via Retrieval-Augmented Reinforcement Fine-Tuning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13680v1">https://arxiv.org/abs/2606.13680v1</a></p>
-<p>2. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>3. <strong>SpatialClaw: Rethinking Action Interface for Agentic Spatial Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13673v1">https://arxiv.org/abs/2606.13673v1</a></p>
-
-
-<h3>Prompt 2</h3>
-<pre>
-이 자료들이 &quot;multi-agent system design&quot;에 대한 내 가설을 강화하는지 약화하는지 한 문장씩 평가해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Learning to Reason by Analogy via Retrieval-Augmented Reinforcement Fine-Tuning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13680v1">https://arxiv.org/abs/2606.13680v1</a></p>
-<p>2. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>3. <strong>SpatialClaw: Rethinking Action Interface for Agentic Spatial Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13673v1">https://arxiv.org/abs/2606.13673v1</a></p>
-
-
-<h3>Prompt 3</h3>
-<pre>
-가장 영향력 있는 1건을 골라 90초 분량 보이스오버 스크립트를 써줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Learning to Reason by Analogy via Retrieval-Augmented Reinforcement Fine-Tuning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13680v1">https://arxiv.org/abs/2606.13680v1</a></p>
-<p>2. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>3. <strong>SpatialClaw: Rethinking Action Interface for Agentic Spatial Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13673v1">https://arxiv.org/abs/2606.13673v1</a></p>
-
-
-<h3>Prompt 4</h3>
-<pre>
-이 자료를 모르는 강의 수강생에게 5분 분량으로 풀어 설명해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Learning to Reason by Analogy via Retrieval-Augmented Reinforcement Fine-Tuning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13680v1">https://arxiv.org/abs/2606.13680v1</a></p>
-<p>2. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>3. <strong>SpatialClaw: Rethinking Action Interface for Agentic Spatial Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13673v1">https://arxiv.org/abs/2606.13673v1</a></p>
-
-
-<h3>Prompt 5</h3>
-<pre>
-이 자료들 중 윤리·안전 관점에서 주의해야 할 1건을 골라 그 이유를 200자 이내로 적어줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Learning to Reason by Analogy via Retrieval-Augmented Reinforcement Fine-Tuning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13680v1">https://arxiv.org/abs/2606.13680v1</a></p>
-<p>2. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>3. <strong>SpatialClaw: Rethinking Action Interface for Agentic Spatial Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13673v1">https://arxiv.org/abs/2606.13673v1</a></p>
-
-
-<p>---</p>
-
-<p>_생성: Daily Research Engine v1 · 부서 D6 · 형태 prompt_pack_</p>
-
-<div class="back"><a href="/resources/">← 자료실로</a></div>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
+<script type="text/plain" id="nw-vault-data">+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</script>
 </body>
 </html>

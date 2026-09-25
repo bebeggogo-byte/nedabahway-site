@@ -2,114 +2,32 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>투표 결과 — 학교 소개 쇼츠</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<style>
-  :root{ --bg:#f1ede5; --ink:#1A1A1A; --sub:#5f574d; --accent:#1d4ed8; --accent-bg:#eaf1fe; --line:#E2E8F0; --ok:#16a34a; }
-  *{box-sizing:border-box;}
-  body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;background:var(--bg);color:var(--ink);margin:0;}
-  .wrap{max-width:720px;margin:0 auto;padding:26px 18px 90px;}
-  h1{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:800;letter-spacing:-.02em;margin:0 0 4px;}
-  .live{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ok);font-weight:700;margin-bottom:20px;}
-  .live .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 1.4s infinite;}
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
-  .stats{display:flex;gap:12px;margin-bottom:22px;}
-  .stat{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;}
-  .stat .n{font-size:30px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1;}
-  .stat .l{font-size:12px;color:var(--sub);margin-top:7px;}
-  .rank-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f4efe3;}
-  .rank-row:last-child{border-bottom:none;}
-  .rank-no{width:28px;font-size:15px;font-weight:800;color:var(--sub);text-align:center;flex-shrink:0;font-variant-numeric:tabular-nums;}
-  .rank-row.top .rank-no{color:var(--accent);}
-  .rank-main{flex:1;min-width:0;}
-  .rank-name{font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:5px;}
-  .rank-bar{height:10px;background:#f1ecdf;border-radius:999px;overflow:hidden;}
-  .rank-bar>i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .5s;}
-  .rank-row.top .rank-bar>i{background:linear-gradient(90deg,#c2691f,#1d4ed8);}
-  .rank-val{font-size:16px;font-weight:800;width:64px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums;}
-  .rank-val small{font-size:11px;color:var(--sub);font-weight:600;}
-  .msg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;font-size:13.5px;color:var(--sub);line-height:1.7;}
-  .msg.err{background:#fef2f2;border-color:#fecaca;color:#b91c1c;}
-  .foot{margin-top:20px;text-align:center;}
-  .btn{padding:11px 18px;font-size:13.5px;font-weight:700;font-family:inherit;border:1px solid var(--accent);border-radius:9px;background:#fff;color:var(--accent);cursor:pointer;}
-</style>
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-<div class="wrap">
-  <div style="color:#1d4ed8;font-size:12.5px;font-weight:800;letter-spacing:.02em;margin:0 0 6px;">2026 전도학생회장단 리더십 캠프</div>
-  <h1>투표 결과 — 학교 소개 쇼츠</h1>
-  <div class="live"><span class="dot"></span>실시간 자동 갱신 · 득표순</div>
-
-  <div class="stats">
-    <div class="stat"><div class="n" id="stVoters">0</div><div class="l">투표 인원</div></div>
-    <div class="stat"><div class="n" id="stPicks">0</div><div class="l">누적 선택 수</div></div>
-  </div>
-
-  <div id="ranking"><div class="msg">불러오는 중…</div></div>
-
-  <div class="foot"><button class="btn" id="csvBtn">CSV로 저장</button></div>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
 </div>
-
-<script src="/assets/js/supabase-config.js" onerror="console.warn('supabase-config.js missing')"></script>
-<script type="module">
-import { sb } from '/assets/js/supabase-client.js';
-import { SCHOOL_NAMES } from '/assets/js/shorts-schools.js';
-
-const $ = (id) => document.getElementById(id);
-const esc = (s) => String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let lastRanked = [];
-
-async function fetchVotes(){
-  const { data, error } = await sb.from('shorts_votes').select('choices').limit(5000);
-  if (error) throw error;
-  return data || [];
-}
-
-async function load(){
-  let votes;
-  try { votes = await fetchVotes(); }
-  catch(e){
-    const hint = /relation|does not exist|schema/i.test(e.message||'')
-      ? '아직 투표 표(shorts_votes)가 만들어지지 않았습니다. 관리자에게 문의하세요.'
-      : ('결과를 불러오지 못했습니다: ' + esc(e.message||e));
-    $('ranking').innerHTML = `<div class="msg err">${hint}</div>`;
-    return;
-  }
-  const counts = Object.fromEntries(SCHOOL_NAMES.map(n => [n, 0]));
-  let picks = 0;
-  votes.forEach(v => (v.choices||[]).forEach(c => { if (c in counts){ counts[c]++; picks++; } }));
-  $('stVoters').textContent = votes.length;
-  $('stPicks').textContent = picks;
-
-  const ranked = SCHOOL_NAMES.map(n => ({ name:n, votes:counts[n] })).sort((a,b) => b.votes - a.votes);
-  lastRanked = ranked;
-  const max = Math.max(1, ranked[0].votes);
-  $('ranking').innerHTML = ranked.map((r,i) => {
-    const pct = Math.round((r.votes / max) * 100);
-    const top = r.votes > 0 && r.votes === ranked[0].votes;
-    return `<div class="rank-row ${top?'top':''}">
-      <div class="rank-no">${i+1}</div>
-      <div class="rank-main">
-        <div class="rank-name">${esc(r.name)}</div>
-        <div class="rank-bar"><i style="width:${pct}%"></i></div>
-      </div>
-      <div class="rank-val">${r.votes}<small>표</small></div>
-    </div>`;
-  }).join('');
-}
-
-$('csvBtn').addEventListener('click', () => {
-  let csv = '﻿순위,학교,득표수\n';
-  lastRanked.forEach((r,i) => { csv += `${i+1},"${r.name}",${r.votes}\n`; });
-  const blob = new Blob([csv], { type:'text/csv;charset=utf-8;' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob); a.download = 'vote-results.csv'; a.click();
-  URL.revokeObjectURL(a.href);
-});
-
-sb.channel('shorts-results').on('postgres_changes', { event:'*', schema:'public', table:'shorts_votes' }, load).subscribe();
-load();
-</script>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
+</main>
+<script type="text/plain" id="nw-vault-data">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</script>
 </body>
 </html>

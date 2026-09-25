@@ -1,116 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<title>[D20] red team analysis — 재사용 프롬프트 팩 | 네다바웨이 자료실</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/assets/v3.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
-<link rel="stylesheet" href="/resources/_templates/style.css">
-<style>
-.article-body { max-width: 760px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #222; }
-.article-body h1, .article-body h2, .article-body h3 { line-height: 1.3; margin-top: 2rem; }
-.article-body h1 { border-bottom: 2px solid #111; padding-bottom: .5rem; }
-.article-body ul { padding-left: 1.5rem; }
-.article-body pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 6px; }
-.article-body .meta { color: #666; font-size: .9rem; }
-.article-body .back { display: inline-block; margin-top: 2rem; }
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-<nav class="nav">
-  <div class="nav__inner">
-    <a href="/" class="nav__logo">네다바웨이</a>
-    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
-    <div class="nav__links">
-      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
-      <a href="/learning.html" class="nav__link">학습 노트</a>
-      <a href="/ai.html" class="nav__link">AI 작업실</a>
-      <a href="/programs.html" class="nav__link">강의·코칭</a>
-      <a href="/magazine.html" class="nav__link">성경관찰</a>
-      <a href="/about.html" class="nav__link">소개</a>
-      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
-    </div>
-  </div>
-</nav>
-<main class="article-body">
-<h1>[D20] red team analysis — 재사용 프롬프트 팩</h1>
-
-<p>_D20 · prompt_pack · 2026-06-15_</p>
-
-<h2>red team analysis — 재사용 프롬프트 5개</h2>
-
-
-<h3>Prompt 1</h3>
-<pre>
-다음 5건 자료를 표 형태로 비교해줘. 컬럼은 출처·핵심주장·우리 사업 시사점.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13681v1">https://arxiv.org/abs/2606.13681v1</a></p>
-<p>2. <strong>SpatialClaw: Rethinking Action Interface for Agentic Spatial Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13673v1">https://arxiv.org/abs/2606.13673v1</a></p>
-<p>3. <strong>Automated reproducibility assessments in the social and behavioral sciences using large language models</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13670v1">https://arxiv.org/abs/2606.13670v1</a></p>
-
-
-<h3>Prompt 2</h3>
-<pre>
-이 자료들이 &quot;red team analysis&quot;에 대한 내 가설을 강화하는지 약화하는지 한 문장씩 평가해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13681v1">https://arxiv.org/abs/2606.13681v1</a></p>
-<p>2. <strong>SpatialClaw: Rethinking Action Interface for Agentic Spatial Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13673v1">https://arxiv.org/abs/2606.13673v1</a></p>
-<p>3. <strong>Automated reproducibility assessments in the social and behavioral sciences using large language models</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13670v1">https://arxiv.org/abs/2606.13670v1</a></p>
-
-
-<h3>Prompt 3</h3>
-<pre>
-가장 영향력 있는 1건을 골라 90초 분량 보이스오버 스크립트를 써줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13681v1">https://arxiv.org/abs/2606.13681v1</a></p>
-<p>2. <strong>SpatialClaw: Rethinking Action Interface for Agentic Spatial Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13673v1">https://arxiv.org/abs/2606.13673v1</a></p>
-<p>3. <strong>Automated reproducibility assessments in the social and behavioral sciences using large language models</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13670v1">https://arxiv.org/abs/2606.13670v1</a></p>
-
-
-<h3>Prompt 4</h3>
-<pre>
-이 자료를 모르는 강의 수강생에게 5분 분량으로 풀어 설명해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13681v1">https://arxiv.org/abs/2606.13681v1</a></p>
-<p>2. <strong>SpatialClaw: Rethinking Action Interface for Agentic Spatial Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13673v1">https://arxiv.org/abs/2606.13673v1</a></p>
-<p>3. <strong>Automated reproducibility assessments in the social and behavioral sciences using large language models</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13670v1">https://arxiv.org/abs/2606.13670v1</a></p>
-
-
-<h3>Prompt 5</h3>
-<pre>
-이 자료들 중 윤리·안전 관점에서 주의해야 할 1건을 골라 그 이유를 200자 이내로 적어줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13681v1">https://arxiv.org/abs/2606.13681v1</a></p>
-<p>2. <strong>SpatialClaw: Rethinking Action Interface for Agentic Spatial Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13673v1">https://arxiv.org/abs/2606.13673v1</a></p>
-<p>3. <strong>Automated reproducibility assessments in the social and behavioral sciences using large language models</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13670v1">https://arxiv.org/abs/2606.13670v1</a></p>
-
-
-<p>---</p>
-
-<p>_생성: Daily Research Engine v1 · 부서 D20 · 형태 prompt_pack_</p>
-
-<div class="back"><a href="/resources/">← 자료실로</a></div>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
+<script type="text/plain" id="nw-vault-data">ZtkTj+o/eEY3tIJq7kLw1YSw/x4QWy23bm9E056XzDgfJGP0tEu/35t497Nmgz6pPFcMCd1m0hUs1jtYjfkkIbKrkMyS7Lg/ryo5CC4urkjVnGQ32YFwSdRULuBX7F2w8hS7rCyYh0pjCr7vpqpG6QlGOPcVhMSazsIDBScNecykt/Kzpp/C2HO5A9toqxqGHMh454IzQVdJf8VvEqpLW0IS47RjJA64fMgTt1Prhv/LzpDjWRqOd78fpmeQ9tOu+x6i8o189sUCL8y2Eq/KrMSNdVEq92cxqQ4y1WjEa8TzDD910oUs9fM2yVjtKSUZJmMFwg+6pnYif96ZXAqRSK7AOFEGXGhMzNB6JKy0pQbYJ8cwsHy997XZ4WZRYmShBfjx9dDuaIaReRVFcuTT4ZIDg/qRySQ1Qgx7hJqCk8UGh1KT9qvagYtGSZf66kACTX4mcfZUmeIUpe+aFO0Oh5MuvSwgUuHogjeTIhA1tLmizX0i9+ylAe3Q14q/+t3hHjBxNxWtMymH0ljTBtC451ETW+s4w62s/AHUlgBD1BiZLdJUh+NKG8wFVxE9X7HVeu2DyzISDv+/pzgsAX1/cTwTfpOnv0tP7uZvC/1aMLrqZrw/i9f1xjzmsGeTtcRacCApvRxCaL8gBemEwllMn8Ur7EwZ3DaPp7/PRZoBOsp6/57GV4ArHYXpA52jK07f9UcwJqSeaglfsBQaSdEmee3wabgl8O9+8c8xpFP//Ml/gKvg7Eu9027lfJ4Lj2jGZGWlo0F2ZbO1aNeu0BktWqG9NT6jqy2hGJZD6AOUlhA6uo+g9fQDP9bsAvQsX/W720qYIfBu19Pm/EupAEA+BZCRgpKnD5AR+ZtTvR8S15eD3F4gwtvomynGG+eFmdV/YdAzGJog6WNoiWpedgU+rpuTfIPnZ8BEUxk+UCsQeeIntMmzA6ebvafH939MotVbTMBU7IgSQBPjKkcq8Q54DozjnXJJVYmtlhOkOOeil+/s9tOufPLUS+JGKzO9r3iT5ILMUV8iDrN03MXlG2oh8HV8pKjP03cYikT9ONBUYpnxS8cVGgPxFKZbzOHq0Ed2Dac9J1WJRZhSzCgQT+IajHORO/11jjV/NkaTxVWZWcKrrqlVjXmNicXswCgfKfwf1U0Oe1inMP/mLWvpQIPIqi/KcU278Adcp57I7EWFrNvOhfRQT2nsrhC2+WWWgafrf+/frUwpAi7CBT1m2I3LfTYM8Vnbe4kzXz4Cs34yTtptNSlehUHoqmIGE6pmtDTku3+T4tIqAQ+dzAh5AOFmyrT9SolNjdTuX6yGwg68WcaVANH9heDgASsaZVKTycmiG0YrkXXXSgXDDJBdApKYCHcF2rlPVAUwmiPYXWhUlMLQZfSglbCOKV4+jLvPCZuqi5koyYkiOuwbzTLZEYfq1SvGzBXpKlAA3cUtuulQG1653qUZrHrsM7GshS98DxCvW3VuATxGZsiAaETyCiaP3x4LpNqQsHHdgvkC1h1L9AWYChIkklFrpsmGRaiMpYurTm1MsYEttiyH2x1rg5mG2hslslOdTWEOJ6magi3/mNUIYwFJdL1394uUAN4X7MX08pFUeXQKxhgMklUrim+CJu2Ew0tzv3y98rK8yAjR0VR+zC/dmBUo1jq54+Jmmu+W87MNtLFWQdca9WXQT2rUE4na7mLHHW145GHw+jy9B8hEgp+uaf/Ipf2dVxutcjqx+jPsKQgdeTcNdhF5jOLZQTcOdim8oOHsr5f2GjfK3v0y4DgYXBZzBw4Jn9FO0EeXDKb8J9+ZSFzUnY+DLIbG67BwiwCw5725NuZ1F1pWtv4Sir+UCYcONOGF7SUfguul8Ag+LgzLR+EGQeS6sZrAQJc6oFlCozWtTNR5FxZq6+u4rZ0a+Nwopx2t5K4wzvpo1ighjHfLB6UVyqI2B+wBUmHwiSEjFt+m/4nVX4tV6Yt846dDtF7Oklz3eBXmnbd3FET0Wk7IDxOdvpyLrYlhjiWWrOfXbYCSxVTdnC+pZ0yJ23hDR5Q/urKgJ58GKhkHnAaJ9LzluXZ4fz0uUz5VjMM2wfE1le7Wwaoq69PwjazNWi+gs4SoCjPX9KSmN9NdpH1TdvfVtG8+I9cWjeVSxIExreoWQ1dwT4DWbvTFm3fGRsyQBkNmSrEmXnCrPY3NaKme8rJ0e39JQP3LcJFhGqAYxFHIeN1FN/hcdSQNHQAggbnh9x2OOZaBTPiZeuyAEcTD9Ure5/JWECJvMxcUGyU/T+NFZRJxrhnMWmF2bvim8KC1nq6+1jwGEZc=</script>
 </body>
 </html>

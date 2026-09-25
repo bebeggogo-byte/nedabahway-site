@@ -1,116 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<title>[D18] fact verification pipeline — 재사용 프롬프트 팩 | 네다바웨이 자료실</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/assets/v3.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
-<link rel="stylesheet" href="/resources/_templates/style.css">
-<style>
-.article-body { max-width: 760px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #222; }
-.article-body h1, .article-body h2, .article-body h3 { line-height: 1.3; margin-top: 2rem; }
-.article-body h1 { border-bottom: 2px solid #111; padding-bottom: .5rem; }
-.article-body ul { padding-left: 1.5rem; }
-.article-body pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 6px; }
-.article-body .meta { color: #666; font-size: .9rem; }
-.article-body .back { display: inline-block; margin-top: 2rem; }
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-<nav class="nav">
-  <div class="nav__inner">
-    <a href="/" class="nav__logo">네다바웨이</a>
-    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
-    <div class="nav__links">
-      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
-      <a href="/learning.html" class="nav__link">학습 노트</a>
-      <a href="/ai.html" class="nav__link">AI 작업실</a>
-      <a href="/programs.html" class="nav__link">강의·코칭</a>
-      <a href="/magazine.html" class="nav__link">성경관찰</a>
-      <a href="/about.html" class="nav__link">소개</a>
-      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
-    </div>
-  </div>
-</nav>
-<main class="article-body">
-<h1>[D18] fact verification pipeline — 재사용 프롬프트 팩</h1>
-
-<p>_D18 · prompt_pack · 2026-06-13_</p>
-
-<h2>fact verification pipeline — 재사용 프롬프트 5개</h2>
-
-
-<h3>Prompt 1</h3>
-<pre>
-다음 5건 자료를 표 형태로 비교해줘. 컬럼은 출처·핵심주장·우리 사업 시사점.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>2. <strong>Mana: Dexterous Manipulation of Articulated Tools</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13677v1">https://arxiv.org/abs/2606.13677v1</a></p>
-<p>3. <strong>Automated reproducibility assessments in the social and behavioral sciences using large language models</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13670v1">https://arxiv.org/abs/2606.13670v1</a></p>
-
-
-<h3>Prompt 2</h3>
-<pre>
-이 자료들이 &quot;fact verification pipeline&quot;에 대한 내 가설을 강화하는지 약화하는지 한 문장씩 평가해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>2. <strong>Mana: Dexterous Manipulation of Articulated Tools</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13677v1">https://arxiv.org/abs/2606.13677v1</a></p>
-<p>3. <strong>Automated reproducibility assessments in the social and behavioral sciences using large language models</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13670v1">https://arxiv.org/abs/2606.13670v1</a></p>
-
-
-<h3>Prompt 3</h3>
-<pre>
-가장 영향력 있는 1건을 골라 90초 분량 보이스오버 스크립트를 써줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>2. <strong>Mana: Dexterous Manipulation of Articulated Tools</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13677v1">https://arxiv.org/abs/2606.13677v1</a></p>
-<p>3. <strong>Automated reproducibility assessments in the social and behavioral sciences using large language models</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13670v1">https://arxiv.org/abs/2606.13670v1</a></p>
-
-
-<h3>Prompt 4</h3>
-<pre>
-이 자료를 모르는 강의 수강생에게 5분 분량으로 풀어 설명해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>2. <strong>Mana: Dexterous Manipulation of Articulated Tools</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13677v1">https://arxiv.org/abs/2606.13677v1</a></p>
-<p>3. <strong>Automated reproducibility assessments in the social and behavioral sciences using large language models</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13670v1">https://arxiv.org/abs/2606.13670v1</a></p>
-
-
-<h3>Prompt 5</h3>
-<pre>
-이 자료들 중 윤리·안전 관점에서 주의해야 할 1건을 골라 그 이유를 200자 이내로 적어줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>2. <strong>Mana: Dexterous Manipulation of Articulated Tools</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13677v1">https://arxiv.org/abs/2606.13677v1</a></p>
-<p>3. <strong>Automated reproducibility assessments in the social and behavioral sciences using large language models</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13670v1">https://arxiv.org/abs/2606.13670v1</a></p>
-
-
-<p>---</p>
-
-<p>_생성: Daily Research Engine v1 · 부서 D18 · 형태 prompt_pack_</p>
-
-<div class="back"><a href="/resources/">← 자료실로</a></div>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
+<script type="text/plain" id="nw-vault-data">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</script>
 </body>
 </html>

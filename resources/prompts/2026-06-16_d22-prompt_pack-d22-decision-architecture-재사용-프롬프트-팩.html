@@ -1,116 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<title>[D22] decision architecture — 재사용 프롬프트 팩 | 네다바웨이 자료실</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/assets/v3.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
-<link rel="stylesheet" href="/resources/_templates/style.css">
-<style>
-.article-body { max-width: 760px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #222; }
-.article-body h1, .article-body h2, .article-body h3 { line-height: 1.3; margin-top: 2rem; }
-.article-body h1 { border-bottom: 2px solid #111; padding-bottom: .5rem; }
-.article-body ul { padding-left: 1.5rem; }
-.article-body pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 6px; }
-.article-body .meta { color: #666; font-size: .9rem; }
-.article-body .back { display: inline-block; margin-top: 2rem; }
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-<nav class="nav">
-  <div class="nav__inner">
-    <a href="/" class="nav__logo">네다바웨이</a>
-    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
-    <div class="nav__links">
-      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
-      <a href="/learning.html" class="nav__link">학습 노트</a>
-      <a href="/ai.html" class="nav__link">AI 작업실</a>
-      <a href="/programs.html" class="nav__link">강의·코칭</a>
-      <a href="/magazine.html" class="nav__link">성경관찰</a>
-      <a href="/about.html" class="nav__link">소개</a>
-      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
-    </div>
-  </div>
-</nav>
-<main class="article-body">
-<h1>[D22] decision architecture — 재사용 프롬프트 팩</h1>
-
-<p>_D22 · prompt_pack · 2026-06-16_</p>
-
-<h2>decision architecture — 재사용 프롬프트 5개</h2>
-
-
-<h3>Prompt 1</h3>
-<pre>
-다음 5건 자료를 표 형태로 비교해줘. 컬럼은 출처·핵심주장·우리 사업 시사점.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Gaze Heads: How VLMs Look at What They Describe</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14703v1">https://arxiv.org/abs/2606.14703v1</a></p>
-<p>2. <strong>RATS! Patches Talk Through Registers: Emergent Parts in Register Attention Transformers</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14701v1">https://arxiv.org/abs/2606.14701v1</a></p>
-<p>3. <strong>ClinHallu: A Benchmark for Diagnosing Stage-Wise Hallucinations in Medical MLLM Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14697v1">https://arxiv.org/abs/2606.14697v1</a></p>
-
-
-<h3>Prompt 2</h3>
-<pre>
-이 자료들이 &quot;decision architecture&quot;에 대한 내 가설을 강화하는지 약화하는지 한 문장씩 평가해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Gaze Heads: How VLMs Look at What They Describe</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14703v1">https://arxiv.org/abs/2606.14703v1</a></p>
-<p>2. <strong>RATS! Patches Talk Through Registers: Emergent Parts in Register Attention Transformers</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14701v1">https://arxiv.org/abs/2606.14701v1</a></p>
-<p>3. <strong>ClinHallu: A Benchmark for Diagnosing Stage-Wise Hallucinations in Medical MLLM Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14697v1">https://arxiv.org/abs/2606.14697v1</a></p>
-
-
-<h3>Prompt 3</h3>
-<pre>
-가장 영향력 있는 1건을 골라 90초 분량 보이스오버 스크립트를 써줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Gaze Heads: How VLMs Look at What They Describe</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14703v1">https://arxiv.org/abs/2606.14703v1</a></p>
-<p>2. <strong>RATS! Patches Talk Through Registers: Emergent Parts in Register Attention Transformers</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14701v1">https://arxiv.org/abs/2606.14701v1</a></p>
-<p>3. <strong>ClinHallu: A Benchmark for Diagnosing Stage-Wise Hallucinations in Medical MLLM Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14697v1">https://arxiv.org/abs/2606.14697v1</a></p>
-
-
-<h3>Prompt 4</h3>
-<pre>
-이 자료를 모르는 강의 수강생에게 5분 분량으로 풀어 설명해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Gaze Heads: How VLMs Look at What They Describe</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14703v1">https://arxiv.org/abs/2606.14703v1</a></p>
-<p>2. <strong>RATS! Patches Talk Through Registers: Emergent Parts in Register Attention Transformers</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14701v1">https://arxiv.org/abs/2606.14701v1</a></p>
-<p>3. <strong>ClinHallu: A Benchmark for Diagnosing Stage-Wise Hallucinations in Medical MLLM Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14697v1">https://arxiv.org/abs/2606.14697v1</a></p>
-
-
-<h3>Prompt 5</h3>
-<pre>
-이 자료들 중 윤리·안전 관점에서 주의해야 할 1건을 골라 그 이유를 200자 이내로 적어줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Gaze Heads: How VLMs Look at What They Describe</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14703v1">https://arxiv.org/abs/2606.14703v1</a></p>
-<p>2. <strong>RATS! Patches Talk Through Registers: Emergent Parts in Register Attention Transformers</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14701v1">https://arxiv.org/abs/2606.14701v1</a></p>
-<p>3. <strong>ClinHallu: A Benchmark for Diagnosing Stage-Wise Hallucinations in Medical MLLM Reasoning</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.14697v1">https://arxiv.org/abs/2606.14697v1</a></p>
-
-
-<p>---</p>
-
-<p>_생성: Daily Research Engine v1 · 부서 D22 · 형태 prompt_pack_</p>
-
-<div class="back"><a href="/resources/">← 자료실로</a></div>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
+<script type="text/plain" id="nw-vault-data">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</script>
 </body>
 </html>

@@ -1,154 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<title>[D4] devops monitoring — 실무 가이드 | 네다바웨이 자료실</title>
-<meta name="description" content="D4 부서가 2026-04-28 일일 리서치(300건) 기반으로 작성한 guide. 주제: devops monitoring">
-<link rel="canonical" href="https://www.nedabah.org/resources/guides/2026-04-28_d4-guide-d4-devops-monitoring-실무-가이드.html">
-<meta property="og:title" content="[D4] devops monitoring — 실무 가이드">
-<meta property="og:description" content="D4 부서가 2026-04-28 일일 리서치(300건) 기반으로 작성한 guide. 주제: devops monitoring">
-<meta property="og:url" content="https://www.nedabah.org/resources/guides/2026-04-28_d4-guide-d4-devops-monitoring-실무-가이드.html">
-<meta property="og:type" content="article">
-<meta property="og:image" content="https://www.nedabah.org/assets/og-default.jpg">
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "홈",
-      "item": "https://www.nedabah.org/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "자료실",
-      "item": "https://www.nedabah.org/resources/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "가이드",
-      "item": "https://www.nedabah.org/resources/guides/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "[D4] devops monitoring — 실무 가이드",
-      "item": "https://www.nedabah.org/resources/guides/2026-04-28_d4-guide-d4-devops-monitoring-실무-가이드.html"
-    }
-  ]
-}
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body { max-width: 760px; margin: 2rem auto; padding: 0 1rem; font-family: 'Noto Sans KR', system-ui, sans-serif; line-height: 1.7; color: #222; }
-h1, h2, h3 { line-height: 1.3; margin-top: 2rem; }
-h1 { border-bottom: 2px solid #111; padding-bottom: .5rem; }
-ul { padding-left: 1.5rem; }
-pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 6px; }
-.meta { color: #666; font-size: .9rem; }
-.back { display: inline-block; margin-top: 2rem; }
-</style>
-  <link rel="stylesheet" href="/assets/global-fonts.css">
-  <link rel="stylesheet" href="/assets/global-nav.css">
-<link rel="stylesheet" href="/assets/v3.css">
-
-<link rel="stylesheet" href="/assets/nav-right.css">
-
-
-<link rel="stylesheet" href="/assets/deck-toggle.css">
-
-<link rel="stylesheet" href="/assets/back-to-top.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
-
-<link rel="stylesheet" href="/assets/mobile-v1.css">
-  <link rel="stylesheet" href="/assets/warm-tone-v1.css">
-<!-- SPEC-REVISIT-001 re-visit wiring -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
 <link rel="manifest" href="/manifest.webmanifest">
-<script src="/assets/analytics.js" defer></script>
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-
-<nav class="gnav" role="navigation" aria-label="주요 메뉴">
-  <div class="gnav__inner">
-    <a href="/" class="gnav__logo" aria-label="네다바웨이 홈"><img class="gnav__logo-word" src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
-    <ul class="gnav__links" id="gnavLinks">
-      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
-      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
-      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
-      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
-      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
-      <li><a href="/about.html" class="gnav__link">소개</a></li>
-      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
-    </ul>
-  </div>
-</nav>
-<main class="article-body">
-<header class="resource-header">
-<h1>[D4] devops monitoring — 실무 가이드</h1>
-
-<p>_D4 · guide · 2026-04-28_</p>
-</header>
-
-<h2>devops monitoring — 5단계 실무 가이드</h2>
-
-<p>1. <strong>목표 정의</strong> — 무엇을 알고 싶은지 1문장으로 적기</p>
-<p>2. <strong>소스 선택</strong> — arXiv·S2·Crossref·KCI 중 2개 이상</p>
-<p>3. <strong>수집</strong> — 30~50건 메타 후 핵심 5건 추리기</p>
-<p>4. <strong>통합</strong> — 타 부서 산출물과 교차 인용</p>
-<p>5. <strong>공유</strong> — 자료실 적합 카테고리에 게시</p>
-
-
-<h2>오늘 적용 예시</h2>
-<p>1. <strong>Generative Modeling of Neurodegenerative Brain Anatomy with 4D Longitudinal Diffusion Model</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2604.22700v1">https://arxiv.org/abs/2604.22700v1</a></p>
-<p>2. <strong>How Supply Chain Dependencies Complicate Bias Measurement and Accountability Attribution in AI Hiring Applications</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2604.22679v1">https://arxiv.org/abs/2604.22679v1</a></p>
-<p>3. <strong>A CMUT-Based Transcranial Focused Ultrasound Platform for Blood-Brain Barrier Opening in Small Animal Models</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2604.22666v1">https://arxiv.org/abs/2604.22666v1</a></p>
-
-<p>---</p>
-
-<p>_생성: Daily Research Engine v1 · 부서 D4 · 형태 guide_</p>
-
-<div class="back"><a href="/resources/">← 자료실로</a></div>
-<aside class="cta-next" aria-labelledby="cta-next-title">
-  <h2 id="cta-next-title">다음 한 걸음</h2>
-  <p>자료를 읽고 한 사람의 일을 다시 디자인하고 싶다면, 무료 30분 상담에서 좌표를 함께 잡아 봅니다.</p>
-  <p class="cta-next__links">
-    <a class="cta-next__primary" href="/contact.html">무료 30분 상담 신청</a>
-    <a class="cta-next__secondary" href="/p/">5개 과정 라인업 보기</a>
-  </p>
-</aside>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
-<footer class="foot foot--mini">
-  <style>
-    .foot--mini{padding:18px 20px;border-top:1px solid #d6cfc1;background:#e8e2d5;font-size:12px;color:#55504a;line-height:1.6}
-    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
-    .foot--mini strong{color:#1b1b1b}
-    .foot--mini a{color:#1b1b1b;text-decoration:none;border-bottom:1px dotted #1d4ed8}
-    .foot--mini a:hover{color:#1d4ed8;border-color:#1d4ed8}
-    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#665f57}
-    @media(max-width:680px){
-      .foot--mini .foot--mini__inner{justify-content:flex-start}
-      .foot--mini>div>span{display:block}
-    }
-  </style>
-  <div class="foot--mini__inner">
-    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong>137-82-94771</strong></span>
-    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
-  </div>
-</footer>
-
-
-<script src="/assets/back-to-top.js" defer></script>
-
-<script src="/assets/deck-toggle.js" defer></script>
+<script type="text/plain" id="nw-vault-data">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</script>
 </body>
 </html>
