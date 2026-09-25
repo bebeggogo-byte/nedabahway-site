@@ -182,8 +182,8 @@ HEX_INFO = {
 
 # ---------------------------------------------------------------- hub
 def hub():
-    title = '무료진단 — 학습 유형 진단지 · 성품 6요인(HEXACO) 진단 | 네다바웨이'
-    desc = '회원가입 없이 바로 하는 무료진단 두 가지. 10문항 2분 학습 유형 진단지, 36문항 6분 성품 6요인 진단. 결과는 그 자리에서 바로 보고 복사할 수 있습니다.'
+    title = '무료진단 — 학습 유형 · 성품 6요인 · 요즘 나의 여섯 마음 | 네다바웨이'
+    desc = '회원가입 없이 바로 하는 무료진단 세 가지. 10문항 2분 학습 유형 진단지, 36문항 6분 성품 6요인 진단, 15문항 4분 요즘 나의 여섯 마음. 결과는 그 자리에서 바로 보고 복사할 수 있습니다.'
     url = f'{SITE}/diagnosis/'
     ld = json.dumps({"@context":"https://schema.org","@type":"CollectionPage","name":"무료진단","url":url,"description":desc,"inLanguage":"ko",
                      "isPartOf":{"@type":"WebSite","name":"네다바웨이","url":SITE+"/"}}, ensure_ascii=False)
@@ -194,7 +194,7 @@ def hub():
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:44px;">
       <p class="sec-kicker">Free Diagnosis</p>
-      <h1 class="sec-title" id="dgTitle">무료진단, 둘 중 하나를<br>고르세요<span class="dot">.</span></h1>
+      <h1 class="sec-title" id="dgTitle">무료진단, 셋 중 하나를<br>고르세요<span class="dot">.</span></h1>
       <p class="about-lead" style="margin-top:18px;">회원가입도, 이메일도 필요 없습니다. 고르고, 답하고, 그 자리에서 결과를 봅니다. 결과는 복사해서 상담 신청서에 붙여 넣으면 첫 대화가 훨씬 빨라집니다.</p>
     </div>
 
@@ -226,9 +226,23 @@ def hub():
         </ul>
         <span class="dg-box__cta"><span class="btn-go">성품 6요인 진단 시작 {ARROW}</span></span>
       </a>
+
+      <a class="dg-box dg-box--minds reveal" href="/diagnosis/minds/">
+        <span class="dg-box__k">03 · 요즘 나의 여섯 마음</span>
+        <span class="dg-box__t">요즘 나는 어떻게<br>지내고 있는가</span>
+        <span class="dg-box__d">탐험·만들기·연결·돕기·생각·즐기기. 지난 2주 동안 여섯 마음에 에너지를 어떻게 나눠 썼는지 봅니다. 유형 판정 없이 배분과 총량, 이번 주 조정 한 가지.</span>
+        <span class="dg-meta"><span>{ICON_LIST}15문항</span><span>{ICON_CLOCK}약 4분</span><span>{ICON_FREE}무료 · 4주 뒤 다시</span></span>
+        <span class="dg-shot"><img src="/assets/diagnosis/minds-result.jpg" width="1200" height="900" alt="요즘 나의 여섯 마음 결과 예시: 에너지 총량 링 게이지와 사용량 순 여섯 막대, 알아차림·이번 주 조정·총량 키우기 카드" loading="lazy"><span class="dg-shot__cap">완료하면 이렇게 나옵니다</span></span>
+        <ul class="dg-get">
+          <li>에너지 총량 링 게이지와 한 문장</li>
+          <li>사용량 순 여섯 막대, 충전·고갈 색 구분</li>
+          <li>알아차림 · 이번 주 줄일 것 하나, 늘릴 것 하나</li>
+        </ul>
+        <span class="dg-box__cta"><span class="btn-go">여섯 마음 진단 시작 {ARROW}</span></span>
+      </a>
     </div>
 
-    <p class="dg-note"><strong>답은 어디에도 전송되지 않습니다.</strong> 진단은 이 브라우저 안에서만 돌아가고, 마지막 결과만 이 기기에 남아 다시 열어 볼 수 있습니다. 성품 진단은 HEXACO 6요인 모형의 구조를 빌려 네다바웨이가 새로 쓴 문항이며, 심리검사나 의학적 판단이 아닌 자기이해와 코칭의 출발점입니다.</p>
+    <p class="dg-note"><strong>답은 어디에도 전송되지 않습니다.</strong> 진단은 이 브라우저 안에서만 돌아가고, 마지막 결과만 이 기기에 남아 다시 열어 볼 수 있습니다. 성품 진단은 HEXACO 6요인 모형의 구조를 빌려 네다바웨이가 새로 쓴 문항이고, 여섯 마음 진단은 검사가 아니라 요즘 상태를 보는 도구입니다. 모두 심리검사나 의학적 판단이 아닌 자기이해와 코칭의 출발점입니다.</p>
 
     <div class="mailcard reveal" style="margin-top:56px;">
       <h2 class="mailcard__t">결과를 들고 30분 무료 상담으로</h2>

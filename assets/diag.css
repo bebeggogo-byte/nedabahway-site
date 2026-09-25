@@ -1,9 +1,11 @@
 /* diag.css — free diagnosis hub + learning-type / HEXACO tests + result views (brand v2, 2026-09-25) */
-.dg-pick{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:8px;}
+.dg-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:8px;}
 .dg-box{display:flex;flex-direction:column;border:2px solid var(--ink);background:var(--card);border-radius:var(--r-lg);padding:30px 28px 30px;box-shadow:8px 8px 0 var(--tc,var(--connector));transition:transform .25s,box-shadow .25s;}
 .dg-box:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--tc,var(--connector));}
 .dg-box--learning{--tc:var(--maker);}
 .dg-box--hexaco{--tc:var(--thinker);}
+.dg-box--minds{--tc:var(--supporter);}
+@media(max-width:1100px){.dg-pick{grid-template-columns:1fr 1fr;}}
 .dg-box__k{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--cobalt);}
 .dg-box__t{margin-top:10px;font-size:clamp(26px,3vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--ink);word-break:keep-all;}
 .dg-box__d{margin-top:12px;font-size:16px;color:var(--text-3);line-height:1.7;word-break:keep-all;}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>현장용 고민 보드 만들기 — 방구석고민, 바닷가코칭 | 네다바웨이</title>
+<meta name="description" content="주제·장소·대상만 적으면 참여 코드와 QR이 나오는 현장용 고민 포스트잇 보드. 운영자 PIN으로 메모 숨기기와 CSV 내보내기.">
+<link rel="canonical" href="https://www.nedabah.org/gomin/new/">
+<meta property="og:title" content="현장용 고민 보드 만들기 — 방구석고민, 바닷가코칭 | 네다바웨이">
+<meta property="og:description" content="주제·장소·대상만 적으면 참여 코드와 QR이 나오는 현장용 고민 포스트잇 보드. 운영자 PIN으로 메모 숨기기와 CSV 내보내기.">
+<meta property="og:url" content="https://www.nedabah.org/gomin/new/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.nedabah.org/assets/og/gomin.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="현장용 고민 보드 만들기 — 방구석고민, 바닷가코칭 | 네다바웨이">
+<meta name="twitter:description" content="주제·장소·대상만 적으면 참여 코드와 QR이 나오는 현장용 고민 포스트잇 보드. 운영자 PIN으로 메모 숨기기와 CSV 내보내기.">
+<meta name="twitter:image" content="https://www.nedabah.org/assets/og/gomin.jpg">
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/sky.css">
+<link rel="stylesheet" href="/assets/diag.css">
+<link rel="stylesheet" href="/assets/gomin.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<a class="skip-link" href="#main">본문 바로가기</a>
+<header class="sk-head">
+  <div class="sk-head__in">
+    <a class="sk-logo" href="/" aria-label="네다바웨이 홈"><img class="sk-logo__word" src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a>
+    <nav class="sk-nav" id="skNav" aria-label="주요 메뉴">
+      <a href="/about.html">About</a>
+      <a href="/programs.html">Programs</a>
+      <a href="/personal.html">Personal</a>
+      <a href="/ai/">AI</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <div class="sk-head__r">
+      <a class="sk-diag" href="/diagnosis/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>무료진단</a>
+      <button class="sk-burger" type="button" aria-controls="skNav" aria-expanded="false" aria-label="메뉴 열기">
+        <svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="sec" aria-labelledby="nbTitle" style="padding-top:72px;">
+  <div class="wrap dg-wrap">
+    <p style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.08em;color:var(--cobalt);margin-bottom:12px;"><a href="/gomin/">&larr; 방구석고민, 바닷가코칭</a> · 운영자</p>
+    <div class="sec-head" style="margin-bottom:28px;">
+      <h1 class="sec-title" id="nbTitle">현장용 고민 보드<br>만들기<span class="dot">.</span></h1>
+      <p class="about-lead" style="margin-top:14px;">세 칸만 적으면 됩니다. 만들면 참여 코드(4글자)와 QR이 나오고, 참여자는 그 자리에서 붙이기 시작합니다. 큰 화면용 보기를 프로젝터에 띄우면 하트순으로 올라옵니다.</p>
+    </div>
+
+    <form class="gm-new" id="nbForm">
+      <div class="field" style="margin-top:0;"><label for="nbTitleIn">주제 <span aria-hidden="true">*</span></label><input id="nbTitleIn" type="text" maxlength="80" required placeholder="예: 진로, 지금 가장 막막한 것"></div>
+      <div class="field"><label for="nbPlace">장소 · 강의처</label><input id="nbPlace" type="text" maxlength="80" placeholder="예: 서귀포고 2학년 진로 특강"></div>
+      <div class="field"><label for="nbAud">대상</label><input id="nbAud" type="text" maxlength="80" placeholder="예: 고2 학생 28명"></div>
+      <div class="field"><label for="nbPin">운영자 PIN <span aria-hidden="true">*</span></label><input id="nbPin" type="text" inputmode="numeric" minlength="4" maxlength="12" required autocomplete="off" placeholder="4~12자. 메모 숨기기·CSV·보드 닫기에 씁니다"><p class="hint">PIN은 해시로만 저장되어 잊으면 되찾을 수 없습니다. 어딘가 적어 두세요.</p></div>
+      <div class="dg-intro__cta" style="margin-top:24px;"><button type="submit" class="btn-go" id="nbGo">보드 만들기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><span class="hint" id="nbMsg"></span></div>
+    </form>
+
+    <div id="nbDone" hidden></div>
+
+    <div class="dg-next" style="margin-top:40px;">
+      <p class="dg-next__t">현장에서 이렇게 씁니다</p>
+      <ol class="ai-steps" style="margin-top:14px;">
+        <li>강의 시작 전에 보드를 만들고 큰 화면용 보기를 프로젝터에 띄웁니다. QR과 코드가 화면 위에 계속 보입니다.</li>
+        <li>참여자는 QR을 찍거나 nedabah.org/gomin/b/ 에서 코드를 넣고 고민을 붙입니다. 하트로 공감을 모읍니다.</li>
+        <li>하트가 많은 고민부터 그 자리에서 다룹니다. 끝나면 운영자 모드에서 CSV로 내보내 콘텐츠 주제로 씁니다.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+</main>
+<script src="/assets/gomin-config.js"></script>
+<script src="/assets/qrcode.js"></script>
+<script src="/assets/gomin.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var f=document.getElementById('nbForm'), msg=document.getElementById('nbMsg'), done=document.getElementById('nbDone');
+  if(!GOMIN.ready){ msg.textContent='아직 데이터 저장소가 연결되지 않아 보드를 만들 수 없습니다.'; document.getElementById('nbGo').disabled=true; return; }
+  f.addEventListener('submit',function(e){
+    e.preventDefault(); msg.textContent='';
+    var t=document.getElementById('nbTitleIn').value.trim(), p=document.getElementById('nbPlace').value.trim(), a=document.getElementById('nbAud').value.trim(), pin=document.getElementById('nbPin').value.trim();
+    if(t.length<1||pin.length<4){ msg.textContent='주제와 PIN(4자 이상)을 적어 주세요.'; return; }
+    var btn=document.getElementById('nbGo'); btn.disabled=true;
+    GOMIN.createBoard(t,p,a,pin).then(function(b){
+      GOMIN.pinSet(b.code,pin);
+      var url=GOMIN.boardUrl(b.code);
+      done.hidden=false;
+      done.innerHTML='<div class="gm-done"><div><div class="gm-qr" id="nbQr"></div></div><div><p class="gm-head__k">보드가 만들어졌습니다</p><p class="gm-done__code">'+GOMIN.esc(b.code)+'</p><p class="gm-done__url">'+GOMIN.esc(url)+'</p><div class="gm-done__cta"><a class="btn-dark" href=\x27'+GOMIN.esc(url)+'\x27>보드 열기</a><a class="btn-link" href=\x27'+GOMIN.esc(url)+'&screen=1\x27 target="_blank" rel="noopener">큰 화면용 보기 &#8599;</a><button type="button" class="btn-link" id="nbCopy" style="background:none;border:0;cursor:pointer;">주소 복사</button></div></div></div>';
+      GOMIN.qr(document.getElementById('nbQr'),url,170);
+      document.getElementById('nbCopy').addEventListener('click',function(){ NWD.copy(url,this); });
+      done.scrollIntoView({behavior:'smooth',block:'start'});
+      btn.disabled=false;
+    }).catch(function(err){ btn.disabled=false; msg.textContent=GOMIN.errMsg(err); });
+  });
+});
+</script>
+<footer class="sk-foot">
+  <div class="wrap sk-foot__bottom">
+    <span><strong class="sk-foot__logo"><img class="sk-logo__word" src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></strong> &copy; 2026 NEDABAHWAY</span>
+    <span class="sk-foot__links">
+      <a href="https://www.youtube.com/channel/UCWnbno58Hrtiu8fPjrCCTfQ" rel="noopener">YouTube</a>
+      <a href="https://blog.naver.com/nedabah" rel="noopener">Blog</a>
+      <a href="/privacy.html">개인정보처리방침</a>
+      <a href="/locked/" class="sk-foot__vault">자료실</a>
+    </span>
+  </div>
+</footer>
+<script src="/assets/sky.js" defer></script>
+<script src="/assets/diag.js" defer></script>
+<script src="/assets/analytics.js" defer></script>
+</body>
+</html>
