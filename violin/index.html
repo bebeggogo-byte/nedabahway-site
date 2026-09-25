@@ -26,175 +26,227 @@
   --ff: system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{font-size:20px;-webkit-text-size-adjust:100%}
+html{font-size:20px;-webkit-text-size-adjust:100%;height:100%}
 body{
   font-family:var(--ff); color:var(--ink); background:var(--cream);
-  line-height:1.55; word-break:keep-all; min-height:100%;
-  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  line-height:1.45; word-break:keep-all; height:100%; overflow:hidden; overscroll-behavior:none;
 }
 button{font-family:inherit;color:inherit;background:none;border:none;cursor:pointer;font-size:1rem}
 [hidden]{display:none !important}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+a{color:var(--ink2)}
 
-.wrap{max-width:880px;margin:0 auto;padding:10px 14px 28px}
-.topbar{display:flex;align-items:center;gap:8px;padding:6px 0 10px}
-.topbar .spacer{flex:1}
+/* ── 한 화면 틀: 폰 높이에 딱 맞춘다. 버튼·글자는 크기를 지키고, 그림(.fig)만 남는 공간에 맞춰 줄어든다 ── */
+.wrap{
+  height:100vh; height:100dvh; max-width:620px; margin:0 auto;
+  display:flex; flex-direction:column;
+  padding:calc(6px + env(safe-area-inset-top)) calc(10px + env(safe-area-inset-right))
+          calc(8px + env(safe-area-inset-bottom)) calc(10px + env(safe-area-inset-left));
+}
+.topbar{flex:none;display:flex;align-items:center;gap:6px;padding-bottom:6px}
+.brandmini{flex:1;min-width:0;font-size:.7rem;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .iconbtn{
-  min-width:48px;min-height:48px;border:2px solid var(--line);border-radius:14px;
-  background:var(--paper);font-size:1.1rem;display:inline-flex;align-items:center;justify-content:center;
+  flex:none;min-width:44px;min-height:44px;border:2px solid var(--line);border-radius:12px;
+  background:var(--paper);font-size:1rem;display:inline-flex;align-items:center;justify-content:center;
 }
 .iconbtn:active{transform:translateY(1px)}
-.brandmini{font-size:.8rem;color:var(--ink2);letter-spacing:.02em}
+#app{flex:1;min-height:0;display:flex;flex-direction:column}
 
-.card{background:var(--paper);border:2px solid var(--line);border-radius:22px;padding:16px;box-shadow:4px 5px 0 rgba(51,47,41,.13)}
-.card + .card{margin-top:14px}
-h1{font-size:1.6rem;line-height:1.3;letter-spacing:-.01em}
-h2{font-size:1.25rem;line-height:1.35}
-h3{font-size:1.05rem}
-p{font-size:1rem}
-.muted{color:var(--ink2);font-size:.9rem}
+.card{
+  flex:1;min-height:0;display:flex;flex-direction:column;gap:8px;overflow:hidden;
+  background:var(--paper);border:2px solid var(--line);border-radius:22px;padding:12px;
+  box-shadow:4px 5px 0 rgba(51,47,41,.13);
+}
+/* 폰에서는 카드 테두리를 걷어 가로 폭을 버튼에 돌려준다 */
+@media (max-width:480px){ .card{background:none;border:0;border-radius:0;box-shadow:none;padding:2px 0 0} }
+.hd{flex:none}
+.fig{flex:1 1 0;min-height:64px;display:flex;align-items:center;justify-content:center;gap:6px}
+.fig.col{flex-direction:column;text-align:center;gap:6px}
+.ctrl{flex:none;display:flex;flex-direction:column;gap:8px}
+
+h1{font-size:1.45rem;line-height:1.25}
+h2{font-size:1.1rem;line-height:1.3}
+.hrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.muted{color:var(--ink2);font-size:.8rem}
+.small{font-size:.74rem;line-height:1.4}
 .center{text-align:center}
+.lead{font-weight:800;font-size:1rem;line-height:1.35}
 
 .bigbtn{
-  display:block;width:100%;min-height:64px;border:3px solid var(--line);border-radius:20px;
-  background:var(--yellow);font-size:1.3rem;font-weight:700;padding:12px 16px;
+  display:block;width:100%;min-height:52px;border:3px solid var(--line);border-radius:18px;
+  background:var(--yellow);font-size:1.08rem;font-weight:700;padding:6px 12px;line-height:1.2;
   box-shadow:3px 4px 0 var(--line);
 }
+.bigbtn small{font-size:.78rem;font-weight:700;opacity:.8}
 .bigbtn:active{transform:translate(2px,3px);box-shadow:1px 1px 0 var(--line)}
 .bigbtn.sky{background:var(--sky)} .bigbtn.green{background:var(--green)}
 .bigbtn.plain{background:var(--paper)}
 .bigbtn[disabled]{opacity:.45;box-shadow:none;cursor:default}
-.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.btnrow .bigbtn{flex:1 1 150px;width:auto}
-.btnrow.tight .bigbtn{flex:1 1 40%;min-height:56px;font-size:1.1rem}
+.btnrow{display:flex;gap:8px}
+.btnrow .bigbtn{flex:1 1 0;width:auto;min-width:0}
+.btnrow.small .bigbtn{min-height:46px;font-size:.92rem;padding:4px 6px;border-width:2.5px;box-shadow:2px 3px 0 var(--line)}
+.btnrow.three .bigbtn{padding:4px 2px;white-space:nowrap;font-size:1rem}
 
-/* 계이름 버튼 4개 */
-.namegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
-.namegrid.five{display:flex;flex-wrap:wrap;justify-content:center}
-.namegrid.five .namebtn{flex:0 0 calc(33.333% - 6px);min-width:64px}
-@media (min-width:520px){ .namegrid.five .namebtn{flex:0 0 calc(20% - 7px)} }
-.stringtag{display:inline-block;border:3px solid var(--line);border-radius:999px;padding:2px 14px;
-  background:var(--sky);font-weight:800;font-size:1rem;margin-bottom:6px}
+/* 계이름·손가락 버튼 — 64×64 이상, 글자 28px 이상 */
+.namegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.namegrid.five{grid-template-columns:repeat(5,1fr);gap:4px}
 .namebtn{
-  min-height:78px;min-width:64px;border:3px solid var(--line);border-radius:18px;background:var(--paper);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
-  box-shadow:3px 4px 0 var(--line);padding:6px 2px;
+  min-height:64px;min-width:0;border:3px solid var(--line);border-radius:16px;background:var(--paper);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:3px 4px 0 var(--line);padding:3px 0;
 }
-.namebtn .ko{font-size:1.7rem;font-weight:800;line-height:1.1}
-.namebtn .en{font-size:.72rem;color:var(--ink2);letter-spacing:.06em}
+.namebtn .ko{font-size:1.6rem;font-weight:800;line-height:1.05}
+.namegrid.five .namebtn .ko{font-size:1.45rem}
+.namebtn .en{font-size:.62rem;color:var(--ink2);letter-spacing:.04em}
 .namebtn:active{transform:translate(2px,3px);box-shadow:1px 1px 0 var(--line)}
 .namebtn.is-on{background:var(--yellow)}
 .namebtn[disabled]{opacity:.5;box-shadow:none}
-@media (max-width:359px){ .namebtn .ko{font-size:1.45rem} }
 
-.stafffig{display:block;width:100%;height:auto;max-width:560px;margin:0 auto;touch-action:manipulation}
-.staffwrap{background:var(--paper);border-radius:16px;padding:4px 0}
-@media (max-width:480px){ .staffwrap{margin-left:-10px;margin-right:-10px} }
-.staffwrap.pick{cursor:pointer;touch-action:pan-y}
-.staffwrap.pick:focus-visible{outline:4px solid var(--sky-d);outline-offset:3px;border-radius:16px}
-.bigbtn:focus-visible,.namebtn:focus-visible,.station:focus-visible,.iconbtn:focus-visible,.switch:focus-visible{outline:4px solid var(--sky-d);outline-offset:3px}
-
-.panelgrid{display:grid;grid-template-columns:1fr;gap:14px}
-@media (min-width:720px){ .panelgrid.two{grid-template-columns:1.15fr .85fr;align-items:center} }
-
-.violinfig{display:block;width:100%;max-width:190px;height:auto;margin:0 auto}
-.fingerchart{display:block;width:100%;max-width:160px;height:auto;margin:0 auto}
-.fingerrow{display:flex;align-items:center;gap:12px;margin-top:10px}
-.fingerrow .chart{flex:0 0 132px}
-.fingerrow .txt{flex:1;font-weight:800;font-size:1.35rem;line-height:1.3}
-.fingerrow .vio{flex:0 0 70px;display:none}
-.fingerrow .vio .violinfig{max-width:70px}
-@media (min-width:520px){ .fingerrow .vio{display:block} }
-.fingernote{margin-top:8px;font-size:.92rem;color:var(--ink2);text-align:center}
-.playrow{display:flex;align-items:center;gap:12px;margin-top:8px}
-.playrow .vio{flex:0 0 96px}
-.playrow .vio .violinfig{max-width:96px}
-.playrow .txt{flex:1;font-weight:700;font-size:1.05rem}
-.keypick{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
-.keypick button{min-height:60px;border:3px solid var(--line);border-radius:14px;background:var(--paper);
-  box-shadow:3px 4px 0 var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 2px;line-height:1.2}
-.keypick button b{font-size:.86rem}
-.keypick button span{font-size:.72rem;color:var(--ink2)}
+/* 오선지 · 바이올린 · 캐릭터 — 남는 높이에 맞춰 줄어든다 */
+.staffwrap{flex:1 1 auto;min-width:0;align-self:stretch;display:flex;align-items:center;justify-content:center;background:var(--paper);border-radius:16px}
+.stafffig{display:block;width:100%;height:100%;max-width:560px;touch-action:manipulation}
+.staffwrap.pick{cursor:pointer;touch-action:none}
+.staffwrap.pick:focus-visible{outline:4px solid var(--sky-d);outline-offset:3px}
+.bigbtn:focus-visible,.namebtn:focus-visible,.station:focus-visible,.iconbtn:focus-visible,.switch:focus-visible,.keypick button:focus-visible,.listen:focus-visible{outline:4px solid var(--sky-d);outline-offset:3px}
+/* 바이올린은 오선지 옆에서 보조로만 — 폭의 26%를 넘지 않게 해 오선지 줄 간격을 지킨다 */
+.vio{flex:none;align-self:center;height:100%;max-height:240px;max-width:26%;aspect-ratio:12/25;display:flex;align-items:center}
+.violinfig{display:block;width:100%;height:100%}
+.chars{height:100%;max-height:170px;display:flex;justify-content:center;gap:2px}
+.chars svg{height:100%;width:auto;max-width:32%}
+.fingerchart{display:block;width:100%;max-width:400px;height:auto;margin:0 auto}
+.fline{text-align:center;line-height:1.25}
+.fline b{font-size:1.2rem}
+.fline span{display:block;font-size:.74rem;color:var(--ink2)}
+.target{font-size:1.9rem;font-weight:800;line-height:1.1;text-align:center;margin-top:4px}
+.target small{font-size:.8rem;color:var(--ink2);font-weight:700}
+.listen{
+  height:100%;max-height:190px;aspect-ratio:1;border-radius:50%;border:3px solid var(--line);background:var(--sky);
+  box-shadow:3px 4px 0 var(--line);font-size:2.4rem;display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.listen span{font-size:.85rem;font-weight:800}
+.keypick{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.keypick button{min-height:52px;border:3px solid var(--line);border-radius:14px;background:var(--paper);
+  box-shadow:3px 4px 0 var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2px;line-height:1.15}
+.keypick button b{font-size:.84rem}
+.keypick button span{font-size:.68rem;color:var(--ink2)}
 .keypick button.is-on{background:var(--yellow)}
 .keypick button:active{transform:translate(2px,3px);box-shadow:1px 1px 0 var(--line)}
 
-/* 진행 바 */
-.progress{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.pips{display:flex;gap:5px;flex-wrap:wrap}
-.pip{width:15px;height:15px;border-radius:50%;border:2px solid var(--line);background:var(--paper)}
+/* 퀴즈 머리줄 */
+.qrow{display:flex;align-items:center;gap:6px}
+.qrow .qt{flex:1;min-width:0;font-weight:800;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qrow .qt small{color:var(--ink2);font-weight:700;font-size:.78rem}
+.chip{flex:none;border:2px solid var(--line);border-radius:999px;padding:1px 9px;font-size:.74rem;font-weight:800;background:var(--cream2);white-space:nowrap}
+.chip.sky{background:var(--sky)}
+.scorechip{flex:none;font-weight:800;font-size:.78rem;border:2px solid var(--line);border-radius:999px;padding:1px 9px;background:var(--paper)}
+.pips{display:flex;gap:4px;margin-top:5px;flex-wrap:wrap}
+.pip{width:12px;height:12px;border-radius:50%;border:2px solid var(--line);background:var(--paper)}
 .pip.done{background:var(--green)} .pip.miss{background:var(--coral)} .pip.now{background:var(--yellow)}
-.scorechip{margin-left:auto;font-weight:700;font-size:.95rem;border:2px solid var(--line);border-radius:999px;padding:2px 12px;background:var(--paper)}
 
-/* 조표 카드 */
-.keycard{border:3px solid var(--line);border-radius:18px;background:var(--cream2);padding:8px 10px;text-align:center}
-.keycard h3{font-size:1rem;margin-bottom:2px}
-.keycard .cnt{font-size:.85rem;color:var(--ink2)}
-.keycard svg{display:block;width:100%;max-width:185px;height:auto;margin:2px auto 0}
-
-/* 말풍선 */
-.saystrip{display:flex;align-items:flex-end;gap:10px;margin-top:14px}
-.saystrip .charbox{flex:0 0 auto;width:92px}
-.saystrip .charbox svg{display:block;width:100%;height:auto}
+/* 말풍선 — 상태는 색만이 아니라 표시(✓ ↺ !)와 글로도 알린다 */
+.say{display:flex;align-items:center;gap:8px}
+.say .charbox{flex:none;width:50px}
+.say .charbox svg{display:block;width:100%;height:auto}
 .bubble{
-  position:relative;flex:1;border:3px solid var(--line);border-radius:18px;background:var(--paper);
-  padding:10px 14px;font-size:1.05rem;font-weight:600;min-height:56px;display:flex;align-items:center;
+  position:relative;flex:1;min-width:0;border:2.5px solid var(--line);border-radius:14px;background:var(--paper);
+  padding:6px 10px;font-size:.9rem;font-weight:700;min-height:44px;display:flex;align-items:center;gap:6px;line-height:1.3;
 }
-.bubble::before{content:"";position:absolute;left:-11px;bottom:16px;width:14px;height:14px;background:var(--paper);border-left:3px solid var(--line);border-bottom:3px solid var(--line);transform:rotate(45deg)}
-.bubble.ok{background:#E8F5E1} .bubble.ok::before{background:#E8F5E1}
-.bubble.retry{background:#FDF0E7} .bubble.retry::before{background:#FDF0E7}
+.bubble::before{content:"";position:absolute;left:-8px;top:50%;margin-top:-5px;width:10px;height:10px;background:inherit;border-left:2.5px solid var(--line);border-bottom:2.5px solid var(--line);transform:rotate(45deg)}
+.bubble .mark{flex:none;width:26px;height:26px;border:2.5px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;background:var(--paper)}
+.bubble.ok{background:#E8F5E1} .bubble.ok .mark{background:var(--green)}
+.bubble.retry{background:#FDF0E7} .bubble.retry .mark{background:var(--coral)}
+.bubble.hint .mark{background:var(--yellow)}
 
-.flagline{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1rem;margin-top:10px}
-.flagline .mark{width:34px;height:34px;border:3px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex:0 0 auto}
-.flagline.ok .mark{background:var(--green)} .flagline.ok{color:var(--ok)}
-.flagline.retry .mark{background:var(--coral)} .flagline.retry{color:var(--coral-d)}
-.flagline.hint .mark{background:var(--yellow)} .flagline.hint{color:var(--hint)}
-
-/* 단계 지도 */
-.map{position:relative;padding:6px 0 2px}
-.station{display:flex;align-items:center;gap:12px;padding:9px 10px;border:3px solid var(--line);border-radius:18px;background:var(--paper);width:100%;text-align:left;margin-bottom:10px;box-shadow:3px 4px 0 var(--line)}
+/* 단계 지도 — 2열로 펼쳐 남는 높이를 나눠 쓴다 */
+.stations{flex:1 1 0;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:minmax(50px,1fr);gap:8px;align-items:stretch;justify-content:stretch}
+.station{display:flex;align-items:center;gap:8px;padding:5px 8px;border:3px solid var(--line);border-radius:16px;background:var(--paper);text-align:left;box-shadow:3px 4px 0 var(--line);min-width:0}
 .station:active{transform:translate(2px,3px);box-shadow:1px 1px 0 var(--line)}
 .station[disabled]{opacity:.55;box-shadow:none;background:var(--cream2)}
-.station .no{flex:0 0 auto;width:44px;height:44px;border:3px solid var(--line);border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem}
+.station .no{flex:none;width:34px;height:34px;border:2.5px solid var(--line);border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem}
 .station.current .no{background:var(--sky)}
-.station .tt{flex:1;min-width:0}
-.station .tt b{display:block;font-size:1.02rem}
-.station .tt span{font-size:.8rem;color:var(--ink2)}
-.station .st{flex:0 0 auto;font-size:1rem;letter-spacing:1px;color:var(--yellow-d)}
-.trail{height:16px;margin:-14px 0 -2px 31px;border-left:4px dotted var(--line);opacity:.35}
+.station .tt{flex:1;min-width:0;display:flex;flex-direction:column}
+.station .tt b{font-size:.8rem;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.station .tt span{font-size:.62rem;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.station .tt .st{color:var(--yellow-d);font-weight:800}
 
-.starrow{font-size:2.2rem;letter-spacing:6px;color:var(--yellow-d);text-align:center;line-height:1.2}
-.misslist{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
-.misschip{border:2px solid var(--line);border-radius:999px;padding:3px 12px;background:var(--cream2);font-size:.9rem;font-weight:700}
+.starrow{font-size:2.4rem;letter-spacing:6px;color:var(--yellow-d);line-height:1.1}
+.misslist{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.misschip{border:2px solid var(--line);border-radius:999px;padding:2px 10px;background:var(--cream2);font-size:.8rem;font-weight:700}
 
-table.stats{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:8px}
-table.stats th,table.stats td{border:2px solid var(--line);padding:5px 7px;text-align:center}
-table.stats th{background:var(--cream2)}
-
-.switchrow{display:flex;align-items:center;gap:12px;border:2px solid var(--line);border-radius:16px;padding:10px 12px;background:var(--paper);margin-top:10px}
-.switchrow .lbl{flex:1;font-size:.95rem;font-weight:600}
-.switch{min-width:76px;min-height:44px;border:3px solid var(--line);border-radius:999px;background:var(--cream2);font-weight:700;font-size:.9rem}
+/* 학부모·교사 화면 */
+.sec{font-size:.8rem;font-weight:800;align-self:flex-start}
+.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;width:100%}
+.stat{border:2px solid var(--line);border-radius:10px;background:var(--paper);text-align:center;padding:3px 2px;line-height:1.25}
+.stat b{display:block;font-size:.68rem;white-space:nowrap}
+.stat .s{font-size:.6rem;color:var(--yellow-d);letter-spacing:-1px}
+.stat .r{display:block;font-size:.7rem;color:var(--ink2);font-weight:700}
+.switchrow{display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:14px;padding:4px 10px;background:var(--paper)}
+.switchrow .lbl{flex:1;font-size:.85rem;font-weight:700}
+.switch{min-width:72px;min-height:44px;border:3px solid var(--line);border-radius:999px;background:var(--cream2);font-weight:700;font-size:.85rem}
 .switch.on{background:var(--green)}
 
-.cert{border:5px double var(--line);border-radius:18px;padding:18px 14px;background:var(--paper);text-align:center}
-.cert .ttl{font-size:1.5rem;font-weight:800;letter-spacing:.04em}
-.cert .who{font-size:1.7rem;font-weight:800;margin:10px 0;border-bottom:3px dotted var(--line);display:inline-block;padding:0 14px 4px;min-width:170px}
-.cert input{font-family:inherit;font-size:1.25rem;font-weight:800;text-align:center;border:3px solid var(--line);border-radius:14px;padding:8px 10px;width:100%;max-width:280px;background:var(--cream2);min-height:52px}
-.certchars{display:flex;justify-content:center;gap:4px;margin:8px 0}
-.certchars svg{width:82px;height:auto}
+/* 수료증 */
+.cert{border:5px double var(--line);border-radius:18px;padding:8px;background:var(--paper);justify-content:center}
+.cert .ttl{font-size:1.3rem;font-weight:800;letter-spacing:.04em}
+.cert .who{font-size:1.45rem;font-weight:800;border-bottom:3px dotted var(--line);padding:0 14px 2px;min-width:150px}
+.cert .line{font-weight:700;font-size:.85rem}
+.certchars{flex:1 1 0;min-height:40px;max-height:120px;display:flex;justify-content:center;gap:2px}
+.certchars svg{height:100%;width:auto}
+.namerow{display:flex;gap:8px}
+.namerow input{flex:1;min-width:0;font-family:inherit;font-size:1.05rem;font-weight:800;text-align:center;border:3px solid var(--line);border-radius:14px;padding:6px;background:var(--cream2);min-height:52px}
+.namerow .bigbtn{flex:none;width:auto}
+
+/* 가로로 눕힌 폰: 그림은 왼쪽, 버튼은 오른쪽 */
+@media (orientation:landscape) and (max-height:520px){
+  .wrap{max-width:none}
+  .topbar{padding-bottom:3px}
+  .card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);grid-template-rows:auto minmax(0,1fr);column-gap:10px;row-gap:4px}
+  .hd{grid-column:1 / -1}
+  .fig{grid-column:1;grid-row:2;min-height:0}
+  .ctrl{grid-column:2;grid-row:2;overflow-y:auto;justify-content:center;gap:6px}
+  /* 높이가 모자라니 글·여백을 한 단계 줄인다 (누르는 버튼은 44px 이상 유지) */
+  .bigbtn{min-height:46px;font-size:1rem;padding:3px 10px}
+  .btnrow.small .bigbtn{min-height:44px}
+  .hrow h2,.qrow .qt{font-size:.9rem}
+  .pips{margin-top:3px}
+  .target{position:absolute;right:14px;margin:0;font-size:1.3rem}
+  .hd{position:relative}
+  .say .charbox{width:40px}
+  .bubble{min-height:44px;padding:4px 8px;font-size:.84rem}
+  .statgrid{grid-template-columns:repeat(8,1fr)}
+  .stat{padding:1px}
+  .fig.col{gap:3px}
+  .cert{padding:4px}
+  .cert .ttl{font-size:1.05rem}
+  .cert .who{font-size:1.15rem}
+  .stations{grid-template-columns:repeat(4,1fr)}
+  /* 글이 많은 화면(수료증·학부모)은 좌우로 나누지 않고 위아래로 쌓고 버튼을 한 줄로 */
+  .card.stack{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto}
+  .card.stack .fig{grid-column:1;grid-row:2}
+  .card.stack .ctrl{grid-column:1;grid-row:3;flex-direction:row;align-items:center;overflow:visible}
+  .card.stack .ctrl > *{flex:1 1 0;min-width:0}
+  .card.stack .ctrl > .namerow{flex:2 1 0}
+  .card.stack .ctrl > .switchrow{flex:1.3 1 0}
+  .card.parent .statgrid{grid-template-columns:repeat(8,1fr)}
+  .card.parent p.sec{display:none}
+  .cert .muted.small{display:none}
+  .certchars{min-height:24px}
+  .cert{gap:2px}
+}
+/* 키가 낮은 화면에서는 학부모 화면의 보조 설명을 접는다 */
+@media (max-height:520px){ .card.parent .note{display:none} .card.parent .fig{gap:3px} }
 
 .sparkles{position:fixed;inset:0;pointer-events:none;z-index:40;overflow:hidden}
 .spark{position:absolute;font-size:1.5rem;animation:fly .9s ease-out forwards}
 @keyframes fly{ from{opacity:1;transform:translate(0,0) scale(.6)} to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.3)} }
 .pop{animation:pop .35s ease-out}
-@keyframes pop{ 0%{transform:scale(.82)} 60%{transform:scale(1.06)} 100%{transform:scale(1)} }
+@keyframes pop{ 0%{transform:scale(.9)} 60%{transform:scale(1.02)} 100%{transform:scale(1)} }
 .glow{animation:glow 1s ease-in-out infinite alternate}
 @keyframes glow{ from{opacity:.55} to{opacity:1} }
 
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none !important;transition:none !important}
 }
-footer.sitefoot{text-align:center;font-size:.78rem;color:var(--ink2);padding:18px 6px 6px}
-footer.sitefoot a{color:var(--ink2)}
 </style>
 </head>
 <body>
@@ -207,9 +259,6 @@ footer.sitefoot a{color:var(--ink2)}
   </div>
   <main id="app"></main>
   <div id="live" class="sr" role="status" aria-live="polite" aria-atomic="true"></div>
-  <footer class="sitefoot">
-    <a href="/">네다바웨이 NEDABAHWAY</a> · 개방현 솔·레·라·미와 조표를 함께 배우는 놀이
-  </footer>
 </div>
 <div class="sparkles" id="sparkLayer" aria-hidden="true"></div>
 <script>
@@ -313,6 +362,7 @@ var PLACE_MIN = -6, PLACE_MAX = 9;
    ============================================================ */
 var S = 20;            /* viewBox 내부 줄 간격 */
 var VB_W = 404, VB_H = 214;
+var QW = 300;          /* 음표 하나만 올리는 오선지의 폭 — 좁은 틀에서도 줄 간격이 넉넉하다 */
 var BASE_Y = 134;      /* 아래 첫째 줄(E4)의 y */
 function lineY(k){ return BASE_Y - (k-1)*S; }            /* k=1..5 */
 function stepY(step){ return BASE_Y - step*(S/2); }
@@ -428,10 +478,11 @@ function noteSVG(cx, step, opts){
 function staffSVG(opts){
   opts = opts || {};
   var sharps = opts.sharps || [];
+  var W = opts.w || VB_W;
   var pad = 14, clefX = pad + S*1.48;
   var keyX = pad + S*3.35, gap = S*0.98;
   var keyEnd = keyX + (sharps.length ? (sharps.length-1)*gap + S*0.6 : -S*0.6);
-  var right = VB_W - 18;
+  var right = W - 18;
   var noteX = opts.noteX || Math.round((keyEnd + right)/2);
   var g = '';
   var i;
@@ -447,14 +498,28 @@ function staffSVG(opts){
     g += noteSVG(notes[i].x == null ? noteX : notes[i].x, notes[i].step, notes[i]);
   }
   var extra = opts.extra || '';
-  return '<svg class="stafffig" viewBox="0 0 '+VB_W+' '+VB_H+'" role="img" aria-label="'+esc(opts.label||'오선지')+
+  /* 위아래 여백은 이 오선지에 실제로 그린 것만큼만 둔다 — 같은 공간에서 오선지가 더 크게 보인다.
+     음표를 끌어 옮기는 오선지(fit:false)는 옮길 수 있는 범위 전체를 남겨 둔다. */
+  var y0 = 0, h = VB_H;
+  if (opts.fit !== false){
+    var top = 36, bot = 177, j, y;
+    for (j=0;j<sharps.length;j++) top = Math.min(top, stepY(SHARP_STEP[sharps[j]]) - S*0.9);
+    for (j=0;j<notes.length;j++){
+      y = stepY(notes[j].step);
+      top = Math.min(top, y - S*0.9, stemUp(notes[j].step) ? y - S*3.2 : top);
+      bot = Math.max(bot, y + S*0.9, stemUp(notes[j].step) ? bot : y + S*3.2);
+      if (notes[j].label != null) bot = Math.max(bot, BASE_Y + S*3.7);
+    }
+    y0 = Math.floor(top - 4); h = Math.ceil(bot + 4) - y0;
+  }
+  return '<svg class="stafffig" viewBox="0 '+y0+' '+W+' '+h+'" role="img" aria-label="'+esc(opts.label||'오선지')+
          '" xmlns="http://www.w3.org/2000/svg">'+g+extra+'</svg>';
 }
-function noteXFor(sharps){
-  var pad = 14, keyX = pad + S*3.0, gap = S*0.98;
+function noteXFor(sharps, w){
+  var pad = 14, keyX = pad + S*3.35, gap = S*0.98;
   var n = sharps ? sharps.length : 0;
   var keyEnd = keyX + (n ? (n-1)*gap + S*0.6 : -S*0.6);
-  return Math.round((keyEnd + (VB_W-18))/2);
+  return Math.round((keyEnd + ((w || VB_W)-18))/2);
 }
 
 /* 조표 카드용 작은 오선지 (샵을 하나씩 눌러 볼 수 있음) */
@@ -476,7 +541,7 @@ function keyStaffSVG(keyId, tapped){
   if (!k.sharps.length){
     g += '<text x="140" y="'+(lineY(3)+S*0.4)+'" text-anchor="middle" font-size="'+(S*0.85)+'" font-weight="700" fill="var(--ink2)" font-family="var(--ff)">샵 없음</text>';
   }
-  return '<svg viewBox="6 32 202 148" role="img" aria-label="'+esc(k.ko+' 조표, 샵 '+k.sharps.length+'개')+'" xmlns="http://www.w3.org/2000/svg">'+g+'</svg>';
+  return '<svg class="stafffig" viewBox="6 14 202 166" role="img" aria-label="'+esc(k.ko+' 조표, 샵 '+k.sharps.length+'개')+'" xmlns="http://www.w3.org/2000/svg">'+g+'</svg>';
 }
 
 /* ============================================================
@@ -531,22 +596,22 @@ function violinSVG(hi){
    그 구간만 늘려 그려서 2번과 3번이 반음으로 붙어 있는 것을 눈으로 보게 한다. */
 var FING_RATIO = [0, 0.109, 0.206, 0.251, 0.333];   /* 너트에서 잰 현 길이 비율 */
 function fingerChartSVG(stringId, active){
-  var ids = FINGERS[stringId], top = 30, bottom = 250, i, g = '';
-  function yOf(f){ return top + (FING_RATIO[f] / FING_RATIO[4]) * (bottom - top); }
-  g += '<rect x="46" y="10" width="58" height="258" rx="8" fill="#4A3A2C"/>';
-  g += '<line x1="75" y1="'+top+'" x2="75" y2="266" stroke="#D8CDBD" stroke-width="3.4" stroke-linecap="round"/>';
-  g += '<line x1="43" y1="'+top+'" x2="107" y2="'+top+'" stroke="#E9D3AE" stroke-width="7" stroke-linecap="round"/>';
+  var ids = FINGERS[stringId], left = 20, right = 318, y = 48, i, g = '';
+  function xOf(f){ return left + (FING_RATIO[f] / FING_RATIO[4]) * (right - left); }
+  g += '<rect x="10" y="36" width="322" height="24" rx="6" fill="#4A3A2C"/>';
+  g += '<line x1="'+left+'" y1="'+y+'" x2="330" y2="'+y+'" stroke="#D8CDBD" stroke-width="3" stroke-linecap="round"/>';
+  g += '<line x1="'+left+'" y1="31" x2="'+left+'" y2="65" stroke="#E9D3AE" stroke-width="7" stroke-linecap="round"/>';
   for (i=0;i<5;i++){
-    var y = yOf(i), on = (i === active), r = on ? 15 : 10;
-    g += '<circle cx="75" cy="'+y.toFixed(1)+'" r="'+r+'" fill="'+(on?'var(--yellow)':(i?'var(--paper)':'none'))+
-         '" stroke="var(--ink)" stroke-width="'+(on?3:2)+'"'+(on?' class="glow"':'')+'/>';
-    g += '<text x="34" y="'+(y+7).toFixed(1)+'" text-anchor="end" font-size="'+(on?23:18)+
+    var x = xOf(i), on = (i === active), r = on ? 12 : 8.5;
+    g += '<circle cx="'+x.toFixed(1)+'" cy="'+y+'" r="'+r+'" fill="'+(on?'var(--yellow)':(i?'var(--paper)':'none'))+
+         '" stroke="'+(i||on?'var(--ink)':'#E9D3AE')+'" stroke-width="'+(on?3:2)+'"'+(on?' class="glow"':'')+'/>';
+    g += '<text x="'+x.toFixed(1)+'" y="22" text-anchor="middle" font-size="'+(on?22:18)+
          '" font-weight="800" fill="var(--ink)" font-family="var(--ff)">'+i+'</text>';
-    g += '<text x="116" y="'+(y+6).toFixed(1)+'" font-size="'+(on?20:17)+
+    g += '<text x="'+x.toFixed(1)+'" y="90" text-anchor="middle" font-size="'+(on?19:16)+
          '" font-weight="'+(on?800:600)+'" fill="'+(on?'var(--coral-d)':'var(--ink2)')+
          '" font-family="var(--ff)">'+esc(toneKo(ids[i]))+'</text>';
   }
-  return '<svg class="fingerchart" viewBox="0 0 176 280" role="img" aria-label="'+
+  return '<svg class="fingerchart" viewBox="0 0 342 98" role="img" aria-label="'+
     esc(NOTES[stringId].ko+'줄 손가락 자리. '+ids.map(function(t,f){ return f+'번 '+toneKo(t); }).join(', '))+
     '" xmlns="http://www.w3.org/2000/svg">'+g+'</svg>';
 }
@@ -843,9 +908,14 @@ var app = document.getElementById('app');
 var sparkLayer = document.getElementById('sparkLayer');
 var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function say(who, mood, text, cls){
-  return '<div class="saystrip"><div class="charbox">'+charSVG(who,mood)+'</div>'+
-         '<div class="bubble '+(cls||'')+'">'+esc(text)+'</div></div>';
+/* 화면마다 세 부분으로 나눈다.
+   .hd  머리 (제목·진행)        — 크기 고정
+   .fig 그림 (오선지·바이올린)  — 남는 높이에 맞춰 줄어듦
+   .ctrl 버튼·말풍선            — 크기 고정, 폰에서도 모두 손 닿는 곳에 */
+function say(who, mood, text, cls, mark){
+  return '<div class="say"><div class="charbox" aria-hidden="true">'+charSVG(who,mood)+'</div>'+
+         '<div class="bubble '+(cls||'')+'">'+(mark ? '<span class="mark" aria-hidden="true">'+mark+'</span>' : '')+
+         '<span>'+esc(text)+'</span></div></div>';
 }
 function nameButtons(opts){
   opts = opts || {};
@@ -880,38 +950,35 @@ function fingerButtons(opts){
   }
   return h + '</div>';
 }
-function keyCard(keyId, tapped){
-  var k = KEYS[keyId];
-  return '<div class="keycard"><h3>'+esc(k.ko)+' <span class="muted">('+esc(k.en)+')</span></h3>'+
-         '<div class="cnt">샵 '+k.sharps.length+'개</div>'+ keyStaffSVG(keyId, tapped||[]) +'</div>';
+function head(title, extra){
+  return '<div class="hd"><div class="hrow"><h2>'+esc(title)+'</h2>'+(extra||'')+'</div></div>';
 }
 
 /* ---------- 시작 화면 ---------- */
 function renderStart(){
   return '<div class="card center">'+
-    '<h1>바이올린 개방현 놀이</h1>'+
-    '<p class="muted" style="margin-top:6px">솔·레·라·미 네 줄과 조표를 함께 배워요</p>'+
-    '<div class="certchars">'+charSVG('dodo','base')+charSVG('mimi','base')+charSVG('sori','base')+'</div>'+
-    '<button class="bigbtn" data-act="start">개방현 배우기 — 솔·레·라·미</button>'+
-    '<button class="bigbtn sky" data-act="pos1" style="margin-top:10px">1지 배우기 — 손가락 0·1·2·3·4</button>'+
-    '<button class="bigbtn plain" data-act="play" style="margin-top:10px">연습 모드 — 그냥 눌러 보기</button>'+
-    '<p class="muted" style="margin-top:12px">버튼을 누르면 소리가 켜져요.</p>'+
-  '</div>';
+    '<div class="hd"><h1>바이올린 개방현 놀이</h1>'+
+    '<p class="muted">솔·레·라·미 네 줄과 손가락 번호, 조표를 배워요</p></div>'+
+    '<div class="fig"><div class="chars">'+charSVG('dodo','base')+charSVG('mimi','base')+charSVG('sori','base')+'</div></div>'+
+    '<div class="ctrl">'+
+      '<button class="bigbtn" data-act="start">개방현 배우기 <small>솔·레·라·미</small></button>'+
+      '<button class="bigbtn sky" data-act="pos1">1지 배우기 <small>손가락 0~4</small></button>'+
+      '<button class="bigbtn plain" data-act="play">연습 모드 <small>그냥 눌러 보기</small></button>'+
+      '<p class="muted small">버튼을 누르면 소리가 켜져요 · <a href="/">네다바웨이</a></p>'+
+    '</div></div>';
 }
 
 /* ---------- 연습 모드 (자유 놀이) ---------- */
 function renderPlay(){
   var pl = state.play, n = NOTES[pl.note], k = KEYS[pl.key];
-  var sharps = k.sharps, nx = noteXFor(sharps), i;
-  var h = '<div class="card">';
-  h += '<h2>연습 모드</h2><p class="muted">네 줄을 마음대로 눌러 보세요. 점수도 잠금도 없어요.</p>';
-  h += '<div class="staffwrap" data-act="replay" data-note="'+pl.note+'" style="margin-top:8px">'+
-       staffSVG({ sharps:sharps, notes:[{ step:n.step, x:nx }], noteX:nx, label:n.ko+' 음표' })+'</div>';
-  h += '<div class="playrow"><div class="vio" data-act="replay" data-note="'+pl.note+'">'+violinSVG(pl.note)+'</div>'+
-       '<p class="txt">'+esc(n.where)+'</p></div>';
+  var sharps = k.sharps, nx = noteXFor(sharps, QW), i;
+  var h = '<div class="card">'+head('연습 모드', '<span class="muted">점수도 잠금도 없어요</span>');
+  h += '<div class="fig"><div class="staffwrap" data-act="replay" data-note="'+pl.note+'">'+
+       staffSVG({ w:QW, sharps:sharps, notes:[{ step:n.step, x:nx }], noteX:nx, label:n.ko+' 음표' })+'</div>'+
+       '<div class="vio" data-act="replay" data-note="'+pl.note+'">'+violinSVG(pl.note)+'</div></div>';
+  h += '<div class="ctrl"><p class="lead center">'+esc(n.where)+'</p>';
   h += nameButtons({ on:pl.note, act:'playPick' });
-  h += '<h3 style="margin-top:14px;font-size:1rem">조표 바꿔 보기</h3>';
-  h += '<div class="keypick" role="group" aria-label="조표 고르기">';
+  h += '<div class="keypick" role="group" aria-label="조표 바꿔 보기">';
   var order = ['C','G','D','A'];
   for (i=0;i<order.length;i++){
     var kk = KEYS[order[i]];
@@ -919,74 +986,65 @@ function renderPlay(){
          ' aria-pressed="'+(pl.key===order[i]?'true':'false')+'">'+
          '<b>'+esc(kk.ko)+'</b><span>샵 '+kk.sharps.length+'</span></button>';
   }
-  h += '</div>';
-  h += '<p class="muted" style="margin-top:10px">'+esc(KEY_NOTE_MSG)+'</p>';
-  h += say('mimi','base','조표를 바꿔도 네 줄 소리는 그대로예요.');
-  h += '<div class="btnrow"><button class="bigbtn plain" data-act="tomap">지도로</button></div>';
-  return h + '</div>';
+  h += '</div><p class="muted small center">'+esc(KEY_NOTE_MSG)+'</p>';
+  h += '<div class="btnrow small"><button class="bigbtn plain" data-act="tomap">지도로</button></div>';
+  return h + '</div></div>';
 }
 
 /* ---------- 단계 지도 ---------- */
+function stationBtn(act, no, open, current, title, sub, stars){
+  return '<button class="station'+(current?' current':'')+'" data-act="'+act+'" data-stage="'+no+'"'+(open?'':' disabled')+'>'+
+         '<span class="no">'+(open?no:'🔒')+'</span>'+
+         '<span class="tt"><b>'+esc(title)+'</b><span>'+(stars?'<span class="st">'+stars+'</span> ':'')+esc(sub)+'</span></span></button>';
+}
 function renderMap(){
-  var h = '<div class="card"><h2>단계 지도</h2><p class="muted">여덟 정거장을 지나면 수료증을 받아요.</p><div class="map">';
+  var h = '<div class="card">'+head('단계 지도', '<span class="muted">여덟 정거장을 지나면 수료증!</span>');
+  h += '<div class="fig stations">';
   for (var i=0;i<STAGES.length;i++){
     var st = STAGES[i], no = st.n;
-    var open = no <= state.unlocked;
-    var star = state.stars[no] ? starText(state.stars[no]) : '';
-    var sub = st.notes.map(function(n){ return NOTES[n].ko; }).join(' · ');
-    if (st.key) sub += '  |  ' + KEYS[st.key].ko + ' (샵 ' + KEYS[st.key].sharps.length + ')';
-    h += '<button class="station'+(no===state.unlocked?' current':'')+'" data-act="stage" data-stage="'+no+'"'+(open?'':' disabled')+'>'+
-         '<span class="no">'+(open?no:'🔒')+'</span>'+
-         '<span class="tt"><b>'+esc(st.title)+'</b><span>'+esc(sub)+'</span></span>'+
-         '<span class="st">'+star+'</span></button>';
-    if (i < STAGES.length-1) h += '<div class="trail"></div>';
+    var sub = st.notes.map(function(n){ return NOTES[n].ko; }).join('·');
+    if (st.key) sub += ' · ' + KEYS[st.key].ko;
+    h += stationBtn('stage', no, no <= state.unlocked, no === state.unlocked, st.title, sub,
+                    state.stars[no] ? starText(state.stars[no]) : '');
   }
-  h += '</div>';
-  h += '<button class="bigbtn sky" data-act="pos1" style="margin-top:8px">1지 배우기 — 손가락 0·1·2·3·4</button>';
-  h += '<button class="bigbtn plain" data-act="play" style="margin-top:8px">연습 모드 — 그냥 눌러 보기</button>';
-  if (state.unlocked > 8 || state.stars[8]) h += '<button class="bigbtn green" data-act="cert" style="margin-top:8px">수료증 보기</button>';
-  return h + '</div>';
+  h += '</div><div class="ctrl"><div class="btnrow">'+
+       '<button class="bigbtn sky" data-act="pos1">1지 배우기</button>'+
+       '<button class="bigbtn plain" data-act="play">연습 모드</button></div>';
+  if (state.unlocked > 8 || state.stars[8]) h += '<button class="bigbtn green" data-act="cert">수료증 보기</button>';
+  return h + '</div></div>';
 }
 
 /* ---------- 학습 화면 (단일 현 단계) ---------- */
 function renderLearn(){
   var st = STAGES[state.stage-1], id = st.notes[0], n = NOTES[id], i = state.learnIdx;
-  var h = '<div class="card"><h2>'+esc(st.title)+'</h2><p class="muted">배우기 '+(i+1)+' / 3</p>';
-  if (i === 0){
-    h += '<div class="staffwrap" data-act="replay" data-note="'+id+'">'+
-         staffSVG({ notes:[{step:n.step}], label:n.ko+' 음표' })+'</div>'+
-         say('dodo','joy','이 음표가 '+n.ko+'('+n.en+')예요. 눌러서 다시 들어요.');
-  } else if (i === 1){
-    h += '<div class="panelgrid two"><div class="staffwrap" data-act="replay" data-note="'+id+'">'+
-         staffSVG({ notes:[{step:n.step}], label:n.ko+' 음표' })+'</div>'+
-         '<div data-act="replay" data-note="'+id+'">'+violinSVG(id)+'</div></div>'+
-         say('mimi','base',n.ko+'줄은 여기예요. 빛나는 줄을 보세요.');
-  } else {
-    h += '<div class="panelgrid two"><div class="staffwrap" data-act="replay" data-note="'+id+'">'+
-         staffSVG({ notes:[{step:n.step}], label:n.ko+' 음표' })+'</div>'+
-         '<div>'+violinSVG(id)+'</div></div>'+
-         '<p style="margin-top:10px;font-weight:700;font-size:1.1rem">'+esc(n.where)+'</p>'+
-         '<button class="bigbtn sky" data-act="replay" data-note="'+id+'" style="margin-top:10px">따라 눌러 보기 — '+esc(n.ko)+' ('+n.en+')</button>'+
-         say('sori','cheer','한 번 눌러 보고 다음으로 가요!');
+  var h = '<div class="card">'+head(st.title, '<span class="muted">배우기 '+(i+1)+' / 3</span>');
+  h += '<div class="fig"><div class="staffwrap" data-act="replay" data-note="'+id+'">'+
+       staffSVG({ w:QW, notes:[{step:n.step}], label:n.ko+' 음표' })+'</div>';
+  if (i > 0) h += '<div class="vio" data-act="replay" data-note="'+id+'">'+violinSVG(id)+'</div>';
+  h += '</div><div class="ctrl">';
+  if (i === 0) h += say('dodo','joy','이 음표가 '+n.ko+'('+n.en+')예요. 눌러서 다시 들어요.');
+  else if (i === 1) h += say('mimi','base',n.ko+'줄은 여기예요. 빛나는 줄을 보세요.');
+  else {
+    h += say('sori','cheer', n.where);
+    h += '<button class="bigbtn sky" data-act="replay" data-note="'+id+'">따라 눌러 보기 — '+esc(n.ko)+' ('+n.en+')</button>';
   }
   h += '<div class="btnrow"><button class="bigbtn plain" data-act="tomap">지도로</button>'+
-       '<button class="bigbtn" data-act="learnNext">'+(i<2?'다음':'확인 퀴즈 시작')+'</button></div>';
-  return h + '</div>';
+       '<button class="bigbtn" data-act="learnNext">'+(i<2?'다음':'퀴즈 시작')+'</button></div>';
+  return h + '</div></div>';
 }
 
 /* ---------- 조표 미니 활동 (교차·종합 단계) ---------- */
 function renderKeyIntro(){
   var st = STAGES[state.stage-1], k = KEYS[st.key], tapped = state.keyIntro || [];
-  var all = k.sharps.length === 0 || tapped.length >= k.sharps.length;
-  var h = '<div class="card"><h2>'+esc(st.title)+'</h2>'+
-    '<p style="font-weight:700;font-size:1.1rem;margin-bottom:8px">이번엔 '+esc(k.ko)+'예요. 샵이 '+k.sharps.length+'개!</p>'+
-    '<div id="keyIntroCard">'+keyCard(st.key, tapped)+'</div>';
-  if (k.sharps.length) h += '<p class="muted" style="margin-top:8px">샵을 하나씩 눌러 보세요. ('+tapped.length+' / '+k.sharps.length+')</p>';
-  h += '<p style="margin-top:10px;font-weight:700">'+esc(KEY_NOTE_MSG)+'</p>'+
-    say('mimi','think', all ? '이제 퀴즈로 가 볼까요?' : '샵이 어디에 붙었는지 눌러서 확인해요.')+
-    '<div class="btnrow"><button class="bigbtn plain" data-act="tomap">지도로</button>'+
-    '<button class="bigbtn" data-act="quizStart">퀴즈 시작</button></div></div>';
-  return h;
+  var h = '<div class="card"><div class="hd"><h2>'+esc(st.title)+'</h2>'+
+          '<p class="lead">이번엔 '+esc(k.ko)+'예요. 샵이 '+k.sharps.length+'개!</p></div>';
+  h += '<div class="fig"><div class="staffwrap">'+keyStaffSVG(st.key, tapped)+'</div></div>';
+  h += '<div class="ctrl"><p class="muted center">'+
+       (k.sharps.length ? '샵을 하나씩 눌러 보세요. ('+tapped.length+' / '+k.sharps.length+')' : '샵이 하나도 없어요.')+'</p>';
+  h += '<p class="muted small center">'+esc(KEY_NOTE_MSG)+'</p>';
+  h += '<div class="btnrow"><button class="bigbtn plain" data-act="tomap">지도로</button>'+
+       '<button class="bigbtn" data-act="quizStart">퀴즈 시작</button></div>';
+  return h + '</div></div>';
 }
 
 /* ---------- 퀴즈 ---------- */
@@ -1004,47 +1062,43 @@ function promptFor(item){
        : item.type === 'B' ? n.ko + '는 어디에 살까요? 위아래로 옮겨요.'
        : '잘 듣고 맞혀 보세요!';
 }
-function progressBar(q){
-  var h = '<div class="progress"><span class="pips">', i;
+/* 문항 머리줄: 제목·번호·칩·점수, 아래에 진행 점 */
+function quizHeadRow(q, title, chip){
+  var h = '<div class="qrow"><span class="qt">'+esc(title)+' <small>'+(q.idx+1)+'/'+q.items.length+'</small></span>'+
+          (chip||'')+'<span class="scorechip">'+q.score+'점</span></div><div class="pips" aria-hidden="true">', i;
   for (i=0;i<q.items.length;i++){
     var cls = q.marks[i] === 'done' ? 'done' : (q.marks[i] === 'miss' ? 'miss' : (i===q.idx ? 'now' : ''));
     h += '<span class="pip '+cls+'"></span>';
   }
-  h += '</span><span class="scorechip">'+q.score+'점</span></div>';
-  return h;
+  return h + '</div>';
 }
 /* 정답·재도전·정답 공개 말풍선 — 개방현 코스와 1지 코스가 같이 쓴다 */
 function quizBubble(q, item, showAnswer){
-  if (q.phase === 'answered'){
-    return '<div class="flagline ok"><span class="mark">✓</span><span>정답이에요</span></div>' +
-           say('dodo','joy', q.lastPraise || praiseFor(itemAnswerLabel(item)), 'ok');
-  }
-  if (showAnswer){
-    return '<div class="flagline hint"><span class="mark">!</span><span>정답을 함께 봐요</span></div>' +
-           say('mimi','base', itemAnswerLabel(item) + '예요. 한 번 눌러 볼까요?');
-  }
-  if (q.attempt === 1){
-    return '<div class="flagline retry"><span class="mark">↺</span><span>다시 도전</span></div>' +
-           say('sori','cheer','앗, 아깝다! 다시 한 번 해볼까요? 🎻','retry');
-  }
+  if (q.phase === 'answered') return say('dodo','joy', q.lastPraise || praiseFor(itemAnswerLabel(item)), 'ok', '✓');
+  if (showAnswer) return say('mimi','base', '정답은 '+itemAnswerLabel(item)+'예요. '+itemWhere(item), 'hint', '!');
+  if (q.attempt === 1) return say('sori','cheer','앗, 아깝다! 다시 한 번 해볼까요? 🎻','retry','↺');
   return say('dodo','base', promptFor(item));
+}
+/* 힌트·지도로 — 답한 뒤에도 자리를 지켜 화면이 들썩이지 않게 한다 */
+function hintRow(q, showAnswer){
+  var canHint = !showAnswer && q.phase === 'ask' && !q.hintUsed;
+  return '<div class="btnrow small"><button class="bigbtn plain" data-act="hint"'+(canHint?'':' disabled')+'>💡 힌트</button>'+
+         '<button class="bigbtn plain" data-act="tomap">지도로</button></div>';
 }
 
 /* ---------- 1지 코스 ---------- */
 function renderPos1Map(){
-  var h = '<div class="card"><h2>1지 배우기</h2>'+
-          '<p class="muted">줄마다 0·1·2·3·4번 손가락으로 다섯 음을 짚어요.</p><div class="map">';
+  var h = '<div class="card">'+head('1지 배우기', '<span class="muted">손가락 0·1·2·3·4</span>');
+  h += '<div class="fig stations">';
   for (var i=0;i<POS1_STAGES.length;i++){
-    var st = POS1_STAGES[i], no = st.n, open = no <= state.pos1.unlocked;
-    var star = state.pos1.stars[no] ? starText(state.pos1.stars[no]) : '';
-    var sub = FINGERS[st.string].map(toneKo).join(' · ');
-    h += '<button class="station'+(no===state.pos1.unlocked?' current':'')+'" data-act="pos1stage" data-stage="'+no+'"'+(open?'':' disabled')+'>'+
-         '<span class="no">'+(open?no:'🔒')+'</span>'+
-         '<span class="tt"><b>'+esc(st.title)+'</b><span>'+esc(sub)+'</span></span>'+
-         '<span class="st">'+star+'</span></button>';
-    if (i < POS1_STAGES.length-1) h += '<div class="trail"></div>';
+    var st = POS1_STAGES[i], no = st.n;
+    h += stationBtn('pos1stage', no, no <= state.pos1.unlocked, no === state.pos1.unlocked, st.title,
+                    FINGERS[st.string].map(toneKo).join(' '),
+                    state.pos1.stars[no] ? starText(state.pos1.stars[no]) : '');
   }
-  h += '</div><div class="btnrow"><button class="bigbtn plain" data-act="home">처음으로</button></div></div>';
+  h += '</div><div class="ctrl"><div class="btnrow">'+
+       '<button class="bigbtn plain" data-act="home">처음으로</button>'+
+       '<button class="bigbtn plain" data-act="play">연습 모드</button></div></div></div>';
   return h;
 }
 function renderPos1Learn(){
@@ -1055,110 +1109,77 @@ function renderPos1Learn(){
                  label:String(i), color:(i===f ? 'var(--coral-d)' : 'var(--ink)'),
                  labelColor:(i===f ? 'var(--coral-d)' : 'var(--ink2)') });
   }
-  var h = '<div class="card"><h2>'+esc(st.title)+'</h2>';
-  h += '<p class="muted">음표 아래 숫자가 손가락 번호예요. 눌러서 소리를 들어 보세요.</p>';
-  h += '<div class="center" style="margin-top:6px"><span class="stringtag">'+esc(NOTES[st.string].ko)+'줄</span></div>';
-  h += '<div class="staffwrap">'+staffSVG({ notes:notes, label:st.title+' 다섯 음' })+'</div>';
-  h += '<div class="fingerrow"><div class="chart">'+fingerChartSVG(st.string, f)+'</div>'+
-       '<p class="txt">'+esc(toneKo(ids[f]))+'<br>'+f+'번 손가락</p>'+
-       '<div class="vio">'+violinSVG(st.string)+'</div></div>';
-  h += '<p class="fingernote">'+(f===0 ? '손가락을 대지 않고 그냥 켜요.' : '2번과 3번은 반음이라 붙어 있어요.')+'</p>';
+  var h = '<div class="card">'+head(st.title, '<span class="chip sky">'+esc(NOTES[st.string].ko)+'줄</span>'+
+          '<span class="muted">음표 아래 숫자 = 손가락</span>');
+  h += '<div class="fig"><div class="staffwrap">'+staffSVG({ notes:notes, label:st.title+' 다섯 음' })+'</div></div>';
+  h += '<div class="ctrl">'+fingerChartSVG(st.string, f);
+  h += '<p class="fline"><b>'+esc(toneKo(ids[f]))+' · '+f+'번 손가락</b>'+
+       '<span>'+(f===0 ? '손가락을 대지 않고 그냥 켜요.' : '2번과 3번은 반음이라 붙어 있어요.')+'</span></p>';
   h += fingerButtons({ on:f, act:'learnFinger' });
-  h += say('mimi','base','다섯 개를 다 눌러 보고 퀴즈로 가요.');
   h += '<div class="btnrow"><button class="bigbtn plain" data-act="tomap">지도로</button>'+
        '<button class="bigbtn" data-act="pos1quiz">퀴즈 시작</button></div>';
-  return h + '</div>';
+  return h + '</div></div>';
 }
 function renderPos1Quiz(){
   var q = state.quiz, st = POS1_STAGES[q.stage-1], item = q.items[q.idx], t = TONES[item.tone];
   var showAnswer = (q.phase === 'reveal' || q.phase === 'answered-reveal');
-  var h = '<div class="card">';
-  h += '<h2 style="font-size:1.05rem">'+esc(st.title)+' <span class="muted">('+(q.idx+1)+'/'+q.items.length+')</span></h2>';
-  h += progressBar(q);
-  h += '<div class="center"><span class="stringtag">'+esc(NOTES[st.string].ko)+'줄</span></div>';
-  h += '<div class="staffwrap" data-act="replay" data-note="'+item.tone+'">'+
-       staffSVG({ notes:[{ step:t.step, acc:t.acc, color:(showAnswer?'var(--green-d)':'var(--ink)') }], label:'문제 음표' })+'</div>';
-  if (q.hintUsed || q.attempt === 1 || showAnswer){
-    h += '<div style="margin-top:6px">'+fingerChartSVG(st.string, item.finger)+'</div>';
-  }
+  var hint = q.hintUsed || q.attempt === 1 || showAnswer, nx = noteXFor([], QW);
+  var h = '<div class="card"><div class="hd">'+
+          quizHeadRow(q, st.title, '<span class="chip sky">'+esc(NOTES[st.string].ko)+'줄</span>')+'</div>';
+  h += '<div class="fig"><div class="staffwrap" data-act="replay" data-note="'+item.tone+'">'+
+       staffSVG({ w:QW, noteX:nx, notes:[{ step:t.step, acc:t.acc, color:(showAnswer?'var(--green-d)':'var(--ink)') }], label:'문제 음표' })+
+       '</div></div><div class="ctrl">';
+  if (hint) h += fingerChartSVG(st.string, item.finger);
   if (showAnswer){
-    h += '<p style="margin-top:10px;font-weight:700;font-size:1.05rem">'+esc(itemWhere(item))+'</p>';
-    h += '<button class="bigbtn green" data-act="followUp" data-note="'+item.tone+'" style="margin-top:10px">따라 눌러 보기 — '+esc(itemAnswerLabel(item))+'</button>';
+    h += '<button class="bigbtn green" data-act="followUp" data-note="'+item.tone+'">따라 눌러 보기 — '+esc(itemAnswerLabel(item))+'</button>';
   } else if (item.type === 'N'){
     h += toneButtons(st.string, { disabled:q.phase === 'answered' });
   } else {
     h += fingerButtons({ disabled:q.phase === 'answered' });
   }
-  h += quizBubble(q, item, showAnswer);
-  if (!showAnswer && q.phase !== 'answered'){
-    h += '<div class="btnrow"><button class="bigbtn plain" data-act="hint"'+(q.hintUsed?' disabled':'')+'>💡 힌트 받기</button>'+
-         '<button class="bigbtn plain" data-act="tomap">지도로</button></div>';
-  }
-  return h + '</div>';
+  h += quizBubble(q, item, showAnswer) + hintRow(q, showAnswer);
+  return h + '</div></div>';
 }
 
 function renderQuiz(){
   if (state.quiz.course === 'pos1') return renderPos1Quiz();
   var q = state.quiz, st = STAGES[q.stage-1], item = q.items[q.idx], n = NOTES[item.note];
   var sharps = st.key ? KEYS[st.key].sharps : [];
-  var nx = noteXFor(sharps);
-  var h = '<div class="card">';
-  h += '<h2 style="font-size:1.05rem">'+esc(st.title)+' <span class="muted">('+(q.idx+1)+'/'+q.items.length+')</span></h2>';
-  h += progressBar(q);
-  if (st.key) h += '<div style="max-width:255px;margin:0 auto 12px">'+keyCard(st.key)+'</div>';
-
+  var nx = noteXFor(sharps, QW);
   var showAnswer = (q.phase === 'reveal' || q.phase === 'answered-reveal');
-  var notesOnStaff = [];
-  if (item.type === 'A'){
-    notesOnStaff.push({ step:n.step, x:nx, color: showAnswer ? 'var(--green-d)' : 'var(--ink)' });
-  } else if (item.type === 'B'){
-    if (showAnswer) notesOnStaff.push({ step:n.step, x:nx, color:'var(--green-d)' });
-  } else if (item.type === 'C' && showAnswer){
-    notesOnStaff.push({ step:n.step, x:nx, color:'var(--green-d)' });
-  }
+  var hint = q.hintUsed || q.attempt === 1 || showAnswer;
+  var ask = q.phase === 'ask';
+  var chip = st.key ? '<span class="chip">'+esc(KEYS[st.key].ko)+' · 샵 '+sharps.length+'</span>' : '';
 
+  var h = '<div class="card"><div class="hd">'+quizHeadRow(q, st.title, chip);
+  if (item.type === 'B' && !showAnswer) h += '<p class="target">'+esc(n.ko)+' <small>('+n.en+')</small></p>';
+  h += '</div><div class="fig">';
   if (item.type === 'C' && !showAnswer){
-    h += '<div class="center" style="padding:14px 0">'+
-         '<button class="bigbtn sky" data-act="replay" data-note="'+item.note+'" style="max-width:300px;margin:0 auto">🔊 다시 듣기</button>'+
-         '<p class="muted" style="margin-top:10px">소리만 듣고 맞혀 보세요.</p></div>';
+    h += '<button class="listen" data-act="replay" data-note="'+item.note+'" aria-label="다시 듣기">🔊<span>다시 듣기</span></button>';
   } else if (item.type === 'B' && !showAnswer){
-    h += '<p class="center" style="font-size:2.4rem;font-weight:800;line-height:1.1">'+esc(n.ko)+
-         ' <span style="font-size:1rem;color:var(--ink2)">('+n.en+')</span></p>';
     var placedLbl = (q.placed === null || q.placed === undefined) ? '아직 놓지 않았어요' : '지금 ' + placeLabel(q.placed) + '에 있어요';
     h += '<div class="staffwrap pick" id="pickStaff" tabindex="0" role="group"'+
-         ' aria-label="'+esc('음표가 놓인 오선지. 위아래 화살표로 옮기고 엔터로 확인해요. '+placedLbl)+'">'+
-         staffSVG({ sharps:sharps, notes:[], noteX:nx, label:'음표를 놓을 오선지', extra:'<g id="placeLayer"></g>' })+'</div>';
-    h += '<div class="btnrow tight"><button class="bigbtn sky" data-act="nudge" data-dir="1" aria-label="한 칸 위로">▲ 위로</button>'+
-         '<button class="bigbtn sky" data-act="nudge" data-dir="-1" aria-label="한 칸 아래로">▼ 아래로</button></div>';
-    if (q.placed !== null && q.placed !== undefined){
-      h += '<button class="bigbtn green" data-act="confirmPlace" style="margin-top:10px">여기!</button>';
-    }
+         ' aria-label="'+esc('음표가 놓인 오선지. 끌거나 위아래 화살표로 옮기고 엔터로 확인해요. '+placedLbl)+'">'+
+         staffSVG({ w:QW, fit:false, sharps:sharps, notes:[], noteX:nx, label:'음표를 놓을 오선지', extra:'<g id="placeLayer"></g>' })+'</div>';
   } else {
+    var notes = (item.type === 'A' || showAnswer) ? [{ step:n.step, x:nx, color:(showAnswer ? 'var(--green-d)' : 'var(--ink)') }] : [];
     h += '<div class="staffwrap" data-act="replay" data-note="'+item.note+'">'+
-         staffSVG({ sharps:sharps, notes:notesOnStaff, noteX:nx, label:'문제 음표' })+'</div>';
+         staffSVG({ w:QW, sharps:sharps, notes:notes, noteX:nx, label:'문제 음표' })+'</div>';
   }
-
-  /* 힌트로 빛나는 바이올린 */
-  if (q.hintUsed || q.attempt === 1 || showAnswer){
-    h += '<div style="margin-top:8px">'+violinSVG(item.note)+'</div>';
-  }
-
-  /* 답 영역 */
+  if (hint) h += '<div class="vio">'+violinSVG(item.note)+'</div>';
+  h += '</div><div class="ctrl">';
   if (showAnswer){
-    h += '<p style="margin-top:10px;font-weight:700;font-size:1.05rem">'+esc(n.where)+' 같이 들어 볼까요?</p>';
-    h += '<button class="bigbtn green" data-act="followUp" data-note="'+item.note+'" style="margin-top:10px">따라 눌러 보기 — '+esc(n.ko)+' ('+n.en+')</button>';
-  } else if (item.type === 'A' || item.type === 'C'){
-    h += nameButtons({ disabled: q.phase === 'answered' });
+    h += '<button class="bigbtn green" data-act="followUp" data-note="'+item.note+'">따라 눌러 보기 — '+esc(n.ko)+' ('+n.en+')</button>';
+  } else if (item.type === 'B'){
+    h += '<div class="btnrow three">'+
+         '<button class="bigbtn sky" data-act="nudge" data-dir="1" aria-label="한 칸 위로"'+(ask?'':' disabled')+'>▲ 위로</button>'+
+         '<button class="bigbtn sky" data-act="nudge" data-dir="-1" aria-label="한 칸 아래로"'+(ask?'':' disabled')+'>▼ 아래로</button>'+
+         '<button class="bigbtn green" data-act="confirmPlace"'+(ask?'':' disabled')+'>여기!</button></div>';
+  } else {
+    h += nameButtons({ disabled: !ask });
   }
-
-  h += quizBubble(q, item, showAnswer);
-
-  /* 힌트 */
-  if (!showAnswer && q.phase !== 'answered'){
-    h += '<div class="btnrow"><button class="bigbtn plain" data-act="hint"'+(q.hintUsed?' disabled':'')+'>💡 힌트 받기</button>'+
-         '<button class="bigbtn plain" data-act="tomap">지도로</button></div>';
-  }
-  return h + '</div>';
+  h += quizBubble(q, item, showAnswer) + hintRow(q, showAnswer);
+  return h + '</div></div>';
 }
 
 /* ---------- 단계 결과 ---------- */
@@ -1168,25 +1189,22 @@ function renderResult(){
   var last = pos1 ? POS1_STAGES.length : 8;
   var act = pos1 ? 'pos1stage' : 'stage';
   var passed = r.stars >= 2;
-  var h = '<div class="card center">';
-  h += '<h2>'+esc(st.title)+'</h2>';
+  var h = '<div class="card"><div class="hd center"><h2>'+esc(st.title)+'</h2></div><div class="fig col">';
   h += '<div class="starrow">'+starText(r.stars)+'</div>';
-  h += '<p style="font-size:1.15rem;font-weight:700;margin-top:6px">맞힌 수 '+r.ok+' / '+r.total+'  ·  '+r.score+'점</p>';
+  h += '<p class="lead">맞힌 수 '+r.ok+' / '+r.total+'  ·  '+r.score+'점</p>';
   if (r.missLabels && r.missLabels.length){
-    h += '<p class="muted" style="margin-top:10px">이 음을 조금 더 연습해요</p><div class="misslist" style="justify-content:center">';
+    h += '<p class="muted">이 음을 조금 더 연습해요</p><div class="misslist">';
     for (var i=0;i<r.missLabels.length;i++) h += '<span class="misschip">'+esc(r.missLabels[i])+'</span>';
     h += '</div>';
   }
+  h += '</div><div class="ctrl">';
   h += say(passed?'dodo':'sori', passed?'joy':'cheer',
-           passed ? '멋져요! 다음 정거장으로 가요.' : '한 번 더 해볼까요? 친구는 할 수 있어요.');
-  h += '<div class="btnrow">';
-  h += '<button class="bigbtn plain" data-act="tomap">지도로</button>';
+           passed ? '멋져요! 다음 정거장으로 가요.' : '한 번 더 해볼까요? 친구는 할 수 있어요.', passed?'ok':'', passed?'✓':'');
+  h += '<div class="btnrow"><button class="bigbtn plain" data-act="tomap">지도로</button>';
   if (passed && r.stage < last) h += '<button class="bigbtn" data-act="'+act+'" data-stage="'+(r.stage+1)+'">다음 단계</button>';
   else if (passed && !pos1) h += '<button class="bigbtn green" data-act="cert">수료증 받기</button>';
-  else if (passed) h += '<button class="bigbtn green" data-act="tomap">지도로</button>';
-  else h += '<button class="bigbtn" data-act="'+act+'" data-stage="'+r.stage+'">한 번 더</button>';
-  h += '</div></div>';
-  return h;
+  else if (!passed) h += '<button class="bigbtn" data-act="'+act+'" data-stage="'+r.stage+'">한 번 더</button>';
+  return h + '</div></div></div>';
 }
 
 /* ---------- 수료증 ---------- */
@@ -1195,56 +1213,50 @@ function renderCert(){
   var day = d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일';
   var total = 0, i;
   for (i=1;i<=8;i++) total += (state.stars[i]||0);
-  var h = '<div class="card"><div class="cert">'+
+  return '<div class="card stack"><div class="fig col cert">'+
     '<div class="ttl">개방현 수료증</div>'+
-    '<p class="muted" style="margin-top:6px">솔 · 레 · 라 · 미를 모두 배웠어요</p>'+
+    '<p class="muted">솔 · 레 · 라 · 미를 모두 배웠어요</p>'+
     '<div class="who">'+ (state.name ? esc(state.name) : '친구') +'</div>'+
-    '<p style="font-weight:700">위 친구는 바이올린 개방현 네 줄과 조표 읽기를 끝까지 해냈습니다.</p>'+
+    '<p class="line">위 친구는 바이올린 개방현 네 줄과 조표 읽기를 끝까지 해냈습니다.</p>'+
     '<div class="certchars">'+charSVG('dodo','joy')+charSVG('mimi','joy')+charSVG('sori','cheer')+'</div>'+
     '<p class="muted">모은 별 '+total+' 개 · '+esc(day)+'</p>'+
-    '<p class="muted">네다바웨이 바이올린 개방현 놀이</p>'+
-    '</div>'+
+    '<p class="muted small">네다바웨이 바이올린 개방현 놀이</p>'+
+    '</div><div class="ctrl">'+
     '<label class="sr" for="nameIn">친구 이름</label>'+
-    '<div style="text-align:center;margin-top:12px"><input id="nameIn" type="text" maxlength="12" placeholder="이름을 적어요" value="'+esc(state.name)+'"></div>'+
-    '<div class="btnrow"><button class="bigbtn plain" data-act="tomap">지도로</button>'+
-    '<button class="bigbtn" data-act="saveName">이름 넣기</button></div></div>';
-  return h;
+    '<div class="namerow"><input id="nameIn" type="text" maxlength="12" placeholder="이름을 적어요" value="'+esc(state.name)+'">'+
+    '<button class="bigbtn" data-act="saveName">이름 넣기</button></div>'+
+    '<div class="btnrow small"><button class="bigbtn plain" data-act="tomap">지도로</button></div>'+
+    '</div></div>';
 }
 
 /* ---------- 학부모·교사 화면 ---------- */
+function statCell(label, stars, tries){
+  var rate = tries && tries.total ? Math.round(tries.ok/tries.total*100)+'%' : '—';
+  return '<div class="stat"><b>'+esc(label)+' <span class="s">'+(stars?starText(stars):'')+'</span></b><span class="r">'+rate+'</span></div>';
+}
 function renderParent(){
-  var h = '<div class="card"><h2>학부모 · 교사 화면</h2>';
-  h += '<table class="stats"><thead><tr><th>단계</th><th>별</th><th>정답률</th></tr></thead><tbody>';
-  for (var i=1;i<=8;i++){
-    var t = state.tries[i], rate = t && t.total ? Math.round(t.ok/t.total*100)+'%' : '—';
-    h += '<tr><td>'+i+'</td><td>'+(state.stars[i]?starText(state.stars[i]):'—')+'</td><td>'+rate+'</td></tr>';
-  }
-  h += '</tbody></table>';
-  h += '<h3 style="margin-top:14px">1지 코스</h3>';
-  h += '<table class="stats"><thead><tr><th>줄</th><th>별</th><th>정답률</th></tr></thead><tbody>';
-  for (var k=1;k<=POS1_STAGES.length;k++){
-    var pt = state.pos1.tries[k], prate = pt && pt.total ? Math.round(pt.ok/pt.total*100)+'%' : '—';
-    h += '<tr><td>'+esc(NOTES[POS1_STAGES[k-1].string].ko)+'줄</td><td>'+(state.pos1.stars[k]?starText(state.pos1.stars[k]):'—')+'</td><td>'+prate+'</td></tr>';
-  }
-  h += '</tbody></table>';
+  var h = '<div class="card stack parent">'+head('학부모 · 교사 화면')+'<div class="fig col" style="justify-content:flex-start">';
+  h += '<p class="sec">개방현 코스 — 별 · 정답률</p><div class="statgrid">';
+  for (var i=1;i<=8;i++) h += statCell(i+'단계', state.stars[i], state.tries[i]);
+  h += '</div><p class="sec">1지 코스</p><div class="statgrid">';
+  for (var k=1;k<=POS1_STAGES.length;k++) h += statCell(NOTES[POS1_STAGES[k-1].string].ko+'줄', state.pos1.stars[k], state.pos1.tries[k]);
+  h += '</div>';
   var keys = Object.keys(state.miss).sort(function(a,b){ return state.miss[b]-state.miss[a]; });
-  h += '<h3 style="margin-top:14px">자주 틀린 음</h3>';
-  if (!keys.length) h += '<p class="muted">아직 기록이 없어요.</p>';
-  else {
-    h += '<div class="misslist">';
-    for (var j=0;j<keys.length;j++){
-      var nn = NOTES[keys[j]];
-      if (nn) h += '<span class="misschip">'+esc(nn.ko)+' ('+nn.en+') · '+state.miss[keys[j]]+'회</span>';
-    }
-    h += '</div>';
+  h += '<div class="misslist" style="justify-content:flex-start;width:100%"><span class="sec">자주 틀린 음</span>';
+  if (!keys.length) h += '<span class="muted">아직 기록이 없어요.</span>';
+  for (var j=0;j<keys.length;j++){
+    var nn = NOTES[keys[j]];
+    if (nn) h += '<span class="misschip">'+esc(nn.ko)+' · '+state.miss[keys[j]]+'회</span>';
   }
+  h += '</div>';
+  h += '</div><div class="ctrl">';
   h += '<div class="switchrow"><span class="lbl">유형 C — 듣고 맞히기</span>'+
        '<button class="switch'+(state.typeC?' on':'')+'" data-act="toggleC" aria-pressed="'+(state.typeC?'true':'false')+'">'+
        (state.typeC?'켜짐':'꺼짐')+'</button></div>';
-  h += '<p class="muted" style="margin-top:8px">청음이 어려운 친구는 꺼 두어도 8단계를 모두 끝낼 수 있어요.</p>';
+  h += '<p class="muted small note">청음이 어려운 친구는 꺼 두어도 8단계를 모두 끝낼 수 있어요.</p>';
   h += '<div class="btnrow"><button class="bigbtn plain" data-act="tomap">돌아가기</button>'+
-       '<button class="bigbtn" style="background:var(--coral)" data-act="reset">진행 초기화</button></div></div>';
-  return h;
+       '<button class="bigbtn" style="background:var(--coral)" data-act="reset">진행 초기화</button></div>';
+  return h + '</div></div>';
 }
 
 /* ---------- 라우터 ---------- */
@@ -1312,16 +1324,18 @@ function placeLabel(step){
   return '아래 ' + ORD[led-1] + ' 덧줄' + (d % 2 ? ' 아래 칸' : '');
 }
 function snapStepFromClientY(svg, clientY){
-  var r = svg.getBoundingClientRect();
-  if (!r.height) return null;
-  var y = (clientY - r.top) / r.height * VB_H;
+  /* 오선지는 남는 높이에 맞춰 늘고 줄며 가운데 정렬된다.
+     화면 좌표를 SVG 좌표로 되돌려야 배율·여백과 상관없이 정확하다. */
+  var m = svg.getScreenCTM && svg.getScreenCTM();
+  if (!m || !m.d) return null;
+  var y = (clientY - m.f) / m.d;
   return clampStep(Math.round((BASE_Y - y) / (S/2)));
 }
 function updatePlaceLayer(){
   var layer = document.getElementById('placeLayer');
   if (!layer) return;
   var q = state.quiz, st = STAGES[q.stage-1];
-  var nx = noteXFor(st.key ? KEYS[st.key].sharps : []);
+  var nx = noteXFor(st.key ? KEYS[st.key].sharps : [], QW);
   var out = '';
   if (q.hover !== null && q.hover !== undefined && q.hover !== q.placed){
     out += noteSVG(nx, q.hover, { color:'var(--sky-d)', opacity:0.45 });
@@ -1338,27 +1352,33 @@ function bindQuiz(){
   var svg = wrap.querySelector('svg');
   if (!svg) return;
   updatePlaceLayer();
-  function move(ev){
-    var cy = (ev.touches && ev.touches[0]) ? ev.touches[0].clientY : ev.clientY;
-    var s = snapStepFromClientY(svg, cy);
-    if (s === null) return;
-    if (q.hover !== s){ q.hover = s; updatePlaceLayer(); }
-  }
-  function drop(ev){
-    var cy = (ev.changedTouches && ev.changedTouches[0]) ? ev.changedTouches[0].clientY : ev.clientY;
-    var s = snapStepFromClientY(svg, cy);
-    if (s === null) return;
-    q.placed = s; q.hover = null;
+  var dragging = false;
+  wrap.addEventListener('pointerdown', function(ev){
+    if (q.phase !== 'ask') return;
+    var st = snapStepFromClientY(svg, ev.clientY);
+    if (st === null) return;
+    dragging = true;
+    try { wrap.setPointerCapture(ev.pointerId); } catch(e){}
+    q.placed = st; q.hover = null; updatePlaceLayer();
+  });
+  /* 누른 채로 움직이면 음표가 손가락을 따라오고, 마우스는 지나가기만 해도 미리 보여 준다 */
+  wrap.addEventListener('pointermove', function(ev){
+    var st = snapStepFromClientY(svg, ev.clientY);
+    if (st === null) return;
+    if (dragging){ if (q.placed !== st){ q.placed = st; updatePlaceLayer(); } }
+    else if (ev.pointerType === 'mouse' && q.phase === 'ask' && q.hover !== st){ q.hover = st; updatePlaceLayer(); }
+  });
+  function endDrag(){
+    if (!dragging) return;
+    dragging = false;
     render();
+    announce(placeLabel(q.placed));
   }
-  function clearHover(){ if (q.hover !== null && q.hover !== undefined){ q.hover = null; updatePlaceLayer(); } }
-  /* 마우스는 지나가기만 해도 반투명 음표가 따라온다 */
-  wrap.addEventListener('pointermove', function(ev){ if (ev.pointerType !== 'touch') move(ev); });
-  wrap.addEventListener('pointerdown', move);
-  wrap.addEventListener('pointerup', drop);
-  /* 손가락으로 세로로 쓸어 화면을 넘기면 놓지 않고 취소한다 */
-  wrap.addEventListener('pointercancel', clearHover);
-  wrap.addEventListener('pointerleave', clearHover);
+  wrap.addEventListener('pointerup', endDrag);
+  wrap.addEventListener('pointercancel', endDrag);
+  wrap.addEventListener('pointerleave', function(){
+    if (!dragging && q.hover !== null && q.hover !== undefined){ q.hover = null; updatePlaceLayer(); }
+  });
   wrap.addEventListener('keydown', function(ev){
     var k = ev.key;
     if (k === 'ArrowUp' || k === 'ArrowDown'){
