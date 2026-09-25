@@ -186,7 +186,7 @@
     'pulse-analysis':    { name: '설문 응답 분석',              summary: '익명 응답 → 감성·주제 + 1페이지 코멘트.',                  cat: 'analyze',   level: 2, guide: '/resources/automation/hr/03-pulse-survey-sentiment.html' },
     'resume-screening':  { name: '이력서 5분 스크리닝',       summary: '공고+이력서 → 매칭도 + 강점·우려 + 면접 질문.',             cat: 'analyze',   level: 2 },
     'content-calendar':  { name: '30일 콘텐츠 캘린더',         summary: '월 테마 → 30일치 헤드라인·후크·CTA.',                       cat: 'create',    level: 1, guide: '/resources/automation/marketing/01-content-calendar-generator.html' },
-    'lead-scoring':      { name: '리드 스코어링',              summary: '리드 정보 → 룰+AI 점수 + 첫 응답 메시지.',                 cat: 'analyze',   level: 2, guide: '/resources/automation/marketing/02-lead-scoring-router.html' },
+    'lead-scoring':      { name: '리드 스코어링',              summary: '4가지 선택 → 등급·점수·첫 답장 초안 (키 불필요).',          cat: 'analyze',   level: 1, guide: '/resources/automation/marketing/02-lead-scoring-router.html' },
     'mention-classifier':{ name: '리뷰·멘션 분류기',          summary: '멘션 → 감성·주제 + 부정 멘션 즉시 강조.',                  cat: 'analyze',   level: 2, guide: '/resources/automation/marketing/03-review-mention-digest.html' },
     'sales-followup':    { name: '세일즈 콜 후속 메일',        summary: '미팅 메모 → 후속 메일 + 다음 단계 + 일정 제안.',           cat: 'create',    level: 1 },
     'mail-reply-drafter':{ name: '메일 답장 초안기',           summary: '받은 메일 + 톤 → 한 줄·짧은·자세한 답장 3종.',             cat: 'create',    level: 1 },

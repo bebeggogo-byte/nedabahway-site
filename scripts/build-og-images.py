@@ -29,7 +29,7 @@ ITEMS = [
     ("pulse-analysis",    "설문 응답 분석",          "익명 응답 → 감성·주제 + 1페이지 코멘트", "tool"),
     ("resume-screening",  "이력서 5분 스크리닝",    "공고+이력서 → 매칭도 + 강점·우려 + 면접 질문", "tool"),
     ("content-calendar",  "30일 콘텐츠 캘린더",     "월 테마 → 30일치 헤드라인·후크·CTA", "tool"),
-    ("lead-scoring",      "리드 스코어링",           "리드 정보 → 룰+AI 점수 + 첫 응답 메시지", "tool"),
+    ("lead-scoring",      "리드 스코어링",           "4가지 선택 → 등급·점수 + 첫 답장 초안", "tool"),
     ("mention-classifier","리뷰·멘션 분류기",       "멘션 → 감성·주제 + 부정 멘션 즉시 강조", "tool"),
     ("sales-followup",    "세일즈 콜 후속 메일",    "미팅 메모 → 후속 메일 + 다음 단계 + 일정 제안", "tool"),
     ("mail-reply-drafter","메일 답장 초안기",       "받은 메일 + 톤 → 한 줄·짧은·자세한 답장 3종", "tool"),

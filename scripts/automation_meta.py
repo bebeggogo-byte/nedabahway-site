@@ -79,7 +79,7 @@ CARDS = {
         "summary": "룰 60% + AI 40%로 0~100점 스코어링, Hot/Warm/Cold 등급별 담당자 Slack 카드 발송.",
         "level": "★★", "time": "60분", "prereq": "Google Form + Gemini API 키 + Slack Bot",
         "for_starter": False, "tool": "/auto/tools/lead-scoring/",
-        "tool_label": "리드 점수 즉시 계산 (15초)",
+        "tool_label": "리드 등급 즉시 확인 (5초, 키 불필요)",
     },
     "marketing/03-review-mention-digest": {
         "section": "마케팅", "tag": "MKT-03", "short_id": "9",
