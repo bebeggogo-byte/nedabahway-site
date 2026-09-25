@@ -228,3 +228,60 @@ button{font-family:inherit;}
 
 /* keep Korean words intact when wrapping */
 .sk-hero__sub,.sec-title,.sec-lead,.mock__h,.mock__p,.work__sub,.course__t,.card__t,.work__title{word-break:keep-all;}
+
+/* ===== SUBPAGE BLOCKS ===== */
+.page-hero{padding:120px 0 40px;}
+.page-hero .about-title{margin-top:18px;}
+.page-hero + .sec{padding-top:64px;}
+.sec + .sec{border-top:1px solid var(--line);}
+.sec--flush + .sec,.sec + .sec--flush{border-top:0;}
+.quote{margin-top:28px;padding-left:20px;border-left:3px solid var(--accent);font-size:clamp(18px,2.2vw,22px);font-weight:700;color:var(--text);line-height:1.6;word-break:keep-all;}
+.prose p{font-size:clamp(16px,1.8vw,18px);color:var(--text-2);line-height:1.8;word-break:keep-all;}
+.prose p + p{margin-top:16px;}
+.prose strong{color:var(--text);}
+.cards--2{grid-template-columns:repeat(2,1fr);}
+.cards--4{grid-template-columns:repeat(4,1fr);}
+@media(max-width:900px){.cards--2,.cards--4{grid-template-columns:1fr;}}
+.card__k{font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-4);}
+.card ul{margin-top:18px;list-style:none;}
+.card li{position:relative;padding-left:18px;font-size:16px;color:var(--text-2);line-height:1.7;word-break:keep-all;}
+.card li + li{margin-top:8px;}
+.card li::before{content:'';position:absolute;left:0;top:.72em;width:6px;height:6px;border-radius:50%;background:var(--accent);}
+.card--no li::before{background:var(--text-4);}
+.card .tags{margin-top:22px;gap:8px;}
+.card .tag{font-size:13px;padding:6px 12px;border-radius:9px;}
+.chips{display:flex;flex-wrap:wrap;gap:10px;}
+.chips .tag{font-weight:600;}
+.course--static{cursor:default;}
+.course--static:hover{border-color:var(--line);background:transparent;}
+.course__tags{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;}
+.course__tags span{font-size:13px;font-weight:600;color:var(--text-2);background:var(--chip);padding:5px 11px;border-radius:8px;}
+.course__kick{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.08em;color:var(--text-4);margin-bottom:6px;}
+.split{display:grid;grid-template-columns:1fr 1.25fr;gap:64px;align-items:start;}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:36px;}}
+
+/* forms */
+.form-card{border:1px solid var(--line);background:var(--bg-2);border-radius:var(--r-lg);padding:36px 32px;}
+.form-card .form{margin-top:8px;}
+.field{margin-top:20px;}
+.field label{display:block;font-size:14px;font-weight:600;color:var(--text-2);margin-bottom:8px;}
+.field .req{color:var(--accent);}
+.field input,.field select,.field textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;color:var(--text);font-family:var(--sans);font-size:16px;padding:14px 16px;transition:border-color .2s;}
+.field textarea{min-height:120px;resize:vertical;}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--text-3) 50%),linear-gradient(135deg,var(--text-3) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:44px;}
+.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--accent);}
+.field ::placeholder{color:var(--text-4);}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+.form-hint{margin-top:18px;font-size:14px;color:var(--text-3);word-break:keep-all;}
+.form-hint a,.prose a{color:var(--accent-2);}
+.form-actions{margin-top:24px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+.form-actions .ask__btn{border-radius:14px;}
+
+/* faq */
+.faq{display:flex;flex-direction:column;gap:14px;}
+.faq details{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--bg-2);padding:24px 26px;}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;font-size:clamp(17px,2vw,19px);font-weight:700;word-break:keep-all;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:'+';color:var(--accent);font-size:24px;line-height:1;transition:transform .2s;}
+.faq details[open] summary::after{transform:rotate(45deg);}
+.faq details p{margin-top:14px;font-size:16px;color:var(--text-3);line-height:1.75;word-break:keep-all;}
