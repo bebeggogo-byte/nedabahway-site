@@ -312,5 +312,13 @@
 <script src="/assets/back-to-top.js" defer></script>
 
 <script src="/assets/deck-toggle.js" defer></script>
+<script>
+// Prefill the consult message from the homepage ask bar (?msg=...).
+(function(){
+  var msg = new URLSearchParams(location.search).get('msg');
+  var box = document.getElementById('consult-msg');
+  if (msg && box && !box.value) box.value = msg.slice(0, 500);
+})();
+</script>
 </body>
 </html>
