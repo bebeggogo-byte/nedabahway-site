@@ -3,7 +3,7 @@
 
 Usage: python3 scripts/build-ai-guides.py   (then scripts/build-og-jpg.py for the JPG twins)
 """
-import html, os, pathlib
+import html, json, os, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = 'https://www.nedabah.org'
@@ -538,8 +538,8 @@ def hub():
     title = 'AI 잘 쓰는 방법 — 환경 세팅 가이드 12개 | 네다바웨이'
     desc = '프롬프트 잘 쓰는 시대는 지났습니다. 기준·프로세스·과업 도달 형태를 AI에 올리는 환경 세팅 가이드 12개. 빈칸 템플릿과 복사용 프롬프트를 모든 운영자에게 무료로 제공합니다.'
     url = f'{SITE}/ai/'
-    ld = ('{"@context":"https://schema.org","@type":"CollectionPage","name":"AI 잘 쓰는 방법 — 환경 세팅 가이드 12개",'
-          f'"url":"{url}","description":"{desc}","inLanguage":"ko","isPartOf":{{"@type":"WebSite","name":"네다바웨이","url":"{SITE}/"}}}}')
+    ld = json.dumps({"@context":"https://schema.org","@type":"CollectionPage","name":"AI 잘 쓰는 방법 — 환경 세팅 가이드 12개",
+          "url":url,"description":desc,"inLanguage":"ko","isPartOf":{"@type":"WebSite","name":"네다바웨이","url":SITE+"/"}}, ensure_ascii=False)
     out = head(title, desc, url, 'ai') + f'<script type="application/ld+json">\n{ld}\n</script>\n</head>\n' + HEADER
     out += '''
 <main id="main">
@@ -594,9 +594,8 @@ def guide(i, g):
     url = f'{SITE}/ai/{g["slug"]}/'
     prev = GUIDES[i-1] if i > 0 else None
     nxt = GUIDES[i+1] if i < 11 else None
-    ld = ('{"@context":"https://schema.org","@type":"HowTo","name":"' + esc(g["title"]) + '","description":"' + esc(desc) + '",'
-          f'"url":"{url}","inLanguage":"ko","step":[' +
-          ','.join('{"@type":"HowToStep","text":"' + esc(s) + '"}' for s in g['steps']) + ']}')
+    ld = json.dumps({"@context":"https://schema.org","@type":"HowTo","name":g["title"],"description":desc,
+          "url":url,"inLanguage":"ko","step":[{"@type":"HowToStep","text":s} for s in g['steps']]}, ensure_ascii=False)
     out = head(title, desc, url, g['slug']) + f'<script type="application/ld+json">\n{ld}\n</script>\n</head>\n' + HEADER
     out += f'''
 <main id="main">
