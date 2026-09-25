@@ -1,116 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<title>[D16] agent persona simulation — 재사용 프롬프트 팩 | 네다바웨이 자료실</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/assets/v3.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
-<link rel="stylesheet" href="/resources/_templates/style.css">
-<style>
-.article-body { max-width: 760px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #222; }
-.article-body h1, .article-body h2, .article-body h3 { line-height: 1.3; margin-top: 2rem; }
-.article-body h1 { border-bottom: 2px solid #111; padding-bottom: .5rem; }
-.article-body ul { padding-left: 1.5rem; }
-.article-body pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 6px; }
-.article-body .meta { color: #666; font-size: .9rem; }
-.article-body .back { display: inline-block; margin-top: 2rem; }
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-<nav class="nav">
-  <div class="nav__inner">
-    <a href="/" class="nav__logo">네다바웨이</a>
-    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
-    <div class="nav__links">
-      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
-      <a href="/learning.html" class="nav__link">학습 노트</a>
-      <a href="/ai.html" class="nav__link">AI 작업실</a>
-      <a href="/programs.html" class="nav__link">강의·코칭</a>
-      <a href="/magazine.html" class="nav__link">성경관찰</a>
-      <a href="/about.html" class="nav__link">소개</a>
-      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
-    </div>
-  </div>
-</nav>
-<main class="article-body">
-<h1>[D16] agent persona simulation — 재사용 프롬프트 팩</h1>
-
-<p>_D16 · prompt_pack · 2026-06-13_</p>
-
-<h2>agent persona simulation — 재사용 프롬프트 5개</h2>
-
-
-<h3>Prompt 1</h3>
-<pre>
-다음 5건 자료를 표 형태로 비교해줘. 컬럼은 출처·핵심주장·우리 사업 시사점.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13681v1">https://arxiv.org/abs/2606.13681v1</a></p>
-<p>2. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>3. <strong>Improving Robotic Generalist Policies via Flow Reversal Steering</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13675v1">https://arxiv.org/abs/2606.13675v1</a></p>
-
-
-<h3>Prompt 2</h3>
-<pre>
-이 자료들이 &quot;agent persona simulation&quot;에 대한 내 가설을 강화하는지 약화하는지 한 문장씩 평가해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13681v1">https://arxiv.org/abs/2606.13681v1</a></p>
-<p>2. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>3. <strong>Improving Robotic Generalist Policies via Flow Reversal Steering</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13675v1">https://arxiv.org/abs/2606.13675v1</a></p>
-
-
-<h3>Prompt 3</h3>
-<pre>
-가장 영향력 있는 1건을 골라 90초 분량 보이스오버 스크립트를 써줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13681v1">https://arxiv.org/abs/2606.13681v1</a></p>
-<p>2. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>3. <strong>Improving Robotic Generalist Policies via Flow Reversal Steering</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13675v1">https://arxiv.org/abs/2606.13675v1</a></p>
-
-
-<h3>Prompt 4</h3>
-<pre>
-이 자료를 모르는 강의 수강생에게 5분 분량으로 풀어 설명해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13681v1">https://arxiv.org/abs/2606.13681v1</a></p>
-<p>2. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>3. <strong>Improving Robotic Generalist Policies via Flow Reversal Steering</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13675v1">https://arxiv.org/abs/2606.13675v1</a></p>
-
-
-<h3>Prompt 5</h3>
-<pre>
-이 자료들 중 윤리·안전 관점에서 주의해야 할 1건을 골라 그 이유를 200자 이내로 적어줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13681v1">https://arxiv.org/abs/2606.13681v1</a></p>
-<p>2. <strong>InterleaveThinker: Reinforcing Agentic Interleaved Generation</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13679v1">https://arxiv.org/abs/2606.13679v1</a></p>
-<p>3. <strong>Improving Robotic Generalist Policies via Flow Reversal Steering</strong> — arxiv  </p>
-<p>   <a href="https://arxiv.org/abs/2606.13675v1">https://arxiv.org/abs/2606.13675v1</a></p>
-
-
-<p>---</p>
-
-<p>_생성: Daily Research Engine v1 · 부서 D16 · 형태 prompt_pack_</p>
-
-<div class="back"><a href="/resources/">← 자료실로</a></div>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
+<script type="text/plain" id="nw-vault-data">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</script>
 </body>
 </html>

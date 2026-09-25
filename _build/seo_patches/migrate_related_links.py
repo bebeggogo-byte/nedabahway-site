@@ -56,7 +56,7 @@ def render_block(related: list[Path]) -> str:
         f'<aside class="related-posts" style="margin-top:3rem;padding:1.5rem;'
         f'border-top:2px solid #e5d8c4;background:transparent;max-width:680px;">'
         f'<h3 style="font-size:.95rem;font-weight:600;letter-spacing:.04em;'
-        f'color:#7a6f5e;margin:0 0 .8rem 0;">함께 읽으면 좋은 관점 노트</h3>'
+        f'color:#5f574d;margin:0 0 .8rem 0;">함께 읽으면 좋은 관점 노트</h3>'
         f'<ul style="list-style:none;padding:0;margin:0;font-size:.92rem;line-height:1.85;">\n'
         f'      {inner}\n'
         f'    </ul></aside>\n'

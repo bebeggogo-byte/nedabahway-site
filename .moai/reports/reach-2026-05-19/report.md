@@ -19,7 +19,7 @@ bilingual wiring. The audit found three defects; all are fixed.
 |-----|---------|-----|--------|
 | REQ-REACH-003 | `magazine/feed.xml` valid RSS but **zero items** | Populated with the 50 most recent magazine articles (RFC-822 dates, absolute links, guid) | FIXED |
 | REQ-REACH-006 | `blog/perspective/` articles and `iden/notes/` carried **no feed autodiscovery** | Added `<link rel="alternate">` (RSS/Atom/JSON) to 107 content pages | FIXED |
-| REQ-REACH-008/009 | 22 public pages had **no `og:image`** | Every public page now resolves an `og:image` (bespoke or `/assets/og-default.svg` fallback) with full share-card metadata | FIXED |
+| REQ-REACH-008/009 | 22 public pages had **no `og:image`** | Every public page now resolves an `og:image` (bespoke or `/assets/og-default.jpg` fallback) with full share-card metadata | FIXED |
 | REQ-REACH-011/012 | `hreflang` was **one-directional** (about.en.html only) | Added the reciprocal `hreflang` set (ko/en/x-default) to about.html | FIXED |
 
 ## 3. Feed inventory (REQ-REACH-001)

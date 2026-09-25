@@ -1,202 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<title>[D18] fact verification pipeline — 재사용 프롬프트 팩 | 네다바웨이 자료실</title>
-<meta name="description" content="[D18] fact verification pipeline — 재사용 프롬프트 팩 네다바웨이 자료실의 재사용 프롬프트 팩.">
-<link rel="canonical" href="https://www.nedabah.org/resources/prompts/2026-04-30_d18-prompt_pack-d18-fact-verification-pipeline-재사용-프롬프트-팩.html">
-<meta property="og:title" content="[D18] fact verification pipeline — 재사용 프롬프트 팩">
-<meta property="og:description" content="[D18] fact verification pipeline — 재사용 프롬프트 팩 네다바웨이 자료실의 재사용 프롬프트 팩.">
-<meta property="og:url" content="https://www.nedabah.org/resources/prompts/2026-04-30_d18-prompt_pack-d18-fact-verification-pipeline-재사용-프롬프트-팩.html">
-<meta property="og:type" content="article">
-<meta property="og:image" content="https://www.nedabah.org/assets/og-default.svg">
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "홈",
-      "item": "https://www.nedabah.org/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "자료실",
-      "item": "https://www.nedabah.org/resources/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "프롬프트",
-      "item": "https://www.nedabah.org/resources/prompts/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "[D18] fact verification pipeline — 재사용 프롬프트 팩",
-      "item": "https://www.nedabah.org/resources/prompts/2026-04-30_d18-prompt_pack-d18-fact-verification-pipeline-재사용-프롬프트-팩.html"
-    }
-  ]
-}
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body { max-width: 760px; margin: 2rem auto; padding: 0 1rem; font-family: 'Noto Sans KR', system-ui, sans-serif; line-height: 1.7; color: #222; }
-h1, h2, h3 { line-height: 1.3; margin-top: 2rem; }
-h1 { border-bottom: 2px solid #111; padding-bottom: .5rem; }
-ul { padding-left: 1.5rem; }
-pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 6px; }
-.meta { color: #666; font-size: .9rem; }
-.back { display: inline-block; margin-top: 2rem; }
-</style>
-  <link rel="stylesheet" href="/assets/global-fonts.css">
-  <link rel="stylesheet" href="/assets/global-nav.css">
-<link rel="stylesheet" href="/assets/v3.css">
-
-<link rel="stylesheet" href="/assets/nav-right.css">
-
-
-<link rel="stylesheet" href="/assets/deck-toggle.css">
-
-<link rel="stylesheet" href="/assets/back-to-top.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
-
-<link rel="stylesheet" href="/assets/mobile-v1.css">
-  <link rel="stylesheet" href="/assets/warm-tone-v1.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-
-<nav class="gnav" role="navigation" aria-label="주요 메뉴">
-  <div class="gnav__inner">
-    <a href="/" class="gnav__logo">네다바웨이</a>
-    <button class="gnav__toggle" type="button" aria-label="메뉴" onclick="document.querySelector('.gnav__links').classList.toggle('is-open')">≡</button>
-    <ul class="gnav__links" id="gnavLinks">
-      <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
-      <li><a href="/learning.html" class="gnav__link">학습 노트</a></li>
-      <li><a href="/ai.html" class="gnav__link">AI 작업실</a></li>
-      <li><a href="/programs.html" class="gnav__link">강의·코칭</a></li>
-      <li><a href="/sbm.html" class="gnav__link">SBM</a></li>
-      <li><a href="/about.html" class="gnav__link">소개</a></li>
-      <li><a href="/contact.html" class="gnav__cta">강의 의뢰 →</a></li>
-    </ul>
-  </div>
-</nav>
-<main class="article-body">
-<header class="resource-header">
-<h1>[D18] fact verification pipeline — 재사용 프롬프트 팩</h1>
-
-<p>_D18 · prompt_pack · 2026-04-30_</p>
-</header>
-
-<h2>fact verification pipeline — 재사용 프롬프트 5개</h2>
-
-
-<h3>Prompt 1</h3>
-<pre>
-다음 5건 자료를 표 형태로 비교해줘. 컬럼은 출처·핵심주장·우리 사업 시사점.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Fathom: A Fast and Modular RAG Pipeline for Fact-Checking</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2025.fever-1.20">https://doi.org/10.18653/v1/2025.fever-1.20</a></p>
-<p>2. <strong>An Entity-based Claim Extraction Pipeline for Real-world Biomedical Fact-checking</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2023.fever-1.3">https://doi.org/10.18653/v1/2023.fever-1.3</a></p>
-<p>3. <strong>FACT5: A Novel Benchmark and Pipeline for Nuanced Fact-Checking of Complex Statements</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2025.fever-1.8">https://doi.org/10.18653/v1/2025.fever-1.8</a></p>
-
-
-<h3>Prompt 2</h3>
-<pre>
-이 자료들이 &quot;fact verification pipeline&quot;에 대한 내 가설을 강화하는지 약화하는지 한 문장씩 평가해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Fathom: A Fast and Modular RAG Pipeline for Fact-Checking</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2025.fever-1.20">https://doi.org/10.18653/v1/2025.fever-1.20</a></p>
-<p>2. <strong>An Entity-based Claim Extraction Pipeline for Real-world Biomedical Fact-checking</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2023.fever-1.3">https://doi.org/10.18653/v1/2023.fever-1.3</a></p>
-<p>3. <strong>FACT5: A Novel Benchmark and Pipeline for Nuanced Fact-Checking of Complex Statements</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2025.fever-1.8">https://doi.org/10.18653/v1/2025.fever-1.8</a></p>
-
-
-<h3>Prompt 3</h3>
-<pre>
-가장 영향력 있는 1건을 골라 90초 분량 보이스오버 스크립트를 써줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Fathom: A Fast and Modular RAG Pipeline for Fact-Checking</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2025.fever-1.20">https://doi.org/10.18653/v1/2025.fever-1.20</a></p>
-<p>2. <strong>An Entity-based Claim Extraction Pipeline for Real-world Biomedical Fact-checking</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2023.fever-1.3">https://doi.org/10.18653/v1/2023.fever-1.3</a></p>
-<p>3. <strong>FACT5: A Novel Benchmark and Pipeline for Nuanced Fact-Checking of Complex Statements</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2025.fever-1.8">https://doi.org/10.18653/v1/2025.fever-1.8</a></p>
-
-
-<h3>Prompt 4</h3>
-<pre>
-이 자료를 모르는 강의 수강생에게 5분 분량으로 풀어 설명해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Fathom: A Fast and Modular RAG Pipeline for Fact-Checking</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2025.fever-1.20">https://doi.org/10.18653/v1/2025.fever-1.20</a></p>
-<p>2. <strong>An Entity-based Claim Extraction Pipeline for Real-world Biomedical Fact-checking</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2023.fever-1.3">https://doi.org/10.18653/v1/2023.fever-1.3</a></p>
-<p>3. <strong>FACT5: A Novel Benchmark and Pipeline for Nuanced Fact-Checking of Complex Statements</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2025.fever-1.8">https://doi.org/10.18653/v1/2025.fever-1.8</a></p>
-
-
-<h3>Prompt 5</h3>
-<pre>
-이 자료들 중 윤리·안전 관점에서 주의해야 할 1건을 골라 그 이유를 200자 이내로 적어줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Fathom: A Fast and Modular RAG Pipeline for Fact-Checking</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2025.fever-1.20">https://doi.org/10.18653/v1/2025.fever-1.20</a></p>
-<p>2. <strong>An Entity-based Claim Extraction Pipeline for Real-world Biomedical Fact-checking</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2023.fever-1.3">https://doi.org/10.18653/v1/2023.fever-1.3</a></p>
-<p>3. <strong>FACT5: A Novel Benchmark and Pipeline for Nuanced Fact-Checking of Complex Statements</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.18653/v1/2025.fever-1.8">https://doi.org/10.18653/v1/2025.fever-1.8</a></p>
-
-
-<p>---</p>
-
-<p>_생성: Daily Research Engine v1 · 부서 D18 · 형태 prompt_pack_</p>
-
-<div class="back"><a href="/resources/">← 자료실로</a></div>
-<aside class="cta-next" aria-labelledby="cta-next-title">
-  <h2 id="cta-next-title">다음 한 걸음</h2>
-  <p>자료를 읽고 한 사람의 일을 다시 디자인하고 싶다면, 무료 30분 상담에서 좌표를 함께 잡아 봅니다.</p>
-  <p class="cta-next__links">
-    <a class="cta-next__primary" href="/contact.html">무료 30분 상담 신청</a>
-    <a class="cta-next__secondary" href="/p/">5개 과정 라인업 보기</a>
-  </p>
-</aside>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
-<footer class="foot foot--mini">
-  <style>
-    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
-    .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
-    .foot--mini strong{color:#2a241c}
-    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
-    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
-    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
-    @media(max-width:680px){
-      .foot--mini .foot--mini__inner{justify-content:flex-start}
-      .foot--mini>div>span{display:block}
-    }
-  </style>
-  <div class="foot--mini__inner">
-    <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
-    <span>고유번호 <strong>137-82-94771</strong></span>
-    <span class="foot--mini__build">build 920a801 · 2026-04-30 15:49</span>
-  </div>
-</footer>
-
-
-<script src="/assets/back-to-top.js" defer></script>
-
-<script src="/assets/deck-toggle.js" defer></script>
+<script type="text/plain" id="nw-vault-data">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</script>
 </body>
 </html>

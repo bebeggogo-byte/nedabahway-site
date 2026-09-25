@@ -326,7 +326,7 @@
     const head = document.head;
     const m1 = document.createElement('meta');
     m1.setAttribute('property','og:image');
-    m1.setAttribute('content','https://www.nedabah.org/assets/og/ai-studio.svg');
+    m1.setAttribute('content','https://www.nedabah.org/assets/og/ai-studio.jpg');
     head.appendChild(m1);
     const m2 = document.createElement('meta');
     m2.setAttribute('name','twitter:card');
@@ -334,7 +334,7 @@
     head.appendChild(m2);
     const m3 = document.createElement('meta');
     m3.setAttribute('name','twitter:image');
-    m3.setAttribute('content','https://www.nedabah.org/assets/og/ai-studio.svg');
+    m3.setAttribute('content','https://www.nedabah.org/assets/og/ai-studio.jpg');
     head.appendChild(m3);
   }
 

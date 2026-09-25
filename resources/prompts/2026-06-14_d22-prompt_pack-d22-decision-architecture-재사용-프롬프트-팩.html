@@ -1,116 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<title>[D22] decision architecture — 재사용 프롬프트 팩 | 네다바웨이 자료실</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/assets/v3.css">
-<link rel="stylesheet" href="/assets/typography-v4.css">
-<link rel="stylesheet" href="/resources/_templates/style.css">
-<style>
-.article-body { max-width: 760px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #222; }
-.article-body h1, .article-body h2, .article-body h3 { line-height: 1.3; margin-top: 2rem; }
-.article-body h1 { border-bottom: 2px solid #111; padding-bottom: .5rem; }
-.article-body ul { padding-left: 1.5rem; }
-.article-body pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 6px; }
-.article-body .meta { color: #666; font-size: .9rem; }
-.article-body .back { display: inline-block; margin-top: 2rem; }
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="nw-vault" content="1">
+<title>비공개 자료실 | 네다바웨이</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vault.css">
+<script src="/assets/vault.js" defer></script>
 </head>
 <body>
-<nav class="nav">
-  <div class="nav__inner">
-    <a href="/" class="nav__logo">네다바웨이</a>
-    <button class="nav__toggle" onclick="document.querySelector('.nav__links').classList.toggle('is-open')">≡</button>
-    <div class="nav__links">
-      <a href="/blog/perspective/" class="nav__link">관점 노트</a>
-      <a href="/learning.html" class="nav__link">학습 노트</a>
-      <a href="/ai.html" class="nav__link">AI 작업실</a>
-      <a href="/programs.html" class="nav__link">강의·코칭</a>
-      <a href="/magazine.html" class="nav__link">성경관찰</a>
-      <a href="/about.html" class="nav__link">소개</a>
-      <a href="/contact.html" class="nav__cta">강의 의뢰 →</a>
-    </div>
-  </div>
-</nav>
-<main class="article-body">
-<h1>[D22] decision architecture — 재사용 프롬프트 팩</h1>
-
-<p>_D22 · prompt_pack · 2026-06-14_</p>
-
-<h2>decision architecture — 재사용 프롬프트 5개</h2>
-
-
-<h3>Prompt 1</h3>
-<pre>
-다음 5건 자료를 표 형태로 비교해줘. 컬럼은 출처·핵심주장·우리 사업 시사점.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Figure 4: FQL architecture for decision making.</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.7717/peerjcs.556/fig-4">https://doi.org/10.7717/peerjcs.556/fig-4</a></p>
-<p>2. <strong>Decision Architecture - A Tunable Governance Model for Human-AI Decision Boundaries</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.2139/ssrn.6263900">https://doi.org/10.2139/ssrn.6263900</a></p>
-<p>3. <strong>Decision Architecture Calibration</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.2139/ssrn.6285559">https://doi.org/10.2139/ssrn.6285559</a></p>
-
-
-<h3>Prompt 2</h3>
-<pre>
-이 자료들이 &quot;decision architecture&quot;에 대한 내 가설을 강화하는지 약화하는지 한 문장씩 평가해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Figure 4: FQL architecture for decision making.</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.7717/peerjcs.556/fig-4">https://doi.org/10.7717/peerjcs.556/fig-4</a></p>
-<p>2. <strong>Decision Architecture - A Tunable Governance Model for Human-AI Decision Boundaries</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.2139/ssrn.6263900">https://doi.org/10.2139/ssrn.6263900</a></p>
-<p>3. <strong>Decision Architecture Calibration</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.2139/ssrn.6285559">https://doi.org/10.2139/ssrn.6285559</a></p>
-
-
-<h3>Prompt 3</h3>
-<pre>
-가장 영향력 있는 1건을 골라 90초 분량 보이스오버 스크립트를 써줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Figure 4: FQL architecture for decision making.</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.7717/peerjcs.556/fig-4">https://doi.org/10.7717/peerjcs.556/fig-4</a></p>
-<p>2. <strong>Decision Architecture - A Tunable Governance Model for Human-AI Decision Boundaries</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.2139/ssrn.6263900">https://doi.org/10.2139/ssrn.6263900</a></p>
-<p>3. <strong>Decision Architecture Calibration</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.2139/ssrn.6285559">https://doi.org/10.2139/ssrn.6285559</a></p>
-
-
-<h3>Prompt 4</h3>
-<pre>
-이 자료를 모르는 강의 수강생에게 5분 분량으로 풀어 설명해줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Figure 4: FQL architecture for decision making.</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.7717/peerjcs.556/fig-4">https://doi.org/10.7717/peerjcs.556/fig-4</a></p>
-<p>2. <strong>Decision Architecture - A Tunable Governance Model for Human-AI Decision Boundaries</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.2139/ssrn.6263900">https://doi.org/10.2139/ssrn.6263900</a></p>
-<p>3. <strong>Decision Architecture Calibration</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.2139/ssrn.6285559">https://doi.org/10.2139/ssrn.6285559</a></p>
-
-
-<h3>Prompt 5</h3>
-<pre>
-이 자료들 중 윤리·안전 관점에서 주의해야 할 1건을 골라 그 이유를 200자 이내로 적어줘.
-</pre>
-<p>참고 자료:</p>
-<p>1. <strong>Figure 4: FQL architecture for decision making.</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.7717/peerjcs.556/fig-4">https://doi.org/10.7717/peerjcs.556/fig-4</a></p>
-<p>2. <strong>Decision Architecture - A Tunable Governance Model for Human-AI Decision Boundaries</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.2139/ssrn.6263900">https://doi.org/10.2139/ssrn.6263900</a></p>
-<p>3. <strong>Decision Architecture Calibration</strong> — crossref  </p>
-<p>   <a href="https://doi.org/10.2139/ssrn.6285559">https://doi.org/10.2139/ssrn.6285559</a></p>
-
-
-<p>---</p>
-
-<p>_생성: Daily Research Engine v1 · 부서 D22 · 형태 prompt_pack_</p>
-
-<div class="back"><a href="/resources/">← 자료실로</a></div>
+<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
+<main id="main" class="nw-lock__main">
+<div id="nw-lock" class="nw-lock" hidden>
+<h1>비공개 자료실</h1>
+<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
+<form autocomplete="off">
+<label for="nw-pw">비밀번호</label>
+<input id="nw-pw" type="password" autocomplete="current-password" required>
+<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
+<p class="nw-lock__err" hidden></p>
+<button type="submit">열기</button>
+</form>
+<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+</div>
+<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
 </main>
+<script type="text/plain" id="nw-vault-data">xgeHaN1UoZf/4sZZM2fyXIqW48H5X1g9U9kiTYwiwDzrKJZ81tbVeGK7cCcoVAAItYtvpW9C6hsm0sigzFoQ3UABKdrcrgRdB8CMmwUuYN7cRKAu50zsD3js0orQrzggO7nHCcESpHF7R/ptUMfw34Y5JfvGOhHqvJw5CKK/layWqP7W0gDDvzU4nGkHDagUwpGqD1i3DewoAa37L/CJ9uaNFqhZRm67sbr/Xxhl807tB2jDDb7xfUhYRW7aGHOsaM1e2Jba386IEyHBK6AZ7szIGKz7TVln7SMCfCvEmxInY/TJXeX8qAUEnaYzg4hzGg5mSQ6K20ETiaf5OzXxqVVOv/9q9oI0h3nUpu67pZzniuy6/eRx5o+kTUH3CUKHs0suiQvt05Eiyj7dvvy5MKV0cWCkzFHctBQx6Rr+WVDJIgO0Max5WooMG5CyBXbBlksI0qUM9arhSS8YsDsXdFN3dbafn0gRlQcB1J7JdM9lkwDHKoqjQx/ISD6uiaibbe6pGlUM0Nq393aIHSCP1804nIRGlC9xP8g7xj/JUc1S3q4vShvKqMjd+XQRF9tBiKIG5zvg+NQSgmXyeMN7NdlWCQqi2C++qfD7sLEf8BKwp+hVXHqEilkllYvY7/526D4YxXFkohcHR2nOhkgbv8K8zET+Dyb0VTP2kcCzM7SnPZP3FRH5mQnZ3/rOw92g+tyfrn0Zx0gl2C6fznKyaK41FnNRYWzk/BfYQbg9QBkX+gQsmiNu9M3FI5Fyth99iQcNR4gr+hNa9riA7mphqgxACiOPITplesNLg/ndiSzScuY3X6tHoo1TqPwuaZuMwrE304+YDQaRvXAfTVJ1MM29EunbPqGoeNZs1Kj6WhG8uDNgemvH/MotXgORAv4JLdX4GCv19XtRn0hy9dKMlhTpRSt4uwwegzLSrQTk2UHKASN9thq0sqMVXb1kB/FBniNaEgxBDieWldHiPbialVxW83K6k9jJ9NyVRwsU27mjYk/AfYIA4Ps6wUMWpmHXxyelKqc6N4LNWvZe88edtUAckWhrK6CIKBL0IpAcHmLq4Wtsr0XK9TKQNcYFHg1pvgoIxZBOyITtaU4/LS3WVcmDZ69ZdJaC/IgJXDSLtWcU9tr31XB1MsvH6mcdiIeORp2CnA5vli3D5j44SzNNO0xeX7/ONcvnKAVmYYnbrkrTpbI6iMjijdGrmI/tXdfO8IGtQHaqtEAJnwokn+H6WCj04kzUwow8CNKU7+pP04cQD3mi+812abnMDRSwrj2ZHyZnIktu1RWKjGq2O9EVF72pfHihnujztVisitvJGdGbDe8g6GvBW8LzeDXREXDNyvAlDCJc6wiqQ+YDUIBKAAwe4rj0mkPTcKUabwO/6tmDsm41XOayAkM320iUkxMbLfr75bZt+SWV4d5IDs9x/5yZeNLXTlt6cQsbqlzqd1tR9iMelb8Vp9YX/WObZiV9HZejfk20wuFda4o0uWLYPf561dKY5Y7zHrus9NhJnKrp/Tl0eZpCBoLDFOnGiKhfl7lolIdhAKpuSOu+DnToWShzbA2ASw9UExSBBf+eskZcWJrMeP/303Q7MaZjS8dbwgYMe4X36Rl+0kUPXSdAgwJwR9SW5Ub6JmlU4pvkxZwXHpxWsdxBSKp8b97Elurbl7DO/ja/5Kuvt8XVGHv4zQ7BKBJQ3XZlcANqsrJxBLzpj+jZvCiFnA37fH/FGAGy9LbAaAQuyn6Ox27HWUzFNdIGYdWjrPtrSOM1pnldfBhk4cNdxR5FI3LSD0LSJHpBF+maQwjGevi60aACaD0XK5Ai66jLUEyYODTiS5vkaOwbcT3lpum58CkqgRSVEXnvjKtDR0I8nonp841nnw3Ce0hgptnhOAtZ/BDIntWblbOOqKQV/NHj556t8+E7O/k10XhsrCtrXJair2yJwzqgsrNvCugNKkApCj3v5gSsOkxWA4XyY9O+a1TtJ+K/zGJgBpxCnyompthDNfOzUaChA5LFgRTI92WcZIfjAfTtuz2DFbyesEL5OB6xH9kd02TBltYF+dhzgxrM3RP1JhcPRplIp8AyBuOPa2aC5oH/m0gR3rvtyfnzAd0xNFQVWw8Cd1waGIKwWOk/+BBI4eX2OK3RtzbrVrOVxS9h8khVobHm4JpYKRBuPMzoo5ztGdgSfzbl6jbvuzpLqWtBoJpxkZ2wPxxMqcEuripTJHATpA==</script>
 </body>
 </html>

@@ -35,14 +35,14 @@
     if (!container || related.length === 0) return;
 
     const html = `
-      <aside class="related-posts" style="margin: 3rem 0 2rem; padding: 1.5rem 0; border-top: 1px solid #d8cdb8;">
+      <aside class="related-posts" style="margin: 3rem 0 2rem; padding: 1.5rem 0; border-top: 1px solid #d6cfc1;">
         <h2 style="font-size: 1.1rem; font-weight: 600; color: #5a5048; margin: 0 0 1rem; letter-spacing: -.01em;">관련 관점 노트</h2>
         <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem;">
           ${related.map(item => `
-            <li style="padding: 1rem; background: #fdfaf3; border-left: 3px solid #1E40AF; border-radius: 2px;">
+            <li style="padding: 1rem; background: #faf8f3; border-left: 3px solid #1d4ed8; border-radius: 2px;">
               <a href="${item.url}" style="text-decoration: none; color: inherit;">
                 <div style="font-size: .8rem; color: #5a5048; margin-bottom: .25rem;">${item.date || ''} · ${(item.axis && item.axis.topic) || ''}</div>
-                <div style="font-size: 1.05rem; font-weight: 600; color: #2a241c; line-height: 1.4;">${escapeHtml(item.title)}</div>
+                <div style="font-size: 1.05rem; font-weight: 600; color: #1b1b1b; line-height: 1.4;">${escapeHtml(item.title)}</div>
                 ${item.excerpt ? `<div style="font-size: .9rem; color: #5a5048; margin-top: .4rem; line-height: 1.5;">${escapeHtml(item.excerpt)}</div>` : ''}
               </a>
             </li>

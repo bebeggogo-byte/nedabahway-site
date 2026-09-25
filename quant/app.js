@@ -117,7 +117,7 @@ function renderEquity(equity) {
       graphic: {
         type: 'text',
         left: 'center', top: 'middle',
-        style: { text: '데이터 누적 대기 중\n(첫 daily cycle 이후 표시)', fontSize: 14, fill: '#9A9A9A', textAlign: 'center', lineHeight: 22 },
+        style: { text: '데이터 누적 대기 중\n(첫 daily cycle 이후 표시)', fontSize: 14, fill: '#6b655e', textAlign: 'center', lineHeight: 22 },
       },
     });
     return;

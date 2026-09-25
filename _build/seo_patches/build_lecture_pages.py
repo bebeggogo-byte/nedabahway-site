@@ -320,7 +320,7 @@ def build_page(data: dict) -> str:
 <meta property="og:description" content="{data['lead']}">
 <meta property="og:url" content="https://www.nedabah.org/lectures/{data['slug']}.html">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://www.nedabah.org/assets/og-default.svg">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-default.jpg">
 <meta name="keywords" content="{', '.join(data['keywords'])}">
 
 <script type="application/ld+json">
@@ -330,7 +330,7 @@ def build_page(data: dict) -> str:
 <body>
 <nav class="gnav" role="navigation" aria-label="주요 메뉴">
   <div class="gnav__inner">
-    <a href="/" class="gnav__logo">네다바웨이</a>
+    <a href="/" class="gnav__logo" aria-label="네다바웨이 홈"><img class="gnav__logo-word" src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a>
     <ul class="gnav__links">
       <li><a href="/lectures/" class="gnav__link">강의 목록</a></li>
       <li><a href="/blog/perspective/" class="gnav__link">관점 노트</a></li>
@@ -342,14 +342,14 @@ def build_page(data: dict) -> str:
 
 <main style="max-width:760px;margin:4rem auto;padding:0 1.5rem;font-family:'Noto Serif KR',serif;line-height:1.85;">
 <header style="margin-bottom:3rem;">
-  <p style="font-size:.8rem;color:#b45309;letter-spacing:.18em;font-weight:700;">LECTURE · {data['kicker']}</p>
+  <p style="font-size:.8rem;color:#1d4ed8;letter-spacing:.18em;font-weight:700;">LECTURE · {data['kicker']}</p>
   <h1 style="font-size:2.2rem;line-height:1.3;margin:.6rem 0 1rem;">{data['title']}</h1>
   <p style="font-size:1.1rem;color:#6a604f;font-style:italic;">{data['lead']}</p>
 </header>
 
 <article class="prose">
 
-<section style="background:#fbf6ec;padding:1.5rem 2rem;border-radius:10px;margin-bottom:2rem;">
+<section style="background:#f1ede5;padding:1.5rem 2rem;border-radius:10px;margin-bottom:2rem;">
 <h2 style="font-size:1.05rem;margin-top:0;">한눈에</h2>
 <table style="width:100%;font-size:.95rem;">
 <tr><td style="padding:.4rem 0;color:#6a604f;width:30%;">대상</td><td>{data['audience']}</td></tr>
@@ -378,13 +378,13 @@ def build_page(data: dict) -> str:
 
 </article>
 
-<aside style="margin-top:4rem;padding:2rem;background:#3a322a;color:#fbf6ec;border-radius:12px;text-align:center;">
+<aside style="margin-top:4rem;padding:2rem;background:#1b1b1b;color:#f1ede5;border-radius:12px;text-align:center;">
   <h2 style="margin-top:0;font-size:1.4rem;">의뢰</h2>
   <p style="font-size:1rem;line-height:1.7;">이메일 또는 사이트에서 1분 안에 의뢰 가능. 24~48시간 내 회신.</p>
-  <p><a href="/contact.html" style="display:inline-block;background:#b45309;color:white;padding:.8rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;margin-top:.5rem;">강의 의뢰 →</a></p>
+  <p><a href="/contact.html" style="display:inline-block;background:#1d4ed8;color:white;padding:.8rem 2rem;border-radius:8px;text-decoration:none;font-weight:600;margin-top:.5rem;">강의 의뢰 →</a></p>
 </aside>
 
-<aside style="margin-top:3rem;padding:2rem;background:#fbf6ec;border-radius:12px;">
+<aside style="margin-top:3rem;padding:2rem;background:#f1ede5;border-radius:12px;">
   <h2 style="margin-top:0;font-size:1.1rem;">관련 자료</h2>
   <ul style="list-style:none;padding:0;line-height:2;">
     <li>→ <a href="/lectures/">강의 12개 전체 목록</a></li>
@@ -394,7 +394,7 @@ def build_page(data: dict) -> str:
   </ul>
 </aside>
 
-<footer style="margin-top:4rem;padding-top:2rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#8a7a64;">
+<footer style="margin-top:4rem;padding-top:2rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#665f57;">
   <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
 </footer>
 </main>

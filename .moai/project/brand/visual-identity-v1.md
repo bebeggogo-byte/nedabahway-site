@@ -97,7 +97,7 @@ dark_mode_support: none (현재 미지원, 후속 H4 작업)
 ### 시각 패턴
 - "이타성" 단어 = 코발트 강조
 - "한 사람" = 본문 톤 유지 (강조 안 함, 평등성 표현)
-- og-default.svg에 동일 메시지 새김
+- og-default.jpg에 동일 메시지 새김
 
 ## 10. Last Updated
 
