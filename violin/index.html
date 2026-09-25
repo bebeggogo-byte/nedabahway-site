@@ -70,6 +70,11 @@ p{font-size:1rem}
 
 /* 계이름 버튼 4개 */
 .namegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.namegrid.five{display:flex;flex-wrap:wrap;justify-content:center}
+.namegrid.five .namebtn{flex:0 0 calc(33.333% - 6px);min-width:64px}
+@media (min-width:520px){ .namegrid.five .namebtn{flex:0 0 calc(20% - 7px)} }
+.stringtag{display:inline-block;border:3px solid var(--line);border-radius:999px;padding:2px 14px;
+  background:var(--sky);font-weight:800;font-size:1rem;margin-bottom:6px}
 .namebtn{
   min-height:78px;min-width:64px;border:3px solid var(--line);border-radius:18px;background:var(--paper);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
@@ -85,12 +90,33 @@ p{font-size:1rem}
 .stafffig{display:block;width:100%;height:auto;max-width:560px;margin:0 auto;touch-action:manipulation}
 .staffwrap{background:var(--paper);border-radius:16px;padding:4px 0}
 @media (max-width:480px){ .staffwrap{margin-left:-10px;margin-right:-10px} }
-.staffwrap.pick{cursor:pointer;touch-action:none}
+.staffwrap.pick{cursor:pointer;touch-action:pan-y}
+.staffwrap.pick:focus-visible{outline:4px solid var(--sky-d);outline-offset:3px;border-radius:16px}
+.bigbtn:focus-visible,.namebtn:focus-visible,.station:focus-visible,.iconbtn:focus-visible,.switch:focus-visible{outline:4px solid var(--sky-d);outline-offset:3px}
 
 .panelgrid{display:grid;grid-template-columns:1fr;gap:14px}
 @media (min-width:720px){ .panelgrid.two{grid-template-columns:1.15fr .85fr;align-items:center} }
 
 .violinfig{display:block;width:100%;max-width:190px;height:auto;margin:0 auto}
+.fingerchart{display:block;width:100%;max-width:160px;height:auto;margin:0 auto}
+.fingerrow{display:flex;align-items:center;gap:12px;margin-top:10px}
+.fingerrow .chart{flex:0 0 132px}
+.fingerrow .txt{flex:1;font-weight:800;font-size:1.35rem;line-height:1.3}
+.fingerrow .vio{flex:0 0 70px;display:none}
+.fingerrow .vio .violinfig{max-width:70px}
+@media (min-width:520px){ .fingerrow .vio{display:block} }
+.fingernote{margin-top:8px;font-size:.92rem;color:var(--ink2);text-align:center}
+.playrow{display:flex;align-items:center;gap:12px;margin-top:8px}
+.playrow .vio{flex:0 0 96px}
+.playrow .vio .violinfig{max-width:96px}
+.playrow .txt{flex:1;font-weight:700;font-size:1.05rem}
+.keypick{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.keypick button{min-height:60px;border:3px solid var(--line);border-radius:14px;background:var(--paper);
+  box-shadow:3px 4px 0 var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 2px;line-height:1.2}
+.keypick button b{font-size:.86rem}
+.keypick button span{font-size:.72rem;color:var(--ink2)}
+.keypick button.is-on{background:var(--yellow)}
+.keypick button:active{transform:translate(2px,3px);box-shadow:1px 1px 0 var(--line)}
 
 /* 진행 바 */
 .progress{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
@@ -179,7 +205,8 @@ footer.sitefoot a{color:var(--ink2)}
     <button class="iconbtn" id="muteBtn" aria-pressed="false" aria-label="소리 끄기">🔊</button>
     <button class="iconbtn" id="gearBtn" aria-label="학부모·교사 화면 (3초 길게 누르기)">⚙️</button>
   </div>
-  <main id="app" aria-live="polite"></main>
+  <main id="app"></main>
+  <div id="live" class="sr" role="status" aria-live="polite" aria-atomic="true"></div>
   <footer class="sitefoot">
     <a href="/">네다바웨이 NEDABAHWAY</a> · 개방현 솔·레·라·미와 조표를 함께 배우는 놀이
   </footer>
@@ -194,16 +221,53 @@ footer.sitefoot a{color:var(--ink2)}
           E4=0, F4=1, G4=2, A4=3, B4=4, C5=5, D5=6, E5=7, F5=8, G5=9
           D4=-1, C4=-2, B3=-3, A3=-4, G3=-5
    ============================================================ */
-var NOTES = {
-  G3: { id:'G3', ko:'솔', en:'G', freq:196.00, step:-5,
-        where:'솔은 덧줄 두 개 아래 칸에 살아요.' },
-  D4: { id:'D4', ko:'레', en:'D', freq:293.66, step:-1,
-        where:'레는 첫째 줄 바로 아래 칸에 살아요.' },
-  A4: { id:'A4', ko:'라', en:'A', freq:440.00, step:3,
-        where:'라는 둘째 칸에 살아요.' },
-  E5: { id:'E5', ko:'미', en:'E', freq:659.25, step:7,
-        where:'미는 넷째 칸에 살아요.' }
+/* 첫째 자리(1지) 음 전체. acc:1 이면 음표 앞에 샵이 붙는다.
+   높은 2지 고정 — 네 줄 모두 같은 손 모양. */
+var TONES = {
+  G3 : { ko:'솔', en:'G', acc:0, freq:196.00, step:-5 },
+  A3 : { ko:'라', en:'A', acc:0, freq:220.00, step:-4 },
+  B3 : { ko:'시', en:'B', acc:0, freq:246.94, step:-3 },
+  C4 : { ko:'도', en:'C', acc:0, freq:261.63, step:-2 },
+  D4 : { ko:'레', en:'D', acc:0, freq:293.66, step:-1 },
+  E4 : { ko:'미', en:'E', acc:0, freq:329.63, step: 0 },
+  Fs4: { ko:'파', en:'F', acc:1, freq:369.99, step: 1 },
+  G4 : { ko:'솔', en:'G', acc:0, freq:392.00, step: 2 },
+  A4 : { ko:'라', en:'A', acc:0, freq:440.00, step: 3 },
+  B4 : { ko:'시', en:'B', acc:0, freq:493.88, step: 4 },
+  Cs5: { ko:'도', en:'C', acc:1, freq:554.37, step: 5 },
+  D5 : { ko:'레', en:'D', acc:0, freq:587.33, step: 6 },
+  E5 : { ko:'미', en:'E', acc:0, freq:659.25, step: 7 },
+  Fs5: { ko:'파', en:'F', acc:1, freq:739.99, step: 8 },
+  Gs5: { ko:'솔', en:'G', acc:1, freq:830.61, step: 9 },
+  A5 : { ko:'라', en:'A', acc:0, freq:880.00, step:10 },
+  B5 : { ko:'시', en:'B', acc:0, freq:987.77, step:11 }
 };
+function toneKo(id){ var t = TONES[id]; return t.ko + (t.acc ? '#' : ''); }
+function toneEn(id){ var t = TONES[id]; return t.en + (t.acc ? '#' : ''); }
+
+/* 줄마다 0~4번 손가락이 짚는 음 (높은 2지) */
+var FINGERS = {
+  A4: ['A4','B4','Cs5','D5','E5'],   /* 라줄 — 라 시 도# 레 미 */
+  E5: ['E5','Fs5','Gs5','A5','B5'],  /* 미줄 — 미 파# 솔# 라 시 */
+  D4: ['D4','E4','Fs4','G4','A4'],   /* 레줄 — 레 미 파# 솔 라 */
+  G3: ['G3','A3','B3','C4','D4']     /* 솔줄 — 솔 라 시 도 레 */
+};
+
+/* 개방현 네 줄은 위 표에서 파생한다 (음높이 출처를 하나로) */
+var NOTES = {};
+(function(){
+  var where = {
+    G3:'솔은 덧줄 두 개 아래 칸에 살아요.',
+    D4:'레는 첫째 줄 바로 아래 칸에 살아요.',
+    A4:'라는 둘째 칸에 살아요.',
+    E5:'미는 넷째 칸에 살아요.'
+  };
+  var id;
+  for (id in where){
+    NOTES[id] = { id:id, ko:TONES[id].ko, en:TONES[id].en,
+                  freq:TONES[id].freq, step:TONES[id].step, where:where[id] };
+  }
+})();
 /* 계이름 버튼 고정 순서 (항상 솔·레·라·미) */
 var NAME_ORDER = ['G3','D4','A4','E5'];
 /* 바이올린 실제 현 배치 순서 (왼쪽부터 G-D-A-E) */
@@ -232,6 +296,15 @@ var STAGES = [
   { n:8, title:'모두 섞기 (마무리)', notes:['G3','D4','A4','E5'],  key:'C',  learn:false, count:12, pass:10 }
 ];
 
+/* 1지 코스 — 줄마다 0~4번 손가락 다섯 음. 개방현 코스와 같은 줄 순서 */
+var POS1_STAGES = [
+  { n:1, string:'A4', title:'라줄 1지' },
+  { n:2, string:'E5', title:'미줄 1지' },
+  { n:3, string:'D4', title:'레줄 1지' },
+  { n:4, string:'G3', title:'솔줄 1지' }
+];
+var POS1_COUNT = 10, POS1_PASS = 8;
+
 /* 유형 B에서 음표를 놓을 수 있는 자리 범위 (솔3 아래 칸 ~ 솔5) */
 var PLACE_MIN = -6, PLACE_MAX = 9;
 
@@ -239,8 +312,8 @@ var PLACE_MIN = -6, PLACE_MAX = 9;
    2. 오선지 SVG (모두 직접 그림 — 외부 폰트·이미지 없음)
    ============================================================ */
 var S = 20;            /* viewBox 내부 줄 간격 */
-var VB_W = 404, VB_H = 192;
-var BASE_Y = 112;      /* 아래 첫째 줄(E4)의 y */
+var VB_W = 404, VB_H = 214;
+var BASE_Y = 134;      /* 아래 첫째 줄(E4)의 y */
 function lineY(k){ return BASE_Y - (k-1)*S; }            /* k=1..5 */
 function stepY(step){ return BASE_Y - step*(S/2); }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -333,6 +406,12 @@ function noteSVG(cx, step, opts){
   opts = opts || {};
   var y = stepY(step), color = opts.color || 'var(--ink)', op = (opts.opacity==null?1:opts.opacity);
   var rx = S*0.63, ry = S*0.45, up = stemUp(step), len = S*3.1;
+  var extra = '';
+  if (opts.acc) extra += sharpSVG(cx - S*1.5, step, { color:color });
+  if (opts.label != null){
+    extra += '<text x="'+cx+'" y="'+(BASE_Y + S*3.4)+'" text-anchor="middle" font-size="'+(S*1.15)+
+             '" font-weight="800" fill="'+(opts.labelColor||color)+'" font-family="var(--ff)">'+esc(opts.label)+'</text>';
+  }
   var sx = up ? cx + rx*0.92 : cx - rx*0.92;
   var sy1 = y + (up ? -S*0.12 : S*0.12);
   var sy2 = up ? y - len : y + len;
@@ -340,7 +419,7 @@ function noteSVG(cx, step, opts){
   g += ledgerSVG(cx, step).replace(/var\(--ink\)/g, color);
   g += '<ellipse cx="'+cx+'" cy="'+y+'" rx="'+rx+'" ry="'+ry+'" fill="'+color+'" transform="rotate(-22 '+cx+' '+y+')"/>';
   g += '<line x1="'+sx+'" y1="'+sy1+'" x2="'+sx+'" y2="'+sy2+'" stroke="'+color+'" stroke-width="'+(S*0.13)+'" stroke-linecap="round"/>';
-  g += '</g>';
+  g += extra + '</g>';
   return g;
 }
 
@@ -365,7 +444,7 @@ function staffSVG(opts){
   }
   var notes = opts.notes || [];
   for (i=0;i<notes.length;i++){
-    g += noteSVG(notes[i].x || noteX, notes[i].step, notes[i]);
+    g += noteSVG(notes[i].x == null ? noteX : notes[i].x, notes[i].step, notes[i]);
   }
   var extra = opts.extra || '';
   return '<svg class="stafffig" viewBox="0 0 '+VB_W+' '+VB_H+'" role="img" aria-label="'+esc(opts.label||'오선지')+
@@ -397,7 +476,7 @@ function keyStaffSVG(keyId, tapped){
   if (!k.sharps.length){
     g += '<text x="140" y="'+(lineY(3)+S*0.4)+'" text-anchor="middle" font-size="'+(S*0.85)+'" font-weight="700" fill="var(--ink2)" font-family="var(--ff)">샵 없음</text>';
   }
-  return '<svg viewBox="6 10 202 148" role="img" aria-label="'+esc(k.ko+' 조표, 샵 '+k.sharps.length+'개')+'" xmlns="http://www.w3.org/2000/svg">'+g+'</svg>';
+  return '<svg viewBox="6 32 202 148" role="img" aria-label="'+esc(k.ko+' 조표, 샵 '+k.sharps.length+'개')+'" xmlns="http://www.w3.org/2000/svg">'+g+'</svg>';
 }
 
 /* ============================================================
@@ -445,6 +524,31 @@ function violinSVG(hi){
     '<path d="M55 182 l10 0 -2 24 -6 0 z" fill="#4A3A2C"/>'+
     '<path d="M57 178 l0 4 M63 178 l0 4" stroke-width="1.6"/>'+
     '</g>'+ strings + labels + '</svg>';
+}
+
+/* 손가락 자리 확대도.
+   1지는 현 길이의 3분의 1 안에 몰려 있어 바이올린 그림으로는 번호가 겹친다.
+   그 구간만 늘려 그려서 2번과 3번이 반음으로 붙어 있는 것을 눈으로 보게 한다. */
+var FING_RATIO = [0, 0.109, 0.206, 0.251, 0.333];   /* 너트에서 잰 현 길이 비율 */
+function fingerChartSVG(stringId, active){
+  var ids = FINGERS[stringId], top = 30, bottom = 250, i, g = '';
+  function yOf(f){ return top + (FING_RATIO[f] / FING_RATIO[4]) * (bottom - top); }
+  g += '<rect x="46" y="10" width="58" height="258" rx="8" fill="#4A3A2C"/>';
+  g += '<line x1="75" y1="'+top+'" x2="75" y2="266" stroke="#D8CDBD" stroke-width="3.4" stroke-linecap="round"/>';
+  g += '<line x1="43" y1="'+top+'" x2="107" y2="'+top+'" stroke="#E9D3AE" stroke-width="7" stroke-linecap="round"/>';
+  for (i=0;i<5;i++){
+    var y = yOf(i), on = (i === active), r = on ? 15 : 10;
+    g += '<circle cx="75" cy="'+y.toFixed(1)+'" r="'+r+'" fill="'+(on?'var(--yellow)':(i?'var(--paper)':'none'))+
+         '" stroke="var(--ink)" stroke-width="'+(on?3:2)+'"'+(on?' class="glow"':'')+'/>';
+    g += '<text x="34" y="'+(y+7).toFixed(1)+'" text-anchor="end" font-size="'+(on?23:18)+
+         '" font-weight="800" fill="var(--ink)" font-family="var(--ff)">'+i+'</text>';
+    g += '<text x="116" y="'+(y+6).toFixed(1)+'" font-size="'+(on?20:17)+
+         '" font-weight="'+(on?800:600)+'" fill="'+(on?'var(--coral-d)':'var(--ink2)')+
+         '" font-family="var(--ff)">'+esc(toneKo(ids[i]))+'</text>';
+  }
+  return '<svg class="fingerchart" viewBox="0 0 176 280" role="img" aria-label="'+
+    esc(NOTES[stringId].ko+'줄 손가락 자리. '+ids.map(function(t,f){ return f+'번 '+toneKo(t); }).join(', '))+
+    '" xmlns="http://www.w3.org/2000/svg">'+g+'</svg>';
 }
 
 /* ============================================================
@@ -546,7 +650,7 @@ function tone(freq, dur, peak, when){
     o.start(t); o.stop(t + dur + 0.05);
   }
 }
-function playNote(id){ if (NOTES[id]) tone(NOTES[id].freq, 1.2, 0.20); }
+function playNote(id){ if (TONES[id]) tone(TONES[id].freq, 1.2, 0.20); }
 function playFanfare(){ /* 상행 3음, 0.6초 */
   tone(523.25,0.28,0.16,0); tone(659.25,0.28,0.16,0.16); tone(783.99,0.42,0.18,0.32);
 }
@@ -568,13 +672,18 @@ var state = {
   name   : '',
   learnIdx : 0,
   quiz   : null,
-  keyIntro : null
+  keyIntro : null,
+  play   : { note:'A4', key:'C' },  /* 연습 모드에서 고른 줄과 조표 */
+  course : 'open',                  /* open = 개방현 코스, pos1 = 1지 코스 */
+  pos1   : { stage:1, unlocked:1, stars:{}, tries:{}, miss:{}, learnFinger:0 }
 };
 function save(){
   try {
     localStorage.setItem(STORE_KEY, JSON.stringify({
       muted:state.muted, typeC:state.typeC, unlocked:state.unlocked,
-      stars:state.stars, miss:state.miss, tries:state.tries, name:state.name
+      stars:state.stars, miss:state.miss, tries:state.tries, name:state.name,
+      pos1:{ unlocked:state.pos1.unlocked, stars:state.pos1.stars,
+             tries:state.pos1.tries, miss:state.pos1.miss }
     }));
   } catch(e){ /* 저장 실패해도 게임은 정상 동작 */ }
 }
@@ -591,16 +700,36 @@ function load(){
     if (d.miss  && typeof d.miss  === 'object') state.miss  = d.miss;
     if (d.tries && typeof d.tries === 'object') state.tries = d.tries;
     if (typeof d.name === 'string') state.name = d.name.slice(0,16);
+    if (d.pos1 && typeof d.pos1 === 'object'){
+      if (typeof d.pos1.unlocked === 'number') state.pos1.unlocked = Math.min(POS1_STAGES.length, Math.max(1, d.pos1.unlocked));
+      if (d.pos1.stars && typeof d.pos1.stars === 'object') state.pos1.stars = d.pos1.stars;
+      if (d.pos1.tries && typeof d.pos1.tries === 'object') state.pos1.tries = d.pos1.tries;
+      if (d.pos1.miss  && typeof d.pos1.miss  === 'object') state.pos1.miss  = d.pos1.miss;
+    }
   } catch(e){ /* 무시 */ }
 }
 function resetAll(){
   state.unlocked = 1; state.stars = {}; state.miss = {}; state.tries = {}; state.name = '';
+  state.pos1 = { stage:1, unlocked:1, stars:{}, tries:{}, miss:{}, learnFinger:0 };
   save();
 }
 
 /* ============================================================
    7. 문항 생성 · 채점  (UI와 분리된 순수 로직)
    ============================================================ */
+/* 문항 한 개를 사람이 읽는 말로 풀어 주는 해석기 — 화면·스크린리더·채점이 같은 말을 쓴다 */
+function itemIsPos1(item){ return item && item.course === 'pos1'; }
+function itemToneId(item){ return itemIsPos1(item) ? item.tone : item.note; }
+function itemStep(item){ return TONES[itemToneId(item)].step; }
+function itemAcc(item){ return TONES[itemToneId(item)].acc; }
+function itemAnswerLabel(item){
+  if (!itemIsPos1(item)) return NOTES[item.note].ko;
+  return item.type === 'F' ? (item.finger + '번 손가락') : toneKo(item.tone);
+}
+function itemWhere(item){
+  if (!itemIsPos1(item)) return NOTES[item.note].where;
+  return toneKo(item.tone) + '는 ' + NOTES[item.string].ko + '줄 ' + item.finger + '번 손가락이에요.';
+}
 function shuffle(arr, rnd){
   rnd = rnd || Math.random;
   var a = arr.slice(), i, j, t;
@@ -657,6 +786,39 @@ function buildQuiz(stageNo, useC){
   };
 }
 /* 틀린 음은 다음 3문항 안에 다시 나오도록 예정표를 고친다 */
+function buildPos1Quiz(stageNo){
+  var st = POS1_STAGES[stageNo-1];
+  var order = spreadNotes([0,1,2,3,4], POS1_COUNT), items = [], i;
+  for (i=0;i<POS1_COUNT;i++){
+    items.push({ course:'pos1', string:st.string, finger:order[i],
+                 tone:FINGERS[st.string][order[i]],
+                 type:(i % 2 === 0 ? 'N' : 'F') });   /* 계이름 <-> 손가락번호 교차 */
+  }
+  return { course:'pos1', stage:stageNo, items:items, idx:0, attempt:0, hintUsed:false,
+           revealed:false, points:0, score:0, ok:0, marks:[], missed:{},
+           placed:null, phase:'ask' };
+}
+/* 틀린 손가락은 다음 3문항 안에 다시 나오게 한다 */
+function requeueFinger(q){
+  var cur = q.items[q.idx], i, from = q.idx + 1, to = Math.min(q.items.length - 1, q.idx + 3);
+  for (i=from;i<=to;i++){ if (q.items[i].finger === cur.finger) return; }
+  if (from <= to){ q.items[from].finger = cur.finger; q.items[from].tone = cur.tone; }
+}
+function pos1Stars(q){
+  if (q.points >= q.items.length) return 3;
+  if (q.ok >= POS1_PASS) return 2;
+  return 1;
+}
+
+/* 유형 B는 빈 오선지 대신 음표를 먼저 올려 두고 옮기게 한다 */
+function primePlacement(q){
+  var item = q && q.items[q.idx];
+  if (!item || item.type !== 'B'){ if (q) q.placed = null; return; }
+  var ans = NOTES[item.note].step;
+  var start = 4;                    /* 셋째 줄에서 출발 */
+  if (start === ans) start = 0;
+  q.placed = clampStep(start);
+}
 function requeueNote(quiz, noteId){
   var i, from = quiz.idx + 1, to = Math.min(quiz.items.length - 1, quiz.idx + 3);
   for (i=from;i<=to;i++){ if (quiz.items[i].note === noteId) return; }
@@ -687,12 +849,34 @@ function say(who, mood, text, cls){
 }
 function nameButtons(opts){
   opts = opts || {};
+  var act = opts.act || 'pick';
   var h = '<div class="namegrid" role="group" aria-label="계이름 고르기">', i;
   for (i=0;i<NAME_ORDER.length;i++){
     var id = NAME_ORDER[i], n = NOTES[id];
-    h += '<button class="namebtn'+(opts.on===id?' is-on':'')+'" data-act="pick" data-note="'+id+'"'+
+    h += '<button class="namebtn'+(opts.on===id?' is-on':'')+'" data-act="'+act+'" data-note="'+id+'"'+
          (opts.disabled?' disabled':'')+' aria-label="'+esc(n.ko+' '+n.en)+'">'+
          '<span class="ko">'+n.ko+'</span><span class="en">'+n.en+'</span></button>';
+  }
+  return h + '</div>';
+}
+function toneButtons(stringId, opts){
+  opts = opts || {};
+  var ids = FINGERS[stringId], h = '<div class="namegrid five" role="group" aria-label="계이름 고르기">', i;
+  for (i=0;i<ids.length;i++){
+    h += '<button class="namebtn" data-act="pickTone" data-tone="'+ids[i]+'"'+(opts.disabled?' disabled':'')+
+         ' aria-label="'+esc(toneKo(ids[i])+' '+toneEn(ids[i]))+'">'+
+         '<span class="ko">'+esc(toneKo(ids[i]))+'</span><span class="en">'+esc(toneEn(ids[i]))+'</span></button>';
+  }
+  return h + '</div>';
+}
+var FINGER_SUB = ['개방현','1지','2지','3지','4지'];
+function fingerButtons(opts){
+  opts = opts || {};
+  var h = '<div class="namegrid five" role="group" aria-label="손가락 번호 고르기">', i;
+  for (i=0;i<5;i++){
+    h += '<button class="namebtn'+(opts.on===i?' is-on':'')+'" data-act="'+(opts.act||'pickFinger')+'" data-finger="'+i+'"'+
+         (opts.disabled?' disabled':'')+' aria-label="'+i+'번 손가락, '+FINGER_SUB[i]+'">'+
+         '<span class="ko">'+i+'</span><span class="en">'+FINGER_SUB[i]+'</span></button>';
   }
   return h + '</div>';
 }
@@ -708,9 +892,38 @@ function renderStart(){
     '<h1>바이올린 개방현 놀이</h1>'+
     '<p class="muted" style="margin-top:6px">솔·레·라·미 네 줄과 조표를 함께 배워요</p>'+
     '<div class="certchars">'+charSVG('dodo','base')+charSVG('mimi','base')+charSVG('sori','base')+'</div>'+
-    '<button class="bigbtn" data-act="start">시작</button>'+
-    '<p class="muted" style="margin-top:12px">시작을 누르면 소리가 켜져요.</p>'+
+    '<button class="bigbtn" data-act="start">개방현 배우기 — 솔·레·라·미</button>'+
+    '<button class="bigbtn sky" data-act="pos1" style="margin-top:10px">1지 배우기 — 손가락 0·1·2·3·4</button>'+
+    '<button class="bigbtn plain" data-act="play" style="margin-top:10px">연습 모드 — 그냥 눌러 보기</button>'+
+    '<p class="muted" style="margin-top:12px">버튼을 누르면 소리가 켜져요.</p>'+
   '</div>';
+}
+
+/* ---------- 연습 모드 (자유 놀이) ---------- */
+function renderPlay(){
+  var pl = state.play, n = NOTES[pl.note], k = KEYS[pl.key];
+  var sharps = k.sharps, nx = noteXFor(sharps), i;
+  var h = '<div class="card">';
+  h += '<h2>연습 모드</h2><p class="muted">네 줄을 마음대로 눌러 보세요. 점수도 잠금도 없어요.</p>';
+  h += '<div class="staffwrap" data-act="replay" data-note="'+pl.note+'" style="margin-top:8px">'+
+       staffSVG({ sharps:sharps, notes:[{ step:n.step, x:nx }], noteX:nx, label:n.ko+' 음표' })+'</div>';
+  h += '<div class="playrow"><div class="vio" data-act="replay" data-note="'+pl.note+'">'+violinSVG(pl.note)+'</div>'+
+       '<p class="txt">'+esc(n.where)+'</p></div>';
+  h += nameButtons({ on:pl.note, act:'playPick' });
+  h += '<h3 style="margin-top:14px;font-size:1rem">조표 바꿔 보기</h3>';
+  h += '<div class="keypick" role="group" aria-label="조표 고르기">';
+  var order = ['C','G','D','A'];
+  for (i=0;i<order.length;i++){
+    var kk = KEYS[order[i]];
+    h += '<button class="'+(pl.key===order[i]?'is-on':'')+'" data-act="playKey" data-key="'+order[i]+'"'+
+         ' aria-pressed="'+(pl.key===order[i]?'true':'false')+'">'+
+         '<b>'+esc(kk.ko)+'</b><span>샵 '+kk.sharps.length+'</span></button>';
+  }
+  h += '</div>';
+  h += '<p class="muted" style="margin-top:10px">'+esc(KEY_NOTE_MSG)+'</p>';
+  h += say('mimi','base','조표를 바꿔도 네 줄 소리는 그대로예요.');
+  h += '<div class="btnrow"><button class="bigbtn plain" data-act="tomap">지도로</button></div>';
+  return h + '</div>';
 }
 
 /* ---------- 단계 지도 ---------- */
@@ -729,6 +942,8 @@ function renderMap(){
     if (i < STAGES.length-1) h += '<div class="trail"></div>';
   }
   h += '</div>';
+  h += '<button class="bigbtn sky" data-act="pos1" style="margin-top:8px">1지 배우기 — 손가락 0·1·2·3·4</button>';
+  h += '<button class="bigbtn plain" data-act="play" style="margin-top:8px">연습 모드 — 그냥 눌러 보기</button>';
   if (state.unlocked > 8 || state.stars[8]) h += '<button class="bigbtn green" data-act="cert" style="margin-top:8px">수료증 보기</button>';
   return h + '</div>';
 }
@@ -780,6 +995,15 @@ function praiseFor(noteKo){
   var t = PRAISE[Math.floor(Math.random()*PRAISE.length)];
   return t.replace('{n}', noteKo);
 }
+function promptFor(item){
+  if (itemIsPos1(item)){
+    return item.type === 'N' ? '이 음표는 무슨 소리일까요?' : '몇 번 손가락으로 짚을까요?';
+  }
+  var n = NOTES[item.note];
+  return item.type === 'A' ? '이 음표는 무슨 소리일까요?'
+       : item.type === 'B' ? n.ko + '는 어디에 살까요? 위아래로 옮겨요.'
+       : '잘 듣고 맞혀 보세요!';
+}
 function progressBar(q){
   var h = '<div class="progress"><span class="pips">', i;
   for (i=0;i<q.items.length;i++){
@@ -789,7 +1013,92 @@ function progressBar(q){
   h += '</span><span class="scorechip">'+q.score+'점</span></div>';
   return h;
 }
+/* 정답·재도전·정답 공개 말풍선 — 개방현 코스와 1지 코스가 같이 쓴다 */
+function quizBubble(q, item, showAnswer){
+  if (q.phase === 'answered'){
+    return '<div class="flagline ok"><span class="mark">✓</span><span>정답이에요</span></div>' +
+           say('dodo','joy', q.lastPraise || praiseFor(itemAnswerLabel(item)), 'ok');
+  }
+  if (showAnswer){
+    return '<div class="flagline hint"><span class="mark">!</span><span>정답을 함께 봐요</span></div>' +
+           say('mimi','base', itemAnswerLabel(item) + '예요. 한 번 눌러 볼까요?');
+  }
+  if (q.attempt === 1){
+    return '<div class="flagline retry"><span class="mark">↺</span><span>다시 도전</span></div>' +
+           say('sori','cheer','앗, 아깝다! 다시 한 번 해볼까요? 🎻','retry');
+  }
+  return say('dodo','base', promptFor(item));
+}
+
+/* ---------- 1지 코스 ---------- */
+function renderPos1Map(){
+  var h = '<div class="card"><h2>1지 배우기</h2>'+
+          '<p class="muted">줄마다 0·1·2·3·4번 손가락으로 다섯 음을 짚어요.</p><div class="map">';
+  for (var i=0;i<POS1_STAGES.length;i++){
+    var st = POS1_STAGES[i], no = st.n, open = no <= state.pos1.unlocked;
+    var star = state.pos1.stars[no] ? starText(state.pos1.stars[no]) : '';
+    var sub = FINGERS[st.string].map(toneKo).join(' · ');
+    h += '<button class="station'+(no===state.pos1.unlocked?' current':'')+'" data-act="pos1stage" data-stage="'+no+'"'+(open?'':' disabled')+'>'+
+         '<span class="no">'+(open?no:'🔒')+'</span>'+
+         '<span class="tt"><b>'+esc(st.title)+'</b><span>'+esc(sub)+'</span></span>'+
+         '<span class="st">'+star+'</span></button>';
+    if (i < POS1_STAGES.length-1) h += '<div class="trail"></div>';
+  }
+  h += '</div><div class="btnrow"><button class="bigbtn plain" data-act="home">처음으로</button></div></div>';
+  return h;
+}
+function renderPos1Learn(){
+  var st = POS1_STAGES[state.pos1.stage-1], ids = FINGERS[st.string];
+  var f = state.pos1.learnFinger, notes = [], i;
+  for (i=0;i<5;i++){
+    notes.push({ step:TONES[ids[i]].step, acc:TONES[ids[i]].acc, x:112 + i*58,
+                 label:String(i), color:(i===f ? 'var(--coral-d)' : 'var(--ink)'),
+                 labelColor:(i===f ? 'var(--coral-d)' : 'var(--ink2)') });
+  }
+  var h = '<div class="card"><h2>'+esc(st.title)+'</h2>';
+  h += '<p class="muted">음표 아래 숫자가 손가락 번호예요. 눌러서 소리를 들어 보세요.</p>';
+  h += '<div class="center" style="margin-top:6px"><span class="stringtag">'+esc(NOTES[st.string].ko)+'줄</span></div>';
+  h += '<div class="staffwrap">'+staffSVG({ notes:notes, label:st.title+' 다섯 음' })+'</div>';
+  h += '<div class="fingerrow"><div class="chart">'+fingerChartSVG(st.string, f)+'</div>'+
+       '<p class="txt">'+esc(toneKo(ids[f]))+'<br>'+f+'번 손가락</p>'+
+       '<div class="vio">'+violinSVG(st.string)+'</div></div>';
+  h += '<p class="fingernote">'+(f===0 ? '손가락을 대지 않고 그냥 켜요.' : '2번과 3번은 반음이라 붙어 있어요.')+'</p>';
+  h += fingerButtons({ on:f, act:'learnFinger' });
+  h += say('mimi','base','다섯 개를 다 눌러 보고 퀴즈로 가요.');
+  h += '<div class="btnrow"><button class="bigbtn plain" data-act="tomap">지도로</button>'+
+       '<button class="bigbtn" data-act="pos1quiz">퀴즈 시작</button></div>';
+  return h + '</div>';
+}
+function renderPos1Quiz(){
+  var q = state.quiz, st = POS1_STAGES[q.stage-1], item = q.items[q.idx], t = TONES[item.tone];
+  var showAnswer = (q.phase === 'reveal' || q.phase === 'answered-reveal');
+  var h = '<div class="card">';
+  h += '<h2 style="font-size:1.05rem">'+esc(st.title)+' <span class="muted">('+(q.idx+1)+'/'+q.items.length+')</span></h2>';
+  h += progressBar(q);
+  h += '<div class="center"><span class="stringtag">'+esc(NOTES[st.string].ko)+'줄</span></div>';
+  h += '<div class="staffwrap" data-act="replay" data-note="'+item.tone+'">'+
+       staffSVG({ notes:[{ step:t.step, acc:t.acc, color:(showAnswer?'var(--green-d)':'var(--ink)') }], label:'문제 음표' })+'</div>';
+  if (q.hintUsed || q.attempt === 1 || showAnswer){
+    h += '<div style="margin-top:6px">'+fingerChartSVG(st.string, item.finger)+'</div>';
+  }
+  if (showAnswer){
+    h += '<p style="margin-top:10px;font-weight:700;font-size:1.05rem">'+esc(itemWhere(item))+'</p>';
+    h += '<button class="bigbtn green" data-act="followUp" data-note="'+item.tone+'" style="margin-top:10px">따라 눌러 보기 — '+esc(itemAnswerLabel(item))+'</button>';
+  } else if (item.type === 'N'){
+    h += toneButtons(st.string, { disabled:q.phase === 'answered' });
+  } else {
+    h += fingerButtons({ disabled:q.phase === 'answered' });
+  }
+  h += quizBubble(q, item, showAnswer);
+  if (!showAnswer && q.phase !== 'answered'){
+    h += '<div class="btnrow"><button class="bigbtn plain" data-act="hint"'+(q.hintUsed?' disabled':'')+'>💡 힌트 받기</button>'+
+         '<button class="bigbtn plain" data-act="tomap">지도로</button></div>';
+  }
+  return h + '</div>';
+}
+
 function renderQuiz(){
+  if (state.quiz.course === 'pos1') return renderPos1Quiz();
   var q = state.quiz, st = STAGES[q.stage-1], item = q.items[q.idx], n = NOTES[item.note];
   var sharps = st.key ? KEYS[st.key].sharps : [];
   var nx = noteXFor(sharps);
@@ -815,10 +1124,12 @@ function renderQuiz(){
   } else if (item.type === 'B' && !showAnswer){
     h += '<p class="center" style="font-size:2.4rem;font-weight:800;line-height:1.1">'+esc(n.ko)+
          ' <span style="font-size:1rem;color:var(--ink2)">('+n.en+')</span></p>';
-    h += '<div class="staffwrap pick" id="pickStaff">'+
+    var placedLbl = (q.placed === null || q.placed === undefined) ? '아직 놓지 않았어요' : '지금 ' + placeLabel(q.placed) + '에 있어요';
+    h += '<div class="staffwrap pick" id="pickStaff" tabindex="0" role="group"'+
+         ' aria-label="'+esc('음표가 놓인 오선지. 위아래 화살표로 옮기고 엔터로 확인해요. '+placedLbl)+'">'+
          staffSVG({ sharps:sharps, notes:[], noteX:nx, label:'음표를 놓을 오선지', extra:'<g id="placeLayer"></g>' })+'</div>';
-    h += '<div class="btnrow tight"><button class="bigbtn plain" data-act="nudge" data-dir="1" aria-label="한 칸 위로">▲ 위로</button>'+
-         '<button class="bigbtn plain" data-act="nudge" data-dir="-1" aria-label="한 칸 아래로">▼ 아래로</button></div>';
+    h += '<div class="btnrow tight"><button class="bigbtn sky" data-act="nudge" data-dir="1" aria-label="한 칸 위로">▲ 위로</button>'+
+         '<button class="bigbtn sky" data-act="nudge" data-dir="-1" aria-label="한 칸 아래로">▼ 아래로</button></div>';
     if (q.placed !== null && q.placed !== undefined){
       h += '<button class="bigbtn green" data-act="confirmPlace" style="margin-top:10px">여기!</button>';
     }
@@ -840,22 +1151,7 @@ function renderQuiz(){
     h += nameButtons({ disabled: q.phase === 'answered' });
   }
 
-  /* 캐릭터 말풍선 */
-  if (q.phase === 'answered'){
-    h += '<div class="flagline ok"><span class="mark">✓</span><span>정답이에요</span></div>';
-    h += say('dodo','joy', q.lastPraise || praiseFor(n.ko), 'ok');
-  } else if (showAnswer){
-    h += '<div class="flagline hint"><span class="mark">!</span><span>정답을 함께 봐요</span></div>';
-    h += say('mimi','base', n.ko+'는 여기에 살아요. 한 번 눌러 볼까요?');
-  } else if (q.attempt === 1){
-    h += '<div class="flagline retry"><span class="mark">↺</span><span>다시 도전</span></div>';
-    h += say('sori','cheer','앗, 아깝다! 다시 한 번 해볼까요? 🎻','retry');
-  } else {
-    var prompt = item.type === 'A' ? '이 음표는 무슨 소리일까요?'
-               : item.type === 'B' ? n.ko+'는 어디에 살까요? 눌러서 놓아요.'
-               : '잘 듣고 맞혀 보세요!';
-    h += say('dodo','base', prompt);
-  }
+  h += quizBubble(q, item, showAnswer);
 
   /* 힌트 */
   if (!showAnswer && q.phase !== 'answered'){
@@ -867,26 +1163,28 @@ function renderQuiz(){
 
 /* ---------- 단계 결과 ---------- */
 function renderResult(){
-  var r = state.result, st = STAGES[r.stage-1], passed = r.stars >= 2;
+  var r = state.result, pos1 = (r.course === 'pos1');
+  var st = pos1 ? POS1_STAGES[r.stage-1] : STAGES[r.stage-1];
+  var last = pos1 ? POS1_STAGES.length : 8;
+  var act = pos1 ? 'pos1stage' : 'stage';
+  var passed = r.stars >= 2;
   var h = '<div class="card center">';
   h += '<h2>'+esc(st.title)+'</h2>';
   h += '<div class="starrow">'+starText(r.stars)+'</div>';
   h += '<p style="font-size:1.15rem;font-weight:700;margin-top:6px">맞힌 수 '+r.ok+' / '+r.total+'  ·  '+r.score+'점</p>';
-  if (r.missNotes.length){
+  if (r.missLabels && r.missLabels.length){
     h += '<p class="muted" style="margin-top:10px">이 음을 조금 더 연습해요</p><div class="misslist" style="justify-content:center">';
-    for (var i=0;i<r.missNotes.length;i++){
-      var nn = NOTES[r.missNotes[i]];
-      h += '<span class="misschip">'+esc(nn.ko)+' ('+nn.en+')</span>';
-    }
+    for (var i=0;i<r.missLabels.length;i++) h += '<span class="misschip">'+esc(r.missLabels[i])+'</span>';
     h += '</div>';
   }
   h += say(passed?'dodo':'sori', passed?'joy':'cheer',
            passed ? '멋져요! 다음 정거장으로 가요.' : '한 번 더 해볼까요? 친구는 할 수 있어요.');
   h += '<div class="btnrow">';
   h += '<button class="bigbtn plain" data-act="tomap">지도로</button>';
-  if (passed && r.stage < 8) h += '<button class="bigbtn" data-act="stage" data-stage="'+(r.stage+1)+'">다음 단계</button>';
-  else if (passed && r.stage === 8) h += '<button class="bigbtn green" data-act="cert">수료증 받기</button>';
-  else h += '<button class="bigbtn" data-act="stage" data-stage="'+r.stage+'">한 번 더</button>';
+  if (passed && r.stage < last) h += '<button class="bigbtn" data-act="'+act+'" data-stage="'+(r.stage+1)+'">다음 단계</button>';
+  else if (passed && !pos1) h += '<button class="bigbtn green" data-act="cert">수료증 받기</button>';
+  else if (passed) h += '<button class="bigbtn green" data-act="tomap">지도로</button>';
+  else h += '<button class="bigbtn" data-act="'+act+'" data-stage="'+r.stage+'">한 번 더</button>';
   h += '</div></div>';
   return h;
 }
@@ -922,6 +1220,13 @@ function renderParent(){
     h += '<tr><td>'+i+'</td><td>'+(state.stars[i]?starText(state.stars[i]):'—')+'</td><td>'+rate+'</td></tr>';
   }
   h += '</tbody></table>';
+  h += '<h3 style="margin-top:14px">1지 코스</h3>';
+  h += '<table class="stats"><thead><tr><th>줄</th><th>별</th><th>정답률</th></tr></thead><tbody>';
+  for (var k=1;k<=POS1_STAGES.length;k++){
+    var pt = state.pos1.tries[k], prate = pt && pt.total ? Math.round(pt.ok/pt.total*100)+'%' : '—';
+    h += '<tr><td>'+esc(NOTES[POS1_STAGES[k-1].string].ko)+'줄</td><td>'+(state.pos1.stars[k]?starText(state.pos1.stars[k]):'—')+'</td><td>'+prate+'</td></tr>';
+  }
+  h += '</tbody></table>';
   var keys = Object.keys(state.miss).sort(function(a,b){ return state.miss[b]-state.miss[a]; });
   h += '<h3 style="margin-top:14px">자주 틀린 음</h3>';
   if (!keys.length) h += '<p class="muted">아직 기록이 없어요.</p>';
@@ -943,11 +1248,38 @@ function renderParent(){
 }
 
 /* ---------- 라우터 ---------- */
+var liveEl = document.getElementById('live');
+var lastScreen = null;
+/* 스크린리더에 짧은 안내만 따로 전달한다 (화면 전체 재낭독 방지) */
+function announce(msg){
+  if (!liveEl) return;
+  liveEl.textContent = '';
+  setTimeout(function(){ liveEl.textContent = msg; }, 40);
+}
+/* 다시 그린 뒤에도 키보드 포커스를 잃지 않도록 선택자를 기억한다 */
+function focusKeyOf(el){
+  if (!el || el === document.body) return null;
+  if (el.id) return '#' + el.id;
+  var act = el.getAttribute && el.getAttribute('data-act');
+  if (!act) return null;
+  var k = '[data-act="' + act + '"]';
+  var attrs = ['data-note','data-dir','data-stage','data-key'], i, v;
+  for (i=0;i<attrs.length;i++){
+    v = el.getAttribute(attrs[i]);
+    if (v) k += '[' + attrs[i] + '="' + v + '"]';
+  }
+  return k;
+}
 function render(){
+  var prevFocus = focusKeyOf(document.activeElement);
+  var screenChanged = (state.screen !== lastScreen);
   var html;
   switch (state.screen){
     case 'start':    html = renderStart(); break;
     case 'map':      html = renderMap(); break;
+    case 'play':     html = renderPlay(); break;
+    case 'pos1map':  html = renderPos1Map(); break;
+    case 'pos1learn':html = renderPos1Learn(); break;
     case 'learn':    html = renderLearn(); break;
     case 'keyintro': html = renderKeyIntro(); break;
     case 'quiz':     html = renderQuiz(); break;
@@ -957,13 +1289,28 @@ function render(){
     default:         html = renderStart();
   }
   app.innerHTML = html;
+  lastScreen = state.screen;
   if (state.screen === 'quiz') bindQuiz();
-  if (!reduceMotion) { var c = app.querySelector('.card'); if (c) { c.classList.add('pop'); } }
+  /* 카드 등장 애니메이션은 화면이 바뀔 때만 — 문항마다 튀지 않게 */
+  if (!reduceMotion && screenChanged) { var c = app.querySelector('.card'); if (c) { c.classList.add('pop'); } }
+  if (prevFocus){
+    var back = app.querySelector(prevFocus);
+    if (back && back.focus) back.focus({ preventScroll:true });
+  }
 }
 /* ============================================================
    9. 유형 B — 오선지 터치 + 스냅
    ============================================================ */
 function clampStep(s){ return Math.max(PLACE_MIN, Math.min(PLACE_MAX, s)); }
+var ORD = ['첫째','둘째','셋째','넷째','다섯째','여섯째'];
+/* step -> 사람이 읽는 자리 이름. 계이름은 말하지 않는다 (정답 노출 방지) */
+function placeLabel(step){
+  if (step >= 0) return (step % 2 === 0) ? ORD[step/2] + ' 줄' : ORD[(step-1)/2] + ' 칸';
+  var d = -step;
+  if (d === 1) return '첫째 줄 바로 아래 칸';
+  var led = Math.floor(d/2);
+  return '아래 ' + ORD[led-1] + ' 덧줄' + (d % 2 ? ' 아래 칸' : '');
+}
 function snapStepFromClientY(svg, clientY){
   var r = svg.getBoundingClientRect();
   if (!r.height) return null;
@@ -1004,10 +1351,29 @@ function bindQuiz(){
     q.placed = s; q.hover = null;
     render();
   }
-  wrap.addEventListener('pointermove', move);
-  wrap.addEventListener('pointerdown', function(ev){ ev.preventDefault(); move(ev); });
-  wrap.addEventListener('pointerup', function(ev){ ev.preventDefault(); drop(ev); });
-  wrap.addEventListener('pointerleave', function(){ if (q.hover !== null){ q.hover = null; updatePlaceLayer(); } });
+  function clearHover(){ if (q.hover !== null && q.hover !== undefined){ q.hover = null; updatePlaceLayer(); } }
+  /* 마우스는 지나가기만 해도 반투명 음표가 따라온다 */
+  wrap.addEventListener('pointermove', function(ev){ if (ev.pointerType !== 'touch') move(ev); });
+  wrap.addEventListener('pointerdown', move);
+  wrap.addEventListener('pointerup', drop);
+  /* 손가락으로 세로로 쓸어 화면을 넘기면 놓지 않고 취소한다 */
+  wrap.addEventListener('pointercancel', clearHover);
+  wrap.addEventListener('pointerleave', clearHover);
+  wrap.addEventListener('keydown', function(ev){
+    var k = ev.key;
+    if (k === 'ArrowUp' || k === 'ArrowDown'){
+      ev.preventDefault();
+      var base = (q.placed === null || q.placed === undefined) ? 3 : q.placed;
+      q.placed = clampStep(base + (k === 'ArrowUp' ? 1 : -1));
+      q.hover = null;
+      render();
+      announce(placeLabel(q.placed));
+    } else if (k === 'Enter' || k === ' ' || k === 'Spacebar'){
+      if (q.placed === null || q.placed === undefined) return;
+      ev.preventDefault();
+      handleAnswer(q.placed === NOTES[currentItem().note].step);
+    }
+  });
 }
 
 /* ============================================================
@@ -1032,7 +1398,7 @@ function currentItem(){ return state.quiz ? state.quiz.items[state.quiz.idx] : n
 function handleAnswer(correct){
   var q = state.quiz, item = currentItem();
   if (!q || !item || q.phase !== 'ask') return;
-  var n = NOTES[item.note];
+  var pos1 = itemIsPos1(item), missKey = pos1 ? item.tone : item.note;
   if (correct){
     var pts = (q.hintUsed || q.attempt > 0) ? 0.5 : 1;
     q.points += pts;
@@ -1040,51 +1406,61 @@ function handleAnswer(correct){
     if (q.attempt === 0) { q.ok += 1; q.marks[q.idx] = 'done'; }
     else q.marks[q.idx] = 'miss';
     q.phase = 'answered';
-    q.lastPraise = praiseFor(n.ko);
+    q.lastPraise = praiseFor(itemAnswerLabel(item));
+    announce('정답이에요. ' + q.lastPraise);
     playFanfare();
     sparkle();
     render();
-    setTimeout(nextItem, 1000);
+    setTimeout(function(){ nextItem(q); }, 1000);
   } else {
     playSoft();
-    q.missed[item.note] = (q.missed[item.note]||0) + 1;
-    state.miss[item.note] = (state.miss[item.note]||0) + 1;
+    q.missed[missKey] = (q.missed[missKey]||0) + 1;
+    if (!pos1) state.miss[item.note] = (state.miss[item.note]||0) + 1;
     if (q.attempt === 0){
       q.attempt = 1;
       q.marks[q.idx] = 'miss';
       q.hintUsed = true;            /* 재도전 중에는 힌트가 자동으로 켜짐 */
-      q.placed = null; q.hover = null;
-      requeueNote(q, item.note);
+      q.hover = null;
+      primePlacement(q);            /* 음표를 출발 자리로 되돌려 다시 옮기게 한다 */
+      if (pos1) requeueFinger(q); else requeueNote(q, item.note);
+      announce('앗, 아깝다. 다시 한 번 해볼까요?');
       render();
-      setTimeout(function(){ playNote(item.note); }, 260);
+      setTimeout(function(){ playNote(itemToneId(item)); }, 260);
     } else {
       q.phase = 'reveal';
       q.placed = null; q.hover = null;
-      requeueNote(q, item.note);
+      if (pos1) requeueFinger(q); else requeueNote(q, item.note);
+      announce('정답은 ' + itemAnswerLabel(item) + '예요. ' + itemWhere(item));
       render();
-      setTimeout(function(){ playNote(item.note); }, 260);
+      setTimeout(function(){ playNote(itemToneId(item)); }, 260);
     }
     save();
   }
 }
-function nextItem(){
+function nextItem(expected){
   var q = state.quiz;
-  /* 자동 넘김을 기다리는 동안 친구가 지도로 나갔을 수 있다 */
+  /* 자동 넘김을 기다리는 동안 친구가 지도로 나갔거나 새 단계를 시작했을 수 있다 */
   if (!q || state.screen !== 'quiz') return;
+  if (expected && expected !== q) return;
   q.idx += 1;
   q.attempt = 0; q.hintUsed = false; q.phase = 'ask';
   q.placed = null; q.hover = null; q.lastPraise = null;
   if (q.idx >= q.items.length){ finishStage(); return; }
+  primePlacement(q);
   render();
   autoPlayCurrent();
 }
 function autoPlayCurrent(){
   var item = currentItem();
   if (!item) return;
-  setTimeout(function(){ if (state.screen === 'quiz') playNote(item.note); }, 220);
+  var q = state.quiz;
+  announce((q.idx + 1) + '번 문제. ' + promptFor(item));
+  setTimeout(function(){ if (state.screen === 'quiz' && state.quiz === q) playNote(itemToneId(item)); }, 220);
 }
 function finishStage(){
-  var q = state.quiz, st = STAGES[q.stage-1];
+  var q = state.quiz;
+  if (q.course === 'pos1'){ finishPos1Stage(q); return; }
+  var st = STAGES[q.stage-1];
   var stars = stageStars(q);
   var prev = state.stars[q.stage] || 0;
   state.stars[q.stage] = Math.max(prev, stars);
@@ -1093,14 +1469,49 @@ function finishStage(){
   state.tries[q.stage] = t;
   if (stars >= 2 && state.unlocked < Math.min(8, q.stage+1)) state.unlocked = Math.min(8, q.stage+1);
   if (stars >= 2 && q.stage === 8) state.unlocked = 8;
-  var missNotes = Object.keys(q.missed);
-  state.result = { stage:q.stage, stars:stars, ok:q.ok, total:q.items.length, score:q.score, missNotes:missNotes };
+  state.result = { course:'open', stage:q.stage, stars:stars, ok:q.ok, total:q.items.length,
+                   score:q.score, missLabels:Object.keys(q.missed).map(function(k){ return NOTES[k].ko + ' (' + NOTES[k].en + ')'; }) };
   state.screen = 'result';
   state.quiz = null;
+  announce('단계가 끝났어요. 맞힌 수 ' + state.result.ok + ' 나누기 ' + state.result.total + ', 별 ' + stars + '개.');
   save();
   render();
 }
+function finishPos1Stage(q){
+  var stars = pos1Stars(q), prev = state.pos1.stars[q.stage] || 0;
+  state.pos1.stars[q.stage] = Math.max(prev, stars);
+  var t = state.pos1.tries[q.stage] || { ok:0, total:0 };
+  t.ok += q.ok; t.total += q.items.length;
+  state.pos1.tries[q.stage] = t;
+  var k;
+  for (k in q.missed) state.pos1.miss[k] = (state.pos1.miss[k]||0) + q.missed[k];
+  if (stars >= 2 && state.pos1.unlocked < Math.min(POS1_STAGES.length, q.stage+1)){
+    state.pos1.unlocked = Math.min(POS1_STAGES.length, q.stage+1);
+  }
+  state.result = { course:'pos1', stage:q.stage, stars:stars, ok:q.ok, total:q.items.length,
+                   score:q.score, missLabels:Object.keys(q.missed).map(toneKo) };
+  state.screen = 'result';
+  state.quiz = null;
+  announce('단계가 끝났어요. 맞힌 수 ' + q.ok + ' 나누기 ' + q.items.length + ', 별 ' + stars + '개.');
+  save();
+  render();
+}
+function startPos1Stage(no){
+  state.course = 'pos1';
+  state.pos1.stage = no;
+  state.pos1.learnFinger = 0;
+  state.screen = 'pos1learn';
+  render();
+  setTimeout(function(){ playNote(FINGERS[POS1_STAGES[no-1].string][0]); }, 260);
+}
+function startPos1Quiz(){
+  state.quiz = buildPos1Quiz(state.pos1.stage);
+  state.screen = 'quiz';
+  render();
+  autoPlayCurrent();
+}
 function startStage(no){
+  state.course = 'open';
   state.stage = no;
   var st = STAGES[no-1];
   if (st.learn){ state.learnIdx = 0; state.screen = 'learn'; render(); setTimeout(function(){ playNote(st.notes[0]); }, 260); }
@@ -1108,6 +1519,7 @@ function startStage(no){
 }
 function startQuiz(){
   state.quiz = buildQuiz(state.stage, state.typeC);
+  primePlacement(state.quiz);
   state.screen = 'quiz';
   render();
   autoPlayCurrent();
@@ -1121,10 +1533,54 @@ app.addEventListener('click', function(ev){
   if (!t) return;
   var act = t.getAttribute('data-act');
 
-  if (act === 'start'){ audioReady(); resumeAudio(); state.screen = 'map'; render(); return; }
-  if (act === 'tomap'){ state.screen = 'map'; state.quiz = null; render(); return; }
-  if (act === 'stage'){ startStage(parseInt(t.getAttribute('data-stage'),10)); return; }
+  if (act === 'start'){ audioReady(); resumeAudio(); state.course = 'open'; state.screen = 'map'; render(); return; }
+  if (act === 'tomap'){
+    state.screen = (state.course === 'pos1') ? 'pos1map' : 'map';
+    state.quiz = null; render(); return;
+  }
+  if (act === 'home'){ state.screen = 'start'; state.quiz = null; render(); return; }
+  if (act === 'pos1'){
+    audioReady(); resumeAudio();
+    state.course = 'pos1'; state.screen = 'pos1map'; render(); return;
+  }
+  if (act === 'pos1stage'){ startPos1Stage(parseInt(t.getAttribute('data-stage'),10)); return; }
+  if (act === 'pos1quiz'){ startPos1Quiz(); return; }
+  if (act === 'learnFinger'){
+    state.pos1.learnFinger = parseInt(t.getAttribute('data-finger'),10);
+    render();
+    playNote(FINGERS[POS1_STAGES[state.pos1.stage-1].string][state.pos1.learnFinger]);
+    return;
+  }
+  if (act === 'pickTone'){
+    var qt = state.quiz; if (!qt || qt.phase !== 'ask') return;
+    handleAnswer(t.getAttribute('data-tone') === currentItem().tone);
+    return;
+  }
+  if (act === 'pickFinger'){
+    var qf = state.quiz; if (!qf || qf.phase !== 'ask') return;
+    handleAnswer(parseInt(t.getAttribute('data-finger'),10) === currentItem().finger);
+    return;
+  }
+  if (act === 'stage'){ state.course = 'open'; startStage(parseInt(t.getAttribute('data-stage'),10)); return; }
   if (act === 'cert'){ state.screen = 'cert'; render(); return; }
+  if (act === 'play'){
+    audioReady(); resumeAudio();
+    state.screen = 'play'; render();
+    setTimeout(function(){ playNote(state.play.note); }, 200);
+    return;
+  }
+  if (act === 'playPick'){
+    state.play.note = t.getAttribute('data-note');
+    render(); playNote(state.play.note);
+    announce(NOTES[state.play.note].ko + '. ' + NOTES[state.play.note].where);
+    return;
+  }
+  if (act === 'playKey'){
+    state.play.key = t.getAttribute('data-key');
+    render();
+    announce(KEYS[state.play.key].ko + ', 샵 ' + KEYS[state.play.key].sharps.length + '개');
+    return;
+  }
   if (act === 'replay'){ playNote(t.getAttribute('data-note')); return; }
   if (act === 'learnNext'){
     if (state.learnIdx < 2){
@@ -1147,7 +1603,7 @@ app.addEventListener('click', function(ev){
     var q3 = state.quiz; if (!q3 || q3.phase !== 'ask') return;
     var base = (q3.placed === null || q3.placed === undefined) ? 3 : q3.placed;
     q3.placed = clampStep(base + parseInt(t.getAttribute('data-dir'),10));
-    q3.hover = null; render(); return;
+    q3.hover = null; render(); announce(placeLabel(q3.placed)); return;
   }
   if (act === 'confirmPlace'){
     var q4 = state.quiz; if (!q4 || q4.phase !== 'ask') return;
@@ -1160,7 +1616,7 @@ app.addEventListener('click', function(ev){
     if (!q5 || q5.phase !== 'reveal') return;
     q5.phase = 'answered-reveal';
     playNote(t.getAttribute('data-note'));
-    setTimeout(nextItem, 650);
+    setTimeout(function(){ nextItem(q5); }, 650);
     return;
   }
   if (act === 'saveName'){
