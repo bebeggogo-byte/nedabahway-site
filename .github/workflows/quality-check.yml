@@ -1,6 +1,25 @@
 name: Quality Check
 
 on:
+  # Runs on branch pushes too: GitHub stops sending pull_request events for very
+  # large PRs (the 2026-09 relaunch changed ~15k files), so a PR-only trigger
+  # would leave the public pages unchecked.
+  push:
+    branches-ignore: [main]
+    paths:
+      - 'p/**'
+      - 'index.html'
+      - 'about.html'
+      - 'programs.html'
+      - 'tools.html'
+      - 'contact.html'
+      - 'auto/tools/**'
+      - 'assets/p-v2.css'
+      - 'scripts/vault-public.txt'
+      - '.github/workflows/quality-check.yml'
+      - '.htmlhintrc'
+      - '.stylelintrc.json'
+      - '.pa11yci.json'
   pull_request:
     branches: [main]
     paths:
