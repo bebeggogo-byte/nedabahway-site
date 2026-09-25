@@ -11,9 +11,10 @@ on:
       - 'index.html'
       - 'about.html'
       - 'programs.html'
-      - 'tools.html'
       - 'contact.html'
-      - 'auto/tools/**'
+      - 'ai/**'
+      - 'assets/ai.css'
+      - 'assets/ai.js'
       - 'assets/p-v2.css'
       - 'scripts/vault-public.txt'
       - '.github/workflows/quality-check.yml'
@@ -27,9 +28,10 @@ on:
       - 'index.html'
       - 'about.html'
       - 'programs.html'
-      - 'tools.html'
       - 'contact.html'
-      - 'auto/tools/**'
+      - 'ai/**'
+      - 'assets/ai.css'
+      - 'assets/ai.js'
       - 'assets/p-v2.css'
       - '.moai/strategy/**'
       - '.moai/specs/SPEC-LANDING-001/**'
@@ -68,7 +70,7 @@ jobs:
             htmlhint@1.x stylelint@16.x stylelint-config-standard@36.x
 
       - name: HTML lint — /p/*.html only (new landing pages)
-        run: npx htmlhint index.html about.html programs.html tools.html contact.html privacy.html 404.html offline.html auto/tools/*/index.html
+        run: npx htmlhint index.html about.html programs.html contact.html privacy.html 404.html offline.html ai/index.html ai/*/index.html
 
       - name: CSS lint — assets/p-v2.css only (new design system)
         run: npx stylelint assets/p-v2.css
@@ -249,7 +251,7 @@ jobs:
       - name: Verify all data-copy markers documented (≥85% coverage required)
         run: |
           set -e
-          MARKERS=$(grep -ohE 'data-copy="[A-Z0-9-]+"' index.html about.html programs.html tools.html contact.html auto/tools/*/index.html | sort -u || true)
+          MARKERS=$(grep -ohE 'data-copy="[A-Z0-9-]+"' index.html about.html programs.html contact.html ai/index.html ai/*/index.html | sort -u || true)
           if [ -z "$MARKERS" ]; then echo "::notice::No data-copy markers on public pages — nothing to check."; exit 0; fi
           TOTAL=$(echo "$MARKERS" | wc -l)
           MISSING=0
