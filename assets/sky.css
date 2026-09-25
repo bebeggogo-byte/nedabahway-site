@@ -5,7 +5,7 @@
      Connector #3B82F6, Supporter #10B981, Thinker #8B5CF6, Enjoyer #F472B6
    - type colors are used as fills, offset shadows and markers; text-on-color
      and link/button colors use the deeper connector blue for WCAG AA.
-   Layout: header + menu, logo hero with character and ask bar, 6 types strip,
+   Layout: header + menu, banner hero with ask bar, 6 types strip,
    numbered work list, cards, course rows, contact cards, forms, FAQ, footer. */
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
@@ -71,10 +71,8 @@ button{font-family:inherit;}
 .sk-logo{display:inline-flex;align-items:center;gap:8px;line-height:1;color:var(--ink);}
 .sk-logo__sym{height:34px;width:auto;}
 .sk-logo__word{height:22px;width:auto;}
-.sk-logo__ko{margin-left:2px;font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:-.01em;color:var(--text-3);}
 .sk-foot__logo{display:inline-flex;align-items:center;gap:6px;}
 .sk-foot__logo .sk-logo__word{height:16px;}
-.sk-foot__logo .sk-logo__ko{font-size:11px;}
 .sk-nav{display:flex;gap:36px;align-items:center;}
 .sk-nav a{font-family:var(--display);font-size:15px;font-weight:600;color:var(--text-3);transition:color .2s;}
 .sk-nav a:hover,.sk-nav a[aria-current="page"]{color:var(--cobalt);}
@@ -94,16 +92,9 @@ button{font-family:inherit;}
 /* ===== HERO (NW banner, shown at native size or smaller) ===== */
 .sk-hero{padding:40px 0 72px;}
 .sk-hero__in{max-width:1261px;margin:0 auto;padding:0 24px;}
-/* logo hero: brand tagline + full logo on the left, character card on the right */
-.hero2{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;max-width:1160px;margin:0 auto;}
-.hero2__tag{font-family:var(--hand);font-weight:700;font-size:clamp(30px,3.6vw,44px);line-height:1.25;color:var(--ink);word-break:keep-all;}
-.hero2__ast{margin-left:6px;font-family:var(--display);font-size:.8em;vertical-align:super;}
-.hero2__logo{margin-top:26px;}
-.hero2__logo img{width:100%;max-width:430px;height:auto;}
-.hero2__lead{margin-top:22px;font-size:17px;line-height:1.75;color:var(--text-3);word-break:keep-all;}
-.hero2__char{border-radius:var(--r-lg);overflow:hidden;border:2px solid var(--ink);box-shadow:8px 8px 0 var(--connector);background:var(--connector);max-width:520px;justify-self:end;width:100%;}
-.hero2__char img{display:block;width:100%;height:auto;}
-.hero2__char figcaption{padding:12px 18px;background:var(--card);border-top:2px solid var(--ink);font-family:var(--hand);font-weight:700;font-size:20px;color:var(--ink);}
+/* banner hero */
+.sk-hero__banner{max-width:1213px;margin:0 auto;border-radius:var(--r-lg);overflow:hidden;border:2px solid var(--ink);box-shadow:8px 8px 0 var(--connector);background:var(--connector);}
+.sk-hero__banner img{display:block;width:100%;height:auto;}
 
 /* 6 types strip */
 .types{max-width:1160px;margin:56px auto 0;}
@@ -116,7 +107,7 @@ button{font-family:inherit;}
 .types__i:hover img{transform:rotate(-8deg) scale(1.08);}
 .types__i strong{font-size:15px;font-weight:700;color:var(--ink);}
 .types__i span{font-family:var(--hand);font-size:18px;color:var(--text-3);}
-@media(max-width:900px){.hero2{grid-template-columns:1fr;gap:36px;}.hero2__char{justify-self:center;max-width:560px;}.types__list{grid-template-columns:repeat(3,1fr);}.types__i:nth-child(4){border-left:0;}.types__i:nth-child(n+4){border-top:1px solid var(--line);}}
+@media(max-width:900px){.types__list{grid-template-columns:repeat(3,1fr);}.types__i:nth-child(4){border-left:0;}.types__i:nth-child(n+4){border-top:1px solid var(--line);}}
 .sk-hero__ask{margin:48px auto 0;width:100%;max-width:820px;}
 
 /* ===== ASK BAR ===== */
@@ -362,14 +353,7 @@ button{font-family:inherit;}
   /* hero: banner at full phone width, ask bar right below */
   .sk-hero{padding:16px 0 44px;}
   .sk-hero__in{padding:0 18px;}
-  .hero2{grid-template-columns:1fr;gap:22px;}
-  .hero2__copy{display:contents;}
-  .hero2__tag{order:1;font-size:28px;}
-  .hero2__logo{order:2;margin-top:0;text-align:center;}
-  .hero2__logo img{max-width:300px;}
-  .hero2__char{order:3;justify-self:stretch;max-width:none;border-radius:12px;box-shadow:4px 4px 0 var(--connector);}
-  .hero2__char figcaption{font-size:17px;padding:10px 14px;}
-  .hero2__lead{order:4;margin-top:0;font-size:15px;}
+  .sk-hero__banner{border-radius:12px;box-shadow:4px 4px 0 var(--connector);}
   .types{margin-top:36px;}
   .types__list{grid-template-columns:repeat(3,1fr);}
   .types__i:nth-child(4){border-left:0;}
@@ -379,7 +363,6 @@ button{font-family:inherit;}
   .types__i strong{font-size:13px;}
   .types__i span{font-size:16px;}
   .sk-hero__ask{margin-top:22px;padding:0 6px;}
-  .sk-logo__ko{font-size:12px;margin-left:6px;}
 
   /* ask bar: input on top, full-width button below — no truncated text */
   .ask{flex-direction:column;align-items:stretch;gap:6px;padding:6px;border-radius:18px;}
