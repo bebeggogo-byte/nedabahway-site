@@ -70,7 +70,7 @@
 
   <aside class="next-aside">
     <h2>이걸 폼 인입 → 자동 배정으로 만들려면</h2>
-    <p><a href="/resources/automation/marketing/02-lead-scoring-router.html" style="display:inline-block;background:var(--ink);color:#fbf6ec;padding:.7rem 1.2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.92rem;">자동화로 만들기 →</a></p>
+    <p><a href="/resources/automation/marketing/02-lead-scoring-router.html" style="display:inline-block;background:var(--ink);color:#f1ede5;padding:.7rem 1.2rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.92rem;">자동화로 만들기 →</a></p>
   </aside>
 
   <aside class="cta-next" style="background:#fff8ea;border:1.5px solid #e8d2a4;border-radius:12px;padding:1.4rem 1.6rem;margin-top:1.5rem;">
@@ -149,7 +149,7 @@ JSON만 반환:
   });
 
   function renderScore(target, r) {
-    const gradeColor = r.grade === 'HOT' ? '#a8410e' : r.grade === 'WARM' ? '#d97706' : '#6a604f';
+    const gradeColor = r.grade === 'HOT' ? '#a8410e' : r.grade === 'WARM' ? '#d97706' : '#55504a';
     const gradeBg = r.grade === 'HOT' ? '#f0d6c8' : r.grade === 'WARM' ? '#fbe9c5' : '#ece1cd';
     const wrap = document.createElement('div');
     wrap.innerHTML = `
@@ -163,7 +163,7 @@ JSON만 반환:
       <ul>${r.fired.map(([n, v]) => `<li>${MZ.escapeHtml(n)} → +${v}점</li>`).join('') || '<li><em>해당 룰 없음</em></li>'}</ul>
 
       <h5 style="margin:1.2rem 0 .3rem;">📧 첫 응답 메시지 초안</h5>
-      <pre style="white-space:pre-wrap;color:#fbf6ec;background:#3a322a;font-family:'Noto Sans KR',sans-serif;font-size:.92rem;line-height:1.7;">${MZ.escapeHtml(r.ai.firstMessage || '')}</pre>
+      <pre style="white-space:pre-wrap;color:#f1ede5;background:#1b1b1b;font-family:'Noto Sans KR',sans-serif;font-size:.92rem;line-height:1.7;">${MZ.escapeHtml(r.ai.firstMessage || '')}</pre>
     `;
     MZ.renderResult(target, {
       title: `${r.lead.company} / ${r.lead.name}`,
