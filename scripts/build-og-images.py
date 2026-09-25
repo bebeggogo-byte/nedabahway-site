@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Generate unified Open Graph SVG images for 12 tools + 4 system pages.
 
-Output: assets/og/{slug}.svg (1200x630)
+Output: assets/og/{slug}.svg (1200x630). JPG twins used by og:image are
+        rendered from these by scripts/build-og-jpg.py (brand v2).
 
 Design: 좌측에 큰 도구 한글명, 그 아래 1줄 요약. 우상단 "네다바웨이" 워드마크.
         좌측 색띠. 사이트 팔레트(#3a322a, #b45309, #fbf6ec) 사용.

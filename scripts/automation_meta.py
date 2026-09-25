@@ -91,7 +91,7 @@ CARDS = {
     },
 }
 
-OG_IMAGE = "https://www.nedabah.org/assets/og-automation-9.svg"
+OG_IMAGE = "https://www.nedabah.org/assets/og-automation-9.jpg"
 SITE_BASE = "https://www.nedabah.org"
 COURSE_TITLE = "조직 자동화 9선"
 COURSE_SUBTITLE = "기획·HR·마케팅 — 누구나 30분"

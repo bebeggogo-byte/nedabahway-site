@@ -45,9 +45,9 @@
   function injectMeta(){
     const head = document.head;
     const want = [
-      ['og:image', 'https://www.nedabah.org/assets/og/ai-studio.svg'],
+      ['og:image', 'https://www.nedabah.org/assets/og/ai-studio.jpg'],
       ['twitter:card', 'summary_large_image'],
-      ['twitter:image', 'https://www.nedabah.org/assets/og/ai-studio.svg']
+      ['twitter:image', 'https://www.nedabah.org/assets/og/ai-studio.jpg']
     ];
     want.forEach(([prop, content])=>{
       const isOG = prop.startsWith('og:');

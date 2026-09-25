@@ -31,7 +31,7 @@ TPL = """<!DOCTYPE html>
 <meta property="og:title" content="{title} — 자동화 9선">
 <meta property="og:description" content="{summary}">
 <meta property="og:url" content="https://www.nedabah.org{target}">
-<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.svg">
+<meta property="og:image" content="https://www.nedabah.org/assets/og-automation-9.jpg">
 <meta property="og:locale" content="ko_KR">
 <script>location.replace('{target}');</script>
 </head>
