@@ -73,18 +73,20 @@ button{font-family:inherit;}
   .sk-nav a{width:100%;padding:14px 32px;font-size:17px;}
 }
 
-/* ===== HERO (original banner, shown uncropped at native size or smaller) ===== */
-.sk-hero{padding:40px 0 72px;}
-.sk-hero__in{max-width:1261px;margin:0 auto;padding:0 24px;}
-.sk-hero__banner{position:relative;max-width:1213px;margin:0 auto;border-radius:var(--r-lg);overflow:hidden;border:2px solid var(--ink);box-shadow:8px 8px 0 var(--cobalt);background:var(--bg-2);}
-.sk-hero__banner img{width:100%;height:auto;aspect-ratio:1213/671;}
-.sk-hero__ask{margin:40px auto 0;width:100%;max-width:820px;}
+/* ===== HERO (text only, skyline format) ===== */
+.sk-hero{min-height:calc(100svh - 68px);display:flex;align-items:center;padding:80px 0 72px;}
+.sk-hero__in{width:100%;max-width:1120px;margin:0 auto;padding:0 24px;text-align:center;}
+.sk-hero__title{margin-top:18px;font-family:var(--sans);font-weight:800;font-size:clamp(40px,7.4vw,96px);line-height:1.12;letter-spacing:-.045em;color:var(--ink);word-break:keep-all;}
+.sk-hero__sub{margin-top:24px;font-size:clamp(17px,2.2vw,23px);color:var(--text-3);word-break:keep-all;}
+.sk-hero__ask{margin:72px auto 0;width:100%;max-width:820px;text-align:left;}
 @media(max-width:560px){
-  .sk-hero{padding:20px 0 56px;}
-  .sk-hero__in{padding:0 14px;}
-  .sk-hero__banner{border-radius:12px;box-shadow:5px 5px 0 var(--cobalt);}
-  .sk-hero__ask{margin-top:28px;}
+  .sk-hero{padding:56px 0 48px;}
+  .sk-hero__ask{margin-top:48px;}
 }
+
+/* original introduction banner — shown as-is, no crop, no overlay */
+.intro-banner{max-width:1213px;margin:0 auto 40px;}
+.intro-banner img{width:100%;height:auto;}
 
 /* ===== ASK BAR ===== */
 .ask{display:flex;align-items:center;gap:10px;background:var(--card);border:2px solid var(--ink);border-radius:24px;padding:9px 9px 9px 24px;box-shadow:var(--shadow);}
