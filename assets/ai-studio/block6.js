@@ -71,7 +71,7 @@
   function renderQuestions(form){
     form.innerHTML = QUESTIONS.map((Q, i)=>`
       <div class="as-q" data-qid="${Q.id}">
-        <div class="as-q__title"><b>${i+1}</b> <span>${Q.q} <em style="color:#6b7280;font-style:normal;font-weight:500">(${Q.label})</em></span></div>
+        <div class="as-q__title"><b>${i+1}</b> <span>${Q.q} <em style="color:#55504a;font-style:normal;font-weight:500">(${Q.label})</em></span></div>
         <div class="as-q__opts">
           ${Q.opts.map((label, j)=>`
             <label>
@@ -166,7 +166,7 @@
         <div class="as-result__bar"><b>IDEN 정렬</b>${d.idenAlign.toFixed(1)}/5</div>
       </div>
       <p style="margin-top:14px"><strong>다음 1주 한 동작 →</strong> ${ACTION_BY_AXIS[d.weakAxis]}</p>
-      <p style="margin-top:8px;font-size:12px;color:#6b7280">
+      <p style="margin-top:8px;font-size:12px;color:#55504a">
         See ${d.axes.See} · Speak ${d.axes.Speak} · Sense ${d.axes.Sense} · Steer ${d.axes.Steer} · Sustain ${d.axes.Sustain}
       </p>
     `;

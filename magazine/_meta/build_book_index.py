@@ -64,10 +64,10 @@ def build(code):
         if ess:
             cards.append(f'<a class="toc-card toc-card--done" href="/magazine/{code}/{n}/"><div class="toc-card__num">{n}{unit}</div><div class="toc-card__essence">{html.escape(ess)}</div><div class="toc-card__status">관찰 완료 →</div></a>')
         else:
-            cards.append(f'<a class="toc-card toc-card--pending" href="/magazine/{code}/{n}/"><div class="toc-card__num">{n}{unit}</div><div class="toc-card__essence" style="color:#9A9A9A">발행 예정</div><div class="toc-card__status" style="color:#C2410C">후원으로 앞당기기</div></a>')
+            cards.append(f'<a class="toc-card toc-card--pending" href="/magazine/{code}/{n}/"><div class="toc-card__num">{n}{unit}</div><div class="toc-card__essence" style="color:#6b655e">발행 예정</div><div class="toc-card__status" style="color:#1d4ed8">후원으로 앞당기기</div></a>')
     dl = (f'<div class="book-dl" style="margin-top:18px;"><a href="/magazine/_pdf/{code}.pdf" download '
           f'style="display:inline-flex;align-items:center;gap:8px;background:#1A1A1A;color:#FAFAF7;padding:11px 20px;border-radius:999px;font-weight:700;font-size:0.92rem;text-decoration:none;">관찰 핵심 PDF 내려받기 ↓</a>'
-          f'<span style="margin-left:10px;color:#7A6F5F;font-size:0.82rem;">완성 {done}{unit} · 가상 대화 제외, 관찰·종합만 정리</span></div>') if done==total else ''
+          f'<span style="margin-left:10px;color:#5f574d;font-size:0.82rem;">완성 {done}{unit} · 가상 대화 제외, 관찰·종합만 정리</span></div>') if done==total else ''
     doc=f'''<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -136,7 +136,7 @@ def build(code):
   </section>
 </main>
 <footer class="foot foot--mini">
-  <style>.foot--mini{{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}}.foot--mini .foot--mini__inner{{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}}.foot--mini strong{{color:#2a241c}}.foot--mini a{{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}}</style>
+  <style>.foot--mini{{padding:18px 20px;border-top:1px solid #d6cfc1;background:#e8e2d5;font-size:12px;color:#55504a;line-height:1.6}}.foot--mini .foot--mini__inner{{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}}.foot--mini strong{{color:#1b1b1b}}.foot--mini a{{color:#1b1b1b;text-decoration:none;border-bottom:1px dotted #1d4ed8}}</style>
   <div class="foot--mini__inner">
     <span>© 2026 <strong>네다바웨이</strong> · 김창환 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></span>
     <span>Observatory · SBM 관찰 Atlas</span>

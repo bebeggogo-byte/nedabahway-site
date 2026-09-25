@@ -24,7 +24,7 @@
         link.href = '/learning/all.html';
         link.className = 'all-link';
         link.style.cssText =
-          'float:right;font-size:13px;font-weight:600;color:#1E40AF;' +
+          'float:right;font-size:13px;font-weight:600;color:#1d4ed8;' +
           'text-decoration:none;letter-spacing:-.01em;text-transform:none;' +
           'display:inline-flex;align-items:center;gap:4px';
         link.innerHTML = '전체 100편 보기 <span aria-hidden="true">→</span>';
@@ -40,13 +40,13 @@
           'max-width:1080px;margin:24px auto;padding:0 24px;text-align:center';
         cta.innerHTML =
           '<a href="/learning/all.html" style="display:inline-flex;align-items:center;gap:10px;' +
-          'padding:14px 28px;background:#1E40AF;color:#fff;text-decoration:none;' +
+          'padding:14px 28px;background:#1d4ed8;color:#fff;text-decoration:none;' +
           'border-radius:10px;font-size:15px;font-weight:600;letter-spacing:-.01em;' +
-          'box-shadow:0 4px 12px rgba(30,64,175,.18);transition:all .2s">' +
+          'box-shadow:0 4px 12px rgba(29,78,216,.18);transition:all .2s">' +
           '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>' +
           '학습노트 전체 100편 그리드로 보기' +
           '<span aria-hidden="true">→</span></a>' +
-          '<p style="margin:10px 0 0;font-size:13px;color:#6b7280">영역·형식 필터 · 검색 · 정렬 가능</p>';
+          '<p style="margin:10px 0 0;font-size:13px;color:#55504a">영역·형식 필터 · 검색 · 정렬 가능</p>';
         recentSection.parentNode.insertBefore(cta, recentSection.nextSibling);
       }
     }
@@ -62,22 +62,22 @@
         'position:fixed;top:96px;right:24px;z-index:9000;' +
         'display:flex;align-items:center;gap:8px;' +
         'padding:10px 16px;background:#fff;border:1px solid #C7D2FE;' +
-        'color:#1E40AF;text-decoration:none;border-radius:24px;' +
+        'color:#1d4ed8;text-decoration:none;border-radius:24px;' +
         'font-size:13px;font-weight:600;letter-spacing:-.01em;' +
-        'box-shadow:0 4px 12px rgba(30,64,175,.12);transition:all .2s';
+        'box-shadow:0 4px 12px rgba(29,78,216,.12);transition:all .2s';
       fab.innerHTML =
         '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>' +
         '<span>전체보기 <strong style="font-weight:700">100</strong></span>';
 
       // hover 효과
       fab.addEventListener('mouseenter', () => {
-        fab.style.background = '#1E40AF';
+        fab.style.background = '#1d4ed8';
         fab.style.color = '#fff';
-        fab.style.borderColor = '#1E40AF';
+        fab.style.borderColor = '#1d4ed8';
       });
       fab.addEventListener('mouseleave', () => {
         fab.style.background = '#fff';
-        fab.style.color = '#1E40AF';
+        fab.style.color = '#1d4ed8';
         fab.style.borderColor = '#C7D2FE';
       });
 

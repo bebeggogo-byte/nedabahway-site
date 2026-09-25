@@ -42,13 +42,13 @@ CW_LABEL = {
     "affirming": ("신앙 명시", "#0d9488"),
     "theist_compatible": ("유신론 호환", "#0891b2"),
     "wrestling": ("씨름의 자리", "#ca8a04"),
-    "secular_christian_heritage": ("세속 · 기독 전통 위에", "#6b7280"),
+    "secular_christian_heritage": ("세속 · 기독 전통 위에", "#55504a"),
     "critic": ("비판자", "#7f1d1d"),
 }
 
 
 PAGE_CSS = """
-:root{--ink:#1f1f23;--muted:#6b7280;--accent:#b45309;--warm:#d97706;--bg:#fafaf7;--card:transparent;--line:#e5d8c4}
+:root{--ink:#1f1f23;--muted:#55504a;--accent:#1d4ed8;--warm:#3b82f6;--bg:#fafaf7;--card:transparent;--line:#e5d8c4}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;height:100%;overflow:hidden}
 body{font-family:'Pretendard','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
@@ -99,7 +99,7 @@ section p{margin:0 0 12px;font-size:15px}
 """
 
 INDEX_CSS = """
-:root{--ink:#1f1f23;--muted:#6b7280;--accent:#b45309;--warm:#d97706;--bg:#fafaf7;--card:transparent;--line:#e5d8c4}
+:root{--ink:#1f1f23;--muted:#55504a;--accent:#1d4ed8;--warm:#3b82f6;--bg:#fafaf7;--card:transparent;--line:#e5d8c4}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;height:100%;overflow:hidden}
 body{font-family:'Pretendard','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}

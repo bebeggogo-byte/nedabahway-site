@@ -7,18 +7,18 @@
 <title>관리 — 네다바웨이</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
-  body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',sans-serif;background:#fbf7ee;color:#1A1A1A;margin:0;}
+  body{font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',sans-serif;background:#f1ede5;color:#1A1A1A;margin:0;}
   .admin{max-width:980px;margin:0 auto;padding:32px 20px 80px;}
   .ad-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
   .ad-title{font-family:'Noto Serif KR',serif;font-size:24px;font-weight:800;letter-spacing:-.02em;margin:0;}
-  .ad-userbar{font-size:12px;color:#7a6f5f;}
-  .ad-userbar a{color:#a4541a;}
+  .ad-userbar{font-size:12px;color:#5f574d;}
+  .ad-userbar a{color:#1d4ed8;}
 
   .tabs{display:flex;gap:6px;border-bottom:1px solid #E2E8F0;margin-bottom:24px;}
   .tab{padding:11px 18px;font-size:13.5px;font-weight:600;color:#475569;border:none;background:transparent;cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;margin-bottom:-1px;}
-  .tab:hover{color:#a4541a;}
-  .tab.is-on{color:#a4541a;border-bottom-color:#a4541a;}
-  .tab-count{font-size:11px;font-weight:700;background:#fef0e2;color:#a4541a;padding:2px 7px;border-radius:999px;margin-left:6px;}
+  .tab:hover{color:#1d4ed8;}
+  .tab.is-on{color:#1d4ed8;border-bottom-color:#1d4ed8;}
+  .tab-count{font-size:11px;font-weight:700;background:#eaf1fe;color:#1d4ed8;padding:2px 7px;border-radius:999px;margin-left:6px;}
 
   .panel{display:none;}
   .panel.is-on{display:block;}
@@ -28,11 +28,11 @@
   .pcard{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:20px 22px;}
   .pcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px;}
   .pcard-who{font-size:15px;font-weight:700;letter-spacing:-.01em;}
-  .pcard-role{font-size:12px;color:#7a6f5f;margin-top:2px;}
+  .pcard-role{font-size:12px;color:#5f574d;margin-top:2px;}
   .pcard-date{font-size:11px;color:#94a3b8;flex-shrink:0;font-variant-numeric:tabular-nums;}
   .pcard-body{font-size:14px;line-height:1.75;color:#1A1A1A;padding:12px 0;border-top:1px solid #f1ecdf;}
-  .pcard-session{font-size:11px;color:#7a6f5f;margin-bottom:8px;}
-  .pcard-session strong{color:#a4541a;}
+  .pcard-session{font-size:11px;color:#5f574d;margin-bottom:8px;}
+  .pcard-session strong{color:#1d4ed8;}
   .pcard-actions{display:flex;gap:8px;margin-top:14px;}
   .btn-ok{padding:9px 18px;font-size:13px;font-weight:700;background:#16a34a;color:#fff;border:none;border-radius:7px;cursor:pointer;font-family:inherit;}
   .btn-ok:hover{background:#15803d;}
@@ -45,22 +45,22 @@
   .qr-card-title{font-size:14px;font-weight:700;margin-bottom:6px;}
   .qr-card-date{font-size:11px;color:#94a3b8;margin-bottom:14px;}
   .qr-img{width:100%;max-width:200px;height:auto;margin:0 auto 10px;background:#fff;padding:6px;border:1px solid #f1ecdf;border-radius:6px;display:block;}
-  .qr-link{font-size:11px;color:#7a6f5f;word-break:break-all;}
-  .qr-link a{color:#a4541a;}
+  .qr-link{font-size:11px;color:#5f574d;word-break:break-all;}
+  .qr-link a{color:#1d4ed8;}
 
   /* 로그인 */
   .auth-box{background:#fff;border:1px solid #E2E8F0;border-radius:14px;padding:36px 32px;max-width:420px;margin:80px auto;}
   .auth-box h2{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:800;margin:0 0 8px;}
-  .auth-box p{font-size:13px;color:#7a6f5f;line-height:1.7;margin:0 0 22px;}
+  .auth-box p{font-size:13px;color:#5f574d;line-height:1.7;margin:0 0 22px;}
   .field{margin-bottom:14px;}
   .field label{display:block;font-size:12px;font-weight:600;color:#475569;margin-bottom:6px;}
   .field input{width:100%;font-size:14px;padding:11px 13px;border:1px solid #E2E8F0;border-radius:8px;font-family:inherit;}
-  .field input:focus{outline:none;border-color:#a4541a;}
-  .btn-primary{width:100%;padding:13px;font-size:14px;font-weight:700;background:#a4541a;color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:inherit;}
-  .btn-primary:hover{background:#7a4317;}
-  .auth-error{margin-top:12px;padding:10px 12px;background:#fef0e2;border:1px solid #fde2d4;border-radius:6px;font-size:12px;color:#a4541a;}
+  .field input:focus{outline:none;border-color:#1d4ed8;}
+  .btn-primary{width:100%;padding:13px;font-size:14px;font-weight:700;background:#1d4ed8;color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:inherit;}
+  .btn-primary:hover{background:#1e3a8a;}
+  .auth-error{margin-top:12px;padding:10px 12px;background:#eaf1fe;border:1px solid #fde2d4;border-radius:6px;font-size:12px;color:#1d4ed8;}
 
-  .empty{padding:60px 20px;text-align:center;color:#7a6f5f;font-size:13.5px;}
+  .empty{padding:60px 20px;text-align:center;color:#5f574d;font-size:13.5px;}
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1A1A1A;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:600;z-index:200;}
 </style>
 </head>
@@ -100,7 +100,7 @@
   </section>
 
   <section class="panel" id="panel-qr">
-    <p style="font-size:13px;color:#7a6f5f;line-height:1.7;margin-bottom:18px;">각 활동마다 자동 생성된 QR 코드입니다. 강의장 화면에 띄우거나 인쇄해서 사용하세요. 스캔하면 해당 활동에 연결된 추천글 폼이 열립니다.</p>
+    <p style="font-size:13px;color:#5f574d;line-height:1.7;margin-bottom:18px;">각 활동마다 자동 생성된 QR 코드입니다. 강의장 화면에 띄우거나 인쇄해서 사용하세요. 스캔하면 해당 활동에 연결된 추천글 폼이 열립니다.</p>
     <div class="qr-grid" id="qrGrid"><div class="empty">불러오는 중…</div></div>
   </section>
 </main>
@@ -244,7 +244,7 @@ async function loadQR(){
   try {
     const sessions = await listSessions({ limit: 50 });
     if (!sessions.length) {
-      $('qrGrid').innerHTML = '<div class="empty">아직 활동이 없습니다. <a href="/studio.html" style="color:#a4541a;">기록 도구</a>에서 시작하세요.</div>';
+      $('qrGrid').innerHTML = '<div class="empty">아직 활동이 없습니다. <a href="/studio.html" style="color:#1d4ed8;">기록 도구</a>에서 시작하세요.</div>';
       return;
     }
     const origin = location.origin;

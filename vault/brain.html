@@ -590,14 +590,14 @@ function renderGraph() {
     .attr('r', d => d.size)
     .attr('fill', d => {
       const lobe = DATA.lobes.find(l => l.id === d.lobe);
-      return lobe ? lobe.color : '#888';
+      return lobe ? lobe.color : '#665f57';
     })
     .attr('stroke', 'rgba(245, 233, 215, 0.8)')
     .attr('stroke-width', d => d.type === 'core' ? 2 : 1)
     .attr('opacity', d => d.active ? 0.95 : 0.7)
     .style('color', d => {
       const lobe = DATA.lobes.find(l => l.id === d.lobe);
-      return lobe ? lobe.color : '#888';
+      return lobe ? lobe.color : '#665f57';
     })
     .on('click', (e, d) => showDetail(d, e))
     .on('mouseover', (e, d) => highlightNode(d, true))
@@ -753,12 +753,12 @@ load();
 
 <footer class="foot foot--mini">
   <style>
-    .foot--mini{padding:18px 20px;border-top:1px solid #d8cdb8;background:#efe7d6;font-size:12px;color:#6b6155;line-height:1.6}
+    .foot--mini{padding:18px 20px;border-top:1px solid #d6cfc1;background:#e8e2d5;font-size:12px;color:#55504a;line-height:1.6}
     .foot--mini .foot--mini__inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:center}
-    .foot--mini strong{color:#2a241c}
-    .foot--mini a{color:#3a322a;text-decoration:none;border-bottom:1px dotted #a4541a}
-    .foot--mini a:hover{color:#a4541a;border-color:#a4541a}
-    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#8a7a64}
+    .foot--mini strong{color:#1b1b1b}
+    .foot--mini a{color:#1b1b1b;text-decoration:none;border-bottom:1px dotted #1d4ed8}
+    .foot--mini a:hover{color:#1d4ed8;border-color:#1d4ed8}
+    .foot--mini .foot--mini__build{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#665f57}
     @media(max-width:680px){
       .foot--mini .foot--mini__inner{justify-content:flex-start}
       .foot--mini>div>span{display:block}

@@ -12,7 +12,7 @@
 :root{
 --navy:#1B3A5C;--teal:#0E7C7B;--accent:#C0651F;--red:#C0392B;
 --green:#27AE60;--blue:#2E6BA6;--purple:#7C3AED;--yellow:#E0A82E;
---bg:#F4F6F9;--card:#FFFFFF;--text:#1A1A2E;--sub:#6B7280;--border:#E2E5EA;
+--bg:#F4F6F9;--card:#FFFFFF;--text:#1A1A2E;--sub:#55504a;--border:#E2E5EA;
 --D:#C0392B;--I:#E8833A;--S:#27AE60;--C:#2E6BA6;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -59,7 +59,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .sec-desc{font-size:13px;color:var(--sub);margin-bottom:16px;padding-left:36px;}
 .card{background:var(--card);border-radius:14px;padding:16px;margin-bottom:12px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.04);}
 .card-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;}
-.guide-box{background:#EBF5FF;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px;font-size:13px;color:#1E40AF;line-height:1.7;}
+.guide-box{background:#EBF5FF;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px;font-size:13px;color:#1d4ed8;line-height:1.7;}
 .warn-box{background:#FEF6E0;border-left:4px solid var(--yellow);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px;font-size:13px;color:#8A5A00;line-height:1.7;}
 .tip-box{background:#ECFDF5;border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px;font-size:13px;color:#065F46;line-height:1.7;}
 .story-box{border-left:4px solid var(--accent);background:#FFF7ED;border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px;font-size:13px;line-height:1.7;color:#7C3A12;}
@@ -68,7 +68,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text
 .rp-k{flex:0 0 88px;font-weight:800;color:var(--teal);}
 .rp-ar{color:var(--sub);font-weight:700;}
 .rp-v{flex:1;color:var(--text);}
-.bridge{display:flex;gap:10px;background:#EBF5FF;border-left:4px solid var(--blue);border-radius:0 12px 12px 0;padding:12px 14px;margin-bottom:14px;font-size:13px;color:#1E40AF;line-height:1.65;}
+.bridge{display:flex;gap:10px;background:#EBF5FF;border-left:4px solid var(--blue);border-radius:0 12px 12px 0;padding:12px 14px;margin-bottom:14px;font-size:13px;color:#1d4ed8;line-height:1.65;}
 textarea,.text-input{width:100%;padding:12px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:inherit;resize:vertical;outline:none;background:#FAFBFC;}
 textarea:focus,.text-input:focus{border-color:var(--teal);background:white;}
 .text-input{padding:10px 12px;}
@@ -839,14 +839,14 @@ function buildReport(){
   if(Object.keys(wv).length){
     var wvals=WHEEL.map(function(w,i){ return wv[i]!==undefined?wv[i]:5; });
     var wlo=0; wvals.forEach(function(v,i){ if(v<wvals[wlo])wlo=i; });
-    H+='<div class="rp-block"><div class="rp-bt">🌀 나의 에너지 휠 <span style="font-size:12px;color:#888;font-weight:600;">(0~10)</span></div>';
+    H+='<div class="rp-block"><div class="rp-bt">🌀 나의 에너지 휠 <span style="font-size:12px;color:#665f57;font-weight:600;">(0~10)</span></div>';
     H+=_bars(WHEEL.map(function(w,i){ return {label:w,val:wvals[i],max:10,disp:wvals[i]+' / 10',color:(i===wlo?'#C0651F':'#0E7C7B'),badge:(i===wlo?'가장 비어있음':''),badgeBg:'#FFE6D2',badgeC:'#9A3412'}; }));
     H+='<div class="rp-hl">⭐ <b>'+esc(WHEEL[wlo])+'</b> 영역에 작은 행동 하나를 거세요 — 점수가 낮은 한 곳부터.</div></div>';
   }
   // 자가진단 4영역 (막대)
   var pre=psAreaAvgs('ps');
   if(pre){ var order=['sl','safe','com','mot'],lo=order[0],hi=order[0]; order.forEach(function(k){ if(pre[k]<pre[lo])lo=k; if(pre[k]>pre[hi])hi=k; });
-    H+='<div class="rp-block"><div class="rp-bt">🎯 나의 자가진단 <span style="font-size:12px;color:#888;font-weight:600;">(5점 만점)</span></div>';
+    H+='<div class="rp-block"><div class="rp-bt">🎯 나의 자가진단 <span style="font-size:12px;color:#665f57;font-weight:600;">(5점 만점)</span></div>';
     H+=_bars(order.map(function(k){ return {label:PS_AREA[k],val:pre[k],max:5,disp:pre[k].toFixed(1)+' / 5',color:PS_COL[k],badge:(k===hi?'강점':(k===lo?'오늘 집중':'')),badgeBg:(k===hi?'#D1FAE5':'#FEF3C7'),badgeC:(k===hi?'#065F46':'#92400E')}; }));
     H+='</div>';
   }

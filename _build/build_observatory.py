@@ -135,7 +135,7 @@ def md_to_html(md: str) -> str:
 
 SUPPORT_BLOCK = """\
 <aside style="margin:64px auto 0;max-width:64ch;padding:24px 28px;background:linear-gradient(180deg,#FFF 0%,#FAF6EE 100%);border:1px solid #7A5C3E;border-radius:14px;">
-  <div style="color:#C2410C;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
+  <div style="color:#1d4ed8;font-weight:600;letter-spacing:0.06em;font-size:0.82rem;">후원으로 받치기</div>
   <h3 style="font-family:var(--ff-serif);font-size:1.2rem;font-weight:700;margin:8px 0 6px;text-wrap:balance;">이 한 장이 한 자리를 만듭니다.</h3>
   <p style="line-height:1.7;color:#1A1A1A;text-wrap:pretty;">한 장을 9단계로 푸는 데 평균 3시간이 듭니다. 광고도 결제 벽도 없이 이 자리를 열어 두기 위해, 한 번의 후원이 큰 힘이 됩니다.</p>
   <div style="margin-top:14px;padding:12px 16px;background:#FFF;border:1px dashed #7A5C3E;border-radius:8px;font-size:0.92rem;line-height:1.6;">
@@ -214,7 +214,7 @@ def render_chapter(code: str, kr: str, en: str, ch: int, book_sbm_dir: str, tota
           <p class="stage__intro">9단계 관찰을 한 자리에 모읍니다. 외부 자료 없이도 이 장이 자기 결로 한 사람에게 닿도록 통합한 자리입니다.</p>
           <div class="md-body synthesis-body">
             {md_to_html(synthesis[:6000]) if synthesis else (
-              '<p style="color:#9A9A9A;font-style:italic;padding:20px 0;">'
+              '<p style="color:#6b655e;font-style:italic;padding:20px 0;">'
               '종합 정리는 이 장의 9단계가 모두 닫힌 뒤 작성됩니다. 다른 자료가 거의 불필요할 정도로 이 장 하나가 자족적이도록 통합하는 자리입니다.'
               '<br><br>이 작업에는 원어 사전·교차참조·역사 자료 등 정보 취합 시간이 더 필요합니다. 후원으로 그 시간을 같이 받쳐 주실 수 있습니다.</p>'
               '<a href="/magazine.html#support" style="display:inline-flex;align-items:center;gap:8px;background:#1A1A1A;color:#FAFAF7;padding:10px 18px;border-radius:999px;font-weight:600;font-size:0.88rem;text-decoration:none;">종합 정리를 후원으로 앞당기기 →</a>'
@@ -224,7 +224,7 @@ def render_chapter(code: str, kr: str, en: str, ch: int, book_sbm_dir: str, tota
         """
     else:
         body_sections = f"""
-        <section class="stage" style="padding:60px 0;text-align:center;color:#9A9A9A;">
+        <section class="stage" style="padding:60px 0;text-align:center;color:#6b655e;">
           <p style="font-size:1.05rem;">{kr} {ch}장은 다음 발행 차례에 들어 있습니다.</p>
           <p style="margin-top:8px;font-size:0.92rem;">한 장을 9단계로 푸는 자리에 후원으로 함께 닿아 주시면, 이 페이지가 더 빨리 열립니다.</p>
           <a href="/magazine.html#support" style="display:inline-block;margin-top:14px;background:#1A1A1A;color:#FAFAF7;padding:10px 20px;border-radius:999px;font-weight:600;font-size:0.9rem;">후원으로 받치기 →</a>
@@ -279,7 +279,7 @@ def render_chapter(code: str, kr: str, en: str, ch: int, book_sbm_dir: str, tota
   .stage__title {{ font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700; margin: 12px 0 16px; text-wrap: balance; }}
   .md-body p {{ line-height: 1.85; max-width: 64ch; text-wrap: pretty; margin-top: 10px; }}
   .md-body ul {{ list-style: none; padding: 0; margin: 12px 0; }}
-  .md-body li {{ padding: 8px 14px; background: rgba(194,65,12,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }}
+  .md-body li {{ padding: 8px 14px; background: rgba(29,78,216,0.04); border-left: 2px solid var(--c-copper); margin-bottom: 6px; line-height: 1.7; text-wrap: pretty; }}
   .md-body blockquote {{ font-family: var(--ff-serif); font-size: 1.06rem; line-height: 1.95; border-left: 3px solid var(--c-ink); padding: 14px 22px; margin: 12px 0; background: var(--c-surface); }}
   .next-row {{ margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }}
   .next-row a {{ border: 1px solid var(--c-line); background: var(--c-surface); padding: 18px 22px; border-radius: 10px; flex: 1 1 280px; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s; }}
@@ -292,7 +292,7 @@ def render_chapter(code: str, kr: str, en: str, ch: int, book_sbm_dir: str, tota
   .synthesis-body p {{ line-height: 1.85; }}
   .synthesis-body table {{ border-collapse: collapse; margin: 14px 0; font-size: 0.92rem; width: 100%; }}
   .synthesis-body th, .synthesis-body td {{ border-bottom: 1px solid var(--c-line); padding: 8px 10px; text-align: left; vertical-align: top; }}
-  .synthesis-body th {{ background: rgba(194,65,12,0.06); font-weight: 700; }}
+  .synthesis-body th {{ background: rgba(29,78,216,0.06); font-weight: 700; }}
 
   /* 시뮬레이션 보기 — details 토글 */
   details.stage {{ border: 1px solid var(--c-line); border-radius: 10px; padding: 0; margin: 16px 0; background: var(--c-surface); }}
@@ -304,7 +304,7 @@ def render_chapter(code: str, kr: str, en: str, ch: int, book_sbm_dir: str, tota
     user-select: none;
   }}
   details.stage > summary::-webkit-details-marker {{ display: none; }}
-  details.stage > summary:hover {{ background: rgba(194,65,12,0.03); }}
+  details.stage > summary:hover {{ background: rgba(29,78,216,0.03); }}
   details.stage[open] > summary {{ border-bottom: 1px solid var(--c-line); }}
   .stage__title-inline {{
     flex: 1 1 auto; font-family: var(--ff-serif); font-size: 1.15rem;
@@ -475,8 +475,8 @@ def render_book_index(code: str, kr: str, en: str, book_sbm_dir: str, total: int
             cards.append(
                 f'<a class="toc-card toc-card--pending" href="/magazine/{code}/{ch}/">'
                 f'<div class="toc-card__num">{ch}장</div>'
-                f'<div class="toc-card__essence" style="color:#9A9A9A">발행 예정</div>'
-                f'<div class="toc-card__status" style="color:#C2410C">후원으로 앞당기기</div></a>'
+                f'<div class="toc-card__essence" style="color:#6b655e">발행 예정</div>'
+                f'<div class="toc-card__status" style="color:#1d4ed8">후원으로 앞당기기</div></a>'
             )
 
     return f"""<!DOCTYPE html>

@@ -29,13 +29,13 @@ FEED = DATA / "feed.json"
 KPI = DATA / "kpi.json"
 
 FORMAT_LABEL = {
-    "wks": ("Worksheets", "활동지", "#B45309"),
+    "wks": ("Worksheets", "활동지", "#1d4ed8"),
     "tpl": ("Templates", "제안서·계획서", "#1D4ED8"),
     "evd": ("Evidence", "근거자료·논문 요약", "#065F46"),
     "prm": ("Prompts", "AI 프롬프트 키트", "#BE185D"),
     "dgn": ("Diagnostics", "진단 도구", "#7C3AED"),
     "gid": ("Guides", "가이드·해설", "#475569"),
-    "crt": ("Curations", "편집부 큐레이션", "#C2410C"),
+    "crt": ("Curations", "편집부 큐레이션", "#1d4ed8"),
     "med": ("Media Kit", "브랜드 자산", "#334155"),
 }
 
@@ -177,7 +177,7 @@ def render_changelog(items: list[dict]) -> str:
 <meta name="robots" content="noindex">
 <style>body{{max-width:760px;margin:40px auto;padding:0 20px;font-family:system-ui,sans-serif;line-height:1.7}}
 ul{{list-style:none;padding:0}}li{{padding:8px 0;border-bottom:1px solid #eee}}
-time{{color:#888;font-size:.85em;margin-right:8px}}.cl__fmt{{font-size:.7em;background:#f4f2ec;padding:2px 8px;border-radius:4px;margin-right:6px}}
+time{{color:#665f57;font-size:.85em;margin-right:8px}}.cl__fmt{{font-size:.7em;background:#f4f2ec;padding:2px 8px;border-radius:4px;margin-right:6px}}
 em{{color:#aaa;font-size:.8em;margin-left:6px}}</style></head>
 <body><h1>자료실 변경 이력</h1><p><a href="/resources/">← 자료실</a></p><ul>{rows_html}</ul></body></html>
 """

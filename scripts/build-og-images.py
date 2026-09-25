@@ -5,7 +5,7 @@ Output: assets/og/{slug}.svg (1200x630). JPG twins used by og:image are
         rendered from these by scripts/build-og-jpg.py (brand v2).
 
 Design: 좌측에 큰 도구 한글명, 그 아래 1줄 요약. 우상단 "네다바웨이" 워드마크.
-        좌측 색띠. 사이트 팔레트(#3a322a, #b45309, #fbf6ec) 사용.
+        좌측 색띠. 사이트 팔레트(#1b1b1b, #1d4ed8, #f1ede5) 사용.
         텍스트는 SVG <text> (이미지 아님). Pretendard → 시스템 fallback.
 
 Usage: python3 scripts/build-og-images.py
@@ -60,16 +60,16 @@ def summary_size(s: str) -> int:
 
 
 def build_svg(slug: str, title: str, summary: str, kind: str) -> str:
-    bg = "#3a322a"
-    accent = "#b45309"
-    accent2 = "#d97706"
-    light = "#fbf6ec"
+    bg = "#1b1b1b"
+    accent = "#1d4ed8"
+    accent2 = "#3b82f6"
+    light = "#f1ede5"
     muted = "#cbb89c"
 
     # 시스템 페이지는 약간 다른 톤(따뜻한 베이지 배경 + 어두운 텍스트)
     if kind == "system":
         bg_main = light
-        title_color = "#3a322a"
+        title_color = "#1b1b1b"
         summary_color = "#6a604f"
         wordmark_color = accent
         label_color = accent

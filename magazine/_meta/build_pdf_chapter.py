@@ -16,18 +16,18 @@ EMOJI = {"1️⃣":"1","2️⃣":"2","3️⃣":"3","4️⃣":"4","5️⃣":"5","
 CSS = """
 @page { size: A4; margin: 18mm 16mm; @bottom-center { content: counter(page); color:#9A8; font-size:9pt; } }
 body { font-family: 'Noto Serif CJK KR','Noto Sans CJK KR', serif; color:#1A1A1A; line-height:1.7; font-size:10.5pt; }
-.badge { font-size:8.5pt; color:#A4541A; letter-spacing:1pt; }
+.badge { font-size:8.5pt; color:#1d4ed8; letter-spacing:1pt; }
 h1.ch { font-size:20pt; font-weight:800; margin:2pt 0 2pt; }
-.essence { font-size:11.5pt; font-style:italic; color:#3a322a; background:#FAF6EE; border-left:3px solid #A4541A; padding:8pt 12pt; margin:10pt 0 14pt; }
-.sect-h { font-size:11pt; font-weight:700; color:#A4541A; margin:14pt 0 4pt; page-break-after:avoid; }
-.obs h2 { font-size:10.5pt; font-weight:700; margin:10pt 0 3pt; color:#2a241c; page-break-after:avoid; }
+.essence { font-size:11.5pt; font-style:italic; color:#1b1b1b; background:#FAF6EE; border-left:3px solid #1d4ed8; padding:8pt 12pt; margin:10pt 0 14pt; }
+.sect-h { font-size:11pt; font-weight:700; color:#1d4ed8; margin:14pt 0 4pt; page-break-after:avoid; }
+.obs h2 { font-size:10.5pt; font-weight:700; margin:10pt 0 3pt; color:#1b1b1b; page-break-after:avoid; }
 .obs h3 { font-size:9.8pt; font-weight:700; margin:7pt 0 2pt; color:#4a423a; }
 .obs p { margin:3pt 0; } .obs ul { margin:3pt 0; padding-left:14pt; } .obs li { margin:2pt 0; }
 .obs blockquote { border-left:2px solid #1A1A1A; padding:4pt 10pt; margin:6pt 0; background:#F4F2EC; font-size:10pt; }
 .obs table { border-collapse:collapse; width:100%; font-size:9pt; margin:6pt 0; }
-.obs th,.obs td { border:1px solid #d8cdb8; padding:3pt 5pt; text-align:left; vertical-align:top; }
+.obs th,.obs td { border:1px solid #d6cfc1; padding:3pt 5pt; text-align:left; vertical-align:top; }
 .obs th { background:#F4F2EC; }
-.foot { margin-top:18pt; padding-top:8pt; border-top:1px solid #d8cdb8; font-size:8pt; color:#8a7a64; }
+.foot { margin-top:18pt; padding-top:8pt; border-top:1px solid #d6cfc1; font-size:8pt; color:#665f57; }
 """
 
 def clean(node):

@@ -31,9 +31,9 @@
       return;
     }
     container.innerHTML = results.map(r => `
-      <a href="${r.url}" style="display:block;padding:1rem;background:#fdfaf3;border-left:3px solid #1E40AF;margin:.5rem 0;text-decoration:none;color:inherit">
+      <a href="${r.url}" style="display:block;padding:1rem;background:#faf8f3;border-left:3px solid #1d4ed8;margin:.5rem 0;text-decoration:none;color:inherit">
         <div style="font-size:.8rem;color:#5a5048;margin-bottom:.25rem">${r.format} · ${r.published || ''}</div>
-        <div style="font-weight:600;color:#2a241c">${escapeHtml(r.title)}</div>
+        <div style="font-weight:600;color:#1b1b1b">${escapeHtml(r.title)}</div>
         ${r.summary ? `<div style="font-size:.9rem;color:#5a5048;margin-top:.4rem">${escapeHtml(r.summary)}</div>` : ''}
       </a>
     `).join('');
@@ -58,7 +58,7 @@
     wrapper.innerHTML = `
       <div style="position:relative">
         <input type="search" id="rsw-input" placeholder="자료 검색 (2글자 이상)" 
-          style="width:100%;padding:.75rem 1rem;font-size:1rem;border:1px solid #d8cdb8;border-radius:6px;background:#fdfaf3;color:#2a241c"
+          style="width:100%;padding:.75rem 1rem;font-size:1rem;border:1px solid #d6cfc1;border-radius:6px;background:#faf8f3;color:#1b1b1b"
           aria-label="자료 검색">
         <div id="rsw-results" style="margin-top:.5rem"></div>
       </div>
