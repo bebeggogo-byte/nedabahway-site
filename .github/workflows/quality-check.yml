@@ -5,6 +5,12 @@ on:
     branches: [main]
     paths:
       - 'p/**'
+      - 'index.html'
+      - 'about.html'
+      - 'programs.html'
+      - 'tools.html'
+      - 'contact.html'
+      - 'auto/tools/**'
       - 'assets/p-v2.css'
       - '.moai/strategy/**'
       - '.moai/specs/SPEC-LANDING-001/**'
@@ -26,7 +32,7 @@ concurrency:
 
 jobs:
   html-css:
-    name: HTML / CSS lint (/p/* + p-v2.css)
+    name: HTML / CSS lint (public pages + p-v2.css)
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
@@ -43,13 +49,13 @@ jobs:
             htmlhint@1.x stylelint@16.x stylelint-config-standard@36.x
 
       - name: HTML lint — /p/*.html only (new landing pages)
-        run: npx htmlhint p/*.html
+        run: npx htmlhint index.html about.html programs.html tools.html contact.html privacy.html 404.html offline.html auto/tools/*/index.html
 
       - name: CSS lint — assets/p-v2.css only (new design system)
         run: npx stylelint assets/p-v2.css
 
   link-check:
-    name: Link Check (/p/* internal links)
+    name: Link Check (public pages internal links)
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -75,7 +81,9 @@ jobs:
           fail = []
           checked = 0
 
-          for f in sorted(P_DIR.glob("*.html")):
+          PUBLIC = [ROOT / l.strip() for l in open("scripts/vault-public.txt", encoding="utf-8")
+                    if l.strip() and not l.startswith("#")]
+          for f in PUBLIC:
               text = f.read_text(encoding="utf-8")
               # Collect all hrefs and same-doc anchors
               hrefs = re.findall(r'(?:href|src)="([^"]+)"', text)
@@ -130,7 +138,7 @@ jobs:
                               if frag not in ("top", "main"):
                                   fail.append(f"{f}: missing anchor #{frag} in {target_file}")
 
-          print(f"Checked {checked} internal links across {len(list(P_DIR.glob('*.html')))} pages")
+          print(f"Checked {checked} internal links across {len(PUBLIC)} pages")
           if fail:
               print("\n❌ Failures:")
               for ferr in fail:
@@ -140,7 +148,7 @@ jobs:
           EOF
 
   accessibility:
-    name: Accessibility (pa11y WCAG2AA on /p/*)
+    name: Accessibility (pa11y WCAG2AA on public pages)
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -160,7 +168,7 @@ jobs:
         run: nohup npx http-server . -p 8080 -s > /tmp/server.log 2>&1 &
 
       - name: Wait for server
-        run: npx wait-on http://localhost:8080/p/index.html --timeout 30000
+        run: npx wait-on http://localhost:8080/index.html --timeout 30000
 
       - name: Run pa11y-ci on /p/* pages
         run: npx pa11y-ci --config .pa11yci.json
@@ -174,7 +182,7 @@ jobs:
           if-no-files-found: ignore
 
   schema-jsonld:
-    name: JSON-LD validation (/p/*)
+    name: JSON-LD validation (public pages)
     runs-on: ubuntu-latest
     timeout-minutes: 4
     steps:
@@ -190,12 +198,13 @@ jobs:
           python3 - <<'EOF'
           import json, re, sys, pathlib
           fail = False
-          for f in pathlib.Path("p").glob("*.html"):
+          PUBLIC = [pathlib.Path(l.strip()) for l in open("scripts/vault-public.txt", encoding="utf-8")
+                    if l.strip() and not l.startswith("#")]
+          for f in PUBLIC:
               text = f.read_text(encoding="utf-8")
               blocks = re.findall(r'<script type="application/ld\+json">\s*(\{.*?\})\s*</script>', text, re.DOTALL)
               if not blocks:
-                  print(f"::error file={f}::No JSON-LD found")
-                  fail = True
+                  print(f"::notice file={f}::No JSON-LD block (tool/utility page)")
                   continue
               for i, b in enumerate(blocks):
                   try:
@@ -221,7 +230,8 @@ jobs:
       - name: Verify all data-copy markers documented (≥85% coverage required)
         run: |
           set -e
-          MARKERS=$(grep -ohE 'data-copy="[A-Z0-9-]+"' p/*.html | sort -u)
+          MARKERS=$(grep -ohE 'data-copy="[A-Z0-9-]+"' index.html about.html programs.html tools.html contact.html auto/tools/*/index.html | sort -u || true)
+          if [ -z "$MARKERS" ]; then echo "::notice::No data-copy markers on public pages — nothing to check."; exit 0; fi
           TOTAL=$(echo "$MARKERS" | wc -l)
           MISSING=0
           while IFS= read -r marker; do

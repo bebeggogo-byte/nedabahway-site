@@ -170,7 +170,7 @@
   }
 
   // ─────────────────────────────────────────
-  // 결과 카드 훅 — 12개 도구 HTML 변경 0줄로 적용
+  // 결과 카드 훅 — 12개 도구 HTML 변경 0줄로 적용 (자동화 가이드 링크는 자료실이 비공개가 되며 제거)
   // ─────────────────────────────────────────
 
   // SYNC: scripts/automation_meta.py CARDS — 신규 도구 추가 시 여기도 갱신
@@ -265,15 +265,6 @@
         ).join('') +
         '</div>';
       block.appendChild(sec);
-    }
-
-    // 2) 자동화 가이드 링크 (있는 도구만)
-    if (tool.guide) {
-      const a = document.createElement('a');
-      a.className = 'mz-guide';
-      a.href = tool.guide;
-      a.textContent = '이 작업을 매주/매일 자동으로 → 가이드 보기';
-      block.appendChild(a);
     }
 
     // 3) 피드백 한 줄 (모든 도구)
