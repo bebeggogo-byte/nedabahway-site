@@ -27,19 +27,19 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#F7F3E9;
-  --ink:#1C1A18;
-  --ink-soft:#3C362E;
-  --sand:#ECE3D0;
-  --sand-deep:#D9CDB2;
-  --pine:#21413A;
-  --pine-deep:#15302A;
-  --pine-soft:#D7E3DD;
-  --gold:#B68A34;
-  --gold-deep:#8A6620;
-  --card:#FFFFFF;
-  --muted:#6F665A;
-  --line:#E2D9C4;
+  --bg:#f1ede5;
+  --ink:#1b1b1b;
+  --ink-soft:#2e2e2e;
+  --sand:#e8e2d5;
+  --sand-deep:#d6cfc1;
+  --pine:#1E3A8A;
+  --pine-deep:#172554;
+  --pine-soft:#dbe6fb;
+  --gold:#FFC857;
+  --gold-deep:#1d4ed8;
+  --card:#faf8f3;
+  --muted:#55504a;
+  --line:#d6cfc1;
 }
 html{scroll-behavior:smooth;scroll-padding-top:64px}
 body{
@@ -49,6 +49,7 @@ body{
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
   word-break:keep-all;overflow-wrap:break-word;
 }
+@media(max-width:480px){.site-nav__link{display:none}}
 .serif{font-family:'Nanum Myeongjo',serif}
 a{color:inherit}
 h1,h2,h3,h4{line-height:1.5;color:var(--ink);font-weight:800}
@@ -63,7 +64,7 @@ section{padding:84px 0}
 .em-pine{color:var(--pine);font-weight:700}
 
 /* FLOATING CTA */
-.float-cta{position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,var(--pine) 0%,var(--pine-deep) 100%);padding:11px 20px;display:flex;align-items:center;justify-content:center;gap:18px;transform:translateY(-100%);transition:transform .42s cubic-bezier(.22,1,.36,1);box-shadow:0 6px 22px rgba(21,48,42,.34)}
+.float-cta{position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,var(--pine) 0%,var(--pine-deep) 100%);padding:11px 20px;display:flex;align-items:center;justify-content:center;gap:18px;transform:translateY(-100%);transition:transform .42s cubic-bezier(.22,1,.36,1);box-shadow:0 6px 22px rgba(23,37,84,.34)}
 .float-cta.shown{transform:translateY(0)}
 .float-cta .msg{color:#F4EEDD;font-size:14px;font-weight:400}
 .float-cta .msg b{color:var(--gold);font-weight:700}
@@ -79,19 +80,19 @@ section{padding:84px 0}
 
 /* HERO */
 .hero{background:linear-gradient(177deg,var(--pine-deep) 0%,var(--pine) 100%);color:#fff;padding:84px 0 74px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 16% 18%,rgba(182,138,52,.20) 0%,transparent 52%),radial-gradient(circle at 88% 92%,rgba(255,255,255,.05) 0%,transparent 50%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 16% 18%,rgba(255,200,87,.20) 0%,transparent 52%),radial-gradient(circle at 88% 92%,rgba(255,255,255,.05) 0%,transparent 50%)}
 .hero .wrap{position:relative;z-index:2}
-.hero .tag{display:inline-block;background:rgba(182,138,52,.18);border:1px solid var(--gold);color:var(--gold);padding:6px 16px;border-radius:30px;font-size:12.5px;font-weight:700;letter-spacing:.6px;margin-bottom:24px}
+.hero .tag{display:inline-block;background:rgba(255,200,87,.18);border:1px solid var(--gold);color:var(--gold);padding:6px 16px;border-radius:30px;font-size:12.5px;font-weight:700;letter-spacing:.6px;margin-bottom:24px}
 .hero h1{font-family:'Nanum Myeongjo',serif;font-size:39px;font-weight:800;color:#fff;line-height:1.46;margin-bottom:24px;letter-spacing:-.5px}
 .hero h1 .line{display:block}
-.hero h1 em{font-style:normal;color:var(--gold);box-shadow:inset 0 -14px 0 rgba(182,138,52,.22)}
+.hero h1 em{font-style:normal;color:var(--gold);box-shadow:inset 0 -14px 0 rgba(255,200,87,.22)}
 .hero .sub{font-size:17px;line-height:1.95;color:#E4DCC8;margin-bottom:32px}
 .hero .sub b{color:#fff;font-weight:500}
 .hero .meta{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:32px}
 .hero .meta-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:11px;padding:15px 10px;text-align:center}
 .hero .meta-item .k{font-size:11px;color:var(--gold);font-weight:700;letter-spacing:.6px;margin-bottom:5px}
 .hero .meta-item .v{font-size:14px;color:#fff;font-weight:500;line-height:1.5}
-.hero .cta-main{display:block;background:var(--gold);color:var(--pine-deep);text-align:center;padding:18px;border-radius:12px;font-weight:900;font-size:17px;text-decoration:none;box-shadow:0 10px 26px rgba(182,138,52,.36);transition:transform .2s}
+.hero .cta-main{display:block;background:var(--gold);color:var(--pine-deep);text-align:center;padding:18px;border-radius:12px;font-weight:900;font-size:17px;text-decoration:none;box-shadow:0 10px 26px rgba(255,200,87,.36);transition:transform .2s}
 .hero .cta-main:hover{transform:translateY(-2px)}
 .hero .cta-sub{display:flex;gap:10px;margin-top:11px;flex-wrap:wrap}
 .hero .cta-sub a{flex:1;min-width:170px;background:transparent;border:1.6px solid rgba(255,255,255,.32);color:#E4DCC8;text-align:center;padding:13px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}
@@ -160,7 +161,7 @@ section{padding:84px 0}
 .stage-flow{font-size:13px;color:var(--muted);text-align:center;margin-bottom:36px;letter-spacing:.3px}
 .stage-flow b{color:var(--pine);font-weight:700}
 .stage{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 26px;margin-bottom:16px;box-shadow:0 7px 20px rgba(28,26,24,.05);position:relative;overflow:hidden}
-.stage.free{border-color:var(--gold);box-shadow:0 12px 30px rgba(182,138,52,.16)}
+.stage.free{border-color:var(--gold);box-shadow:0 12px 30px rgba(255,200,87,.16)}
 .stage.summit{border-color:var(--pine);box-shadow:0 12px 30px rgba(33,65,58,.16)}
 .stage::before{content:'';position:absolute;top:0;left:0;bottom:0;width:5px;background:var(--pine)}
 .stage.free::before{background:var(--gold)}
@@ -220,7 +221,7 @@ section{padding:84px 0}
 .rung-price{flex-shrink:0;text-align:right;font-family:'Nanum Myeongjo',serif;font-weight:800;font-size:20px;color:var(--pine);line-height:1.2}
 .rung.free .rung-price{color:var(--gold-deep)}
 .rung-price small{display:block;font-size:12px;color:var(--muted);font-weight:400;font-family:'Noto Sans KR',sans-serif;margin-top:3px}
-.cta-ladder{display:block;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);color:var(--pine-deep);text-align:center;padding:17px;border-radius:12px;font-weight:900;font-size:16px;text-decoration:none;margin-top:18px;box-shadow:0 9px 24px rgba(182,138,52,.28);transition:transform .2s}
+.cta-ladder{display:block;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-deep) 100%);color:var(--pine-deep);text-align:center;padding:17px;border-radius:12px;font-weight:900;font-size:16px;text-decoration:none;margin-top:18px;box-shadow:0 9px 24px rgba(255,200,87,.28);transition:transform .2s}
 .cta-ladder:hover{transform:translateY(-2px)}
 .price-note{background:var(--sand);border-left:4px solid var(--pine);border-radius:0 9px 9px 0;padding:15px 19px;font-size:13px;color:var(--ink-soft);line-height:1.8;margin-top:18px}
 .price-note b{color:var(--ink)}
@@ -255,9 +256,9 @@ section{padding:84px 0}
 .final h2{font-family:'Nanum Myeongjo',serif;font-size:31px;color:#fff;line-height:1.55;margin-bottom:20px}
 .final h2 em{font-style:normal;color:var(--gold)}
 .final p{font-size:16px;color:#E4DCC8;line-height:1.95;max-width:520px;margin:0 auto 30px}
-.final .go{display:inline-block;background:var(--gold);color:var(--pine-deep);padding:18px 40px;border-radius:12px;font-weight:900;font-size:17px;text-decoration:none;box-shadow:0 10px 26px rgba(182,138,52,.32)}
+.final .go{display:inline-block;background:var(--gold);color:var(--pine-deep);padding:18px 40px;border-radius:12px;font-weight:900;font-size:17px;text-decoration:none;box-shadow:0 10px 26px rgba(255,200,87,.32)}
 .final .routes{margin-top:24px;font-size:13.5px;color:#CFC6AE;line-height:1.95}
-.final .routes a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(182,138,52,.45)}
+.final .routes a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(255,200,87,.45)}
 @media(max-width:480px){.final h2{font-size:23px}}
 
 /* A11Y */
@@ -390,12 +391,12 @@ footer .reg{margin-top:13px;font-size:12px;color:#9B9384}
 <div class="mobile-cta"><a href="#apply">무료 1단계 ‘결을 찾다’ 신청 →</a></div>
 
 <!-- SITE NAV -->
-<nav style="position:sticky;top:0;z-index:10000;background:var(--pine-deep);border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px;" aria-label="주요 메뉴">
-  <a href="/" style="font-size:14px;font-weight:800;color:#F4EEDD;text-decoration:none;letter-spacing:-.2px;">네다바웨이</a>
-  <div style="display:flex;align-items:center;gap:20px;font-size:13px;">
-    <a href="/p/" style="color:#E9E2CF;text-decoration:none;font-weight:500;">프로그램</a>
-    <a href="/about.html" style="color:#E9E2CF;text-decoration:none;font-weight:500;">소개</a>
-    <a href="#apply" style="background:var(--gold);color:var(--pine-deep);padding:7px 16px;border-radius:7px;font-weight:800;text-decoration:none;font-size:12px;">무료 상담 →</a>
+<nav style="position:sticky;top:0;z-index:10000;background:#f1ede5;border-bottom:1px solid #d6cfc1;display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:56px;" aria-label="주요 메뉴">
+  <a href="/" aria-label="네다바웨이 홈" style="display:inline-flex;align-items:center;gap:7px;text-decoration:none;"><img src="/assets/brand/nw-symbol.png" width="314" height="202" alt="" style="height:26px;width:auto;"><img src="/assets/brand/nw-wordmark.png" width="421" height="72" alt="NEDABAHWAY" style="height:16px;width:auto;"></a>
+  <div style="display:flex;align-items:center;gap:18px;font-size:13px;">
+    <a href="/p/" class="site-nav__link" style="color:#2e2e2e;text-decoration:none;font-weight:600;">프로그램</a>
+    <a href="/about.html" class="site-nav__link" style="color:#2e2e2e;text-decoration:none;font-weight:600;">소개</a>
+    <a href="#apply" style="background:#1d4ed8;color:#fff;padding:7px 14px;border-radius:7px;font-weight:800;text-decoration:none;font-size:12px;">무료 상담 →</a>
   </div>
 </nav>
 
