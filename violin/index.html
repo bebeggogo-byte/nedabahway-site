@@ -85,12 +85,25 @@ p{font-size:1rem}
 .stafffig{display:block;width:100%;height:auto;max-width:560px;margin:0 auto;touch-action:manipulation}
 .staffwrap{background:var(--paper);border-radius:16px;padding:4px 0}
 @media (max-width:480px){ .staffwrap{margin-left:-10px;margin-right:-10px} }
-.staffwrap.pick{cursor:pointer;touch-action:none}
+.staffwrap.pick{cursor:pointer;touch-action:pan-y}
+.staffwrap.pick:focus-visible{outline:4px solid var(--sky-d);outline-offset:3px;border-radius:16px}
+.bigbtn:focus-visible,.namebtn:focus-visible,.station:focus-visible,.iconbtn:focus-visible,.switch:focus-visible{outline:4px solid var(--sky-d);outline-offset:3px}
 
 .panelgrid{display:grid;grid-template-columns:1fr;gap:14px}
 @media (min-width:720px){ .panelgrid.two{grid-template-columns:1.15fr .85fr;align-items:center} }
 
 .violinfig{display:block;width:100%;max-width:190px;height:auto;margin:0 auto}
+.playrow{display:flex;align-items:center;gap:12px;margin-top:8px}
+.playrow .vio{flex:0 0 96px}
+.playrow .vio .violinfig{max-width:96px}
+.playrow .txt{flex:1;font-weight:700;font-size:1.05rem}
+.keypick{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.keypick button{min-height:60px;border:3px solid var(--line);border-radius:14px;background:var(--paper);
+  box-shadow:3px 4px 0 var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 2px;line-height:1.2}
+.keypick button b{font-size:.86rem}
+.keypick button span{font-size:.72rem;color:var(--ink2)}
+.keypick button.is-on{background:var(--yellow)}
+.keypick button:active{transform:translate(2px,3px);box-shadow:1px 1px 0 var(--line)}
 
 /* 진행 바 */
 .progress{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
@@ -179,7 +192,8 @@ footer.sitefoot a{color:var(--ink2)}
     <button class="iconbtn" id="muteBtn" aria-pressed="false" aria-label="소리 끄기">🔊</button>
     <button class="iconbtn" id="gearBtn" aria-label="학부모·교사 화면 (3초 길게 누르기)">⚙️</button>
   </div>
-  <main id="app" aria-live="polite"></main>
+  <main id="app"></main>
+  <div id="live" class="sr" role="status" aria-live="polite" aria-atomic="true"></div>
   <footer class="sitefoot">
     <a href="/">네다바웨이 NEDABAHWAY</a> · 개방현 솔·레·라·미와 조표를 함께 배우는 놀이
   </footer>
@@ -568,7 +582,8 @@ var state = {
   name   : '',
   learnIdx : 0,
   quiz   : null,
-  keyIntro : null
+  keyIntro : null,
+  play   : { note:'A4', key:'C' }   /* 연습 모드에서 고른 줄과 조표 */
 };
 function save(){
   try {
@@ -687,10 +702,11 @@ function say(who, mood, text, cls){
 }
 function nameButtons(opts){
   opts = opts || {};
+  var act = opts.act || 'pick';
   var h = '<div class="namegrid" role="group" aria-label="계이름 고르기">', i;
   for (i=0;i<NAME_ORDER.length;i++){
     var id = NAME_ORDER[i], n = NOTES[id];
-    h += '<button class="namebtn'+(opts.on===id?' is-on':'')+'" data-act="pick" data-note="'+id+'"'+
+    h += '<button class="namebtn'+(opts.on===id?' is-on':'')+'" data-act="'+act+'" data-note="'+id+'"'+
          (opts.disabled?' disabled':'')+' aria-label="'+esc(n.ko+' '+n.en)+'">'+
          '<span class="ko">'+n.ko+'</span><span class="en">'+n.en+'</span></button>';
   }
@@ -709,8 +725,36 @@ function renderStart(){
     '<p class="muted" style="margin-top:6px">솔·레·라·미 네 줄과 조표를 함께 배워요</p>'+
     '<div class="certchars">'+charSVG('dodo','base')+charSVG('mimi','base')+charSVG('sori','base')+'</div>'+
     '<button class="bigbtn" data-act="start">시작</button>'+
-    '<p class="muted" style="margin-top:12px">시작을 누르면 소리가 켜져요.</p>'+
+    '<button class="bigbtn plain" data-act="play" style="margin-top:10px">연습 모드 — 그냥 눌러 보기</button>'+
+    '<p class="muted" style="margin-top:12px">버튼을 누르면 소리가 켜져요.</p>'+
   '</div>';
+}
+
+/* ---------- 연습 모드 (자유 놀이) ---------- */
+function renderPlay(){
+  var pl = state.play, n = NOTES[pl.note], k = KEYS[pl.key];
+  var sharps = k.sharps, nx = noteXFor(sharps), i;
+  var h = '<div class="card">';
+  h += '<h2>연습 모드</h2><p class="muted">네 줄을 마음대로 눌러 보세요. 점수도 잠금도 없어요.</p>';
+  h += '<div class="staffwrap" data-act="replay" data-note="'+pl.note+'" style="margin-top:8px">'+
+       staffSVG({ sharps:sharps, notes:[{ step:n.step, x:nx }], noteX:nx, label:n.ko+' 음표' })+'</div>';
+  h += '<div class="playrow"><div class="vio" data-act="replay" data-note="'+pl.note+'">'+violinSVG(pl.note)+'</div>'+
+       '<p class="txt">'+esc(n.where)+'</p></div>';
+  h += nameButtons({ on:pl.note, act:'playPick' });
+  h += '<h3 style="margin-top:14px;font-size:1rem">조표 바꿔 보기</h3>';
+  h += '<div class="keypick" role="group" aria-label="조표 고르기">';
+  var order = ['C','G','D','A'];
+  for (i=0;i<order.length;i++){
+    var kk = KEYS[order[i]];
+    h += '<button class="'+(pl.key===order[i]?'is-on':'')+'" data-act="playKey" data-key="'+order[i]+'"'+
+         ' aria-pressed="'+(pl.key===order[i]?'true':'false')+'">'+
+         '<b>'+esc(kk.ko)+'</b><span>샵 '+kk.sharps.length+'</span></button>';
+  }
+  h += '</div>';
+  h += '<p class="muted" style="margin-top:10px">'+esc(KEY_NOTE_MSG)+'</p>';
+  h += say('mimi','base','조표를 바꿔도 네 줄 소리는 그대로예요.');
+  h += '<div class="btnrow"><button class="bigbtn plain" data-act="tomap">지도로</button></div>';
+  return h + '</div>';
 }
 
 /* ---------- 단계 지도 ---------- */
@@ -729,6 +773,7 @@ function renderMap(){
     if (i < STAGES.length-1) h += '<div class="trail"></div>';
   }
   h += '</div>';
+  h += '<button class="bigbtn plain" data-act="play" style="margin-top:8px">연습 모드 — 그냥 눌러 보기</button>';
   if (state.unlocked > 8 || state.stars[8]) h += '<button class="bigbtn green" data-act="cert" style="margin-top:8px">수료증 보기</button>';
   return h + '</div>';
 }
@@ -780,6 +825,12 @@ function praiseFor(noteKo){
   var t = PRAISE[Math.floor(Math.random()*PRAISE.length)];
   return t.replace('{n}', noteKo);
 }
+function promptFor(item){
+  var n = NOTES[item.note];
+  return item.type === 'A' ? '이 음표는 무슨 소리일까요?'
+       : item.type === 'B' ? n.ko + '는 어디에 살까요? 눌러서 놓아요.'
+       : '잘 듣고 맞혀 보세요!';
+}
 function progressBar(q){
   var h = '<div class="progress"><span class="pips">', i;
   for (i=0;i<q.items.length;i++){
@@ -815,7 +866,9 @@ function renderQuiz(){
   } else if (item.type === 'B' && !showAnswer){
     h += '<p class="center" style="font-size:2.4rem;font-weight:800;line-height:1.1">'+esc(n.ko)+
          ' <span style="font-size:1rem;color:var(--ink2)">('+n.en+')</span></p>';
-    h += '<div class="staffwrap pick" id="pickStaff">'+
+    var placedLbl = (q.placed === null || q.placed === undefined) ? '아직 놓지 않았어요' : placeLabel(q.placed) + '에 놓았어요';
+    h += '<div class="staffwrap pick" id="pickStaff" tabindex="0" role="group"'+
+         ' aria-label="'+esc('음표를 놓을 오선지. 눌러서 놓고, 위아래 화살표로 옮기고, 엔터로 확인해요. '+placedLbl)+'">'+
          staffSVG({ sharps:sharps, notes:[], noteX:nx, label:'음표를 놓을 오선지', extra:'<g id="placeLayer"></g>' })+'</div>';
     h += '<div class="btnrow tight"><button class="bigbtn plain" data-act="nudge" data-dir="1" aria-label="한 칸 위로">▲ 위로</button>'+
          '<button class="bigbtn plain" data-act="nudge" data-dir="-1" aria-label="한 칸 아래로">▼ 아래로</button></div>';
@@ -851,10 +904,7 @@ function renderQuiz(){
     h += '<div class="flagline retry"><span class="mark">↺</span><span>다시 도전</span></div>';
     h += say('sori','cheer','앗, 아깝다! 다시 한 번 해볼까요? 🎻','retry');
   } else {
-    var prompt = item.type === 'A' ? '이 음표는 무슨 소리일까요?'
-               : item.type === 'B' ? n.ko+'는 어디에 살까요? 눌러서 놓아요.'
-               : '잘 듣고 맞혀 보세요!';
-    h += say('dodo','base', prompt);
+    h += say('dodo','base', promptFor(item));
   }
 
   /* 힌트 */
@@ -943,11 +993,36 @@ function renderParent(){
 }
 
 /* ---------- 라우터 ---------- */
+var liveEl = document.getElementById('live');
+var lastScreen = null;
+/* 스크린리더에 짧은 안내만 따로 전달한다 (화면 전체 재낭독 방지) */
+function announce(msg){
+  if (!liveEl) return;
+  liveEl.textContent = '';
+  setTimeout(function(){ liveEl.textContent = msg; }, 40);
+}
+/* 다시 그린 뒤에도 키보드 포커스를 잃지 않도록 선택자를 기억한다 */
+function focusKeyOf(el){
+  if (!el || el === document.body) return null;
+  if (el.id) return '#' + el.id;
+  var act = el.getAttribute && el.getAttribute('data-act');
+  if (!act) return null;
+  var k = '[data-act="' + act + '"]';
+  var attrs = ['data-note','data-dir','data-stage','data-key'], i, v;
+  for (i=0;i<attrs.length;i++){
+    v = el.getAttribute(attrs[i]);
+    if (v) k += '[' + attrs[i] + '="' + v + '"]';
+  }
+  return k;
+}
 function render(){
+  var prevFocus = focusKeyOf(document.activeElement);
+  var screenChanged = (state.screen !== lastScreen);
   var html;
   switch (state.screen){
     case 'start':    html = renderStart(); break;
     case 'map':      html = renderMap(); break;
+    case 'play':     html = renderPlay(); break;
     case 'learn':    html = renderLearn(); break;
     case 'keyintro': html = renderKeyIntro(); break;
     case 'quiz':     html = renderQuiz(); break;
@@ -957,13 +1032,28 @@ function render(){
     default:         html = renderStart();
   }
   app.innerHTML = html;
+  lastScreen = state.screen;
   if (state.screen === 'quiz') bindQuiz();
-  if (!reduceMotion) { var c = app.querySelector('.card'); if (c) { c.classList.add('pop'); } }
+  /* 카드 등장 애니메이션은 화면이 바뀔 때만 — 문항마다 튀지 않게 */
+  if (!reduceMotion && screenChanged) { var c = app.querySelector('.card'); if (c) { c.classList.add('pop'); } }
+  if (prevFocus){
+    var back = app.querySelector(prevFocus);
+    if (back && back.focus) back.focus({ preventScroll:true });
+  }
 }
 /* ============================================================
    9. 유형 B — 오선지 터치 + 스냅
    ============================================================ */
 function clampStep(s){ return Math.max(PLACE_MIN, Math.min(PLACE_MAX, s)); }
+var ORD = ['첫째','둘째','셋째','넷째','다섯째','여섯째'];
+/* step -> 사람이 읽는 자리 이름. 계이름은 말하지 않는다 (정답 노출 방지) */
+function placeLabel(step){
+  if (step >= 0) return (step % 2 === 0) ? ORD[step/2] + ' 줄' : ORD[(step-1)/2] + ' 칸';
+  var d = -step;
+  if (d === 1) return '첫째 줄 바로 아래 칸';
+  var led = Math.floor(d/2);
+  return '아래 ' + ORD[led-1] + ' 덧줄' + (d % 2 ? ' 아래 칸' : '');
+}
 function snapStepFromClientY(svg, clientY){
   var r = svg.getBoundingClientRect();
   if (!r.height) return null;
@@ -1004,10 +1094,29 @@ function bindQuiz(){
     q.placed = s; q.hover = null;
     render();
   }
-  wrap.addEventListener('pointermove', move);
-  wrap.addEventListener('pointerdown', function(ev){ ev.preventDefault(); move(ev); });
-  wrap.addEventListener('pointerup', function(ev){ ev.preventDefault(); drop(ev); });
-  wrap.addEventListener('pointerleave', function(){ if (q.hover !== null){ q.hover = null; updatePlaceLayer(); } });
+  function clearHover(){ if (q.hover !== null && q.hover !== undefined){ q.hover = null; updatePlaceLayer(); } }
+  /* 마우스는 지나가기만 해도 반투명 음표가 따라온다 */
+  wrap.addEventListener('pointermove', function(ev){ if (ev.pointerType !== 'touch') move(ev); });
+  wrap.addEventListener('pointerdown', move);
+  wrap.addEventListener('pointerup', drop);
+  /* 손가락으로 세로로 쓸어 화면을 넘기면 놓지 않고 취소한다 */
+  wrap.addEventListener('pointercancel', clearHover);
+  wrap.addEventListener('pointerleave', clearHover);
+  wrap.addEventListener('keydown', function(ev){
+    var k = ev.key;
+    if (k === 'ArrowUp' || k === 'ArrowDown'){
+      ev.preventDefault();
+      var base = (q.placed === null || q.placed === undefined) ? 3 : q.placed;
+      q.placed = clampStep(base + (k === 'ArrowUp' ? 1 : -1));
+      q.hover = null;
+      render();
+      announce(placeLabel(q.placed));
+    } else if (k === 'Enter' || k === ' ' || k === 'Spacebar'){
+      if (q.placed === null || q.placed === undefined) return;
+      ev.preventDefault();
+      handleAnswer(q.placed === NOTES[currentItem().note].step);
+    }
+  });
 }
 
 /* ============================================================
@@ -1041,10 +1150,11 @@ function handleAnswer(correct){
     else q.marks[q.idx] = 'miss';
     q.phase = 'answered';
     q.lastPraise = praiseFor(n.ko);
+    announce('정답이에요. ' + q.lastPraise);
     playFanfare();
     sparkle();
     render();
-    setTimeout(nextItem, 1000);
+    setTimeout(function(){ nextItem(q); }, 1000);
   } else {
     playSoft();
     q.missed[item.note] = (q.missed[item.note]||0) + 1;
@@ -1055,22 +1165,25 @@ function handleAnswer(correct){
       q.hintUsed = true;            /* 재도전 중에는 힌트가 자동으로 켜짐 */
       q.placed = null; q.hover = null;
       requeueNote(q, item.note);
+      announce('앗, 아깝다. 다시 한 번 해볼까요?');
       render();
       setTimeout(function(){ playNote(item.note); }, 260);
     } else {
       q.phase = 'reveal';
       q.placed = null; q.hover = null;
       requeueNote(q, item.note);
+      announce('정답은 ' + n.ko + '예요. ' + n.where);
       render();
       setTimeout(function(){ playNote(item.note); }, 260);
     }
     save();
   }
 }
-function nextItem(){
+function nextItem(expected){
   var q = state.quiz;
-  /* 자동 넘김을 기다리는 동안 친구가 지도로 나갔을 수 있다 */
+  /* 자동 넘김을 기다리는 동안 친구가 지도로 나갔거나 새 단계를 시작했을 수 있다 */
   if (!q || state.screen !== 'quiz') return;
+  if (expected && expected !== q) return;
   q.idx += 1;
   q.attempt = 0; q.hintUsed = false; q.phase = 'ask';
   q.placed = null; q.hover = null; q.lastPraise = null;
@@ -1081,7 +1194,9 @@ function nextItem(){
 function autoPlayCurrent(){
   var item = currentItem();
   if (!item) return;
-  setTimeout(function(){ if (state.screen === 'quiz') playNote(item.note); }, 220);
+  var q = state.quiz;
+  announce((q.idx + 1) + '번 문제. ' + promptFor(item));
+  setTimeout(function(){ if (state.screen === 'quiz' && state.quiz === q) playNote(item.note); }, 220);
 }
 function finishStage(){
   var q = state.quiz, st = STAGES[q.stage-1];
@@ -1097,6 +1212,7 @@ function finishStage(){
   state.result = { stage:q.stage, stars:stars, ok:q.ok, total:q.items.length, score:q.score, missNotes:missNotes };
   state.screen = 'result';
   state.quiz = null;
+  announce('단계가 끝났어요. 맞힌 수 ' + state.result.ok + ' 나누기 ' + state.result.total + ', 별 ' + stars + '개.');
   save();
   render();
 }
@@ -1125,6 +1241,24 @@ app.addEventListener('click', function(ev){
   if (act === 'tomap'){ state.screen = 'map'; state.quiz = null; render(); return; }
   if (act === 'stage'){ startStage(parseInt(t.getAttribute('data-stage'),10)); return; }
   if (act === 'cert'){ state.screen = 'cert'; render(); return; }
+  if (act === 'play'){
+    audioReady(); resumeAudio();
+    state.screen = 'play'; render();
+    setTimeout(function(){ playNote(state.play.note); }, 200);
+    return;
+  }
+  if (act === 'playPick'){
+    state.play.note = t.getAttribute('data-note');
+    render(); playNote(state.play.note);
+    announce(NOTES[state.play.note].ko + '. ' + NOTES[state.play.note].where);
+    return;
+  }
+  if (act === 'playKey'){
+    state.play.key = t.getAttribute('data-key');
+    render();
+    announce(KEYS[state.play.key].ko + ', 샵 ' + KEYS[state.play.key].sharps.length + '개');
+    return;
+  }
   if (act === 'replay'){ playNote(t.getAttribute('data-note')); return; }
   if (act === 'learnNext'){
     if (state.learnIdx < 2){
@@ -1147,7 +1281,7 @@ app.addEventListener('click', function(ev){
     var q3 = state.quiz; if (!q3 || q3.phase !== 'ask') return;
     var base = (q3.placed === null || q3.placed === undefined) ? 3 : q3.placed;
     q3.placed = clampStep(base + parseInt(t.getAttribute('data-dir'),10));
-    q3.hover = null; render(); return;
+    q3.hover = null; render(); announce(placeLabel(q3.placed)); return;
   }
   if (act === 'confirmPlace'){
     var q4 = state.quiz; if (!q4 || q4.phase !== 'ask') return;
@@ -1160,7 +1294,7 @@ app.addEventListener('click', function(ev){
     if (!q5 || q5.phase !== 'reveal') return;
     q5.phase = 'answered-reveal';
     playNote(t.getAttribute('data-note'));
-    setTimeout(nextItem, 650);
+    setTimeout(function(){ nextItem(q5); }, 650);
     return;
   }
   if (act === 'saveName'){
