@@ -47,3 +47,9 @@
 ## 5. 캐릭터
 
 - 메인 히어로: 귤 캐릭터가 한라산 뒤에서 얼굴을 내민 제주 배너 전체(`assets/brand/nw-hero-banner.jpg`, 1728×910, 휴대폰용 900px 버전 포함)
+
+## 6. 사이트 전체 적용 (2026-09-25)
+
+- 공용 CSS(`v3.css`, `warm-tone-v1.css`, `global-nav.css`, `nedabah.bundle.css`, `mobile-v1.css`, `typography-v4.css`, `back-to-top.css`, `deck-toggle.css`)의 색 값을 v2로 바꿨습니다. 변수 이름(`--copper`, `--c-cobalt` 등)은 기존 페이지 호환을 위해 그대로 두었습니다.
+- 모든 페이지 헤더(`.gnav__logo`)의 글자 로고를 심볼과 워드마크 이미지로 바꿨고, 페이지를 만드는 빌드 스크립트의 헤더 템플릿도 함께 바꿨습니다.
+- 페이지 안에 직접 적은 색(inline style)은 페이지별 디자인으로 보고 그대로 두었습니다.

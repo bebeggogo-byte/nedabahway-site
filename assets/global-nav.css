@@ -19,12 +19,15 @@
   gap: 16px;
 }
 .gnav__logo{
-  font-family: var(--ff-serif, 'Noto Serif KR', serif);
-  font-size: 17px; font-weight: 700; color: #1A1A1A;
-  text-decoration: none; letter-spacing: -.01em;
+  display: inline-flex; align-items: center; gap: 7px;
+  text-decoration: none; line-height: 1;
   flex-shrink: 0;
 }
-.gnav__logo:hover{ color: #a4541a; }
+.gnav__logo img{ display: block; width: auto; }
+.gnav__logo-sym{ height: 28px; }
+.gnav__logo-word{ height: 17px; }
+.gnav__logo:hover .gnav__logo-sym{ transform: rotate(-6deg); }
+.gnav__logo-sym{ transition: transform .25s; }
 .gnav__links{
   display: flex; gap: 18px; align-items: center;
   list-style: none; margin: 0; padding: 0;
@@ -36,19 +39,19 @@
   transition: color .15s, border-color .15s;
   white-space: nowrap;
 }
-.gnav__link:hover{ color: #a4541a; border-bottom-color: #a4541a; }
-.gnav__link.is-active{ color: #a4541a; border-bottom-color: #a4541a; }
+.gnav__link:hover{ color: #1d4ed8; border-bottom-color: #1d4ed8; }
+.gnav__link.is-active{ color: #1d4ed8; border-bottom-color: #1d4ed8; }
 .gnav__cta{
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 13.5px; font-weight: 700; color: #fff;
-  background:#a4541a; padding: 8px 14px; border-radius: 6px;
+  background:#1d4ed8; padding: 8px 14px; border-radius: 6px;
   text-decoration: none; transition: background .15s;
   white-space: nowrap;
 }
-.gnav__cta:hover{ background: #7a4317; }
+.gnav__cta:hover{ background: #1e3a8a; }
 .gnav__toggle{
   display: none;
-  background: transparent; border: 1px solid #C7D2FE;
+  background: transparent; border: 1px solid #bfd3fb;
   width: 36px; height: 36px; border-radius: 6px;
   font-size: 18px; cursor: pointer; line-height: 1;
 }
@@ -63,7 +66,7 @@
     transition: all .18s ease;
   }
   .gnav__links.is-open{ transform: translateY(0); opacity: 1; pointer-events: auto; }
-  .gnav__link{ padding: 10px 0; font-size: 15px; border-bottom: 1px solid #f0ead9; }
+  .gnav__link{ padding: 10px 0; font-size: 15px; border-bottom: 1px solid #e8e2d5; }
   .gnav__link:last-of-type{ border-bottom: none; }
   .gnav__cta{ margin-top: 8px; justify-content: center; }
 }
