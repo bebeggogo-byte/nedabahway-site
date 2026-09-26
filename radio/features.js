@@ -15,7 +15,8 @@
   'use strict';
 
   const $ = (id) => document.getElementById(id);
-  const KBS_PAGE = 'https://program.kbs.co.kr/1fm/radio/classicfm/pc/index.html';
+  // KBS 온에어 클래식FM 페이지(편성·선곡 포함). 옛 program.kbs.co.kr 주소는 열리지 않음.
+  const KBS_PAGE = 'https://onair.kbs.co.kr/index.html?sname=onair&stype=live&ch_code=24&ch_type=radioList';
   const NOW_API = 'https://cfpwwwapi.kbs.co.kr/api/v1/landing/live/channel_code/24';
   const SCHED_API = 'https://static.api.kbs.co.kr/mediafactory/v1/schedule/weekly?rtype=json&local_station_code=00&channel_code=24';
   const HIST_KEY = 'nw.radio.hist';
