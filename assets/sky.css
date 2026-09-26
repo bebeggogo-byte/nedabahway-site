@@ -504,3 +504,47 @@ a.card>span{display:block;}
   .prof-mini{border-radius:16px;align-items:flex-start;padding:10px 14px;}
   .prof-mini__go{display:none;}
 }
+
+/* ===== CAREER / CV (2026-09-26) ===== */
+.cv-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:start;}
+.cv-h{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--cobalt);}
+.cv-tl{list-style:none;margin:16px 0 0;padding:0;position:relative;}
+.cv-tl::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:var(--line);}
+.cv-tl__i{position:relative;display:grid;grid-template-columns:150px 1fr;gap:14px;padding:0 0 22px 32px;}
+.cv-tl__i::before{content:"";position:absolute;left:3px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--card);border:2px solid var(--ink);}
+.cv-tl__i--now::before{background:var(--cobalt);border-color:var(--cobalt);box-shadow:0 0 0 4px var(--cobalt-bg);}
+.cv-tl__when{font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--text-3);letter-spacing:.02em;padding-top:4px;white-space:nowrap;}
+.cv-tl__body{display:flex;flex-direction:column;gap:3px;}
+.cv-tl__org{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.01em;word-break:keep-all;}
+.cv-tl__role{font-size:15px;color:var(--text-3);line-height:1.6;word-break:keep-all;}
+.cv-list{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px;}
+.cv-list li{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:14px 16px;}
+.cv-list b{font-size:16px;color:var(--ink);word-break:keep-all;}
+.cv-list span{font-size:14.5px;color:var(--text-3);}
+.cv-list small{font-family:var(--display);font-size:12.5px;color:var(--text-4);letter-spacing:.02em;}
+.cv-stat{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.cv-stat div{border:2px solid var(--ink);background:var(--card);border-radius:12px;padding:14px 10px;text-align:center;box-shadow:4px 4px 0 var(--maker);}
+.cv-stat b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(18px,2vw,22px);color:var(--ink);letter-spacing:-.02em;}
+.cv-stat span{font-size:12.5px;color:var(--text-3);}
+.cv-act details p{margin-top:12px;font-size:15.5px;color:var(--text-2);line-height:1.75;word-break:keep-all;}
+.cv-act__n{font-family:var(--display);font-weight:800;font-size:13px;color:var(--cobalt);margin-right:12px;}
+.cv-act__list{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px;}
+.cv-act__list li{position:relative;padding-left:18px;font-size:15px;color:var(--text-2);line-height:1.6;word-break:keep-all;}
+.cv-act__list li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:var(--supporter);}
+/* home strip */
+.cvs{display:grid;grid-template-columns:1fr 1.4fr;gap:36px;align-items:start;border:2px solid var(--ink);background:var(--card);border-radius:var(--r-lg);padding:34px 32px;box-shadow:8px 8px 0 var(--thinker);}
+.cvs__t{margin-top:8px;font-size:clamp(24px,3vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--ink);word-break:keep-all;}
+.cvs__d{margin-top:12px;font-size:15.5px;color:var(--text-3);line-height:1.7;word-break:keep-all;}
+.cvs__head .btn-link{display:inline-block;margin-top:16px;font-size:15px;}
+.cvs__list{list-style:none;margin:0;padding:0;display:grid;gap:0;}
+.cvs__list li{display:grid;grid-template-columns:56px 1fr;gap:4px 14px;padding:12px 0;border-top:1px solid var(--line);align-items:baseline;}
+.cvs__list li:first-child{border-top:0;padding-top:0;}
+.cvs__y{font-family:var(--display);font-weight:800;font-size:14px;color:var(--cobalt);grid-row:span 2;}
+.cvs__list b{font-size:16px;color:var(--ink);word-break:keep-all;}
+.cvs__list span:not(.cvs__y){font-size:14px;color:var(--text-3);word-break:keep-all;}
+@media(max-width:900px){
+  .cv-grid{grid-template-columns:1fr;gap:30px;}
+  .cv-tl__i{grid-template-columns:1fr;gap:4px;padding-left:28px;}
+  .cv-stat{gap:8px;}
+  .cvs{grid-template-columns:1fr;gap:22px;padding:22px 18px;box-shadow:5px 5px 0 var(--thinker);}
+}
