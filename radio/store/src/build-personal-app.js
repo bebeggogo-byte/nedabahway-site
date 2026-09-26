@@ -68,8 +68,19 @@ if (vendorTags.length === VENDOR.length) {
 fs.writeFileSync(path.join(OUT, 'index.html'), html);
 
 // App logic + data + PWA files (all referenced relatively from index.html)
-for (const f of ['app.js', 'stations.json', 'manifest.json', 'sw.js']) {
-  fs.copyFileSync(path.join(SRC, f), path.join(OUT, f));
+for (const f of ['app.js', 'features.js', 'stations.json', 'manifest.json', 'sw.js']) {
+  const from = path.join(SRC, f);
+  if (!fs.existsSync(from)) { console.warn('note: missing, skipping:', f); continue; }
+  fs.copyFileSync(from, path.join(OUT, f));
+}
+
+// Background photo(s) for the cinematic main screen (radio/bg/*)
+const bgDir = path.join(SRC, 'bg');
+if (fs.existsSync(bgDir)) {
+  fs.mkdirSync(path.join(OUT, 'bg'), { recursive: true });
+  for (const f of fs.readdirSync(bgDir)) {
+    if (/\.(webp|jpe?g|png)$/i.test(f)) fs.copyFileSync(path.join(bgDir, f), path.join(OUT, 'bg', f));
+  }
 }
 
 // Icons

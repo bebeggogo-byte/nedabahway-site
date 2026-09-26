@@ -2,32 +2,619 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="robots" content="noindex,nofollow">
-<meta name="nw-vault" content="1">
-<title>비공개 자료실 | 네다바웨이</title>
-<meta name="theme-color" content="#f1ede5">
-<link rel="manifest" href="/manifest.webmanifest">
-<link rel="stylesheet" href="/assets/vault.css">
-<script src="/assets/vault.js" defer></script>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,user-scalable=no">
+<title>클래식FM — 제주 96.3</title>
+<meta name="description" content="클래식FM 바로 재생. 제주시 96.3 · 서귀포 99.9 주파수 안내.">
+<meta name="theme-color" content="#0b0908">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="클래식FM">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="클래식FM">
+<meta property="og:title" content="클래식FM — 제주 주파수">
+<meta property="og:description" content="KBS 클래식FM 바로 재생 + 제주 지역 주파수 안내. 슬립 타이머 포함.">
+<meta property="og:url" content="https://www.nedabah.org/radio/">
+<meta property="og:image" content="https://www.nedabah.org/radio/icons/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:locale" content="ko_KR">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="클래식FM — 제주 주파수">
+<meta name="twitter:description" content="KBS 클래식FM 바로 재생 + 제주 지역 주파수.">
+<meta name="twitter:image" content="https://www.nedabah.org/radio/icons/icon-512.png">
+
+<link rel="canonical" href="https://www.nedabah.org/radio/">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
+<style>
+/* Web fonts layer in via font-display:swap; every stack has a local fallback. */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:wght@500;600&family=Noto+Serif+KR:wght@500;600&display=swap');
+
+:root{
+  --ink:#0b0908;
+  --panel:#16120f;
+  --cream:#EFE3CF;
+  --muted:#C9B9A2;
+  --dim:#9d8f7e;
+  --gold:#D8B98A;
+  --gold-deep:#a8845a;
+  --line:rgba(239,227,207,.18);
+  --line-strong:rgba(239,227,207,.34);
+  --glass:rgba(20,16,14,.55);
+  --f-didone:'Playfair Display','Bodoni 72',Didot,Georgia,'Noto Serif KR',serif;
+  --f-label:'Cormorant Garamond',Cormorant,Georgia,serif;
+  --f-kr:'Noto Serif KR','Nanum Myeongjo',AppleMyungjo,Georgia,serif;
+  --f-ui:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-l:env(safe-area-inset-left,0px);
+  --safe-r:env(safe-area-inset-right,0px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none !important}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:var(--ink)}
+body{
+  margin:0;min-height:100vh;min-height:100dvh;
+  background:var(--ink);color:var(--cream);
+  font-family:var(--f-ui);font-size:15px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  -webkit-tap-highlight-color:transparent;
+}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+svg{display:block}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.sr-only{position:absolute !important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* ===== Background photo — the single rule to touch when the photo changes ===== */
+.bg{
+  background-color:var(--ink);
+  background-image:url(./bg/scene.jpg);
+  background-image:image-set(url(./bg/scene.webp) type("image/webp"),url(./bg/scene.jpg));
+  background-size:cover;
+  background-position:62% 40%;
+  background-repeat:no-repeat;
+}
+.bg--stage{position:absolute;inset:0;z-index:0;pointer-events:none}
+.bg--stage::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(8,6,5,.55) 0%,rgba(8,6,5,0) 16%),
+    linear-gradient(180deg,rgba(8,6,5,0) 55%,rgba(8,6,5,.92) 100%),
+    linear-gradient(90deg,rgba(8,6,5,.78) 0%,rgba(8,6,5,.45) 55%,rgba(8,6,5,.15) 100%);
+}
+.bg--page{display:none}
+
+/* ===== Shell ===== */
+.app{
+  position:relative;isolation:isolate;overflow:hidden;
+  display:flex;flex-direction:column;
+  min-height:100vh;min-height:100dvh;
+  padding:calc(var(--safe-t) + 12px) var(--safe-r) calc(var(--safe-b) + 10px) var(--safe-l);
+}
+.app > :not(.bg){position:relative;z-index:1}
+
+/* ===== Top bar ===== */
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:6px 16px 0 20px}
+.brand{display:flex;align-items:flex-start;gap:10px;text-decoration:none;color:inherit;padding:6px 0;min-height:44px}
+.brand__rule{flex:none;width:24px;height:1px;margin-top:10px;background:var(--gold);opacity:.85}
+.brand__text{display:flex;flex-direction:column;line-height:1}
+.brand__name{font-family:var(--f-label);font-weight:600;font-size:17px;letter-spacing:.32em;color:var(--gold)}
+.brand__sub{margin-top:7px;font-family:var(--f-label);font-weight:500;font-size:12.5px;letter-spacing:.42em;color:var(--cream);opacity:.9}
+.topbar__right{flex:none;display:flex;align-items:center;gap:6px}
+.topbar__right > *{flex:none}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px 0 14px;
+  border:1px solid var(--line-strong);border-radius:999px;
+  background:rgba(20,16,14,.35);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  font-size:14px;font-weight:500;letter-spacing:.02em;color:var(--cream);
+  transition:background .2s,border-color .2s;
+}
+.pill:hover{background:rgba(20,16,14,.55);border-color:rgba(239,227,207,.5)}
+.pill svg{width:18px;height:18px}
+.icon-btn{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:12px;color:var(--cream)}
+.icon-btn svg{width:26px;height:26px}
+
+/* ===== Hero ===== */
+.stage{flex:1;display:flex;flex-direction:column;min-height:0}
+.hero{
+  flex:1;display:flex;flex-direction:column;min-height:0;
+  padding:0 28px 6px;cursor:pointer;outline:none;
+}
+.hero:focus-visible{outline:2px solid rgba(216,185,138,.55);outline-offset:-6px;border-radius:24px}
+.app-enter{animation:appEnter .7s var(--ease) both}
+@keyframes appEnter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.hero__info{
+  align-self:flex-start;display:flex;flex-direction:column;align-items:center;
+  margin:clamp(14px,7.5vh,80px) 0 0 26px;
+}
+.hero__status{
+  align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;
+  font-family:var(--f-ui);font-size:10.5px;font-weight:600;letter-spacing:.24em;color:var(--dim);
+}
+.hero__dot{width:6px;height:6px;border-radius:50%;background:#7c7166;box-shadow:0 0 0 0 rgba(216,185,138,0)}
+.hero.is-playing .hero__status{color:var(--gold)}
+.hero.is-playing .hero__dot{background:var(--gold);animation:livePulse 1.8s ease-out infinite}
+@keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(216,185,138,.6)}70%{box-shadow:0 0 0 8px rgba(216,185,138,0)}100%{box-shadow:0 0 0 0 rgba(216,185,138,0)}}
+.hero__label{
+  align-self:flex-start;margin:0 0 4px 2px;
+  font-family:var(--f-label);font-weight:600;font-size:13px;letter-spacing:.32em;color:var(--cream);opacity:.88;
+}
+.hero__freqline{position:relative;align-self:flex-start;line-height:1}
+.hero__freq{
+  display:block;font-family:var(--f-didone);font-weight:400;
+  font-size:clamp(84px,26vw,118px);line-height:1;letter-spacing:-.02em;
+  font-variant-numeric:lining-nums;color:var(--cream);
+  text-shadow:0 2px 24px rgba(0,0,0,.35);
+}
+.hero__mhz{
+  position:absolute;left:100%;bottom:.55em;margin-left:4px;
+  font-family:var(--f-didone);font-style:italic;font-weight:400;font-size:clamp(17px,5vw,22px);line-height:1;color:var(--cream);white-space:nowrap;
+}
+.hero__cityline{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:10px}
+.hero__cityline::before,.hero__cityline::after{content:"";width:24px;height:1px;background:var(--cream);opacity:.7}
+.hero__city{font-family:var(--f-kr);font-weight:600;font-size:22px;letter-spacing:.04em;line-height:1.3;color:var(--cream)}
+.hero__name{margin-top:6px;font-family:var(--f-didone);font-style:italic;font-weight:400;font-size:19px;letter-spacing:.07em;color:var(--muted);white-space:nowrap}
+.hero__now{margin-top:8px;font-family:var(--f-didone);font-style:italic;font-size:11.5px;letter-spacing:.2em;color:var(--muted);white-space:nowrap}
+
+/* Controls */
+.controls{margin-top:auto;padding-top:18px;display:flex;flex-direction:column;align-items:center}
+.controls__row{display:flex;align-items:center;justify-content:center;gap:22px}
+.ring{
+  position:relative;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;
+  border:1px solid rgba(239,227,207,.34);background:rgba(20,16,14,.38);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--cream);
+  transition:border-color .2s,background .2s,color .2s,transform .15s;
+}
+.ring:hover{border-color:rgba(239,227,207,.6)}
+.ring:active{transform:scale(.95)}
+.ring svg{width:21px;height:21px}
+.remember__heart{transition:fill .25s,color .25s}
+.remember.is-saved{color:var(--gold);border-color:rgba(216,185,138,.7)}
+.remember.is-saved .remember__heart{fill:var(--gold)}
+.remember__count{
+  position:absolute;top:-3px;right:-5px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;
+  background:var(--gold);color:#1a130c;font-size:10.5px;font-weight:700;line-height:18px;text-align:center;
+  box-shadow:0 0 0 2px rgba(11,9,8,.7);
+}
+.play{
+  position:relative;display:grid;place-items:center;width:76px;height:76px;border-radius:50%;
+  border:1.5px solid transparent;
+  background:
+    linear-gradient(rgba(18,14,11,.84),rgba(18,14,11,.84)) padding-box,
+    linear-gradient(145deg,#D8B98A 0%,#EFE3CF 48%,#9b7a52 100%) border-box;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:0 8px 28px rgba(0,0,0,.45),0 0 0 6px rgba(216,185,138,.05);
+  color:var(--cream);transition:box-shadow .3s,transform .15s;
+}
+.hero:active .play{transform:scale(.97)}
+.hero.is-playing .play{box-shadow:0 8px 28px rgba(0,0,0,.45),0 0 0 7px rgba(216,185,138,.08),0 0 34px rgba(216,185,138,.28)}
+.play svg{width:28px;height:28px}
+.hero__hint{
+  max-width:100%;margin-top:10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+  font-size:11.5px;letter-spacing:.02em;color:var(--dim);text-align:center;
+}
+
+/* ===== Now playing card ===== */
+.now-card{
+  display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:12px;
+  width:min(calc(100% - 48px),340px);margin:14px auto 0;padding:9px 8px 9px 9px;
+  border:1px solid var(--line);border-radius:22px;background:var(--glass);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  cursor:pointer;transition:border-color .2s,background .2s;
+}
+.now-card:hover{border-color:rgba(239,227,207,.3)}
+.now-card__thumb{width:48px;height:48px;border-radius:50%;object-fit:cover;background:#221b16;border:1px solid var(--line)}
+.now-card__text{min-width:0;display:flex;flex-direction:column}
+.now-card__label{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.32em;color:var(--muted);line-height:1.2}
+.now-card__title{margin-top:2px;font-family:var(--f-didone);font-size:20px;line-height:1.2;color:var(--cream);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.now-card__sub{font-family:var(--f-didone);font-style:italic;font-size:13px;line-height:1.3;color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.now-card__chev{display:grid;place-items:center;width:36px;height:40px;border-left:1px solid var(--line);color:var(--cream)}
+.now-card__chev svg{width:18px;height:18px}
+
+/* ===== Footer ===== */
+.foot{
+  display:flex;align-items:center;justify-content:center;gap:14px;margin:14px 0 0;
+  font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.34em;color:var(--dim);
+}
+.foot::before,.foot::after{content:"";width:36px;height:1px;background:currentColor;opacity:.6}
+
+/* ===== Hidden region list (kept for app.js) + install toast ===== */
+.regions__reveal,#groups{display:none !important}
+.install{
+  display:none;position:fixed;z-index:45;left:50%;bottom:calc(var(--safe-b) + 16px);transform:translateX(-50%);
+  width:min(calc(100% - 32px),398px);padding:12px 12px 12px 16px;
+  align-items:center;justify-content:space-between;gap:12px;
+  border:1px solid var(--line);border-radius:18px;background:rgba(22,18,15,.92);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 12px 34px rgba(0,0,0,.5);
+  font-size:13px;color:var(--muted);
+}
+.install.is-shown{display:flex}
+.install strong{color:var(--cream);font-weight:600}
+.install__btn{flex:none;min-height:40px;padding:0 16px;border-radius:12px;background:var(--gold);color:#1a130c;font-weight:700;font-size:13px}
+
+/* ===== Player dock (app.js fallback) ===== */
+.player-frame{
+  position:fixed;z-index:40;left:0;right:0;bottom:0;height:0;overflow:hidden;
+  background:rgba(22,18,15,.94);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  border-top:1px solid var(--line);border-radius:22px 22px 0 0;
+  transition:height .3s var(--ease);
+}
+.player-frame.is-open{height:calc(280px + var(--safe-b))}
+.player-frame__inner{height:100%;padding:20px 20px calc(var(--safe-b) + 20px)}
+.player-frame__inner iframe{width:100%;height:100%;border:0;border-radius:14px}
+.player-frame__close{position:absolute;top:10px;right:10px;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;color:var(--muted)}
+.player-frame__close svg{width:20px;height:20px}
+.player-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;height:100%;text-align:center}
+.player-fallback__msg{max-width:300px;font-size:14px;color:var(--cream)}
+.player-fallback__btn{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:14px;background:var(--gold);color:#1a130c;font-weight:700;text-decoration:none}
+.player-fallback__retry{min-height:44px;padding:0 18px;border:1px solid var(--line-strong);border-radius:14px;color:var(--cream)}
+
+/* ===== Sheets (bottom sheets on phone, dialogs on wide screens) ===== */
+.sheet{position:fixed;inset:0;z-index:60}
+.sheet__backdrop{position:absolute;inset:0;background:rgba(5,4,3,.62);opacity:0;transition:opacity .3s}
+.sheet.is-open .sheet__backdrop{opacity:1}
+.sheet__panel{
+  position:absolute;left:0;right:0;bottom:0;max-height:88vh;max-height:88dvh;overflow:auto;overscroll-behavior:contain;
+  padding:8px 20px calc(var(--safe-b) + 22px);
+  background:var(--panel);color:var(--cream);
+  border:1px solid var(--line);border-bottom:0;border-radius:24px 24px 0 0;
+  box-shadow:0 -18px 50px rgba(0,0,0,.55);
+  transform:translateY(100%);transition:transform .32s var(--ease);
+}
+.sheet.is-open .sheet__panel{transform:none}
+.sheet__panel::before{content:"";display:block;width:38px;height:4px;margin:4px auto 6px;border-radius:2px;background:rgba(239,227,207,.2)}
+.sheet__head{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px}
+.sheet__title{margin:0;font-family:var(--f-kr);font-weight:600;font-size:20px;letter-spacing:.02em}
+.sheet__close{display:grid;place-items:center;width:44px;height:44px;margin-right:-10px;border-radius:50%;color:var(--muted)}
+.sheet__close:hover{color:var(--cream)}
+.sheet__close svg{width:20px;height:20px}
+.sheet__section{margin-top:18px}
+.sheet__eyebrow{margin:0 0 10px;font-family:var(--f-kr);font-weight:600;font-size:12.5px;letter-spacing:.12em;color:var(--gold)}
+
+/* Menu rows */
+.menu-list{display:flex;flex-direction:column;margin-top:6px;border-top:1px solid var(--line)}
+.menu-row{
+  display:flex;align-items:center;gap:14px;width:100%;min-height:58px;padding:10px 2px;
+  border-bottom:1px solid var(--line);text-align:left;text-decoration:none;color:var(--cream);font-size:15px;
+}
+.menu-row > svg{flex:none;width:20px;height:20px;color:var(--gold)}
+.menu-row__text{flex:1;min-width:0;display:flex;flex-direction:column}
+.menu-row__sub{font-size:12px;color:var(--dim);line-height:1.4}
+.menu-row__chev{flex:none;width:16px;height:16px;color:var(--dim);transition:transform .2s}
+.sleep-timer__toggle[aria-expanded="true"] .menu-row__chev{transform:rotate(180deg)}
+.sleep-timer{border-bottom:1px solid var(--line)}
+.sleep-timer .menu-row{border-bottom:0}
+.sleep-timer.is-active #sleepLabel{color:var(--gold)}
+.sleep-timer__menu{display:flex;flex-wrap:wrap;gap:6px;padding:0 0 14px 34px}
+.sleep-timer__menu button{min-height:40px;padding:0 12px;border:1px solid var(--line-strong);border-radius:999px;font-size:13px;color:var(--cream)}
+.sleep-timer__menu button:hover{border-color:var(--gold);color:var(--gold)}
+.geo-toggle__switch{position:relative;flex:none;width:46px;height:28px;border-radius:14px;background:rgba(239,227,207,.16);transition:background .2s}
+.geo-toggle__switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--muted);transition:transform .2s,background .2s}
+.geo-toggle.is-on .geo-toggle__switch{background:rgba(216,185,138,.45)}
+.geo-toggle.is-on .geo-toggle__switch::after{transform:translateX(18px);background:var(--gold)}
+
+/* Playlist sheet */
+.pl-now{display:grid;grid-template-columns:56px minmax(0,1fr);gap:14px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:18px;background:rgba(239,227,207,.03)}
+.pl-now__thumb{width:56px;height:56px;border-radius:50%;object-fit:cover;background:#221b16}
+.pl-now__title{font-family:var(--f-didone);font-size:19px;line-height:1.25;overflow-wrap:anywhere}
+.pl-now__meta{font-family:var(--f-didone);font-style:italic;font-size:13px;color:var(--muted)}
+.sched{list-style:none;margin:0;padding:0;max-height:220px;overflow:auto;border-top:1px solid var(--line)}
+.sched li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:10px;padding:9px 4px;border-bottom:1px solid var(--line);font-size:14px}
+.sched__time{font-variant-numeric:tabular-nums;color:var(--dim)}
+.sched li.is-now{color:var(--gold)}
+.sched li.is-now .sched__time{color:var(--gold)}
+.sched li.sched__msg{display:block;color:var(--muted)}
+.sched__msg a{color:var(--gold)}
+.hist{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.hist > li{padding:12px 2px;border-bottom:1px solid var(--line)}
+.hist__when{font-size:13px;color:var(--gold);font-variant-numeric:tabular-nums}
+.hist__where{font-size:14px;color:var(--cream)}
+.hist__prog{font-family:var(--f-didone);font-style:italic;font-size:14px;color:var(--muted)}
+.hist__actions{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:6px;font-size:12.5px}
+.hist__actions a{color:var(--muted);text-underline-offset:3px}
+.hist__actions a:hover{color:var(--cream)}
+.hist__del{margin-left:auto;min-height:32px;padding:0 10px;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--dim)}
+.hist__empty{padding:14px 2px;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.pl-clear{margin-top:12px;min-height:40px;padding:0 16px;border:1px solid var(--line-strong);border-radius:999px;font-size:13px;color:var(--muted)}
+.pl-clear.is-confirm{border-color:#c98a6a;color:#f0b597}
+
+/* About sheet */
+.about-sheet__close{position:absolute;top:10px;right:10px;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;color:var(--muted)}
+.about-sheet__close svg{width:20px;height:20px}
+.about-sheet__body{padding:10px 2px 0}
+.about-sheet__eyebrow{font-family:var(--f-label);font-weight:600;font-size:12px;letter-spacing:.32em;color:var(--gold)}
+.about-sheet__title{margin:6px 0 8px;font-family:var(--f-kr);font-weight:600;font-size:24px}
+.about-sheet__lead{margin:0 0 16px;font-size:14.5px;color:var(--muted)}
+.about-sheet__block{padding:12px 0;border-top:1px solid var(--line)}
+.about-sheet__block p{margin:4px 0 0;font-size:14px;color:var(--cream)}
+.about-sheet__block-label{font-family:var(--f-label);font-weight:600;font-size:12px;letter-spacing:.24em;color:var(--gold)}
+.about-sheet__note{font-size:13px !important;line-height:1.65;color:var(--muted) !important}
+.about-sheet__note strong{color:var(--cream);font-weight:600}
+.about-sheet__mail{display:inline-block;margin-top:6px;color:var(--gold);text-underline-offset:3px}
+.about-sheet__facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 18px;padding-top:14px;border-top:1px solid var(--line)}
+.about-sheet__facts div{padding:10px 12px;border:1px solid var(--line);border-radius:14px}
+.about-sheet__facts dt{font-size:11.5px;color:var(--dim)}
+.about-sheet__facts dd{margin:2px 0 0;font-size:14px}
+.about-sheet__return{
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;border-radius:16px;
+  background:var(--gold);color:#1a130c;font-weight:700;font-size:15px;
+}
+.about-sheet__return svg{width:17px;height:17px}
+
+/* ===== Wide screens: phone-like column on a blurred stage ===== */
+@media (min-width:700px){
+  body{display:flex;align-items:center;justify-content:center;padding:20px 0}
+  .bg--page{
+    display:block;position:fixed;inset:0;z-index:0;
+    filter:blur(28px) brightness(.34) saturate(.85);transform:scale(1.12);
+  }
+  .app{
+    width:430px;min-height:0;height:min(calc(100vh - 40px),932px);height:min(calc(100dvh - 40px),932px);
+    border:1px solid var(--line);border-radius:34px;box-shadow:0 40px 90px rgba(0,0,0,.6);
+    padding:18px 0 14px;
+  }
+  .player-frame{left:50%;right:auto;width:430px;transform:translateX(-50%)}
+  .sheet__panel{
+    left:50%;right:auto;bottom:auto;top:50%;width:480px;max-height:min(84vh,760px);
+    padding:10px 26px 26px;border:1px solid var(--line);border-radius:24px;
+    transform:translate(-50%,-46%);opacity:0;transition:transform .3s var(--ease),opacity .25s;
+  }
+  .sheet.is-open .sheet__panel{transform:translate(-50%,-50%);opacity:1}
+  .sheet__panel::before{display:none}
+}
+@media (max-height:700px) and (max-width:699px){
+  .hero__info{margin-top:10px}
+  .hero__cityline{margin-top:6px}
+  .now-card{margin-top:10px}
+  .foot{margin-top:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+</style>
 </head>
 <body>
-<header class="nw-lock__head"><a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a></header>
-<main id="main" class="nw-lock__main">
-<div id="nw-lock" class="nw-lock" hidden>
-<h1>비공개 자료실</h1>
-<p>이 페이지는 잠겨 있습니다. 비밀번호를 입력하면 열립니다.</p>
-<form autocomplete="off">
-<label for="nw-pw">비밀번호</label>
-<input id="nw-pw" type="password" autocomplete="current-password" required>
-<label class="nw-lock__remember"><input type="checkbox" checked> 이 기기에서 기억하기</label>
-<p class="nw-lock__err" hidden></p>
-<button type="submit">열기</button>
-</form>
-<p class="nw-lock__back"><a href="/">공개 사이트로 돌아가기</a></p>
+
+<div class="bg bg--page" aria-hidden="true"></div>
+
+<div class="app">
+  <div class="bg bg--stage" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="NEDABAHWAY RADIO 홈">
+      <span class="brand__rule" aria-hidden="true"></span>
+      <span class="brand__text">
+        <span class="brand__name">NEDABAHWAY</span>
+        <span class="brand__sub">RADIO</span>
+      </span>
+    </a>
+    <div class="topbar__right">
+      <button class="pill" id="aboutBtn" type="button" aria-label="네다바웨이 소개 보기" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18v-5a8 8 0 0 1 16 0v5"/><path d="M20 19a2 2 0 0 1-2 2h-1.5v-6H20zM4 19a2 2 0 0 0 2 2h1.5v-6H4z"/></svg>
+        <span>소개</span>
+      </button>
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="메뉴 열기" aria-haspopup="dialog" aria-controls="menuSheet" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><path d="M3 6.5h18M3 12h18M3 17.5h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="stage">
+    <section class="hero app-enter" id="hero" role="button" tabindex="0" aria-label="탭하여 클래식FM 재생">
+      <div class="hero__info">
+        <div class="hero__status"><span class="hero__dot" id="liveDot"></span><span id="statusText">OFF AIR</span></div>
+        <div class="hero__label">TUNED TO</div>
+        <div class="hero__freqline">
+          <span class="hero__freq" id="heroFreq">96.3</span><span class="hero__mhz">MHz</span>
+        </div>
+        <div class="hero__cityline"><span class="hero__city" id="heroCity">제주시</span></div>
+        <div class="hero__name">KBS Classic FM</div>
+        <div class="hero__now" id="heroNow" aria-live="polite">— · —</div>
+      </div>
+
+      <div class="controls">
+        <div class="controls__row">
+          <button class="ring remember" id="rememberBtn" type="button" aria-label="이 곡 기억" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path class="remember__heart" d="M12 20.3s-7.4-4.5-9.1-9.1C1.8 8 3.9 4.6 7.3 4.6c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.4 0 5.5 3.4 4.4 6.6-1.7 4.6-9.1 9.1-9.1 9.1z"/></svg>
+            <span class="remember__count" id="rememberCount" aria-hidden="true" hidden>0</span>
+          </button>
+          <div class="play" id="heroAction">
+            <svg id="actionIcon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            <span class="sr-only" id="actionText">라이브 듣기</span>
+          </div>
+          <button class="ring" id="playlistBtn" type="button" aria-label="선곡 리스트 열기" aria-haspopup="dialog" aria-controls="playlistSheet" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11M3 11h11M3 16h7"/><path d="M18 17.5V5l3.5 1.4"/><circle cx="15.8" cy="17.5" r="2.2"/></svg>
+          </button>
+        </div>
+        <div class="hero__hint" id="heroHint">화면 아무데나 터치</div>
+        <span class="sr-only" id="rememberStatus" role="status"></span>
+      </div>
+    </section>
+
+    <div class="now-card" id="nowCard" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="playlistSheet" aria-label="지금 방송 · 선곡 리스트 열기">
+      <img class="now-card__thumb" id="nowThumb" src="./icons/icon-192.png" alt="" width="48" height="48" decoding="async">
+      <div class="now-card__text">
+        <span class="now-card__label">NOW PLAYING</span>
+        <span class="now-card__title" id="nowTitle">클래식 FM 생방송</span>
+        <span class="now-card__sub" id="nowSub">KBS 1FM · 제주</span>
+      </div>
+      <span class="now-card__chev" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </span>
+    </div>
+  </main>
+
+  <footer class="foot">NEDABAHWAY RADIO</footer>
 </div>
-<noscript><p class="nw-lock__err">JavaScript가 필요합니다.</p></noscript>
-</main>
-<script type="text/plain" id="nw-vault-data">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</script>
+
+<section class="regions" id="regions" aria-label="지역별 주파수">
+  <button class="regions__reveal" id="regionsReveal" type="button" aria-expanded="false" aria-controls="groups">
+    <span id="regionsRevealText">다른 지역 주파수 보기</span>
+  </button>
+  <div id="groups"></div>
+
+  <div id="install" class="install" role="region" aria-label="홈 화면 설치">
+    <span><strong>홈 화면에 설치</strong>하면 다음부터 바로 실행됩니다.</span>
+    <button class="install__btn" id="installBtn" type="button">지금 설치</button>
+  </div>
+</section>
+
+<div class="player-frame" id="playerFrame" aria-hidden="true">
+  <div class="player-frame__inner" id="playerFrameInner"></div>
+  <button class="player-frame__close" id="playerFrameClose" type="button" aria-label="플레이어 닫기">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+  </button>
+</div>
+
+<!-- Menu sheet -->
+<div class="sheet menu-sheet" id="menuSheet" role="dialog" aria-modal="true" aria-labelledby="menuTitle" hidden>
+  <div class="sheet__backdrop" data-sheet-close></div>
+  <div class="sheet__panel" role="document">
+    <div class="sheet__head">
+      <h2 class="sheet__title" id="menuTitle">메뉴</h2>
+      <button class="sheet__close" id="menuClose" type="button" aria-label="메뉴 닫기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+    </div>
+    <div class="menu-list">
+      <div class="sleep-timer" id="sleepTimer">
+        <button class="menu-row sleep-timer__toggle" id="sleepToggle" type="button" aria-expanded="false" aria-controls="sleepMenu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <span class="menu-row__text"><span id="sleepLabel">슬립 타이머</span><span class="menu-row__sub">지정한 시간 뒤 서서히 꺼집니다</span></span>
+          <svg class="menu-row__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="sleep-timer__menu" id="sleepMenu" role="menu" hidden>
+          <button type="button" data-min="10" role="menuitem">10분</button>
+          <button type="button" data-min="30" role="menuitem">30분</button>
+          <button type="button" data-min="60" role="menuitem">1시간</button>
+          <button type="button" data-min="90" role="menuitem">1시간 30분</button>
+          <button type="button" data-min="0" role="menuitem">끄기</button>
+        </div>
+      </div>
+
+      <button class="menu-row geo-toggle" id="geoToggle" type="button" role="switch" aria-checked="false" aria-label="내 위치로 자동 전환">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        <span class="menu-row__text"><span>내 위치 자동 전환</span><span class="menu-row__sub" id="geoSub">제주↔서귀포 이동 시 주파수 자동 선택</span></span>
+        <span class="geo-toggle__switch" aria-hidden="true"></span>
+      </button>
+
+      <a class="menu-row" href="https://onair.kbs.co.kr/index.html?sname=onair&amp;stype=live&amp;ch_code=24&amp;ch_type=radioList" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span class="menu-row__text"><span>편성표</span><span class="menu-row__sub">KBS 클래식FM 공식 페이지</span></span>
+        <svg class="menu-row__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </a>
+
+      <button class="menu-row" id="shareBtn" type="button" aria-label="이 앱 공유">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+        <span class="menu-row__text"><span>공유</span></span>
+      </button>
+
+      <button class="menu-row" id="menuInstall" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M12 7v7M9 11l3 3 3-3"/></svg>
+        <span class="menu-row__text"><span>설치 안내</span><span class="menu-row__sub" id="menuInstallSub">홈 화면에 추가하면 바로 실행됩니다</span></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Playlist sheet -->
+<div class="sheet playlist-sheet" id="playlistSheet" role="dialog" aria-modal="true" aria-labelledby="playlistTitle" hidden>
+  <div class="sheet__backdrop" data-sheet-close></div>
+  <div class="sheet__panel" role="document">
+    <div class="sheet__head">
+      <h2 class="sheet__title" id="playlistTitle">선곡 리스트</h2>
+      <button class="sheet__close" id="playlistClose" type="button" aria-label="선곡 리스트 닫기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+    </div>
+
+    <div class="sheet__section">
+      <h3 class="sheet__eyebrow">지금 방송</h3>
+      <div class="pl-now" id="plNow">
+        <img class="pl-now__thumb" src="./icons/icon-192.png" alt="" width="56" height="56" decoding="async">
+        <div>
+          <div class="pl-now__title">클래식 FM 생방송</div>
+          <div class="pl-now__meta">KBS 1FM · 제주</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet__section">
+      <h3 class="sheet__eyebrow">오늘 편성</h3>
+      <ul class="sched" id="plSchedule"><li class="sched__msg">불러오는 중…</li></ul>
+    </div>
+
+    <div class="sheet__section">
+      <h3 class="sheet__eyebrow">이 곡 기억</h3>
+      <ul class="hist" id="plHistory"></ul>
+      <button class="pl-clear" id="plClear" type="button" hidden>모두 지우기</button>
+    </div>
+  </div>
+</div>
+
+<!-- About sheet (driven by app.js) -->
+<div class="sheet about-sheet" id="aboutSheet" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" hidden>
+  <div class="sheet__backdrop about-sheet__backdrop" id="aboutBackdrop"></div>
+  <div class="sheet__panel about-sheet__panel" role="document">
+    <button class="about-sheet__close" id="aboutClose" type="button" aria-label="라디오로 돌아가기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+    </button>
+    <div class="about-sheet__body">
+      <div class="about-sheet__eyebrow">NEDABAHWAY</div>
+      <h2 class="about-sheet__title" id="aboutTitle">네다바웨이</h2>
+      <p class="about-sheet__lead">제주에 뿌리를 둔 비영리 임의단체입니다. 이 라디오 앱도 네다바웨이가 제공합니다.</p>
+
+      <div class="about-sheet__block">
+        <div class="about-sheet__block-label">SBM</div>
+        <p>성경을 스스로 관찰하는 방법(SBM)을 함께 연구하고 나눕니다.</p>
+      </div>
+      <div class="about-sheet__block">
+        <div class="about-sheet__block-label">교육</div>
+        <p>진로·AI·리더십·퍼실리테이션을 배우고 나누는 자리를 엽니다.</p>
+      </div>
+      <div class="about-sheet__block">
+        <div class="about-sheet__block-label">후원·문의</div>
+        <p>후원과 협력은 이메일로 문의해 주세요.</p>
+        <a class="about-sheet__mail" href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a>
+      </div>
+      <div class="about-sheet__block">
+        <div class="about-sheet__block-label">재생 안내</div>
+        <p class="about-sheet__note">탭하면 <strong>KBS 클래식FM</strong>이 앱 내에서 바로 재생됩니다.
+          차량 핸들 음소거/재개, CarPlay·잠금화면 컨트롤 모두 지원.
+          제주 어느 주파수든 같은 프로그램이 송출됩니다. 앱 내 재생 실패 시
+          KBS 공식 페이지 또는 YouTube 라이브로 자동 폴백됩니다.
+          (스트림: radio.bsod.kr 공개 HLS 프록시 → KBS 원본)</p>
+      </div>
+
+      <dl class="about-sheet__facts">
+        <div><dt>설립</dt><dd>2025년 3월 20일</dd></div>
+        <div><dt>거점</dt><dd>제주</dd></div>
+        <div><dt>성격</dt><dd>비영리 임의단체</dd></div>
+        <div><dt>운영</dt><dd>김창환 대표</dd></div>
+      </dl>
+
+      <button class="about-sheet__return" id="aboutReturn" type="button">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        라디오로 돌아가기
+      </button>
+    </div>
+  </div>
+</div>
+
+<audio id="audio" preload="none" playsinline></audio>
+
+<script src="./app.js"></script>
+<script src="./features.js"></script>
 </body>
 </html>
