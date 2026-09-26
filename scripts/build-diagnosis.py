@@ -195,7 +195,7 @@ def hub():
     <div class="sec-head reveal" style="margin-bottom:44px;">
       <p class="sec-kicker">Free Diagnosis</p>
       <h1 class="sec-title" id="dgTitle">무료진단, 셋 중 하나를<br>고르세요<span class="dot">.</span></h1>
-      <p class="about-lead" style="margin-top:18px;">회원가입도, 이메일도 필요 없습니다. 고르고, 답하고, 그 자리에서 결과를 봅니다. 결과는 복사해서 상담 신청서에 붙여 넣으면 첫 대화가 훨씬 빨라집니다.</p>
+      <p class="about-lead" style="margin-top:18px;">세 가지 모두 네다바웨이가 직접 설계해 준비한 진단입니다. 회원가입도, 이메일도 필요 없습니다. 고르고, 답하고, 그 자리에서 결과를 봅니다. 결과는 복사해서 상담 신청서에 붙여 넣으면 첫 대화가 훨씬 빨라집니다.</p>
     </div>
 
     <div class="dg-pick">
@@ -271,7 +271,7 @@ def learning():
     <p class="ai-crumb" style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.08em;color:var(--cobalt);margin-bottom:12px;"><a href="/diagnosis/">&larr; 무료진단</a> · 01 학습 유형 진단지</p>
     <div class="sec-head" style="margin-bottom:28px;">
       <h1 class="sec-title" id="lgTitle">학습 유형 진단지<span class="dot">.</span></h1>
-      <p class="about-lead" style="margin-top:14px;">10문항, 약 2분. 정답은 없습니다. 바람직한 답이 아니라 <strong>내가 실제로 하는 행동</strong>을 고르세요.</p>
+      <p class="about-lead" style="margin-top:14px;">네다바웨이가 준비한 진단입니다. 10문항, 약 2분. 정답은 없습니다. 바람직한 답이 아니라 <strong>내가 실제로 하는 행동</strong>을 고르세요.</p>
     </div>
 
     <div class="dg-top" hidden><div class="dg-top__bar"><div class="dg-top__fill"></div></div><span class="dg-top__n">0 / 10</span></div>
@@ -358,7 +358,7 @@ def hexaco():
     <p style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.08em;color:var(--cobalt);margin-bottom:12px;"><a href="/diagnosis/">&larr; 무료진단</a> · 02 성품 6요인 진단</p>
     <div class="sec-head" style="margin-bottom:28px;">
       <h1 class="sec-title" id="hxTitle">성품 6요인 진단<span class="dot">.</span></h1>
-      <p class="about-lead" style="margin-top:14px;">36문항, 약 6분. 문장마다 <strong>평소의 나</strong>에 얼마나 가까운지 다섯 단계로 답합니다. 높고 낮음에 우열은 없습니다.</p>
+      <p class="about-lead" style="margin-top:14px;">네다바웨이가 새로 쓴 문항으로 준비한 진단입니다. 36문항, 약 6분. 문장마다 <strong>평소의 나</strong>에 얼마나 가까운지 다섯 단계로 답합니다. 높고 낮음에 우열은 없습니다.</p>
     </div>
 
     <div class="dg-top" hidden><div class="dg-top__bar"><div class="dg-top__fill"></div></div><span class="dg-top__n">0 / 36</span></div>

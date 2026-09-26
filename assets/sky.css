@@ -477,3 +477,30 @@ a.card>span{display:block;}
 /* 6 minds strip: clickable */
 .types__i a{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;}
 .types__i a:hover strong{color:var(--cobalt);}
+
+/* ===== INSTRUCTOR PROFILE (2026-09-26) ===== */
+.prof{display:grid;grid-template-columns:260px 1fr;gap:40px;align-items:start;border:2px solid var(--ink);background:var(--card);border-radius:var(--r-lg);padding:36px;box-shadow:8px 8px 0 var(--maker);}
+.prof__photo{border-radius:20px;overflow:hidden;border:2px solid var(--ink);background:var(--connector);}
+.prof__photo img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;}
+.prof__name{margin-top:8px;font-size:clamp(28px,3.4vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.15;color:var(--ink);}
+.prof__en{font-family:var(--hand);font-weight:400;font-size:22px;color:var(--text-3);margin-left:8px;}
+.prof__role{margin-top:8px;font-size:17px;font-weight:700;color:var(--cobalt);}
+.prof__bio{margin-top:14px;font-size:16px;color:var(--text-2);line-height:1.75;word-break:keep-all;}
+.prof__creds{margin-top:18px;list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;}
+.prof__creds li{font-size:14.5px;color:var(--text-3);line-height:1.5;padding-left:16px;position:relative;word-break:keep-all;}
+.prof__creds li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:var(--cobalt);}
+.prof__creds b{display:block;color:var(--ink);font-size:15.5px;}
+.prof__cta{margin-top:24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.prof-mini{margin-top:22px;display:inline-flex;align-items:center;gap:14px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 18px 8px 8px;transition:border-color .2s,transform .2s,box-shadow .2s;max-width:100%;}
+.prof-mini:hover{border-color:var(--ink);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--maker);}
+.prof-mini img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:1.5px solid var(--ink);flex-shrink:0;}
+.prof-mini__t{font-size:14px;color:var(--text-3);word-break:keep-all;}
+.prof-mini__t b{color:var(--ink);font-size:15px;margin-right:6px;}
+.prof-mini__go{font-family:var(--display);font-weight:700;font-size:13px;color:var(--cobalt);white-space:nowrap;}
+@media(max-width:900px){
+  .prof{grid-template-columns:1fr;gap:22px;padding:22px 18px;box-shadow:5px 5px 0 var(--maker);}
+  .prof__photo{max-width:180px;}
+  .prof__creds{grid-template-columns:1fr;}
+  .prof-mini{border-radius:16px;align-items:flex-start;padding:10px 14px;}
+  .prof-mini__go{display:none;}
+}
