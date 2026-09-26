@@ -42,6 +42,12 @@ def intro():
 
     <div class="gm-wall" id="gmWall" data-code="MAIN"></div>
 
+    <div class="dg-next" style="margin-top:32px;">
+      <p class="dg-next__t">벽에 붙이기엔 무거운 고민이라면</p>
+      <p class="dg-next__d">공개 벽 대신 1:1로 이야기하고 싶다면 30분 무료 상담이 있습니다. 학생도 어른도, 이름만 적어도 됩니다.</p>
+      <div class="dg-next__cta"><a class="btn-dark" href="/contact.html#consult-form">무료 30분 상담 신청</a><a class="btn-link" href="/diagnosis/">먼저 무료진단 해 보기 &#8599;</a></div>
+    </div>
+
     <p class="dg-note" style="margin-top:28px;font-size:14px;color:var(--text-3);">붙인 글은 누구나 볼 수 있습니다. 이름, 학교, 연락처처럼 사람을 알아볼 수 있는 정보는 적지 마세요. 운영자는 부적절한 글을 숨길 수 있습니다. 하트는 기기 단위로 세므로 같은 사람이 여러 기기에서 누르면 막지 못합니다.</p>
 
     <div class="mailcard reveal" style="margin-top:56px;">
