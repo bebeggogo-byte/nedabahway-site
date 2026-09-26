@@ -1,13 +1,16 @@
-const CACHE = 'classic-fm-v29';
+const CACHE = 'classic-fm-v30';
 const ASSETS = [
   './',
   './index.html',
   './app.js',
+  './features.js',
   './stations.json',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/apple-touch-icon.png',
+  './bg/scene.webp',
+  './bg/scene.jpg',
 ];
 
 self.addEventListener('install', (e) => {
