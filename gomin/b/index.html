@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>고민 보드 — 방구석고민, 바닷가코칭 | 네다바웨이</title>
+<meta name="description" content="참여 코드로 들어와 고민을 붙이고 하트로 공감합니다. 하트가 많은 고민이 위로 올라옵니다.">
+<link rel="canonical" href="https://www.nedabah.org/gomin/b/">
+<meta property="og:title" content="고민 보드 — 방구석고민, 바닷가코칭 | 네다바웨이">
+<meta property="og:description" content="참여 코드로 들어와 고민을 붙이고 하트로 공감합니다. 하트가 많은 고민이 위로 올라옵니다.">
+<meta property="og:url" content="https://www.nedabah.org/gomin/b/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.nedabah.org/assets/og/gomin.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="고민 보드 — 방구석고민, 바닷가코칭 | 네다바웨이">
+<meta name="twitter:description" content="참여 코드로 들어와 고민을 붙이고 하트로 공감합니다. 하트가 많은 고민이 위로 올라옵니다.">
+<meta name="twitter:image" content="https://www.nedabah.org/assets/og/gomin.jpg">
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/sky.css">
+<link rel="stylesheet" href="/assets/diag.css">
+<link rel="stylesheet" href="/assets/gomin.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<a class="skip-link" href="#main">본문 바로가기</a>
+<header class="sk-head">
+  <div class="sk-head__in">
+    <a class="sk-logo" href="/" aria-label="네다바웨이 홈"><img class="sk-logo__word" src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a>
+    <nav class="sk-nav" id="skNav" aria-label="주요 메뉴">
+      <a href="/about.html">About</a>
+      <a href="/programs.html">Programs</a>
+      <a href="/personal.html">Personal</a>
+      <a href="/ai/">AI</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <div class="sk-head__r">
+      <a class="sk-diag" href="/diagnosis/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>무료진단</a>
+      <button class="sk-burger" type="button" aria-controls="skNav" aria-expanded="false" aria-label="메뉴 열기">
+        <svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="sec" aria-label="고민 보드" style="padding-top:56px;">
+  <div class="wrap">
+    <div id="gmEnter" hidden>
+      <p style="font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.08em;color:var(--cobalt);margin-bottom:12px;"><a href="/gomin/">&larr; 방구석고민, 바닷가코칭</a></p>
+      <div class="dg-intro">
+        <p class="dg-intro__t">참여 코드를 넣어 주세요</p>
+        <p class="dg-intro__d">강사가 화면에 띄운 4글자 코드입니다. QR을 찍었다면 자동으로 들어갑니다.</p>
+        <form class="gm-form__row" id="gmEnterForm" style="border:0;padding-top:16px;"><label class="sr-only" for="gmCode">참여 코드</label><input id="gmCode" type="text" maxlength="4" autocomplete="off" autocapitalize="characters" placeholder="예: A7KQ" style="font-family:var(--display);font-size:22px;letter-spacing:.2em;text-transform:uppercase;"><button type="submit" class="btn-go">들어가기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form>
+      </div>
+    </div>
+    <div class="gm-wall" id="gmWall"></div>
+  </div>
+</section>
+</main>
+<script src="/assets/gomin-config.js"></script>
+<script src="/assets/qrcode.js"></script>
+<script src="/assets/gomin.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var q=new URLSearchParams(location.search), code=(q.get('c')||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,8), screen=q.get('screen')==='1';
+  var enter=document.getElementById('gmEnter'), wall=document.getElementById('gmWall');
+  if(screen) document.documentElement.classList.add('gm-screen');
+  if(!code){ enter.hidden=false; document.getElementById('gmEnterForm').addEventListener('submit',function(e){ e.preventDefault(); var c=document.getElementById('gmCode').value.toUpperCase().replace(/[^A-Z0-9]/g,''); if(c) location.search='?c='+c; }); return; }
+  document.title=code+' · 고민 보드 | 네다바웨이';
+  GOMIN.mountWall({code:code,root:wall,showHead:true,screen:screen});
+});
+</script>
+<footer class="sk-foot">
+  <div class="wrap sk-foot__bottom">
+    <span><strong class="sk-foot__logo"><img class="sk-logo__word" src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></strong> &copy; 2026 NEDABAHWAY</span>
+    <span class="sk-foot__links">
+      <a href="https://www.youtube.com/channel/UCWnbno58Hrtiu8fPjrCCTfQ" rel="noopener">YouTube</a>
+      <a href="https://blog.naver.com/nedabah" rel="noopener">Blog</a>
+      <a href="/privacy.html">개인정보처리방침</a>
+      <a href="/locked/" class="sk-foot__vault">자료실</a>
+    </span>
+  </div>
+</footer>
+<script src="/assets/sky.js" defer></script>
+<script src="/assets/analytics.js" defer></script>
+</body>
+</html>

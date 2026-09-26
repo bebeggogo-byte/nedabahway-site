@@ -1,9 +1,11 @@
 /* diag.css — free diagnosis hub + learning-type / HEXACO tests + result views (brand v2, 2026-09-25) */
-.dg-pick{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:8px;}
+.dg-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:8px;}
 .dg-box{display:flex;flex-direction:column;border:2px solid var(--ink);background:var(--card);border-radius:var(--r-lg);padding:30px 28px 30px;box-shadow:8px 8px 0 var(--tc,var(--connector));transition:transform .25s,box-shadow .25s;}
 .dg-box:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--tc,var(--connector));}
 .dg-box--learning{--tc:var(--maker);}
 .dg-box--hexaco{--tc:var(--thinker);}
+.dg-box--minds{--tc:var(--supporter);}
+@media(max-width:1100px){.dg-pick{grid-template-columns:1fr 1fr;}}
 .dg-box__k{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--cobalt);}
 .dg-box__t{margin-top:10px;font-size:clamp(26px,3vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.2;color:var(--ink);word-break:keep-all;}
 .dg-box__d{margin-top:12px;font-size:16px;color:var(--text-3);line-height:1.7;word-break:keep-all;}
@@ -111,3 +113,11 @@
   .dg-res__badge{width:60px;height:60px;font-size:28px;border-radius:18px;}
   .dg-next{padding:22px 18px;}
 }
+/* 해설지 (2026-09-26) */
+.dg-h3{margin-top:30px;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--cobalt);padding-top:18px;border-top:1px dashed var(--line);}
+.dg-quad{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.dg-quad__c{border:1px solid var(--line);border-top:4px solid var(--qc,var(--connector));background:var(--bg);border-radius:12px;padding:14px 14px 12px;}
+.dg-quad__k{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.08em;color:var(--qc,var(--cobalt));}
+.dg-quad__m{margin-top:4px;font-weight:800;font-size:17px;color:var(--ink);word-break:keep-all;}
+.dg-quad__d{margin-top:6px;font-size:13.5px;color:var(--text-3);line-height:1.6;word-break:keep-all;}
+@media(max-width:560px){.dg-quad{grid-template-columns:1fr;}}
