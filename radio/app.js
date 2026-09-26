@@ -976,7 +976,7 @@ function disableGeo({ silent = false } = {}) {
     navigator.geolocation.clearWatch(state.geoWatchId);
     state.geoWatchId = null;
   }
-  if (!silent) setGeoSub('제주↔서귀포 이동 시 주파수 자동 선택');
+  if (!silent) setGeoSub('현재 위치의 KBS 클래식FM 주파수로 자동 전환');
   setRegionsAuto(false); // geo off → show the list as fallback
 }
 

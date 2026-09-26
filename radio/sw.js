@@ -1,4 +1,4 @@
-const CACHE = 'classic-fm-v32';
+const CACHE = 'classic-fm-v33';
 const ASSETS = [
   './',
   './index.html',
