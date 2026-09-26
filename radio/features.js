@@ -494,7 +494,7 @@
     onClose() {
       // Collapse the sleep chips via app.js's own toggle so its state stays in sync.
       if (sleepMenu && !sleepMenu.hidden && sleepToggle) sleepToggle.click();
-      if (menuInstallSub) menuInstallSub.textContent = '홈 화면에 추가하면 바로 실행됩니다';
+      // (install row text is set once at load per browser; nothing to reset here)
     },
   });
   const playlist = makeSheet($('playlistSheet'), $('playlistClose'), {
@@ -511,16 +511,38 @@
   const menuBtn = $('menuBtn');
   if (menuBtn && menu) menuBtn.addEventListener('click', (e) => { e.stopPropagation(); menu.open(menuBtn); });
 
+  // Install guidance. Samsung Internet on the owner's phone offers no "홈 화면" entry for
+  // this site, while Chrome does (⋮ → 홈 화면에 추가). So on Android outside Chrome the
+  // row opens the same URL in Chrome via an intent: URL; elsewhere it explains the menu path.
+  const UA = navigator.userAgent || '';
+  const IS_ANDROID = /Android/i.test(UA);
+  const IS_IOS = /iP(hone|ad|od)/.test(UA) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const IS_CHROME = /Chrome\/\d+/.test(UA) && !/SamsungBrowser|EdgA|OPR|Whale|NAVER|KAKAOTALK/i.test(UA);
+  const IS_STANDALONE = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  const chromeIntentUrl = () => {
+    const u = new URL('./', location.href);
+    const bare = u.href.replace(/^https?:\/\//, '');
+    return `intent://${bare}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(u.href)};end`;
+  };
+  if (menuInstallSub && IS_STANDALONE) menuInstallSub.textContent = '이미 홈 화면에 설치된 앱입니다';
+  else if (menuInstallSub && IS_ANDROID && !IS_CHROME) menuInstallSub.textContent = '크롬에서만 됩니다 — 누르면 크롬으로 엽니다';
+  else if (menuInstallSub && IS_ANDROID) menuInstallSub.textContent = '크롬 오른쪽 위 ⋮ → 홈 화면에 추가';
+  else if (menuInstallSub && IS_IOS) menuInstallSub.textContent = 'Safari 공유 버튼 → 홈 화면에 추가';
   if (menuInstall) {
     menuInstall.addEventListener('click', (e) => {
       e.stopPropagation();
       const inst = $('install');
       const btn = $('installBtn');
+      if (IS_STANDALONE) return;
       if (inst && btn && inst.classList.contains('is-shown')) {
         if (menu) menu.close();
         btn.click(); // app.js shows the native install prompt (user activation preserved)
+      } else if (IS_ANDROID && !IS_CHROME) {
+        location.href = chromeIntentUrl(); // Samsung Internet etc. → hand off to Chrome
       } else if (menuInstallSub) {
-        menuInstallSub.textContent = '브라우저 메뉴 → 홈 화면에 추가';
+        menuInstallSub.textContent = IS_ANDROID ? '크롬 오른쪽 위 ⋮ → 홈 화면에 추가'
+          : IS_IOS ? 'Safari 공유 버튼 → 홈 화면에 추가'
+          : '브라우저 메뉴 → 홈 화면에 추가 / 앱 설치';
       }
     });
   }
