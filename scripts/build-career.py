@@ -12,13 +12,20 @@ def esc(s): return html.escape(s, quote=False)
 
 CAREER = [
  ('2025.03 ~ 현재', '네다바웨이', '대표이사 · 비영리단체 운영', 'now'),
- ('2022.01 ~ 현재', '글로벌꿈아카데미', '교육이사 · 강사', 'now'),
  ('2022.09 ~ 2024.12', '조선대학교 뇌및인공지능연구실', '국가연구원 · 염홍기 교수팀, Brain Computer Interface', ''),
  ('2021.01 ~ 2021.09', '아시아코치센터', '온라인 코칭 플랫폼 런칭 총괄', ''),
  ('2019.04 ~ 2020.01', '제주더큰내일센터', '총괄기획(참여자 관리 지침) · 대외협력(기업 프로젝트 설계)', ''),
- ('2017.03 ~ 2018.01', '군산대학교 대학일자리센터', '취·창업 컨설턴트 · 2017년 지역거점대학 취업률 1위', ''),
+ ('2017.03 ~ 2018.01', '군산대학교 대학일자리센터', '진로&비전 코칭 프로그램으로 활동하던 중 스카우트 · 취업박람회 개최 추진, 전국 거점대학 취업률 1위 달성', ''),
+ ('2014.06', '국제인증코치(ICF ACC) 취득', '개인 코칭 프로그램을 직접 제작하고 전국 70여 명에게 300시간 1:1 코칭을 진행해 자격 취득', ''),
 ]
 EDU = [('조선대학교', '경영학 학사', '2007.03 ~ 2014.08')]
+PARTNERS = [
+ ('사귐공동체 FIM', '공동체·코칭'),
+ ('조선대학교 뇌 및 인공지능 연구실', '연구 협력'),
+ ('말씀과기도교회', '청년·교육'),
+ ('글로벌꿈아카데미', '교육 협력'),
+ ('제주그레이스아카데미 JGA', '교육 협력'),
+]
 CERT = [
  ('액션러닝 퍼실리테이터 2급', '2019.07 ~ 현재'),
  ('국제인증코치 ACC · 국제코치연맹(ICF)', '2014.07 ~ 2020.12'),
@@ -53,6 +60,7 @@ def about_section():
 ''' for when, org, role, now in CAREER)
     edu = ''.join(f'<li><b>{esc(s)}</b><span>{esc(m)}</span><small>{esc(p)}</small></li>' for s, m, p in EDU)
     cert = ''.join(f'<li><b>{esc(n)}</b><small>{esc(p)}</small></li>' for n, p in CERT)
+    partners = ''.join(f'<li><b>{esc(n)}</b><span>{esc(t)}</span></li>' for n, t in PARTNERS) + '<li class="cv-partners__etc"><b>외 다수</b><span>학교·기관·단체</span></li>'
     acts = ''
     for i, (t, d, items) in enumerate(ACTS):
         body = f'<p>{esc(d)}</p>' if d else ''
@@ -81,10 +89,13 @@ def about_section():
         <div class="cv-stat reveal">
           <div><b>12년</b><span>강의 경력</span></div>
           <div><b>1,200회+</b><span>교육현장</span></div>
-          <div><b>6개 기관</b><span>학교·센터·연구실</span></div>
+          <div><b>5곳+</b><span>협력 기관·공동체</span></div>
         </div>
       </div>
     </div>
+
+    <h3 class="cv-h" style="margin-top:44px;">협력</h3>
+    <ul class="cv-partners reveal">{partners}</ul>
 
     <h3 class="cv-h" style="margin-top:44px;">활동사항</h3>
     <div class="faq cv-act reveal" style="margin-top:14px;">
@@ -98,6 +109,7 @@ def about_section():
 
 def home_strip():
     items = [(when.split(' ~')[0][:4], org, role.split(' · ')[0]) for when, org, role, now in CAREER]
+    items = [(y, o, ('취·창업 컨설턴트' if o.startswith('군산대') else ('전국 70여 명 300시간 1:1 코칭' if y == '2014' else r))) for y, o, r in items]
     li = ''.join(f'<li><span class="cvs__y">{esc(y)}</span><b>{esc(o)}</b><span>{esc(r)}</span></li>' for y, o, r in items)
     return f'''<!-- CV:START -->
 <section class="sec sec--alt" id="career" aria-labelledby="cvsTitle" style="padding:72px 0;">
@@ -106,7 +118,7 @@ def home_strip():
       <div class="cvs__head">
         <p class="sec-kicker">Career</p>
         <h2 class="cvs__t" id="cvsTitle">현장과 연구를 오간 이력<span class="dot">.</span></h2>
-        <p class="cvs__d">취·창업 컨설턴트, 청년센터 총괄기획, 코칭 플랫폼 런칭, 뇌·인공지능 연구실, 그리고 네다바웨이. 액션러닝 퍼실리테이터 · 국제인증코치(ICF ACC, 2014~2020) · 제주공익활동촉진위원회 위원.</p>
+        <p class="cvs__d">취·창업 컨설턴트, 청년센터 총괄기획, 코칭 플랫폼 런칭, 뇌·인공지능 연구실, 그리고 네다바웨이. 액션러닝 퍼실리테이터 · 국제인증코치(ICF ACC, 2014~2020) · 제주공익활동촉진위원회 위원. 사귐공동체 FIM, 조선대 뇌 및 인공지능 연구실, 제주그레이스아카데미 JGA 등과 협력합니다.</p>
         <a class="btn-link" href="/about.html#career">이력 전체 보기 &#8599;</a>
       </div>
       <ol class="cvs__list">{li}</ol>
