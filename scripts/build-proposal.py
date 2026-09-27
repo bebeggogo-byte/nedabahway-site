@@ -1,0 +1,310 @@
+#!/usr/bin/env python3
+"""Generate /proposal/ — 「자립은 자발성에서 시작된다」 제안서 (기업·기관·신앙공동체·소그룹).
+
+Content source: 2026-09-27 brief "자립은 자발성에서 시작된다 — 학교밖청소년지원센터 제안".
+Re-run after editing:  python3 scripts/build-proposal.py
+"""
+import importlib.util, json, pathlib
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+spec = importlib.util.spec_from_file_location('bd', ROOT / 'scripts' / 'build-diagnosis.py')
+bd = importlib.util.module_from_spec(spec); spec.loader.exec_module(bd)
+esc, head, HEADER, FOOTER, ARROW, SITE = bd.esc, bd.head, bd.HEADER, bd.FOOTER, bd.ARROW, bd.SITE
+
+URL = f'{SITE}/proposal/'
+TITLE = '자립은 자발성에서 시작된다 · 6 MINDS 제안서 | 네다바웨이'
+DESC = '스스로 원하고, 고르고, 책임지는 힘. 자발성 5단계 모델과 6 MINDS 상태 진단으로 기업·기관·신앙공동체·소그룹의 사람을 세우는 네다바웨이 제안서.'
+
+STATS = [
+ ('54,516명', '한 해 학교를 떠나는 초·중·고 학생', '교육부 2025 교육기본통계 (2024학년도)'),
+ ('27.1%', '"원하는 것을 배우려고" 떠났다', '여성가족부 2023 학교 밖 청소년 실태조사'),
+ ('31.4%', '심리·정서적으로 지쳐서 떠났다', '여성가족부 2023 학교 밖 청소년 실태조사'),
+]
+
+THEORY = [
+ ('자기결정이론', 'Ryan & Deci, 2000', '자율성·유능감·관계성이 채워질 때 사람은 스스로 동기화된다.', '2·3·4단계의 축'),
+ ('유기적 통합 이론', 'Ryan & Deci', '동기는 무동기 → 외적 → 내사 → 동일시 → 통합으로 내면화된다.', '5단계의 뼈대. "시켜서"에서 "내가 원해서"로'),
+ ('인과적 행위주체 이론', 'Shogren, Wehmeyer 외, 2015', '자기결정은 자기 삶의 원인이 되는 것이며, 목표 설정·달성 교육으로 누구에게서나 키울 수 있다.', '2단계 선택의 교육 방법'),
+ ('자기효능감', 'Bandura, 1977', '효능감의 가장 강한 원천은 성취 경험이다.', '3단계 해냄. 실패가 쌓인 사람에게 작은 성공부터'),
+ ('긍정적 발달 5C', 'Lerner 외, 4-H 연구', '유능성·자신감·연결·인성·배려가 자라면 여섯 번째 C, 기여로 이어진다.', '4·5단계. 연결에서 기여로'),
+ ('의식화', 'Freire, 1970', '학습자는 가르침의 대상이 아니라 세계를 읽고 바꾸는 주체다.', '1단계. "떠난 아이"가 아니라 "자기 길을 읽는 사람"'),
+ ('역량 접근', 'Sen, 1999 · Nussbaum, 2006', '발전은 가치 있다고 여기는 삶을 살 실질적 자유를 넓히는 것이다.', '성과를 "복교·취업 여부"가 아니라 "선택의 폭"으로 보는 이유'),
+ ('아동권리협약 제12조', 'UN, 1989 · 한국 1991 비준', '자기 의견을 형성할 수 있는 아동은 자신에게 영향을 주는 모든 문제에 의견을 말할 권리가 있다.', '운영 원칙. 참여자가 자기 과정의 설계에 참여한다'),
+]
+
+STAGES = [
+ ('깨어남', 'Awaken', '나는 무엇을 좋아하고 원하는가?', '6 MINDS 상태 진단, 관심 탐색 대화, 먼저 길을 찾은 선배 이야기', '스스로 말한 관심사 1개 이상', '무동기 → 외적 조절', '#FF6B3D'),
+ ('선택', 'Choose', '나는 어떤 길을 고르겠는가?', '선택지 비교(검정고시·훈련·창작·취업·직무), 3개월 개인 목표 세우기', '스스로 정한 목표를 말이나 글로 표현', '외적 → 내사된 조절', '#FFC857'),
+ ('해냄', 'Achieve', '나는 해낼 수 있는가?', '목표를 작은 과업으로 쪼개 매주 하나씩 완수, 체험·단기 프로젝트', '과업 완수 횟수, 자기 평가 변화', '내사 → 동일시된 조절', '#3B82F6'),
+ ('연결', 'Connect', '누구와 함께 계속할 수 있는가?', '또래 모임, 멘토 연결, 담당자·보호자와의 3자 대화', '스스로 도움을 요청한 횟수, 지속 참여', '동일시 → 통합', '#10B981'),
+ ('기여', 'Contribute', '내 일은 누구에게 닿는가?', '지역 봉사·작은 프로젝트로 누군가를 돕기, 다음 기수 돕기', '자기 선택의 의미를 자기 말로 설명, 후배 지원 참여', '통합된 조절', '#8B5CF6'),
+]
+
+TOOLS = [
+ ('MBTI', '성향 (선호)', '4개 축 → 16유형', '"당신은 ○○○○형"', '보통 1회'),
+ ('DISC', '행동 스타일', '4요인 조합', '주도·사교·안정·신중 프로파일', '보통 1회'),
+ ('HEXACO', '성격 특질', '6요인 × 하위 척도', '요인별 점수 프로파일', '수년 단위'),
+ ('에니어그램', '핵심 동기', '9유형 + 날개·화살', '"당신은 N번"', '보통 1회'),
+ ('6 MINDS', '지금의 상태·배분', '6통로 × 2축(사용량·충전) + 총량 3 = 15문항', '"요즘 ○○을 많이 쓰고 △△이 눌려 있다"', '4주마다 다시'),
+]
+
+MINDS = [
+ ('explorer', '탐험하는 마음', 'Explorer', '#FF6B3D', '새로운 것을 향한 호기심과 도전'),
+ ('maker', '만드는 마음', 'Maker', '#FFC857', '아이디어를 현실로 만드는 손'),
+ ('connector', '연결하는 마음', 'Connector', '#3B82F6', '사람과 사람을 잇는 대화'),
+ ('supporter', '돕는 마음', 'Supporter', '#10B981', '누군가의 성장을 응원하는 힘'),
+ ('thinker', '생각하는 마음', 'Thinker', '#8B5CF6', '본질을 탐구하고 의미를 찾는 질문'),
+ ('enjoyer', '즐기는 마음', 'Enjoyer', '#F472B6', '지금 여기서 회복하는 감각'),
+]
+
+AUDIENCE = [
+ ('기업 · 조직', 'Teams', '#3B82F6', '성과가 아니라 배분을 봅니다.',
+  '팀원 한 사람 한 사람의 여섯 마음 배분과 팀 전체의 총량을 한 장으로 봅니다. 번아웃은 "일이 많아서"가 아니라 과부하 통로 하나가 오래 켜져 있어서 옵니다. 그 통로를 찾아 줄이고, 숨은 자원 통로를 열어 줍니다.',
+  ['반나절·1일 워크숍 「팀 에너지 맵」', '관리자 1:1 코칭 3회', '신입·중간관리자 역량강화 과정', '4주 뒤 재진단 리포트(팀 평균·총량 변화)']),
+ ('기관 · 센터', 'Institutions', '#FF6B3D', '지원을 "받는" 자리에서 "골라 쓰는" 자리로.',
+  '학교밖청소년지원센터, 자활센터, 복지관, 청년센터. 이미 운영 중인 상담·학업·진로·체험·취업연계를 대체하지 않고, 참여자가 그것을 스스로 골라 쓰는 순서(5단계)로 엮습니다.',
+  ['5단계 × 2회기 = 10회기 소그룹 + 단계 사이 1:1 코칭', '사전·사후 자기결정 수준, 단계별 관찰 지표', '결과 보고서(6마음 평균·총량 변화·참여자의 말)', '공모사업 설계·제안서 협력']),
+ ('신앙공동체', 'Faith communities', '#10B981', '섬김이 고갈이 아니라 충전이 되도록.',
+  '청년부, 소그룹, 리더 모임. 돕는 마음이 넘친 사람은 자기 총량이 바닥나도 알아차리기 어렵습니다. 여섯 마음을 함께 보며 "이걸 더 하려고 저걸 줄여 왔구나"를 서로 말하게 하고, 기여(5단계)를 소명의 언어로 잇습니다.',
+  ['「여섯 마음 나눔」 4주 소그룹 과정', '리더·교사 세미나(돕는 마음 과부하 케어)', '청년 진로·비전 캠프 설계와 강의', '공동체 단위 6마음 분포와 총량 리포트']),
+ ('소그룹 · 동아리', 'Small groups', '#F472B6', '6~10명이면 충분합니다.',
+  '학급, 동아리, 독서모임, 창업팀. 첫 주에 진단, 넷째 주에 재진단. 그 사이 매주 "줄일 것 하나, 늘릴 것 하나"를 서로 확인합니다. 총량이 올라간 사람의 방법이 다음 사람의 교재가 됩니다.',
+  ['4주 과정(주 1회 90분)', '개인 해설지 + 짝 마음 대화', '재진단 비교표', '다음 기수 돕기(기여 단계)']),
+]
+
+REFS = [
+ 'Ryan, R. M., &amp; Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being. <i>American Psychologist</i>, 55(1), 68–78.',
+ 'Ryan, R. M., &amp; Deci, E. L. (2000). Intrinsic and extrinsic motivations: Classic definitions and new directions. <i>Contemporary Educational Psychology</i>, 25(1), 54–67.',
+ 'Shogren, K. A., Wehmeyer, M. L., Palmer, S. B., Forber-Pratt, A. J., Little, T. J., &amp; Lopez, S. (2015). Causal agency theory: Reconceptualizing a functional model of self-determination. <i>Education and Training in Autism and Developmental Disabilities</i>, 50(3), 251–263.',
+ 'Bandura, A. (1977). Self-efficacy: Toward a unifying theory of behavioral change. <i>Psychological Review</i>, 84(2), 191–215.',
+ 'Lerner, R. M. 외. 청소년 긍정적 발달 5C와 4-H 종단연구.',
+ 'Freire, P. (1970). <i>Pedagogy of the Oppressed</i>.',
+ 'Sen, A. (1999). <i>Development as Freedom</i>. / Nussbaum, M. C. (2006). <i>Frontiers of Justice</i>.',
+ 'United Nations (1989). Convention on the Rights of the Child, Article 12.',
+ '「학교 밖 청소년 지원에 관한 법률」 (2014년 5월 제정, 2015년 5월 시행). 교육부 (2025). 교육기본통계. 여성가족부 (2023). 학교 밖 청소년 실태조사.',
+]
+
+def stats():
+    return ''.join(f'<div class="pp-stat"><b>{esc(n)}</b><span>{esc(l)}</span><small>{esc(s)}</small></div>' for n, l, s in STATS)
+
+def theory():
+    return ''.join(f'<li class="pp-th"><b>{esc(t)}</b><small>{esc(w)}</small><p>{esc(c)}</p><span>{esc(u)}</span></li>' for t, w, c, u in THEORY)
+
+def stages():
+    out = ''
+    for i, (n, en, q, act, ind, mot, c) in enumerate(STAGES, 1):
+        out += f'''      <li class="pp-stage" style="--sc:{c};">
+        <span class="pp-stage__n">0{i}</span>
+        <h3 class="pp-stage__t">{esc(n)}<small>{en}</small></h3>
+        <p class="pp-stage__q">{esc(q)}</p>
+        <dl><dt>현장 활동</dt><dd>{esc(act)}</dd><dt>관찰 지표</dt><dd>{esc(ind)}</dd></dl>
+        <p class="pp-stage__m">{esc(mot)}</p>
+      </li>
+'''
+    return out
+
+def tools():
+    rows = ''
+    for i, (t, w, s, l, r) in enumerate(TOOLS):
+        cls = ' class="is-ours"' if t == '6 MINDS' else ''
+        rows += f'<tr{cls}><th scope="row">{esc(t)}</th><td>{esc(w)}</td><td>{esc(s)}</td><td>{esc(l)}</td><td>{esc(r)}</td></tr>'
+    return rows
+
+def minds():
+    return ''.join(f'<li style="--mc:{c};"><img src="/assets/brand/char-{k}.jpg" width="520" height="520" alt=""><b>{esc(n)}</b><small>{en}</small><span>{esc(d)}</span></li>' for k, n, en, c, d in MINDS)
+
+def audience():
+    out = ''
+    for n, en, c, h, d, items in AUDIENCE:
+        li = ''.join(f'<li>{esc(x)}</li>' for x in items)
+        out += f'''      <article class="pp-aud" style="--ac:{c};">
+        <p class="pp-aud__k">{en}</p>
+        <h3 class="pp-aud__t">{esc(n)}</h3>
+        <p class="pp-aud__h">{esc(h)}</p>
+        <p class="pp-aud__d">{esc(d)}</p>
+        <ul class="pp-aud__l">{li}</ul>
+        <a class="pp-aud__cta" href="/contact.html">{esc(n)} 문의 {ARROW}</a>
+      </article>
+'''
+    return out
+
+def refs():
+    return ''.join(f'<li>{r}</li>' for r in REFS)
+
+JSONLD = json.dumps({
+ "@context": "https://schema.org", "@type": "WebPage", "name": "자립은 자발성에서 시작된다 · 6 MINDS 제안서",
+ "url": URL, "inLanguage": "ko", "description": DESC,
+ "about": {"@type": "Organization", "name": "네다바웨이 NEDABAHWAY", "url": SITE},
+ "isPartOf": {"@type": "WebSite", "name": "네다바웨이", "url": SITE},
+}, ensure_ascii=False)
+
+PAGE = head(TITLE, DESC, URL, 'proposal', f'<link rel="stylesheet" href="/assets/proposal.css">\n<script type="application/ld+json">{JSONLD}</script>\n') + HEADER + f'''
+<main id="main" class="pp">
+
+  <section class="pp-hero">
+    <div class="wrap pp-hero__in">
+      <div class="pp-hero__txt">
+        <p class="pp-kicker"><span>Proposal</span> 2026 · 기업 · 기관 · 신앙공동체 · 소그룹</p>
+        <h1 class="pp-h1">자립은<br>자발성에서<br>시작된다<span class="dot">.</span></h1>
+        <p class="pp-lead">스스로 원하고, 고르고, 책임지는 힘. 그 힘이 자라는 <b>자발성 5단계</b>와 지금의 마음 배분을 읽는 <b>6 MINDS 상태 진단</b>으로, 사람을 세우는 과정을 함께 설계합니다.</p>
+        <p class="pp-hero__cta"><a class="btn-dark" href="/contact.html">제안 문의하기</a><a class="btn-link" href="/diagnosis/minds/">6 MINDS 무료진단 먼저 해 보기 &#8599;</a></p>
+      </div>
+      <figure class="pp-hero__fig"><img src="/assets/brand/nw-6minds-strip.jpg" width="1536" height="340" alt="네다바웨이 여섯 마음 캐릭터: 탐험, 만들기, 연결, 돕기, 생각, 즐기기" fetchpriority="high"></figure>
+    </div>
+    <div class="pp-marquee" aria-hidden="true"><div class="pp-marquee__t"><span>Different People · Bigger World · 다른 사람들이 만들어내는 더 넓은 세상 · Better Together · </span><span>Different People · Bigger World · 다른 사람들이 만들어내는 더 넓은 세상 · Better Together · </span></div></div>
+  </section>
+
+  <nav class="pp-toc" aria-label="제안서 목차"><div class="wrap"><a href="#why">왜 자발성</a><a href="#model">5단계 모델</a><a href="#engine">6 MINDS 엔진</a><a href="#fit">결합</a><a href="#who">대상별 제안</a><a href="#ops">운영안</a><a href="#us">네다바웨이</a><a href="#contact">문의</a></div></nav>
+
+  <section class="sec" id="why">
+    <div class="wrap">
+      <p class="sec-kicker">Why spontaneity</p>
+      <h2 class="pp-h2">밖에서 주는 계획이 아니라,<br>안에서 생기는 자발성.</h2>
+      <p class="pp-p">자립을 "혼자 살아남는 힘"으로 정의하면 프로그램은 기술 목록이 됩니다. 네다바웨이는 자립을 <b>스스로 원하고, 고르고, 책임지는 힘</b>으로 정의합니다. 학교를 떠난 것도, 회사를 옮긴 것도, 공동체에서 역할을 바꾼 것도 멈춤이 아니라 다른 길의 출발선입니다. 그 길을 걷게 하는 것은 밖에서 주는 계획이 아니라 안에서 생기는 자발성입니다.</p>
+      <div class="pp-stats">{stats()}</div>
+      <p class="pp-p pp-p--sm">두 숫자는 서로 다른 출발점을 요구합니다. 심리·정서적으로 지친 사람에게는 다시 "원할 수 있다"는 감각을 되찾는 것(1단계)이, 배우고 싶은 것이 분명한 사람에게는 그 선택을 실행과 연결로 잇는 것(2~4단계)이 필요합니다. 자발성은 이미 있고, 비어 있는 것은 그것을 자립으로 잇는 구조입니다.</p>
+      <h3 class="pp-h3">여덟 가지 근거가 한 방향을 가리킵니다</h3>
+      <ul class="pp-theory">{theory()}</ul>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" id="model">
+    <div class="wrap">
+      <p class="sec-kicker">The model</p>
+      <h2 class="pp-h2">자발성 5단계<span class="dot">.</span></h2>
+      <p class="pp-p">"남이 정해 준 길"에서 "내가 고른 길"로, 나아가 "누군가의 힘이 되는 길"로. 아래 띠는 자기결정이론의 동기 내면화 단계를 각 단계에 맞춘 것으로, 이론의 주장이 아니라 네다바웨이의 설계 가설입니다.</p>
+      <ol class="pp-stages">
+{stages()}      </ol>
+      <p class="pp-note">관찰 지표는 현장용 지표로, 표준화된 척도가 아닙니다. 사전·사후 비교에는 표준화된 자기결정 척도나 긍정적 발달 척도의 한국어판을 함께 씁니다.</p>
+    </div>
+  </section>
+
+  <section class="pp-dark" id="engine">
+    <div class="wrap">
+      <p class="sec-kicker">The engine</p>
+      <h2 class="pp-h2">6 MINDS는 "유형"이 아니라<br>"지금의 배분"을 읽습니다<span class="dot">.</span></h2>
+      <p class="pp-p">MBTI, DISC, HEXACO, 에니어그램은 잘 만든 도구입니다. 모두 <b>성향</b>을 재고, 대부분 한 번 재면 끝입니다. 6 MINDS는 같은 수준의 구조를 갖되 다른 질문을 던집니다. 지금 어느 마음을 많이 쓰고, 쓰고 나면 채워지는지 비는지, 그래서 총량이 어디쯤인지. 상태는 2주 단위로 바뀌므로 4주 뒤 다시 잽니다.</p>
+
+      <div class="pp-table-wrap"><table class="pp-table">
+        <caption>진단 도구 구조 비교</caption>
+        <thead><tr><th scope="col">도구</th><th scope="col">재는 것</th><th scope="col">구조</th><th scope="col">결과의 언어</th><th scope="col">다시 재는 주기</th></tr></thead>
+        <tbody>{tools()}</tbody>
+      </table></div>
+
+      <div class="pp-arch">
+        <div class="pp-arch__ring">
+          <ul class="pp-minds">{minds()}</ul>
+        </div>
+        <div class="pp-arch__txt">
+          <h3 class="pp-h3">설계 구조</h3>
+          <ol class="pp-arch__l">
+            <li><b>6개 통로</b> 탐험 · 만들기 · 연결 · 돕기 · 생각 · 즐기기. 누구나 여섯을 다 갖고 있고 배분만 다릅니다.</li>
+            <li><b>2개 축</b> 통로마다 <em>사용량</em>(이번 주 얼마나 썼나)과 <em>충전/고갈</em>(쓰고 나면 채워지나 비나)을 따로 잽니다.</li>
+            <li><b>총량 3문항</b> 잠 · 움직임 · 의욕. 총량의 60%는 여기서, 40%는 여섯 마음의 충전 평균에서 옵니다.</li>
+            <li><b>네 자리</b> 사용량 × 충전으로 <em>엔진</em>(많이·충전) / <em>과부하</em>(많이·고갈) / <em>숨은 자원</em>(적게·충전) / <em>쉬는 통로</em>(적게·고갈). 줄일 것은 과부하, 늘릴 것은 숨은 자원이 1순위입니다.</li>
+            <li><b>쏠림 지수</b> 최고 사용량 − 최저 사용량. 한쪽으로 크게 쏠렸는지 고른지를 한 숫자로.</li>
+            <li><b>트레이드오프 문장</b> "이걸 더 하려고 저걸 줄여 왔구나." 판정이 아니라 관찰의 언어입니다.</li>
+            <li><b>4주 비교</b> 최근 6회를 남겨 총량 변화와 마음별 ▲▼를 보여 줍니다. 상태 진단이라는 취지는 여기서 증명됩니다.</li>
+          </ol>
+          <ul class="pp-rules">
+            <li>"당신은 ○○형"이라고 말하지 않는다</li>
+            <li>우울·불안 단어를 쓰지 않는다. 총량 30 미만이면 상담전화 안내를 조용히 붙인다</li>
+            <li>15문항, 약 4분. 청소년도 스스로 "맞네"라고 말할 수 있는 문장</li>
+            <li>개인 결과는 본인에게, 기관에는 6마음 평균과 총량 변화만</li>
+          </ul>
+          <p class="pp-note pp-note--dark">6 MINDS는 네다바웨이가 직접 설계한 상태 진단 도구입니다. 표준화 규준은 아직 쌓는 중이며, 기관 성과 측정에는 표준화된 척도를 함께 씁니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="fit">
+    <div class="wrap">
+      <p class="sec-kicker">How they fit</p>
+      <h2 class="pp-h2">단계마다 6 MINDS가 붙습니다<span class="dot">.</span></h2>
+      <ul class="pp-fit">
+        <li style="--sc:#FF6B3D;"><b>01 깨어남</b><span>첫 회기에 15문항 진단. 해설지의 "무엇으로 충전되나"가 첫 관심사를 말하게 합니다.</span></li>
+        <li style="--sc:#FFC857;"><b>02 선택</b><span>숨은 자원 통로(적게 쓰지만 충전되는 마음)가 선택지의 힌트가 됩니다.</span></li>
+        <li style="--sc:#3B82F6;"><b>03 해냄</b><span>총량 키우기 4원칙(회복 먼저 · 방식 바꾸기 · 짝지어 쓰기 · 몸이 바닥)을 매주 하나씩 실행합니다.</span></li>
+        <li style="--sc:#10B981;"><b>04 연결</b><span>짝이 되는 마음으로 서로를 소개합니다. 연결하는 마음과 생각하는 마음, 돕는 마음과 즐기는 마음.</span></li>
+        <li style="--sc:#8B5CF6;"><b>05 기여</b><span>4주 재진단에서 총량이 오른 사람의 방법이 다음 기수의 교재가 됩니다. 직업의 속성은 이타성입니다.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" id="who">
+    <div class="wrap">
+      <p class="sec-kicker">For whom</p>
+      <h2 class="pp-h2">누구에게든, 같은 구조로<span class="dot">.</span></h2>
+      <p class="pp-p">기업의 팀, 기관의 참여자, 공동체의 소그룹. 대상은 달라도 여섯 마음과 다섯 단계는 같습니다. 달라지는 것은 회기 수와 결과물의 이름뿐입니다.</p>
+      <div class="pp-auds">
+{audience()}      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="ops">
+    <div class="wrap">
+      <p class="sec-kicker">Operations</p>
+      <h2 class="pp-h2">운영안 (기관 기준)<span class="dot">.</span></h2>
+      <div class="pp-table-wrap"><table class="pp-table pp-table--light">
+        <caption>기관·센터 표준 운영안</caption>
+        <tbody>
+          <tr><th scope="row">대상</th><td>등록 참여자, 소그룹 6~10명 (청소년은 후기 청소년 우선)</td></tr>
+          <tr><th scope="row">구성</th><td>5단계 × 2회기 = 10회기 + 단계 사이 1:1 코칭</td></tr>
+          <tr><th scope="row">기존 사업과의 연결</th><td>1단계 ↔ 상담 · 2단계 ↔ 학업·진로 설계 · 3단계 ↔ 체험 · 4단계 ↔ 멘토·보호자 협력 · 5단계 ↔ 취업연계·지역 봉사</td></tr>
+          <tr><th scope="row">진행 원칙</th><td>참여자가 회기 주제와 목표를 함께 정한다 (의견표명권)</td></tr>
+          <tr><th scope="row">기관 역할</th><td>참여자 모집, 기존 지원 연계, 담당자와 회기별 공유</td></tr>
+          <tr><th scope="row">네다바웨이 역할</th><td>과정 설계, 회기 진행, 6 MINDS 진단·해설, 단계별 관찰 기록, 결과 보고서</td></tr>
+          <tr><th scope="row">성과 측정</th><td>사전·사후 총량과 6마음 평균, 표준화 자기결정 척도, 단계별 관찰 지표, 목표 실행 여부, 참여자가 자기 말로 남긴 변화</td></tr>
+        </tbody>
+      </table></div>
+      <h3 class="pp-h3">함께 정할 것</h3>
+      <ul class="pp-decide"><li>참여 규모·연령대와 모집 시기</li><li>기존 일정과 겹치지 않는 운영 요일·시간</li><li>체험·멘토 연계가 가능한 지역 사업장·인물</li><li>사전·사후 측정 도구와 동의 절차</li><li>예산과 재원 (자체 사업 또는 공모사업)</li></ul>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" id="us">
+    <div class="wrap pp-us">
+      <div class="pp-us__fig"><img src="/assets/brand/profile-kim.jpg" width="480" height="480" alt="네다바웨이 대표 김창환"><p><b>김창환</b> 네다바웨이 대표 · 국제인증코치(ICF ACC) · 액션러닝 퍼실리테이터 2급 · 제주공익활동촉진위원회 위원</p></div>
+      <div>
+        <p class="sec-kicker">Why Nedabahway</p>
+        <h2 class="pp-h2">직업의 속성은 이타성이다<span class="dot">.</span></h2>
+        <p class="pp-p">진로는 스펙을 고르는 일이 아니라 내 일이 누구에게 닿을지를 찾는 일입니다. 이 질문은 "내가 무엇을 못 했나"를 "내가 누구에게 힘이 될 수 있나"로 바꿉니다. 검정고시와 직업훈련을 연결하는 곳은 많지만, "스스로 원하는 마음"을 설계의 출발점에 두고 각 단계를 이론으로 뒷받침하는 곳은 드뭅니다.</p>
+        <ul class="pp-cred">
+          <li><b>학교 밖 청소년 현장</b> 서귀포시 학교밖청소년지원센터 지원사업 설계, 대안학교 수업 설계와 강의</li>
+          <li><b>청소년 교육</b> 제주 지역 중·고등 진로캠프 전문강사, 탐라교육원 전도 학생회장단 리더십캠프 설계와 강의(2024~2026)</li>
+          <li><b>코칭</b> 국제인증코치(ICF ACC, 2014) 과정에서 70여 명에게 300시간 1:1 코칭. 답을 주지 않고 질문으로 찾게 하는 방식</li>
+          <li><b>진단·퍼실리테이션</b> 직접 설계한 6 MINDS 상태 진단, 액션러닝 퍼실리테이터 2급</li>
+          <li><b>자립 성과</b> 2026년 서귀포시장애인종합복지관 취업 준비 참여자 4명 전원 취업, 미자립청년 취·창업 프로그램 설계와 1:1 코칭</li>
+          <li><b>조직 교육</b> 제주 공공기관·중소기업 신입·중간관리자 역량강화, 생성형 AI 직무역량 워크숍 다수</li>
+          <li><b>연구</b> 조선대학교 뇌및인공지능연구실 국가연구원 (Brain Computer Interface, 2022~2024)</li>
+        </ul>
+        <p class="pp-p pp-p--sm"><a class="btn-link" href="/about.html#career">이력 전체 보기 &#8599;</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pp-cta" id="contact">
+    <div class="wrap">
+      <p class="sec-kicker">Contact</p>
+      <h2 class="pp-h2">어디서 시작할지,<br>30분이면 정해집니다<span class="dot">.</span></h2>
+      <p class="pp-p">기업, 기관, 신앙공동체, 소그룹. 대상과 규모, 원하는 결과물을 알려 주시면 회기 구성과 견적을 제안서로 드립니다. 무료 30분 상담으로 시작합니다.</p>
+      <p class="pp-cta__b"><a class="btn-dark" href="/contact.html">무료 30분 상담 신청</a><a class="btn-link" href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
+      <p class="pp-cta__s">제안서 PDF가 필요하시면 이 페이지를 인쇄(Ctrl/⌘+P)해 저장하세요. 인쇄용 레이아웃이 준비되어 있습니다.</p>
+    </div>
+  </section>
+
+  <section class="sec pp-refs">
+    <div class="wrap">
+      <h2 class="pp-h3">참고문헌</h2>
+      <ol>{refs()}</ol>
+    </div>
+  </section>
+
+</main>
+''' + FOOTER
+
+out = ROOT / 'proposal' / 'index.html'
+out.parent.mkdir(exist_ok=True)
+out.write_text(PAGE, encoding='utf-8')
+print('->', out.relative_to(ROOT))
