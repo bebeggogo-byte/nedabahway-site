@@ -118,7 +118,7 @@ h2{font-size:1.1rem;line-height:1.3}
 .staffwrap.pick{cursor:pointer;touch-action:none}
 .stafffig.wide{max-width:none}
 .staffwrap.pick:focus-visible{outline:4px solid var(--sky-d);outline-offset:3px}
-.bigbtn:focus-visible,.namebtn:focus-visible,.station:focus-visible,.iconbtn:focus-visible,.switch:focus-visible,.tab:focus-visible,.listen:focus-visible{outline:4px solid var(--sky-d);outline-offset:3px}
+.bigbtn:focus-visible,.namebtn:focus-visible,.station:focus-visible,.iconbtn:focus-visible,.switch:focus-visible,.tab:focus-visible,.pool:focus-visible,.listen:focus-visible{outline:4px solid var(--sky-d);outline-offset:3px}
 /* 바이올린은 오선지 옆에서 보조로만 — 폭의 26%를 넘지 않게 해 오선지 줄 간격을 지킨다 */
 .vio{flex:none;align-self:center;height:100%;max-height:240px;max-width:26%;aspect-ratio:12/25;display:flex;align-items:center}
 .violinfig{display:block;width:100%;height:100%}
@@ -149,9 +149,13 @@ h2{font-size:1.1rem;line-height:1.3}
 .tabs{flex:none;display:flex;gap:4px}
 .tab{min-height:40px;padding:0 7px;border:2.5px solid var(--line);border-radius:999px;background:var(--paper);font-weight:800;font-size:.76rem;white-space:nowrap}
 .tab.on{background:var(--yellow)}
+/* 연습 모드 랜덤 — 어떤 음들로 섞을지 고르는 칩 한 줄 */
+.pools{display:flex;gap:4px;margin-top:6px}
+.pool{flex:1 1 0;min-width:0;min-height:36px;padding:0 2px;border:2.5px solid var(--line);border-radius:999px;background:var(--paper);font-weight:800;font-size:.78rem;white-space:nowrap}
+.pool.on{background:var(--sky)}
 .tab:focus-visible{outline:4px solid var(--sky-d);outline-offset:2px}
-/* 아주 좁은 폰: 탭 네 개와 제목이 한 줄에 들어가게 */
-@media (max-width:370px){ .tab{padding:0 5px;font-size:.7rem} .fchead h2{font-size:1rem} }
+/* 아주 좁은 폰: 탭 네 개와 제목이 한 줄에, 연습 모드 칩 여섯 개가 잘리지 않게 */
+@media (max-width:370px){ .tab{padding:0 5px;font-size:.7rem} .fchead h2{font-size:1rem} .pool{font-size:.7rem;padding:0 1px} }
 /* 랜덤 카드 — 오선지 세 줄이 남는 높이를 다 쓴다 */
 .fig.sheet{flex-direction:column;gap:2px}
 .figcap{flex:none;text-align:center}
@@ -199,11 +203,9 @@ h2{font-size:1.1rem;line-height:1.3}
 .station:active{transform:translate(2px,3px);box-shadow:1px 1px 0 var(--line)}
 .station[disabled]{opacity:.55;box-shadow:none;background:var(--cream2)}
 .station .no{flex:none;width:34px;height:34px;border:2.5px solid var(--line);border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem}
-.station.current .no{background:var(--sky)}
 .station .tt{flex:1;min-width:0;display:flex;flex-direction:column}
 .station .tt b{font-size:.8rem;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .station .tt span{font-size:.62rem;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.station .tt .st{color:var(--yellow-d);font-weight:800}
 
 .stations.three{grid-template-columns:repeat(3,minmax(0,1fr))}
 /* 손가락·음계 정거장 카드 — 줄(흰) · Major(하늘) · 모두 섞기(초록)로 한눈에 구분 */
@@ -211,7 +213,6 @@ h2{font-size:1.1rem;line-height:1.3}
 .fcst .top{display:flex;align-items:center;gap:4px;min-width:0}
 .fcst .no{width:26px;height:26px;font-size:.8rem;border-width:2px}
 .fcst .ic{font-size:.85rem}
-.fcst .st{margin-left:auto;font-size:.62rem;color:var(--yellow-d);font-weight:800;white-space:nowrap}
 .fcst b{font-size:.9rem;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fcst .sub{font-size:.6rem;color:var(--ink2);line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .fcst.key{background:#E7F4FA} .fcst.key .no{background:var(--sky)}
@@ -979,7 +980,7 @@ var state = {
   learnIdx : 0,
   quiz   : null,
   keyIntro : null,
-  play   : { note:'A4', tab:'tap', sheet:null },  /* 연습 모드: 눌러보기 / 랜덤 카드 */
+  play   : { note:'A4', tab:'tap', pool:'open', sheet:null },  /* 연습 모드: 눌러보기 / 랜덤 카드(섞을 음 pool) */
   course : 'open',                  /* open = 개방현 코스, fc = 손가락·음계 코스 */
   fc     : { ch:1, step:'scale', learnFinger:0, sheet:null, check:null, hi:null, play:null,
              stars:{}, tries:{}, miss:{}, done:{} }
@@ -1259,15 +1260,36 @@ function renderStart(){
 /* ---------- 연습 모드 (자유 놀이) ---------- */
 /* 연습 모드 — 점수도 순서도 없이.
    눌러보기: 개방현 네 줄(솔·레·라·미)을 골라 오선지 자리·바이올린 줄·소리를 확인
-   랜덤:     개방현 네 음을 섞은 12장 카드로 계이름 맞히기 */
+   랜덤:     개방현 또는 배운 줄 음계(라·미·레·솔줄, 모두)를 섞은 12장 카드로 계이름 맞히기 */
 var OPEN_CH = { n:0, kind:'open', title:'개방현' };
 var PLAY_TABS = [['tap','눌러보기'], ['sheet','랜덤']];
-function renderPlay(){
-  var pl = state.play, head2 = tabsHead('연습 모드', PLAY_TABS, pl.tab, 'playTab');
-  if (pl.tab === 'sheet'){
-    if (!pl.sheet) pl.sheet = buildSheet(OPEN_CH);
-    return sheetCard(OPEN_CH, pl.sheet, head2, '<button class="bigbtn" data-act="playTab" data-step="tap">눌러보기 ▶</button>');
+var PLAY_POOLS = [['open','개방현'], ['A4','라줄'], ['E5','미줄'], ['D4','레줄'], ['G3','솔줄'], ['all','모두']];
+/* n:0 — 연습 모드 카드는 코스 기록에 남기지 않는다 */
+function playCh(){
+  var p = state.play.pool, i;
+  if (p === 'all') return { n:0, kind:'all', title:'모두' };
+  for (i=1;i<PLAY_POOLS.length-1;i++){
+    if (PLAY_POOLS[i][0] === p) return { n:0, kind:'string', string:p, title:PLAY_POOLS[i][1] };
   }
+  return OPEN_CH;
+}
+function poolRow(){
+  var h = '<div class="pools" role="group" aria-label="섞을 음 고르기">', i, on;
+  for (i=0;i<PLAY_POOLS.length;i++){
+    on = PLAY_POOLS[i][0] === state.play.pool;
+    h += '<button class="pool'+(on?' on':'')+'" data-act="playPool" data-pool="'+PLAY_POOLS[i][0]+'" aria-pressed="'+on+'">'+PLAY_POOLS[i][1]+'</button>';
+  }
+  return h + '</div>';
+}
+function renderPlay(){
+  var pl = state.play;
+  if (pl.tab === 'sheet'){
+    var ch = playCh();
+    if (!pl.sheet) pl.sheet = buildSheet(ch);
+    return sheetCard(ch, pl.sheet, tabsHead('연습 모드', PLAY_TABS, pl.tab, 'playTab', poolRow()),
+                     '<button class="bigbtn" data-act="playTab" data-step="tap">눌러보기 ▶</button>');
+  }
+  var head2 = tabsHead('연습 모드', PLAY_TABS, pl.tab, 'playTab');
   var n = NOTES[pl.note], nx = noteXFor([], QW);
   var h = '<div class="card">'+head2;
   h += '<div class="fig"><div class="staffwrap" data-act="replay" data-note="'+pl.note+'">'+
@@ -1280,22 +1302,20 @@ function renderPlay(){
 }
 
 /* ---------- 단계 지도 ---------- */
-function stationBtn(act, no, open, current, title, sub, stars){
-  return '<button class="station'+(current?' current':'')+'" data-act="'+act+'" data-stage="'+no+'"'+(open?'':' disabled')+'>'+
-         '<span class="no">'+(open?no:'🔒')+'</span>'+
-         '<span class="tt"><b>'+esc(title)+'</b><span>'+(stars?'<span class="st">'+stars+'</span> ':'')+esc(sub)+'</span></span></button>';
+/* 진도 표시(별·현재 위치) 없이 — 아무 단계나 골라 들어간다 */
+function stationBtn(act, no, title, sub){
+  return '<button class="station" data-act="'+act+'" data-stage="'+no+'">'+
+         '<span class="no">'+no+'</span>'+
+         '<span class="tt"><b>'+esc(title)+'</b><span>'+esc(sub)+'</span></span></button>';
 }
 function renderMap(){
-  var h = '<div class="card">'+head('단계 지도', '<span class="muted">골라서 시작해요 · 8단계를 마치면 수료증!</span>');
+  var h = '<div class="card">'+head('단계 지도', '<span class="muted">보고 싶은 단계를 골라요</span>');
   h += '<div class="fig stations">';
-  var cur = 0;
-  for (var j=0;j<STAGES.length;j++){ if (!cur && (state.stars[j+1]||0) < 2) cur = j+1; }
   for (var i=0;i<STAGES.length;i++){
     var st = STAGES[i], no = st.n;
     var sub = st.notes.map(function(n){ return NOTES[n].ko; }).join('·');
     if (st.key) sub += ' · ' + KEYS[st.key].en;
-    h += stationBtn('stage', no, true, no === cur, st.title, sub,
-                    state.stars[no] ? starText(state.stars[no]) : '');
+    h += stationBtn('stage', no, st.title, sub);
   }
   h += '</div><div class="ctrl"><div class="btnrow">'+
        '<button class="bigbtn sky" data-act="fc">손가락 · 음계</button>'+
@@ -1393,14 +1413,12 @@ function fcSub(ch){
 /* 정거장 카드 — 줄은 흰색, Major는 하늘색, 모두 섞기는 초록. 잠금 없이 아무거나 고른다 */
 var FC_ICON = { string:'🎻', key:'🎼', all:'🔀' };
 function fcStation(ch){
-  var mark = (state.fc.stars[ch.n] ? starText(state.fc.stars[ch.n]) : '') + (state.fc.done[ch.n] ? ' ✓' : '');
   return '<button class="station fcst '+ch.kind+'" data-act="fcch" data-stage="'+ch.n+'">'+
-         '<span class="top"><span class="no">'+ch.n+'</span><span class="ic" aria-hidden="true">'+FC_ICON[ch.kind]+'</span>'+
-         (mark.trim() ? '<span class="st">'+mark.trim()+'</span>' : '')+'</span>'+
+         '<span class="top"><span class="no">'+ch.n+'</span><span class="ic" aria-hidden="true">'+FC_ICON[ch.kind]+'</span></span>'+
          '<b>'+esc(ch.title)+'</b><span class="sub">'+esc(fcSub(ch))+'</span></button>';
 }
 function renderFcMap(){
-  var h = '<div class="card stack">'+head('손가락 · 음계', '<span class="muted">골라서 시작해요 · 추천은 번호 순서</span>');
+  var h = '<div class="card stack">'+head('손가락 · 음계', '<span class="muted">보고 싶은 곳을 골라요</span>');
   h += '<div class="fig stations three">';
   for (var i=0;i<FC.length;i++) h += fcStation(FC[i]);
   h += '</div><div class="ctrl"><div class="btnrow">'+
@@ -1409,7 +1427,7 @@ function renderFcMap(){
   return h;
 }
 /* 머리줄: ← 지도 · 이름 · 단계 탭. 탭은 순서와 상관없이 바로 간다 */
-function tabsHead(title, items, cur, act){
+function tabsHead(title, items, cur, act, extra){
   var tabs = '', i;
   if (items.length > 1){
     tabs = '<div class="tabs">';
@@ -1420,7 +1438,7 @@ function tabsHead(title, items, cur, act){
     tabs += '</div>';
   }
   return '<div class="hd"><div class="hrow fchead"><button class="iconbtn back" data-act="tomap" aria-label="지도로">←</button>'+
-         '<h2>'+esc(title)+'</h2>'+tabs+'</div></div>';
+         '<h2>'+esc(title)+'</h2>'+tabs+'</div>'+(extra || '')+'</div>';
 }
 function fcHead(ch, step){
   return tabsHead(ch.title, fcSteps(ch).map(function(s){ return [s, STEP_NAME[s]]; }), step, 'fcstep');
@@ -2125,7 +2143,7 @@ app.addEventListener('click', function(ev){
     return;
   }
   if (act === 'sheetNew'){
-    if (state.screen === 'play') state.play.sheet = buildSheet(OPEN_CH);
+    if (state.screen === 'play') state.play.sheet = buildSheet(playCh());
     else state.fc.sheet = buildSheet(fcChapter());
     render(); announce('새 카드 '+(SHEET_ROWS*SHEET_COLS)+'개. 모두 가려져 있어요.');
     return;
@@ -2156,9 +2174,15 @@ app.addEventListener('click', function(ev){
   }
   if (act === 'playTab'){
     state.play.tab = t.getAttribute('data-step');
-    if (state.play.tab === 'sheet' && !state.play.sheet) state.play.sheet = buildSheet(OPEN_CH);
+    if (state.play.tab === 'sheet' && !state.play.sheet) state.play.sheet = buildSheet(playCh());
     render();
-    announce(state.play.tab === 'sheet' ? '개방현 랜덤 카드' : '눌러보기');
+    announce(state.play.tab === 'sheet' ? playCh().title+' 랜덤 카드' : '눌러보기');
+    return;
+  }
+  if (act === 'playPool'){
+    state.play.pool = t.getAttribute('data-pool');
+    state.play.sheet = buildSheet(playCh());
+    render(); announce(playCh().title+' 랜덤 카드 '+(SHEET_ROWS*SHEET_COLS)+'개. 모두 가려져 있어요.');
     return;
   }
   if (act === 'replay'){ playNote(t.getAttribute('data-note')); return; }
