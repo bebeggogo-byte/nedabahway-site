@@ -88,7 +88,7 @@ jobs:
             htmlhint@1.x stylelint@16.x stylelint-config-standard@36.x
 
       - name: HTML lint — /p/*.html only (new landing pages)
-        run: npx htmlhint index.html about.html programs.html contact.html privacy.html 404.html offline.html personal.html ai/index.html ai/*/index.html diagnosis/index.html diagnosis/*/index.html gomin/index.html gomin/*/index.html proposal/index.html
+        run: npx htmlhint index.html about.html programs.html contact.html privacy.html 404.html offline.html personal.html ai/index.html ai/*/index.html diagnosis/index.html diagnosis/*/index.html gomin/index.html gomin/*/index.html proposal/index.html proposal/*/index.html
 
       - name: CSS lint — assets/p-v2.css only (new design system)
         run: npx stylelint assets/p-v2.css
@@ -269,7 +269,7 @@ jobs:
       - name: Verify all data-copy markers documented (≥85% coverage required)
         run: |
           set -e
-          MARKERS=$(grep -ohE 'data-copy="[A-Z0-9-]+"' index.html about.html programs.html contact.html personal.html ai/index.html ai/*/index.html diagnosis/index.html diagnosis/*/index.html gomin/index.html gomin/*/index.html proposal/index.html | sort -u || true)
+          MARKERS=$(grep -ohE 'data-copy="[A-Z0-9-]+"' index.html about.html programs.html contact.html personal.html ai/index.html ai/*/index.html diagnosis/index.html diagnosis/*/index.html gomin/index.html gomin/*/index.html proposal/index.html proposal/*/index.html | sort -u || true)
           if [ -z "$MARKERS" ]; then echo "::notice::No data-copy markers on public pages — nothing to check."; exit 0; fi
           TOTAL=$(echo "$MARKERS" | wc -l)
           MISSING=0
