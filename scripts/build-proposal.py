@@ -95,7 +95,7 @@ TYPES = {
    ('사후', '관리자 코칭 3회 + 4주 재진단', '팀 총량 변화, 마음별 ▲▼, 다음 분기 실행안'),
   ],
   ops=[('대상', '팀 단위 8~20명, 관리자 포함'), ('형식', '반나절(1·2부) 또는 1일(1~3부) + 사후 4주'), ('장소', '사내 또는 제주 현장(워케이션 연계 가능)'), ('기업 역할', '참여자 확정, 사전 진단 안내, 재진단 일정 확보'), ('네다바웨이 역할', '설계·진행·해설·리포트·관리자 코칭'), ('성과 측정', '사전·사후 총량과 6마음 평균, 과부하 통로 수 변화, 참여자가 자기 말로 남긴 변화')],
-  outputs=['개인 해설지 (본인만 열람)', '팀 배분·총량 리포트 1장', '관리자 대화 가이드', '4주 비교표와 다음 분기 실행안'],
+  outputs=['개인 해설지 (본인만 열람)', '팀 배분·총량 리포트 1장', '관리자 대화 가이드', '4주 비교표와 다음 분기 실행안', '워크숍 키트(카드 덱·노트·포스터·스티커) 선택'],
  ),
  'institution': dict(
   slug='institution', name='기관 · 센터', en='For Institutions & Centers', color='#FF6B3D',
@@ -118,7 +118,7 @@ TYPES = {
    ('9·10회기', '기여', '지역 봉사·작은 프로젝트, 6 MINDS 재진단, 다음 기수 돕기 · 지표: 자기 말로 설명'),
   ],
   ops=[('대상', '센터 등록 참여자(후기 청소년 우선), 소그룹 6~10명'), ('구성', '5단계 × 2회기 = 10회기 + 단계 사이 1:1 코칭'), ('센터 사업과의 연결', '1단계↔상담 · 2단계↔학업·진로 · 3단계↔직업체험 · 4단계↔멘토·보호자 · 5단계↔취업연계·지역 봉사'), ('진행 원칙', '참여자가 회기 주제와 목표를 함께 정한다 (의견표명권)'), ('센터 역할', '참여자 모집, 기존 지원 연계, 담당자와 회기별 공유'), ('네다바웨이 역할', '과정 설계, 회기 진행, 진단·해설, 관찰 기록, 결과 보고서'), ('성과 측정', '사전·사후 자기결정 수준(표준화 척도 병행), 단계별 관찰 지표, 목표 실행 여부, 참여자가 자기 말로 남긴 변화')],
-  outputs=['개인 해설지 (본인만)', '단계별 관찰 기록', '결과 보고서 (6마음 평균·총량 변화·참여자의 말)', '공모사업 제안서 협력'],
+  outputs=['개인 해설지 (본인만)', '단계별 관찰 기록', '결과 보고서 (6마음 평균·총량 변화·참여자의 말)', '공모사업 제안서 협력', '워크숍 키트(카드 덱·노트·포스터·스티커) 선택'],
  ),
  'faith': dict(
   slug='faith', name='신앙공동체', en='For Faith Communities', color='#10B981',
@@ -141,7 +141,7 @@ TYPES = {
    ('리더', '리더·교사 세미나 (120분)', '돕는 마음 과부하의 신호, 돌봄 체크리스트, 청년 1:1 대화 가이드'),
   ],
   ops=[('대상', '청년부·소그룹 6~12명, 리더·교사'), ('형식', '주 1회 90분 × 4주 + 리더 세미나 1회. 캠프형(1박 2일)으로 압축 가능'), ('장소', '교회·공동체 공간 또는 제주 현장'), ('공동체 역할', '참여자 모집, 소그룹 편성, 리더 참여'), ('네다바웨이 역할', '설계·진행·해설·리포트, 리더 세미나, 청년 진로·비전 캠프 설계'), ('성과 측정', '사전·사후 총량과 6마음 평균, 돕는 마음 과부하 비율 변화, 참여자가 자기 말로 남긴 변화')],
-  outputs=['개인 해설지 (본인만)', '소그룹 나눔 가이드', '공동체 6마음 분포·총량 리포트', '리더용 돌봄 체크리스트'],
+  outputs=['개인 해설지 (본인만)', '소그룹 나눔 가이드', '공동체 6마음 분포·총량 리포트', '리더용 돌봄 체크리스트', '워크숍 키트(카드 덱·노트·포스터·스티커) 선택'],
  ),
  'smallgroup': dict(
   slug='smallgroup', name='소그룹 · 동아리', en='For Small Groups', color='#F472B6',
@@ -164,7 +164,7 @@ TYPES = {
    ('키트', '리더 진행 키트', '회기별 진행안, 대화 카드, 진단 링크, 비교표 양식'),
   ],
   ops=[('대상', '학급·동아리·독서모임·창업팀 6~10명'), ('형식', '주 1회 90분 × 4주. 진행자 방문 또는 리더 진행(키트)'), ('장소', '모임 공간 또는 온라인'), ('모임 역할', '참여자 확정, 매주 시간 확보'), ('네다바웨이 역할', '1주·4주 진행(또는 전 회기), 해설, 키트 제공'), ('성과 측정', '사전·사후 총량과 6마음 평균, 4주 실행 횟수, 참여자가 자기 말로 남긴 변화')],
-  outputs=['개인 해설지 (본인만)', '짝 마음 대화 카드', '재진단 비교표', '다음 기수용 리더 키트'],
+  outputs=['개인 해설지 (본인만)', '짝 마음 대화 카드(마음 카드 덱)', '재진단 비교표(4주 노트)', '다음 기수용 리더 키트'],
  ),
 }
 ORDER = ['business', 'institution', 'faith', 'smallgroup']
@@ -237,6 +237,7 @@ def p_minds():
 <li><b>4주 비교</b> 최근 6회를 남겨 총량 변화와 마음별 ▲▼를 보여 줍니다.</li>
 </ol>
 </div>
+<p class="dp-p dp-p--sm" style="margin-top:12px;">여섯 마음의 정의·신호·짝 마음은 <a href="/minds/">nedabah.org/minds</a> 에, 무료진단은 <a href="/diagnosis/minds/">nedabah.org/diagnosis/minds</a> 에 있습니다.</p>
 <ul class="dp-rules"><li>"당신은 ○○형"이라고 말하지 않는다</li><li>우울·불안 단어를 쓰지 않는다. 총량 30 미만이면 상담전화를 조용히 안내</li><li>개인 결과는 본인에게, 기관에는 평균과 총량 변화만</li><li>자체 설계 도구. 표준화 규준은 쌓는 중이며 기관 측정에는 표준화 척도를 병행</li></ul>'''
 
 def p_program(t):
@@ -256,7 +257,7 @@ def p_instructor():
     if PHOTO.exists():
         fig = '<img src="/assets/brand/profile-kim-photo.jpg" width="720" height="900" alt="네다바웨이 대표 김창환">'
     else:
-        fig = '<div class="dp-photo__slot" role="img" aria-label="강사 실제 사진 자리"><span>실제 사진</span><small>assets/brand/profile-kim-photo.jpg</small></div>'
+        fig = '<img src="/assets/brand/profile-kim.jpg" width="480" height="480" alt="네다바웨이 대표 김창환">'
     cred = ''.join(f'<li><b>{esc(k)}</b>{esc(v)}</li>' for k, v in CRED)
     return f'''<div class="dp-inst">
 <figure class="dp-photo">{fig}<figcaption><b>김창환</b> 네다바웨이 대표<br>국제인증코치(ICF ACC) · 액션러닝 퍼실리테이터 2급 · 제주공익활동촉진위원회 위원</figcaption></figure>
@@ -269,7 +270,7 @@ def p_contact(t):
     return f'''<div class="dp-contact">
 <div><p class="dp-p dp-p--lg">{esc(t['name'])} 대상과 규모, 원하는 결과물을 알려 주시면 회기 구성과 견적을 정리해 드립니다. 무료 30분 상담으로 시작합니다.</p>
 <p class="dp-contact__b"><a class="btn-dark" href="/contact.html">무료 30분 상담 신청</a><a class="btn-link" href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
-<p class="dp-contact__s">네다바웨이 NEDABAHWAY · 제주 서귀포 · nedabah.org · 6 MINDS 무료진단: nedabah.org/diagnosis/minds/</p></div>
+<p class="dp-contact__s">네다바웨이 NEDABAHWAY · 제주 서귀포 · nedabah.org<br>6 MINDS 소개 <a href="/minds/">nedabah.org/minds</a> · 무료진단 <a href="/diagnosis/minds/">nedabah.org/diagnosis/minds</a> · 굿즈·워크숍 키트 <a href="/goods/">nedabah.org/goods</a></p></div>
 <div><h3 class="dp-h3">참고문헌</h3><ol class="dp-refs">{refs}</ol></div>
 </div>'''
 
@@ -319,7 +320,7 @@ def build_hub():
     <div class="wrap">
       <div class="hub-cards">
 {cards}      </div>
-      <p class="hub-foot"><a class="btn-dark" href="/contact.html">무료 30분 상담 신청</a><a class="btn-link" href="/diagnosis/minds/">6 MINDS 무료진단 먼저 해 보기 &#8599;</a></p>
+      <p class="hub-foot"><a class="btn-dark" href="/contact.html">무료 30분 상담 신청</a><a class="btn-link" href="/minds/">6 MINDS 소개 &#8599;</a><a class="btn-link" href="/goods/">굿즈 · 워크숍 키트 &#8599;</a><a class="btn-link" href="/diagnosis/minds/">무료진단 &#8599;</a></p>
     </div>
   </section>
 </main>

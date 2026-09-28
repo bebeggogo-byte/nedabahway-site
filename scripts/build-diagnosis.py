@@ -52,6 +52,8 @@ HEADER = '''<body>
       <a href="/about.html">About</a>
       <a href="/programs.html">Programs</a>
       <a href="/personal.html">Personal</a>
+      <a href="/minds/">6 Minds</a>
+      <a href="/goods/">Goods</a>
       <a href="/ai/">AI</a>
       <a href="/contact.html">Contact</a>
     </nav>
