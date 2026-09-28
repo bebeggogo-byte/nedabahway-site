@@ -16,34 +16,34 @@ head, HEADER, FOOTER, ARROW, esc = bd.head, bd.HEADER, bd.FOOTER, bd.ARROW, bd.e
 
 MINDS = [
  dict(k='explorer', name='탐험', en='Explorer', color='#FF6B3D', verb='새로운 것을 시도하고 낯선 곳에 가 보는 마음',
-      use='처음 해 본 일이 있었다', charge='처음 해 본 일을 하고 나면 보통 어땠나요?',
-      well='이번 주 처음 해 본 일이 있다', low='같은 하루가 반복되고 궁금한 게 없다', over='시작만 많고 끝낸 게 없다',
-      less='시작을 하나 줄이고, 시작한 것 중 하나만 이번 주에 끝냅니다.', more='가 본 적 없는 길로 20분 걷거나, 안 먹어 본 것 하나를 먹어 봅니다.'),
+      use='나는 처음 해 본 일이 있었다', charge='처음 해 본 일을 하고 나면 보통 어땠나요?',
+      well='나는 이번 주에 처음 해 본 일이 있다', low='나의 하루가 똑같이 반복되고 궁금한 것이 없다', over='나는 시작만 많이 하고 끝낸 일이 없다',
+      less='나는 새로 시작하는 일을 하나 줄이고, 이미 시작한 일 중 하나를 이번 주에 끝냅니다.', more='나는 가 본 적 없는 길로 20분 걷거나, 안 먹어 본 음식 하나를 먹어 봅니다.'),
  dict(k='maker', name='만들기', en='Maker', color='#FFC857', verb='손으로 무언가를 완성해 내는 마음',
-      use='결과물 하나를 끝까지 만들었다', charge='무언가를 끝까지 만들고 나면 보통 어땠나요?',
-      well='결과물 하나를 끝까지 만들었다', low='해야 할 것만 있고 만든 게 없다', over='쉬지 못하고 계속 생산만 한다',
-      less='만들기를 하루 1시간 덜, 끝낼 것 하나만 정합니다.', more='30분 안에 끝나는 작은 것 하나를 완성합니다. 정리, 요리, 글 한 편.'),
+      use='나는 결과물 하나를 끝까지 만들었다', charge='무언가를 끝까지 만들고 나면 보통 어땠나요?',
+      well='나는 결과물 하나를 끝까지 만들었다', low='나에게 해야 할 일만 있고 만든 것이 없다', over='나는 쉬지 못하고 계속 만들기만 한다',
+      less='나는 만드는 시간을 하루 1시간 줄이고, 끝낼 일을 하나만 정합니다.', more='나는 30분 안에 끝나는 작은 일 하나를 완성합니다. 책상 정리, 요리 한 가지, 글 한 편.'),
  dict(k='connector', name='연결', en='Connector', color='#3B82F6', verb='사람과 이어지고 대화하는 마음',
-      use='속마음을 나눈 사람이 있었다', charge='속마음을 나누고 나면 보통 어땠나요?',
-      well='속마음을 나눈 사람이 있다', low='며칠째 제대로 말한 사람이 없다', over='남의 일정에 끌려다녀 내 시간이 없다',
-      less='약속을 하나 줄이고, 그 시간을 내 것으로 비워 둡니다.', more='한 사람에게 요즘 마음을 세 줄로 보냅니다.'),
+      use='나는 속마음을 나눈 사람이 있었다', charge='속마음을 나누고 나면 보통 어땠나요?',
+      well='나는 속마음을 나눈 사람이 있다', low='나는 며칠째 제대로 이야기한 사람이 없다', over='나는 남의 일정에 끌려다녀서 내 시간이 없다',
+      less='나는 약속을 하나 줄이고, 그 시간을 나를 위해 비워 둡니다.', more='나는 한 사람에게 요즘의 내 마음을 세 줄로 보냅니다.'),
  dict(k='supporter', name='돕기', en='Supporter', color='#10B981', verb='누군가를 돌보고 보탬이 되는 마음',
-      use='누군가를 도와주고 고맙다는 말을 들었다', charge='누군가를 도와주고 나면 보통 어땠나요?',
-      well='도와주고 고맙다는 말을 들었다', low='내 문제만으로 벅차 남을 볼 여유가 없다', over='남 챙기느라 내 끼니·잠을 거른다',
-      less='남을 챙기기 전에 내 끼니와 잠을 먼저 챙깁니다. 부탁 하나는 거절합니다.', more='작은 도움 하나를 자원해서 합니다. 문 잡아 주기, 설명해 주기.'),
+      use='나는 누군가를 도와주고 고맙다는 말을 들었다', charge='누군가를 도와주고 나면 보통 어땠나요?',
+      well='나는 누군가를 돕고 고맙다는 말을 들었다', low='나는 내 문제만으로 벅차서 남을 볼 여유가 없다', over='나는 남을 챙기느라 내 끼니와 잠을 거른다',
+      less='나는 남을 챙기기 전에 내 끼니와 잠을 먼저 챙깁니다. 부탁 하나는 거절합니다.', more='나는 작은 도움 하나를 스스로 나서서 합니다. 문 잡아 주기, 길 설명해 주기.'),
  dict(k='thinker', name='생각', en='Thinker', color='#8B5CF6', verb='멈춰서 돌아보고 이해하는 마음',
-      use='하루를 돌아보고 정리한 순간이 있었다', charge='하루를 돌아보고 나면 보통 어땠나요?',
-      well='하루를 돌아보고 정리한 순간이 있다', low='생각할 틈 없이 반응만 하며 지낸다', over='생각만 맴돌고 행동으로 못 옮긴다',
-      less='생각을 10분으로 제한하고, 끝에 행동 하나를 적습니다.', more='자기 전 3줄, 오늘 있었던 일과 느낌을 적습니다.'),
+      use='나는 하루를 돌아보고 정리한 순간이 있었다', charge='하루를 돌아보고 나면 보통 어땠나요?',
+      well='나는 하루를 돌아보고 정리한 순간이 있다', low='나는 생각할 틈 없이 반응만 하며 지낸다', over='나는 생각만 계속하고 행동으로 옮기지 못한다',
+      less='나는 생각하는 시간을 10분으로 제한하고, 끝에 행동 하나를 적습니다.', more='나는 자기 전에 오늘 있었던 일과 느낌을 세 줄 적습니다.'),
  dict(k='enjoyer', name='즐기기', en='Enjoyer', color='#F472B6', verb='지금 이 순간을 맛보고 회복하는 마음',
-      use='이유 없이 좋았던 시간이 있었다', charge='그 시간을 보내고 나면 보통 어땠나요?',
-      well='이유 없이 좋았던 시간이 있다', low='즐거운 게 없고 쉬어도 쉰 것 같지 않다', over='즐거움으로만 도망쳐 해야 할 일이 밀린다',
-      less='즐기는 시간 앞에 끝낼 것 하나를 먼저 두고, 즐기기는 정해진 시간만.', more='이유 없이 좋은 20분을 하루에 한 번 만듭니다. 음악, 바다, 산책.'),
+      use='나는 이유 없이 좋았던 시간이 있었다', charge='그 시간을 보내고 나면 보통 어땠나요?',
+      well='나는 이유 없이 좋았던 시간이 있다', low='나는 즐거운 것이 없고 쉬어도 쉰 것 같지 않다', over='나는 즐거움으로 도망쳐서 해야 할 일이 밀린다',
+      less='나는 즐기는 시간 앞에 끝낼 일 하나를 먼저 두고, 즐기는 시간은 정해 둔 만큼만 씁니다.', more='나는 이유 없이 좋은 20분을 하루에 한 번 만듭니다. 음악, 바다, 산책.'),
 ]
 TOTAL = [
- dict(k='sleep', name='잠', q='잠들고 깨는 시간이 일정했다', tip='잠드는 시간을 이번 주 3일만 같게 맞춥니다.'),
- dict(k='move', name='움직임', q='하루 20분 이상 몸을 움직였다', tip='하루 20분, 걷기면 충분합니다. 시간을 정해 둡니다.'),
- dict(k='drive', name='의욕', q='아침에 하고 싶은 일이 하나는 있었다', tip='전날 밤에 내일 하고 싶은 일 하나를 적어 둡니다.'),
+ dict(k='sleep', name='잠', q='나는 잠들고 깨는 시간이 일정했다', tip='나는 잠드는 시간을 이번 주 3일만 같게 맞춥니다.'),
+ dict(k='move', name='움직임', q='나는 하루 20분 이상 몸을 움직였다', tip='나는 하루 20분 걷습니다. 걷는 시간을 미리 정해 둡니다.'),
+ dict(k='drive', name='의욕', q='나는 아침에 하고 싶은 일이 하나는 있었다', tip='나는 전날 밤에 내일 하고 싶은 일 하나를 적어 둡니다.'),
 ]
 USE_LK = ['전혀', '한두 번', '가끔', '자주', '거의 매일']
 CHG_LK = ['많이 지침', '조금 지침', '그대로', '조금 힘남', '힘이 남']
@@ -55,8 +55,8 @@ RESULT_JS = r'''
   function chgWord(c){ return c>=1?'충전':(c<=-1?'고갈':''); }
   function chgColor(c){ return c>=1?'#10B981':(c<=-1?'#E11D48':'#9a948c'); }
   function quad(m){ var hi=m.use>=3, lo=m.use<=1; if(hi&&m.chg>=1) return 'engine'; if(hi&&m.chg<=-1) return 'overload'; if(lo&&m.chg>=1) return 'hidden'; if(lo&&m.chg<=-1) return 'rest'; if(m.use===4&&m.chg<=0) return 'overload'; return 'mid'; }
-  var QUAD={engine:{k:'엔진',d:'많이 쓰고 힘도 나는 통로. 지금 나를 굴리는 마음입니다. 지키세요.',c:'#10B981'},overload:{k:'과부하',d:'많이 쓰는데 하고 나면 빠지는 통로. 양이 아니라 방식을 바꿀 자리입니다.',c:'#E11D48'},hidden:{k:'숨은 자원',d:'적게 쓰는데 쓰면 힘이 나는 통로. 총량을 가장 싸게 올리는 지렛대입니다.',c:'#1D4ED8'},rest:{k:'쉬는 통로',d:'적게 쓰고 써도 빠지는 통로. 지금은 억지로 열지 말고 4주 뒤 다시 봅니다.',c:'#9a948c'},mid:{k:'보통',d:'쓰는 양도 반응도 중간. 관찰만 하면 되는 통로입니다.',c:'#9a948c'}};
-  function stateOf(m){ if(m.use>=3&&m.chg<=-1) return {k:'넘쳐 있음',c:'#E11D48'}; if(m.use>=3) return {k:'잘 쓰고 있음',c:'#10B981'}; if(m.use<=1) return {k:'눌려 있음',c:'#B45309'}; return {k:'보통',c:'#9a948c'}; }
+  var QUAD={engine:{k:'엔진',d:'내가 많이 쓰고, 쓰고 나면 힘이 나는 마음입니다. 지금 나를 움직이는 마음이니 지킵니다.',c:'#10B981'},overload:{k:'과부하',d:'내가 많이 쓰는데, 쓰고 나면 지치는 마음입니다. 양이 아니라 방식을 바꿀 자리입니다.',c:'#E11D48'},hidden:{k:'숨은 자원',d:'내가 적게 쓰는데, 쓰면 힘이 나는 마음입니다. 가장 적은 힘으로 총량을 올릴 수 있는 마음입니다.',c:'#1D4ED8'},rest:{k:'쉬는 마음',d:'내가 적게 쓰고, 써도 지치는 마음입니다. 지금은 억지로 늘리지 말고 4주 뒤 다시 봅니다.',c:'#9a948c'},mid:{k:'보통',d:'내가 쓰는 양도 반응도 중간인 마음입니다. 지금은 지켜보기만 하면 됩니다.',c:'#9a948c'}};
+  function stateOf(m){ if(m.use>=3&&m.chg<=-1) return {k:'지나치게 씀',c:'#E11D48'}; if(m.use>=3) return {k:'잘 쓰고 있음',c:'#10B981'}; if(m.use<=1) return {k:'거의 안 씀',c:'#B45309'}; return {k:'보통',c:'#9a948c'}; }
   function mindOf(k){ return M.filter(function(m){return m.k===k;})[0]; }
   function ring(v){ var R=54,C=2*Math.PI*R,o=C*(1-v/100); return '<svg viewBox="0 0 140 140" width="140" height="140" role="img" aria-label="에너지 총량 '+v+'점"><circle cx="70" cy="70" r="'+R+'" fill="none" stroke="#d6cfc1" stroke-width="12"/><circle cx="70" cy="70" r="'+R+'" fill="none" stroke="#1D4ED8" stroke-width="12" stroke-linecap="round" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+o.toFixed(1)+'" transform="rotate(-90 70 70)"/><text x="70" y="78" text-anchor="middle" font-size="34" font-weight="800" fill="#1b1b1b">'+v+'</text></svg>'; }
   function fmt(d){ return d.getFullYear()+'. '+(d.getMonth()+1)+'. '+d.getDate()+'.'; }
@@ -75,10 +75,10 @@ RESULT_JS = r'''
     var spread=Math.round((A.use-B.use)/4*100);
     var spreadTxt= spread>=75?'한쪽으로 크게 쏠려 있습니다':(spread>=50?'쏠림이 있습니다':'비교적 고르게 쓰고 있습니다');
     var band= r.energy>=70?'넉넉':(r.energy>=50?'보통':(r.energy>=30?'눌림':'회복 우선'));
-    var summary= r.energy>=70?'잠과 움직임이 받쳐 주고, 여섯 마음도 고르게 쓰고 있어요.':(r.energy>=50?'기본은 괜찮고, 쓰는 마음이 한쪽으로 쏠려 있어요.':(r.energy>=30?'통로 몇 개가 눌려 있고, 몸의 바닥부터 채울 때예요.':'에너지가 많이 내려가 있어요. 오늘은 회복이 먼저입니다.'));
+    var summary= r.energy>=70?'잠과 움직임이 받쳐 주고, 나는 여섯 마음을 고르게 쓰고 있습니다.':(r.energy>=50?'몸의 기본은 괜찮고, 내가 쓰는 마음이 한쪽으로 쏠려 있습니다.':(r.energy>=30?'내가 거의 안 쓰는 마음이 몇 개 있고, 잠과 움직임부터 채울 때입니다.':'내 에너지가 많이 내려가 있습니다. 오늘은 회복이 먼저입니다.'));
     var next=new Date(when.getTime()+28*86400000);
     var lowTot=T.slice().sort(function(x,y){return r.total[x.k]-r.total[y.k];})[0];
-    var pattern='「'+esc(A.name)+'」에 몰아 쓰고 「'+esc(B.name)+'」을(를) 닫아 둔 2주'+(A.chg<=-1?'. 몰아 쓰는 통로가 고갈형이라 총량이 새고 있습니다':(A.chg>=1?'. 몰아 쓰는 통로가 충전형이라 버티는 힘은 있습니다':''))+'.';
+    var pattern='지난 2주 동안 나는 「'+esc(A.name)+'」을(를) 많이 쓰고 「'+esc(B.name)+'」을(를) 거의 쓰지 않았습니다.'+(A.chg<=-1?' 많이 쓰는 「'+esc(A.name)+'」이(가) 쓰고 나면 지치는 마음이라 총량이 줄고 있습니다.':(A.chg>=1?' 많이 쓰는 「'+esc(A.name)+'」이(가) 쓰고 나면 힘이 나는 마음이라 버티는 힘은 있습니다.':''));
     var h='<div class="dg-res" style="--rc:'+A.color+';"><p class="dg-res__k">요즘 나의 여섯 마음 · 해설지</p>';
     h+='<p class="ai-note" style="margin-top:4px;">'+fmt(when)+' · 지난 2주 기준 · 다음 진단 권장: 4주 뒤 ('+fmt(next)+') · 네다바웨이가 설계한 상태 진단</p>';
     h+='<div class="dg-legend"><span><b>총량</b> 몸 3문항 60% + 충전 평균 40%</span><span><b>배분</b> 사용량 6 → 막대·쏠림</span><span><b>회복</b> 충전/고갈 6 → 색·네 자리</span><span><b>조정</b> 줄일 것 1 · 늘릴 것 1</span></div>';
@@ -95,25 +95,25 @@ RESULT_JS = r'''
     h+='<div class="dg-quad">'+['engine','overload','hidden','rest'].map(function(q){ var list=r.minds.filter(function(m){return quad(m)===q;}); return '<div class="dg-quad__c" style="--qc:'+QUAD[q].c+';"><p class="dg-quad__k">'+QUAD[q].k+'</p><p class="dg-quad__m">'+(list.length?list.map(function(m){return esc(m.name);}).join(' · '):'—')+'</p><p class="dg-quad__d">'+QUAD[q].d+'</p></div>'; }).join('')+'</div>';
     // ④ 알아차림
     h+='<h3 class="dg-h3">④ 알아차림</h3>';
-    var aware='요즘 「'+esc(A.name)+'」을(를) 지키려고 「'+esc(B.name)+'」을(를) 줄여 왔군요.'+(A.chg<=-1?' '+esc(A.name)+'은(는) 많이 쓰는데 하고 나면 지치는 방식이에요.':'');
+    var aware='요즘 나는 「'+esc(A.name)+'」을(를) 지키려고 「'+esc(B.name)+'」을(를) 줄여 왔습니다.'+(A.chg<=-1?' 「'+esc(A.name)+'」은(는) 내가 많이 쓰는데 쓰고 나면 지치는 마음입니다.':'');
     var sharp=[];
-    if(drainers.length>=3) sharp.push('여섯 통로 중 '+drainers.length+'개가 쓸수록 빠지는 상태입니다. 더 하기보다 새는 곳을 막는 게 먼저입니다.');
-    if(hidden.length) sharp.push('「'+hidden.map(function(m){return esc(m.name);}).join('·')+'」은(는) 거의 안 쓰는데 쓰면 힘이 나는 통로입니다. 가장 적은 비용으로 총량을 올릴 자리입니다.');
-    if(overload.length&&engines.length) sharp.push('「'+esc(overload[0].name)+'」(과부하) 앞뒤에 「'+esc(engines[0].name)+'」(엔진)을 붙이면 같은 양을 하고도 덜 빠집니다.');
-    if(!chargers.length) sharp.push('쓸수록 힘이 나는 통로가 하나도 안 보입니다. 이건 성향이 아니라 지금 상태입니다. 즐기기와 연결을 20분씩 시험해 어느 쪽이 먼저 켜지는지 보세요.');
-    if(r.total.sleep<=1) sharp.push('잠드는 시간이 흔들리면 여섯 통로 전부가 좁아집니다. 이번 주 조정의 첫 줄은 잠입니다.');
-    if(spread>=75&&A.chg>=1) sharp.push('한 통로에 크게 쏠렸지만 그 통로가 충전형입니다. 지금은 잘 버티지만, 그 통로가 막히는 날 대체 통로가 없습니다. 두 번째 통로를 미리 열어 두세요.');
+    if(drainers.length>=3) sharp.push('여섯 마음 중 '+drainers.length+'개가 쓸수록 나를 지치게 하는 상태입니다. 나는 더 하기보다 나를 지치게 하는 마음부터 줄이는 것이 먼저입니다.');
+    if(hidden.length) sharp.push('「'+hidden.map(function(m){return esc(m.name);}).join('·')+'」은(는) 내가 거의 안 쓰는데 쓰면 힘이 나는 마음입니다. 가장 적은 힘으로 총량을 올릴 수 있는 자리입니다.');
+    if(overload.length&&engines.length) sharp.push('「'+esc(overload[0].name)+'」(과부하) 앞뒤에 「'+esc(engines[0].name)+'」(엔진)을 붙이면 나는 같은 양을 하고도 덜 지칩니다.');
+    if(!chargers.length) sharp.push('쓸수록 힘이 나는 마음이 하나도 안 보입니다. 이것은 성향이 아니라 지금의 상태입니다. 나는 즐기기와 연결을 20분씩 시험해서 어느 쪽에서 먼저 힘이 나는지 봅니다.');
+    if(r.total.sleep<=1) sharp.push('잠드는 시간이 흔들리면 여섯 마음 전부를 쓰기 어려워집니다. 이번 주 조정의 첫 줄은 잠입니다.');
+    if(spread>=75&&A.chg>=1) sharp.push('나는 한 마음에 크게 쏠려 있지만 그 마음이 쓰고 나면 힘이 나는 마음입니다. 지금은 잘 버티지만, 그 마음을 못 쓰게 되는 날 대신할 마음이 없습니다. 두 번째 마음을 미리 준비해 둡니다.');
     h+='<div class="dg-cards"><div class="dg-card" style="--cc:#1D4ED8;"><p class="dg-card__k">요즘의 패턴</p><p class="dg-card__d">'+pattern+'<br>'+aware+'</p></div>'+(sharp.length?'<div class="dg-card" style="--cc:#8B5CF6;"><p class="dg-card__k">예리하게 보면</p><p class="dg-card__d">'+sharp.map(function(x){return '· '+x;}).join('<br>')+'</p></div>':'')+'</div>';
     // ⑤ 이번 주 조정
     h+='<h3 class="dg-h3">⑤ 이번 주 조정 · 줄일 것 하나, 늘릴 것 하나</h3>';
-    var pairTxt= (chargers.length&&drainers.length) ? '짝지어 쓰기: 「'+esc(chargers[0].name)+'」을(를) 「'+esc(drainers[0].name)+'」 앞뒤 20분에 붙입니다.' : (chargers.length?'충전형 「'+chargers.map(function(m){return esc(m.name);}).join('·')+'」을(를) 하루 최소 20분 지킵니다.':'');
+    var pairTxt= (chargers.length&&drainers.length) ? '짝지어 쓰기: 나는 「'+esc(chargers[0].name)+'」을(를) 「'+esc(drainers[0].name)+'」 앞뒤 20분에 붙입니다.' : (chargers.length?'나는 쓰고 나면 힘이 나는 「'+chargers.map(function(m){return esc(m.name);}).join('·')+'」을(를) 하루 최소 20분 지킵니다.':'');
     h+='<div class="dg-cards"><div class="dg-card" style="--cc:#E11D48;"><p class="dg-card__k">줄일 것 · '+esc(L.name)+(quad(L)==='overload'?' (과부하)':'')+'</p><p class="dg-card__d">'+esc(mL.less)+'</p></div><div class="dg-card" style="--cc:#10B981;"><p class="dg-card__k">늘릴 것 · '+esc(G.name)+(quad(G)==='hidden'?' (숨은 자원)':'')+'</p><p class="dg-card__d">'+esc(mG.more)+'</p></div>'+(pairTxt?'<div class="dg-card" style="--cc:#1D4ED8;"><p class="dg-card__k">붙여 쓰기</p><p class="dg-card__d">'+pairTxt+'</p></div>':'')+'</div>';
     // ⑥ 총량 키우기
     h+='<h3 class="dg-h3">⑥ 에너지 총량을 키우는 네 가지</h3>';
-    h+='<ol class="ai-steps" style="margin-top:12px;"><li><b>회복이 먼저.</b> 충전형 통로를 하루 20분 보장합니다. 총량은 더 하기가 아니라 새는 것 막기에서 먼저 오릅니다.'+(chargers.length?' 지금 나의 충전형: '+chargers.map(function(m){return esc(m.name);}).join('·')+'.':'')+'</li><li><b>고갈형은 없애지 말고 방식을 바꿉니다.</b>'+(overload.length?' 「'+esc(overload[0].name)+'」은(는) 양을 줄이는 게 아니라 끝낼 것 하나로 좁혀 완성 경험을 되찾습니다.':' 지금 과부하 통로는 없습니다. 이 상태를 유지하세요.')+'</li><li><b>짝을 지어 씁니다.</b> 고갈형 앞뒤에 충전형을 붙입니다. '+(pairTxt||'만들기 → 연결, 생각 → 탐험처럼.')+'</li><li><b>몸이 통로의 바닥.</b> 총량의 60%가 여기서 나옵니다. 가장 낮은 '+esc(lowTot.name)+'('+r.total[lowTot.k]+'/4)부터: '+esc(lowTot.tip)+'</li></ol>';
+    h+='<ol class="ai-steps" style="margin-top:12px;"><li><b>회복이 먼저입니다.</b> 나는 쓰고 나면 힘이 나는 마음을 하루 20분 지킵니다. 총량은 더 하기가 아니라 나를 지치게 하는 것을 줄일 때 먼저 오릅니다.'+(chargers.length?' 지금 나에게 힘이 나는 마음: '+chargers.map(function(m){return esc(m.name);}).join('·')+'.':'')+'</li><li><b>나를 지치게 하는 마음은 없애지 않고 방식을 바꿉니다.</b>'+(overload.length?' 「'+esc(overload[0].name)+'」은(는) 양을 줄이는 것이 아니라 끝낼 일 하나로 좁혀서 완성 경험을 되찾습니다.':' 지금 과부하인 마음은 없습니다. 나는 이 상태를 유지합니다.')+'</li><li><b>짝을 지어 씁니다.</b> 나는 나를 지치게 하는 마음 앞뒤에 힘이 나는 마음을 붙입니다. '+(pairTxt||'만들기 → 연결, 생각 → 탐험처럼.')+'</li><li><b>몸이 모든 마음의 바탕입니다.</b> 총량의 60%가 잠·움직임·의욕에서 나옵니다. 가장 낮은 '+esc(lowTot.name)+'('+r.total[lowTot.k]+'/4)부터: '+esc(lowTot.tip)+'</li></ol>';
     // ⑦ 여섯 마음 모두
     h+='<h3 class="dg-h3">⑦ 여섯 마음 하나씩</h3>';
-    h+='<div class="dg-fac" style="margin-top:12px;">'+sorted.map(function(m){ var mm=mindOf(m.k), st=stateOf(m), q=QUAD[quad(m)]; var act= st.k==='넘쳐 있음'?mm.less:(st.k==='눌려 있음'?mm.more:(m.chg<=-1?'방식을 바꿉니다: '+mm.less:'지금처럼 유지하고, 4주 뒤 다시 확인합니다.')); return '<div class="dg-f" style="--fc:'+m.color+';"><div class="dg-f__head"><span class="dg-f__n">'+esc(m.name)+'<small>'+esc(mm.en)+'</small></span><span class="dg-f__b" style="background:'+st.c+'22;color:'+st.c+';">'+st.k+' · '+q.k+'</span></div><div class="dg-f__tr"><div class="dg-f__fl" style="width:'+Math.round(m.use/4*100)+'%;"></div></div><p class="dg-f__d" style="margin-top:8px;">'+esc(mm.verb)+'. 신호: '+esc(st.k==='넘쳐 있음'?mm.over:(st.k==='눌려 있음'?mm.low:mm.well))+'</p><p class="dg-f__sw"><b>이번 주</b> '+esc(act)+'</p></div>'; }).join('')+'</div>';
+    h+='<div class="dg-fac" style="margin-top:12px;">'+sorted.map(function(m){ var mm=mindOf(m.k), st=stateOf(m), q=QUAD[quad(m)]; var act= st.k==='지나치게 씀'?mm.less:(st.k==='거의 안 씀'?mm.more:(m.chg<=-1?'방식을 바꿉니다: '+mm.less:'지금처럼 유지하고, 4주 뒤 다시 확인합니다.')); return '<div class="dg-f" style="--fc:'+m.color+';"><div class="dg-f__head"><span class="dg-f__n">'+esc(m.name)+'<small>'+esc(mm.en)+'</small></span><span class="dg-f__b" style="background:'+st.c+'22;color:'+st.c+';">'+st.k+' · '+q.k+'</span></div><div class="dg-f__tr"><div class="dg-f__fl" style="width:'+Math.round(m.use/4*100)+'%;"></div></div><p class="dg-f__d" style="margin-top:8px;">'+esc(mm.verb)+'. 신호: '+esc(st.k==='지나치게 씀'?mm.over:(st.k==='거의 안 씀'?mm.low:mm.well))+'</p><p class="dg-f__sw"><b>이번 주</b> '+esc(act)+'</p></div>'; }).join('')+'</div>';
     // ⑧ 4주 비교
     if(prev&&prev.a){ var pr=compute(prev.a); var pd=new Date(prev.at); var rows=r.minds.map(function(m,i){ var d=Math.round((m.use-pr.minds[i].use)/4*100); return {n:m.name,d:d,c:m.chg-pr.minds[i].chg}; }); var dt=r.energy-pr.energy;
       h+='<h3 class="dg-h3">⑧ 지난번과 비교 · '+fmt(pd)+' → '+fmt(when)+'</h3>';
@@ -123,16 +123,16 @@ RESULT_JS = r'''
     if(r.energy<30){ h+='<p class="ai-note" style="margin-top:14px;">요즘 많이 힘들다면 혼자 버티지 않아도 됩니다. 청소년은 1388, 성인은 1393(자살예방)·129(보건복지상담)에서 24시간 이야기할 수 있습니다.</p>'; }
     // ⑨ 함께 보기
     var code=encode(ans_of(r));
-    h+='<h3 class="dg-h3">⑨ 함께 보기 · 서로 비교</h3><p class="ai-note" style="margin-top:6px;">내 코드를 상대에게 보내고, 상대 코드를 아래에 넣으면 두 사람의 배분이 나란히 나옵니다. 누가 낫다가 아니라, 서로 어느 통로가 열려 있는지를 봅니다.</p>';
+    h+='<h3 class="dg-h3">⑨ 함께 보기 · 서로 비교</h3><p class="ai-note" style="margin-top:6px;">내 코드를 상대에게 보내고, 상대 코드를 아래에 넣으면 두 사람의 배분이 나란히 나옵니다. 누가 낫다가 아니라, 서로 어느 마음을 잘 쓰는지를 봅니다.</p>';
     h+='<div class="dg-cmp"><div class="dg-cmp__me"><span>내 코드</span><b id="dgCode">'+code+'</b><button type="button" class="btn-ghost" id="dgCodeCopy">복사</button></div><div class="dg-cmp__in"><label for="dgOther">상대 코드</label><input id="dgOther" type="text" inputmode="latin" autocomplete="off" placeholder="예: M1A2B3C" maxlength="16"><button type="button" class="btn-go" id="dgCmpGo">비교하기</button></div><div id="dgCmpOut"></div></div>';
     // ⑩ 마음 카드
     var top=mA;
     h+='<h3 class="dg-h3">⑩ 마음 카드 · 앞면과 뒷면</h3><p class="ai-note" style="margin-top:6px;">핸드폰 세로 사이즈(1080×1920) 세 장. 내 결과가 들어간 카드 한 장과, 요즘 가장 많이 쓰는 마음·이번 주 늘릴 마음 카드. 카드를 누르면 뒤집히고, 앞뒤를 따로 저장하거나 한 번에 공유합니다.</p>';
     h+='<div id="dgCardView"></div>';
     h+='<div class="dg-actions"><button type="button" class="btn-go" id="dgCopy">해설지 복사</button><button type="button" class="btn-ghost" id="dgRetry">다시 진단하기</button></div></div>';
-    var prog = (r.energy<50||stateOf(mindOf('enjoyer')?r.minds.filter(function(m){return m.k==='enjoyer';})[0]:B).k==='눌려 있음') ? {t:'회복이 먼저인 상태입니다',d:'총량이 낮거나 즐기기가 눌려 있을 때는 새 계획보다 30분 무료 상담에서 이번 주 회복 리듬부터 함께 잡습니다.',a:'/contact.html#consult-form',al:'무료 30분 상담 신청',b:'/personal.html',bl:'퍼스널 트레이닝 코스 보기'}
+    var prog = (r.energy<50||stateOf(mindOf('enjoyer')?r.minds.filter(function(m){return m.k==='enjoyer';})[0]:B).k==='거의 안 씀') ? {t:'회복이 먼저인 상태입니다',d:'총량이 낮거나 즐기는 마음을 거의 안 쓸 때는 새 계획보다 30분 무료 상담에서 이번 주 회복 리듬부터 함께 잡습니다.',a:'/contact.html#consult-form',al:'무료 30분 상담 신청',b:'/personal.html',bl:'퍼스널 트레이닝 코스 보기'}
       : (overload.some(function(m){return m.k==='maker'||m.k==='thinker';}) ? {t:'만들기·생각이 과부하라면 방식을 바꿀 때입니다',d:'학습 습관 코스는 양을 늘리는 대신 끝내는 경험을 되찾는 데서 시작합니다. 학습 유형 진단과 함께 보면 더 정확합니다.',a:'/personal.html#study',al:'학습 습관 코스 보기',b:'/diagnosis/learning/',bl:'학습 유형 진단 하기'}
-      : (r.minds.some(function(m){return m.k==='explorer'&&m.use<=1;}) ? {t:'탐험이 눌려 있다면 진로 나침반부터',d:'궁금한 게 없는 시기에는 진로 탐색 코스의 4분면 자가진단이 다시 방향을 켭니다.',a:'/personal.html#career',al:'진로 탐색 코스 보기',b:'/contact.html#consult-form',bl:'무료 30분 상담'}
+      : (r.minds.some(function(m){return m.k==='explorer'&&m.use<=1;}) ? {t:'탐험하는 마음을 거의 안 쓴다면 진로 나침반부터',d:'궁금한 게 없는 시기에는 진로 탐색 코스의 4분면 자가진단이 다시 방향을 켭니다.',a:'/personal.html#career',al:'진로 탐색 코스 보기',b:'/contact.html#consult-form',bl:'무료 30분 상담'}
       : {t:'이 상태에 맞는 다음 걸음',d:'해설지를 복사해 상담 신청서에 붙여 넣으면 첫 30분을 설명 대신 설계에 씁니다. 기관·학교는 회기 첫날과 마지막 날 같은 진단으로 변화를 봅니다.',a:'/contact.html#consult-form',al:'무료 30분 상담 신청',b:'/programs.html',bl:'기관·기업 교육 보기'}));
     h+='<div class="dg-next"><p class="dg-next__t">'+esc(prog.t)+'</p><p class="dg-next__d">'+esc(prog.d)+'</p><div class="dg-next__cta"><a class="btn-dark" href=\x27'+prog.a+'\x27>'+esc(prog.al)+'</a><a class="btn-link" href=\x27'+prog.b+'\x27>'+esc(prog.bl)+' &#8599;</a></div></div>';
     h+='<p class="dg-foot">검사가 아니라 상태 보기입니다. 여섯 마음은 누구에게나 다 있고 배분이 다를 뿐이며, 의학·심리 진단이 아닙니다. 결과는 이 기기 브라우저에만 저장됩니다.</p>';
@@ -159,7 +159,7 @@ RESULT_JS = r'''
   function decode(str){ if(!/^M[0-9A-Z]{10}$/.test(str)) return null; var n=0n; var s=str.slice(1).toLowerCase(); for(var i=0;i<s.length;i++){ n=n*36n+BigInt(parseInt(s[i],36)); } var a=[]; for(var j=14;j>=0;j--){ var v=Number(n%5n); n=n/5n; if(j<12&&j%2===1) v=v-2; a[j]=v; } if(n!==0n) return null; return a; }
   function compareHtml(me, you){
     var h='<div class="dg-cmp__grid" style="margin-top:14px;">';
-    h+='<div class="dg-cmp__tot"><span>에너지 총량</span><b>나 '+me.energy+'</b><b>상대 '+you.energy+'</b><small>'+(Math.abs(me.energy-you.energy)<10?'비슷한 총량. 배분이 어떻게 다른지 보세요.':(me.energy>you.energy?'내 총량이 높습니다. 상대의 새는 통로를 먼저 물어보세요.':'상대 총량이 높습니다. 상대의 충전 통로를 물어보세요.'))+'</small></div>';
+    h+='<div class="dg-cmp__tot"><span>에너지 총량</span><b>나 '+me.energy+'</b><b>상대 '+you.energy+'</b><small>'+(Math.abs(me.energy-you.energy)<10?'비슷한 총량. 배분이 어떻게 다른지 보세요.':(me.energy>you.energy?'내 총량이 높습니다. 상대를 지치게 하는 마음이 무엇인지 먼저 물어봅니다.':'상대 총량이 높습니다. 상대에게 힘이 나는 마음이 무엇인지 물어봅니다.'))+'</small></div>';
     var notes=[];
     me.minds.forEach(function(a,i){ var b=you.minds[i]; var pa=Math.round(a.use/4*100), pb=Math.round(b.use/4*100); var qa=quad(a), qb=quad(b);
       h+='<div class="dg-cmp__row" style="--mc:'+a.color+';"><span class="dg-cmp__n">'+esc(a.name)+'</span><span class="dg-cmp__bar"><i style="width:'+pa+'%;background:'+chgColor(a.chg)+';"></i><em>나 '+pa+'%</em></span><span class="dg-cmp__bar"><i style="width:'+pb+'%;background:'+chgColor(b.chg)+';"></i><em>상대 '+pb+'%</em></span></div>';
@@ -173,7 +173,7 @@ RESULT_JS = r'''
     h+='</div>';
     if(!notes.length) notes.push('배분이 비슷합니다. 서로의 "이번 주 한 가지"를 바꿔서 해 보세요.');
     h+='<div class="dg-card" style="--cc:#1D4ED8;margin-top:12px;"><p class="dg-card__k">서로를 이해하는 문장</p><p class="dg-card__d">'+notes.slice(0,4).map(function(x){return '· '+x;}).join('<br>')+'</p></div>';
-    h+='<p class="ai-note" style="margin-top:10px;">막대는 사용량, 색은 쓰고 난 뒤의 상태(초록 충전 · 빨강 고갈 · 회색 그대로). 비교는 우열이 아니라 서로 열린 통로를 찾는 일입니다.</p>';
+    h+='<p class="ai-note" style="margin-top:10px;">막대는 사용량, 색은 쓰고 난 뒤의 상태(초록 충전 · 빨강 고갈 · 회색 그대로). 비교는 우열이 아니라 서로 잘 쓰는 마음을 찾는 일입니다.</p>';
     return h;
   }
 '''
@@ -188,7 +188,7 @@ def page():
         <img src="/assets/brand/type-{m["k"]}.png" width="76" height="80" alt="" loading="lazy" style="height:56px;width:auto;">
         <h3 class="card__t" style="margin-top:12px;">{esc(m["name"])} <span style="font-family:var(--hand);font-weight:400;color:var(--text-3);">{m["en"]}</span></h3>
         <p class="card__d">{esc(m["verb"])}.</p>
-        <ul><li><b>잘 쓰고 있을 때</b> {esc(m["well"])}</li><li><b>눌려 있을 때</b> {esc(m["low"])}</li><li><b>넘쳐 있을 때</b> {esc(m["over"])}</li></ul>
+        <ul><li><b>잘 쓰고 있을 때</b> {esc(m["well"])}</li><li><b>거의 안 쓸 때</b> {esc(m["low"])}</li><li><b>지나치게 쓸 때</b> {esc(m["over"])}</li></ul>
       </article>
 ''' for m in MINDS)
     out = head(title, desc, url, 'diag-minds', f'<script type="application/ld+json">\n{ld}\n</script>\n<link rel="stylesheet" href="/assets/mind-cards.css">\n<script src="/assets/qrcode.js" defer></script>\n<script src="/assets/mind-cards.js" defer></script>\n') + HEADER
@@ -208,7 +208,7 @@ def page():
       <p class="dg-intro__t">에너지 배분은 눈에 보이지 않습니다. 그래서 들여다봅니다</p>
       <p class="dg-intro__d">바쁜 것과 채워지는 것은 다릅니다. 같은 하루를 살아도 어떤 마음은 쓸수록 힘이 나고 어떤 마음은 쓸수록 빠집니다. 그 차이를 보지 못하면 "더 열심히"만 남습니다. 이 진단은 요즘 나를 관찰하는 도구이고, 결과를 나눠 보면 서로를 이해하는 언어가 됩니다.</p>
       <div class="dg-why">
-        <div class="dg-why__c"><b>왜 필요한가</b><span>자기결정이론(Ryan &amp; Deci)은 자율성·유능감·관계성이 채워질 때 사람이 스스로 움직인다고 말합니다. 어느 마음이 눌려 있는지 알면 회복의 첫 줄이 정해집니다.</span></div>
+        <div class="dg-why__c"><b>왜 필요한가</b><span>자기결정이론(Ryan &amp; Deci)은 자율성·유능감·관계성이 채워질 때 사람이 스스로 움직인다고 말합니다. 내가 어느 마음을 거의 안 쓰는지 알면 회복의 첫 줄이 정해집니다.</span></div>
         <div class="dg-why__c"><b>무엇을 보나 · 세 층</b><span>① 총량(잠·움직임·의욕 3문항) ② 배분(여섯 마음 사용량 6문항) ③ 회복(쓰고 난 뒤 충전·고갈 6문항). 겹치지 않고 빠짐없이, 15문항.</span></div>
         <div class="dg-why__c"><b>어떻게 진행하나</b><span>지난 2주를 떠올리며 고르면 다음으로 넘어갑니다. 약 4분. 해설지 8단과 마음 카드가 나오고, 코드로 다른 사람과 비교할 수 있습니다. 4주 뒤 다시 해 봅니다.</span></div>
       </div>
@@ -226,7 +226,7 @@ def page():
     <div class="sec-head reveal">
       <p class="sec-kicker">6 Minds</p>
       <h2 class="sec-title" id="mindsTitle">여섯 마음의 신호<span class="dot">.</span></h2>
-      <p class="sec-lead">각 마음을 한 문장으로 정의하고, 잘 쓰고 있을 때·눌려 있을 때·넘쳐 있을 때의 신호를 적었습니다. 문항은 이 신호에서 나옵니다.</p>
+      <p class="sec-lead">각 마음을 한 문장으로 정의하고, 잘 쓰고 있을 때·거의 안 쓸 때·지나치게 쓸 때의 신호를 적었습니다. 문항은 이 신호에서 나옵니다.</p>
     </div>
     <div class="cards cards--2">
 {minds_cards}    </div>

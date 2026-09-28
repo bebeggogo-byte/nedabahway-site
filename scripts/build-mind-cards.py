@@ -212,10 +212,10 @@ def front(i, m):
     y = draw_par(d, (PAD, y), m['d'], font('ExtraBold', 40), INK, W - 2 * PAD, 1.3) + px(10)
     d.rounded_rectangle((PAD, y, PAD + px(120), y + px(8)), radius=px(4), fill=col); y += px(30)
     # charge source
-    d.text((PAD, y), '무엇으로 충전되나', font=font('ExtraBold', 25), fill=col); y += px(38)
+    d.text((PAD, y), '무엇이 이 마음을 채우나', font=font('ExtraBold', 25), fill=col); y += px(38)
     y = draw_par(d, (PAD, y), m['src'], font('Medium', 28), BODY, W - 2 * PAD, 1.5) + px(14)
     # signals
-    rows = [('켜져 있을 때', m['on'], (16, 185, 129)), ('눌려 있을 때', m['low'], (156, 163, 175)), ('넘쳐 있을 때', m['over'], (239, 68, 68))]
+    rows = [('잘 쓰고 있을 때', m['on'], (16, 185, 129)), ('거의 안 쓸 때', m['low'], (156, 163, 175)), ('지나치게 쓸 때', m['over'], (239, 68, 68))]
     for k, v, cc in rows:
         fh = par_height(d, v, font('Medium', 24), W - 2 * PAD - px(56), 1.4) + px(54)
         d.rounded_rectangle((PAD, y, W - PAD, y + fh), radius=px(18), fill=(236, 231, 220))
@@ -248,7 +248,7 @@ def back(i, m):
     draw_par(d, (PAD + px(40), y + px(92)), m['q'], font('ExtraBold', 40), INK, W - 2 * PAD - px(80), 1.35)
     y += px(250)
     d.text((PAD, y), '이번 주, 이렇게', font=font('Black', 36), fill=INK); y += px(62)
-    for k, v, cc in [('더 쓰고 싶을 때', m['more'], (16, 185, 129)), ('줄여야 할 때', m['less'], (225, 29, 72))]:
+    for k, v, cc in [('이 마음을 더 쓰고 싶을 때', m['more'], (16, 185, 129)), ('이 마음을 줄여야 할 때', m['less'], (225, 29, 72))]:
         bh = par_height(d, v, font('SemiBold', 33), W - 2 * PAD - px(80), 1.45) + px(104)
         d.rounded_rectangle((PAD, y, W - PAD, y + bh), radius=px(28), fill=(236, 231, 220))
         d.rounded_rectangle((PAD, y, PAD + px(12), y + bh), radius=px(6), fill=cc)
@@ -256,13 +256,13 @@ def back(i, m):
         draw_par(d, (PAD + px(40), y + px(80)), v, font('SemiBold', 33), INK, W - 2 * PAD - px(80), 1.45)
         y += bh + px(18)
     y += px(14)
-    d.text((PAD, y), '예리하게 보면', font=font('Black', 36), fill=INK); y += px(60)
+    d.text((PAD, y), '자세히 보면', font=font('Black', 36), fill=INK); y += px(60)
     d.rounded_rectangle((PAD, y, PAD + px(120), y + px(8)), radius=px(4), fill=col); y += px(26)
     y = draw_par(d, (PAD, y), m['ins'], font('Medium', 30), BODY, W - 2 * PAD, 1.55)
     # write-in box
     av = px(220); cy = H - px(150) - px(40) - av
     by0 = y + px(34); by1 = cy - px(40)
-    if by1 - by0 >= px(150):
+    if by1 - by0 >= px(100):
         d.rounded_rectangle((PAD, by0, W - PAD, by1), radius=px(24), outline=mix(col, INK, .2), width=px(3))
         d.text((PAD + px(28), by0 + px(22)), '이번 주 나의 한 가지', font=font('ExtraBold', 24), fill=col)
         ly = by0 + px(92)

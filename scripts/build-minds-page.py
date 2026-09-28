@@ -28,14 +28,14 @@ def mind_sections():
         <p class="mp-mind__k"><span>0{i+1}</span>{m['en']}</p>
         <h2 class="mp-mind__t" id="mt-{m['k']}">{esc(m['n'])}<span class="mp-dot" aria-hidden="true"></span></h2>
         <p class="mp-mind__d">{esc(m['d'])}</p>
-        <p class="mp-mind__src"><b>무엇으로 충전되나</b> {esc(m['src'])}</p>
+        <p class="mp-mind__src"><b>무엇이 이 마음을 채우나</b> {esc(m['src'])}</p>
         <ul class="mp-sig">
-          <li class="mp-sig--on"><b>켜져 있을 때</b><span>{esc(m['on'])}</span></li>
-          <li class="mp-sig--low"><b>눌려 있을 때</b><span>{esc(m['low'])}</span></li>
-          <li class="mp-sig--over"><b>넘쳐 있을 때</b><span>{esc(m['over'])}</span></li>
+          <li class="mp-sig--on"><b>잘 쓰고 있을 때</b><span>{esc(m['on'])}</span></li>
+          <li class="mp-sig--low"><b>거의 안 쓸 때</b><span>{esc(m['low'])}</span></li>
+          <li class="mp-sig--over"><b>지나치게 쓸 때</b><span>{esc(m['over'])}</span></li>
         </ul>
-        <p class="mp-ins"><b>예리하게 보면</b> {esc(m['ins'])}</p>
-        <div class="mp-act"><p><b>더 쓰고 싶을 때</b> {esc(m['more'])}</p><p><b>줄여야 할 때</b> {esc(m['less'])}</p></div>
+        <p class="mp-ins"><b>자세히 보면</b> {esc(m['ins'])}</p>
+        <div class="mp-act"><p><b>이 마음을 더 쓰고 싶을 때</b> {esc(m['more'])}</p><p><b>이 마음을 줄여야 할 때</b> {esc(m['less'])}</p></div>
         <p class="mp-pair"><b>짝이 되는 마음</b> <a href="#{m['pair_k']}">{esc(m['pair_n'])}</a> · {esc(m['pair_w'])}</p>
       </div>
     </div>
@@ -65,7 +65,7 @@ PAGE = head(TITLE, DESC, URL, 'minds', f'<link rel="stylesheet" href="/assets/mi
     <div class="wrap">
       <p class="mp-kicker"><span>6 Minds</span> Different People · Bigger World</p>
       <h1 class="mp-h1">서로 다른 6가지 마음이,<br>하나의 세상을 만듭니다<span class="mp-dot" aria-hidden="true"></span></h1>
-      <p class="mp-lead">탐험 · 만들기 · 연결 · 돕기 · 생각 · 즐기기. 누구나 여섯 마음을 <b>다</b> 갖고 있습니다. 다른 것은 요즘 어느 마음을 많이 쓰고, 어느 마음이 눌려 있는지, 그 배분뿐입니다. 그래서 6 MINDS는 "당신은 ○○형"이라고 말하지 않습니다.</p>
+      <p class="mp-lead">탐험 · 만들기 · 연결 · 돕기 · 생각 · 즐기기. 누구나 여섯 마음을 <b>다</b> 갖고 있습니다. 다른 것은 요즘 어느 마음을 많이 쓰고, 어느 마음을 거의 안 쓰는지, 그 배분뿐입니다. 그래서 6 MINDS는 "당신은 ○○형"이라고 말하지 않습니다.</p>
       <div class="mp-chips">{chips()}</div>
     </div>
     <img class="mp-hero__board" src="/assets/brand/nw-6minds-board.jpg" width="1536" height="1024" alt="네다바웨이 6 MINDS 브랜드 보드: 여섯 캐릭터와 각 마음의 한 줄 문장" fetchpriority="high">
@@ -78,9 +78,9 @@ PAGE = head(TITLE, DESC, URL, 'minds', f'<link rel="stylesheet" href="/assets/mi
         <h2 class="mp-h2">유형이 아니라<br>마음이라고 부르는 이유<span class="mp-dot" aria-hidden="true"></span></h2>
       </div>
       <ul class="mp-why__l">
-        <li><b>라벨을 붙이지 않습니다</b>"너는 탐험하는 사람"은 판정이고 방어를 부릅니다. "요즘 탐험을 많이 쓰고 있네"는 관찰이라 받아들이기 쉽습니다.</li>
+        <li><b>라벨을 붙이지 않습니다</b>"너는 탐험하는 사람"은 판정이고 방어를 부릅니다. "요즘 너는 탐험하는 마음을 많이 쓰고 있네"는 관찰이라 받아들이기 쉽습니다.</li>
         <li><b>다시 해 볼 이유가 있습니다</b>성향은 안 바뀌지만 상태는 2주 단위로 바뀝니다. 4주 뒤 다시 해 보면 "이걸 더 하려고 저걸 줄여 왔구나"가 보입니다.</li>
-        <li><b>처방이 곧바로 나옵니다</b>넘친 마음 하나를 줄이고 숨은 마음 하나를 늘리는 것. 코스 여섯 개가 필요 없고 이번 주 한 가지면 됩니다.</li>
+        <li><b>처방이 곧바로 나옵니다</b>지나치게 쓰는 마음 하나를 줄이고, 거의 안 쓰는데 힘이 나는 마음 하나를 늘리는 것. 코스 여섯 개가 필요 없고 이번 주 한 가지면 됩니다.</li>
         <li><b>총량이 보입니다</b>여섯 마음을 쓰고 나서 채워지는지 비는지를 따로 묻기 때문에 에너지 총량이 어디쯤인지, 어디서 새는지가 나옵니다.</li>
       </ul>
     </div>
@@ -92,9 +92,9 @@ PAGE = head(TITLE, DESC, URL, 'minds', f'<link rel="stylesheet" href="/assets/mi
       <p class="sec-kicker">How it works</p>
       <h2 class="mp-h2">어떻게 진단하나<span class="mp-dot" aria-hidden="true"></span></h2>
       <ol class="mp-how__l">
-        <li><b>6개 통로</b>마음마다 "이번 주 얼마나 썼나"(사용량)와 "쓰고 나면 채워지나 비나"(충전/고갈)를 따로 묻습니다.</li>
+        <li><b>6개 마음</b>마음마다 "이번 주 얼마나 썼나"(사용량)와 "쓰고 나면 채워지나 비나"(충전/고갈)를 따로 묻습니다.</li>
         <li><b>총량 3문항</b>잠 · 움직임 · 의욕. 총량의 60%는 여기서, 40%는 여섯 마음의 충전 평균에서 옵니다.</li>
-        <li><b>네 자리</b>사용량 × 충전으로 엔진 / 과부하 / 숨은 자원 / 쉬는 통로. 줄일 것은 과부하, 늘릴 것은 숨은 자원.</li>
+        <li><b>네 자리</b>사용량 × 충전으로 엔진 / 과부하 / 숨은 자원 / 쉬는 마음. 줄일 것은 과부하, 늘릴 것은 숨은 자원.</li>
         <li><b>쏠림 지수</b>최고 사용량 − 최저 사용량. 한쪽으로 크게 쏠렸는지 고른지를 한 숫자로.</li>
         <li><b>트레이드오프 문장</b>"이걸 더 하려고 저걸 줄여 왔구나." 판정이 아니라 관찰의 언어입니다.</li>
         <li><b>4주 비교</b>최근 6회를 브라우저에 남겨 총량 변화와 마음별 ▲▼를 보여 줍니다.</li>

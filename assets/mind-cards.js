@@ -197,7 +197,7 @@
         y += h + 18;
       });
       if (d.pair) { ctx.font = fnt('500', 27); var ph = parH(ctx, d.pair, CW - 2 * PAD - 72, 40) + 80; rr(ctx, PAD, y, CW - 2 * PAD, ph, 24); ctx.fillStyle = mix('#1D4ED8', '#fff', .88); ctx.fill(); ctx.fillStyle = '#1D4ED8'; ctx.font = fnt('800', 22); ctx.fillText('붙여 쓰기', PAD + 36, y + 42); ctx.fillStyle = INK; ctx.font = fnt('500', 27); par(ctx, d.pair, PAD + 36, y + 82, CW - 2 * PAD - 72, 40); y += ph + 26; }
-      if (d.sharp) { ctx.fillStyle = INK; ctx.font = fnt('900', 32); ctx.fillText('예리하게 보면', PAD, y + 34); rr(ctx, PAD, y + 50, 120, 8, 4); ctx.fillStyle = color; ctx.fill(); ctx.fillStyle = BODY; ctx.font = fnt('500', 27); y = par(ctx, d.sharp, PAD, y + 104, CW - 2 * PAD, 42) + 10; }
+      if (d.sharp) { ctx.fillStyle = INK; ctx.font = fnt('900', 32); ctx.fillText('자세히 보면', PAD, y + 34); rr(ctx, PAD, y + 50, 120, 8, 4); ctx.fillStyle = color; ctx.fill(); ctx.fillStyle = BODY; ctx.font = fnt('500', 27); y = par(ctx, d.sharp, PAD, y + 104, CW - 2 * PAD, 42) + 10; }
       // write-in box fills the gap, then QR + code block anchored above footer
       var qy = CH - 150 - 40 - 300, qs = 300;
       var wy0 = y + 30, wy1 = qy - 40;
@@ -205,8 +205,8 @@
       rr(ctx, PAD, qy, qs, qs, 24); ctx.fillStyle = '#fff'; ctx.fill(); ctx.lineWidth = 4; ctx.strokeStyle = INK; ctx.stroke();
       if (window.qrcode) { try { var q = window.qrcode(0, 'M'); q.addData(d.cmpUrl); q.make(); var n = q.getModuleCount(), cs = Math.floor((qs - 40) / n), off = (qs - cs * n) / 2; ctx.fillStyle = INK; for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) if (q.isDark(r, c)) ctx.fillRect(PAD + off + c * cs, qy + off + r * cs, cs, cs); } catch (e) {} }
       var tx = PAD + qs + 40;
-      ctx.fillStyle = INK; ctx.font = fnt('800', 30); ctx.fillText('찍으면 나와 비교됩니다', tx, qy + 48);
-      ctx.fillStyle = MUTE; ctx.font = fnt('500', 24); par(ctx, '상대가 이 QR을 찍고 자기 진단을 마치면 두 사람의 여섯 마음이 나란히 나옵니다. 누가 낫다가 아니라 서로 어느 통로가 열려 있는지를 봅니다.', tx, qy + 96, CW - PAD - tx, 36);
+      ctx.fillStyle = INK; ctx.font = fnt('800', 30); ctx.fillText('이 QR을 찍으면 나와 비교됩니다', tx, qy + 48);
+      ctx.fillStyle = MUTE; ctx.font = fnt('500', 24); par(ctx, '상대가 이 QR을 찍고 자기 진단을 마치면 두 사람의 여섯 마음이 나란히 나옵니다. 누가 낫다가 아니라 서로 어느 마음을 잘 쓰는지를 봅니다.', tx, qy + 96, CW - PAD - tx, 36);
       rr(ctx, tx, qy + 214, CW - PAD - tx, 70, 18); ctx.fillStyle = INK; ctx.fill();
       ctx.fillStyle = PAPER; ctx.font = fnt('900', 30); ctx.fillText(d.code, tx + 24, qy + 262);
       footer(ctx, color);
