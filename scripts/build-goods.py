@@ -90,7 +90,7 @@ def items():
           <h3 class="gd-item__t">{esc(it['n'])}</h3>
           <p class="gd-item__d">{esc(it['d'])}</p>
           <p class="gd-item__u"><b>쓰임</b> {esc(it['use'])}</p>
-          <a class="gd-item__go" href="/contact.html">주문 문의 {ARROW}</a>
+          <p class="gd-item__links"><a class="gd-item__go" href="/goods/{it['k']}/">상세 · 사이즈 · 주문 {ARROW}</a></p>
         </div>
       </article>
 '''

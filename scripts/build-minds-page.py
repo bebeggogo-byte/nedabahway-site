@@ -43,6 +43,13 @@ def mind_sections():
 '''
     return out
 
+def cards():
+    out = ''
+    for i, m in enumerate(M):
+        c = COLOR[m['k']]
+        out += f'''<article class="mp-cardit" style="--mc:{c};"><img src="/assets/cards/mind-{m['k']}-front.png" width="1080" height="1920" alt="{esc(m['n'])} 카드 앞면" loading="lazy"><div class="mp-cardit__b"><b>0{i+1} {esc(m['n'])}</b><span>{m['en']}</span><p><a href="/assets/cards/mind-{m['k']}-front.png" download>앞면 저장</a><a href="/assets/cards/mind-{m['k']}-back.png" download>뒷면 저장</a></p></div></article>'''
+    return out
+
 def chips():
     return ''.join(f'<a href="#{m["k"]}" style="--mc:{COLOR[m["k"]]};"><img src="/assets/brand/type-{m["k"]}.png" width="60" height="60" alt="">{esc(m["n"])}</a>' for m in M)
 
@@ -94,6 +101,16 @@ PAGE = head(TITLE, DESC, URL, 'minds', f'<link rel="stylesheet" href="/assets/mi
         <li><b>4주 비교</b>최근 6회를 브라우저에 남겨 총량 변화와 마음별 ▲▼를 보여 줍니다.</li>
       </ol>
       <p class="mp-note">15문항, 약 4분. 우울·불안 같은 단어를 쓰지 않고, 총량이 30 미만이면 상담전화를 조용히 안내합니다. 개인 결과는 본인에게만, 기관에는 평균과 총량 변화만 갑니다. 네다바웨이가 직접 설계한 상태 진단 도구이며, 기관 성과 측정에는 표준화 척도를 함께 씁니다.</p>
+    </div>
+  </section>
+
+  <section class="mp-cards" id="cards">
+    <div class="wrap">
+      <p class="sec-kicker">Mind cards</p>
+      <h2 class="mp-h2">마음 카드 12장<span class="mp-dot" aria-hidden="true"></span></h2>
+      <p class="mp-lead">핸드폰 세로 사이즈(1080×1920)로 만든 디지털 카드입니다. 앞면은 정의·충전원·신호 3개·짝 마음, 뒷면은 이번 주 행동과 통찰. 잠금화면, 프로필, 소그룹 나눔에 그대로 씁니다. 진단을 마치면 요즘 가장 많이 쓰는 마음과 이번 주 늘릴 마음의 카드를 바로 받습니다.</p>
+      <div class="mp-cards__g">{cards()}</div>
+      <p class="mp-note">개인 사용과 교육 현장의 나눔 자료로 자유롭게 쓰세요. 판매·재가공은 문의 후에. 실물 카드 덱(36장)은 <a href="/goods/deck/">굿즈</a>에서 주문합니다.</p>
     </div>
   </section>
 
