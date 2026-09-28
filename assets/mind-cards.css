@@ -1,0 +1,27 @@
+/* mind-cards.css — 6 MINDS 카드 뷰어 (diagnosis result ⑩ · /minds/#cards) */
+.mc{margin-top:14px;}
+.mc-tabs{display:flex;flex-wrap:wrap;gap:8px;}
+.mc-tab{display:flex;flex-direction:column;gap:2px;padding:8px 14px;border:2px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);text-align:left;cursor:pointer;font:inherit;}
+.mc-tab span{font-size:11px;color:var(--text-3);}
+.mc-tab b{font-size:14px;}
+.mc-tab.is-on{border-color:var(--ink);box-shadow:4px 4px 0 var(--mc);}
+.mc-stage{margin-top:16px;display:flex;justify-content:center;perspective:1600px;}
+.mc-flip{position:relative;width:min(330px,80vw);aspect-ratio:9/16;border:0;background:none;padding:0;cursor:pointer;font:inherit;}
+.mc-flip__in{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.8,.2,1);}
+.mc-flip.is-back .mc-flip__in{transform:rotateY(180deg);}
+.mc-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;overflow:hidden;box-shadow:0 18px 40px rgba(20,16,12,.22),0 0 0 2px var(--ink);}
+.mc-face img{display:block;width:100%;height:100%;object-fit:cover;}
+.mc-face--back{transform:rotateY(180deg);}
+.mc-hint{margin-top:10px;text-align:center;font-size:12px;color:var(--text-3);}
+.mc-seg{margin-top:8px;display:flex;justify-content:center;gap:0;}
+.mc-seg__b{padding:7px 18px;border:2px solid var(--ink);background:var(--card);color:var(--ink);font:inherit;font-size:13px;font-weight:700;cursor:pointer;}
+.mc-seg__b:first-child{border-radius:999px 0 0 999px;}
+.mc-seg__b:last-child{border-radius:0 999px 999px 0;border-left:0;}
+.mc-seg__b.is-on{background:var(--ink);color:#f1ede5;}
+.mc-acts{margin-top:14px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+.mc-act{font-size:13px;}
+.mc-note{margin-top:12px;font-size:13px;line-height:1.7;color:var(--text-3);text-align:center;}
+.mc-note b{color:var(--ink);}
+.mc-toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);padding:10px 18px;border-radius:999px;background:var(--ink);color:#f1ede5;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:60;}
+.mc-toast.is-on{opacity:1;transform:translate(-50%,0);}
+@media (prefers-reduced-motion:reduce){.mc-flip__in{transition:none;}}
