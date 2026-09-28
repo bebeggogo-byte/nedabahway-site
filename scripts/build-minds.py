@@ -81,6 +81,7 @@ RESULT_JS = r'''
     var pattern='「'+esc(A.name)+'」에 몰아 쓰고 「'+esc(B.name)+'」을(를) 닫아 둔 2주'+(A.chg<=-1?'. 몰아 쓰는 통로가 고갈형이라 총량이 새고 있습니다':(A.chg>=1?'. 몰아 쓰는 통로가 충전형이라 버티는 힘은 있습니다':''))+'.';
     var h='<div class="dg-res" style="--rc:'+A.color+';"><p class="dg-res__k">요즘 나의 여섯 마음 · 해설지</p>';
     h+='<p class="ai-note" style="margin-top:4px;">'+fmt(when)+' · 지난 2주 기준 · 다음 진단 권장: 4주 뒤 ('+fmt(next)+') · 네다바웨이가 설계한 상태 진단</p>';
+    h+='<div class="dg-legend"><span><b>총량</b> 몸 3문항 60% + 충전 평균 40%</span><span><b>배분</b> 사용량 6 → 막대·쏠림</span><span><b>회복</b> 충전/고갈 6 → 색·네 자리</span><span><b>조정</b> 줄일 것 1 · 늘릴 것 1</span></div>';
     // ① 총량
     h+='<h3 class="dg-h3">① 에너지 총량</h3>';
     h+='<div class="dg-res__head" style="margin-top:10px;">'+ring(r.energy)+'<div><p class="dg-res__t" style="font-size:clamp(22px,3vw,30px);">'+r.energy+' / 100 · '+band+'</p><p class="dg-res__d" style="margin-top:6px;">'+esc(summary)+'</p><p class="dg-res__d" style="margin-top:4px;">총량의 60%는 잠·움직임·의욕에서, 40%는 여섯 마음을 쓰고 난 뒤의 상태에서 옵니다.</p></div></div>';
@@ -120,6 +121,14 @@ RESULT_JS = r'''
       h+='<div class="dg-chips" style="margin-top:10px;">'+rows.map(function(x){ return '<span'+(x.d>0?' style="background:#DCFCE7;"':(x.d<0?' style="background:#FFE4D6;"':''))+'>'+esc(x.n)+' '+(x.d>0?'▲':(x.d<0?'▼':'—'))+(x.d?Math.abs(x.d)+'%':'')+(x.c>0?' 충전↑':(x.c<0?' 충전↓':''))+'</span>'; }).join('')+'</div>';
     } else { h+='<p class="ai-note" style="margin-top:22px;">4주 뒤 다시 재면 이 자리에 지난번과의 변화가 나옵니다. 이 기기 브라우저에 최근 6회까지 남습니다.</p>'; }
     if(r.energy<30){ h+='<p class="ai-note" style="margin-top:14px;">요즘 많이 힘들다면 혼자 버티지 않아도 됩니다. 청소년은 1388, 성인은 1393(자살예방)·129(보건복지상담)에서 24시간 이야기할 수 있습니다.</p>'; }
+    // ⑨ 함께 보기
+    var code=encode(ans_of(r));
+    h+='<h3 class="dg-h3">⑨ 함께 보기 · 서로 비교</h3><p class="ai-note" style="margin-top:6px;">내 코드를 상대에게 보내고, 상대 코드를 아래에 넣으면 두 사람의 배분이 나란히 나옵니다. 누가 낫다가 아니라, 서로 어느 통로가 열려 있는지를 봅니다.</p>';
+    h+='<div class="dg-cmp"><div class="dg-cmp__me"><span>내 코드</span><b id="dgCode">'+code+'</b><button type="button" class="btn-ghost" id="dgCodeCopy">복사</button></div><div class="dg-cmp__in"><label for="dgOther">상대 코드</label><input id="dgOther" type="text" inputmode="latin" autocomplete="off" placeholder="예: M1A2B3C" maxlength="16"><button type="button" class="btn-go" id="dgCmpGo">비교하기</button></div><div id="dgCmpOut"></div></div>';
+    // ⑩ 마음 카드
+    var top=mA, hid=(hidden[0]?mindOf(hidden[0].k):null);
+    h+='<h3 class="dg-h3">⑩ 마음 카드 받기</h3><p class="ai-note" style="margin-top:6px;">핸드폰 세로 사이즈(1080×1920). 잠금화면이나 카톡 프로필에 두고 이번 주 한 가지를 기억합니다.</p>';
+    h+='<div class="dg-cardrow">'+[['요즘 가장 많이 쓰는 마음',top],['이번 주 늘릴 마음',mG]].map(function(x){ var mm=x[1]; return '<a class="dg-cardlink" href=\x27/assets/cards/mind-'+mm.k+'-front.png\x27 download style="--cc:'+mm.color+';"><img src=\x27/assets/cards/mind-'+mm.k+'-front.png\x27 width="1080" height="1920" alt="" loading="lazy"><span>'+esc(x[0])+'</span><b>'+esc(mm.name)+' 카드 저장</b></a>'; }).join('')+'<a class="dg-cardlink dg-cardlink--all" href=\x27/minds/#cards\x27><span>여섯 장 전부</span><b>카드 세트 보기 &#8599;</b></a></div>';
     h+='<div class="dg-actions"><button type="button" class="btn-go" id="dgCopy">해설지 복사</button><button type="button" class="btn-ghost" id="dgRetry">다시 진단하기</button></div></div>';
     var prog = (r.energy<50||stateOf(mindOf('enjoyer')?r.minds.filter(function(m){return m.k==='enjoyer';})[0]:B).k==='눌려 있음') ? {t:'회복이 먼저인 상태입니다',d:'총량이 낮거나 즐기기가 눌려 있을 때는 새 계획보다 30분 무료 상담에서 이번 주 회복 리듬부터 함께 잡습니다.',a:'/contact.html#consult-form',al:'무료 30분 상담 신청',b:'/personal.html',bl:'퍼스널 트레이닝 코스 보기'}
       : (overload.some(function(m){return m.k==='maker'||m.k==='thinker';}) ? {t:'만들기·생각이 과부하라면 방식을 바꿀 때입니다',d:'학습 습관 코스는 양을 늘리는 대신 끝내는 경험을 되찾는 데서 시작합니다. 학습 유형 진단과 함께 보면 더 정확합니다.',a:'/personal.html#study',al:'학습 습관 코스 보기',b:'/diagnosis/learning/',bl:'학습 유형 진단 하기'}
@@ -130,6 +139,31 @@ RESULT_JS = r'''
     $('dgResult').innerHTML=h; NWD.show('dgResult');
     $('dgCopy').addEventListener('click',function(){ var txt='[요즘 나의 여섯 마음 · 해설지] '+fmt(when)+'\n에너지 총량 '+r.energy+'/100 ('+band+') · 충전 '+chargers.length+' 고갈 '+drainers.length+' 쏠림 '+spread+'%\n'+sorted.map(function(m){return m.name+' '+Math.round(m.use/4*100)+'%'+(chgWord(m.chg)?'('+chgWord(m.chg)+')':'')+' '+QUAD[quad(m)].k;}).join(' · ')+'\n패턴: '+pattern.replace(/<[^>]+>/g,'')+'\n줄일 것: '+L.name+' — '+mL.less+'\n늘릴 것: '+G.name+' — '+mG.more+'\n몸의 바닥: 잠 '+r.total.sleep+' 움직임 '+r.total.move+' 의욕 '+r.total.drive+' (각 /4)\n— nedabah.org/diagnosis/minds/'; NWD.copy(txt,$('dgCopy')); });
     $('dgRetry').addEventListener('click',function(){ start(); });
+    $('dgCodeCopy').addEventListener('click',function(){ NWD.copy('요즘 나의 여섯 마음 · 내 코드 '+code+' — nedabah.org/diagnosis/minds/ 에서 비교할 수 있어요', $('dgCodeCopy')); });
+    $('dgCmpGo').addEventListener('click',function(){ var v=($('dgOther').value||'').trim().toUpperCase(); var oa=decode(v); if(!oa){ $('dgCmpOut').innerHTML='<p class="ai-note" style="margin-top:10px;color:#E11D48;">코드를 읽을 수 없습니다. M으로 시작하는 8자 안팎의 코드인지 확인해 주세요.</p>'; return; } $('dgCmpOut').innerHTML=compareHtml(r, compute(oa)); });
+    var qs=new URLSearchParams(location.search).get('c'); if(qs){ $('dgOther').value=qs; $('dgCmpGo').click(); }
+  }
+  function ans_of(r){ var a=[]; r.minds.forEach(function(m){ a.push(m.use, m.chg); }); a.push(r.total.sleep, r.total.move, r.total.drive); return a; }
+  function encode(a){ var n=0n; for(var i=0;i<15;i++){ var v=a[i]; if(i<12&&i%2===1) v=v+2; n=n*5n+BigInt(v); } var s=n.toString(36).toUpperCase(); while(s.length<10) s='0'+s; return 'M'+s; }
+  function decode(str){ if(!/^M[0-9A-Z]{10}$/.test(str)) return null; var n=0n; var s=str.slice(1).toLowerCase(); for(var i=0;i<s.length;i++){ n=n*36n+BigInt(parseInt(s[i],36)); } var a=[]; for(var j=14;j>=0;j--){ var v=Number(n%5n); n=n/5n; if(j<12&&j%2===1) v=v-2; a[j]=v; } if(n!==0n) return null; return a; }
+  function compareHtml(me, you){
+    var h='<div class="dg-cmp__grid" style="margin-top:14px;">';
+    h+='<div class="dg-cmp__tot"><span>에너지 총량</span><b>나 '+me.energy+'</b><b>상대 '+you.energy+'</b><small>'+(Math.abs(me.energy-you.energy)<10?'비슷한 총량. 배분이 어떻게 다른지 보세요.':(me.energy>you.energy?'내 총량이 높습니다. 상대의 새는 통로를 먼저 물어보세요.':'상대 총량이 높습니다. 상대의 충전 통로를 물어보세요.'))+'</small></div>';
+    var notes=[];
+    me.minds.forEach(function(a,i){ var b=you.minds[i]; var pa=Math.round(a.use/4*100), pb=Math.round(b.use/4*100); var qa=quad(a), qb=quad(b);
+      h+='<div class="dg-cmp__row" style="--mc:'+a.color+';"><span class="dg-cmp__n">'+esc(a.name)+'</span><span class="dg-cmp__bar"><i style="width:'+pa+'%;background:'+chgColor(a.chg)+';"></i><em>나 '+pa+'%</em></span><span class="dg-cmp__bar"><i style="width:'+pb+'%;background:'+chgColor(b.chg)+';"></i><em>상대 '+pb+'%</em></span></div>';
+      if(qa==='engine'&&qb==='hidden') notes.push('「'+esc(a.name)+'」은 내 엔진이고 상대에겐 숨은 자원입니다. 내가 어떻게 쓰는지 들려주면 상대가 가장 싸게 배웁니다.');
+      else if(qb==='engine'&&qa==='hidden') notes.push('「'+esc(a.name)+'」은 상대의 엔진이고 내겐 숨은 자원입니다. 상대에게 어떻게 쓰는지 물어보세요.');
+      else if(qa==='overload'&&qb==='overload') notes.push('둘 다 「'+esc(a.name)+'」이 과부하입니다. 서로 재촉하지 말고 이번 주는 같이 줄입니다.');
+      else if(Math.abs(a.use-b.use)>=2) notes.push('「'+esc(a.name)+'」 사용량 차이가 큽니다(나 '+pa+'% · 상대 '+pb+'%). 많이 쓰는 쪽이 먼저 이야기하고, 적게 쓰는 쪽이 궁금한 것 하나를 묻습니다.');
+      else if(qa==='overload'&&qb==='engine') notes.push('같은 「'+esc(a.name)+'」을 나는 고갈로, 상대는 충전으로 씁니다. 양이 아니라 방식이 다릅니다. 상대의 방식을 물어보세요.');
+      else if(qb==='overload'&&qa==='engine') notes.push('같은 「'+esc(a.name)+'」을 상대는 고갈로, 나는 충전으로 씁니다. 내 방식을 나눠 주세요.');
+    });
+    h+='</div>';
+    if(!notes.length) notes.push('배분이 비슷합니다. 서로의 "이번 주 한 가지"를 바꿔서 해 보세요.');
+    h+='<div class="dg-card" style="--cc:#1D4ED8;margin-top:12px;"><p class="dg-card__k">서로를 이해하는 문장</p><p class="dg-card__d">'+notes.slice(0,4).map(function(x){return '· '+x;}).join('<br>')+'</p></div>';
+    h+='<p class="ai-note" style="margin-top:10px;">막대는 사용량, 색은 쓰고 난 뒤의 상태(초록 충전 · 빨강 고갈 · 회색 그대로). 비교는 우열이 아니라 서로 열린 통로를 찾는 일입니다.</p>';
+    return h;
   }
 '''
 
@@ -160,9 +194,15 @@ def page():
     <div class="dg-top" hidden><div class="dg-top__bar"><div class="dg-top__fill"></div></div><span class="dg-top__n">0 / 15</span></div>
 
     <div id="dgIntro" class="dg-intro">
-      <p class="dg-intro__t">여섯 마음은 여섯 개의 통로입니다</p>
-      <p class="dg-intro__d">탐험·만들기·연결·돕기·생각·즐기기. 누구나 여섯을 다 갖고 있고, 요즘 어느 통로로 에너지를 많이 흘려보내는지가 다를 뿐입니다. 어떤 통로는 쓸수록 충전되고 어떤 통로는 쓸수록 고갈됩니다. 결과는 그 배분과 총량, 그리고 이번 주에 줄일 것 하나·늘릴 것 하나입니다.</p>
-      <div class="dg-intro__cta"><button type="button" class="btn-go" id="dgStart">진단 시작 {ARROW}</button><button type="button" class="btn-link" id="dgResume" hidden style="background:none;border:0;cursor:pointer;">지난 결과 다시 보기 &#8599;</button></div>
+      <p class="dg-intro__t">에너지 배분은 눈에 보이지 않아서, 잽니다</p>
+      <p class="dg-intro__d">바쁜 것과 채워지는 것은 다릅니다. 같은 하루를 살아도 어떤 마음은 쓸수록 힘이 나고 어떤 마음은 쓸수록 빠집니다. 그 차이를 보지 못하면 "더 열심히"만 남습니다. 이 진단은 요즘 나를 관찰하는 도구이고, 결과를 나눠 보면 서로를 이해하는 언어가 됩니다.</p>
+      <div class="dg-why">
+        <div class="dg-why__c"><b>왜 재나</b><span>자기결정이론(Ryan &amp; Deci)은 자율성·유능감·관계성이 채워질 때 사람이 스스로 움직인다고 말합니다. 어느 마음이 눌려 있는지 알면 회복의 첫 줄이 정해집니다.</span></div>
+        <div class="dg-why__c"><b>무엇을 재나 · 세 층</b><span>① 총량(잠·움직임·의욕 3문항) ② 배분(여섯 마음 사용량 6문항) ③ 회복(쓰고 난 뒤 충전·고갈 6문항). 겹치지 않고 빠짐없이, 15문항.</span></div>
+        <div class="dg-why__c"><b>어떻게 진행하나</b><span>지난 2주를 떠올리며 고르면 다음으로 넘어갑니다. 약 4분. 해설지 8단과 마음 카드가 나오고, 코드로 다른 사람과 비교할 수 있습니다. 4주 뒤 다시 잽니다.</span></div>
+      </div>
+      <p class="ai-note" style="margin-top:14px;">유형을 판정하지 않습니다. 결과는 이 기기 브라우저에만 저장되고, 비교는 코드를 서로 보여 줄 때만 됩니다.</p>
+      <div class="dg-intro__cta"><button type="button" class="btn-go" id="dgStart">진단 시작 {ARROW}</button><button type="button" class="btn-link" id="dgResume" hidden style="background:none;border:0;cursor:pointer;">지난 결과 다시 보기 &#8599;</button><a class="btn-link" href="/minds/">여섯 마음 먼저 읽기 &#8599;</a></div>
     </div>
 
     <div id="dgQuiz" hidden></div>

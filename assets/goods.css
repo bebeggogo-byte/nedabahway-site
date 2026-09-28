@@ -30,7 +30,7 @@
 .gd-item__d{font-size:14.5px;line-height:1.75;color:var(--text-2);}
 .gd-item__u{font-size:13.5px;color:var(--text-3);}
 .gd-item__u b{color:var(--ink);margin-right:6px;}
-.gd-item__go{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:12px;font-weight:700;color:var(--ink);}
+.gd-item__go{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--ink);}
 .gd-item__go svg{width:18px;height:18px;transition:transform .2s;}
 .gd-item__go:hover{color:var(--cobalt);}
 .gd-item__go:hover svg{transform:translateX(4px);}
@@ -121,3 +121,51 @@
 .gd-hero__sm--2{right:6%;bottom:-6%;transform:rotate(5deg);box-shadow:6px 6px 0 #F472B6;}
 @media (max-width:1000px){.gd-hero__art--photo{min-height:0;aspect-ratio:1;max-width:560px;}}
 @media (max-width:760px){.gd-hero__sm--2{bottom:-2%;}}
+
+/* ---------- goods detail pages ---------- */
+.gdd-switch{position:sticky;top:64px;z-index:20;background:rgba(241,237,229,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.gdd-switch .wrap{display:flex;align-items:center;gap:4px 14px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none;}
+.gdd-switch a{flex:0 0 auto;font-family:var(--display);font-weight:700;font-size:13px;color:var(--text-3);padding:6px 10px;border-radius:999px;}
+.gdd-switch a[aria-current="page"]{background:var(--ink);color:#f1ede5;}
+.gdd-switch__all{color:var(--ink) !important;margin-right:6px;}
+.gdd-hero{padding:48px 0 56px;background:var(--bg);}
+.gdd-hero__in{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;}
+.gdd-gal{display:grid;gap:14px;}
+.gdd-gal img{width:100%;height:auto;border:2px solid var(--ink);border-radius:22px;box-shadow:8px 8px 0 var(--gc);background:#fff;}
+.gdd-gal img + img{max-width:60%;}
+.gdd-h1{margin-top:16px;font-family:var(--hand);font-weight:700;font-size:clamp(44px,6vw,76px);line-height:1;letter-spacing:-.02em;color:var(--ink);}
+.gdd-lead{margin-top:16px;font-size:16.5px;line-height:1.75;color:var(--text-2);}
+.gdd-kv{margin-top:22px;display:grid;gap:0;border-top:2px solid var(--ink);}
+.gdd-kv div{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.6;}
+.gdd-kv dt{font-weight:700;color:var(--ink);}
+.gdd-kv dd{margin:0;color:var(--text-2);}
+.gdd-cta{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:22px;}
+.gdd-note{margin-top:14px;font-size:12.5px;line-height:1.6;color:var(--text-3);}
+.gdd-sec{padding:64px 0;background:var(--bg);}
+.gdd-sec--alt{background:var(--bg-2);}
+.gdd-two{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.gdd-h2{font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:.02em;color:var(--ink);padding-bottom:10px;border-bottom:2px solid var(--ink);}
+.gdd-h2 + .gdd-kv{border-top:0;margin-top:0;}
+.gdd-tw{margin-top:12px;overflow-x:auto;}
+.gdd-t{width:100%;border-collapse:collapse;font-size:14px;}
+.gdd-t th,.gdd-t td{padding:10px 10px;text-align:left;border-bottom:1px solid var(--line);line-height:1.5;}
+.gdd-t thead th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);}
+.gdd-t tbody th{font-weight:700;color:var(--ink);white-space:nowrap;}
+.gdd-t td{color:var(--text-2);}
+.gdd-list{list-style:none;margin-top:12px;display:grid;gap:6px;}
+.gdd-list li{padding:9px 12px;border-radius:10px;background:var(--card);border:1px solid var(--line);font-size:14px;color:var(--text-2);}
+.gdd-faq{margin-top:10px;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:0 14px;}
+.gdd-faq summary{cursor:pointer;padding:12px 0;font-weight:700;font-size:14.5px;color:var(--ink);}
+.gdd-faq p{padding:0 0 14px;font-size:14px;line-height:1.7;color:var(--text-2);}
+.gdd-form{margin-top:16px;padding-left:22px;display:grid;gap:6px;font-size:15px;color:var(--text-2);}
+.gdd-form b{color:var(--ink);}
+.gd-item__go + .gd-item__go{margin-left:18px;}
+.gd-item__links{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:auto;padding-top:12px;}
+@media (max-width:900px){
+  .gdd-switch{top:56px;}
+  .gdd-hero{padding:28px 0 40px;}
+  .gdd-hero__in,.gdd-two{grid-template-columns:1fr;gap:24px;}
+  .gdd-gal img + img{max-width:100%;}
+  .gdd-kv div{grid-template-columns:96px 1fr;}
+  .gdd-sec{padding:44px 0;}
+}
