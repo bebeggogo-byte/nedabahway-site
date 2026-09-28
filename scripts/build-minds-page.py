@@ -44,7 +44,7 @@ def mind_sections():
     return out
 
 def chips():
-    return ''.join(f'<a href="#{m["k"]}" style="--mc:{COLOR[m["k"]]};"><img src="/assets/brand/type-{m["k"]}.png" width="60" height="60" alt="">{esc(m["n"])}</a>' for m in M)
+    return ''.join(f'<a href="#cards" data-open-card="{m["k"]}" style="--mc:{COLOR[m["k"]]};"><img src="/assets/brand/type-{m["k"]}.png" width="60" height="60" alt="">{esc(m["n"])}</a>' for m in M)
 
 JSONLD = json.dumps({
  "@context": "https://schema.org", "@type": "WebPage", "name": "6 MINDS 소개", "url": URL, "inLanguage": "ko", "description": DESC,
@@ -109,7 +109,6 @@ PAGE = head(TITLE, DESC, URL, 'minds', f'<link rel="stylesheet" href="/assets/mi
     </div>
   </section>
 
-{mind_sections()}
   <section class="mp-how" id="how">
     <div class="wrap">
       <p class="sec-kicker">How it works</p>
@@ -149,13 +148,13 @@ PAGE = head(TITLE, DESC, URL, 'minds', f'<link rel="stylesheet" href="/assets/mi
     <div class="wrap">
       <p class="sec-kicker">Mind cards</p>
       <h2 class="mp-h2">마음 카드, 여섯 장 모으기<span class="mp-dot" aria-hidden="true"></span></h2>
-      <p class="mp-lead">진단 한 번에 카드 한 장. 그때 가장 많이 쓴 마음의 카드가 열립니다. 카드는 사는 방식으로 모읍니다. 즐기는 마음 카드를 열려면 이유 없이 좋은 시간이 가장 많았던 2주가 필요합니다. 앞면을 누르면 뒷면으로 돌아가고, 앞·뒤를 한 장으로 받습니다. 인스타그램에는 <b>마음 카드만</b> 올라가고 내 총량과 배분은 나가지 않습니다. <b>#네다바웨이 #식스마인드</b>로 같은 카드를 모으는 사람들과 이어집니다.</p>
+      <p class="mp-lead">여섯 마음의 정의·신호·통찰·이번 주 행동은 카드 앞·뒷면에 다 있습니다. 아이콘을 누르면 그 카드를 봅니다. 진단 한 번에 카드 한 장. 그때 가장 많이 쓴 마음의 카드가 열립니다. 카드는 사는 방식으로 모읍니다. 즐기는 마음 카드를 열려면 이유 없이 좋은 시간이 가장 많았던 2주가 필요합니다. 앞면을 누르면 뒷면으로 돌아가고, 앞·뒤를 한 장으로 받습니다. 인스타그램에는 <b>마음 카드만</b> 올라가고 내 총량과 배분은 나가지 않습니다. <b>#네다바웨이 #식스마인드</b>로 같은 카드를 모으는 사람들과 이어집니다.</p>
       <div id="mpCardCol"></div>
       <div id="mpCardView" hidden></div>
       <p class="mp-note">아직 카드가 없다면 <a href="/diagnosis/minds/">4분 진단</a>에서 첫 장을 받습니다. 개인 사용과 교육 현장의 나눔 자료로 자유롭게 쓰세요. 실물 카드 덱(36장)은 <a href="/goods/deck/">굿즈</a>에서 주문합니다.</p>
     </div>
   </section>
-<script>document.addEventListener('DOMContentLoaded',function(){{ if(!window.NWCards) return; var col=document.getElementById('mpCardCol'), view=document.getElementById('mpCardView'); var FULL={{explorer:'탐험하는 마음',maker:'만드는 마음',connector:'연결하는 마음',supporter:'돕는 마음',thinker:'생각하는 마음',enjoyer:'즐기는 마음'}}; var have=NWCards.collected(); var show=function(k){{ view.hidden=false; NWCards.card(view,{{k:k,title:'모은 카드 · '+FULL[k]}}); view.scrollIntoView({{behavior:'smooth',block:'center'}}); }}; NWCards.collection(col,{{have:have,onPick:show}}); }});</script>
+<script>document.addEventListener('DOMContentLoaded',function(){{ if(!window.NWCards) return; var col=document.getElementById('mpCardCol'), view=document.getElementById('mpCardView'); var FULL={{explorer:'탐험하는 마음',maker:'만드는 마음',connector:'연결하는 마음',supporter:'돕는 마음',thinker:'생각하는 마음',enjoyer:'즐기는 마음'}}; var have=NWCards.collected(); var show=function(k,scroll){{ var got=have.indexOf(k)>=0; view.hidden=false; NWCards.card(view,{{k:k,title:(got?'모은 카드 · ':'미리 보기 · ')+FULL[k],locked:!got}}); if(scroll!==false) view.scrollIntoView({{behavior:'smooth',block:'center'}}); }}; NWCards.collection(col,{{have:have,onPick:show,viewLocked:true}}); document.querySelectorAll('[data-open-card]').forEach(function(a){{ a.addEventListener('click',function(){{ show(a.getAttribute('data-open-card')); }}); }}); show(have[0]||'explorer',false); }});</script>
 
   <section class="mp-use">
     <div class="wrap">

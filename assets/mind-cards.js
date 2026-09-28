@@ -65,8 +65,10 @@
     var hint = el('p', 'mc-hint', '카드를 누르면 뒷면으로 돌아갑니다');
     var acts = el('div', 'mc-acts');
     var ig = el('button', 'btn-dark mc-act', '인스타그램에 올리기'), dl = el('button', 'btn-go mc-act', '카드 받기'), cp = el('button', 'btn-ghost mc-act', '캡션 복사');
-    ig.type = dl.type = cp.type = 'button'; acts.appendChild(ig); acts.appendChild(dl); acts.appendChild(cp);
-    var note = el('p', 'mc-note', opts.sub || ('인스타그램에는 <b>마음 카드만</b> 올라갑니다. 내 총량과 배분은 이 화면에만 남고 밖으로 나가지 않습니다. 캡션에 <b>' + HASH + '</b>를 붙이면 같은 카드를 모으는 사람들과 이어집니다.'));
+    ig.type = dl.type = cp.type = 'button';
+    if (opts.locked) { var go = el('a', 'btn-dark mc-act', '진단으로 이 카드 열기'); go.href = '/diagnosis/minds/'; acts.appendChild(go); }
+    else { acts.appendChild(ig); acts.appendChild(dl); acts.appendChild(cp); }
+    var note = el('p', 'mc-note', opts.sub || (opts.locked ? ('아직 모으지 못한 카드입니다. ' + esc(m.hint) + '에 진단하면 열리고, 그때 받기와 인스타그램 올리기가 됩니다.') : '인스타그램에는 <b>마음 카드만</b> 올라갑니다. 내 총량과 배분은 이 화면에만 남고 밖으로 나가지 않습니다. 캡션에 <b>' + HASH + '</b>를 붙이면 같은 카드를 모으는 사람들과 이어집니다.'));
     host.appendChild(stage); host.appendChild(hint); host.appendChild(acts); host.appendChild(note);
     flip.addEventListener('click', function () { face = face === 'front' ? 'back' : 'front'; flip.classList.toggle('is-back', face === 'back'); });
     dl.addEventListener('click', function () { download(src(m.k, 'both'), '6minds-' + m.k + '-card.png').then(function () { toast(m.n + ' 카드를 앞·뒤 한 장으로 저장했습니다'); }); });
@@ -89,7 +91,7 @@
       b.type = 'button'; b.style.setProperty('--mc', m.c);
       b.innerHTML = '<span class="mc-col__img"><img src="' + thumb(m.k) + '" width="360" height="640" alt="" loading="lazy"></span><b>' + esc(m.n) + '</b><small>' + (got ? '모았음' : '아직') + '</small>';
       b.setAttribute('aria-label', m.n + (got ? ' 카드, 모았음' : ' 카드, 아직 모으지 못함'));
-      b.addEventListener('click', function () { if (got) { if (opts.onPick) opts.onPick(m.k); } else { toast(m.n + ' 카드는 ' + m.hint + '에 진단하면 열립니다'); } });
+      b.addEventListener('click', function () { if (got || opts.viewLocked) { if (opts.onPick) opts.onPick(m.k); } else { toast(m.n + ' 카드는 ' + m.hint + '에 진단하면 열립니다'); } });
       g.appendChild(b);
     });
     host.appendChild(g);
