@@ -265,6 +265,7 @@ document.addEventListener('DOMContentLoaded',function(){{
     return r;
   }}
 __RESULT_JS__
+  if(window.NWCards) NWCards.restoreFromUrl();
   $('dgStart').addEventListener('click',start);
   var last=NWD.load('minds');
   if(last&&last.a&&last.a.length===N){{ $('dgResume').hidden=false; $('dgResume').addEventListener('click',function(){{ showResult(compute(last.a), new Date(last.at), prevOf(last.hist||[])); }}); }}

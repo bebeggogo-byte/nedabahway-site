@@ -21,9 +21,42 @@
   function src(k, face) { return '/assets/cards/mind-' + k + '-' + face + '.png'; }
   function thumb(k, face) { return '/assets/cards/thumb/mind-' + k + '-' + (face || 'front') + '.jpg'; }
 
+  // ---------- persistence without login ----------
+  // (1) ask the browser to keep this origin's storage (skips eviction under pressure; Safari home-screen apps are exempt from the 7-day rule)
+  function persist() { try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {}); } catch (e) {} }
+  // (2) answers <-> 'M' + 10 base36 chars (same scheme as the diagnosis compare code)
+  function encA(a) { var n = 0n; for (var i = 0; i < 15; i++) { var v = a[i]; if (i < 12 && i % 2 === 1) v = v + 2; n = n * 5n + BigInt(v); } var t = n.toString(36).toUpperCase(); while (t.length < 10) t = '0' + t; return 'M' + t; }
+  function decA(str) { if (!/^M[0-9A-Z]{10}$/.test(str)) return null; var n = 0n, t = str.slice(1).toLowerCase(); for (var i = 0; i < t.length; i++) n = n * 36n + BigInt(parseInt(t[i], 36)); var a = []; for (var j = 14; j >= 0; j--) { var v = Number(n % 5n); n = n / 5n; if (j < 12 && j % 2 === 1) v = v - 2; a[j] = v; } return n === 0n ? a : null; }
+  function diagLoad() { try { return JSON.parse(localStorage.getItem('nw:diag:minds') || 'null'); } catch (e) { return null; } }
+  function diagSave(o) { try { localStorage.setItem('nw:diag:minds', JSON.stringify(o)); } catch (e) {} }
+  // (3) backup link: cards as a 6-bit mask + history as Mcode+days, e.g. /minds/?k=1B&h=M0004DWJYXW.KQ3F
+  function backupLink() {
+    var mask = 0; collected().forEach(function (k) { var i = MINDS.map(function (m) { return m.k; }).indexOf(k); if (i >= 0) mask |= (1 << i); });
+    var st = diagLoad() || {}; var hist = (st.hist || []).filter(function (h) { return h && h.a && h.a.length === 15; }).slice(-6);
+    var h = hist.map(function (x) { var d = Math.max(0, Math.round(new Date(x.at).getTime() / 86400000)); return encA(x.a) + d.toString(36).toUpperCase(); }).join('.');
+    return 'https://www.nedabah.org/minds/?k=' + mask.toString(36).toUpperCase() + (h ? '&h=' + h : '');
+  }
+  function shortBackup() { var mask = 0; collected().forEach(function (k) { var i = MINDS.map(function (m) { return m.k; }).indexOf(k); if (i >= 0) mask |= (1 << i); }); return 'nedabah.org/minds/?k=' + mask.toString(36).toUpperCase(); }
+  // (4) restore from a pasted link or the current URL; merges, never overwrites
+  function restoreFrom(urlish) {
+    var q; try { q = new URL(String(urlish), location.href).searchParams; } catch (e) { return 0; }
+    var k = q.get('k'), h = q.get('h'), n = 0;
+    if (k && /^[0-9A-Z]{1,2}$/i.test(k)) { var mask = parseInt(k, 36); MINDS.forEach(function (m, i) { if (mask & (1 << i)) { if (collect(m.k)) n++; } }); }
+    if (h) {
+      var st = diagLoad() || {}; var hist = st.hist || []; var seen = {}; hist.forEach(function (x) { seen[x.at] = 1; });
+      h.split('.').forEach(function (tok) { var m = /^(M[0-9A-Z]{10})([0-9A-Z]{1,5})$/.exec(tok); if (!m) return; var a = decA(m[1]); if (!a) return; var at = new Date(parseInt(m[2], 36) * 86400000).toISOString(); if (seen[at]) return; hist.push({ a: a, at: at }); seen[at] = 1; n++; });
+      hist.sort(function (x, y) { return new Date(x.at) - new Date(y.at); }); hist = hist.slice(-6);
+      var last = hist[hist.length - 1]; if (last && (!st.at || new Date(last.at) >= new Date(st.at))) { st.a = last.a; st.at = last.at; }
+      st.hist = hist; diagSave(st);
+    }
+    if (n) persist();
+    return n;
+  }
+  function restoreFromUrl() { if (!/[?&]k=/.test(location.search)) return 0; var n = restoreFrom(location.href); try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} if (n) toast('모은 카드와 기록을 되살렸습니다'); return n; }
+
   // ---------- collection storage ----------
   function collected() { try { var v = JSON.parse(localStorage.getItem(KEY) || '[]'); return Array.isArray(v) ? v.filter(function (k) { return mind(k); }) : []; } catch (e) { return []; } }
-  function collect(k) { var s = collected(); var isNew = s.indexOf(k) < 0; if (isNew) { s.push(k); try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} } return isNew; }
+  function collect(k) { var s = collected(); var isNew = s.indexOf(k) < 0; if (isNew) { s.push(k); try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} persist(); } return isNew; }
   // 이전 결과 기록에서 가장 많이 쓴 마음을 되살려 카드로 인정 (topOf: answers → mind key)
   function backfill(hist, topOf) { (hist || []).forEach(function (h) { try { var k = topOf(h.a); if (k) collect(k); } catch (e) {} }); return collected(); }
 
@@ -33,7 +66,7 @@
   function copyText(t) { if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(t); return new Promise(function (res) { var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); res(); }); }
   function caption(m) {
     var count = collected().length;
-    return '네다바웨이 6 MINDS로 요즘 내 에너지 총량과 흐름을 봤어요. 이번 카드는 「' + m.n + '」. 여섯 마음 카드 ' + count + '/6 모으는 중\n' + HASH + '\n' + LINK;
+    return '네다바웨이 6 MINDS로 요즘 내 에너지 총량과 흐름을 봤어요. 이번 카드는 「' + m.n + '」. 여섯 마음 카드 ' + count + '/6 모으는 중\n' + HASH + '\n' + shortBackup();
   }
   function share(m) {
     var text = caption(m);
@@ -46,6 +79,8 @@
     });
     function fallback() { return copyText(text).then(function () { return download(src(m.k, 'front'), '6minds-' + m.k + '.png'); }).then(function () { return '카드를 저장하고 캡션을 복사했습니다. 인스타그램에서 올려 주세요'; }); }
   }
+
+  function threads(m) { var t = '요즘 나는 「' + m.n + '」을 가장 많이 쓰고 있대요. 당신은 어느 마음을 가장 많이 쓰고 있나요? 4분 진단 → ' + shortBackup().replace('/minds/?k=', '/diagnosis/minds/#') + '\n' + HASH; window.open('https://www.threads.net/intent/post?text=' + encodeURIComponent(t), '_blank', 'noopener'); return '스레드 글쓰기를 열었습니다. 카드 이미지는 「카드 받기」로 저장해 붙이세요'; }
 
   // ---------- single card viewer ----------
   // opts: { k, title, sub, isNew }
@@ -64,15 +99,16 @@
     if (opts.isNew) stage.appendChild(el('span', 'mc-new', 'NEW'));
     var hint = el('p', 'mc-hint', '카드를 누르면 뒷면으로 돌아갑니다');
     var acts = el('div', 'mc-acts');
-    var ig = el('button', 'btn-dark mc-act', '인스타그램에 올리기'), dl = el('button', 'btn-go mc-act', '카드 받기'), cp = el('button', 'btn-ghost mc-act', '캡션 복사');
-    ig.type = dl.type = cp.type = 'button';
+    var ig = el('button', 'btn-dark mc-act', '인스타그램에 올리기'), th = el('button', 'btn-dark mc-act', '스레드에 올리기'), dl = el('button', 'btn-go mc-act', '카드 받기'), cp = el('button', 'btn-ghost mc-act', '캡션 복사');
+    ig.type = th.type = dl.type = cp.type = 'button';
     if (opts.locked) { var go = el('a', 'btn-dark mc-act', '진단으로 이 카드 열기'); go.href = '/diagnosis/minds/'; acts.appendChild(go); }
-    else { acts.appendChild(ig); acts.appendChild(dl); acts.appendChild(cp); }
+    else { acts.appendChild(ig); acts.appendChild(th); acts.appendChild(dl); acts.appendChild(cp); }
     var note = el('p', 'mc-note', opts.sub || (opts.locked ? ('아직 모으지 못한 카드입니다. ' + esc(m.hint) + '에 진단하면 열리고, 그때 받기와 인스타그램 올리기가 됩니다.') : '인스타그램에는 <b>마음 카드만</b> 올라갑니다. 내 총량과 배분은 이 화면에만 남고 밖으로 나가지 않습니다. 캡션에 <b>' + HASH + '</b>를 붙이면 같은 카드를 모으는 사람들과 이어집니다.'));
     host.appendChild(stage); host.appendChild(hint); host.appendChild(acts); host.appendChild(note);
     flip.addEventListener('click', function () { face = face === 'front' ? 'back' : 'front'; flip.classList.toggle('is-back', face === 'back'); });
     dl.addEventListener('click', function () { download(src(m.k, 'both'), '6minds-' + m.k + '-card.png').then(function () { toast(m.n + ' 카드를 앞·뒤 한 장으로 저장했습니다'); }); });
     ig.addEventListener('click', function () { share(m).then(toast); });
+    th.addEventListener('click', function () { toast(threads(m)); });
     cp.addEventListener('click', function () { copyText(caption(m)).then(function () { toast('캡션을 복사했습니다'); }); });
   }
 
@@ -96,8 +132,15 @@
     });
     host.appendChild(g);
     var missing = MINDS.filter(function (m) { return have.indexOf(m.k) < 0; });
+    if (have.length) {
+      var keep = el('div', 'mc-keep', '<b>내 카드 지키기</b><p>로그인이 없어서 카드는 이 브라우저에만 남습니다. 아래 링크를 카카오톡 「나에게 보내기」나 메모에 붙여 두면, 어느 기기·어느 브라우저에서든 그 링크를 눌러 카드와 기록을 그대로 되살립니다. 인스타그램 캡션에도 같은 링크가 들어가니 내 게시물이 곧 백업입니다.</p>');
+      var row = el('div', 'mc-keep__row'); var lk = el('button', 'btn-go mc-act', '지키기 링크 복사'), rs = el('button', 'btn-ghost mc-act', '링크로 되살리기'); lk.type = rs.type = 'button'; row.appendChild(lk); row.appendChild(rs); keep.appendChild(row);
+      lk.addEventListener('click', function () { copyText(backupLink()).then(function () { toast('지키기 링크를 복사했습니다. 나에게 보내기로 보관하세요'); }); });
+      rs.addEventListener('click', function () { var v = prompt('지키기 링크를 붙여 넣으세요'); if (!v) return; var n = restoreFrom(v.trim()); toast(n ? '되살렸습니다. 새로 고침하면 반영됩니다' : '되살릴 것이 없거나 링크가 맞지 않습니다'); if (n) setTimeout(function () { location.reload(); }, 900); });
+      host.appendChild(keep);
+    }
     host.appendChild(el('p', 'mc-col__f', have.length >= 6 ? '여섯 장을 다 모았습니다. 여섯 마음을 고루 살아 본 사람만 받는 세트입니다.' : '카드는 사는 방식으로 모읍니다. 진단 한 번에, 그때 가장 많이 쓴 마음 카드 한 장. 다음 카드는 <b>' + esc(missing[0].n) + '</b>. ' + esc(missing[0].hint) + '에 다시 진단해 보세요.'));
   }
 
-  window.NWCards = { card: card, collection: collection, collected: collected, collect: collect, backfill: backfill, MINDS: MINDS, HASH: HASH };
+  window.NWCards = { card: card, collection: collection, collected: collected, collect: collect, backfill: backfill, backupLink: backupLink, restoreFrom: restoreFrom, restoreFromUrl: restoreFromUrl, MINDS: MINDS, HASH: HASH };
 })();
