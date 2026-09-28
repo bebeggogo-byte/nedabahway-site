@@ -85,7 +85,7 @@ TYPES = {
   ],
   why_title='지시는 총량을 줄이고,<br>선택은 총량을 늘립니다.',
   why_p='자기결정이론은 자율성·유능감·관계성이 채워질 때 사람이 스스로 움직인다고 말합니다. 조직에서 이 세 가지가 빠지면 같은 업무량에도 고갈이 빠릅니다. 네다바웨이는 조직의 자립을 "각자가 스스로 원하고, 고르고, 책임지는 팀"으로 정의하고, 그 상태를 6 MINDS로 측정해 4주 단위로 관리합니다.',
-  facts=[('15문항 · 4분', '한 사람의 여섯 마음 배분과 총량을 재는 시간'), ('4주', '상태는 2주 단위로 바뀌므로 4주 뒤 다시 잽니다'), ('1장', '팀 전체의 배분·총량이 한 장 리포트로')],
+  facts=[('15문항 · 4분', '한 사람의 여섯 마음 배분과 총량을 확인하는 시간'), ('4주', '상태는 2주 단위로 바뀌므로 4주 뒤 다시 확인합니다'), ('1장', '팀 전체의 배분·총량이 한 장 리포트로')],
   program_title='프로그램 구성',
   program=[
    ('사전', '6 MINDS 온라인 진단(개인)', '15문항. 결과는 본인에게, 팀에는 평균과 총량만'),
@@ -224,13 +224,13 @@ def p_minds():
         cls = ' class="is-ours"' if t == '6 MINDS' else ''
         rows += f'<tr{cls}><th scope="row">{esc(t)}</th><td>{esc(w)}</td><td>{esc(s)}</td><td>{esc(l)}</td><td>{esc(r)}</td></tr>'
     strip = ''.join(f'<li style="--mc:{c};"><img src="/assets/brand/char-{k}.jpg" width="520" height="520" alt=""><b>{esc(n)}</b><small>{en}</small></li>' for k, n, en, c in MINDS)
-    return f'''<p class="dp-p">MBTI, DISC, HEXACO, 에니어그램은 잘 만든 도구입니다. 모두 <b>성향</b>을 재고 대부분 한 번 재면 끝입니다. 6 MINDS는 같은 수준의 구조를 갖되 다른 질문을 던집니다. 지금 어느 마음을 많이 쓰고, 쓰고 나면 채워지는지 비는지, 그래서 총량이 어디쯤인지. 상태는 2주 단위로 바뀌므로 4주 뒤 다시 잽니다.</p>
+    return f'''<p class="dp-p">MBTI, DISC, HEXACO, 에니어그램은 잘 만든 도구입니다. 모두 <b>성향</b>을 다루고 대부분 한 번이면 끝입니다. 6 MINDS는 같은 수준의 구조를 갖되 다른 질문을 던집니다. 지금 어느 마음을 많이 쓰고, 쓰고 나면 채워지는지 비는지, 그래서 총량이 어디쯤인지. 상태는 2주 단위로 바뀌므로 4주 뒤 다시 확인합니다.</p>
 <ul class="dp-minds">{strip}</ul>
 <div class="dp-two">
-<table class="dp-table"><caption>구조 비교</caption><thead><tr><th scope="col">도구</th><th scope="col">재는 것</th><th scope="col">구조</th><th scope="col">결과의 언어</th><th scope="col">주기</th></tr></thead><tbody>{rows}</tbody></table>
+<table class="dp-table"><caption>구조 비교</caption><thead><tr><th scope="col">도구</th><th scope="col">다루는 것</th><th scope="col">구조</th><th scope="col">결과의 언어</th><th scope="col">주기</th></tr></thead><tbody>{rows}</tbody></table>
 <ol class="dp-arch">
 <li><b>6개 통로</b> 탐험·만들기·연결·돕기·생각·즐기기. 누구나 여섯을 다 갖고 있고 배분만 다릅니다.</li>
-<li><b>2개 축</b> 통로마다 사용량(얼마나 썼나)과 충전/고갈(쓰고 나면 채워지나)을 따로 잽니다.</li>
+<li><b>2개 축</b> 통로마다 사용량(얼마나 썼나)과 충전/고갈(쓰고 나면 채워지나)을 따로 묻습니다.</li>
 <li><b>총량 3문항</b> 잠·움직임·의욕. 총량의 60%는 여기서, 40%는 충전 평균에서.</li>
 <li><b>네 자리</b> 엔진(많이·충전) / 과부하(많이·고갈) / 숨은 자원(적게·충전) / 쉬는 통로(적게·고갈). 줄일 것은 과부하, 늘릴 것은 숨은 자원.</li>
 <li><b>쏠림 지수 · 트레이드오프 문장</b> "이걸 더 하려고 저걸 줄여 왔구나." 판정이 아니라 관찰의 언어.</li>
