@@ -50,7 +50,8 @@ CHG_LK = ['많이 지침', '조금 지침', '그대로', '조금 힘남', '힘�
 
 RESULT_JS = r'''
   var HIST_MAX=6;
-  function finish(){ var r=compute(ans); var now=new Date().toISOString(); var st=NWD.load('minds')||{}; var hist=(st.hist||[]).slice(-HIST_MAX+1); hist.push({a:ans,at:now}); NWD.save('minds',{a:ans,at:now,hist:hist}); showResult(r,new Date(),prevOf(hist)); }
+  var fresh=false;
+  function finish(){ fresh=true; var r=compute(ans); var now=new Date().toISOString(); var st=NWD.load('minds')||{}; var hist=(st.hist||[]).slice(-HIST_MAX+1); hist.push({a:ans,at:now}); NWD.save('minds',{a:ans,at:now,hist:hist}); showResult(r,new Date(),prevOf(hist)); }
   function prevOf(hist){ if(!hist||hist.length<2) return null; var cur=new Date(hist[hist.length-1].at).getTime(); for(var i=hist.length-2;i>=0;i--){ if(cur-new Date(hist[i].at).getTime()>=6*86400000) return hist[i]; } return null; }
   function chgWord(c){ return c>=1?'충전':(c<=-1?'고갈':''); }
   function chgColor(c){ return c>=1?'#10B981':(c<=-1?'#E11D48':'#9a948c'); }
@@ -125,10 +126,10 @@ RESULT_JS = r'''
     var code=encode(ans_of(r));
     h+='<h3 class="dg-h3">⑨ 함께 보기 · 서로 비교</h3><p class="ai-note" style="margin-top:6px;">내 코드를 상대에게 보내고, 상대 코드를 아래에 넣으면 두 사람의 배분이 나란히 나옵니다. 누가 낫다가 아니라, 서로 어느 마음을 잘 쓰는지를 봅니다.</p>';
     h+='<div class="dg-cmp"><div class="dg-cmp__me"><span>내 코드</span><b id="dgCode">'+code+'</b><button type="button" class="btn-ghost" id="dgCodeCopy">복사</button></div><div class="dg-cmp__in"><label for="dgOther">상대 코드</label><input id="dgOther" type="text" inputmode="latin" autocomplete="off" placeholder="예: M1A2B3C" maxlength="16"><button type="button" class="btn-go" id="dgCmpGo">비교하기</button></div><div id="dgCmpOut"></div></div>';
-    // ⑩ 마음 카드
+    // ⑩ 마음 카드 (진단 1회 = 그때 가장 많이 쓴 마음 카드 1장)
     var top=mA;
-    h+='<h3 class="dg-h3">⑩ 마음 카드 · 앞면과 뒷면</h3><p class="ai-note" style="margin-top:6px;">핸드폰 세로 사이즈(1080×1920) 세 장. 내 결과가 들어간 카드 한 장과, 요즘 가장 많이 쓰는 마음·이번 주 늘릴 마음 카드. 카드를 누르면 뒤집히고, 앞뒤를 따로 저장하거나 한 번에 공유합니다.</p>';
-    h+='<div id="dgCardView"></div>';
+    h+='<h3 class="dg-h3">⑩ 이번 진단의 마음 카드</h3><p class="ai-note" style="margin-top:6px;">진단 한 번에 카드 한 장. 이번에는 요즘 가장 많이 쓴 「'+esc(top.name)+'」 카드입니다. 카드는 사는 방식으로 모읍니다. 다른 마음을 가장 많이 쓴 2주가 오면 그 카드가 열립니다.</p>';
+    h+='<div id="dgCardView"></div><div id="dgCardCol"></div>';
     h+='<div class="dg-actions"><button type="button" class="btn-go" id="dgCopy">해설지 복사</button><button type="button" class="btn-ghost" id="dgRetry">다시 진단하기</button></div></div>';
     var prog = (r.energy<50||stateOf(mindOf('enjoyer')?r.minds.filter(function(m){return m.k==='enjoyer';})[0]:B).k==='거의 안 씀') ? {t:'회복이 먼저인 상태입니다',d:'총량이 낮거나 즐기는 마음을 거의 안 쓸 때는 새 계획보다 30분 무료 상담에서 이번 주 회복 리듬부터 함께 잡습니다.',a:'/contact.html#consult-form',al:'무료 30분 상담 신청',b:'/personal.html',bl:'퍼스널 트레이닝 코스 보기'}
       : (overload.some(function(m){return m.k==='maker'||m.k==='thinker';}) ? {t:'만들기·생각이 과부하라면 방식을 바꿀 때입니다',d:'학습 습관 코스는 양을 늘리는 대신 끝내는 경험을 되찾는 데서 시작합니다. 학습 유형 진단과 함께 보면 더 정확합니다.',a:'/personal.html#study',al:'학습 습관 코스 보기',b:'/diagnosis/learning/',bl:'학습 유형 진단 하기'}
@@ -142,15 +143,13 @@ RESULT_JS = r'''
     $('dgCodeCopy').addEventListener('click',function(){ NWD.copy('요즘 나의 여섯 마음 · 내 코드 '+code+' — nedabah.org/diagnosis/minds/ 에서 비교할 수 있어요', $('dgCodeCopy')); });
     $('dgCmpGo').addEventListener('click',function(){ var v=($('dgOther').value||'').trim().toUpperCase(); var oa=decode(v); if(!oa){ $('dgCmpOut').innerHTML='<p class="ai-note" style="margin-top:10px;color:#E11D48;">코드를 읽을 수 없습니다. M으로 시작하는 8자 안팎의 코드인지 확인해 주세요.</p>'; return; } $('dgCmpOut').innerHTML=compareHtml(r, compute(oa)); });
     if(window.NWCards){
-      var strip=function(x){ return String(x).replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'"); };
-      var cmpUrl='https://www.nedabah.org/diagnosis/minds/?c='+code;
       var FULL={explorer:'탐험하는 마음',maker:'만드는 마음',connector:'연결하는 마음',supporter:'돕는 마음',thinker:'생각하는 마음',enjoyer:'즐기는 마음'};
-      var mk=function(mm,label){ return {id:mm.k,label:label,name:FULL[mm.k],color:mm.color,front:'/assets/cards/mind-'+mm.k+'-front.png',back:'/assets/cards/mind-'+mm.k+'-back.png',file:'6minds-'+mm.k}; };
-      var base=[mk(top,'요즘 가장 많이 쓰는 마음'), mk(mG,'이번 주 늘릴 마음')];
-      var host=$('dgCardView');
-      NWCards.resultCard({when:fmt(when),energy:r.energy,band:'총량 '+band,stats:'충전 '+chargers.length+' · 고갈 '+drainers.length+' · 쏠림 '+spread+'%',minds:sorted.map(function(m){return {k:m.k,name:m.name,color:m.color,use:m.use,chg:m.chg,quad:QUAD[quad(m)].k};}),top:{k:top.k,name:FULL[top.k],color:top.color},less:{name:L.name,text:mL.less},more:{name:G.name,text:mG.more},pair:pairTxt?strip(pairTxt):'',sharp:sharp.length?strip(sharp[0]):'',pattern:strip(pattern),code:code,cmpUrl:cmpUrl}).then(function(cv){
-        NWCards.mount(host,{cards:[{id:'me',label:'내 결과',name:'나의 여섯 마음',color:top.color,front:cv.front,back:cv.back,file:'6minds-result-'+code}].concat(base),caption:'요즘 나의 여섯 마음 · 에너지 총량 '+r.energy+' · 가장 많이 쓰는 마음: '+top.name,url:cmpUrl});
-      }).catch(function(){ NWCards.mount(host,{cards:base,caption:'요즘 나의 여섯 마음',url:cmpUrl}); });
+      var topOf=function(a){ if(!a||a.length!==N) return null; var rr=compute(a); return rr.minds.slice().sort(function(x,y){return y.use-x.use||y.chg-x.chg;})[0].k; };
+      var st0=NWD.load('minds')||{}; NWCards.backfill((st0.hist||[]).slice(0,-1), topOf);
+      var had=NWCards.collected().indexOf(top.k)>=0; NWCards.collect(top.k); var isNew=fresh&&!had; fresh=false;
+      var showCard=function(k,title,nw){ NWCards.card($('dgCardView'),{k:k,title:title,isNew:!!nw}); };
+      showCard(top.k,'이번 카드 · '+FULL[top.k],isNew);
+      NWCards.collection($('dgCardCol'),{current:top.k,onPick:function(k){ showCard(k,'모은 카드 · '+FULL[k],false); $('dgCardView').scrollIntoView({behavior:'smooth',block:'center'}); }});
     }
     var qs=new URLSearchParams(location.search).get('c'); if(qs){ $('dgOther').value=qs; $('dgCmpGo').click(); }
   }
@@ -266,6 +265,7 @@ document.addEventListener('DOMContentLoaded',function(){{
     return r;
   }}
 __RESULT_JS__
+  if(window.NWCards) NWCards.restoreFromUrl();
   $('dgStart').addEventListener('click',start);
   var last=NWD.load('minds');
   if(last&&last.a&&last.a.length===N){{ $('dgResume').hidden=false; $('dgResume').addEventListener('click',function(){{ showResult(compute(last.a), new Date(last.at), prevOf(last.hist||[])); }}); }}

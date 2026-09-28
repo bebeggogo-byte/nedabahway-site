@@ -300,3 +300,11 @@ if __name__ == '__main__':
         for face in ('front', 'back'):
             Image.open(OUT / f'mind-{m["k"]}-{face}.png').resize((360, 640), Image.LANCZOS).save(TH / f'mind-{m["k"]}-{face}.jpg', quality=86, optimize=True)
     print('thumbs ok')
+
+    # one-file download: front + back side by side on paper (2240x2000)
+    for m in M:
+        f = Image.open(OUT / f'mind-{m["k"]}-front.png'); b = Image.open(OUT / f'mind-{m["k"]}-back.png')
+        both = Image.new('RGB', (1080 * 2 + 80, 1920 + 80), PAPER)
+        both.paste(f, (0 + 0, 40)); both.paste(b, (1080 + 80, 40))
+        both.save(OUT / f'mind-{m["k"]}-both.png', optimize=True)
+    print('both ok')
