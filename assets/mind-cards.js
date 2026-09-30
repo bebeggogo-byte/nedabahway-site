@@ -1,112 +1,114 @@
-/* mind-cards.js — 6 MINDS 마음 카드
-   앞면: 마음과 색 캐릭터(모두 같음, 공유용). 뒷면: 내 진단 결과(사람마다 다름, 내 기기에만 저장).
-   - 진단 전에는 뒷면에 "예시 결과"를 그려 보여 주고, 진단하면 같은 자리에 내 결과가 들어갑니다.
-   - 인스타그램·스레드에는 앞면만 나갑니다. 「내 카드 받기」는 앞면 + 내 결과 뒷면을 한 장으로 저장합니다.
-   Data: window.NW_MINDS (assets/mind-data.js, generated from .moai/project/six-minds-data.json)
-   window.NWCards = { card, collection, collected, collect, backfill, compute, topOf, resultFor, renderBack, ... } */
+/* mind-cards.js — 6 MINDS 마음 카드와 카드함
+   - 진단 한 번 = 카드함 하나. 여섯 장 모두 이번 진단의 내 결과로 만들고, 가장 많이 쓴 마음 한 장만 열어 둡니다.
+   - 나머지 다섯 장은 잠겨 있고, 한 번 공유하면(공유 창을 끝까지 마치거나 링크를 복사해 보내면) 모두 열립니다.
+   - 결과는 브라우저에 자동 저장하지 않습니다. 새로 고침하면 사라지고, 카드함 주소(해시)로만 다시 엽니다.
+   - 앞면 = 마음과 색 캐릭터(모두 같음, 공유용). 뒷면 = 그 마음에 대한 내 수치와 해석(나만, 내 기기에만 저장).
+   Data: window.NW_MINDS, window.NW_READ (assets/mind-data.js). No server: nothing about the result leaves the browser.
+   window.NWCards = { compute, read, readingHTML, renderBack, card, box, trackVisit, lastBox, ... } */
 (function () {
   'use strict';
   var HASH = '#네다바웨이 #식스마인드 #6MINDS';
-  var KEY = 'nw:minds:cards';
+  var SITE = 'https://www.nedabah.org';
   var W = 1080, H = 1920, PAD = 92;
-  var INK = '#1b1b1b', BODY = '#34322f', MUTE = '#5c5750', LINE = '#d6cfc1', TRACK = '#e6e0d4';
+  var INK = '#1b1b1b', BODY = '#34322f', MUTE = '#5c5750', LINE = '#d6cfc1', TRACK = '#e6e0d4', SOFT = '#ece7dc';
   var FONT = "'Pretendard Variable','Pretendard','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif";
-  var HINT = {
-    explorer: '처음 해 보는 일이 가장 많았던 2주', maker: '무언가를 끝까지 만든 날이 가장 많았던 2주',
-    connector: '속마음을 나눈 대화가 가장 많았던 2주', supporter: '누군가를 도운 날이 가장 많았던 2주',
-    thinker: '하루를 돌아보고 정리한 날이 가장 많았던 2주', enjoyer: '이유 없이 좋았던 시간이 가장 많았던 2주'
-  };
-  var MINDS = (window.NW_MINDS || []).map(function (m) { return { k: m.k, n: m.n, en: m.en, c: m.c, char: m.char, char_d: m.char_d, less: m.less, more: m.more, hint: HINT[m.k] }; });
-  function mind(k) { for (var i = 0; i < MINDS.length; i++) if (MINDS[i].k === k) return MINDS[i]; return null; }
+  var RD = window.NW_READ || { states: {}, tpl: {}, minds: {} };
+  var MINDS = (window.NW_MINDS || []).map(function (m) { return { k: m.k, n: m.n, en: m.en, c: m.c, char: m.char, char_d: m.char_d, less: m.less, more: m.more, pair_k: m.pair_k }; });
+  var KEYS = MINDS.map(function (m) { return m.k; });
+  function mind(k) { return MINDS[KEYS.indexOf(k)] || null; }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
-  function toast(msg) { var t = document.querySelector('.mc-toast'); if (!t) { t = el('p', 'mc-toast'); t.setAttribute('role', 'status'); document.body.appendChild(t); } t.textContent = msg; t.classList.add('is-on'); clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove('is-on'); }, 2800); }
+  function toast(msg) { var t = document.querySelector('.mc-toast'); if (!t) { t = el('p', 'mc-toast'); t.setAttribute('role', 'status'); document.body.appendChild(t); } t.textContent = msg; t.classList.add('is-on'); clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove('is-on'); }, 3200); }
   function src(k, face) { return '/assets/cards/mind-' + k + '-' + face + '.png'; }
   function thumb(k) { return '/assets/cards/thumb/mind-' + k + '-front.jpg'; }
   function fmt(d) { return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.'; }
+  function ls(k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem(k) || 'null'); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } }
+  // 예전 방식(결과·카드 자동 저장)으로 남은 기록은 지웁니다. 2주마다 바뀌는 상태를 오래 남기지 않습니다.
+  ls('nw:diag:minds', null); ls('nw:minds:cards', null);
 
   // ---------- result model (same formula as /diagnosis/minds/ compute) ----------
-  // answers a[15] = [use0,chg0, use1,chg1, ... use5,chg5, sleep, move, drive]; use 0..4, chg -2..+2, body 0..4
+  // a[15] = [use0,chg0, ... use5,chg5, sleep, move, drive]; use 0..4, chg -2..+2, body 0..4
   function compute(a) {
-    var r = { minds: [], total: { sleep: a[12], move: a[13], drive: a[14] } };
+    var r = { a: a, minds: [], total: { sleep: a[12], move: a[13], drive: a[14] } };
     MINDS.forEach(function (m, i) { r.minds.push({ k: m.k, n: m.n, c: m.c, use: a[i * 2], chg: a[i * 2 + 1] }); });
     var totAvg = (r.total.sleep + r.total.move + r.total.drive) / 3 / 4 * 100;
     var chgAvg = r.minds.reduce(function (s, m) { return s + (m.chg + 2) / 4 * 100; }, 0) / 6;
+    r.body = Math.round(totAvg * 0.6 * 10) / 10; r.minds40 = Math.round(chgAvg * 0.4 * 10) / 10;
     r.energy = Math.round(totAvg * 0.6 + chgAvg * 0.4);
     return r;
   }
   function sorted(r) { return r.minds.slice().sort(function (x, y) { return y.use - x.use || y.chg - x.chg; }); }
-  function topOf(a) { if (!a || a.length !== 15) return null; return sorted(compute(a))[0].k; }
-  // 네 자리: 사용량(많이/적게) × 쓰고 난 뒤(힘이 남/지침). 이름이 곧 이번 주 할 일입니다.
-  function quad(m) { var hi = m.use >= 3, lo = m.use <= 1; if (hi && m.chg >= 1) return 'keep'; if (hi && m.chg <= -1) return 'cut'; if (lo && m.chg >= 1) return 'grow'; if (lo && m.chg <= -1) return 'wait'; if (m.use === 4 && m.chg <= 0) return 'cut'; return 'mid'; }
-  var QUAD = { keep: '지킬 마음', cut: '줄일 마음', grow: '늘릴 마음', wait: '기다릴 마음', mid: '보통' };
-  function band(e) { return e >= 70 ? '넉넉함' : (e >= 50 ? '보통' : (e >= 30 ? '낮음' : '회복이 먼저')); }
-  function summary(e) { return e >= 70 ? '나는 잠과 움직임이 안정되어 있고, 여섯 마음을 고르게 쓰고 있습니다.' : (e >= 50 ? '나는 몸의 기본은 괜찮고, 몇 가지 마음만 많이 쓰고 있습니다.' : (e >= 30 ? '나는 거의 안 쓰는 마음이 몇 개 있고, 잠과 움직임부터 챙길 때입니다.' : '나는 요즘 많이 지쳐 있습니다. 이번 주는 쉬는 것이 먼저입니다.')); }
-  function chgTag(c) { return c >= 1 ? { t: '힘이 남', c: '#0F9F6E' } : (c <= -1 ? { t: '지침', c: '#E11D48' } : { t: '그대로', c: '#8a847b' }); }
-  function plan(r) {
-    var s = sorted(r), A = s[0], B = s[s.length - 1];
-    var grow = r.minds.filter(function (m) { return quad(m) === 'grow'; }).sort(function (x, y) { return y.chg - x.chg || x.use - y.use; });
-    var cut = r.minds.filter(function (m) { return quad(m) === 'cut'; }).sort(function (x, y) { return y.use - x.use; });
-    var G = grow[0] || r.minds.filter(function (m) { return m.use <= 1 && m.chg >= 0; }).sort(function (x, y) { return y.chg - x.chg; })[0] || B;
-    var L = cut[0] || A;
-    if (G.k === L.k) G = B.k !== L.k ? B : s[s.length - 2];
-    return { A: A, B: B, G: G, L: L };
+  function topOf(a) { return a && a.length === 15 ? sorted(compute(a))[0].k : null; }
+  // 여덟 자리: 사용량(적게 0~1 · 보통 2 · 많이 3~4) × 쓰고 난 뒤(지침 −2~−1 · 그대로 0 · 힘이 남 +1~+2)
+  function state(m) {
+    if (m.use >= 3) return m.chg >= 1 ? 'keep' : (m.chg <= -1 || m.use === 4 ? 'cut' : 'even');
+    if (m.use <= 1) return m.chg >= 1 ? 'grow' : (m.chg <= -1 ? 'wait' : 'idle');
+    return m.chg >= 1 ? 'up' : (m.chg <= -1 ? 'down' : 'even');
   }
-  // 예시 결과: 카드 k가 가장 많이 쓴 마음이 되도록 만든 가상의 답
+  var SC = { keep: '#0F9F6E', cut: '#E11D48', grow: '#1D4ED8', wait: '#8a847b', up: '#0E7490', down: '#B45309', even: '#6b665e', idle: '#6b665e' };
+  var USE_W = ['전혀 쓰지 않았고', '한두 번 썼고', '가끔 썼고', '자주 썼고', '거의 매일 썼고'];
+  var CHG_W = ['많이 지쳤습니다', '조금 지쳤습니다', '힘이 나지도 지치지도 않았습니다', '조금 힘이 났습니다', '힘이 많이 났습니다'];
+  // 마음 하나의 해석: 수치 + 자리 + 역할 + 생각·행동·마음 + 한 번 더 깊게 + 이번 주
+  function read(r, k) {
+    var mm = mind(k), x = r.minds[KEYS.indexOf(k)], st = state(x), S = RD.states[st] || {};
+    var cell = (RD.minds[k] || {})[st] || null, doing = (RD.minds[k] || {}).doing || '';
+    if (!cell && RD.tpl[st]) { cell = {}; Object.keys(RD.tpl[st]).forEach(function (f) { var v = RD.tpl[st][f]; cell[f] = v ? v.replace(/\{D\}/g, doing) : v; }); }
+    cell = cell || {};
+    var grow = ((RD.minds[k] || {}).grow || {}).try, fallbackTry = st === 'cut' || st === 'down' ? mm.less : (st === 'wait' ? '나는 이번 주에 이 마음을 늘리지 않고, 잠드는 시간을 3일만 같게 맞춥니다.' : (grow || mm.more));
+    var sumUse = r.minds.reduce(function (s, m) { return s + m.use; }, 0);
+    var rank = sorted(r).map(function (m) { return m.k; }).indexOf(k) + 1;
+    var pair = mind(mm.pair_k), px = r.minds[KEYS.indexOf(mm.pair_k)], pst = state(px), pairLine = '짝이 되는 마음 「' + pair.n + '」은 지금 ' + (RD.states[pst] || {}).label + '입니다.';
+    if ((st === 'cut' || st === 'down') && (pst === 'keep' || pst === 'up' || pst === 'grow')) pairLine += ' 나는 「' + pair.n + '」을 이 마음 앞뒤에 20분 붙여 쓰면 같은 양을 쓰고도 덜 지칩니다.';
+    else if ((st === 'grow' || st === 'up' || st === 'idle') && pst === 'cut') pairLine += ' 나는 「' + pair.n + '」을 줄인 시간에 이 마음을 쓰면 에너지 총량을 가장 빨리 올릴 수 있습니다.';
+    else if ((st === 'cut' || st === 'down') && (pst === 'idle' || pst === 'wait' || pst === 'even')) pairLine += ' 나는 이 마음을 줄인 시간에 「' + pair.n + '」을 조금씩 써 봅니다.';
+    else if (st === 'keep' && (pst === 'wait' || pst === 'idle' || pst === 'grow')) pairLine += ' 나는 이 마음에서 얻은 힘으로 「' + pair.n + '」을 조금씩 써 볼 수 있습니다.';
+    var contrib = Math.round((x.chg + 2) / 4 * 100 * 0.4 / 6 * 10) / 10;
+    return {
+      k: k, n: mm.n, char: mm.char, c: mm.c, use: x.use, chg: x.chg, st: st, label: S.label, role: S.role, role_d: S.role_d, sc: SC[st],
+      useIdx: x.use * 25, recIdx: (x.chg + 2) * 25, share: sumUse ? Math.round(x.use / sumUse * 100) : 0, net: Math.round(x.use * x.chg * 12.5),
+      contrib: contrib, rank: rank, energy: r.energy,
+      numLine: '지난 2주 동안 나는 이 마음을 ' + USE_W[x.use] + ', 쓰고 난 뒤에는 ' + CHG_W[x.chg + 2] + '. 여섯 마음 가운데 사용량 ' + rank + '위이고, 이 마음이 에너지 총량 ' + r.energy + '점 가운데 ' + contrib + '점을 보탰습니다(최대 6.7점).',
+      now: cell.now || '', think: cell.think || '', act: cell.act || '', need: cell.need || '', deep: cell.deep || '', tryIt: cell.try || fallbackTry, pairLine: pairLine
+    };
+  }
+  function readingHTML(r, k, open) {
+    var x = read(r, k);
+    return '<article class="mr" style="--mc:' + x.c + ';--sc:' + x.sc + ';">' +
+      '<header class="mr__h"><img src="' + thumb(k) + '" width="360" height="640" alt="" loading="lazy"><div><p class="mr__k">사용량 ' + x.rank + '위 · ' + esc(x.char) + '</p><h4 class="mr__t">' + esc(x.n) + '</h4><p class="mr__st"><b>' + esc(x.label) + '</b> · ' + esc(x.role) + '</p></div></header>' +
+      '<dl class="mr__nums"><div><dt>사용 지수</dt><dd>' + x.useIdx + '</dd></div><div><dt>회복 지수</dt><dd>' + x.recIdx + '</dd></div><div><dt>배분 비중</dt><dd>' + x.share + '%</dd></div><div><dt>총량 기여</dt><dd>' + x.contrib + '<small>/6.7</small></dd></div></dl>' +
+      '<p class="mr__now">' + esc(x.now) + '</p><p class="mr__num">' + esc(x.numLine) + '</p><p class="mr__role"><b>에너지 총량 속 역할 · ' + esc(x.role) + '</b> ' + esc(x.role_d) + '</p>' +
+      '<details class="mr__deep"' + (open ? ' open' : '') + '><summary>한 번 더 깊게 보기</summary>' +
+      '<ul class="mr__tam"><li><b>생각</b>' + esc(x.think) + '</li><li><b>행동</b>' + esc(x.act) + '</li><li><b>마음</b>' + esc(x.need) + '</li></ul>' +
+      '<p class="mr__insight">' + esc(x.deep) + '</p><p class="mr__pair">' + esc(x.pairLine) + '</p></details>' +
+      '<p class="mr__try"><b>이번 주 한 가지</b>' + esc(x.tryIt) + '</p></article>';
+  }
   function sampleAnswers(k) {
-    var use = [2, 3, 2, 1, 3, 1], chg = [1, -1, 2, 0, -1, 1], i = MINDS.map(function (m) { return m.k; }).indexOf(k), a = [];
+    var use = [2, 3, 2, 1, 3, 1], chg = [1, -1, 2, 0, -1, 1], i = KEYS.indexOf(k), a = [];
     if (i >= 0) { use[i] = 4; chg[i] = 2; }
-    for (var j = 0; j < 6; j++) { a.push(use[j], chg[j]); }
+    for (var j = 0; j < 6; j++) a.push(use[j], chg[j]);
     return a.concat([3, 2, 3]);
   }
-
-  // ---------- storage ----------
-  function persist() { try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {}); } catch (e) {} }
   function encA(a) { var n = 0n; for (var i = 0; i < 15; i++) { var v = a[i]; if (i < 12 && i % 2 === 1) v = v + 2; n = n * 5n + BigInt(v); } var t = n.toString(36).toUpperCase(); while (t.length < 10) t = '0' + t; return 'M' + t; }
   function decA(str) { if (!/^M[0-9A-Z]{10}$/.test(str)) return null; var n = 0n, t = str.slice(1).toLowerCase(); for (var i = 0; i < t.length; i++) n = n * 36n + BigInt(parseInt(t[i], 36)); var a = []; for (var j = 14; j >= 0; j--) { var v = Number(n % 5n); n = n / 5n; if (j < 12 && j % 2 === 1) v = v - 2; a[j] = v; } return n === 0n ? a : null; }
-  function diagLoad() { try { return JSON.parse(localStorage.getItem('nw:diag:minds') || 'null'); } catch (e) { return null; } }
-  function diagSave(o) { try { localStorage.setItem('nw:diag:minds', JSON.stringify(o)); } catch (e) {} }
-  function collected() { try { var v = JSON.parse(localStorage.getItem(KEY) || '[]'); return Array.isArray(v) ? v.filter(function (k) { return mind(k); }) : []; } catch (e) { return []; } }
-  function collect(k) { var s = collected(); var isNew = s.indexOf(k) < 0; if (isNew) { s.push(k); try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} persist(); } return isNew; }
-  function backfill(hist) { (hist || []).forEach(function (h) { var k = topOf(h && h.a); if (k) collect(k); }); return collected(); }
-  // 카드 k를 받게 한 가장 최근 진단 (뒷면에 그릴 내 결과)
-  function resultFor(k) {
-    var st = diagLoad() || {}, list = (st.hist || []).slice();
-    if (st.a) list.push({ a: st.a, at: st.at });
-    for (var i = list.length - 1; i >= 0; i--) { var h = list[i]; if (h && h.a && topOf(h.a) === k) return { a: h.a, at: h.at }; }
-    return null;
-  }
-  function maskOf() { var mask = 0; collected().forEach(function (k) { var i = MINDS.map(function (m) { return m.k; }).indexOf(k); if (i >= 0) mask |= (1 << i); }); return mask.toString(36).toUpperCase(); }
-  function backupLink() {
-    var st = diagLoad() || {}; var hist = (st.hist || []).filter(function (h) { return h && h.a && h.a.length === 15; }).slice(-6);
-    var h = hist.map(function (x) { var d = Math.max(0, Math.round(new Date(x.at).getTime() / 86400000)); return encA(x.a) + d.toString(36).toUpperCase(); }).join('.');
-    return 'https://www.nedabah.org/minds/?k=' + maskOf() + (h ? '&h=' + h : '');
-  }
-  function shortBackup() { return 'nedabah.org/minds/?k=' + maskOf(); }
-  function restoreFrom(urlish) {
-    var q; try { q = new URL(String(urlish), location.href).searchParams; } catch (e) { return 0; }
-    var k = q.get('k'), h = q.get('h'), n = 0;
-    if (k && /^[0-9A-Z]{1,2}$/i.test(k)) { var mask = parseInt(k, 36); MINDS.forEach(function (m, i) { if (mask & (1 << i)) { if (collect(m.k)) n++; } }); }
-    if (h) {
-      var st = diagLoad() || {}; var hist = st.hist || []; var seen = {}; hist.forEach(function (x) { seen[x.at] = 1; });
-      h.split('.').forEach(function (tok) { var m = /^(M[0-9A-Z]{10})([0-9A-Z]{1,5})$/.exec(tok); if (!m) return; var a = decA(m[1]); if (!a) return; var at = new Date(parseInt(m[2], 36) * 86400000).toISOString(); if (seen[at]) return; hist.push({ a: a, at: at }); seen[at] = 1; n++; });
-      hist.sort(function (x, y) { return new Date(x.at) - new Date(y.at); }); hist = hist.slice(-6);
-      var last = hist[hist.length - 1]; if (last && (!st.at || new Date(last.at) >= new Date(st.at))) { st.a = last.a; st.at = last.at; }
-      st.hist = hist; diagSave(st);
-    }
-    if (n) persist();
-    return n;
-  }
-  function restoreFromUrl() { if (!/[?&]k=/.test(location.search)) return 0; var n = restoreFrom(location.href); try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} if (n) toast('모은 카드와 기록을 되살렸습니다'); return n; }
 
-  // ---------- canvas back ----------
+  // ---------- 공유로 열기 (서버 없음) ----------
+  // 초대 링크에는 결과도 번호도 싣지 않습니다. ?f=s 는 "친구가 보낸 링크" 배너를 띄우는 표시일 뿐입니다.
+  function trackVisit() { return new URLSearchParams(location.search).get('f') ? 'shared' : null; }
+  function inviteUrl() { return SITE + '/diagnosis/minds/?f=s'; }
+  function boxUrl(o) { var d = Math.max(0, Math.round(new Date(o.at).getTime() / 86400000)).toString(36); return SITE + '/minds/box/#r=' + encA(o.a) + '&d=' + d + (o.open ? '&u=1' : ''); }
+  function parseBox(h) {
+    var q = new URLSearchParams(String(h || '').replace(/^#/, '')), a = decA(q.get('r') || ''), d = q.get('d') || '';
+    if (!a || !/^[0-9a-z]{1,5}$/.test(d)) return null;
+    return { a: a, at: new Date(parseInt(d, 36) * 86400000).toISOString(), open: q.get('u') === '1' };
+  }
+  // 카드함 주소만 14일 동안 기억합니다 (결과 화면은 새로 고침하면 사라짐)
+  function lastBox() { var b = ls('nw:minds:box'); if (!b || !b.url || Date.now() - new Date(b.at).getTime() > 14 * 86400000) { ls('nw:minds:box', null); return null; } return b; }
+
+  // ---------- canvas ----------
   var imgCache = {};
   function loadImg(url) { if (!imgCache[url]) imgCache[url] = new Promise(function (res, rej) { var i = new Image(); i.onload = function () { res(i); }; i.onerror = rej; i.src = url; }); return imgCache[url]; }
   var fontsReady = null;
-  function fonts() {
-    if (!fontsReady) fontsReady = (document.fonts && document.fonts.load ? Promise.all(['500', '600', '700', '800', '900'].map(function (w) { return document.fonts.load(w + ' 40px "Pretendard Variable"').catch(function () {}); })) : Promise.resolve()).then(function () {}, function () {});
-    return fontsReady;
-  }
+  function fonts() { if (!fontsReady) fontsReady = (document.fonts && document.fonts.load ? Promise.all(['500', '600', '700', '800', '900'].map(function (w) { return document.fonts.load(w + ' 40px "Pretendard Variable"').catch(function () {}); })) : Promise.resolve()).then(function () {}, function () {}); return fontsReady; }
   function f(ctx, w, s) { ctx.font = w + ' ' + s + 'px ' + FONT; }
   function lines(ctx, text, maxw) {
     var out = [], cur = '';
@@ -120,185 +122,242 @@
     if (cur) out.push(cur);
     return out;
   }
-  function para(ctx, text, x, y, maxw, lh) { var ls = lines(ctx, text, maxw); ls.forEach(function (l, i) { ctx.fillText(l, x, y + i * lh); }); return y + ls.length * lh; }
+  function para(ctx, text, x, y, maxw, lh, draw) { var ls2 = lines(ctx, text, maxw); if (draw) ls2.forEach(function (l, i) { ctx.fillText(l, x, y + i * lh); }); return y + ls2.length * lh; }
   function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
-  function deep(hex, t) { var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255; t = t || .3; return 'rgb(' + Math.round(r * (1 - t) + 27 * t) + ',' + Math.round(g * (1 - t) + 27 * t) + ',' + Math.round(b * (1 - t) + 27 * t) + ')'; }
-  function tint(hex, t) { var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255; return 'rgb(' + Math.round(r + (255 - r) * t) + ',' + Math.round(g + (255 - g) * t) + ',' + Math.round(b + (255 - b) * t) + ')'; }
+  function deep(hex, t) { var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255; return 'rgb(' + Math.round(r * (1 - t) + 27 * t) + ',' + Math.round(g * (1 - t) + 27 * t) + ',' + Math.round(b * (1 - t) + 27 * t) + ')'; }
 
-  // res: { a:[15], at } or null; opts.sample → 예시 결과 표시
+  // 뒷면: 마음 k에 대한 내 수치와 해석. res = { a, at } 또는 null(예시)
   function renderBack(k, res, opts) {
     opts = opts || {};
-    var m = mind(k), sample = !!opts.sample || !res;
+    var sample = !!opts.sample || !res;
     var a = res && res.a ? res.a : sampleAnswers(k), when = res && res.at ? new Date(res.at) : new Date();
-    var r = compute(a), p = plan(r), s = sorted(r);
-    var top = mind(p.A.k), col = top.c, colD = deep(col, top.k === 'maker' ? .45 : .25);
-    return Promise.all([fonts(), loadImg(src(top.k, 'back-base')), loadImg('/assets/brand/char-' + top.k + '.jpg').catch(function () { return null; })]).then(function (v) {
+    var r = compute(a), x = read(r, k), m = mind(k), colD = deep(m.c, k === 'maker' ? .45 : .25);
+    return Promise.all([fonts(), loadImg(src(k, 'back-base')), loadImg('/assets/brand/char-' + k + '.jpg').catch(function () { return null; })]).then(function (v) {
       var cv = document.createElement('canvas'); cv.width = W; cv.height = H; var ctx = cv.getContext('2d');
-      ctx.drawImage(v[1], 0, 0, W, H); ctx.textBaseline = 'top';
-      // header
-      var pill = sample ? '예시 결과 · SAMPLE' : 'MY 6 MINDS';
-      f(ctx, 800, 22); var pw = ctx.measureText(pill).width + 36;
-      rr(ctx, PAD, 104, pw, 44, 22); ctx.fillStyle = sample ? INK : colD; ctx.fill(); ctx.fillStyle = '#fff'; ctx.fillText(pill, PAD + 18, 114);
-      f(ctx, 600, 22); ctx.fillStyle = MUTE; var dt = (sample ? '예시 · ' : '') + fmt(when) + ' · 지난 2주'; ctx.fillText(dt, W - PAD - ctx.measureText(dt).width, 114);
-      f(ctx, 900, 54); ctx.fillStyle = INK;
-      ctx.fillText('요즘 나는 「' + top.n + '」을', PAD, 172); ctx.fillText('가장 많이 썼습니다', PAD, 238);
-      // character
-      var cy = 330, av = 150;
-      if (v[2]) { ctx.save(); ctx.beginPath(); ctx.arc(PAD + av / 2, cy + av / 2, av / 2, 0, Math.PI * 2); ctx.clip(); ctx.drawImage(v[2], PAD, cy, av, av); ctx.restore(); }
-      ctx.lineWidth = 5; ctx.strokeStyle = INK; ctx.beginPath(); ctx.arc(PAD + av / 2, cy + av / 2, av / 2, 0, Math.PI * 2); ctx.stroke();
-      ctx.lineWidth = 3; ctx.strokeStyle = col; ctx.beginPath(); ctx.arc(PAD + av / 2, cy + av / 2, av / 2 - 7, 0, Math.PI * 2); ctx.stroke();
-      var tx = PAD + av + 34, tw = W - PAD - tx;
-      f(ctx, 700, 22); ctx.fillStyle = MUTE; ctx.fillText('나의 대표 캐릭터', tx, cy + 6);
-      f(ctx, 900, 46); ctx.fillStyle = colD; ctx.fillText(top.char, tx, cy + 38);
-      f(ctx, 500, 25); ctx.fillStyle = BODY; para(ctx, top.char_d, tx, cy + 100, tw, 36);
-      // energy
-      var ey = 520; ctx.fillStyle = LINE; ctx.fillRect(PAD, ey, W - PAD * 2, 3);
-      var rcx = PAD + 96, rcy = ey + 134, R = 82;
-      ctx.lineCap = 'round'; ctx.lineWidth = 20; ctx.strokeStyle = TRACK; ctx.beginPath(); ctx.arc(rcx, rcy, R, 0, Math.PI * 2); ctx.stroke();
-      ctx.strokeStyle = '#1D4ED8'; ctx.beginPath(); ctx.arc(rcx, rcy, R, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * r.energy / 100); ctx.stroke(); ctx.lineCap = 'butt';
-      f(ctx, 900, 58); ctx.fillStyle = INK; var es = String(r.energy); ctx.fillText(es, rcx - ctx.measureText(es).width / 2, rcy - 36);
-      f(ctx, 700, 18); ctx.fillStyle = MUTE; ctx.fillText('/ 100', rcx - ctx.measureText('/ 100').width / 2, rcy + 26);
-      var ex = PAD + 220, ew = W - PAD - ex;
-      f(ctx, 700, 22); ctx.fillStyle = MUTE; ctx.fillText('에너지 총량', ex, ey + 44);
-      f(ctx, 900, 42); ctx.fillStyle = INK; ctx.fillText(band(r.energy), ex, ey + 76);
-      f(ctx, 500, 25); ctx.fillStyle = BODY; para(ctx, summary(r.energy), ex, ey + 136, ew, 36);
-      // bars
-      var by = 800; f(ctx, 900, 30); ctx.fillStyle = INK; ctx.fillText('여섯 마음, 얼마나 썼나', PAD, by);
-      f(ctx, 600, 20); ctx.fillStyle = MUTE; var lg = '막대 = 쓴 양 · 오른쪽 = 쓰고 난 뒤'; ctx.fillText(lg, W - PAD - ctx.measureText(lg).width, by + 8);
-      var ry = by + 56, bx = PAD + 190, bw = W - PAD - 126 - bx;
-      s.forEach(function (x, i) {
-        var mm = mind(x.k), yy = ry + i * 60, isTop = i === 0;
-        ctx.fillStyle = mm.c; ctx.beginPath(); ctx.arc(PAD + 9, yy + 15, 9, 0, Math.PI * 2); ctx.fill();
-        f(ctx, isTop ? 800 : 600, 24); ctx.fillStyle = INK; ctx.fillText(mm.n, PAD + 28, yy + 2);
-        rr(ctx, bx, yy + 4, bw, 24, 12); ctx.fillStyle = TRACK; ctx.fill();
-        var fw = Math.max(24, bw * x.use / 4); if (x.use > 0) { rr(ctx, bx, yy + 4, fw, 24, 12); ctx.fillStyle = mm.c; ctx.fill(); }
-        var tg = chgTag(x.chg); f(ctx, 800, 22); ctx.fillStyle = tg.c; ctx.fillText(tg.t, W - PAD - ctx.measureText(tg.t).width, yy + 4);
+      var body = function (s, draw) {
+        var y, tw = W - PAD * 2;
+        ctx.textBaseline = 'top';
+        // header
+        var pill = sample ? '예시 결과 · SAMPLE' : 'MY 6 MINDS';
+        f(ctx, 800, 22); var pw = ctx.measureText(pill).width + 36;
+        if (draw) { rr(ctx, PAD, 104, pw, 44, 22); ctx.fillStyle = sample ? INK : colD; ctx.fill(); ctx.fillStyle = '#fff'; ctx.fillText(pill, PAD + 18, 114); f(ctx, 600, 22); ctx.fillStyle = MUTE; var dt = (sample ? '예시 · ' : '') + fmt(when) + ' · 지난 2주'; ctx.fillText(dt, W - PAD - ctx.measureText(dt).width, 114); }
+        f(ctx, 900, 50); if (draw) { ctx.fillStyle = INK; ctx.fillText('요즘 나의 「' + m.n + '」', PAD, 170); }
+        f(ctx, 800, 24); var lw = ctx.measureText(x.label).width + 30;
+        if (draw) { rr(ctx, PAD, 242, lw, 42, 21); ctx.fillStyle = x.sc; ctx.fill(); ctx.fillStyle = '#fff'; ctx.fillText(x.label, PAD + 15, 250); f(ctx, 700, 24); ctx.fillStyle = BODY; ctx.fillText('에너지 총량 속 역할 · ' + x.role + ' · 사용량 ' + x.rank + '위', PAD + lw + 16, 250); }
+        // character
+        var cy = 310, av = 120;
+        if (draw) {
+          if (v[2]) { ctx.save(); ctx.beginPath(); ctx.arc(PAD + av / 2, cy + av / 2, av / 2, 0, Math.PI * 2); ctx.clip(); ctx.drawImage(v[2], PAD, cy, av, av); ctx.restore(); }
+          ctx.lineWidth = 4; ctx.strokeStyle = INK; ctx.beginPath(); ctx.arc(PAD + av / 2, cy + av / 2, av / 2, 0, Math.PI * 2); ctx.stroke();
+          f(ctx, 900, 38); ctx.fillStyle = colD; ctx.fillText(m.char, PAD + av + 28, cy + 14);
+        }
+        f(ctx, 500, 23); ctx.fillStyle = BODY; para(ctx, m.char_d, PAD + av + 28, cy + 64, tw - av - 28, 32, draw);
+        // metrics
+        var my = 460, gap = 14, bw = (tw - gap * 3) / 4;
+        [['사용 지수', x.useIdx, '/100'], ['회복 지수', x.recIdx, '/100'], ['배분 비중', x.share + '%', ''], ['총량 기여', x.contrib, '/6.7']].forEach(function (b, i) {
+          if (!draw) return; var bx = PAD + i * (bw + gap);
+          rr(ctx, bx, my, bw, 112, 18); ctx.fillStyle = SOFT; ctx.fill();
+          f(ctx, 700, 19); ctx.fillStyle = MUTE; ctx.fillText(b[0], bx + 18, my + 16);
+          f(ctx, 900, 40); ctx.fillStyle = INK; var vs = String(b[1]); ctx.fillText(vs, bx + 18, my + 48); if (b[2]) { var vw = ctx.measureText(vs).width; f(ctx, 700, 18); ctx.fillStyle = MUTE; ctx.fillText(b[2], bx + 22 + vw, my + 70); }
+        });
+        y = my + 140;
+        // now + numbers
+        f(ctx, 800, 23); if (draw) { ctx.fillStyle = colD; ctx.fillText('지금 상태', PAD, y); } y += 36;
+        f(ctx, 600, Math.round(26 * s)); if (draw) ctx.fillStyle = INK; y = para(ctx, x.now, PAD, y, tw, Math.round(38 * s), draw) + 6;
+        f(ctx, 500, Math.round(21 * s)); if (draw) ctx.fillStyle = MUTE; y = para(ctx, x.numLine, PAD, y, tw, Math.round(30 * s), draw) + 20;
+        // think / act / need
+        f(ctx, 800, 23); if (draw) { ctx.fillStyle = colD; ctx.fillText('생각 · 행동 · 마음', PAD, y); } y += 38;
+        [['생각', x.think], ['행동', x.act], ['마음', x.need]].forEach(function (row) {
+          if (draw) { f(ctx, 800, 20); rr(ctx, PAD, y - 2, 64, 32, 16); ctx.fillStyle = SOFT; ctx.fill(); ctx.fillStyle = INK; ctx.fillText(row[0], PAD + 13, y + 3); }
+          f(ctx, 500, Math.round(23 * s)); if (draw) ctx.fillStyle = BODY; y = para(ctx, row[1], PAD + 80, y, tw - 80, Math.round(33 * s), draw) + 10;
+        });
+        y += 10;
+        // deeper
+        f(ctx, 800, 23); if (draw) { ctx.fillStyle = colD; ctx.fillText('한 번 더 깊게', PAD, y); } y += 36;
+        f(ctx, 500, Math.round(23 * s)); if (draw) ctx.fillStyle = BODY; y = para(ctx, x.deep, PAD, y, tw, Math.round(34 * s), draw) + 18;
+        // this week
+        f(ctx, 700, Math.round(25 * s)); var tl = lines(ctx, x.tryIt, tw - 60), th = 56 + tl.length * Math.round(36 * s) + 16;
+        if (draw) { rr(ctx, PAD, y, tw, th, 22); ctx.fillStyle = SOFT; ctx.fill(); rr(ctx, PAD, y, 10, th, 5); ctx.fillStyle = x.sc; ctx.fill(); f(ctx, 800, 21); ctx.fillStyle = x.sc; ctx.fillText('이번 주 한 가지', PAD + 30, y + 18); f(ctx, 700, Math.round(25 * s)); ctx.fillStyle = INK; tl.forEach(function (l, i) { ctx.fillText(l, PAD + 30, y + 54 + i * Math.round(36 * s)); }); }
+        y += th + 22;
+        // role in the energy total + pair mind
+        f(ctx, 800, 23); if (draw) { ctx.fillStyle = colD; ctx.fillText('에너지 총량 속 역할 · ' + x.role, PAD, y); } y += 36;
+        f(ctx, 500, Math.round(23 * s)); if (draw) ctx.fillStyle = BODY; y = para(ctx, x.role_d, PAD, y, tw, Math.round(34 * s), draw) + 14;
+        f(ctx, 800, 23); if (draw) { ctx.fillStyle = colD; ctx.fillText('짝이 되는 마음', PAD, y); } y += 36;
+        f(ctx, 500, Math.round(23 * s)); if (draw) ctx.fillStyle = BODY; y = para(ctx, x.pairLine, PAD, y, tw, Math.round(34 * s), draw);
+        return y;
+      };
+      var LIMIT = H - 320, s = 1;
+      [1, .94, .88, .82, .76].some(function (t) { s = t; return body(t, false) <= LIMIT; });
+      ctx.drawImage(v[1], 0, 0, W, H);
+      body(s, true);
+      // mini strip: six minds + total (fixed, above the footer)
+      var sy = H - 292, sw = (W - PAD * 2 - 170) / 6, SHORT = { explorer: '탐험', maker: '만들기', connector: '연결', supporter: '돕기', thinker: '생각', enjoyer: '즐기기' };
+      f(ctx, 700, 18); ctx.fillStyle = MUTE; ctx.fillText('여섯 마음 사용량', PAD, sy);
+      r.minds.forEach(function (mm, i) {
+        var bx = PAD + i * sw, h = 8 + mm.use * 11, isMe = mm.k === k;
+        rr(ctx, bx + 6, sy + 80 - h, sw - 14, h, 6); ctx.fillStyle = isMe ? mm.c : TRACK; ctx.fill();
+        if (isMe) { ctx.lineWidth = 3; ctx.strokeStyle = INK; ctx.stroke(); }
+        f(ctx, isMe ? 800 : 600, 17); ctx.fillStyle = isMe ? INK : MUTE; var lb = SHORT[mm.k]; ctx.fillText(lb, bx + (sw - 8) / 2 - ctx.measureText(lb).width / 2, sy + 88);
       });
-      // plan boxes
-      var y = ry + 6 * 60 + 18;
-      [['줄일 마음', p.L, mind(p.L.k).less, '#E11D48'], ['늘릴 마음', p.G, mind(p.G.k).more, '#0F9F6E']].forEach(function (row) {
-        f(ctx, 600, 27); var ls = lines(ctx, row[2], W - PAD * 2 - 64); var bh = 70 + ls.length * 38 + 18;
-        rr(ctx, PAD, y, W - PAD * 2, bh, 24); ctx.fillStyle = '#ece7dc'; ctx.fill();
-        rr(ctx, PAD, y, 10, bh, 5); ctx.fillStyle = row[3]; ctx.fill();
-        var lb = row[0] + ' · ' + mind(row[1].k).n; f(ctx, 800, 22); var lw = ctx.measureText(lb).width + 28;
-        rr(ctx, PAD + 32, y + 20, lw, 36, 18); ctx.fillStyle = row[3]; ctx.fill(); ctx.fillStyle = '#fff'; ctx.fillText(lb, PAD + 46, y + 27);
-        f(ctx, 600, 27); ctx.fillStyle = INK; ls.forEach(function (l, i) { ctx.fillText(l, PAD + 34, y + 72 + i * 38); });
-        y += bh + 14;
-      });
-      // pattern + next
-      var pat = '나는 지난 2주 동안 「' + mind(p.A.k).n + '」을 가장 많이 쓰고 「' + mind(p.B.k).n + '」을 가장 적게 썼습니다.';
-      f(ctx, 600, 25); ctx.fillStyle = BODY; y = para(ctx, pat, PAD, y + 8, W - PAD * 2, 36);
-      if (y + 96 < H - 200) { f(ctx, 800, 22); ctx.fillStyle = colD; ctx.fillText('이번 주 나의 한 가지', PAD, y + 22); ctx.fillStyle = LINE; ctx.fillRect(PAD + 250, y + 46, W - PAD * 2 - 250, 3); y += 70; }
-      var nx = new Date(when.getTime() + 28 * 86400000), nt = '다음 진단 ' + fmt(nx) + ' · 4주 뒤 다시 하면 변화가 보입니다';
-      f(ctx, 800, 22); ctx.fillStyle = colD; if (y + 34 < H - 160) ctx.fillText(nt, PAD, Math.max(y + 12, H - 196));
-      if (sample) {
-        ctx.save(); ctx.translate(W / 2, H * .52); ctx.rotate(-0.28); f(ctx, 900, 170); ctx.globalAlpha = .09; ctx.fillStyle = INK; var st = 'SAMPLE'; ctx.fillText(st, -ctx.measureText(st).width / 2, -85); ctx.restore();
-      }
+      ctx.fillStyle = LINE; ctx.fillRect(W - PAD - 150, sy + 4, 3, 76);
+      f(ctx, 700, 18); ctx.fillStyle = MUTE; ctx.fillText('에너지 총량', W - PAD - 130, sy);
+      f(ctx, 900, 46); ctx.fillStyle = INK; ctx.fillText(String(r.energy), W - PAD - 130, sy + 28);
+      if (sample) { ctx.save(); ctx.translate(W / 2, H * .5); ctx.rotate(-0.28); f(ctx, 900, 170); ctx.globalAlpha = .08; ctx.fillStyle = INK; var st = 'SAMPLE'; ctx.fillText(st, -ctx.measureText(st).width / 2, -85); ctx.restore(); }
       return cv;
     });
   }
 
-  // ---------- share / download ----------
+  // ---------- save / share ----------
   function blobOf(url) { return fetch(url).then(function (r) { return r.blob(); }); }
-  function saveBlob(b, name) { var u = URL.createObjectURL(b); var a = document.createElement('a'); a.href = u; a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(u); a.remove(); }, 1500); }
-  function download(url, name) { return blobOf(url).then(function (b) { saveBlob(b, name); }); }
   function canvasBlob(cv) { return new Promise(function (res) { cv.toBlob(res, 'image/png'); }); }
-  // 한 파일: 앞면 + 내 결과 뒷면
-  function myCard(k, res) {
-    return Promise.all([loadImg(src(k, 'front')), renderBack(k, res)]).then(function (v) {
-      var cv = document.createElement('canvas'); cv.width = W * 2 + 80; cv.height = H + 80; var ctx = cv.getContext('2d');
-      ctx.fillStyle = '#f1ede5'; ctx.fillRect(0, 0, cv.width, cv.height); ctx.drawImage(v[0], 0, 40, W, H); ctx.drawImage(v[1], W + 80, 40, W, H);
-      return canvasBlob(cv);
+  function saveBlob(b, name) { var u = URL.createObjectURL(b); var a = document.createElement('a'); a.href = u; a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(u); a.remove(); }, 1500); }
+  function copyText(t) { if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(t); return new Promise(function (res) { var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); res(); }); }
+  // 휴대폰 사진첩: 앞면·뒷면 두 장(각 1080×1920, 휴대폰 화면 비율 9:16)을 공유 창으로 넘기면 「이미지 저장」으로 사진첩에 들어갑니다
+  function savePhotos(k, res) {
+    return Promise.all([blobOf(src(k, 'front')), renderBack(k, res).then(canvasBlob)]).then(function (b) {
+      var files = [new File([b[0]], '6minds-' + k + '-front.png', { type: 'image/png' }), new File([b[1]], '6minds-' + k + '-back.png', { type: 'image/png' })];
+      if (navigator.canShare && navigator.canShare({ files: files }) && navigator.share) {
+        return navigator.share({ files: files }).then(function () { return '공유 창에서 「이미지 저장」을 누르면 사진첩에 두 장이 저장됩니다'; }).catch(function (e) { if (e && e.name === 'AbortError') return '저장을 취소했습니다'; saveBlob(b[0], files[0].name); saveBlob(b[1], files[1].name); return '앞면과 뒷면 두 장을 내려받았습니다'; });
+      }
+      saveBlob(b[0], files[0].name); setTimeout(function () { saveBlob(b[1], files[1].name); }, 400);
+      return '앞면과 뒷면 두 장(1080×1920)을 내려받았습니다';
     });
   }
-  function copyText(t) { if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(t); return new Promise(function (res) { var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); res(); }); }
-  function caption(m) {
-    return '네다바웨이 6 MINDS로 지난 2주 동안 내가 어느 마음을 가장 많이 썼는지 봤어요. 내 캐릭터는 「' + m.char + '」. 여섯 마음 카드 ' + collected().length + '/6 모으는 중\n' + HASH + '\n' + shortBackup();
-  }
-  function share(m) {
+  function caption(m) { return '네다바웨이 6 MINDS로 지난 2주 동안 내가 어느 마음을 가장 많이 썼는지 봤어요. 내 캐릭터는 「' + m.char + '」. 당신은 어느 색인가요? 4분 진단 → ' + inviteUrl() + '\n' + HASH; }
+  function shareFront(m) {
     var text = caption(m);
     return blobOf(src(m.k, 'front')).then(function (b) {
       var file = new File([b], '6minds-' + m.k + '.png', { type: 'image/png' });
-      if (navigator.canShare && navigator.canShare({ files: [file] }) && navigator.share) {
-        return navigator.share({ files: [file], title: '6 MINDS · ' + m.char, text: text }).then(function () { return '공유 창을 열었습니다. 인스타그램을 고르고 캡션을 붙여 주세요'; }).catch(function (e) { if (e && e.name === 'AbortError') return '공유를 취소했습니다'; return fallback(); });
-      }
-      return fallback();
+      if (navigator.canShare && navigator.canShare({ files: [file] }) && navigator.share) return navigator.share({ files: [file], text: text }).then(function () { return '공유 창을 열었습니다. 인스타그램을 고르고 캡션을 붙여 주세요'; }).catch(function (e) { return e && e.name === 'AbortError' ? '공유를 취소했습니다' : fb(); });
+      return fb();
+      function fb() { return copyText(text).then(function () { saveBlob(b, file.name); return '앞면을 저장하고 캡션을 복사했습니다. 인스타그램에서 올려 주세요'; }); }
     });
-    function fallback() { return copyText(text).then(function () { return download(src(m.k, 'front'), '6minds-' + m.k + '.png'); }).then(function () { return '앞면을 저장하고 캡션을 복사했습니다. 인스타그램에서 올려 주세요'; }); }
   }
-  function threads(m) { var t = '요즘 나는 「' + m.n + '」을 가장 많이 쓰고 있대요. 내 캐릭터는 ' + m.char + '. 당신은 어느 색인가요? 4분 진단 → nedabah.org/diagnosis/minds/\n' + HASH; window.open('https://www.threads.net/intent/post?text=' + encodeURIComponent(t), '_blank', 'noopener'); return '스레드 글쓰기를 열었습니다. 앞면 이미지는 저장해서 붙이세요'; }
+  var INVITE = '요즘 나는 어느 마음을 가장 많이 쓰고 있을까? 15문항 4분이면 내 결과가 담긴 마음 카드 여섯 장을 받아요.';
+  function shareInvite() {
+    var url = inviteUrl();
+    function copy() { return copyText(INVITE + ' ' + url).then(function () { return { copied: true }; }); }
+    if (navigator.share) return navigator.share({ title: '6 MINDS · 요즘 나의 여섯 마음', text: INVITE, url: url }).then(function () { return { done: true }; }).catch(function (e) { return e && e.name === 'AbortError' ? { cancel: true } : copy(); });
+    return copy();
+  }
 
   // ---------- single card viewer ----------
-  // opts: { k, title, sub, isNew, locked, a, at, onGo }  (a 없으면 이 카드를 받은 가장 최근 진단, 그것도 없으면 예시)
+  // opts: { k, res, title, isNew, locked, onUnlock, onGo, sub }
   function card(host, opts) {
     var m = mind(opts.k); if (!m) return;
-    var res = opts.a ? { a: opts.a, at: opts.at } : (opts.locked ? null : resultFor(m.k));
-    var mine = !!res && !opts.locked;
+    var res = opts.res || null, mine = !!res, locked = !!opts.locked;
     host.innerHTML = ''; host.classList.add('mc'); host.style.setProperty('--mc', m.c);
     var face = 'front';
     if (opts.title) host.appendChild(el('p', 'mc-title', esc(opts.title)));
-    var stage = el('div', 'mc-stage');
+    var stage = el('div', 'mc-stage' + (locked ? ' is-locked' : ''));
     var flip = el('button', 'mc-flip'); flip.type = 'button';
-    flip.setAttribute('aria-label', m.n + ' 카드. 누르면 뒷면의 ' + (mine ? '내 결과' : '예시 결과') + '가 보입니다');
-    var inner = el('div', 'mc-flip__in');
-    var fF = el('div', 'mc-face mc-face--front'), fB = el('div', 'mc-face mc-face--back');
+    flip.setAttribute('aria-label', m.n + ' 카드. 누르면 뒷면이 보입니다' + (locked ? '. 이 카드는 아직 잠겨 있습니다' : ''));
+    var inner = el('div', 'mc-flip__in'), fF = el('div', 'mc-face mc-face--front'), fB = el('div', 'mc-face mc-face--back');
     var iF = new Image(), iB = new Image(); iF.width = iB.width = 1080; iF.height = iB.height = 1920;
-    iF.alt = m.n + ' 카드 앞면. ' + m.char; iB.alt = m.n + ' 카드 뒷면. ' + (mine ? '내 진단 결과' : '예시 결과');
+    iF.alt = m.n + ' 카드 앞면. ' + m.char; iB.alt = m.n + ' 카드 뒷면. ' + (mine ? (locked ? '잠긴 내 결과' : '내 결과') : '예시 결과');
     iF.src = src(m.k, 'front'); iB.src = src(m.k, 'back-base');
-    renderBack(m.k, mine ? res : null, { sample: !mine }).then(function (cv) { iB.src = cv.toDataURL('image/jpeg', .9); }).catch(function () {});
-    fF.appendChild(iF); fB.appendChild(iB); inner.appendChild(fF); inner.appendChild(fB); flip.appendChild(inner); stage.appendChild(flip);
+    renderBack(m.k, res, { sample: !mine }).then(function (cv) { iB.src = cv.toDataURL('image/jpeg', .9); }).catch(function () {});
+    fF.appendChild(iF); fB.appendChild(iB);
+    if (locked) fB.appendChild(el('span', 'mc-lock', '<b>잠긴 카드</b><small>한 번 공유하면 나머지 다섯 장이 모두 열립니다</small>'));
+    inner.appendChild(fF); inner.appendChild(fB); flip.appendChild(inner); stage.appendChild(flip);
     if (opts.isNew) stage.appendChild(el('span', 'mc-new', 'NEW'));
     if (!mine) stage.appendChild(el('span', 'mc-sample', '뒷면은 예시'));
     host.appendChild(stage);
-    host.appendChild(el('p', 'mc-hint', mine ? '카드를 누르면 뒷면에 내 결과가 보입니다' : '카드를 누르면 뒷면의 예시 결과가 보입니다'));
+    host.appendChild(el('p', 'mc-hint', '카드를 누르면 뒷면이 보입니다'));
     var acts = el('div', 'mc-acts');
+    function btn(label, cls, fn) { var b = el('button', cls + ' mc-act', label); b.type = 'button'; b.addEventListener('click', fn); acts.appendChild(b); return b; }
     if (!mine) {
-      var go; if (opts.onGo) { go = el('button', 'btn-go mc-act', '4분 진단하고 내 카드 받기'); go.type = 'button'; go.addEventListener('click', opts.onGo); } else { go = el('a', 'btn-go mc-act', '4분 진단하고 내 카드 받기'); go.href = '/diagnosis/minds/'; } acts.appendChild(go);
+      if (opts.onGo) btn('4분 진단하고 내 카드 받기', 'btn-go', opts.onGo); else { var go = el('a', 'btn-go mc-act', '4분 진단하고 내 카드 받기'); go.href = '/diagnosis/minds/'; acts.appendChild(go); }
+    } else if (locked) {
+      if (opts.onUnlock) btn('다섯 장 모두 열기', 'btn-go', opts.onUnlock);
     } else {
-      var dl = el('button', 'btn-go mc-act', '내 카드 받기'), ig = el('button', 'btn-dark mc-act', '인스타그램에 앞면 올리기'), th = el('button', 'btn-dark mc-act', '스레드에 올리기'), cp = el('button', 'btn-ghost mc-act', '캡션 복사');
-      dl.type = ig.type = th.type = cp.type = 'button';
-      acts.appendChild(dl); acts.appendChild(ig); acts.appendChild(th); acts.appendChild(cp);
-      dl.addEventListener('click', function () { myCard(m.k, res).then(function (b) { saveBlob(b, '6minds-' + m.k + '-mycard.png'); toast('앞면과 내 결과 뒷면을 한 장으로 저장했습니다'); }); });
-      ig.addEventListener('click', function () { share(m).then(toast); });
-      th.addEventListener('click', function () { toast(threads(m)); });
-      cp.addEventListener('click', function () { copyText(caption(m)).then(function () { toast('캡션을 복사했습니다'); }); });
+      btn('사진으로 저장', 'btn-go', function () { savePhotos(m.k, res).then(toast); });
+      btn('인스타그램에 앞면 올리기', 'btn-dark', function () { shareFront(m).then(toast); });
+      btn('캡션 복사', 'btn-ghost', function () { copyText(caption(m)).then(function () { toast('캡션을 복사했습니다'); }); });
     }
     host.appendChild(acts);
     host.appendChild(el('p', 'mc-note', opts.sub || (mine
-      ? '뒷면에는 <b>내 에너지 총량, 여섯 마음 배분, 이번 주 줄일 마음과 늘릴 마음</b>이 들어 있습니다. 인스타그램·스레드에는 <b>앞면만</b> 올라가고, 뒷면은 「내 카드 받기」로 내 기기에만 저장됩니다.'
-      : (opts.locked ? '아직 받지 못한 카드입니다. ' + esc(m.hint) + '에 진단하면 이 카드를 받습니다. ' : '') + '뒷면은 예시입니다. 진단하면 같은 자리에 <b>내 에너지 총량, 여섯 마음 배분, 이번 주 줄일 마음과 늘릴 마음</b>이 들어간 나만의 뒷면을 받습니다.')));
+      ? (locked ? '이 카드의 뒷면에도 이번 진단의 내 결과가 이미 들어 있습니다. 카드를 열면 선명하게 보이고 저장할 수 있습니다.' : '뒷면에는 이 마음에 대한 <b>내 수치와 해석</b>이 들어 있습니다. 「사진으로 저장」은 앞면과 뒷면을 휴대폰 화면 크기(1080×1920) 두 장으로 사진첩에 넣습니다. 인스타그램에는 <b>앞면만</b> 올라갑니다.')
+      : '뒷면은 예시입니다. 진단하면 여섯 마음 카드 뒷면마다 <b>그 마음에 대한 내 수치와 해석</b>이 들어갑니다.')));
     flip.addEventListener('click', function () { face = face === 'front' ? 'back' : 'front'; flip.classList.toggle('is-back', face === 'back'); });
   }
 
-  // ---------- collection grid ----------
-  // opts: { have:[k...], onPick(k), current:k, viewLocked }
-  function collection(host, opts) {
-    opts = opts || {};
-    var have = opts.have || collected();
-    host.innerHTML = ''; host.classList.add('mc-col');
-    host.appendChild(el('div', 'mc-col__h', '<b>마음 카드 컬렉션</b><span>' + have.length + ' / 6</span>'));
-    var bar = el('div', 'mc-col__bar'); var fill = el('i'); fill.style.width = Math.round(have.length / 6 * 100) + '%'; bar.appendChild(fill); host.appendChild(bar);
-    var g = el('div', 'mc-col__g');
-    MINDS.forEach(function (m) {
-      var got = have.indexOf(m.k) >= 0;
-      var b = el('button', 'mc-col__c' + (got ? ' is-got' : ' is-locked') + (opts.current === m.k ? ' is-cur' : ''));
-      b.type = 'button'; b.style.setProperty('--mc', m.c);
-      b.innerHTML = '<span class="mc-col__img"><img src="' + thumb(m.k) + '" width="360" height="640" alt="" loading="lazy"></span><b>' + esc(m.char) + '</b><small>' + (got ? '받음' : '아직') + '</small>';
-      b.setAttribute('aria-label', m.char + ' 카드, ' + (got ? '받음' : '아직 받지 못함'));
-      b.addEventListener('click', function () { if (got || opts.viewLocked) { if (opts.onPick) opts.onPick(m.k); } else { toast(m.char + ' 카드는 ' + m.hint + '에 진단하면 받습니다'); } });
-      g.appendChild(b);
-    });
-    host.appendChild(g);
-    var missing = MINDS.filter(function (m) { return have.indexOf(m.k) < 0; });
-    if (have.length) {
-      var keep = el('div', 'mc-keep', '<b>내 카드 지키기</b><p>로그인이 없어서 카드와 결과는 이 브라우저에만 남습니다. 아래 링크를 카카오톡 「나에게 보내기」나 메모에 붙여 두면, 다른 기기나 다른 브라우저에서도 그 링크를 눌러 카드와 기록을 그대로 되살릴 수 있습니다.</p>');
-      var row = el('div', 'mc-keep__row'); var lk = el('button', 'btn-go mc-act', '지키기 링크 복사'), rs = el('button', 'btn-ghost mc-act', '링크로 되살리기'); lk.type = rs.type = 'button'; row.appendChild(lk); row.appendChild(rs); keep.appendChild(row);
-      lk.addEventListener('click', function () { copyText(backupLink()).then(function () { toast('지키기 링크를 복사했습니다. 나에게 보내기로 보관하세요'); }); });
-      rs.addEventListener('click', function () { var v = prompt('지키기 링크를 붙여 넣으세요'); if (!v) return; var n = restoreFrom(v.trim()); toast(n ? '되살렸습니다. 새로 고침하면 반영됩니다' : '되살릴 것이 없거나 링크가 맞지 않습니다'); if (n) setTimeout(function () { location.reload(); }, 900); });
-      host.appendChild(keep);
+  // ---------- card box: 6 cards from one diagnosis ----------
+  // o: { a, at, open(bool), isNew }
+  function box(host, o) {
+    var r = compute(o.a), top = sorted(r)[0].k, res = { a: o.a, at: o.at }, cur = top, isNewTop = !!o.isNew;
+    host.innerHTML = ''; host.classList.add('mc-box');
+    var head = el('div', 'mc-box__h'), grid = el('div', 'mc-col__g mc-box__g'), view = el('div', 'mc-box__view'), foot = el('div', 'mc-invite');
+    host.appendChild(head); host.appendChild(grid); host.appendChild(view); host.appendChild(foot);
+    function isOpen(k) { return o.open || k === top; }
+    function remember() { ls('nw:minds:box', { url: boxUrl(o), at: o.at }); }
+    function draw(anim) {
+      head.innerHTML = '<b>이번 진단의 카드함</b><span>' + (o.open ? 6 : 1) + ' / 6 열림</span><p>' + (o.open ? '여섯 장이 모두 열렸습니다. 카드를 누르면 그 마음에 대한 내 수치와 해석이 뒷면에 있습니다.' : '여섯 장 모두 이번 진단의 내 결과로 만들었습니다. 가장 많이 쓴 마음 카드 한 장은 바로 열리고, 나머지 다섯 장은 <em>한 번 공유하면 모두 열립니다.</em>') + '</p>';
+      grid.innerHTML = '';
+      MINDS.forEach(function (m) {
+        var op = isOpen(m.k), x = read(r, m.k);
+        var b = el('button', 'mc-col__c' + (op ? ' is-got' : ' is-locked') + (cur === m.k ? ' is-cur' : '') + (anim && m.k !== top ? ' is-unlock' : '')); b.type = 'button'; b.style.setProperty('--mc', m.c);
+        b.innerHTML = '<span class="mc-col__img"><img src="' + thumb(m.k) + '" width="360" height="640" alt="" loading="lazy">' + (op ? '' : '<i class="mc-col__lock" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></i>') + '</span><b>' + esc(m.char) + '</b><small>' + (op ? esc(x.label) : '잠김') + '</small>';
+        b.setAttribute('aria-label', m.char + ' 카드, ' + (op ? '열림, ' + x.label : '잠김'));
+        b.addEventListener('click', function () { cur = m.k; if (!op) { draw(); sheet(); } else { draw(); view.scrollIntoView({ behavior: 'smooth', block: 'center' }); } });
+        grid.appendChild(b);
+      });
+      card(view, { k: cur, res: res, locked: !isOpen(cur), isNew: isNewTop && cur === top, onUnlock: sheet, title: (isOpen(cur) ? '' : '잠긴 카드 · ') + mind(cur).char });
+      var burl = boxUrl(o);
+      foot.innerHTML = (o.open
+        ? '<p class="mc-invite__t">친구에게도 알려 주세요</p><p class="mc-invite__d">받은 사람은 자기 진단을 새로 하고, 자기 결과로 만든 카드 여섯 장을 받습니다. 보내는 글에는 내 결과가 들어가지 않습니다.</p><div class="mc-invite__row"><button type="button" class="btn-dark mc-act" data-a="inv">카카오톡·문자로 보내기</button></div>'
+        : '<p class="mc-invite__t">나머지 다섯 장, 공유 한 번이면 모두 열립니다</p><p class="mc-invite__d">결제는 받지 않습니다. 6 MINDS를 알리는 데 함께해 주시면 다섯 장을 모두 드립니다.</p><div class="mc-invite__row"><button type="button" class="btn-go mc-act" data-a="open">다섯 장 모두 열기</button></div>') +
+        '<div class="mc-keep"><b>내 카드함 주소</b><p>이 화면은 새로 고침하면 사라집니다. 결과는 2주마다 바뀌기 때문에 자동으로 남기지 않습니다. 카드함 주소를 카카오톡 「나에게 보내기」에 보관하면 나중에 다시 열 수 있습니다. 주소에는 내 결과가 들어 있으니 다른 사람에게 보내지 마세요.</p><div class="mc-keep__row"><button type="button" class="btn-dark mc-act" data-a="box">카드함 주소 보관하기</button>' + (/^\/minds\/box\//.test(location.pathname) ? '' : '<a class="btn-link" href="' + esc(burl) + '">카드함 열기 &#8599;</a>') + '</div></div>';
+      var q = function (a) { return foot.querySelector('[data-a="' + a + '"]'); };
+      if (q('open')) q('open').addEventListener('click', sheet);
+      if (q('inv')) q('inv').addEventListener('click', function () { shareInvite().then(function (x) { toast(x.done ? '보냈습니다. 고맙습니다' : (x.copied ? '초대 글과 링크를 복사했습니다. 카카오톡에 붙여 넣으세요' : '보내기를 취소했습니다')); }); });
+      q('box').addEventListener('click', function () {
+        var t = '내 6 MINDS 카드함 (' + fmt(new Date(o.at)) + ' 진단, 나만 보기): ' + boxUrl(o);
+        (navigator.share ? navigator.share({ title: '내 6 MINDS 카드함', text: t }).then(function () { return '카드함 주소를 보냈습니다'; }) : Promise.reject()).catch(function (e) { if (e && e.name === 'AbortError') return '보관을 취소했습니다'; return copyText(t).then(function () { return '카드함 주소를 복사했습니다. 카카오톡 나에게 보내기에 붙여 넣으세요'; }); }).then(toast);
+      });
     }
-    host.appendChild(el('p', 'mc-col__f', have.length >= 6 ? '여섯 장을 다 받았습니다. 여섯 마음을 한 번씩 가장 많이 써 본 사람만 받는 세트입니다.' : '진단 한 번에 카드 한 장을 받습니다. 그 2주 동안 내가 가장 많이 쓴 마음의 카드입니다. 다음 카드 <b>' + esc(missing[0].char) + '</b>는 ' + esc(missing[0].hint) + '에 진단하면 받습니다.'));
+    function unlock() {
+      o.open = true; remember(); draw(true);
+      toast('다섯 장이 모두 열렸습니다. 고맙습니다');
+      grid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    // 잠금 해제 안내: 유료 카드처럼 보이지만 결제는 없고, 공유 한 번으로 엽니다
+    function sheet() {
+      if (o.open) return;
+      var d = document.createElement('dialog'); d.className = 'mc-sheet'; d.setAttribute('aria-labelledby', 'mcSheetT');
+      var locked = MINDS.filter(function (m) { return m.k !== top; });
+      d.innerHTML = '<button type="button" class="mc-sheet__x" aria-label="닫기">&times;</button>' +
+        '<p class="mc-sheet__pill">PREMIUM · 나머지 다섯 장</p><h2 class="mc-sheet__t" id="mcSheetT">내 결과 해설 카드 다섯 장</h2>' +
+        '<div class="mc-sheet__row">' + locked.map(function (m) { return '<span style="--mc:' + m.c + ';"><img src="' + thumb(m.k) + '" width="360" height="640" alt="">' + '<b>' + esc(m.char) + '</b></span>'; }).join('') + '</div>' +
+        '<ul class="mc-sheet__l"><li>카드마다 <b>그 마음의 네 수치</b> (사용 지수 · 회복 지수 · 배분 비중 · 총량 기여)</li><li>여덟 자리 가운데 <b>내 자리</b>와 에너지 총량 속 역할</li><li><b>생각 · 행동 · 마음</b>과 한 번 더 깊게 본 해석</li><li>이번 주 한 가지, 짝이 되는 마음 안내</li><li>앞면 · 뒷면 두 장을 휴대폰 사진첩에 저장</li></ul>' +
+        '<div class="mc-sheet__price"><span>이용 방법</span><b>결제 없음 · 공유 한 번</b><small>네다바웨이는 결제를 받지 않습니다. 6 MINDS를 친구나 단톡방에 한 번 알려 주시면 다섯 장을 모두 무료로 엽니다.</small></div>' +
+        '<ol class="mc-sheet__steps"><li>아래 버튼을 누르면 공유 창이 열립니다.</li><li>카카오톡 단톡방이나 친구 한 명을 고릅니다.</li><li>보내고 돌아오면 다섯 장이 바로 열립니다.</li></ol>' +
+        '<button type="button" class="btn-go mc-sheet__go">공유하고 무료로 열기</button>' +
+        '<div class="mc-sheet__fb" hidden><p>초대 글과 링크를 복사했습니다. 카카오톡 단톡방이나 친구에게 붙여 넣어 보낸 뒤 아래 버튼을 누르세요.</p><button type="button" class="btn-dark mc-sheet__done">보냈어요, 다섯 장 열기</button></div>' +
+        '<p class="mc-sheet__msg" role="status"></p>' +
+        '<p class="mc-sheet__n">보내는 글에는 내 결과가 들어가지 않습니다. 받은 사람은 자기 진단을 새로 합니다.</p>' +
+        '<button type="button" class="btn-link mc-sheet__later">나중에 할게요</button>';
+      document.body.appendChild(d);
+      function close() { if (d.open && d.close) d.close(); d.remove(); }
+      d.querySelector('.mc-sheet__x').addEventListener('click', close);
+      d.querySelector('.mc-sheet__later').addEventListener('click', close);
+      d.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+      d.addEventListener('click', function (e) { if (e.target === d) close(); });
+      d.querySelector('.mc-sheet__go').addEventListener('click', function () {
+        shareInvite().then(function (x) {
+          if (x.done) { close(); unlock(); return; }
+          if (x.copied) { d.querySelector('.mc-sheet__fb').hidden = false; d.querySelector('.mc-sheet__done').focus(); return; }
+          d.querySelector('.mc-sheet__msg').textContent = '공유를 마치면 바로 열립니다. 다시 눌러 보내 주세요.';
+        });
+      });
+      d.querySelector('.mc-sheet__done').addEventListener('click', function () { close(); unlock(); });
+      if (d.showModal) d.showModal(); else d.setAttribute('open', '');
+    }
+    remember(); draw();
+    return { top: top };
   }
+  // 새 진단 → 새 카드함 (한 장만 열림)
+  function newBox(host, a, isNew) { var o = { a: a, at: new Date().toISOString(), open: false, isNew: isNew }; box(host, o); return o; }
 
-  window.NWCards = { card: card, collection: collection, collected: collected, collect: collect, backfill: backfill, compute: compute, topOf: topOf, quad: quad, QUAD: QUAD, resultFor: resultFor, renderBack: renderBack, backupLink: backupLink, restoreFrom: restoreFrom, restoreFromUrl: restoreFromUrl, MINDS: MINDS, HASH: HASH };
+  window.NWCards = { MINDS: MINDS, HASH: HASH, compute: compute, sorted: sorted, topOf: topOf, state: state, read: read, readingHTML: readingHTML, renderBack: renderBack, card: card, box: box, newBox: newBox, parseBox: parseBox, trackVisit: trackVisit, lastBox: lastBox, inviteUrl: inviteUrl, encA: encA, decA: decA };
 })();

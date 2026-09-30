@@ -98,9 +98,10 @@
         <div class="types__hookt">
           <p class="types__kick"><b>6 MINDS</b> 무료 · 15문항 · 약 4분</p>
           <h2 class="types__h">지난 2주, 나는 어느 마음을 가장 많이 썼을까</h2>
-          <p class="types__lead">진단을 마치면 나만의 마음 카드를 받습니다. 앞면에는 내가 가장 많이 쓴 마음의 색 캐릭터가, 뒷면에는 <b>내 에너지 총량과 여섯 마음 배분, 이번 주 줄일 마음과 늘릴 마음</b>이 들어갑니다. 카드를 누르면 뒷면 예시가 보입니다.</p>
+          <p class="types__lead">진단을 마치면 여섯 마음 카드 여섯 장이 모두 내 결과로 만들어집니다. 뒷면마다 <b>그 마음에 대한 내 수치와 해석</b>이 들어갑니다. 가장 많이 쓴 마음 한 장은 바로 열리고, 친구나 단톡방에 한 번 공유하면 여섯 장이 모두 열립니다. 카드를 누르면 뒷면 예시가 보입니다.</p>
           <p class="types__cta"><a class="btn-go" href="/diagnosis/minds/">4분 진단하고 내 카드 받기</a></p>
-          <p class="types__meta">가입 없음 · 결과는 내 기기에만 저장 · 팀·학급·공동체와 함께 하려면 <a href="/minds/#invite">강사 초빙 안내</a></p>
+          <p class="types__meta">가입 없음 · 결과는 저장하지 않음 · 팀·학급·공동체와 함께 하려면 <a href="/minds/#invite">강사 초빙 안내</a></p>
+          <p class="types__meta" id="homeBoxLink" hidden><a href="/minds/box/">2주 안에 받은 내 카드함 열기 &#8599;</a></p>
         </div>
         <div class="types__card" id="homeCard"></div>
       </div>
@@ -453,7 +454,7 @@
 
 <script src="/assets/mind-data.js" defer></script>
 <script src="/assets/mind-cards.js" defer></script>
-<script>document.addEventListener('DOMContentLoaded',function(){ var h=document.getElementById('homeCard'); if(!h||!window.NWCards) return; var mine=NWCards.collected().filter(function(k){ return NWCards.resultFor(k); }); var k=mine.pop()||'enjoyer'; var ch=''; NWCards.MINDS.forEach(function(m){ if(m.k===k) ch=m.char; }); NWCards.card(h,{k:k,title:(NWCards.resultFor(k)?'내 카드 · ':'예시 카드 · ')+ch}); });</script>
+<script>document.addEventListener('DOMContentLoaded',function(){ var h=document.getElementById('homeCard'); if(!h||!window.NWCards) return; var ch=''; NWCards.MINDS.forEach(function(m){ if(m.k==='enjoyer') ch=m.char; }); NWCards.card(h,{k:'enjoyer',title:'예시 카드 · '+ch}); var b=NWCards.lastBox(), l=document.getElementById('homeBoxLink'); if(b&&l){ l.hidden=false; l.querySelector('a').href=b.url; } });</script>
 <script src="/assets/sky.js" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
