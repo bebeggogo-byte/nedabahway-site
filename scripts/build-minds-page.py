@@ -131,7 +131,7 @@ PAGE = head(TITLE, DESC, URL, 'minds', f'<link rel="stylesheet" href="/assets/mi
         <article class="mp-invite__c" style="--mc:#10B981;"><p class="mp-invite__k">4주 과정</p><h3>총량이 오르는 4주</h3><dl><dt>대상</dt><dd>같은 팀 · 학급 · 공동체 8~20명</dd><dt>구성</dt><dd>주 1회 90분 × 4회 + 재진단</dd><dt>남는 것</dt><dd>개인 4주 비교, 기관 리포트(평균 · 총량 변화 · 줄일 마음이 있는 사람 수), 워크숍 키트</dd></dl></article>
       </div>
       <div class="mp-invite__row">
-        <div class="mp-invite__box"><b>강사가 하는 일</b><p>해설, 짝 대화 진행, 팀 배분 지도 작성, 리더 코칭, 기관 리포트. 12년 1,200회 교육현장과 ICF 인증 코칭 300시간의 방법으로 진행합니다.</p></div>
+        <div class="mp-invite__box"><b>진행자가 하는 일</b><p>해설, 짝 대화 진행, 팀 배분 지도 작성, 리더 코칭, 기관 리포트. 12년 1,200회 교육현장과 ICF 인증 코칭 300시간의 방법으로 진행합니다.</p></div>
         <div class="mp-invite__box"><b>개인정보</b><p>개인 결과는 본인에게만 갑니다. 팀 배분 지도와 기관 리포트에는 이름 없이 평균과 분포만 들어가고, 이름이 붙은 결과는 어디에도 남지 않습니다.</p></div>
         <div class="mp-invite__box"><b>대상별 제안서</b><p><a href="/proposal/business/">기업·조직</a> · <a href="/proposal/institution/">기관·센터</a> · <a href="/proposal/faith/">신앙공동체</a> · <a href="/proposal/smallgroup/">소그룹·동아리</a>. 자발성 5단계와 6 MINDS를 엮은 10쪽 제안서입니다.</p></div>
       </div>

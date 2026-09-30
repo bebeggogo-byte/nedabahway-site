@@ -75,27 +75,39 @@
   var TOT = [['sleep', '잠'], ['move', '움직임'], ['drive', '의욕']];
   function energyRead(r) {
     var E = RD.energy || [], b = E[Math.min(9, Math.floor(r.energy / 10))] || {};
-    var bodyR = r.body / 60, mindR = r.minds40 / 40, low = TOT.slice().sort(function (p, q) { return r.total[p[0]] - r.total[q[0]]; })[0];
+    var bodyR = r.body / 60, mindR = r.minds40 / 40;
     var tired = r.minds.filter(function (m) { return m.chg <= -1; }).map(function (m) { return m.n; });
+    var lifted = r.minds.filter(function (m) { return m.chg >= 1; }).map(function (m) { return m.n; });
+    // 몸 문항: 모두 같으면 한 문장, 아니면 가장 낮은 문항(동점이면 모두)
+    var tv = TOT.map(function (t) { return r.total[t[0]]; }), lo = Math.min.apply(null, tv);
+    var bodyLine = tv[0] === tv[1] && tv[1] === tv[2] ? '잠·움직임·의욕은 모두 ' + lo + '/4입니다.'
+      : '몸 문항 가운데 가장 낮은 것은 ' + TOT.filter(function (t) { return r.total[t[0]] === lo; }).map(function (t) { return t[1]; }).join('·') + '(' + lo + '/4)입니다.';
+    var mindLine = tired.length ? '여섯 마음 가운데 쓰고 나서 지친 마음은 ' + tired.length + '개(' + tired.join('·') + ')입니다.'
+      : (lifted.length ? '쓰고 나서 지친 마음은 없고, 힘이 난 마음은 ' + lifted.length + '개(' + lifted.join('·') + ')입니다.' : '여섯 마음 모두 쓰고 나서 힘이 나지도 지치지도 않았습니다.');
+    var head = '내 총량은 몸(잠·움직임·의욕) ' + r.body + '/60점과 여섯 마음을 쓰고 난 뒤 ' + r.minds40 + '/40점을 더한 값입니다. ';
     var why;
-    if (bodyR + .15 <= mindR) why = '내 총량을 낮추는 쪽은 몸입니다. 나는 여섯 마음을 쓰고 나서는 비교적 힘이 나지만, 잠·움직임·의욕이 그 힘을 받쳐 주지 못합니다. 셋 가운데 가장 낮은 것은 ' + low[1] + '(' + r.total[low[0]] + '/4)입니다.';
-    else if (mindR + .15 <= bodyR) why = '내 총량을 낮추는 쪽은 마음을 쓰는 방식입니다. 나는 잠·움직임·의욕은 어느 정도 갖추고 있지만, ' + (tired.length ? '쓰고 나면 지치는 마음이 ' + tired.length + '개(' + tired.join('·') + ') 있습니다.' : '쓰고 나서 힘이 나는 마음이 거의 없습니다.');
-    else why = '나는 몸과 마음 두 쪽이 비슷한 수준입니다. 그래서 한쪽이 좋아지면 다른 쪽도 함께 좋아집니다. 셋 가운데 가장 낮은 몸 문항은 ' + low[1] + '(' + r.total[low[0]] + '/4)입니다.';
+    if (bodyR >= .75 && mindR >= .75) why = head + '두 쪽 모두 점수가 높습니다. ' + (tired.length ? mindLine : bodyLine);
+    else if (bodyR < .5 && mindR < .5) why = head + '두 쪽 모두 점수가 낮습니다. ' + bodyLine + ' ' + mindLine;
+    else if (bodyR + .15 <= mindR) why = head + '둘 가운데 점수가 더 낮은 쪽은 몸입니다. ' + bodyLine;
+    else if (mindR + .15 <= bodyR) why = head + '둘 가운데 점수가 더 낮은 쪽은 여섯 마음을 쓰고 난 뒤입니다. ' + mindLine;
+    else why = head + '두 쪽의 점수가 비슷합니다. ' + bodyLine + ' ' + mindLine;
     return { energy: r.energy, range: b.range, s: b.s, name: b.name, feel: b.feel, know: b.know, first: b.first, why: why, body: r.body, minds40: r.minds40 };
   }
   function energyHTML(r) {
     var e = energyRead(r), v = r.energy, R = 54, C = 2 * Math.PI * R;
+    if (!e.name) return '';
     return '<section class="er"><div class="er__top"><svg viewBox="0 0 140 140" width="120" height="120" role="img" aria-label="에너지 총량 ' + v + '점"><circle cx="70" cy="70" r="' + R + '" fill="none" stroke="#d6cfc1" stroke-width="12"/><circle cx="70" cy="70" r="' + R + '" fill="none" stroke="#1D4ED8" stroke-width="12" stroke-linecap="round" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + (C * (1 - v / 100)).toFixed(1) + '" transform="rotate(-90 70 70)"/><text x="70" y="78" text-anchor="middle" font-size="34" font-weight="800" fill="#1b1b1b">' + v + '</text></svg>' +
       '<div><p class="er__k">에너지 총량 ' + v + ' / 100 · ' + esc(e.range || '') + '점 구간</p><h3 class="er__t">' + esc(e.name || '') + '</h3><p class="er__split">몸(잠·움직임·의욕) ' + e.body + ' / 60 · 여섯 마음을 쓰고 난 뒤 ' + e.minds40 + ' / 40</p></div></div>' +
       '<p class="er__feel">' + esc(e.feel || '') + '</p><p class="er__know">' + esc(e.know || '') + '</p><p class="er__why">' + esc(e.why) + '</p>' +
-      '<p class="er__first"><b>이번 주 먼저 할 한 가지</b>' + esc(e.first || '') + '</p></section>';
+      '<p class="er__first"><b>이번 주 먼저 할 한 가지</b>' + esc(e.first || '') + '</p>' +
+      (v < 30 ? '<p class="er__help">요즘 많이 힘들다면 혼자 버티지 않아도 됩니다. 청소년은 1388, 누구나 109(자살예방상담)·129(보건복지상담)에서 24시간 이야기할 수 있습니다.</p>' : '') + '</section>';
   }
   function readingHTML(r, k, open) {
     var x = read(r, k);
     return '<article class="mr" style="--mc:' + x.c + ';--sc:' + x.sc + ';">' +
       '<header class="mr__h"><img src="' + thumb(k) + '" width="360" height="640" alt="" loading="lazy"><div><p class="mr__k">사용량 ' + x.rank + '위 · ' + esc(x.char) + '</p><h4 class="mr__t">' + esc(x.n) + '</h4><p class="mr__st"><b>' + esc(x.label) + '</b> · ' + esc(x.role) + '</p></div></header>' +
       '<dl class="mr__nums"><div><dt>사용 지수</dt><dd>' + x.useIdx + '</dd></div><div><dt>회복 지수</dt><dd>' + x.recIdx + '</dd></div><div><dt>배분 비중</dt><dd>' + x.share + '%</dd></div><div><dt>총량 기여</dt><dd>' + x.contrib + '<small>/6.7</small></dd></div></dl>' +
-      '<p class="mr__lv">' + esc(x.lv) + '</p><p class="mr__now">' + esc(x.now) + '</p><p class="mr__num">' + esc(x.numLine) + '</p><p class="mr__role"><b>에너지 총량 속 역할 · ' + esc(x.role) + '</b> ' + esc(x.role_d) + '</p>' +
+      (x.lv ? '<p class="mr__lv">' + esc(x.lv) + '</p>' : '') + '<p class="mr__now">' + esc(x.now) + '</p><p class="mr__num">' + esc(x.numLine) + '</p><p class="mr__role"><b>에너지 총량 속 역할 · ' + esc(x.role) + '</b> ' + esc(x.role_d) + '</p>' +
       '<details class="mr__deep"' + (open ? ' open' : '') + '><summary>한 번 더 깊게 보기</summary>' +
       '<ul class="mr__tam"><li><b>생각</b>' + esc(x.think) + '</li><li><b>행동</b>' + esc(x.act) + '</li><li><b>마음</b>' + esc(x.need) + '</li></ul>' +
       '<p class="mr__insight">' + esc(x.deep) + '</p><p class="mr__pair">' + esc(x.pairLine) + '</p></details>' +
@@ -220,7 +232,7 @@
       });
       ctx.fillStyle = LINE; ctx.fillRect(W - PAD - 150, sy + 4, 3, 76);
       f(ctx, 700, 18); ctx.fillStyle = MUTE; ctx.fillText('에너지 총량', W - PAD - 130, sy);
-      f(ctx, 900, 46); ctx.fillStyle = INK; ctx.fillText(String(r.energy), W - PAD - 130, sy + 28); var eb = energyRead(r).s; if (eb) { f(ctx, 700, 17); ctx.fillStyle = BODY; ctx.fillText(eb, W - PAD - 130, sy + 84); }
+      f(ctx, 900, 46); ctx.fillStyle = INK; ctx.fillText(String(r.energy), W - PAD - 130, sy + 28); var eb = energyRead(r).s; if (eb) { f(ctx, 700, 17); ctx.fillStyle = BODY; ctx.fillText(eb, W - PAD - 130, sy + 88); }
       if (sample) { ctx.save(); ctx.translate(W / 2, H * .5); ctx.rotate(-0.28); f(ctx, 900, 170); ctx.globalAlpha = .08; ctx.fillStyle = INK; var st = 'SAMPLE'; ctx.fillText(st, -ctx.measureText(st).width / 2, -85); ctx.restore(); }
       return cv;
     });
