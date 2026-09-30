@@ -77,6 +77,7 @@ RESULT_JS = r'''
     var spread=Math.round((A.use-B.use)/4*100);
     var spreadTxt= spread>=75?'나는 몇 가지 마음만 크게 많이 썼습니다':(spread>=50?'나는 많이 쓴 마음과 적게 쓴 마음의 차이가 있습니다':'나는 여섯 마음을 비교적 고르게 쓰고 있습니다');
     var band= r.energy>=70?'넉넉':(r.energy>=50?'보통':(r.energy>=30?'낮음':'회복이 먼저'));
+    if(window.NWCards&&r.a){ var _er=NWCards.energyRead(NWCards.compute(r.a)); if(_er.name) band=_er.name; }
     var summary= r.energy>=70?'나는 잠과 움직임이 안정되어 있고, 여섯 마음을 고르게 쓰고 있습니다.':(r.energy>=50?'나는 몸의 기본은 괜찮고, 몇 가지 마음만 많이 쓰고 있습니다.':(r.energy>=30?'나는 거의 안 쓰는 마음이 몇 개 있고, 잠과 움직임부터 챙길 때입니다.':'나는 요즘 많이 지쳐 있습니다. 이번 주는 쉬는 것이 먼저입니다.'));
     var next=new Date(when.getTime()+28*86400000);
     var lowTot=T.slice().sort(function(x,y){return r.total[x.k]-r.total[y.k];})[0];
@@ -85,12 +86,13 @@ RESULT_JS = r'''
     h+='<p class="ai-note" style="margin-top:4px;">'+fmt(when)+' · 지난 2주 기준 · 다음 진단 권장: 4주 뒤 ('+fmt(next)+') · 네다바웨이가 설계한 상태 진단</p>';
     // 내 카드 먼저: 앞면 = 가장 많이 쓴 마음의 색 캐릭터, 뒷면 = 이번 진단의 내 결과
     h+='<div class="dg-mycard" style="--mc:'+A.color+';"><p class="dg-mycard__k">이번 진단의 카드함</p><p class="dg-mycard__t">요즘 나는 「'+esc(mA.full)+'」을 가장 많이 썼습니다. 나의 캐릭터는 <b>'+esc(mA.char)+'</b>입니다.</p><div id="dgBox"></div>';
-    h+='<div class="dg-team"><p class="dg-team__t">우리 팀·학급의 카드를 모으면 무엇이 보일까요</p><p class="dg-team__d">구성원이 각자 진단하면 강사가 카드 뒷면을 이름 없이 모아 <b>한 장의 팀 배분 지도</b>로 만듭니다. 우리 팀이 어느 마음을 많이 쓰고 어느 마음을 거의 안 쓰는지, 혼자서는 볼 수 없는 모습을 90분 동안 함께 읽습니다.</p><p class="dg-team__cta"><a class="btn-dark" href="/minds/#invite">팀 워크숍 안내</a><a class="btn-link" href="/proposal/">대상별 제안서 &#8599;</a></p></div></div>';
+    h+='<div class="dg-team"><p class="dg-team__t">우리 팀·학급의 카드를 모으면 무엇이 보일까요</p><p class="dg-team__d">구성원이 각자 진단하면 진행자가 카드 뒷면을 이름 없이 모아 <b>한 장의 팀 배분 지도</b>로 만듭니다. 우리 팀이 어느 마음을 많이 쓰고 어느 마음을 거의 안 쓰는지, 혼자서는 볼 수 없는 모습을 90분 동안 함께 읽습니다.</p><p class="dg-team__cta"><a class="btn-dark" href="/minds/#invite">팀 워크숍 안내</a><a class="btn-link" href="/proposal/">대상별 제안서 &#8599;</a></p></div></div>';
     h+='<h3 class="dg-h3" style="margin-top:34px;">해설지 · 내 결과 자세히 보기</h3>';
     h+='<div class="dg-legend"><span><b>총량</b> 몸 3문항 60% + 쓰고 난 뒤 상태 40%</span><span><b>배분</b> 사용량 6 → 막대</span><span><b>쓰고 난 뒤</b> 힘이 남·지침 6 → 색·네 자리</span><span><b>조정</b> 줄일 마음 1 · 늘릴 마음 1</span></div>';
     // ① 총량
     h+='<h3 class="dg-h3">① 에너지 총량</h3>';
-    h+='<div class="dg-res__head" style="margin-top:10px;">'+ring(r.energy)+'<div><p class="dg-res__t" style="font-size:clamp(22px,3vw,30px);">'+r.energy+' / 100 · '+band+'</p><p class="dg-res__d" style="margin-top:6px;">'+esc(summary)+'</p><p class="dg-res__d" style="margin-top:4px;">총량의 60%는 잠·움직임·의욕에서, 40%는 여섯 마음을 쓰고 난 뒤의 상태에서 옵니다.</p></div></div>';
+    var _eh=(window.NWCards&&r.a)?NWCards.energyHTML(NWCards.compute(r.a)):'';
+    h+=_eh?_eh:'<div class="dg-res__head" style="margin-top:10px;">'+ring(r.energy)+'<div><p class="dg-res__t" style="font-size:clamp(22px,3vw,30px);">'+r.energy+' / 100 · '+band+'</p><p class="dg-res__d" style="margin-top:6px;">'+esc(summary)+'</p><p class="dg-res__d" style="margin-top:4px;">총량의 60%는 잠·움직임·의욕에서, 40%는 여섯 마음을 쓰고 난 뒤의 상태에서 옵니다.</p></div></div>';
     h+='<div class="dg-chips" style="margin-top:14px;">'+T.map(function(t){ var v=r.total[t.k]; var c=v>=3?'#DCFCE7':(v<=1?'#FFE4D6':'var(--chip)'); return '<span style="background:'+c+';">'+esc(t.name)+' '+v+'/4</span>'; }).join('')+'<span>힘이 나는 마음 '+chargers.length+' · 지치는 마음 '+drainers.length+' · 차이 '+spread+'%</span></div>';
     // ② 배분
     h+='<h3 class="dg-h3">② 여섯 마음의 배분</h3>';
@@ -122,7 +124,7 @@ RESULT_JS = r'''
     h+='<div class="mr-list">'+(window.NWCards?sorted.map(function(m,i){ return NWCards.readingHTML(r,m.k,i===0); }).join(''):'')+'</div>';
     // ⑧ 다시 진단하기: 기록을 남기지 않으므로 코드로 비교
     h+='<h3 class="dg-h3">⑧ 4주 뒤 다시</h3><p class="dg-res__d" style="margin-top:8px;">이 결과는 저장하지 않습니다. 새로 고침하면 사라지고, 4주 뒤에는 그때의 2주로 새 카드함을 받습니다. 변화를 보고 싶다면 아래 ⑨의 <b>내 코드</b>를 적어 두었다가, 다음 진단 뒤 상대 코드 칸에 이번 코드를 넣으면 두 시기를 나란히 봅니다.</p>';
-    if(r.energy<30){ h+='<p class="ai-note" style="margin-top:14px;">요즘 많이 힘들다면 혼자 버티지 않아도 됩니다. 청소년은 1388, 성인은 1393(자살예방)·129(보건복지상담)에서 24시간 이야기할 수 있습니다.</p>'; }
+    if(r.energy<30){ h+='<p class="ai-note" style="margin-top:14px;">요즘 많이 힘들다면 혼자 버티지 않아도 됩니다. 청소년은 1388, 누구나 109(자살예방상담)·129(보건복지상담)에서 24시간 이야기할 수 있습니다.</p>'; }
     // ⑨ 함께 보기
     var code=encode(ans_of(r));
     h+='<h3 class="dg-h3">⑨ 함께 보기 · 서로 비교</h3><p class="ai-note" style="margin-top:6px;">내 코드를 상대에게 보내고, 상대 코드를 아래에 넣으면 두 사람의 배분이 나란히 나옵니다. 누가 낫다가 아니라, 서로 어느 마음을 잘 쓰는지를 봅니다.</p>';
@@ -247,7 +249,7 @@ document.addEventListener('DOMContentLoaded',function(){{
   function likert(labels,base){{ var h='<div class="dg-likert" role="group">'; labels.forEach(function(l,i){{ var v=base+i; h+='<button type="button" class="dg-lk'+(ans[cur]===v?' is-picked':'')+'" data-v="'+v+'"><span class="dg-lk__dot" aria-hidden="true"></span><span class="dg-lk__t">'+esc(l)+'</span></button>'; }}); return h+'</div>'; }}
   function pick(v,btn){{ ans[cur]=v; btn.parentElement.querySelectorAll('.dg-lk').forEach(function(b){{b.classList.remove('is-picked');b.disabled=true;}}); btn.classList.add('is-picked'); setTimeout(function(){{ if(cur<N-1){{cur++;render();NWD.scrollToQuiz();}} else finish(); }},220); }}
   function compute(a){{
-    var r={{minds:[],total:{{}}}}; var ci=0;
+    var r={{a:a.slice(),minds:[],total:{{}}}}; var ci=0;
     M.forEach(function(m,i){{ r.minds.push({{k:m.k,name:m.name,color:m.color,use:a[i*2],chg:a[i*2+1]}}); }});
     T.forEach(function(t,i){{ r.total[t.k]=a[12+i]; }});
     var totAvg=(r.total.sleep+r.total.move+r.total.drive)/3/4*100;

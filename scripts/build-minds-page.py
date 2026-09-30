@@ -124,14 +124,14 @@ PAGE = head(TITLE, DESC, URL, 'minds', f'<link rel="stylesheet" href="/assets/mi
     <div class="wrap">
       <p class="sec-kicker">For teams, classes, communities</p>
       <h2 class="mp-h2">혼자 받은 카드를<br>팀이 함께 읽으면<span class="mp-dot" aria-hidden="true"></span></h2>
-      <p class="mp-lead">진단은 누구나 무료로 혼자 할 수 있습니다. 강사가 오면 구성원 한 사람 한 사람의 카드 뒷면을 이름 없이 모아 <b>한 장의 팀 배분 지도</b>로 만듭니다. 우리 팀이 어느 마음을 많이 쓰고 어느 마음을 거의 안 쓰는지, 혼자서는 볼 수 없는 모습이 나옵니다. 리더는 팀원의 상태를 물을 수 있는 <b>문장</b>을, 기관은 4주 뒤 변화를 숫자로 보는 <b>리포트</b>를 받습니다.</p>
+      <p class="mp-lead">진단은 누구나 무료로 혼자 할 수 있습니다. 제주 방문 프로그램에서는 진행자가 구성원 한 사람 한 사람의 카드 뒷면을 이름 없이 모아 <b>한 장의 팀 배분 지도</b>로 만듭니다. 우리 팀이 어느 마음을 많이 쓰고 어느 마음을 거의 안 쓰는지, 혼자서는 볼 수 없는 모습이 나옵니다. 리더는 팀원의 상태를 물을 수 있는 <b>문장</b>을, 기관은 4주 뒤 변화를 숫자로 보는 <b>리포트</b>를 받습니다.</p>
       <div class="mp-invite__g">
         <article class="mp-invite__c" style="--mc:#FF6B3D;"><p class="mp-invite__k">90분 특강</p><h3>여섯 마음 첫 만남</h3><dl><dt>대상</dt><dd>전 직원 · 전 학년 · 교인, 인원 제한 없음</dd><dt>구성</dt><dd>진단 15분 → 카드 받기 → 해설 → 짝 대화</dd><dt>남는 것</dt><dd>한 사람당 내 결과 카드 한 장과 해설지</dd></dl></article>
         <article class="mp-invite__c" style="--mc:#3B82F6;"><p class="mp-invite__k">반나절 워크숍</p><h3>나란히 보기</h3><dl><dt>대상</dt><dd>팀 · 학급 · 소그룹 8~30명</dd><dt>구성</dt><dd>진단 → 카드 비교 → 팀 배분 지도 읽기 → 이번 주 한 가지 선언 → 리더 세션 30분</dd><dt>남는 것</dt><dd>팀 배분 지도, 리더 대화 가이드, 개인 카드와 해설지</dd></dl></article>
         <article class="mp-invite__c" style="--mc:#10B981;"><p class="mp-invite__k">4주 과정</p><h3>총량이 오르는 4주</h3><dl><dt>대상</dt><dd>같은 팀 · 학급 · 공동체 8~20명</dd><dt>구성</dt><dd>주 1회 90분 × 4회 + 재진단</dd><dt>남는 것</dt><dd>개인 4주 비교, 기관 리포트(평균 · 총량 변화 · 줄일 마음이 있는 사람 수), 워크숍 키트</dd></dl></article>
       </div>
       <div class="mp-invite__row">
-        <div class="mp-invite__box"><b>강사가 하는 일</b><p>해설, 짝 대화 진행, 팀 배분 지도 작성, 리더 코칭, 기관 리포트. 12년 1,200회 교육현장과 ICF 인증 코칭 300시간의 방법으로 진행합니다.</p></div>
+        <div class="mp-invite__box"><b>진행자가 하는 일</b><p>해설, 짝 대화 진행, 팀 배분 지도 작성, 리더 코칭, 기관 리포트. 12년 1,200회 교육현장과 ICF 인증 코칭 300시간의 방법으로 진행합니다.</p></div>
         <div class="mp-invite__box"><b>개인정보</b><p>개인 결과는 본인에게만 갑니다. 팀 배분 지도와 기관 리포트에는 이름 없이 평균과 분포만 들어가고, 이름이 붙은 결과는 어디에도 남지 않습니다.</p></div>
         <div class="mp-invite__box"><b>대상별 제안서</b><p><a href="/proposal/business/">기업·조직</a> · <a href="/proposal/institution/">기관·센터</a> · <a href="/proposal/faith/">신앙공동체</a> · <a href="/proposal/smallgroup/">소그룹·동아리</a>. 자발성 5단계와 6 MINDS를 엮은 10쪽 제안서입니다.</p></div>
       </div>
@@ -199,7 +199,7 @@ BOX = head('내 카드함 · 6 MINDS | 네다바웨이', '이번 진단으로 �
   var days=Math.floor((Date.now()-new Date(o.at).getTime())/86400000);
   if(days>=14) lead.textContent='이 카드함은 '+days+'일 전 진단입니다. 마음의 상태는 2주 단위로 바뀝니다. 카드는 그대로 볼 수 있지만, 지금의 나를 보려면 새로 진단하세요.';
   NWCards.box(document.getElementById('mbBox'),o);
-  var r=NWCards.compute(o.a); document.getElementById('mbRead').innerHTML='<h2 class="mp-h2" style="margin-top:40px;font-size:clamp(24px,3vw,32px);">여섯 마음 깊게 읽기</h2>'+NWCards.sorted(r).map(function(m,i){{ return NWCards.readingHTML(r,m.k,i===0); }}).join(''); }});</script>
+  var r=NWCards.compute(o.a); document.getElementById('mbRead').innerHTML=NWCards.energyHTML(r)+'<h2 class="mp-h2" style="margin-top:40px;font-size:clamp(24px,3vw,32px);">여섯 마음 깊게 읽기</h2>'+NWCards.sorted(r).map(function(m,i){{ return NWCards.readingHTML(r,m.k,i===0); }}).join(''); }});</script>
 </main>
 ''' + FOOTER
 ob = ROOT / 'minds' / 'box' / 'index.html'; ob.parent.mkdir(parents=True, exist_ok=True)

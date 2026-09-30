@@ -68,7 +68,7 @@
   var days=Math.floor((Date.now()-new Date(o.at).getTime())/86400000);
   if(days>=14) lead.textContent='이 카드함은 '+days+'일 전 진단입니다. 마음의 상태는 2주 단위로 바뀝니다. 카드는 그대로 볼 수 있지만, 지금의 나를 보려면 새로 진단하세요.';
   NWCards.box(document.getElementById('mbBox'),o);
-  var r=NWCards.compute(o.a); document.getElementById('mbRead').innerHTML='<h2 class="mp-h2" style="margin-top:40px;font-size:clamp(24px,3vw,32px);">여섯 마음 깊게 읽기</h2>'+NWCards.sorted(r).map(function(m,i){ return NWCards.readingHTML(r,m.k,i===0); }).join(''); });</script>
+  var r=NWCards.compute(o.a); document.getElementById('mbRead').innerHTML=NWCards.energyHTML(r)+'<h2 class="mp-h2" style="margin-top:40px;font-size:clamp(24px,3vw,32px);">여섯 마음 깊게 읽기</h2>'+NWCards.sorted(r).map(function(m,i){ return NWCards.readingHTML(r,m.k,i===0); }).join(''); });</script>
 </main>
 <footer class="sk-foot">
   <div class="wrap sk-foot__bottom">
