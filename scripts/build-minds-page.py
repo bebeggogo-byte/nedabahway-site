@@ -124,7 +124,7 @@ PAGE = head(TITLE, DESC, URL, 'minds', f'<link rel="stylesheet" href="/assets/mi
     <div class="wrap">
       <p class="sec-kicker">For teams, classes, communities</p>
       <h2 class="mp-h2">혼자 받은 카드를<br>팀이 함께 읽으면<span class="mp-dot" aria-hidden="true"></span></h2>
-      <p class="mp-lead">진단은 누구나 무료로 혼자 할 수 있습니다. 강사가 오면 구성원 한 사람 한 사람의 카드 뒷면을 이름 없이 모아 <b>한 장의 팀 배분 지도</b>로 만듭니다. 우리 팀이 어느 마음을 많이 쓰고 어느 마음을 거의 안 쓰는지, 혼자서는 볼 수 없는 모습이 나옵니다. 리더는 팀원의 상태를 물을 수 있는 <b>문장</b>을, 기관은 4주 뒤 변화를 숫자로 보는 <b>리포트</b>를 받습니다.</p>
+      <p class="mp-lead">진단은 누구나 무료로 혼자 할 수 있습니다. 제주 방문 프로그램에서는 진행자가 구성원 한 사람 한 사람의 카드 뒷면을 이름 없이 모아 <b>한 장의 팀 배분 지도</b>로 만듭니다. 우리 팀이 어느 마음을 많이 쓰고 어느 마음을 거의 안 쓰는지, 혼자서는 볼 수 없는 모습이 나옵니다. 리더는 팀원의 상태를 물을 수 있는 <b>문장</b>을, 기관은 4주 뒤 변화를 숫자로 보는 <b>리포트</b>를 받습니다.</p>
       <div class="mp-invite__g">
         <article class="mp-invite__c" style="--mc:#FF6B3D;"><p class="mp-invite__k">90분 특강</p><h3>여섯 마음 첫 만남</h3><dl><dt>대상</dt><dd>전 직원 · 전 학년 · 교인, 인원 제한 없음</dd><dt>구성</dt><dd>진단 15분 → 카드 받기 → 해설 → 짝 대화</dd><dt>남는 것</dt><dd>한 사람당 내 결과 카드 한 장과 해설지</dd></dl></article>
         <article class="mp-invite__c" style="--mc:#3B82F6;"><p class="mp-invite__k">반나절 워크숍</p><h3>나란히 보기</h3><dl><dt>대상</dt><dd>팀 · 학급 · 소그룹 8~30명</dd><dt>구성</dt><dd>진단 → 카드 비교 → 팀 배분 지도 읽기 → 이번 주 한 가지 선언 → 리더 세션 30분</dd><dt>남는 것</dt><dd>팀 배분 지도, 리더 대화 가이드, 개인 카드와 해설지</dd></dl></article>

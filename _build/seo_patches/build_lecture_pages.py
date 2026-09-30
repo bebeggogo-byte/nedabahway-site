@@ -395,7 +395,7 @@ def build_page(data: dict) -> str:
 </aside>
 
 <footer style="margin-top:4rem;padding-top:2rem;border-top:1px solid #e5d8c4;font-size:.85rem;color:#665f57;">
-  <p>김창환 · 네다바웨이 · 제주 출발 전국 출강 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
+  <p>김창환 · 네다바웨이 · 제주 방문 연수·워크숍·팀빌딩 · <a href="mailto:nedabah.way@gmail.com">nedabah.way@gmail.com</a></p>
 </footer>
 </main>
 </body>
