@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>내 카드함 · 6 MINDS | 네다바웨이</title>
+<meta name="description" content="이번 진단으로 만든 여섯 장의 마음 카드. 초대로 들어온 사람 수만큼 잠긴 카드를 엽니다.">
+<link rel="canonical" href="https://www.nedabah.org/minds/box/">
+<meta property="og:title" content="내 카드함 · 6 MINDS | 네다바웨이">
+<meta property="og:description" content="이번 진단으로 만든 여섯 장의 마음 카드. 초대로 들어온 사람 수만큼 잠긴 카드를 엽니다.">
+<meta property="og:url" content="https://www.nedabah.org/minds/box/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.nedabah.org/assets/og/minds.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="내 카드함 · 6 MINDS | 네다바웨이">
+<meta name="twitter:description" content="이번 진단으로 만든 여섯 장의 마음 카드. 초대로 들어온 사람 수만큼 잠긴 카드를 엽니다.">
+<meta name="twitter:image" content="https://www.nedabah.org/assets/og/minds.jpg">
+<meta name="theme-color" content="#f1ede5">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/sky.css">
+<link rel="stylesheet" href="/assets/diag.css">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="/assets/minds.css">
+<link rel="stylesheet" href="/assets/mind-cards.css">
+<script src="/assets/js/supabase-config.js" defer></script>
+<script src="/assets/mind-data.js" defer></script>
+<script src="/assets/mind-cards.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">본문 바로가기</a>
+<header class="sk-head">
+  <div class="sk-head__in">
+    <a class="sk-logo" href="/" aria-label="네다바웨이 홈"><img class="sk-logo__word" src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a>
+    <nav class="sk-nav" id="skNav" aria-label="주요 메뉴">
+      <a href="/about.html">About</a>
+      <a href="/programs.html">Programs</a>
+      <a href="/personal.html">Personal</a>
+      <a href="/minds/">6 Minds</a>
+      <a href="/goods/">Goods</a>
+      <a href="/ai/">AI</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+    <div class="sk-head__r">
+      <a class="sk-diag" href="/diagnosis/" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>무료진단</a>
+      <button class="sk-burger" type="button" aria-controls="skNav" aria-expanded="false" aria-label="메뉴 열기">
+        <svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="mp">
+  <section class="mp-cards" style="border-top:0;">
+    <div class="wrap" style="max-width:860px;">
+      <p class="sec-kicker">My card box</p>
+      <h1 class="mp-h2">내 카드함<span class="mp-dot" aria-hidden="true"></span></h1>
+      <p class="mp-lead" id="mbLead">이 주소는 나만 여는 카드함입니다. 주소에 내 진단 결과가 들어 있으니 다른 사람에게는 초대 링크만 보내세요.</p>
+      <div id="mbBox"></div>
+      <div id="mbRead" class="mr-list"></div>
+      <p class="mp-cta__b"><a class="btn-go" href="/diagnosis/minds/">새로 진단하기 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn-link" href="/minds/">6 MINDS 소개 &#8599;</a></p>
+    </div>
+  </section>
+<script>document.addEventListener('DOMContentLoaded',function(){ if(!window.NWCards) return; var o=NWCards.parseBox(location.hash), lead=document.getElementById('mbLead');
+  if(!o){ lead.textContent='카드함 주소가 맞지 않습니다. 진단을 마친 화면에서 「카드함 주소 보관하기」로 받은 주소 전체를 열어 주세요.'; return; }
+  var days=Math.floor((Date.now()-new Date(o.at).getTime())/86400000);
+  if(days>=14) lead.textContent='이 카드함은 '+days+'일 전 진단입니다. 마음의 상태는 2주 단위로 바뀝니다. 카드는 그대로 볼 수 있지만, 지금의 나를 보려면 새로 진단하세요.';
+  o.owner=true; NWCards.box(document.getElementById('mbBox'),o);
+  var r=NWCards.compute(o.a); document.getElementById('mbRead').innerHTML='<h2 class="mp-h2" style="margin-top:40px;font-size:clamp(24px,3vw,32px);">여섯 마음 깊게 읽기</h2>'+NWCards.sorted(r).map(function(m,i){ return NWCards.readingHTML(r,m.k,i===0); }).join(''); });</script>
+</main>
+<footer class="sk-foot">
+  <div class="wrap sk-foot__bottom">
+    <span><strong class="sk-foot__logo"><img class="sk-logo__word" src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></strong> &copy; 2026 NEDABAHWAY</span>
+    <span class="sk-foot__links">
+      <a href="https://www.youtube.com/channel/UCWnbno58Hrtiu8fPjrCCTfQ" rel="noopener">YouTube</a>
+      <a href="https://blog.naver.com/nedabah" rel="noopener">Blog</a>
+      <a href="/privacy.html">개인정보처리방침</a>
+      <a href="/locked/" class="sk-foot__vault">자료실</a>
+    </span>
+  </div>
+</footer>
+<script src="/assets/sky.js" defer></script>
+<script src="/assets/diag.js" defer></script>
+<script src="/assets/analytics.js" defer></script>
+</body>
+</html>

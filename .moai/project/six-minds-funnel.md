@@ -93,3 +93,12 @@
 - https://holden.uoregon.edu/strengths
 - https://www.discprofile.com/CMS/media/doc/ed/workplace/wrkplc-kit-brochure.pdf
 - https://enneagramtest.com/blog/enneagram-workshop-for-teams
+
+## 8. 2026-09-30 개정: 카드함과 초대 해제
+
+- 결과를 저장하지 않습니다. 상태는 2주마다 바뀌므로 새로 고침하면 결과 화면이 사라집니다. 브라우저에는 카드함 주소만 14일 동안 남습니다.
+- 진단 한 번에 카드 여섯 장을 모두 내 결과로 만듭니다. 가장 많이 쓴 마음 한 장만 열고, 나머지 다섯 장은 초대 링크(/diagnosis/minds/?f=카드함번호)로 들어온 사람 1명마다 1장씩 골라 엽니다. 5명이면 여섯 장입니다.
+- 카드 뒷면은 마음마다 다릅니다. 그 마음의 네 수치(사용 지수·회복 지수·배분 비중·총량 기여), 여덟 자리, 에너지 총량 속 역할, 생각·행동·마음, 한 번 더 깊게, 이번 주 한 가지, 짝이 되는 마음을 담습니다.
+- 「사진으로 저장」은 앞면·뒷면 두 장(각 1080×1920)을 공유 창으로 넘겨 사진첩에 저장합니다.
+- 초대 집계 서버: supabase/minds-referral.sql. 답과 이름은 저장하지 않고, 카드함 번호·브라우저 번호·연 카드 이름만 남깁니다.
+- 해석 원본: .moai/project/six-minds-interpret.json. 설계 근거: .moai/project/six-minds-whitepaper.md (사이트 /minds/method/).
