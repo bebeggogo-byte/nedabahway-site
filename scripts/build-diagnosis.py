@@ -231,16 +231,16 @@ def hub():
 
       <a class="dg-box dg-box--minds reveal" href="/diagnosis/minds/">
         <span class="dg-box__k">03 · 요즘 나의 여섯 마음</span>
-        <span class="dg-box__t">요즘 나는 어떻게<br>지내고 있는가</span>
-        <span class="dg-box__d">탐험·만들기·연결·돕기·생각·즐기기. 지난 2주 동안 여섯 마음에 에너지를 어떻게 나눠 썼는지 봅니다. 유형 판정 없이 배분과 총량, 이번 주 조정 한 가지.</span>
+        <span class="dg-box__t">지난 2주, 나는 어느<br>마음을 가장 많이 썼을까</span>
+        <span class="dg-box__d">탐험·만들기·연결·돕기·생각·즐기기. 진단을 마치면 앞면에 내 색 캐릭터, 뒷면에 내 에너지 총량과 여섯 마음 배분이 담긴 나만의 마음 카드를 받습니다. 유형 판정은 하지 않습니다.</span>
         <span class="dg-meta"><span>{ICON_LIST}15문항</span><span>{ICON_CLOCK}약 4분</span><span>{ICON_FREE}무료 · 4주 뒤 다시</span></span>
         <span class="dg-shot"><img src="/assets/diagnosis/minds-result.jpg" width="1200" height="900" alt="요즘 나의 여섯 마음 결과 예시: 에너지 총량 링 게이지와 사용량 순 여섯 막대, 알아차림·이번 주 조정·총량 키우기 카드" loading="lazy"><span class="dg-shot__cap">완료하면 이렇게 나옵니다</span></span>
         <ul class="dg-get">
-          <li>에너지 총량 링 게이지와 한 문장</li>
-          <li>사용량 순 여섯 막대, 충전·고갈 색 구분</li>
-          <li>알아차림 · 이번 주 줄일 것 하나, 늘릴 것 하나</li>
+          <li>내 결과가 뒷면에 담긴 마음 카드 한 장</li>
+          <li>에너지 총량과 여섯 마음을 쓴 양, 쓰고 나서 힘이 났는지 지쳤는지</li>
+          <li>이번 주 줄일 마음 하나, 늘릴 마음 하나</li>
         </ul>
-        <span class="dg-box__cta"><span class="btn-go">여섯 마음 진단 시작 {ARROW}</span></span>
+        <span class="dg-box__cta"><span class="btn-go">4분 진단하고 내 카드 받기 {ARROW}</span></span>
       </a>
     </div>
 
