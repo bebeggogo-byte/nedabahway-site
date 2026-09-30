@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Render the 6 MINDS digital card set (phone portrait, 1080x1920 PNG).
 
-  assets/cards/mind-<k>-front.png   character, definition, charge source, three signals, pair mind
-  assets/cards/mind-<k>-back.png    quote, this-week moves, insight, pair avatar
-  assets/cards/mind-set.jpg         contact sheet for the web page
+  assets/cards/mind-<k>-front.png       character, colour-character name, definition, when I get energy, three signals, pair mind
+  assets/cards/mind-<k>-back-base.png   blank back (foil frame, inner card, footer). The browser draws the person's own
+                                        result on it (assets/mind-cards.js renderBack), or a labelled sample before the test.
 
 Quality notes
   - Everything is drawn at 2x (2160x3840) and downsampled with Lanczos, so type and outlines stay crisp.
@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 FONT_DIR = os.environ.get('PRETENDARD', '/tmp/claude-0/-home-user-nedabahway-site/edc7b93a-289f-59f8-9c94-9bdaeff80630/scratchpad/pret/package/dist/public/static')
 OUT = ROOT / 'assets' / 'cards'; OUT.mkdir(exist_ok=True)
 M = json.loads((ROOT / '.moai/project/six-minds-data.json').read_text(encoding='utf-8'))
-COLOR = dict(explorer='#FF6B3D', maker='#FFC857', connector='#3B82F6', supporter='#10B981', thinker='#8B5CF6', enjoyer='#F472B6')
+COLOR = {m['k']: m['c'] for m in M}
 PAPER = (241, 237, 229); INK = (27, 27, 27); CARD = (251, 249, 244); MUTE = (92, 87, 80); BODY = (52, 50, 47)
 S = 2                      # supersample factor
 W, H = 1080 * S, 1920 * S  # working canvas
@@ -173,7 +173,7 @@ def header(img, d, i, m, c):
     col = hexrgb(c)
     coin(d, PAD + px(34), px(150), px(34), c, f'0{i + 1}', font('ExtraBold', 30))
     d.text((PAD + px(88), px(120)), m['n'], font=font('Black', 72), fill=INK)
-    d.text((PAD + px(92), px(206)), m['en'].upper() + '  ·  6 MINDS', font=font('Bold', 26), fill=col)
+    d.text((PAD + px(92), px(206)), m['char'] + '  ·  ' + m['en'].upper(), font=font('Bold', 28), fill=mix(col, INK, .25))
     # brand symbol top-right
     sym = Image.open(ROOT / 'assets/brand/nw-symbol.png').convert('RGBA')
     sw = px(120); sym = sym.resize((sw, int(sym.height * sw / sym.width)), Image.LANCZOS)
@@ -212,7 +212,7 @@ def front(i, m):
     y = draw_par(d, (PAD, y), m['d'], font('ExtraBold', 40), INK, W - 2 * PAD, 1.3) + px(10)
     d.rounded_rectangle((PAD, y, PAD + px(120), y + px(8)), radius=px(4), fill=col); y += px(30)
     # charge source
-    d.text((PAD, y), '무엇이 이 마음을 채우나', font=font('ExtraBold', 25), fill=col); y += px(38)
+    d.text((PAD, y), '언제 힘이 나나', font=font('ExtraBold', 25), fill=mix(col, INK, .25)); y += px(38)
     y = draw_par(d, (PAD, y), m['src'], font('Medium', 28), BODY, W - 2 * PAD, 1.5) + px(14)
     # signals
     rows = [('잘 쓰고 있을 때', m['on'], (16, 185, 129)), ('거의 안 쓸 때', m['low'], (156, 163, 175)), ('지나치게 쓸 때', m['over'], (239, 68, 68))]
@@ -231,80 +231,25 @@ def front(i, m):
     pm = Image.new('L', (px(72), px(72)), 0); ImageDraw.Draw(pm).ellipse((0, 0, px(72), px(72)), fill=255)
     img.paste(pc, (PAD + px(14), y + px(12)), pm); d = ImageDraw.Draw(img)
     d.ellipse((PAD + px(14), y + px(12), PAD + px(86), y + px(84)), outline=hexrgb(COLOR[m['pair_k']]), width=px(3))
-    d.text((PAD + px(104), y + px(16)), '짝이 되는 마음', font=font('Bold', 21), fill=(200, 194, 182))
-    d.text((PAD + px(104), y + px(44)), f'{m["pair_n"]} · {m["pair_w"]}', font=font('Bold', 27), fill=PAPER)
+    pair = next(x for x in M if x['k'] == m['pair_k'])
+    d.text((PAD + px(104), y + px(16)), f'짝이 되는 마음 · {pair["char"]}', font=font('Bold', 21), fill=(200, 194, 182))
+    d.text((PAD + px(104), y + px(44)), f'{m["pair_n"]} · {m["pair_w"]}', font=font('Bold', 25), fill=PAPER)
     footer(d, c)
     return finish(img)
 
-def back(i, m):
-    c = COLOR[m['k']]; col = hexrgb(c)
+def back_base(i, m):
+    """Blank back: frame + footer only. assets/mind-cards.js draws the result layer on top (same 1080x1920 grid)."""
+    c = COLOR[m['k']]
     img = card_base(c); d = ImageDraw.Draw(img)
-    header(img, d, i, m, c)
-    # big quote block
-    y = px(280)
-    d.rounded_rectangle((PAD, y, W - PAD, y + px(200)), radius=px(30), fill=mix(col, (255, 255, 255), .82))
-    d.rounded_rectangle((PAD, y, PAD + px(12), y + px(200)), radius=px(6), fill=col)
-    d.text((PAD + px(40), y + px(26)), '“', font=font('Black', 80), fill=col)
-    draw_par(d, (PAD + px(40), y + px(92)), m['q'], font('ExtraBold', 40), INK, W - 2 * PAD - px(80), 1.35)
-    y += px(250)
-    d.text((PAD, y), '이번 주, 이렇게', font=font('Black', 36), fill=INK); y += px(62)
-    for k, v, cc in [('이 마음을 더 쓰고 싶을 때', m['more'], (16, 185, 129)), ('이 마음을 줄여야 할 때', m['less'], (225, 29, 72))]:
-        bh = par_height(d, v, font('SemiBold', 33), W - 2 * PAD - px(80), 1.45) + px(104)
-        d.rounded_rectangle((PAD, y, W - PAD, y + bh), radius=px(28), fill=(236, 231, 220))
-        d.rounded_rectangle((PAD, y, PAD + px(12), y + bh), radius=px(6), fill=cc)
-        label_pill(d, PAD + px(36), y + px(24), k, cc, (255, 255, 255), font('ExtraBold', 22))
-        draw_par(d, (PAD + px(40), y + px(80)), v, font('SemiBold', 33), INK, W - 2 * PAD - px(80), 1.45)
-        y += bh + px(18)
-    y += px(14)
-    d.text((PAD, y), '자세히 보면', font=font('Black', 36), fill=INK); y += px(60)
-    d.rounded_rectangle((PAD, y, PAD + px(120), y + px(8)), radius=px(4), fill=col); y += px(26)
-    y = draw_par(d, (PAD, y), m['ins'], font('Medium', 30), BODY, W - 2 * PAD, 1.55)
-    # write-in box
-    av = px(220); cy = H - px(150) - px(40) - av
-    by0 = y + px(34); by1 = cy - px(40)
-    if by1 - by0 >= px(100):
-        d.rounded_rectangle((PAD, by0, W - PAD, by1), radius=px(24), outline=mix(col, INK, .2), width=px(3))
-        d.text((PAD + px(28), by0 + px(22)), '이번 주 나의 한 가지', font=font('ExtraBold', 24), fill=col)
-        ly = by0 + px(92)
-        while ly < by1 - px(24):
-            d.line((PAD + px(28), ly, W - PAD - px(28), ly), fill=(206, 199, 186), width=px(2)); ly += px(52)
-    # avatar + premise
-    ch = Image.open(ROOT / 'assets/brand' / f'char-{m["k"]}.jpg').convert('RGB').resize((av, av), Image.LANCZOS)
-    cm = Image.new('L', (av, av), 0); ImageDraw.Draw(cm).ellipse((0, 0, av, av), fill=255)
-    sh = Image.new('RGBA', (W, H), (0, 0, 0, 0)); ImageDraw.Draw(sh).ellipse((PAD + px(6), cy + px(14), PAD + av + px(6), cy + av + px(14)), fill=(20, 16, 12, 110))
-    sh = sh.filter(ImageFilter.GaussianBlur(12 * S)); img.paste(sh, (0, 0), sh)
-    img.paste(ch, (PAD, cy), cm); d = ImageDraw.Draw(img)
-    d.ellipse((PAD, cy, PAD + av, cy + av), outline=INK, width=px(5))
-    d.ellipse((PAD + px(6), cy + px(6), PAD + av - px(6), cy + av - px(6)), outline=col, width=px(3))
-    tx = PAD + av + px(40)
-    d.text((tx, cy + px(30)), '여섯 마음은 누구에게나', font=font('Bold', 30), fill=INK)
-    d.text((tx, cy + px(74)), '다 있습니다.', font=font('Bold', 30), fill=INK)
-    d.text((tx, cy + px(130)), '배분만 다를 뿐입니다.', font=font('Medium', 26), fill=MUTE)
-    d.text((tx, cy + px(172)), '진단 → nedabah.org/diagnosis/minds', font=font('SemiBold', 22), fill=col)
     footer(d, c)
     return finish(img)
 
 if __name__ == '__main__':
-    sheet = Image.new('RGB', (360 * 6 + 70, 640 * 2 + 90), PAPER)
-    for i, m in enumerate(M):
-        f = front(i, m); b = back(i, m)
-        f.save(OUT / f'mind-{m["k"]}-front.png', optimize=True); b.save(OUT / f'mind-{m["k"]}-back.png', optimize=True)
-        sheet.paste(f.resize((360, 640), Image.LANCZOS), (10 + i * 360, 20)); sheet.paste(b.resize((360, 640), Image.LANCZOS), (10 + i * 360, 680))
-        print('card', m['k'])
-    sheet.save(OUT / 'mind-set.jpg', quality=84, optimize=True)
-    print('sheet ok')
-
-    # gallery thumbnails (360 wide JPG) so pages do not load the full PNGs for previews
     TH = OUT / 'thumb'; TH.mkdir(exist_ok=True)
-    for m in M:
-        for face in ('front', 'back'):
-            Image.open(OUT / f'mind-{m["k"]}-{face}.png').resize((360, 640), Image.LANCZOS).save(TH / f'mind-{m["k"]}-{face}.jpg', quality=86, optimize=True)
-    print('thumbs ok')
-
-    # one-file download: front + back side by side on paper (2240x2000)
-    for m in M:
-        f = Image.open(OUT / f'mind-{m["k"]}-front.png'); b = Image.open(OUT / f'mind-{m["k"]}-back.png')
-        both = Image.new('RGB', (1080 * 2 + 80, 1920 + 80), PAPER)
-        both.paste(f, (0 + 0, 40)); both.paste(b, (1080 + 80, 40))
-        both.save(OUT / f'mind-{m["k"]}-both.png', optimize=True)
-    print('both ok')
+    for i, m in enumerate(M):
+        f = front(i, m); b = back_base(i, m)
+        f.save(OUT / f'mind-{m["k"]}-front.png', optimize=True)
+        b.save(OUT / f'mind-{m["k"]}-back-base.png', optimize=True)
+        # gallery thumbnail (360 wide JPG) so pages do not load the full PNG for previews
+        f.resize((360, 640), Image.LANCZOS).save(TH / f'mind-{m["k"]}-front.jpg', quality=86, optimize=True)
+        print('card', m['k'])
