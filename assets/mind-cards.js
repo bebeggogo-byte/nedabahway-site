@@ -1,9 +1,9 @@
 /* mind-cards.js — 6 MINDS 마음 카드와 카드함
    - 진단 한 번 = 카드함 하나. 여섯 장 모두 이번 진단의 내 결과로 만들고, 가장 많이 쓴 마음 한 장만 열어 둡니다.
-   - 내 초대 링크로 들어온 사람 1명마다 잠긴 카드 1장을 골라 엽니다 (5명이면 여섯 장).
+   - 나머지 다섯 장은 잠겨 있고, 한 번 공유하면(공유 창을 끝까지 마치거나 링크를 복사해 보내면) 모두 열립니다.
    - 결과는 브라우저에 자동 저장하지 않습니다. 새로 고침하면 사라지고, 카드함 주소(해시)로만 다시 엽니다.
    - 앞면 = 마음과 색 캐릭터(모두 같음, 공유용). 뒷면 = 그 마음에 대한 내 수치와 해석(나만, 내 기기에만 저장).
-   Data: window.NW_MINDS, window.NW_READ (assets/mind-data.js). Server: Supabase RPC minds_ref_* (supabase/minds-referral.sql).
+   Data: window.NW_MINDS, window.NW_READ (assets/mind-data.js). No server: nothing about the result leaves the browser.
    window.NWCards = { compute, read, readingHTML, renderBack, card, box, trackVisit, lastBox, ... } */
 (function () {
   'use strict';
@@ -23,7 +23,6 @@
   function thumb(k) { return '/assets/cards/thumb/mind-' + k + '-front.jpg'; }
   function fmt(d) { return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.'; }
   function ls(k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem(k) || 'null'); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } }
-  function rnd(n) { var s = '', a = new Uint8Array(n); (window.crypto || window.msCrypto).getRandomValues(a); for (var i = 0; i < n; i++) s += 'abcdefghijklmnopqrstuvwxyz0123456789'[a[i] % 36]; return s; }
   // 예전 방식(결과·카드 자동 저장)으로 남은 기록은 지웁니다. 2주마다 바뀌는 상태를 오래 남기지 않습니다.
   ls('nw:diag:minds', null); ls('nw:minds:cards', null);
 
@@ -92,27 +91,15 @@
   function encA(a) { var n = 0n; for (var i = 0; i < 15; i++) { var v = a[i]; if (i < 12 && i % 2 === 1) v = v + 2; n = n * 5n + BigInt(v); } var t = n.toString(36).toUpperCase(); while (t.length < 10) t = '0' + t; return 'M' + t; }
   function decA(str) { if (!/^M[0-9A-Z]{10}$/.test(str)) return null; var n = 0n, t = str.slice(1).toLowerCase(); for (var i = 0; i < t.length; i++) n = n * 36n + BigInt(parseInt(t[i], 36)); var a = []; for (var j = 14; j >= 0; j--) { var v = Number(n % 5n); n = n / 5n; if (j < 12 && j % 2 === 1) v = v - 2; a[j] = v; } return n === 0n ? a : null; }
 
-  // ---------- referral server (Supabase RPC, publishable key) ----------
-  function api(fn, body) {
-    var url = window.__SUPABASE_URL__, key = window.__SUPABASE_ANON__;
-    if (!url || !key) return Promise.reject(new Error('no config'));
-    return fetch(url + '/rest/v1/rpc/' + fn, { method: 'POST', headers: { apikey: key, 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
-      .then(function (res) { if (!res.ok) throw new Error('rpc ' + res.status); return res.json(); });
-  }
-  function vid() { var v = ls('nw:vid'); if (!/^[a-z0-9]{12}$/.test(v || '')) { v = rnd(12); ls('nw:vid', v); } return v; }
-  // 초대 링크(?f=ref)로 들어오면 한 번만 셉니다
-  function trackVisit() {
-    var f = new URLSearchParams(location.search).get('f');
-    if (!f || !/^[a-z0-9]{10}$/.test(f)) return null;
-    if (!ls('nw:minds:v:' + f)) api('minds_ref_visit', { p_ref: f, p_vid: vid() }).then(function () { ls('nw:minds:v:' + f, 1); }).catch(function () {});
-    return f;
-  }
-  function inviteUrl(ref) { return SITE + '/diagnosis/minds/?f=' + ref; }
-  function boxUrl(o) { var d = Math.max(0, Math.round(new Date(o.at).getTime() / 86400000)).toString(36); return SITE + '/minds/box/#r=' + encA(o.a) + '&d=' + d + '&i=' + o.ref + '&k=' + o.key; }
+  // ---------- 공유로 열기 (서버 없음) ----------
+  // 초대 링크에는 결과도 번호도 싣지 않습니다. ?f=s 는 "친구가 보낸 링크" 배너를 띄우는 표시일 뿐입니다.
+  function trackVisit() { return new URLSearchParams(location.search).get('f') ? 'shared' : null; }
+  function inviteUrl() { return SITE + '/diagnosis/minds/?f=s'; }
+  function boxUrl(o) { var d = Math.max(0, Math.round(new Date(o.at).getTime() / 86400000)).toString(36); return SITE + '/minds/box/#r=' + encA(o.a) + '&d=' + d + (o.open ? '&u=1' : ''); }
   function parseBox(h) {
-    var q = new URLSearchParams(String(h || '').replace(/^#/, '')), a = decA(q.get('r') || ''), i = q.get('i') || '', k = q.get('k') || '', d = q.get('d') || '';
-    if (!a || !/^[a-z0-9]{10}$/.test(i) || !/^[a-z0-9]{16}$/.test(k)) return null;
-    return { a: a, at: new Date(parseInt(d, 36) * 86400000).toISOString(), ref: i, key: k };
+    var q = new URLSearchParams(String(h || '').replace(/^#/, '')), a = decA(q.get('r') || ''), d = q.get('d') || '';
+    if (!a || !/^[0-9a-z]{1,5}$/.test(d)) return null;
+    return { a: a, at: new Date(parseInt(d, 36) * 86400000).toISOString(), open: q.get('u') === '1' };
   }
   // 카드함 주소만 14일 동안 기억합니다 (결과 화면은 새로 고침하면 사라짐)
   function lastBox() { var b = ls('nw:minds:box'); if (!b || !b.url || Date.now() - new Date(b.at).getTime() > 14 * 86400000) { ls('nw:minds:box', null); return null; } return b; }
@@ -236,9 +223,9 @@
       return '앞면과 뒷면 두 장(1080×1920)을 내려받았습니다';
     });
   }
-  function caption(m, ref) { return '네다바웨이 6 MINDS로 지난 2주 동안 내가 어느 마음을 가장 많이 썼는지 봤어요. 내 캐릭터는 「' + m.char + '」. 당신은 어느 색인가요? 4분 진단 → ' + (ref ? inviteUrl(ref) : SITE + '/diagnosis/minds/') + '\n' + HASH; }
-  function shareFront(m, ref) {
-    var text = caption(m, ref);
+  function caption(m) { return '네다바웨이 6 MINDS로 지난 2주 동안 내가 어느 마음을 가장 많이 썼는지 봤어요. 내 캐릭터는 「' + m.char + '」. 당신은 어느 색인가요? 4분 진단 → ' + inviteUrl() + '\n' + HASH; }
+  function shareFront(m) {
+    var text = caption(m);
     return blobOf(src(m.k, 'front')).then(function (b) {
       var file = new File([b], '6minds-' + m.k + '.png', { type: 'image/png' });
       if (navigator.canShare && navigator.canShare({ files: [file] }) && navigator.share) return navigator.share({ files: [file], text: text }).then(function () { return '공유 창을 열었습니다. 인스타그램을 고르고 캡션을 붙여 주세요'; }).catch(function (e) { return e && e.name === 'AbortError' ? '공유를 취소했습니다' : fb(); });
@@ -246,14 +233,16 @@
       function fb() { return copyText(text).then(function () { saveBlob(b, file.name); return '앞면을 저장하고 캡션을 복사했습니다. 인스타그램에서 올려 주세요'; }); }
     });
   }
-  function shareInvite(ref) {
-    var url = inviteUrl(ref), text = '요즘 나는 어느 마음을 가장 많이 쓰고 있을까? 15문항 4분이면 내 결과가 담긴 마음 카드를 받아요.';
-    if (navigator.share) return navigator.share({ title: '6 MINDS · 요즘 나의 여섯 마음', text: text, url: url }).then(function () { return '초대 링크를 보냈습니다. 한 사람이 들어올 때마다 카드 한 장을 열 수 있습니다'; }).catch(function (e) { return e && e.name === 'AbortError' ? '보내기를 취소했습니다' : copyText(text + ' ' + url).then(function () { return '초대 글과 링크를 복사했습니다. 카카오톡 단톡방에 붙여 넣으세요'; }); });
-    return copyText(text + ' ' + url).then(function () { return '초대 글과 링크를 복사했습니다. 카카오톡 단톡방에 붙여 넣으세요'; });
+  var INVITE = '요즘 나는 어느 마음을 가장 많이 쓰고 있을까? 15문항 4분이면 내 결과가 담긴 마음 카드 여섯 장을 받아요.';
+  function shareInvite() {
+    var url = inviteUrl();
+    function copy() { return copyText(INVITE + ' ' + url).then(function () { return { copied: true }; }); }
+    if (navigator.share) return navigator.share({ title: '6 MINDS · 요즘 나의 여섯 마음', text: INVITE, url: url }).then(function () { return { done: true }; }).catch(function (e) { return e && e.name === 'AbortError' ? { cancel: true } : copy(); });
+    return copy();
   }
 
   // ---------- single card viewer ----------
-  // opts: { k, res, title, isNew, locked, onOpen, canOpen, onGo, ref, sub }
+  // opts: { k, res, title, isNew, locked, onUnlock, onGo, sub }
   function card(host, opts) {
     var m = mind(opts.k); if (!m) return;
     var res = opts.res || null, mine = !!res, locked = !!opts.locked;
@@ -269,7 +258,7 @@
     iF.src = src(m.k, 'front'); iB.src = src(m.k, 'back-base');
     renderBack(m.k, res, { sample: !mine }).then(function (cv) { iB.src = cv.toDataURL('image/jpeg', .9); }).catch(function () {});
     fF.appendChild(iF); fB.appendChild(iB);
-    if (locked) fB.appendChild(el('span', 'mc-lock', '<b>잠긴 카드</b><small>' + (opts.canOpen ? '아래 「이 카드 열기」를 누르면 열립니다' : '초대한 사람 1명이 들어오면 1장을 열 수 있습니다') + '</small>'));
+    if (locked) fB.appendChild(el('span', 'mc-lock', '<b>잠긴 카드</b><small>한 번 공유하면 나머지 다섯 장이 모두 열립니다</small>'));
     inner.appendChild(fF); inner.appendChild(fB); flip.appendChild(inner); stage.appendChild(flip);
     if (opts.isNew) stage.appendChild(el('span', 'mc-new', 'NEW'));
     if (!mine) stage.appendChild(el('span', 'mc-sample', '뒷면은 예시'));
@@ -280,11 +269,11 @@
     if (!mine) {
       if (opts.onGo) btn('4분 진단하고 내 카드 받기', 'btn-go', opts.onGo); else { var go = el('a', 'btn-go mc-act', '4분 진단하고 내 카드 받기'); go.href = '/diagnosis/minds/'; acts.appendChild(go); }
     } else if (locked) {
-      if (opts.canOpen && opts.onOpen) btn('이 카드 열기', 'btn-go', function () { opts.onOpen(m.k); });
+      if (opts.onUnlock) btn('다섯 장 모두 열기', 'btn-go', opts.onUnlock);
     } else {
       btn('사진으로 저장', 'btn-go', function () { savePhotos(m.k, res).then(toast); });
-      btn('인스타그램에 앞면 올리기', 'btn-dark', function () { shareFront(m, opts.ref).then(toast); });
-      btn('캡션 복사', 'btn-ghost', function () { copyText(caption(m, opts.ref)).then(function () { toast('캡션을 복사했습니다'); }); });
+      btn('인스타그램에 앞면 올리기', 'btn-dark', function () { shareFront(m).then(toast); });
+      btn('캡션 복사', 'btn-ghost', function () { copyText(caption(m)).then(function () { toast('캡션을 복사했습니다'); }); });
     }
     host.appendChild(acts);
     host.appendChild(el('p', 'mc-note', opts.sub || (mine
@@ -294,51 +283,81 @@
   }
 
   // ---------- card box: 6 cards from one diagnosis ----------
-  // o: { a, at, ref, key, owner(bool) }
+  // o: { a, at, open(bool), isNew }
   function box(host, o) {
-    var r = compute(o.a), top = sorted(r)[0].k, res = { a: o.a, at: o.at }, st = { visits: 0, picks: [], online: null }, cur = top, isNewTop = !!o.isNew;
+    var r = compute(o.a), top = sorted(r)[0].k, res = { a: o.a, at: o.at }, cur = top, isNewTop = !!o.isNew;
     host.innerHTML = ''; host.classList.add('mc-box');
-    var head = el('div', 'mc-box__h'), grid = el('div', 'mc-col__g mc-box__g'), view = el('div', 'mc-box__view'), inv = el('div', 'mc-invite');
-    host.appendChild(head); host.appendChild(grid); host.appendChild(view); host.appendChild(inv);
-    function opened() { return [top].concat(st.picks.filter(function (k) { return k !== top; })); }
-    function avail() { return Math.max(0, Math.min(st.visits, 5) - st.picks.length); }
-    function draw() {
-      var op = opened();
-      head.innerHTML = '<b>이번 진단의 카드함</b><span>' + op.length + ' / 6 열림</span><p>여섯 장 모두 이번 진단의 내 결과로 만들었습니다. 가장 많이 쓴 마음 카드 한 장은 바로 열리고, 나머지 다섯 장은 내 초대 링크로 들어온 사람 1명마다 1장씩 원하는 카드를 골라 엽니다.' + (st.online === false ? ' <em>지금은 초대 집계 서버에 연결하지 못했습니다. 잠시 뒤 카드함을 다시 열어 보세요.</em>' : (avail() ? ' <em>지금 ' + avail() + '장을 열 수 있습니다. 열고 싶은 카드를 누르세요.</em>' : '')) + '</p>';
+    var head = el('div', 'mc-box__h'), grid = el('div', 'mc-col__g mc-box__g'), view = el('div', 'mc-box__view'), foot = el('div', 'mc-invite');
+    host.appendChild(head); host.appendChild(grid); host.appendChild(view); host.appendChild(foot);
+    function isOpen(k) { return o.open || k === top; }
+    function remember() { ls('nw:minds:box', { url: boxUrl(o), at: o.at }); }
+    function draw(anim) {
+      head.innerHTML = '<b>이번 진단의 카드함</b><span>' + (o.open ? 6 : 1) + ' / 6 열림</span><p>' + (o.open ? '여섯 장이 모두 열렸습니다. 카드를 누르면 그 마음에 대한 내 수치와 해석이 뒷면에 있습니다.' : '여섯 장 모두 이번 진단의 내 결과로 만들었습니다. 가장 많이 쓴 마음 카드 한 장은 바로 열리고, 나머지 다섯 장은 <em>한 번 공유하면 모두 열립니다.</em>') + '</p>';
       grid.innerHTML = '';
       MINDS.forEach(function (m) {
-        var isOpen = op.indexOf(m.k) >= 0, x = read(r, m.k);
-        var b = el('button', 'mc-col__c' + (isOpen ? ' is-got' : ' is-locked') + (cur === m.k ? ' is-cur' : '')); b.type = 'button'; b.style.setProperty('--mc', m.c);
-        b.innerHTML = '<span class="mc-col__img"><img src="' + thumb(m.k) + '" width="360" height="640" alt="" loading="lazy">' + (isOpen ? '' : '<i class="mc-col__lock" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></i>') + '</span><b>' + esc(m.char) + '</b><small>' + (isOpen ? esc(x.label) : '잠김') + '</small>';
-        b.setAttribute('aria-label', m.char + ' 카드, ' + (isOpen ? '열림, ' + x.label : '잠김'));
-        b.addEventListener('click', function () { cur = m.k; draw(); view.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+        var op = isOpen(m.k), x = read(r, m.k);
+        var b = el('button', 'mc-col__c' + (op ? ' is-got' : ' is-locked') + (cur === m.k ? ' is-cur' : '') + (anim && m.k !== top ? ' is-unlock' : '')); b.type = 'button'; b.style.setProperty('--mc', m.c);
+        b.innerHTML = '<span class="mc-col__img"><img src="' + thumb(m.k) + '" width="360" height="640" alt="" loading="lazy">' + (op ? '' : '<i class="mc-col__lock" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></i>') + '</span><b>' + esc(m.char) + '</b><small>' + (op ? esc(x.label) : '잠김') + '</small>';
+        b.setAttribute('aria-label', m.char + ' 카드, ' + (op ? '열림, ' + x.label : '잠김'));
+        b.addEventListener('click', function () { cur = m.k; if (!op) { draw(); sheet(); } else { draw(); view.scrollIntoView({ behavior: 'smooth', block: 'center' }); } });
         grid.appendChild(b);
       });
-      var isOpen = op.indexOf(cur) >= 0;
-      card(view, { k: cur, res: res, locked: !isOpen, isNew: isNewTop && cur === top, canOpen: !isOpen && avail() > 0 && !!o.key, onOpen: pick, ref: o.ref, title: (isOpen ? '' : '잠긴 카드 · ') + mind(cur).char });
+      card(view, { k: cur, res: res, locked: !isOpen(cur), isNew: isNewTop && cur === top, onUnlock: sheet, title: (isOpen(cur) ? '' : '잠긴 카드 · ') + mind(cur).char });
+      var burl = boxUrl(o);
+      foot.innerHTML = (o.open
+        ? '<p class="mc-invite__t">친구에게도 알려 주세요</p><p class="mc-invite__d">받은 사람은 자기 진단을 새로 하고, 자기 결과로 만든 카드 여섯 장을 받습니다. 보내는 글에는 내 결과가 들어가지 않습니다.</p><div class="mc-invite__row"><button type="button" class="btn-dark mc-act" data-a="inv">카카오톡·문자로 보내기</button></div>'
+        : '<p class="mc-invite__t">나머지 다섯 장, 공유 한 번이면 모두 열립니다</p><p class="mc-invite__d">결제는 받지 않습니다. 6 MINDS를 알리는 데 함께해 주시면 다섯 장을 모두 드립니다.</p><div class="mc-invite__row"><button type="button" class="btn-go mc-act" data-a="open">다섯 장 모두 열기</button></div>') +
+        '<div class="mc-keep"><b>내 카드함 주소</b><p>이 화면은 새로 고침하면 사라집니다. 결과는 2주마다 바뀌기 때문에 자동으로 남기지 않습니다. 카드함 주소를 카카오톡 「나에게 보내기」에 보관하면 나중에 다시 열 수 있습니다. 주소에는 내 결과가 들어 있으니 다른 사람에게 보내지 마세요.</p><div class="mc-keep__row"><button type="button" class="btn-dark mc-act" data-a="box">카드함 주소 보관하기</button>' + (/^\/minds\/box\//.test(location.pathname) ? '' : '<a class="btn-link" href="' + esc(burl) + '">카드함 열기 &#8599;</a>') + '</div></div>';
+      var q = function (a) { return foot.querySelector('[data-a="' + a + '"]'); };
+      if (q('open')) q('open').addEventListener('click', sheet);
+      if (q('inv')) q('inv').addEventListener('click', function () { shareInvite().then(function (x) { toast(x.done ? '보냈습니다. 고맙습니다' : (x.copied ? '초대 글과 링크를 복사했습니다. 카카오톡에 붙여 넣으세요' : '보내기를 취소했습니다')); }); });
+      q('box').addEventListener('click', function () {
+        var t = '내 6 MINDS 카드함 (' + fmt(new Date(o.at)) + ' 진단, 나만 보기): ' + boxUrl(o);
+        (navigator.share ? navigator.share({ title: '내 6 MINDS 카드함', text: t }).then(function () { return '카드함 주소를 보냈습니다'; }) : Promise.reject()).catch(function (e) { if (e && e.name === 'AbortError') return '보관을 취소했습니다'; return copyText(t).then(function () { return '카드함 주소를 복사했습니다. 카카오톡 나에게 보내기에 붙여 넣으세요'; }); }).then(toast);
+      });
     }
-    function pick(k) {
-      api('minds_ref_pick', { p_ref: o.ref, p_key: o.key, p_mind: k }).then(function (s) { st.visits = s.visits; st.picks = s.picks || []; st.online = true; toast(mind(k).char + ' 카드를 열었습니다'); draw(); paint(); }).catch(function () { toast('지금은 카드를 열지 못했습니다. 잠시 뒤 다시 시도해 주세요'); });
+    function unlock() {
+      o.open = true; remember(); draw(true);
+      toast('다섯 장이 모두 열렸습니다. 고맙습니다');
+      grid.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-    // invite + keep
-    var burl = boxUrl(o);
-    inv.innerHTML = '<p class="mc-invite__t">5명에게 보내면 여섯 장을 모두 엽니다</p><p class="mc-invite__d">초대 링크에는 내 결과가 들어가지 않습니다. 받은 사람은 자기 진단을 새로 합니다. 같은 사람이 여러 번 눌러도 한 번만 셉니다.</p><div class="mc-invite__row"><button type="button" class="btn-go mc-act" data-a="inv">카카오톡·문자로 초대하기</button><button type="button" class="btn-ghost mc-act" data-a="copy">초대 링크 복사</button></div><p class="mc-invite__n"><b>초대로 들어온 사람</b> <span data-v>0</span>명 · 열 수 있는 카드 <span data-p>0</span>장</p>' +
-      '<div class="mc-keep"><b>내 카드함 주소</b><p>이 화면은 새로 고침하면 사라집니다. 결과는 2주마다 바뀌기 때문에 자동으로 남기지 않습니다. 카드함 주소를 카카오톡 「나에게 보내기」에 보관하면 초대로 열린 카드를 나중에 확인할 수 있습니다. 주소에는 내 결과가 들어 있으니 다른 사람에게 보내지 마세요.</p><div class="mc-keep__row"><button type="button" class="btn-dark mc-act" data-a="box">카드함 주소 보관하기</button>' + (/^\/minds\/box\//.test(location.pathname) ? '' : '<a class="btn-link" href="' + esc(burl) + '">카드함 열기 &#8599;</a>') + '</div></div>';
-    inv.querySelector('[data-a="inv"]').addEventListener('click', function () { shareInvite(o.ref).then(toast); });
-    inv.querySelector('[data-a="copy"]').addEventListener('click', function () { copyText(inviteUrl(o.ref)).then(function () { toast('초대 링크를 복사했습니다'); }); });
-    inv.querySelector('[data-a="box"]').addEventListener('click', function () {
-      var t = '내 6 MINDS 카드함 (' + fmt(new Date(o.at)) + ' 진단, 나만 보기): ' + burl;
-      (navigator.share ? navigator.share({ title: '내 6 MINDS 카드함', text: t }).then(function () { return '카드함 주소를 보냈습니다'; }) : Promise.reject()).catch(function (e) { if (e && e.name === 'AbortError') return '보관을 취소했습니다'; return copyText(t).then(function () { return '카드함 주소를 복사했습니다. 카카오톡 나에게 보내기에 붙여 넣으세요'; }); }).then(toast);
-    });
-    function paint() { inv.querySelector('[data-v]').textContent = st.visits; inv.querySelector('[data-p]').textContent = avail(); }
-    ls('nw:minds:box', { url: burl, at: o.at });
-    draw(); paint();
-    var sync = o.owner ? api('minds_ref_register', { p_ref: o.ref, p_key: o.key, p_vid: vid() }) : api('minds_ref_state', { p_ref: o.ref });
-    sync.then(function (s) { st.visits = s.visits || 0; st.picks = s.picks || []; st.online = true; draw(); paint(); }).catch(function () { st.online = false; draw(); });
+    // 잠금 해제 안내: 유료 카드처럼 보이지만 결제는 없고, 공유 한 번으로 엽니다
+    function sheet() {
+      if (o.open) return;
+      var d = document.createElement('dialog'); d.className = 'mc-sheet'; d.setAttribute('aria-labelledby', 'mcSheetT');
+      var locked = MINDS.filter(function (m) { return m.k !== top; });
+      d.innerHTML = '<button type="button" class="mc-sheet__x" aria-label="닫기">&times;</button>' +
+        '<p class="mc-sheet__pill">PREMIUM · 나머지 다섯 장</p><h2 class="mc-sheet__t" id="mcSheetT">내 결과 해설 카드 다섯 장</h2>' +
+        '<div class="mc-sheet__row">' + locked.map(function (m) { return '<span style="--mc:' + m.c + ';"><img src="' + thumb(m.k) + '" width="360" height="640" alt="">' + '<b>' + esc(m.char) + '</b></span>'; }).join('') + '</div>' +
+        '<ul class="mc-sheet__l"><li>카드마다 <b>그 마음의 네 수치</b> (사용 지수 · 회복 지수 · 배분 비중 · 총량 기여)</li><li>여덟 자리 가운데 <b>내 자리</b>와 에너지 총량 속 역할</li><li><b>생각 · 행동 · 마음</b>과 한 번 더 깊게 본 해석</li><li>이번 주 한 가지, 짝이 되는 마음 안내</li><li>앞면 · 뒷면 두 장을 휴대폰 사진첩에 저장</li></ul>' +
+        '<div class="mc-sheet__price"><span>이용 방법</span><b>결제 없음 · 공유 한 번</b><small>네다바웨이는 결제를 받지 않습니다. 6 MINDS를 친구나 단톡방에 한 번 알려 주시면 다섯 장을 모두 무료로 엽니다.</small></div>' +
+        '<ol class="mc-sheet__steps"><li>아래 버튼을 누르면 공유 창이 열립니다.</li><li>카카오톡 단톡방이나 친구 한 명을 고릅니다.</li><li>보내고 돌아오면 다섯 장이 바로 열립니다.</li></ol>' +
+        '<button type="button" class="btn-go mc-sheet__go">공유하고 무료로 열기</button>' +
+        '<div class="mc-sheet__fb" hidden><p>초대 글과 링크를 복사했습니다. 카카오톡 단톡방이나 친구에게 붙여 넣어 보낸 뒤 아래 버튼을 누르세요.</p><button type="button" class="btn-dark mc-sheet__done">보냈어요, 다섯 장 열기</button></div>' +
+        '<p class="mc-sheet__msg" role="status"></p>' +
+        '<p class="mc-sheet__n">보내는 글에는 내 결과가 들어가지 않습니다. 받은 사람은 자기 진단을 새로 합니다.</p>' +
+        '<button type="button" class="btn-link mc-sheet__later">나중에 할게요</button>';
+      document.body.appendChild(d);
+      function close() { if (d.open && d.close) d.close(); d.remove(); }
+      d.querySelector('.mc-sheet__x').addEventListener('click', close);
+      d.querySelector('.mc-sheet__later').addEventListener('click', close);
+      d.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+      d.addEventListener('click', function (e) { if (e.target === d) close(); });
+      d.querySelector('.mc-sheet__go').addEventListener('click', function () {
+        shareInvite().then(function (x) {
+          if (x.done) { close(); unlock(); return; }
+          if (x.copied) { d.querySelector('.mc-sheet__fb').hidden = false; d.querySelector('.mc-sheet__done').focus(); return; }
+          d.querySelector('.mc-sheet__msg').textContent = '공유를 마치면 바로 열립니다. 다시 눌러 보내 주세요.';
+        });
+      });
+      d.querySelector('.mc-sheet__done').addEventListener('click', function () { close(); unlock(); });
+      if (d.showModal) d.showModal(); else d.setAttribute('open', '');
+    }
+    remember(); draw();
     return { top: top };
   }
-  // 새 진단 → 새 카드함
-  function newBox(host, a, isNew) { var o = { a: a, at: new Date().toISOString(), ref: rnd(10), key: rnd(16), owner: true, isNew: isNew }; box(host, o); return o; }
+  // 새 진단 → 새 카드함 (한 장만 열림)
+  function newBox(host, a, isNew) { var o = { a: a, at: new Date().toISOString(), open: false, isNew: isNew }; box(host, o); return o; }
 
   window.NWCards = { MINDS: MINDS, HASH: HASH, compute: compute, sorted: sorted, topOf: topOf, state: state, read: read, readingHTML: readingHTML, renderBack: renderBack, card: card, box: box, newBox: newBox, parseBox: parseBox, trackVisit: trackVisit, lastBox: lastBox, inviteUrl: inviteUrl, encA: encA, decA: decA };
 })();

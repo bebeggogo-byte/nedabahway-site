@@ -180,7 +180,7 @@ def page():
         <ul><li><b>잘 쓰고 있을 때</b> {esc(m["well"])}</li><li><b>거의 안 쓸 때</b> {esc(m["low"])}</li><li><b>지나치게 쓸 때</b> {esc(m["over"])}</li></ul>
       </article>
 ''' for m in MINDS)
-    out = head(title, desc, url, 'diag-minds', f'<script type="application/ld+json">\n{ld}\n</script>\n<link rel="stylesheet" href="/assets/mind-cards.css">\n<script src="/assets/js/supabase-config.js" defer></script>\n<script src="/assets/mind-data.js" defer></script>\n<script src="/assets/mind-cards.js" defer></script>\n') + HEADER
+    out = head(title, desc, url, 'diag-minds', f'<script type="application/ld+json">\n{ld}\n</script>\n<link rel="stylesheet" href="/assets/mind-cards.css">\n<script src="/assets/mind-data.js" defer></script>\n<script src="/assets/mind-cards.js" defer></script>\n') + HEADER
     out += f'''
 <main id="main">
 <section class="sec" aria-labelledby="mdTitle" style="padding-top:72px;">
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded',function(){{
   }}
 __RESULT_JS__
   var _from=window.NWCards?NWCards.trackVisit():null;
-  if(_from){{ var _b=document.createElement('p'); _b.className='dg-invited'; _b.innerHTML='<b>친구가 보낸 6 MINDS입니다.</b> 4분 진단하면 나에게도 내 결과가 담긴 마음 카드 여섯 장이 생깁니다.'; $('dgIntro').insertBefore(_b,$('dgIntro').firstChild); }}
+  if(_from){{ var _b=document.createElement('p'); _b.className='dg-invited'; _b.innerHTML='<b>친구가 보낸 6 MINDS입니다.</b> 4분 진단하면 나도 내 결과로 만든 마음 카드 여섯 장을 받습니다.'; $('dgIntro').insertBefore(_b,$('dgIntro').firstChild); }}
   if(window.NWCards){{ NWCards.card($('dgSample'),{{k:'enjoyer',title:'진단하면 받는 카드 · 예시',onGo:function(){{ start(); }}}}); }}
   $('dgStart').addEventListener('click',start);
   if(location.hash==='#demo'){{ showResult(compute([1,0, 4,-2, 2,1, 2,0, 3,1, 0,0, 3,3,2]), new Date(), null); }}

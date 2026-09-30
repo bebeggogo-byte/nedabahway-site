@@ -26,7 +26,6 @@
 {"@context": "https://schema.org", "@type": "WebPage", "name": "요즘 나의 여섯 마음", "url": "https://www.nedabah.org/diagnosis/minds/", "description": "탐험·만들기·연결·돕기·생각·즐기기. 지난 2주 동안 여섯 마음에 에너지를 어떻게 썼는지 15문항으로 봅니다. 유형 판정이 아니라 에너지 배분과 총량, 이번 주 조정 한 가지.", "inLanguage": "ko"}
 </script>
 <link rel="stylesheet" href="/assets/mind-cards.css">
-<script src="/assets/js/supabase-config.js" defer></script>
 <script src="/assets/mind-data.js" defer></script>
 <script src="/assets/mind-cards.js" defer></script>
 </head>
@@ -285,7 +284,7 @@ document.addEventListener('DOMContentLoaded',function(){
   }
 
   var _from=window.NWCards?NWCards.trackVisit():null;
-  if(_from){ var _b=document.createElement('p'); _b.className='dg-invited'; _b.innerHTML='<b>친구가 보낸 6 MINDS입니다.</b> 4분 진단하면 나에게도 내 결과가 담긴 마음 카드 여섯 장이 생깁니다.'; $('dgIntro').insertBefore(_b,$('dgIntro').firstChild); }
+  if(_from){ var _b=document.createElement('p'); _b.className='dg-invited'; _b.innerHTML='<b>친구가 보낸 6 MINDS입니다.</b> 4분 진단하면 나도 내 결과로 만든 마음 카드 여섯 장을 받습니다.'; $('dgIntro').insertBefore(_b,$('dgIntro').firstChild); }
   if(window.NWCards){ NWCards.card($('dgSample'),{k:'enjoyer',title:'진단하면 받는 카드 · 예시',onGo:function(){ start(); }}); }
   $('dgStart').addEventListener('click',start);
   if(location.hash==='#demo'){ showResult(compute([1,0, 4,-2, 2,1, 2,0, 3,1, 0,0, 3,3,2]), new Date(), null); }

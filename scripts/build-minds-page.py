@@ -96,7 +96,7 @@ PAGE = head(TITLE, DESC, URL, 'minds', f'<link rel="stylesheet" href="/assets/mi
       <h2 class="mp-h2">한 번의 진단, 4주의 변화<span class="mp-dot" aria-hidden="true"></span></h2>
       <ol class="mp-flow__l">
         <li style="--mc:#FF6B3D;"><b>15문항, 4분</b>지난 2주를 떠올리며 고릅니다. 회원가입 없음, 답은 내 기기에만 남습니다.</li>
-        <li style="--mc:#F472B6;"><b>내 결과 카드 여섯 장</b>가장 많이 쓴 마음 한 장은 바로 열리고, 나머지는 초대한 사람 수만큼 골라 엽니다.</li>
+        <li style="--mc:#F472B6;"><b>내 결과 카드 여섯 장</b>가장 많이 쓴 마음 한 장은 바로 열리고, 한 번 공유하면 나머지 다섯 장도 열립니다.</li>
         <li style="--mc:#FFC857;"><b>해설지</b>네 자리(지킬·줄일·늘릴·기다릴 마음), 요즘의 패턴, 총량을 키우는 네 가지.</li>
         <li style="--mc:#3B82F6;"><b>나란히 보기</b>코드를 주고받으면 두 사람의 배분이 나란히 나오고, 서로를 이해하는 문장이 붙습니다.</li>
         <li style="--mc:#8B5CF6;"><b>4주 뒤 다시</b>결과는 저장하지 않으므로, 4주 뒤에는 그때의 2주로 새 카드함을 받습니다. 코드를 적어 두면 두 시기를 나란히 봅니다.</li>
@@ -142,8 +142,8 @@ PAGE = head(TITLE, DESC, URL, 'minds', f'<link rel="stylesheet" href="/assets/mi
   <section class="mp-cards" id="cards">
     <div class="wrap">
       <p class="sec-kicker">Mind cards</p>
-      <h2 class="mp-h2">진단 한 번에 여섯 장,<br>5명에게 보내면 모두 열립니다<span class="mp-dot" aria-hidden="true"></span></h2>
-      <p class="mp-lead">진단을 마치면 여섯 마음 카드 여섯 장이 모두 <b>내 결과로</b> 만들어집니다. 가장 많이 쓴 마음 카드 한 장은 바로 열리고, 나머지 다섯 장은 잠겨 있습니다. 카카오톡 단톡방이나 친구에게 초대 링크를 보내고, 그 링크로 한 사람이 들어올 때마다 원하는 카드 한 장을 골라 엽니다. 5명이면 여섯 장을 모두 엽니다. 초대 링크에는 내 결과가 들어가지 않습니다.</p>
+      <h2 class="mp-h2">진단 한 번에 여섯 장,<br>공유 한 번이면 모두 열립니다<span class="mp-dot" aria-hidden="true"></span></h2>
+      <p class="mp-lead">진단을 마치면 여섯 마음 카드 여섯 장이 모두 <b>내 결과로</b> 만들어집니다. 가장 많이 쓴 마음 카드 한 장은 바로 열리고, 나머지 다섯 장은 잠겨 있습니다. 카카오톡 단톡방이나 친구에게 6 MINDS를 한 번 공유하면 다섯 장이 모두 무료로 열립니다. 결제는 받지 않고, 보내는 글에는 내 결과가 들어가지 않습니다.</p>
       <p class="mp-lead">결과는 저장하지 않습니다. 마음의 상태는 2주 단위로 바뀌기 때문에 새로 고침하면 결과 화면은 사라지고, 내가 보관한 <b>카드함 주소</b>로만 다시 엽니다. 카드는 앞면·뒷면 두 장을 휴대폰 화면 크기(1080×1920)로 사진첩에 저장합니다.</p>
       <div id="mpBoxLink"></div>
       <div id="mpCardView" hidden></div>
@@ -180,15 +180,15 @@ out = ROOT / 'minds' / 'index.html'; out.parent.mkdir(exist_ok=True)
 out.write_text(PAGE, encoding='utf-8'); print('->', out.relative_to(ROOT))
 
 # /minds/box/ — private card box. Opened only by the owner's box address (#r=code&d=day&i=ref&k=key); never indexed.
-BOX = head('내 카드함 · 6 MINDS | 네다바웨이', '이번 진단으로 만든 여섯 장의 마음 카드. 초대로 들어온 사람 수만큼 잠긴 카드를 엽니다.', f'{SITE}/minds/box/', 'minds',
+BOX = head('내 카드함 · 6 MINDS | 네다바웨이', '이번 진단으로 만든 여섯 장의 마음 카드. 한 번 공유하면 잠긴 다섯 장이 모두 열립니다.', f'{SITE}/minds/box/', 'minds',
   '<meta name="robots" content="noindex,nofollow">\n<link rel="stylesheet" href="/assets/minds.css">\n<link rel="stylesheet" href="/assets/mind-cards.css">\n'
-  '<script src="/assets/js/supabase-config.js" defer></script>\n<script src="/assets/mind-data.js" defer></script>\n<script src="/assets/mind-cards.js" defer></script>\n') + HEADER + f'''
+  '<script src="/assets/mind-data.js" defer></script>\n<script src="/assets/mind-cards.js" defer></script>\n') + HEADER + f'''
 <main id="main" class="mp">
   <section class="mp-cards" style="border-top:0;">
     <div class="wrap" style="max-width:860px;">
       <p class="sec-kicker">My card box</p>
       <h1 class="mp-h2">내 카드함<span class="mp-dot" aria-hidden="true"></span></h1>
-      <p class="mp-lead" id="mbLead">이 주소는 나만 여는 카드함입니다. 주소에 내 진단 결과가 들어 있으니 다른 사람에게는 초대 링크만 보내세요.</p>
+      <p class="mp-lead" id="mbLead">이 주소는 나만 여는 카드함입니다. 주소에 내 진단 결과가 들어 있으니 다른 사람에게는 공유 버튼으로 초대 글만 보내세요.</p>
       <div id="mbBox"></div>
       <div id="mbRead" class="mr-list"></div>
       <p class="mp-cta__b"><a class="btn-go" href="/diagnosis/minds/">새로 진단하기 {ARROW}</a><a class="btn-link" href="/minds/">6 MINDS 소개 &#8599;</a></p>
@@ -198,7 +198,7 @@ BOX = head('내 카드함 · 6 MINDS | 네다바웨이', '이번 진단으로 �
   if(!o){{ lead.textContent='카드함 주소가 맞지 않습니다. 진단을 마친 화면에서 「카드함 주소 보관하기」로 받은 주소 전체를 열어 주세요.'; return; }}
   var days=Math.floor((Date.now()-new Date(o.at).getTime())/86400000);
   if(days>=14) lead.textContent='이 카드함은 '+days+'일 전 진단입니다. 마음의 상태는 2주 단위로 바뀝니다. 카드는 그대로 볼 수 있지만, 지금의 나를 보려면 새로 진단하세요.';
-  o.owner=true; NWCards.box(document.getElementById('mbBox'),o);
+  NWCards.box(document.getElementById('mbBox'),o);
   var r=NWCards.compute(o.a); document.getElementById('mbRead').innerHTML='<h2 class="mp-h2" style="margin-top:40px;font-size:clamp(24px,3vw,32px);">여섯 마음 깊게 읽기</h2>'+NWCards.sorted(r).map(function(m,i){{ return NWCards.readingHTML(r,m.k,i===0); }}).join(''); }});</script>
 </main>
 ''' + FOOTER
