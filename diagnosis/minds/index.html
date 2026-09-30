@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded',function(){
   function likert(labels,base){ var h='<div class="dg-likert" role="group">'; labels.forEach(function(l,i){ var v=base+i; h+='<button type="button" class="dg-lk'+(ans[cur]===v?' is-picked':'')+'" data-v="'+v+'"><span class="dg-lk__dot" aria-hidden="true"></span><span class="dg-lk__t">'+esc(l)+'</span></button>'; }); return h+'</div>'; }
   function pick(v,btn){ ans[cur]=v; btn.parentElement.querySelectorAll('.dg-lk').forEach(function(b){b.classList.remove('is-picked');b.disabled=true;}); btn.classList.add('is-picked'); setTimeout(function(){ if(cur<N-1){cur++;render();NWD.scrollToQuiz();} else finish(); },220); }
   function compute(a){
-    var r={minds:[],total:{}}; var ci=0;
+    var r={a:a.slice(),minds:[],total:{}}; var ci=0;
     M.forEach(function(m,i){ r.minds.push({k:m.k,name:m.name,color:m.color,use:a[i*2],chg:a[i*2+1]}); });
     T.forEach(function(t,i){ r.total[t.k]=a[12+i]; });
     var totAvg=(r.total.sleep+r.total.move+r.total.drive)/3/4*100;
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded',function(){
     h+='<div class="dg-legend"><span><b>총량</b> 몸 3문항 60% + 쓰고 난 뒤 상태 40%</span><span><b>배분</b> 사용량 6 → 막대</span><span><b>쓰고 난 뒤</b> 힘이 남·지침 6 → 색·네 자리</span><span><b>조정</b> 줄일 마음 1 · 늘릴 마음 1</span></div>';
     // ① 총량
     h+='<h3 class="dg-h3">① 에너지 총량</h3>';
-    h+='<div class="dg-res__head" style="margin-top:10px;">'+ring(r.energy)+'<div><p class="dg-res__t" style="font-size:clamp(22px,3vw,30px);">'+r.energy+' / 100 · '+band+'</p><p class="dg-res__d" style="margin-top:6px;">'+esc(summary)+'</p><p class="dg-res__d" style="margin-top:4px;">총량의 60%는 잠·움직임·의욕에서, 40%는 여섯 마음을 쓰고 난 뒤의 상태에서 옵니다.</p></div></div>';
+    h+=(window.NWCards&&r.a)?NWCards.energyHTML(NWCards.compute(r.a)):'<div class="dg-res__head" style="margin-top:10px;">'+ring(r.energy)+'<div><p class="dg-res__t" style="font-size:clamp(22px,3vw,30px);">'+r.energy+' / 100 · '+band+'</p><p class="dg-res__d" style="margin-top:6px;">'+esc(summary)+'</p><p class="dg-res__d" style="margin-top:4px;">총량의 60%는 잠·움직임·의욕에서, 40%는 여섯 마음을 쓰고 난 뒤의 상태에서 옵니다.</p></div></div>';
     h+='<div class="dg-chips" style="margin-top:14px;">'+T.map(function(t){ var v=r.total[t.k]; var c=v>=3?'#DCFCE7':(v<=1?'#FFE4D6':'var(--chip)'); return '<span style="background:'+c+';">'+esc(t.name)+' '+v+'/4</span>'; }).join('')+'<span>힘이 나는 마음 '+chargers.length+' · 지치는 마음 '+drainers.length+' · 차이 '+spread+'%</span></div>';
     // ② 배분
     h+='<h3 class="dg-h3">② 여섯 마음의 배분</h3>';
