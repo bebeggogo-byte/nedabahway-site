@@ -13,6 +13,16 @@ Allow: /proposal/
 Allow: /goods/
 Allow: /minds/
 Allow: /assets/
-Disallow: /
+# --- Transitional (2026-10-08): full-site Disallow paused ---------------------
+# The 2026-09-25 relaunch dropped 594 URLs from the sitemap (522 deleted,
+# 72 locked with noindex). While "Disallow: /" was active Googlebot could not
+# recrawl them, so it never saw the 404 or the noindex and the stale entries
+# stayed in the index (Search Console: "Indexed, though blocked by robots.txt").
+# Google only honours noindex / 404 on pages it is allowed to crawl, so the
+# global block is lifted until those URLs leave the index. Locked pages are
+# protected by noindex,nofollow and AES-256-GCM; a crawler sees the lock screen.
+# Re-lock: once Search Console shows the old URLs gone, restore the line below.
+# Disallow: /
+Disallow: /magazine/_pdf/
 
 Sitemap: https://www.nedabah.org/sitemap.xml
