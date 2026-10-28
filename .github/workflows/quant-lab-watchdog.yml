@@ -68,7 +68,7 @@ jobs:
 
       - name: Open / update issue if unhealthy
         if: steps.hb.outputs.status == 'stale' || steps.hb.outputs.status == 'last-cycle-errors'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const status = "${{ steps.hb.outputs.status }}";
