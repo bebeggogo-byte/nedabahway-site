@@ -531,9 +531,24 @@ function beginResumeWatch(a) {
 // leak the radio into calls). Non-WebKit browsers never report 'interrupted'.
 let interruptionCtx = null;
 
+// iPhone: once a page has a running AudioContext, WebKit treats the page's audio
+// session as "ambient" — and ambient audio obeys the ring/silent switch, so with the
+// switch on the radio showed ON AIR in total silence. Declaring the session as
+// 'playback' (Safari 16.4+) keeps it a media player: sound regardless of the switch,
+// Now Playing / lock-screen controls as before. Set before any AudioContext exists.
+function claimPlaybackSession() {
+  try { if (navigator.audioSession && navigator.audioSession.type !== 'playback') navigator.audioSession.type = 'playback'; } catch {}
+}
+claimPlaybackSession();
+
 function ensureInterruptionWatch() {
+  claimPlaybackSession();
   const AC = window.AudioContext || window.webkitAudioContext;
   if (!AC) return;
+  // Older iOS (no navigator.audioSession) cannot be told 'playback': an AudioContext
+  // there would mute the radio under the silent switch. Skip the signal; the keeper
+  // and the foreground return still bring playback back after a call.
+  if (RELOAD_BLOCKED_WHEN_HIDDEN && !navigator.audioSession) return;
   try {
     if (!interruptionCtx) {
       interruptionCtx = new AC();
