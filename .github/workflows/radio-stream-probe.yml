@@ -1,0 +1,30 @@
+# TEMPORARY — checks whether the radio's HLS relay and KBS endpoints answer from the
+# public internet. Remove before merging.
+name: Radio stream probe (temporary)
+on:
+  push:
+    branches: [claude/nedabah-radio-5qo4nv]
+    paths: ['.github/workflows/radio-stream-probe.yml']
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Probe stream relay and KBS
+        run: |
+          set +e
+          for u in "https://radio.bsod.kr/stream/static?stn=kbs&ch=1fm" "https://radio.bsod.kr/stream/?stn=kbs&ch=1fm"; do
+            echo "=== $u"
+            curl -sS -L -m 20 -D - -o /tmp/body "$u" -A "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1" | grep -iE "^HTTP|^content-type|^location|^access-control"
+            echo "--- body head"; head -c 600 /tmp/body | tr -d '\0'; echo
+            first=$(grep -v '^#' /tmp/body | grep -m1 . )
+            if [ -n "$first" ]; then
+              case "$first" in http*) seg="$first";; /*) seg="https://radio.bsod.kr$first";; *) seg="$(dirname "$(curl -sS -L -m 20 -o /dev/null -w '%{url_effective}' "$u")")/$first";; esac
+              echo "--- next: $seg"
+              curl -sS -L -m 20 -o /tmp/seg -w "seg http=%{http_code} bytes=%{size_download} type=%{content_type}\n" "$seg"
+              head -c 400 /tmp/seg | tr -d '\0' | head -20; echo
+            fi
+          done
+          echo "=== KBS live API"
+          curl -sS -m 20 -o /tmp/kbs -w "http=%{http_code} bytes=%{size_download}\n" "https://cfpwwwapi.kbs.co.kr/api/v1/landing/live/channel_code/24"
+          head -c 800 /tmp/kbs; echo
