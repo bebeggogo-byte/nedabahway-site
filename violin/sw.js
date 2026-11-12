@@ -6,7 +6,7 @@
  * 파일 구성이 바뀌면 CACHE 이름을 올린다.
  */
 'use strict';
-const CACHE = 'violin-v1';
+const CACHE = 'violin-v2';
 const ASSETS = [
   './',
   './manifest.webmanifest',
@@ -18,7 +18,10 @@ const ASSETS = [
 
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()).catch(() => {})
+    caches.open(CACHE)
+      .then((c) => c.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' }))))
+      .then(() => self.skipWaiting())
+      .catch(() => self.skipWaiting())
   );
 });
 
@@ -38,7 +41,9 @@ self.addEventListener('fetch', (e) => {
 
   if (req.mode === 'navigate') {
     e.respondWith(
-      fetch(req)
+      // cache:'no-cache' — skip the browser HTTP cache (GitHub Pages max-age=600) so a
+      // fresh deploy shows up on the very next open, not 10 minutes later.
+      fetch(req, { cache: 'no-cache' })
         .then((res) => {
           const copy = res.clone();
           caches.open(CACHE).then((c) => c.put('./', copy)).catch(() => {});

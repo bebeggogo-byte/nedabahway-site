@@ -46,7 +46,8 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
       .then((keys) => Promise.all(
-        keys.filter((key) => key !== CACHE_VERSION).map((key) => caches.delete(key))
+        // Only this worker's caches — /radio/ (classic-fm-*) and /violin/ (violin-*) keep theirs.
+        keys.filter((key) => key.startsWith('nedabah-') && key !== CACHE_VERSION).map((key) => caches.delete(key))
       ))
       .then(() => self.clients.claim())
   );

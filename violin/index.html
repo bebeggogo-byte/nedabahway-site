@@ -933,7 +933,24 @@ function audioReady(){
   } catch(e){ AC = null; return false; }
   return true;
 }
-function resumeAudio(){ if (AC && AC.state === 'suspended') { try{ AC.resume(); }catch(e){} } }
+/* 폰에서 소리가 안 나는 경우를 막는다:
+   - 'interrupted'(iOS: 전화·다른 앱 뒤)도 'suspended'처럼 다시 깨운다
+   - 아이폰 무음 스위치가 켜져 있어도 들리도록 오디오 세션을 '재생'으로 둔다(지원 기기만)
+   - 첫 터치·앱 복귀 때마다 소리를 깨운다 (아래 unlockAudio) */
+function resumeAudio(){ if (AC && AC.state !== 'running' && AC.state !== 'closed') { try{ AC.resume(); }catch(e){} } }
+try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch(e){}
+function unlockAudio(){
+  if (!audioReady()) return;
+  resumeAudio();
+  try { /* 아이폰: 사용자 터치 안에서 아주 짧은 무음 버퍼를 한 번 울려야 소리 길이 열린다 */
+    var b = AC.createBuffer(1, 1, 22050), s = AC.createBufferSource();
+    s.buffer = b; s.connect(AC.destination); s.start(0);
+  } catch(e){}
+}
+['pointerdown','touchend','keydown'].forEach(function(ev){
+  document.addEventListener(ev, unlockAudio, { capture:true, passive:true });
+});
+document.addEventListener('visibilitychange', function(){ if (!document.hidden) resumeAudio(); });
 
 /* 사인파 + 2·3배음, 약 1.2초 감쇠 — 부드러운 현 느낌 */
 function tone(freq, dur, peak, when){
