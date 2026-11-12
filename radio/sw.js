@@ -9,7 +9,7 @@
  *   - 같은 사이트의 다른 앱(바이올린 등) 캐시는 건드리지 않는다 — classic-fm-* 만 정리.
  * 파일 구성이 바뀌면 CACHE 이름을 올린다.
  */
-const CACHE = 'classic-fm-v35';
+const CACHE = 'classic-fm-v36';
 const PREFIX = 'classic-fm-';
 const ASSETS = [
   './',

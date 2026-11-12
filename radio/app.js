@@ -196,6 +196,55 @@ function showFallback(reason) {
   els.heroHint.textContent = '재생 불가 — 하단에서 다시 시도';
 }
 
+// ===== Stream sources =====
+//
+// 2026-11: the radio.bsod.kr relay answers every request with a Cloudflare 403, so it
+// can no longer be the first choice. KBS's own live API (CORS: *) hands out a signed
+// HLS URL on 1fm.gscdn.kbs.co.kr (playlist and segments allow nedabah.org), valid for
+// 48 hours. iPhone only lets play() start inside the tap itself, so the URL is fetched
+// ahead of time (on open, on return to the app) and the tap plays it synchronously.
+const KBS_REFRESH_MS = 6 * 60 * 60 * 1000;   // refresh well inside the 48h signature
+const kbsStream = { url: null, at: 0, inflight: null };
+
+function refreshKbsUrl(force) {
+  const d = state.data;
+  if (!d || !d.apiUrl) return Promise.resolve(null);
+  if (!force && kbsStream.url && Date.now() - kbsStream.at < KBS_REFRESH_MS) return Promise.resolve(kbsStream.url);
+  if (kbsStream.inflight) return kbsStream.inflight;
+  const timeout = new Promise((_, rej) => setTimeout(() => rej(new Error('KBS API timeout')), 5000));
+  kbsStream.inflight = Promise.race([fetchKbsStreamUrl(d.apiUrl), timeout])
+    .then((url) => { kbsStream.url = url; kbsStream.at = Date.now(); return url; })
+    .catch((err) => { console.warn('KBS API failed:', err); return kbsStream.url; })
+    .finally(() => { kbsStream.inflight = null; });
+  return kbsStream.inflight;
+}
+
+// Ordered candidates: KBS official first, the old relays only as a last resort.
+function streamSources() {
+  const d = state.data || {};
+  return [kbsStream.url, d.audioUrl, d.audioUrlAlt].filter((u, i, a) => u && a.indexOf(u) === i);
+}
+
+async function playFirstSource() {
+  if (!els.audio || !canPlayHls(els.audio)) return null;
+  for (const src of streamSources()) {
+    if (await tryAudioSrc(src)) return src;
+    // Blocked by autoplay policy (no tap yet): every source would be blocked the same
+    // way, and the URL is fine — stop here instead of refetching or trying the relays.
+    if (lastPlayError === 'NotAllowedError') return null;
+    // An expired/rejected KBS URL: get a new one once and retry it.
+    if (src === kbsStream.url) {
+      const fresh = await refreshKbsUrl(true);
+      if (fresh && fresh !== src && await tryAudioSrc(fresh)) return fresh;
+    }
+  }
+  return null;
+}
+
+function sourceHint(src) {
+  return src && src === kbsStream.url ? '앱 내 재생 중 · KBS 공식 스트림' : '앱 내 재생 중 (대체 경로)';
+}
+
 async function fetchKbsStreamUrl(apiUrl) {
   const res = await fetch(apiUrl, { cache: 'no-store' });
   if (!res.ok) throw new Error(`KBS API ${res.status}`);
@@ -225,7 +274,10 @@ function openExternalPlayer() {
   els.heroHint.textContent = 'KBS 공식 플레이어(새 탭) 재생 중';
 }
 
+let lastPlayError = null; // name of the last play() rejection ('NotAllowedError' = no user gesture)
+
 async function tryAudioSrc(src) {
+  lastPlayError = null;
   if (!src || !canPlayHls(els.audio)) return false;
   try {
     els.audio.src = src;
@@ -233,6 +285,7 @@ async function tryAudioSrc(src) {
     if (played && typeof played.then === 'function') await played;
     return true;
   } catch (err) {
+    lastPlayError = (err && err.name) || 'Error';
     console.warn('audio play failed for', src, err);
     return false;
   }
@@ -250,30 +303,16 @@ async function startStream() {
   setPlayingUI(false, { loading: true });
   ensureInterruptionWatch(); // user gesture context: arm the iOS interruption signal
 
-  // 1) Direct HLS via radio.bsod.kr proxy (CORS-OK, in-app playback)
-  if (d.audioUrl && canPlayHls(els.audio)) {
-    if (await tryAudioSrc(d.audioUrl)) {
-      els.heroHint.textContent = '앱 내 재생 중 · 차량 컨트롤 작동';
-      return;
-    }
-    if (d.audioUrlAlt && await tryAudioSrc(d.audioUrlAlt)) {
-      els.heroHint.textContent = '앱 내 재생 중 (대체 경로)';
-      return;
-    }
+  // In-app HLS: KBS official signed URL first (prefetched), old relays as fallback.
+  // Only when no URL is ready yet do we fetch inside the tap (may lose the gesture on
+  // older iPhones; the next tap then plays the URL fetched now).
+  if (!kbsStream.url) await refreshKbsUrl();
+  const src = await playFirstSource();
+  if (src) {
+    els.heroHint.textContent = sourceHint(src);
+    return;
   }
-
-  // 2) KBS API direct (CORS likely blocked, but try)
-  if (d.streamType === 'kbs-api' && d.apiUrl && canPlayHls(els.audio)) {
-    try {
-      const streamUrl = await fetchKbsStreamUrl(d.apiUrl);
-      if (await tryAudioSrc(streamUrl)) {
-        els.heroHint.textContent = '앱 내 재생 중 · KBS 직링크';
-        return;
-      }
-    } catch (err) {
-      console.warn('KBS API path failed:', err);
-    }
-  }
+  if (!state.wantsPlayback) return; // user pressed stop while we were trying
 
   openExternalPlayer();
 }
@@ -425,8 +464,8 @@ function clearResumeWatch() {
 async function reacquireStream() {
   const d = state.data;
   if (!d || !els.audio || !canPlayHls(els.audio)) return;
-  if (d.audioUrl && await tryAudioSrc(d.audioUrl)) return;
-  if (d.audioUrlAlt) await tryAudioSrc(d.audioUrlAlt);
+  refreshKbsUrl(); // keep the signed URL fresh for the next reload (non-blocking)
+  await playFirstSource();
 }
 
 // ===== Resume without releasing the lock-screen binding (iOS) =====
@@ -679,6 +718,7 @@ function resumeOnReturn() {
 }
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) return;
+  refreshKbsUrl(); // keep a fresh signed KBS URL ready for the next tap (non-blocking)
   // A reload was needed while the screen was locked; now that we are visible it is
   // allowed — do it first (the element may be "playing" yet silent, so resumeOnReturn
   // would not trigger on its own).
@@ -1174,9 +1214,10 @@ async function autoStart() {
   state.wantsPlayback = true;
   state.userInitiatedStop = false;
   setPlayingUI(false, { loading: true });
-  if ((d.audioUrl && await tryAudioSrc(d.audioUrl)) ||
-      (d.audioUrlAlt && await tryAudioSrc(d.audioUrlAlt))) {
-    els.heroHint.textContent = '앱 내 재생 중 · 차량 컨트롤 작동';
+  await refreshKbsUrl();
+  const src = await playFirstSource();
+  if (src) {
+    els.heroHint.textContent = sourceHint(src);
     return;
   }
   // Autoplay blocked (no user gesture yet) — leave idle so a tap starts it.
