@@ -1,6 +1,7 @@
 /* STARCP essay tool — /diagnosis/starcp/
  * The essay text stays on this device (localStorage). With consent, one aggregate
  * row (word choice, counts, ratios) goes to Supabase through the starcp_submit RPC.
+ * Example essays are shown read-only under each field; they never enter the inputs.
  * Course settings come from /assets/starcp/courses/<code>.json (?c=<code>).
  * Written in ES5 so it runs in older in-app webviews.
  */
@@ -10,7 +11,7 @@
   var LABELS = ['경험 정하기', '여섯 칸 쓰기', '단어 고르기', '첫 문장', '완성본'];
   var COURSE_RE = /^[a-z0-9][a-z0-9-]{1,39}$/;
   var CONSENT_KEY = 'starcp-consent-v1';
-  var BLANK = { example: false, step: 1, exIdx: 0, sid: '', startedAt: 0, sent: '', job: '', q: '', title: '', limit: 500,
+  var BLANK = { step: 1, exIdx: 0, showEx: true, sid: '', startedAt: 0, sent: '', job: '', q: '', title: '', limit: 500,
     s: '', t: '', a: '', r: '', useCP: false, c: '', p: '', values: [], strengths: [], mainV: '', mainG: '', tpl: 0, first: '', review: '', reviewSent: '' };
 
   var CFG = null;   // course settings
@@ -38,8 +39,9 @@
   function euro(w) { var j = jong(w); return w + ((j === 0 || j === 8) ? '로' : '으로'); }
   function igo(w) { return w + (jong(w) ? '이고' : '고'); }
 
-  function tplList() {
-    var v = S.mainV || '(핵심가치)', g = S.mainG || '(강점)', e = (S.title || '').trim() || '(경험 제목)', j = (S.job || '').trim() || '(지원 직무)';
+  function tplList(src) {
+    src = src || S;
+    var v = src.mainV || '(핵심가치)', g = src.mainG || '(강점)', e = (src.title || '').trim() || '(경험 제목)', j = (src.job || '').trim() || '(지원 직무)';
     return [
       { k: '독립 한 문장', t: '저는 ' + eul(v) + ' 먼저 생각하고, ' + euro(g) + ' 일을 끝까지 해내는 ' + j + ' 지원자입니다.' },
       { k: '독립 한 문장 (짧게)', t: '제가 일하는 기준은 ' + igo(v) + ', 제 강점은 ' + g + '입니다.' },
@@ -75,32 +77,24 @@
   }
 
   // ---------- storage ----------
-  function exampleState(i) {
-    var ex = CFG.examples[i] || CFG.examples[0];
-    var s = clone(BLANK), k;
-    for (k in ex) if (k !== 'dept' && Object.prototype.hasOwnProperty.call(ex, k)) s[k] = clone(ex[k]);
-    s.example = true; s.exIdx = i; s.limit = ex.limit || CFG.limit;
-    return s;
-  }
   function blankState() { var s = clone(BLANK); s.q = CFG.questions[0]; s.limit = CFG.limit; s.sid = uuid(); return s; }
   function load() {
     var d = lsGet(KEY), k, saved;
     if (d) {
       try {
         saved = JSON.parse(d); S = clone(BLANK);
+        if (saved.example) throw new Error('old example draft');
         for (k in saved) if (Object.prototype.hasOwnProperty.call(BLANK, k)) S[k] = saved[k];
         if (!S.sid) S.sid = uuid();
         if (CFG.questions.indexOf(S.q) < 0) S.q = CFG.questions[0];
         return;
-      } catch (e) { /* fall through to the example */ }
+      } catch (e) { /* fall through to a blank draft */ }
     }
-    if (CFG.examples && CFG.examples.length) { S = exampleState(0); S.first = tplText(S.tpl); }
-    else S = blankState();
+    S = blankState();
   }
   function save() { lsSet(KEY, JSON.stringify(S)); }
-  // The first edit of an example turns it into the student's own draft.
+  // The first edit starts the writing-time clock.
   function own() {
-    if (S.example) { S.example = false; renderNotice(); }
     if (!S.sid) S.sid = uuid();
     if (!S.startedAt) S.startedAt = Date.now();
   }
@@ -118,18 +112,31 @@
       nav.appendChild(b);
     });
   }
-  function renderNotice() {
-    $('noticeText').innerHTML = S.example
-      ? '<b>예시</b>가 들어 있습니다. 5단계까지 눌러 보면 완성본이 어떻게 나오는지 볼 수 있습니다.'
-      : '내 글을 쓰는 중입니다. 쓴 내용은 이 기기에 자동으로 저장됩니다.';
-    $('toggleExample').textContent = S.example ? '예시 지우고 내 글 쓰기' : '처음부터 다시 쓰기';
-    var sel = $('exPick'), many = S.example && CFG.examples.length > 1;
-    sel.hidden = !many;
-    if (many) {
+  // Read-only examples under each field. They are never copied into the inputs.
+  function exText(ex, k) {
+    if (k === 'first') return tplList(ex)[ex.tpl || 0].t;
+    if (k === 'values' || k === 'strengths') return (ex[k] || []).join(', ');
+    if (k === 'full') return [exText(ex, 'first')].concat([ex.s, ex.t, ex.a, ex.r], ex.useCP ? [ex.c, ex.p] : []).filter(Boolean).join(' ');
+    return ex[k] || '';
+  }
+  function renderExamples() {
+    var list = CFG.examples || [], ex = list[S.exIdx] || list[0], on = !!ex && S.showEx;
+    $('exBar').hidden = !ex;
+    $('exText').textContent = on
+      ? '칸마다 아래에 예시가 보입니다. 예시는 읽기만 하는 글이고, 내 글에는 들어가지 않습니다.'
+      : '예시를 숨겼습니다.';
+    $('exToggle').textContent = on ? '예시 숨기기' : '예시 보기';
+    var sel = $('exPick'); sel.hidden = !(on && list.length > 1);
+    if (!sel.hidden) {
       sel.innerHTML = '';
-      CFG.examples.forEach(function (ex, i) { var o = document.createElement('option'); o.value = i; o.textContent = (ex.dept || ('예시 ' + (i + 1))) + ' 예시'; sel.appendChild(o); });
-      sel.value = S.exIdx;
+      list.forEach(function (e, i) { var o = document.createElement('option'); o.value = i; o.textContent = (e.dept || ('예시 ' + (i + 1))) + ' 예시'; sel.appendChild(o); });
+      sel.value = list.indexOf(ex);
     }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-ex]'), function (el) {
+      var t = on ? exText(ex, el.getAttribute('data-ex')) : '';
+      el.hidden = !t; el.textContent = t;
+    });
+    $('exFull').hidden = !on;
   }
   function renderRatio() {
     var r = ratios(), h = '';
@@ -213,7 +220,7 @@
   // Called when the student reaches step 5. Sends nothing without consent, for
   // the example, or for an unfinished draft. The same draft overwrites its own row.
   function record() {
-    if (lsGet(CONSENT_KEY) !== 'yes' || S.example || !S.mainV || !S.mainG || !len(S.a) || !charCount()) return;
+    if (lsGet(CONSENT_KEY) !== 'yes' || !S.mainV || !S.mainG || !len(S.a) || !charCount()) return;
     var r = ratios(), n = Math.min(charCount(), 5000);
     var passed = checks().filter(function (c) { return c[0]; }).length;
     var minutes = S.startedAt ? Math.min(1440, Math.max(0, Math.round((Date.now() - S.startedAt) / 60000))) : 0;
@@ -226,7 +233,6 @@
   function sendReview() {
     var t = (S.review || '').trim(), m = $('reviewMsg');
     m.className = 'msg';
-    if (S.example) { m.className = 'msg err'; m.textContent = '예시 글에서는 보낼 수 없습니다. 내 글을 쓴 뒤에 보냅니다.'; return; }
     if (t.length < 5) { m.className = 'msg err'; m.textContent = '5자 이상 적습니다.'; return; }
     if (t === S.reviewSent) { m.textContent = '이미 보낸 문장입니다.'; return; }
     $('sendReview').disabled = true;
@@ -320,15 +326,20 @@
     CFG = cfg; KEY = 'starcp-draft-v1:' + CFG.code;
     if (CFG.name) { $('course').textContent = CFG.name; $('course').hidden = false; }
     if (missing) { $('courseMiss').hidden = false; }
-    load(); bindInputs(); renderNotice(); renderConsent();
+    load(); bindInputs(); renderExamples(); renderConsent();
     if (!lsSet('starcp-probe', '1')) $('noStore').hidden = false;
     if (isKakao()) { $('inapp').hidden = false; $('openExt').onclick = openExternal; }
 
     $('consentYes').onclick = function () { lsSet(CONSENT_KEY, 'yes'); renderConsent(); if (S.step === 5) record(); };
     $('consentNo').onclick = function () { lsSet(CONSENT_KEY, 'no'); renderConsent(); };
     $('consentChange').onclick = function () { try { localStorage.removeItem(CONSENT_KEY); } catch (e) { /* ignore */ } renderConsent(); };
-    $('toggleExample').onclick = function () { S = blankState(); save(); bindInputs(); renderNotice(); go(1); };
-    $('exPick').onchange = function () { S = exampleState(+this.value); S.first = tplText(S.tpl); bindInputs(); renderNotice(); go(1); try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ } };
+    $('restart').onclick = function () {
+      if (!window.confirm('쓴 글을 모두 지우고 처음부터 다시 씁니다. 지운 글은 되돌릴 수 없습니다.')) return;
+      var keep = { exIdx: S.exIdx, showEx: S.showEx };
+      S = blankState(); S.exIdx = keep.exIdx; S.showEx = keep.showEx; save(); bindInputs(); renderExamples(); go(1);
+    };
+    $('exToggle').onclick = function () { S.showEx = !S.showEx; save(); renderExamples(); };
+    $('exPick').onchange = function () { S.exIdx = +this.value; save(); renderExamples(); };
     $('prev').onclick = function () { go(S.step - 1); window.scrollTo(0, 0); };
     $('next').onclick = function () { go(S.step === 5 ? 1 : S.step + 1); window.scrollTo(0, 0); };
     $('copyText').onclick = function () { copy(fullText(), '글을 복사했습니다. 지원서에 붙여 넣습니다.'); };
