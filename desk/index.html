@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>운영 데스크</title>
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="운영 데스크">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#15211f">
+<style>
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#15211f;color:#f6f8f7;
+    font-family:"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;line-height:1.6}
+  main{max-width:340px;padding:32px 20px;text-align:center}
+  img{width:96px;height:96px;border-radius:22px}
+  h1{font-size:22px;margin:16px 0 8px}
+  p{color:#b7c2bf;font-size:15px;margin:0 0 20px}
+  a.open{display:inline-block;background:#e07a1a;color:#15211f;font-weight:700;text-decoration:none;border-radius:10px;padding:12px 22px}
+  ol{text-align:left;color:#b7c2bf;font-size:14px;padding-left:20px;margin:28px 0 0}
+</style>
+</head>
+<body>
+<main>
+  <img src="icon-180.png" alt="운영 데스크 아이콘">
+  <h1>운영 데스크</h1>
+  <p>강의·컨설팅 일정과 보고서를 챙기는 개인 작업 화면입니다. 본인 계정으로 로그인해야 열립니다.</p>
+  <a class="open" id="open" href="https://claude.ai/artifact/7ATFwimMToKskEfNucKgz2">운영 데스크 열기</a>
+  <ol id="howto">
+    <li>아이폰: Safari 아래쪽 공유 버튼을 누르고 「홈 화면에 추가」를 고릅니다.</li>
+    <li>안드로이드: Chrome 메뉴에서 「홈 화면에 추가」를 고릅니다.</li>
+    <li>홈 화면 아이콘을 누르면 운영 데스크로 바로 이동합니다.</li>
+  </ol>
+</main>
+<script>
+  // Opened from the home-screen icon: go straight to the desk.
+  var standalone = window.navigator.standalone === true ||
+    (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+  if (standalone) {
+    document.getElementById('howto').hidden = true;
+    window.location.href = document.getElementById('open').href;
+  }
+</script>
+</body>
+</html>
