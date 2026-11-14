@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>STARCP 자기소개서 작성 도구 | 네다바웨이</title>
+<meta name="description" content="경험 하나를 상황·과제·행동·결과·변화·실천 여섯 칸에 나누어 쓰고, 핵심가치와 강점 단어로 첫 문장을 만듭니다. 회원가입 없음. 쓴 글은 기기에만 저장됩니다.">
+<link rel="canonical" href="https://www.nedabah.org/diagnosis/starcp/">
+<meta property="og:title" content="STARCP 자기소개서 작성 도구 | 네다바웨이">
+<meta property="og:description" content="경험 하나를 여섯 칸에 나누어 쓰고, 핵심가치와 강점 단어로 첫 문장을 만듭니다.">
+<meta property="og:url" content="https://www.nedabah.org/diagnosis/starcp/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta name="theme-color" content="#f1ede5">
+<link rel="stylesheet" href="/assets/starcp.css">
+</head>
+<body>
+<div class="wrap">
+<div class="brand">
+  <a href="/" aria-label="네다바웨이 홈"><img src="/assets/brand/nw-wordmark-color.png" width="1128" height="180" alt="NEDABAHWAY"></a>
+</div>
+<header class="head">
+  <h1>STARCP 자기소개서 작성 도구</h1>
+  <p>경험 하나를 여섯 칸에 나누어 쓰고, 핵심가치와 강점 단어로 첫 문장을 만듭니다.</p>
+  <span class="course" id="course" hidden></span>
+</header>
+
+<p class="lead" id="loading">설정을 불러오는 중입니다.</p>
+<noscript><p class="box strong">이 도구는 JavaScript가 켜져 있어야 쓸 수 있습니다.</p></noscript>
+
+<main id="app" hidden>
+<div class="wrap" style="padding:0">
+
+<div class="box inapp" id="inapp" hidden>
+  <p><b>카카오톡 안의 브라우저로 열었습니다.</b> 이 브라우저에서는 PDF 저장과 자동 복사가 되지 않을 수 있습니다. 다른 브라우저로 열면 모든 기능을 쓸 수 있습니다. 쓰던 글은 다른 브라우저로 옮겨지지 않으므로, 글을 쓰기 전에 엽니다.</p>
+  <div class="btns"><button class="btn sm" type="button" id="openExt">다른 브라우저로 열기</button></div>
+</div>
+<p class="box" id="noStore" hidden>이 브라우저는 자동 저장을 막아 두었습니다. 화면을 닫으면 쓴 글이 지워집니다. 다른 브라우저로 열거나, 글을 다 쓴 뒤 바로 복사합니다.</p>
+<p class="box" id="courseMiss" hidden>주소에 적힌 과정 코드를 찾지 못했습니다. 기본 설정으로 엽니다.</p>
+
+<div class="box strong" id="consentAsk" hidden>
+  <p><b>본문과 이름은 저장하지 않습니다. 단어 선택과 글자 수만 통계로 남깁니다.</b></p>
+  <p>통계로 남기는 값은 과정 코드, 문항 종류, 대표 핵심가치와 강점 단어, 글자 수, 분량 비율, 자동 검사 통과 개수, 작성 시간입니다. 동의하지 않아도 도구를 그대로 쓸 수 있습니다.</p>
+  <div class="btns">
+    <button class="btn pri" type="button" id="consentYes">통계 기록에 동의합니다</button>
+    <button class="btn" type="button" id="consentNo">동의하지 않고 씁니다</button>
+  </div>
+</div>
+<div class="notice" id="consentDone" hidden>
+  <span id="consentState"></span>
+  <button class="btn sm" type="button" id="consentChange">다시 정하기</button>
+</div>
+
+<div class="notice">
+  <span id="noticeText"></span>
+  <select id="exPick" aria-label="학과별 예시 고르기" hidden></select>
+  <button class="btn sm" type="button" id="toggleExample"></button>
+</div>
+
+<nav class="steps" aria-label="작성 단계" id="stepNav"></nav>
+
+<section class="step" data-step="1">
+  <h2>1. 어떤 문항에 어떤 경험을 쓸지 정합니다</h2>
+  <p class="lead">경험은 하나만 고릅니다. 지원 직무에서 하는 일과 비슷한 실습·활동을 고르면 쓰기 쉽습니다.</p>
+  <div class="row2">
+    <div class="field"><label for="job">지원 직무</label><input type="text" id="job" maxlength="60" placeholder="예: 임상병리사(진단검사의학과)"></div>
+    <div class="field"><label for="q">자기소개서 문항</label><select id="q"></select></div>
+  </div>
+  <div class="row2">
+    <div class="field"><label for="title">경험 한 줄 제목</label><input type="text" id="title" maxlength="40" placeholder="예: 임상화학 실습 정도관리"><p class="q">첫 문장에 그대로 들어갑니다. 15자 안팎으로 씁니다.</p></div>
+    <div class="field"><label for="limit">글자 수 제한(공백 포함)</label><input type="number" id="limit" min="100" max="3000" step="50" inputmode="numeric"><p class="q">공고에 적힌 숫자를 넣습니다.</p></div>
+  </div>
+</section>
+
+<section class="step" data-step="2">
+  <h2>2. 경험을 여섯 칸에 나누어 씁니다</h2>
+  <p class="lead">상황과 과제는 짧게, 행동과 결과는 자세하게 씁니다. 아래 막대가 분량 비율을 바로 보여 줍니다.</p>
+  <div class="ratio">
+    <h3>지금 분량 비율</h3>
+    <div class="bar" aria-hidden="true"><i class="st" id="bST"></i><i class="ar" id="bAR"></i><i class="cp" id="bCP"></i></div>
+    <div class="legend"><span class="st" id="lST"></span><span class="ar" id="lAR"></span><span class="cp" id="lCP"></span></div>
+    <div class="pills" id="ratioPills"></div>
+  </div>
+  <div class="field"><label for="s"><span><span class="tag">S</span>상황</span><span class="cnt" id="c_s"></span></label><p class="q">언제, 어디서, 누구와 있었습니까? 한 문장으로 씁니다.</p><textarea id="s"></textarea></div>
+  <div class="field"><label for="t"><span><span class="tag">T</span>과제</span><span class="cnt" id="c_t"></span></label><p class="q">무엇이 문제였고, 내가 맡은 일은 무엇이었습니까? 한 문장으로 씁니다.</p><textarea id="t"></textarea></div>
+  <div class="field"><label for="a"><span><span class="tag">A</span>행동</span><span class="cnt" id="c_a"></span></label><p class="q">내가 한 일을 순서대로 씁니다. 문장을 「저는」 또는 「제가」로 시작합니다. 조가 한 일과 내가 한 일을 구분합니다.</p><textarea id="a" class="tall"></textarea></div>
+  <div class="field"><label for="r"><span><span class="tag">R</span>결과</span><span class="cnt" id="c_r"></span></label><p class="q">행동한 뒤 무엇이 달라졌습니까? 숫자(횟수·시간·개수·점수)를 하나 넣습니다.</p><textarea id="r"></textarea></div>
+  <label class="toggle"><input type="checkbox" id="useCP"><span><b>변화(C)와 실천(P)을 씁니다.</b><br>이 경험에서 배운 점을 지금도 실제로 실천하고 있을 때만 켭니다. 실천하는 일이 없으면 끄고 넘어갑니다.</span></label>
+  <div class="cpbox" id="cpBox">
+    <div class="field"><label for="c"><span><span class="tag">C</span>변화 (배운 점)</span><span class="cnt" id="c_c"></span></label><p class="q">이 경험으로 생각이나 일하는 방식이 어떻게 바뀌었습니까?</p><textarea id="c"></textarea></div>
+    <div class="field"><label for="p"><span><span class="tag">P</span>실천 (지금 하는 노력)</span><span class="cnt" id="c_p"></span></label><p class="q">그 뒤로 지금까지 계속하고 있는 행동은 무엇입니까?</p><textarea id="p"></textarea></div>
+  </div>
+</section>
+
+<section class="step" data-step="3">
+  <h2>3. 핵심가치와 강점 단어를 고릅니다</h2>
+  <div class="guide"><b>직감으로 고르는 방법</b>
+    <ol><li>방금 쓴 경험을 하던 때의 내 태도를 떠올립니다.</li><li>단어의 뜻을 따지지 않습니다. 눈이 먼저 간 단어를 누릅니다.</li><li>목록 하나에 10초만 씁니다. 각각 1개에서 3개까지 고릅니다.</li></ol>
+  </div>
+  <div class="field"><div class="lbl">핵심가치 30개 <span class="cnt">내가 중요하게 지킨 것</span></div><div class="chips" id="vChips"></div><div class="picked" id="vPicked"></div></div>
+  <div class="field"><div class="lbl">강점 30개 <span class="cnt">내가 잘 해낸 방식</span></div><div class="chips" id="gChips"></div><div class="picked" id="gPicked"></div></div>
+</section>
+
+<section class="step" data-step="4">
+  <h2>4. 첫 문장을 만듭니다</h2>
+  <p class="lead">첫 문장은 글 전체를 한 줄로 알려 줍니다. 고른 단어 가운데 대표 단어를 정하고, 문장 틀을 하나 고른 뒤 내 말투로 고칩니다.</p>
+  <div class="row2">
+    <div class="field"><label for="mainV">대표 핵심가치</label><select id="mainV"></select></div>
+    <div class="field"><label for="mainG">대표 강점</label><select id="mainG"></select></div>
+  </div>
+  <div class="tpl" id="tplBox"></div>
+  <div class="field"><label for="first"><span>내 첫 문장</span><span class="cnt" id="c_first"></span></label><p class="q">위에서 고른 문장이 들어와 있습니다. 직접 고쳐 씁니다. 40자 안팎이 읽기 좋습니다.</p><textarea id="first"></textarea>
+    <div class="btns"><button class="btn sm" type="button" id="refill">고른 틀로 다시 채우기</button></div></div>
+</section>
+
+<section class="step" data-step="5">
+  <h2>5. 완성한 글을 확인하고 복사합니다</h2>
+  <div class="meta" id="meta"></div>
+  <div class="out" id="out"></div>
+  <ul class="checks" id="checks"></ul>
+  <div class="btns">
+    <button class="btn pri" type="button" id="copyText">글만 복사</button>
+    <button class="btn" type="button" id="copyCoach">코치에게 보낼 내용 복사</button>
+    <button class="btn" type="button" id="savePdf">PDF로 저장</button>
+  </div>
+  <p class="msg" id="msg" role="status"></p>
+  <textarea id="fallback" class="tall" aria-label="복사할 글" readonly hidden></textarea>
+  <p class="lead">복사한 글을 카카오톡이나 메일에 붙여 넣어 보냅니다. 이 도구는 쓴 글을 서버로 보내지 않습니다. 글은 지금 쓰는 기기에만 저장됩니다.</p>
+
+  <div class="field">
+    <label for="review"><span>한 문장 후기 (선택)</span><span class="cnt" id="c_review"></span></label>
+    <p class="q">이 도구로 쓰면서 가장 도움이 된 점을 한 문장으로 적어 주세요.</p>
+    <textarea id="review" maxlength="100"></textarea>
+    <p class="q">이름·학교·연락처는 적지 마세요. 이 문장은 교육 소개 자료에 이름 없이 실릴 수 있습니다.</p>
+    <div class="btns"><button class="btn sm" type="button" id="sendReview">후기 보내기</button></div>
+    <p class="msg" id="reviewMsg" role="status"></p>
+  </div>
+</section>
+
+<div class="nav">
+  <button class="btn" type="button" id="prev">이전</button>
+  <button class="btn pri" type="button" id="next">다음</button>
+</div>
+
+</div>
+</main>
+
+<footer class="foot">
+  <b>김창환</b> · STARCP(상황·과제·행동·결과·변화·실천)는 김창환 코치가 자기소개서 컨설팅에서 쓰는 작성 기준입니다.
+  <ul>
+    <li>교육 비영리단체 네다바웨이 대표</li>
+    <li>국제인증코치(ICF ACC, 2014~2020)</li>
+    <li>더큰내일센터 창립 멤버(기업·청년 인턴십 프로젝트 설계, 참여자 관리지침 수립)</li>
+    <li>군산대학교 2017년 취업률 1위 달성(간호학과, 메디컬 전문분야, 경영, 공과계열)</li>
+    <li>제주특별자치도 공익활동촉진위원회 부위원장(2026~2028)</li>
+  </ul>
+</footer>
+</div>
+
+<div class="sheet" id="sheet" aria-hidden="true"></div>
+
+<script src="/assets/js/supabase-config.js"></script>
+<script src="/assets/starcp.js"></script>
+</body>
+</html>
