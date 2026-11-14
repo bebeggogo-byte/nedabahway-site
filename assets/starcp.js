@@ -11,6 +11,7 @@
   var LABELS = ['경험 정하기', '여섯 칸 쓰기', '단어 고르기', '첫 문장', '완성본'];
   var COURSE_RE = /^[a-z0-9][a-z0-9-]{1,39}$/;
   var CONSENT_KEY = 'starcp-consent-v1';
+  var COURSE_KEY = 'starcp-course';   // last course code, so the installed app (opened without ?c=) keeps it
   var BLANK = { step: 1, exIdx: 0, showEx: true, sid: '', startedAt: 0, sent: '', job: '', q: '', title: '', limit: 500,
     s: '', t: '', a: '', r: '', useCP: false, c: '', p: '', values: [], strengths: [], mainV: '', mainG: '', tpl: 0, first: '', review: '', reviewSent: '' };
 
@@ -318,6 +319,25 @@
     else location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(url);
   }
 
+  // ---------- home-screen install ----------
+  var installEvent = null;
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); installEvent = e; });
+  function isStandalone() {
+    return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
+  }
+  function install() {
+    var t = $('installText'), ua = navigator.userAgent;
+    if (installEvent) {
+      installEvent.prompt();
+      installEvent.userChoice.then(function (c) { if (c && c.outcome === 'accepted') $('installBar').hidden = true; });
+      installEvent = null;
+      return;
+    }
+    if (isKakao()) t.textContent = '카카오톡 안에서는 설치할 수 없습니다. 위의 「다른 브라우저로 열기」를 누른 뒤, 열린 브라우저에서 다시 「홈 화면에 설치」를 누릅니다.';
+    else if (/iphone|ipad|ipod/i.test(ua)) t.textContent = 'Safari 화면 아래의 공유 단추(네모에서 화살표가 위로 나오는 모양)를 누르고 「홈 화면에 추가」를 고릅니다. 설치하기 전에 쓴 글은 설치한 앱으로 옮겨지지 않으므로, 글을 쓰기 전에 설치합니다.';
+    else t.textContent = '브라우저 메뉴(오른쪽 위 점 세 개)를 열고 「홈 화면에 추가」 또는 「앱 설치」를 고릅니다.';
+  }
+
   // ---------- start ----------
   function fetchCourse(code) {
     return fetch('/assets/starcp/courses/' + code + '.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
@@ -347,6 +367,8 @@
       copy('[자기소개서 초안]\n지원 직무: ' + S.job + '\n문항: ' + S.q + '\n경험: ' + S.title + '\n핵심가치: ' + S.values.join(', ') + ' (대표 ' + S.mainV + ')\n강점: ' + S.strengths.join(', ') + ' (대표 ' + S.mainG + ')\n글자 수: ' + charCount() + ' / ' + limitOf() + '\n\n' + fullText(),
         '코치에게 보낼 내용을 복사했습니다. 카카오톡이나 메일에 붙여 넣습니다.');
     };
+    $('installBar').hidden = isStandalone();
+    $('installBtn').onclick = install;
     $('savePdf').onclick = savePdf;
     $('sendReview').onclick = sendReview;
     $('app').hidden = false; $('loading').hidden = true;
@@ -355,7 +377,9 @@
   function init() {
     var m = /[?&]c=([^&#]*)/.exec(location.search), code = m ? decodeURIComponent(m[1]).toLowerCase() : '';
     var want = COURSE_RE.test(code) ? code : '';
-    (want ? fetchCourse(want).then(function (c) { start(c, false); }, function () { return fetchCourse('default').then(function (c) { start(c, true); }); })
+    if (!code) { var kept = lsGet(COURSE_KEY) || ''; if (COURSE_RE.test(kept)) want = kept; }
+    (want ? fetchCourse(want).then(function (c) { lsSet(COURSE_KEY, want); start(c, false); },
+                                   function () { return fetchCourse('default').then(function (c) { start(c, !!code); }); })
           : fetchCourse('default').then(function (c) { start(c, !!code); }))
       .catch(function () { $('loading').textContent = '설정을 불러오지 못했습니다. 인터넷 연결을 확인하고 화면을 새로 고칩니다.'; });
   }
