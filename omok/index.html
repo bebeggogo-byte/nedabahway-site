@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>오목 AI 대국</title>
+<meta name="theme-color" content="#171a1c">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="오목">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* 한 화면 대국실: 어두운 방 안에 나무 바둑판 하나, 조작부는 판 아래 한 줄씩 */
+  color-scheme: dark;
+  --room: #171a1c;
+  --panel: #22272a;
+  --line: #353c40;
+  --ink: #eceae4;
+  --dim: #9aa3a6;
+  --jade: #5fc2a0;
+  --loss: #e0806a;
+  --wood: #d9ae62;
+  --font: "IBM Plex Sans KR", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--room); color: var(--ink); font-family: var(--font); }
+body { padding: calc(16px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) calc(32px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left)); }
+main { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+h1 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+.record { display: flex; gap: 6px; font-variant-numeric: tabular-nums; font-size: 13px; }
+.record span { padding: 4px 9px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); color: var(--dim); }
+.record b { color: var(--ink); font-weight: 700; margin-left: 3px; }
+#status { min-height: 46px; padding: 11px 14px; border-radius: 10px; background: var(--panel); border-left: 4px solid var(--jade); font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+#status.think { border-left-color: var(--wood); }
+#status.lost { border-left-color: var(--loss); }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--wood); flex: none; animation: pulse 1s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+#boardWrap { width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+canvas { width: 100%; height: 100%; display: block; touch-action: manipulation; cursor: pointer; }
+#info { font-size: 12.5px; color: var(--dim); min-height: 18px; font-variant-numeric: tabular-nums; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.row > .label { font-size: 13px; color: var(--dim); width: 72px; flex: none; }
+button { font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: 9px; padding: 10px 14px; font-size: 14px; font-weight: 500; cursor: pointer; }
+button:focus-visible { outline: 2px solid var(--jade); outline-offset: 2px; }
+button:disabled { opacity: .4; cursor: default; }
+button.main { background: var(--jade); border-color: var(--jade); color: #10231c; font-weight: 700; flex: 1; }
+button.wide { flex: 1; }
+.seg { display: flex; flex: 1; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
+.seg button { flex: 1; border: 0; border-radius: 0; background: transparent; color: var(--dim); padding: 9px 6px; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--room); font-weight: 700; }
+#install { display: none; flex-direction: column; gap: 8px; }
+#install.show { display: flex; }
+#installHelp { display: none; margin: 0; padding: 12px 14px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); font-size: 14px; line-height: 1.7; }
+#installHelp.show { display: block; }
+#installHelp b { color: var(--jade); }
+.note { font-size: 12.5px; line-height: 1.6; color: var(--dim); margin: 2px 0 0; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>오목 AI 대국</h1>
+    <div class="record" aria-label="전적">
+      <span>내 승<b id="rW">0</b></span><span>패<b id="rL">0</b></span><span>무<b id="rD">0</b></span>
+    </div>
+  </header>
+
+  <div id="status" role="status" aria-live="polite"></div>
+  <div id="boardWrap"><canvas id="board" aria-label="오목판 15×15"></canvas></div>
+  <div id="info"></div>
+
+  <div class="row">
+    <button class="main" id="btnNew">새 대국</button>
+    <button class="wide" id="btnUndo">한 수 무르기</button>
+  </div>
+  <div class="row">
+    <span class="label">선공(흑)</span>
+    <div class="seg" id="segFirst">
+      <button data-v="ai" aria-pressed="true">AI 선공</button>
+      <button data-v="me" aria-pressed="false">내가 선공</button>
+    </div>
+  </div>
+  <div class="row">
+    <span class="label">난이도</span>
+    <div class="seg" id="segLevel">
+      <button data-v="easy" aria-pressed="false">쉬움</button>
+      <button data-v="normal" aria-pressed="false">보통</button>
+      <button data-v="hard" aria-pressed="false">어려움</button>
+      <button data-v="max" aria-pressed="false">최강</button>
+    </div>
+  </div>
+  <div class="row">
+    <span class="label">돌 놓는 방식</span>
+    <div class="seg" id="segTap">
+      <button data-v="2" aria-pressed="true">두 번 눌러 확정</button>
+      <button data-v="1" aria-pressed="false">한 번에 놓기</button>
+    </div>
+  </div>
+  <p class="note">규칙: 가로·세로·대각선으로 같은 색 돌 5개 이상을 먼저 이으면 이깁니다. 금수(3-3 등)는 없습니다. 난이도는 다음 수부터, 선공은 다음 대국부터 적용됩니다. 전적은 난이도별로 따로 셉니다. AI 선공에 최강이 가장 어렵습니다.</p>
+  <div id="install">
+    <button id="btnInstall">홈 화면에 추가</button>
+    <p id="installHelp"></p>
+  </div>
+</main>
+
+<script>
+function createEngine() {
+  var N = 15, W = 23, WW = W * W, OFF = [1, W, W + 1, W - 1];
+  var WIN = 100000000, INF = 2000000000, MAXPLY = 64;
+  var b = new Int8Array(WW), nb = new Uint8Array(WW);
+  var cells = new Int16Array(225);
+  var TBL = new Uint8Array(6561);
+  var T = new Uint8Array(3 * WW * 4);
+  var SC = new Int32Array(4096), MX = new Uint8Array(4096);
+  var MP = [null, new Int8Array([0, 1, 2, 2]), new Int8Array([0, 2, 1, 2])];
+  var mv = new Int16Array(MAXPLY * 226), sc = new Float64Array(MAXPLY * 226), fl = new Uint8Array(MAXPLY * 226);
+  var NB = [];
+  var TTBITS = 18, TTSIZE = 1 << TTBITS, TTMASK = TTSIZE - 1;
+  var ttLo = new Int32Array(TTSIZE), ttHi = new Int32Array(TTSIZE), ttVal = new Int32Array(TTSIZE);
+  var ttDepth = new Int8Array(TTSIZE), ttFlag = new Int8Array(TTSIZE), ttMove = new Int16Array(TTSIZE);
+  var zLo = new Int32Array(3 * WW), zHi = new Int32Array(3 * WW), hLo = 0, hHi = 0;
+  var VS = 1 << 16, vLo = new Int32Array(VS), vHi = new Int32Array(VS), vLeft = new Int8Array(VS);
+  var nodes = 0, deadline = 0, stop = false, rootBest = 0, stones = 0;
+  var rootW = 30, innerW = 12, noise = 0, QMAX = 4, qAll = 1;
+
+  (function init() {
+    var x, y, i, k = 0;
+    for (y = 0; y < N; y++) for (x = 0; x < N; x++) cells[k++] = (y + 4) * W + x + 4;
+    for (y = -2; y <= 2; y++) for (x = -2; x <= 2; x++) if (x || y) NB.push(y * W + x);
+    var seed = 88172645;
+    function rnd() { seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5; return seed | 0; }
+    for (i = 0; i < 3 * WW; i++) { zLo[i] = rnd(); zHi[i] = rnd(); }
+    // line pattern table
+    var a = new Int8Array(9), pos = [0, 1, 2, 3, 5, 6, 7, 8];
+    function five() { var c = 1, j; for (j = 3; j >= 0 && a[j] === 1; j--) c++; for (j = 5; j < 9 && a[j] === 1; j++) c++; return c >= 5; }
+    function fc() { var n = 0, e; for (e = 0; e < 9; e++) if (a[e] === 0) { a[e] = 1; if (five()) n++; a[e] = 0; } return n; }
+    function cls() {
+      if (five()) return 7;
+      var f = fc(); if (f >= 2) return 6; if (f === 1) return 5;
+      var best = 0, e, e2, g;
+      for (e = 0; e < 9; e++) if (a[e] === 0) { a[e] = 1; g = fc(); a[e] = 0; if (g >= 2) best = 4; else if (g === 1 && best < 3) best = 3; }
+      if (best) return best;
+      for (e = 0; e < 9; e++) if (a[e] === 0) {
+        a[e] = 1;
+        for (e2 = 0; e2 < 9; e2++) if (a[e2] === 0) { a[e2] = 1; g = fc(); a[e2] = 0; if (g >= 2) best = 2; else if (g === 1 && best < 1) best = 1; }
+        a[e] = 0;
+      }
+      return best;
+    }
+    for (i = 0; i < 6561; i++) {
+      var v = i;
+      for (k = 7; k >= 0; k--) { a[pos[k]] = v % 3; v = (v / 3) | 0; }
+      a[4] = 1;
+      TBL[i] = cls();
+    }
+    var wt = [0, 2, 10, 12, 60, 65, 0, 0];
+    for (i = 0; i < 4096; i++) {
+      var t = [i & 7, (i >> 3) & 7, (i >> 6) & 7, (i >> 9) & 7], cnt = [0, 0, 0, 0, 0, 0, 0, 0], s = 0, m = 0;
+      for (k = 0; k < 4; k++) { cnt[t[k]]++; s += wt[t[k]]; if (t[k] > m) m = t[k]; }
+      MX[i] = m;
+      if (cnt[7]) SC[i] = 10000000;
+      else if (cnt[6] || cnt[5] >= 2) SC[i] = 1000000;
+      else if (cnt[5] && cnt[4]) SC[i] = 200000;
+      else if (cnt[4] >= 2) SC[i] = 50000;
+      else SC[i] = s;
+    }
+  })();
+
+  function lineType(c, p, d) {
+    var m = MP[p];
+    return TBL[((((((m[b[c - 4 * d]] * 3 + m[b[c - 3 * d]]) * 3 + m[b[c - 2 * d]]) * 3 + m[b[c - d]]) * 3 + m[b[c + d]]) * 3 + m[b[c + 2 * d]]) * 3 + m[b[c + 3 * d]]) * 3 + m[b[c + 4 * d]]];
+  }
+  function ci(p, c) { var i = (p * WW + c) << 2; return T[i] | (T[i + 1] << 3) | (T[i + 2] << 6) | (T[i + 3] << 9); }
+  function refresh(c) {
+    var di, d, k, cc;
+    for (di = 0; di < 4; di++) {
+      d = OFF[di];
+      for (k = 1; k <= 4; k++) {
+        cc = c + k * d;
+        if (b[cc] === 0) { T[((WW + cc) << 2) + di] = lineType(cc, 1, d); T[((2 * WW + cc) << 2) + di] = lineType(cc, 2, d); }
+        cc = c - k * d;
+        if (b[cc] === 0) { T[((WW + cc) << 2) + di] = lineType(cc, 1, d); T[((2 * WW + cc) << 2) + di] = lineType(cc, 2, d); }
+      }
+    }
+  }
+  function make(c, p) {
+    b[c] = p; stones++; hLo ^= zLo[p * WW + c]; hHi ^= zHi[p * WW + c];
+    for (var i = 0; i < 24; i++) nb[c + NB[i]]++;
+    refresh(c);
+  }
+  function undo(c) {
+    var p = b[c], di;
+    b[c] = 0; stones--; hLo ^= zLo[p * WW + c]; hHi ^= zHi[p * WW + c];
+    for (var i = 0; i < 24; i++) nb[c + NB[i]]--;
+    refresh(c);
+    for (di = 0; di < 4; di++) { T[((WW + c) << 2) + di] = lineType(c, 1, OFF[di]); T[((2 * WW + c) << 2) + di] = lineType(c, 2, OFF[di]); }
+  }
+  function reset() {
+    var i;
+    for (i = 0; i < WW; i++) { b[i] = 3; nb[i] = 0; }
+    for (i = 0; i < 225; i++) b[cells[i]] = 0;
+    for (i = 0; i < T.length; i++) T[i] = 0;
+    hLo = 0; hHi = 0; stones = 0;
+  }
+  function findFive(m, p) {
+    var di, d, k, cc;
+    for (di = 0; di < 4; di++) {
+      d = OFF[di];
+      for (k = -4; k <= 4; k++) { if (!k) continue; cc = m + k * d; if (b[cc] === 0 && T[((p * WW + cc) << 2) + di] === 7) return cc; }
+    }
+    return 0;
+  }
+  function tick() { if (((++nodes) & 1023) === 0 && Date.now() > deadline) stop = true; }
+
+  // victory by continuous fours; returns winning first move or 0
+  function vcf(p, left, ply) {
+    tick(); if (stop) return 0;
+    var o = 3 - p, base = ply * 226, n = 0, i, j, c, ia, a, oppFive = 0, cnt = 0, w = 0, m, r, res, bi, t;
+    for (i = 0; i < 225; i++) {
+      c = cells[i]; if (b[c] !== 0 || nb[c] === 0) continue;
+      ia = ci(p, c); a = SC[ia];
+      if (a >= 10000000) return c;
+      if (SC[ci(o, c)] >= 10000000) { cnt++; oppFive = c; }
+      if (a >= 1000000) w = c;
+      if (MX[ia] >= 5) { mv[base + n] = c; sc[base + n] = a; n++; }
+    }
+    if (cnt >= 2) return 0;
+    if (cnt === 1) {
+      ia = ci(p, oppFive);
+      if (MX[ia] < 5) return 0;
+      if (SC[ia] >= 1000000) return oppFive;
+      mv[base] = oppFive; n = 1;
+    } else if (w) return w;
+    if (left <= 0 || n === 0 || ply >= MAXPLY - 3) return 0;
+    var kLo = hLo ^ (p * 0x9E3779B1), vs = kLo & (VS - 1);
+    if (vLo[vs] === kLo && vHi[vs] === hHi && vLeft[vs] >= left) return 0;
+    for (i = 0; i < n; i++) {
+      bi = i;
+      for (j = i + 1; j < n; j++) if (sc[base + j] > sc[base + bi]) bi = j;
+      if (bi !== i) { t = mv[base + i]; mv[base + i] = mv[base + bi]; mv[base + bi] = t; t = sc[base + i]; sc[base + i] = sc[base + bi]; sc[base + bi] = t; }
+      m = mv[base + i];
+      make(m, p);
+      r = findFive(m, p);
+      if (!r) { undo(m); continue; }
+      make(r, o);
+      res = vcf(p, left - 1, ply + 2);
+      undo(r); undo(m);
+      if (res) return m;
+      if (stop) return 0;
+    }
+    vLo[vs] = kLo; vHi[vs] = hHi; vLeft[vs] = left;
+    return 0;
+  }
+
+  function ab(p, depth, alpha, beta, ply) {
+    tick(); if (stop) return 0;
+    var o = 3 - p, base = ply * 226, n = 0, i, j, c, a, d, ia, id;
+    var oppFive = 0, oppFiveCnt = 0, myW2 = false, oppO4 = false, my4 = 0;
+    var sumA = 0, sumD = 0, my43 = false, my33 = false, opp43 = false, f;
+    for (i = 0; i < 225; i++) {
+      c = cells[i]; if (b[c] !== 0 || nb[c] === 0) continue;
+      ia = ci(p, c); a = SC[ia];
+      if (a >= 10000000) { if (ply === 0) rootBest = c; return WIN - ply; }
+      id = ci(o, c); d = SC[id];
+      if (d >= 10000000) { oppFiveCnt++; oppFive = c; }
+      else if (d >= 1000000) oppO4 = true;
+      else if (d >= 50000) opp43 = true;
+      if (a >= 1000000) myW2 = true; else if (a >= 200000) my43 = true; else if (a >= 50000) my33 = true;
+      f = 0;
+      if (MX[ia] >= 5) { my4++; f = 1; }
+      if (MX[id] >= 5) f = 1;
+      if (a >= 50000 || (qAll && MX[ia] >= 4)) f |= 2;
+      sumA += a > 200 ? 200 : a; sumD += d > 200 ? 200 : d;
+      mv[base + n] = c; sc[base + n] = a * 1.05 + d + (noise ? Math.random() * noise : 0); fl[base + n] = f; n++;
+    }
+    if (n === 0) return 0;
+    if (oppFiveCnt >= 2 && ply > 0) return -(WIN - ply - 1);
+    var forced = false, lim, qmode = false, stand = -INF;
+    if (oppFiveCnt >= 1) { mv[base] = oppFive; sc[base] = 0; n = 1; forced = true; }
+    else if (myW2 && ply > 0) return WIN - ply - 2;
+    else if (depth <= 0 || ply >= MAXPLY - 4) {
+      if (my4 > 0 && ply < MAXPLY - 20 && vcf(p, 6, ply)) return WIN - ply - 8;
+      if (stop) return 0;
+      stand = (sumA * 1.1 - sumD + (my43 ? 3000 : 0) + (my33 ? 800 : 0) - (oppO4 ? 250 : 0) - (opp43 ? 300 : 0)) | 0;
+      if (depth <= -QMAX || ply >= MAXPLY - 4) return stand;
+      if (oppO4) {
+        j = 0;
+        for (i = 0; i < n; i++) if (fl[base + i] & 1) { mv[base + j] = mv[base + i]; sc[base + j] = sc[base + i]; j++; }
+        if (j === 0) return stand;
+        n = j; qmode = true; stand = -INF;
+      } else if (my43 || my33 || (qAll && sumA >= 60)) {
+        if (stand >= beta) return stand;
+        j = 0;
+        for (i = 0; i < n; i++) if (fl[base + i] & 2) { mv[base + j] = mv[base + i]; sc[base + j] = sc[base + i]; j++; }
+        if (j === 0) return stand;
+        n = j; qmode = true;
+      } else return stand;
+    } else if (oppO4) {
+      j = 0;
+      for (i = 0; i < n; i++) if (fl[base + i] & 1) { mv[base + j] = mv[base + i]; sc[base + j] = sc[base + i]; j++; }
+      if (j > 0) n = j;
+    }
+    if (qmode) lim = Math.min(n, 8);
+    else lim = forced ? 1 : (oppO4 ? n : Math.min(n, ply === 0 ? rootW : innerW));
+    var useTT = depth > 0;
+
+    var slot = hLo & TTMASK, ttm = 0, tv;
+    if (useTT && ttHi[slot] === hHi && ttLo[slot] === hLo) {
+      ttm = ttMove[slot];
+      if (ply > 0 && ttDepth[slot] >= depth) {
+        tv = ttVal[slot];
+        if (tv > WIN - 1000) tv -= ply; else if (tv < -WIN + 1000) tv += ply;
+        if (ttFlag[slot] === 0) return tv;
+        if (ttFlag[slot] === 1 && tv >= beta) return tv;
+        if (ttFlag[slot] === 2 && tv <= alpha) return tv;
+      }
+    }
+    if (ttm) for (i = 0; i < n; i++) if (mv[base + i] === ttm) { sc[base + i] = 1e15; break; }
+
+    var best = stand, bestMove = 0, alpha0 = alpha, bi, t, m, v;
+    if (stand > alpha) alpha = stand;
+    for (i = 0; i < lim; i++) {
+      bi = i;
+      for (j = i + 1; j < n; j++) if (sc[base + j] > sc[base + bi]) bi = j;
+      if (bi !== i) { t = mv[base + i]; mv[base + i] = mv[base + bi]; mv[base + bi] = t; t = sc[base + i]; sc[base + i] = sc[base + bi]; sc[base + bi] = t; }
+      m = mv[base + i];
+      make(m, p);
+      v = -ab(o, forced ? depth : depth - 1, -beta, -alpha, ply + 1);
+      undo(m);
+      if (stop) return 0;
+      if (v > best) {
+        best = v; bestMove = m;
+        if (ply === 0) rootBest = m;
+        if (v > alpha) { alpha = v; if (v >= beta) break; }
+      }
+    }
+    if (!useTT) return best;
+    tv = best;
+    if (tv > WIN - 1000) tv += ply; else if (tv < -WIN + 1000) tv -= ply;
+    ttLo[slot] = hLo; ttHi[slot] = hHi; ttVal[slot] = tv; ttDepth[slot] = depth < 0 ? 0 : depth; ttMove[slot] = bestMove;
+    ttFlag[slot] = best <= alpha0 ? 2 : (best >= beta ? 1 : 0);
+    return best;
+  }
+
+  function toXY(c) { return ((c / W | 0) - 4) * N + (c % W) - 4; }
+
+  // moves: array of y*15+x in play order (black first). returns {move, score, depth, nodes}
+  function think(moves, timeMs, opts) {
+    opts = opts || {};
+    var i, p, start = Date.now();
+    reset();
+    for (i = 0; i < moves.length; i++) make(cells[moves[i]], (i % 2) + 1);
+    p = (moves.length % 2) + 1;
+    noise = opts.noise || 0;
+    rootW = opts.rootW || 30; innerW = opts.innerW || 12; QMAX = opts.qmax === undefined ? 4 : opts.qmax; qAll = opts.qAll === 0 ? 0 : 1;
+    if (moves.length === 0) return { move: 7 * N + 7, score: 0, depth: 0, nodes: 0 };
+    if (moves.length === 1) {
+      var x = moves[0] % N, y = (moves[0] / N) | 0, opt = [], dx, dy;
+      for (dy = -1; dy <= 1; dy++) for (dx = -1; dx <= 1; dx++) {
+        if (!dx && !dy) continue;
+        var nx = x + dx, ny = y + dy;
+        if (nx < 3 || ny < 3 || nx > 11 || ny > 11) continue;
+        opt.push(ny * N + nx);
+      }
+      if (opt.length) return { move: opt[(Math.random() * opt.length) | 0], score: 0, depth: 0, nodes: 0 };
+    }
+    for (i = 0; i < TTSIZE; i++) { ttHi[i] = 0; ttLo[i] = 0; ttMove[i] = 0; ttDepth[i] = 0; }
+    for (i = 0; i < VS; i++) { vLo[i] = 0; vHi[i] = 0; vLeft[i] = 0; }
+    nodes = 0; stop = false; deadline = start + timeMs;
+    var best = 0, score = 0, depthDone = 0, maxDepth = opts.maxDepth || 40, v, d;
+    // fallback: best static candidate
+    var o = 3 - p, fb = 0, fbs = -1, c, s;
+    for (i = 0; i < 225; i++) {
+      c = cells[i]; if (b[c] !== 0) continue;
+      s = nb[c] === 0 ? -0.5 : SC[ci(p, c)] * 1.05 + SC[ci(o, c)];
+      if (s > fbs) { fbs = s; fb = c; }
+    }
+    if (!opts.noVcf) {
+      deadline = start + timeMs * 0.25;
+      var vl = [4, 8, 12, 20];
+      for (i = 0; i < 4 && !stop; i++) {
+        v = vcf(p, vl[i], 0);
+        if (v && !stop) return { move: toXY(v), score: WIN, depth: 0, nodes: nodes, win: true };
+      }
+      stop = false; deadline = start + timeMs;
+    }
+    for (d = 1; d <= maxDepth; d++) {
+      rootBest = 0;
+      v = ab(p, d, -INF, INF, 0);
+      if (stop) break;
+      if (rootBest) { best = rootBest; score = v; depthDone = d; }
+      if (v > WIN - 1000 || v < -WIN + 1000) break;
+      if (Date.now() - start > timeMs * 0.55) break;
+    }
+    if (!best) best = fb;
+    return { move: toXY(best), score: score, depth: depthDone, nodes: nodes };
+  }
+  return { think: think };
+}
+
+
+</script>
+<script>
+(function () {
+  var N = 15;
+  var cv = document.getElementById('board'), ctx = cv.getContext('2d');
+  var statusEl = document.getElementById('status'), infoEl = document.getElementById('info');
+  var btnUndo = document.getElementById('btnUndo');
+  var moves = [], bd = new Int8Array(225), aiBlack = true, nextAiBlack = true;
+  var LEVELS = { easy: { t: 300, o: { maxDepth: 1, noise: 150, noVcf: true, qmax: 0 } }, normal: { t: 500, o: { maxDepth: 2, noise: 25, qmax: 2 } }, hard: { t: 1000, o: { maxDepth: 6 } }, max: { t: 3000, o: {} } };
+  var level = 'normal', tapMode = 2, over = false, thinking = false, token = 0, preview = -1, winLine = null;
+  var recs = {}, rec;
+  try { var s = JSON.parse(localStorage.getItem('omok-records') || 'null'); if (s && typeof s === 'object') recs = s; var lv = localStorage.getItem('omok-level'); if (LEVELS[lv]) level = lv; } catch (e) {}
+  function useRec() { if (!recs[level] || typeof recs[level].W !== 'number') recs[level] = { W: 0, L: 0, D: 0 }; rec = recs[level]; }
+  useRec();
+
+  // engine: worker if possible, otherwise main thread
+  var worker = null, localEngine = null;
+  try {
+    var src = 'var E=(' + createEngine.toString() + ')();onmessage=function(e){var r=E.think(e.data.moves,e.data.time,e.data.opts);r.id=e.data.id;postMessage(r);};';
+    worker = new Worker(URL.createObjectURL(new Blob([src], { type: 'text/javascript' })));
+    worker.onmessage = function (e) { onAiResult(e.data); };
+    worker.onerror = function () { worker = null; if (thinking) askAi(); };
+  } catch (e) { worker = null; }
+
+  function askAi() {
+    thinking = true; token++; render();
+    var msg = { id: token, moves: moves.slice(), time: LEVELS[level].t, opts: LEVELS[level].o };
+    if (worker) worker.postMessage(msg);
+    else setTimeout(function () {
+      if (!localEngine) localEngine = createEngine();
+      var r = localEngine.think(msg.moves, msg.time, msg.opts); r.id = msg.id; onAiResult(r);
+    }, 40);
+  }
+  function onAiResult(r) {
+    if (r.id !== token || !thinking || over) return;
+    thinking = false;
+    var txt = '';
+    if (r.depth > 0) txt = 'AI 탐색: ' + r.depth + '수 앞까지, ' + r.nodes.toLocaleString('ko-KR') + '개 국면';
+    if (r.score > 90000000) txt = 'AI가 이기는 수순을 읽었습니다.' + (r.nodes ? ' (' + r.nodes.toLocaleString('ko-KR') + '개 국면)' : '');
+    infoEl.textContent = txt;
+    place(r.move);
+  }
+
+  function colorToMove() { return (moves.length % 2) + 1; }
+  function aiToMove() { return (colorToMove() === 1) === aiBlack; }
+  function findWin(m) {
+    var p = bd[m], x = m % N, y = (m / N) | 0, dirs = [[1, 0], [0, 1], [1, 1], [1, -1]];
+    for (var i = 0; i < 4; i++) {
+      var dx = dirs[i][0], dy = dirs[i][1], line = [m], k, nx, ny;
+      for (k = 1; k < 15; k++) { nx = x + dx * k; ny = y + dy * k; if (nx < 0 || ny < 0 || nx >= N || ny >= N || bd[ny * N + nx] !== p) break; line.push(ny * N + nx); }
+      for (k = 1; k < 15; k++) { nx = x - dx * k; ny = y - dy * k; if (nx < 0 || ny < 0 || nx >= N || ny >= N || bd[ny * N + nx] !== p) break; line.push(ny * N + nx); }
+      if (line.length >= 5) return line;
+    }
+    return null;
+  }
+  function saveRec() { try { localStorage.setItem('omok-records', JSON.stringify(recs)); localStorage.setItem('omok-level', level); } catch (e) {} }
+  function place(m) {
+    if (bd[m] || over) return;
+    var p = colorToMove(), wasAi = aiToMove();
+    bd[m] = p; moves.push(m); preview = -1;
+    var w = findWin(m);
+    if (w) { over = true; winLine = w; rec[wasAi ? 'L' : 'W']++; saveRec(); }
+    else if (moves.length === 225) { over = true; rec.D++; saveRec(); }
+    render();
+    if (!over && aiToMove()) askAi();
+  }
+  function newGame() {
+    token++; thinking = false; over = false; winLine = null; preview = -1;
+    moves = []; bd = new Int8Array(225); aiBlack = nextAiBlack; infoEl.textContent = '';
+    render();
+    if (aiToMove()) askAi();
+  }
+  function undo() {
+    if (over || !moves.length) return;
+    if (thinking) { token++; thinking = false; bd[moves.pop()] = 0; }
+    else {
+      if (moves.length >= 2) { bd[moves.pop()] = 0; bd[moves.pop()] = 0; }
+      else if (!aiBlack) { bd[moves.pop()] = 0; }
+      else return;
+    }
+    preview = -1; infoEl.textContent = '';
+    render();
+    if (aiToMove()) askAi();
+  }
+
+  // drawing
+  var size = 0, cell = 0, dpr = 1;
+  function resize() {
+    var w = cv.parentNode.clientWidth; if (!w) return;
+    dpr = Math.min(window.devicePixelRatio || 1, 3);
+    size = w; cell = size / N;
+    cv.width = Math.round(size * dpr); cv.height = Math.round(size * dpr);
+    draw();
+  }
+  function pos(i) { return cell / 2 + i * cell; }
+  function stone(x, y, p, alpha) {
+    var cx = pos(x), cy = pos(y), r = cell * 0.45;
+    ctx.save(); ctx.globalAlpha = alpha;
+    if (alpha === 1) { ctx.shadowColor = 'rgba(0,0,0,.45)'; ctx.shadowBlur = cell * 0.12; ctx.shadowOffsetY = cell * 0.06; }
+    var g = ctx.createRadialGradient(cx - r * 0.35, cy - r * 0.4, r * 0.1, cx, cy, r);
+    if (p === 1) { g.addColorStop(0, '#5a5f63'); g.addColorStop(1, '#0d0f10'); }
+    else { g.addColorStop(0, '#ffffff'); g.addColorStop(1, '#cfcbc0'); }
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+  function draw() {
+    if (!size) return;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var g = ctx.createLinearGradient(0, 0, size, size);
+    g.addColorStop(0, '#e2b96d'); g.addColorStop(1, '#cf9f52');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, size, size);
+    ctx.strokeStyle = 'rgba(60,38,10,.75)'; ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (var i = 0; i < N; i++) {
+      var q = Math.round(pos(i)) + 0.5;
+      ctx.moveTo(pos(0), q); ctx.lineTo(pos(N - 1), q);
+      ctx.moveTo(q, pos(0)); ctx.lineTo(q, pos(N - 1));
+    }
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(60,38,10,.85)';
+    [[3, 3], [11, 3], [7, 7], [3, 11], [11, 11]].forEach(function (s) { ctx.beginPath(); ctx.arc(Math.round(pos(s[0])) + 0.5, Math.round(pos(s[1])) + 0.5, Math.max(2.2, cell * 0.09), 0, Math.PI * 2); ctx.fill(); });
+    for (var m = 0; m < 225; m++) if (bd[m]) stone(m % N, (m / N) | 0, bd[m], 1);
+    if (moves.length) {
+      var l = moves[moves.length - 1];
+      ctx.fillStyle = '#e5533d'; ctx.beginPath(); ctx.arc(pos(l % N), pos((l / N) | 0), cell * 0.12, 0, Math.PI * 2); ctx.fill();
+    }
+    if (winLine) {
+      ctx.strokeStyle = '#e5533d'; ctx.lineWidth = Math.max(2, cell * 0.09);
+      winLine.forEach(function (w) { ctx.beginPath(); ctx.arc(pos(w % N), pos((w / N) | 0), cell * 0.45, 0, Math.PI * 2); ctx.stroke(); });
+    }
+    if (preview >= 0 && !bd[preview]) {
+      stone(preview % N, (preview / N) | 0, colorToMove(), 0.55);
+      ctx.strokeStyle = '#1f6fd6'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(pos(preview % N), pos((preview / N) | 0), cell * 0.47, 0, Math.PI * 2); ctx.stroke();
+    }
+  }
+  function render() {
+    draw();
+    document.getElementById('rW').textContent = rec.W;
+    document.getElementById('rL').textContent = rec.L;
+    document.getElementById('rD').textContent = rec.D;
+    var cls = '', html = '';
+    var mine = aiBlack ? '백' : '흑';
+    if (over) {
+      if (!winLine) html = '무승부입니다. 판이 가득 찼습니다.';
+      else if (bd[winLine[0]] === (aiBlack ? 1 : 2)) { html = 'AI가 이겼습니다. 새 대국으로 다시 도전하세요.'; cls = 'lost'; }
+      else html = '이겼습니다. AI를 꺾었습니다.';
+    } else if (thinking) { html = '<span class="dot"></span>AI가 수를 읽고 있습니다.'; cls = 'think'; }
+    else if (preview >= 0) html = '같은 자리를 한 번 더 누르면 ' + mine + '돌을 놓습니다.';
+    else html = '내 차례입니다(' + mine + '돌). 놓을 자리를 누르세요.';
+    statusEl.className = cls; statusEl.innerHTML = html;
+    btnUndo.disabled = over || moves.length === 0 || (aiBlack && moves.length < 2 && !thinking);
+  }
+
+  cv.addEventListener('click', function (e) {
+    if (over || thinking || aiToMove()) return;
+    var r = cv.getBoundingClientRect();
+    var x = Math.floor((e.clientX - r.left) / (r.width / N)), y = Math.floor((e.clientY - r.top) / (r.height / N));
+    if (x < 0 || y < 0 || x >= N || y >= N) return;
+    var m = y * N + x; if (bd[m]) return;
+    if (tapMode === 1 || preview === m) place(m);
+    else { preview = m; render(); }
+  });
+  document.getElementById('btnNew').addEventListener('click', newGame);
+  btnUndo.addEventListener('click', undo);
+  function seg(id, fn) {
+    var el = document.getElementById(id);
+    el.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      [].forEach.call(el.children, function (c) { c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); });
+      fn(b.getAttribute('data-v'));
+    });
+  }
+  seg('segFirst', function (v) { nextAiBlack = v === 'ai'; if (moves.length <= 1 && !over) newGame(); });
+  seg('segLevel', function (v) { level = v; useRec(); saveRec(); render(); });
+  [].forEach.call(document.getElementById('segLevel').children, function (c) { c.setAttribute('aria-pressed', c.getAttribute('data-v') === level ? 'true' : 'false'); });
+  seg('segTap', function (v) { tapMode = +v; preview = -1; render(); });
+  // home screen install (only when opened as its own page, not inside another frame)
+  (function () {
+    var top = false; try { top = window.self === window.top; } catch (e) {}
+    var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
+    if (!top || standalone || location.protocol.indexOf('http') !== 0) return;
+    if ('serviceWorker' in navigator) { try { navigator.serviceWorker.register('sw.js').catch(function () {}); } catch (e) {} }
+    var box = document.getElementById('install'), help = document.getElementById('installHelp'), deferred = null;
+    var ua = navigator.userAgent, ios = /iPhone|iPad|iPod/.test(ua), inApp = /KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\//i.test(ua);
+    box.className = 'show';
+    window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; });
+    window.addEventListener('appinstalled', function () { box.className = ''; });
+    document.getElementById('btnInstall').addEventListener('click', function () {
+      if (deferred) { deferred.prompt(); deferred = null; return; }
+      if (inApp) help.innerHTML = '지금은 카카오톡·네이버 같은 앱 안의 화면입니다. 오른쪽 위 메뉴에서 <b>다른 브라우저로 열기</b>를 누른 뒤 다시 이 버튼을 누르세요.';
+      else if (ios) help.innerHTML = 'Safari 아래쪽 <b>공유 버튼</b>(네모에서 화살표가 올라가는 모양)을 누르고, 목록을 내려 <b>홈 화면에 추가</b>를 누르세요.';
+      else help.innerHTML = '브라우저 오른쪽 위 <b>메뉴(⋮)</b>를 누르고 <b>홈 화면에 추가</b> 또는 <b>앱 설치</b>를 누르세요.';
+      help.className = 'show';
+    });
+  })();
+  window.addEventListener('resize', resize);
+  resize();
+  newGame();
+})();
+</script>
+</body>
+</html>
