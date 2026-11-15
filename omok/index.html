@@ -62,6 +62,19 @@ button.wide { flex: 1; }
 #installHelp { display: none; margin: 0; padding: 12px 14px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); font-size: 14px; line-height: 1.7; }
 #installHelp.show { display: block; }
 #installHelp b { color: var(--jade); }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.cardHead { display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; }
+.cardHead span { color: var(--dim); font-size: 13px; font-variant-numeric: tabular-nums; }
+#levels { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; }
+#levels button { padding: 9px 0; font-size: 14px; border-radius: 7px; font-variant-numeric: tabular-nums; }
+#levels button.done { color: var(--jade); border-color: var(--jade); }
+#levels button[aria-pressed="true"] { background: var(--ink); color: var(--room); border-color: var(--ink); font-weight: 700; }
+.card h2 { margin: 4px 0 0; font-size: 16px; font-weight: 700; text-wrap: balance; }
+.card p { margin: 0; font-size: 14px; line-height: 1.7; }
+.card p.rule { font-size: 12.5px; color: var(--dim); }
+#info { line-height: 1.6; font-size: 13.5px; color: var(--ink); }
+#info .r { color: #f08a78; font-weight: 700; } #info .g { color: var(--jade); font-weight: 700; } #info .b { color: #6fa8ff; font-weight: 700; } #info .o { color: #f0b35a; font-weight: 700; }
+button.link { background: none; border: 0; padding: 0; color: var(--dim); text-decoration: underline; font-size: 12.5px; }
 .note { font-size: 12.5px; line-height: 1.6; color: var(--dim); margin: 2px 0 0; }
 </style>
 </head>
@@ -69,9 +82,7 @@ button.wide { flex: 1; }
 <main>
   <header>
     <h1>오목 AI 대국</h1>
-    <div class="record" aria-label="전적">
-      <span>내 승<b id="rW">0</b></span><span>패<b id="rL">0</b></span><span>무<b id="rD">0</b></span>
-    </div>
+    <div class="record"><span id="lvBadge">1단계</span><span>이 단계<b id="rW">0</b>승<b id="rL">0</b>패</span></div>
   </header>
 
   <div id="status" role="status" aria-live="polite"></div>
@@ -81,21 +92,22 @@ button.wide { flex: 1; }
   <div class="row">
     <button class="main" id="btnNew">새 대국</button>
     <button class="wide" id="btnUndo">한 수 무르기</button>
+    <button class="wide" id="btnHint">힌트</button>
   </div>
+
+  <section class="card" aria-label="단계">
+    <div class="cardHead"><b>단계</b><span id="prog"></span></div>
+    <div id="levels"></div>
+    <h2 id="lesT"></h2>
+    <p id="lesD"></p>
+    <p class="rule">한 단계에서 3승하면 다음 단계가 열립니다. 3번 연달아 지면 한 단계 내려갑니다. 진 판은 어느 수에서 갈렸는지 판 위에 표시합니다.</p>
+  </section>
+
   <div class="row">
     <span class="label">선공(흑)</span>
     <div class="seg" id="segFirst">
-      <button data-v="ai" aria-pressed="true">AI 선공</button>
-      <button data-v="me" aria-pressed="false">내가 선공</button>
-    </div>
-  </div>
-  <div class="row">
-    <span class="label">난이도</span>
-    <div class="seg" id="segLevel">
-      <button data-v="easy" aria-pressed="false">쉬움</button>
-      <button data-v="normal" aria-pressed="false">보통</button>
-      <button data-v="hard" aria-pressed="false">어려움</button>
-      <button data-v="max" aria-pressed="false">최강</button>
+      <button data-v="me" aria-pressed="true">내가 선공</button>
+      <button data-v="ai" aria-pressed="false">AI 선공</button>
     </div>
   </div>
   <div class="row">
@@ -105,7 +117,7 @@ button.wide { flex: 1; }
       <button data-v="1" aria-pressed="false">한 번에 놓기</button>
     </div>
   </div>
-  <p class="note">규칙: 가로·세로·대각선으로 같은 색 돌 5개 이상을 먼저 이으면 이깁니다. 금수(3-3 등)는 없습니다. 난이도는 다음 수부터, 선공은 다음 대국부터 적용됩니다. 전적은 난이도별로 따로 셉니다. AI 선공에 최강이 가장 어렵습니다.</p>
+  <p class="note">규칙: 가로·세로·대각선으로 같은 색 돌 5개 이상을 먼저 이으면 이깁니다. 금수(3-3 등)는 없습니다. 단계나 선공을 바꾸면 새 대국으로 시작합니다. <button id="btnUnlock" class="link">모든 단계 열기</button></p>
   <div id="install">
     <button id="btnInstall">홈 화면에 추가</button>
     <p id="installHelp"></p>
@@ -373,6 +385,25 @@ function createEngine() {
       }
       if (opt.length) return { move: opt[(Math.random() * opt.length) | 0], score: 0, depth: 0, nodes: 0 };
     }
+    if (opts.nov) {
+      var nv = opts.nov, o2 = 3 - p, see4 = Math.random() < nv.b4, see3 = Math.random() < nv.b3, seeC = Math.random() < nv.bc;
+      var seeW = Math.random() < (nv.w === undefined ? 1 : nv.w), seeA = Math.random() < nv.atk, seeF = Math.random() < nv.atk * 0.7;
+      var bm = 0, bs = -1e18, cc, aa, dd, ss, anyE = 0;
+      for (i = 0; i < 225; i++) {
+        cc = cells[i]; if (b[cc] !== 0) continue;
+        anyE = cc; if (nb[cc] === 0) continue;
+        aa = SC[ci(p, cc)]; dd = SC[ci(o2, cc)];
+        if (aa >= 10000000) { if (seeW) return { move: toXY(cc), score: 0, depth: 0, nodes: 0 }; aa = 200; }
+        else if (aa >= 1000000) { if (!seeA) aa = 150; }
+        else if (aa >= 50000) { if (!seeF) aa = 120; }
+        if (dd >= 10000000) { if (!see4) dd = 150; }
+        else if (dd >= 1000000) { if (!see3) dd = 100; }
+        else if (dd >= 50000) { if (!seeC) dd = 80; }
+        ss = aa * (0.15 + 0.85 * nv.atk) * 1.05 + dd + Math.random() * nv.noise;
+        if (ss > bs) { bs = ss; bm = cc; }
+      }
+      return { move: toXY(bm || anyE), score: 0, depth: 0, nodes: 0 };
+    }
     for (i = 0; i < TTSIZE; i++) { ttHi[i] = 0; ttLo[i] = 0; ttMove[i] = 0; ttDepth[i] = 0; }
     for (i = 0; i < VS; i++) { vLo[i] = 0; vHi[i] = 0; vLeft[i] = 0; }
     nodes = 0; stop = false; deadline = start + timeMs;
@@ -404,7 +435,30 @@ function createEngine() {
     if (!best) best = fb;
     return { move: toXY(best), score: score, depth: depthDone, nodes: nodes };
   }
-  return { think: think };
+  // threats for the side to move: lists of y*15+x
+  function inspect(moves) {
+    var i, c, p, o, a, d, r = { win: [], block: [], open4: [], block3: [], fork: [], blockfork: [] };
+    reset();
+    for (i = 0; i < moves.length; i++) make(cells[moves[i]], (i % 2) + 1);
+    p = (moves.length % 2) + 1; o = 3 - p;
+    for (i = 0; i < 225; i++) {
+      c = cells[i]; if (b[c] !== 0 || nb[c] === 0) continue;
+      a = SC[ci(p, c)]; d = SC[ci(o, c)];
+      if (a >= 10000000) r.win.push(i); else if (a >= 1000000) r.open4.push(i); else if (a >= 50000) r.fork.push(i);
+      if (d >= 10000000) r.block.push(i); else if (d >= 1000000) r.block3.push(i); else if (d >= 50000) r.blockfork.push(i);
+    }
+    return r;
+  }
+  // after a lost game: latest human turn where a non-losing move still existed
+  function review(moves) {
+    var k, cnt = 0, r;
+    for (k = moves.length - 2; k >= 2 && cnt < 7; k -= 2, cnt++) {
+      r = think(moves.slice(0, k), 350, {});
+      if (r.score > -WIN + 1000) return { index: k, played: moves[k], better: r.move };
+    }
+    return null;
+  }
+  return { think: think, inspect: inspect, review: review };
 }
 
 
@@ -412,47 +466,57 @@ function createEngine() {
 <script>
 (function () {
   var N = 15;
+  var NOV = function (b4, b3, bc, atk, noise, w) { return { nov: { b4: b4, b3: b3, bc: bc, atk: atk, noise: noise, w: w === undefined ? 1 : w } }; };
+  var LV = [null,
+    { t: 300, o: NOV(0.4, 0.05, 0, 0.1, 60, 0.6), mark: 2, T: '넷을 만들고 다섯째 자리에 놓기', D: '같은 색 돌 다섯 개를 한 줄로 먼저 놓으면 이깁니다. 초록 표시는 지금 놓으면 이기는 자리이고, 빨간 표시는 막지 않으면 지는 자리입니다. 이 단계의 AI는 내 셋과 넷을 자주 놓칩니다.' },
+    { t: 300, o: NOV(0.65, 0.2, 0, 0.3, 50, 0.9), mark: 2, T: '열린 셋 만들기', D: '양쪽 끝이 모두 비어 있는 셋( · ● ● ● · )을 열린 셋이라고 합니다. 상대가 열린 셋을 막지 않으면 다음 수에 열린 넷이 되고, 열린 넷은 막을 수 없습니다. 열린 셋을 먼저 만드는 연습을 합니다.' },
+    { t: 300, o: NOV(0.85, 0.4, 0, 0.5, 35), mark: 1, T: '상대의 셋과 넷 막기', D: '이 단계부터 초록 표시가 없고 빨간 표시만 나옵니다. 상대가 열린 셋을 만들면 바로 한쪽 끝을 막고, 넷을 만들면 남은 한 자리를 막습니다. 막은 뒤에 내 공격을 이어 갑니다.' },
+    { t: 300, o: NOV(0.95, 0.6, 0.1, 0.7, 25), mark: 1, T: '막는 돌로 내 줄도 늘리기', D: '상대의 셋을 막을 수 있는 자리는 보통 두 곳입니다. 두 곳 가운데 내 돌과 이어지는 쪽을 고르면, 상대를 막으면서 내 줄도 길어집니다.' },
+    { t: 300, o: NOV(1, 0.85, 0.3, 0.9, 15), mark: 0, T: '넷과 셋을 한 번에 만들기 (4-3)', D: '이 단계부터 판 위 표시가 없습니다. 한 수로 넷 하나와 열린 셋 하나를 동시에 만들면, 상대는 넷을 막아야 하고 그다음 수에 내 셋이 열린 넷이 됩니다. AI가 셋 하나는 거의 다 막으므로, 내 두 줄이 만나는 빈자리를 찾습니다.' },
+    { t: 300, o: NOV(1, 1, 0.7, 1, 10), mark: 0, T: '열린 셋 두 개를 한 번에 만들기 (3-3)', D: '한 수로 열린 셋 두 개를 만들면 상대는 한쪽만 막을 수 있습니다. 돌 두 개짜리 줄 두 개가 한 점에서 만나도록 미리 놓아 둡니다.' },
+    { t: 400, o: { maxDepth: 1, noise: 6, noVcf: true, qmax: 2 }, mark: 0, T: '넷을 연속으로 두기', D: '내가 넷을 만들면 상대는 반드시 남은 한 자리를 막아야 합니다. 넷을 연속으로 두면 상대 돌이 놓일 자리를 내가 정하게 됩니다. 마지막 수가 4-3이 되도록 순서를 정합니다.' },
+    { t: 600, o: { maxDepth: 2, noise: 8, qmax: 2 }, mark: 0, T: '상대의 두 줄이 만나는 자리 먼저 차지하기', D: '이 단계의 AI는 4-3과 3-3을 노립니다. 상대의 두 줄이 만나는 빈자리를 찾아 먼저 놓습니다. 막을 때마다 상대의 다음 수를 한 번 더 생각합니다.' },
+    { t: 1200, o: { maxDepth: 5 }, mark: 0, T: '세 수 앞까지 읽기', D: '이 단계의 AI는 여러 수 앞을 계산합니다. 내가 놓을 자리, 상대가 막을 자리, 그다음 내 자리까지 정한 뒤에 놓습니다. 진 판은 복기에 표시되는 자리를 확인합니다.' },
+    { t: 3000, o: {}, mark: 0, T: '최강 AI', D: '가장 깊이 계산하는 AI입니다. 이 단계에는 힌트가 없습니다. 여기서 3승하면 모든 단계를 통과합니다.' }];
+  var NEED = 3, DROP = 3, HINTS = 3;
   var cv = document.getElementById('board'), ctx = cv.getContext('2d');
   var statusEl = document.getElementById('status'), infoEl = document.getElementById('info');
-  var btnUndo = document.getElementById('btnUndo');
-  var moves = [], bd = new Int8Array(225), aiBlack = true, nextAiBlack = true;
-  var LEVELS = { easy: { t: 300, o: { maxDepth: 1, noise: 150, noVcf: true, qmax: 0 } }, normal: { t: 500, o: { maxDepth: 2, noise: 25, qmax: 2 } }, hard: { t: 1000, o: { maxDepth: 6 } }, max: { t: 3000, o: {} } };
-  var level = 'normal', tapMode = 2, over = false, thinking = false, token = 0, preview = -1, winLine = null;
-  var recs = {}, rec;
-  try { var s = JSON.parse(localStorage.getItem('omok-records') || 'null'); if (s && typeof s === 'object') recs = s; var lv = localStorage.getItem('omok-level'); if (LEVELS[lv]) level = lv; } catch (e) {}
-  function useRec() { if (!recs[level] || typeof recs[level].W !== 'number') recs[level] = { W: 0, L: 0, D: 0 }; rec = recs[level]; }
-  useRec();
+  var btnUndo = document.getElementById('btnUndo'), btnHint = document.getElementById('btnHint');
+  var moves = [], bd = new Int8Array(225), aiBlack = false, nextAiBlack = false;
+  var tapMode = 2, over = false, thinking = false, game = 0, preview = -1, winLine = null;
+  var hintsLeft = HINTS, hintCell = -1, busyHint = false, rv = null, endMsg = '', infoHtml = '', marks = { red: [], green: [] };
+  var G = { cur: 1, max: 1, w: {}, l: {}, streak: 0, first: 'me' };
+  try { var s = JSON.parse(localStorage.getItem('omok-growth') || 'null'); if (s && s.cur >= 1 && s.cur <= 10 && s.max >= s.cur && s.max <= 10) { G = s; G.w = G.w || {}; G.l = G.l || {}; } } catch (e) {}
+  nextAiBlack = G.first === 'ai';
+  function save() { try { localStorage.setItem('omok-growth', JSON.stringify(G)); } catch (e) {} }
 
-  // engine: worker if possible, otherwise main thread
-  var worker = null, localEngine = null;
+  // engines: worker for searching, a local one for instant board reading
+  var local = createEngine(), worker = null, pending = {}, seq = 0;
   try {
-    var src = 'var E=(' + createEngine.toString() + ')();onmessage=function(e){var r=E.think(e.data.moves,e.data.time,e.data.opts);r.id=e.data.id;postMessage(r);};';
+    var src = 'var E=(' + createEngine.toString() + ')();onmessage=function(e){var d=e.data,r;if(d.type==="review")r={review:E.review(d.moves)};else r=E.think(d.moves,d.time,d.opts);r.id=d.id;postMessage(r);};';
     worker = new Worker(URL.createObjectURL(new Blob([src], { type: 'text/javascript' })));
-    worker.onmessage = function (e) { onAiResult(e.data); };
-    worker.onerror = function () { worker = null; if (thinking) askAi(); };
+    worker.onmessage = function (e) { var cb = pending[e.data.id]; delete pending[e.data.id]; if (cb) cb(e.data); };
+    worker.onerror = function () { worker = null; var p = pending; pending = {}; for (var k in p) runLocal(p[k].req, p[k]); };
   } catch (e) { worker = null; }
-
-  function askAi() {
-    thinking = true; token++; render();
-    var msg = { id: token, moves: moves.slice(), time: LEVELS[level].t, opts: LEVELS[level].o };
-    if (worker) worker.postMessage(msg);
-    else setTimeout(function () {
-      if (!localEngine) localEngine = createEngine();
-      var r = localEngine.think(msg.moves, msg.time, msg.opts); r.id = msg.id; onAiResult(r);
-    }, 40);
+  function runLocal(req, cb) {
+    setTimeout(function () { cb(req.type === 'review' ? { review: local.review(req.moves) } : local.think(req.moves, req.time, req.opts)); }, 40);
   }
-  function onAiResult(r) {
-    if (r.id !== token || !thinking || over) return;
-    thinking = false;
-    var txt = '';
-    if (r.depth > 0) txt = 'AI 탐색: ' + r.depth + '수 앞까지, ' + r.nodes.toLocaleString('ko-KR') + '개 국면';
-    if (r.score > 90000000) txt = 'AI가 이기는 수순을 읽었습니다.' + (r.nodes ? ' (' + r.nodes.toLocaleString('ko-KR') + '개 국면)' : '');
-    infoEl.textContent = txt;
-    place(r.move);
+  function call(req, cb) {
+    cb.req = req;
+    if (!worker) return runLocal(req, cb);
+    req.id = ++seq; pending[req.id] = cb; worker.postMessage(req);
   }
 
   function colorToMove() { return (moves.length % 2) + 1; }
   function aiToMove() { return (colorToMove() === 1) === aiBlack; }
+  function askAi() {
+    thinking = true; render();
+    var g = game, n = moves.length;
+    call({ type: 'think', moves: moves.slice(), time: LV[G.cur].t, opts: LV[G.cur].o }, function (r) {
+      if (g !== game || !thinking || over || n !== moves.length) return;
+      thinking = false; place(r.move);
+    });
+  }
   function findWin(m) {
     var p = bd[m], x = m % N, y = (m / N) | 0, dirs = [[1, 0], [0, 1], [1, 1], [1, -1]];
     for (var i = 0; i < 4; i++) {
@@ -463,34 +527,89 @@ function createEngine() {
     }
     return null;
   }
-  function saveRec() { try { localStorage.setItem('omok-records', JSON.stringify(recs)); localStorage.setItem('omok-level', level); } catch (e) {} }
+  function why(ins, m) {
+    if (ins.win.indexOf(m) >= 0) return '다섯을 완성하는 자리입니다.';
+    if (ins.block.indexOf(m) >= 0) return '상대의 넷을 막는 자리입니다. 막지 않으면 바로 집니다.';
+    if (ins.open4.indexOf(m) >= 0) return '상대가 막을 수 없는 넷이 되는 자리입니다.';
+    if (ins.block3.indexOf(m) >= 0) return '상대의 열린 셋을 막는 자리입니다. 그대로 두면 열린 넷이 됩니다.';
+    if (ins.fork.indexOf(m) >= 0) return '한 수로 두 줄(넷과 셋, 또는 셋 두 개)을 만드는 자리입니다.';
+    if (ins.blockfork.indexOf(m) >= 0) return '상대가 한 수로 두 줄을 만들 자리를 먼저 차지합니다.';
+    return '내 돌을 잇고 상대 줄을 끊는 자리입니다.';
+  }
+  function finish(playerWon, draw) {
+    over = true; var lv = G.cur; endMsg = '';
+    if (draw) { endMsg = '무승부입니다. 판이 가득 찼습니다.'; }
+    else if (playerWon) {
+      G.w[lv] = (G.w[lv] || 0) + 1; G.streak = 0;
+      endMsg = '이겼습니다.';
+      if (G.w[lv] >= NEED && lv === G.max) {
+        if (lv < 10) { G.max = lv + 1; G.cur = lv + 1; endMsg = '이겼습니다. ' + lv + '단계를 통과했습니다. 다음 대국은 ' + (lv + 1) + '단계입니다.'; }
+        else if (G.w[lv] === NEED) endMsg = '이겼습니다. 최강 AI에게 3승하여 모든 단계를 통과했습니다.';
+      } else if (lv === G.max && lv <= 10) endMsg = '이겼습니다. ' + lv + '단계 통과까지 ' + Math.max(0, NEED - G.w[lv]) + '승 남았습니다.';
+    } else {
+      G.l[lv] = (G.l[lv] || 0) + 1; G.streak = (G.streak || 0) + 1;
+      endMsg = 'AI가 이겼습니다.';
+      if (G.streak >= DROP && lv > 1) { G.cur = lv - 1; G.streak = 0; endMsg = 'AI가 이겼습니다. 3번 연달아 져서 다음 대국은 ' + (lv - 1) + '단계에서 다시 익힙니다.'; }
+      startReview();
+    }
+    save();
+  }
+  function startReview() {
+    var g = game, snap = moves.slice();
+    infoHtml = '진 이유를 찾고 있습니다.';
+    call({ type: 'review', moves: snap }, function (r) {
+      if (g !== game) return;
+      var v = r.review;
+      if (!v) infoHtml = '복기: 여러 수 전부터 막기 어려운 형세였습니다. 초반에 상대의 셋을 더 일찍 막아 보세요.';
+      else if (v.played === v.better) infoHtml = '복기: 결정적인 실수 한 수를 찾지 못했습니다. 그 전부터 조금씩 밀린 판입니다.';
+      else {
+        rv = v;
+        var nth = Math.floor(v.index / 2) + 1, ins = local.inspect(snap.slice(0, v.index));
+        infoHtml = '복기: 내 ' + nth + '번째 수(<span class="o">주황 표시</span>)에서 승부가 갈렸습니다. <span class="b">파란 표시</span> 자리가 더 좋았습니다. ' + why(ins, v.better);
+      }
+      render();
+    });
+  }
   function place(m) {
     if (bd[m] || over) return;
     var p = colorToMove(), wasAi = aiToMove();
-    bd[m] = p; moves.push(m); preview = -1;
+    bd[m] = p; moves.push(m); preview = -1; hintCell = -1; if (!wasAi) infoHtml = '';
     var w = findWin(m);
-    if (w) { over = true; winLine = w; rec[wasAi ? 'L' : 'W']++; saveRec(); }
-    else if (moves.length === 225) { over = true; rec.D++; saveRec(); }
+    if (w) { winLine = w; finish(!wasAi, false); }
+    else if (moves.length === 225) finish(false, true);
     render();
     if (!over && aiToMove()) askAi();
   }
   function newGame() {
-    token++; thinking = false; over = false; winLine = null; preview = -1;
-    moves = []; bd = new Int8Array(225); aiBlack = nextAiBlack; infoEl.textContent = '';
+    game++; thinking = false; over = false; winLine = null; preview = -1; hintCell = -1; rv = null; busyHint = false;
+    moves = []; bd = new Int8Array(225); aiBlack = nextAiBlack; infoHtml = ''; endMsg = '';
+    hintsLeft = G.cur === 10 ? 0 : HINTS;
     render();
     if (aiToMove()) askAi();
   }
   function undo() {
     if (over || !moves.length) return;
-    if (thinking) { token++; thinking = false; bd[moves.pop()] = 0; }
+    if (thinking) { game++; thinking = false; bd[moves.pop()] = 0; }
     else {
       if (moves.length >= 2) { bd[moves.pop()] = 0; bd[moves.pop()] = 0; }
       else if (!aiBlack) { bd[moves.pop()] = 0; }
       else return;
     }
-    preview = -1; infoEl.textContent = '';
+    preview = -1; hintCell = -1; infoHtml = '';
     render();
     if (aiToMove()) askAi();
+  }
+  function hint() {
+    if (over || thinking || busyHint || hintsLeft <= 0 || aiToMove()) return;
+    busyHint = true; var g = game, n = moves.length, snap = moves.slice();
+    infoHtml = '힌트를 계산하고 있습니다.'; render();
+    call({ type: 'think', moves: snap, time: 800, opts: {} }, function (r) {
+      busyHint = false;
+      if (g !== game || n !== moves.length || over) { render(); return; }
+      hintsLeft--; hintCell = r.move;
+      infoHtml = '힌트: <span class="b">파란 표시</span> 자리입니다. ' + why(local.inspect(snap), r.move);
+      render();
+    });
   }
 
   // drawing
@@ -503,6 +622,7 @@ function createEngine() {
     draw();
   }
   function pos(i) { return cell / 2 + i * cell; }
+  function ring(m, color, r, lw) { ctx.strokeStyle = color; ctx.lineWidth = lw || Math.max(2, cell * 0.09); ctx.beginPath(); ctx.arc(pos(m % N), pos((m / N) | 0), cell * r, 0, Math.PI * 2); ctx.stroke(); }
   function stone(x, y, p, alpha) {
     var cx = pos(x), cy = pos(y), r = cell * 0.45;
     ctx.save(); ctx.globalAlpha = alpha;
@@ -534,33 +654,53 @@ function createEngine() {
       var l = moves[moves.length - 1];
       ctx.fillStyle = '#e5533d'; ctx.beginPath(); ctx.arc(pos(l % N), pos((l / N) | 0), cell * 0.12, 0, Math.PI * 2); ctx.fill();
     }
-    if (winLine) {
-      ctx.strokeStyle = '#e5533d'; ctx.lineWidth = Math.max(2, cell * 0.09);
-      winLine.forEach(function (w) { ctx.beginPath(); ctx.arc(pos(w % N), pos((w / N) | 0), cell * 0.45, 0, Math.PI * 2); ctx.stroke(); });
-    }
+    if (winLine) winLine.forEach(function (w) { ring(w, '#e5533d', 0.45); });
+    marks.red.forEach(function (c) { ring(c, '#d8321f', 0.36, Math.max(2.5, cell * 0.11)); });
+    marks.green.forEach(function (c) { ring(c, '#12805c', 0.36, Math.max(2.5, cell * 0.11)); });
+    if (hintCell >= 0 && !bd[hintCell]) ring(hintCell, '#1f6fd6', 0.38, Math.max(2.5, cell * 0.11));
+    if (rv) { ring(rv.played, '#f0932b', 0.5, Math.max(3, cell * 0.12)); ring(rv.better, '#1f6fd6', 0.38, Math.max(2.5, cell * 0.11)); }
     if (preview >= 0 && !bd[preview]) {
       stone(preview % N, (preview / N) | 0, colorToMove(), 0.55);
-      ctx.strokeStyle = '#1f6fd6'; ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.arc(pos(preview % N), pos((preview / N) | 0), cell * 0.47, 0, Math.PI * 2); ctx.stroke();
+      ring(preview, '#1f6fd6', 0.47, 2);
     }
   }
   function render() {
+    var lv = G.cur, shown = over ? lvShown : lv; if (!over) lvShown = lv;
+    marks = { red: [], green: [] };
+    var legend = '';
+    if (!over && !thinking && !aiToMove() && moves.length >= 4 && LV[lv].mark > 0) {
+      var ins = local.inspect(moves);
+      marks.red = ins.block.length ? ins.block : ins.block3;
+      if (LV[lv].mark > 1) marks.green = ins.win.length ? ins.win : (ins.block.length ? [] : ins.open4.concat(ins.fork));
+      if (marks.green.length) legend += '<span class="g">초록 표시</span>: 지금 놓으면 이기거나 이길 길이 열리는 자리. ';
+      if (marks.red.length) legend += '<span class="r">빨간 표시</span>: 막지 않으면 지는 자리.';
+    }
     draw();
-    document.getElementById('rW').textContent = rec.W;
-    document.getElementById('rL').textContent = rec.L;
-    document.getElementById('rD').textContent = rec.D;
-    var cls = '', html = '';
-    var mine = aiBlack ? '백' : '흑';
-    if (over) {
-      if (!winLine) html = '무승부입니다. 판이 가득 찼습니다.';
-      else if (bd[winLine[0]] === (aiBlack ? 1 : 2)) { html = 'AI가 이겼습니다. 새 대국으로 다시 도전하세요.'; cls = 'lost'; }
-      else html = '이겼습니다. AI를 꺾었습니다.';
-    } else if (thinking) { html = '<span class="dot"></span>AI가 수를 읽고 있습니다.'; cls = 'think'; }
+    document.getElementById('lvBadge').textContent = shown + '단계';
+    document.getElementById('rW').textContent = G.w[shown] || 0;
+    document.getElementById('rL').textContent = G.l[shown] || 0;
+    var cls = '', html = '', mine = aiBlack ? '백' : '흑';
+    if (over) { html = endMsg; if (winLine && bd[winLine[0]] === (aiBlack ? 1 : 2)) cls = 'lost'; }
+    else if (thinking) { html = '<span class="dot"></span>AI가 수를 읽고 있습니다.'; cls = 'think'; }
     else if (preview >= 0) html = '같은 자리를 한 번 더 누르면 ' + mine + '돌을 놓습니다.';
     else html = '내 차례입니다(' + mine + '돌). 놓을 자리를 누르세요.';
     statusEl.className = cls; statusEl.innerHTML = html;
+    infoEl.innerHTML = infoHtml || legend;
     btnUndo.disabled = over || moves.length === 0 || (aiBlack && moves.length < 2 && !thinking);
+    btnHint.textContent = lv === 10 && !over ? '힌트 없음' : '힌트 ' + hintsLeft + '회';
+    btnHint.disabled = over || thinking || busyHint || hintsLeft <= 0;
+    // level card (shows the level the next game will use)
+    var box = document.getElementById('levels'), h = '';
+    for (var i = 1; i <= 10; i++) h += '<button data-l="' + i + '"' + (i > G.max ? ' disabled' : '') + ' class="' + ((G.w[i] || 0) >= NEED ? 'done' : '') + '" aria-pressed="' + (i === lv) + '" aria-label="' + i + '단계">' + i + '</button>';
+    box.innerHTML = h;
+    document.getElementById('lesT').textContent = lv + '단계 · ' + LV[lv].T;
+    document.getElementById('lesD').textContent = LV[lv].D;
+    var w = Math.min(G.w[lv] || 0, NEED), dots = '';
+    for (i = 0; i < NEED; i++) dots += i < w ? '●' : '○';
+    document.getElementById('prog').textContent = (G.w[lv] || 0) >= NEED ? '통과 ' + dots : '통과까지 ' + dots;
+    document.getElementById('btnUnlock').style.display = G.max >= 10 ? 'none' : '';
   }
+  var lvShown = G.cur;
 
   cv.addEventListener('click', function (e) {
     if (over || thinking || aiToMove()) return;
@@ -573,17 +713,19 @@ function createEngine() {
   });
   document.getElementById('btnNew').addEventListener('click', newGame);
   btnUndo.addEventListener('click', undo);
-  function seg(id, fn) {
+  btnHint.addEventListener('click', hint);
+  document.getElementById('levels').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b || b.disabled) return;
+    G.cur = +b.getAttribute('data-l'); G.streak = 0; save(); newGame();
+  });
+  document.getElementById('btnUnlock').addEventListener('click', function () { G.max = 10; save(); render(); });
+  function seg(id, fn, cur) {
     var el = document.getElementById(id);
-    el.addEventListener('click', function (e) {
-      var b = e.target.closest('button'); if (!b) return;
-      [].forEach.call(el.children, function (c) { c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); });
-      fn(b.getAttribute('data-v'));
-    });
+    function set(v) { [].forEach.call(el.children, function (c) { c.setAttribute('aria-pressed', c.getAttribute('data-v') === v ? 'true' : 'false'); }); }
+    if (cur) set(cur);
+    el.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; set(b.getAttribute('data-v')); fn(b.getAttribute('data-v')); });
   }
-  seg('segFirst', function (v) { nextAiBlack = v === 'ai'; if (moves.length <= 1 && !over) newGame(); });
-  seg('segLevel', function (v) { level = v; useRec(); saveRec(); render(); });
-  [].forEach.call(document.getElementById('segLevel').children, function (c) { c.setAttribute('aria-pressed', c.getAttribute('data-v') === level ? 'true' : 'false'); });
+  seg('segFirst', function (v) { G.first = v; nextAiBlack = v === 'ai'; save(); newGame(); }, G.first);
   seg('segTap', function (v) { tapMode = +v; preview = -1; render(); });
   // home screen install (only when opened as its own page, not inside another frame)
   (function () {
