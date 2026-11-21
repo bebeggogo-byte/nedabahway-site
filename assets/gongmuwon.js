@@ -4,7 +4,7 @@
  * seven basic questions. The tool never writes sentences for the student: it only
  * places the student's own words into the frames from the course design.
  * Drafts live in localStorage. With consent and a registered class code (?c=),
- * the draft (alias, not a name) is also sent to the coach screen via gm_save RPC.
+ * the draft (with the student's name) is also sent to the coach screen via gm_save RPC.
  * Written in ES5 for older in-app webviews.
  */
 (function () {
@@ -157,7 +157,7 @@
     var data = clone(S); delete data.sid; delete data.share;
     data.done = STEPS.map(function (x, i) { return stepDone(i); });
     data.ansText = {}; QUESTIONS.forEach(function (q) { if (!q.exp) data.ansText[q.n] = answer(q); });
-    var body = { p_device: S.sid, p_class: CLASS, p_alias: t(S.alias).slice(0, 20) || '별칭 없음', p_track: trackLabel().slice(0, 40), p_step: S.step, p_data: data };
+    var body = { p_device: S.sid, p_class: CLASS, p_alias: t(S.alias).slice(0, 20) || '이름 없음', p_track: trackLabel().slice(0, 40), p_step: S.step, p_data: data };
     var sig = JSON.stringify(body); if (sig === lastSent) return;
     status('보내는 중');
     rpc('gm_save', body).then(function () { lastSent = sig; status('ok'); }, function () { status('fail'); });
@@ -166,7 +166,7 @@
     var el = $('sync'); if (!el) return;
     if (!CLASS_OK || S.share !== true) { el.textContent = '이 기기에만 저장됩니다.'; el.className = 'sync'; return; }
     var d = new Date(), hm = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
-    el.textContent = k === 'ok' ? '강사님께 보냈습니다 (' + hm + ')' : k === 'fail' ? '보내지 못했습니다. 글은 이 기기에 저장되어 있고, 인터넷이 되면 다시 보냅니다.' : '강사님께 보내는 중입니다.';
+    el.textContent = k === 'ok' ? '✓ 강사님께 자동 저장되고 있습니다 (마지막 ' + hm + ')' : k === 'fail' ? '보내지 못했습니다. 글은 이 기기에 저장되어 있고, 인터넷이 되면 다시 보냅니다.' : '강사님께 보내는 중입니다.';
     el.className = 'sync' + (k === 'fail' ? ' err' : '');
   }
   function load() {
@@ -205,7 +205,7 @@
   }
   function must() { return '<div id="mustBox"></div>'; }
   var MUSTS = [
-    function () { return [[stepDone(0), '내 시험 직렬'], [!CLASS_OK || S.share !== null, '공유 여부 정하기']]; },
+    function () { return [[stepDone(0), '내 시험 직렬'], [!CLASS_OK || S.share === true, '강사님과 공유 체크 (선택)']]; },
     function () { return [[!!t(S.q1), '질문 1의 한 단어'], [!!(t(S.q2who) && t(S.q2what)), '질문 2의 빈칸 두 개']]; },
     function () { var n = chosen().filter(function (x) { return t(E(x).title); }).length; return [[n >= 3, '경험 한 줄 기록 3개 이상 (지금 ' + n + '개)'], [chosen().length === 5, '시간이 있으면 5개 모두 (선택)']]; },
     function () { var l = chosen(), n = l[S.sub], d = l.filter(expMin).length; return [[expMin(n), '이 경험의 상황 · 내가 한 일 · 배운 것'], [d === l.length, '고른 경험 ' + l.length + '개 모두 (지금 ' + d + '개)']]; },
@@ -226,10 +226,11 @@
     var tr = track(), h = head('면접에서 말할 재료를 만듭니다', '오늘은 말하기를 연습하는 날이 아니라 말할 재료를 만드는 날입니다. 면접 주제에 맞는 내 경험을 문장으로 쓰고, 마지막에 면접 질문 7개에 답할 답변노트를 완성합니다.');
     h += '<details class="why"><summary>오늘 왜 경험을 글로 쓰나요?</summary><ol>' + D.why.map(function (r) { return '<li><b>' + esc(r[0]) + '</b><br>' + esc(r[1]) + '<br><span class="q">' + esc(r[2]) + '</span></li>'; }).join('') + '</ol></details>';
     if (CLASS_OK) {
-      h += '<div class="field"><label for="alias">별칭 <span class="cnt">강사님 화면에 보이는 이름</span></label><p class="q">실명 대신 쓸 짧은 별칭을 적습니다. 예: 자리 번호 3, 기계A. 이름·학교·연락처는 쓰지 않습니다.</p>' + input('alias', '예: 자리 3', ' id="alias" maxlength="20" autocomplete="off"') + '</div>';
-      h += '<div class="box strong"><p><b>강사님과 답변노트를 공유할까요?</b></p><p>공유하면 쓰는 글이 별칭과 함께 강사님 화면에 보이고, 강사님이 내 글을 보고 도와줍니다. 공유하지 않아도 도구는 그대로 쓸 수 있습니다.</p><div class="btns">' +
-        '<button type="button" class="btn ' + (S.share === true ? 'pri' : '') + '" data-share="1">' + (S.share === true ? '✓ ' : '') + '강사님과 공유합니다</button>' +
-        '<button type="button" class="btn ' + (S.share === false ? 'pri' : '') + '" data-share="0">' + (S.share === false ? '✓ ' : '') + '혼자 씁니다</button></div></div>';
+      h += '<div class="field"><label for="alias">이름 <span class="cnt">강사님 화면에 보이는 이름</span></label><p class="q">내 이름을 적습니다. 학교·연락처는 쓰지 않습니다.</p>' + input('alias', '예: 홍길동', ' id="alias" maxlength="20" autocomplete="name"') + '<p class="warn" data-noname hidden>이름을 적어야 강사님 화면에서 내 답변노트를 찾을 수 있습니다.</p></div>';
+      h += '<div class="box strong"><label class="tog"><input type="checkbox" data-share' + (S.share === true ? ' checked' : '') + '><span><b>강사님과 답변노트를 공유합니다</b><br>' +
+        (S.share === true ? '<span class="sync">✓ 공유하고 있습니다. 이제 쓰기만 하면 됩니다. 쓰는 글이 이름과 함께 강사님 화면에 자동으로 저장됩니다. 따로 누를 단추는 없습니다.</span>'
+          : '<span class="q">한 번 체크해 두면 쓰는 글이 이름과 함께 강사님 화면에 자동으로 저장되고, 강사님이 내 글을 보고 도와줍니다. 체크하지 않아도 도구는 그대로 쓸 수 있습니다.</span>') +
+        '</span></label></div>';
     }
     h += '<div class="field"><div class="lbl">내 시험 직렬</div>' + chips('track', D.tracks.map(function (x) { return x.name; }), tr ? tr.name : '', false);
     if (S.track === 'other') h += input('trackOther', '직렬 이름을 적습니다. 예: 일반농업', ' maxlength="30"');
@@ -369,7 +370,7 @@
     });
     if (tr && tr.expect && tr.expect.length) h += '<div class="box"><p><b>' + esc(tr.name) + ' 예상 질문 (출처에 없음, 제안)</b></p><ul class="plain">' + tr.expect.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
     h += '<div class="box"><p><b>공직관 꼬리질문 (2024 후기 유형)</b></p><ul class="plain"><li>"상사가 부당한 지시를 하면?" → 지시의 근거를 정중하게 확인 → 규정과 다르면 의견을 말함 → 그래도 다르면 절차에 따름</li><li>"업무가 너무 많으면?" → 우선순위 정리 → 도움 요청 → 끝까지 해냄</li></ul><p class="q">답안을 그대로 외우면 꼬리질문에서 막힙니다. 빈칸에 들어갈 내 경험이 있어야 합니다.</p></div>';
-    h += '<div class="btns end"><button type="button" class="btn pri" id="pdfBtn">답변노트 PDF로 저장</button><button type="button" class="btn" id="copyAll">답변노트 전체 복사</button><button type="button" class="btn" id="copyCoach">강사님께 보낼 요약 복사</button></div>';
+    h += '<div class="btns end"><button type="button" class="btn pri" id="pdfBtn">답변노트 PDF로 저장</button><button type="button" class="btn" id="copyAll">답변노트 전체 복사</button>' + (CLASS_OK && S.share === true ? '' : '<button type="button" class="btn" id="copyCoach">강사님께 보낼 요약 복사</button>') + '</div>' + (CLASS_OK && S.share === true ? '<p class="sync">강사님과 공유하고 있어서 따로 보낼 것이 없습니다.</p>' : '');
     h += prompt('mock', 'ChatGPT와 모의면접 하기 (선택)');
     h += '<p class="msg" id="msg" role="status"></p><textarea id="fallback" class="tall" aria-label="복사할 글" readonly hidden></textarea>';
     return h;
@@ -404,6 +405,7 @@
     if ((p = document.querySelector('[data-preview="q1"]'))) p.textContent = t(S.q1) ? '→ 공무원은 ' + eul(trimEnd(S.q1, ['를', '을'])) + ' 위해 일한다' : '';
     if ((p = document.querySelector('[data-preview="q2"]'))) p.textContent = t(S.q2who) && t(S.q2what) ? '→ ' + eun(roleName()) + ' ' + iga(t(S.q2who)) + ' ' + what2() + ' 수 있게 일한다' : '';
     if ((p = document.querySelector('[data-preview="q3"]'))) p.textContent = stepDone(5) ? '→ 나는 ' + when3() + '할 때 ' + eul(who3()) + ' 위해 ' + do3().replace(/겠습니다$/, '겠다') : '';
+    var nn = document.querySelector('[data-noname]'); if (nn) nn.hidden = !(S.share === true && !t(S.alias));
     Array.prototype.forEach.call(document.querySelectorAll('[data-dup]'), function (el) {
       var n = +el.getAttribute('data-dup'), ti = t(E(n).title), dup = false;
       if (ti) chosen().forEach(function (x) { if (x !== n && t(E(x).title) === ti) dup = true; });
@@ -455,7 +457,7 @@
         save(); render(true); return;
       }
       if (b.hasAttribute('data-self')) { var s = b.getAttribute('data-self').split('.'); S.self[s[0]] = S.self[s[0]] || []; S.self[s[0]][+s[1]] = b.checked; save(); return; }
-      if (b.hasAttribute('data-share')) { S.share = b.getAttribute('data-share') === '1'; save(); render(true); if (S.share) push(); status(); return; }
+      if (b.hasAttribute('data-share')) { S.share = b.checked; save(); render(true); if (S.share) push(); status(); return; }
       if (b.hasAttribute('data-sub')) { S.sub = +b.getAttribute('data-sub'); save(); render(); return; }
       if ((a = b.getAttribute('data-reset'))) { S[a + 'Edited'] = false; S[a] = a === 'first' ? firstSentence() : vowText(); save(); render(true); return; }
       if ((a = b.getAttribute('data-areset'))) { S.ansEdited[a] = false; delete S.ans[a]; save(); render(true); return; }
@@ -493,7 +495,7 @@
 
   // ---------- output ----------
   function noteText() {
-    var out = ['[공무원 면접 답변노트] ' + (trackLabel() || '')];
+    var out = ['[면접노트[공무원]] ' + (trackLabel() || '')];
     out.push('대표 키워드: 가치관 ' + (S.mainV || '-') + ' · 강점 ' + (S.mainG || '-'));
     QUESTIONS.forEach(function (q) {
       out.push('');
@@ -520,7 +522,7 @@
         : '<p>' + esc(S.ansEdited[q.n] ? (S.ans[q.n] || '') : q.make()) + '</p>';
       rows += '<tr><th>' + q.n + '. ' + esc(q.title) + '</th><td>' + body + '</td></tr>';
     });
-    sh.innerHTML = '<h1>공무원 면접 답변노트</h1><p class="meta">직렬 ' + esc(trackLabel() || '-') + ' · 대표 가치관 ' + esc(S.mainV || '-') + ' · 대표 강점 ' + esc(S.mainG || '-') + '</p>' +
+    sh.innerHTML = '<h1>면접노트[공무원]</h1><p class="meta">직렬 ' + esc(trackLabel() || '-') + ' · 대표 가치관 ' + esc(S.mainV || '-') + ' · 대표 강점 ' + esc(S.mainG || '-') + '</p>' +
       '<table>' + rows + '<tr><th>⑥ 각오와 포부</th><td><p>' + esc(S.vowEdited ? S.vow : vowText()) + '</p></td></tr></table>' +
       '<p class="src">' + esc(D.org) + ' ' + esc(D.course) + ' · 1일차 답변노트 · ' + d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getDate() + ' · 예시는 가상 예시입니다.</p>';
     $('msg').textContent = isKakao() ? '카카오톡 안에서는 인쇄 창이 열리지 않을 수 있습니다. 위의 「다른 브라우저로 열기」를 누릅니다.' : '인쇄 창에서 「PDF로 저장」을 고릅니다.';

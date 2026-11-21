@@ -118,8 +118,8 @@ create or replace function public.starcp_set_coach_password(p_pass text)
 returns void
 language plpgsql security definer set search_path = public, extensions as $$
 begin
-  if char_length(coalesce(p_pass, '')) < 10 then
-    raise exception 'password must be at least 10 characters';
+  if char_length(coalesce(p_pass, '')) < 6 then
+    raise exception 'password must be at least 6 characters';
   end if;
   insert into public.starcp_secrets (id, pass_hash) values (1, crypt(p_pass, gen_salt('bf', 10)))
   on conflict (id) do update set pass_hash = excluded.pass_hash, fail_count = 0, fail_window = now();

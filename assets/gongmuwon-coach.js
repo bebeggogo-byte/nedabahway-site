@@ -1,6 +1,6 @@
 /* Coach screen for the civil-service interview answer note — /edu/gongmuwon/coach/
  * The password is checked by the database (gm_coach_* RPCs). Two views:
- *   - "화면에 띄우기": class-wide aggregates only (no aliases), for the classroom screen.
+ *   - "화면에 띄우기": class-wide aggregates only (no names), for the classroom screen.
  *   - "학생별 분석": one card per student with progress, gaps, rule-based coaching tips
  *     and the full answer note.
  * Analysis runs in the browser on the drafts the students chose to share.
