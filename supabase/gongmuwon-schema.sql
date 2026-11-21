@@ -6,8 +6,8 @@
 --   * RLS on, no policies, all table privileges revoked: the anon key can neither
 --     read nor write the tables directly.
 --   * Students write their own draft through gm_save (one row per device). The row
---     carries an alias the student types (not a real name) and the draft JSON.
---     Students are asked not to write names, schools or contact details.
+--     carries the student's name (column alias) and the draft JSON.
+--     Students are asked not to write schools or contact details.
 --   * The coach screen reads through gm_coach_* functions, which check the coach
 --     password on the server.
 --   * Register a class code before sharing its link:
