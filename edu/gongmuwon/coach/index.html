@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>답변노트 강사 화면</title>
+<meta name="theme-color" content="#f1ede5">
+<link rel="stylesheet" href="/assets/gongmuwon.css">
+</head>
+<body>
+<div class="wrap">
+<div class="top"><span><b>글로벌됨아카데미</b> · 특성화고 공무원 면접 대비반</span><a href="/edu/gongmuwon/">학생 화면</a></div>
+<header class="head">
+  <h1>답변노트 강사 화면</h1>
+  <p>학생이 공유한 답변노트를 모아 봅니다. 「화면에 띄우기」에는 별칭이 나오지 않습니다.</p>
+</header>
+<noscript><p class="box strong">이 화면은 JavaScript가 켜져 있어야 쓸 수 있습니다.</p></noscript>
+<main class="wrap" style="padding:0">
+  <form class="field" id="lockForm">
+    <label for="pw">비밀번호</label>
+    <p class="q">비밀번호는 서버에서 확인합니다. STARCP 강사 화면과 같은 비밀번호입니다.</p>
+    <input id="pw" type="password" autocomplete="current-password" required>
+    <div class="btns"><button class="btn pri" type="submit">열기</button></div>
+    <p class="msg" id="lockMsg" role="status" style="color:var(--warn)"></p>
+  </form>
+  <div id="board" class="wrap" style="padding:0" hidden>
+    <div class="field">
+      <label for="cls">반</label>
+      <select id="cls"></select>
+      <div class="btns">
+        <button class="btn sm pri" type="button" data-view="board">화면에 띄우기</button>
+        <button class="btn sm" type="button" data-view="students">학생별 분석</button>
+        <button class="btn sm" type="button" id="reload">새로 고침</button>
+        <button class="btn sm" type="button" id="copyShare">2~4일차 공유표 복사</button>
+        <button class="btn sm" type="button" id="logout">잠그기</button>
+      </div>
+      <p class="q" id="stamp"></p>
+      <p class="msg" id="copyMsg" role="status"></p>
+    </div>
+    <div id="result" class="wrap" style="padding:0"></div>
+  </div>
+</main>
+</div>
+<script src="/assets/js/supabase-config.js"></script>
+<script src="/assets/gongmuwon-coach.js"></script>
+</body>
+</html>
