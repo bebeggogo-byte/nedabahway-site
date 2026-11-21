@@ -20,7 +20,7 @@
   var BLANK = {
     step: 0, sub: 0, showEx: true, alias: '', share: null, sid: '', startedAt: 0,
     track: '', trackOther: '', q1: '', q2who: '', q2what: '',
-    chosen: [1, 2, 3], scenes: [], exp: {}, kg: {}, kv: {}, mainV: '', mainG: '',
+    chosen: [1, 2, 3], scenes: [], exp: {}, kg: {}, kv: {}, mainV: '', mainG: '', mainVManual: false, mainGManual: false,
     first: '', firstEdited: false, q3when: '', q3who: '', q3do: '',
     dept: '', prac: '', learnt: '', reason: '', vow: '', vowEdited: false,
     want: '', issue: '', ans: {}, ansEdited: {}, self: {}
@@ -64,6 +64,8 @@
     return tr.role;
   }
   function trackLabel() { var tr = track(); if (!tr) return ''; return tr.id === 'other' ? t(S.trackOther) : tr.name; }
+  // Sample student examples written for the chosen track; other tracks use the default.
+  function HX() { return (D.examples && D.examples[S.track]) || D.examples['default']; }
   function theme(n) { for (var i = 0; i < D.themes.length; i++) if (D.themes[i].n === n) return D.themes[i]; return null; }
   function chosen() { return S.chosen.slice().sort(); }
   function E(n) { return S.exp[n] || {}; }
@@ -109,7 +111,7 @@
   // The seven basic questions (design doc p15-16) and how each answer is assembled.
   var QUESTIONS = [
     { n: 1, title: '자기소개 (30초)', ask: '"경험 포함해서 자기소개 해 보세요." · 30초 자기소개(2025 후기)',
-      make: function () { return (t(S.first) || firstSentence()) + ' ' + act(bestExp()) + ' ' + roleName() + '이 되어 ' + eul(who3()) + ' 위해 ' + do3() + '.'; } },
+      make: function () { return (S.firstEdited && t(S.first) ? t(S.first) : firstSentence()) + ' ' + act(bestExp()) + ' ' + roleName() + '이 되어 ' + eul(who3()) + ' 위해 ' + do3() + '.'; } },
     { n: 2, title: '지원동기 (20~30초)', ask: '"지원동기는?" · "…를 지망하시는 이유는?"(2023·2024 후기)',
       make: function () { return '저는 ' + or(S.dept, '학과') + '에서 ' + eul(or(S.prac, '실습')) + ' 하며 ' + eul(or(trimEnd(S.learnt, ['을 배웠습니다', '를 배웠습니다']), '배운 것')) + ' 알게 되었습니다. ' + eun(roleName()) + ' ' + iga(who2()) + ' ' + what2() + ' 수 있게 돕습니다. 그래서 ' + or(trimEnd(S.reason, ['지원했습니다']), '지원 이유') + ' 지원했습니다.'; } },
     { n: 3, title: '직렬·기관이 하는 일', ask: '"…가 무슨 일을 하는지 알고 계신가요?"(지역인재 2024)',
@@ -207,7 +209,7 @@
   var MUSTS = [
     function () { return [[stepDone(0), '내 시험 직렬'], [!CLASS_OK || S.share === true, '강사님과 공유 체크 (선택)']]; },
     function () { return [[!!t(S.q1), '질문 1의 한 단어'], [!!(t(S.q2who) && t(S.q2what)), '질문 2의 빈칸 두 개']]; },
-    function () { var n = chosen().filter(function (x) { return t(E(x).title); }).length; return [[n >= 3, '경험 한 줄 기록 3개 이상 (지금 ' + n + '개)'], [chosen().length === 5, '시간이 있으면 5개 모두 (선택)']]; },
+    function () { var n = chosen().filter(function (x) { return t(E(x).title); }).length; return [[n >= 3, '경험 3개 이상 고르기 (지금 ' + n + '개)'], [chosen().length === 5, '시간이 있으면 5개 모두 (선택)']]; },
     function () { var l = chosen(), n = l[S.sub], d = l.filter(expMin).length; return [[expMin(n), '이 경험의 상황 · 내가 한 일 · 배운 것'], [d === l.length, '고른 경험 ' + l.length + '개 모두 (지금 ' + d + '개)']]; },
     function () { return [[!!S.mainG, '대표 강점'], [!!S.mainV, '대표 가치관'], [!!t(S.first), '첫 문장']]; },
     function () { return [[stepDone(5), '질문 3의 빈칸 세 개'], [!!(t(S.dept) && t(S.prac)), '학과와 실습']]; },
@@ -240,19 +242,26 @@
     return h;
   }
   function step1() {
-    var tr = track(), H = D.hangyeol, h = head('공무원은 누구를 위해 일할까요?', '원문을 먼저 읽고, 빈칸에 내 말을 한 단어씩 넣습니다.');
+    var tr = track(), H = HX(), h = head('공무원은 누구를 위해 일할까요?', '원문을 먼저 읽고, 빈칸에 내 말을 한 단어씩 넣습니다.');
     h += '<div class="quote">' + D.law.map(function (l) { return '<p><b>' + esc(l[0]) + '</b><br>"' + esc(l[1]) + '"</p>'; }).join('') + '</div>';
     h += '<div class="field"><div class="lbl">질문 1. 공무원은 누구를 위해 일하나요?</div><p class="fr">공무원은 ' + input('q1', '누구', ' class="inl" maxlength="20"') + '을(를) 위해 일한다</p>' + fillChips('q1', ['국민', '주민']) +
       '<p class="preview" data-preview="q1"></p>' + exBox('공무원은 ' + eul(H.q1) + ' 위해 일한다') + '</div>';
     if (tr && tr.id !== 'other') h += '<div class="box"><p><b>' + esc(tr.name) + '</b> · 일하는 곳: ' + esc(tr.place) + '<br>일이 향하는 사람: <b>' + esc(tr.who) + '</b></p><p class="q">직렬별 표는 제안입니다. 근무 부서의 업무 소개로 한 번 더 확인합니다.</p></div>';
     h += '<div class="field"><div class="lbl">질문 2. 내가 일할 부서는 누구를 위해 일하나요?</div><p class="fr">' + esc(roleName()) + '은 ' + input('q2who', '누구', ' class="inl" maxlength="30"') + '이(가) ' + input('q2what', '무엇을 할', ' class="inl wide" maxlength="40"') + ' 수 있게 일한다</p>' +
       fillChips('q2who', tr && tr.who ? [tr.who] : []) + '<p class="preview" data-preview="q2"></p>' +
-      exBox('기계 공무원은 ' + iga(H.q2who) + ' ' + H.q2what + ' 수 있게 일한다') + '</div>';
+      exBox(eun(H.role || '기계 공무원') + ' ' + iga(H.q2who) + ' ' + H.q2what + ' 수 있게 일한다') + '</div>';
     h += must();
     return h;
   }
+  // Which chip is selected for a theme: a listed candidate, '기타' (own words) or nothing.
+  function pickOf(th) {
+    var e = E(th.n), ti = t(e.title);
+    if (e.pick) return e.pick;
+    if (!ti) return '';
+    return th.cands.indexOf(ti) >= 0 ? ti : '기타';
+  }
   function step2() {
-    var H = D.hangyeol, h = head('면접 주제에 맞는 내 경험을 고릅니다', '주제 다섯 개 가운데 <b>세 개 이상</b> 고릅니다. 시간이 있으면 다섯 개 모두 씁니다. 경험마다 한 줄 기록을 남깁니다.');
+    var H = HX(), h = head('면접 주제에 맞는 내 경험을 고릅니다', '주제 다섯 개 가운데 <b>세 개 이상</b> 고릅니다. 시간이 있으면 다섯 개 모두 씁니다. 주제마다 쓸 경험을 하나씩 누릅니다. 목록에 없으면 「기타」를 누르고 짧게 적습니다.');
     h += '<div class="guide"><b>경험을 고르는 기준 세 가지</b><ol><li>내가 직접 한 행동이 있는가</li><li>고등학교 3년 안의 일인가</li><li>그 일이 누군가에게 도움이 됐는가</li></ol><p class="q">한 경험은 한 주제에만 씁니다. 경험이 모자라면 작은 일도 됩니다(실습 한 번, 하루 봉사).</p></div>';
     h += '<div class="field"><div class="lbl">눈이 멈추는 장면을 눌러 봅니다 <span class="cnt">떠올리기용</span></div>' + chips('scene', D.scenes, S.scenes, true) + '</div>';
     var titles = {};
@@ -261,8 +270,9 @@
       if (ti) titles[ti] = (titles[ti] || 0) + 1;
       h += '<div class="theme' + (on ? ' on' : '') + '"><label class="tog"><input type="checkbox" data-theme="' + th.n + '"' + (on ? ' checked' : '') + '><span><b>주제 ' + th.n + '. ' + esc(th.name) + '</b><br><span class="q">면접 질문 ' + esc(th.ask) + '</span></span></label>';
       if (on) {
-        h += '<p class="q">고등학생이 쓸 수 있는 경험</p>' + fillChips('exp.' + th.n + '.title', th.cands);
-        h += '<label class="sr" for="ti' + th.n + '">주제 ' + th.n + ' 한 줄 기록</label>' + input('exp.' + th.n + '.title', '언제·어디서·무슨 역할로·무엇을 했다', ' id="ti' + th.n + '" maxlength="60"');
+        var pk = pickOf(th);
+        h += '<p class="q">어떤 경험을 쓸지 하나 누릅니다. 자세한 내용은 다음 단계에서 씁니다.</p>' + chips('pick.' + th.n, th.cands.concat(['기타']), pk, false);
+        if (pk === '기타') h += '<label class="sr" for="ti' + th.n + '">주제 ' + th.n + ' 기타 경험</label>' + input('exp.' + th.n + '.title', '어떤 경험인지 짧게 적습니다', ' id="ti' + th.n + '" maxlength="60"');
         h += '<p class="warn" data-dup="' + th.n + '" hidden>다른 주제와 같은 경험입니다. 한 경험은 한 주제에만 씁니다.</p>';
         h += exBox(H.exp[th.n].title) + '<details class="case"><summary>실제 합격 사례</summary><p>' + esc(th.case) + '</p></details>';
       }
@@ -275,11 +285,11 @@
   }
   function step3() {
     var list = chosen(); if (S.sub >= list.length) S.sub = 0;
-    var n = list[S.sub], th = theme(n), e = E(n), H = D.hangyeol.exp[n], tr = track();
+    var n = list[S.sub], th = theme(n), e = E(n), H = HX().exp[n], tr = track();
     var h = head('경험을 여섯 문장으로 씁니다', '면접에서는 이 여섯 문장을 그대로 읽지 않고, 질문에 맞게 골라 씁니다. 여섯 문장이 있으면 꼬리질문("그때 어떻게?", "무엇을 배웠나?")에도 답할 수 있습니다.');
     h += '<div class="tabs" role="tablist" id="expTabs">' + tabsHtml() + '</div>';
     h += '<div class="box"><p><b>주제 ' + n + '. ' + esc(th.name) + '</b><br>면접 질문 ' + esc(th.ask) + '</p>' + (n === 1 && tr && tr.note ? '<p class="note">' + esc(tr.note) + '</p>' : '') + '</div>';
-    h += '<div class="field"><label for="tiw">한 줄 기록</label>' + input('exp.' + n + '.title', '언제·어디서·무슨 역할로·무엇을 했다', ' id="tiw" maxlength="60"') + '</div>';
+    h += '<div class="field"><label for="tiw">한 줄 기록</label><p class="q">앞 단계에서 고른 경험입니다. 언제·어디서·무슨 역할로 했는지 한 줄로 고쳐 씁니다.</p>' + input('exp.' + n + '.title', '언제·어디서·무슨 역할로·무엇을 했다', ' id="tiw" maxlength="60"') + '</div>';
     SENT.forEach(function (s, i) {
       var k = 'exp.' + n + '.' + s.k, key = s.k === 'act';
       h += '<div class="field' + (key ? ' key' : '') + '"><label for="f' + s.k + '"><span><span class="num">' + (i + 1) + '</span>' + s.label + (key ? ' <span class="badge">가장 자세히</span>' : '') + '</span><span class="cnt" data-cnt="' + k + '"></span></label>' +
@@ -294,46 +304,61 @@
     return h;
   }
   function step4() {
-    var H = D.hangyeol, h = head('내 강점과 가치관 단어를 찾습니다', '강점은 <b>내가 한 일</b> 문장에서, 가치관은 <b>기억에 남는 이유·배운 것</b> 문장에서 고릅니다. 맞는 단어를 모두 누릅니다.');
+    var H = HX(), h = head('내 강점과 가치관 단어를 찾습니다', '강점은 <b>내가 한 일</b> 문장에서, 가치관은 <b>기억에 남는 이유·배운 것</b> 문장에서 고릅니다. 맞는 단어를 모두 누릅니다.');
     chosen().forEach(function (n) {
       var e = E(n);
       h += '<div class="kwcard"><p class="kwt">주제 ' + n + ' · ' + esc(t(e.title) || theme(n).name) + '</p>' +
         '<p class="src"><span>내가 한 일</span>' + esc(t(e.act) || '아직 쓰지 않았습니다') + '</p>' + chips('kg.' + n, D.strengths, S.kg[n] || [], true) +
-        '<p class="src"><span>기억·배운 것</span>' + esc([t(e.mem), t(e.learn)].filter(Boolean).join(' ') || '아직 쓰지 않았습니다') + '</p>' + chips('kv.' + n, valuesList(), S.kv[n] || [], true) + '</div>';
+        '<p class="src"><span>기억·배운 것</span>' + esc([t(e.mem), t(e.learn)].filter(Boolean).join(' ') || '아직 쓰지 않았습니다') + '</p>' + chips('kv.' + n, valuesList(), S.kv[n] || [], true) + exBox('주제 ' + n + '에서 한결은 강점 ' + ((HX().kg[n] || []).join(', ') || '-') + ', 가치관 ' + ((HX().kv[n] || []).join(', ') || '-') + '을(를) 골랐습니다.') + '</div>';
     });
     h += '<div class="field" id="tallyBox"></div>';
     h += '<div class="field"><label for="first"><span>첫 문장</span><span class="cnt" data-cnt="first"></span></label><p class="frame">틀: 저는 [가치관]을 중요하게 여기고, [강점]이 강점인 사람입니다.</p>' +
       '<textarea id="first" data-k="first" data-auto="first">' + esc(S.firstEdited ? S.first : firstSentence()) + '</textarea>' +
-      '<div class="btns"><button type="button" class="btn sm" data-reset="first">고른 단어로 다시 맞추기</button></div><p class="q">틀이 어색하면 내 말투로 고칩니다.</p>' + exBox(H.first) + '</div>';
+      '<p class="warn" id="firstHint" hidden>대표 키워드가 바뀌었습니다. 「고른 단어로 다시 맞추기」를 누르면 첫 문장에 반영됩니다.</p><div class="btns"><button type="button" class="btn sm" data-reset="first">고른 단어로 다시 맞추기</button></div><p class="q">틀이 어색하면 내 말투로 고칩니다.</p>' + exBox(H.first) + '</div>';
     h += must();
     return h;
+  }
+  // The main keyword follows the student's marks: a word nobody marks any more is
+  // dropped, a unique top word is taken unless the student picked another one, and
+  // a tie waits for the student to choose.
+  function settleMain(arr, key) {
+    var counts = {}; arr.forEach(function (x) { counts[x.w] = x.n; });
+    var manual = S[key + 'Manual'];
+    if (S[key] && !counts[S[key]]) { S[key] = ''; manual = false; }
+    if (!arr.length) { S[key] = ''; manual = false; }
+    else if (!manual) {
+      var top = arr[0].n, tied = arr.filter(function (x) { return x.n === top; });
+      S[key] = tied.length === 1 ? tied[0].w : (tied.some(function (x) { return x.w === S[key]; }) ? S[key] : '');
+    }
+    S[key + 'Manual'] = manual;
   }
   function renderTally() {
     var box = $('tallyBox'); if (!box) return;
     var g = tally('kg'), v = tally('kv');
+    settleMain(g, 'mainG'); settleMain(v, 'mainV');
     function pick(arr, key, label) {
       if (!arr.length) return '<p class="q">' + label + ': 위에서 단어를 누르면 여기에 셉니다.</p>';
       var top = arr[0].n, tied = arr.filter(function (x) { return x.n === top; });
-      if (tied.length === 1 && !S[key]) S[key] = tied[0].w;
-      var cands = arr.slice(0, 6);
-      return '<p class="lbl2">' + label + '</p><div class="chips">' + cands.map(function (x) {
+      return '<p class="lbl2">' + label + (S[key] ? ': <b>' + esc(S[key]) + '</b>' : '') + '</p><div class="chips">' + arr.slice(0, 6).map(function (x) {
         return '<button type="button" class="chip" data-main="' + key + '" data-v="' + esc(x.w) + '" aria-pressed="' + (S[key] === x.w) + '">' + esc(x.w) + ' <small>' + x.n + '번</small></button>';
-      }).join('') + '</div>' + (tied.length > 1 ? '<p class="note">' + tied.length + '개가 ' + top + '번으로 같습니다. 나를 더 잘 보여 주는 단어 하나를 누릅니다.</p>' : '');
+      }).join('') + '</div>' + (tied.length > 1 && !S[key] ? '<p class="note">' + tied.length + '개가 ' + top + '번으로 같습니다. 나를 더 잘 보여 주는 단어 하나를 누릅니다.</p>' : '');
     }
     box.innerHTML = '<div class="lbl">많이 나온 단어 = 대표 키워드</div>' + pick(g, 'mainG', '대표 강점') + pick(v, 'mainV', '대표 가치관');
+    var fh = $('firstHint');
+    if (fh) { var f0 = t(S.first); fh.hidden = !(S.firstEdited && S.mainG && S.mainV && (f0.indexOf(S.mainG) < 0 || f0.indexOf(S.mainV) < 0)); }
   }
   function step5() {
-    var H = D.hangyeol, tr = track(), h = head('각오와 지원동기를 정리합니다', '질문 3에 답하면, 앞에서 쓴 내 문장으로 각오와 포부 문단이 만들어집니다.');
+    var H = HX(), tr = track(), h = head('각오와 지원동기를 정리합니다', '질문 3에 답하면, 앞에서 쓴 내 문장으로 각오와 포부 문단이 만들어집니다.');
     h += '<div class="field"><div class="lbl">질문 3. 나는 무엇을 할 때, 누구를 향해, 무엇을 하겠다</div>' +
       '<p class="fr">나는 ' + input('q3when', '무엇을', ' class="inl wide" maxlength="40"') + '할 때 ' + input('q3who', '누구', ' class="inl" maxlength="30"') + '을(를) 위해 ' + input('q3do', '무엇을 하겠다', ' class="inl wide" maxlength="40"') + '</p><p class="q">마지막 칸은 「~하겠다」까지 씁니다. 예: 한 번 더 확인하겠다</p>' +
       fillChips('q3who', [t(S.q2who)]) + '<p class="preview" data-preview="q3"></p>' + exBox('나는 ' + H.q3when + '할 때 ' + eul(H.q3who) + ' 위해 ' + H.q3do) + '</div>';
     h += '<div class="field"><label for="vow"><span>⑥ 각오와 포부 (30초)</span><span class="cnt" data-cnt="vow"></span></label><p class="q">자기소개 마지막 문장, 지원동기 끝, 공직관 답, "마지막으로 하고 싶은 말"에 다시 씁니다.</p>' +
       '<textarea id="vow" data-k="vow" data-auto="vow" class="tall">' + esc(S.vowEdited ? S.vow : vowText()) + '</textarea><div class="btns"><button type="button" class="btn sm" data-reset="vow">내 문장으로 다시 맞추기</button></div>' + exBox(H.vow) + '</div>';
     h += '<div class="field"><div class="lbl">지원동기 재료</div><p class="q">답변노트의 지원동기에 들어갑니다.</p>' +
-      '<label class="mini">내 학과' + input('dept', '예: 기계과', ' maxlength="30"') + '</label>' +
-      '<label class="mini">기억나는 실습·수업' + input('prac', '예: 설비 점검 실습', ' maxlength="40"') + '</label>' +
-      '<label class="mini">그 실습에서 배운 것' + input('learnt', '예: 점검을 건너뛰면 사고가 난다는 것', ' maxlength="60"') + '</label>' +
-      '<label class="mini">지원하는 이유 한 마디' + input('reason', '예: 주민이 매일 쓰는 시설을 안전하게 지키려고', ' maxlength="60"') + '</label>' +
+      '<label class="mini">내 학과' + input('dept', '예: ' + HX().dept, ' maxlength="30"') + '</label>' +
+      '<label class="mini">기억나는 실습·수업' + input('prac', '예: ' + HX().prac, ' maxlength="40"') + '</label>' +
+      '<label class="mini">그 실습에서 배운 것' + input('learnt', '예: ' + HX().learnt, ' maxlength="60"') + '</label>' +
+      '<label class="mini">지원하는 이유 한 마디' + input('reason', '예: ' + HX().reason, ' maxlength="60"') + '</label>' +
       (tr && tr.motive ? exBox(tr.motive, '모범답안(빈칸형)') : '') + '</div>';
     h += prompt('motive', 'ChatGPT에게 지원동기 질문 받기 (선택)');
     h += must();
@@ -348,7 +373,7 @@
         var sq = (tr && tr.situation && tr.situation[0]) || '';
         h += '<p class="q">' + (sq ? '예상 상황 질문(제안): "' + esc(sq) + '"' : '내 직렬에서 나올 상황 질문을 하나 떠올립니다.') + '<br>답 순서: ' + esc((tr && tr.situation && tr.situation[1]) || D.tracks[D.tracks.length - 1].situation[1]) + '</p>';
       } else if (q.ask) h += '<p class="q">실제로 나온 질문: ' + esc(q.ask) + '</p>';
-      if (q.n === 3) h += '<div class="row2"><label class="mini">제가 특히 하고 싶은 일' + input('want', '예: 학교 냉난방 설비 점검', ' maxlength="50"') + '</label><label class="mini">요즘 지역·직렬 현안 1개 (직접 조사)' + input('issue', '예: 노후 시설 교체', ' maxlength="50"') + '</label></div>';
+      if (q.n === 3) h += '<div class="row2"><label class="mini">제가 특히 하고 싶은 일' + input('want', '예: ' + HX().want, ' maxlength="50"') + '</label><label class="mini">요즘 지역·직렬 현안 1개 (직접 조사)' + input('issue', '예: ' + HX().issue, ' maxlength="50"') + '</label></div>';
       if (q.exp) {
         h += '<p class="q">경험 질문에는 경험의 여섯 문장을 순서대로 말합니다. 꼬리질문은 아래 문장으로 답합니다.</p><ul class="tail"><li>"반대한 사람은?" → 역할 · 내가 한 일</li><li>"다시 한다면?" → 배운 것</li><li>"공직에서 같은 일이 생기면?" → 배운 것 + 각오</li></ul>';
         chosen().forEach(function (n) {
@@ -379,6 +404,9 @@
   // ---------- live updates (no full re-render while typing) ----------
   function refreshLive() {
     var k;
+    settleMain(tally('kg'), 'mainG'); settleMain(tally('kv'), 'mainV');
+    if (!S.firstEdited) S.first = firstSentence();
+    if (!S.vowEdited) S.vow = vowText();
     Array.prototype.forEach.call(document.querySelectorAll('[data-cnt]'), function (el) { var v = getPath(el.getAttribute('data-cnt')); el.textContent = t(v).length + '자'; });
     Array.prototype.forEach.call(document.querySelectorAll('[data-hint]'), function (el) {
       k = el.getAttribute('data-hint'); var v = t(getPath(k)), f = k.split('.').pop(), msgs = [];
@@ -435,6 +463,16 @@
     stage.onclick = function (ev) {
       var b = ev.target.closest ? ev.target.closest('button, input[type=checkbox]') : null; if (!b) return;
       var a;
+      if ((a = b.getAttribute('data-chip')) && a.indexOf('pick.') === 0) {
+        var pn = +a.split('.')[1], pv = b.getAttribute('data-v'), th0 = theme(pn), cur0 = pickOf(th0); touch();
+        if (cur0 === pv) { setPath('exp.' + pn + '.pick', ''); if (pv !== '기타' || th0.cands.indexOf(t(E(pn).title)) >= 0) setPath('exp.' + pn + '.title', ''); }
+        else if (pv === '기타') { setPath('exp.' + pn + '.pick', '기타'); if (th0.cands.indexOf(t(E(pn).title)) >= 0) setPath('exp.' + pn + '.title', ''); }
+        else { setPath('exp.' + pn + '.pick', pv); setPath('exp.' + pn + '.title', pv); }
+        save(); render(true);
+        // Only "기타" needs typing, so only it brings up the keyboard.
+        if (pickOf(th0) === '기타') { var oi = $('ti' + pn); if (oi) oi.focus(); }
+        return;
+      }
       if ((a = b.getAttribute('data-chip'))) {
         var v = b.getAttribute('data-v'); touch();
         if (a === 'track') { for (var i = 0; i < D.tracks.length; i++) if (D.tracks[i].name === v) S.track = D.tracks[i].id; }
@@ -442,7 +480,7 @@
         else { var parts = a.split('.'); S[parts[0]][parts[1]] = S[parts[0]][parts[1]] || []; toggle(S[parts[0]][parts[1]], v); }
         save(); render(true); return;
       }
-      if ((a = b.getAttribute('data-main'))) { S[a] = b.getAttribute('data-v'); save(); refreshLive(); return; }
+      if ((a = b.getAttribute('data-main'))) { var mv = b.getAttribute('data-v'); if (S[a] === mv && S[a + 'Manual']) { S[a + 'Manual'] = false; } else { S[a] = mv; S[a + 'Manual'] = true; } save(); refreshLive(); return; }
       if ((a = b.getAttribute('data-fill'))) {
         var cur = t(getPath(a)), val = b.getAttribute('data-v');
         setPath(a, a.indexOf('.title') > 0 ? (cur ? cur : val + '에서 ') : val); touch(); save(); render(true);
