@@ -395,7 +395,7 @@
     });
     if (tr && tr.expect && tr.expect.length) h += '<div class="box"><p><b>' + esc(tr.name) + ' 예상 질문 (출처에 없음, 제안)</b></p><ul class="plain">' + tr.expect.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
     h += '<div class="box"><p><b>공직관 꼬리질문 (2024 후기 유형)</b></p><ul class="plain"><li>"상사가 부당한 지시를 하면?" → 지시의 근거를 정중하게 확인 → 규정과 다르면 의견을 말함 → 그래도 다르면 절차에 따름</li><li>"업무가 너무 많으면?" → 우선순위 정리 → 도움 요청 → 끝까지 해냄</li></ul><p class="q">답안을 그대로 외우면 꼬리질문에서 막힙니다. 빈칸에 들어갈 내 경험이 있어야 합니다.</p></div>';
-    h += '<div class="btns end"><button type="button" class="btn pri" id="pdfBtn">답변노트 PDF로 저장</button><button type="button" class="btn" id="copyAll">답변노트 전체 복사</button>' + (CLASS_OK && S.share === true ? '' : '<button type="button" class="btn" id="copyCoach">강사님께 보낼 요약 복사</button>') + '</div>' + (CLASS_OK && S.share === true ? '<p class="sync">강사님과 공유하고 있어서 따로 보낼 것이 없습니다.</p>' : '');
+    h += '<div class="btns end"><button type="button" class="btn pri" id="pdfBtn">답변노트 PDF로 저장</button><button type="button" class="btn" id="copyAll">답변노트 전체 복사</button></div>' + (CLASS_OK && S.share === true ? '<p class="sync">✓ 강사님과 공유하고 있어서 답변노트가 강사님 화면에 자동으로 들어가 있습니다.</p>' : '');
     h += prompt('mock', 'ChatGPT와 모의면접 하기 (선택)');
     h += '<p class="msg" id="msg" role="status"></p><textarea id="fallback" class="tall" aria-label="복사할 글" readonly hidden></textarea>';
     return h;
@@ -503,7 +503,6 @@
       if ((a = b.getAttribute('data-copy-prompt'))) { copy(b.parentNode.querySelector('.prompt').textContent, '질문을 복사했습니다. ChatGPT에 붙여 넣습니다.'); return; }
       if (b.id === 'pdfBtn') { pdf(); return; }
       if (b.id === 'copyAll') { copy(noteText(), '답변노트를 복사했습니다.'); return; }
-      if (b.id === 'copyCoach') { copy(coachText(), '요약을 복사했습니다. 단톡방에 붙여 넣습니다.'); return; }
     };
   }
   function toggle(arr, v) { var i = arr.indexOf(v); if (i >= 0) arr.splice(i, 1); else arr.push(v); }
@@ -543,10 +542,6 @@
     });
     out.push(''); out.push('⑥ 각오와 포부: ' + (S.vowEdited ? S.vow : vowText()));
     return out.join('\n');
-  }
-  function coachText() {
-    return '[답변노트 요약] ' + (t(S.alias) || '') + '\n직렬: ' + (trackLabel() || '-') + '\n대표 키워드: 가치관 ' + (S.mainV || '-') + ' · 강점 ' + (S.mainG || '-') + '\n첫 문장: ' + (t(S.first) || '-') +
-      '\n경험: ' + chosen().map(function (n) { return n + '.' + (t(E(n).title) || '-'); }).join(' / ');
   }
   function copy(text, ok) {
     function fail() { var fb = $('fallback'); if (!fb) return; fb.hidden = false; fb.value = text; fb.focus(); fb.select(); $('msg').textContent = '자동 복사가 막혔습니다. 아래 칸의 글을 길게 눌러 복사합니다.'; }

@@ -88,7 +88,7 @@
   function bars(list, total, max, unit) {
     if (!list.length) return '<p class="q">아직 기록이 없습니다.</p>';
     return '<ol class="rank">' + list.slice(0, max || 8).map(function (x) {
-      return '<li><span>' + esc(x.w) + '</span><span class="track"><span class="fill2" style="width:' + (total ? Math.round(x.n / total * 100) : 0) + '%"></span></span><span class="num2">' + x.n + '명</span></li>';
+      return '<li><span>' + esc(x.w) + '</span><span class="track"><span class="fill2" style="width:' + (total ? Math.round(x.n / total * 100) : 0) + '%"></span></span><span class="num2">' + x.n + (unit || '명') + '</span></li>';
     }).join('') + '</ol>';
   }
 
