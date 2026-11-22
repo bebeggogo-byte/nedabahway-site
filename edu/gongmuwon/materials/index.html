@@ -66,6 +66,18 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);font-si
 .files li em{font-style:normal;color:var(--muted);font-size:14px}
 .dl{font:inherit;font-weight:800;border:2px solid var(--cob);color:var(--cob);background:transparent;border-radius:10px;padding:8px 14px;cursor:pointer;white-space:nowrap}
 .note{font-size:15px;color:var(--muted);margin:0}
+.viewer{display:grid;gap:10px}
+.viewer .stage{aspect-ratio:16/9;max-width:100%;background:#111;border-radius:12px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.viewer .stage img{width:100%;height:100%;object-fit:contain;display:block}
+.viewer .ctrl{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.viewer .ctrl button{font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:10px;padding:8px 14px;cursor:pointer}
+.viewer .count{font-weight:800;min-width:5.5em;text-align:center}
+.viewer .full{margin-left:auto}
+.viewer:fullscreen{background:#000;padding:12px;align-content:center}
+.viewer:fullscreen .stage{aspect-ratio:auto;height:calc(100vh - 90px);border-radius:0}
+.viewer:fullscreen .note{display:none}
+.viewer:fullscreen .ctrl button{background:#222;color:#fff;border-color:#555}
+.viewer:fullscreen .count{color:#fff}
 .links{display:flex;flex-wrap:wrap;gap:10px}
 .links a{font-weight:800}
 </style>
@@ -97,7 +109,7 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);font-si
 <div class="wrap">
 <main id="main">
 <section class="hero"><div class="eb">NEDABAHWAY · EDUCATION · 공무원 면접</div><h1>공무원 면접 대비반 강의자료</h1>
-<p class="lead">특성화고 공무원 면접 대비반 수업 자료입니다. 강의 슬라이드(PDF·PPTX)와 QR 포스터, 앱 화면을 묶은 자료를 비밀번호를 넣고 내려받습니다.</p></section>
+<p class="lead">특성화고 공무원 면접 대비반 수업 자료입니다. 비밀번호를 넣으면 강의 슬라이드를 이 화면에서 바로 넘겨 보며 수업할 수 있고, PDF·PPTX와 자료 묶음도 내려받을 수 있습니다.</p></section>
 <form class="lockbox" id="eduLock" data-dir="files/" data-salt="54fcd54ddfe8186a8e595d5eec74e0b0" autocomplete="off">
 <label for="eduPw">비밀번호</label>
 <div class="row"><input id="eduPw" type="password" inputmode="numeric" autocomplete="off" aria-describedby="eduErr"><button class="btn" type="submit">열기</button></div>
@@ -105,7 +117,12 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);font-si
 <p class="note">비밀번호는 수업 담당자에게 받습니다. 브라우저에 저장되지 않습니다.</p>
 </form>
 <section class="files" id="eduFiles" hidden aria-live="polite">
-<h2 style="margin:0">내려받기</h2>
+<div class="viewer" id="eduView" hidden>
+<div class="stage" title="왼쪽 1/3을 누르면 이전, 나머지를 누르면 다음"><img alt="슬라이드"></div>
+<div class="ctrl"><button type="button" class="prev" aria-label="이전 슬라이드">‹ 이전</button><span class="count" aria-live="polite">1 / 1</span><button type="button" class="next" aria-label="다음 슬라이드">다음 ›</button><button type="button" class="full">전체 화면</button></div>
+<p class="note">키보드 ←·→ 또는 스페이스, 휴대폰은 옆으로 밀어서 넘깁니다.</p>
+</div>
+<h2 style="margin:8px 0 0">내려받기</h2>
 <ul></ul>
 <p class="note">PPTX는 슬라이드마다 화면 이미지 한 장이고, 발표자 메모가 들어 있습니다. 전체 묶음(zip)에는 PDF·PPTX·QR 포스터·앱 화면 16장이 들어 있습니다.</p>
 <h2 style="margin:12px 0 0">수업에서 여는 화면</h2>
