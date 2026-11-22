@@ -230,8 +230,13 @@
     var now = new Date(), a = new Date(now.getFullYear(), now.getMonth(), now.getDate()), b = new Date(+p[0], +p[1] - 1, +p[2]);
     return Math.round((b - a) / 86400000);
   }
+  // Researched current issues for the track: tap a chip to fill the issue field; numbers and sources below.
+  function issueBox(list) {
+    return '<div class="box"><p><b>현안 자료 (숫자와 출처)</b></p>' + fillChips('issue', list.map(function (x) { return x.w; })) +
+      '<ul class="plain">' + list.map(function (x) { return '<li>' + esc(x.t) + '<br><span class="src2">' + esc(x.s) + '</span></li>'; }).join('') + '</ul></div>';
+  }
   function examCard(ex) {
-    var n = daysTo(ex.date), dd = n === null ? '' : n > 0 ? '면접 D-' + n : n === 0 ? '면접 D-day' : '면접 지남';
+    var n = ex.date ? daysTo(ex.date) : null, dd = n === null ? '' : n > 0 ? '면접 D-' + n : n === 0 ? '면접 D-day' : '면접 지남';
     var li = function (l) { return (l || []).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join(''); };
     return '<div class="box exam"><p class="examh"><b>내 시험 정보</b>' + (dd ? '<span class="dday">' + dd + '</span>' : '') + '</p>' +
       '<p><b>' + esc(ex.when) + '</b></p><ul class="plain">' + li(ex.rows) + '</ul>' +
@@ -388,7 +393,8 @@
         var sq = (tr && tr.situation && tr.situation[0]) || '';
         h += '<p class="q">' + (sq ? '예상 상황 질문(제안): "' + esc(sq) + '"' : '내 직렬에서 나올 상황 질문을 하나 떠올립니다.') + '<br>답 순서: ' + esc((tr && tr.situation && tr.situation[1]) || D.tracks[D.tracks.length - 1].situation[1]) + '</p>';
       } else if (q.ask) h += '<p class="q">실제로 나온 질문: ' + esc(q.ask) + '</p>';
-      if (q.n === 3) h += '<div class="row2"><label class="mini">제가 특히 하고 싶은 일' + input('want', '예: ' + HX().want, ' maxlength="50"') + '</label><label class="mini">요즘 지역·직렬 현안 1개 (직접 조사)' + input('issue', '예: ' + HX().issue, ' maxlength="50"') + '</label></div>';
+      if (q.n === 3) h += '<div class="row2"><label class="mini">제가 특히 하고 싶은 일' + input('want', '예: ' + HX().want, ' maxlength="50"') + '</label><label class="mini">요즘 지역·직렬 현안 1개 (직접 조사)' + input('issue', '예: ' + HX().issue, ' maxlength="50"') + '</label></div>'
+      if (q.n === 3 && tr && tr.issues && tr.issues.length) h += issueBox(tr.issues);
       if (q.exp) {
         h += '<p class="q">경험 질문에는 경험의 여섯 문장을 순서대로 말합니다. 꼬리질문은 아래 문장으로 답합니다.</p><ul class="tail"><li>"반대한 사람은?" → 역할 · 내가 한 일</li><li>"다시 한다면?" → 배운 것</li><li>"공직에서 같은 일이 생기면?" → 배운 것 + 각오</li></ul>';
         chosen().forEach(function (n) {
@@ -408,7 +414,8 @@
       }
       h += '</div>';
     });
-    if (tr && tr.expect && tr.expect.length) h += '<div class="box"><p><b>' + esc(tr.name) + ' 예상 질문 (출처에 없음, 제안)</b></p><ul class="plain">' + tr.expect.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
+    if (tr && tr.qs && tr.qs.length) h += tr.qs.map(function (g) { return '<div class="box"><p><b>' + esc(tr.name) + ' · ' + esc(g.g) + '</b></p><ul class="plain">' + g.l.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>'; }).join('');
+    else if (tr && tr.expect && tr.expect.length) h += '<div class="box"><p><b>' + esc(tr.name) + ' 예상 질문 (출처에 없음, 제안)</b></p><ul class="plain">' + tr.expect.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
     h += '<div class="box"><p><b>공직관 꼬리질문 (2024 후기 유형)</b></p><ul class="plain"><li>"상사가 부당한 지시를 하면?" → 지시의 근거를 정중하게 확인 → 규정과 다르면 의견을 말함 → 그래도 다르면 절차에 따름</li><li>"업무가 너무 많으면?" → 우선순위 정리 → 도움 요청 → 끝까지 해냄</li></ul><p class="q">답안을 그대로 외우면 꼬리질문에서 막힙니다. 빈칸에 들어갈 내 경험이 있어야 합니다.</p></div>';
     h += '<div class="btns end"><button type="button" class="btn pri" id="pdfBtn">답변노트 PDF로 저장</button><button type="button" class="btn" id="copyAll">답변노트 전체 복사</button></div>' + (CLASS_OK && S.share === true ? '<p class="sync">✓ 강사님과 공유하고 있어서 답변노트가 강사님 화면에 자동으로 들어가 있습니다.</p>' : '');
     h += prompt('mock', 'ChatGPT와 모의면접 하기 (선택)');
