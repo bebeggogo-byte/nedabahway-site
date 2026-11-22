@@ -232,8 +232,9 @@
   }
   // Researched current issues for the track: tap a chip to fill the issue field; numbers and sources below.
   function issueBox(list) {
-    return '<div class="box"><p><b>현안 자료 (숫자와 출처)</b></p>' + fillChips('issue', list.map(function (x) { return x.w; })) +
-      '<ul class="plain">' + list.map(function (x) { return '<li>' + esc(x.t) + '<br><span class="src2">' + esc(x.s) + '</span></li>'; }).join('') + '</ul></div>';
+    var chips = fillChips('issue', list.map(function (x) { return x.w; })).replace(/<\/div>$/, '<button type="button" class="fillbtn" data-fill="issue" data-v="">기타 (직접 쓰기)</button></div>');
+    return '<div class="box"><p><b>현안 고르기</b> · 자료에서 고르거나, 「기타」를 눌러 내가 조사한 현안을 직접 씁니다.</p>' + chips +
+      (list.length ? '<ul class="plain">' + list.map(function (x) { return '<li>' + esc(x.t) + '<br><span class="src2">' + esc(x.s) + '</span></li>'; }).join('') + '</ul>' : '') + '</div>';
   }
   function examCard(ex) {
     var n = ex.date ? daysTo(ex.date) : null, dd = n === null ? '' : n > 0 ? '면접 D-' + n : n === 0 ? '면접 D-day' : '면접 지남';
@@ -394,7 +395,7 @@
         h += '<p class="q">' + (sq ? '예상 상황 질문(제안): "' + esc(sq) + '"' : '내 직렬에서 나올 상황 질문을 하나 떠올립니다.') + '<br>답 순서: ' + esc((tr && tr.situation && tr.situation[1]) || D.tracks[D.tracks.length - 1].situation[1]) + '</p>';
       } else if (q.ask) h += '<p class="q">실제로 나온 질문: ' + esc(q.ask) + '</p>';
       if (q.n === 3) h += '<div class="row2"><label class="mini">제가 특히 하고 싶은 일' + input('want', '예: ' + HX().want, ' maxlength="50"') + '</label><label class="mini">요즘 지역·직렬 현안 1개 (직접 조사)' + input('issue', '예: ' + HX().issue, ' maxlength="50"') + '</label></div>'
-      if (q.n === 3 && tr && tr.issues && tr.issues.length) h += issueBox(tr.issues);
+      if (q.n === 3) h += issueBox((tr && tr.issues) || []);
       if (q.exp) {
         h += '<p class="q">경험 질문에는 경험의 여섯 문장을 순서대로 말합니다. 꼬리질문은 아래 문장으로 답합니다.</p><ul class="tail"><li>"반대한 사람은?" → 역할 · 내가 한 일</li><li>"다시 한다면?" → 배운 것</li><li>"공직에서 같은 일이 생기면?" → 배운 것 + 각오</li></ul>';
         chosen().forEach(function (n) {
