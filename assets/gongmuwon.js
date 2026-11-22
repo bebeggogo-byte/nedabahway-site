@@ -224,6 +224,20 @@
   function head(title, lead) { return '<h2>' + title + '</h2>' + (lead ? '<p class="lead">' + lead + '</p>' : ''); }
 
   // ---------- steps ----------
+  // Days left until the exam date ('YYYY-MM-DD'), counted on the local calendar.
+  function daysTo(ymd) {
+    var p = String(ymd || '').split('-'); if (p.length !== 3) return null;
+    var now = new Date(), a = new Date(now.getFullYear(), now.getMonth(), now.getDate()), b = new Date(+p[0], +p[1] - 1, +p[2]);
+    return Math.round((b - a) / 86400000);
+  }
+  function examCard(ex) {
+    var n = daysTo(ex.date), dd = n === null ? '' : n > 0 ? '면접 D-' + n : n === 0 ? '면접 D-day' : '면접 지남';
+    var li = function (l) { return (l || []).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join(''); };
+    return '<div class="box exam"><p class="examh"><b>내 시험 정보</b>' + (dd ? '<span class="dday">' + dd + '</span>' : '') + '</p>' +
+      '<p><b>' + esc(ex.when) + '</b></p><ul class="plain">' + li(ex.rows) + '</ul>' +
+      (ex.check && ex.check.length ? '<ul class="plain warnlist">' + li(ex.check) + '</ul>' : '') +
+      '<p class="src2">근거: ' + esc(ex.src) + '</p></div>';
+  }
   function step0() {
     var tr = track(), h = head('면접에서 말할 재료를 만듭니다', '오늘은 말하기를 연습하는 날이 아니라 말할 재료를 만드는 날입니다. 면접 주제에 맞는 내 경험을 문장으로 쓰고, 마지막에 면접 질문 7개에 답할 답변노트를 완성합니다.');
     h += '<details class="why"><summary>오늘 왜 경험을 글로 쓰나요?</summary><ol>' + D.why.map(function (r) { return '<li><b>' + esc(r[0]) + '</b><br>' + esc(r[1]) + '<br><span class="q">' + esc(r[2]) + '</span></li>'; }).join('') + '</ol></details>';
@@ -238,6 +252,7 @@
     if (S.track === 'other') h += input('trackOther', '직렬 이름을 적습니다. 예: 일반농업', ' maxlength="30"');
     if (tr && tr.note) h += '<p class="note">' + esc(tr.note) + '</p>';
     h += '</div>';
+    if (tr && tr.exam) h += examCard(tr.exam);
     h += must();
     return h;
   }

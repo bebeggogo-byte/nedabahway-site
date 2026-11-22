@@ -58,6 +58,13 @@
   function chosen(d) { return (d.chosen || []).slice().sort(); }
   function exp(d, n) { return (d.exp || {})[n] || {}; }
   function sentences(x) { return (t(x).match(/[^.!?]+[.!?]*/g) || []).map(t).filter(Boolean); }
+  // Interview countdown for a track with exam info, e.g. ' · 면접 D-5'.
+  function examTag(tr) {
+    if (!tr || !tr.exam) return '';
+    var p = String(tr.exam.date).split('-'), now = new Date(), a = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var n = Math.round((new Date(+p[0], +p[1] - 1, +p[2]) - a) / 86400000);
+    return n > 0 ? ' · 면접 D-' + n : n === 0 ? ' · 면접 D-day' : '';
+  }
   function trackOf(d) { var l = (D && D.tracks) || []; for (var i = 0; i < l.length; i++) if (l[i].id === d.track) return l[i]; return null; }
   function themeName(n) { var l = (D && D.themes) || []; for (var i = 0; i < l.length; i++) if (l[i].n === n) return l[i].name; return '주제 ' + n; }
   var TAIL = {
@@ -172,7 +179,7 @@
         cl.map(function (k) { var e = exp(d, k); return '<p><b>주제 ' + k + ' ' + esc(t(e.title) || '') + '</b><br>' + SENT.map(function (s) { return t(e[s]) ? SENT_KO[s] + ': ' + esc(e[s]) : ''; }).filter(Boolean).join('<br>') + '</p>'; }).join('') +
         Object.keys(at).map(function (q) { return '<p><b>' + esc(Q_TITLES[q]) + '</b><br>' + esc(at[q]) + '</p>'; }).join('') +
         '<p><b>각오와 포부</b><br>' + esc(t(d.vow) || '-') + '</p></details>';
-      return '<div class="stu' + (a.must.length ? ' stuck' : '') + '"><h3><span>' + esc(x.alias) + ' <em class="lv lv' + ['우선 컨설팅', '다듬기', '꼬리질문 연습'].indexOf(a.level) + '">' + a.level + '</em></span><small>' + esc(x.track || '직렬 미정') + ' · ' + STEP_NAMES[x.step] + ' · ' + a.mins + '분 전 저장</small></h3>' + bar +
+      return '<div class="stu' + (a.must.length ? ' stuck' : '') + '"><h3><span>' + esc(x.alias) + ' <em class="lv lv' + ['우선 컨설팅', '다듬기', '꼬리질문 연습'].indexOf(a.level) + '">' + a.level + '</em></span><small>' + esc(x.track || '직렬 미정') + examTag(trackOf(d)) + ' · ' + STEP_NAMES[x.step] + ' · ' + a.mins + '분 전 저장</small></h3>' + bar +
         '<div class="kv"><span>경험 <b>' + cl.filter(function (k) { return t(exp(d, k).title); }).length + '/' + cl.length + '</b></span><span>여섯 문장 <b>' + a.filled + '/' + a.slots + '</b></span><span>대표 강점 <b>' + esc(d.mainG || '-') + '</b></span><span>대표 가치관 <b>' + esc(d.mainV || '-') + '</b></span></div>' +
         (t(d.first) ? '<p class="q">첫 문장: ' + esc(d.first) + '</p>' : '') +
         (a.must.length ? '<div class="sec"><p class="sech must">우선 컨설팅</p>' + list(a.must, 'must') + '</div>' : '') +
