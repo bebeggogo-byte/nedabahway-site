@@ -52,9 +52,42 @@
       url(cur).then(function (u) { if (want === cur) { img.src = u; img.alt = '슬라이드 ' + (cur + 1); } }).catch(function () { count.textContent = (cur + 1) + ' / ' + slides.length + ' · 불러오지 못함'; });
       if (cur + 1 < slides.length) url(cur + 1); if (cur + 2 < slides.length) url(cur + 2);
     }
-    box.querySelector('.prev').addEventListener('click', function () { go(cur - 1); });
-    box.querySelector('.next').addEventListener('click', function () { go(cur + 1); });
-    box.querySelector('.stage').addEventListener('click', function (e) { var r = this.getBoundingClientRect(); go(e.clientX - r.left < r.width / 3 ? cur - 1 : cur + 1); });
+    controls(box, function () { return cur; }, go, slides.length);
+    go(0);
+  }
+
+  // Live deck: the slide HTML itself (with its CSS motion) drawn on a 1920x1080 canvas
+  // inside a shadow root, so the deck's styles and the page's styles never touch.
+  function deck(bundle) {
+    var box = document.getElementById('eduView'), stage = box && box.querySelector('.stage');
+    if (!stage || !stage.attachShadow) return false;
+    box.hidden = false; stage.innerHTML = '';
+    var host = document.createElement('div'); host.className = 'deckhost'; stage.appendChild(host);
+    var root = host.attachShadow({ mode: 'open' });
+    root.innerHTML = '<style>:host{display:block;position:absolute;inset:0;overflow:hidden}' + bundle.css +
+      '.sl.fade{animation:edufade .35s ease both}@keyframes edufade{from{opacity:0}to{opacity:1}}</style><div class="sl"></div>';
+    var sl = root.querySelector('.sl'), count = box.querySelector('.count'), n = bundle.slides.length, cur = 0;
+    function fit() {
+      var w = stage.clientWidth, h = stage.clientHeight, s = Math.min(w / 1920, h / 1080) || 0;
+      sl.style.transform = 'translate(' + Math.round((w - 1920 * s) / 2) + 'px,' + Math.round((h - 1080 * s) / 2) + 'px) scale(' + s + ')';
+    }
+    function go(i) {
+      cur = Math.max(0, Math.min(n - 1, i));
+      sl.style.counterReset = 'page ' + cur; sl.innerHTML = bundle.slides[cur];
+      sl.classList.remove('fade'); void sl.offsetWidth; sl.classList.add('fade');
+      count.textContent = (cur + 1) + ' / ' + n; fit();
+    }
+    controls(box, function () { return cur; }, go, n);
+    window.addEventListener('resize', fit); document.addEventListener('fullscreenchange', fit); document.addEventListener('webkitfullscreenchange', fit);
+    go(0);
+    return true;
+  }
+
+  // Shared controls for both viewers: buttons, tap zones, keys, swipe, full screen.
+  function controls(box, cur, go, n) {
+    box.querySelector('.prev').addEventListener('click', function () { go(cur() - 1); });
+    box.querySelector('.next').addEventListener('click', function () { go(cur() + 1); });
+    box.querySelector('.stage').addEventListener('click', function (e) { var r = this.getBoundingClientRect(); go(e.clientX - r.left < r.width / 3 ? cur() - 1 : cur() + 1); });
     box.querySelector('.full').addEventListener('click', function () {
       var d = document;
       if (d.fullscreenElement || d.webkitFullscreenElement) { (d.exitFullscreen || d.webkitExitFullscreen).call(d); return; }
@@ -62,14 +95,13 @@
     });
     document.addEventListener('keydown', function (e) {
       if (e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
-      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(cur + 1); }
-      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(cur - 1); }
-      else if (e.key === 'Home') go(0); else if (e.key === 'End') go(slides.length - 1);
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(cur() + 1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(cur() - 1); }
+      else if (e.key === 'Home') go(0); else if (e.key === 'End') go(n - 1);
     });
     var x0 = null;
     box.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
-    box.addEventListener('touchend', function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 40) go(dx < 0 ? cur + 1 : cur - 1); });
-    go(0);
+    box.addEventListener('touchend', function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 40) go(dx < 0 ? cur() + 1 : cur() - 1); });
   }
 
   form.addEventListener('submit', function (e) {
@@ -82,7 +114,13 @@
     }).then(function (k) { key = k; return get('manifest.bin').then(open); })
       .then(function (plain) {
         var m = JSON.parse(new TextDecoder().decode(plain)); if (m instanceof Array) m = { files: m, slides: [] };
-        form.hidden = true; out.hidden = false; files(m.files || []); viewer(m.slides || []);
+        form.hidden = true; out.hidden = false; files(m.files || []);
+        if (m.deck) {
+          get(m.deck + '.bin').then(open).then(function (p) { if (!deck(JSON.parse(new TextDecoder().decode(p)))) viewer(m.slides || []); })
+            .catch(function () { var c = document.querySelector('#eduView .count'); document.getElementById('eduView').hidden = false; if (c) c.textContent = '슬라이드를 불러오지 못했습니다. 새로고침해 주세요.'; });
+          return;
+        }
+        viewer(m.slides || []);
       })
       .catch(function () { key = null; fail('비밀번호가 맞지 않습니다.'); });
   });
