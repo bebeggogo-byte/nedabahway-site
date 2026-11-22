@@ -1,5 +1,5 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>80년대 노래 3초 맞히기</title><meta name="robots" content="noindex">
+<title>80년대 노래 듣고 맞히기</title><meta name="robots" content="noindex">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700;900&display=swap">
 <style>
 :root{--bg:#F2EBDD;--paper:#FBF8F2;--ink:#22201C;--cob:#1F4FCC;--ora:#C2512A;--gray:#6B655B;--line:#DDD3C2}
@@ -48,7 +48,7 @@ header p{margin:.4em 0 0;font-size:clamp(14px,1.3vw,20px);color:var(--gray);font
 @media (max-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}
 </style></head><body>
 <div class="wrap">
- <header><div><h1>80년대 노래, 3초만 듣고 맞히기</h1><p>번호를 누르고 ▶ 3초 듣기 · 손을 먼저 든 팀이 대답 · 맞히면 팀 점수 +1</p></div>
+ <header><div><h1>80년대 노래, 10초 듣고 맞히기</h1><p>번호를 누르고 ▶ 10초 듣기 · 손을 먼저 든 팀이 대답 · 맞히면 팀 점수 +1</p></div>
  <div class="src">곡 선정: KBS 가요톱10 1위·10위권 기록(나무위키 「가요톱10/연도」, 한국학중앙연구원 디지털인문학 위키) · 소리: Apple Music 공식 미리듣기(30초) · 촛불잔치는 가수 본인 2024년 라이브 녹음</div></header>
  <div class="round">1라운드 · 신나는 노래 다섯 곡</div><div class="grid" id="g1"></div>
  <div class="round">2라운드 · 아홉 곡</div><div class="grid" id="g2"></div>
@@ -59,7 +59,7 @@ header p{margin:.4em 0 0;font-size:clamp(14px,1.3vw,20px);color:var(--gray);font
  <div class="no" id="no"></div>
  <div class="big" id="big">♪</div>
  <div class="bar"><i id="bar"></i></div>
- <div class="ctl"><button class="p" id="play3">▶ 3초 듣기</button><button id="again">한 번 더 3초</button><button id="more">5초 더 듣기</button><button class="a" id="reveal">정답 보기</button></div>
+ <div class="ctl"><button class="p" id="play3">▶ 10초 듣기</button><button id="again">한 번 더 10초</button><button id="more">▶ 30초 끝까지</button><button class="a" id="reveal">정답 보기</button></div>
  <div class="msg" id="msg"></div>
  <div class="ans" id="ans"><div class="s" id="as"></div><div class="a" id="aa"></div><div class="r" id="ar"></div>
   <div class="ask">이 노래가 나올 때, 나는 몇 살이었고 어디에 있었나요?</div>
@@ -77,7 +77,7 @@ score = load('m80_score', score); done = new Set(load('m80_done2', [])); const o
 const $ = id => document.getElementById(id);
 function startOf(i){return Math.max(0, SONGS[i].start + (offs[i] || 0))}
 function grid(){
-  [['g1',0,5],['g2',5,SONGS.length]].forEach(([g,a,b])=>{const el=$(g);el.innerHTML='';for(let i=a;i<b;i++){const t=document.createElement('button');t.className='tile'+(done.has(i)?' done':'');t.innerHTML=`<b>${i+1}</b><span>${done.has(i)?SONGS[i].song:'3초 듣기'}</span>`;t.onclick=()=>open(i);el.appendChild(t)}});
+  [['g1',0,5],['g2',5,SONGS.length]].forEach(([g,a,b])=>{const el=$(g);el.innerHTML='';for(let i=a;i<b;i++){const t=document.createElement('button');t.className='tile'+(done.has(i)?' done':'');t.innerHTML=`<b>${i+1}</b><span>${done.has(i)?SONGS[i].song:'10초 듣기'}</span>`;t.onclick=()=>open(i);el.appendChild(t)}});
   const tm=$('teams');tm.innerHTML='';for(let k=0;k<TEAMS;k++){const d=document.createElement('div');d.className='t';d.innerHTML=`${k+1}팀 <em>${score[k]}</em>`;const p=document.createElement('button');p.textContent='+';p.onclick=()=>{score[k]++;save('m80_score',score);grid()};const m=document.createElement('button');m.textContent='−';m.className='m';m.onclick=()=>{score[k]=Math.max(0,score[k]-1);save('m80_score',score);grid()};d.append(m,p);tm.appendChild(d)}
   const r=document.createElement('button');r.textContent='↺';r.title='점수·진행 초기화';r.className='m';r.style.cssText='border:0;border-radius:99px;width:34px;height:34px;cursor:pointer';r.onclick=()=>{if(confirmReset()){score=Array(TEAMS).fill(0);done=new Set();save('m80_score',score);save('m80_done2',[]);grid()}};tm.appendChild(r);
 }
@@ -92,13 +92,13 @@ function play(sec, from){clearTimeout(stopT);clearInterval(barT);$('bar').style.
   stopT=setTimeout(()=>au.pause(),sec*1000)}
 au.onerror=()=>{$('msg').textContent='미리듣기를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.'};
 function stop(){clearTimeout(stopT);clearInterval(barT);$('bar').style.width='0';au.pause()}
-$('play3').onclick=()=>play(3,startOf(cur));$('again').onclick=()=>play(3,startOf(cur));$('more').onclick=()=>play(5,startOf(cur)+3);
+$('play3').onclick=()=>play(10,startOf(cur));$('again').onclick=()=>play(10,startOf(cur));$('more').onclick=()=>play(Math.max(5,30-startOf(cur)),startOf(cur));
 $('reveal').onclick=()=>{const s=SONGS[cur];$('as').textContent='「'+s.song+'」';$('aa').textContent=s.artist+' · '+s.rel+'년';$('ar').textContent=s.rank;$('ans').classList.add('on');$('pl').classList.add('show');done.add(cur);save('m80_done2',[...done])};
 $('cont').onclick=()=>play(Math.max(5,29-startOf(cur)),startOf(cur));$('stop').onclick=stop;
 $('back').onclick=()=>{stop();$('stage').classList.remove('on');grid()};
 $('sm').onclick=()=>{offs[cur]=(offs[cur]||0)-1;save('m80_offs2',offs);$('sv').textContent=startOf(cur)+'초'};
 $('sp').onclick=()=>{offs[cur]=(offs[cur]||0)+1;save('m80_offs2',offs);$('sv').textContent=startOf(cur)+'초'};
-document.addEventListener('keydown',e=>{if(!$('stage').classList.contains('on'))return;if(e.key===' '){e.preventDefault();play(3,startOf(cur))}if(e.key==='Enter')$('reveal').click();if(e.key==='Escape')$('back').click()});
+document.addEventListener('keydown',e=>{if(!$('stage').classList.contains('on'))return;if(e.key===' '){e.preventDefault();play(10,startOf(cur))}if(e.key==='Enter')$('reveal').click();if(e.key==='Escape')$('back').click()});
 grid();
 </script>
 </body></html>
