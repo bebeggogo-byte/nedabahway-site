@@ -248,7 +248,9 @@
     var tr = track(), h = head('면접에서 말할 재료를 만듭니다', '오늘은 말하기를 연습하는 날이 아니라 말할 재료를 만드는 날입니다. 면접 주제에 맞는 내 경험을 문장으로 쓰고, 마지막에 면접 질문 7개에 답할 답변노트를 완성합니다.');
     h += '<details class="why"><summary>오늘 왜 경험을 글로 쓰나요?</summary><ol>' + D.why.map(function (r) { return '<li><b>' + esc(r[0]) + '</b><br>' + esc(r[1]) + '<br><span class="q">' + esc(r[2]) + '</span></li>'; }).join('') + '</ol></details>';
     if (CLASS_OK) {
-      h += '<div class="field"><label for="alias">이름 <span class="cnt">강사님 화면에 보이는 이름</span></label><p class="q">내 이름을 적습니다. 학교·연락처는 쓰지 않습니다.</p>' + input('alias', '예: 홍길동', ' id="alias" maxlength="20" autocomplete="name"') + '<p class="warn" data-noname hidden>이름을 적어야 강사님 화면에서 내 답변노트를 찾을 수 있습니다.</p></div>';
+      var ro = (D.roster && D.roster[CLASS]) || [];
+      if (ro.length) h += '<div class="field"><div class="lbl">명단에서 내 이름 누르기 <span class="cnt">학년·직렬이 같이 들어갑니다</span></div>' + chips('roster', ro.map(function (r) { return r.name; }), S.alias || '', false) + '</div>';
+      h += '<div class="field"><label for="alias">이름 <span class="cnt">강사님 화면에 보이는 이름</span></label><p class="q">' + (ro.length ? '명단에 없으면 내 이름을 직접 적습니다.' : '내 이름을 적습니다.') + ' 학교·연락처는 쓰지 않습니다.</p>' + input('alias', '예: 홍길동', ' id="alias" maxlength="20" autocomplete="name"') + '<p class="warn" data-noname hidden>이름을 적어야 강사님 화면에서 내 답변노트를 찾을 수 있습니다.</p></div>';
       h += '<div class="box strong"><label class="tog"><input type="checkbox" data-share' + (S.share === true ? ' checked' : '') + '><span><b>강사님과 답변노트를 공유합니다</b><br>' +
         (S.share === true ? '<span class="sync">✓ 공유하고 있습니다. 이제 쓰기만 하면 됩니다. 쓰는 글이 이름과 함께 강사님 화면에 자동으로 저장됩니다. 따로 누를 단추는 없습니다.</span>'
           : '<span class="q">한 번 체크해 두면 쓰는 글이 이름과 함께 강사님 화면에 자동으로 저장되고, 강사님이 내 글을 보고 도와줍니다. 체크하지 않아도 도구는 그대로 쓸 수 있습니다.</span>') +
@@ -311,11 +313,12 @@
     var h = head('경험을 여섯 문장으로 씁니다', '면접에서는 이 여섯 문장을 그대로 읽지 않고, 질문에 맞게 골라 씁니다. 여섯 문장이 있으면 꼬리질문("그때 어떻게?", "무엇을 배웠나?")에도 답할 수 있습니다.');
     h += '<div class="tabs" role="tablist" id="expTabs">' + tabsHtml() + '</div>';
     h += '<div class="box"><p><b>주제 ' + n + '. ' + esc(th.name) + '</b><br>면접 질문 ' + esc(th.ask) + '</p>' + (n === 1 && tr && tr.note ? '<p class="note">' + esc(tr.note) + '</p>' : '') + '</div>';
+    h += guideBox(n);
     h += '<div class="field"><label for="tiw">한 줄 기록</label><p class="q">앞 단계에서 고른 경험입니다. 언제·어디서·무슨 역할로 했는지 한 줄로 고쳐 씁니다.</p>' + input('exp.' + n + '.title', '언제·어디서·무슨 역할로·무엇을 했다', ' id="tiw" maxlength="60"') + '</div>';
     SENT.forEach(function (s, i) {
       var k = 'exp.' + n + '.' + s.k, key = s.k === 'act';
       h += '<div class="field' + (key ? ' key' : '') + '"><label for="f' + s.k + '"><span><span class="num">' + (i + 1) + '</span>' + s.label + (key ? ' <span class="badge">가장 자세히</span>' : '') + '</span><span class="cnt" data-cnt="' + k + '"></span></label>' +
-        '<p class="q">' + esc(s.ask) + '</p><p class="frame">틀: ' + esc(s.frame) + '</p>' +
+        '<p class="q">' + esc(s.ask) + '</p>' + frameHtml(n, s) +
         '<textarea id="f' + s.k + '" data-k="' + k + '" class="' + (key ? 'tall' : '') + '">' + esc(e[s.k] || '') + '</textarea>' +
         '<p class="hint" data-hint="' + k + '"></p>' + exBox(H[s.k]) + '</div>';
     });
@@ -324,6 +327,30 @@
     var done = list.filter(expMin).length;
     h += must();
     return h;
+  }
+  // Theme writing guide shared with the lecture slides and the coach PDF (data.json guide/zones).
+  var ZONE_OF = { s: 's', role: 't', act: 'a', res: 'r', learn: 'e' };
+  function guideOf(n) { return D.guide && D.guide[n]; }
+  function mustOf(g, k) { for (var i = 0; g && i < g.must.length; i++) if (g.must[i].k === k) return g.must[i]; return null; }
+  function frameHtml(n, s) {
+    var m = mustOf(guideOf(n), ZONE_OF[s.k]);
+    if (!m) return '<p class="frame">틀: ' + esc(s.frame) + '</p>';
+    return '<p class="frame"><b>이 주제에서 넣을 것</b> ' + esc(m.what) + '<br>틀: ' + esc(m.frame) + '</p>';
+  }
+  function guideBox(n) {
+    var g = guideOf(n); if (!g) return '';
+    var zl = {}; (D.zones || []).forEach(function (z) { zl[z.k] = z.label; });
+    var rows = (D.zones || []).map(function (z, i) { return '<li><b>' + esc(z.label) + '</b> ' + esc(g.model[i]) + '</li>'; }).join('');
+    var c = mustOf(g, 'c'), e = mustOf(g, 'e');
+    return '<details class="case"><summary>작성 가이드 · 주제 ' + n + ' (강의 슬라이드와 같은 내용)</summary>' +
+      '<p><b>' + esc(zl.c) + ' 틀</b> ' + esc(c.frame) + '<br><b>' + esc(zl.e) + ' 틀</b> ' + esc(e.frame) + '</p>' +
+      '<p class="q">②~⑤는 아래 여섯 문장 칸에 씁니다. ①은 5단계 첫 문장, ⑥은 「배운 것」 칸입니다.</p>' +
+      '<p><b>완성본 · ' + esc(g.track) + ' (가상)</b></p><ul class="plain">' + rows + '</ul>' +
+      '<p><b>30초 말하기</b> ' + esc(g.talk) + '</p>' +
+      '<p><b>고치기 전</b> ' + esc(g.before) + '</p><ul class="plain">' + g.why.map(function (w) { return '<li>' + esc(w) + '</li>'; }).join('') + '</ul>' +
+      '<p><b>고친 뒤</b> ' + esc(g.after) + '</p>' +
+      '<p><b>꼬리질문</b></p><ul class="plain">' + g.tail.map(function (x) { return '<li>“' + esc(x.q) + '” → ' + esc(x.a) + '</li>'; }).join('') + '</ul>' +
+      '<p><b>피할 것</b> ' + esc(g.avoid.join(' / ')) + '</p></details>';
   }
   function step4() {
     var H = HX(), h = head('내 강점과 가치관 단어를 찾습니다', '강점은 <b>내가 한 일</b> 문장에서, 가치관은 <b>기억에 남는 이유·배운 것</b> 문장에서 고릅니다. 맞는 단어를 모두 누릅니다.');
@@ -499,7 +526,12 @@
       }
       if ((a = b.getAttribute('data-chip'))) {
         var v = b.getAttribute('data-v'); touch();
-        if (a === 'track') { for (var i = 0; i < D.tracks.length; i++) if (D.tracks[i].name === v) S.track = D.tracks[i].id; }
+        if (a === 'roster') {
+          var rl = (D.roster && D.roster[CLASS]) || [];
+          if (S.alias === v) S.alias = '';
+          else for (var ri = 0; ri < rl.length; ri++) if (rl[ri].name === v) { S.alias = v; S.grade = rl[ri].grade; S.track = rl[ri].track; }
+        }
+        else if (a === 'track') { for (var i = 0; i < D.tracks.length; i++) if (D.tracks[i].name === v) S.track = D.tracks[i].id; }
         else if (a === 'grade') S.grade = S.grade === v ? '' : v;
         else if (a === 'scene') toggle(S.scenes, v);
         else { var parts = a.split('.'); S[parts[0]][parts[1]] = S[parts[0]][parts[1]] || []; toggle(S[parts[0]][parts[1]], v); }
