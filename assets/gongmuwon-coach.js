@@ -182,6 +182,7 @@
       return '<div class="stu' + (a.must.length ? ' stuck' : '') + '"><h3><span>' + esc(x.alias) + ' <em class="lv lv' + ['우선 컨설팅', '다듬기', '꼬리질문 연습'].indexOf(a.level) + '">' + a.level + '</em></span><small>' + esc(x.track || '직렬 미정') + examTag(trackOf(d)) + ' · ' + STEP_NAMES[x.step] + ' · ' + a.mins + '분 전 저장</small></h3>' + bar +
         '<div class="kv"><span>경험 <b>' + cl.filter(function (k) { return t(exp(d, k).title); }).length + '/' + cl.length + '</b></span><span>여섯 문장 <b>' + a.filled + '/' + a.slots + '</b></span><span>대표 강점 <b>' + esc(d.mainG || '-') + '</b></span><span>대표 가치관 <b>' + esc(d.mainV || '-') + '</b></span></div>' +
         (t(d.first) ? '<p class="q">첫 문장: ' + esc(d.first) + '</p>' : '') +
+        (trackOf(d) && trackOf(d).coach ? '<details class="sec"><summary class="sech">직렬 코칭 체크 (개별 컨설팅 카드)</summary>' + list(trackOf(d).coach) + '</details>' : '') +
         (a.must.length ? '<div class="sec"><p class="sech must">우선 컨설팅</p>' + list(a.must, 'must') + '</div>' : '') +
         (a.link.length ? '<div class="sec"><p class="sech">엮어 보기 (글 전체 점검)</p>' + list(a.link) + '</div>' : '') +
         (a.polish.length ? '<div class="sec"><p class="sech">문장 다듬기</p>' + list(a.polish.slice(0, 8), 'soft') + (a.polish.length > 8 ? '<p class="q">외 ' + (a.polish.length - 8) + '개</p>' : '') + '</div>' : '') +
