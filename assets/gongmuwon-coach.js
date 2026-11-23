@@ -165,7 +165,9 @@
   function list(items, cls) { return items.length ? '<ul class="tips ' + (cls || '') + '">' + items.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : ''; }
   function students() {
     if (!notes.length) return '<p class="lead">아직 공유한 학생이 없습니다. 학생 화면 첫 단계에서 「강사님과 답변노트를 공유합니다」를 체크하면 여기에 나옵니다.</p>';
-    var rows = notes.map(function (x) { return { x: x, a: analyse(x) }; }).sort(function (p, q) { return q.a.score - p.a.score || (p.x.alias < q.x.alias ? -1 : 1); });
+    // Coaching order: 3rd graders first, then 2nd graders, then by who needs help most.
+    var gr = function (x) { var g = (x.data || {}).grade; return g === '3학년' ? 0 : g === '2학년' ? 1 : 2; };
+    var rows = notes.map(function (x) { return { x: x, a: analyse(x) }; }).sort(function (p, q) { return gr(p.x) - gr(q.x) || q.a.score - p.a.score || (p.x.alias < q.x.alias ? -1 : 1); });
     var lv = { '우선 컨설팅': 0, '다듬기': 0, '꼬리질문 연습': 0 }; rows.forEach(function (r) { lv[r.a.level]++; });
     var h = '<div class="box"><p><b>컨설팅 순서</b> · 우선 컨설팅 ' + lv['우선 컨설팅'] + '명 · 다듬기 ' + lv['다듬기'] + '명 · 꼬리질문 연습 ' + lv['꼬리질문 연습'] + '명</p><p class="q">도움이 가장 많이 필요한 학생이 위에 옵니다. 학생마다 이 학생의 글 전체를 엮어 본 결과입니다.</p></div>';
     return h + rows.map(function (r) {
@@ -179,7 +181,7 @@
         cl.map(function (k) { var e = exp(d, k); return '<p><b>주제 ' + k + ' ' + esc(t(e.title) || '') + '</b><br>' + SENT.map(function (s) { return t(e[s]) ? SENT_KO[s] + ': ' + esc(e[s]) : ''; }).filter(Boolean).join('<br>') + '</p>'; }).join('') +
         Object.keys(at).map(function (q) { return '<p><b>' + esc(Q_TITLES[q]) + '</b><br>' + esc(at[q]) + '</p>'; }).join('') +
         '<p><b>각오와 포부</b><br>' + esc(t(d.vow) || '-') + '</p></details>';
-      return '<div class="stu' + (a.must.length ? ' stuck' : '') + '"><h3><span>' + esc(x.alias) + ' <em class="lv lv' + ['우선 컨설팅', '다듬기', '꼬리질문 연습'].indexOf(a.level) + '">' + a.level + '</em></span><small>' + esc(x.track || '직렬 미정') + examTag(trackOf(d)) + ' · ' + STEP_NAMES[x.step] + ' · ' + a.mins + '분 전 저장</small></h3>' + bar +
+      return '<div class="stu' + (a.must.length ? ' stuck' : '') + '"><h3><span>' + esc(x.alias) + ' <em class="lv lv' + ['우선 컨설팅', '다듬기', '꼬리질문 연습'].indexOf(a.level) + '">' + a.level + '</em></span><small>' + ((x.data || {}).grade ? esc(x.data.grade) + ' · ' : '') + esc(x.track || '직렬 미정') + examTag(trackOf(d)) + ' · ' + STEP_NAMES[x.step] + ' · ' + a.mins + '분 전 저장</small></h3>' + bar +
         '<div class="kv"><span>경험 <b>' + cl.filter(function (k) { return t(exp(d, k).title); }).length + '/' + cl.length + '</b></span><span>여섯 문장 <b>' + a.filled + '/' + a.slots + '</b></span><span>대표 강점 <b>' + esc(d.mainG || '-') + '</b></span><span>대표 가치관 <b>' + esc(d.mainV || '-') + '</b></span></div>' +
         (t(d.first) ? '<p class="q">첫 문장: ' + esc(d.first) + '</p>' : '') +
         (trackOf(d) && trackOf(d).coach ? '<details class="sec"><summary class="sech">직렬 코칭 체크 (개별 컨설팅 카드)</summary>' + list(trackOf(d).coach) + '</details>' : '') +

@@ -18,7 +18,7 @@
   ];
   var SENT = null; // sentence definitions from data
   var BLANK = {
-    step: 0, sub: 0, showEx: true, alias: '', share: null, sid: '', startedAt: 0,
+    step: 0, sub: 0, showEx: true, alias: '', grade: '', share: null, sid: '', startedAt: 0,
     track: '', trackOther: '', q1: '', q2who: '', q2what: '',
     chosen: [1, 2, 3], scenes: [], exp: {}, kg: {}, kv: {}, mainV: '', mainG: '', mainVManual: false, mainGManual: false,
     first: '', firstEdited: false, q3when: '', q3who: '', q3do: '',
@@ -254,6 +254,7 @@
           : '<span class="q">한 번 체크해 두면 쓰는 글이 이름과 함께 강사님 화면에 자동으로 저장되고, 강사님이 내 글을 보고 도와줍니다. 체크하지 않아도 도구는 그대로 쓸 수 있습니다.</span>') +
         '</span></label></div>';
     }
+    h += '<div class="field"><div class="lbl">학년</div>' + chips('grade', ['3학년', '2학년'], S.grade || '', false) + '</div>';
     h += '<div class="field"><div class="lbl">내 시험 직렬</div>' + chips('track', D.tracks.map(function (x) { return x.name; }), tr ? tr.name : '', false);
     if (S.track === 'other') h += input('trackOther', '직렬 이름을 적습니다. 예: 일반농업', ' maxlength="30"');
     if (tr && tr.note) h += '<p class="note">' + esc(tr.note) + '</p>';
@@ -499,6 +500,7 @@
       if ((a = b.getAttribute('data-chip'))) {
         var v = b.getAttribute('data-v'); touch();
         if (a === 'track') { for (var i = 0; i < D.tracks.length; i++) if (D.tracks[i].name === v) S.track = D.tracks[i].id; }
+        else if (a === 'grade') S.grade = S.grade === v ? '' : v;
         else if (a === 'scene') toggle(S.scenes, v);
         else { var parts = a.split('.'); S[parts[0]][parts[1]] = S[parts[0]][parts[1]] || []; toggle(S[parts[0]][parts[1]], v); }
         save(); render(true); return;
