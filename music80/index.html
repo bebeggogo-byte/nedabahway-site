@@ -46,12 +46,17 @@ header p{margin:.4em 0 0;font-size:clamp(14px,1.3vw,20px);color:var(--gray);font
 .lt{font-size:15px;font-weight:700;text-align:center;padding:0 12px;line-height:1.4}
 .kara{display:inline-flex;align-items:center;text-decoration:none;background:var(--ora)!important;color:#fff!important;border-radius:999px;padding:.6em 1.2em;font-weight:900;font-size:clamp(16px,1.6vw,24px)}.kara2{align-self:center;color:var(--gray);font-weight:700;font-size:15px;margin-left:10px}
 .tiny{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--gray)}.tiny button{border:1px solid var(--line);background:transparent;color:var(--gray);border-radius:8px;padding:2px 8px;cursor:pointer;font:inherit}
+.seg{width:min(760px,92vw);background:var(--paper);border-radius:14px;padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.segh{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:clamp(14px,1.3vw,19px)}.segh b{font-weight:900}.segh span{font-weight:900;color:var(--cob);min-width:7em}
+.segh button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-weight:800;cursor:pointer}.segh #sauto{background:var(--cob);color:#fff;border-color:var(--cob)}
+.eg{position:relative;height:56px;display:flex;align-items:flex-end;gap:2px;cursor:pointer}.eg i{flex:1;background:var(--line);border-radius:2px 2px 0 0;min-height:3px}.eg i.on{background:var(--cob)}.eg i.pk{background:var(--ora)}
+.segn{font-size:12px;color:var(--gray)}
 .back{position:absolute;left:2vw;top:2vw;border:0;background:var(--paper);color:var(--ink);border-radius:999px;padding:10px 18px;font:inherit;font-weight:900;cursor:pointer}
 .msg{font-size:14px;color:var(--ora);font-weight:700;min-height:1em}
 @media (max-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}
 </style></head><body>
 <div class="wrap">
- <header><div><h1>80년대 노래, 10초 듣고 맞히기</h1><p>번호를 누르고 ▶ 10초 듣기 · 손을 먼저 든 팀이 대답 · 점수는 화이트보드에</p></div>
+ <header><div><h1>80년대 노래, 10초 듣고 맞히기</h1><p>번호를 누르고 ▶ 10초 듣기(가장 소리가 큰 클라이맥스 10초가 자동으로 골라집니다) · 손을 먼저 든 팀이 대답 · 점수는 화이트보드에</p></div>
  <div class="src">곡 선정: KBS 가요톱10 1위·10위권 기록(나무위키 「가요톱10/연도」, 한국학중앙연구원 디지털인문학 위키) · 소리: Apple Music 공식 미리듣기(30초) · 촛불잔치는 가수 본인 2024년 라이브 녹음</div></header>
  <div class="round">1라운드 · 신나는 노래 다섯 곡</div><div class="grid" id="g1"></div>
  <div class="round">2라운드 · 아홉 곡</div><div class="grid" id="g2"></div>
@@ -63,14 +68,16 @@ header p{margin:.4em 0 0;font-size:clamp(14px,1.3vw,20px);color:var(--gray);font
  <div class="no" id="no"></div>
  <div class="big" id="big">♪</div>
  <div class="bar"><i id="bar"></i></div>
- <div class="ctl"><button class="p" id="play3">▶ 10초 듣기</button><button id="again">한 번 더 10초</button><button id="more">▶ 30초 끝까지</button><button class="a" id="reveal">정답 보기</button></div>
+ <div class="ctl"><button class="p" id="play3">▶ 10초 듣기</button><button id="again">한 번 더 10초</button><button id="more">▶ 30초 전체 듣기</button><button class="a" id="reveal">정답 보기</button></div>
  <div class="msg" id="msg"></div>
+ <div class="seg"><div class="segh"><b>10초 듣기 구간</b><span id="sv"></span><button id="sm">◀ 1초</button><button id="sp">1초 ▶</button><button id="sauto">클라이맥스로</button></div>
+  <div class="eg" id="eg" title="누른 곳부터 10초를 들려줍니다"></div>
+  <div class="segn" id="segn">막대가 높은 곳일수록 소리가 큰 부분입니다 · 막대를 누르면 그곳부터 10초를 들려줍니다 · 정한 구간은 이 컴퓨터에 저장됩니다</div></div>
  <div class="ans" id="ans"><div class="s" id="as"></div><div class="a" id="aa"></div><div class="r" id="ar"></div>
   <div class="ask">이 노래가 나올 때, 나는 몇 살이었고 어디에 있었나요?</div>
   <div class="ctl"><a class="p kara" id="kara" target="_blank" rel="noopener">🎤 다같이 부르기 (노래방 화면)</a><a class="kara2" id="orig" target="_blank" rel="noopener">📺 가사 보며 원곡 듣기 (그 시절 영상)</a></div>
   <div class="ctl"><button class="p" id="cont">▶ 이어서 듣기</button><button id="stop">■ 멈춤</button></div></div>
  <div class="pl" id="pl"><div class="cover"><div class="lv" id="lv"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="lt" id="lt">🎵</div></div><div class="meta" id="meta"></div></div><audio id="au" preload="auto" crossorigin="anonymous"></audio></div>
- <div class="tiny">시작 위치 <button id="sm">−1초</button><span id="sv"></span><button id="sp">+1초</button><span>(미리듣기 30초 안에서 조절 · 이 컴퓨터에 저장)</span></div>
 </div>
 <script>
 const SONGS = [{"artist": "윤수일", "song": "아파트", "rel": 1982, "rank": "가요톱10 1위(1984.1, 3주 연속)", "id": "oXCqBxm77iU", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/e9/55/9a/e9559a5b-2d5a-558c-5580-f030ed6ab723/mzaf_12339351853979091478.plus.aac.p.m4a", "tid": 1422592698}, {"artist": "김흥국", "song": "호랑나비", "rel": 1989, "rank": "가요톱10 1위(1989.10)", "id": "3FMeQEUxI2M", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/aa/68/0a/aa680a0c-2026-39aa-b829-554f2360ab0c/mzaf_8726940804879731615.plus.aac.p.m4a", "tid": 1644202559}, {"artist": "김종찬", "song": "토요일은 밤이 좋아", "rel": 1987, "rank": "가요톱10 1위(1988.11)", "id": "uxQUBRZ9e5A", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/fa/0f/84/fa0f84ba-b4b3-429e-ca37-fd190f75d2f9/mzaf_17874930859411633723.plus.aac.p.m4a", "tid": 1617295766}, {"artist": "소방차", "song": "어젯밤 이야기", "rel": 1987, "rank": "가요톱10 4위(1988)", "id": "XCg6UIxhGDg", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/79/fb/05/79fb05ec-d9bf-fbfa-c8e3-24f028589614/mzaf_2080199511518981974.plus.aac.p.m4a", "tid": 1618867163}, {"artist": "조용필", "song": "못찾겠다 꾀꼬리", "rel": 1982, "rank": "가요톱10 10주 연속 1위(1982) · 골든컵 제도의 시작", "id": "0N1dN9NxWjQ", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0b/d1/ef/0bd1ef57-8534-40a3-d72c-96acf6fbc077/mzaf_6414466651464826666.plus.aac.p.m4a", "tid": 311449549}, {"artist": "조용필", "song": "친구여", "rel": 1983, "rank": "가요톱10 1위 · 골든컵(1984.3)", "id": "JlIrCSiqb-8", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c5/9b/d5/c59bd5b6-c45e-8c4d-5959-8bee740e69d3/mzaf_15432538487365934832.plus.aac.p.m4a", "tid": 311504412}, {"artist": "이선희", "song": "J에게", "rel": 1984, "rank": "가요톱10 2위(1984)", "id": "9eBeHuSLHYI", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/50/2e/1c/502e1c1a-f3e7-8142-e048-b01d794cf028/mzaf_5908046744364074080.plus.aac.p.m4a", "tid": 351093754}, {"artist": "이문세", "song": "난 아직 모르잖아요", "rel": 1985, "rank": "가요톱10 1위(1986.6)", "id": "Bs5YSkM6n_c", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/80/f1/22/80f122f3-33d7-e0f8-0a37-14df8a2e5ce1/mzaf_16956151771865028840.plus.aac.p.m4a", "tid": 1454761685}, {"artist": "구창모", "song": "아픈만큼 성숙해지고", "rel": 1986, "rank": "가요톱10 1위 · 골든컵(1986.9)", "id": "9EQNQ080ovg", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/a3/cb/ad/a3cbad1d-5766-2f19-515a-b64abaa2dba9/mzaf_2921615397826821575.plus.aac.p.m4a", "tid": 1676198459}, {"artist": "높은음자리", "song": "바다에 누워", "rel": 1985, "rank": "가요톱10 1위 · 골든컵(1986.6)", "id": "kq7jII8S6SY", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/74/68/21/746821fe-f2b4-b5a1-b4a1-45d687fe457c/mzaf_18347060696084751177.plus.aac.p.m4a", "tid": 1421807801}, {"artist": "이재성", "song": "촛불잔치", "rel": 1986, "rank": "가요톱10 1위(1987.2)", "id": "QauY4qc1UBM", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/08/b4/36/08b43678-f1f6-6209-8635-4d95cfae7d37/mzaf_9126511677292689076.plus.aac.p.m4a", "tid": 1763141585, "note": "가수 본인 2024년 통기타 라이브 녹음"}, {"artist": "주현미", "song": "신사동 그 사람", "rel": 1988, "rank": "가요톱10 2위(1988)", "id": "siKZMFkIIwY", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f8/3c/d0/f83cd0a4-a85c-0bcb-53e0-757186f9dbdc/mzaf_12284109687928524124.plus.aac.p.m4a", "tid": 356559825}, {"artist": "박남정", "song": "널 그리며", "rel": 1988, "rank": "가요톱10 1위(1989.2)", "id": "t4rZh2wPCuM", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/19/e0/92/19e092e4-1e72-d526-e98b-b8cc2b5165e7/mzaf_14469305303497086264.plus.aac.p.m4a", "tid": 1620139697}, {"artist": "변진섭", "song": "홀로 된다는 것", "rel": 1988, "rank": "가요톱10 2위(1989)", "id": "YHJV9NIpX_8", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f9/61/6b/f9616b3d-d6f6-a1b6-3b5c-e6b39091cf09/mzaf_1220400492960616407.plus.aac.p.m4a", "tid": 1309428777}];
@@ -79,9 +86,18 @@ let showAns = false;
 let score = Array(TEAMS).fill(0), done = new Set(), cur = -1, player = null, ready = false, stopT = null, barT = null;
 function load(k, d){try{return JSON.parse(localStorage.getItem(k)) ?? d}catch(e){return d}}
 function save(k, v){try{localStorage.setItem(k, JSON.stringify(v))}catch(e){}}
-score = load('m80_score', score); done = new Set(load('m80_done2', [])); const offs = load('m80_offs2', {});
+score = load('m80_score', score); done = new Set(load('m80_done2', [])); const st = load('m80_st3', {}); const EN = {}, AUTO = {};
 const $ = id => document.getElementById(id);
-function startOf(i){return Math.max(0, SONGS[i].start + (offs[i] || 0))}
+function startOf(i){const v = st[i] ?? AUTO[i] ?? SONGS[i].start;return Math.max(0, Math.min(20, v))}
+function segUI(){if(cur<0)return;const a=startOf(cur);$('sv').textContent=a+'초 ~ '+(a+10)+'초'+(st[cur]==null&&AUTO[cur]!=null?' (자동: 클라이맥스)':st[cur]!=null?' (직접 정함)':'');
+  const e=EN[cur],eg=$('eg');eg.innerHTML='';if(!e){$('segn').textContent='구간 그래프를 불러오는 중입니다 · 불러오지 못해도 10초 듣기는 됩니다';return}
+  const mx=Math.max(...e)||1;e.forEach((v,k)=>{const b=document.createElement('i');const t=k/2;b.style.height=Math.max(3,v/mx*56)+'px';if(t>=a&&t<a+10)b.className='on';b.onclick=ev=>{ev.stopPropagation();st[cur]=Math.max(0,Math.min(20,Math.floor(t)));save('m80_st3',st);segUI();play(10,startOf(cur))};eg.appendChild(b)});
+  $('segn').textContent='파란 막대가 지금 들려줄 10초입니다 · 막대가 높을수록 소리가 큰 부분 · 막대를 누르면 그곳부터 10초를 들려줍니다 · 이 컴퓨터에 저장'}
+async function analyze(i){if(EN[i])return;try{const r=await fetch(SONGS[i].aud);const buf=await r.arrayBuffer();const C=window.AudioContext||window.webkitAudioContext;const c=actx||new C();
+  const ab=await new Promise((ok,no)=>{const p=c.decodeAudioData(buf,ok,no);if(p&&p.then)p.then(ok,no)});const d=ab.getChannelData(0),sr=ab.sampleRate,h=Math.floor(sr/2),n=Math.min(60,Math.floor(d.length/h));const e=[];
+  for(let k=0;k<n;k++){let q=0;for(let j=k*h;j<(k+1)*h;j+=8)q+=d[j]*d[j];e.push(Math.sqrt(q/(h/8)))}EN[i]=e;
+  let best=0,bs=-1;const W=20;for(let k=0;k+W<=n;k+=2){let q=0;for(let j=k;j<k+W;j++)q+=e[j];if(q>bs){bs=q;best=k/2}}AUTO[i]=Math.min(20,best);
+  if(c!==actx&&c.close)c.close()}catch(err){}if(i===cur)segUI()}
 function grid(){
   [['g1',0,5],['g2',5,SONGS.length]].forEach(([g,a,b])=>{const el=$(g);el.innerHTML='';for(let i=a;i<b;i++){const t=document.createElement('button');t.className='tile'+(done.has(i)?' done':'');t.innerHTML=`<b>${i+1}</b><span>${done.has(i)?(showAns?SONGS[i].song:'들은 노래 ✓'):'10초 듣기'}</span>`;t.onclick=()=>open(i);el.appendChild(t)}});
   const tm=$('teams');tm.innerHTML='';for(let k=0;k<TEAMS;k++){const d=document.createElement('div');d.className='t';d.innerHTML=`${k+1}팀 <em>${score[k]}</em>`;const p=document.createElement('button');p.textContent='+';p.onclick=()=>{score[k]++;save('m80_score',score);grid()};const m=document.createElement('button');m.textContent='−';m.className='m';m.onclick=()=>{score[k]=Math.max(0,score[k]-1);save('m80_score',score);grid()};d.append(m,p);tm.appendChild(d)}
@@ -95,7 +111,7 @@ function meterOn(){try{if(!actx){actx=new (window.AudioContext||window.webkitAud
    if(n===25&&heard<3)$('lt').textContent='막대가 움직이지 않으면 인터넷 연결을 확인해 주세요';
    if(n===25&&heard>=3)$('lt').textContent='막대가 움직이는데 소리가 안 들리면 컴퓨터 소리·스피커를 확인해 주세요'},80)}
 function meterOff(){clearInterval(meterT);document.querySelectorAll('#lv i').forEach(b=>b.style.height='4px');$('lt').textContent='🎵'}
-function open(i){cur=i;$('stage').classList.add('on');$('no').textContent=(i<5?'1라운드 · ':'2라운드 · ')+(i+1)+'번 노래';$('big').textContent='♪ '+(i+1);$('ans').classList.remove('on');$('pl').classList.remove('show');$('sv').textContent=startOf(i)+'초';$('msg').textContent='';stop();au.src=SONGS[i].aud;au.load();
+function open(i){cur=i;$('stage').classList.add('on');$('no').textContent=(i<5?'1라운드 · ':'2라운드 · ')+(i+1)+'번 노래';$('big').textContent='♪ '+(i+1);$('ans').classList.remove('on');$('pl').classList.remove('show');$('msg').textContent='';stop();au.src=SONGS[i].aud;au.load();segUI();analyze(i);
   const s=SONGS[i];$('meta').innerHTML='미리듣기 제공: Apple Music<br>'+s.artist+' 「'+s.song+'」'+(s.note?'<br>'+s.note:'')+'<br><a target="_blank" href="https://www.youtube.com/watch?v='+s.id+'">유튜브에서 가사와 함께 전곡 듣기</a>'}
 function play(sec, from){clearTimeout(stopT);clearInterval(barT);$('bar').style.width='0';
   try{au.currentTime=from}catch(e){}
@@ -105,12 +121,12 @@ function play(sec, from){clearTimeout(stopT);clearInterval(barT);$('bar').style.
   stopT=setTimeout(()=>{au.pause();meterOff()},sec*1000)}
 au.onerror=()=>{$('msg').textContent='미리듣기를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.'};
 function stop(){clearTimeout(stopT);clearInterval(barT);$('bar').style.width='0';au.pause();meterOff()}
-$('play3').onclick=()=>play(10,startOf(cur));$('again').onclick=()=>play(10,startOf(cur));$('more').onclick=()=>play(Math.max(5,30-startOf(cur)),startOf(cur));
+$('play3').onclick=()=>play(10,startOf(cur));$('again').onclick=()=>play(10,startOf(cur));$('more').onclick=()=>play(30,0);
 $('reveal').onclick=()=>{const s=SONGS[cur];$('as').textContent='「'+s.song+'」';$('aa').textContent=s.artist+' · '+s.rel+'년';$('ar').textContent=s.rank;$('kara').href='https://www.youtube.com/results?search_query='+encodeURIComponent('TJ노래방 '+s.song+' '+s.artist);$('orig').href='https://www.youtube.com/watch?v='+s.id;$('ans').classList.add('on');$('pl').classList.add('show');done.add(cur);save('m80_done2',[...done])};
-$('cont').onclick=()=>play(Math.max(5,29-startOf(cur)),startOf(cur));$('stop').onclick=stop;
+$('cont').onclick=()=>play(30,0);$('stop').onclick=stop;
 $('back').onclick=()=>{stop();$('stage').classList.remove('on');grid()};
-$('sm').onclick=()=>{offs[cur]=(offs[cur]||0)-1;save('m80_offs2',offs);$('sv').textContent=startOf(cur)+'초'};
-$('sp').onclick=()=>{offs[cur]=(offs[cur]||0)+1;save('m80_offs2',offs);$('sv').textContent=startOf(cur)+'초'};
+$('sm').onclick=()=>{st[cur]=Math.max(0,startOf(cur)-1);save('m80_st3',st);segUI()};$('sauto').onclick=()=>{delete st[cur];save('m80_st3',st);segUI();play(10,startOf(cur))};
+$('sp').onclick=()=>{st[cur]=Math.min(20,startOf(cur)+1);save('m80_st3',st);segUI()};
 document.addEventListener('keydown',e=>{if(!$('stage').classList.contains('on'))return;if(e.key===' '){e.preventDefault();play(10,startOf(cur))}if(e.key==='Enter')$('reveal').click();if(e.key==='Escape')$('back').click()});
 $('ansAll').onclick=()=>{showAns=!showAns;$('ansAll').textContent=showAns?'정답 목록 가리기':'정답 목록 보기';grid()};
 grid();
