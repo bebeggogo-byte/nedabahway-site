@@ -1,0 +1,151 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>90년대 노래 듣고 맞히기</title><meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700;900&display=swap">
+<style>
+:root{--bg:#F2EBDD;--paper:#FBF8F2;--ink:#22201C;--cob:#1F4FCC;--ora:#C2512A;--gray:#6B655B;--line:#DDD3C2}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1A1917;--paper:#26241F;--ink:#ECE6DA;--cob:#7C9BF0;--ora:#E08A63;--gray:#A39B8E;--line:#3A3631}}
+:root[data-theme="dark"]{--bg:#1A1917;--paper:#26241F;--ink:#ECE6DA;--cob:#7C9BF0;--ora:#E08A63;--gray:#A39B8E;--line:#3A3631}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Pretendard","Noto Sans KR",system-ui,sans-serif;word-break:keep-all}
+.wrap{min-height:100%;display:flex;flex-direction:column;padding:2.2vw 3vw;gap:1.6vw}
+nav.era{display:flex;gap:8px;margin-bottom:10px}nav.era a{text-decoration:none;font-weight:900;font-size:clamp(14px,1.3vw,19px);padding:6px 16px;border-radius:999px;background:var(--paper);color:var(--gray);cursor:pointer}nav.era a.on{background:var(--cob);color:#fff}
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+h1{margin:0;font-size:clamp(26px,3.4vw,54px);font-weight:900;line-height:1.15}
+header p{margin:.4em 0 0;font-size:clamp(14px,1.3vw,20px);color:var(--gray);font-weight:700}
+.round{font-size:clamp(15px,1.4vw,22px);font-weight:900;color:var(--cob);margin:.6vw 0 -.4vw}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.2vw}
+.tile{border:0;cursor:pointer;background:var(--paper);color:var(--ink);border-radius:16px;padding:1.4vw 1vw;font:inherit;display:flex;flex-direction:column;align-items:center;gap:.4vw;box-shadow:0 2px 0 var(--line);min-height:110px;justify-content:center}
+.tile b{font-size:clamp(30px,4vw,64px);font-weight:900;line-height:1;color:var(--cob)}
+.tile span{font-size:clamp(12px,1.1vw,17px);font-weight:700;color:var(--gray)}
+.tile.done{background:transparent;outline:3px dashed var(--line)}.tile.done b{color:var(--gray)}
+.tile:focus-visible,button:focus-visible{outline:3px solid var(--ora);outline-offset:3px}
+.teams{display:none;gap:10px;flex-wrap:wrap;align-items:center;margin-top:auto}
+.teams .t{display:flex;align-items:center;gap:8px;background:var(--paper);border-radius:999px;padding:6px 8px 6px 16px;font-weight:900;font-size:clamp(14px,1.3vw,20px)}
+.teams .t em{font-style:normal;color:var(--cob);min-width:1.6em;text-align:center}
+.teams button{border:0;border-radius:999px;width:34px;height:34px;font:inherit;font-weight:900;cursor:pointer;background:var(--cob);color:#fff}
+.teams button.m{background:var(--line);color:var(--ink)}
+.src{font-size:12px;color:var(--gray)}
+/* play view */
+.stage{position:fixed;inset:0;background:var(--bg);display:none;flex-direction:column;align-items:center;justify-content:center;gap:2.2vw;padding:3vw;text-align:center}
+.stage.on{display:flex}
+.no{font-size:clamp(20px,2vw,32px);font-weight:900;color:var(--ora)}
+.big{font-size:clamp(60px,11vw,180px);font-weight:900;line-height:1}
+.ctl{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.ctl button{border:0;border-radius:999px;padding:18px 30px;font:inherit;font-size:clamp(17px,1.7vw,28px);font-weight:900;cursor:pointer;background:var(--paper);color:var(--ink)}
+.ctl button.p{background:var(--cob);color:#fff}.ctl button.a{background:var(--ora);color:#fff}
+.bar{width:min(560px,80vw);height:14px;background:var(--line);border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--cob)}
+.ans{display:none;flex-direction:column;gap:.6vw;align-items:center}.ans.on{display:flex}
+.ans .s{font-size:clamp(40px,6vw,96px);font-weight:900;line-height:1.1}
+.ans .a{font-size:clamp(22px,2.6vw,42px);font-weight:900;color:var(--cob)}
+.ans .r{font-size:clamp(14px,1.4vw,22px);color:var(--gray);font-weight:700}
+.ask{font-size:clamp(16px,1.6vw,26px);font-weight:800;background:var(--paper);border-radius:14px;padding:12px 20px}
+.pl{position:relative;width:320px;height:180px;border-radius:10px;overflow:hidden}
+.pl .meta{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;font-size:14px;color:var(--gray);background:var(--paper)}
+.pl .cover{z-index:2;position:absolute;inset:0;background:var(--ink);display:flex;align-items:center;justify-content:center;color:var(--bg);font-size:44px}
+.pl.show .cover{display:none}
+.pl .cover{flex-direction:column;gap:10px}.lv{display:flex;gap:6px;align-items:flex-end;height:70px}.lv i{width:14px;height:4px;background:var(--cob);border-radius:3px;transition:height .08s}
+.lt{font-size:15px;font-weight:700;text-align:center;padding:0 12px;line-height:1.4}
+.kara{display:inline-flex;align-items:center;text-decoration:none;background:var(--ora)!important;color:#fff!important;border-radius:999px;padding:.6em 1.2em;font-weight:900;font-size:clamp(16px,1.6vw,24px)}.kara2{align-self:center;color:var(--gray);font-weight:700;font-size:15px;margin-left:10px}
+.tiny{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--gray)}.tiny button{border:1px solid var(--line);background:transparent;color:var(--gray);border-radius:8px;padding:2px 8px;cursor:pointer;font:inherit}
+.seg{width:min(760px,92vw);background:var(--paper);border-radius:14px;padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.segh{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:clamp(14px,1.3vw,19px)}.segh b{font-weight:900}.segh span{font-weight:900;color:var(--cob);min-width:7em}
+.segh button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-weight:800;cursor:pointer}.segh #sauto{background:var(--cob);color:#fff;border-color:var(--cob)}
+.eg{position:relative;height:56px;display:flex;align-items:flex-end;gap:2px;cursor:pointer}.eg i{flex:1;background:var(--line);border-radius:2px 2px 0 0;min-height:3px}.eg i.on{background:var(--cob)}.eg i.pk{background:var(--ora)}
+.segn{font-size:12px;color:var(--gray)}
+/* answer view: 16:9 two-column */
+.stage.rv{justify-content:flex-start;padding:4.5vh 5vw 5vh;gap:2.2vh}
+.stage.rv .big,.stage.rv .seg,.stage.rv>.ctl,.stage.rv .msg:empty{display:none}
+.stage.rv .no{font-size:clamp(18px,3vh,30px)}.stage.rv .bar{height:10px}
+.ans.on{display:grid;grid-template-columns:1.15fr 1fr;gap:4vw;width:100%;flex:1;min-height:0;align-items:center;text-align:left}
+.al{display:flex;flex-direction:column;gap:1.8vh;align-items:flex-start;min-width:0}
+.tag{background:var(--ora);color:#fff;font-weight:900;border-radius:999px;padding:.3em 1em;font-size:clamp(14px,2.4vh,22px)}
+.ans .s{font-size:min(6.4vw,12vh);line-height:1.1;word-break:keep-all}
+.ans .a{font-size:min(3vw,6vh)}.ans .r{font-size:min(1.6vw,3vh)}
+.ans .ask{font-size:min(1.7vw,3.2vh);line-height:1.4;margin-top:1vh}
+.arr{display:flex;flex-direction:column;gap:1.6vh;min-width:0}
+.arr .pl{width:100%;height:auto;aspect-ratio:16/9;max-height:38vh}.arr .pl .meta{display:block;padding:0 6%;align-content:center;font-size:min(1.35vw,2.6vh);line-height:1.7;color:var(--ink);font-weight:700}.arr .pl .meta{display:grid}.arr .pl .meta a{color:var(--cob)}
+.arr .kara{justify-content:center;font-size:min(1.9vw,3.6vh);padding:1.6vh 1em}
+.arr .kara2{margin:0;display:flex;justify-content:center;text-decoration:none;background:var(--paper);color:var(--ink);border-radius:999px;padding:1.4vh 1em;font-weight:900;font-size:min(1.5vw,2.9vh)}
+.ctl2{display:flex;gap:1vw}.ctl2 button{flex:1;border:0;border-radius:999px;padding:1.4vh 1em;font:inherit;font-weight:900;font-size:min(1.4vw,2.7vh);cursor:pointer;background:var(--paper);color:var(--ink)}.ctl2 button.p{background:var(--cob);color:#fff}
+.back{position:absolute;left:2vw;top:2vw;border:0;background:var(--paper);color:var(--ink);border-radius:999px;padding:10px 18px;font:inherit;font-weight:900;cursor:pointer}
+.msg{font-size:14px;color:var(--ora);font-weight:700;min-height:1em}
+@media (max-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}
+</style></head><body>
+<div class="wrap">
+ <header><div><nav class="era"><a data-e="80">80년대 노래</a><a data-e="90">90년대 노래</a></nav><h1>90년대 노래, 10초 듣고 맞히기</h1><p>번호를 누르고 ▶ 10초 듣기(가장 소리가 큰 클라이맥스 10초가 자동으로 골라집니다) · 손을 먼저 든 팀이 대답 · 점수는 화이트보드에</p></div>
+ <div class="src">곡 선정: 1990년대 대표 히트곡 · 골든컵 표시는 KBS 가요톱10 5주 연속 1위(한국학중앙연구원 디지털인문학 위키) · 소리: Apple Music 공식 미리듣기(30초)</div></header>
+ <div class="round">1라운드 · 신나는 노래 다섯 곡</div><div class="grid" id="g1"></div>
+ <div class="round">2라운드 · 아홉 곡</div><div class="grid" id="g2"></div>
+ <div class="teams" id="teams"></div>
+ <div style="display:flex;justify-content:center"><button id="ansAll" type="button" style="font:inherit;font-size:15px;border:1px solid var(--line);background:transparent;color:var(--gray);border-radius:99px;padding:6px 16px;cursor:pointer">정답 목록 보기</button></div>
+</div>
+<div class="stage" id="stage">
+ <button class="back" id="back">← 목록</button>
+ <div class="no" id="no"></div>
+ <div class="big" id="big">♪</div>
+ <div class="bar"><i id="bar"></i></div>
+ <div class="ctl"><button class="p" id="play3">▶ 10초 듣기</button><button id="again">한 번 더 10초</button><button id="more">▶ 30초 전체 듣기</button><button class="a" id="reveal">정답 보기</button></div>
+ <div class="msg" id="msg"></div>
+ <div class="seg"><div class="segh"><b>10초 듣기 구간</b><span id="sv"></span><button id="sm">◀ 1초</button><button id="sp">1초 ▶</button><button id="sauto">클라이맥스로</button></div>
+  <div class="eg" id="eg" title="누른 곳부터 10초를 들려줍니다"></div>
+  <div class="segn" id="segn">막대가 높은 곳일수록 소리가 큰 부분입니다 · 막대를 누르면 그곳부터 10초를 들려줍니다 · 정한 구간은 이 컴퓨터에 저장됩니다</div></div>
+ <div class="ans" id="ans"><div class="al"><div class="tag">정답</div><div class="s" id="as"></div><div class="a" id="aa"></div><div class="r" id="ar"></div>
+  <div class="ask">이 노래가 나올 때, 나는 몇 살이었고 어디에 있었나요?</div></div>
+  <div class="arr" id="arr"><a class="kara" id="kara" target="_blank" rel="noopener">🎤 다같이 부르기 (노래방 화면)</a><a class="kara2" id="orig" target="_blank" rel="noopener">📺 가사 보며 원곡 듣기 (그 시절 영상)</a>
+  <div class="ctl2"><button class="p" id="cont">▶ 30초 다시 듣기</button><button id="stop">■ 멈춤</button></div></div></div>
+ <div class="pl" id="pl"><div class="cover"><div class="lv" id="lv"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="lt" id="lt">🎵</div></div><div class="meta" id="meta"></div></div><audio id="au" preload="auto" crossorigin="anonymous"></audio></div>
+</div>
+<script>
+const SONGS = [{"artist": "서태지와 아이들", "song": "난 알아요", "rel": 1992, "rank": "가요톱10 골든컵(1992)", "id": "0zqjMTVKtaE", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b7/84/8f/b7848f37-d9ba-30ed-677c-1771818218e9/mzaf_5170312200389775960.plus.aac.p.m4a", "tid": 1614225468}, {"artist": "김건모", "song": "잘못된 만남", "rel": 1995, "rank": "가요톱10 골든컵 · 앨범 280만 장", "id": "RcwKLngxQ2s", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/6e/95/0d/6e950d8f-03b4-6182-4a00-e38d26f57670/mzaf_47413412637852238.plus.aac.p.m4a", "tid": 1728627771}, {"artist": "클론", "song": "꿍따리 샤바라", "rel": 1996, "rank": "1996년 대표 히트곡", "id": "RSSq6dbs-j8", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/35/9a/bd/359abd7e-75fb-a112-a338-3b0865d1882b/mzaf_813279759223266637.plus.aac.p.m4a", "tid": 1728625576}, {"artist": "룰라", "song": "날개 잃은 천사", "rel": 1995, "rank": "가요톱10 골든컵(1995)", "id": "qWU-aHW9Dkg", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/34/51/85/345185ae-7c36-3424-262a-f80c083d304e/mzaf_8183531392295093028.plus.aac.p.m4a", "tid": 1494267337}, {"artist": "쿨", "song": "해변의 여인", "rel": 1997, "rank": "1997년 여름 대표 히트곡", "id": "s46KDOPg2Ds", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2d/9c/7c/2d9c7cac-bd75-b88e-ac70-e29eb1385071/mzaf_1733330771048701707.plus.aac.p.m4a", "tid": 955116481}, {"artist": "김민우", "song": "사랑일 뿐야", "rel": 1990, "rank": "가요톱10 골든컵(1990)", "id": "rX-dskSxQsw", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ad/63/4b/ad634b6e-2985-5e89-758e-1b90e539508c/mzaf_13951454828181775886.plus.aac.p.m4a", "tid": 1449223240}, {"artist": "신승훈", "song": "보이지 않는 사랑", "rel": 1991, "rank": "가요톱10 골든컵", "id": "1BY7ePR6KSM", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a9/6c/72/a96c7277-3c36-24ac-ab91-73b075a6dc0c/mzaf_9507351162796887952.plus.aac.p.m4a", "tid": 1728633794}, {"artist": "김국환", "song": "타타타", "rel": 1991, "rank": "1990년대 초 대표 히트곡", "id": "nrN9qrG-XFM", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/62/e7/55/62e75556-0f1e-6869-5a26-0aafe23e38a0/mzaf_11758563921708998385.plus.aac.p.m4a", "tid": 1425976395}, {"artist": "김수희", "song": "애모", "rel": 1990, "rank": "1990년대 대표 히트곡", "id": "Jtqlyi9UFfY", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/34/42/c2/3442c27b-3b5d-0208-73d9-22eee53b3b3f/mzaf_4721858120272703652.plus.aac.p.m4a", "tid": 1620845841}, {"artist": "투투", "song": "일과 이분의 일", "rel": 1994, "rank": "1994년 대표 히트곡", "id": "C-kQXnhExag", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f3/8b/96/f38b96e6-9aa9-19aa-db9b-63f91096d916/mzaf_15324739902285094021.plus.aac.p.m4a", "tid": 1823803591}, {"artist": "H.O.T.", "song": "캔디", "rel": 1996, "rank": "1996년 대표 히트곡", "id": "CaqgKCN6z-4", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/60/cf/2b/60cf2b9b-a138-dbe2-639e-8316b4ce9d8a/mzaf_3303167736917705860.plus.aac.p.m4a", "tid": 1060455878}, {"artist": "엄정화", "song": "배반의 장미", "rel": 1997, "rank": "1997년 대표 히트곡", "id": "MNKs-zSbmDM", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0d/fb/37/0dfb37a1-8e93-b8bb-e859-099cd2e9b37e/mzaf_11953478667416217747.plus.aac.p.m4a", "tid": 1869956233}, {"artist": "임창정", "song": "그때 또 다시", "rel": 1997, "rank": "가요톱10 골든컵(1997)", "id": "ASvEjgLDuwU", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/87/81/9c/87819c80-96bf-559e-97cc-1ea75d097edb/mzaf_13911515737817316757.plus.aac.p.m4a", "tid": 1804648883}, {"artist": "조성모", "song": "To Heaven", "rel": 1998, "rank": "1998년 대표 히트곡", "id": "iy66mnALDxw", "start": 0, "aud": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/2c/d5/ff/2cd5ffc1-d18d-760c-8ed4-4ca2f8d38764/mzaf_13429686529275858330.plus.aac.p.m4a", "tid": 1692523913}]; const KP='m90_'; const ERA='90';
+(function(){const local=/\.html$/.test(location.pathname);document.querySelectorAll('nav.era a').forEach(a=>{const e=a.dataset.e;if(e===ERA)a.classList.add('on');a.href=local?('music'+e+'.html'):('../music'+e+'/')})})();
+const TEAMS = 5;
+let showAns = false;
+let score = Array(TEAMS).fill(0), done = new Set(), cur = -1, player = null, ready = false, stopT = null, barT = null;
+function load(k, d){try{return JSON.parse(localStorage.getItem(k)) ?? d}catch(e){return d}}
+function save(k, v){try{localStorage.setItem(k, JSON.stringify(v))}catch(e){}}
+score = load(KP+'score', score); done = new Set(load(KP+'done2', [])); const st = load(KP+'st3', {}); const EN = {}, AUTO = {};
+const $ = id => document.getElementById(id);
+function startOf(i){const v = st[i] ?? AUTO[i] ?? SONGS[i].start;return Math.max(0, Math.min(20, v))}
+function segUI(){if(cur<0)return;const a=startOf(cur);$('sv').textContent=a+'초 ~ '+(a+10)+'초'+(st[cur]==null&&AUTO[cur]!=null?' (자동: 클라이맥스)':st[cur]!=null?' (직접 정함)':'');
+  const e=EN[cur],eg=$('eg');eg.innerHTML='';if(!e){$('segn').textContent='구간 그래프를 불러오는 중입니다 · 불러오지 못해도 10초 듣기는 됩니다';return}
+  const mx=Math.max(...e)||1;e.forEach((v,k)=>{const b=document.createElement('i');const t=k/2;b.style.height=Math.max(3,v/mx*56)+'px';if(t>=a&&t<a+10)b.className='on';b.onclick=ev=>{ev.stopPropagation();st[cur]=Math.max(0,Math.min(20,Math.floor(t)));save(KP+'st3',st);segUI();play(10,startOf(cur))};eg.appendChild(b)});
+  $('segn').textContent='파란 막대가 지금 들려줄 10초입니다 · 막대가 높을수록 소리가 큰 부분 · 막대를 누르면 그곳부터 10초를 들려줍니다 · 이 컴퓨터에 저장'}
+async function analyze(i){if(EN[i])return;try{const r=await fetch(SONGS[i].aud);const buf=await r.arrayBuffer();const C=window.AudioContext||window.webkitAudioContext;const c=actx||new C();
+  const ab=await new Promise((ok,no)=>{const p=c.decodeAudioData(buf,ok,no);if(p&&p.then)p.then(ok,no)});const d=ab.getChannelData(0),sr=ab.sampleRate,h=Math.floor(sr/2),n=Math.min(60,Math.floor(d.length/h));const e=[];
+  for(let k=0;k<n;k++){let q=0;for(let j=k*h;j<(k+1)*h;j+=8)q+=d[j]*d[j];e.push(Math.sqrt(q/(h/8)))}EN[i]=e;
+  let best=0,bs=-1;const W=20;for(let k=0;k+W<=n;k+=2){let q=0;for(let j=k;j<k+W;j++)q+=e[j];if(q>bs){bs=q;best=k/2}}AUTO[i]=Math.min(20,best);
+  if(c!==actx&&c.close)c.close()}catch(err){}if(i===cur)segUI()}
+function grid(){
+  [['g1',0,5],['g2',5,SONGS.length]].forEach(([g,a,b])=>{const el=$(g);el.innerHTML='';for(let i=a;i<b;i++){const t=document.createElement('button');t.className='tile'+(done.has(i)?' done':'');t.innerHTML=`<b>${i+1}</b><span>${done.has(i)?(showAns?SONGS[i].song:'들은 노래 ✓'):'10초 듣기'}</span>`;t.onclick=()=>open(i);el.appendChild(t)}});
+  const tm=$('teams');tm.innerHTML='';for(let k=0;k<TEAMS;k++){const d=document.createElement('div');d.className='t';d.innerHTML=`${k+1}팀 <em>${score[k]}</em>`;const p=document.createElement('button');p.textContent='+';p.onclick=()=>{score[k]++;save(KP+'score',score);grid()};const m=document.createElement('button');m.textContent='−';m.className='m';m.onclick=()=>{score[k]=Math.max(0,score[k]-1);save(KP+'score',score);grid()};d.append(m,p);tm.appendChild(d)}
+  const r=document.createElement('button');r.textContent='↺';r.title='점수·진행 초기화';r.className='m';r.style.cssText='border:0;border-radius:99px;width:34px;height:34px;cursor:pointer';r.onclick=()=>{if(confirmReset()){score=Array(TEAMS).fill(0);done=new Set();save(KP+'score',score);save(KP+'done2',[]);grid()}};tm.appendChild(r);
+}
+let resetArm=0;function confirmReset(){const n=Date.now();if(n-resetArm<2500)return true;resetArm=n;const tm=$('teams');const s=document.createElement('span');s.className='src';s.textContent=' 한 번 더 누르면 초기화';tm.appendChild(s);setTimeout(()=>s.remove(),2500);return false}
+const au=$('au');let actx=null,an=null,meterT=null;
+function meterOn(){try{if(!actx){actx=new (window.AudioContext||window.webkitAudioContext)();const src=actx.createMediaElementSource(au);an=actx.createAnalyser();an.fftSize=256;src.connect(an);an.connect(actx.destination)}if(actx.state!=='running')actx.resume()}catch(e){}
+  clearInterval(meterT);const bars=[...document.querySelectorAll('#lv i')];const d=new Uint8Array(128);let heard=0,n=0;$('lt').textContent='노래가 나오는 중입니다';
+  meterT=setInterval(()=>{if(!an)return;an.getByteFrequencyData(d);let sum=0;bars.forEach((b,k)=>{const v=d[2+k*5]||0;sum+=v;b.style.height=Math.max(4,v/255*70)+'px'});n++;if(sum>40)heard++;
+   if(n===25&&heard<3)$('lt').textContent='막대가 움직이지 않으면 인터넷 연결을 확인해 주세요';
+   if(n===25&&heard>=3)$('lt').textContent='막대가 움직이는데 소리가 안 들리면 컴퓨터 소리·스피커를 확인해 주세요'},80)}
+function meterOff(){clearInterval(meterT);document.querySelectorAll('#lv i').forEach(b=>b.style.height='4px');$('lt').textContent='🎵'}
+function open(i){cur=i;$('stage').classList.add('on');$('no').textContent=(i<5?'1라운드 · ':'2라운드 · ')+(i+1)+'번 노래';$('big').textContent='♪ '+(i+1);$('ans').classList.remove('on');$('stage').classList.remove('rv');$('stage').insertBefore($('pl'),$('au'));$('pl').classList.remove('show');$('msg').textContent='';stop();au.src=SONGS[i].aud;au.load();segUI();analyze(i);
+  const s=SONGS[i];$('meta').innerHTML='미리듣기 제공: Apple Music<br>'+s.artist+' 「'+s.song+'」'+(s.note?'<br>'+s.note:'')+'<br><a target="_blank" href="https://www.youtube.com/watch?v='+s.id+'">유튜브에서 가사와 함께 전곡 듣기</a>'}
+function play(sec, from){clearTimeout(stopT);clearInterval(barT);$('bar').style.width='0';
+  try{au.currentTime=from}catch(e){}
+  meterOn();
+  const p=au.play();if(p&&p.catch)p.catch(e=>{$('msg').textContent='소리를 틀지 못했습니다. 인터넷 연결을 확인하고 다시 눌러 주세요.'});
+  const t0=Date.now();barT=setInterval(()=>{const q=Math.min(1,(Date.now()-t0)/(sec*1000));$('bar').style.width=(q*100)+'%';if(q>=1)clearInterval(barT)},50);
+  stopT=setTimeout(()=>{au.pause();meterOff()},sec*1000)}
+au.onerror=()=>{$('msg').textContent='미리듣기를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.'};
+function stop(){clearTimeout(stopT);clearInterval(barT);$('bar').style.width='0';au.pause();meterOff()}
+$('play3').onclick=()=>play(10,startOf(cur));$('again').onclick=()=>play(10,startOf(cur));$('more').onclick=()=>play(30,0);
+$('reveal').onclick=()=>{const s=SONGS[cur];$('as').textContent='「'+s.song+'」';$('aa').textContent=s.artist+' · '+s.rel+'년';$('ar').textContent=s.rank;$('kara').href='https://www.youtube.com/results?search_query='+encodeURIComponent('TJ노래방 '+s.song+' '+s.artist);$('orig').href='https://www.youtube.com/watch?v='+s.id;$('ans').classList.add('on');$('stage').classList.add('rv');$('arr').prepend($('pl'));$('pl').classList.add('show');done.add(cur);save(KP+'done2',[...done])};
+$('cont').onclick=()=>play(30,0);$('stop').onclick=stop;
+$('back').onclick=()=>{stop();$('stage').classList.remove('on');grid()};
+$('sm').onclick=()=>{st[cur]=Math.max(0,startOf(cur)-1);save(KP+'st3',st);segUI()};$('sauto').onclick=()=>{delete st[cur];save(KP+'st3',st);segUI();play(10,startOf(cur))};
+$('sp').onclick=()=>{st[cur]=Math.min(20,startOf(cur)+1);save(KP+'st3',st);segUI()};
+document.addEventListener('keydown',e=>{if(!$('stage').classList.contains('on'))return;if(e.key===' '){e.preventDefault();play(10,startOf(cur))}if(e.key==='Enter')$('reveal').click();if(e.key==='Escape')$('back').click()});
+$('ansAll').onclick=()=>{showAns=!showAns;$('ansAll').textContent=showAns?'정답 목록 가리기':'정답 목록 보기';grid()};
+grid();
+</script>
+</body></html>
