@@ -51,6 +51,21 @@ header p{margin:.4em 0 0;font-size:clamp(14px,1.3vw,20px);color:var(--gray);font
 .segh button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-weight:800;cursor:pointer}.segh #sauto{background:var(--cob);color:#fff;border-color:var(--cob)}
 .eg{position:relative;height:56px;display:flex;align-items:flex-end;gap:2px;cursor:pointer}.eg i{flex:1;background:var(--line);border-radius:2px 2px 0 0;min-height:3px}.eg i.on{background:var(--cob)}.eg i.pk{background:var(--ora)}
 .segn{font-size:12px;color:var(--gray)}
+/* answer view: 16:9 two-column */
+.stage.rv{justify-content:flex-start;padding:4.5vh 5vw 5vh;gap:2.2vh}
+.stage.rv .big,.stage.rv .seg,.stage.rv>.ctl,.stage.rv .msg:empty{display:none}
+.stage.rv .no{font-size:clamp(18px,3vh,30px)}.stage.rv .bar{height:10px}
+.ans.on{display:grid;grid-template-columns:1.15fr 1fr;gap:4vw;width:100%;flex:1;min-height:0;align-items:center;text-align:left}
+.al{display:flex;flex-direction:column;gap:1.8vh;align-items:flex-start;min-width:0}
+.tag{background:var(--ora);color:#fff;font-weight:900;border-radius:999px;padding:.3em 1em;font-size:clamp(14px,2.4vh,22px)}
+.ans .s{font-size:min(6.4vw,12vh);line-height:1.1;word-break:keep-all}
+.ans .a{font-size:min(3vw,6vh)}.ans .r{font-size:min(1.6vw,3vh)}
+.ans .ask{font-size:min(1.7vw,3.2vh);line-height:1.4;margin-top:1vh}
+.arr{display:flex;flex-direction:column;gap:1.6vh;min-width:0}
+.arr .pl{width:100%;height:auto;aspect-ratio:16/9;max-height:38vh}.arr .pl .meta{display:block;padding:0 6%;align-content:center;font-size:min(1.35vw,2.6vh);line-height:1.7;color:var(--ink);font-weight:700}.arr .pl .meta{display:grid}.arr .pl .meta a{color:var(--cob)}
+.arr .kara{justify-content:center;font-size:min(1.9vw,3.6vh);padding:1.6vh 1em}
+.arr .kara2{margin:0;display:flex;justify-content:center;text-decoration:none;background:var(--paper);color:var(--ink);border-radius:999px;padding:1.4vh 1em;font-weight:900;font-size:min(1.5vw,2.9vh)}
+.ctl2{display:flex;gap:1vw}.ctl2 button{flex:1;border:0;border-radius:999px;padding:1.4vh 1em;font:inherit;font-weight:900;font-size:min(1.4vw,2.7vh);cursor:pointer;background:var(--paper);color:var(--ink)}.ctl2 button.p{background:var(--cob);color:#fff}
 .back{position:absolute;left:2vw;top:2vw;border:0;background:var(--paper);color:var(--ink);border-radius:999px;padding:10px 18px;font:inherit;font-weight:900;cursor:pointer}
 .msg{font-size:14px;color:var(--ora);font-weight:700;min-height:1em}
 @media (max-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}
@@ -73,10 +88,10 @@ header p{margin:.4em 0 0;font-size:clamp(14px,1.3vw,20px);color:var(--gray);font
  <div class="seg"><div class="segh"><b>10초 듣기 구간</b><span id="sv"></span><button id="sm">◀ 1초</button><button id="sp">1초 ▶</button><button id="sauto">클라이맥스로</button></div>
   <div class="eg" id="eg" title="누른 곳부터 10초를 들려줍니다"></div>
   <div class="segn" id="segn">막대가 높은 곳일수록 소리가 큰 부분입니다 · 막대를 누르면 그곳부터 10초를 들려줍니다 · 정한 구간은 이 컴퓨터에 저장됩니다</div></div>
- <div class="ans" id="ans"><div class="s" id="as"></div><div class="a" id="aa"></div><div class="r" id="ar"></div>
-  <div class="ask">이 노래가 나올 때, 나는 몇 살이었고 어디에 있었나요?</div>
-  <div class="ctl"><a class="p kara" id="kara" target="_blank" rel="noopener">🎤 다같이 부르기 (노래방 화면)</a><a class="kara2" id="orig" target="_blank" rel="noopener">📺 가사 보며 원곡 듣기 (그 시절 영상)</a></div>
-  <div class="ctl"><button class="p" id="cont">▶ 이어서 듣기</button><button id="stop">■ 멈춤</button></div></div>
+ <div class="ans" id="ans"><div class="al"><div class="tag">정답</div><div class="s" id="as"></div><div class="a" id="aa"></div><div class="r" id="ar"></div>
+  <div class="ask">이 노래가 나올 때, 나는 몇 살이었고 어디에 있었나요?</div></div>
+  <div class="arr" id="arr"><a class="kara" id="kara" target="_blank" rel="noopener">🎤 다같이 부르기 (노래방 화면)</a><a class="kara2" id="orig" target="_blank" rel="noopener">📺 가사 보며 원곡 듣기 (그 시절 영상)</a>
+  <div class="ctl2"><button class="p" id="cont">▶ 30초 다시 듣기</button><button id="stop">■ 멈춤</button></div></div></div>
  <div class="pl" id="pl"><div class="cover"><div class="lv" id="lv"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="lt" id="lt">🎵</div></div><div class="meta" id="meta"></div></div><audio id="au" preload="auto" crossorigin="anonymous"></audio></div>
 </div>
 <script>
@@ -111,7 +126,7 @@ function meterOn(){try{if(!actx){actx=new (window.AudioContext||window.webkitAud
    if(n===25&&heard<3)$('lt').textContent='막대가 움직이지 않으면 인터넷 연결을 확인해 주세요';
    if(n===25&&heard>=3)$('lt').textContent='막대가 움직이는데 소리가 안 들리면 컴퓨터 소리·스피커를 확인해 주세요'},80)}
 function meterOff(){clearInterval(meterT);document.querySelectorAll('#lv i').forEach(b=>b.style.height='4px');$('lt').textContent='🎵'}
-function open(i){cur=i;$('stage').classList.add('on');$('no').textContent=(i<5?'1라운드 · ':'2라운드 · ')+(i+1)+'번 노래';$('big').textContent='♪ '+(i+1);$('ans').classList.remove('on');$('pl').classList.remove('show');$('msg').textContent='';stop();au.src=SONGS[i].aud;au.load();segUI();analyze(i);
+function open(i){cur=i;$('stage').classList.add('on');$('no').textContent=(i<5?'1라운드 · ':'2라운드 · ')+(i+1)+'번 노래';$('big').textContent='♪ '+(i+1);$('ans').classList.remove('on');$('stage').classList.remove('rv');$('stage').insertBefore($('pl'),$('au'));$('pl').classList.remove('show');$('msg').textContent='';stop();au.src=SONGS[i].aud;au.load();segUI();analyze(i);
   const s=SONGS[i];$('meta').innerHTML='미리듣기 제공: Apple Music<br>'+s.artist+' 「'+s.song+'」'+(s.note?'<br>'+s.note:'')+'<br><a target="_blank" href="https://www.youtube.com/watch?v='+s.id+'">유튜브에서 가사와 함께 전곡 듣기</a>'}
 function play(sec, from){clearTimeout(stopT);clearInterval(barT);$('bar').style.width='0';
   try{au.currentTime=from}catch(e){}
@@ -122,7 +137,7 @@ function play(sec, from){clearTimeout(stopT);clearInterval(barT);$('bar').style.
 au.onerror=()=>{$('msg').textContent='미리듣기를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.'};
 function stop(){clearTimeout(stopT);clearInterval(barT);$('bar').style.width='0';au.pause();meterOff()}
 $('play3').onclick=()=>play(10,startOf(cur));$('again').onclick=()=>play(10,startOf(cur));$('more').onclick=()=>play(30,0);
-$('reveal').onclick=()=>{const s=SONGS[cur];$('as').textContent='「'+s.song+'」';$('aa').textContent=s.artist+' · '+s.rel+'년';$('ar').textContent=s.rank;$('kara').href='https://www.youtube.com/results?search_query='+encodeURIComponent('TJ노래방 '+s.song+' '+s.artist);$('orig').href='https://www.youtube.com/watch?v='+s.id;$('ans').classList.add('on');$('pl').classList.add('show');done.add(cur);save('m80_done2',[...done])};
+$('reveal').onclick=()=>{const s=SONGS[cur];$('as').textContent='「'+s.song+'」';$('aa').textContent=s.artist+' · '+s.rel+'년';$('ar').textContent=s.rank;$('kara').href='https://www.youtube.com/results?search_query='+encodeURIComponent('TJ노래방 '+s.song+' '+s.artist);$('orig').href='https://www.youtube.com/watch?v='+s.id;$('ans').classList.add('on');$('stage').classList.add('rv');$('arr').prepend($('pl'));$('pl').classList.add('show');done.add(cur);save('m80_done2',[...done])};
 $('cont').onclick=()=>play(30,0);$('stop').onclick=stop;
 $('back').onclick=()=>{stop();$('stage').classList.remove('on');grid()};
 $('sm').onclick=()=>{st[cur]=Math.max(0,startOf(cur)-1);save('m80_st3',st);segUI()};$('sauto').onclick=()=>{delete st[cur];save('m80_st3',st);segUI();play(10,startOf(cur))};
