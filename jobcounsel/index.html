@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>직업상담사 2급 합격 학습</title>
+<meta name="description" content="직업상담사 2급 필기·실기 문제풀이와 간격 반복 암기 학습 앱">
+<meta name="theme-color" content="#1f4fbf">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="직업상담사">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: 차분한 수험 노트. 설명보다 문제와 입력칸이 먼저.
+   IDEA: 손으로 넘기는 단어장과 OMR 답안지.
+   PICTURE: 첫 화면은 오늘 풀 카드 묶음과 시험까지 남은 날.
+   COLOUR and TYPE: 베이지 바탕, 먹색 글자, 코발트 블루 강조. Noto Sans KR.
+   LAYOUT: 상단 탭, 한 열의 학습 카드, 넓은 화면에서 옆에 진행 패널. */
+:root{color-scheme:light dark;
+--bg:light-dark(#f4efe6,#16181d);--card:light-dark(#fffdf8,#1f2229);--ink:light-dark(#1e1c1a,#ece8e0);
+--mute:light-dark(#6d665c,#a39d93);--line:light-dark(#e2d9c9,#343844);--blue:light-dark(#1f4fbf,#7ea2ff);
+--blue2:light-dark(#e3eafb,#26324f);--red:light-dark(#b8322a,#ff8a80);--red2:light-dark(#fbe6e3,#4a2522);
+--ok:light-dark(#1f4fbf,#7ea2ff);--warn:light-dark(#9a6b00,#f2c14e);--warn2:light-dark(#fbf0d6,#40361d)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Pretendard,"Noto Sans KR",system-ui,sans-serif;overflow-x:clip}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:10px 14px;min-height:44px}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+button.pri{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
+:root[data-theme=dark] button.pri{color:#10131a}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) button.pri{color:#10131a}}
+button.ghost{background:transparent}
+button:disabled{opacity:.45;cursor:default}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;gap:12px;padding:10px max(4vw,14px);flex-wrap:wrap}
+.top h1{font-size:18px;margin:0;font-weight:800;letter-spacing:-.01em}
+.top .dd{margin-left:auto;font-size:14px;color:var(--mute)}
+nav{display:flex;gap:4px;overflow-x:auto;padding:0 max(4vw,14px) 8px}
+nav a{flex:none;text-decoration:none;color:var(--mute);padding:8px 12px;border-radius:999px;font-weight:500;font-size:15px}
+nav a.on{background:var(--ink);color:var(--bg)}
+main{max-width:1100px;margin:0 auto;padding:20px max(4vw,14px) 80px}
+h2{font-size:30px;line-height:1.15;margin:4px 0 14px;letter-spacing:-.02em}
+h3{font-size:19px;margin:22px 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.big{font-size:clamp(34px,6vw,52px);font-weight:800;line-height:1;letter-spacing:-.03em}
+.mute{color:var(--mute)}.small{font-size:14px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.today{background:var(--blue);color:#fff;border:0}
+:root[data-theme=dark] .today{color:#10131a}
+.today .mute{color:inherit;opacity:.8}
+.today button.pri{background:#fff;color:#1f4fbf;border-color:#fff}
+.bar{height:10px;border-radius:5px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;background:var(--blue)}
+.bars .r{display:grid;grid-template-columns:9.5em minmax(0,1fr) 3.5em;gap:10px;align-items:center;margin:8px 0;font-size:15px}
+.bars .r b{text-align:right;font-variant-numeric:tabular-nums}
+.boxes{display:flex;gap:4px;align-items:flex-end;height:90px;margin-top:8px}
+.boxes div{flex:1;background:var(--blue2);border-radius:6px 6px 0 0;position:relative;min-height:4px}
+.boxes div span{position:absolute;top:-20px;left:0;right:0;text-align:center;font-size:12px;color:var(--mute)}
+.blab{display:flex;gap:4px;font-size:12px;color:var(--mute)}.blab span{flex:1;text-align:center}
+/* session */
+.sess{max-width:760px;margin:0 auto}
+.prog{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:14px;color:var(--mute)}
+.prog .bar{flex:1}
+.tag{display:inline-block;font-size:13px;padding:2px 9px;border-radius:999px;background:var(--blue2);color:var(--blue);font-weight:600;margin-right:6px}
+.tag.rev{background:var(--warn2);color:var(--warn)}
+.q{font-size:19px;font-weight:600;line-height:1.55;margin:12px 0 16px}
+.opts{display:grid;gap:8px}
+.opts button{text-align:left;display:flex;gap:10px;padding:12px 14px;font-size:16px}
+.opts button .n{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:14px}
+.opts button.right{border-color:var(--blue);background:var(--blue2)}
+.opts button.wrong{border-color:var(--red);background:var(--red2)}
+.fb{margin-top:14px;padding:14px;border-radius:12px;background:var(--bg);border:1px solid var(--line);font-size:15.5px}
+.fb.ok{border-color:var(--blue)}.fb.no{border-color:var(--red)}
+.fb strong.ok{color:var(--blue)}.fb strong.no{color:var(--red)}
+.ask{margin-top:12px}.ask p{margin:0 0 8px;font-weight:600;font-size:15px}
+.cz{font-size:18px;line-height:2.3}
+.cz input{border:0;border-bottom:2px solid var(--blue);background:var(--blue2);border-radius:6px 6px 0 0;padding:2px 8px;font-size:17px;min-width:4em;max-width:100%;height:36px}
+.cz input.r{border-color:var(--blue);background:transparent;color:var(--blue);font-weight:700}
+.cz input.w{border-color:var(--red);background:var(--red2)}
+.cz .ans{font-size:14px;color:var(--red);font-weight:600;margin:0 4px}
+.mn{margin-top:10px;font-size:15px;color:var(--warn);background:var(--warn2);padding:8px 12px;border-radius:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chips button{font-size:15px}
+.seq{min-height:52px;border:1.5px dashed var(--line);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.seq span{background:var(--blue2);color:var(--blue);padding:6px 10px;border-radius:8px;font-weight:600;font-size:15px}
+.seq span.w{background:var(--red2);color:var(--red)}
+.mt{display:grid;gap:8px}
+.mt .m{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:8px;align-items:center}
+.mt select{width:100%;min-height:44px;border:1px solid var(--line);border-radius:10px;background:var(--card);padding:6px 8px;font-size:15px}
+.mt select.r{border-color:var(--blue)}.mt select.w{border-color:var(--red);background:var(--red2)}
+textarea{width:100%;min-height:170px;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:12px;font-size:16px;line-height:1.6}
+.kw{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.kw span{padding:4px 10px;border-radius:999px;font-size:14px;font-weight:600;background:var(--red2);color:var(--red)}
+.kw span.hit{background:var(--blue2);color:var(--blue)}
+pre.model{white-space:pre-wrap;font:inherit;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:center;vertical-align:middle}
+th{font-weight:700;background:var(--bg)}
+td.l,th.l{text-align:left}
+.scroll{overflow-x:auto}
+a{color:var(--blue)}
+.list .it{padding:12px 0;border-bottom:1px solid var(--line)}
+.pill{font-size:13px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mute);margin-left:4px}
+.timer{font-variant-numeric:tabular-nums;font-weight:800;font-size:22px}
+.res td b{font-size:18px}
+.fail{color:var(--red);font-weight:700}.pass{color:var(--blue);font-weight:700}
+details{margin:8px 0}summary{cursor:pointer;font-weight:600;min-height:32px}
+.note{font-size:14px;color:var(--mute);margin-top:6px}
+@media(max-width:600px){h2{font-size:25px}.q{font-size:17.5px}.bars .r{grid-template-columns:7.5em minmax(0,1fr) 3em;font-size:14px}table{font-size:13px}
+.stack thead{display:none}.stack tr{display:grid;padding-block:10px}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:7.5em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7em;margin-inline-start:-7.5em;color:var(--mute);font-size:12.5px}}
+@media (prefers-reduced-motion:no-preference){.pop{animation:pop .25s ease-out}@keyframes pop{from{transform:translateY(6px);opacity:.3}to{transform:none;opacity:1}}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top"><h1>직업상담사 2급 합격 학습</h1><span class="dd" id="dd"></span></div>
+ <nav id="nav"></nav>
+</header>
+<main id="app"><p class="mute">문제를 불러오는 중입니다.</p></main>
+<script>
+{
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const DAY=864e5, INT=[0,1,3,7,14,30,60];
+const todayStr=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const addDays=(s,n)=>{const d=new Date(s+'T00:00:00');d.setDate(d.getDate()+n);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const norm=s=>String(s).toLowerCase().replace(/[\s·.,()\-–~·'"‘’“”/]/g,'');
+const SUBS=['P','C','I','L','R'];
+const TYPE={mcq:'4지선다',cloze:'빈칸 쓰기',order:'순서 맞추기',match:'짝 맞추기',prac:'실기 백지 쓰기'};
+const KEY='jsa2-progress-v1';
+let D=null, S={items:{},log:{},mock:[],past:{},settings:{newCloze:15,newMcq:15,newPrac:2}};
+let mem=null;
+try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw))}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+
+/* ---------- schedule (고용노동부 공고 제2026-518호) ---------- */
+const SCHED=[
+ {r:'1회',wa:'1.18(월)~1.21(목)',w:'2.12(금)~3.2(화)',wp:'3.10(수)',pa:'3.22(월)~3.25(목)',p:'4.18(일)',f:'6.11(금)'},
+ {r:'2회',wa:'4.12(월)~4.15(목)',w:'5.7(금)~5.26(수)',wp:'6.2(수)',pa:'6.15(화)~6.18(금)',p:'7.10(토)',f:'9.10(금)'},
+ {r:'3회',wa:'7.20(화)~7.23(금)',w:'8.13(금)~9.1(수)',wp:'9.8(수)',pa:'9.21(화)~9.24(금)',p:'11.6(토) 13:30',f:'12.31(금)'}];
+const DDAY=[['필기 접수','2027-01-18'],['필기 시작','2027-02-12'],['실기(필답형)','2027-04-18']];
+const PAST=[['2022.04.24','2회','5871861'],['2022.03.05','1회','5763531'],['2021.08.14','3회','5389427'],['2021.05.15','2회','5185001'],['2021.03.07','1회','5008445'],['2020.09.26','4회','4567025'],['2020.08.22','3회','4494935'],['2020.06.06','1·2회 통합','4376398'],['2019.08.04','3회','3721736'],['2019.04.27','2회','3567990'],['2019.03.03','1회','3507483'],['2018.08.19','3회','3100680'],['2018.04.28','2회','2924087'],['2018.03.04','1회','2849760'],['2017.08.26','3회','2849750'],['2017.05.18','2회','2625056'],['2017.03.05','1회','2573205'],['2016.08.21','3회','2564069'],['2016.05.08','2회','2564056']];
+const LAW=[
+ ['배우자 출산휴가','10일, 출산 후 90일 이내','20일, 출산일부터 120일 이내 청구, 3회 분할','2025.2.23'],
+ ['육아휴직','1년, 2회 분할','1년. 부모 각각 3개월 이상 사용·한부모·중증 장애아동 부모는 1년 6개월. 3회 분할','2025.2.23'],
+ ['육아기 근로시간 단축','만 8세 이하, 최대 2년, 분할 최소 3개월','만 12세 이하(초6), 1년+미사용 육아휴직의 2배, 분할 최소 1개월','2025.2.23'],
+ ['난임치료휴가','연 3일(1일 유급)','연 6일. 유급은 최초 2일, 2026.11.27부터 최초 4일로 확대 보도','2025.2.23'],
+ ['미숙아 출산전후휴가','90일','100일','2025.2.23'],
+ ['육아휴직급여 상한','월 150만원','1~3개월 250만원, 4~6개월 200만원, 7개월~ 160만원','2025.1.1'],
+ ['최저임금','2025년 10,030원','2026년 10,320원 → 2027년 10,700원(월 2,236,300원)','2027.1.1'],
+ ['구직급여 1일 상한','66,000원','68,100원(하한=최저임금×80%×8시간, 2026년 66,048원)','2026.1.1'],
+ ['배우자 출산전후휴가·유산사산휴가','없음','출산예정일 전 사용, 배우자 유산·사산휴가 신설로 보도(2026 하반기)','시험 직전 국가법령정보센터 확인']];
+
+/* ---------- item helpers ---------- */
+let ALL=[];
+const st=id=>S.items[id]||(S.items[id]={b:0,due:null,n:0,w:0,c:0});
+const isNew=id=>!S.items[id]||S.items[id].n===0;
+const isDue=id=>{const x=S.items[id];return x&&x.n>0&&x.due&&x.due<=todayStr()};
+function grade(id,result,reason){ // result: 'sure'|'unsure'|'wrong'
+ const x=st(id),t=todayStr();x.n++;x.last=t;
+ if(result==='wrong'){x.w++;x.b=1;x.due=addDays(t,1);x.reason=reason||x.reason}
+ else if(result==='unsure'){x.c++;x.b=Math.max(1,Math.min(x.b,2));x.due=addDays(t,INT[x.b]);x.unsure=(x.unsure||0)+1}
+ else{x.c++;x.b=Math.min(6,x.b+1);x.due=addDays(t,INT[x.b])}
+ const L=S.log[t]||(S.log[t]={n:0,ok:0});L.n++;if(result!=='wrong')L.ok++;
+ save();
+}
+const subOf=id=>ALL.find(a=>a.id===id)?.s;
+function subStats(s){let n=0,ok=0;for(const it of ALL){if(it.s!==s)continue;const x=S.items[it.id];if(x&&x.n){n+=x.n;ok+=x.c}}return{n,ok,p:n?Math.round(ok/n*100):null}}
+function weakTopics(){const m={};for(const it of ALL){const x=S.items[it.id];if(!x||!x.n)continue;const k=D.sub[it.s]+' · '+it.t;m[k]=m[k]||{w:0,n:0};m[k].w+=x.w+(x.unsure||0)*.5;m[k].n+=x.n}
+ return Object.entries(m).filter(([k,v])=>v.w>0).sort((a,b)=>b[1].w/b[1].n-a[1].w/a[1].n).slice(0,6)}
+
+/* ---------- queue building ---------- */
+function interleave(list){const by={};for(const it of list)(by[it.s]=by[it.s]||[]).push(it);const keys=Object.keys(by);const out=[];let k=0;
+ while(out.length<list.length){const arr=by[keys[k%keys.length]];if(arr&&arr.length)out.push(arr.shift());k++}return out}
+function buildToday(){
+ const due=ALL.filter(a=>isDue(a.id));
+ const pickNew=(type,n)=>interleave(shuffle(ALL.filter(a=>a.type===type&&isNew(a.id)))).slice(0,n);
+ const fresh=[...pickNew('cloze',S.settings.newCloze),...pickNew('mcq',S.settings.newMcq),...pickNew('order',1),...pickNew('match',1),...pickNew('prac',S.settings.newPrac)];
+ return interleave(shuffle([...due,...fresh]));
+}
+function buildFocus(s,type){
+ const pool=ALL.filter(a=>(s==='all'||a.s===s)&&(type==='all'||a.type===type));
+ const due=pool.filter(a=>isDue(a.id)),nw=pool.filter(a=>isNew(a.id)),rest=pool.filter(a=>!isDue(a.id)&&!isNew(a.id));
+ return [...shuffle(due),...shuffle(nw),...shuffle(rest)].slice(0,25);
+}
+function buildWeak(){return shuffle(ALL.filter(a=>{const x=S.items[a.id];return x&&(x.w>0||x.unsure)})).sort((a,b)=>(S.items[b.id].w-S.items[a.id].w)).slice(0,25)}
+
+/* ---------- session runner ---------- */
+let SES=null;
+function startSession(list,title){if(!list.length){alertBox('지금 풀 문항이 없습니다. 다른 묶음을 고르십시오.');return}
+ SES={q:list.slice(),i:0,title,done:0,ok:0,total:list.length,retry:{}};location.hash='session';render()}
+function alertBox(msg){const a=$('#app');const p=document.createElement('div');p.className='fb no pop';p.textContent=msg;a.prepend(p);setTimeout(()=>p.remove(),3500)}
+function nextItem(result,reason){
+ const it=SES.q[SES.i];grade(it.id,result,reason);SES.done++;if(result!=='wrong')SES.ok++;
+ if(result==='wrong'&&(SES.retry[it.id]||0)<2){SES.retry[it.id]=(SES.retry[it.id]||0)+1;const pos=Math.min(SES.q.length,SES.i+4);SES.q.splice(pos,0,it)}
+ SES.i++;render();window.scrollTo({top:0})}
+function askAfter(ok,el){
+ el.insertAdjacentHTML('beforeend',ok?
+ `<div class="ask"><p>얼마나 확실했나요?</p><div class="row"><button class="pri" data-g="sure">확실히 알았다</button><button data-g="unsure">헷갈렸다 · 찍었다</button></div></div>`:
+ `<div class="ask"><p>틀린 이유를 고르십시오.</p><div class="row"><button data-g="wrong" data-r="몰랐다">몰랐다</button><button data-g="wrong" data-r="헷갈렸다">헷갈렸다</button><button data-g="wrong" data-r="실수">실수했다</button></div></div>`);
+ el.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>nextItem(b.dataset.g,b.dataset.r));
+ el.querySelector('[data-g]').focus({preventScroll:true});
+}
+function head(it){return `<span class="tag">${esc(D.sub[it.s])}</span><span class="tag">${TYPE[it.type]}</span>${it.rev?'<span class="tag rev">법 개정 반영</span>':''}${it.f===3?'<span class="pill">기출 빈출 ★★★</span>':it.f===2?'<span class="pill">기출 ★★</span>':''}`}
+function renderSession(){
+ const a=$('#app');
+ if(!SES){a.innerHTML=`<div class="card"><p>진행 중인 학습이 없습니다.</p><button class="pri" onclick="location.hash='home'">홈으로</button></div>`;return}
+ if(SES.i>=SES.q.length){const p=Math.round(SES.ok/Math.max(1,SES.done)*100);
+  a.innerHTML=`<div class="sess card pop"><h2>${esc(SES.title)} 완료</h2><p class="big">${p}%</p><p class="mute">${SES.done}번 풀어서 ${SES.ok}번 맞혔습니다. 틀린 문항은 내일 다시 나옵니다. 맞힌 문항은 3일, 7일, 14일, 30일 간격으로 다시 나옵니다.</p><div class="row"><button class="pri" id="again">한 묶음 더</button><button onclick="location.hash='home'">홈</button></div></div>`;
+  $('#again').onclick=()=>startSession(buildToday(),'오늘의 학습');SES=null;return}
+ const it=SES.q[SES.i];
+ a.innerHTML=`<div class="sess"><div class="prog"><span>${esc(SES.title)}</span><div class="bar"><i style="width:${SES.i/SES.q.length*100}%"></i></div><span>${SES.i+1}/${SES.q.length}</span></div><div class="card pop" id="cardx">${head(it)}<div id="body"></div></div></div>`;
+ const body=$('#body');({mcq:rMcq,cloze:rCloze,order:rOrder,match:rMatch,prac:rPrac})[it.type](it,body);
+}
+function rMcq(it,el){
+ const ord=shuffle([0,1,2,3]);
+ el.innerHTML=`<div class="q">${esc(it.q)}</div><div class="opts">${ord.map((k,i)=>`<button data-k="${k}"><span class="n">${i+1}</span><span>${esc(it.o[k])}</span></button>`).join('')}</div><p class="note">숫자 키 1~4로도 고를 수 있습니다.</p>`;
+ let done=false;const bs=[...el.querySelectorAll('.opts button')];
+ const pick=b=>{if(done)return;done=true;const k=+b.dataset.k,ok=k===it.a;
+  bs.forEach(x=>{x.disabled=true;if(+x.dataset.k===it.a)x.classList.add('right')});if(!ok)b.classList.add('wrong');
+  el.insertAdjacentHTML('beforeend',`<div class="fb ${ok?'ok':'no'}"><strong class="${ok?'ok':'no'}">${ok?'정답입니다.':'오답입니다. 정답: '+esc(it.o[it.a])}</strong><br>${esc(it.e).replace(/ ▸ /g,'<br>▸ ')}</div>`);
+  document.onkeydown=null;askAfter(ok,el)};
+ bs.forEach(b=>b.onclick=()=>pick(b));
+ document.onkeydown=e=>{if(/^[1-4]$/.test(e.key)&&!done)pick(bs[+e.key-1])};
+}
+function rCloze(it,el){
+ const parts=it.x.split(/(\[\[.+?\]\])/);let bi=0;const ans=[];
+ const html=parts.map(p=>{const m=p.match(/^\[\[(.+)\]\]$/);if(!m)return esc(p);ans.push(m[1].split('/'));const w=Math.max(4,m[1].split('/')[0].length+1);return `<input data-i="${bi++}" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${w*1.05}em" aria-label="빈칸 ${bi}">`}).join('');
+ el.innerHTML=`<div class="q small mute">${esc(it.t)} — 빈칸을 직접 쓰십시오</div><div class="cz">${html}</div><div class="row" style="margin-top:12px"><button class="pri" id="chk">확인 (Enter)</button><button id="hint">첫 글자 힌트</button><button class="ghost" id="give">모르겠다</button></div>`;
+ const ins=[...el.querySelectorAll('input')];let hinted=false,done=false;ins[0].focus();
+ ins.forEach((x,i)=>x.addEventListener('keydown',e=>{if(e.isComposing||e.keyCode===229)return;if(e.key==='Enter'){e.preventDefault();if(i<ins.length-1&&!x.value.trim())return;if(i<ins.length-1&&!ins[i+1].value)ins[i+1].focus();else check()}}));
+ $('#hint').onclick=()=>{hinted=true;ins.forEach((x,i)=>{if(!x.value)x.placeholder=ans[i][0][0]+'…'})};
+ $('#give').onclick=()=>check(true);$('#chk').onclick=()=>check();
+ function check(giveup){if(done)return;done=true;let all=true;
+  ins.forEach((x,i)=>{const ok=!giveup&&ans[i].some(a=>norm(a)===norm(x.value));x.readOnly=true;x.classList.add(ok?'r':'w');if(!ok){all=false;x.insertAdjacentHTML('afterend',`<span class="ans">${esc(ans[i][0])}</span>`)}});
+  el.querySelectorAll('.row button').forEach(b=>b.disabled=true);
+  el.insertAdjacentHTML('beforeend',`<div class="fb ${all?'ok':'no'}"><strong class="${all?'ok':'no'}">${all?(hinted?'맞혔습니다. 힌트를 썼으므로 짧은 간격으로 다시 나옵니다.':'모두 맞혔습니다.'):'빨간 칸의 정답을 소리 내어 한 번 읽으십시오. 잠시 뒤 다시 나옵니다.'}</strong></div>${it.mn?`<div class="mn">외우는 법: ${esc(it.mn)}</div>`:''}`);
+  if(all&&hinted){el.insertAdjacentHTML('beforeend',`<div class="ask"><button class="pri" id="nx">다음</button></div>`);$('#nx').onclick=()=>nextItem('unsure');$('#nx').focus()}
+  else askAfter(all,el)}
+}
+function rOrder(it,el){
+ const pool=shuffle(it.items.map((t,i)=>({t,i})));const seq=[];
+ el.innerHTML=`<div class="q">${esc(it.t)}: 순서대로 누르십시오</div><div class="seq" id="seq"><span class="mute small" style="background:none">여기에 쌓입니다</span></div><div class="chips" id="pool"></div><div class="row"><button class="ghost" id="undo">하나 빼기</button><button class="pri" id="chk" disabled>확인</button></div>`;
+ const draw=()=>{$('#seq').innerHTML=seq.length?seq.map(o=>`<span>${esc(o.t)}</span>`).join('<b class="mute">→</b>'):'<span class="mute small" style="background:none">여기에 쌓입니다</span>';
+  $('#pool').innerHTML=pool.filter(o=>!seq.includes(o)).map(o=>`<button data-i="${o.i}">${esc(o.t)}</button>`).join('');
+  $('#pool').querySelectorAll('button').forEach(b=>b.onclick=()=>{seq.push(pool.find(o=>o.i==b.dataset.i));draw()});$('#chk').disabled=seq.length<pool.length};
+ draw();$('#undo').onclick=()=>{seq.pop();draw()};
+ $('#chk').onclick=()=>{const ok=seq.every((o,k)=>o.i===k);$('#seq').innerHTML=seq.map((o,k)=>`<span class="${o.i===k?'':'w'}">${esc(o.t)}</span>`).join('<b class="mute">→</b>');
+  el.querySelectorAll('.row button').forEach(b=>b.disabled=true);$('#pool').innerHTML='';
+  el.insertAdjacentHTML('beforeend',`<div class="fb ${ok?'ok':'no'}"><strong class="${ok?'ok':'no'}">${ok?'순서가 맞습니다.':'정답 순서'}</strong><br>${it.items.map(esc).join(' → ')}</div>`);askAfter(ok,el)};
+}
+function rMatch(it,el){
+ const rights=shuffle(it.pairs.map(p=>p[1]));
+ el.innerHTML=`<div class="q">${esc(it.t)}: 짝을 맞추십시오</div><div class="mt">${it.pairs.map((p,i)=>`<div class="m"><b>${esc(p[0])}</b><select data-i="${i}" aria-label="${esc(p[0])}의 짝"><option value="">선택</option>${rights.map(r=>`<option>${esc(r)}</option>`).join('')}</select></div>`).join('')}</div><div class="row" style="margin-top:12px"><button class="pri" id="chk">확인</button></div>`;
+ $('#chk').onclick=()=>{let all=true;el.querySelectorAll('select').forEach(s=>{const ok=s.value===it.pairs[s.dataset.i][1];s.classList.add(ok?'r':'w');s.disabled=true;if(!ok){all=false;s.insertAdjacentHTML('afterend',`<span class="small" style="color:var(--red);grid-column:2">정답: ${esc(it.pairs[s.dataset.i][1])}</span>`)}});
+  $('#chk').disabled=true;el.insertAdjacentHTML('beforeend',`<div class="fb ${all?'ok':'no'}"><strong class="${all?'ok':'no'}">${all?'모두 맞았습니다.':'틀린 짝을 확인하십시오.'}</strong></div>`);askAfter(all,el)};
+}
+function kwHits(it,text){const t=norm(text);return it.k.map(k=>({k:k.split('/')[0],hit:k.split('/').some(a=>t.includes(norm(a)))}))}
+function rPrac(it,el){
+ const need=it.n||it.k.length;
+ el.innerHTML=`<div class="q">${esc(it.q)}</div><textarea id="ta" placeholder="교재를 보지 말고 기억나는 대로 쓰십시오. 핵심 용어 + 한 줄 설명이 채점 기준입니다."></textarea><div class="row" style="margin-top:10px"><button class="pri" id="chk">채점하기</button><span class="note">필요한 핵심어 ${need}개</span></div>`;
+ const ta=$('#ta');ta.focus();try{const dr=sessionStorage.getItem('draft-'+it.id);if(dr)ta.value=dr}catch(e){}
+ ta.oninput=()=>{try{sessionStorage.setItem('draft-'+it.id,ta.value)}catch(e){}};
+ $('#chk').onclick=()=>{const h=kwHits(it,ta.value),hit=h.filter(x=>x.hit).length,ok=hit>=need;ta.readOnly=true;$('#chk').disabled=true;
+  el.insertAdjacentHTML('beforeend',`<div class="fb ${ok?'ok':'no'}"><strong class="${ok?'ok':'no'}">핵심어 ${hit}/${need}개 ${ok?'— 득점 가능한 답안입니다.':'— 빠진 핵심어를 확인하십시오.'}</strong><div class="kw">${h.map(x=>`<span class="${x.hit?'hit':''}">${esc(x.k)}</span>`).join('')}</div>모범답안<pre class="model">${esc(it.a)}</pre><p class="note">자동 채점은 단어 포함 여부만 봅니다. 설명이 정확한지는 모범답안과 비교해 스스로 판정하십시오.</p></div>
+  <div class="ask"><p>스스로 판정</p><div class="row"><button class="pri" data-g="sure">설명까지 정확히 썼다</button><button data-g="unsure">일부만 썼다</button><button data-g="wrong" data-r="몰랐다">거의 못 썼다</button></div></div>`);
+  try{sessionStorage.removeItem('draft-'+it.id)}catch(e){}
+  el.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>nextItem(b.dataset.g,b.dataset.r))};
+}
+
+/* ---------- mock exam ---------- */
+let MOCK=null;
+function startMock(){const qs=[];for(const s of SUBS)qs.push(...shuffle(D.mcq.filter(m=>m.s===s)).slice(0,20));
+ MOCK={qs,ans:{},start:Date.now(),end:Date.now()+150*60e3,cur:0,done:false};location.hash='mock';render()}
+let tick=null;
+function renderMock(){const a=$('#app');clearInterval(tick);
+ if(!MOCK){const hist=S.mock.slice(-8).reverse();
+  a.innerHTML=`<h2>실전 모의고사</h2><div class="card"><p>5과목 100문항, 150분입니다. 과목마다 문제은행에서 20문항을 무작위로 뽑습니다. 시험장과 같게 끝까지 풀고 제출한 뒤 해설을 봅니다.</p><p class="mute small">합격 기준: 과목별 40점 이상, 전 과목 평균 60점 이상</p><button class="pri" id="go">시작하기</button></div>
+  <h3>지난 기록</h3>${hist.length?`<div class="scroll"><table><thead><tr><th>날짜</th>${SUBS.map(s=>`<th>${esc(D.sub[s].slice(0,6))}</th>`).join('')}<th>평균</th><th>판정</th></tr></thead><tbody>${hist.map(h=>`<tr><td>${esc(h.d)}</td>${SUBS.map(s=>`<td class="${h.sc[s]<40?'fail':''}">${h.sc[s]}</td>`).join('')}<td><b>${h.avg}</b></td><td class="${h.pass?'pass':'fail'}">${h.pass?'합격':'불합격'}</td></tr>`).join('')}</tbody></table></div>`:'<p class="mute">아직 기록이 없습니다.</p>'}`;
+  $('#go').onclick=startMock;return}
+ if(MOCK.done)return renderMockResult();
+ const q=MOCK.qs[MOCK.cur];
+ a.innerHTML=`<div class="sess"><div class="prog"><span class="timer" id="tm"></span><div class="bar"><i style="width:${Object.keys(MOCK.ans).length}%"></i></div><span>${Object.keys(MOCK.ans).length}/100 답함</span></div>
+ <div class="card"><span class="tag">${esc(D.sub[q.s])}</span><span class="pill">${MOCK.cur+1}번</span><div class="q">${esc(q.q)}</div><div class="opts">${q.o.map((o,i)=>`<button data-k="${i}" class="${MOCK.ans[MOCK.cur]===i?'right':''}"><span class="n">${i+1}</span><span>${esc(o)}</span></button>`).join('')}</div>
+ <div class="row" style="margin-top:14px"><button id="pv" ${MOCK.cur?'':'disabled'}>이전</button><button id="nx" class="pri">${MOCK.cur<99?'다음':'마지막 문항'}</button><button class="ghost" id="sub">답안 제출</button></div></div>
+ <details><summary>문항 번호로 이동</summary><div class="chips">${MOCK.qs.map((x,i)=>`<button data-j="${i}" style="min-width:44px;${MOCK.ans[i]!=null?'background:var(--blue2)':''}">${i+1}</button>`).join('')}</div></details></div>`;
+ a.querySelectorAll('.opts button').forEach(b=>b.onclick=()=>{MOCK.ans[MOCK.cur]=+b.dataset.k;if(MOCK.cur<99)MOCK.cur++;render()});
+ $('#pv').onclick=()=>{MOCK.cur--;render()};$('#nx').onclick=()=>{if(MOCK.cur<99){MOCK.cur++;render()}};
+ a.querySelectorAll('[data-j]').forEach(b=>b.onclick=()=>{MOCK.cur=+b.dataset.j;render()});
+ $('#sub').onclick=()=>{const left=100-Object.keys(MOCK.ans).length;const s=$('#sub');if(s.dataset.c||!left){finishMock()}else{s.dataset.c=1;s.textContent=`안 푼 ${left}문항이 있습니다. 그래도 제출`}};
+ const upd=()=>{const r=MOCK.end-Date.now();if(r<=0){finishMock();return}const m=Math.floor(r/60e3),s=Math.floor(r%60e3/1e3);const t=$('#tm');if(t)t.textContent=`${m}:${String(s).padStart(2,'0')}`};
+ upd();tick=setInterval(upd,1000);
+ document.onkeydown=e=>{if(/^[1-4]$/.test(e.key)){MOCK.ans[MOCK.cur]=+e.key-1;if(MOCK.cur<99)MOCK.cur++;render()}};
+}
+function finishMock(){clearInterval(tick);document.onkeydown=null;MOCK.done=true;const sc={};
+ for(const s of SUBS){let c=0;MOCK.qs.forEach((q,i)=>{if(q.s===s&&MOCK.ans[i]===q.a)c++});sc[s]=c*5}
+ MOCK.qs.forEach((q,i)=>{const x=st(q.id);if(MOCK.ans[i]!==q.a){x.w++;x.b=1;x.due=addDays(todayStr(),1);x.n++}});
+ const avg=Math.round(SUBS.reduce((t,s)=>t+sc[s],0)/5*10)/10,pass=avg>=60&&SUBS.every(s=>sc[s]>=40);
+ MOCK.sc=sc;MOCK.avg=avg;MOCK.pass=pass;S.mock.push({d:todayStr(),sc,avg,pass,min:Math.round((Date.now()-MOCK.start)/60e3)});save();render()}
+function renderMockResult(){const a=$('#app');const M=MOCK;
+ a.innerHTML=`<h2>모의고사 결과: <span class="${M.pass?'pass':'fail'}">${M.pass?'합격':'불합격'}</span></h2>
+ <div class="card"><div class="bars">${SUBS.map(s=>`<div class="r"><span>${esc(D.sub[s])}</span><div class="bar"><i style="width:${M.sc[s]}%;${M.sc[s]<40?'background:var(--red)':''}"></i></div><b>${M.sc[s]}</b></div>`).join('')}</div><p>평균 <b>${M.avg}</b>점 ${SUBS.some(s=>M.sc[s]<40)?'<span class="fail">· 과락 과목이 있습니다</span>':''}</p>
+ <p class="mute small">틀린 문항은 자동으로 내일 복습 목록에 들어갔습니다.</p><div class="row"><button class="pri" id="rw">틀린 문항만 지금 다시 풀기</button><button id="nm">새 모의고사</button></div></div>
+ <h3>틀린 문항 해설</h3><div class="list">${M.qs.map((q,i)=>M.ans[i]===q.a?'':`<div class="it"><span class="tag">${esc(D.sub[q.s])}</span><b>${i+1}. ${esc(q.q)}</b><br><span class="fail small">내 답: ${M.ans[i]!=null?esc(q.o[M.ans[i]]):'안 풂'}</span> · <span class="pass small">정답: ${esc(q.o[q.a])}</span><br><span class="small">${esc(q.e).replace(/ ▸ /g,'<br>▸ ')}</span></div>`).join('')}</div>`;
+ $('#rw').onclick=()=>{const w=M.qs.filter((q,i)=>M.ans[i]!==q.a).map(q=>ALL.find(x=>x.id===q.id));MOCK=null;startSession(w,'모의고사 오답 재풀이')};
+ $('#nm').onclick=()=>{MOCK=null;startMock()};
+}
+
+/* ---------- pages ---------- */
+function phase(){const t=todayStr();
+ if(t<'2026-12-28')return['1단계 · 전 과목 1회독 (~12.27)','매일 「오늘의 학습」 1묶음 이상. 새 빈칸 카드 15장, 새 문제 15문항. 다섯 과목이 섞여 나오도록 그대로 두십시오.'];
+ if(t<'2027-01-25')return['2단계 · 약점 집중과 기출 회차 (12.28~1.24)','오늘의 학습 + 「약점」 묶음. 주 2회 공개 기출 1회분(100문항)을 시간 재고 풀기. 1.18~1.21 원서접수.'];
+ if(t<'2027-02-12')return['3단계 · 실전 모의고사 (1.25~2.11)','모의고사 주 3회. 40점 미만 과목은 「과목 집중」으로 25문항씩 보충. 법 개정 수치표를 매일 1번 읽기.'];
+ if(t<'2027-03-03')return['필기 응시 기간 (2.12~3.2)','응시 전날까지 복습 카드만 처리. 시험일 아침에는 개정 수치 빈칸 카드만 풀기.'];
+ if(t<'2027-04-18')return['실기 집중 (~4.17)','「실기」에서 매일 백지 쓰기 8문항. 계산 문제(경제활동·탄력성·T점수)는 매일 2문항. 3.22~3.25 실기 원서접수.'];
+ return['다음 단계','최종 발표(6.11)를 기다리며 실기 오답만 반복하십시오.']}
+function dday(){const t=new Date(todayStr()+'T00:00:00');const nx=DDAY.find(d=>new Date(d[1]+'T00:00:00')>=t);if(!nx)return'';const n=Math.round((new Date(nx[1]+'T00:00:00')-t)/DAY);return `${nx[0]} D-${n}`}
+function renderHome(){const a=$('#app');
+ const due=ALL.filter(x=>isDue(x.id)).length,seen=ALL.filter(x=>!isNew(x.id)).length;
+ const box=[0,0,0,0,0,0,0];ALL.forEach(x=>{const s=S.items[x.id];box[s&&s.n?s.b:0]++});const mx=Math.max(...box,1);
+ const [ph,phd]=phase();const wk=weakTopics();const L=S.log[todayStr()]||{n:0,ok:0};
+ const streak=(()=>{let n=0,d=todayStr();if(!S.log[d])d=addDays(d,-1);while(S.log[d]){n++;d=addDays(d,-1)}return n})();
+ a.innerHTML=`<div class="hero">
+ <div class="card today"><div class="small mute">${esc(ph)}</div><h2 style="margin-top:6px">오늘 복습 ${due}개 + 새 학습</h2><p class="mute">${esc(phd)}</p>
+  <div class="row"><button class="pri" id="tgo">오늘의 학습 시작</button><span class="small mute">오늘 ${L.n}문항 · 연속 ${streak}일</span></div></div>
+ <div class="card"><div class="small mute">시험까지</div>${DDAY.map(d=>{const n=Math.round((new Date(d[1]+'T00:00:00')-new Date(todayStr()+'T00:00:00'))/DAY);return `<div class="row" style="justify-content:space-between;margin:6px 0"><span>${d[0]} <span class="mute small">${d[1].slice(5).replace('-','.')}</span></span><b style="font-size:24px">${n>=0?'D-'+n:'완료'}</b></div>`}).join('')}<p class="note">2027년 1회 기준(고용노동부 공고 제2026-518호). 접수는 첫날 10:00~마지막 날 18:00.</p></div></div>
+ ${installCard()}<h3>과목별 정답률</h3><div class="card bars">${SUBS.map(s=>{const t=subStats(s);return `<div class="r"><span>${esc(D.sub[s])}</span><div class="bar"><i style="width:${t.p||0}%;${t.p!=null&&t.p<60?'background:var(--red)':''}"></i></div><b>${t.p==null?'—':t.p+'%'}</b></div>`}).join('')}<p class="note">60% 미만은 빨간색입니다. 과락 기준은 40점입니다.</p></div>
+ <div class="grid" style="margin-top:14px">
+ <div class="card"><b>기억 상자</b><div class="mute small">왼쪽은 아직 안 본 카드, 오른쪽으로 갈수록 오래 기억하는 카드입니다. 전체 ${ALL.length}개 중 ${seen}개 학습.</div><div class="boxes">${box.map(n=>`<div style="height:${n/mx*100}%"><span>${n}</span></div>`).join('')}</div><div class="blab"><span>새</span><span>1일</span><span>3일</span><span>7일</span><span>14일</span><span>30일</span><span>60일</span></div></div>
+ <div class="card"><b>약점 주제</b>${wk.length?`<ol class="small" style="padding-left:20px;margin:8px 0">${wk.map(([k,v])=>`<li>${esc(k)} <span class="mute">(틀림·헷갈림 ${Math.round(v.w)})</span></li>`).join('')}</ol><button id="wgo">약점만 25문항</button>`:'<p class="mute small">문제를 풀면 자주 틀리는 주제가 여기에 모입니다.</p>'}</div>
+ <div class="card"><b>이 앱의 학습 방식</b><ul class="small" style="padding-left:18px;margin:8px 0">
+ <li><b>인출 연습</b>: 읽지 않고 먼저 풀고 씁니다.</li><li><b>간격 반복</b>: 맞히면 1·3·7·14·30·60일 뒤, 틀리면 다음 날 다시 나옵니다.</li><li><b>직접 쓰기</b>: 암기 항목은 빈칸에 타이핑합니다.</li><li><b>교차 학습</b>: 다섯 과목을 섞어 냅니다.</li><li><b>확신도 점검</b>: 찍어서 맞힌 문항은 짧은 간격으로 다시 냅니다.</li><li><b>오답 원인 기록</b>: 몰랐다·헷갈렸다·실수를 구분합니다.</li></ul></div></div>`;
+ $('#tgo').onclick=()=>startSession(buildToday(),'오늘의 학습');bindInstall();const w=$('#wgo');if(w)w.onclick=()=>startSession(buildWeak(),'약점 집중');
+}
+function renderFocus(){const a=$('#app');
+ const cnt=(s,t)=>ALL.filter(x=>(s==='all'||x.s===s)&&(t==='all'||x.type===t)).length;
+ a.innerHTML=`<h2>과목 집중</h2><p class="mute">과목과 문제 형태를 고르면 복습할 것, 새것, 나머지 순서로 25문항을 냅니다.</p>
+ <div class="card"><div class="row"><label>과목 <select id="fs" style="min-height:44px;border-radius:10px;padding:6px"><option value="all">전체</option>${SUBS.map(s=>`<option value="${s}">${esc(D.sub[s])}</option>`).join('')}</select></label>
+ <label>형태 <select id="ft" style="min-height:44px;border-radius:10px;padding:6px"><option value="all">전체</option>${Object.entries(TYPE).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></label><button class="pri" id="fgo">시작</button></div><p class="note" id="fc"></p></div>
+ <h3>주제별 바로가기</h3><div class="card">${SUBS.map(s=>{const ts=[...new Set(ALL.filter(x=>x.s===s).map(x=>x.t))];return `<p><b>${esc(D.sub[s])}</b><br>${ts.map(t=>`<button class="ghost" data-s="${s}" data-t="${esc(t)}" style="margin:3px;min-height:36px;padding:4px 10px;font-size:14px">${esc(t)}</button>`).join('')}</p>`}).join('')}</div>`;
+ const up=()=>$('#fc').textContent=`해당 문항 ${cnt($('#fs').value,$('#ft').value)}개`;$('#fs').onchange=up;$('#ft').onchange=up;up();
+ $('#fgo').onclick=()=>startSession(buildFocus($('#fs').value,$('#ft').value),'과목 집중');
+ a.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>startSession(shuffle(ALL.filter(x=>x.s===b.dataset.s&&x.t===b.dataset.t)),b.dataset.t));
+}
+function renderPrac(){const a=$('#app');
+ a.innerHTML=`<h2>실기 필답형</h2><div class="card"><p>실기는 「○가지 쓰고 설명하시오」 형식이 대부분입니다. 채점은 핵심 용어가 들어 있는지를 중심으로 합니다. 교재를 덮고 백지에 쓰듯 입력한 뒤 채점하십시오.</p>
+ <ul class="small"><li>요구한 개수만큼, 확실한 답부터 씁니다.</li><li>용어 뒤에 한 줄 설명을 붙입니다.</li><li>계산 문제는 공식 → 대입 → 답 → 단위를 모두 씁니다.</li><li>실무 경험보다 이론 용어로 답합니다.</li></ul>
+ <div class="row"><button class="pri" id="p8">오늘 8문항 쓰기</button><button id="pall">전체 ${D.prac.length}문항 순서대로</button></div></div>
+ <h3>문항 목록</h3><div class="card list">${D.prac.map(p=>{const x=S.items[p.id];return `<div class="it"><span class="tag">${esc(D.sub[p.s])}</span><b>${esc(p.t)}</b> ${x&&x.n?`<span class="pill">${x.w?'틀림 '+x.w:'통과'}</span>`:''}<br><span class="small">${esc(p.q)}</span></div>`}).join('')}</div>`;
+ $('#p8').onclick=()=>{const PR=ALL.filter(x=>x.type==='prac');const due=PR.filter(p=>isDue(p.id)),nw=PR.filter(p=>isNew(p.id));startSession([...shuffle(due),...nw,...shuffle(PR)].filter((v,i,ar)=>ar.indexOf(v)===i).slice(0,8),'실기 백지 쓰기')};
+ $('#pall').onclick=()=>startSession(ALL.filter(x=>x.type==='prac'),'실기 전체');
+}
+function renderWrong(){const a=$('#app');
+ const ws=ALL.filter(x=>{const s=S.items[x.id];return s&&(s.w||s.unsure)}).sort((p,q)=>S.items[q.id].w-S.items[p.id].w);
+ const rc={};ws.forEach(x=>{const r=S.items[x.id].reason;if(r)rc[r]=(rc[r]||0)+1});
+ a.innerHTML=`<h2>오답 노트</h2><div class="card"><p>틀린 이유: ${Object.keys(rc).length?Object.entries(rc).map(([k,v])=>`<b>${esc(k)}</b> ${v}`).join(' · '):'기록 없음'}</p>
+ <p class="small mute">「몰랐다」가 많으면 빈칸 카드로 암기량을 늘리고, 「헷갈렸다」가 많으면 짝 맞추기·순서 맞추기로 구분 연습을, 「실수」가 많으면 문제의 「아닌 것·옳지 않은 것」에 표시하며 읽으십시오.</p>
+ <button class="pri" id="wg" ${ws.length?'':'disabled'}>오답·헷갈린 문항 다시 풀기</button></div>
+ <div class="card list" style="margin-top:14px">${ws.length?ws.map(x=>{const s=S.items[x.id];return `<div class="it">${head(x)}<br><b>${esc(x.q||x.t)}</b><br><span class="small mute">틀림 ${s.w} · 헷갈림 ${s.unsure||0}${s.reason?' · 최근 이유: '+esc(s.reason):''} · 다음 복습 ${esc(s.due||'')}</span></div>`}).join(''):'<p class="mute">아직 틀린 문항이 없습니다.</p>'}</div>`;
+ $('#wg').onclick=()=>startSession(buildWeak(),'오답 다시 풀기');
+}
+function renderInfo(){const a=$('#app');
+ a.innerHTML=`<h2>시험 일정 · 기출 · 개정 수치</h2>
+ <div class="card small"><b>근거 자료</b><br>시험 일정: 고용노동부 공고 제2026-518호 「2027년도 국가기술자격 검정시행계획」(2026.11.23) — 직업상담사 2급은 서비스 분야로 1·2·3회 모두 시행 · 시험 구조: Q-Net 직업상담사2급 종목 정보(출제기준 2025.1.1~2027.12.31) · 법령 수치: 고용노동부 고시·보도자료, 국가법령정보센터</div>
+ <h3>2027년 정기시험 일정</h3><div class="card scroll"><table class="stack"><thead><tr><th>회차</th><th>필기 접수</th><th>필기 시험(CBT)</th><th>필기 발표</th><th>실기 접수</th><th>실기(필답형)</th><th>최종 발표</th></tr></thead><tbody>${SCHED.map(r=>`<tr><td><b>${r.r}</b></td><td>${r.wa}</td><td>${r.w}</td><td>${r.wp}</td><td>${r.pa}</td><td><b>${r.p}</b></td><td>${r.f}</td></tr>`).join('')}</tbody></table>
+ <p class="note">접수 시간: 첫날 10:00 ~ 마지막 날 18:00 · 발표 시간 09:00 · 필답형 실기는 전국 동시 시행(2회는 토요일, 1회는 일요일, 3회는 종목별로 11.6 또는 11.14이며 직업상담사 2급은 11.6 13:30) · 최종 발표는 필답형 중앙채점 종목의 2차 발표일입니다. · 필기 합격 시 발표일부터 2년간 필기 면제 · 응시료 필기 19,400원, 실기 20,800원 · 제주 시험장: 한국산업인력공단 제주지사(제주시 복지로 19, 064-729-0701)</p></div>
+ <h3>시험 구조</h3><div class="card scroll"><table class="stack"><thead><tr><th>구분</th><th>내용</th><th>합격 기준</th></tr></thead><tbody><tr><td>필기</td><td class="l">직업심리 · 직업상담 및 취업지원 · 직업정보 · 노동시장 · 고용노동관계법규(Ⅰ), 각 20문항 4지선다, 150분</td><td>과목당 40점 이상 + 평균 60점 이상</td></tr><tr><td>실기</td><td class="l">직업상담실무 필답형, 150분</td><td>100점 만점 60점 이상</td></tr></tbody></table></div>
+ <h3>공개 기출문제 (필기)</h3><div class="card"><p class="small">한국산업인력공단은 2022년 2회까지 필기 문제를 공개했고, 2022년 3회부터는 CBT로 바뀌어 공개하지 않습니다. 그 이후 기출은 수험생 기억을 모은 복원본입니다. 아래 공개 회차를 시간을 재고 풀고, 점수를 기록하십시오.</p>
+ <p class="small"><b>주의</b> ① 과목명이 2025년에 바뀌었습니다(직업상담학→직업상담 및 취업지원, 노동관계법규→고용노동관계법규(Ⅰ)). ② 2024년 이전 법규 문항은 아래 개정 수치표 기준으로 정답이 달라질 수 있습니다.</p>
+ <div class="scroll"><table><thead><tr><th>시행일</th><th>회차</th><th>문제(CBT 전자문제집)</th><th>풀이 기록</th></tr></thead><tbody>${PAST.map(p=>{const v=S.past[p[0]]||'';return `<tr><td>${p[0]}</td><td>${p[1]}</td><td><a href="https://www.comcbt.com/xe/n3/${p[2]}" target="_blank" rel="noopener">열기</a></td><td><input data-p="${p[0]}" value="${esc(v)}" placeholder="평균 점수" inputmode="numeric" style="width:6.5em;min-height:40px;border:1px solid var(--line);border-radius:8px;padding:4px 8px;background:var(--card)"></td></tr>`}).join('')}</tbody></table></div>
+ <p class="note">전체 목록: <a href="https://www.comcbt.com/xe/n3" target="_blank" rel="noopener">comcbt.com/xe/n3</a> · 과목 개편 안내: <a href="https://www.moducbt.com/info/job-counselor-2/job-counselor-2-subject-revision" target="_blank" rel="noopener">모두CBT</a> · 2022년 3회 이후 복원 기출과 실기 복원 기출(2019~2025)은 시판 기출문제집(예: 시대에듀 2026 필기 CBT 문제은행, 실기 기출문제해설)에 실려 있습니다.</p></div>
+ <h3>법 개정으로 정답이 바뀐 수치</h3><div class="card scroll"><table class="stack"><thead><tr><th>항목</th><th>예전 기출 정답</th><th>현행</th><th>시행</th></tr></thead><tbody>${LAW.map(r=>`<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td class="l">${esc(r[2])}</td><td>${esc(r[3])}</td></tr>`).join('')}</tbody></table>
+ <p class="note">2027년에는 최저임금 인상으로 구직급여 하한(68,480원)이 현재 상한(68,100원)보다 높아져 상·하한 개편이 논의 중입니다. 시험 1주 전에 고용노동부 보도자료와 국가법령정보센터에서 다시 확인하십시오.</p></div>
+ <h3>학습 기록 옮기기</h3><div class="card small"><p>기록은 이 브라우저에만 저장됩니다. 다른 기기로 옮길 때는 아래 코드를 복사해 그 기기의 같은 칸에 붙여 넣으십시오.</p><div class="row"><button id="cp">기록 코드 복사</button><button id="im">붙여 넣은 코드 불러오기</button></div><textarea id="io" style="min-height:80px;margin-top:8px" placeholder="여기에 기록 코드를 붙여 넣습니다"></textarea>
+ <p>하루 새 학습량: 빈칸 <input id="nc" type="number" min="0" max="60" value="${S.settings.newCloze}" style="width:4.5em;min-height:40px"> 문제 <input id="nm2" type="number" min="0" max="60" value="${S.settings.newMcq}" style="width:4.5em;min-height:40px"> 실기 <input id="np" type="number" min="0" max="10" value="${S.settings.newPrac}" style="width:4em;min-height:40px"></p></div>`;
+ a.querySelectorAll('[data-p]').forEach(i=>i.onchange=()=>{S.past[i.dataset.p]=i.value;save()});
+ $('#cp').onclick=async()=>{const t=JSON.stringify(S);$('#io').value=t;try{await navigator.clipboard.writeText(t);$('#cp').textContent='복사했습니다'}catch(e){$('#io').select();$('#cp').textContent='아래 칸을 직접 복사하십시오'}};
+ $('#im').onclick=()=>{try{const v=JSON.parse($('#io').value);if(!v.items)throw 0;S=Object.assign(S,v);save();$('#im').textContent='불러왔습니다'}catch(e){$('#im').textContent='코드가 올바르지 않습니다'}};
+ [['nc','newCloze'],['nm2','newMcq'],['np','newPrac']].forEach(([i,k])=>$('#'+i).onchange=e=>{S.settings[k]=Math.max(0,+e.target.value||0);save()});
+}
+
+/* ---------- install (home screen) ---------- */
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;if((location.hash.slice(1)||'home')==='home')render()});
+const standalone=()=>window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const ua=navigator.userAgent||'';
+function installCard(){if(standalone())return'';
+ const inApp=/KAKAOTALK|Instagram|FBAN|FBAV|NAVER|Line\//i.test(ua),ios=/iPhone|iPad|iPod/i.test(ua);
+ let msg;
+ if(inApp)msg='카카오톡 등 앱 안의 브라우저에서는 설치가 되지 않습니다. 오른쪽 위(또는 아래) 메뉴에서 「다른 브라우저로 열기」를 누른 뒤 설치하십시오.';
+ else if(deferredPrompt)msg='버튼을 누르면 휴대폰 홈 화면에 앱으로 설치됩니다. 설치하면 인터넷이 없어도 공부할 수 있습니다.';
+ else if(ios)msg='Safari 아래쪽의 공유 버튼(네모에 위쪽 화살표)을 누르고 「홈 화면에 추가」를 고르십시오.';
+ else msg='브라우저 메뉴(⋮)에서 「홈 화면에 추가」 또는 「앱 설치」를 고르십시오.';
+ return `<div class="card" style="margin-top:14px"><b>홈 화면에 설치하기</b><p class="small mute" style="margin:6px 0 10px">${msg}</p>${deferredPrompt&&!inApp?'<button class="pri" id="inst">홈 화면에 설치</button>':''}</div>`}
+function bindInstall(){const b=$('#inst');if(b)b.onclick=async()=>{deferredPrompt.prompt();try{await deferredPrompt.userChoice}catch(e){}deferredPrompt=null;render()}}
+if('serviceWorker' in navigator){try{navigator.serviceWorker.register('sw.js').catch(()=>{})}catch(e){}}
+
+/* ---------- routing ---------- */
+const PAGES=[['home','홈'],['session','학습 중'],['focus','과목 집중'],['mock','모의고사'],['prac','실기'],['wrong','오답 노트'],['info','일정·기출·개정']];
+function render(){document.onkeydown=null;clearInterval(tick);
+ let h=location.hash.slice(1)||'home';if(!PAGES.some(p=>p[0]===h))h='home';
+ $('#nav').innerHTML=PAGES.filter(p=>p[0]!=='session'||SES).map(([k,v])=>`<a href="#${k}" class="${k===h?'on':''}">${v}</a>`).join('');
+ $('#dd').textContent=dday();
+ ({home:renderHome,session:renderSession,focus:renderFocus,mock:renderMock,prac:renderPrac,wrong:renderWrong,info:renderInfo})[h]();
+}
+window.addEventListener('hashchange',render);
+const stackObs=new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,q=c;while(q=q.previousElementSibling)i+=q.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}});stackObs.observe(document.body,{childList:true,subtree:true});
+fetch('data.json').then(r=>r.json()).then(d=>{D=d;
+ ALL=[...d.mcq.map(x=>({...x,type:'mcq'})),...d.cloze.map(x=>({...x,type:'cloze'})),...d.order.map(x=>({...x,type:'order'})),...d.match.map(x=>({...x,type:'match'})),...d.prac.map(x=>({...x,type:'prac'}))];
+ render()}).catch(e=>{$('#app').innerHTML='<div class="card">문제 파일을 불러오지 못했습니다. 페이지를 새로 고침하십시오.</div>'});
+}
+</script>
+</body>
+</html>
